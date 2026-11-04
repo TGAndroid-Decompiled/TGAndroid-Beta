@@ -13,9 +13,9 @@ public class VideoSource extends MediaSource {
         public final int height;
         public final int width;
 
-        public AspectRatio(int i10, int i11) {
-            this.width = i10;
-            this.height = i11;
+        public AspectRatio(int i3, int i10) {
+            this.width = i3;
+            this.height = i10;
         }
     }
 
@@ -88,10 +88,10 @@ public class VideoSource extends MediaSource {
         runWithReference(new s(6, this, videoFrame));
     }
 
-    public void adaptOutputFormat(int i10, int i11, int i12) {
-        int max = Math.max(i10, i11);
-        int min = Math.min(i10, i11);
-        adaptOutputFormat(max, min, min, max, i12);
+    public void adaptOutputFormat(int i3, int i10, int i11) {
+        int max = Math.max(i3, i10);
+        int min = Math.min(i3, i10);
+        adaptOutputFormat(max, min, min, max, i11);
     }
 
     @Override
@@ -135,8 +135,8 @@ public class VideoSource extends MediaSource {
         }
     }
 
-    public void adaptOutputFormat(int i10, int i11, int i12, int i13, int i14) {
-        adaptOutputFormat(new AspectRatio(i10, i11), Integer.valueOf(i10 * i11), new AspectRatio(i12, i13), Integer.valueOf(i12 * i13), Integer.valueOf(i14));
+    public void adaptOutputFormat(int i3, int i10, int i11, int i12, int i13) {
+        adaptOutputFormat(new AspectRatio(i3, i10), Integer.valueOf(i3 * i10), new AspectRatio(i11, i12), Integer.valueOf(i11 * i12), Integer.valueOf(i13));
     }
 
     public void adaptOutputFormat(AspectRatio aspectRatio, Integer num, AspectRatio aspectRatio2, Integer num2, Integer num3) {

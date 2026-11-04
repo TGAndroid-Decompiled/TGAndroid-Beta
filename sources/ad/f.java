@@ -1,29 +1,20 @@
 package ad;
+public final class f extends l {
+    public final StringBuilder f354c;
 
-import java.io.Serializable;
-public final class f implements Serializable {
-    public final Throwable f395a;
-
-    public f(Throwable exception) {
-        kotlin.jvm.internal.i.e(exception, "exception");
-        this.f395a = exception;
+    public f() {
+        super(4, 0);
+        this.f354c = new StringBuilder();
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof f) {
-            if (kotlin.jvm.internal.i.a(this.f395a, ((f) obj).f395a)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
+    @Override
+    public final l b() {
+        l.c(this.f354c);
+        return this;
     }
 
-    public final int hashCode() {
-        return this.f395a.hashCode();
-    }
-
+    @Override
     public final String toString() {
-        return "Failure(" + this.f395a + ')';
+        return "<!--" + this.f354c.toString() + "-->";
     }
 }

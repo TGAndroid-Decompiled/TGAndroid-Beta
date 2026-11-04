@@ -1,52 +1,68 @@
 package r3;
 
-import a1.g;
-import e2.l0;
-import j$.util.Objects;
-import java.util.Locale;
-import v7.t6;
-public final class a {
-    public final long f46302a;
-    public final long f46303b;
-    public final int f46304c;
+import b8.te;
+import b8.xb;
+import d2.s0;
+import java.nio.ByteBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class a extends te {
+    public static final Pattern f54234c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f54235a = StandardCharsets.UTF_8.newDecoder();
+    public final CharsetDecoder f54236b = StandardCharsets.ISO_8859_1.newDecoder();
 
-    public a(long j10, int i10, long j11) {
-        boolean z10;
-        if (j10 < j11) {
-            z10 = true;
-        } else {
-            z10 = false;
+    @Override
+    public final s0 b(n3.a aVar, ByteBuffer byteBuffer) {
+        String str;
+        CharsetDecoder charsetDecoder = this.f54236b;
+        CharsetDecoder charsetDecoder2 = this.f54235a;
+        String str2 = null;
+        try {
+            str = charsetDecoder2.decode(byteBuffer).toString();
+        } catch (CharacterCodingException unused) {
+            try {
+                String charBuffer = charsetDecoder.decode(byteBuffer).toString();
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                str = charBuffer;
+            } catch (CharacterCodingException unused2) {
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                str = null;
+            } catch (Throwable th2) {
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                throw th2;
+            }
+        } finally {
+            charsetDecoder2.reset();
+            byteBuffer.rewind();
         }
-        t6.f(z10);
-        this.f46302a = j10;
-        this.f46303b = j11;
-        this.f46304c = i10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        byte[] bArr = new byte[byteBuffer.limit()];
+        byteBuffer.get(bArr);
+        if (str == null) {
+            return new s0(new c(bArr, null, null));
         }
-        if (obj != null && a.class == obj.getClass()) {
-            a aVar = (a) obj;
-            if (this.f46302a == aVar.f46302a && this.f46303b == aVar.f46303b && this.f46304c == aVar.f46304c) {
-                return true;
+        Matcher matcher = f54234c.matcher(str);
+        String str3 = null;
+        for (int i3 = 0; matcher.find(i3); i3 = matcher.end()) {
+            String group = matcher.group(1);
+            String group2 = matcher.group(2);
+            if (group != null) {
+                String c2 = xb.c(group);
+                c2.getClass();
+                if (!c2.equals("streamurl")) {
+                    if (c2.equals("streamtitle")) {
+                        str2 = group2;
+                    }
+                } else {
+                    str3 = group2;
+                }
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f46302a), Long.valueOf(this.f46303b), Integer.valueOf(this.f46304c));
-    }
-
-    public final String toString() {
-        String str = l0.f6165a;
-        Locale locale = Locale.US;
-        StringBuilder s10 = g.s(this.f46302a, "Segment: startTimeMs=", ", endTimeMs=");
-        s10.append(this.f46303b);
-        s10.append(", speedDivisor=");
-        s10.append(this.f46304c);
-        return s10.toString();
+        return new s0(new c(bArr, str2, str3));
     }
 }

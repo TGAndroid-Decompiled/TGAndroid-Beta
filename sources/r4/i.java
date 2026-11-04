@@ -1,30 +1,57 @@
 package r4;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import c0.m;
-public abstract class i {
-    public static final m f46324a = new Object();
-    public static final Object f46325b = new Object();
-    public static kb.a f46326c = null;
+import android.media.MediaRouter2$RouteCallback;
+import java.util.List;
+public final class i extends MediaRouter2$RouteCallback {
+    public final int f54296a;
+    public final k f54297b;
 
-    public static long a(Context context) {
-        PackageManager packageManager = context.getApplicationContext().getPackageManager();
-        if (Build.VERSION.SDK_INT >= 33) {
-            return g.a(packageManager, context).lastUpdateTime;
+    public i(k kVar, int i3) {
+        this.f54296a = i3;
+        this.f54297b = kVar;
+    }
+
+    public void onRoutesAdded(List list) {
+        switch (this.f54296a) {
+            case 0:
+                this.f54297b.q();
+                return;
+            default:
+                super.onRoutesAdded(list);
+                return;
         }
-        return packageManager.getPackageInfo(context.getPackageName(), 0).lastUpdateTime;
     }
 
-    public static kb.a b() {
-        kb.a aVar = new kb.a(19);
-        f46326c = aVar;
-        f46324a.k(aVar);
-        return f46326c;
+    public void onRoutesChanged(List list) {
+        switch (this.f54296a) {
+            case 0:
+                this.f54297b.q();
+                return;
+            default:
+                super.onRoutesChanged(list);
+                return;
+        }
     }
 
-    public static void c(android.content.Context r18, boolean r19) {
-        throw new UnsupportedOperationException("Method not decompiled: r4.i.c(android.content.Context, boolean):void");
+    public void onRoutesRemoved(List list) {
+        switch (this.f54296a) {
+            case 0:
+                this.f54297b.q();
+                return;
+            default:
+                super.onRoutesRemoved(list);
+                return;
+        }
+    }
+
+    public void onRoutesUpdated(List list) {
+        switch (this.f54296a) {
+            case 1:
+                this.f54297b.q();
+                return;
+            default:
+                super.onRoutesUpdated(list);
+                return;
+        }
     }
 }

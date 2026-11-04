@@ -1,13 +1,6 @@
 package hh;
 
-import android.view.View;
-import r0.j1;
+import org.telegram.ui.ActionBar.e6;
 public interface d {
-    void Q();
-
-    View S();
-
-    void m(j1 j1Var);
-
-    void x();
+    int j(e6 e6Var, boolean z10);
 }

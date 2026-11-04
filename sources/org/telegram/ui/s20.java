@@ -1,19 +1,42 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.UndoView;
-public final class s20 extends UndoView {
-    public final a50 f41206j0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Paint;
+public final class s20 extends AnimatorListenerAdapter {
+    public final int f49336a;
+    public final x30 f49337b;
 
-    public s20(a50 a50Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f41206j0 = a50Var;
+    public s20(x30 x30Var, int i3) {
+        this.f49336a = i3;
+        this.f49337b = x30Var;
     }
 
     @Override
-    public final void k(long j10, int i10, Object obj, Object obj2, Runnable runnable, Runnable runnable2) {
-        if (this.f41206j0.f35648q2 != null) {
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        int i3;
+        switch (this.f49336a) {
+            case 0:
+                x30 x30Var = this.f49337b;
+                x30Var.N1.setVisibility(4);
+                x30Var.O1.setVisibility(4);
+                x30Var.M1.setVisibility(4);
+                return;
+            case 1:
+                this.f49337b.Z1 = null;
+                return;
+            default:
+                x30 x30Var2 = this.f49337b;
+                x30Var2.Z2 = null;
+                Paint paint = x30Var2.Y2;
+                if (x30Var2.L3 == 3) {
+                    i3 = -1163700;
+                } else {
+                    i3 = -12761513;
+                }
+                paint.setColor(i3);
+                x30Var2.X2.invalidate();
+                return;
         }
-        super.k(j10, i10, obj, obj2, runnable, runnable2);
     }
 }

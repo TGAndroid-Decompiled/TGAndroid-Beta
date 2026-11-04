@@ -1,137 +1,36 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import java.io.File;
-public final class ad {
-    public String f14591a;
-    public String f14592b;
-    public String f14593c;
-    public String d;
-    public String e;
-    public String f14594f;
-    public boolean f14595g;
-    public int h;
-    public int f14596i;
-    public boolean f14597j;
-    public int f14598k;
-
-    public static ad a(String str) {
-        String str2;
-        String str3;
-        ad adVar = null;
-        adVar = null;
-        adVar = null;
-        if (str != null && str.length() != 0) {
-            String[] split = str.split("\\|");
-            if (split.length >= 4) {
-                ?? obj = new Object();
-                boolean z10 = false;
-                obj.f14591a = split[0];
-                obj.f14592b = split[1];
-                obj.f14593c = split[2].toLowerCase();
-                obj.d = split[3];
-                if (split.length >= 5) {
-                    obj.h = Utilities.z(split[4]).intValue();
-                }
-                if (split.length >= 6) {
-                    str2 = split[5];
-                } else {
-                    str2 = "";
-                }
-                obj.e = str2;
-                if (split.length >= 7) {
-                    str3 = split[6];
-                } else {
-                    str3 = obj.f14593c;
-                }
-                obj.f14594f = str3;
-                if (split.length >= 8) {
-                    if (Utilities.z(split[7]).intValue() == 1) {
-                        z10 = true;
-                    }
-                    obj.f14595g = z10;
-                }
-                if (split.length >= 9) {
-                    obj.f14596i = Utilities.z(split[8]).intValue();
-                }
-                if (split.length >= 10) {
-                    obj.f14598k = Utilities.z(split[9]).intValue();
-                } else {
-                    obj.f14598k = Integer.MAX_VALUE;
-                }
-                boolean isEmpty = TextUtils.isEmpty(obj.e);
-                adVar = obj;
-                if (!isEmpty) {
-                    obj.e = obj.e.replace("-", "_");
-                    adVar = obj;
-                }
-            }
-        }
-        return adVar;
-    }
-
-    public final String b() {
-        if (this.d != null && !i() && !j()) {
-            return "local_" + this.f14593c;
-        } else if (j()) {
-            return "unofficial_" + this.f14593c;
+import android.icu.text.RelativeDateTimeFormatter;
+import java.util.Locale;
+public abstract class ad {
+    public static String a(long j10, Locale locale) {
+        boolean z10;
+        RelativeDateTimeFormatter.RelativeUnit relativeUnit;
+        RelativeDateTimeFormatter relativeDateTimeFormatter = RelativeDateTimeFormatter.getInstance(locale);
+        if (j10 > 0) {
+            z10 = true;
         } else {
-            return this.f14593c;
+            z10 = false;
         }
-    }
-
-    public final String c() {
-        return this.f14593c.replace("_", "-");
-    }
-
-    public final File d() {
-        if (j()) {
-            return new File(w0.h(), a1.g.r(new StringBuilder("unofficial_base_"), this.f14593c, ".xml"));
+        long max = Math.max(1L, Math.round(Math.abs(j10) / 1000.0d));
+        if (max < 60) {
+            relativeUnit = RelativeDateTimeFormatter.RelativeUnit.SECONDS;
+        } else if (max < 3600) {
+            relativeUnit = RelativeDateTimeFormatter.RelativeUnit.MINUTES;
+            max = Math.round(max / 60.0d);
+        } else if (max < 86400) {
+            relativeUnit = RelativeDateTimeFormatter.RelativeUnit.HOURS;
+            max = Math.round(max / 3600.0d);
+        } else if (max < 2592000) {
+            relativeUnit = RelativeDateTimeFormatter.RelativeUnit.DAYS;
+            max = Math.round(max / 86400.0d);
+        } else if (max < 31536000) {
+            relativeUnit = RelativeDateTimeFormatter.RelativeUnit.MONTHS;
+            max = Math.round(max / 2592000.0d);
+        } else {
+            relativeUnit = RelativeDateTimeFormatter.RelativeUnit.YEARS;
+            max = Math.round(max / 3.1536E7d);
         }
-        return null;
-    }
-
-    public final File e() {
-        if (i()) {
-            return new File(w0.h(), a1.g.r(new StringBuilder("remote_"), this.f14593c, ".xml"));
-        }
-        if (j()) {
-            return new File(w0.h(), a1.g.r(new StringBuilder("unofficial_"), this.f14593c, ".xml"));
-        }
-        if (!TextUtils.isEmpty(this.d)) {
-            return new File(this.d);
-        }
-        return null;
-    }
-
-    public final String f() {
-        String str = this.e;
-        if (str == null) {
-            str = "";
-        }
-        TextUtils.isEmpty(this.f14594f);
-        return this.f14591a + "|" + this.f14592b + "|" + this.f14593c + "|" + this.d + "|" + this.h + "|" + str + "|" + this.f14594f + "|" + (this.f14595g ? 1 : 0) + "|" + this.f14596i + "|" + this.f14598k;
-    }
-
-    public final boolean g() {
-        if (j() && !TextUtils.isEmpty(this.e) && !this.e.equals(this.f14593c)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean h() {
-        if (!TextUtils.isEmpty(this.d) && !i() && !j()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean i() {
-        return "remote".equals(this.d);
-    }
-
-    public final boolean j() {
-        return "unofficial".equals(this.d);
+        return relativeDateTimeFormatter.format(max, z10 ? RelativeDateTimeFormatter.Direction.NEXT : RelativeDateTimeFormatter.Direction.LAST, relativeUnit);
     }
 }

@@ -1,32 +1,39 @@
 package org.telegram.messenger.voip;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class z implements Runnable {
-    public final int f18889a;
-    public final VoIPService f18890b;
-    public final ArrayList f18891c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final String f18892f;
+    public final int f26080a;
+    public final VoIPService f26081b;
+    public final TLRPC.TL_error f26082c;
+    public final TLObject d;
 
-    public z(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i10) {
-        this.f18889a = i10;
-        this.f18890b = voIPService;
-        this.f18891c = arrayList;
-        this.d = arrayList2;
-        this.e = arrayList3;
-        this.f18892f = str;
+    public z(int i3, VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f26080a = i3;
+        this.f26081b = voIPService;
+        this.f26082c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f18889a) {
+        switch (this.f26080a) {
             case 0:
-                this.f18890b.lambda$startConferenceGroupCall$47(this.f18891c, this.d, this.e, this.f18892f);
+                this.f26081b.lambda$startGroupCheckShortpoll$61(this.d, this.f26082c);
+                return;
+            case 1:
+                this.f26081b.lambda$processAcceptedCall$19(this.f26082c, this.d);
                 return;
             default:
-                this.f18890b.lambda$startConferenceGroupCall$39(this.f18891c, this.d, this.e, this.f18892f);
+                this.f26081b.lambda$acceptIncomingCall$101(this.f26082c, this.d);
                 return;
         }
+    }
+
+    public z(VoIPService voIPService, TLObject tLObject, TLRPC.TL_error tL_error) {
+        this.f26080a = 0;
+        this.f26081b = voIPService;
+        this.d = tLObject;
+        this.f26082c = tL_error;
     }
 }

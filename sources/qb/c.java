@@ -1,30 +1,13 @@
 package qb;
 
-import java.util.Arrays;
-import n6.l;
-import o1.i;
-public abstract class c {
-    public final float f45520a;
+import java.util.Comparator;
+public final class c implements Comparator {
+    public static final c f53829a = new Object();
 
-    public c(i iVar) {
-        this.f45520a = iVar.f13941a;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof c)) {
-            return false;
-        }
-        c cVar = (c) obj;
-        if (getClass().equals(cVar.getClass()) && Float.compare(this.f45520a, cVar.f45520a) == 0 && l.k(null, null)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f45520a), null});
+    @Override
+    public final int compare(Object obj, Object obj2) {
+        ((pb.a) obj2).getClass();
+        ((pb.a) obj).getClass();
+        return 0;
     }
 }

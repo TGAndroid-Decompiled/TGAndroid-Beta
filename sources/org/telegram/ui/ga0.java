@@ -1,29 +1,17 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.EditText;
-public final class ga0 extends EditText {
-    public final int f37438a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class ga0 extends org.telegram.ui.ActionBar.f1 {
+    public final la0 f45612o;
 
-    public ga0(Context context, int i10) {
-        super(context);
-        this.f37438a = i10;
+    public ga0(la0 la0Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f45612o = la0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f37438a) {
-            case 0:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                if (motionEvent.getAction() == 1) {
-                    setCursorVisible(true);
-                }
-                return super.onTouchEvent(motionEvent);
-        }
+    public final void dismiss() {
+        d(true);
+        this.f45612o.K0 = null;
     }
 }

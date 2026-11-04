@@ -1,31 +1,31 @@
 package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.at;
-import org.telegram.messenger.vs;
-import org.telegram.ui.if0;
-public final class z implements Runnable, vs {
-    public boolean f35435a;
-    public final at f35436b;
-    public final if0 f35437c;
+import org.telegram.messenger.cs;
+import org.telegram.messenger.hs;
+import org.telegram.ui.tb0;
+public final class z implements Runnable, cs {
+    public boolean f43485a;
+    public final hs f43486b;
+    public final tb0 f43487c;
     public final k0 d;
 
-    public z(at atVar, if0 if0Var, k0 k0Var) {
-        this.f35436b = atVar;
-        this.f35437c = if0Var;
+    public z(hs hsVar, tb0 tb0Var, k0 k0Var) {
+        this.f43486b = hsVar;
+        this.f43487c = tb0Var;
         this.d = k0Var;
     }
 
     public final void a() {
-        if (!this.f35435a) {
+        if (!this.f43485a) {
             k0 k0Var = this.d;
-            if (k0Var.e != null) {
+            if (k0Var.f42721e != null) {
                 ArrayList arrayList = k0Var.G;
                 int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
+                int i3 = 0;
+                while (i3 < size) {
+                    Object obj = arrayList.get(i3);
+                    i3++;
                     if (((g0) obj).d) {
                         return;
                     }
@@ -36,20 +36,20 @@ public final class z implements Runnable, vs {
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == at.f14678a4) {
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        if (i3 == hs.f23200a4) {
             a();
         }
     }
 
     @Override
     public final void run() {
-        if (this.f35435a) {
+        if (this.f43485a) {
             return;
         }
-        this.f35435a = true;
-        org.telegram.messenger.i0.r(this);
-        this.f35436b.n(this, at.f14678a4);
-        this.f35437c.run();
+        this.f43485a = true;
+        org.telegram.messenger.g0.r(this);
+        this.f43486b.n(this, hs.f23200a4);
+        this.f43487c.run();
     }
 }

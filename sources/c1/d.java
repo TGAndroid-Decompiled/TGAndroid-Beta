@@ -1,116 +1,474 @@
 package c1;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.os.Handler;
-import android.os.Looper;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcelable;
+import android.os.ResultReceiver;
+import android.util.Log;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import b1.f;
-import com.google.android.gms.common.api.internal.v;
-import com.google.android.gms.common.api.internal.w;
-import d1.g;
+import b8.f1;
+import ci.e0;
+import e7.k;
+import e7.r;
+import e7.u;
+import java.lang.ref.WeakReference;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executor;
-import kotlin.jvm.internal.i;
+import kotlin.jvm.internal.j;
 import org.json.JSONException;
-import org.json.JSONObject;
-import v0.h;
-import v0.m;
-import v0.o;
-import v7.o6;
-import w7.p8;
-import x5.e;
-public final class d extends b1.d {
-    public final Context e;
-    public h f3520f;
-    public Executor f3521g;
-    public CancellationSignal h;
-    public final c f3522i;
+import p4.p;
+import v0.n;
+import w0.g;
+import w0.h;
+import w0.i;
+import x7.g5;
+import x7.h5;
+import x7.q6;
+import x7.r6;
+public final class d extends ResultReceiver {
+    public final int f3964a;
+    public final Object f3965b;
 
-    public d(Context context) {
-        i.e(context, "context");
-        this.e = context;
-        this.f3522i = new c(this, new Handler(Looper.getMainLooper()), 0);
+    public d(b1.d dVar, Handler handler, int i3) {
+        super(handler);
+        this.f3964a = i3;
+        this.f3965b = dVar;
     }
 
-    public final v0.n d(x5.g r14) {
-        throw new UnsupportedOperationException("Method not decompiled: c1.d.d(x5.g):v0.n");
-    }
-
-    public final h e() {
-        h hVar = this.f3520f;
-        if (hVar != null) {
-            return hVar;
-        }
-        i.h("callback");
-        throw null;
-    }
-
-    public final Executor f() {
-        Executor executor = this.f3521g;
-        if (executor != null) {
-            return executor;
-        }
-        i.h("executor");
-        throw null;
-    }
-
-    public final void g(m request, CancellationSignal cancellationSignal, Executor executor, h callback) {
-        boolean z10;
-        i.e(request, "request");
-        i.e(callback, "callback");
-        i.e(executor, "executor");
-        this.h = cancellationSignal;
-        this.f3520f = callback;
-        this.f3521g = executor;
-        CredentialProviderPlayServicesImpl.Companion.getClass();
-        if (a1.h.a(cancellationSignal)) {
-            return;
-        }
-        Context context = this.e;
-        i.e(context, "context");
-        x5.d dVar = new x5.d(false);
-        x5.a aVar = new x5.a(false, null, null, true, null, null, false);
-        x5.c cVar = new x5.c(false, null, null);
-        x5.b bVar = new x5.b(null, false);
-        PackageManager packageManager = context.getPackageManager();
-        i.d(packageManager, "getPackageManager(...)");
-        long j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
-        x5.b bVar2 = bVar;
-        boolean z11 = false;
-        for (o oVar : request.f50291a) {
-            if ((oVar instanceof o) && !z11) {
-                if (j10 >= 231815000) {
-                    LinkedHashMap linkedHashMap = g.f5644a;
-                    bVar2 = new x5.b(oVar.d, true);
-                } else {
-                    LinkedHashMap linkedHashMap2 = g.f5644a;
-                    JSONObject jSONObject = new JSONObject(oVar.d);
-                    String optString = jSONObject.optString("rpId", "");
-                    i.b(optString);
-                    if (optString.length() != 0) {
-                        cVar = new x5.c(true, o6.a(jSONObject), optString);
+    @Override
+    public final void onReceiveResult(int i3, Bundle resultData) {
+        byte[] bArr;
+        w0.d dVar;
+        Object obj;
+        v0.c cVar;
+        String string;
+        Bundle bundle;
+        w0.d a10;
+        Object obj2;
+        n nVar;
+        String string2;
+        Bundle bundle2;
+        i iVar = null;
+        p4.d dVar2 = null;
+        switch (this.f3964a) {
+            case 0:
+                j.e(resultData, "resultData");
+                c cVar2 = new c(2, b1.d.f2329a, b1.a.class, "getCredentialExceptionTypeToException", "getCredentialExceptionTypeToException$credentials_play_services_auth_release(Ljava/lang/String;Ljava/lang/String;)Landroidx/credentials/exceptions/GetCredentialException;", 0, 0);
+                e eVar = (e) this.f3965b;
+                if (!b1.d.b(resultData, cVar2, eVar.f(), eVar.e(), eVar.h)) {
+                    int i10 = resultData.getInt("ACTIVITY_REQUEST_CODE");
+                    Intent intent = (Intent) resultData.getParcelable("RESULT_DATA");
+                    int i11 = b1.d.f2331c;
+                    if (i10 != i11) {
+                        Log.w("BeginSignIn", "Returned request code " + i11 + " which  does not match what was given " + i10);
+                        return;
+                    } else if (!f1.b(i3, new ae.j(5), new b(eVar, 0), eVar.h)) {
+                        try {
+                            f1.a(eVar.h, new f(1, eVar, eVar.d(r6.a(eVar.f3966e).f(intent))));
+                            return;
+                        } catch (com.google.android.gms.common.api.f e10) {
+                            ?? obj3 = new Object();
+                            obj3.f17361a = new h(2, e10.getMessage());
+                            if (e10.getStatusCode() == 16) {
+                                obj3.f17361a = new g(e10.getMessage());
+                            } else if (b1.d.f2330b.contains(Integer.valueOf(e10.getStatusCode()))) {
+                                obj3.f17361a = new w0.j(e10.getMessage());
+                            }
+                            CancellationSignal cancellationSignal = eVar.h;
+                            CredentialProviderPlayServicesImpl.Companion.getClass();
+                            if (!a1.h.a(cancellationSignal)) {
+                                eVar.f().execute(new a1.f(22, eVar, obj3));
+                                return;
+                            }
+                            return;
+                        } catch (i e11) {
+                            CancellationSignal cancellationSignal2 = eVar.h;
+                            CredentialProviderPlayServicesImpl.Companion.getClass();
+                            if (!a1.h.a(cancellationSignal2)) {
+                                eVar.f().execute(new a(eVar, e11, 1));
+                                return;
+                            }
+                            return;
+                        } catch (Throwable th2) {
+                            h hVar = new h(2, th2.getMessage());
+                            CancellationSignal cancellationSignal3 = eVar.h;
+                            CredentialProviderPlayServicesImpl.Companion.getClass();
+                            if (!a1.h.a(cancellationSignal3)) {
+                                eVar.f().execute(new a1.f(23, eVar, hVar));
+                                return;
+                            }
+                            return;
+                        }
                     } else {
-                        throw new JSONException("GetPublicKeyCredentialOption - rpId not specified in the request or is unexpectedly empty");
+                        return;
                     }
                 }
-                z11 = true;
-            }
+                return;
+            case 1:
+                j.e(resultData, "resultData");
+                c cVar3 = new c(2, b1.d.f2329a, b1.a.class, "createCredentialExceptionTypeToException", "createCredentialExceptionTypeToException$credentials_play_services_auth_release(Ljava/lang/String;Ljava/lang/String;)Landroidx/credentials/exceptions/CreateCredentialException;", 0, 1);
+                d1.e eVar2 = (d1.e) this.f3965b;
+                Executor executor = eVar2.f7997g;
+                if (executor != null) {
+                    v0.h hVar2 = eVar2.f7996f;
+                    if (hVar2 != null) {
+                        if (!b1.d.b(resultData, cVar3, executor, hVar2, eVar2.h)) {
+                            int i12 = resultData.getInt("ACTIVITY_REQUEST_CODE");
+                            Intent intent2 = (Intent) resultData.getParcelable("RESULT_DATA");
+                            int i13 = b1.d.f2331c;
+                            if (i12 != i13) {
+                                Log.w("CreatePublicKey", "Returned request code " + i13 + " does not match what was given " + i12);
+                                return;
+                            } else if (!b1.d.c(i3, new ae.j(6), new b(eVar2, 1), eVar2.h)) {
+                                if (intent2 != null) {
+                                    bArr = intent2.getByteArrayExtra("FIDO2_CREDENTIAL_EXTRA");
+                                } else {
+                                    bArr = null;
+                                }
+                                if (bArr == null) {
+                                    a1.h hVar3 = CredentialProviderPlayServicesImpl.Companion;
+                                    CancellationSignal cancellationSignal4 = eVar2.h;
+                                    hVar3.getClass();
+                                    if (!a1.h.a(cancellationSignal4)) {
+                                        Executor executor2 = eVar2.f7997g;
+                                        if (executor2 != null) {
+                                            executor2.execute(new d1.d(eVar2, 1));
+                                            return;
+                                        } else {
+                                            j.h("executor");
+                                            throw null;
+                                        }
+                                    }
+                                    return;
+                                }
+                                u uVar = (u) k8.c.a(bArr, u.CREATOR);
+                                j.d(uVar, "deserializeFromBytes(...)");
+                                LinkedHashMap linkedHashMap = d1.g.f8003a;
+                                Parcelable parcelable = uVar.d;
+                                Parcelable parcelable2 = parcelable;
+                                if (parcelable == null) {
+                                    Parcelable parcelable3 = uVar.f9878e;
+                                    parcelable2 = parcelable3;
+                                    if (parcelable3 == null) {
+                                        Parcelable parcelable4 = uVar.f9879f;
+                                        parcelable2 = parcelable4;
+                                        if (parcelable4 == null) {
+                                            throw new IllegalStateException("No response set.");
+                                        }
+                                    }
+                                }
+                                if (parcelable2 instanceof k) {
+                                    k kVar = (k) parcelable2;
+                                    r rVar = kVar.f9839a;
+                                    j.d(rVar, "getErrorCode(...)");
+                                    x0.a aVar = (x0.a) d1.g.f8003a.get(rVar);
+                                    String str = kVar.f9840b;
+                                    if (aVar == null) {
+                                        dVar = new y0.a(new x0.a(26), t4.c.f("unknown fido gms exception - ", str));
+                                    } else if (rVar == r.NOT_ALLOWED_ERR && str != null && ud.d.e(str, "Unable to get sync account")) {
+                                        dVar = new w0.b("Passkey registration was cancelled by the user.");
+                                    } else {
+                                        dVar = new y0.a(aVar, str);
+                                    }
+                                } else {
+                                    dVar = null;
+                                }
+                                if (dVar != null) {
+                                    CancellationSignal cancellationSignal5 = eVar2.h;
+                                    CredentialProviderPlayServicesImpl.Companion.getClass();
+                                    if (!a1.h.a(cancellationSignal5)) {
+                                        Executor executor3 = eVar2.f7997g;
+                                        if (executor3 != null) {
+                                            executor3.execute(new d1.a(eVar2, dVar, 2));
+                                            return;
+                                        } else {
+                                            j.h("executor");
+                                            throw null;
+                                        }
+                                    }
+                                    return;
+                                }
+                                try {
+                                    v0.f e12 = d1.e.e(uVar);
+                                    CancellationSignal cancellationSignal6 = eVar2.h;
+                                    CredentialProviderPlayServicesImpl.Companion.getClass();
+                                    if (!a1.h.a(cancellationSignal6)) {
+                                        Executor executor4 = eVar2.f7997g;
+                                        if (executor4 != null) {
+                                            executor4.execute(new e0(19, eVar2, e12));
+                                            return;
+                                        } else {
+                                            j.h("executor");
+                                            throw null;
+                                        }
+                                    }
+                                    return;
+                                } catch (JSONException e13) {
+                                    CancellationSignal cancellationSignal7 = eVar2.h;
+                                    CredentialProviderPlayServicesImpl.Companion.getClass();
+                                    if (!a1.h.a(cancellationSignal7)) {
+                                        Executor executor5 = eVar2.f7997g;
+                                        if (executor5 != null) {
+                                            executor5.execute(new d1.b(eVar2, e13, 0));
+                                            return;
+                                        } else {
+                                            j.h("executor");
+                                            throw null;
+                                        }
+                                    }
+                                    return;
+                                } catch (Throwable th3) {
+                                    CancellationSignal cancellationSignal8 = eVar2.h;
+                                    CredentialProviderPlayServicesImpl.Companion.getClass();
+                                    if (!a1.h.a(cancellationSignal8)) {
+                                        Executor executor6 = eVar2.f7997g;
+                                        if (executor6 != null) {
+                                            executor6.execute(new d1.c(eVar2, th3, 0));
+                                            return;
+                                        } else {
+                                            j.h("executor");
+                                            throw null;
+                                        }
+                                    }
+                                    return;
+                                }
+                            } else {
+                                return;
+                            }
+                        }
+                        return;
+                    }
+                    j.h("callback");
+                    throw null;
+                }
+                j.h("executor");
+                throw null;
+            case 2:
+                j.e(resultData, "resultData");
+                c cVar4 = new c(2, b1.d.f2329a, b1.a.class, "createCredentialExceptionTypeToException", "createCredentialExceptionTypeToException$credentials_play_services_auth_release(Ljava/lang/String;Ljava/lang/String;)Landroidx/credentials/exceptions/CreateCredentialException;", 0, 2);
+                e1.d dVar3 = (e1.d) this.f3965b;
+                Executor executor7 = dVar3.f9324g;
+                if (executor7 != null) {
+                    v0.h hVar4 = dVar3.f9323f;
+                    if (hVar4 != null) {
+                        if (!b1.d.b(resultData, cVar4, executor7, hVar4, dVar3.h)) {
+                            int i14 = resultData.getInt("ACTIVITY_REQUEST_CODE");
+                            int i15 = Build.VERSION.SDK_INT;
+                            if (i15 >= 34) {
+                                obj = g0.a.e(resultData);
+                            } else {
+                                Parcelable parcelable5 = resultData.getParcelable("RESULT_DATA");
+                                boolean isInstance = Intent.class.isInstance(parcelable5);
+                                obj = parcelable5;
+                                if (!isInstance) {
+                                    obj = null;
+                                }
+                            }
+                            Intent intent3 = (Intent) obj;
+                            int i16 = b1.d.f2331c;
+                            if (i14 != i16) {
+                                Log.w("CreatePublicKey", "Returned request code " + i16 + " does not match what was given " + i14);
+                                return;
+                            } else if (!b1.d.c(i3, new ae.j(7), new b(dVar3, 3), dVar3.h)) {
+                                if (intent3 == null) {
+                                    CancellationSignal cancellationSignal9 = dVar3.h;
+                                    CredentialProviderPlayServicesImpl.Companion.getClass();
+                                    if (!a1.h.a(cancellationSignal9)) {
+                                        Executor executor8 = dVar3.f9324g;
+                                        if (executor8 != null) {
+                                            executor8.execute(new e1.a(dVar3, 1));
+                                            return;
+                                        } else {
+                                            j.h("executor");
+                                            throw null;
+                                        }
+                                    }
+                                    return;
+                                }
+                                if (i15 >= 34) {
+                                    cVar = g1.a.b("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", intent3);
+                                } else {
+                                    Bundle bundleExtra = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_RESPONSE");
+                                    if (bundleExtra == null || (string = bundleExtra.getString("androidx.credentials.provider.extra.CREATE_CREDENTIAL_RESPONSE_TYPE")) == null || (bundle = bundleExtra.getBundle("androidx.credentials.provider.extra.CREATE_CREDENTIAL_REQUEST_DATA")) == null) {
+                                        cVar = null;
+                                    } else {
+                                        cVar = g5.a(string, bundle);
+                                    }
+                                }
+                                if (cVar != null) {
+                                    CancellationSignal cancellationSignal10 = dVar3.h;
+                                    CredentialProviderPlayServicesImpl.Companion.getClass();
+                                    if (!a1.h.a(cancellationSignal10)) {
+                                        Executor executor9 = dVar3.f9324g;
+                                        if (executor9 != null) {
+                                            executor9.execute(new e0(28, dVar3, cVar));
+                                            return;
+                                        } else {
+                                            j.h("executor");
+                                            throw null;
+                                        }
+                                    }
+                                    return;
+                                }
+                                if (i15 >= 34) {
+                                    a10 = g1.a.a(intent3);
+                                } else {
+                                    int i17 = w0.d.f57012a;
+                                    Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
+                                    if (bundleExtra2 == null) {
+                                        a10 = null;
+                                    } else {
+                                        String string3 = bundleExtra2.getString("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_TYPE");
+                                        if (string3 != null) {
+                                            a10 = q6.a(bundleExtra2.getCharSequence("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_MESSAGE"), string3);
+                                        } else {
+                                            throw new IllegalArgumentException("Bundle was missing exception type.");
+                                        }
+                                    }
+                                }
+                                CancellationSignal cancellationSignal11 = dVar3.h;
+                                CredentialProviderPlayServicesImpl.Companion.getClass();
+                                if (!a1.h.a(cancellationSignal11)) {
+                                    Executor executor10 = dVar3.f9324g;
+                                    if (executor10 != null) {
+                                        executor10.execute(new e1.c(dVar3, a10, 1));
+                                        return;
+                                    } else {
+                                        j.h("executor");
+                                        throw null;
+                                    }
+                                }
+                                return;
+                            } else {
+                                return;
+                            }
+                        }
+                        return;
+                    }
+                    j.h("callback");
+                    throw null;
+                }
+                j.h("executor");
+                throw null;
+            case 3:
+                j.e(resultData, "resultData");
+                c cVar5 = new c(2, b1.d.f2329a, b1.a.class, "getCredentialExceptionTypeToException", "getCredentialExceptionTypeToException$credentials_play_services_auth_release(Ljava/lang/String;Ljava/lang/String;)Landroidx/credentials/exceptions/GetCredentialException;", 0, 3);
+                f1.a aVar2 = (f1.a) this.f3965b;
+                Executor executor11 = aVar2.f11337g;
+                if (executor11 != null) {
+                    v0.h hVar5 = aVar2.f11336f;
+                    if (hVar5 != null) {
+                        if (!b1.d.b(resultData, cVar5, executor11, hVar5, aVar2.h)) {
+                            int i18 = resultData.getInt("ACTIVITY_REQUEST_CODE");
+                            int i19 = Build.VERSION.SDK_INT;
+                            if (i19 >= 34) {
+                                obj2 = g0.a.e(resultData);
+                            } else {
+                                Parcelable parcelable6 = resultData.getParcelable("RESULT_DATA");
+                                boolean isInstance2 = Intent.class.isInstance(parcelable6);
+                                obj2 = parcelable6;
+                                if (!isInstance2) {
+                                    obj2 = null;
+                                }
+                            }
+                            Intent intent4 = (Intent) obj2;
+                            Executor executor12 = aVar2.f11337g;
+                            if (executor12 != null) {
+                                v0.h hVar6 = aVar2.f11336f;
+                                if (hVar6 != null) {
+                                    CancellationSignal cancellationSignal12 = aVar2.h;
+                                    int i20 = b1.d.f2331c;
+                                    if (i18 != i20) {
+                                        Log.w("GetCredentialController", "Returned request code " + i20 + " which  does not match what was given " + i18);
+                                        return;
+                                    } else if (!f1.b(i3, new ae.j(1), new b1.e(0, executor12, hVar6), cancellationSignal12)) {
+                                        if (intent4 == null) {
+                                            f1.a(cancellationSignal12, new f(0, executor12, hVar6));
+                                            return;
+                                        }
+                                        if (i19 >= 34) {
+                                            nVar = g1.a.d(intent4);
+                                        } else {
+                                            Bundle bundleExtra3 = intent4.getBundleExtra("android.service.credentials.extra.GET_CREDENTIAL_RESPONSE");
+                                            if (bundleExtra3 == null || (string2 = bundleExtra3.getString("androidx.credentials.provider.extra.EXTRA_CREDENTIAL_TYPE")) == null || (bundle2 = bundleExtra3.getBundle("androidx.credentials.provider.extra.EXTRA_CREDENTIAL_DATA")) == null) {
+                                                nVar = null;
+                                            } else {
+                                                nVar = new n(h5.a(string2, bundle2));
+                                            }
+                                        }
+                                        if (nVar != null) {
+                                            f1.a(cancellationSignal12, new b1.b(executor12, hVar6, nVar, 1));
+                                            return;
+                                        }
+                                        if (i19 >= 34) {
+                                            iVar = g1.a.c(intent4);
+                                        } else {
+                                            int i21 = i.f57013a;
+                                            Bundle bundleExtra4 = intent4.getBundleExtra("android.service.credentials.extra.GET_CREDENTIAL_EXCEPTION");
+                                            if (bundleExtra4 != null) {
+                                                String string4 = bundleExtra4.getString("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_TYPE");
+                                                if (string4 != null) {
+                                                    iVar = q6.b(bundleExtra4.getCharSequence("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_MESSAGE"), string4);
+                                                } else {
+                                                    throw new IllegalArgumentException("Bundle was missing exception type.");
+                                                }
+                                            }
+                                        }
+                                        f1.a(cancellationSignal12, new b1.b(executor12, hVar6, iVar, 2));
+                                        return;
+                                    } else {
+                                        return;
+                                    }
+                                }
+                                j.h("callback");
+                                throw null;
+                            }
+                            j.h("executor");
+                            throw null;
+                        }
+                        return;
+                    }
+                    j.h("callback");
+                    throw null;
+                }
+                j.h("executor");
+                throw null;
+            default:
+                p4.f fVar = (p4.f) ((WeakReference) this.f3965b).get();
+                if (fVar != null && resultData != null) {
+                    synchronized (fVar.f53148b) {
+                        p pVar = fVar.f53150e;
+                        IBinder binder = resultData.getBinder("android.support.v4.media.session.EXTRA_BINDER");
+                        int i22 = p4.k.f53162b;
+                        if (binder != null) {
+                            IInterface queryLocalInterface = binder.queryLocalInterface("android.support.v4.media.session.IMediaSession");
+                            if (queryLocalInterface != null && (queryLocalInterface instanceof p4.d)) {
+                                dVar2 = (p4.d) queryLocalInterface;
+                            } else {
+                                ?? obj4 = new Object();
+                                obj4.f53144a = binder;
+                                dVar2 = obj4;
+                            }
+                        }
+                        pVar.b(dVar2);
+                        fVar.f53150e.c(a5.a.a(resultData));
+                        fVar.a();
+                    }
+                    return;
+                }
+                return;
         }
-        if (j10 > 241217000) {
-            z10 = request.f50292b;
-        } else {
-            z10 = false;
-        }
-        i7.b a2 = p8.a(context);
-        new x5.a(false, null, null, true, null, null, false);
-        e eVar = new e(dVar, aVar, a2.f8228k, false, 0, cVar, bVar2, z10);
-        v b10 = w.b();
-        b10.d = new k6.c[]{new k6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f4496c = new a6.i(a2, eVar, 27);
-        b10.f4495b = false;
-        b10.f4494a = 1553;
-        a2.e(0, b10.a()).addOnSuccessListener(new a1.c(new f(1, cancellationSignal, this), 16)).addOnFailureListener(new ag.m(7, this, cancellationSignal));
+    }
+
+    public d(p4.f fVar) {
+        super(null);
+        this.f3964a = 4;
+        this.f3965b = new WeakReference(fVar);
     }
 }

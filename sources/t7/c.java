@@ -1,47 +1,27 @@
 package t7;
 
-import w7.t7;
-public final class c extends d {
-    public final transient int f48549c;
-    public final transient int d;
-    public final d e;
+import android.os.Looper;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.tasks.Task;
+import mi.h0;
+import org.telegram.messenger.t9;
+public final class c extends com.google.android.gms.common.api.j {
+    public static final com.google.android.gms.common.api.e f54952l = new com.google.android.gms.common.api.e("LocationServices.API", new a6.b(16), new Object());
 
-    public c(d dVar, int i10, int i11) {
-        this.e = dVar;
-        this.f48549c = i10;
-        this.d = i11;
-    }
-
-    @Override
-    public final Object get(int i10) {
-        t7.a(i10, this.d);
-        return this.e.get(i10 + this.f48549c);
-    }
-
-    @Override
-    public final int m() {
-        return this.e.n() + this.f48549c + this.d;
-    }
-
-    @Override
-    public final int n() {
-        return this.e.n() + this.f48549c;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.e.o();
-    }
-
-    @Override
-    public final d subList(int i10, int i11) {
-        t7.c(i10, i11, this.d);
-        int i12 = this.f48549c;
-        return this.e.subList(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public Task f(LocationRequest locationRequest, t9 t9Var, Looper looper) {
+        if (looper == null) {
+            looper = Looper.myLooper();
+            p6.m.h(looper, "invalid null looper");
+        }
+        com.google.android.gms.common.api.internal.o x10 = c6.i.x(looper, t9Var, t9.class.getSimpleName());
+        androidx.activity.n nVar = new androidx.activity.n(this, x10);
+        h0 h0Var = new h0(nVar, locationRequest, false, 22);
+        ?? obj = new Object();
+        obj.f4782a = true;
+        obj.f4784c = h0Var;
+        obj.d = nVar;
+        obj.f4785e = x10;
+        obj.f4783b = 2436;
+        return b(obj.a());
     }
 }

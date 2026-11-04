@@ -2,40 +2,40 @@ package r0;
 
 import android.text.TextUtils;
 import android.view.View;
-public final class v extends p1.c {
-    public final int e;
+public final class v extends x {
+    public final int f54054e;
 
-    public v(int i10, Class cls, int i11, int i12, int i13) {
-        this.e = i13;
-        this.f44541a = i10;
+    public v(int i3, Class cls, int i10, int i11, int i12) {
+        this.f54054e = i12;
+        this.f54061a = i3;
         this.d = cls;
-        this.f44543c = i11;
-        this.f44542b = i12;
+        this.f54063c = i10;
+        this.f54062b = i11;
     }
 
     @Override
     public final Object b(View view) {
-        switch (this.e) {
+        switch (this.f54054e) {
             case 0:
-                return Boolean.valueOf(c0.c(view));
+                return Boolean.valueOf(d0.c(view));
             case 1:
-                return c0.a(view);
+                return d0.a(view);
             default:
-                return Boolean.valueOf(c0.b(view));
+                return Boolean.valueOf(d0.b(view));
         }
     }
 
     @Override
     public final void c(View view, Object obj) {
-        switch (this.e) {
+        switch (this.f54054e) {
             case 0:
-                c0.f(view, ((Boolean) obj).booleanValue());
+                d0.f(view, ((Boolean) obj).booleanValue());
                 return;
             case 1:
-                c0.e(view, (CharSequence) obj);
+                d0.e(view, (CharSequence) obj);
                 return;
             default:
-                c0.d(view, ((Boolean) obj).booleanValue());
+                d0.d(view, ((Boolean) obj).booleanValue());
                 return;
         }
     }
@@ -46,7 +46,7 @@ public final class v extends p1.c {
         boolean z11;
         boolean z12;
         boolean z13;
-        switch (this.e) {
+        switch (this.f54054e) {
             case 0:
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj2;

@@ -1,14 +1,17 @@
 package org.telegram.ui.Components;
+public final class xa0 implements Runnable {
+    public boolean f40300a;
+    public final cb0 f40301b;
 
-import android.graphics.RectF;
-public final class xa0 {
-    public final int f32531a;
-    public final rz0 f32532b;
-    public final RectF f32533c = new RectF();
-    public final RectF d = new RectF();
+    public xa0(cb0 cb0Var) {
+        this.f40301b = cb0Var;
+    }
 
-    public xa0(int i10, String str) {
-        this.f32531a = i10;
-        this.f32532b = new rz0(str, 14.0f, org.telegram.messenger.i0.o());
+    @Override
+    public final void run() {
+        boolean z10 = this.f40300a;
+        cb0 cb0Var = this.f40301b;
+        cb0Var.a(z10);
+        cb0Var.postDelayed(this, cb0Var.N);
     }
 }

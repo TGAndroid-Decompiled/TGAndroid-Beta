@@ -1,48 +1,41 @@
 package org.telegram.ui.Components;
+public final class ja extends u4.j0 {
+    public final u4.j0 f35004a;
+    public final ka f35005b;
 
-import android.widget.FrameLayout;
-public final class ja implements Runnable {
-    public final int f27323a;
-    public final wb f27324b;
-
-    public ja(wb wbVar, int i10) {
-        this.f27323a = i10;
-        this.f27324b = wbVar;
+    public ja(ka kaVar, u4.j0 j0Var) {
+        this.f35005b = kaVar;
+        this.f35004a = j0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27323a) {
-            case 0:
-                this.f27324b.b();
-                return;
-            case 1:
-                wb wbVar = this.f27324b;
-                FrameLayout frameLayout = wbVar.h;
-                bb bbVar = wbVar.e;
-                ua uaVar = wbVar.f32207p;
-                if (uaVar != null && !bbVar.top) {
-                    uaVar.c(0.0f);
-                    wbVar.f32207p.d(wbVar);
-                }
-                bbVar.transitionRunningExit = false;
-                bbVar.onExitTransitionEnd();
-                bbVar.onHide();
-                frameLayout.removeView(wbVar.f32198f);
-                frameLayout.removeOnLayoutChangeListener(wbVar.f32197c);
-                bbVar.onDetach();
-                Runnable runnable = wbVar.v;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            default:
-                wb wbVar2 = this.f27324b;
-                FrameLayout frameLayout2 = wbVar2.h;
-                frameLayout2.removeView(wbVar2.f32198f);
-                frameLayout2.removeOnLayoutChangeListener(wbVar2.f32197c);
-                return;
-        }
+    public final void a() {
+        this.f35004a.a();
+    }
+
+    @Override
+    public final void b(int i3, int i10) {
+        this.f35004a.b(i3 + (!((ma) this.f35005b.f35357f).H1 ? 1 : 0), i10);
+    }
+
+    @Override
+    public final void c(int i3, int i10, Object obj) {
+        this.f35004a.c(i3 + (!((ma) this.f35005b.f35357f).H1 ? 1 : 0), i10, obj);
+    }
+
+    @Override
+    public final void d(int i3, int i10) {
+        this.f35004a.d(i3 + (!((ma) this.f35005b.f35357f).H1 ? 1 : 0), i10);
+    }
+
+    @Override
+    public final void e(int i3, int i10) {
+        int i11 = !((ma) this.f35005b.f35357f).H1 ? 1 : 0;
+        this.f35004a.e(i3 + i11, i10 + i11);
+    }
+
+    @Override
+    public final void f(int i3, int i10) {
+        this.f35004a.f(i3 + (!((ma) this.f35005b.f35357f).H1 ? 1 : 0), i10);
     }
 }

@@ -1,34 +1,63 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ct extends org.telegram.ui.ActionBar.k1 {
-    public final ft f36401o;
+import android.content.Context;
+public final class ct extends org.telegram.ui.Components.lc {
+    public final org.telegram.ui.Components.bi0 f44431f0;
 
-    public ct(ft ftVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f36401o = ftVar;
+    public ct(org.telegram.ui.Components.bi0 bi0Var, Context context, int i3, int[] iArr, int[] iArr2) {
+        super(context, i3, iArr, 1, iArr2);
+        this.f44431f0 = bi0Var;
     }
 
     @Override
-    public final void dismiss() {
-        d(true);
-        kt ktVar = this.f36401o.f37231a;
-        ktVar.f38985k = null;
-        ktVar.K = false;
-        if (ktVar.R) {
-            ktVar.m();
-        }
-        View view = ktVar.h;
-        if (view != null) {
-            if (view instanceof org.telegram.ui.Cells.d8) {
-                ((org.telegram.ui.Cells.d8) view).setScaled(false);
-            } else if (view instanceof org.telegram.ui.Cells.b8) {
-                ((org.telegram.ui.Cells.b8) view).setScaled(false);
-            } else if (view instanceof org.telegram.ui.Cells.h2) {
-                ((org.telegram.ui.Cells.h2) view).setScaled(false);
+    public final int c() {
+        return 216;
+    }
+
+    @Override
+    public final void d(int i3, boolean z10) {
+        int i10;
+        et etVar = (et) this.f44431f0.f32302e;
+        if (!z10) {
+            etVar.l1();
+        } else if (i3 >= 0 && i3 < etVar.f45037o3.length) {
+            int i11 = 0;
+            while (true) {
+                dt[] dtVarArr = etVar.f45037o3;
+                i10 = -1;
+                if (i11 < dtVarArr.length) {
+                    if (dtVarArr[i11].d == i3) {
+                        break;
+                    }
+                    i11++;
+                } else {
+                    i11 = -1;
+                    break;
+                }
             }
-            ktVar.h = null;
+            int i12 = 0;
+            while (true) {
+                if (i12 < etVar.f45033k3.size()) {
+                    at atVar = (at) etVar.f45033k3.get(i12);
+                    if (atVar != null && atVar.f54715a == 2 && atVar.h == i11) {
+                        i10 = i12;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    break;
+                }
+            }
+            if (i10 >= 0) {
+                etVar.e1(new k2.v(i10, 7), 0, true);
+            } else {
+                etVar.l1();
+            }
         }
+    }
+
+    @Override
+    public final int e() {
+        return 10;
     }
 }

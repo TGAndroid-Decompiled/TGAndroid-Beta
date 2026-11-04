@@ -1,33 +1,67 @@
 package org.telegram.messenger;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class c0 extends ClickableSpan {
-    public final boolean f15044a;
-    public final int f15045b;
-    public final org.telegram.ui.ActionBar.p6 f15046c;
-    public final Runnable d;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.view.MotionEvent;
+import android.widget.TextView;
+public final class c0 extends LinkMovementMethod {
+    public final int f21920a;
 
-    public c0(boolean z10, int i10, org.telegram.ui.ActionBar.p6 p6Var, Runnable runnable) {
-        this.f15044a = z10;
-        this.f15045b = i10;
-        this.f15046c = p6Var;
-        this.d = runnable;
+    public c0(int i3) {
+        this.f21920a = i3;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.d.run();
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(false);
-        if (this.f15044a) {
-            textPaint.setTypeface(i0.o());
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        switch (this.f21920a) {
+            case 0:
+                try {
+                    boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    return false;
+                }
+            case 1:
+                try {
+                    boolean onTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent2;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent2;
+                } catch (Exception e11) {
+                    a8.g(e11, true);
+                    return false;
+                }
+            case 2:
+                try {
+                    return super.onTouchEvent(textView, spannable, motionEvent);
+                } catch (Exception e12) {
+                    a8.g(e12, true);
+                    return false;
+                }
+            default:
+                try {
+                    boolean onTouchEvent3 = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent3;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent3;
+                } catch (Exception e13) {
+                    a8.g(e13, true);
+                    return false;
+                }
         }
-        textPaint.setColor(org.telegram.ui.ActionBar.t6.w0(this.f15045b, this.f15046c));
+    }
+
+    public c0(boolean z10) {
+        this.f21920a = 0;
     }
 }

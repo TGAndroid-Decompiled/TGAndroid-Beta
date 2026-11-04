@@ -1,46 +1,28 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-public final class bu implements DialogInterface.OnClickListener {
-    public final DataSettingsActivity f36113a;
-    public final SharedPreferences f36114b;
-    public final int f36115c;
+import org.telegram.tgnet.TLRPC;
+public final class bu implements Runnable {
+    public final int f44144a;
+    public final uw f44145b;
+    public final TLRPC.TL_attachMenuBot f44146c;
+    public final LaunchActivity d;
 
-    public bu(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i10) {
-        this.f36113a = dataSettingsActivity;
-        this.f36114b = sharedPreferences;
-        this.f36115c = i10;
+    public bu(uw uwVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i3) {
+        this.f44144a = i3;
+        this.f44145b = uwVar;
+        this.f44146c = tL_attachMenuBot;
+        this.d = launchActivity;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        int i11;
-        DataSettingsActivity dataSettingsActivity = this.f36113a;
-        dataSettingsActivity.getClass();
-        if (i10 != 0) {
-            i11 = 3;
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        i11 = -1;
-                    } else {
-                        i11 = 2;
-                    }
-                } else {
-                    i11 = 1;
-                }
-            }
-        } else {
-            i11 = 0;
-        }
-        if (i11 != -1) {
-            this.f36114b.edit().putInt("VoipDataSaving", i11).commit();
-            dataSettingsActivity.U = true;
-        }
-        fg.j jVar = dataSettingsActivity.f33318a;
-        if (jVar != null) {
-            jVar.g(this.f36115c);
+    public final void run() {
+        switch (this.f44144a) {
+            case 0:
+                uw.v0(this.f44145b, this.f44146c, this.d);
+                return;
+            default:
+                uw.j0(this.f44145b, this.f44146c, this.d);
+                return;
         }
     }
 }

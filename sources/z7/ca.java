@@ -1,3 +1,6 @@
 package z7;
-public abstract class ca {
+
+import b8.kg;
+public interface ca {
+    void a(kg kgVar);
 }

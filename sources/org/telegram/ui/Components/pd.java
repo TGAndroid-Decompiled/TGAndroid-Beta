@@ -1,155 +1,51 @@
 package org.telegram.ui.Components;
+public final class pd implements Runnable {
+    public final int f37136a;
+    public final ChatActivityEnterView f37137b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class pd extends FrameLayout {
-    public final int f29407a;
-    public final ChatActivityEnterView f29408b;
-
-    public pd(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
-        super(context);
-        this.f29407a = i10;
-        this.f29408b = chatActivityEnterView;
+    public pd(ChatActivityEnterView chatActivityEnterView, int i3) {
+        this.f37136a = i3;
+        this.f37137b = chatActivityEnterView;
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29407a) {
+    public final void run() {
+        int i3 = this.f37136a;
+        ChatActivityEnterView chatActivityEnterView = this.f37137b;
+        switch (i3) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f29408b;
-                xh.a3 a3Var = chatActivityEnterView.f23737k0;
-                if (a3Var != null && a3Var.getVisibility() == 0) {
-                    return chatActivityEnterView.f23737k0.dispatchTouchEvent(motionEvent);
-                }
-                return super.dispatchTouchEvent(motionEvent);
-            case 1:
-            default:
-                return super.dispatchTouchEvent(motionEvent);
-            case 2:
-                ChatActivityEnterView chatActivityEnterView2 = this.f29408b;
-                if (chatActivityEnterView2.J && chatActivityEnterView2.f23782r5 != 2) {
-                    return super.dispatchTouchEvent(motionEvent);
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public boolean drawChild(final Canvas canvas, final View view, final long j10) {
-        switch (this.f29407a) {
-            case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f29408b;
-                if (view != null && view == chatActivityEnterView.E0) {
-                    return chatActivityEnterView.b0(canvas, new org.telegram.messenger.j20() {
-                        @Override
-                        public final Object run() {
-                            Boolean valueOf;
-                            valueOf = Boolean.valueOf(super/*android.widget.FrameLayout*/.drawChild(canvas, view, j10));
-                            return valueOf;
-                        }
-                    });
-                }
-                if (chatActivityEnterView.f23825z4 && view == chatActivityEnterView.f23701e1) {
-                    return true;
-                }
-                return super.drawChild(canvas, view, j10);
-            case 2:
-                ChatActivityEnterView chatActivityEnterView2 = this.f29408b;
-                if (view == chatActivityEnterView2.J0 && chatActivityEnterView2.f23719h0) {
-                    return true;
-                }
-                return super.drawChild(canvas, view, j10);
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f29407a) {
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                ChatActivityEnterView chatActivityEnterView = this.f29408b;
-                if (!chatActivityEnterView.B0.isEmpty()) {
-                    for (int i14 = 0; i14 < getChildCount(); i14++) {
-                        View childAt = getChildAt(i14);
-                        Float f7 = (Float) chatActivityEnterView.B0.get(childAt);
-                        if (f7 != null) {
-                            childAt.setTranslationX(f7.floatValue() - childAt.getLeft());
-                            childAt.animate().translationX(0.0f).setDuration(150L).setInterpolator(gr.f26523f).start();
-                        }
-                    }
-                    chatActivityEnterView.B0.clear();
+                if (chatActivityEnterView.m0 != null && !org.telegram.messenger.b6.h(chatActivityEnterView.R, chatActivityEnterView.R2)) {
+                    chatActivityEnterView.m0.setOpened(false);
                     return;
                 }
                 return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f29407a) {
             case 1:
-                super.onMeasure(i10, i11);
-                int max = Math.max(org.telegram.messenger.i0.L(44.0f), getMeasuredHeight());
-                ChatActivityEnterView chatActivityEnterView = this.f29408b;
-                fe.f fVar = chatActivityEnterView.f23736j5;
-                if (fVar.f7032f > 0.0f) {
-                    fVar.a(max);
-                } else {
-                    fVar.c(max);
+                uf ufVar = chatActivityEnterView.f31087a3;
+                if (ufVar != null) {
+                    ufVar.b1();
+                    return;
                 }
-                chatActivityEnterView.I();
                 return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f29407a) {
             case 2:
-                super.onSizeChanged(i10, i11, i12, i13);
-                setPivotX(i10 - org.telegram.messenger.i0.L(22.0f));
-                setPivotY(i11 - org.telegram.messenger.i0.L(22.0f));
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f29407a) {
-            case 2:
-                ChatActivityEnterView chatActivityEnterView = this.f29408b;
-                if (chatActivityEnterView.J && chatActivityEnterView.f23782r5 != 2) {
-                    return super.onTouchEvent(motionEvent);
+                ve veVar = chatActivityEnterView.F0;
+                if (veVar != null) {
+                    veVar.setText("");
+                    return;
                 }
-                return false;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        switch (this.f29407a) {
+                return;
             case 3:
-                super.setVisibility(i10);
-                this.f29408b.O1(true);
+                ve veVar2 = chatActivityEnterView.F0;
+                if (veVar2 != null) {
+                    veVar2.setText("");
+                }
+                chatActivityEnterView.E(true);
+                return;
+            case 4:
+                chatActivityEnterView.f31179q0.callOnClick();
                 return;
             default:
-                super.setVisibility(i10);
+                int i10 = ChatActivityEnterView.f31082t5;
+                chatActivityEnterView.y();
                 return;
         }
     }

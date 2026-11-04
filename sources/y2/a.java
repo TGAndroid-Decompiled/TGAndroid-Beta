@@ -1,10 +1,16 @@
 package y2;
-public final class a {
-    public final byte[] f54149a;
-    public final int f54150b;
 
-    public a(byte[] bArr, int i10) {
-        this.f54149a = bArr;
-        this.f54150b = i10;
-    }
+import g9.i0;
+public interface a {
+    long a(long j10);
+
+    boolean b(b4.a aVar, long j10);
+
+    i0 c(long j10);
+
+    void clear();
+
+    long d(long j10);
+
+    void e(long j10);
 }

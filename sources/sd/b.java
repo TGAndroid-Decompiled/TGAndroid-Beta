@@ -1,11 +1,23 @@
 package sd;
-public abstract class b {
-    public static final int f48192a = 0;
 
-    static {
-        ThreadLocal[] threadLocalArr = new ThreadLocal[4];
-        for (int i10 = 0; i10 < 4; i10++) {
-            threadLocalArr[i10] = new ThreadLocal();
-        }
-    }
+import java.util.List;
+import java.util.Map;
+public interface b extends a {
+    Object call(Object... objArr);
+
+    Object callBy(Map map);
+
+    List getParameters();
+
+    h getReturnType();
+
+    List getTypeParameters();
+
+    i getVisibility();
+
+    boolean isAbstract();
+
+    boolean isFinal();
+
+    boolean isOpen();
 }

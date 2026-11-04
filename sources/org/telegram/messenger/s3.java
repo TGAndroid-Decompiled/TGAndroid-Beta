@@ -1,57 +1,37 @@
 package org.telegram.messenger;
 
-import android.os.SystemClock;
-import android.util.Log;
 import org.telegram.tgnet.TLRPC;
-public final class s3 implements Runnable {
-    public final u3 f18060a;
+import org.telegram.ui.x30;
+public final class s3 {
+    public TLRPC.GroupCallParticipant f25270a;
+    public boolean f25271b;
+    public float f25272c;
 
-    public s3(u3 u3Var) {
-        this.f18060a = u3Var;
+    public s3(TLRPC.GroupCallParticipant groupCallParticipant, boolean z10) {
+        this.f25270a = groupCallParticipant;
+        this.f25271b = z10;
     }
 
-    @Override
-    public final void run() {
-        int i10;
-        u3 u3Var = this.f18060a;
-        a0.h hVar = u3Var.P;
-        long uptimeMillis = SystemClock.uptimeMillis();
-        int i11 = 0;
-        boolean z10 = false;
-        while (i11 < hVar.m()) {
-            long j10 = hVar.j(i11);
-            if (uptimeMillis - ((TLRPC.GroupCallParticipant) hVar.f(j10)).lastSpeakTime >= 500) {
-                hVar.l(j10);
-                String str = null;
-                if (j10 > 0) {
-                    TLRPC.User Z1 = wp.r1(u3Var.C.f15043a).Z1(Long.valueOf(j10));
-                    StringBuilder s10 = a1.g.s(j10, "remove from speaking ", " ");
-                    if (Z1 != null) {
-                        str = Z1.first_name;
-                    }
-                    s10.append(str);
-                    Log.d("GroupCall", s10.toString());
-                    i10 = i11;
-                } else {
-                    i10 = i11;
-                    TLRPC.Chat L0 = wp.r1(u3Var.C.f15043a).L0(Long.valueOf(-j10));
-                    StringBuilder s11 = a1.g.s(j10, "remove from speaking ", " ");
-                    if (L0 != null) {
-                        str = L0.title;
-                    }
-                    s11.append(str);
-                    Log.d("GroupCall", s11.toString());
-                }
-                i11 = i10 - 1;
-                z10 = true;
+    public final void a(int i3, int i10, r3 r3Var) {
+        float f10 = i3 / i10;
+        if (this.f25272c != f10) {
+            this.f25272c = f10;
+            if (!x30.f51713x5 && r3Var.f25052f.size() % 2 == 1) {
+                r3Var.B();
             }
-            i11++;
         }
-        if (hVar.m() > 0) {
-            i0.h3(u3Var.Q, 550L);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        if (z10) {
-            at.f(u3Var.C.f15043a).k(at.f14823y2, Long.valueOf(u3Var.f18362c), Long.valueOf(u3Var.f18361b.f19804id), Boolean.FALSE);
+        if (obj != null && s3.class == obj.getClass()) {
+            s3 s3Var = (s3) obj;
+            if (this.f25271b == s3Var.f25271b && zi.C1(this.f25270a.peer) == zi.C1(s3Var.f25270a.peer)) {
+                return true;
+            }
         }
+        return false;
     }
 }

@@ -1,61 +1,136 @@
 package o7;
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import d7.e;
-public abstract class a extends Binder implements IInterface {
+import j$.lang.Iterable$CC;
+import j$.util.Collection;
+import j$.util.Spliterator;
+import j$.util.Spliterators;
+import j$.util.stream.Stream;
+import java.io.Serializable;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+public abstract class a extends AbstractCollection implements Serializable, Collection {
+    public static final Object[] f20917a = new Object[0];
+
     @Override
-    public boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        if (i10 > 16777215) {
-            if (super.onTransact(i10, parcel, parcel2, i11)) {
-                return true;
-            }
-        } else {
-            parcel.enforceInterface(getInterfaceDescriptor());
-        }
-        e eVar = (e) this;
-        if (i10 != 1) {
-            boolean z10 = false;
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            return false;
-                        }
-                        String stringFlagValue = eVar.getStringFlagValue(parcel.readString(), parcel.readString(), parcel.readInt());
-                        parcel2.writeNoException();
-                        parcel2.writeString(stringFlagValue);
-                        return true;
-                    }
-                    long longFlagValue = eVar.getLongFlagValue(parcel.readString(), parcel.readLong(), parcel.readInt());
-                    parcel2.writeNoException();
-                    parcel2.writeLong(longFlagValue);
-                    return true;
-                }
-                int intFlagValue = eVar.getIntFlagValue(parcel.readString(), parcel.readInt(), parcel.readInt());
-                parcel2.writeNoException();
-                parcel2.writeInt(intFlagValue);
-                return true;
-            }
-            String readString = parcel.readString();
-            int i12 = b.f14102a;
-            if (parcel.readInt() != 0) {
-                z10 = true;
-            }
-            boolean booleanFlagValue = eVar.getBooleanFlagValue(readString, z10, parcel.readInt());
-            parcel2.writeNoException();
-            parcel2.writeInt(booleanFlagValue ? 1 : 0);
-            return true;
-        }
-        eVar.init(x6.b.M0(parcel.readStrongBinder()));
-        parcel2.writeNoException();
-        return true;
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public IBinder asBinder() {
-        return this;
+    public final boolean addAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void forEach(Consumer consumer) {
+        Iterable$CC.$default$forEach(this, consumer);
+    }
+
+    public Object[] h() {
+        return null;
+    }
+
+    public int i() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int j() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract int k(Object[] objArr);
+
+    @Override
+    public Stream parallelStream() {
+        return Stream.Wrapper.convert(parallelStream());
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean removeAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean removeIf(Predicate predicate) {
+        return Collection.CC.$default$removeIf(this, predicate);
+    }
+
+    @Override
+    public final boolean retainAll(java.util.Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public Spliterator spliterator() {
+        return Spliterator.Wrapper.convert(spliterator());
+    }
+
+    @Override
+    public java.util.stream.Stream stream() {
+        return Stream.Wrapper.convert(stream());
+    }
+
+    @Override
+    public Object[] toArray(IntFunction intFunction) {
+        Object[] array;
+        array = toArray((Object[]) intFunction.apply(0));
+        return array;
+    }
+
+    @Override
+    public j$.util.stream.Stream parallelStream() {
+        return Collection.CC.$default$parallelStream(this);
+    }
+
+    @Override
+    public final j$.util.Spliterator spliterator() {
+        return Spliterators.spliterator(this, 1296);
+    }
+
+    @Override
+    public j$.util.stream.Stream stream() {
+        return Collection.CC.$default$stream(this);
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(f20917a);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] h = h();
+            if (h == null) {
+                if (length != 0) {
+                    objArr = Arrays.copyOf(objArr, 0);
+                }
+                objArr = Arrays.copyOf(objArr, size);
+            } else {
+                return Arrays.copyOfRange(h, i(), j(), objArr.getClass());
+            }
+        } else if (length > size) {
+            objArr[size] = null;
+        }
+        k(objArr);
+        return objArr;
     }
 }

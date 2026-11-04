@@ -1,20 +1,53 @@
 package n2;
 
-import java.util.UUID;
-public interface g {
-    void a(j jVar);
+import a3.s;
+import android.net.Uri;
+import android.text.TextUtils;
+import d2.v0;
+import j$.util.DesugarTimeZone;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class g implements s {
+    public static final Pattern f20158a = Pattern.compile("(.+?)(Z|((\\+|-|−)(\\d\\d)(:?(\\d\\d))?))");
 
-    void b(j jVar);
-
-    UUID c();
-
-    boolean d();
-
-    int e();
-
-    boolean f(String str);
-
-    f g();
-
-    h2.b h();
+    @Override
+    public final Object L(Uri uri, i2.l lVar) {
+        long j10;
+        long parseLong;
+        String readLine = new BufferedReader(new InputStreamReader(lVar, StandardCharsets.UTF_8)).readLine();
+        try {
+            Matcher matcher = f20158a.matcher(readLine);
+            if (matcher.matches()) {
+                String group = matcher.group(1);
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+                simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
+                long time = simpleDateFormat.parse(group).getTime();
+                if (!"Z".equals(matcher.group(2))) {
+                    if ("+".equals(matcher.group(4))) {
+                        j10 = 1;
+                    } else {
+                        j10 = -1;
+                    }
+                    long parseLong2 = Long.parseLong(matcher.group(5));
+                    String group2 = matcher.group(7);
+                    if (TextUtils.isEmpty(group2)) {
+                        parseLong = 0;
+                    } else {
+                        parseLong = Long.parseLong(group2);
+                    }
+                    time -= (((parseLong2 * 60) + parseLong) * 60000) * j10;
+                }
+                return Long.valueOf(time);
+            }
+            throw v0.b("Couldn't parse timestamp: " + readLine, null);
+        } catch (ParseException e10) {
+            throw v0.b(null, e10);
+        }
+    }
 }

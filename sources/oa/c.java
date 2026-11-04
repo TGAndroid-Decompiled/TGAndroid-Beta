@@ -1,65 +1,21 @@
 package oa;
 
-import android.content.Context;
-import android.os.Build;
-import androidx.emoji2.text.w;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import java.util.Set;
-import java.util.concurrent.Executor;
-public final class c implements e, f {
-    public final l9.d f14117a;
-    public final Context f14118b;
-    public final qa.b f14119c;
-    public final Set d;
-    public final Executor e;
+import j$.util.DesugarTimeZone;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import ma.g;
+public final class c implements ma.f {
+    public static final SimpleDateFormat f20943a;
 
-    public c(Context context, String str, Set set, qa.b bVar, Executor executor) {
-        this.f14117a = new l9.d(context, str);
-        this.d = set;
-        this.e = executor;
-        this.f14119c = bVar;
-        this.f14118b = context;
+    static {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        f20943a = simpleDateFormat;
+        simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
     }
 
-    public final synchronized int a() {
-        long currentTimeMillis = System.currentTimeMillis();
-        g gVar = (g) this.f14117a.get();
-        if (gVar.i(currentTimeMillis)) {
-            gVar.g();
-            return 3;
-        }
-        return 1;
-    }
-
-    public final Task b() {
-        boolean z10;
-        if (Build.VERSION.SDK_INT >= 24) {
-            z10 = w.g(this.f14118b);
-        } else {
-            z10 = true;
-        }
-        if (!z10) {
-            return Tasks.forResult("");
-        }
-        return Tasks.call(this.e, new b(this, 0));
-    }
-
-    public final void c() {
-        boolean z10;
-        if (this.d.size() <= 0) {
-            Tasks.forResult(null);
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= 24) {
-            z10 = w.g(this.f14118b);
-        } else {
-            z10 = true;
-        }
-        if (!z10) {
-            Tasks.forResult(null);
-            return;
-        }
-        Tasks.call(this.e, new b(this, 1));
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ((g) obj2).d(f20943a.format((Date) obj));
     }
 }

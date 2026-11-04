@@ -1,54 +1,40 @@
 package db;
 
-import ld.p;
-public final class j extends ed.j implements p {
-    public Object f5854a;
-    public final Object f5855b;
-    public final n1.d f5856c;
-    public final k d;
+import b8.zc;
+public final class j implements oa.f {
+    public static final j f8687b;
+    public static final j f8688c;
+    public static final j d;
+    public static final j[] f8689e;
+    public final int f8690a;
 
-    public j(Object obj, n1.d dVar, k kVar, cd.c cVar) {
-        super(2, cVar);
-        this.f5855b = obj;
-        this.f5856c = dVar;
-        this.d = kVar;
+    static {
+        j jVar = new j("COLLECTION_UNKNOWN", 0, 0);
+        j jVar2 = new j("COLLECTION_SDK_NOT_INSTALLED", 1, 1);
+        f8687b = jVar2;
+        j jVar3 = new j("COLLECTION_ENABLED", 2, 2);
+        f8688c = jVar3;
+        j jVar4 = new j("COLLECTION_DISABLED", 3, 3);
+        d = jVar4;
+        j[] jVarArr = {jVar, jVar2, jVar3, jVar4, new j("COLLECTION_DISABLED_REMOTE", 4, 4), new j("COLLECTION_SAMPLED", 5, 5)};
+        f8689e = jVarArr;
+        zc.a(jVarArr);
+    }
+
+    public j(String str, int i3, int i10) {
+        this.f8690a = i10;
+    }
+
+    public static j valueOf(String str) {
+        return (j) Enum.valueOf(j.class, str);
+    }
+
+    public static j[] values() {
+        return (j[]) f8689e.clone();
     }
 
     @Override
-    public final cd.c create(Object obj, cd.c cVar) {
-        j jVar = new j(this.f5855b, this.f5856c, this.d, cVar);
-        jVar.f5854a = obj;
-        return jVar;
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        ad.j jVar = ad.j.f401a;
-        ((j) create((n1.b) obj, (cd.c) obj2)).invokeSuspend(jVar);
-        return jVar;
-    }
-
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        dd.a aVar = dd.a.f5864a;
-        l9.b.b(obj);
-        n1.b bVar = (n1.b) this.f5854a;
-        n1.d key = this.f5856c;
-        Object obj2 = this.f5855b;
-        if (obj2 != null) {
-            bVar.getClass();
-            kotlin.jvm.internal.i.e(key, "key");
-            bVar.b(key, obj2);
-        } else {
-            bVar.getClass();
-            kotlin.jvm.internal.i.e(key, "key");
-            if (!bVar.f13411b.get()) {
-                bVar.f13410a.remove(key);
-            } else {
-                throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
-            }
-        }
-        k.a(this.d, bVar);
-        return ad.j.f401a;
+    public final int a() {
+        return this.f8690a;
     }
 }

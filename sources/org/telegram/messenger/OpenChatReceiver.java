@@ -25,7 +25,7 @@ public class OpenChatReceiver extends Activity {
                 startActivity(intent2);
                 finish();
             } catch (Throwable th2) {
-                f8.g(th2, true);
+                a8.g(th2, true);
             }
         } else {
             finish();

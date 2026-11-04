@@ -6,7 +6,7 @@ import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import java.util.List;
 import java.util.UUID;
-import org.telegram.messenger.uz;
+import org.telegram.messenger.az;
 import org.webrtc.Logging;
 public class WebRtcAudioEffects {
     private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
@@ -145,14 +145,14 @@ public class WebRtcAudioEffects {
         return isNoiseSuppressorEffectAvailable();
     }
 
-    public void enable(int i10) {
+    public void enable(int i3) {
         boolean z10;
         boolean z11;
         String str;
         boolean z12;
         String str2;
         String str3;
-        Logging.d("WebRtcAudioEffects", "enable(audioSession=" + i10 + ")");
+        Logging.d("WebRtcAudioEffects", "enable(audioSession=" + i3 + ")");
         boolean z13 = false;
         if (this.aec == null) {
             z10 = true;
@@ -168,11 +168,11 @@ public class WebRtcAudioEffects {
         assertTrue(z11);
         String str4 = "disabled";
         if (isAcousticEchoCancelerSupported()) {
-            AcousticEchoCanceler create = AcousticEchoCanceler.create(i10);
+            AcousticEchoCanceler create = AcousticEchoCanceler.create(i3);
             this.aec = create;
             if (create != null) {
                 boolean enabled = create.getEnabled();
-                if (this.shouldEnableAec && canUseAcousticEchoCanceler() && !uz.V) {
+                if (this.shouldEnableAec && canUseAcousticEchoCanceler() && !az.V) {
                     z12 = true;
                 } else {
                     z12 = false;
@@ -202,11 +202,11 @@ public class WebRtcAudioEffects {
             }
         }
         if (isNoiseSuppressorSupported()) {
-            NoiseSuppressor create2 = NoiseSuppressor.create(i10);
+            NoiseSuppressor create2 = NoiseSuppressor.create(i3);
             this.ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
-                if (this.shouldEnableNs && canUseNoiseSuppressor() && !uz.V) {
+                if (this.shouldEnableNs && canUseNoiseSuppressor() && !az.V) {
                     z13 = true;
                 }
                 if (this.ns.setEnabled(z13) != 0) {

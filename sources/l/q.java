@@ -1,22 +1,17 @@
 package l;
 
 import android.view.MenuItem;
-public final class q implements MenuItem.OnActionExpandListener {
-    public final MenuItem.OnActionExpandListener f11546a;
-    public final s f11547b;
+public final class q implements MenuItem.OnMenuItemClickListener {
+    public final MenuItem.OnMenuItemClickListener f17469a;
+    public final r f17470b;
 
-    public q(s sVar, MenuItem.OnActionExpandListener onActionExpandListener) {
-        this.f11547b = sVar;
-        this.f11546a = onActionExpandListener;
+    public q(r rVar, MenuItem.OnMenuItemClickListener onMenuItemClickListener) {
+        this.f17470b = rVar;
+        this.f17469a = onMenuItemClickListener;
     }
 
     @Override
-    public final boolean onMenuItemActionCollapse(MenuItem menuItem) {
-        return this.f11546a.onMenuItemActionCollapse(this.f11547b.f(menuItem));
-    }
-
-    @Override
-    public final boolean onMenuItemActionExpand(MenuItem menuItem) {
-        return this.f11546a.onMenuItemActionExpand(this.f11547b.f(menuItem));
+    public final boolean onMenuItemClick(MenuItem menuItem) {
+        return this.f17469a.onMenuItemClick(this.f17470b.f(menuItem));
     }
 }

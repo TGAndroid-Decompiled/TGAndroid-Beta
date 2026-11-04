@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_chatlists;
+import org.telegram.tgnet.TLRPC;
 public final class yo {
-    public boolean f19606a;
-    public long f19607b;
-    public TL_chatlists.TL_chatlists_chatlistUpdates f19608c;
+    public long f26610a;
+    public long f26611b;
+    public TLRPC.SendMessageAction f26612c;
 }

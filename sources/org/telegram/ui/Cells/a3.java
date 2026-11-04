@@ -1,40 +1,37 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class a3 extends AnimatorListenerAdapter {
-    public final int f21666a;
-    public final b3 f21667b;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class a3 implements View.OnClickListener {
+    public final int f28931a;
+    public final FrameLayout f28932b;
+    public final Object f28933c;
 
-    public a3(b3 b3Var, int i10) {
-        this.f21666a = i10;
-        this.f21667b = b3Var;
+    public a3(FrameLayout frameLayout, Object obj, int i3) {
+        this.f28931a = i3;
+        this.f28932b = frameLayout;
+        this.f28933c = obj;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f21666a) {
+    public final void onClick(View view) {
+        switch (this.f28931a) {
             case 0:
-                b3 b3Var = this.f21667b;
-                Runnable runnable = b3Var.f21712b;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                if (animator == b3Var.e) {
-                    b3Var.e = null;
+                View.OnClickListener onClickListener = (View.OnClickListener) this.f28933c;
+                if (((b3) this.f28932b).getAlpha() > 0.5f && onClickListener != null) {
+                    onClickListener.onClick(view);
                     return;
                 }
                 return;
             default:
-                b3 b3Var2 = this.f21667b;
-                Runnable runnable2 = b3Var2.f21712b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                }
-                if (animator == b3Var2.e) {
-                    b3Var2.e = null;
+                gi.d dVar = (gi.d) this.f28932b;
+                org.telegram.ui.ActionBar.t2 t2Var = (org.telegram.ui.ActionBar.t2) this.f28933c;
+                if (dVar.J > 0) {
+                    org.telegram.messenger.g0.G3(3.0f, dVar, null);
+                    org.telegram.messenger.p2.APP_ERROR.a();
                     return;
                 }
+                t2Var.dismiss();
                 return;
         }
     }

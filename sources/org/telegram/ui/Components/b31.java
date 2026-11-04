@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
-public final class b31 extends s4.j {
-    public final n31 F;
+public final class b31 {
+    public final k31 f32077a;
+    public final n31 f32078b;
 
-    public b31(n31 n31Var) {
-        this.F = n31Var;
+    public b31(n31 n31Var, k31 k31Var) {
+        this.f32078b = n31Var;
+        this.f32077a = k31Var;
     }
 
-    @Override
-    public final void O() {
-        this.F.f21587b.invalidate();
+    public final int a() {
+        return this.f32078b.f36361s.f35995w;
     }
 
-    @Override
-    public final void P(s4.c1 c1Var) {
-        this.F.f21587b.invalidate();
+    public final void b(boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.b31.b(boolean):void");
     }
 }

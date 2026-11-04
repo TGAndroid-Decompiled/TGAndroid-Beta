@@ -1,49 +1,22 @@
 package org.telegram.ui.Components;
+public final class qa implements Runnable {
+    public final int f37400a;
+    public final fb f37401b;
 
-import android.content.Context;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-public final class qa extends FrameLayout {
-    public final ra f29702a;
-
-    public qa(ra raVar, Context context) {
-        super(context);
-        this.f29702a = raVar;
+    public qa(fb fbVar, int i3) {
+        this.f37400a = i3;
+        this.f37401b = fbVar;
     }
 
     @Override
-    public final void addView(View view) {
-        super.addView(view);
-        this.f29702a.show();
-    }
-
-    public WindowManager.LayoutParams getLayout() {
-        return this.f29702a.f29968b;
-    }
-
-    @Override
-    public final void removeView(View view) {
-        ra raVar = this.f29702a;
-        super.removeView(view);
-        try {
-            raVar.dismiss();
-        } catch (Exception unused) {
+    public final void run() {
+        switch (this.f37400a) {
+            case 0:
+                this.f37401b.onExitTransitionStart();
+                return;
+            default:
+                this.f37401b.onEnterTransitionStart();
+                return;
         }
-        wb.h(raVar.f29967a);
-    }
-
-    public void setTouchable(boolean z10) {
-        ra raVar = this.f29702a;
-        WindowManager.LayoutParams layoutParams = raVar.f29968b;
-        if (layoutParams == null) {
-            return;
-        }
-        if (!z10) {
-            layoutParams.flags |= 16;
-        } else {
-            layoutParams.flags &= -17;
-        }
-        raVar.getWindow().setAttributes(raVar.f29968b);
     }
 }

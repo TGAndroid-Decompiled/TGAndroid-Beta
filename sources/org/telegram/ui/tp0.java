@@ -1,110 +1,81 @@
 package org.telegram.ui;
 
-import android.graphics.RectF;
-import android.widget.Toast;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_stats;
-public final class tp0 implements RequestDelegate {
-    public final int f41708a;
-    public final Object f41709b;
-    public final Object f41710c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.webkit.CookieManager;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.ui.Components.RadialProgressView;
+public final class tp0 extends org.telegram.ui.Components.ud0 {
+    public final Rect N;
+    public final PhotoViewer O;
 
-    public tp0(Object obj, Object obj2, Object obj3, int i10) {
-        this.f41708a = i10;
-        this.f41709b = obj;
-        this.f41710c = obj2;
-        this.d = obj3;
+    public tp0(PhotoViewer photoViewer, PhotoViewer photoViewer2, Context context, org.telegram.ui.ActionBar.y0 y0Var) {
+        super(context);
+        this.O = photoViewer;
+        this.f38719a = org.telegram.messenger.h10.f22829t0;
+        this.f38727w = new ArrayList();
+        this.M = new org.telegram.ui.Components.jb0(this, 7);
+        this.f38720b = photoViewer2;
+        this.f38725r = y0Var;
+        org.telegram.ui.Components.pt ptVar = new org.telegram.ui.Components.pt(this, context, context, 1);
+        this.f38723f = ptVar;
+        ptVar.getSettings().setJavaScriptEnabled(true);
+        ptVar.getSettings().setDomStorageEnabled(true);
+        ptVar.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        ptVar.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(ptVar, true);
+        ptVar.setWebViewClient(new o1(this, 2));
+        addView(ptVar, b8.mf.e(-1, -1, 51));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f38721c = linearLayout;
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(17);
+        linearLayout.setVisibility(8);
+        addView(linearLayout, b8.mf.e(-2, -2, 17));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 16.0f);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28273y6, null);
+        textView.setGravity(17);
+        linearLayout.addView(textView, b8.mf.r(-2, -2, 1));
+        TextView textView2 = new TextView(context);
+        this.f38722e = textView2;
+        textView2.setTextSize(1, 16.0f);
+        int i3 = org.telegram.ui.ActionBar.k6.f28062n6;
+        org.telegram.ui.ActionBar.r6.V(textView2, i3, null);
+        textView2.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f));
+        int i10 = org.telegram.ui.ActionBar.y5.f28879a;
+        textView2.setBackground(org.telegram.ui.ActionBar.y5.d(0, org.telegram.ui.ActionBar.y5.b(org.telegram.ui.ActionBar.k6.x0(null, i3, false)), 12.0f));
+        textView2.setVisibility(8);
+        linearLayout.addView(textView2, b8.mf.t(-2, -2, 1, 0, 8, 0, 0));
+        ai.x2 x2Var = new ai.x2(22, context, this);
+        this.h = x2Var;
+        x2Var.setBackgroundColor(-16777216);
+        x2Var.setVisibility(4);
+        addView(x2Var, b8.mf.c(-1.0f, -1));
+        RadialProgressView radialProgressView = new RadialProgressView(context, null);
+        this.f38724n = radialProgressView;
+        radialProgressView.setVisibility(4);
+        addView(radialProgressView, b8.mf.e(-2, -2, 17));
+        this.N = new Rect();
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f41708a) {
-            case 0:
-                org.telegram.messenger.i0.g3(new v50((yp0) this.f41709b, tLObject, (org.telegram.messenger.e20) this.f41710c, (TLRPC.Photo) this.d, 20));
-                return;
-            case 1:
-                org.telegram.messenger.i0.g3(new l90((ru0) this.f41709b, tLObject, (TLRPC.UserFull) this.f41710c, (TL_account.TL_birthday) this.d, tL_error, 14));
-                return;
-            case 2:
-                org.telegram.messenger.i0.g3(new v50((PrivacySettingsActivity) this.f41709b, (org.telegram.ui.ActionBar.x1) this.f41710c, tLObject, (TL_account.setAccountTTL) this.d, 23));
-                return;
-            case 3:
-                ProfileActivity profileActivity = (ProfileActivity) this.f41709b;
-                TLRPC.UserFull userFull = (TLRPC.UserFull) this.f41710c;
-                TL_account.TL_birthday tL_birthday = (TL_account.TL_birthday) this.d;
-                RectF rectF = ProfileActivity.S6;
-                org.telegram.messenger.i0.g3(new l90(profileActivity, tLObject, userFull, tL_birthday, tL_error, 18));
-                return;
-            case 4:
-                ProfileActivity profileActivity2 = (ProfileActivity) this.f41709b;
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f41710c;
-                tw0 tw0Var = (tw0) this.d;
-                RectF rectF2 = ProfileActivity.S6;
-                org.telegram.messenger.i0.g3(new l90(profileActivity2, tLObject, tL_username, tw0Var, tL_error, 16));
-                return;
-            case 5:
-                ProfileActivity profileActivity3 = (ProfileActivity) this.f41709b;
-                String str = (String) this.f41710c;
-                TLRPC.User user = (TLRPC.User) this.d;
-                RectF rectF3 = ProfileActivity.S6;
-                org.telegram.messenger.i0.g3(new l90(profileActivity3, tLObject, str, user, tL_error, 17));
-                return;
-            case 6:
-                org.telegram.messenger.i0.g3(new v50((cx0) this.f41709b, tLObject, (org.telegram.messenger.e20) this.f41710c, (TLRPC.Photo) this.d, 29));
-                return;
-            case 7:
-                org.telegram.messenger.i0.g3(new l90((Object) ((q31) this.f41709b), tL_error, (Object) tLObject, (Object) ((TwoStepVerificationActivity) this.f41710c), (Object) ((TLRPC.User) this.d), 21));
-                return;
-            case 8:
-                org.telegram.messenger.i0.g3(new ox0((Object) ((SessionsActivity) this.f41709b), (Object) ((org.telegram.ui.ActionBar.x1) this.f41710c), tL_error, (Object) ((TLRPC.TL_authorization) this.d), 2));
-                return;
-            case 9:
-                org.telegram.messenger.i0.g3(new ox0((Object) ((SessionsActivity) this.f41709b), (Object) ((org.telegram.ui.ActionBar.x1) this.f41710c), tL_error, (Object) ((TLRPC.TL_webAuthorization) this.d), 1));
-                return;
-            case 10:
-                d61 d61Var = (d61) this.f41709b;
-                String str2 = (String) this.f41710c;
-                r61 r61Var = (r61) this.d;
-                boolean z10 = true;
-                cg.b bVar = null;
-                if (tLObject instanceof TL_stats.TL_statsGraph) {
-                    try {
-                        JSONObject jSONObject = new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data);
-                        e61 e61Var = d61Var.f36210r;
-                        int i10 = e61Var.f36753i;
-                        if (e61Var != d61Var.f36507x.f41266x) {
-                            z10 = false;
-                        }
-                        bVar = s61.h0(jSONObject, i10, z10);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
-                    Toast.makeText(d61Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
-                }
-                org.telegram.messenger.i0.g3(new ox0(d61Var, bVar, str2, r61Var, 5));
-                return;
-            case 11:
-                org.telegram.messenger.i0.g3(new ox0((fa1) this.f41709b, tLObject, (String) this.f41710c, (org.telegram.ui.ActionBar.x1) this.d, 7));
-                return;
-            default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f41709b;
-                byte[] bArr = (byte[]) this.f41710c;
-                byte[] bArr2 = (byte[]) this.d;
-                if (tL_error == null) {
-                    Utilities.e.c(new ox0(twoStepVerificationActivity, bArr, tLObject, bArr2));
-                    return;
-                } else {
-                    org.telegram.messenger.i0.g3(new y01(18, twoStepVerificationActivity, tL_error));
-                    return;
-                }
+    public final void j(Canvas canvas, int i3, int i10) {
+        Bitmap n4 = this.O.D4.n();
+        if (n4 != null) {
+            float min = Math.min(i3 / n4.getWidth(), i10 / n4.getHeight());
+            int width = (int) (n4.getWidth() * min);
+            int height = (int) (n4.getHeight() * min);
+            int i11 = (i10 - height) / 2;
+            int i12 = (i3 - width) / 2;
+            Rect rect = this.N;
+            rect.set(i12, i11, width + i12, height + i11);
+            canvas.drawBitmap(n4, (Rect) null, rect, (Paint) null);
         }
     }
 }

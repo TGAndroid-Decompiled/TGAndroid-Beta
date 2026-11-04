@@ -1,35 +1,60 @@
 package org.telegram.messenger;
 
-import j$.util.concurrent.ConcurrentHashMap;
-public final class cc implements Runnable {
-    public final int f15135a;
-    public final dc f15136b;
-    public final long f15137c;
-    public final long d;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import org.telegram.ui.Components.ch0;
+public final class cc {
+    public String f22005a;
+    public final boolean f22006b;
+    public Bitmap f22007c;
+    public Drawable d;
+    public int f22008e;
 
-    public cc(dc dcVar, long j10, long j11, int i10) {
-        this.f15135a = i10;
-        this.f15136b = dcVar;
-        this.f15137c = j10;
-        this.d = j11;
+    public cc(Bitmap bitmap, String str, int i3) {
+        this.f22007c = bitmap;
+        this.f22005a = str;
+        this.f22008e = i3;
+        if (str != null) {
+            zb.D().H(this.f22005a);
+        }
     }
 
-    @Override
-    public final void run() {
-        switch (this.f15135a) {
-            case 0:
-                dc dcVar = this.f15136b;
-                ConcurrentHashMap concurrentHashMap = dcVar.h.f16263u;
-                String str = dcVar.f15336a.e;
-                long j10 = this.f15137c;
-                long j11 = this.d;
-                concurrentHashMap.put(str, new long[]{j10, j11});
-                i0.g3(new cc(dcVar, j10, j11, 1));
-                return;
-            default:
-                wb wbVar = this.f15136b.f15336a;
-                at.f(wbVar.f19020o).k(141, wbVar.e, Long.valueOf(this.f15137c), Long.valueOf(this.d));
-                return;
+    public final void a() {
+        Bitmap bitmap;
+        if (this.f22005a == null) {
+            if (this.f22006b && (bitmap = this.f22007c) != null) {
+                bitmap.recycle();
+            }
+            this.f22007c = null;
+            this.d = null;
+            return;
         }
+        boolean p10 = zb.D().p(this.f22005a);
+        if (!zb.D().J(this.f22005a, false) && p10) {
+            Bitmap bitmap2 = this.f22007c;
+            if (bitmap2 != null) {
+                bitmap2.recycle();
+            } else {
+                Drawable drawable = this.d;
+                if (drawable != null) {
+                    if (drawable instanceof ch0) {
+                        ((ch0) drawable).C(false);
+                    } else if (drawable instanceof org.telegram.ui.Components.t5) {
+                        ((org.telegram.ui.Components.t5) drawable).u();
+                    } else if (drawable instanceof BitmapDrawable) {
+                        ((BitmapDrawable) drawable).getBitmap().recycle();
+                    }
+                }
+            }
+        }
+        this.f22005a = null;
+        this.f22007c = null;
+        this.d = null;
+    }
+
+    public cc(Bitmap bitmap) {
+        this.f22007c = bitmap;
+        this.f22006b = true;
     }
 }

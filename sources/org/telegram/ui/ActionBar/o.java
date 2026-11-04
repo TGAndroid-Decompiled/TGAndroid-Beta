@@ -1,22 +1,50 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-public final class o implements r0.m, ei.o {
-    public final k2 f20618a;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import org.telegram.messenger.a8;
+public final class o implements Runnable {
+    public final int f28362a;
+    public final ActionBarLayout f28363b;
 
-    public o(k2 k2Var) {
-        this.f20618a = k2Var;
+    public o(ActionBarLayout actionBarLayout, int i3) {
+        this.f28362a = i3;
+        this.f28363b = actionBarLayout;
     }
 
     @Override
-    public r0.j1 R0(View view, r0.j1 j1Var) {
-        return this.f20618a.onInsetsInternal(view, j1Var);
-    }
-
-    @Override
-    public int c() {
-        k2 k2Var = this.f20618a;
-        k2Var.getClass();
-        return k2Var.getThemedColor(t6.f20873a7);
+    public final void run() {
+        int i3 = this.f28362a;
+        ActionBarLayout actionBarLayout = this.f28363b;
+        switch (i3) {
+            case 0:
+                actionBarLayout.invalidate();
+                return;
+            case 1:
+                actionBarLayout.requestLayout();
+                actionBarLayout.f27316s.requestLayout();
+                actionBarLayout.f27325w.requestLayout();
+                actionBarLayout.f27327x.requestLayout();
+                return;
+            case 2:
+                if (actionBarLayout.f27276a && actionBarLayout.getLastFragment() != null && actionBarLayout.f27316s.getChildCount() == 0) {
+                    boolean z10 = org.telegram.messenger.r2.f25040a;
+                    a8.g(new RuntimeException(TextUtils.join(", ", actionBarLayout.f27310p1)), true);
+                    actionBarLayout.X(true, true);
+                    return;
+                }
+                return;
+            case 3:
+                Drawable drawable = ActionBarLayout.f27273w1;
+                actionBarLayout.H(false);
+                return;
+            case 4:
+                Drawable drawable2 = ActionBarLayout.f27273w1;
+                actionBarLayout.H(false);
+                return;
+            default:
+                actionBarLayout.I0.setVisibility(8);
+                return;
+        }
     }
 }

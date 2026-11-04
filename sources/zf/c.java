@@ -1,174 +1,193 @@
 package zf;
 
-import android.location.Location;
+import android.content.SharedPreferences;
 import android.text.TextUtils;
+import ci.d0;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Arrays;
+import java.util.HashSet;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.o5;
-import org.telegram.messenger.r5;
-import org.telegram.messenger.wp;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.h10;
+import org.telegram.messenger.hs;
+import org.telegram.messenger.r2;
+import org.telegram.messenger.t0;
+import org.telegram.messenger.w7;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.v8;
-import rh.h5;
-public abstract class c extends hg.c {
-    public b D;
-    public a E;
-    public int F;
-    public long H;
-    public boolean I;
-    public boolean J;
-    public final boolean d;
-    public final boolean e;
-    public boolean h;
-    public boolean f55471n;
-    public Location f55474w;
-    public String f55475x;
-    public String f55476y;
-    public boolean f55470f = false;
-    public final ArrayList f55472r = new ArrayList();
-    public final ArrayList f55473s = new ArrayList();
-    public final int G = e20.f15506s0;
+import org.telegram.tgnet.tl.TL_account;
+import xh.i;
+public final class c {
+    public static volatile long f60451g;
+    public static volatile long h;
+    public static final HashSet f60452i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
+    public final long f60453a;
+    public final int f60455c;
+    public int d;
+    public boolean f60457f;
+    public String f60454b = null;
+    public final ArrayList f60456e = new ArrayList();
 
-    public c(boolean z10, boolean z11) {
-        this.d = z10;
-        this.e = z11;
-    }
-
-    public final void F() {
-        if (this.F != 0) {
-            ConnectionsManager.getInstance(this.G).cancelRequest(this.F, true);
-            this.F = 0;
+    public c(int i3) {
+        this.f60455c = i3;
+        this.f60453a = h10.i(i3).f22848n;
+        SharedPreferences d = d();
+        try {
+            f60451g = d.getLong("hash", 0L);
+            h = d.getLong("lastReload", 0L);
+        } catch (Exception e10) {
+            a8.g(e10, true);
         }
+        g0.h3(new a(this, 0));
     }
 
-    public final void G(String str, Location location) {
-        if (str != null && str.length() != 0) {
-            if (this.E != null) {
-                Utilities.f14523g.a(this.E);
-                this.E = null;
-            }
-            this.J = true;
-            r5 r5Var = Utilities.f14523g;
-            a aVar = new a((i0) this, str, location, 0);
-            this.E = aVar;
-            r5Var.d(aVar, 400L);
+    public final void a(TLRPC.Document document) {
+        if (document == null || c(document.f27007id) != null) {
             return;
         }
-        this.f55473s.clear();
-        this.f55472r.clear();
-        this.J = false;
-        f();
+        ?? obj = new Object();
+        obj.f60448a = document;
+        int i3 = this.d;
+        this.d = i3 + 1;
+        obj.f60450c = i3;
+        obj.d = false;
+        this.f60456e.add(obj);
+        h();
     }
 
-    public final void H(String str, Location location, boolean z10) {
-        Location location2;
-        Location location3;
-        String str2;
-        String str3;
-        c cVar;
-        String str4;
-        Location location4;
-        Locale locale;
-        String str5;
-        if ((location != null || this.d) && ((location2 = this.f55474w) == null || location == null || location.distanceTo(location2) >= 200.0f)) {
-            Locale locale2 = null;
-            if (location == null) {
-                location3 = null;
-            } else {
-                location3 = new Location(location);
-            }
-            this.f55474w = location3;
-            this.f55475x = str;
-            if (this.h) {
-                this.h = false;
-                if (this.F != 0) {
-                    ConnectionsManager.getInstance(this.G).cancelRequest(this.F, true);
-                    this.F = 0;
+    public final void b() {
+        if (!this.f60457f) {
+            f(true);
+            this.f60457f = true;
+        }
+        Utilities.f21387e.c(new i(8, this, new ArrayList(this.f60456e)));
+    }
+
+    public final TLRPC.Document c(long j10) {
+        ArrayList arrayList = this.f60456e;
+        if (!this.f60457f) {
+            f(true);
+            this.f60457f = true;
+        }
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            try {
+                if (arrayList.get(i3) != null && ((b) arrayList.get(i3)).f60448a != null && ((b) arrayList.get(i3)).f60448a.f27007id == j10) {
+                    return ((b) arrayList.get(i3)).f60448a;
                 }
+            } catch (Exception e10) {
+                a8.g(e10, true);
+                return null;
             }
-            b();
-            this.h = true;
-            this.f55470f = true;
-            wp r12 = wp.r1(this.G);
-            if (this.d) {
-                str2 = wp.r1(this.G).L3;
+        }
+        return null;
+    }
+
+    public final SharedPreferences d() {
+        if (this.f60454b == null) {
+            this.f60454b = "ringtones_pref_" + this.f60453a;
+        }
+        return t0.f25457b.getSharedPreferences(this.f60454b, 0);
+    }
+
+    public final String e(long j10) {
+        if (!this.f60457f) {
+            f(true);
+            this.f60457f = true;
+        }
+        int i3 = 0;
+        while (true) {
+            ArrayList arrayList = this.f60456e;
+            if (i3 < arrayList.size()) {
+                if (((b) arrayList.get(i3)).f60448a != null && ((b) arrayList.get(i3)).f60448a.f27007id == j10) {
+                    if (!TextUtils.isEmpty(((b) arrayList.get(i3)).f60449b)) {
+                        return ((b) arrayList.get(i3)).f60449b;
+                    }
+                    w7.G(this.f60455c);
+                    return w7.I(((b) arrayList.get(i3)).f60448a).toString();
+                }
+                i3++;
             } else {
-                str2 = wp.r1(this.G).K3;
+                return "NoSound";
             }
-            TLObject e22 = r12.e2(str2);
-            if (!(e22 instanceof TLRPC.User)) {
-                if (z10) {
-                    int i10 = this.G;
-                    if (!this.I) {
-                        this.I = true;
-                        TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
-                        if (this.d) {
-                            str5 = wp.r1(i10).L3;
-                        } else {
-                            str5 = wp.r1(i10).K3;
-                        }
-                        tL_contacts_resolveUsername.username = str5;
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_contacts_resolveUsername, new ag.c(this, 27));
+        }
+    }
+
+    public final void f(boolean z10) {
+        SharedPreferences d = d();
+        int i3 = d.getInt("count", 0);
+        ArrayList arrayList = this.f60456e;
+        arrayList.clear();
+        for (int i10 = 0; i10 < i3; i10++) {
+            String string = d.getString("tone_document" + i10, "");
+            String string2 = d.getString("tone_local_path" + i10, "");
+            SerializedData serializedData = new SerializedData(Utilities.v(string));
+            try {
+                TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                ?? obj = new Object();
+                obj.f60448a = TLdeserialize;
+                obj.f60449b = string2;
+                int i11 = this.d;
+                this.d = i11 + 1;
+                obj.f60450c = i11;
+                arrayList.add(obj);
+            } catch (Throwable th2) {
+                boolean z11 = r2.f25040a;
+                a8.g(th2, true);
+            }
+        }
+        if (z10) {
+            g0.h3(new a(this, 1));
+        }
+    }
+
+    public final void g(boolean z10) {
+        boolean z11;
+        if (!z10 && System.currentTimeMillis() - h <= 86400000) {
+            z11 = false;
+        } else {
+            z11 = true;
+        }
+        TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
+        getsavedringtones.hash = f60451g;
+        if (z11) {
+            ConnectionsManager.getInstance(this.f60455c).sendRequest(getsavedringtones, new d0(this, 26));
+            return;
+        }
+        if (!this.f60457f) {
+            f(true);
+            this.f60457f = true;
+        }
+        b();
+    }
+
+    public final void h() {
+        SharedPreferences d = d();
+        d.edit().clear().apply();
+        SharedPreferences.Editor edit = d.edit();
+        int i3 = 0;
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.f60456e;
+            if (i3 < arrayList.size()) {
+                if (!((b) arrayList.get(i3)).d) {
+                    i10++;
+                    TLRPC.Document document = ((b) arrayList.get(i3)).f60448a;
+                    String str = ((b) arrayList.get(i3)).f60449b;
+                    SerializedData serializedData = new SerializedData(document.getObjectSize());
+                    document.serializeToStream(serializedData);
+                    edit.putString("tone_document" + i3, Utilities.f(serializedData.toByteArray()));
+                    if (str != null) {
+                        edit.putString("tone_local_path" + i3, str);
                     }
                 }
+                i3++;
             } else {
-                TLRPC.User user = (TLRPC.User) e22;
-                TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-                if (str == null) {
-                    str3 = "";
-                } else {
-                    str3 = str;
-                }
-                tL_messages_getInlineBotResults.query = str3;
-                tL_messages_getInlineBotResults.bot = wp.r1(this.G).p1(user);
-                tL_messages_getInlineBotResults.offset = "";
-                if (location != null) {
-                    TLRPC.TL_inputGeoPoint tL_inputGeoPoint = new TLRPC.TL_inputGeoPoint();
-                    tL_messages_getInlineBotResults.geo_point = tL_inputGeoPoint;
-                    tL_inputGeoPoint.lat = org.telegram.messenger.i0.b0(location.getLatitude());
-                    tL_messages_getInlineBotResults.geo_point._long = org.telegram.messenger.i0.b0(location.getLongitude());
-                    tL_messages_getInlineBotResults.flags |= 1;
-                }
-                if (o5.C(this.H)) {
-                    tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-                } else {
-                    tL_messages_getInlineBotResults.peer = wp.r1(this.G).i1(this.H);
-                }
-                if (TextUtils.isEmpty(str) || (!this.d && !this.e)) {
-                    cVar = this;
-                    str4 = str;
-                    location4 = location;
-                    cVar.f55471n = false;
-                } else {
-                    this.f55471n = true;
-                    Locale locale3 = dd.D0().f15365y;
-                    if (this.d) {
-                        if (locale3.getLanguage().contains("en")) {
-                            locale = locale3;
-                            cVar = this;
-                            str4 = str;
-                            location4 = location;
-                            Utilities.e.c(new v8(cVar, locale3, str4, locale, location4, str, 27));
-                        } else {
-                            locale2 = Locale.US;
-                        }
-                    }
-                    locale = locale2;
-                    cVar = this;
-                    str4 = str;
-                    location4 = location;
-                    Utilities.e.c(new v8(cVar, locale3, str4, locale, location4, str, 27));
-                }
-                if (location4 == null) {
-                    return;
-                }
-                cVar.F = ConnectionsManager.getInstance(cVar.G).sendRequest(tL_messages_getInlineBotResults, new h5(11, this, str4));
-                f();
+                edit.putInt("count", i10);
+                edit.apply();
+                hs.f(this.f60455c).k(hs.f23224e5, new Object[0]);
+                return;
             }
         }
     }

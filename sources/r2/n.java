@@ -1,8 +1,16 @@
 package r2;
-public class n extends h2.f {
-    public final int f46251a;
 
-    public n(java.lang.IllegalStateException r3, r2.o r4) {
-        throw new UnsupportedOperationException("Method not decompiled: r2.n.<init>(java.lang.IllegalStateException, r2.o):void");
+import android.net.Uri;
+public final class n {
+    public final Uri f54171a;
+    public final d2.v f54172b;
+    public final String f54173c;
+    public final String d;
+
+    public n(Uri uri, d2.v vVar, String str, String str2) {
+        this.f54171a = uri;
+        this.f54172b = vVar;
+        this.f54173c = str;
+        this.d = str2;
     }
 }

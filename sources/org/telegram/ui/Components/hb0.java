@@ -1,68 +1,170 @@
 package org.telegram.ui.Components;
 
+import android.app.Dialog;
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ImageSpan;
-public final class hb0 {
-    public SpannableStringBuilder f26744a;
-    public int f26745b;
-    public Drawable f26746c;
-    public float d;
-    public final int e;
-    public final int f26747f;
-    public int f26748g = -1;
-    public int h = -1;
-    public float f26749i = 4.66f;
+import android.content.ContextWrapper;
+import android.os.Build;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.LaunchActivity;
+public final class hb0 extends Dialog implements org.telegram.ui.ActionBar.n4 {
+    public final ActionBarLayout f34358a;
+    public final FrameLayout f34359b;
+    public final zb0 f34360c;
 
-    public hb0(int i10, int i11) {
-        this.e = i10;
-        this.f26747f = i11;
+    public hb0(Context context) {
+        super(context, 2131755352);
+        ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
+        this.f34358a = actionBarLayout;
+        actionBarLayout.setFragmentStack(new ArrayList());
+        org.telegram.ui.ActionBar.o4 o4Var = new org.telegram.ui.ActionBar.o4(new ai.c7(this, 9));
+        o4Var.f28397c = true;
+        actionBarLayout.U(o4Var);
+        actionBarLayout.setDelegate(this);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f34359b = frameLayout;
+        frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+        frameLayout.addView(actionBarLayout.getView(), new FrameLayout.LayoutParams(-1, -1, 17));
+        if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
+            frameLayout.setBackgroundColor(-1728053248);
+            frameLayout.setOnClickListener(new ga0(this, 1));
+            actionBarLayout.setRemoveActionBarExtraHeight(true);
+            k4.j.k(actionBarLayout.getView());
+        }
+        zb0 zb0Var = new zb0(context);
+        this.f34360c = zb0Var;
+        frameLayout.addView(zb0Var, b8.mf.c(-1.0f, -1));
+        setContentView(frameLayout);
     }
 
-    public final CharSequence a(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        int L;
-        int L2;
-        SpannableStringBuilder spannableStringBuilder = this.f26744a;
-        int i10 = this.f26747f;
-        if (spannableStringBuilder != null && this.f26746c != null && org.telegram.messenger.i0.f16171p == this.d) {
-            if (this.f26745b != org.telegram.ui.ActionBar.t6.w0(i10, p6Var)) {
-                Drawable drawable = this.f26746c;
-                int w02 = org.telegram.ui.ActionBar.t6.w0(i10, p6Var);
-                this.f26745b = w02;
-                drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
-            }
-            return this.f26744a;
-        } else if (context == null) {
-            return null;
+    public final void c(org.telegram.ui.ActionBar.d2 d2Var) {
+        boolean z10;
+        if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
+            z10 = true;
         } else {
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
-            this.d = org.telegram.messenger.i0.f16171p;
-            Drawable mutate = context.getResources().getDrawable(this.e).mutate();
-            this.f26746c = mutate;
-            int w03 = org.telegram.ui.ActionBar.t6.w0(i10, p6Var);
-            this.f26745b = w03;
-            mutate.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
-            int i11 = this.f26748g;
-            if (i11 <= 0) {
-                L = this.f26746c.getIntrinsicWidth();
-            } else {
-                L = org.telegram.messenger.i0.L(i11);
-            }
-            int i12 = this.h;
-            if (i12 <= 0) {
-                L2 = this.f26746c.getIntrinsicHeight();
-            } else {
-                L2 = org.telegram.messenger.i0.L(i12);
-            }
-            int L3 = org.telegram.messenger.i0.L(this.f26749i);
-            this.f26746c.setBounds(0, L3, L, L2 + L3);
-            spannableStringBuilder2.setSpan(new ImageSpan(this.f26746c, 2), 0, 1, 33);
-            spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.t2(org.telegram.messenger.i0.L(2.0f)), 1, 2, 33);
-            this.f26744a = spannableStringBuilder2;
-            return spannableStringBuilder2;
+            z10 = false;
         }
+        this.f34358a.T(d2Var, z10);
+    }
+
+    @Override
+    public final void e(int[] iArr) {
+        if (org.telegram.messenger.g0.Q1() && !org.telegram.messenger.g0.E && !org.telegram.messenger.g0.P1()) {
+            iArr[0] = View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(530.0f), View.MeasureSpec.getSize(iArr[0])), 1073741824);
+            iArr[1] = View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(528.0f), View.MeasureSpec.getSize(iArr[1])), 1073741824);
+        }
+    }
+
+    @Override
+    public final boolean h(org.telegram.ui.ActionBar.d2 d2Var, ActionBarLayout actionBarLayout) {
+        return true;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k(ActionBarLayout actionBarLayout) {
+        if (actionBarLayout.getFragmentStack().size() <= 1) {
+            dismiss();
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.o4 o4Var) {
+        org.telegram.ui.ActionBar.d2 d2Var = o4Var.f28395a;
+        return true;
+    }
+
+    @Override
+    public final void onBackPressed() {
+        if (this.f34360c.getVisibility() == 0) {
+            if (getOwnerActivity() != null) {
+                getOwnerActivity().finish();
+                return;
+            }
+            return;
+        }
+        ActionBarLayout actionBarLayout = this.f34358a;
+        actionBarLayout.I();
+        if (actionBarLayout.getFragmentStack().size() <= 1) {
+            dismiss();
+        }
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        int i3 = Build.VERSION.SDK_INT;
+        if (i3 >= 30) {
+            window.addFlags(-2147483392);
+        } else {
+            window.addFlags(-2147417856);
+        }
+        window.setWindowAnimations(2131755178);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.gravity = 51;
+        attributes.dimAmount = 0.0f;
+        attributes.flags &= -3;
+        attributes.softInputMode = 16;
+        attributes.height = -1;
+        boolean z10 = true;
+        if (i3 >= 28) {
+            attributes.layoutInDisplayCutoutMode = 1;
+        }
+        window.setAttributes(attributes);
+        window.setStatusBarColor(0);
+        FrameLayout frameLayout = this.f34359b;
+        frameLayout.setSystemUiVisibility(1280);
+        frameLayout.setOnApplyWindowInsetsListener(new org.telegram.ui.ActionBar.u2(2));
+        if (i3 >= 26) {
+            if (i0.a.h(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27878d6, true)) < 0.9d) {
+                z10 = false;
+            }
+            org.telegram.messenger.g0.n3(this, z10);
+        }
+    }
+
+    @Override
+    public final void onStart() {
+        super.onStart();
+        Context context = getContext();
+        if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        if (context instanceof LaunchActivity) {
+            ((LaunchActivity) context).C0.add(this.f34360c);
+        }
+    }
+
+    @Override
+    public final void onStop() {
+        super.onStop();
+        Context context = getContext();
+        if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        if (context instanceof LaunchActivity) {
+            ((LaunchActivity) context).C0.remove(this.f34360c);
+        }
+    }
+
+    @Override
+    public final void a(float f10) {
+    }
+
+    @Override
+    public final void b(ActionBarLayout actionBarLayout, boolean z10) {
     }
 }

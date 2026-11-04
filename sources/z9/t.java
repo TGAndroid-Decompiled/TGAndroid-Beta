@@ -1,22 +1,53 @@
 package z9;
-public final class t implements ja.d {
-    public static final t f55407a = new Object();
-    public static final ja.c f55408b = ja.c.c("timestamp");
-    public static final ja.c f55409c = ja.c.c("type");
-    public static final ja.c d = ja.c.c("app");
-    public static final ja.c e = ja.c.c("device");
-    public static final ja.c f55410f = ja.c.c("log");
-    public static final ja.c f55411g = ja.c.c("rollouts");
+
+import android.os.Process;
+import android.util.Log;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+public final class t implements Runnable {
+    public final int f60244a = 0;
+    public final Object f60245b;
+
+    public t(Runnable runnable) {
+        this.f60245b = runnable;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        l0 l0Var = (l0) ((a2) obj);
-        eVar.f(f55408b, l0Var.f55354a);
-        eVar.d(f55409c, l0Var.f55355b);
-        eVar.d(d, l0Var.f55356c);
-        eVar.d(e, l0Var.d);
-        eVar.d(f55410f, l0Var.e);
-        eVar.d(f55411g, l0Var.f55357f);
+    public final void run() {
+        Process.setThreadPriority(10);
+        switch (this.f60244a) {
+            case 0:
+                ((Runnable) this.f60245b).run();
+                return;
+            default:
+                ExecutorService executorService = (ExecutorService) this.f60245b;
+                try {
+                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                        Log.d("FirebaseCrashlytics", "Executing shutdown hook for awaitEvenIfOnMainThread task continuation executor", null);
+                    }
+                    executorService.shutdown();
+                    if (!executorService.awaitTermination(2L, TimeUnit.SECONDS)) {
+                        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                            Log.d("FirebaseCrashlytics", "awaitEvenIfOnMainThread task continuation executor did not shut down in the allocated time. Requesting immediate shutdown.", null);
+                        }
+                        executorService.shutdownNow();
+                        return;
+                    }
+                    return;
+                } catch (InterruptedException unused) {
+                    Locale locale = Locale.US;
+                    if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                        Log.d("FirebaseCrashlytics", "Interrupted while waiting for awaitEvenIfOnMainThread task continuation executor to shut down. Requesting immediate shutdown.", null);
+                    }
+                    executorService.shutdownNow();
+                    return;
+                }
+        }
+    }
+
+    public t(ExecutorService executorService) {
+        TimeUnit timeUnit = TimeUnit.SECONDS;
+        this.f60245b = executorService;
     }
 }

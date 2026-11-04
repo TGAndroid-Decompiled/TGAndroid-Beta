@@ -1,29 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class ou implements RequestDelegate {
-    public final int f40269a;
-    public final ru f40270b;
+import android.app.Activity;
+public final class ou implements org.telegram.messenger.u10 {
+    public final int f48352a;
+    public final Activity f48353b;
 
-    public ou(ru ruVar, int i10) {
-        this.f40269a = i10;
-        this.f40270b = ruVar;
+    public ou(Activity activity, int i3) {
+        this.f48352a = i3;
+        this.f48353b = activity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40269a) {
+    public final void a(Object obj) {
+        Boolean bool = (Boolean) obj;
+        switch (this.f48352a) {
             case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                ru ruVar = this.f40270b;
-                ruVar.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new ou(ruVar, 1));
+                if (bool.booleanValue()) {
+                    if (!b8.nf.a()) {
+                        b8.nf.f();
+                        return;
+                    }
+                    this.f48353b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
+                    return;
+                }
                 return;
             default:
-                this.f40270b.getMessagesController().P2(true);
+                if (bool.booleanValue()) {
+                    if (!b8.nf.a()) {
+                        b8.nf.f();
+                        return;
+                    }
+                    this.f48353b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
+                    return;
+                }
                 return;
         }
     }

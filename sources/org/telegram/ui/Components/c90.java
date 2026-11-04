@@ -1,524 +1,501 @@
 package org.telegram.ui.Components;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayDeque;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
-import org.telegram.tgnet.tl.TL_iv;
-public final class c90 extends w7.j8 {
-    public final ArrayList f25065a;
-    public TL_iv.RichText f25066b;
-    public final ArrayList f25067c = new ArrayList();
-    public final StringBuilder d = new StringBuilder();
-    public final uc.d e = new uc.d(new jb.b(22), new kb.a(22));
-    public final ArrayDeque f25068f;
+import org.telegram.tgnet.TLRPC;
+public abstract class c90 extends FrameLayout implements org.telegram.messenger.cs {
+    public static final int V = 0;
+    public final Rect E;
+    public Paint F;
+    public Integer G;
+    public boolean H;
+    public boolean I;
+    public boolean J;
+    public final gp K;
+    public q1.g L;
+    public boolean M;
+    public float N;
+    public boolean O;
+    public int P;
+    public ArrayList Q;
+    public final y80 R;
+    public gh.g S;
+    public final Path T;
+    public final RectF U;
+    public final org.telegram.ui.ActionBar.e6 f32610a;
+    public final b90 f32611b;
+    public final kg.f0 f32612c;
+    public final v80 d;
+    public final kg.k1 f32613e;
+    public final kg.e1 f32614f;
+    public final org.telegram.ui.ActionBar.d2 h;
+    public float f32615n;
+    public float f32616r;
+    public float f32617s;
+    public float f32618w;
+    public ei.q4 f32619x;
+    public z80 f32620y;
 
-    public c90(ArrayList arrayList, ArrayDeque arrayDeque) {
-        this.f25065a = arrayList;
-        this.f25068f = arrayDeque;
+    public c90(Context context, long j10, long j11, org.telegram.ui.ActionBar.d2 d2Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.E = new Rect();
+        this.H = false;
+        this.I = false;
+        this.J = false;
+        this.K = new gp(this, 25);
+        this.M = false;
+        this.N = 0.0f;
+        this.O = false;
+        this.R = new y80(this);
+        this.T = new Path();
+        this.U = new RectF();
+        this.h = d2Var;
+        this.f32610a = e6Var;
+        setVisibility(8);
+        setWillNotDraw(false);
+        setClipToOutline(true);
+        this.f32618w = (int) Math.min(org.telegram.messenger.g0.L(126.0f), org.telegram.messenger.g0.f22608q.y * 0.22f);
+        b90 b90Var = new b90(this, context, e6Var);
+        this.f32611b = b90Var;
+        kg.f0 f0Var = new kg.f0((Object) this, 3);
+        this.f32612c = f0Var;
+        f0Var.j1(1);
+        v80 v80Var = new v80(this);
+        this.d = v80Var;
+        v80Var.O = new w80(this);
+        u4.k kVar = new u4.k();
+        kVar.f55616c = 150L;
+        kVar.f55617e = 150L;
+        kVar.f55618f = 150L;
+        kVar.f55619g = 150L;
+        kVar.d = 150L;
+        kVar.f55597o = xq.f40452f;
+        kVar.C = false;
+        b90Var.setItemAnimator(kVar);
+        b90Var.setClipToPadding(false);
+        b90Var.setLayoutManager(f0Var);
+        kg.e1 e1Var = new kg.e1(context, j10, j11, new x80(this, d2Var), e6Var, h());
+        this.f32614f = e1Var;
+        ?? h0Var = new u4.h0();
+        h0Var.d = null;
+        h0Var.f17077f = false;
+        kg.j1 j1Var = new kg.j1(h0Var, 0);
+        h0Var.f17075c = e1Var;
+        e1Var.B(j1Var);
+        this.f32613e = h0Var;
+        b90Var.setAdapter(h0Var);
+        b90Var.setTranslationY(org.telegram.messenger.g0.L(6.0f));
+        addView(b90Var, b8.mf.c(-1.0f, -1));
+        setReversed(false);
     }
 
-    public static void A(int i10, List list, List list2) {
-        for (Object obj : list) {
-            if (obj instanceof a90) {
-                list2.add(((a90) obj).f24324a);
-            } else if (obj instanceof b90) {
-                C((b90) obj, list2, i10);
-            }
-        }
+    public boolean a() {
+        return true;
     }
 
-    public static int B(df.c cVar) {
-        ve.r rVar;
-        String str;
-        df.c cVar2 = (df.c) cVar.f5878c;
-        if (cVar2 instanceof ve.q) {
-            df.c cVar3 = (df.c) cVar2.f5878c;
-            if ((cVar3 instanceof ve.r) && (str = (rVar = (ve.r) cVar3).f50825g) != null) {
-                int i10 = 3;
-                if (str.length() >= 3) {
-                    int i11 = 0;
-                    if (str.charAt(0) == '[' && str.charAt(2) == ']') {
-                        char charAt = str.charAt(1);
-                        if (charAt != ' ') {
-                            if (charAt == 'x' || charAt == 'X') {
-                                i11 = 1;
-                            } else {
-                                return -1;
-                            }
-                        }
-                        if (str.length() > 3 && str.charAt(3) == ' ') {
-                            i10 = 4;
-                        }
-                        rVar.f50825g = str.substring(i10);
-                        return i11;
-                    }
-                    return -1;
-                }
-                return -1;
-            }
-            return -1;
-        }
-        return -1;
-    }
-
-    public static void C(b90 b90Var, List list, int i10) {
-        String lowerCase;
-        String str;
-        boolean z10;
-        TL_iv.RichText n10;
-        uc.a aVar = b90Var.f24687a;
-        ArrayList arrayList = b90Var.f24689c;
-        String str2 = aVar.f50225a;
-        if (str2 == null) {
-            lowerCase = "";
-        } else {
-            lowerCase = str2.toLowerCase();
-        }
-        if (i10 >= 64) {
-            A(i10 + 1, arrayList, list);
-            return;
-        }
-        switch (lowerCase.hashCode()) {
-            case -1857640538:
-                if (lowerCase.equals("summary")) {
-                    return;
-                }
-                break;
-            case -1268861541:
-                str = "footer";
-                lowerCase.equals(str);
-                break;
-            case -1221270899:
-                str = "header";
-                lowerCase.equals(str);
-                break;
-            case -732377866:
-                str = "article";
-                lowerCase.equals(str);
-                break;
-            case 112:
-                str = "p";
-                lowerCase.equals(str);
-                break;
-            case 99473:
-                str = "div";
-                lowerCase.equals(str);
-                break;
-            case 108835:
-                str = "nav";
-                lowerCase.equals(str);
-                break;
-            case 3343801:
-                str = "main";
-                lowerCase.equals(str);
-                break;
-            case 93111608:
-                str = "aside";
-                lowerCase.equals(str);
-                break;
-            case 1557721666:
-                if (lowerCase.equals("details")) {
-                    TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
-                    Map map = aVar.f50227c;
-                    int i11 = 0;
-                    if (map != null && map.containsKey("open")) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    pageblockdetails.open = z10;
-                    pageblockdetails.title = new TL_iv.textEmpty();
-                    ArrayList arrayList2 = new ArrayList();
-                    int size = arrayList.size();
-                    while (i11 < size) {
-                        Object obj = arrayList.get(i11);
-                        i11++;
-                        boolean z11 = obj instanceof b90;
-                        if (z11) {
-                            b90 b90Var2 = (b90) obj;
-                            if ("summary".equalsIgnoreCase(b90Var2.f24687a.f50225a)) {
-                                StringBuilder sb2 = new StringBuilder();
-                                w(b90Var2.f24689c, sb2);
-                                String trim = sb2.toString().trim();
-                                if (trim.isEmpty()) {
-                                    n10 = new TL_iv.textEmpty();
-                                } else {
-                                    n10 = g90.n(trim);
-                                }
-                                pageblockdetails.title = n10;
-                            }
-                        }
-                        if (obj instanceof a90) {
-                            arrayList2.add(((a90) obj).f24324a);
-                        } else if (z11) {
-                            C((b90) obj, arrayList2, i10 + 1);
-                        }
-                    }
-                    pageblockdetails.blocks.addAll(arrayList2);
-                    list.add(pageblockdetails);
-                    return;
-                }
-                break;
-            case 1970241253:
-                str = "section";
-                lowerCase.equals(str);
-                break;
-        }
-        A(i10 + 1, arrayList, list);
-    }
-
-    public static void w(List list, StringBuilder sb2) {
-        for (Object obj : list) {
-            if (obj instanceof a90) {
-                TL_iv.PageBlock pageBlock = ((a90) obj).f24324a;
-                if (pageBlock instanceof TL_iv.pageBlockParagraph) {
-                    if (sb2.length() > 0) {
-                        sb2.append('\n');
-                    }
-                    sb2.append(g90.p(((TL_iv.pageBlockParagraph) pageBlock).text));
-                } else if (pageBlock instanceof TL_iv.pageBlockHeader) {
-                    if (sb2.length() > 0) {
-                        sb2.append('\n');
-                    }
-                    sb2.append(g90.p(((TL_iv.pageBlockHeader) pageBlock).text));
-                } else if (pageBlock instanceof TL_iv.pageBlockSubheader) {
-                    if (sb2.length() > 0) {
-                        sb2.append('\n');
-                    }
-                    sb2.append(g90.p(((TL_iv.pageBlockSubheader) pageBlock).text));
-                }
-            } else if (obj instanceof b90) {
-                w(((b90) obj).f24689c, sb2);
-            }
-        }
-    }
-
-    public static void z(ArrayList arrayList, List list) {
-        List unmodifiableList;
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            uc.a aVar = (uc.a) it.next();
-            arrayList.add(aVar);
-            ArrayList arrayList2 = aVar.f50224f;
-            if (arrayList2 == null) {
-                unmodifiableList = Collections.EMPTY_LIST;
-            } else {
-                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
-            }
-            z(arrayList, unmodifiableList);
-        }
-    }
-
-    @Override
-    public final void a(ve.b bVar) {
-        for (TL_iv.RichText richText : g90.b(g90.a(bVar, null))) {
-            TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
-            pageblockblockquote.text = richText;
-            pageblockblockquote.caption = new TL_iv.textEmpty();
-            x(pageblockblockquote);
-        }
-    }
-
-    @Override
-    public final void b(ve.c cVar) {
-        TL_iv.pageBlockList pageblocklist = new TL_iv.pageBlockList();
-        for (df.c cVar2 = (df.c) cVar.f5878c; cVar2 != null; cVar2 = (df.c) cVar2.f5879f) {
-            if (cVar2 instanceof ve.o) {
-                int B = B(cVar2);
-                TL_iv.TL_pageListItemText tL_pageListItemText = new TL_iv.TL_pageListItemText();
-                if (B >= 0) {
-                    boolean z10 = true;
-                    tL_pageListItemText.checkbox = true;
-                    if (B != 1) {
-                        z10 = false;
-                    }
-                    tL_pageListItemText.checked = z10;
-                }
-                tL_pageListItemText.text = g90.e(g90.a(cVar2, pageblocklist));
-                pageblocklist.items.add(tL_pageListItemText);
-            }
-        }
-        x(pageblocklist);
-    }
-
-    @Override
-    public final void f(ve.h hVar) {
-        TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-        pageblockpreformatted.text = g90.e(g90.n(hVar.f50816k));
-        String str = hVar.f50815j;
-        if (str == null) {
-            str = "";
-        }
-        pageblockpreformatted.language = str;
-        x(pageblockpreformatted);
-    }
-
-    @Override
-    public final void g(ve.i iVar) {
-        TL_iv.RichText e = g90.e(g90.a(iVar, null));
-        if (this.f25067c.isEmpty()) {
-            this.f25066b = e;
-        }
-        switch (iVar.f50817g) {
-            case 1:
-                TL_iv.pageBlockHeading1 pageblockheading1 = new TL_iv.pageBlockHeading1();
-                pageblockheading1.text = e;
-                x(pageblockheading1);
-                return;
-            case 2:
-                TL_iv.pageBlockHeading2 pageblockheading2 = new TL_iv.pageBlockHeading2();
-                pageblockheading2.text = e;
-                x(pageblockheading2);
-                return;
-            case 3:
-                TL_iv.pageBlockHeading3 pageblockheading3 = new TL_iv.pageBlockHeading3();
-                pageblockheading3.text = e;
-                x(pageblockheading3);
-                return;
-            case 4:
-                TL_iv.pageBlockHeading4 pageblockheading4 = new TL_iv.pageBlockHeading4();
-                pageblockheading4.text = e;
-                x(pageblockheading4);
-                return;
-            case 5:
-                TL_iv.pageBlockHeading5 pageblockheading5 = new TL_iv.pageBlockHeading5();
-                pageblockheading5.text = e;
-                x(pageblockheading5);
-                return;
-            case 6:
-                TL_iv.pageBlockHeading6 pageblockheading6 = new TL_iv.pageBlockHeading6();
-                pageblockheading6.text = e;
-                x(pageblockheading6);
-                return;
-            default:
-                TL_iv.pageBlockHeader pageblockheader = new TL_iv.pageBlockHeader();
-                pageblockheader.text = e;
-                x(pageblockheader);
-                return;
-        }
-    }
-
-    @Override
-    public final void h(ve.j jVar) {
-        StringBuilder sb2 = this.d;
-        String str = jVar.f50818g;
-        if (str == null) {
-            return;
-        }
-        try {
-            this.e.b(sb2, str);
-        } catch (Throwable th2) {
-            org.telegram.messenger.f8.g(th2, true);
-            sb2.append(str);
-        }
-    }
-
-    @Override
-    public final void j(ve.l lVar) {
-        TL_iv.pageBlockPreformatted pageblockpreformatted = new TL_iv.pageBlockPreformatted();
-        pageblockpreformatted.text = g90.e(g90.n(lVar.f50821g));
-        pageblockpreformatted.language = "";
-        x(pageblockpreformatted);
-    }
-
-    @Override
-    public final void k(ve.n nVar) {
-        boolean z10;
-        if (nVar instanceof qe.a) {
-            TL_iv.pageBlockTable pageblocktable = new TL_iv.pageBlockTable();
-            pageblocktable.bordered = true;
-            pageblocktable.title = new TL_iv.textEmpty();
-            for (df.c cVar = (df.c) ((qe.a) nVar).f5878c; cVar != null; cVar = (df.c) cVar.f5879f) {
-                boolean z11 = cVar instanceof qe.e;
-                if (z11 || (cVar instanceof qe.b)) {
-                    for (df.c cVar2 = (df.c) cVar.f5878c; cVar2 != null; cVar2 = (df.c) cVar2.f5879f) {
-                        if (cVar2 instanceof qe.f) {
-                            ArrayList<TL_iv.pageTableRow> arrayList = pageblocktable.rows;
-                            TL_iv.pageTableRow pagetablerow = new TL_iv.pageTableRow();
-                            for (df.c cVar3 = (df.c) ((qe.f) cVar2).f5878c; cVar3 != null; cVar3 = (df.c) cVar3.f5879f) {
-                                if (cVar3 instanceof qe.d) {
-                                    ArrayList<TL_iv.pageTableCell> arrayList2 = pagetablerow.cells;
-                                    qe.d dVar = (qe.d) cVar3;
-                                    TL_iv.pageTableCell pagetablecell = new TL_iv.pageTableCell();
-                                    if (!z11 && !dVar.f45530g) {
-                                        z10 = false;
-                                    } else {
-                                        z10 = true;
-                                    }
-                                    pagetablecell.header = z10;
-                                    qe.c cVar4 = dVar.h;
-                                    if (cVar4 == qe.c.f45528b) {
-                                        pagetablecell.align_center = true;
-                                    } else if (cVar4 == qe.c.f45529c) {
-                                        pagetablecell.align_right = true;
-                                    }
-                                    pagetablecell.text = g90.e(g90.a(dVar, null));
-                                    pagetablecell.flags |= 128;
-                                    arrayList2.add(pagetablecell);
-                                }
-                            }
-                            arrayList.add(pagetablerow);
-                        }
-                    }
-                }
-            }
-            x(pageblocktable);
-        } else if (nVar instanceof tc.a) {
-            TL_iv.PageBlock pageblockparagraph = new TL_iv.pageBlockParagraph();
-            pageblockparagraph.text = g90.c(((tc.a) nVar).f48603g);
-            x(pageblockparagraph);
-        } else {
-            v(nVar);
-        }
-    }
-
-    @Override
-    public final void m(ve.p r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c90.m(ve.p):void");
-    }
-
-    @Override
-    public final void n(ve.q qVar) {
-        for (TL_iv.RichText richText : g90.b(g90.a(qVar, null))) {
-            TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-            pageblockparagraph.text = richText;
-            x(pageblockparagraph);
-        }
-    }
-
-    @Override
-    public final void p(ve.s sVar) {
-        x(new TL_iv.pageBlockDivider());
-    }
-
-    public final void x(TL_iv.PageBlock pageBlock) {
-        StringBuilder sb2 = this.d;
-        int length = sb2.length();
-        sb2.append((char) 1);
-        sb2.length();
-        this.f25067c.add(new a90(length, pageBlock));
-    }
-
-    public final void y() {
-        List unmodifiableList;
-        StringBuilder sb2 = this.d;
-        ArrayList arrayList = new ArrayList();
-        try {
-            uc.d dVar = this.e;
-            int length = sb2.length();
-            uc.a aVar = dVar.d;
-            while (true) {
-                uc.a aVar2 = aVar.e;
-                if (aVar2 == null) {
-                    break;
-                }
-                aVar = aVar2;
-            }
-            if (length > -1) {
-                aVar.b(length);
-            }
-            ArrayList arrayList2 = aVar.f50224f;
-            if (arrayList2 == null) {
-                unmodifiableList = Collections.EMPTY_LIST;
-            } else {
-                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
-            }
-            if (unmodifiableList.size() > 0) {
-                arrayList.addAll(unmodifiableList);
-            } else {
-                arrayList.addAll(Collections.EMPTY_LIST);
-            }
-            dVar.d = new uc.a("", 0, Collections.EMPTY_MAP, null);
-        } catch (Throwable th2) {
-            org.telegram.messenger.f8.g(th2, true);
-        }
-        ArrayList arrayList3 = new ArrayList();
-        z(arrayList3, arrayList);
-        HashMap hashMap = new HashMap();
-        ArrayList arrayList4 = this.f25067c;
-        int size = arrayList4.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList4.get(i10);
-            i10++;
-            a90 a90Var = (a90) obj;
-            hashMap.put(Integer.valueOf(a90Var.f24325b), a90Var);
-        }
-        TreeSet treeSet = new TreeSet();
-        treeSet.add(0);
-        treeSet.add(Integer.valueOf(sb2.length()));
-        for (Integer num : hashMap.keySet()) {
-            treeSet.add(num);
-            treeSet.add(Integer.valueOf(num.intValue() + 1));
-        }
-        int size2 = arrayList3.size();
-        int i11 = 0;
-        while (i11 < size2) {
-            Object obj2 = arrayList3.get(i11);
-            i11++;
-            uc.a aVar3 = (uc.a) obj2;
-            treeSet.add(Integer.valueOf(aVar3.f50226b));
-            treeSet.add(Integer.valueOf(aVar3.d));
-        }
-        ArrayList arrayList5 = new ArrayList();
-        Iterator it = treeSet.iterator();
-        Integer num2 = null;
-        while (it.hasNext()) {
-            Integer num3 = (Integer) it.next();
-            if (num2 != null && num3.intValue() > num2.intValue()) {
-                int intValue = num2.intValue();
-                int intValue2 = num3.intValue();
-                if (intValue2 - intValue == 1 && hashMap.containsKey(num2)) {
-                    arrayList5.add((a90) hashMap.get(num2));
+    public final void b() {
+        int i3;
+        v80 v80Var;
+        kg.e1 e1Var;
+        int height;
+        b90 b90Var = this.f32611b;
+        if (b90Var != null && this.f32612c != null) {
+            boolean g7 = g();
+            this.f32617s = 0.0f;
+            kg.k1 k1Var = this.f32613e;
+            if (g7) {
+                if (k1Var.f17077f) {
+                    height = k1Var.f17076e.getTop();
                 } else {
-                    String trim = sb2.substring(intValue, intValue2).trim();
-                    if (!trim.isEmpty()) {
-                        TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                        pageblockparagraph.text = g90.e(g90.n(trim));
-                        arrayList5.add(new a90(intValue, pageblockparagraph));
+                    height = getHeight();
+                }
+                float min = Math.min(Math.max(0.0f, b90Var.getTranslationY() + height) + this.f32617s, (1.0f - this.N) * getHeight());
+                this.f32615n = 0.0f;
+                this.f32616r = min;
+            } else {
+                if (k1Var.f17077f) {
+                    i3 = k1Var.f17076e.getBottom();
+                } else {
+                    i3 = 0;
+                }
+                this.f32615n = Math.max(Math.max(0.0f, b90Var.getTranslationY() + i3) - this.f32617s, this.N * getHeight());
+                this.f32616r = getMeasuredHeight();
+            }
+            gh.g gVar = this.S;
+            if (gVar != null) {
+                gVar.setBounds(0, ((int) this.f32615n) - org.telegram.messenger.g0.L(5.0f), getMeasuredWidth(), org.telegram.messenger.g0.L(5.0f) + ((int) this.f32616r));
+                Path path = this.T;
+                path.rewind();
+                Rect rect = this.S.R.f12309m;
+                RectF rectF = this.U;
+                rectF.set(rect);
+                if (b90Var != null && (v80Var = this.d) != null && b90Var.getLayoutManager() == v80Var && (e1Var = this.f32614f) != null && e1Var.S != null) {
+                    rectF.inset(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
+                    path.addRoundRect(rectF, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f), Path.Direction.CW);
+                } else {
+                    path.addRoundRect(rectF, org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(22.0f), Path.Direction.CW);
+                }
+                path.close();
+                invalidate();
+            }
+        }
+    }
+
+    public final void c() {
+        boolean z10;
+        float f10;
+        int i3;
+        v80 v80Var;
+        kg.e1 e1Var;
+        b90 b90Var = this.f32611b;
+        if (b90Var != null && this.f32612c != null) {
+            int i10 = 0;
+            if (b90Var != null && (v80Var = this.d) != null && b90Var.getLayoutManager() == v80Var && (e1Var = this.f32614f) != null && e1Var.S != null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            if (this.S == null) {
+                b90Var.setPadding(0, 0, 0, 0);
+                return;
+            }
+            float f11 = 5.0f;
+            if (z10) {
+                f10 = 7.0f;
+            } else {
+                f10 = 5.0f;
+            }
+            int L = org.telegram.messenger.g0.L(f10);
+            if (z10) {
+                i3 = org.telegram.messenger.g0.L(2.0f);
+            } else {
+                i3 = 0;
+            }
+            if (z10) {
+                f11 = 7.0f;
+            }
+            int L2 = org.telegram.messenger.g0.L(f11);
+            if (z10) {
+                i10 = org.telegram.messenger.g0.L(2.0f);
+            }
+            b90Var.setPadding(L, i3, L2, i10);
+        }
+    }
+
+    public final float d() {
+        if (getVisibility() != 0 || g()) {
+            return 0.0f;
+        }
+        return getMeasuredHeight() - this.f32615n;
+    }
+
+    @Override
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        if (i3 == org.telegram.messenger.hs.f23246i4) {
+            org.telegram.messenger.g0.d0(this.f32611b, new ei.e(13));
+        }
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int i3;
+        int i10;
+        float min;
+        int w02;
+        int height;
+        gh.g gVar = this.S;
+        if (gVar != null) {
+            gVar.draw(canvas);
+            canvas.save();
+            canvas.clipPath(this.T);
+            super.dispatchDraw(canvas);
+            canvas.restore();
+            return;
+        }
+        boolean g7 = g();
+        kg.e1 e1Var = this.f32614f;
+        if ((e1Var.N() || e1Var.S != null) && ((e1Var.f17022y0 || e1Var.B0 != null) && e1Var.I() == null && e1Var.V == null)) {
+            i3 = 2;
+        } else {
+            i3 = 0;
+        }
+        this.f32617s = org.telegram.messenger.g0.L(i3 + 2);
+        canvas.save();
+        float L = org.telegram.messenger.g0.L(6.0f);
+        float f10 = this.f32615n;
+        kg.k1 k1Var = this.f32613e;
+        b90 b90Var = this.f32611b;
+        Rect rect = this.E;
+        if (g7) {
+            if (k1Var.f17077f) {
+                height = k1Var.f17076e.getTop();
+            } else {
+                height = getHeight();
+            }
+            float min2 = Math.min(Math.max(0.0f, b90Var.getTranslationY() + height) + this.f32617s, (1.0f - this.N) * getHeight());
+            this.f32615n = 0.0f;
+            int measuredWidth = getMeasuredWidth();
+            this.f32616r = min2;
+            rect.set(0, (int) 0.0f, measuredWidth, (int) min2);
+            min = Math.min(L, Math.abs(getMeasuredHeight() - this.f32616r));
+            if (min > 0.0f) {
+                canvas.clipRect(0, 0, getWidth(), getHeight());
+                rect.top -= (int) min;
+            }
+        } else {
+            if (b90Var.getLayoutManager() == this.d) {
+                this.f32617s += org.telegram.messenger.g0.L(2.0f);
+                L += org.telegram.messenger.g0.L(2.0f);
+            }
+            if (k1Var.f17077f) {
+                i10 = k1Var.f17076e.getBottom();
+            } else {
+                i10 = 0;
+            }
+            float max = Math.max(0.0f, b90Var.getTranslationY() + i10) - this.f32617s;
+            this.f32615n = max;
+            float max2 = Math.max(max, this.N * getHeight());
+            this.f32615n = max2;
+            int measuredWidth2 = getMeasuredWidth();
+            float measuredHeight = getMeasuredHeight();
+            this.f32616r = measuredHeight;
+            rect.set(0, (int) max2, measuredWidth2, (int) measuredHeight);
+            min = Math.min(L, Math.abs(this.f32615n));
+            if (min > 0.0f) {
+                canvas.clipRect(0, 0, getWidth(), getHeight());
+                rect.bottom += (int) min;
+            }
+        }
+        if (Math.abs(f10 - this.f32615n) > 0.1f) {
+            i();
+        }
+        if (this.F == null) {
+            Paint paint = new Paint(1);
+            this.F = paint;
+            paint.setShadowLayer(org.telegram.messenger.g0.L(4.0f), 0.0f, 0.0f, 503316480);
+        }
+        Paint paint2 = this.F;
+        Integer num = this.G;
+        if (num != null) {
+            w02 = num.intValue();
+        } else {
+            w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ge, this.f32610a);
+        }
+        paint2.setColor(w02);
+        f(canvas, rect, min);
+        canvas.clipRect(rect);
+        super.dispatchDraw(canvas);
+        canvas.restore();
+    }
+
+    public final float e() {
+        if (getVisibility() == 0 && g()) {
+            return this.f32616r;
+        }
+        return 0.0f;
+    }
+
+    public void f(Canvas canvas, Rect rect, float f10) {
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(rect);
+        canvas.drawRoundRect(rectF, f10, f10, this.F);
+    }
+
+    public final boolean g() {
+        u4.o0 layoutManager = this.f32611b.getLayoutManager();
+        kg.f0 f0Var = this.f32612c;
+        if (layoutManager == f0Var && f0Var.f55514t) {
+            return true;
+        }
+        return false;
+    }
+
+    public kg.e1 getAdapter() {
+        return this.f32614f;
+    }
+
+    public u4.b0 getCurrentLayoutManager() {
+        u4.o0 layoutManager = this.f32611b.getLayoutManager();
+        kg.f0 f0Var = this.f32612c;
+        if (layoutManager == f0Var) {
+            return f0Var;
+        }
+        return this.d;
+    }
+
+    public b90 getListView() {
+        return this.f32611b;
+    }
+
+    public u4.b0 getNeededLayoutManager() {
+        kg.e1 e1Var = this.f32614f;
+        if ((!e1Var.N() && e1Var.S == null) || (!e1Var.f17022y0 && e1Var.B0 == null)) {
+            return this.f32612c;
+        }
+        return this.d;
+    }
+
+    public boolean h() {
+        return this instanceof ei.u2;
+    }
+
+    public final void o(boolean z10) {
+        long j10;
+        float computeVerticalScrollOffset;
+        int i3;
+        if (z10) {
+            boolean g7 = g();
+            if (!this.J) {
+                this.I = true;
+                b90 b90Var = this.f32611b;
+                u4.o0 layoutManager = b90Var.getLayoutManager();
+                kg.f0 f0Var = this.f32612c;
+                if (layoutManager == f0Var) {
+                    if (g7) {
+                        i3 = -100000;
+                    } else {
+                        i3 = 100000;
                     }
+                    f0Var.h1(0, i3);
+                }
+                if (getVisibility() == 8) {
+                    this.N = 1.0f;
+                    if (g7) {
+                        computeVerticalScrollOffset = -(this.f32618w + org.telegram.messenger.g0.L(12.0f));
+                    } else {
+                        computeVerticalScrollOffset = b90Var.computeVerticalScrollOffset() + this.f32618w;
+                    }
+                    b90Var.setTranslationY(computeVerticalScrollOffset);
                 }
             }
-            num2 = num3;
+            setVisibility(0);
+        } else {
+            this.I = false;
         }
-        Collections.sort(arrayList3, new org.telegram.ui.f6(12));
-        b90 b90Var = new b90(null, Integer.MAX_VALUE);
-        ArrayDeque arrayDeque = new ArrayDeque();
-        arrayDeque.push(b90Var);
-        int size3 = arrayList5.size();
-        int i12 = 0;
-        int i13 = 0;
-        while (i13 < size3) {
-            Object obj3 = arrayList5.get(i13);
-            i13++;
-            a90 a90Var2 = (a90) obj3;
-            while (i12 < arrayList3.size() && ((uc.a) arrayList3.get(i12)).f50226b <= a90Var2.f24325b) {
-                int i14 = i12 + 1;
-                uc.a aVar4 = (uc.a) arrayList3.get(i12);
-                int i15 = aVar4.d;
-                int i16 = aVar4.f50226b;
-                if (i15 >= a90Var2.f24325b) {
-                    while (arrayDeque.peek() != b90Var && ((b90) arrayDeque.peek()).f24688b <= i16) {
-                        arrayDeque.pop();
-                    }
-                    b90 b90Var2 = new b90(aVar4, aVar4.d);
-                    ((b90) arrayDeque.peek()).f24689c.add(b90Var2);
-                    arrayDeque.push(b90Var2);
+        this.J = z10;
+        gp gpVar = this.K;
+        org.telegram.messenger.g0.r(gpVar);
+        q1.g gVar = this.L;
+        if (gVar != null) {
+            gVar.d();
+        }
+        org.telegram.ui.ActionBar.d2 d2Var = this.h;
+        if (d2Var != null && d2Var.getFragmentBeginToShow()) {
+            j10 = 0;
+        } else {
+            j10 = 100;
+        }
+        org.telegram.messenger.g0.i3(gpVar, j10);
+        if (z10) {
+            m();
+        } else {
+            j();
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        org.telegram.messenger.hs.e().c(this, org.telegram.messenger.hs.f23246i4);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.hs.e().n(this, org.telegram.messenger.hs.f23246i4);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        super.onLayout(z10, i3, i10, i11, i12);
+        b();
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        c();
+        super.onMeasure(i3, i10);
+    }
+
+    public final void p(z80 z80Var) {
+        this.f32620y = z80Var;
+        b90 listView = getListView();
+        ei.q4 q4Var = new ei.q4(12, this, z80Var);
+        this.f32619x = q4Var;
+        listView.setOnItemClickListener(q4Var);
+        getListView().setOnTouchListener(new yj(this, 4));
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.H) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    public void setBackgroundDrawable(gh.g gVar) {
+        this.S = gVar;
+        gVar.r(org.telegram.messenger.g0.L(22.0f));
+        this.S.q(org.telegram.messenger.g0.L(5.0f));
+        c();
+    }
+
+    public void setDialogId(long j10) {
+        kg.e1 e1Var = this.f32614f;
+        if (e1Var.f17005n != j10) {
+            e1Var.f17005n = j10;
+        }
+    }
+
+    public void setIgnoreLayout(boolean z10) {
+        this.H = z10;
+    }
+
+    public void setOverrideColor(int i3) {
+        this.G = Integer.valueOf(i3);
+        invalidate();
+    }
+
+    public void setReversed(boolean z10) {
+        if (z10 != g()) {
+            this.I = true;
+            this.f32612c.k1(z10);
+            kg.e1 e1Var = this.f32614f;
+            if (e1Var.M0 != z10) {
+                e1Var.M0 = z10;
+                int i3 = e1Var.N0;
+                if (i3 > 0) {
+                    e1Var.g(0);
                 }
-                i12 = i14;
+                if (i3 > 1) {
+                    e1Var.g(i3 - 1);
+                }
             }
-            while (arrayDeque.peek() != b90Var && ((b90) arrayDeque.peek()).f24688b <= a90Var2.f24325b) {
-                arrayDeque.pop();
-            }
-            TL_iv.PageBlock pageBlock = a90Var2.f24324a;
-            ((b90) arrayDeque.peek()).f24689c.add(a90Var2);
         }
-        A(0, b90Var.f24689c, this.f25065a);
+    }
+
+    public void k(TLRPC.BotInlineResult botInlineResult) {
+    }
+
+    public void l(boolean z10) {
+    }
+
+    public void n(boolean z10) {
+    }
+
+    public void i() {
+    }
+
+    public void j() {
+    }
+
+    public void m() {
     }
 }

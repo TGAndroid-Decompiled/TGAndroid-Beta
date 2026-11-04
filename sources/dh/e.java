@@ -1,52 +1,43 @@
 package dh;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.voip.GroupCallMessage;
-import org.telegram.messenger.voip.GroupCallMessagesController;
-import org.telegram.tgnet.TLRPC;
-import s4.c1;
-import s4.g0;
-public abstract class e extends g0 implements GroupCallMessagesController.CallMessageListener {
-    public List f5945c;
-    public boolean d;
-    public int e;
-    public TLRPC.InputGroupCall f5946f;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+import org.telegram.messenger.u10;
+public final class e extends ImageView {
+    public long f8988a;
+    public final f f8989b;
 
-    @Override
-    public final int b() {
-        List list = this.f5945c;
-        if (list != null) {
-            return list.size();
-        }
-        return 0;
+    public e(f fVar, Context context) {
+        super(context);
+        this.f8989b = fVar;
+        this.f8988a = 0L;
     }
 
     @Override
-    public final void onNewGroupCallMessage(long j10, GroupCallMessage groupCallMessage) {
-        if (this.f5945c == null) {
-            this.f5945c = new ArrayList();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        u10 u10Var;
+        int action = motionEvent.getAction();
+        f fVar = this.f8989b;
+        if (action == 0) {
+            if (System.currentTimeMillis() < this.f8988a + 350) {
+                return false;
+            }
+            this.f8988a = System.currentTimeMillis();
+            fVar.f9001b = true;
+            fVar.f9002c = false;
+            org.telegram.messenger.g0.i3(new cg.l0(fVar, 350, 2), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            fVar.f9001b = false;
+            if (!fVar.f9002c && (u10Var = fVar.d) != null) {
+                u10Var.a(Boolean.FALSE);
+                try {
+                    fVar.f9000a.performHapticFeedback(3);
+                } catch (Exception unused) {
+                }
+            }
         }
-        this.f5945c.add(0, groupCallMessage);
-        i(0);
-    }
-
-    @Override
-    public final void onPopGroupCallMessage() {
-        List list = this.f5945c;
-        if (list != null && !list.isEmpty()) {
-            int size = this.f5945c.size() - 1;
-            this.f5945c.remove(size);
-            s(size);
-        }
-    }
-
-    @Override
-    public final void t(c1 c1Var, int i10) {
-        c cVar = (c) c1Var;
-        List list = this.f5945c;
-        if (list != null && list.size() > i10) {
-            ((d) cVar.f47909a).set((GroupCallMessage) this.f5945c.get(i10));
-        }
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

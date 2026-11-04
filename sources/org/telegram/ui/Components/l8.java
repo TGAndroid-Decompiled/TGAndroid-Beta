@@ -2,88 +2,59 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 import android.view.View;
-import java.util.ArrayList;
-public final class l8 extends uk0 {
-    public final ArrayList f28075e3;
-    public final int f28076f3;
-    public int f28077g3;
-    public final org.telegram.ui.x7 f28078h3;
-    public k8 f28079i3;
-    public final o8 f28080j3;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class l8 extends org.telegram.ui.g11 {
+    public boolean f35617f2;
+    public final r8 f35618g2;
 
-    public l8(o8 o8Var, Activity activity) {
-        super(activity, null);
-        this.f28080j3 = o8Var;
-        this.f28075e3 = new ArrayList();
-        this.f28076f3 = 200;
-        this.f28077g3 = -1;
-        s4.a0 a0Var = new s4.a0();
-        a0Var.j1(0);
-        setLayoutManager(a0Var);
-        for (int i10 = 0; i10 < 7; i10++) {
-            ?? obj = new Object();
-            int i11 = this.f28076f3;
-            this.f28076f3 = i11 + 1;
-            obj.f27768a = i11;
-            int[] iArr = o8.f29042c0[i10];
-            obj.f27770c = iArr[0];
-            obj.d = iArr[1];
-            obj.e = iArr[2];
-            obj.f27771f = iArr[3];
-            this.f28075e3.add(obj);
-        }
-        for (int i12 = 0; i12 < 30; i12++) {
-            ?? obj2 = new Object();
-            int i13 = this.f28076f3;
-            this.f28076f3 = i13 + 1;
-            obj2.f27768a = i13;
-            int[] iArr2 = o8.f29043d0[i12];
-            obj2.f27770c = iArr2[0];
-            obj2.d = iArr2[1];
-            obj2.e = 0;
-            obj2.f27771f = 0;
-            obj2.f27769b = true;
-            this.f28075e3.add(obj2);
-        }
-        setPadding(org.telegram.messenger.i0.L(4.0f), 0, org.telegram.messenger.i0.L(4.0f), 0);
-        setClipToPadding(false);
-        this.f30992f1 = true;
-        setOnItemClickListener(new k(this, 2));
-        org.telegram.ui.x7 x7Var = new org.telegram.ui.x7(this, 2);
-        this.f28078h3 = x7Var;
-        setAdapter(x7Var);
-        setOverScrollMode(1);
+    public l8(r8 r8Var, r8 r8Var2, Activity activity, int i3) {
+        super(r8Var2, activity, false, null, 4, true, null, 16, i3);
+        this.f35618g2 = r8Var;
+        this.f35617f2 = true;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10) / this.f28078h3.b();
-        o8 o8Var = this.f28080j3;
-        o8Var.P = size;
-        if (size < org.telegram.messenger.i0.L(39.0f)) {
-            o8Var.P = org.telegram.messenger.i0.L(39.0f);
-        } else if (o8Var.P > org.telegram.messenger.i0.L(150.0f)) {
-            o8Var.P = org.telegram.messenger.i0.L(48.0f);
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        super.onLayout(z10, i3, i10, i11, i12);
+        if (this.f35617f2) {
+            this.f35617f2 = false;
+            this.f35618g2.f37669b.s(null);
         }
-        super.onMeasure(i10, i11);
     }
 
-    public final void z1(k8 k8Var) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f28075e3;
-            if (i10 < arrayList.size()) {
-                if (((k8) arrayList.get(i10)).equals(k8Var)) {
-                    this.f28077g3 = ((k8) arrayList.get(i10)).f27768a;
-                    break;
-                }
-                i10++;
-            } else {
-                this.f28079i3 = k8Var;
-                this.f28077g3 = 1;
-                break;
-            }
+    @Override
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i3;
+        TLRPC.TL_emojiList tL_emojiList;
+        boolean z10;
+        long j10;
+        int i10;
+        boolean z11 = this.S;
+        r8 r8Var = this.f35618g2;
+        if (z11) {
+            i10 = ((org.telegram.ui.ActionBar.d2) r8Var).currentAccount;
+            tL_emojiList = org.telegram.messenger.li.b0(i10).K1;
+        } else {
+            i3 = ((org.telegram.ui.ActionBar.d2) r8Var).currentAccount;
+            tL_emojiList = org.telegram.messenger.li.b0(i3).L1;
         }
-        this.f28078h3.f();
+        long j11 = 0;
+        if (tL_emojiList != null) {
+            if (document != null) {
+                j10 = document.f27007id;
+            } else if (l10 != null) {
+                j10 = l10.longValue();
+            } else {
+                j10 = 0;
+            }
+            z10 = tL_emojiList.document_id.contains(Long.valueOf(j10));
+        } else {
+            z10 = false;
+        }
+        if (l10 != null) {
+            j11 = l10.longValue();
+        }
+        r8Var.m0(z10, j11, document);
     }
 }

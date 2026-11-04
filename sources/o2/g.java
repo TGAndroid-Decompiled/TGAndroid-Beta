@@ -1,37 +1,18 @@
 package o2;
+public final class g {
+    public final p3.a[] f20537a;
+    public final long[] f20538b;
+    public final String f20539c;
+    public final String d;
 
-import android.os.SystemClock;
-import java.util.List;
-public final class g extends x2.c {
-    public int f13981g;
-
-    @Override
-    public final int c() {
-        return this.f13981g;
+    public g(String str, String str2, long[] jArr, p3.a[] aVarArr) {
+        this.f20539c = str;
+        this.d = str2;
+        this.f20538b = jArr;
+        this.f20537a = aVarArr;
     }
 
-    @Override
-    public final void k(long j10, long j11, long j12, List list, v2.m[] mVarArr) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (!a(this.f13981g, elapsedRealtime)) {
-            return;
-        }
-        for (int i10 = this.f52922b - 1; i10 >= 0; i10--) {
-            if (!a(i10, elapsedRealtime)) {
-                this.f13981g = i10;
-                return;
-            }
-        }
-        throw new IllegalStateException();
-    }
-
-    @Override
-    public final int n() {
-        return 0;
-    }
-
-    @Override
-    public final Object q() {
-        return null;
+    public final String a() {
+        return this.f20539c + "/" + this.d;
     }
 }

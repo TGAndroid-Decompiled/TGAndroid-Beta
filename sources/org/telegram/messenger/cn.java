@@ -1,52 +1,39 @@
 package org.telegram.messenger;
-public final class cn implements Runnable {
-    public final int f15183a;
-    public final wp f15184b;
-    public final Runnable f15185c;
-    public final long d;
 
-    public cn(wp wpVar, long j10, Runnable runnable, int i10) {
-        this.f15183a = i10;
-        this.f15184b = wpVar;
-        this.d = j10;
-        this.f15185c = runnable;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class cn implements Runnable {
+    public final int f22045a;
+    public final Object f22046b;
+    public final Object f22047c;
+    public final Object d;
+    public final Object f22048e;
+    public final Object f22049f;
+
+    public cn(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i3) {
+        this.f22045a = i3;
+        this.f22046b = obj;
+        this.f22047c = obj2;
+        this.d = obj3;
+        this.f22048e = obj4;
+        this.f22049f = obj5;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.cn.a():void");
     }
 
     @Override
     public final void run() {
-        int i10 = this.f15183a;
-        Runnable runnable = this.f15185c;
-        long j10 = this.d;
-        wp wpVar = this.f15184b;
-        switch (i10) {
-            case 0:
-                wpVar.T2(0, j10, true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                if (runnable != null) {
-                    wpVar.getClass();
-                    runnable.run();
-                }
-                wpVar.getNotificationCenter().k(300, Long.valueOf(j10), 0L);
-                return;
-            default:
-                wpVar.T2(0, j10, true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.cn.run():void");
     }
 
-    public cn(wp wpVar, Runnable runnable, long j10) {
-        this.f15183a = 1;
-        this.f15184b = wpVar;
-        this.f15185c = runnable;
-        this.d = j10;
+    public cn(hp hpVar, TLRPC.TL_error tL_error, TLObject tLObject, Long l10, u10 u10Var) {
+        this.f22045a = 9;
+        this.f22046b = hpVar;
+        this.f22049f = tL_error;
+        this.f22047c = tLObject;
+        this.d = l10;
+        this.f22048e = u10Var;
     }
 }

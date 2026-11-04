@@ -1,31 +1,22 @@
 package org.telegram.ui;
-public final class ds implements Runnable {
-    public final int f36674a;
-    public final ns f36675b;
 
-    public ds(ns nsVar, int i10) {
-        this.f36674a = i10;
-        this.f36675b = nsVar;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class ds extends org.telegram.ui.ActionBar.f1 {
+    public final es f44805o;
+
+    public ds(es esVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f44805o = esVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36674a) {
-            case 0:
-                ns.d0(this.f36675b);
-                return;
-            case 1:
-                ns nsVar = this.f36675b;
-                if (nsVar.J) {
-                    nsVar.d.d.requestFocus();
-                    org.telegram.messenger.i0.J3(nsVar.d.d);
-                    return;
-                }
-                return;
-            default:
-                ns nsVar2 = this.f36675b;
-                nsVar2.presentFragment(un.ma(nsVar2.H), true);
-                return;
+    public final void dismiss() {
+        d(true);
+        is isVar = this.f44805o.f45025a;
+        isVar.f46395k = null;
+        isVar.K = false;
+        if (isVar.R) {
+            isVar.m();
         }
     }
 }

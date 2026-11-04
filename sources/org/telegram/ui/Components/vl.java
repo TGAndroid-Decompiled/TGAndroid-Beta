@@ -1,27 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class vl extends s4.b0 {
-    public final oi f31314r;
+import android.animation.ValueAnimator;
+public final class vl implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39175a;
+    public final zl f39176b;
 
-    public vl(oi oiVar, Context context) {
-        super(context);
-        this.f31314r = oiVar;
+    public vl(zl zlVar, int i3) {
+        this.f39175a = i3;
+        this.f39176b = zlVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int topScrollOffset;
-        int k10 = super.k(i10, view);
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f31314r.R;
-        int paddingTop = chatAttachAlertPhotoLayout.E.getPaddingTop();
-        topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
-        return k10 - (paddingTop - topScrollOffset);
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39175a) {
+            case 0:
+                zl zlVar = this.f39176b;
+                zlVar.getClass();
+                zlVar.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zlVar.invalidate();
+                return;
+            default:
+                zl zlVar2 = this.f39176b;
+                zlVar2.getClass();
+                zlVar2.H = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                zlVar2.invalidate();
+                return;
+        }
     }
 }

@@ -1,37 +1,93 @@
 package l9;
 
-import android.util.Log;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicReference;
-public final class f implements com.google.android.gms.common.api.internal.c {
-    public static final AtomicReference f11703a = new AtomicReference();
+import b8.xd;
+public final class f extends xd {
+    @Override
+    public final boolean a(o oVar, c cVar, c cVar2) {
+        synchronized (oVar) {
+            try {
+                if (oVar.f18158b == cVar) {
+                    oVar.f18158b = cVar2;
+                    return true;
+                }
+                return false;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
 
     @Override
-    public final void a(boolean z10) {
-        synchronized (h.f11706k) {
+    public final boolean b(o oVar, Object obj, Object obj2) {
+        synchronized (oVar) {
             try {
-                ArrayList arrayList = new ArrayList(h.f11707l.values());
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    h hVar = (h) obj;
-                    if (hVar.e.get()) {
-                        Log.d("FirebaseApp", "Notifying background state change listeners.");
-                        Iterator it = hVar.f11713i.iterator();
-                        while (it.hasNext()) {
-                            h hVar2 = ((e) it.next()).f11702a;
-                            if (!z10) {
-                                ((oa.c) hVar2.h.get()).c();
-                            }
-                        }
-                    }
+                if (oVar.f18157a == obj) {
+                    oVar.f18157a = obj2;
+                    return true;
+                }
+                return false;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public final boolean c(o oVar, n nVar, n nVar2) {
+        synchronized (oVar) {
+            try {
+                if (oVar.f18159c == nVar) {
+                    oVar.f18159c = nVar2;
+                    return true;
+                }
+                return false;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public final c d(o oVar) {
+        c cVar;
+        c cVar2 = c.d;
+        synchronized (oVar) {
+            try {
+                cVar = oVar.f18158b;
+                if (cVar != cVar2) {
+                    oVar.f18158b = cVar2;
                 }
             } catch (Throwable th2) {
                 throw th2;
             }
         }
+        return cVar;
+    }
+
+    @Override
+    public final n e(o oVar) {
+        n nVar;
+        n nVar2 = n.f18152c;
+        synchronized (oVar) {
+            try {
+                nVar = oVar.f18159c;
+                if (nVar != nVar2) {
+                    oVar.f18159c = nVar2;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return nVar;
+    }
+
+    @Override
+    public final void f(n nVar, n nVar2) {
+        nVar.f18154b = nVar2;
+    }
+
+    @Override
+    public final void g(n nVar, Thread thread) {
+        nVar.f18153a = thread;
     }
 }

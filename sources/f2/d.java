@@ -1,45 +1,33 @@
 package f2;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-public final class d extends f {
-    public final long f6733c;
-    public final ArrayList d;
-    public final ArrayList e;
+import android.os.Bundle;
+import android.text.Spanned;
+import g2.n0;
+public abstract class d {
+    public static final String f11382a;
+    public static final String f11383b;
+    public static final String f11384c;
+    public static final String d;
+    public static final String f11385e;
 
-    public d(int i10, long j10) {
-        super(i10, 0);
-        this.f6733c = j10;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
+    static {
+        String str = n0.f11873a;
+        f11382a = Integer.toString(0, 36);
+        f11383b = Integer.toString(1, 36);
+        f11384c = Integer.toString(2, 36);
+        d = Integer.toString(3, 36);
+        f11385e = Integer.toString(4, 36);
     }
 
-    public final d d(int i10) {
-        ArrayList arrayList = this.e;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            d dVar = (d) arrayList.get(i11);
-            if (dVar.f6736b == i10) {
-                return dVar;
-            }
+    public static Bundle a(Spanned spanned, Object obj, int i3, Bundle bundle) {
+        Bundle bundle2 = new Bundle();
+        bundle2.putInt(f11382a, spanned.getSpanStart(obj));
+        bundle2.putInt(f11383b, spanned.getSpanEnd(obj));
+        bundle2.putInt(f11384c, spanned.getSpanFlags(obj));
+        bundle2.putInt(d, i3);
+        if (bundle != null) {
+            bundle2.putBundle(f11385e, bundle);
         }
-        return null;
-    }
-
-    public final e e(int i10) {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        for (int i11 = 0; i11 < size; i11++) {
-            e eVar = (e) arrayList.get(i11);
-            if (eVar.f6736b == i10) {
-                return eVar;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final String toString() {
-        return f.a(this.f6736b) + " leaves: " + Arrays.toString(this.d.toArray()) + " containers: " + Arrays.toString(this.e.toArray());
+        return bundle2;
     }
 }

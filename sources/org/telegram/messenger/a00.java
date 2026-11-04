@@ -1,12 +1,17 @@
 package org.telegram.messenger;
 
-import android.graphics.RectF;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class a00 {
-    public final RectF f14543a;
-    public final float f14544b;
-
-    public a00(RectF rectF, float f7) {
-        this.f14543a = rectF;
-        this.f14544b = f7;
-    }
+    public int f21411a = -1;
+    public long f21412b;
+    public long f21413c;
+    public int d;
+    public int f21414e;
+    public int f21415f;
+    public TLRPC.Message f21416g;
+    public ArrayList h;
+    public boolean f21417i;
+    public boolean f21418j;
+    public boolean f21419k;
 }

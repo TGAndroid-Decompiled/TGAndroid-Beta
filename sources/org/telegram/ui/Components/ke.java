@@ -1,31 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.view.ViewTreeObserver;
-public final class ke implements ViewTreeObserver.OnPreDrawListener {
-    public final int f27828a;
-    public final Dialog f27829b;
-    public final ChatActivityEnterView f27830c;
+import android.view.View;
+public final class ke implements z51, hj0 {
+    public final ChatActivityEnterView f35374a;
 
-    public ke(ChatActivityEnterView chatActivityEnterView, Dialog dialog, int i10) {
-        this.f27828a = i10;
-        this.f27830c = chatActivityEnterView;
-        this.f27829b = dialog;
+    public ke(ChatActivityEnterView chatActivityEnterView) {
+        this.f35374a = chatActivityEnterView;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f27828a) {
-            case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f27830c;
-                chatActivityEnterView.f23765p0.getViewTreeObserver().removeOnPreDrawListener(this);
-                chatActivityEnterView.f23765p0.postDelayed(new tf(this.f27829b, 20), 100L);
-                return true;
-            default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f27830c;
-                chatActivityEnterView2.f23765p0.getViewTreeObserver().removeOnPreDrawListener(this);
-                chatActivityEnterView2.f23765p0.postDelayed(new tf(this.f27829b, 20), 100L);
-                return true;
+    public boolean f(int i3, View view) {
+        if (view instanceof ii.y) {
+            ChatActivityEnterView chatActivityEnterView = this.f35374a;
+            chatActivityEnterView.setFieldText(((ii.y) view).getCommand() + " ");
+            chatActivityEnterView.f31162n0.c();
+            return true;
         }
+        return false;
     }
 }

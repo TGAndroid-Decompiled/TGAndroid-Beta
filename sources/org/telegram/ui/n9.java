@@ -1,33 +1,56 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class n9 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39773a;
-    public final u9 f39774b;
+import android.app.Activity;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class n9 extends org.telegram.ui.ActionBar.t2 {
+    public final m9 f47919j1;
+    public final org.telegram.ui.ActionBar.q4[] k1;
+    public final r9 f47920l1;
 
-    public n9(u9 u9Var, int i10) {
-        this.f39773a = i10;
-        this.f39774b = u9Var;
+    public n9(Activity activity, org.telegram.ui.ActionBar.q4[] q4VarArr, int i3, r9 r9Var) {
+        super(activity, false);
+        this.k1 = q4VarArr;
+        this.f47920l1 = r9Var;
+        q4VarArr[0].setFragmentStack(new ArrayList());
+        m9 m9Var = new m9(this, i3);
+        this.f47919j1 = m9Var;
+        m9Var.f49439y = true;
+        ((ActionBarLayout) q4VarArr[0]).c(-1, m9Var);
+        ((ActionBarLayout) q4VarArr[0]).f0();
+        ViewGroup view = q4VarArr[0].getView();
+        int i10 = this.f28618u0;
+        view.setPadding(i10, 0, i10, 0);
+        m9Var.N = r9Var;
+        if (r9Var.M0() != null) {
+            m9Var.f49426c.setText(r9Var.M0());
+        }
+        this.f28586b = q4VarArr[0].getView();
+        this.f28621w0 = false;
+        setOnDismissListener(new s5(this, 1));
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39773a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u9 u9Var = this.f39774b;
-                u9Var.Y = floatValue;
-                u9Var.f41881b.setAlpha(1.0f - floatValue);
-                if (u9Var.W == 3) {
-                    u9Var.f41883c.setAlpha(1.0f - u9Var.Y);
-                }
-                u9Var.f41891s.setAlpha(1.0f - u9Var.Y);
-                u9Var.f41893x = (u9Var.Y * 0.25f) + 0.5f;
-                u9Var.fragmentView.invalidate();
-                return;
-            default:
-                this.f39774b.f41891s.invalidate();
-                return;
+    public final boolean G() {
+        return false;
+    }
+
+    @Override
+    public final void dismiss() {
+        super.dismiss();
+        this.k1[0] = null;
+        this.f47920l1.onDismiss();
+    }
+
+    @Override
+    public final void onBackPressed() {
+        org.telegram.ui.ActionBar.q4[] q4VarArr = this.k1;
+        org.telegram.ui.ActionBar.q4 q4Var = q4VarArr[0];
+        if (q4Var != null && q4Var.getFragmentStack().size() > 1) {
+            ((ActionBarLayout) q4VarArr[0]).I();
+        } else {
+            super.onBackPressed();
         }
     }
 }

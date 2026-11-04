@@ -1,52 +1,61 @@
 package p4;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executor;
-public abstract class p extends q {
-    public final Object f44794a = new Object();
-    public Executor f44795b;
-    public n2.u f44796c;
-    public m d;
-    public ArrayList e;
+import android.media.session.MediaSession;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class p implements Parcelable {
+    public static final Parcelable.Creator<p> CREATOR = new n8.g(12);
+    public final MediaSession.Token f53179b;
+    public d f53180c;
+    public final Object f53178a = new Object();
+    public a5.d d = null;
 
-    public String j() {
-        return null;
+    public p(MediaSession.Token token, k kVar) {
+        this.f53179b = token;
+        this.f53180c = kVar;
     }
 
-    public String k() {
-        return null;
-    }
-
-    public final void l(m mVar, ArrayList arrayList) {
-        if (mVar != null) {
-            synchronized (this.f44794a) {
-                try {
-                    try {
-                        Executor executor = this.f44795b;
-                        if (executor != null) {
-                            executor.execute(new com.google.android.gms.internal.cast.o(this, this.f44796c, mVar, arrayList, false, 4));
-                        } else {
-                            this.d = mVar;
-                            this.e = new ArrayList(arrayList);
-                        }
-                        return;
-                    } catch (Throwable th2) {
-                        th = th2;
-                        throw th;
-                    }
-                } catch (Throwable th3) {
-                    th = th3;
-                    throw th;
-                }
-            }
+    public final d a() {
+        d dVar;
+        synchronized (this.f53178a) {
+            dVar = this.f53180c;
         }
-        throw new NullPointerException("groupRoute must not be null");
+        return dVar;
     }
 
-    public abstract void m(String str);
+    public final void b(d dVar) {
+        synchronized (this.f53178a) {
+            this.f53180c = dVar;
+        }
+    }
 
-    public abstract void n(String str);
+    public final void c(a5.d dVar) {
+        synchronized (this.f53178a) {
+            this.d = dVar;
+        }
+    }
 
-    public abstract void o(List list);
+    @Override
+    public final int describeContents() {
+        return 0;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof p)) {
+            return false;
+        }
+        return this.f53179b.equals(((p) obj).f53179b);
+    }
+
+    public final int hashCode() {
+        return this.f53179b.hashCode();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i3) {
+        parcel.writeParcelable(this.f53179b, i3);
+    }
 }

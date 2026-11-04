@@ -1,108 +1,144 @@
 package org.telegram.ui;
 
-import android.media.MediaExtractor;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.camera.Size;
-import org.telegram.ui.Components.AnimatedFileNative;
-public final class mr0 implements Runnable {
-    public final String f39606a;
-    public final long f39607b;
-    public final int f39608c;
-    public final PhotoViewer d;
+import android.graphics.Point;
+import android.view.View;
+import java.util.HashSet;
+public final class mr0 implements r0.m, org.telegram.ui.Components.n51, org.telegram.ui.Components.eo0, org.telegram.ui.Components.om0, org.telegram.ui.Components.em0 {
+    public final int f47770a;
+    public final Object f47771b;
 
-    public mr0(PhotoViewer photoViewer, String str, long j10, int i10) {
-        this.d = photoViewer;
-        this.f39606a = str;
-        this.f39607b = j10;
-        this.f39608c = i10;
+    public mr0(Object obj, int i3) {
+        this.f47770a = i3;
+        this.f47771b = obj;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        if (this.d.f33655x8 == this) {
-            int E = MediaController.E(this.f39606a);
-            int[] iArr = new int[11];
-            AnimatedFileNative.d(this.f39606a, iArr, this.f39607b);
-            boolean z12 = false;
-            if (iArr[10] != 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            PhotoViewer photoViewer = this.d;
-            if (iArr[0] != 0 && (!z10 || iArr[9] != 0)) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            photoViewer.f33538k8 = z11;
-            PhotoViewer photoViewer2 = this.d;
-            if (E == -1) {
-                E = iArr[3];
-            }
-            photoViewer2.f33502g8 = E;
-            photoViewer2.f33511h8 = E;
-            if (this.d.f33538k8) {
-                PhotoViewer photoViewer3 = this.d;
-                int i10 = iArr[1];
-                photoViewer3.f33467c8 = i10;
-                photoViewer3.f33484e8 = i10;
-                PhotoViewer photoViewer4 = this.d;
-                int i11 = iArr[2];
-                photoViewer4.f33476d8 = i11;
-                photoViewer4.f33493f8 = i11;
-                PhotoViewer photoViewer5 = this.d;
-                int max = Math.max(photoViewer5.f33467c8, this.d.f33476d8);
-                if (max > 1280) {
-                    photoViewer5.Z7 = 4;
-                } else if (max > 854) {
-                    photoViewer5.Z7 = 3;
-                } else if (max > 640) {
-                    photoViewer5.Z7 = 2;
-                } else {
-                    photoViewer5.Z7 = 1;
-                }
-                PhotoViewer photoViewer6 = this.d;
-                int i12 = this.f39608c;
-                if (i12 == -1) {
-                    i12 = photoViewer6.y2();
-                }
-                photoViewer6.Y7 = i12;
-                PhotoViewer photoViewer7 = this.d;
-                if (photoViewer7.f33502g8 != 0 && photoViewer7.f33461c2 != 1) {
-                    Size q02 = photoViewer7.q0();
-                    if (q02.getWidth() == photoViewer7.f33467c8 && q02.getHeight() == photoViewer7.f33476d8) {
-                        MediaController.v(q02.getWidth(), q02.getHeight(), photoViewer7.f33511h8, false);
-                    } else {
-                        MediaController.v(q02.getWidth(), q02.getHeight(), MediaController.Q(photoViewer7.f33476d8, photoViewer7.f33467c8, photoViewer7.f33511h8, q02.getHeight(), q02.getWidth()), false);
-                    }
-                }
-                PhotoViewer photoViewer8 = this.d;
-                String str = this.f39606a;
-                MediaExtractor mediaExtractor = new MediaExtractor();
-                try {
-                    try {
-                        mediaExtractor.setDataSource(str);
-                        int w9 = MediaController.w(mediaExtractor, false);
-                        if (w9 >= 0) {
-                            if (mediaExtractor.getTrackFormat(w9).getString("mime").equals("video/avc")) {
-                                z12 = true;
-                            }
-                        }
-                    } catch (Exception e) {
-                        org.telegram.messenger.f8.g(e, true);
-                    }
-                    photoViewer8.f33545l8 = z12;
-                } finally {
-                    mediaExtractor.release();
-                }
-            }
-            if (this.d.f33655x8 != this) {
-                return;
-            }
-            org.telegram.messenger.i0.g3(new pd0(this, this, iArr, 23));
+    public void C0() {
+        ((StickersActivity) this.f47771b).o0();
+    }
+
+    @Override
+    public void D() {
+        int i3 = this.f47770a;
+    }
+
+    @Override
+    public r0.k1 R0(View view, r0.k1 k1Var) {
+        switch (this.f47770a) {
+            case 0:
+                pr0 pr0Var = (pr0) this.f47771b;
+                i0.b g7 = k1Var.f54026a.g(519);
+                pr0Var.f48651r = g7;
+                pr0Var.d.setPadding(g7.f14495a, g7.f14496b, g7.f14497c, g7.d);
+                pr0Var.f48641c.requestLayout();
+                return r0.k1.f54025b;
+            default:
+                w71 w71Var = (w71) this.f47771b;
+                i0.b g10 = k1Var.f54026a.g(519);
+                w71Var.f50742n = g10;
+                w71Var.f50735c.setPadding(g10.f14495a, g10.f14496b, g10.f14497c, g10.d);
+                w71Var.f50733b.requestLayout();
+                return r0.k1.f54025b;
         }
+    }
+
+    @Override
+    public void W() {
+        ((StickersActivity) this.f47771b).o0();
+    }
+
+    @Override
+    public void Y(org.telegram.ui.Cells.t2 t2Var) {
+        m91 m91Var = ((i91) this.f47771b).f46222w0;
+        HashSet hashSet = m91.f47574r1;
+        m91Var.Q0(t2Var);
+    }
+
+    @Override
+    public void c(float f10) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f47771b;
+        bp0 bp0Var = secretMediaViewer.E;
+        if (bp0Var != null) {
+            long U = bp0Var.U();
+            if (U != -9223372036854775807L) {
+                secretMediaViewer.E.q0(f10 * ((float) U), false);
+            }
+            secretMediaViewer.E.h0();
+        }
+    }
+
+    @Override
+    public void d(float f10) {
+        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f47771b;
+        bp0 bp0Var = secretMediaViewer.E;
+        if (bp0Var != null) {
+            bp0Var.g0();
+            long U = secretMediaViewer.E.U();
+            if (U != -9223372036854775807L) {
+                secretMediaViewer.E.q0(f10 * ((float) U), false);
+            }
+        }
+    }
+
+    @Override
+    public void finish() {
+        Point point = org.telegram.messenger.g0.f22608q;
+        if (point.x > point.y) {
+            ((i91) this.f47771b).f46222w0.finishPreviewFragment();
+        }
+    }
+
+    @Override
+    public CharSequence getContentDescription() {
+        switch (this.f47770a) {
+            case 3:
+                m51 m51Var = (m51) this.f47771b;
+                return String.valueOf(Math.round((m51Var.f47527a.getProgress() * m51Var.f47528b) + 0));
+            default:
+                w51 w51Var = (w51) this.f47771b;
+                int i3 = w51Var.d;
+                return String.valueOf(Math.round((w51Var.f50714b.getProgress() * (w51Var.f50716e - i3)) + i3));
+        }
+    }
+
+    @Override
+    public void k(boolean z10, float f10) {
+        switch (this.f47770a) {
+            case 3:
+                m51 m51Var = (m51) this.f47771b;
+                ThemeActivity.d0(m51Var.f47530e, Math.round((m51Var.f47528b * f10) + 0), false);
+                return;
+            default:
+                w51 w51Var = (w51) this.f47771b;
+                ThemeActivity themeActivity = w51Var.f50719r;
+                int i3 = w51Var.d;
+                ThemeActivity.p0(themeActivity, Math.round(((w51Var.f50716e - i3) * f10) + i3));
+                return;
+        }
+    }
+
+    @Override
+    public void m(float f10) {
+        Point point = org.telegram.messenger.g0.f22608q;
+        if (point.x > point.y) {
+            ((i91) this.f47771b).f46222w0.movePreviewFragment(f10);
+        }
+    }
+
+    @Override
+    public int q0() {
+        switch (this.f47770a) {
+            case 3:
+                return ((m51) this.f47771b).f47528b;
+            default:
+                w51 w51Var = (w51) this.f47771b;
+                return w51Var.f50716e - w51Var.d;
+        }
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

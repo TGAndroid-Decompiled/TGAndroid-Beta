@@ -5,13 +5,13 @@ import android.graphics.Matrix;
 import android.view.WindowManager;
 import org.webrtc.VideoFrame;
 public abstract class c {
-    public static VideoFrame.TextureBuffer a(TextureBufferImpl textureBufferImpl, boolean z10, int i10) {
+    public static VideoFrame.TextureBuffer a(TextureBufferImpl textureBufferImpl, boolean z10, int i3) {
         Matrix matrix = new Matrix();
         matrix.preTranslate(0.5f, 0.5f);
         if (z10) {
             matrix.preScale(-1.0f, 1.0f);
         }
-        matrix.preRotate(i10);
+        matrix.preRotate(i3);
         matrix.preTranslate(-0.5f, -0.5f);
         return textureBufferImpl.applyTransformMatrix(matrix, textureBufferImpl.getWidth(), textureBufferImpl.getHeight());
     }

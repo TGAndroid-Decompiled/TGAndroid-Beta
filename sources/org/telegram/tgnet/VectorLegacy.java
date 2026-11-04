@@ -10,10 +10,10 @@ public class VectorLegacy {
         ArrayList<Integer> deserializeInt = Vector.deserializeInt(inputSerializedData, z10);
         ArrayList<Long> arrayList = new ArrayList<>(deserializeInt.size());
         int size = deserializeInt.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Integer num = deserializeInt.get(i10);
-            i10++;
+        int i3 = 0;
+        while (i3 < size) {
+            Integer num = deserializeInt.get(i3);
+            i3++;
             arrayList.add(Long.valueOf(num.intValue()));
         }
         return arrayList;
@@ -23,10 +23,10 @@ public class VectorLegacy {
         ArrayList<Integer> deserializeInt = Vector.deserializeInt(inputSerializedData, z10);
         ArrayList<TLRPC.Peer> arrayList = new ArrayList<>(deserializeInt.size());
         int size = deserializeInt.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Integer num = deserializeInt.get(i10);
-            i10++;
+        int i3 = 0;
+        while (i3 < size) {
+            Integer num = deserializeInt.get(i3);
+            i3++;
             int intValue = num.intValue();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_peerUser.user_id = intValue;
@@ -39,11 +39,11 @@ public class VectorLegacy {
         ArrayList<Long> deserializeLong = Vector.deserializeLong(inputSerializedData, z10);
         ArrayList<TLRPC.Peer> arrayList = new ArrayList<>(deserializeLong.size());
         int size = deserializeLong.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Long l4 = deserializeLong.get(i10);
-            i10++;
-            long longValue = l4.longValue();
+        int i3 = 0;
+        while (i3 < size) {
+            Long l10 = deserializeLong.get(i3);
+            i3++;
+            long longValue = l10.longValue();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_peerUser.user_id = longValue;
             arrayList.add(tL_peerUser);
@@ -54,11 +54,11 @@ public class VectorLegacy {
     public static void serialize_LongAsInt(OutputSerializedData outputSerializedData, ArrayList<Long> arrayList) {
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Long l4 = arrayList.get(i10);
-            i10++;
-            arrayList2.add(Integer.valueOf((int) l4.longValue()));
+        int i3 = 0;
+        while (i3 < size) {
+            Long l10 = arrayList.get(i3);
+            i3++;
+            arrayList2.add(Integer.valueOf((int) l10.longValue()));
         }
         Vector.serializeInt(outputSerializedData, arrayList2);
     }
@@ -67,8 +67,8 @@ public class VectorLegacy {
         outputSerializedData.writeInt32(481674261);
         int size = arrayList.size();
         outputSerializedData.writeInt32(size);
-        for (int i10 = 0; i10 < size; i10++) {
-            outputSerializedData.writeInt32((int) arrayList.get(i10).user_id);
+        for (int i3 = 0; i3 < size; i3++) {
+            outputSerializedData.writeInt32((int) arrayList.get(i3).user_id);
         }
     }
 
@@ -76,8 +76,8 @@ public class VectorLegacy {
         outputSerializedData.writeInt32(481674261);
         int size = arrayList.size();
         outputSerializedData.writeInt32(size);
-        for (int i10 = 0; i10 < size; i10++) {
-            outputSerializedData.writeInt64(arrayList.get(i10).user_id);
+        for (int i3 = 0; i3 < size; i3++) {
+            outputSerializedData.writeInt64(arrayList.get(i3).user_id);
         }
     }
 }

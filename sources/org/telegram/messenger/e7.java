@@ -1,31 +1,45 @@
 package org.telegram.messenger;
-public final class e7 implements Runnable {
-    public final int f15543a;
-    public final m7 f15544b;
-    public final l7 f15545c;
 
-    public e7(m7 m7Var, l7 l7Var, int i10) {
-        this.f15543a = i10;
-        this.f15544b = m7Var;
-        this.f15545c = l7Var;
+import java.util.ArrayList;
+public final class e7 implements Runnable {
+    public final int f22321a;
+    public final i7 f22322b;
+    public final j7 f22323c;
+
+    public e7(i7 i7Var, j7 j7Var, int i3) {
+        this.f22321a = i3;
+        this.f22322b = i7Var;
+        this.f22323c = j7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f15543a) {
+        switch (this.f22321a) {
             case 0:
-                m7 m7Var = this.f15544b;
-                m7Var.getClass();
-                l7 l7Var = this.f15545c;
-                l7Var.f16910l = null;
-                m7Var.H0.remove(l7Var);
-                l7Var.f16909k = true;
+                i7 i7Var = this.f22322b;
+                j7 j7Var = this.f22323c;
+                if (i7Var.f23492m != null) {
+                    a8.d("FileLoadOperation " + i7Var.f23501r + " removing stream listener " + j7Var);
+                    i7Var.f23492m.remove(j7Var);
+                    return;
+                }
                 return;
             default:
-                m7 m7Var2 = this.f15544b;
-                l7 l7Var2 = this.f15545c;
-                m7Var2.m(l7Var2, null);
-                l7Var2.f16905f.freeResources();
+                i7 i7Var2 = this.f22322b;
+                j7 j7Var2 = this.f22323c;
+                if (i7Var2.f23492m == null) {
+                    i7Var2.f23492m = new ArrayList();
+                }
+                if (j7Var2 != null && !i7Var2.f23492m.contains(j7Var2)) {
+                    i7Var2.f23492m.add(j7Var2);
+                }
+                if (!i7Var2.f23492m.isEmpty()) {
+                    Utilities.d.a(i7Var2.f23476f1);
+                }
+                if (j7Var2 != null && i7Var2.Y != 1 && i7Var2.Y != 0) {
+                    j7Var2.a();
+                    return;
+                }
                 return;
         }
     }

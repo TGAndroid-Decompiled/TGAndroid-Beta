@@ -8,51 +8,51 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.view.View;
 public final class g {
-    public final Paint f31491a;
-    public LinearGradient f31492b;
-    public final Paint f31493c;
+    public final Paint f39345a;
+    public LinearGradient f39346b;
+    public final Paint f39347c;
     public LinearGradient d;
-    public final int e;
-    public int f31494f;
-    public float f31495g;
+    public final int f39348e;
+    public int f39349f;
+    public float f39350g;
     public long h;
-    public final Matrix f31496i;
-    public boolean f31497j;
-    public boolean f31498k;
-    public boolean f31499l;
-    public float f31500m;
-    public float f31501n;
-    public kg.k2 f31502o;
-    public gg.c f31503p;
+    public final Matrix f39351i;
+    public boolean f39352j;
+    public boolean f39353k;
+    public boolean f39354l;
+    public float f39355m;
+    public float f39356n;
+    public vg.w1 f39357o;
+    public r4.u f39358p;
 
     public g() {
         this(64, 204, 160);
     }
 
-    public final void a(float f7, Canvas canvas, RectF rectF, View view) {
+    public final void a(float f10, Canvas canvas, RectF rectF, View view) {
         c(view);
-        canvas.drawRoundRect(rectF, f7, f7, this.f31491a);
-        if (this.f31498k) {
-            boolean z10 = this.f31499l;
-            Paint paint = this.f31493c;
+        canvas.drawRoundRect(rectF, f10, f10, this.f39345a);
+        if (this.f39353k) {
+            boolean z10 = this.f39354l;
+            Paint paint = this.f39347c;
             if (z10) {
                 rectF.inset(paint.getStrokeWidth() / 2.0f, paint.getStrokeWidth() / 2.0f);
             }
-            canvas.drawRoundRect(rectF, f7, f7, paint);
+            canvas.drawRoundRect(rectF, f10, f10, paint);
         }
     }
 
-    public final void b(int i10, int i11) {
-        float f7 = this.e;
+    public final void b(int i3, int i10) {
+        float f10 = this.f39348e;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f31492b = new LinearGradient(0.0f, 0.0f, f7, 0.0f, new int[]{0, i0.b.o(i10, i11), 0}, (float[]) null, tileMode);
-        this.d = new LinearGradient(0.0f, 0.0f, f7, 0.0f, new int[]{0, i0.b.o(i10, 204), 0}, (float[]) null, tileMode);
-        this.f31491a.setShader(this.f31492b);
-        this.f31493c.setShader(this.d);
+        this.f39346b = new LinearGradient(0.0f, 0.0f, f10, 0.0f, new int[]{0, i0.a.o(i3, i10), 0}, (float[]) null, tileMode);
+        this.d = new LinearGradient(0.0f, 0.0f, f10, 0.0f, new int[]{0, i0.a.o(i3, 204), 0}, (float[]) null, tileMode);
+        this.f39345a.setShader(this.f39346b);
+        this.f39347c.setShader(this.d);
     }
 
     public final void c(View view) {
-        if (this.f31497j || this.f31495g < 1.0f) {
+        if (this.f39352j || this.f39350g < 1.0f) {
             if (view != null) {
                 view.invalidate();
             }
@@ -61,13 +61,13 @@ public final class g {
             if (j10 != 0) {
                 long j11 = currentTimeMillis - j10;
                 if (j11 > 10) {
-                    float f7 = ((((float) j11) / 1200.0f) * this.f31501n) + this.f31495g;
-                    this.f31495g = f7;
-                    if (f7 > this.f31500m) {
-                        this.f31495g = 0.0f;
-                        gg.c cVar = this.f31503p;
-                        if (cVar != null) {
-                            cVar.run();
+                    float f10 = ((((float) j11) / 1200.0f) * this.f39356n) + this.f39350g;
+                    this.f39350g = f10;
+                    if (f10 > this.f39355m) {
+                        this.f39350g = 0.0f;
+                        r4.u uVar = this.f39358p;
+                        if (uVar != null) {
+                            uVar.run();
                         }
                     }
                     this.h = currentTimeMillis;
@@ -76,40 +76,40 @@ public final class g {
                 this.h = currentTimeMillis;
             }
         }
-        int i10 = this.f31494f;
-        int i11 = this.e;
-        float f10 = (((i11 * 2) + i10) * this.f31495g) - i11;
-        Matrix matrix = this.f31496i;
+        int i3 = this.f39349f;
+        int i10 = this.f39348e;
+        float f11 = (((i10 * 2) + i3) * this.f39350g) - i10;
+        Matrix matrix = this.f39351i;
         matrix.reset();
-        matrix.setTranslate(f10, 0.0f);
-        this.f31492b.setLocalMatrix(matrix);
+        matrix.setTranslate(f11, 0.0f);
+        this.f39346b.setLocalMatrix(matrix);
         this.d.setLocalMatrix(matrix);
     }
 
-    public g(int i10, int i11) {
-        this(i10, i11, 160);
+    public g(int i3, int i10) {
+        this(i3, i10, 160);
     }
 
-    public g(int i10, int i11, int i12) {
+    public g(int i3, int i10, int i11) {
         Paint paint = new Paint(1);
-        this.f31491a = paint;
+        this.f39345a = paint;
         Paint paint2 = new Paint(1);
-        this.f31493c = paint2;
-        this.f31496i = new Matrix();
-        this.f31497j = true;
-        this.f31498k = true;
-        this.f31499l = false;
-        this.f31500m = 1.2f;
-        this.f31501n = 1.0f;
-        int L = org.telegram.messenger.i0.L(i12);
-        this.e = L;
-        float f7 = L;
+        this.f39347c = paint2;
+        this.f39351i = new Matrix();
+        this.f39352j = true;
+        this.f39353k = true;
+        this.f39354l = false;
+        this.f39355m = 1.2f;
+        this.f39356n = 1.0f;
+        int L = org.telegram.messenger.g0.L(i11);
+        this.f39348e = L;
+        float f10 = L;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f31492b = new LinearGradient(0.0f, 0.0f, f7, 0.0f, new int[]{0, i0.b.o(-1, i10), 0}, (float[]) null, tileMode);
-        this.d = new LinearGradient(0.0f, 0.0f, f7, 0.0f, new int[]{0, i0.b.o(-1, i11), 0}, (float[]) null, tileMode);
-        paint.setShader(this.f31492b);
+        this.f39346b = new LinearGradient(0.0f, 0.0f, f10, 0.0f, new int[]{0, i0.a.o(-1, i3), 0}, (float[]) null, tileMode);
+        this.d = new LinearGradient(0.0f, 0.0f, f10, 0.0f, new int[]{0, i0.a.o(-1, i10), 0}, (float[]) null, tileMode);
+        paint.setShader(this.f39346b);
         paint2.setShader(this.d);
         paint2.setStyle(Paint.Style.STROKE);
-        paint2.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
+        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
     }
 }

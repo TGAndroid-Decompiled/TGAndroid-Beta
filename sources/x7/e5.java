@@ -1,17 +1,17 @@
 package x7;
-public final class e5 implements ja.d {
-    public static final e5 f53154a = new Object();
-
-    static {
-        sc.e.v(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, new z(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+public abstract class e5 {
+    public static final boolean a(char c2, char c10, boolean z10) {
+        if (c2 == c10) {
+            return true;
         }
-        throw new ClassCastException();
+        if (!z10) {
+            return false;
+        }
+        char upperCase = Character.toUpperCase(c2);
+        char upperCase2 = Character.toUpperCase(c10);
+        if (upperCase == upperCase2 || Character.toLowerCase(upperCase) == Character.toLowerCase(upperCase2)) {
+            return true;
+        }
+        return false;
     }
 }

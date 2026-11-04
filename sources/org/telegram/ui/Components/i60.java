@@ -1,108 +1,56 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import java.util.ArrayList;
-public final class i60 extends tk0 {
-    public ArrayList f27011c = new ArrayList();
-    public ArrayList d = new ArrayList();
-    public final zf.m1 e;
-    public int f27012f;
-    public Runnable h;
-    public final m60 f27013n;
+import org.telegram.tgnet.TLRPC;
+public final class i60 extends LinearLayout {
+    public boolean f34621a;
+    public final o60 f34622b;
 
-    public i60(m60 m60Var) {
-        this.f27013n = m60Var;
-        zf.m1 m1Var = new zf.m1(false);
-        this.e = m1Var;
-        m1Var.f55593a = new px(this, 7);
+    public i60(o60 o60Var, Context context) {
+        super(context);
+        this.f34622b = o60Var;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f47912f == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        int size = this.f27011c.size();
-        zf.m1 m1Var = this.e;
-        int size2 = m1Var.d.size();
-        int size3 = m1Var.e.size();
-        int i10 = size + size2;
-        if (size3 != 0) {
-            i10 += size3 + 1;
-        }
-        int i11 = i10 + 2;
-        this.f27012f = i11;
-        return i11;
-    }
-
-    @Override
-    public final int d(int i10) {
-        if (i10 == 0) {
-            return 2;
-        }
-        if (i10 == this.f27012f - 1) {
-            return 4;
-        }
-        if (i10 - 1 != this.e.d.size() + this.f27011c.size()) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(s4.c1 r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i60.t(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        View view;
-        int i11;
-        Context context = viewGroup.getContext();
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    ?? frameLayout = new FrameLayout(context);
-                    org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.e7, frameLayout, null);
-                    Drawable drawable = frameLayout.getResources().getDrawable(2131232720);
-                    frameLayout.f22032a = drawable;
-                    org.telegram.ui.ActionBar.a7.y(frameLayout, drawable, org.telegram.ui.ActionBar.t6.Ni, null, PorterDuff.Mode.MULTIPLY);
-                    TextView textView = new TextView(frameLayout.getContext());
-                    frameLayout.f22033b = textView;
-                    sc.e.t(textView, 1, 14.0f);
-                    org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.Oi, null);
-                    int i12 = 3;
-                    if (org.telegram.messenger.dd.X) {
-                        i11 = 5;
-                    } else {
-                        i11 = 3;
+    public final void onMeasure(int i3, int i10) {
+        int size;
+        o60 o60Var = this.f34622b;
+        ArrayList arrayList = o60Var.f36750q1;
+        if (o60Var.f36753t1 == 0) {
+            int size2 = View.MeasureSpec.getSize(i3);
+            int L = org.telegram.messenger.g0.L(95.0f) * arrayList.size();
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) o60Var.f36747n1.getLayoutParams();
+            if (L > size2) {
+                layoutParams.width = -1;
+                layoutParams.gravity = 51;
+                if (!this.f34621a) {
+                    TLRPC.Peer peer = o60Var.f36754u1;
+                    if (peer != null) {
+                        arrayList.remove(peer);
+                        arrayList.add(0, o60Var.f36754u1);
                     }
-                    textView.setGravity(i11 | 16);
-                    if (org.telegram.messenger.dd.X) {
-                        i12 = 5;
-                    }
-                    frameLayout.addView(textView, w7.b6.d(-1, -1.0f, i12 | 48, 16.0f, 0.0f, 16.0f, 0.0f));
-                    view = frameLayout;
-                } else {
-                    view = new View(context);
+                    this.f34621a = true;
                 }
             } else {
-                view = new bi.t0(this, context, 15);
+                layoutParams.width = -2;
+                layoutParams.gravity = 49;
+                if (!this.f34621a) {
+                    if (o60Var.f36754u1 != null) {
+                        if (arrayList.size() % 2 == 0) {
+                            size = Math.max(0, (arrayList.size() / 2) - 1);
+                        } else {
+                            size = arrayList.size() / 2;
+                        }
+                        arrayList.remove(o60Var.f36754u1);
+                        arrayList.add(size, o60Var.f36754u1);
+                    }
+                    this.f34621a = true;
+                }
             }
-        } else {
-            view = new org.telegram.ui.Cells.j4(context, 1, 0, false);
         }
-        return new s4.c1(view);
+        super.onMeasure(i3, i10);
     }
 }

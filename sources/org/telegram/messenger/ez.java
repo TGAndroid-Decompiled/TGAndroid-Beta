@@ -1,15 +1,10 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import android.graphics.RectF;
 public final class ez {
-    public TLObject f15664a;
-    public kj f15665b;
-    public ArrayList f15666c;
-    public String d;
-    public ArrayList e;
-    public ArrayList f15667f;
-    public dz f15668g;
-    public Object h;
-    public boolean f15669i;
+    public final RectF f22425a;
+
+    public ez(RectF rectF) {
+        this.f22425a = rectF;
+    }
 }

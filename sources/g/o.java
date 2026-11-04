@@ -2,116 +2,143 @@ package g;
 
 import android.content.Context;
 import android.content.IntentFilter;
-import android.util.SparseIntArray;
-import android.view.MenuItem;
-public abstract class o {
-    public Object f7205a;
-    public Object f7206b;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.PowerManager;
+import android.util.Log;
+import java.util.Calendar;
+public final class o extends p {
+    public final int f11718c = 0;
+    public final s d;
+    public final Object f11719e;
 
-    public o(Context context) {
-        this.f7205a = context;
+    public o(s sVar, android.support.v4.media.session.a0 a0Var) {
+        super(sVar);
+        this.d = sVar;
+        this.f11719e = a0Var;
     }
 
-    public void c() {
-        androidx.mediarouter.app.f fVar = (androidx.mediarouter.app.f) this.f7205a;
-        if (fVar != null) {
-            try {
-                ((r) this.f7206b).e.unregisterReceiver(fVar);
-            } catch (IllegalArgumentException unused) {
-            }
-            this.f7205a = null;
+    @Override
+    public final IntentFilter d() {
+        switch (this.f11718c) {
+            case 0:
+                IntentFilter intentFilter = new IntentFilter();
+                intentFilter.addAction("android.os.action.POWER_SAVE_MODE_CHANGED");
+                return intentFilter;
+            default:
+                IntentFilter intentFilter2 = new IntentFilter();
+                intentFilter2.addAction("android.intent.action.TIME_SET");
+                intentFilter2.addAction("android.intent.action.TIMEZONE_CHANGED");
+                intentFilter2.addAction("android.intent.action.TIME_TICK");
+                return intentFilter2;
         }
     }
 
-    public abstract IntentFilter d();
-
-    public abstract int e();
-
-    public MenuItem f(MenuItem menuItem) {
-        if (menuItem instanceof l0.a) {
-            l0.a aVar = (l0.a) menuItem;
-            if (((a0.l) this.f7206b) == null) {
-                this.f7206b = new a0.l(0);
-            }
-            MenuItem menuItem2 = (MenuItem) ((a0.l) this.f7206b).get(aVar);
-            if (menuItem2 == null) {
-                l.s sVar = new l.s((Context) this.f7205a, aVar);
-                ((a0.l) this.f7206b).put(aVar, sVar);
-                return sVar;
-            }
-            return menuItem2;
+    @Override
+    public final int e() {
+        Location location;
+        boolean z10;
+        long j10;
+        Location location2;
+        switch (this.f11718c) {
+            case 0:
+                if (((PowerManager) this.f11719e).isPowerSaveMode()) {
+                    return 2;
+                }
+                return 1;
+            default:
+                android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f11719e;
+                eh.a aVar = (eh.a) a0Var.d;
+                LocationManager locationManager = (LocationManager) a0Var.f1187c;
+                if (aVar.f9979b > System.currentTimeMillis()) {
+                    z10 = aVar.f9978a;
+                } else {
+                    Context context = (Context) a0Var.f1186b;
+                    Location location3 = null;
+                    if (f0.d.c(context, "android.permission.ACCESS_COARSE_LOCATION") == 0) {
+                        try {
+                        } catch (Exception e10) {
+                            Log.d("TwilightManager", "Failed to get last known location", e10);
+                        }
+                        if (locationManager.isProviderEnabled("network")) {
+                            location2 = locationManager.getLastKnownLocation("network");
+                            location = location2;
+                        }
+                        location2 = null;
+                        location = location2;
+                    } else {
+                        location = null;
+                    }
+                    if (f0.d.c(context, "android.permission.ACCESS_FINE_LOCATION") == 0) {
+                        try {
+                            if (locationManager.isProviderEnabled("gps")) {
+                                location3 = locationManager.getLastKnownLocation("gps");
+                            }
+                        } catch (Exception e11) {
+                            Log.d("TwilightManager", "Failed to get last known location", e11);
+                        }
+                    }
+                    if (location3 == null || location == null ? location3 != null : location3.getTime() > location.getTime()) {
+                        location = location3;
+                    }
+                    z10 = false;
+                    if (location != null) {
+                        long currentTimeMillis = System.currentTimeMillis();
+                        if (y.d == null) {
+                            y.d = new Object();
+                        }
+                        y yVar = y.d;
+                        yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis - 86400000);
+                        yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis);
+                        if (yVar.f11777c == 1) {
+                            z10 = true;
+                        }
+                        long j11 = yVar.f11776b;
+                        long j12 = yVar.f11775a;
+                        yVar.a(location.getLatitude(), location.getLongitude(), currentTimeMillis + 86400000);
+                        long j13 = yVar.f11776b;
+                        if (j11 != -1 && j12 != -1) {
+                            if (currentTimeMillis > j12) {
+                                j11 = j13;
+                            } else if (currentTimeMillis > j11) {
+                                j11 = j12;
+                            }
+                            j10 = j11 + 60000;
+                        } else {
+                            j10 = currentTimeMillis + 43200000;
+                        }
+                        aVar.f9978a = z10;
+                        aVar.f9979b = j10;
+                    } else {
+                        Log.i("TwilightManager", "Could not get last known location. This is probably because the app does not have any location permissions. Falling back to hardcoded sunrise/sunset values.");
+                        int i3 = Calendar.getInstance().get(11);
+                        if (i3 < 6 || i3 >= 22) {
+                            z10 = true;
+                        }
+                    }
+                }
+                if (!z10) {
+                    return 1;
+                }
+                return 2;
         }
-        return menuItem;
     }
 
-    public int g(int i10, int i11) {
-        int i12 = i(i10);
-        int i13 = 0;
-        int i14 = 0;
-        for (int i15 = 0; i15 < i10; i15++) {
-            int i16 = i(i15);
-            i13 += i16;
-            if (i13 == i11) {
-                i14++;
-                i13 = 0;
-            } else if (i13 > i11) {
-                i14++;
-                i13 = i16;
-            }
+    @Override
+    public final void k() {
+        switch (this.f11718c) {
+            case 0:
+                this.d.e(true);
+                return;
+            default:
+                this.d.e(true);
+                return;
         }
-        if (i13 + i12 > i11) {
-            return i14 + 1;
-        }
-        return i14;
     }
 
-    public int h(int i10, int i11) {
-        int i12 = i(i10);
-        if (i12 == i11) {
-            return 0;
-        }
-        int i13 = 0;
-        for (int i14 = 0; i14 < i10; i14++) {
-            int i15 = i(i14);
-            i13 += i15;
-            if (i13 == i11) {
-                i13 = 0;
-            } else if (i13 > i11) {
-                i13 = i15;
-            }
-        }
-        if (i12 + i13 > i11) {
-            return 0;
-        }
-        return i13;
-    }
-
-    public abstract int i(int i10);
-
-    public void j() {
-        ((SparseIntArray) this.f7205a).clear();
-    }
-
-    public abstract void k();
-
-    public void l() {
-        c();
-        IntentFilter d = d();
-        if (d.countActions() == 0) {
-            return;
-        }
-        if (((androidx.mediarouter.app.f) this.f7205a) == null) {
-            this.f7205a = new androidx.mediarouter.app.f(this, 2);
-        }
-        ((r) this.f7206b).e.registerReceiver((androidx.mediarouter.app.f) this.f7205a, d);
-    }
-
-    public o() {
-        this.f7205a = new SparseIntArray();
-        this.f7206b = new SparseIntArray();
-    }
-
-    public o(r rVar) {
-        this.f7206b = rVar;
+    public o(s sVar, Context context) {
+        super(sVar);
+        this.d = sVar;
+        this.f11719e = (PowerManager) context.getApplicationContext().getSystemService("power");
     }
 }

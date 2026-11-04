@@ -1,31 +1,80 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class ej extends FrameLayout {
-    public final un f36853a;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+public final class ej extends org.telegram.ui.Cells.t0 {
+    public final wm f44992u2;
 
-    public ej(un unVar, Activity activity) {
-        super(activity);
-        this.f36853a = unVar;
+    public ej(Context context, org.telegram.ui.ActionBar.e6 e6Var, wm wmVar) {
+        super(context, e6Var, false);
+        this.f44992u2 = wmVar;
     }
 
     @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            this.f36853a.M7(true);
+    public final void onDraw(Canvas canvas) {
+        wm wmVar = this.f44992u2;
+        if (wmVar.Q8 == null) {
+            float y9 = ((wmVar.A0.getY() + wmVar.M9) - getY()) - org.telegram.messenger.g0.L(4.0f);
+            if (y9 > 0.0f) {
+                if (y9 < getMeasuredHeight()) {
+                    canvas.save();
+                    canvas.clipRect(0.0f, y9, getMeasuredWidth(), getMeasuredHeight());
+                    super.onDraw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
+            }
+            super.onDraw(canvas);
         }
-        return super.dispatchKeyEvent(keyEvent);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int min = Math.min(View.MeasureSpec.getSize(i11), org.telegram.messenger.i0.L(300.0f));
-        if (min == 0) {
-            min = org.telegram.messenger.i0.L(300.0f);
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            wm wmVar = this.f44992u2;
+            kVar = ((org.telegram.ui.ActionBar.d2) wmVar).actionBar;
+            if (!kVar.v() && !wmVar.W9()) {
+                return super.onInterceptTouchEvent(motionEvent);
+            }
+            return false;
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.ActionBar.k kVar;
+        if (getAlpha() != 0.0f) {
+            wm wmVar = this.f44992u2;
+            kVar = ((org.telegram.ui.ActionBar.d2) wmVar).actionBar;
+            if (!kVar.v() && !wmVar.W9()) {
+                return super.onTouchEvent(motionEvent);
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        int i3;
+        super.setAlpha(f10);
+        if (f10 > 0.0f) {
+            i3 = 0;
+        } else {
+            i3 = 4;
+        }
+        setVisibility(i3);
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            invalidate();
+        }
+        super.setTranslationY(f10);
     }
 }

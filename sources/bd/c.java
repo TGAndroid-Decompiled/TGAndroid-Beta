@@ -1,56 +1,41 @@
 package bd;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-public final class c extends b implements ListIterator {
-    public final e d;
+import b8.ec;
+import gf.p;
+import java.util.regex.Pattern;
+public final class c extends h {
+    public static final Pattern f3223e = Pattern.compile("`+");
+    public static final Pattern f3224f = Pattern.compile("^`+");
 
-    public c(e eVar, int i10) {
-        super(eVar);
-        this.d = eVar;
-        int l4 = eVar.l();
-        if (i10 >= 0 && i10 <= l4) {
-            this.f2649b = i10;
-            return;
+    @Override
+    public final p b() {
+        String a10;
+        String a11 = a(f3224f);
+        if (a11 == null) {
+            return null;
         }
-        throw new IndexOutOfBoundsException(a1.g.j(i10, l4, "index: ", ", size: "));
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        if (this.f2649b > 0) {
-            return true;
+        int i3 = this.d;
+        do {
+            a10 = a(f3223e);
+            if (a10 == null) {
+                this.d = i3;
+                return f(a11);
+            }
+        } while (!a10.equals(a11));
+        gf.d dVar = new gf.d(0);
+        String replace = this.f3231c.substring(i3, this.d - a11.length()).replace('\n', ' ');
+        if (replace.length() >= 3 && replace.charAt(0) == ' ' && replace.charAt(replace.length() - 1) == ' ') {
+            int length = replace.length();
+            if (ec.b(' ', 0, length, replace) != length) {
+                replace = com.google.android.recaptcha.internal.a.j(replace, 1, 1);
+            }
         }
-        return false;
+        dVar.h = replace;
+        return dVar;
     }
 
     @Override
-    public final int nextIndex() {
-        return this.f2649b;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f2649b - 1;
-            this.f2649b = i10;
-            return this.d.get(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f2649b - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+    public final char d() {
+        return '`';
     }
 }

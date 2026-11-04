@@ -1,37 +1,52 @@
 package org.telegram.ui.web;
 
-import java.io.File;
-import java.io.FileInputStream;
-public final class d1 extends FileInputStream {
-    public final long f42818a;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.az;
+import org.telegram.messenger.bd;
+public final class d1 {
+    public static ArrayList d;
+    public final String f50829a;
+    public final String f50830b;
+    public final String f50831c;
 
-    public d1(long j10, long j11, File file) {
-        super(file);
-        this.f42818a = j11;
-        if (j10 > 0 && skip(j10) != j10) {
-            throw new RuntimeException("BoundedInputStream failed to skip");
-        }
+    public d1(String str, String str2, String str3) {
+        this.f50829a = str;
+        this.f50830b = str2;
+        this.f50831c = str3;
     }
 
-    @Override
-    public final int read() {
-        if (getChannel().position() >= this.f42818a) {
-            return -1;
+    public static d1 a() {
+        ArrayList b10 = b();
+        if (b10.isEmpty()) {
+            return new d1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
         }
-        return super.read();
+        return (d1) b10.get(Utilities.j(az.f21653p0, b10.size() - 1, 0));
     }
 
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        long position = getChannel().position();
-        long j10 = this.f42818a;
-        if (position >= j10) {
-            return -1;
+    public static ArrayList b() {
+        if (d == null) {
+            d = new ArrayList();
+            int i3 = 1;
+            while (true) {
+                String c2 = c(bd.N0("SearchEngine" + i3 + "Name"));
+                if (c2 == null) {
+                    break;
+                }
+                String c10 = c(bd.N0("SearchEngine" + i3 + "SearchURL"));
+                String c11 = c(bd.N0("SearchEngine" + i3 + "AutocompleteURL"));
+                c(bd.N0("SearchEngine" + i3 + "PrivacyPolicyURL"));
+                d.add(new d1(c2, c10, c11));
+                i3++;
+            }
         }
-        long position2 = j10 - getChannel().position();
-        if (i11 > position2) {
-            i11 = (int) position2;
+        return d;
+    }
+
+    public static String c(String str) {
+        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
+            return str;
         }
-        return super.read(bArr, i10, i11);
+        return null;
     }
 }

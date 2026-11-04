@@ -1,21 +1,40 @@
 package z3;
 
-import e9.n0;
-import java.util.List;
-public final class a {
-    public final n0 f54570a;
-    public final long f54571b;
-    public final long f54572c;
-    public final long d;
+import e3.a0;
+import e3.b0;
+import e3.c0;
+import g2.n0;
+import java.math.BigInteger;
+public final class a implements b0 {
+    public final b f59650a;
 
-    public a(long j10, long j11, List list) {
-        this.f54570a = n0.u(list);
-        this.f54571b = j10;
-        this.f54572c = j11;
-        long j12 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && j11 != -9223372036854775807L) {
-            j12 = j10 + j11;
-        }
-        this.d = j12;
+    public a(b bVar) {
+        this.f59650a = bVar;
+    }
+
+    @Override
+    public final boolean d() {
+        return true;
+    }
+
+    @Override
+    public final boolean e() {
+        return false;
+    }
+
+    @Override
+    public final a0 f(long j10) {
+        b bVar = this.f59650a;
+        long j11 = bVar.f59652b;
+        BigInteger valueOf = BigInteger.valueOf((bVar.d.f59685i * j10) / 1000000);
+        long j12 = bVar.f59653c;
+        c0 c0Var = new c0(j10, n0.j((valueOf.multiply(BigInteger.valueOf(j12 - j11)).divide(BigInteger.valueOf(bVar.f59655f)).longValue() + j11) - 30000, bVar.f59652b, j12 - 1));
+        return new a0(c0Var, c0Var);
+    }
+
+    @Override
+    public final long h() {
+        b bVar = this.f59650a;
+        return (bVar.f59655f * 1000000) / bVar.d.f59685i;
     }
 }

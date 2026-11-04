@@ -1,51 +1,36 @@
 package org.telegram.ui.Components;
+public class cx0 {
+    public int f32850a;
+    public int f32851b;
+    public int f32852c;
 
-import android.animation.ValueAnimator;
-import java.util.ArrayList;
-public final class cx0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25290a;
-    public final j2.f f25291b;
-    public final int f25292c;
-
-    public cx0(j2.f fVar, int i10, int i11) {
-        this.f25290a = i11;
-        this.f25291b = fVar;
-        this.f25292c = i10;
+    public cx0() {
+        c();
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25290a) {
-            case 0:
-                Float f7 = (Float) valueAnimator.getAnimatedValue();
-                f7.getClass();
-                ((ArrayList) this.f25291b.d).set(this.f25292c, f7);
-                return;
-            case 1:
-                Float f10 = (Float) valueAnimator.getAnimatedValue();
-                f10.getClass();
-                ((ArrayList) this.f25291b.e).set(this.f25292c, f10);
-                return;
-            case 2:
-                Float f11 = (Float) valueAnimator.getAnimatedValue();
-                f11.getClass();
-                ((ArrayList) this.f25291b.f9351f).set(this.f25292c, f11);
-                return;
-            case 3:
-                Float f12 = (Float) valueAnimator.getAnimatedValue();
-                f12.getClass();
-                ((ArrayList) this.f25291b.d).set(this.f25292c, f12);
-                return;
-            case 4:
-                Float f13 = (Float) valueAnimator.getAnimatedValue();
-                f13.getClass();
-                ((ArrayList) this.f25291b.e).set(this.f25292c, f13);
-                return;
-            default:
-                Float f14 = (Float) valueAnimator.getAnimatedValue();
-                f14.getClass();
-                ((ArrayList) this.f25291b.f9351f).set(this.f25292c, f14);
-                return;
+    public int a(lx0 lx0Var, ex0 ex0Var, xw0 xw0Var, int i3, boolean z10) {
+        return this.f32850a - xw0Var.a(ex0Var, i3);
+    }
+
+    public void b(int i3, int i10) {
+        this.f32850a = Math.max(this.f32850a, i3);
+        this.f32851b = Math.max(this.f32851b, i10);
+    }
+
+    public void c() {
+        this.f32850a = Integer.MIN_VALUE;
+        this.f32851b = Integer.MIN_VALUE;
+        this.f32852c = 2;
+    }
+
+    public int d(boolean z10) {
+        if (!z10) {
+            int i3 = this.f32852c;
+            xw0 xw0Var = lx0.S;
+            if ((i3 & 2) != 0) {
+                return 100000;
+            }
         }
+        return this.f32850a + this.f32851b;
     }
 }

@@ -1,28 +1,48 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class fv implements Runnable {
-    public final int f37237a;
-    public final zx f37238b;
-    public final TLRPC.TL_attachMenuBot f37239c;
-    public final LaunchActivity d;
+import android.view.View;
+public final class fv extends org.telegram.ui.Components.j6 {
+    public final int f45374b;
+    public final uw f45375c;
 
-    public fv(zx zxVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
-        this.f37237a = i10;
-        this.f37238b = zxVar;
-        this.f37239c = tL_attachMenuBot;
-        this.d = launchActivity;
+    public fv(uw uwVar, int i3) {
+        super("animationValue", 0);
+        this.f45374b = i3;
+        switch (i3) {
+            case 1:
+                this.f45375c = uwVar;
+                super("viewPagerTranslation", 0);
+                return;
+            default:
+                this.f45375c = uwVar;
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f37237a) {
+    public final void c(Object obj, float f10) {
+        switch (this.f45374b) {
             case 0:
-                zx.v0(this.f37238b, this.f37239c, this.d);
+                ((uw) obj).O4(f10);
                 return;
             default:
-                zx.j0(this.f37238b, this.f37239c, this.d);
+                uw uwVar = this.f45375c;
+                uwVar.J0 = f10;
+                ((View) obj).setTranslationY(uwVar.K0 + f10);
+                uwVar.R3();
                 return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f45374b) {
+            case 0:
+                uw uwVar = (uw) obj;
+                return Float.valueOf(this.f45375c.O);
+            default:
+                View view = (View) obj;
+                return Float.valueOf(this.f45375c.J0);
         }
     }
 }

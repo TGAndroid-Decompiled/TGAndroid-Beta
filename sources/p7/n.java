@@ -1,81 +1,200 @@
 package p7;
 
-import android.os.Parcelable;
-import com.google.android.gms.vision.face.internal.client.FaceParcel;
-import com.google.android.gms.vision.face.internal.client.LandmarkParcel;
-import s4.z;
-import v8.r;
-public final class n implements Parcelable.Creator {
-    public final int f44892a;
+import j$.util.List;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.RandomAccess;
+import java.util.function.UnaryOperator;
+import k2.p1;
+public abstract class n extends i implements List, RandomAccess, j$.util.List {
+    public static final j f53383b = new j(y.f53417e, 0);
 
-    @Override
-    public final java.lang.Object createFromParcel(android.os.Parcel r26) {
-        throw new UnsupportedOperationException("Method not decompiled: p7.n.createFromParcel(android.os.Parcel):java.lang.Object");
+    public static y o(int i3, Object[] objArr) {
+        if (i3 == 0) {
+            return y.f53417e;
+        }
+        return new y(i3, objArr);
+    }
+
+    public static y p(Object[] objArr) {
+        if (objArr.length == 0) {
+            return y.f53417e;
+        }
+        Object[] objArr2 = (Object[]) objArr.clone();
+        int length = objArr2.length;
+        for (int i3 = 0; i3 < length; i3++) {
+            if (objArr2[i3] == null) {
+                throw new NullPointerException(p1.i(i3, "at index "));
+            }
+        }
+        return o(length, objArr2);
     }
 
     @Override
-    public final Object[] newArray(int i10) {
-        switch (this.f44892a) {
-            case 0:
-                return new m[i10];
-            case 1:
-                return new q9.b[i10];
-            case 2:
-                return new q9.a[i10];
-            case 3:
-                return new r6.a[i10];
-            case 4:
-                return new r6.b[i10];
-            case 5:
-                return new r6.c[i10];
-            case 6:
-                return new r8.a[i10];
-            case 7:
-                return new r8.m[i10];
-            case 8:
-                return new r8.b[i10];
-            case 9:
-                return new r8.d[i10];
-            case 10:
-                return new r8.c[i10];
-            case 11:
-                return new r8.f[i10];
-            case 12:
-                return new r8.e[i10];
-            case 13:
-                return new r8.h[i10];
-            case 14:
-                return new r8.g[i10];
-            case 15:
-                return new r8.j[i10];
-            case 16:
-                return new r8.i[i10];
-            case 17:
-                return new r8.l[i10];
-            case 18:
-                return new r8.k[i10];
-            case 19:
-                return new z[i10];
-            case 20:
-                return new u0.i[i10];
-            case 21:
-                return new u8.a[i10];
-            case 22:
-                return new FaceParcel[i10];
-            case 23:
-                return new u8.b[i10];
-            case 24:
-                return new LandmarkParcel[i10];
-            case 25:
-                return new v8.i[i10];
-            case 26:
-                return new v8.j[i10];
-            case 27:
-                return new v8.k[i10];
-            case 28:
-                return new v8.l[i10];
-            default:
-                return new r[i10];
+    public final void add(int i3, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(int i3, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public boolean contains(Object obj) {
+        if (indexOf(obj) >= 0) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof List) {
+                List list = (List) obj;
+                int size = size();
+                if (size == list.size()) {
+                    if (list instanceof RandomAccess) {
+                        for (int i3 = 0; i3 < size; i3++) {
+                            if (a.h(get(i3), list.get(i3))) {
+                            }
+                        }
+                        return true;
+                    }
+                    j listIterator = listIterator(0);
+                    Iterator it = list.iterator();
+                    while (true) {
+                        if (listIterator.hasNext()) {
+                            if (it.hasNext()) {
+                                if (!a.h(listIterator.next(), it.next())) {
+                                    break;
+                                }
+                            } else {
+                                break;
+                            }
+                        } else if (!it.hasNext()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int h(Object[] objArr) {
+        int size = size();
+        for (int i3 = 0; i3 < size; i3++) {
+            objArr[i3] = get(i3);
+        }
+        return size;
+    }
+
+    @Override
+    public final int hashCode() {
+        int size = size();
+        int i3 = 1;
+        for (int i10 = 0; i10 < size; i10++) {
+            i3 = (i3 * 31) + get(i10).hashCode();
+        }
+        return i3;
+    }
+
+    public int indexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        int size = size();
+        for (int i3 = 0; i3 < size; i3++) {
+            if (obj.equals(get(i3))) {
+                return i3;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return listIterator(0);
+    }
+
+    @Override
+    public final e0 k() {
+        return listIterator(0);
+    }
+
+    public int lastIndexOf(Object obj) {
+        if (obj == null) {
+            return -1;
+        }
+        for (int size = size() - 1; size >= 0; size--) {
+            if (obj.equals(get(size))) {
+                return size;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final ListIterator listIterator() {
+        return listIterator(0);
+    }
+
+    public n m() {
+        if (size() <= 1) {
+            return this;
+        }
+        return new l(this);
+    }
+
+    @Override
+    public n subList(int i3, int i10) {
+        a.m(i3, i10, size());
+        int i11 = i10 - i3;
+        if (i11 == size()) {
+            return this;
+        }
+        if (i11 == 0) {
+            return y.f53417e;
+        }
+        return new m(this, i3, i11);
+    }
+
+    @Override
+    public final j listIterator(int i3) {
+        int size = size();
+        if (i3 >= 0 && i3 <= size) {
+            if (isEmpty()) {
+                return f53383b;
+            }
+            return new j(this, i3);
+        }
+        throw new IndexOutOfBoundsException(a.n(i3, size, "index"));
+    }
+
+    @Override
+    public final Object remove(int i3) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void replaceAll(UnaryOperator unaryOperator) {
+        List.CC.$default$replaceAll(this, unaryOperator);
+    }
+
+    @Override
+    public final Object set(int i3, Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void sort(Comparator comparator) {
+        List.CC.$default$sort(this, comparator);
     }
 }

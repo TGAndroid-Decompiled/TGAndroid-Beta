@@ -1,30 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.k20;
-import org.telegram.tgnet.tl.TL_wallet;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 public final class h7 implements Runnable {
-    public final int f34630a;
-    public final WalletEngine2 f34631b;
-    public final k20 f34632c;
-    public final TL_wallet.walletTransaction d;
-    public final String e;
+    public final int f42625a;
+    public final AtomicBoolean f42626b;
+    public final FutureTask f42627c;
 
-    public h7(WalletEngine2 walletEngine2, k20 k20Var, TL_wallet.walletTransaction wallettransaction, String str, int i10) {
-        this.f34630a = i10;
-        this.f34631b = walletEngine2;
-        this.f34632c = k20Var;
-        this.d = wallettransaction;
-        this.e = str;
+    public h7(AtomicBoolean atomicBoolean, FutureTask futureTask, int i3) {
+        this.f42625a = i3;
+        this.f42626b = atomicBoolean;
+        this.f42627c = futureTask;
     }
 
     @Override
     public final void run() {
-        switch (this.f34630a) {
+        switch (this.f42625a) {
             case 0:
-                this.f34631b.lambda$previewTonConnect$1(this.f34632c, this.d, this.e);
+                WalletEngine2.p(this.f42626b, this.f42627c);
                 return;
             default:
-                this.f34631b.lambda$emulateRotateKey$29(this.f34632c, this.d, this.e);
+                WalletEngine2.k(this.f42626b, this.f42627c);
                 return;
         }
     }

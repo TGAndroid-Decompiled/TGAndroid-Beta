@@ -1,96 +1,48 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.Collections;
-public final class hn extends View {
-    public final ArrayList f37837a;
-    public final ArrayList f37838b;
-    public final un f37839c;
+import org.telegram.tgnet.TLRPC;
+public final class hn implements Runnable {
+    public final int f45946a;
+    public final ln f45947b;
 
-    public hn(un unVar, Context context) {
-        super(context);
-        this.f37839c = unVar;
-        this.f37837a = new ArrayList();
-        this.f37838b = new ArrayList();
-    }
-
-    public final void a() {
-        ArrayList arrayList = this.f37837a;
-        arrayList.clear();
-        un unVar = this.f37839c;
-        arrayList.add(unVar.Y1);
-        arrayList.add(unVar.f42303z0);
-        arrayList.add(unVar.Y);
-        arrayList.add(unVar.Y3);
-        arrayList.add(unVar.W1);
-        arrayList.add(unVar.f42130l3);
-        arrayList.add(unVar.Z);
-        arrayList.add(unVar.f42279x1);
-        arrayList.add(unVar.T);
-        arrayList.add(unVar.f42057f2);
-        arrayList.removeAll(Collections.singleton(null));
+    public hn(ln lnVar, int i3) {
+        this.f45946a = i3;
+        this.f45947b = lnVar;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        un unVar = this.f37839c;
-        unVar.Oc = true;
-        ArrayList arrayList = this.f37838b;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((View) obj).setVisibility(0);
-        }
-        arrayList.clear();
-        unVar.Oc = false;
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        a();
-        un unVar = this.f37839c;
-        unVar.Oc = true;
-        ArrayList arrayList = this.f37837a;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            View view = (View) obj;
-            if (view.getVisibility() == 0) {
-                view.setVisibility(8);
-                this.f37838b.add(view);
-            }
-        }
-        unVar.Oc = false;
-    }
-
-    @Override
-    public void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        a();
-        ArrayList arrayList = this.f37837a;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            View view = (View) obj;
-            if (view != null) {
-                view.setTranslationX(f7);
-            }
+    public final void run() {
+        int i3 = this.f45946a;
+        ln lnVar = this.f45947b;
+        switch (i3) {
+            case 0:
+                ln.a0(lnVar);
+                return;
+            case 1:
+                ln.f0(lnVar);
+                return;
+            case 2:
+                lnVar.f47366b.dismiss();
+                lnVar.finishFragment();
+                return;
+            case 3:
+                lnVar.N.setChecked(lnVar.f47396x0.autotranslation);
+                return;
+            default:
+                lnVar.f47371e.setImageDrawable(lnVar.f47386r);
+                lnVar.f47369c0.o(2131232047, org.telegram.messenger.bd.M0(2131752212, "ChatSetPhotoOrVideo"), true);
+                TLRPC.User user = lnVar.D0;
+                if (user != null) {
+                    user.photo = null;
+                    lnVar.getMessagesController().X3(lnVar.D0, true, false);
+                }
+                lnVar.P0 = true;
+                if (lnVar.S0 == null) {
+                    lnVar.S0 = new org.telegram.ui.Components.ch0(2131623965, org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f), false, null);
+                }
+                lnVar.f47369c0.f29595e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
+                lnVar.f47369c0.f29595e.setAnimation(lnVar.S0);
+                return;
         }
     }
 }

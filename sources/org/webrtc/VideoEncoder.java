@@ -12,13 +12,13 @@ public interface VideoEncoder {
 
         public int getSum() {
             int[][] iArr;
-            int i10 = 0;
+            int i3 = 0;
             for (int[] iArr2 : this.bitratesBbs) {
-                for (int i11 : iArr2) {
-                    i10 += i11;
+                for (int i10 : iArr2) {
+                    i3 += i10;
                 }
             }
-            return i10;
+            return i3;
         }
     }
 
@@ -61,8 +61,8 @@ public interface VideoEncoder {
         public final boolean applyAlignmentToAllSimulcastLayers;
         public final int requestedResolutionAlignment;
 
-        public EncoderInfo(int i10, boolean z10) {
-            this.requestedResolutionAlignment = i10;
+        public EncoderInfo(int i3, boolean z10) {
+            this.requestedResolutionAlignment = i3;
             this.applyAlignmentToAllSimulcastLayers = z10;
         }
 
@@ -91,11 +91,11 @@ public interface VideoEncoder {
         public final int minBitrateBps;
         public final int minStartBitrateBps;
 
-        public ResolutionBitrateLimits(int i10, int i11, int i12, int i13) {
-            this.frameSizePixels = i10;
-            this.minStartBitrateBps = i11;
-            this.minBitrateBps = i12;
-            this.maxBitrateBps = i13;
+        public ResolutionBitrateLimits(int i3, int i10, int i11, int i12) {
+            this.frameSizePixels = i3;
+            this.minStartBitrateBps = i10;
+            this.minBitrateBps = i11;
+            this.maxBitrateBps = i12;
         }
 
         public int getFrameSizePixels() {
@@ -126,17 +126,17 @@ public interface VideoEncoder {
         public final int width;
 
         @Deprecated
-        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10) {
-            this(i10, i11, i12, i13, i14, i15, z10, new Capabilities(false));
+        public Settings(int i3, int i10, int i11, int i12, int i13, int i14, boolean z10) {
+            this(i3, i10, i11, i12, i13, i14, z10, new Capabilities(false));
         }
 
-        public Settings(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, Capabilities capabilities) {
-            this.numberOfCores = i10;
-            this.width = i11;
-            this.height = i12;
-            this.startBitrate = i13;
-            this.maxFramerate = i14;
-            this.numberOfSimulcastStreams = i15;
+        public Settings(int i3, int i10, int i11, int i12, int i13, int i14, boolean z10, Capabilities capabilities) {
+            this.numberOfCores = i3;
+            this.width = i10;
+            this.height = i11;
+            this.startBitrate = i12;
+            this.maxFramerate = i13;
+            this.numberOfSimulcastStreams = i14;
             this.automaticResizeOn = z10;
             this.capabilities = capabilities;
         }
@@ -160,7 +160,7 @@ public interface VideoEncoder {
 
     VideoCodecStatus release();
 
-    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i10);
+    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i3);
 
     VideoCodecStatus setRates(RateControlParameters rateControlParameters);
 
@@ -170,10 +170,10 @@ public interface VideoEncoder {
         public final Integer low;
         public final boolean on;
 
-        public ScalingSettings(int i10, int i11) {
+        public ScalingSettings(int i3, int i10) {
             this.on = true;
-            this.low = Integer.valueOf(i10);
-            this.high = Integer.valueOf(i11);
+            this.low = Integer.valueOf(i3);
+            this.high = Integer.valueOf(i10);
         }
 
         public String toString() {
@@ -197,10 +197,10 @@ public interface VideoEncoder {
         }
 
         @Deprecated
-        public ScalingSettings(boolean z10, int i10, int i11) {
+        public ScalingSettings(boolean z10, int i3, int i10) {
             this.on = z10;
-            this.low = Integer.valueOf(i10);
-            this.high = Integer.valueOf(i11);
+            this.low = Integer.valueOf(i3);
+            this.high = Integer.valueOf(i10);
         }
     }
 }

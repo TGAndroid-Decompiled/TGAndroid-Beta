@@ -1,98 +1,199 @@
 package g2;
 
 import android.net.Uri;
-import android.util.Base64;
-import b2.w0;
-import e2.l0;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
-import v7.t6;
-public final class f extends c {
-    public n f7290a;
-    public byte[] f7291b;
-    public int f7292c;
-    public int d;
-
-    @Override
-    public final void close() {
-        if (this.f7291b != null) {
-            this.f7291b = null;
-            transferEnded();
+import android.opengl.EGL14;
+import android.opengl.EGLDisplay;
+import android.os.Bundle;
+import android.text.TextUtils;
+import g9.s1;
+import java.util.ArrayList;
+import java.util.Collection;
+public abstract class f {
+    public static void a(String str, boolean z10) {
+        if (z10) {
+            return;
         }
-        this.f7290a = null;
+        g9.g0 g0Var = g9.i0.f12083b;
+        throw new n(str, s1.f12146e);
     }
 
-    @Override
-    public final Uri getUri() {
-        n nVar = this.f7290a;
-        if (nVar != null) {
-            return nVar.f7315a;
+    public static s1 b(f9.k kVar, ArrayList arrayList) {
+        g9.f0 p10 = g9.i0.p();
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            Bundle bundle = (Bundle) arrayList.get(i3);
+            bundle.getClass();
+            p10.c(kVar.apply(bundle));
         }
-        return null;
+        return p10.f();
     }
 
-    @Override
-    public final long open(n nVar) {
-        transferInitializing(nVar);
-        this.f7290a = nVar;
-        Uri uri = nVar.f7315a;
-        long j10 = nVar.f7318f;
-        Uri normalizeScheme = uri.normalizeScheme();
-        String scheme = normalizeScheme.getScheme();
-        t6.h("data".equals(scheme), "Unsupported scheme: %s", scheme);
-        String schemeSpecificPart = normalizeScheme.getSchemeSpecificPart();
-        String str = l0.f6165a;
-        String[] split = schemeSpecificPart.split(",", -1);
-        if (split.length == 2) {
-            String str2 = split[1];
-            if (split[0].contains(";base64")) {
-                try {
-                    this.f7291b = Base64.decode(str2, 0);
-                } catch (IllegalArgumentException e) {
-                    throw new w0(sc.e.h("Error while parsing Base64 encoded string: ", str2), e, true, 0);
-                }
+    public static int[] c(String str) {
+        int i3;
+        int[] iArr = new int[4];
+        if (TextUtils.isEmpty(str)) {
+            iArr[0] = -1;
+            return iArr;
+        }
+        int length = str.length();
+        int indexOf = str.indexOf(35);
+        if (indexOf != -1) {
+            length = indexOf;
+        }
+        int indexOf2 = str.indexOf(63);
+        if (indexOf2 == -1 || indexOf2 > length) {
+            indexOf2 = length;
+        }
+        int indexOf3 = str.indexOf(47);
+        if (indexOf3 == -1 || indexOf3 > indexOf2) {
+            indexOf3 = indexOf2;
+        }
+        int indexOf4 = str.indexOf(58);
+        if (indexOf4 > indexOf3) {
+            indexOf4 = -1;
+        }
+        int i10 = indexOf4 + 2;
+        if (i10 < indexOf2 && str.charAt(indexOf4 + 1) == '/' && str.charAt(i10) == '/') {
+            i3 = str.indexOf(47, indexOf4 + 3);
+            if (i3 == -1 || i3 > indexOf2) {
+                i3 = indexOf2;
+            }
+        } else {
+            i3 = indexOf4 + 1;
+        }
+        iArr[0] = indexOf4;
+        iArr[1] = i3;
+        iArr[2] = indexOf2;
+        iArr[3] = length;
+        return iArr;
+    }
+
+    public static boolean d(String str) {
+        EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
+        a("No EGL display.", !eglGetDisplay.equals(EGL14.EGL_NO_DISPLAY));
+        a("Error in eglInitialize.", EGL14.eglInitialize(eglGetDisplay, new int[1], 0, new int[1], 0));
+        int eglGetError = EGL14.eglGetError();
+        if (eglGetError == 12288) {
+            String eglQueryString = EGL14.eglQueryString(eglGetDisplay, 12373);
+            if (eglQueryString == null || !eglQueryString.contains(str)) {
+                return false;
+            }
+            return true;
+        }
+        throw new n("Error in getDefaultEglDisplay, error code: 0x" + Integer.toHexString(eglGetError), g9.i0.u(Integer.valueOf(eglGetError)));
+    }
+
+    public static String e(StringBuilder sb2, int i3, int i10) {
+        int i11;
+        int i12;
+        int i13;
+        if (i3 >= i10) {
+            return sb2.toString();
+        }
+        if (sb2.charAt(i3) == '/') {
+            i3++;
+        }
+        int i14 = i3;
+        int i15 = i14;
+        while (i14 <= i10) {
+            if (i14 == i10) {
+                i11 = i14;
+            } else if (sb2.charAt(i14) == '/') {
+                i11 = i14 + 1;
             } else {
-                this.f7291b = URLDecoder.decode(str2, StandardCharsets.US_ASCII.name()).getBytes(StandardCharsets.UTF_8);
+                i14++;
             }
-            long j11 = nVar.e;
-            byte[] bArr = this.f7291b;
-            if (j11 <= bArr.length) {
-                int i10 = (int) j11;
-                this.f7292c = i10;
-                int length = bArr.length - i10;
-                this.d = length;
-                int i11 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
-                if (i11 != 0) {
-                    this.d = (int) Math.min(length, j10);
+            int i16 = i15 + 1;
+            if (i14 == i16 && sb2.charAt(i15) == '.') {
+                sb2.delete(i15, i11);
+                i10 -= i11 - i15;
+            } else {
+                if (i14 == i15 + 2 && sb2.charAt(i15) == '.' && sb2.charAt(i16) == '.') {
+                    i12 = sb2.lastIndexOf("/", i15 - 2) + 1;
+                    if (i12 > i3) {
+                        i13 = i12;
+                    } else {
+                        i13 = i3;
+                    }
+                    sb2.delete(i13, i11);
+                    i10 -= i11 - i13;
+                } else {
+                    i12 = i14 + 1;
                 }
-                transferStarted(nVar);
-                if (i11 != 0) {
-                    return j10;
-                }
-                return this.d;
+                i15 = i12;
             }
-            this.f7291b = null;
-            throw new k(2008);
+            i14 = i15;
         }
-        throw new w0("Unexpected URI format: " + normalizeScheme, null, true, 0);
+        return sb2.toString();
     }
 
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        if (i11 == 0) {
-            return 0;
+    public static String f(String str, String str2) {
+        int i3;
+        StringBuilder sb2 = new StringBuilder();
+        if (str == null) {
+            str = "";
         }
-        int i12 = this.d;
-        if (i12 == 0) {
-            return -1;
+        if (str2 == null) {
+            str2 = "";
         }
-        int min = Math.min(i11, i12);
-        byte[] bArr2 = this.f7291b;
-        String str = l0.f6165a;
-        System.arraycopy(bArr2, this.f7292c, bArr, i10, min);
-        this.f7292c += min;
-        this.d -= min;
-        bytesTransferred(min);
-        return min;
+        int[] c2 = c(str2);
+        if (c2[0] != -1) {
+            sb2.append(str2);
+            e(sb2, c2[1], c2[2]);
+            return sb2.toString();
+        }
+        int[] c10 = c(str);
+        if (c2[3] == 0) {
+            sb2.append((CharSequence) str, 0, c10[3]);
+            sb2.append(str2);
+            return sb2.toString();
+        } else if (c2[2] == 0) {
+            sb2.append((CharSequence) str, 0, c10[2]);
+            sb2.append(str2);
+            return sb2.toString();
+        } else {
+            int i10 = c2[1];
+            if (i10 != 0) {
+                int i11 = c10[0] + 1;
+                sb2.append((CharSequence) str, 0, i11);
+                sb2.append(str2);
+                return e(sb2, c2[1] + i11, i11 + c2[2]);
+            } else if (str2.charAt(i10) == '/') {
+                sb2.append((CharSequence) str, 0, c10[1]);
+                sb2.append(str2);
+                int i12 = c10[1];
+                return e(sb2, i12, c2[2] + i12);
+            } else {
+                int i13 = c10[0] + 2;
+                int i14 = c10[1];
+                if (i13 < i14 && i14 == c10[2]) {
+                    sb2.append((CharSequence) str, 0, i14);
+                    sb2.append('/');
+                    sb2.append(str2);
+                    int i15 = c10[1];
+                    return e(sb2, i15, c2[2] + i15 + 1);
+                }
+                int lastIndexOf = str.lastIndexOf(47, c10[2] - 1);
+                if (lastIndexOf == -1) {
+                    i3 = c10[1];
+                } else {
+                    i3 = lastIndexOf + 1;
+                }
+                sb2.append((CharSequence) str, 0, i3);
+                sb2.append(str2);
+                return e(sb2, c10[1], i3 + c2[2]);
+            }
+        }
+    }
+
+    public static Uri g(String str, String str2) {
+        return Uri.parse(f(str, str2));
+    }
+
+    public static ArrayList h(Collection collection, f9.k kVar) {
+        ArrayList arrayList = new ArrayList(collection.size());
+        for (Object obj : collection) {
+            arrayList.add((Bundle) kVar.apply(obj));
+        }
+        return arrayList;
     }
 }

@@ -1,49 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import java.util.ArrayList;
-public final class j0 extends AnimatorListenerAdapter {
-    public final int f20436a;
-    public final ArrayList f20437b;
-    public final t0 f20438c;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.xq;
+public final class j0 implements ViewTreeObserver.OnPreDrawListener {
+    public final float f27649a;
+    public final q0 f27650b;
 
-    public j0(t0 t0Var, ArrayList arrayList, int i10) {
-        this.f20436a = i10;
-        this.f20438c = t0Var;
-        this.f20437b = arrayList;
+    public j0(q0 q0Var, float f10) {
+        this.f27650b = q0Var;
+        this.f27649a = f10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f20436a) {
-            case 0:
-                t0 t0Var = this.f20438c;
-                t0Var.F.setAlpha(0.0f);
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f20437b;
-                    if (i10 < arrayList.size()) {
-                        ((View) arrayList.get(i10)).setAlpha(1.0f);
-                        i10++;
-                    } else {
-                        t0Var.F.setVisibility(8);
-                        return;
-                    }
-                }
-            default:
-                this.f20438c.F.setAlpha(1.0f);
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f20437b;
-                    if (i11 < arrayList2.size()) {
-                        ((View) arrayList2.get(i11)).setAlpha(0.0f);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
+    public final boolean onPreDraw() {
+        q0 q0Var = this.f27650b;
+        q0Var.f28445e.getViewTreeObserver().removeOnPreDrawListener(this);
+        float x10 = q0Var.f28445e.getX();
+        float f10 = this.f27649a;
+        if (x10 != f10) {
+            bh.g gVar = q0Var.f28445e;
+            gVar.setTranslationX(f10 - gVar.getX());
         }
+        q0Var.f28445e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(xq.f40452f).start();
+        return true;
     }
 }

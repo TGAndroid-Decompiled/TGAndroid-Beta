@@ -16,12 +16,13 @@ public abstract class a {
         return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    public static void b(Parcel parcel) {
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
             return;
         }
-        throw new BadParcelableException(i0.a.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 
     public static void c(Parcel parcel, IInterface iInterface) {
@@ -30,5 +31,16 @@ public abstract class a {
         } else {
             parcel.writeStrongBinder(iInterface.asBinder());
         }
+    }
+
+    public static void d(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
+            return;
+        }
+        StringBuilder sb2 = new StringBuilder(String.valueOf(dataAvail).length() + 45);
+        sb2.append("Parcel data not fully consumed, unread size: ");
+        sb2.append(dataAvail);
+        throw new BadParcelableException(sb2.toString());
     }
 }

@@ -1,17 +1,24 @@
 package z7;
-public final class c7 implements ja.d {
-    public static final c7 f54686a = new Object();
+public enum c7 implements z {
+    UNKNOWN_FORMAT(0),
+    NV16(1),
+    NV21(2),
+    YV12(3),
+    YUV_420_888(7),
+    JPEG(8),
+    BITMAP(4),
+    CM_SAMPLE_BUFFER_REF(5),
+    UI_IMAGE(6),
+    CV_PIXEL_BUFFER_REF(9);
+    
+    public final int f59823a;
 
-    static {
-        sc.e.v(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, new s(1)), 2)), 3)), 4)), 5)));
+    c7(int i3) {
+        this.f59823a = i3;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int zza() {
+        return this.f59823a;
     }
 }

@@ -115,34 +115,34 @@ public class SpaceAtom extends Atom {
         this.blankSpace = true;
     }
 
-    public static void checkUnit(int i10) {
-        if (i10 >= 0 && i10 < unitConversions.length) {
+    public static void checkUnit(int i3) {
+        if (i3 >= 0 && i3 < unitConversions.length) {
             return;
         }
         throw new InvalidUnitException();
     }
 
-    public static float getFactor(int i10, TeXEnvironment teXEnvironment) {
-        return unitConversions[i10].getPixelConversion(teXEnvironment);
+    public static float getFactor(int i3, TeXEnvironment teXEnvironment) {
+        return unitConversions[i3].getPixelConversion(teXEnvironment);
     }
 
     public static float[] getLength(String str) {
-        int i10;
+        int i3;
         if (str == null) {
             return new float[]{2.0f, 0.0f};
         }
-        int i11 = 0;
-        while (i11 < str.length() && !Character.isLetter(str.charAt(i11))) {
-            i11++;
+        int i10 = 0;
+        while (i10 < str.length() && !Character.isLetter(str.charAt(i10))) {
+            i10++;
         }
         try {
-            float parseFloat = Float.parseFloat(str.substring(0, i11));
-            if (i11 != str.length()) {
-                i10 = getUnit(str.substring(i11).toLowerCase());
+            float parseFloat = Float.parseFloat(str.substring(0, i10));
+            if (i10 != str.length()) {
+                i3 = getUnit(str.substring(i10).toLowerCase());
             } else {
-                i10 = 2;
+                i3 = 2;
             }
-            return new float[]{i10, parseFloat};
+            return new float[]{i3, parseFloat};
         } catch (NumberFormatException unused) {
             return new float[]{Float.NaN};
         }
@@ -160,16 +160,16 @@ public class SpaceAtom extends Atom {
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box box;
         if (this.blankSpace) {
-            int i10 = this.blankType;
-            if (i10 == 0) {
+            int i3 = this.blankType;
+            if (i3 == 0) {
                 return new StrutBox(teXEnvironment.getSpace(), 0.0f, 0.0f, 0.0f);
             }
-            if (i10 < 0) {
-                i10 = -i10;
+            if (i3 < 0) {
+                i3 = -i3;
             }
-            if (i10 == 1) {
+            if (i3 == 1) {
                 box = Glue.get(7, 1, teXEnvironment);
-            } else if (i10 == 2) {
+            } else if (i3 == 2) {
                 box = Glue.get(2, 1, teXEnvironment);
             } else {
                 box = Glue.get(3, 1, teXEnvironment);
@@ -182,30 +182,30 @@ public class SpaceAtom extends Atom {
         return new StrutBox(getFactor(this.wUnit, teXEnvironment) * this.width, getFactor(this.hUnit, teXEnvironment) * this.height, getFactor(this.dUnit, teXEnvironment) * this.depth, 0.0f);
     }
 
-    public SpaceAtom(int i10) {
+    public SpaceAtom(int i3) {
         this.blankSpace = true;
-        this.blankType = i10;
+        this.blankType = i3;
     }
 
-    public SpaceAtom(int i10, float f7, float f10, float f11) {
-        checkUnit(i10);
-        this.wUnit = i10;
-        this.hUnit = i10;
-        this.dUnit = i10;
-        this.width = f7;
-        this.height = f10;
-        this.depth = f11;
+    public SpaceAtom(int i3, float f10, float f11, float f12) {
+        checkUnit(i3);
+        this.wUnit = i3;
+        this.hUnit = i3;
+        this.dUnit = i3;
+        this.width = f10;
+        this.height = f11;
+        this.depth = f12;
     }
 
-    public SpaceAtom(int i10, float f7, int i11, float f10, int i12, float f11) {
+    public SpaceAtom(int i3, float f10, int i10, float f11, int i11, float f12) {
+        checkUnit(i3);
         checkUnit(i10);
         checkUnit(i11);
-        checkUnit(i12);
-        this.wUnit = i10;
-        this.hUnit = i11;
-        this.dUnit = i12;
-        this.width = f7;
-        this.height = f10;
-        this.depth = f11;
+        this.wUnit = i3;
+        this.hUnit = i10;
+        this.dUnit = i11;
+        this.width = f10;
+        this.height = f11;
+        this.depth = f12;
     }
 }

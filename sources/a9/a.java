@@ -1,298 +1,138 @@
 package a9;
 
-import android.os.IBinder;
-import android.os.IInterface;
 import android.os.Parcel;
-public abstract class a implements IInterface {
-    public final int f316a;
-    public final IBinder f317b;
-    public final String f318c;
-
-    public a(IBinder iBinder, String str, int i10) {
-        this.f316a = i10;
-        this.f317b = iBinder;
-        this.f318c = str;
-    }
-
-    public Parcel H0() {
-        Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f318c);
-        return obtain;
-    }
-
-    public void I0(Parcel parcel, int i10) {
-        try {
-            this.f317b.transact(i10, parcel, null, 1);
-        } finally {
-            parcel.recycle();
-        }
-    }
-
-    public Parcel J0() {
-        Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f318c);
-        return obtain;
-    }
-
-    public void K0(Parcel parcel, int i10) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            this.f317b.transact(i10, parcel, obtain, 0);
-            obtain.readException();
-        } finally {
-            parcel.recycle();
-            obtain.recycle();
-        }
-    }
-
-    public Parcel L0() {
-        Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f318c);
-        return obtain;
-    }
-
-    public void M0(Parcel parcel, int i10) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            this.f317b.transact(i10, parcel, obtain, 0);
-            obtain.readException();
-        } finally {
-            parcel.recycle();
-            obtain.recycle();
-        }
-    }
-
-    public Parcel N0(Parcel parcel, int i10) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            try {
-                this.f317b.transact(i10, parcel, obtain, 0);
-                obtain.readException();
-                return obtain;
-            } catch (RuntimeException e) {
-                obtain.recycle();
-                throw e;
-            }
-        } finally {
-            parcel.recycle();
-        }
-    }
-
-    public Parcel O0(Parcel parcel, int i10) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            try {
-                this.f317b.transact(i10, parcel, obtain, 0);
-                obtain.readException();
-                return obtain;
-            } catch (RuntimeException e) {
-                obtain.recycle();
-                throw e;
-            }
-        } finally {
-            parcel.recycle();
-        }
-    }
-
-    public Parcel P0() {
-        switch (this.f316a) {
-            case 1:
-                Parcel obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(this.f318c);
-                return obtain;
-            case 7:
-                Parcel obtain2 = Parcel.obtain();
-                obtain2.writeInterfaceToken(this.f318c);
-                return obtain2;
-            case 8:
-                Parcel obtain3 = Parcel.obtain();
-                obtain3.writeInterfaceToken(this.f318c);
-                return obtain3;
-            case 9:
-                Parcel obtain4 = Parcel.obtain();
-                obtain4.writeInterfaceToken(this.f318c);
-                return obtain4;
-            default:
-                Parcel obtain5 = Parcel.obtain();
-                obtain5.writeInterfaceToken(this.f318c);
-                return obtain5;
-        }
-    }
-
-    public Parcel Q0(Parcel parcel, int i10) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            try {
-                this.f317b.transact(i10, parcel, obtain, 0);
-                obtain.readException();
-                return obtain;
-            } catch (RuntimeException e) {
-                obtain.recycle();
-                throw e;
-            }
-        } finally {
-            parcel.recycle();
-        }
-    }
-
-    public Parcel R0(Parcel parcel, int i10) {
-        switch (this.f316a) {
-            case 1:
-                Parcel obtain = Parcel.obtain();
-                try {
-                    try {
-                        this.f317b.transact(i10, parcel, obtain, 0);
-                        obtain.readException();
-                        return obtain;
-                    } catch (RuntimeException e) {
-                        obtain.recycle();
-                        throw e;
-                    }
-                } finally {
-                }
-            case 10:
-                Parcel obtain2 = Parcel.obtain();
-                try {
-                    try {
-                        this.f317b.transact(i10, parcel, obtain2, 0);
-                        obtain2.readException();
-                        return obtain2;
-                    } finally {
-                    }
-                } catch (RuntimeException e7) {
-                    obtain2.recycle();
-                    throw e7;
-                }
-            default:
-                Parcel obtain3 = Parcel.obtain();
-                try {
-                    try {
-                        this.f317b.transact(i10, parcel, obtain3, 0);
-                        obtain3.readException();
-                        return obtain3;
-                    } catch (RuntimeException e10) {
-                        obtain3.recycle();
-                        throw e10;
-                    }
-                } finally {
-                }
-        }
-    }
-
-    public void S0(Parcel parcel) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            this.f317b.transact(3, parcel, obtain, 0);
-            obtain.readException();
-        } finally {
-            parcel.recycle();
-            obtain.recycle();
-        }
-    }
-
-    public void T0(Parcel parcel, int i10) {
-        Parcel obtain;
-        switch (this.f316a) {
-            case 1:
-                obtain = Parcel.obtain();
-                try {
-                    this.f317b.transact(i10, parcel, obtain, 0);
-                    obtain.readException();
-                    return;
-                } finally {
-                }
-            case 8:
-                obtain = Parcel.obtain();
-                try {
-                    this.f317b.transact(i10, parcel, obtain, 0);
-                    obtain.readException();
-                    return;
-                } finally {
-                }
-            case 9:
-                obtain = Parcel.obtain();
-                try {
-                    this.f317b.transact(i10, parcel, obtain, 0);
-                    obtain.readException();
-                    return;
-                } finally {
-                }
-            case 10:
-                obtain = Parcel.obtain();
-                try {
-                    this.f317b.transact(i10, parcel, obtain, 0);
-                    obtain.readException();
-                    return;
-                } finally {
-                }
-            default:
-                obtain = Parcel.obtain();
-                try {
-                    this.f317b.transact(i10, parcel, obtain, 0);
-                    obtain.readException();
-                    return;
-                } finally {
-                }
-        }
-    }
-
-    public void U0(Parcel parcel, int i10) {
-        try {
-            this.f317b.transact(i10, parcel, null, 1);
-        } finally {
-            parcel.recycle();
-        }
-    }
-
-    public Parcel V0() {
-        Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(this.f318c);
-        return obtain;
-    }
-
-    public Parcel W0(Parcel parcel, int i10) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            try {
-                this.f317b.transact(i10, parcel, obtain, 0);
-                obtain.readException();
-                return obtain;
-            } catch (RuntimeException e) {
-                obtain.recycle();
-                throw e;
-            }
-        } finally {
-            parcel.recycle();
-        }
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.data.DataHolder;
+public abstract class a extends com.google.android.gms.internal.cast.o implements d0 {
+    public a() {
+        super("com.google.android.gms.wearable.internal.IWearableCallbacks", 4);
     }
 
     @Override
-    public final IBinder asBinder() {
-        switch (this.f316a) {
-            case 0:
-                return this.f317b;
-            case 1:
-                return this.f317b;
+    public void C() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean K0(int i3, Parcel parcel, Parcel parcel2) {
+        switch (i3) {
             case 2:
-                return this.f317b;
+                u uVar = (u) h8.a.a(parcel, u.CREATOR);
+                throw a1.g.v(parcel);
             case 3:
-                return this.f317b;
+                q0 q0Var = (q0) h8.a.a(parcel, q0.CREATOR);
+                throw a1.g.v(parcel);
             case 4:
-                return this.f317b;
+                x xVar = (x) h8.a.a(parcel, x.CREATOR);
+                throw a1.g.v(parcel);
             case 5:
-                return this.f317b;
+                DataHolder dataHolder = (DataHolder) h8.a.a(parcel, DataHolder.CREATOR);
+                throw a1.g.v(parcel);
             case 6:
-                return this.f317b;
+                l lVar = (l) h8.a.a(parcel, l.CREATOR);
+                throw a1.g.v(parcel);
             case 7:
-                return this.f317b;
+                h8.a.b(parcel);
+                i0((t0) h8.a.a(parcel, t0.CREATOR));
+                break;
             case 8:
-                return this.f317b;
+                z zVar = (z) h8.a.a(parcel, z.CREATOR);
+                throw a1.g.v(parcel);
             case 9:
-                return this.f317b;
+                a0 a0Var = (a0) h8.a.a(parcel, a0.CREATOR);
+                throw a1.g.v(parcel);
             case 10:
-                return this.f317b;
+                w wVar = (w) h8.a.a(parcel, w.CREATOR);
+                throw a1.g.v(parcel);
+            case 11:
+                Status status = (Status) h8.a.a(parcel, Status.CREATOR);
+                h8.a.b(parcel);
+                C();
+                break;
+            case 12:
+                u0 u0Var = (u0) h8.a.a(parcel, u0.CREATOR);
+                throw a1.g.v(parcel);
+            case 13:
+                v vVar = (v) h8.a.a(parcel, v.CREATOR);
+                throw a1.g.v(parcel);
+            case 14:
+                m0 m0Var = (m0) h8.a.a(parcel, m0.CREATOR);
+                throw a1.g.v(parcel);
+            case 15:
+                i iVar = (i) h8.a.a(parcel, i.CREATOR);
+                throw a1.g.v(parcel);
+            case 16:
+                i iVar2 = (i) h8.a.a(parcel, i.CREATOR);
+                throw a1.g.v(parcel);
+            case 17:
+                o oVar = (o) h8.a.a(parcel, o.CREATOR);
+                throw a1.g.v(parcel);
+            case 18:
+                p pVar = (p) h8.a.a(parcel, p.CREATOR);
+                throw a1.g.v(parcel);
+            case 19:
+                g gVar = (g) h8.a.a(parcel, g.CREATOR);
+                throw a1.g.v(parcel);
+            case 20:
+                h hVar = (h) h8.a.a(parcel, h.CREATOR);
+                throw a1.g.v(parcel);
+            case 21:
+            case 24:
+            case 25:
+            case 31:
+            case 32:
+            case 33:
             default:
-                return this.f317b;
+                return false;
+            case 22:
+                n nVar = (n) h8.a.a(parcel, n.CREATOR);
+                throw a1.g.v(parcel);
+            case 23:
+                m mVar = (m) h8.a.a(parcel, m.CREATOR);
+                throw a1.g.v(parcel);
+            case 26:
+                e0 e0Var = (e0) h8.a.a(parcel, e0.CREATOR);
+                throw a1.g.v(parcel);
+            case 27:
+                r0 r0Var = (r0) h8.a.a(parcel, r0.CREATOR);
+                throw a1.g.v(parcel);
+            case 28:
+                q qVar = (q) h8.a.a(parcel, q.CREATOR);
+                throw a1.g.v(parcel);
+            case 29:
+                s sVar = (s) h8.a.a(parcel, s.CREATOR);
+                throw a1.g.v(parcel);
+            case 30:
+                r rVar = (r) h8.a.a(parcel, r.CREATOR);
+                throw a1.g.v(parcel);
+            case 34:
+                s0 s0Var = (s0) h8.a.a(parcel, s0.CREATOR);
+                throw a1.g.v(parcel);
+            case 35:
+                y yVar = (y) h8.a.a(parcel, y.CREATOR);
+                throw a1.g.v(parcel);
+            case 36:
+                p0 p0Var = (p0) h8.a.a(parcel, p0.CREATOR);
+                throw a1.g.v(parcel);
+            case 37:
+                t tVar = (t) h8.a.a(parcel, t.CREATOR);
+                throw a1.g.v(parcel);
+            case 38:
+                j jVar = (j) h8.a.a(parcel, j.CREATOR);
+                throw a1.g.v(parcel);
+            case 39:
+                b0 b0Var = (b0) h8.a.a(parcel, b0.CREATOR);
+                throw a1.g.v(parcel);
+            case 40:
+                d1 d1Var = (d1) h8.a.a(parcel, d1.CREATOR);
+                throw a1.g.v(parcel);
         }
+        parcel2.writeNoException();
+        return true;
+    }
+
+    @Override
+    public void i0(t0 t0Var) {
+        throw new UnsupportedOperationException();
     }
 }

@@ -2,35 +2,46 @@ package org.telegram.messenger.voip;
 
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.NativeInstance;
-public final class m0 implements NativeInstance.AudioLevelsCallback, Instance.OnStateUpdatedListener, Instance.OnSignalBarsUpdatedListener, Instance.OnSignalingDataListener, Instance.OnRemoteMediaStateUpdatedListener {
-    public final VoIPService f18837a;
+public final class m0 implements NativeInstance.AudioLevelsCallback, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback, Instance.OnStateUpdatedListener {
+    public final int f26034a;
+    public final VoIPService f26035b;
+    public final int f26036c;
 
-    public m0(VoIPService voIPService) {
-        this.f18837a = voIPService;
+    public m0(VoIPService voIPService, int i3, int i10) {
+        this.f26034a = i10;
+        this.f26035b = voIPService;
+        this.f26036c = i3;
     }
 
     @Override
-    public void onMediaStateUpdated(int i10, int i11) {
-        this.f18837a.lambda$initiateActualEncryptedCall$87(i10, i11);
+    public void onStateUpdated(int i3, boolean z10) {
+        this.f26035b.lambda$createGroupInstance$80(this.f26036c, i3, z10);
     }
 
     @Override
-    public void onSignalBarsUpdated(int i10) {
-        this.f18837a.onSignalBarCountChanged(i10);
+    public void run(long j10) {
+        this.f26035b.lambda$createGroupInstance$79(this.f26036c, j10);
     }
 
     @Override
-    public void onSignalingData(byte[] bArr) {
-        this.f18837a.onSignalingData(bArr);
+    public void run(long j10, long j11, int i3, int i10) {
+        switch (this.f26034a) {
+            case 2:
+                this.f26035b.lambda$createGroupInstance$75(this.f26036c, j10, j11, i3, i10);
+                return;
+            default:
+                this.f26035b.lambda$createGroupInstance$77(this.f26036c, j10, j11, i3, i10);
+                return;
+        }
     }
 
     @Override
-    public void onStateUpdated(int i10, boolean z10) {
-        this.f18837a.onConnectionStateChanged(i10, z10);
+    public void run(long j10, int[] iArr) {
+        this.f26035b.lambda$createGroupInstance$70(this.f26036c, j10, iArr);
     }
 
     @Override
     public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.f18837a.lambda$initiateActualEncryptedCall$85(iArr, fArr, zArr);
+        this.f26035b.lambda$createGroupInstance$68(this.f26036c, iArr, fArr, zArr);
     }
 }

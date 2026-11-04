@@ -1,36 +1,39 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import java.util.HashMap;
 public final class b5 implements Runnable {
-    public final int f14923a = 0;
-    public final int f14924b;
-    public final ArrayList f14925c;
-    public final boolean d;
-    public final f1 e;
-    public final Object f14926f;
-    public final Object h;
+    public final int f21739a;
+    public final g5 f21740b;
+    public final HashMap f21741c;
+    public final HashMap d;
 
-    public b5(i5 i5Var, int i10, ArrayList arrayList, ArrayList arrayList2, a0.h hVar, boolean z10) {
-        this.e = i5Var;
-        this.f14924b = i10;
-        this.f14925c = arrayList;
-        this.f14926f = arrayList2;
-        this.h = hVar;
-        this.d = z10;
+    public b5(g5 g5Var, HashMap hashMap, HashMap hashMap2, int i3) {
+        this.f21739a = i3;
+        this.f21740b = g5Var;
+        this.f21741c = hashMap;
+        this.d = hashMap2;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.b5.run():void");
-    }
-
-    public b5(rz rzVar, TLObject tLObject, int i10, dz dzVar, ArrayList arrayList, boolean z10) {
-        this.e = rzVar;
-        this.f14926f = tLObject;
-        this.f14924b = i10;
-        this.h = dzVar;
-        this.f14925c = arrayList;
-        this.d = z10;
+        switch (this.f21739a) {
+            case 0:
+                g5 g5Var = this.f21740b;
+                Utilities.f21387e.c(new b5(g5Var, this.f21741c, this.d, 1));
+                if (!g5Var.f22650e) {
+                    g5Var.f22650e = true;
+                    qr messagesStorage = g5Var.getMessagesStorage();
+                    messagesStorage.f24934a.c(new vq(messagesStorage, false, 0));
+                    return;
+                }
+                return;
+            default:
+                g5 g5Var2 = this.f21740b;
+                HashMap hashMap = this.f21741c;
+                HashMap hashMap2 = this.d;
+                g5Var2.f22659l0 = hashMap;
+                g5Var2.m0 = hashMap2;
+                return;
+        }
     }
 }

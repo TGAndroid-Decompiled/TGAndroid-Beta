@@ -1,169 +1,37 @@
 package p4;
 
-import android.os.Bundle;
-import e9.x1;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.logging.Level;
-public final class r implements w2.a {
-    public final int f44806a;
-    public ArrayList f44807b;
+import android.os.Build;
+import android.text.TextUtils;
+public final class r {
+    public t f53183a;
 
-    public r(int i10) {
-        this.f44806a = i10;
-        switch (i10) {
-            case 1:
-                File file = new File(System.getProperty("java.io.tmpdir"));
-                if (!file.exists()) {
-                    file.mkdirs();
+    public r(String str, int i3, int i10) {
+        if (str != null) {
+            if (!TextUtils.isEmpty(str)) {
+                if (Build.VERSION.SDK_INT >= 28) {
+                    this.f53183a = new t(str, i3, i10);
+                    return;
+                } else {
+                    this.f53183a = new t(str, i3, i10);
+                    return;
                 }
-                this.f44807b = new ArrayList();
-                return;
-            case 2:
-                this.f44807b = new ArrayList();
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public long a(long j10) {
-        ArrayList arrayList = this.f44807b;
-        if (arrayList.isEmpty()) {
-            return Long.MIN_VALUE;
-        }
-        if (j10 < ((z3.a) arrayList.get(0)).f54571b) {
-            return ((z3.a) arrayList.get(0)).f54571b;
-        }
-        for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            z3.a aVar = (z3.a) arrayList.get(i10);
-            long j11 = aVar.f54571b;
-            long j12 = aVar.f54571b;
-            if (j10 < j11) {
-                long j13 = ((z3.a) arrayList.get(i10 - 1)).d;
-                if (j13 != -9223372036854775807L && j13 > j10 && j13 < j12) {
-                    return j13;
-                }
-                return j12;
             }
+            throw new IllegalArgumentException("packageName should be nonempty");
         }
-        long j14 = ((z3.a) e9.s.m(arrayList)).d;
-        if (j14 == -9223372036854775807L || j10 >= j14) {
-            return Long.MIN_VALUE;
-        }
-        return j14;
+        throw new NullPointerException("package shouldn't be null");
     }
 
-    @Override
-    public e9.n0 b(long j10) {
-        int g10 = g(j10);
-        if (g10 == 0) {
-            e9.l0 l0Var = e9.n0.f6390b;
-            return x1.e;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        z3.a aVar = (z3.a) this.f44807b.get(g10 - 1);
-        long j11 = aVar.d;
-        if (j11 != -9223372036854775807L && j10 >= j11) {
-            e9.l0 l0Var2 = e9.n0.f6390b;
-            return x1.e;
+        if (!(obj instanceof r)) {
+            return false;
         }
-        return aVar.f54570a;
+        return this.f53183a.equals(((r) obj).f53183a);
     }
 
-    @Override
-    public boolean c(z3.a r11, long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: p4.r.c(z3.a, long):boolean");
-    }
-
-    @Override
-    public void clear() {
-        switch (this.f44806a) {
-            case 1:
-                ArrayList arrayList = this.f44807b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    if (obj == null) {
-                        try {
-                            throw null;
-                            break;
-                        } catch (Exception e) {
-                            sc.j.d.log(Level.WARNING, "could not delete file ", (Throwable) e);
-                        }
-                    } else {
-                        throw new ClassCastException();
-                    }
-                }
-                arrayList.clear();
-                return;
-            default:
-                this.f44807b.clear();
-                return;
-        }
-    }
-
-    @Override
-    public long d(long j10) {
-        ArrayList arrayList = this.f44807b;
-        if (arrayList.isEmpty() || j10 < ((z3.a) arrayList.get(0)).f54571b) {
-            return -9223372036854775807L;
-        }
-        for (int i10 = 1; i10 < arrayList.size(); i10++) {
-            long j11 = ((z3.a) arrayList.get(i10)).f54571b;
-            int i11 = (j10 > j11 ? 1 : (j10 == j11 ? 0 : -1));
-            if (i11 == 0) {
-                return j11;
-            }
-            if (i11 < 0) {
-                z3.a aVar = (z3.a) arrayList.get(i10 - 1);
-                long j12 = aVar.d;
-                if (j12 != -9223372036854775807L && j12 <= j10) {
-                    return j12;
-                }
-                return aVar.f54571b;
-            }
-        }
-        z3.a aVar2 = (z3.a) e9.s.m(arrayList);
-        long j13 = aVar2.d;
-        if (j13 != -9223372036854775807L && j10 >= j13) {
-            return j13;
-        }
-        return aVar2.f54571b;
-    }
-
-    @Override
-    public void e(long j10) {
-        ArrayList arrayList = this.f44807b;
-        int g10 = g(j10);
-        if (g10 == 0) {
-            return;
-        }
-        long j11 = ((z3.a) arrayList.get(g10 - 1)).d;
-        if (j11 == -9223372036854775807L || j11 >= j10) {
-            g10--;
-        }
-        arrayList.subList(0, g10).clear();
-    }
-
-    public s f() {
-        if (this.f44807b == null) {
-            return s.f44813c;
-        }
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f44807b);
-        return new s(bundle, this.f44807b);
-    }
-
-    public int g(long j10) {
-        ArrayList arrayList = this.f44807b;
-        for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            if (j10 < ((z3.a) arrayList.get(i10)).f54571b) {
-                return i10;
-            }
-        }
-        return arrayList.size();
+    public final int hashCode() {
+        return this.f53183a.hashCode();
     }
 }

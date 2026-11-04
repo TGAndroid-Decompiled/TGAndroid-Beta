@@ -1,26 +1,19 @@
 package e2;
-
-import android.telephony.TelephonyCallback;
-import android.telephony.TelephonyDisplayInfo;
-public final class t extends TelephonyCallback implements TelephonyCallback.DisplayInfoListener {
-    public final w f6197a;
-
-    public t(w wVar) {
-        this.f6197a = wVar;
+public final class t extends n {
+    @Override
+    public final void c(java.nio.ByteBuffer r13) {
+        throw new UnsupportedOperationException("Method not decompiled: e2.t.c(java.nio.ByteBuffer):void");
     }
 
-    public final void onDisplayInfoChanged(TelephonyDisplayInfo telephonyDisplayInfo) {
-        boolean z10;
-        int overrideNetworkType = telephonyDisplayInfo.getOverrideNetworkType();
-        int i10 = 5;
-        if (overrideNetworkType != 3 && overrideNetworkType != 4 && overrideNetworkType != 5) {
-            z10 = false;
-        } else {
-            z10 = true;
+    @Override
+    public final j h(j jVar) {
+        int i3 = jVar.f9355c;
+        if (i3 != 3 && i3 != 2 && i3 != 268435456 && i3 != 21 && i3 != 1342177280 && i3 != 22 && i3 != 1610612736 && i3 != 4 && i3 != 1879048192) {
+            throw new l(jVar);
         }
-        if (z10) {
-            i10 = 10;
+        if (i3 != 2) {
+            return new j(jVar.f9353a, jVar.f9354b, 2);
         }
-        this.f6197a.c(i10);
+        return j.f9352e;
     }
 }

@@ -1,50 +1,13 @@
 package org.telegram.ui.Wallet;
+public final class w7 implements Runnable {
+    public final b8 f43354a;
 
-import android.graphics.Rect;
-import android.view.View;
-import java.util.ArrayList;
-public final class w7 implements View.OnLayoutChangeListener {
-    public final int f35371a;
-    public final Object f35372b;
-
-    public w7(Object obj, int i10) {
-        this.f35371a = i10;
-        this.f35372b = obj;
+    public w7(b8 b8Var) {
+        this.f43354a = b8Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        switch (this.f35371a) {
-            case 0:
-                h8 h8Var = (h8) this.f35372b;
-                h8Var.getClass();
-                if (i12 - i10 != i16 - i14 || i13 - i11 != i17 - i15) {
-                    for (g8 g8Var : h8Var.f34646f.values()) {
-                        g8Var.K = false;
-                    }
-                    h8Var.f0();
-                    return;
-                }
-                return;
-            default:
-                k8 k8Var = (k8) this.f35372b;
-                if (i13 - i11 < i17 - i15) {
-                    ArrayList arrayList = k8Var.f34827w;
-                    int size = arrayList.size();
-                    int i18 = 0;
-                    while (i18 < size) {
-                        Object obj = arrayList.get(i18);
-                        i18++;
-                        ra raVar = (ra) obj;
-                        if (raVar.hasFocus()) {
-                            raVar.requestRectangleOnScreen(new Rect(0, 0, raVar.getWidth(), raVar.getHeight()), true);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                k8Var.getClass();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.w7.run():void");
     }
 }

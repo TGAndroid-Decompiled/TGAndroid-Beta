@@ -1,64 +1,229 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class yr0 extends AnimatorListenerAdapter {
-    public final int f32896a;
-    public final au0 f32897b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class yr0 implements org.telegram.ui.gs {
+    public final TLRPC.TL_messageMediaPoll f40812a;
+    public final TLRPC.PollAnswer f40813b;
+    public final org.telegram.ui.Cells.q1 f40814c;
+    public final ds0 d;
 
-    public yr0(au0 au0Var, int i10) {
-        this.f32896a = i10;
-        this.f32897b = au0Var;
+    public yr0(ds0 ds0Var, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, TLRPC.PollAnswer pollAnswer, org.telegram.ui.Cells.q1 q1Var) {
+        this.d = ds0Var;
+        this.f40812a = tL_messageMediaPoll;
+        this.f40813b = pollAnswer;
+        this.f40814c = q1Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f32896a) {
-            case 0:
-                this.f32897b.N0 = null;
-                return;
-            default:
-                au0 au0Var = this.f32897b;
-                org.telegram.ui.ActionBar.t0 t0Var = au0Var.f24544p0;
-                ts0[] ts0VarArr = au0Var.m0;
-                au0Var.f24522h1 = null;
-                int i10 = 4;
-                if (au0Var.f24531k1) {
-                    ts0VarArr[1].setVisibility(8);
-                    if (t0Var != null && !au0Var.H()) {
-                        if (au0Var.F0()) {
-                            i10 = 8;
-                        }
-                        au0Var.setSearchItemVisibility(i10);
-                        au0Var.f24547q0 = 0.0f;
-                    } else {
-                        au0Var.f24547q0 = au0Var.k0(0.0f);
-                        au0Var.I1(0.0f);
-                    }
-                    au0Var.E1(false);
-                    au0Var.f24572z0 = 0;
-                } else {
-                    ts0 ts0Var = ts0VarArr[0];
-                    ts0VarArr[0] = ts0VarArr[1];
-                    ts0VarArr[1] = ts0Var;
-                    ts0Var.setVisibility(8);
-                    if (t0Var != null && au0Var.f24572z0 == 2) {
-                        if (au0Var.F0()) {
-                            i10 = 8;
-                        }
-                        au0Var.setSearchItemVisibility(i10);
-                    }
-                    au0Var.f24572z0 = 0;
-                    au0Var.h1(1.0f, ts0VarArr[0].E);
-                    au0Var.U0();
-                    au0Var.q1();
-                }
-                au0Var.f24525i1 = false;
-                au0Var.A1 = false;
-                au0Var.f24573z1 = false;
-                au0Var.setHeaderEnabled(true);
-                au0Var.K0.setEnabled(true);
-                return;
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final boolean C() {
+        return false;
+    }
+
+    @Override
+    public final boolean D(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final String F(boolean z10) {
+        return null;
+    }
+
+    @Override
+    public final boolean H() {
+        return false;
+    }
+
+    @Override
+    public final boolean I() {
+        return false;
+    }
+
+    @Override
+    public final void J() {
+        ArrayList arrayList = new ArrayList(1);
+        arrayList.add(this.f40813b);
+        org.telegram.messenger.yy.C(this.d.f33187a).w0(this.f40814c.getMessageObject(), arrayList, null);
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+        ds0 ds0Var = this.d;
+        fs0 fs0Var = ds0Var.f33189c;
+        if (inputStickerSet != null && fs0Var.f33864s.getContext() != null) {
+            TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+            tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
+            tL_inputStickerSetID.f27021id = inputStickerSet.f27021id;
+            xv0 xv0Var = new xv0(fs0Var.f33864s.getContext(), fs0Var.f33864s.f40142y1, tL_inputStickerSetID, null, null, ds0Var.f33188b);
+            xv0Var.f28604i0 = true;
+            xv0Var.f28608n = true;
+            xv0Var.f40506a2 = z10;
+            xv0Var.show();
         }
+    }
+
+    @Override
+    public final boolean N(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    @Override
+    public final long a() {
+        return this.d.f33189c.f33864s.m1;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return this.f40812a;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer g() {
+        return this.f40813b;
+    }
+
+    @Override
+    public final boolean h() {
+        return true;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k(int i3) {
+        return false;
+    }
+
+    @Override
+    public final f60 n(ai.c0 c0Var) {
+        return null;
+    }
+
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final void r() {
+        org.telegram.messenger.yy.C(this.d.f33187a).w0(this.f40814c.getMessageObject(), null, null);
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
+    }
+
+    @Override
+    public final org.telegram.messenger.zi z() {
+        return this.f40814c.getMessageObject();
+    }
+
+    @Override
+    public final void B(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void E(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void G(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void O(String str) {
+    }
+
+    @Override
+    public final void i(org.telegram.messenger.ry ryVar) {
+    }
+
+    @Override
+    public final void m(String str) {
+    }
+
+    @Override
+    public final void o(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void q(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void u(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void y(String str) {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void v(TLRPC.StickerSet stickerSet, String str) {
+    }
+
+    @Override
+    public final void w(TLObject tLObject, Object obj) {
+    }
+
+    @Override
+    public final void K(CharSequence charSequence, String str, ei eiVar) {
+    }
+
+    @Override
+    public final void s(int i3, int i10, Object obj, TLObject tLObject, boolean z10) {
+    }
+
+    @Override
+    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i3, int i10) {
     }
 }

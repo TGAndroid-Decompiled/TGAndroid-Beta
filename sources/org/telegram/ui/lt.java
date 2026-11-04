@@ -1,27 +1,29 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class lt implements org.telegram.messenger.vs {
-    public final int f39373a;
-    public final View f39374b;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class lt implements RequestDelegate {
+    public final int f47434a;
+    public final ot f47435b;
 
-    public lt(int i10, View view) {
-        this.f39373a = i10;
-        this.f39374b = view;
+    public lt(ot otVar, int i3) {
+        this.f47434a = i3;
+        this.f47435b = otVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-        switch (this.f39373a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f47434a) {
             case 0:
-                org.telegram.ui.Cells.x9 x9Var = (org.telegram.ui.Cells.x9) this.f39374b;
-                if (i10 == 259) {
-                    x9Var.getTextView().invalidate();
-                    return;
-                }
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                ot otVar = this.f47435b;
+                otVar.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new lt(otVar, 1));
                 return;
             default:
-                ((org.telegram.ui.ActionBar.q2) this.f39374b).invalidate();
+                this.f47435b.getMessagesController().R2(true);
                 return;
         }
     }

@@ -1,28 +1,23 @@
 package org.telegram.messenger;
+public abstract class jv {
+    public boolean f23727a;
+    public boolean f23728b;
+    public long f23729c = 104857600;
 
-import android.text.Layout;
-import android.view.View;
-import org.telegram.ui.Components.iy0;
-import org.telegram.ui.Components.jy0;
-import org.telegram.ui.vh0;
-public final class jv implements vh0 {
-    public final jy0 f16516a;
-
-    public jv(jy0 jy0Var) {
-        this.f16516a = jy0Var;
-    }
-
-    @Override
-    public final Layout a() {
-        iy0 iy0Var = this.f16516a.f27592b;
-        if (iy0Var == null) {
-            return null;
+    public final boolean a() {
+        if (!this.f23727a && !this.f23728b) {
+            return false;
         }
-        return iy0Var.a();
+        return true;
     }
 
-    @Override
-    public final View e() {
-        return null;
+    public void b() {
+        if (a()) {
+            this.f23728b = false;
+            this.f23727a = false;
+            return;
+        }
+        this.f23727a = true;
+        this.f23728b = true;
     }
 }

@@ -1,16 +1,19 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class t11 extends j21 {
-    public final g31 f41511m3;
+import android.view.View;
+public final class t11 implements View.OnClickListener {
+    public final b21 f49670a;
 
-    public t11(g31 g31Var, Context context) {
-        super(g31Var, context);
-        this.f41511m3 = g31Var;
+    public t11(b21 b21Var) {
+        this.f49670a = b21Var;
     }
 
     @Override
-    public final void l0(int i10) {
-        this.f41511m3.h();
+    public final void onClick(View view) {
+        org.telegram.ui.Components.fh0 fh0Var = this.f49670a.f43903l1;
+        if (!fh0Var.b() && fh0Var.getAnimatedDrawable() != null) {
+            fh0Var.getAnimatedDrawable().M(40);
+            fh0Var.d();
+        }
     }
 }

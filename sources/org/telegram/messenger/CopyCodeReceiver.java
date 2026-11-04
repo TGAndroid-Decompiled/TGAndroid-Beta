@@ -6,6 +6,6 @@ import android.content.Intent;
 public class CopyCodeReceiver extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
-        i0.g(intent.getStringExtra("text"));
+        g0.g(intent.getStringExtra("text"));
     }
 }

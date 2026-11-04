@@ -1,119 +1,127 @@
 package org.telegram.ui.Components;
+public final class mh extends org.telegram.ui.ActionBar.h1 {
+    public final oh f36153x;
 
-import android.view.View;
-public final class mh extends h6 {
-    public final int f28475b;
-    public final bi f28476c;
+    public mh(oh ohVar, oh ohVar2) {
+        super(ohVar2);
+        this.f36153x = ohVar;
+    }
 
-    public mh(bi biVar, int i10) {
-        super("translation", 0);
-        this.f28475b = i10;
-        switch (i10) {
-            case 1:
-                this.f28476c = biVar;
-                super("openProgress", 0);
-                return;
-            default:
-                this.f28476c = biVar;
-                return;
+    @Override
+    public final boolean b() {
+        ey eyVar;
+        bi biVar = this.f36153x.f36835l0;
+        if ((!biVar.J || biVar.f32259p2) && biVar.f32253n3) {
+            th thVar = biVar.f32275t2;
+            if (thVar == biVar.f32223e2 || thVar == biVar.f32226f2 || biVar.a1().m()) {
+                th thVar2 = biVar.f32275t2;
+                an anVar = biVar.f32223e2;
+                if (thVar2 != anVar || ((eyVar = anVar.F) != null && eyVar.getVisibility() == 0)) {
+                    th thVar3 = biVar.f32275t2;
+                    an anVar2 = biVar.f32226f2;
+                    if (thVar3 == anVar2) {
+                        ey eyVar2 = anVar2.F;
+                        if (eyVar2 != null && eyVar2.getVisibility() == 0) {
+                            return false;
+                        }
+                        return true;
+                    }
+                } else {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void e(float f10, float f11, boolean z10) {
+        float f12;
+        oh ohVar = this.f36153x;
+        bi biVar = ohVar.f36835l0;
+        biVar.f32231g4 = f10;
+        float f13 = biVar.Y3;
+        float f14 = 0.0f;
+        if (f13 > 0.0f) {
+            if (biVar.f32275t2 == biVar.f32255o2 && !z10) {
+                f12 = f11;
+            } else {
+                f12 = 1.0f - f11;
+            }
+            biVar.f32231g4 = com.google.android.recaptcha.internal.a.y(f13, biVar.Z3, f12, f10);
+        }
+        biVar.S2.setTranslationY(biVar.f32231g4);
+        biVar.V2.setTranslationY(biVar.f32231g4);
+        org.telegram.ui.ActionBar.q0 q0Var = biVar.Z2;
+        if (q0Var != null) {
+            q0Var.setTranslationY(biVar.f32231g4);
+        }
+        org.telegram.ui.ActionBar.q0 q0Var2 = biVar.X2;
+        if (q0Var2 != null) {
+            q0Var2.setTranslationY(biVar.V2.getTranslationY());
+        }
+        gi.l3 l3Var = biVar.Y2;
+        if (l3Var != null) {
+            l3Var.setTranslationY(biVar.V2.getTranslationY());
+        }
+        biVar.f32213a3.setTranslationY(biVar.f32231g4);
+        biVar.P1(0);
+        if (biVar.f32275t2 != biVar.f32255o2) {
+            f14 = biVar.f32231g4;
+        }
+        biVar.F0 = f14;
+        biVar.f28589c.invalidate();
+        ohVar.invalidate();
+        biVar.f32295y2.invalidate();
+        biVar.J1();
+        th thVar = biVar.f32275t2;
+        if (thVar != null) {
+            thVar.n(biVar.f32231g4, f11);
         }
     }
 
     @Override
-    public final void c(Object obj, float f7) {
+    public final void f() {
+        int i3;
+        bi biVar = this.f36153x.f36835l0;
+        biVar.M1(biVar.f32275t2, 0);
+        biVar.X3 = biVar.W3[0];
+        biVar.f32275t2.y();
+        if ((biVar.f32275t2 instanceof ii.d4) && !biVar.f32296y3) {
+            if (biVar.d) {
+                i3 = org.telegram.messenger.g0.L(84.0f);
+            } else {
+                i3 = 0;
+            }
+            for (int i10 = 0; i10 < biVar.f32271s2.size(); i10++) {
+                ((ii.d4) biVar.f32271s2.valueAt(i10)).setMeasureOffsetY(i3);
+            }
+        }
+    }
+
+    @Override
+    public final void g(int i3, boolean z10) {
         int i10;
-        float f10;
-        switch (this.f28475b) {
-            case 0:
-                uh uhVar = (uh) obj;
-                bi biVar = this.f28476c;
-                biVar.U1 = f7;
-                uh uhVar2 = biVar.f24816t2;
-                if (uhVar2 != null) {
-                    if (!(uhVar2 instanceof jm) && !(biVar.f24812s2 instanceof jm)) {
-                        uhVar2.setAlpha(f7);
-                        biVar.f24816t2.u(f7);
-                        uh uhVar3 = biVar.f24816t2;
-                        jn jnVar = biVar.f24758d2;
-                        int i11 = 0;
-                        if (uhVar3 == jnVar || biVar.f24812s2 == jnVar) {
-                            if (uhVar3 == jnVar) {
-                                i10 = 1;
-                            } else {
-                                i10 = 0;
-                            }
-                            biVar.O1(i10);
-                        }
-                        uh uhVar4 = biVar.f24816t2;
-                        jn jnVar2 = biVar.f24761e2;
-                        if (uhVar4 == jnVar2 || biVar.f24812s2 == jnVar2) {
-                            if (uhVar4 == jnVar2) {
-                                i11 = 1;
-                            }
-                            biVar.O1(i11);
-                        }
-                        biVar.f24816t2.setTranslationY(org.telegram.messenger.i0.L(78.0f) * f7);
-                        biVar.f24812s2.u(1.0f - Math.min(1.0f, f7 / 0.7f));
-                        biVar.f24812s2.l(biVar.f24766f4);
-                    } else {
-                        int max = Math.max(uhVar2.getWidth(), biVar.f24812s2.getWidth());
-                        if (biVar.f24816t2 instanceof jm) {
-                            biVar.f24812s2.setTranslationX((-max) * f7);
-                            biVar.f24816t2.setTranslationX((1.0f - f7) * max);
-                        } else {
-                            biVar.f24812s2.setTranslationX(max * f7);
-                            biVar.f24816t2.setTranslationX((1.0f - f7) * (-max));
-                        }
-                    }
-                    if (biVar.f24793n3 != null) {
-                        biVar.O1(1);
-                    }
-                    biVar.f21587b.invalidate();
-                    return;
-                }
-                return;
-            default:
-                bi biVar2 = (bi) obj;
-                bh bhVar = this.f28476c.f24813s3;
-                int childCount = bhVar.getChildCount();
-                for (int i12 = 0; i12 < childCount; i12++) {
-                    float f11 = (3 - i12) * 32.0f;
-                    View childAt = bhVar.getChildAt(i12);
-                    if (f7 > f11) {
-                        float f12 = f7 - f11;
-                        if (f12 <= 200.0f) {
-                            float f13 = f12 / 200.0f;
-                            f10 = gr.f26524g.getInterpolation(f13) * 1.1f;
-                            childAt.setAlpha(gr.f26526j.getInterpolation(f13));
-                        } else {
-                            childAt.setAlpha(1.0f);
-                            float f14 = f12 - 200.0f;
-                            if (f14 <= 100.0f) {
-                                f10 = 1.1f - (gr.f26525i.getInterpolation(f14 / 100.0f) * 0.1f);
-                            } else {
-                                f10 = 1.0f;
-                            }
-                        }
-                    } else {
-                        f10 = 0.0f;
-                    }
-                    if (childAt instanceof xh) {
-                        ((xh) childAt).f32558a.setAttachScale(f10);
-                    }
-                }
-                return;
+        oh ohVar = this.f36153x;
+        bi biVar = ohVar.f36835l0;
+        int i11 = biVar.X3;
+        if (i11 > 0 && i11 != (i10 = biVar.W3[0]) && (z10 || biVar.f32275t2 == biVar.f32255o2)) {
+            biVar.Y3 = i11;
+            biVar.Z3 = i10;
+        } else {
+            biVar.Y3 = -1.0f;
         }
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        switch (this.f28475b) {
-            case 0:
-                uh uhVar = (uh) obj;
-                return Float.valueOf(this.f28476c.U1);
-            default:
-                bi biVar = (bi) obj;
-                return Float.valueOf(0.0f);
+        ohVar.invalidate();
+        ah ahVar = biVar.f32272s3;
+        if ((biVar.f32275t2 instanceof ii.d4) && !biVar.f32296y3) {
+            if (z10) {
+                ahVar.setVisibility(8);
+            } else {
+                ahVar.setVisibility(0);
+            }
         }
+        biVar.f32275t2.z(i3, z10);
     }
 }

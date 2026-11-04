@@ -1,52 +1,51 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.x71;
-public final class c5 extends a3 {
-    public final ViewGroup T1;
-    public final View[] U1;
-    public final Context V1;
+import java.util.ArrayList;
+import org.telegram.messenger.cs;
+import org.telegram.messenger.hs;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class c5 implements cs {
+    public final int f42387a;
+    public final TL_wallet.walletTransaction[] f42388b;
+    public final ei.s f42389c;
 
-    public c5(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.p6 p6Var, ViewGroup viewGroup2, View[] viewArr, Context context2) {
-        super(context, viewGroup, p6Var);
-        this.T1 = viewGroup2;
-        this.U1 = viewArr;
-        this.V1 = context2;
+    public c5(int i3, TL_wallet.walletTransaction[] wallettransactionArr, ei.s sVar) {
+        this.f42387a = i3;
+        this.f42388b = wallettransactionArr;
+        this.f42389c = sVar;
     }
 
     @Override
-    public final void T0(float f7) {
-        super.T0(f7);
-        if (this.T1 instanceof x71) {
-            this.f21613r0.setBounds(0, (int) f7, this.f21587b.getWidth(), this.f21587b.getHeight());
-        }
-    }
-
-    @Override
-    public final boolean Z0() {
-        return !(this.T1 instanceof x71);
-    }
-
-    @Override
-    public final int d1() {
-        return org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d6, this.I0);
-    }
-
-    @Override
-    public final void show() {
-        super.show();
-        if (this.T1 instanceof x71) {
-            View[] viewArr = this.U1;
-            if (viewArr[0] == null) {
-                b5 b5Var = new b5(this, this.V1);
-                viewArr[0] = b5Var;
-                this.f21587b.addView(b5Var, 0, w7.b6.e(-1, 50, 80));
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        TL_wallet.walletTransaction[] wallettransactionArr;
+        TL_wallet.walletTransaction wallettransaction;
+        if (i3 == hs.f23200a4 || i3 == hs.f23206b4) {
+            ArrayList arrayList = k0.x(this.f42387a).B().f42681c;
+            int size = arrayList.size();
+            int i11 = 0;
+            while (true) {
+                wallettransactionArr = this.f42388b;
+                if (i11 < size) {
+                    Object obj = arrayList.get(i11);
+                    i11++;
+                    wallettransaction = (TL_wallet.walletTransaction) obj;
+                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
+                    if (wallettransaction != wallettransaction2) {
+                        if (k0.i0(wallettransaction2, wallettransaction)) {
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                } else {
+                    wallettransaction = null;
+                    break;
+                }
             }
-            this.f21587b.setBackground(null);
-            this.f21587b.setPadding(0, 0, 0, 0);
-            this.f26724k1.setPadding(0, 0, 0, 0);
+            if (wallettransaction != null) {
+                wallettransactionArr[0] = wallettransaction;
+                this.f42389c.a(wallettransaction);
+            }
         }
     }
 }

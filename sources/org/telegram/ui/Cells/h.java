@@ -8,138 +8,139 @@ import android.text.style.CharacterStyle;
 import android.text.style.ClickableSpan;
 import android.text.style.URLSpan;
 import android.view.View;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.s20;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.cd;
-import org.telegram.ui.Components.eb;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.n31;
-import org.telegram.ui.Components.wb;
-import org.telegram.ui.n91;
-import org.telegram.ui.ru0;
-import org.telegram.ui.wo;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.v10;
+import org.telegram.ui.Components.ac;
+import org.telegram.ui.Components.cl;
+import org.telegram.ui.Components.f21;
+import org.telegram.ui.Components.fc;
+import org.telegram.ui.Components.ib;
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.at0;
+import org.telegram.ui.ma1;
+import org.telegram.ui.o71;
+import org.telegram.ui.vn;
 public final class h extends ClickableSpan {
-    public final int f21948a;
-    public final Object f21949b;
-    public final Object f21950c;
+    public final int f29288a;
+    public final Object f29289b;
+    public final Object f29290c;
 
-    public h(int i10, Object obj, Object obj2) {
-        this.f21948a = i10;
-        this.f21950c = obj;
-        this.f21949b = obj2;
+    public h(int i3, Object obj, Object obj2) {
+        this.f29288a = i3;
+        this.f29290c = obj;
+        this.f29289b = obj2;
     }
 
     @Override
     public final void onClick(View view) {
-        wb b10;
-        switch (this.f21948a) {
+        ac b10;
+        switch (this.f29288a) {
             case 0:
-                i iVar = (i) this.f21950c;
-                iVar.d((ClickableSpan) this.f21949b, iVar.f22011a, 0.0f);
+                j jVar = (j) this.f29290c;
+                jVar.d((ClickableSpan) this.f29289b, jVar.f29400a, 0.0f);
                 return;
             case 1:
-                s0 s0Var = (s0) this.f21950c;
-                if (s0Var.f22908f1 != null) {
-                    s0Var.a0((CharacterStyle) this.f21949b);
+                t0 t0Var = (t0) this.f29290c;
+                if (t0Var.f30389g1 != null) {
+                    t0Var.a0((CharacterStyle) this.f29289b);
                     return;
                 }
                 return;
             case 2:
-                CharacterStyle characterStyle = (CharacterStyle) this.f21949b;
-                if (characterStyle instanceof x0) {
-                    ((x0) characterStyle).onClick(view);
+                CharacterStyle characterStyle = (CharacterStyle) this.f29289b;
+                if (characterStyle instanceof y0) {
+                    ((y0) characterStyle).onClick(view);
                     return;
                 }
-                q1 q1Var = ((y0) this.f21950c).f23608a;
-                l1 l1Var = q1Var.Qa;
+                q1 q1Var = ((z0) this.f29290c).f31021a;
+                l1 l1Var = q1Var.Ra;
                 if (l1Var != null) {
-                    l1Var.L0(q1Var, characterStyle, false);
+                    l1Var.N0(q1Var, characterStyle, false);
                     return;
                 }
                 return;
             case 3:
                 try {
-                    ((ClipboardManager) org.telegram.messenger.w0.f18945b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f21949b));
-                    if (cc.a((org.telegram.ui.oa) this.f21950c)) {
-                        cc.j((org.telegram.ui.oa) this.f21950c).j();
+                    ((ClipboardManager) org.telegram.messenger.t0.f25457b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f29289b));
+                    if (fc.a((org.telegram.ui.ka) this.f29290c)) {
+                        fc.j((org.telegram.ui.ka) this.f29290c).j();
                         return;
                     }
                     return;
-                } catch (Exception e) {
-                    org.telegram.messenger.f8.g(e, true);
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
             case 4:
-                Context context = ((b2) this.f21950c).getContext();
-                gf.f.r(context, "https://fragment.com/username/" + ((String) this.f21949b));
+                Context context = ((b2) this.f29290c).getContext();
+                sf.c.t(context, "https://fragment.com/username/" + ((String) this.f29289b));
                 return;
             case 5:
-                Context context2 = ((wo) this.f21950c).getContext();
-                gf.f.r(context2, "https://fragment.com/username/" + ((String) this.f21949b));
+                Context context2 = ((vn) this.f29290c).getContext();
+                sf.c.t(context2, "https://fragment.com/username/" + ((String) this.f29289b));
                 return;
             case 6:
-                ((cd) this.f21950c).run();
+                ((cl) this.f29290c).run();
                 return;
             case 7:
-                org.telegram.messenger.i0.g((CharSequence) this.f21949b);
-                ((Runnable) this.f21950c).run();
+                org.telegram.messenger.g0.g((CharSequence) this.f29289b);
+                ((Runnable) this.f29290c).run();
                 return;
             case 8:
-                URLSpan uRLSpan = (URLSpan) this.f21949b;
-                n31 n31Var = (n31) this.f21950c;
-                s20 s20Var = n31Var.K1;
-                if (s20Var != null) {
-                    if (((Boolean) s20Var.a(uRLSpan)).booleanValue()) {
-                        n31Var.dismiss();
+                URLSpan uRLSpan = (URLSpan) this.f29289b;
+                f21 f21Var = (f21) this.f29290c;
+                v10 v10Var = f21Var.L1;
+                if (v10Var != null) {
+                    if (((Boolean) v10Var.a(uRLSpan)).booleanValue()) {
+                        f21Var.dismiss();
                         return;
                     }
                     return;
                 }
-                org.telegram.ui.ActionBar.k2 k2Var = n31Var.J1;
-                if (k2Var != null) {
-                    org.telegram.ui.Components.s4.p0(k2Var, uRLSpan.getURL(), false, false);
+                org.telegram.ui.ActionBar.d2 d2Var = f21Var.K1;
+                if (d2Var != null) {
+                    org.telegram.ui.Components.t4.p0(d2Var, uRLSpan.getURL(), false, false);
                     return;
                 }
                 return;
             case 9:
-                ((ClipboardManager) org.telegram.messenger.w0.f18945b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f21949b));
-                cc a02 = cc.a0(((ru0) this.f21950c).d);
-                String L0 = dd.L0(2131748931, null);
-                org.telegram.ui.ActionBar.p6 resourceProvider = ((ru0) this.f21950c).d.getResourceProvider();
+                ((ClipboardManager) org.telegram.messenger.t0.f25457b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f29289b));
+                fc a02 = fc.a0(((at0) this.f29290c).d);
+                String M0 = bd.M0(2131748929, null);
+                org.telegram.ui.ActionBar.e6 resourceProvider = ((at0) this.f29290c).d.getResourceProvider();
                 a02.getClass();
-                if (!org.telegram.messenger.i0.H3()) {
-                    b10 = new wb();
+                if (!org.telegram.messenger.g0.I3()) {
+                    b10 = new ac();
                 } else {
-                    eb ebVar = new eb(a02.W(), resourceProvider);
-                    ebVar.c(2131624343, 36, 36, "Wibe", "Circle");
-                    ebVar.f25779b.setText(L0);
-                    b10 = a02.b(ebVar, 1500);
+                    ib ibVar = new ib(a02.W(), resourceProvider);
+                    ibVar.c(2131624345, 36, 36, "Wibe", "Circle");
+                    ibVar.f34651b.setText(M0);
+                    b10 = a02.b(ibVar, 1500);
                 }
                 b10.j();
                 return;
             case 10:
                 try {
-                    ((ClipboardManager) org.telegram.messenger.w0.f18945b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f21949b));
-                    if (cc.a((n91) this.f21950c)) {
-                        cc.j((n91) this.f21950c).j();
+                    ((ClipboardManager) org.telegram.messenger.t0.f25457b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", (String) this.f29289b));
+                    if (fc.a((o71) this.f29290c)) {
+                        fc.j((o71) this.f29290c).j();
                         return;
                     }
                     return;
-                } catch (Exception e7) {
-                    org.telegram.messenger.f8.g(e7, true);
+                } catch (Exception e11) {
+                    org.telegram.messenger.a8.g(e11, true);
                     return;
                 }
             default:
-                org.telegram.messenger.i0.g((String) this.f21949b);
-                ((org.telegram.ui.Wallet.m2) this.f21950c).run();
+                org.telegram.messenger.g0.g((String) this.f29289b);
+                ((ma1) this.f29290c).run();
                 return;
         }
     }
 
     @Override
     public void updateDrawState(TextPaint textPaint) {
-        switch (this.f21948a) {
+        switch (this.f29288a) {
             case 3:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
@@ -155,17 +156,17 @@ public final class h extends ClickableSpan {
             case 6:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.uj, (org.telegram.ui.ActionBar.p6) this.f21949b));
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.uj, (org.telegram.ui.ActionBar.e6) this.f29289b));
                 return;
             case 7:
                 textPaint.setColor(textPaint.linkColor);
                 return;
             case 8:
                 int min = Math.min(textPaint.getAlpha(), (textPaint.getColor() >> 24) & 255);
-                if (!(((URLSpan) this.f21949b) instanceof f51)) {
+                if (!(((URLSpan) this.f29289b) instanceof v31)) {
                     textPaint.setUnderlineText(true);
                 }
-                textPaint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21058k5, false));
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28006k5, false));
                 textPaint.setAlpha(min);
                 return;
             case 9:
@@ -182,15 +183,15 @@ public final class h extends ClickableSpan {
         }
     }
 
-    public h(Object obj, Runnable runnable, int i10) {
-        this.f21948a = i10;
-        this.f21949b = obj;
-        this.f21950c = runnable;
+    public h(Object obj, Runnable runnable, int i3) {
+        this.f29288a = i3;
+        this.f29289b = obj;
+        this.f29290c = runnable;
     }
 
-    public h(org.telegram.ui.ActionBar.k2 k2Var, String str, int i10) {
-        this.f21948a = i10;
-        this.f21950c = k2Var;
-        this.f21949b = str;
+    public h(org.telegram.ui.ActionBar.d2 d2Var, String str, int i3) {
+        this.f29288a = i3;
+        this.f29290c = d2Var;
+        this.f29289b = str;
     }
 }

@@ -1,42 +1,89 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class fe extends FrameLayout {
-    public final org.telegram.ui.Components.v51 f37112a;
-    public final org.telegram.ui.ActionBar.p6 f37113b;
-    public final int f37114c;
-    public final int d;
-    public final ag.d3 e;
-    public final he f37115f;
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
+public final class fe implements Runnable {
+    public final int f45264a;
+    public final wm f45265b;
+    public final String f45266c;
 
-    public fe(he heVar, Context context, int i10, int i11, int i12, ag.d3 d3Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context);
-        this.f37115f = heVar;
-        this.d = i10;
-        this.f37114c = i11;
-        this.f37113b = p6Var;
-        this.e = d3Var;
-        org.telegram.ui.Components.v51 v51Var = new org.telegram.ui.Components.v51(context, i11, i12, true, new z4(this, 3), new y0(this, 15), null, p6Var);
-        this.f37112a = v51Var;
-        setClipChildren(false);
-        setClipToPadding(false);
-        v51Var.setClipToPadding(false);
-        v51Var.s1(org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(16.0f), false);
-        v51Var.f31183f3.f29638r = false;
-        v51Var.setCaptureSectionsDecoratorAllowed(true);
-        v51Var.setOverScrollMode(0);
-        addView(v51Var, w7.b6.c(-1.0f, -1));
-        v51Var.setOnScrollListener(new bi.t3(3, this, d3Var));
-        ei.r rVar = heVar.f37803x.f39204d1;
-        if (rVar != null) {
-            rVar.b(v51Var);
-        }
+    public fe(wm wmVar, String str, int i3) {
+        this.f45264a = i3;
+        this.f45265b = wmVar;
+        this.f45266c = str;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f37112a.f31183f3.O(false);
+    public final void run() {
+        int i3 = this.f45264a;
+        String str = this.f45266c;
+        wm wmVar = this.f45265b;
+        switch (i3) {
+            case 0:
+                wm.x1(wmVar, str);
+                return;
+            case 1:
+                wm.W0(wmVar, str);
+                return;
+            case 2:
+                i4.d(str, wmVar.currentAccount, wmVar.m1, null, wmVar.f51557ya);
+                return;
+            case 3:
+                if (str != null) {
+                    wmVar.getClass();
+                    if (str.length() != 0) {
+                        wmVar.getMessagesController().A4(str, wmVar.f51306f);
+                        return;
+                    }
+                }
+                wmVar.getSendMessagesHelper().r0(org.telegram.messenger.wy.b("/start", wmVar.f51376k6, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 4:
+                wmVar.La(str);
+                return;
+            case 5:
+                wmVar.Da(str, false);
+                return;
+            case 6:
+                wmVar.getClass();
+                wmVar.presentFragment(new org.telegram.ui.Wallet.m9(str));
+                return;
+            case 7:
+                String str2 = wmVar.getMessagesController().H6;
+                if (TextUtils.isEmpty(str2)) {
+                    str2 = "https://tonviewer.com/";
+                } else if (!str2.endsWith("/")) {
+                    str2 = str2.concat("/");
+                }
+                Activity parentActivity = wmVar.getParentActivity();
+                StringBuilder l10 = com.google.android.recaptcha.internal.a.l(str2);
+                l10.append(Uri.encode(str));
+                sf.c.v(parentActivity, l10.toString(), false);
+                return;
+            case 8:
+                Activity parentActivity2 = wmVar.getParentActivity();
+                sf.c.t(parentActivity2, "tel:" + str);
+                return;
+            case 9:
+                org.telegram.messenger.g0.g(str);
+                org.telegram.messenger.camera.q.r(null, 2131747303, org.telegram.ui.Components.fc.a0(wmVar));
+                return;
+            case 10:
+                wm.l1(wmVar, str);
+                return;
+            case 11:
+                Activity parentActivity3 = wmVar.getParentActivity();
+                sf.c.t(parentActivity3, "tel:" + str);
+                return;
+            case 12:
+                org.telegram.messenger.g0.g(str);
+                org.telegram.messenger.camera.q.r(null, 2131747303, org.telegram.ui.Components.fc.a0(wmVar));
+                return;
+            default:
+                Activity parentActivity4 = wmVar.getParentActivity();
+                sf.c.t(parentActivity4, "https://fragment.com/username/" + str);
+                return;
+        }
     }
 }

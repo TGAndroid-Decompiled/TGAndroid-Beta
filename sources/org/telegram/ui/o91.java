@@ -1,25 +1,24 @@
 package org.telegram.ui;
-public final class o91 implements Runnable {
-    public final int f40108a;
-    public final v91 f40109b;
 
-    public o91(v91 v91Var, int i10) {
-        this.f40108a = i10;
-        this.f40109b = v91Var;
+import org.telegram.tgnet.TLRPC;
+public final class o91 implements xw0 {
+    public final TLRPC.TL_forumTopic f48240a;
+    public final p91 f48241b;
+
+    public o91(p91 p91Var, TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f48241b = p91Var;
+        this.f48240a = tL_forumTopic;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40108a) {
-            case 0:
-                this.f40109b.c(false);
-                return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            default:
-                this.f40109b.c(false);
-                return;
-        }
+    public final void a0() {
+        s91 s91Var = this.f48241b.f48498a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f48240a;
+        s91.Z(s91Var, tL_forumTopic.f27053id);
+        org.telegram.messenger.g0.i3(new qv0(26, this, tL_forumTopic), 300L);
+    }
+
+    @Override
+    public final void l(lh0 lh0Var) {
     }
 }

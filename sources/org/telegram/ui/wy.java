@@ -1,16 +1,26 @@
 package org.telegram.ui;
+public final class wy implements Runnable {
+    public final int f51630a;
+    public final yy f51631b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class wy extends FrameLayout {
-    public nh.p f43182a;
-
-    public nh.p getSubtitleTextView() {
-        return this.f43182a;
+    public wy(yy yyVar, int i3) {
+        this.f51630a = i3;
+        this.f51631b = yyVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void run() {
+        switch (this.f51630a) {
+            case 0:
+                this.f51631b.d();
+                return;
+            case 1:
+                this.f51631b.a();
+                return;
+            default:
+                yy yyVar = this.f51631b;
+                yyVar.b(yyVar.E);
+                return;
+        }
     }
 }

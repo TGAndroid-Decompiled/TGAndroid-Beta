@@ -1,90 +1,34 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-import org.telegram.tgnet.tl.TL_stories;
-public final class t70 implements org.telegram.messenger.r20 {
-    public final int f41566a;
-    public final LaunchActivity f41567b;
-    public final y60 f41568c;
-    public final Long d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class t70 implements RequestDelegate {
+    public final int f49723a;
+    public final LaunchActivity f49724b;
 
-    public t70(LaunchActivity launchActivity, y60 y60Var, Long l4, int i10) {
-        this.f41566a = i10;
-        this.f41567b = launchActivity;
-        this.f41568c = y60Var;
-        this.d = l4;
+    public t70(LaunchActivity launchActivity, int i3) {
+        this.f49723a = i3;
+        this.f49724b = launchActivity;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i10 = this.f41566a;
-        Long l4 = this.d;
-        y60 y60Var = this.f41568c;
-        LaunchActivity launchActivity = this.f41567b;
-        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
-        switch (i10) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i3 = this.f49723a;
+        LaunchActivity launchActivity = this.f49724b;
+        switch (i3) {
             case 0:
-                Pattern pattern = LaunchActivity.D1;
-                try {
-                    y60Var.run();
-                } catch (Exception e) {
-                    org.telegram.messenger.f8.g(e, true);
-                }
-                org.telegram.ui.ActionBar.k2 Q = LaunchActivity.Q();
-                if (storyItem == null) {
-                    org.telegram.ui.Components.cc X = org.telegram.ui.Components.cc.X();
-                    if (X != null) {
-                        org.telegram.messenger.m5.n(null, 2131744625, X, 2131624234, 36);
-                        return;
-                    }
-                    return;
-                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    org.telegram.ui.Components.cc X2 = org.telegram.ui.Components.cc.X();
-                    if (X2 != null) {
-                        org.telegram.messenger.m5.n(null, 2131744625, X2, 2131624233, 36);
-                        return;
-                    }
-                    return;
-                } else if (Q != null) {
-                    storyItem.dialogId = l4.longValue();
-                    th.o7 createOverlayStoryViewer = Q.createOverlayStoryViewer();
-                    createOverlayStoryViewer.J();
-                    createOverlayStoryViewer.U(launchActivity, storyItem, null);
-                    return;
-                } else {
+                String str = LaunchActivity.E1;
+                if (tLObject != null) {
+                    org.telegram.messenger.g0.h3(new ly(18, launchActivity, (TL_account.Password) tLObject));
                     return;
                 }
+                return;
             default:
-                Pattern pattern2 = LaunchActivity.D1;
-                try {
-                    y60Var.run();
-                } catch (Exception e7) {
-                    org.telegram.messenger.f8.g(e7, true);
-                }
-                org.telegram.ui.ActionBar.k2 Q2 = LaunchActivity.Q();
-                if (storyItem == null) {
-                    org.telegram.ui.Components.cc X3 = org.telegram.ui.Components.cc.X();
-                    if (X3 != null) {
-                        org.telegram.messenger.m5.n(null, 2131744625, X3, 2131624234, 36);
-                        return;
-                    }
-                    return;
-                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    org.telegram.ui.Components.cc X4 = org.telegram.ui.Components.cc.X();
-                    if (X4 != null) {
-                        org.telegram.messenger.m5.n(null, 2131744625, X4, 2131624233, 36);
-                        return;
-                    }
-                    return;
-                } else if (Q2 != null) {
-                    storyItem.dialogId = l4.longValue();
-                    th.o7 createOverlayStoryViewer2 = Q2.createOverlayStoryViewer();
-                    createOverlayStoryViewer2.J();
-                    createOverlayStoryViewer2.U(launchActivity, storyItem, null);
-                    return;
-                } else {
-                    return;
-                }
+                String str2 = LaunchActivity.E1;
+                org.telegram.messenger.g0.h3(new ly(14, launchActivity, tLObject));
+                return;
         }
     }
 }

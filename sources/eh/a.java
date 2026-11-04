@@ -1,35 +1,25 @@
 package eh;
 
-import android.text.SpannableStringBuilder;
-import android.util.SparseArray;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.dq;
-public abstract class a {
-    public static final SparseArray f6593a = new SparseArray(6);
+import org.telegram.messenger.li;
+public final class a {
+    public boolean f9978a;
+    public long f9979b;
 
-    public static SpannableStringBuilder a(int i10, CharSequence charSequence, boolean z10) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (charSequence instanceof SpannableStringBuilder) {
-            spannableStringBuilder = (SpannableStringBuilder) charSequence;
-        } else {
-            spannableStringBuilder = new SpannableStringBuilder(charSequence);
-        }
+    public void a(long j10) {
+        this.f9979b = li.p(this.f9979b, j10);
+    }
+
+    public void b(boolean z10) {
+        long j10;
         if (z10) {
-            spannableStringBuilder.insert(0, (CharSequence) "* \u2068");
+            j10 = 1;
         } else {
-            spannableStringBuilder.insert(0, (CharSequence) "* ");
+            j10 = 0;
         }
-        SparseArray sparseArray = f6593a;
-        dq dqVar = (dq) sparseArray.get(i10);
-        if (dqVar == null) {
-            dqVar = new dq(i10, 0);
-            dqVar.a(t6.Wl);
-            sparseArray.put(i10, dqVar);
-        }
-        spannableStringBuilder.setSpan(dqVar, 0, 1, 33);
-        if (z10) {
-            spannableStringBuilder.append((char) 8297);
-        }
-        return spannableStringBuilder;
+        a(j10);
+    }
+
+    public void c(float f10) {
+        a(Float.floatToIntBits(f10));
     }
 }

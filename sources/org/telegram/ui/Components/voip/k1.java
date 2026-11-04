@@ -2,37 +2,26 @@ package org.telegram.ui.Components.voip;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.f8;
-public final class k1 implements org.telegram.ui.ActionBar.u1 {
-    public final int f31567a;
-    public final Activity f31568b;
+public final class k1 implements org.telegram.ui.ActionBar.p1 {
+    public final int f39438a;
+    public final Activity f39439b;
+    public final Intent f39440c;
 
-    public k1(Activity activity, int i10) {
-        this.f31567a = i10;
-        this.f31568b = activity;
+    public k1(Activity activity, Intent intent, int i3) {
+        this.f39438a = i3;
+        this.f39439b = activity;
+        this.f39440c = intent;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f31567a) {
+    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f39438a) {
             case 0:
-                Activity activity = this.f31568b;
-                Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                intent.setData(Uri.fromParts("package", activity.getPackageName(), null));
-                activity.startActivity(intent);
+                this.f39439b.startActivity(this.f39440c);
                 return;
             default:
-                Activity activity2 = this.f31568b;
-                try {
-                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.w0.f18945b.getPackageName()));
-                    activity2.startActivity(intent2);
-                    return;
-                } catch (Exception e) {
-                    f8.g(e, true);
-                    return;
-                }
+                this.f39439b.startActivity(this.f39440c);
+                return;
         }
     }
 }

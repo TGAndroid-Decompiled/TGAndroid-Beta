@@ -1,48 +1,22 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-public final class t81 extends w7.y5 {
-    public final int f41584a;
-    public final org.telegram.messenger.vs f41585b;
+import android.view.View;
+public final class t81 implements View.OnClickListener {
+    public final m91 f49739a;
 
-    public t81(org.telegram.messenger.vs vsVar, int i10) {
-        this.f41584a = i10;
-        this.f41585b = vsVar;
+    public t81(m91 m91Var) {
+        this.f49739a = m91Var;
     }
 
     @Override
-    public void a() {
-        switch (this.f41584a) {
-            case 1:
-                ((zd1) this.f41585b).f43975w.invalidate();
-                return;
-            default:
-                return;
+    public final void onClick(View view) {
+        m91 m91Var = this.f49739a;
+        if (m91Var.N == 1) {
+            org.telegram.ui.Components.t4.i0(m91Var, -m91Var.f47575a, null, m91Var.g(), null, false, m91Var.K, new ma(this, 4), m91Var.getResourceProvider());
+            return;
         }
-    }
-
-    @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f41584a) {
-            case 0:
-                Point point = org.telegram.messenger.i0.f16172q;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((k91) this.f41585b).f38778y0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+        m91Var.getMessagesController().m(m91Var.f47575a, m91Var.getUserConfig().f(), 0, null, m91Var, false, new n81(m91Var, 2), new o81(m91Var), null);
+        org.telegram.messenger.hs.e().k(org.telegram.messenger.hs.I4, new Object[0]);
+        m91Var.S0(false);
     }
 }

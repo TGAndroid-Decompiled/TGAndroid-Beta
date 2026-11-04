@@ -1,33 +1,54 @@
 package org.telegram.messenger;
-
-import org.telegram.ui.Components.e50;
-import org.telegram.ui.Components.w40;
-import org.telegram.ui.Components.x40;
 public final class te implements Runnable {
-    public final int f18251a;
-    public final double f18252b;
-    public final Runnable f18253c;
+    public final int f25508a;
+    public final ve f25509b;
+    public final int f25510c;
 
-    public te(Runnable runnable, double d, int i10) {
-        this.f18251a = i10;
-        this.f18253c = runnable;
-        this.f18252b = d;
+    public te(ve veVar, int i3, int i10) {
+        this.f25508a = i10;
+        this.f25509b = veVar;
+        this.f25510c = i3;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f18251a;
-        double d = this.f18252b;
-        Runnable runnable = this.f18253c;
-        switch (i10) {
+        switch (this.f25508a) {
             case 0:
-                MediaController mediaController = (MediaController) ((mg.c2) runnable).f13087b;
-                at.f(mediaController.f14455g1).k(154, Integer.valueOf(mediaController.f14453f1), Double.valueOf(d));
-                return;
+                ve veVar = this.f25509b;
+                try {
+                    veVar.f25854b.o(this.f25510c);
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    return;
+                }
+            case 1:
+                ve veVar2 = this.f25509b;
+                try {
+                    veVar2.f25854b.o(this.f25510c);
+                    return;
+                } catch (Exception e11) {
+                    a8.g(e11, true);
+                    return;
+                }
+            case 2:
+                ve veVar3 = this.f25509b;
+                try {
+                    veVar3.f25854b.o(this.f25510c);
+                    return;
+                } catch (Exception e12) {
+                    a8.g(e12, true);
+                    return;
+                }
             default:
-                e50 e50Var = ((x40) ((w40) runnable).f32074b).H0;
-                at.f(e50Var.e).k(154, Integer.valueOf(e50Var.U), Double.valueOf(d));
-                return;
+                ve veVar4 = this.f25509b;
+                try {
+                    veVar4.f25854b.o(this.f25510c);
+                    return;
+                } catch (Exception e13) {
+                    a8.g(e13, true);
+                    return;
+                }
         }
     }
 }

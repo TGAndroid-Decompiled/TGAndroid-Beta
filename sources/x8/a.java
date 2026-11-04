@@ -1,10 +1,57 @@
 package x8;
-public interface a {
-    void a(y8.f fVar);
 
-    void b(y8.f fVar);
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.util.Log;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.TimeUnit;
+public abstract class a {
+    public static final long f58511a = TimeUnit.MINUTES.toMillis(10);
+    public static final long f58512b = SystemClock.elapsedRealtime();
+    public static final int f58513c = 0;
 
-    void c(y8.f fVar);
+    public static void a(Task task, Activity activity) {
+        ?? obj = new Object();
+        int incrementAndGet = t.f58586f.incrementAndGet();
+        obj.f58587a = incrementAndGet;
+        t.f58585e.put(incrementAndGet, obj);
+        t.d.postDelayed(obj, f58511a);
+        task.addOnCompleteListener(obj);
+        FragmentTransaction beginTransaction = activity.getFragmentManager().beginTransaction();
+        int i3 = obj.f58587a;
+        Bundle bundle = new Bundle();
+        bundle.putInt("resolveCallId", i3);
+        bundle.putInt("requestCode", 991);
+        bundle.putLong("initializationElapsedRealtime", f58512b);
+        Fragment fragment = new Fragment();
+        fragment.setArguments(bundle);
+        int i10 = obj.f58587a;
+        StringBuilder sb2 = new StringBuilder(58);
+        sb2.append("com.google.android.gms.wallet.AutoResolveHelper");
+        sb2.append(i10);
+        beginTransaction.add(fragment, sb2.toString()).commit();
+    }
 
-    void d(y8.f fVar);
+    public static void b(Activity activity, int i3, int i10, Intent intent) {
+        PendingIntent createPendingResult = activity.createPendingResult(i3, intent, 1073741824);
+        if (createPendingResult == null) {
+            if (Log.isLoggable("AutoResolveHelper", 5)) {
+                Log.w("AutoResolveHelper", "Null pending result returned when trying to deliver task result!");
+                return;
+            }
+            return;
+        }
+        try {
+            createPendingResult.send(i10);
+        } catch (PendingIntent.CanceledException e10) {
+            if (Log.isLoggable("AutoResolveHelper", 6)) {
+                Log.e("AutoResolveHelper", "Exception sending pending result", e10);
+            }
+        }
+    }
 }

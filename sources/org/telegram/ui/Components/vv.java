@@ -1,28 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class vv extends FrameLayout {
-    public final vy f31923a;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+public final class vv extends ImageView {
+    public final ey f39806a;
 
-    public vv(vy vyVar, Context context) {
+    public vv(ey eyVar, Context context) {
         super(context);
-        this.f31923a = vyVar;
+        this.f39806a = eyVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        vy vyVar = this.f31923a;
-        yv yvVar = vyVar.f31978o0;
-        if (view == vyVar.f31958h0) {
-            canvas.save();
-            canvas.clipRect(0.0f, yvVar.getY() + yvVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        fx fxVar;
+        int action = motionEvent.getAction();
+        ey eyVar = this.f39806a;
+        if (action == 0) {
+            eyVar.Q1 = true;
+            eyVar.R1 = false;
+            org.telegram.messenger.g0.i3(new o2(eyVar, 350, 6), 350);
+        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
+            eyVar.Q1 = false;
+            if (!eyVar.R1 && (fxVar = eyVar.f33582u1) != null && fxVar.k()) {
+                try {
+                    eyVar.f33595y.performHapticFeedback(3);
+                } catch (Exception unused) {
+                }
+            }
         }
-        return super.drawChild(canvas, view, j10);
+        super.onTouchEvent(motionEvent);
+        return true;
     }
 }

@@ -1,4 +1,8 @@
 package a9;
-public abstract class d0 extends s implements e0 {
-    public static final int f323i = 0;
+
+import android.os.IInterface;
+public interface d0 extends IInterface {
+    void C();
+
+    void i0(t0 t0Var);
 }

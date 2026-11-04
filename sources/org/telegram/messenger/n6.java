@@ -1,407 +1,254 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import java.io.IOException;
-import java.nio.MappedByteBuffer;
-import java.util.zip.DataFormatException;
-import java.util.zip.Inflater;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Environment;
+import android.text.TextUtils;
+import android.view.Window;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 public final class n6 {
-    public final MappedByteBuffer f17257a;
-    public final int f17258b;
-    public final int f17259c;
-    public final Inflater d = new Inflater(true);
-    public final BitmapFactory.Options e = new BitmapFactory.Options();
-    public byte[] f17260f = new byte[4096];
-    public final byte[] f17261g = new byte[4608];
-    public final byte[] h = new byte[4096];
-    public final int[] f17262i = new int[4096];
-    public final int[] f17263j = new int[4096];
-    public final int[] f17264k = new int[256];
-    public final byte[] f17265l = new byte[1024];
-    public final int[] f17266m = new int[8];
-    public final long[] f17267n = new long[8];
-    public final byte[][] f17268o = new byte[8];
-    public long f17269p;
+    public static final String[] f24316e = {"/dev/socket/genyd", "/dev/socket/baseband_genyd"};
+    public static final String[] f24317f = {"goldfish"};
+    public static final String[] f24318g = {"/dev/socket/qemud", "/dev/qemu_pipe"};
+    public static final String[] h = {"ueventd.android_x86.rc", "x86.prop", "ueventd.ttVM_x86.rc", "init.ttVM_x86.rc", "fstab.ttVM_x86", "fstab.vbox86", "init.vbox86.rc", "ueventd.vbox86.rc"};
+    public static final String[] f24319i = {"fstab.andy", "ueventd.andy.rc"};
+    public static final String[] f24320j = {"fstab.nox", "init.nox.rc", "ueventd.nox.rc", "/BigNoxGameHD", "/YSLauncher"};
+    public static final String[] f24321k = {"/Android/data/com.bluestacks.home", "/Android/data/com.bluestacks.settings"};
+    public static final m6[] f24322l = {new m6("init.svc.qemud", null, false), new m6("init.svc.qemu-props", null, false), new m6("qemu.hw.mainkeys", null, false), new m6("qemu.sf.fake_camera", null, false), new m6("qemu.sf.lcd_density", null, false), new m6("ro.bootloader", "unknown", false), new m6("ro.bootmode", "unknown", false), new m6("ro.hardware", "goldfish", false), new m6("ro.kernel.android.qemud", null, false), new m6("ro.kernel.qemu.gles", null, false), new m6("ro.kernel.qemu", "1", false), new m6("ro.product.device", "generic", false), new m6("ro.product.model", "sdk", false), new m6("ro.product.name", "sdk", false), new m6("ro.serialno", null, false)};
+    public static n6 f24323m;
+    public static HashMap f24324n;
+    public boolean f24325a;
+    public boolean f24326b;
+    public final Object f24327c;
+    public final Object d;
 
-    public n6() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.n6.<init>():void");
+    public n6(Window window, d9 d9Var) {
+        this.f24325a = false;
+        this.f24326b = false;
+        this.f24327c = window;
+        this.d = d9Var;
     }
 
-    public static IllegalStateException a(String str) {
-        return new IllegalStateException("Damaged emoji.pack: ".concat(str));
+    public static boolean c() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.n6.c():boolean");
     }
 
-    public static int f(int i10) {
-        return (i10 * 20) + 32;
-    }
-
-    public static int n(int i10, int i11) {
-        int i12 = i10 & 63;
-        int i13 = i10 >>> 6;
-        if ((i11 & 1) != 0) {
-            i12 = 63 - i12;
-        }
-        if ((i11 & 2) != 0) {
-            i13 = 63 - i13;
-        }
-        if ((i11 & 4) != 0) {
-            return i13 | (i12 << 6);
-        }
-        return (i13 << 6) | i12;
-    }
-
-    public final Bitmap b(int i10, int i11) {
-        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(this.f17260f, i10, i11, this.e);
-        if (decodeByteArray != null) {
-            if (decodeByteArray.getWidth() == 64 && decodeByteArray.getHeight() == 64) {
-                return decodeByteArray;
+    public static n6 h(Context context) {
+        if (context != null) {
+            if (f24323m == null) {
+                f24323m = new n6(context.getApplicationContext());
             }
-            decodeByteArray.recycle();
-            throw a("Unexpected bitmap dimensions");
+            return f24323m;
         }
-        throw a("Bitmap decoder rejected image");
+        throw new IllegalArgumentException("Context must not be null.");
     }
 
-    public final void c(int r28, byte[] r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.n6.c(int, byte[]):void");
-    }
-
-    public final void d(int[] iArr, int i10) {
-        Bitmap b10;
-        Bitmap bitmap;
-        boolean z10;
-        int[] iArr2;
-        int i11;
-        int p5;
-        int p9;
-        int i12;
-        int f7 = f(i10);
-        MappedByteBuffer mappedByteBuffer = this.f17257a;
-        int i13 = mappedByteBuffer.getInt(f7 + 4);
-        int o10 = o(f7 + 8);
-        int p10 = p(f7 + 16);
-        if (p10 != 2) {
-            int i14 = 3;
-            if (p10 != 3) {
-                byte[] bArr = this.h;
-                c(i10, bArr);
-                int o11 = o(f7 + 14);
-                int i15 = f7 + 18;
-                int p11 = p(i15) & 127;
-                int i16 = o11 * p11;
-                if ((p(i15) & 128) != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (z10) {
-                    int j10 = j(f7) - 2;
-                    l(i13 + 2, j10);
-                    if ((p(f7 + 19) & 1) != 0) {
-                        i12 = ((i16 * 7) + 7) / 8;
-                    } else {
-                        i12 = i16;
-                    }
-                    i(j10, i12);
-                }
-                int p12 = p(f7 + 19) & 1;
-                byte[] bArr2 = this.f17261g;
-                byte[] bArr3 = this.f17265l;
-                if (p12 != 0) {
-                    int i17 = 0;
-                    while (i17 < i16) {
-                        int i18 = i17 * 7;
-                        int i19 = i18 & 7;
-                        int i20 = i18 >>> i14;
-                        if (z10) {
-                            p5 = bArr2[i20] & 255;
-                        } else {
-                            p5 = p(i13 + i20);
-                        }
-                        int i21 = p5 >>> i19;
-                        if (i19 > 1) {
-                            if (z10) {
-                                p9 = bArr2[i20 + 1] & 255;
-                            } else {
-                                p9 = p(i20 + i13 + 1);
-                            }
-                            i21 |= p9 << (8 - i19);
-                        }
-                        int i22 = i21 & 127;
-                        bArr3[i17] = (byte) ((i22 >>> 6) | (i22 << 1));
-                        i17++;
-                        i14 = 3;
-                    }
-                } else if (z10) {
-                    System.arraycopy(bArr2, 0, bArr3, 0, i16);
-                } else {
-                    for (int i23 = 0; i23 < i16; i23++) {
-                        bArr3[i23] = mappedByteBuffer.get(i13 + i23);
-                    }
-                }
-                int i24 = 0;
-                int i25 = 0;
-                while (true) {
-                    iArr2 = this.f17264k;
-                    if (i24 >= o11) {
-                        break;
-                    }
-                    if (p11 == 0) {
-                        iArr2[i24] = (65793 * i24) | (-16777216);
-                    } else if (p11 == 1) {
-                        iArr2[i24] = ((bArr3[i25] & 255) * 65793) | (-16777216);
-                        i25++;
-                    } else {
-                        int i26 = bArr3[i25] & 255;
-                        int i27 = bArr3[i25 + 1] & 255;
-                        int i28 = i25 + 3;
-                        int i29 = bArr3[i25 + 2] & 255;
-                        if (p11 == 4) {
-                            i25 += 4;
-                            i11 = bArr3[i28] & 255;
-                        } else {
-                            i25 = i28;
-                            i11 = 255;
-                        }
-                        iArr2[i24] = (i27 << 8) | (i26 << 16) | (i11 << 24) | i29;
-                    }
-                    i24++;
-                }
-                for (int i30 = 0; i30 < 4096; i30++) {
-                    int i31 = bArr[i30] & 255;
-                    if (i31 < o11) {
-                        iArr[i30] = iArr2[i31];
-                    } else {
-                        throw a("Palette index out of range");
-                    }
-                }
-                return;
-            }
-        }
-        l(i13, o10);
-        BitmapFactory.Options options = this.e;
-        options.inPremultiplied = false;
-        Bitmap bitmap2 = null;
-        try {
-            if (p10 == 2) {
-                b10 = e(20, o10);
-            } else {
-                b10 = b(20, o10);
-            }
-            bitmap = b10;
-        } catch (Throwable th2) {
-            th = th2;
-        }
-        try {
-            bitmap.getPixels(iArr, 0, 64, 0, 0, 64, 64);
-            options.inPremultiplied = true;
-            bitmap.recycle();
-        } catch (Throwable th3) {
-            th = th3;
-            bitmap2 = bitmap;
-            options.inPremultiplied = true;
-            if (bitmap2 != null) {
-                bitmap2.recycle();
-            }
-            throw th;
-        }
-    }
-
-    public final Bitmap e(int i10, int i11) {
-        int i12 = i10 - 20;
-        int i13 = i11 & 1;
-        k(i12, 1179011410);
-        k(i10 - 16, i11 + 12 + i13);
-        k(i10 - 12, 1346520407);
-        k(i10 - 8, 1278758998);
-        k(i10 - 4, i11);
-        if (i13 != 0) {
-            this.f17260f[i10 + i11] = 0;
-        }
-        return b(i12, i11 + 20 + i13);
-    }
-
-    public final int g(int i10, int i11, int i12) {
-        int i13 = i12 - 1;
-        while (i11 <= i13) {
-            int i14 = (i11 + i13) >>> 1;
-            int o10 = o(f(i14));
-            if (o10 < i10) {
-                i11 = i14 + 1;
-            } else if (o10 > i10) {
-                i13 = i14 - 1;
-            } else {
-                return i14;
-            }
-        }
-        return -1;
-    }
-
-    public final synchronized Bitmap h(int i10, int i11) {
-        int i12;
-        Bitmap b10;
-        if (i10 >= 0 && i10 <= 15 && i11 >= 0 && i11 < 4096) {
-            try {
-                i12 = g((i10 * 4096) + i11, 0, this.f17259c);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        } else {
-            i12 = -1;
-        }
-        if (i12 < 0) {
-            return null;
-        }
-        int o10 = o(f(i12) + 2);
-        if (o10 == 65535) {
-            int[] iArr = this.f17262i;
-            int f7 = f(i12);
-            int i13 = this.f17257a.getInt(f7 + 4);
-            int o11 = o(f7 + 8);
-            int p5 = p(f7 + 16);
-            if (p5 != 2 && p5 != 3) {
-                d(iArr, i12);
-                b10 = Bitmap.createBitmap(iArr, 64, 64, Bitmap.Config.ARGB_8888);
-                return b10;
-            }
-            l(i13, o11);
-            if (p5 == 2) {
-                b10 = e(20, o11);
-            } else {
-                b10 = b(20, o11);
-            }
-            return b10;
-        }
-        d(this.f17263j, i12);
-        d(this.f17262i, g(o10, this.f17259c, this.f17258b));
-        for (int i14 = 0; i14 < 4096; i14++) {
-            int[] iArr2 = this.f17263j;
-            int i15 = iArr2[i14];
-            iArr2[i14] = (i15 & 16777215) | (((((i15 >>> 24) * (this.f17262i[i14] & 255)) + 127) / 255) << 24);
-        }
-        return Bitmap.createBitmap(this.f17263j, 64, 64, Bitmap.Config.ARGB_8888);
-    }
-
-    public final void i(int i10, int i11) {
-        Inflater inflater = this.d;
-        inflater.reset();
-        inflater.setInput(this.f17260f, 20, i10);
-        int i12 = 0;
-        while (i12 < i11) {
-            try {
-                int inflate = inflater.inflate(this.f17261g, i12, i11 - i12);
-                if (inflate != 0) {
-                    i12 += inflate;
-                } else {
-                    throw a("Truncated DEFLATE stream");
-                }
-            } catch (DataFormatException e) {
-                throw new IllegalStateException("Damaged EPK3 DEFLATE stream", e);
-            }
-        }
-        if (!inflater.finished() && (inflater.inflate(this.h, 0, 1) != 0 || !inflater.finished())) {
-            throw a("Oversized DEFLATE stream");
-        }
-        if (inflater.getRemaining() == 0) {
+    public void a() {
+        if (this.f24325a) {
             return;
         }
-        throw a("Trailing DEFLATE bytes");
+        this.f24325a = true;
+        g();
     }
 
-    public final int j(int i10) {
-        int i11;
-        int i12 = i10 + 18;
-        if ((p(i12) & 128) != 0) {
-            int i13 = i10 + 8;
-            if (o(i13) >= 3) {
-                int o10 = o(this.f17257a.getInt(i10 + 4));
-                if (o10 != 0 && (i11 = o10 + 2) <= o(i13)) {
-                    return i11;
+    public boolean b() {
+        String str;
+        String[] split;
+        Context context = (Context) this.f24327c;
+        f0.d.b(context, "android.permission.READ_PHONE_STATE");
+        if (d(1, f24316e) || d(2, f24319i) || d(3, f24320j) || d(4, f24321k)) {
+            return true;
+        }
+        File[] fileArr = {new File("/proc/tty/drivers"), new File("/proc/cpuinfo")};
+        for (int i3 = 0; i3 < 2; i3++) {
+            File file = fileArr[i3];
+            if (file.exists() && file.canRead()) {
+                byte[] bArr = new byte[1024];
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    fileInputStream.read(bArr);
+                    fileInputStream.close();
+                } catch (Exception e10) {
+                    e10.printStackTrace();
                 }
-                throw a("Invalid compressed palette");
+                if (new String(bArr).contains(f24317f[0])) {
+                    return true;
+                }
             }
-            throw a("Truncated compressed palette");
         }
-        int o11 = o(i10 + 14) * (p(i12) & 127);
-        if ((p(i10 + 19) & 1) != 0) {
-            return ((o11 * 7) + 7) / 8;
+        if (d(5, f24318g)) {
+            return true;
         }
-        return o11;
-    }
-
-    public final void k(int i10, int i11) {
-        byte[] bArr = this.f17260f;
-        bArr[i10] = (byte) i11;
-        bArr[i10 + 1] = (byte) (i11 >>> 8);
-        bArr[i10 + 2] = (byte) (i11 >>> 16);
-        bArr[i10 + 3] = (byte) (i11 >>> 24);
-    }
-
-    public final void l(int i10, int i11) {
-        byte[] bArr = this.f17260f;
-        int i12 = i11 + 21;
-        if (bArr.length < i12) {
-            int length = bArr.length;
-            while (length < i12) {
-                length <<= 1;
+        if (f0.d.b(context, "android.permission.INTERNET") == 0) {
+            String[] strArr = {"/system/bin/netcfg"};
+            StringBuilder sb2 = new StringBuilder();
+            try {
+                ProcessBuilder processBuilder = new ProcessBuilder(strArr);
+                processBuilder.directory(new File("/system/bin/"));
+                processBuilder.redirectErrorStream(true);
+                InputStream inputStream = processBuilder.start().getInputStream();
+                byte[] bArr2 = new byte[1024];
+                while (inputStream.read(bArr2) != -1) {
+                    sb2.append(new String(bArr2));
+                }
+                inputStream.close();
+            } catch (Exception unused) {
             }
-            this.f17260f = new byte[length];
+            String sb3 = sb2.toString();
+            if (!TextUtils.isEmpty(sb3)) {
+                for (String str2 : sb3.split("\n")) {
+                    if ((str2.contains("wlan0") || str2.contains("tunl0") || str2.contains("eth0")) && str2.contains("10.0.2.15")) {
+                        return true;
+                    }
+                }
+            }
         }
-        MappedByteBuffer mappedByteBuffer = this.f17257a;
-        mappedByteBuffer.position(i10);
-        mappedByteBuffer.get(this.f17260f, 20, i11);
+        int i10 = 0;
+        for (int i11 = 0; i11 < 15; i11++) {
+            m6 m6Var = f24322l[i11];
+            String str3 = m6Var.f24168a;
+            try {
+                Class<?> loadClass = context.getClassLoader().loadClass("android.os.SystemProperties");
+                str = (String) loadClass.getMethod("get", String.class).invoke(loadClass, str3);
+            } catch (Exception unused2) {
+                str = null;
+            }
+            String str4 = m6Var.f24169b;
+            if (str4 == null && str != null) {
+                i10++;
+            }
+            if (str4 != null && str.contains(str4)) {
+                i10++;
+            }
+        }
+        if (i10 >= 5 && d(6, h)) {
+            return true;
+        }
+        return false;
     }
 
-    public final byte[] m(int i10) {
-        int i11 = 0;
-        int i12 = 0;
-        while (true) {
-            byte[][] bArr = this.f17268o;
-            long[] jArr = this.f17267n;
-            int[] iArr = this.f17266m;
-            if (i11 < 8) {
-                if (iArr[i11] == i10) {
-                    long j10 = this.f17269p + 1;
-                    this.f17269p = j10;
-                    jArr[i11] = j10;
-                    return bArr[i11];
+    public boolean d(int i3, String[] strArr) {
+        File file;
+        for (String str : strArr) {
+            if (f0.d.b((Context) this.f24327c, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                if ((str.contains("/") && i3 == 3) || i3 == 4) {
+                    file = new File(Environment.getExternalStorageDirectory() + str);
+                } else {
+                    file = new File(str);
                 }
-                if (jArr[i11] < jArr[i12]) {
-                    i12 = i11;
-                }
-                i11++;
             } else {
-                if (bArr[i12] == null) {
-                    bArr[i12] = new byte[4096];
+                file = new File(str);
+            }
+            if (file.exists()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void e() {
+        if (!this.f24325a) {
+            return;
+        }
+        this.f24325a = false;
+        g();
+    }
+
+    public boolean f() {
+        if (this.f24325a) {
+            return this.f24326b;
+        }
+        boolean z10 = true;
+        try {
+            this.f24325a = true;
+            if (!this.f24326b) {
+                this.f24326b = c();
+            }
+            if (!this.f24326b) {
+                this.f24326b = b();
+            }
+            if (!this.f24326b) {
+                ArrayList arrayList = (ArrayList) this.d;
+                if (!arrayList.isEmpty()) {
+                    PackageManager packageManager = ((Context) this.f24327c).getPackageManager();
+                    int size = arrayList.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        Object obj = arrayList.get(i3);
+                        i3++;
+                        Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage((String) obj);
+                        if (launchIntentForPackage != null && !packageManager.queryIntentActivities(launchIntentForPackage, 65536).isEmpty()) {
+                            break;
+                        }
+                    }
                 }
-                iArr[i12] = -1;
-                c(i10, bArr[i12]);
-                iArr[i12] = i10;
-                long j11 = this.f17269p + 1;
-                this.f17269p = j11;
-                jArr[i12] = j11;
-                return bArr[i12];
+                z10 = false;
+                this.f24326b = z10;
+            }
+            if (!this.f24326b) {
+                this.f24326b = b6.b();
+            }
+            return this.f24326b;
+        } catch (Exception unused) {
+            return false;
+        }
+    }
+
+    public void g() {
+        boolean z10;
+        int intValue;
+        int i3 = 1;
+        if (this.f24325a && ((d9) this.d).run()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10 != this.f24326b) {
+            this.f24326b = z10;
+            if (!z10) {
+                i3 = -1;
+            }
+            Window window = (Window) this.f24327c;
+            if (f24324n == null) {
+                f24324n = new HashMap();
+            }
+            Integer num = (Integer) f24324n.get(window);
+            if (num == null) {
+                intValue = 0;
+            } else {
+                intValue = num.intValue();
+            }
+            int max = Math.max(0, intValue + i3);
+            if (max <= 0) {
+                f24324n.remove(window);
+            } else {
+                f24324n.put(window, Integer.valueOf(max));
+            }
+            if (window != null) {
+                HashMap hashMap = f24324n;
+                if (hashMap != null && hashMap.get(window) != null) {
+                    window.addFlags(8192);
+                    g0.h2();
+                    return;
+                }
+                window.clearFlags(8192);
+                g0.h2();
             }
         }
     }
 
-    public final int o(int i10) {
-        return this.f17257a.getShort(i10) & 65535;
-    }
-
-    public final int p(int i10) {
-        return this.f17257a.get(i10) & 255;
-    }
-
-    public final void q(int i10, int i11) {
-        if (i10 < this.f17258b && i10 != i11) {
-            int f7 = f(i10);
-            if (p(f7 + 16) <= 1 && p(f7 + 17) == 0 && o(f7 + 10) == 65535 && o(f7 + 12) == 65535) {
-                return;
-            }
-            throw new IOException("EPK3 dependency chains are forbidden");
-        }
-        throw new IOException("Invalid root reference");
+    public n6(Context context) {
+        ArrayList arrayList = new ArrayList();
+        this.d = arrayList;
+        this.f24327c = context;
+        arrayList.add("com.google.android.launcher.layouts.genymotion");
+        arrayList.add("com.bluestacks");
+        arrayList.add("com.bignox.app");
+        arrayList.add("com.vphone.launcher");
     }
 }

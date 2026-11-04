@@ -1,102 +1,87 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-public final class r90 extends yy {
-    public final qu0 X;
-    public final y90 Y;
+public final class r90 extends org.telegram.ui.Cells.i9 {
+    public final x90 f37694w0;
 
-    public r90(y90 y90Var) {
-        super(100, false);
-        this.Y = y90Var;
-        this.X = new Object();
+    public r90(x90 x90Var) {
+        this.f37694w0 = x90Var;
+        this.f30671g0 = x90Var.f40291d0.G;
     }
 
     @Override
-    public final int A() {
-        y90 y90Var = this.Y;
-        if (y90Var.f32783f.I() == null && y90Var.f32783f.U == null) {
-            return B();
+    public final void I(int i3, int i10, org.telegram.messenger.zi ziVar) {
+        org.telegram.ui.mm mmVar;
+        org.telegram.messenger.zi ziVar2;
+        x90 x90Var = this.f37694w0;
+        r90 r90Var = x90Var.f40292e;
+        int i11 = r90Var.v - r90Var.f30691u;
+        da0 da0Var = x90Var.f40291d0;
+        if (i11 > org.telegram.messenger.hp.s1(da0Var.f33042x).f23081o4) {
+            x90Var.g();
+            return;
         }
-        return B() - 1;
+        org.telegram.messenger.dj djVar = da0Var.d;
+        djVar.f22200e = r90Var.f30691u;
+        djVar.f22201f = r90Var.v;
+        org.telegram.messenger.zi c2 = x90Var.c(ziVar);
+        if (c2 != null && ((mmVar = da0Var.d.d) == null || mmVar.f47710m || (ziVar2 = mmVar.f47700a) == null || ziVar2.f1() != c2.f1())) {
+            da0Var.d.d = org.telegram.ui.mm.b(i3, i10, c2);
+        }
+        da0Var.b();
+        da0Var.a(true);
     }
 
     @Override
-    public final qu0 D1(int i10) {
-        TLRPC.PhotoSize w9;
-        float f7;
-        qu0 qu0Var = this.X;
-        int i11 = 0;
-        qu0Var.f29810c = false;
-        y90 y90Var = this.Y;
-        if (i10 == 0) {
-            qu0Var.f29808a = this.f47998m;
-            qu0Var.f29809b = y90Var.e.h;
-            qu0Var.f29810c = true;
-            return qu0Var;
+    public final boolean b() {
+        org.telegram.messenger.zi c2;
+        TLRPC.Message message;
+        x90 x90Var = this.f37694w0;
+        if (x90Var.f40285a == 0 && (c2 = x90Var.c(null)) != null && (message = c2.f26868k) != null && message.rich_message != null) {
+            return false;
         }
-        int i12 = i10 - 1;
-        if (y90Var.f32783f.I() == null && y90Var.f32783f.U == null) {
-            i10 = i12;
+        org.telegram.messenger.dj djVar = x90Var.f40291d0.d;
+        if (djVar != null && djVar.f22213s) {
+            return false;
         }
-        qu0Var.f29808a = 0.0f;
-        qu0Var.f29809b = 0.0f;
-        Object J = y90Var.f32783f.J(i10);
-        if (J instanceof TLRPC.BotInlineResult) {
-            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
-            TLRPC.Document document = botInlineResult.document;
-            if (document != null) {
-                TLRPC.PhotoSize w10 = org.telegram.messenger.b8.w(document.thumbs, 90, false, null, false);
-                float f10 = 100.0f;
-                if (w10 != null) {
-                    f7 = w10.f19819w;
-                } else {
-                    f7 = 100.0f;
-                }
-                qu0Var.f29808a = f7;
-                if (w10 != null) {
-                    f10 = w10.h;
-                }
-                qu0Var.f29809b = f10;
-                while (i11 < botInlineResult.document.attributes.size()) {
-                    TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i11);
-                    if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i11++;
-                    } else {
-                        qu0Var.f29808a = documentAttribute.f19801w;
-                        qu0Var.f29809b = documentAttribute.h;
-                        break;
-                    }
-                }
-            } else if (botInlineResult.content != null) {
-                while (i11 < botInlineResult.content.attributes.size()) {
-                    TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i11);
-                    if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i11++;
-                    } else {
-                        qu0Var.f29808a = documentAttribute2.f19801w;
-                        qu0Var.f29809b = documentAttribute2.h;
-                        break;
-                    }
-                }
-            } else if (botInlineResult.thumb != null) {
-                while (i11 < botInlineResult.thumb.attributes.size()) {
-                    TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i11);
-                    if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i11++;
-                    } else {
-                        qu0Var.f29808a = documentAttribute3.f19801w;
-                        qu0Var.f29809b = documentAttribute3.h;
-                        break;
-                    }
-                }
-            } else {
-                TLRPC.Photo photo = botInlineResult.photo;
-                if (photo != null && (w9 = org.telegram.messenger.b8.w(photo.sizes, org.telegram.messenger.i0.Z0(false), false, null, false)) != null) {
-                    qu0Var.f29808a = w9.f19819w;
-                    qu0Var.f29809b = w9.h;
-                }
+        return true;
+    }
+
+    @Override
+    public final boolean e() {
+        org.telegram.messenger.zi c2;
+        TLRPC.Message message;
+        x90 x90Var = this.f37694w0;
+        int i3 = x90Var.f40285a;
+        if (i3 == 0 && !x90Var.f40291d0.d.f22203i) {
+            if (i3 != 0 || (c2 = x90Var.c(null)) == null || (message = c2.f26868k) == null || message.rich_message == null || org.telegram.messenger.gv.c(x90Var.c(null))) {
+                return true;
             }
+            return false;
         }
-        return qu0Var;
+        return false;
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.e6 q() {
+        return this.f30671g0;
+    }
+
+    @Override
+    public final void w() {
+        super.w();
+        ci.j1 j1Var = this.f37694w0.f40293f;
+        if (j1Var != null) {
+            j1Var.invalidate();
+        }
+    }
+
+    @Override
+    public final boolean z(org.telegram.messenger.zi ziVar) {
+        x90 x90Var = this.f37694w0;
+        if (x90Var.f40285a == 0 && !x90Var.f40291d0.d.f22203i && x()) {
+            return true;
+        }
+        return false;
     }
 }

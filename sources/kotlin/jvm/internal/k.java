@@ -1,32 +1,22 @@
 package kotlin.jvm.internal;
-public final class k implements c {
-    public final Class f11441a;
 
-    public k(Class jClass) {
-        i.e(jClass, "jClass");
-        this.f11441a = jClass;
+import java.io.Serializable;
+public abstract class k implements g, Serializable {
+    public final int f17355a;
+
+    public k(int i3) {
+        this.f17355a = i3;
     }
 
     @Override
-    public final Class a() {
-        return this.f11441a;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof k) {
-            if (i.a(this.f11441a, ((k) obj).f11441a)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f11441a.hashCode();
+    public final int getArity() {
+        return this.f17355a;
     }
 
     public final String toString() {
-        return this.f11441a + " (Kotlin reflection is not available)";
+        s.f17362a.getClass();
+        String a10 = t.a(this);
+        j.d(a10, "renderLambdaToString(...)");
+        return a10;
     }
 }

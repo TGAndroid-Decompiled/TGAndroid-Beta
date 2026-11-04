@@ -1,17 +1,24 @@
 package z7;
-public final class g8 implements ja.d {
-    public static final g8 f54820a = new Object();
 
-    static {
-        sc.e.v(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, new s(3)), 4)), 5)));
+import java.util.Arrays;
+public final class g8 {
+    public final Float f59883a;
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof g8)) {
+            return false;
+        }
+        g8 g8Var = (g8) obj;
+        if (p6.m.k(null, null) && p6.m.k(this.f59883a, g8Var.f59883a) && p6.m.k(null, null)) {
+            return true;
+        }
+        return false;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{null, this.f59883a, null});
     }
 }

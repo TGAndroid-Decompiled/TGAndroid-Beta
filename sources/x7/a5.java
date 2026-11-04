@@ -1,15 +1,15 @@
 package x7;
-public final class a5 implements ja.d {
-    public static final a5 f53111a = new Object();
+public final class a5 implements ma.d {
+    public static final a5 f58234a = new Object();
 
     static {
-        sc.e.v(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, new z(1)), 2)), 3)));
+        t4.c.o(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, new e(1)), 2)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
+            ma.e eVar = (ma.e) obj2;
             throw null;
         }
         throw new ClassCastException();

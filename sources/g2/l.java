@@ -1,56 +1,65 @@
 package g2;
 
-import java.io.InputStream;
-import v7.t6;
-public final class l extends InputStream {
-    public final h f7306a;
-    public final n f7307b;
-    public boolean d = false;
-    public boolean e = false;
-    public final byte[] f7308c = new byte[1];
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+public final class l implements Iterable {
+    public final Object f11861a = new Object();
+    public final HashMap f11862b = new HashMap();
+    public Set f11863c = Collections.EMPTY_SET;
+    public List d = Collections.EMPTY_LIST;
 
-    public l(h hVar, n nVar) {
-        this.f7306a = hVar;
-        this.f7307b = nVar;
+    public final int h(p2.j jVar) {
+        int i3;
+        synchronized (this.f11861a) {
+            try {
+                if (this.f11862b.containsKey(jVar)) {
+                    i3 = ((Integer) this.f11862b.get(jVar)).intValue();
+                } else {
+                    i3 = 0;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return i3;
     }
 
-    public final void a() {
-        if (!this.d) {
-            this.f7306a.open(this.f7307b);
-            this.d = true;
+    public final void i(p2.j jVar) {
+        synchronized (this.f11861a) {
+            try {
+                Integer num = (Integer) this.f11862b.get(jVar);
+                if (num == null) {
+                    return;
+                }
+                ArrayList arrayList = new ArrayList(this.d);
+                arrayList.remove(jVar);
+                this.d = DesugarCollections.unmodifiableList(arrayList);
+                if (num.intValue() == 1) {
+                    this.f11862b.remove(jVar);
+                    HashSet hashSet = new HashSet(this.f11863c);
+                    hashSet.remove(jVar);
+                    this.f11863c = DesugarCollections.unmodifiableSet(hashSet);
+                } else {
+                    this.f11862b.put(jVar, Integer.valueOf(num.intValue() - 1));
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 
     @Override
-    public final void close() {
-        if (!this.e) {
-            this.f7306a.close();
-            this.e = true;
+    public final Iterator iterator() {
+        Iterator it;
+        synchronized (this.f11861a) {
+            it = this.d.iterator();
         }
-    }
-
-    @Override
-    public final int read() {
-        byte[] bArr = this.f7308c;
-        if (read(bArr, 0, bArr.length) == -1) {
-            return -1;
-        }
-        return bArr[0] & 255;
-    }
-
-    @Override
-    public final int read(byte[] bArr) {
-        return read(bArr, 0, bArr.length);
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        t6.p(!this.e);
-        a();
-        int read = this.f7306a.read(bArr, i10, i11);
-        if (read == -1) {
-            return -1;
-        }
-        return read;
+        return it;
     }
 }

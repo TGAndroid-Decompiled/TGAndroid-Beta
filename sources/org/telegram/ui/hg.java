@@ -1,57 +1,78 @@
 package org.telegram.ui;
-public final class hg implements q0.a {
-    public final int f37810a;
-    public final un f37811b;
 
-    public hg(un unVar, int i10) {
-        this.f37810a = i10;
-        this.f37811b = unVar;
+import org.telegram.messenger.MediaController;
+public final class hg implements Runnable {
+    public final int f45918a = 0;
+    public final wm f45919b;
+    public final boolean f45920c;
+    public final long d;
+
+    public hg(wm wmVar, long j10, boolean z10) {
+        this.f45919b = wmVar;
+        this.d = j10;
+        this.f45920c = z10;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f37810a) {
+    public final void run() {
+        long j10;
+        long j11;
+        switch (this.f45918a) {
             case 0:
-                Integer num = (Integer) obj;
-                un unVar = this.f37811b;
-                unVar.getClass();
-                if (num.intValue() == 0) {
-                    unVar.f42304z1 = 0;
-                    unVar.ad(true);
-                    unVar.getMessagesController().q3(unVar.f42108j6, unVar.b());
-                    return;
-                }
-                unVar.ad(true);
-                unVar.l(num.intValue(), 0, false, 0, true, 0);
-                return;
-            case 1:
-                Integer num2 = (Integer) obj;
-                un unVar2 = this.f37811b;
-                unVar2.getClass();
-                if (num2.intValue() == 0) {
-                    unVar2.A1 = 0;
-                    unVar2.Zc(true);
-                    unVar2.getMessagesController().p3(unVar2.f42108j6, unVar2.b());
-                    return;
-                }
-                int i10 = unVar2.A1 - 1;
-                unVar2.A1 = i10;
-                if (i10 <= 0) {
-                    unVar2.getMessagesController().p3(unVar2.f42108j6, unVar2.b());
-                }
-                unVar2.Zc(true);
-                unVar2.l(num2.intValue(), 0, false, 0, true, 0);
+                wm.X0(this.f45919b, this.d, this.f45920c);
                 return;
             default:
-                un unVar3 = this.f37811b;
-                unVar3.getClass();
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                unVar3.f42259v7 = booleanValue;
-                if (!booleanValue) {
-                    unVar3.G8();
+                mj mjVar = this.f45919b.f51237a0;
+                if (mjVar != null) {
+                    MediaController B = MediaController.B();
+                    if (!mjVar.Z1 && !mjVar.G2 && B.J() && !B.K() && B.f21321h1 == mjVar.H2) {
+                        mjVar.f31104d1 = false;
+                        org.telegram.ui.Components.ce ceVar = mjVar.f31099c1;
+                        if (ceVar != null) {
+                            ceVar.j(org.telegram.ui.Components.fg.f33790a, false);
+                        }
+                        mjVar.G2 = true;
+                        mjVar.M1(0, true);
+                        if (this.f45920c) {
+                            mjVar.P = true;
+                            org.telegram.ui.Components.yf yfVar = mjVar.P1;
+                            if (yfVar != null) {
+                                yfVar.E.d(1, true, false);
+                            }
+                            org.telegram.messenger.li b02 = org.telegram.messenger.li.b0(mjVar.R);
+                            long j12 = mjVar.R2;
+                            wm wmVar = mjVar.Q2;
+                            if (wmVar != null && wmVar.f51525w4) {
+                                j11 = wmVar.b();
+                            } else {
+                                j11 = 0;
+                            }
+                            b02.e2(j12, j11, true);
+                        }
+                        long j13 = this.d;
+                        if (j13 > 0) {
+                            j10 = System.currentTimeMillis() - j13;
+                        } else {
+                            j10 = B.f21328l1;
+                        }
+                        mjVar.f31141j1 = j10;
+                        org.telegram.ui.Components.dg dgVar = mjVar.Z0;
+                        if (dgVar != null) {
+                            dgVar.a(j10);
+                        }
+                        mjVar.f31202t4 = true;
+                        mjVar.y1();
+                        return;
+                    }
                     return;
                 }
                 return;
         }
+    }
+
+    public hg(wm wmVar, boolean z10, long j10) {
+        this.f45919b = wmVar;
+        this.f45920c = z10;
+        this.d = j10;
     }
 }

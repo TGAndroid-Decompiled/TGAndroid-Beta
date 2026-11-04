@@ -9,14 +9,14 @@ import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Surface;
+import gi.e7;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.gf;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.re;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
-import org.telegram.messenger.w20;
+import org.telegram.messenger.z10;
 import org.telegram.messenger.ze;
-import vh.m5;
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final int EGL_OPENGL_ES2_BIT = 4;
@@ -31,8 +31,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(gf gfVar, String str, String str2, String str3, ArrayList<w20> arrayList, ze zeVar, int i10, int i11, int i12, int i13, int i14, float f7, boolean z10, Integer num, Integer num2, m5 m5Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
-        TextureRenderer textureRenderer = new TextureRenderer(gfVar, str, str2, str3, arrayList, zeVar, i10, i11, i12, i13, i14, f7, z10, num, num2, m5Var, convertVideoParams);
+    public OutputSurface(ze zeVar, String str, String str2, String str3, ArrayList<z10> arrayList, re reVar, int i3, int i10, int i11, int i12, int i13, float f10, boolean z10, Integer num, Integer num2, e7 e7Var, MediaCodecVideoConvertor.ConvertVideoParams convertVideoParams) {
+        TextureRenderer textureRenderer = new TextureRenderer(zeVar, str, str2, str3, arrayList, reVar, i3, i10, i11, i12, i13, f10, z10, num, num2, e7Var, convertVideoParams);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         this.mSurfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
@@ -47,7 +47,7 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         if (EGL14.eglGetError() == 12288) {
             return;
         }
-        throw new RuntimeException(sc.e.h("EGL error encountered (see log) at: ", str));
+        throw new RuntimeException(t4.c.f("EGL error encountered (see log) at: ", str));
     }
 
     public void awaitNewImage() {
@@ -58,8 +58,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
                     if (!this.mFrameAvailable) {
                         throw new RuntimeException("Surface frame wait timed out");
                     }
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                } catch (InterruptedException e10) {
+                    throw new RuntimeException(e10);
                 }
             }
             this.mFrameAvailable = false;
@@ -118,8 +118,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     public boolean supportsEXTYUV() {
         try {
             return GLES20.glGetString(7939).contains("GL_EXT_YUV_target");
-        } catch (Exception e) {
-            f8.g(e, true);
+        } catch (Exception e10) {
+            a8.g(e10, true);
             return false;
         }
     }

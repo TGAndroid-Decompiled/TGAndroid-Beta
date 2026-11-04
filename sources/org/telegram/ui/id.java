@@ -1,64 +1,32 @@
 package org.telegram.ui;
+public final class id implements Runnable {
+    public final int f46241a;
+    public final xd f46242b;
+    public final r41 f46243c;
+    public final TwoStepVerificationActivity d;
 
-import android.content.Context;
-import android.view.ContextThemeWrapper;
-import org.telegram.ui.Components.RadialProgressView;
-public final class id extends RadialProgressView {
-    public final int N;
-    public final Object O;
-
-    public id(org.telegram.ui.Components.a40 a40Var, Context context, int i10) {
-        super(context, null);
-        this.N = i10;
-        this.O = a40Var;
+    public id(xd xdVar, r41 r41Var, TwoStepVerificationActivity twoStepVerificationActivity, int i3) {
+        this.f46241a = i3;
+        this.f46242b = xdVar;
+        this.f46243c = r41Var;
+        this.d = twoStepVerificationActivity;
     }
 
     @Override
-    public void invalidate() {
-        switch (this.N) {
-            case 3:
-                super.invalidate();
-                zr0 zr0Var = ((PhotoViewer) this.O).f33477e0;
-                if (zr0Var != null) {
-                    zr0Var.invalidate();
-                    return;
-                }
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f7) {
-        switch (this.N) {
+    public final void run() {
+        switch (this.f46241a) {
             case 0:
-                super.setAlpha(f7);
-                ((kd) this.O).h.invalidate();
+                this.f46242b.B0.setLoading(false);
+                this.f46243c.presentFragment(this.d);
                 return;
             case 1:
-                super.setAlpha(f7);
-                ((b60) this.O).e.invalidate();
-                return;
-            case 2:
-                super.setAlpha(f7);
-                ((vd0) this.O).h.invalidate();
+                this.f46242b.H0.setLoading(false);
+                this.f46243c.presentFragment(this.d);
                 return;
             default:
-                super.setAlpha(f7);
-                zr0 zr0Var = ((PhotoViewer) this.O).f33477e0;
-                if (zr0Var != null) {
-                    zr0Var.invalidate();
-                    return;
-                }
+                this.f46242b.H0.setLoading(false);
+                this.f46243c.presentFragment(this.d);
                 return;
         }
-    }
-
-    public id(PhotoViewer photoViewer, ContextThemeWrapper contextThemeWrapper, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(contextThemeWrapper, p6Var);
-        this.N = 3;
-        this.O = photoViewer;
     }
 }

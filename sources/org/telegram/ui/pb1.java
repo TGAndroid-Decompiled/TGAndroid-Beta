@@ -1,24 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class pb1 implements sy0 {
-    public final TLRPC.TL_forumTopic f40445a;
-    public final qb1 f40446b;
+import org.webrtc.RendererCommon;
+public final class pb1 implements RendererCommon.RendererEvents {
+    public final zb1 f48509a;
 
-    public pb1(qb1 qb1Var, TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f40446b = qb1Var;
-        this.f40445a = tL_forumTopic;
+    public pb1(zb1 zb1Var) {
+        this.f48509a = zb1Var;
     }
 
     @Override
-    public final void b0() {
-        tb1 tb1Var = this.f40446b.f40741a;
-        TLRPC.TL_forumTopic tL_forumTopic = this.f40445a;
-        tb1.Z(tb1Var, tL_forumTopic.f19846id);
-        org.telegram.messenger.i0.h3(new y01(15, this, tL_forumTopic), 300L);
+    public final void onFirstFrameRendered() {
+        org.telegram.messenger.g0.h3(new pu0(this, 23));
     }
 
     @Override
-    public final void w(si0 si0Var) {
+    public final void onFrameResolutionChanged(int i3, int i10, int i11) {
     }
 }

@@ -1,112 +1,42 @@
 package org.telegram.ui.web;
 
+import android.content.Context;
 import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.at;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.kj;
-import org.telegram.messenger.vi;
-import org.telegram.messenger.vs;
-import org.telegram.tgnet.ConnectionsManager;
-public final class h implements vs {
-    public final int f42851b;
-    public final Runnable f42852c;
-    public final String d;
-    public boolean f42853f;
-    public boolean h;
-    public boolean f42854n;
-    public final ArrayList f42850a = new ArrayList();
-    public final int e = ConnectionsManager.generateClassGuid();
+import android.view.View;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.tj0;
+public final class h extends q31 {
+    public static final int f50854b = 0;
 
-    public h(String str, int i10, Runnable runnable) {
-        this.f42851b = i10;
-        this.d = str;
-        this.f42852c = runnable;
-    }
-
-    public final void a() {
-        if (!this.h) {
-            this.h = true;
-            int i10 = this.f42851b;
-            at.f(i10).c(this, at.V);
-            at.f(i10).c(this, at.H1);
-            if (TextUtils.isEmpty(this.d)) {
-                d();
-            }
-        }
-    }
-
-    public final void b(ArrayList arrayList) {
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList2 = this.f42850a;
-            if (i10 < arrayList2.size()) {
-                if (arrayList.contains(Integer.valueOf(((kj) arrayList2.get(i10)).f1()))) {
-                    arrayList2.remove(i10);
-                    i10--;
-                }
-                i10++;
-            } else {
-                return;
-            }
-        }
-    }
-
-    public final void c() {
-        if (!this.h) {
-            return;
-        }
-        this.h = false;
-        int i10 = this.f42851b;
-        at.f(i10).n(this, at.V);
-        at.f(i10).n(this, at.H1);
-        ConnectionsManager.getInstance(i10).cancelRequestsForGuid(this.e);
-        this.f42854n = false;
-    }
-
-    public final void d() {
-        ArrayList arrayList;
-        int i10;
-        if (!this.f42854n && !this.f42853f) {
-            this.f42854n = true;
-            int i11 = this.f42851b;
-            long e = e20.i(i11).e();
-            int i12 = 0;
-            int i13 = Integer.MAX_VALUE;
-            while (true) {
-                arrayList = this.f42850a;
-                if (i12 >= arrayList.size()) {
-                    break;
-                }
-                i13 = Math.min(i13, ((kj) arrayList.get(i12)).f1());
-                i12++;
-            }
-            vi b02 = vi.b0(i11);
-            if (arrayList.isEmpty()) {
-                i10 = 30;
-            } else {
-                i10 = 50;
-            }
-            if (i13 == Integer.MAX_VALUE) {
-                i13 = 0;
-            }
-            b02.N0(e, i10, i13, 0, 3, 0L, 1, this.e, 0, null, this.d);
-        }
+    static {
+        q31.h(new q31());
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = at.V;
-        ArrayList arrayList = this.f42850a;
-        if (i10 == i12) {
-            if (((Integer) objArr[3]).intValue() == this.e) {
-                this.f42854n = false;
-                this.f42853f = ((Boolean) objArr[5]).booleanValue();
-                arrayList.addAll((ArrayList) objArr[2]);
-                this.f42852c.run();
-            }
-        } else if (i10 == at.H1) {
-            arrayList.add(0, (kj) objArr[0]);
+    public final void b(android.view.View r27, org.telegram.ui.Components.r31 r28, boolean r29, org.telegram.ui.Components.f41 r30, org.telegram.ui.Components.l41 r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.h.b(android.view.View, org.telegram.ui.Components.r31, boolean, org.telegram.ui.Components.f41, org.telegram.ui.Components.l41):void");
+    }
+
+    @Override
+    public final boolean c(r31 r31Var, r31 r31Var2) {
+        if (r31Var.H == r31Var2.H && TextUtils.equals(r31Var.f37628m, r31Var2.f37628m)) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, tj0 tj0Var, int i3, e6 e6Var) {
+        return new i(context, e6Var);
+    }
+
+    @Override
+    public final boolean e(r31 r31Var, r31 r31Var2) {
+        if (r31Var.H == r31Var2.H && TextUtils.isEmpty(r31Var.f37628m) == TextUtils.isEmpty(r31Var2.f37628m)) {
+            return true;
+        }
+        return false;
     }
 }

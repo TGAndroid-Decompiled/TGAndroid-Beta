@@ -1,72 +1,139 @@
 package org.telegram.messenger;
 
+import android.os.SystemClock;
+import java.util.ArrayList;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.tgnet.tl.TL_phone;
 public final class k3 implements RequestDelegate {
-    public final int f16554a;
-    public final int f16555b;
-    public final long f16556c;
-    public final Object d;
-    public final Object e;
+    public final int f23793a;
+    public final r3 f23794b;
 
-    public k3(int i10, int i11, long j10, Object obj, Object obj2) {
-        this.f16554a = i11;
-        this.d = obj;
-        this.f16555b = i10;
-        this.e = obj2;
-        this.f16556c = j10;
+    public k3(r3 r3Var, int i3) {
+        this.f23793a = i3;
+        this.f23794b = r3Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        TL_stories.StoryItem storyItem;
-        switch (this.f16554a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f23793a) {
             case 0:
-                l3 l3Var = (l3) this.d;
-                kj kjVar = (kj) this.e;
-                if (tLObject != null) {
-                    TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
-                    if (tL_stories_stories.stories.size() > 0) {
-                        storyItem = tL_stories_stories.stories.get(0);
-                    } else {
-                        storyItem = null;
+                final r3 r3Var = this.f23794b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i3 = r3;
+                        TLObject tLObject2 = tLObject;
+                        switch (i3) {
+                            case 0:
+                                long elapsedRealtime = SystemClock.elapsedRealtime();
+                                r3 r3Var2 = r3Var;
+                                r3Var2.N = elapsedRealtime;
+                                r3Var2.O = false;
+                                if (tLObject2 != null) {
+                                    TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject2;
+                                    hp.s1(r3Var2.C.f21919a).Y3(groupparticipants.users, false);
+                                    hp.s1(r3Var2.C.f21919a).S3(groupparticipants.chats, false);
+                                    TLRPC.GroupCall groupCall = r3Var2.f25049b;
+                                    int i10 = groupCall.participants_count;
+                                    int i11 = groupparticipants.count;
+                                    if (i10 != i11) {
+                                        groupCall.participants_count = i11;
+                                        if (r2.f25040a) {
+                                            k2.p1.q(r3Var2.f25049b.participants_count, new StringBuilder("new participants reload count "));
+                                        }
+                                        hs.f(r3Var2.C.f21919a).k(166, Long.valueOf(r3Var2.f25050c), Long.valueOf(r3Var2.f25049b.f27011id), Boolean.FALSE);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                r3 r3Var3 = r3Var;
+                                r3Var3.getClass();
+                                if (tLObject2 instanceof TL_phone.groupCall) {
+                                    TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
+                                    r3Var3.f25049b = groupcall.call;
+                                    hp.s1(r3Var3.C.f21919a).Y3(groupcall.users, false);
+                                    hp.s1(r3Var3.C.f21919a).S3(groupcall.chats, false);
+                                    ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
+                                    String str = groupcall.participants_next_offset;
+                                    TLRPC.GroupCall groupCall2 = groupcall.call;
+                                    r3Var3.m(arrayList, true, "", str, groupCall2.version, groupCall2.participants_count);
+                                    return;
+                                }
+                                return;
+                        }
                     }
-                    if (storyItem == null) {
-                        storyItem = new TL_stories.TL_storyItemDeleted();
-                    }
-                    TL_stories.StoryItem storyItem2 = storyItem;
-                    storyItem2.lastUpdateTime = System.currentTimeMillis();
-                    storyItem2.f20032id = this.f16555b;
-                    i0.g3(new xm(l3Var, kjVar, this.f16556c, storyItem2, 2));
-                    return;
-                }
+                });
                 return;
             case 1:
-                i0.g3(new d2((vi) this.d, tLObject, this.f16555b, (r20) this.e, this.f16556c));
-                return;
-            default:
-                wp wpVar = (wp) this.d;
-                TLRPC.TL_help_promoData tL_help_promoData = (TLRPC.TL_help_promoData) this.e;
-                if (this.f16555b == wpVar.f19276w2) {
-                    wpVar.f19266v2 = 0;
-                    TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs = (TLRPC.TL_messages_peerDialogs) tLObject;
-                    if (tL_messages_peerDialogs != null && !tL_messages_peerDialogs.dialogs.isEmpty()) {
-                        wpVar.getMessagesStorage().m1(tL_help_promoData.users, tL_help_promoData.chats, true, true);
-                        TLRPC.TL_messages_dialogs tL_messages_dialogs = new TLRPC.TL_messages_dialogs();
-                        tL_messages_dialogs.chats = tL_messages_peerDialogs.chats;
-                        tL_messages_dialogs.users = tL_messages_peerDialogs.users;
-                        tL_messages_dialogs.dialogs = tL_messages_peerDialogs.dialogs;
-                        tL_messages_dialogs.messages = tL_messages_peerDialogs.messages;
-                        wpVar.getMessagesStorage().d1(tL_messages_dialogs, 2);
-                        i0.g3(new xm(wpVar, tL_help_promoData, tL_messages_peerDialogs, this.f16556c, 1));
-                    } else {
-                        i0.g3(new ak(wpVar, 21));
-                    }
-                    wpVar.f19257u2 = false;
+                r3 r3Var2 = this.f23794b;
+                r3Var2.getClass();
+                if (tLObject != null) {
+                    hp.s1(r3Var2.C.f21919a).O3((TLRPC.Updates) tLObject, false);
                     return;
                 }
+                return;
+            case 2:
+                r3 r3Var3 = this.f23794b;
+                r3Var3.getClass();
+                if (tLObject != null) {
+                    hp.s1(r3Var3.C.f21919a).O3((TLRPC.Updates) tLObject, false);
+                    return;
+                }
+                return;
+            default:
+                final r3 r3Var4 = this.f23794b;
+                r3Var4.getClass();
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i3 = r3;
+                        TLObject tLObject2 = tLObject;
+                        switch (i3) {
+                            case 0:
+                                long elapsedRealtime = SystemClock.elapsedRealtime();
+                                r3 r3Var22 = r3Var4;
+                                r3Var22.N = elapsedRealtime;
+                                r3Var22.O = false;
+                                if (tLObject2 != null) {
+                                    TL_phone.groupParticipants groupparticipants = (TL_phone.groupParticipants) tLObject2;
+                                    hp.s1(r3Var22.C.f21919a).Y3(groupparticipants.users, false);
+                                    hp.s1(r3Var22.C.f21919a).S3(groupparticipants.chats, false);
+                                    TLRPC.GroupCall groupCall = r3Var22.f25049b;
+                                    int i10 = groupCall.participants_count;
+                                    int i11 = groupparticipants.count;
+                                    if (i10 != i11) {
+                                        groupCall.participants_count = i11;
+                                        if (r2.f25040a) {
+                                            k2.p1.q(r3Var22.f25049b.participants_count, new StringBuilder("new participants reload count "));
+                                        }
+                                        hs.f(r3Var22.C.f21919a).k(166, Long.valueOf(r3Var22.f25050c), Long.valueOf(r3Var22.f25049b.f27011id), Boolean.FALSE);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                r3 r3Var32 = r3Var4;
+                                r3Var32.getClass();
+                                if (tLObject2 instanceof TL_phone.groupCall) {
+                                    TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
+                                    r3Var32.f25049b = groupcall.call;
+                                    hp.s1(r3Var32.C.f21919a).Y3(groupcall.users, false);
+                                    hp.s1(r3Var32.C.f21919a).S3(groupcall.chats, false);
+                                    ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
+                                    String str = groupcall.participants_next_offset;
+                                    TLRPC.GroupCall groupCall2 = groupcall.call;
+                                    r3Var32.m(arrayList, true, "", str, groupCall2.version, groupCall2.participants_count);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
         }
     }

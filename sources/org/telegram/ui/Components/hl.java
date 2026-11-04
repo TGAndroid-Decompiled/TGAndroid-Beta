@@ -1,67 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.os.Build;
-public final class hl implements Runnable {
-    public final int f26812a;
-    public final ChatAttachAlertPhotoLayout f26813b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.view.View;
+import android.widget.ImageView;
+public final class hl extends AnimatorListenerAdapter {
+    public final int f34440a;
+    public final ChatAttachAlertPhotoLayout f34441b;
 
-    public hl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f26812a = i10;
-        this.f26813b = chatAttachAlertPhotoLayout;
+    public hl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i3) {
+        this.f34440a = i3;
+        this.f34441b = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f26812a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26813b;
+    public final void onAnimationEnd(Animator animator) {
+        int i3;
+        int i10 = this.f34440a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34441b;
         switch (i10) {
             case 0:
-                boolean z10 = ChatAttachAlertPhotoLayout.f23846q1;
-                chatAttachAlertPhotoLayout.f30964b.f21590c.removeView(chatAttachAlertPhotoLayout.P);
-                chatAttachAlertPhotoLayout.P = null;
+                ImageView imageView = chatAttachAlertPhotoLayout.f31298s0;
+                pl plVar = chatAttachAlertPhotoLayout.Q;
+                if (plVar != null && plVar.isFrontface()) {
+                    i3 = 2131230929;
+                } else {
+                    i3 = 2131230930;
+                }
+                imageView.setImageResource(i3);
+                ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f31298s0, View.SCALE_X, 1.0f).setDuration(100L).start();
                 return;
             case 1:
-                boolean z11 = ChatAttachAlertPhotoLayout.f23846q1;
-                chatAttachAlertPhotoLayout.u0(false);
-                chatAttachAlertPhotoLayout.f23876n0 = null;
+                chatAttachAlertPhotoLayout.f31287n0 = null;
                 return;
             case 2:
-                boolean z12 = ChatAttachAlertPhotoLayout.f23846q1;
-                chatAttachAlertPhotoLayout.u0(false);
-                chatAttachAlertPhotoLayout.f23876n0 = null;
-                return;
-            case 3:
-                chatAttachAlertPhotoLayout.f23892x.setVisibility(8);
-                return;
-            case 4:
-                chatAttachAlertPhotoLayout.G.f();
-                return;
-            case 5:
-                boolean z13 = ChatAttachAlertPhotoLayout.f23846q1;
-                bi biVar = chatAttachAlertPhotoLayout.f30964b;
-                if (f0.c.b(biVar.W1.getParentActivity(), "android.permission.CAMERA") != 0) {
-                    try {
-                        biVar.W1.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
+                chatAttachAlertPhotoLayout.f31276g1.e();
+                chatAttachAlertPhotoLayout.f31271e0 = false;
+                pl plVar2 = chatAttachAlertPhotoLayout.Q;
+                if (plVar2 != null) {
+                    plVar2.invalidateOutline();
+                    chatAttachAlertPhotoLayout.Q.invalidate();
                 }
-                chatAttachAlertPhotoLayout.j0();
+                if (chatAttachAlertPhotoLayout.f31267c0) {
+                    chatAttachAlertPhotoLayout.f38416b.U3.v0();
+                }
+                pl plVar3 = chatAttachAlertPhotoLayout.Q;
+                if (plVar3 != null) {
+                    plVar3.setSystemUiVisibility(1028);
+                }
+                il ilVar = chatAttachAlertPhotoLayout.F;
+                if (ilVar != null) {
+                    ilVar.invalidate();
+                    return;
+                }
                 return;
             default:
-                boolean z14 = ChatAttachAlertPhotoLayout.f23846q1;
-                bi biVar2 = chatAttachAlertPhotoLayout.f30964b;
-                try {
-                    if (Build.VERSION.SDK_INT >= 33) {
-                        biVar2.W1.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);
-                    } else {
-                        biVar2.W1.getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                    }
-                    return;
-                } catch (Exception unused2) {
+                j71 j71Var = chatAttachAlertPhotoLayout.m0;
+                chatAttachAlertPhotoLayout.f31276g1.e();
+                chatAttachAlertPhotoLayout.f31282j1 = false;
+                chatAttachAlertPhotoLayout.setAlertKeepScreenOn(false);
+                chatAttachAlertPhotoLayout.setCameraOpenProgress(0.0f);
+                chatAttachAlertPhotoLayout.f31271e0 = false;
+                il ilVar2 = chatAttachAlertPhotoLayout.F;
+                if (ilVar2 != null) {
+                    ilVar2.invalidate();
+                }
+                pl plVar4 = chatAttachAlertPhotoLayout.Q;
+                if (plVar4 != null) {
+                    plVar4.invalidateOutline();
+                    chatAttachAlertPhotoLayout.Q.invalidate();
+                }
+                chatAttachAlertPhotoLayout.f31267c0 = false;
+                ai.o2 o2Var = chatAttachAlertPhotoLayout.f31283k0;
+                if (o2Var != null) {
+                    o2Var.setVisibility(8);
+                }
+                if (j71Var != null) {
+                    j71Var.setVisibility(8);
+                    j71Var.setTag(null);
+                }
+                il ilVar3 = chatAttachAlertPhotoLayout.f31295r;
+                if (ilVar3 != null) {
+                    ilVar3.setVisibility(8);
+                }
+                pl plVar5 = chatAttachAlertPhotoLayout.Q;
+                if (plVar5 != null) {
+                    plVar5.setFpsLimit(30);
+                    chatAttachAlertPhotoLayout.Q.setSystemUiVisibility(1024);
                     return;
                 }
+                return;
         }
     }
 }

@@ -3,28 +3,29 @@ package org.telegram.messenger;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
+import java.util.HashMap;
 public class GcmPushListenerService extends FirebaseMessagingService {
-    public static final int f14365n = 0;
+    public static final int f21226n = 0;
 
     @Override
-    public final void c(xa.l lVar) {
+    public final void c(za.o oVar) {
         long parseLong;
-        Bundle bundle = lVar.f53569a;
+        Bundle bundle = oVar.f60308a;
         String string = bundle.getString("from");
-        if (lVar.f53570b == null) {
-            ?? lVar2 = new a0.l(0);
+        if (oVar.f60309b == null) {
+            ?? lVar = new a0.l(0);
             for (String str : bundle.keySet()) {
                 Object obj = bundle.get(str);
                 if (obj instanceof String) {
                     String str2 = (String) obj;
                     if (!str.startsWith("google.") && !str.startsWith("gcm.") && !str.equals("from") && !str.equals("message_type") && !str.equals("collapse_key")) {
-                        lVar2.put(str, str2);
+                        lVar.put(str, str2);
                     }
                 }
             }
-            lVar.f53570b = lVar2;
+            oVar.f60309b = lVar;
         }
-        a0.f fVar = lVar.f53570b;
+        HashMap hashMap = new HashMap(oVar.f60309b);
         Object obj2 = bundle.get("google.sent_time");
         if (obj2 instanceof Long) {
             parseLong = ((Long) obj2).longValue();
@@ -38,14 +39,14 @@ public class GcmPushListenerService extends FirebaseMessagingService {
             }
             parseLong = 0;
         }
-        if (v2.f18578a) {
-            f8.b("FCM received data: " + fVar + " from: " + string);
+        if (r2.f25040a) {
+            a8.b("FCM received data: " + hashMap + " from: " + string);
         }
-        PushListenerController.processRemoteMessage(2, (String) fVar.get("p"), parseLong);
+        PushListenerController.processRemoteMessage(2, (String) hashMap.get("p"), parseLong);
     }
 
     @Override
     public final void d(String str) {
-        i0.g3(new o4(str, 4));
+        g0.h3(new l4(str, 4));
     }
 }

@@ -1,38 +1,23 @@
 package gd;
 
-import java.lang.reflect.Method;
-import kotlin.jvm.internal.i;
-public abstract class a {
-    public static final Method f7470a;
+import b8.zc;
+public final class a {
+    public static final a f12241a;
+    public static final a[] f12242b;
 
     static {
-        Method method;
-        Method[] methods = Throwable.class.getMethods();
-        i.b(methods);
-        int length = methods.length;
-        int i10 = 0;
-        while (true) {
-            method = null;
-            if (i10 >= length) {
-                break;
-            }
-            Method method2 = methods[i10];
-            if (i.a(method2.getName(), "addSuppressed")) {
-                Class<?>[] parameterTypes = method2.getParameterTypes();
-                i.d(parameterTypes, "getParameterTypes(...)");
-                if (parameterTypes.length == 1) {
-                    method = parameterTypes[0];
-                }
-                if (i.a(method, Throwable.class)) {
-                    method = method2;
-                    break;
-                }
-            }
-            i10++;
-        }
-        f7470a = method;
-        int length2 = methods.length;
-        for (int i11 = 0; i11 < length2 && !i.a(methods[i11].getName(), "getSuppressed"); i11++) {
-        }
+        ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
+        f12241a = r02;
+        a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
+        f12242b = aVarArr;
+        zc.a(aVarArr);
+    }
+
+    public static a valueOf(String str) {
+        return (a) Enum.valueOf(a.class, str);
+    }
+
+    public static a[] values() {
+        return (a[]) f12242b.clone();
     }
 }

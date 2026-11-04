@@ -1,9 +1,10 @@
 package org.telegram.ui.Components;
+public final class fm0 extends NumberTextView {
+    public int f33820w;
 
-import org.telegram.messenger.MediaController;
-public final class fm0 extends org.telegram.ui.Cells.k7 {
     @Override
-    public final boolean d(org.telegram.messenger.kj kjVar) {
-        return MediaController.B().S(kjVar);
+    public final void setTextColor(int i3) {
+        super.setTextColor(i3);
+        this.f33820w = i3;
     }
 }

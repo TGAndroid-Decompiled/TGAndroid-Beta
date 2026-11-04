@@ -1,37 +1,27 @@
 package mg;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.s61;
-import org.telegram.ui.t5;
-import rh.e4;
-public final class h implements Runnable {
-    public final int f13125a = 0;
-    public final TLRPC.Chat f13126b;
+import android.animation.ValueAnimator;
+import gi.j3;
+public final class h {
+    public final int f19371a;
+    public int f19372b;
+    public float f19373c;
+    public float d;
+    public ValueAnimator f19374e;
+    public float f19375f = 0.0f;
+    public final j f19376g;
 
-    public h(TLRPC.Chat chat) {
-        this.f13126b = chat;
+    public h(j jVar, int i3) {
+        this.f19376g = jVar;
+        this.f19371a = i3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f13125a) {
-            case 0:
-                TLRPC.Chat chat = this.f13126b;
-                if (chat != null) {
-                    ?? obj = new Object();
-                    obj.f20390a = true;
-                    LaunchActivity.Q().showAsSheet(new t5(-chat.f19794id), obj);
-                    return;
-                }
-                return;
-            default:
-                e4.c2(s61.g0(this.f13126b, true));
-                return;
-        }
-    }
-
-    public h(e4 e4Var, TLRPC.Chat chat) {
-        this.f13126b = chat;
+    public final void a() {
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f19374e = ofFloat;
+        ofFloat.setDuration(600L);
+        this.f19374e.setInterpolator(g.D1);
+        this.f19374e.addUpdateListener(new j3(this, 8));
+        this.f19374e.start();
     }
 }

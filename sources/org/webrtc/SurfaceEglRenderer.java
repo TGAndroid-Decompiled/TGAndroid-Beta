@@ -2,7 +2,7 @@ package org.webrtc;
 
 import android.view.SurfaceHolder;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.ActionBar.w5;
+import org.telegram.ui.ActionBar.d4;
 import org.webrtc.EglBase;
 import org.webrtc.RendererCommon;
 public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Callback {
@@ -89,23 +89,23 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     }
 
     @Override
-    public void setFpsReduction(float f7) {
+    public void setFpsReduction(float f10) {
         boolean z10;
         synchronized (this.layoutLock) {
-            if (f7 == 0.0f) {
+            if (f10 == 0.0f) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.isRenderingPaused = z10;
         }
-        super.setFpsReduction(f7);
+        super.setFpsReduction(f10);
     }
 
     @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int i3, int i10, int i11) {
         ThreadUtils.checkIsOnMainThread();
-        logD("surfaceChanged: format: " + i10 + " size: " + i11 + "x" + i12);
+        logD("surfaceChanged: format: " + i3 + " size: " + i10 + "x" + i11);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class SurfaceEglRenderer extends EglRenderer implements SurfaceHolder.Cal
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         ThreadUtils.checkIsOnMainThread();
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        releaseEglSurface(new w5(countDownLatch, 0), false);
+        releaseEglSurface(new d4(countDownLatch, 4), false);
         ThreadUtils.awaitUninterruptibly(countDownLatch);
     }
 

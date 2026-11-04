@@ -1,4 +1,7 @@
 package org.telegram.messenger;
-public interface as {
-    void i(boolean z10);
+
+import android.os.SystemClock;
+public final class as {
+    public int[] f21580a;
+    public final long f21581b = SystemClock.elapsedRealtime();
 }

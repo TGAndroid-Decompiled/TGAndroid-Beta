@@ -1,39 +1,73 @@
 package org.telegram.ui;
-public final class ib extends ci.o {
-    public int W;
-    public qr0 X;
-    public final sb Y;
 
-    public ib(sb sbVar, org.telegram.ui.Components.uk0 uk0Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(null, uk0Var, p6Var);
-        this.Y = sbVar;
-        this.W = -1;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import android.view.View;
+public abstract class ib extends org.telegram.ui.Components.qt0 {
+    public final kb f46229g0;
+
+    public ib(kb kbVar, Context context) {
+        super(context, null);
+        this.f46229g0 = kbVar;
     }
 
-    @Override
-    public final void N() {
-        super.N();
-        qr0 qr0Var = this.X;
-        if (qr0Var != null) {
-            org.telegram.messenger.i0.r(qr0Var);
+    public final void X(Canvas canvas, RectF rectF) {
+        boolean z10;
+        long uptimeMillis = SystemClock.uptimeMillis();
+        kb kbVar = this.f46229g0;
+        if (kbVar.f46885w.Y0()) {
+            canvas.save();
+            canvas.clipRect(rectF);
+            drawChild(canvas, kbVar.f46885w, uptimeMillis);
+            canvas.restore();
+            return;
         }
-        qr0 qr0Var2 = new qr0(this, 20);
-        this.X = qr0Var2;
-        org.telegram.messenger.i0.g3(qr0Var2);
-    }
-
-    @Override
-    public final void W() {
-        if (this.W == -1) {
-            this.W = this.Y.getNotificationCenter().q(sb.R0, this.W, false);
+        canvas.save();
+        canvas.clipRect(rectF);
+        canvas.translate(0.0f, kbVar.f46885w.getY());
+        kbVar.f46885w.getClass();
+        for (int i3 = 0; i3 < kbVar.f46885w.getChildCount(); i3++) {
+            View childAt = kbVar.f46885w.getChildAt(i3);
+            RectF rectF2 = kbVar.Q0;
+            if (rectF != null && kbVar.f46885w != null && childAt != null) {
+                rectF2.set(childAt.getX(), kbVar.f46885w.getY() + childAt.getY(), childAt.getX() + childAt.getWidth(), kbVar.f46885w.getY() + childAt.getY() + childAt.getHeight());
+                z10 = !rectF2.intersect(rectF);
+            } else {
+                z10 = false;
+            }
+            if (!z10) {
+                if (childAt instanceof org.telegram.ui.Cells.q1) {
+                    canvas.save();
+                    canvas.translate(childAt.getX(), childAt.getY());
+                    org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) childAt;
+                    if (q1Var.L0()) {
+                        canvas.save();
+                        canvas.translate(0.0f, q1Var.W);
+                        q1Var.M0(canvas, true, false);
+                        canvas.restore();
+                    }
+                    canvas.restore();
+                    kbVar.f46885w.drawChild(canvas, childAt, uptimeMillis);
+                    if (q1Var.j2()) {
+                        canvas.save();
+                        canvas.translate(q1Var.getX(), q1Var.getY());
+                        q1Var.i1(canvas);
+                        canvas.restore();
+                    }
+                } else if (childAt instanceof org.telegram.ui.Cells.t0) {
+                    kbVar.f46885w.drawChild(canvas, childAt, uptimeMillis);
+                    canvas.save();
+                    canvas.translate(childAt.getX(), childAt.getY());
+                    ((org.telegram.ui.Cells.t0) childAt).H(canvas);
+                    canvas.restore();
+                } else {
+                    kbVar.f46885w.drawChild(canvas, childAt, uptimeMillis);
+                }
+            }
         }
-        qr0 qr0Var = this.X;
-        if (qr0Var != null) {
-            org.telegram.messenger.i0.r(qr0Var);
-            this.X = null;
-        }
-        if (org.telegram.messenger.v2.f18578a) {
-            org.telegram.messenger.f8.b("admin logs chatItemAnimator disable notifications");
-        }
+        kbVar.f46885w.getClass();
+        canvas.restore();
     }
 }

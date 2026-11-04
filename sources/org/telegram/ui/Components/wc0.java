@@ -1,90 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-public final class wc0 extends FrameLayout {
-    public final ImageView f32215a;
-    public final TextView f32216b;
-    public final TextView f32217c;
+import android.graphics.Path;
+import android.graphics.RectF;
+public final class wc0 extends Path {
+    public int f39987a;
+    public int f39988b;
+    public int f39989c;
 
-    public wc0(Context context) {
-        super(context);
-        ImageView imageView = new ImageView(context);
-        this.f32215a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(2131231189);
-        addView(imageView, w7.b6.e(-1, -1, 119));
-        TextView textView = new TextView(context);
-        this.f32216b = textView;
-        textView.setTypeface(org.telegram.messenger.i0.o());
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 26.0f);
-        textView.setGravity(17);
-        addView(textView, w7.b6.d(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f32217c = textView2;
-        textView2.setTypeface(org.telegram.messenger.i0.o());
-        textView2.setTextSize(1, 10.0f);
-        textView2.setTextColor(Integer.MAX_VALUE);
-        textView2.setGravity(17);
-        addView(textView2, w7.b6.d(-1, -2.0f, 17, 0.0f, 14.0f, 0.0f, 0.0f));
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
-    }
-
-    public void setImage(int i10) {
-        ImageView imageView = this.f32215a;
-        imageView.setVisibility(0);
-        this.f32216b.setVisibility(8);
-        this.f32217c.setVisibility(8);
-        imageView.setImageResource(i10);
-    }
-
-    public void setNum(int i10) {
-        this.f32215a.setVisibility(8);
-        TextView textView = this.f32216b;
-        textView.setVisibility(0);
-        TextView textView2 = this.f32217c;
-        textView2.setVisibility(0);
-        String str = "";
-        textView.setText("" + i10);
-        if (i10 != 0) {
-            switch (i10) {
-                case 2:
-                    str = "ABC";
-                    break;
-                case 3:
-                    str = "DEF";
-                    break;
-                case 4:
-                    str = "GHI";
-                    break;
-                case 5:
-                    str = "JKL";
-                    break;
-                case 6:
-                    str = "MNO";
-                    break;
-                case 7:
-                    str = "PQRS";
-                    break;
-                case 8:
-                    str = "TUV";
-                    break;
-                case 9:
-                    str = "WXYZ";
-                    break;
-            }
-        } else {
-            str = "+";
+    public final void a(int i3, int i10, int i11) {
+        if (this.f39987a == i3 && this.f39988b == i10 && this.f39989c == i11) {
+            return;
         }
-        textView2.setText(str);
+        rewind();
+        RectF rectF = org.telegram.messenger.g0.P;
+        float f10 = i3 - i11;
+        float f11 = i10 + i11;
+        rectF.set(f10, i10 - i11, i3 + i11, f11);
+        arcTo(rectF, -180.0f, 270.0f, false);
+        float f12 = i11 / 81.0f;
+        float f13 = i3;
+        float f14 = f11 - (3.0f * f12);
+        cubicTo(f13 - (13.0f * f12), f11, f13 - (25.0f * f12), f14, f13 - (36.0f * f12), f11 - (8.42f * f12));
+        float f15 = f11 - f12;
+        cubicTo(f13 - (52.0f * f12), f15, f13 - (56.5f * f12), f15, f13 - (78.02f * f12), f15);
+        cubicTo(f13 - (80.0f * f12), f15, f13 - (81.0f * f12), f14, f13 - (79.52f * f12), f11 - (4.5f * f12));
+        float f16 = f13 - (63.73f * f12);
+        cubicTo(f13 - (78.0f * f12), f11 - (6.0f * f12), f16, f11 - (15.0f * f12), f16, f11 - (31.0f * f12));
+        float f17 = i10;
+        cubicTo(f13 - (74.5f * f12), f11 - (44.75f * f12), f10, (f12 * 18.87f) + f17, f10, f17);
+        close();
+        this.f39987a = i3;
+        this.f39988b = i10;
+        this.f39989c = i11;
     }
 }

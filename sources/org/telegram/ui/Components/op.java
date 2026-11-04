@@ -1,76 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import androidx.core.widget.NestedScrollView;
-public final class op extends NestedScrollView {
-    public boolean W;
-    public final sp f29204a0;
+import android.view.animation.DecelerateInterpolator;
+public abstract class op extends Drawable {
+    public final Paint f36915a;
+    public long f36916b;
+    public final RectF f36917c;
+    public float d;
+    public boolean f36918e;
+    public int f36919f;
+    public int f36920g;
 
-    public op(sp spVar, Context context) {
-        super(context);
-        this.f29204a0 = spVar;
+    public op() {
+        this(2.0f);
+    }
+
+    public abstract int a();
+
+    @Override
+    public final void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.op.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        sp spVar = this.f29204a0;
-        int scrollY = (int) ((getScrollY() + (spVar.f30408n1 - spVar.f21615s0)) - getTranslationY());
-        Drawable drawable = spVar.f30404i1;
-        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.i0.L(19.0f) + spVar.f30406k1.getMeasuredHeight() + scrollY + spVar.f21615s0);
-        drawable.draw(canvas);
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(24.0f);
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            sp spVar = this.f29204a0;
-            if (spVar.f30408n1 != 0 && motionEvent.getY() < spVar.f30408n1) {
-                spVar.dismiss();
-                return true;
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(24.0f);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        sp.I0(this.f29204a0);
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public op(float f10) {
+        Paint paint = new Paint(1);
+        this.f36915a = paint;
+        new DecelerateInterpolator();
+        this.f36917c = new RectF();
+        this.f36920g = 255;
+        paint.setColor(-1);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(f10));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        this.f36919f = org.telegram.messenger.g0.L(8.0f);
     }
 
     @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.op.onMeasure(int, int):void");
+    public final void setAlpha(int i3) {
     }
 
     @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        sp.I0(this.f29204a0);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f29204a0.I && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.W) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        sp.I0(this.f29204a0);
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

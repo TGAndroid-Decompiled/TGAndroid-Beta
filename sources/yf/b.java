@@ -1,70 +1,40 @@
 package yf;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.TLRPC;
-public final class b {
-    public final String f54449a;
-    public final String f54450b;
-
-    public b(String str, String str2) {
-        this.f54449a = str;
-        this.f54450b = str2;
-    }
-
-    public static boolean a(b bVar, b bVar2) {
-        if (bVar == bVar2) {
-            return true;
-        }
-        if (bVar != null && bVar2 != null) {
-            return bVar.equals(bVar2);
-        }
-        return false;
-    }
-
-    public static b c(TLRPC.ChatTheme chatTheme) {
-        if (chatTheme instanceof TLRPC.TL_chatTheme) {
-            return new b(((TLRPC.TL_chatTheme) chatTheme).emoticon, null);
-        }
-        if (!(chatTheme instanceof TLRPC.TL_chatThemeUniqueGift)) {
-            return null;
-        }
-        return new b(null, ((TLRPC.TL_chatThemeUniqueGift) chatTheme).gift.slug);
-    }
-
-    public static b d(String str) {
-        return new b(str, null);
-    }
-
-    public final boolean b() {
-        if (TextUtils.isEmpty(this.f54449a) && TextUtils.isEmpty(this.f54450b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof b) {
-            b bVar = (b) obj;
-            if (TextUtils.equals(this.f54449a, bVar.f54449a) && TextUtils.equals(this.f54450b, bVar.f54450b)) {
-                return true;
+import android.view.View;
+import java.util.ArrayList;
+import pi.h;
+import x7.p6;
+public final class b implements View.OnAttachStateChangeListener {
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        a a10;
+        c cVar = (c) view.getTag(2131296697);
+        if (cVar != null && (a10 = p6.a(view, cVar)) != null) {
+            ArrayList arrayList = cVar.f59419a;
+            int size = arrayList.size();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj = arrayList.get(i3);
+                i3++;
+                ((ue.b) a10.f59418a.f10221b).add((h) obj);
             }
         }
-        return false;
     }
 
-    public final int hashCode() {
-        int i10;
-        int i11 = 0;
-        String str = this.f54449a;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        a aVar;
+        c cVar = (c) view.getTag(2131296697);
+        if (cVar != null && (aVar = cVar.f59420b) != null) {
+            ArrayList arrayList = cVar.f59419a;
+            int size = arrayList.size();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj = arrayList.get(i3);
+                i3++;
+                ((ue.b) aVar.f59418a.f10221b).remove((h) obj);
+            }
+            cVar.f59420b = null;
         }
-        String str2 = this.f54450b;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        }
-        return i11 ^ i10;
     }
 }

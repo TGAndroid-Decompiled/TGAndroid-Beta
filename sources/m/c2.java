@@ -3,30 +3,30 @@ package m;
 import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.iy;
-import org.telegram.ui.Components.qy;
-import org.telegram.ui.Components.ux;
+import org.telegram.ui.Components.ex;
+import org.telegram.ui.Components.rx;
+import org.telegram.ui.Components.yx;
 public final class c2 implements View.OnTouchListener {
-    public final int f12380a;
-    public final Object f12381b;
+    public final int f18549a;
+    public final Object f18550b;
 
-    public c2(Object obj, int i10) {
-        this.f12380a = i10;
-        this.f12381b = obj;
+    public c2(Object obj, int i3) {
+        this.f18549a = i3;
+        this.f18550b = obj;
     }
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        switch (this.f12380a) {
+        switch (this.f18549a) {
             case 0:
-                d2 d2Var = (d2) this.f12381b;
-                a2 a2Var = d2Var.G;
-                Handler handler = d2Var.K;
-                x xVar = d2Var.O;
+                d2 d2Var = (d2) this.f18550b;
+                a2 a2Var = d2Var.H;
+                Handler handler = d2Var.L;
+                x xVar = d2Var.P;
                 int action = motionEvent.getAction();
                 int x10 = (int) motionEvent.getX();
-                int y3 = (int) motionEvent.getY();
-                if (action == 0 && xVar != null && xVar.isShowing() && x10 >= 0 && x10 < xVar.getWidth() && y3 >= 0 && y3 < xVar.getHeight()) {
+                int y9 = (int) motionEvent.getY();
+                if (action == 0 && xVar != null && xVar.isShowing() && x10 >= 0 && x10 < xVar.getWidth() && y9 >= 0 && y9 < xVar.getHeight()) {
                     handler.postDelayed(a2Var, 250L);
                     return false;
                 } else if (action == 1) {
@@ -36,27 +36,27 @@ public final class c2 implements View.OnTouchListener {
                     return false;
                 }
             case 1:
-                ux uxVar = (ux) this.f12381b;
+                ex exVar = (ex) this.f18550b;
                 if (motionEvent.getAction() == 0) {
-                    uxVar.F.f31951f = true;
+                    exVar.G.f33535f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    uxVar.F.f31951f = false;
+                    exVar.G.f33535f = false;
                 }
                 return false;
             case 2:
-                iy iyVar = (iy) this.f12381b;
+                rx rxVar = (rx) this.f18550b;
                 if (motionEvent.getAction() == 0) {
-                    iyVar.G.f31951f = true;
+                    rxVar.H.f33535f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    iyVar.G.f31951f = false;
+                    rxVar.H.f33535f = false;
                 }
                 return false;
             default:
-                qy qyVar = (qy) this.f12381b;
+                yx yxVar = (yx) this.f18550b;
                 if (motionEvent.getAction() == 0) {
-                    qyVar.Q.f31951f = true;
+                    yxVar.R.f33535f = true;
                 } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    qyVar.Q.f31951f = false;
+                    yxVar.R.f33535f = false;
                 }
                 return false;
         }

@@ -1,39 +1,8 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class zm extends s4.b0 {
-    public final ag.d1 f33187r;
-
-    public zm(ag.d1 d1Var, Context context) {
-        super(context);
-        this.f33187r = d1Var;
-    }
-
-    @Override
-    public final int k(int i10, View view) {
-        int i11;
-        jn jnVar = (jn) this.f33187r.V;
-        if (jnVar.V0) {
-            i10 = -1;
-        }
-        int k10 = super.k(i10, view);
-        if (jnVar.V0) {
-            k10 += org.telegram.messenger.i0.L(160.0f);
-        }
-        if (!jnVar.V0) {
-            k10 = org.telegram.messenger.m5.B(7.0f, jnVar.R0 - org.telegram.messenger.i0.f16166m, k10);
-        }
-        if (jnVar.V0 && k10 == 0 && (i11 = jnVar.W0) >= 0) {
-            jn.N(jnVar, i11);
-            jnVar.W0 = -1;
-        }
-        jnVar.V0 = false;
-        return k10;
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
-    }
+import android.text.Editable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public interface zm {
+    void c(TLRPC.MessageMedia messageMedia, Editable editable, th.d dVar, ArrayList arrayList, boolean z10, int i3, long j10);
 }

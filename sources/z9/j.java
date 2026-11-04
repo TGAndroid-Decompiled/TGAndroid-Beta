@@ -1,34 +1,66 @@
 package z9;
-public final class j implements ja.d {
-    public static final j f55330a = new Object();
-    public static final ja.c f55331b = ja.c.c("generator");
-    public static final ja.c f55332c = ja.c.c("identifier");
-    public static final ja.c d = ja.c.c("appQualitySessionId");
-    public static final ja.c e = ja.c.c("startedAt");
-    public static final ja.c f55333f = ja.c.c("endedAt");
-    public static final ja.c f55334g = ja.c.c("crashed");
-    public static final ja.c h = ja.c.c("app");
-    public static final ja.c f55335i = ja.c.c("user");
-    public static final ja.c f55336j = ja.c.c("os");
-    public static final ja.c f55337k = ja.c.c("device");
-    public static final ja.c f55338l = ja.c.c("events");
-    public static final ja.c f55339m = ja.c.c("generatorType");
+
+import android.util.Log;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+public final class j implements Continuation, k5.e {
+    public final int f60186a;
+
+    public j(int i3) {
+        this.f60186a = i3;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        h0 h0Var = (h0) ((d2) obj);
-        eVar.d(f55331b, h0Var.f55310a);
-        eVar.d(f55332c, h0Var.f55311b.getBytes(e2.f55289a));
-        eVar.d(d, h0Var.f55312c);
-        eVar.f(e, h0Var.d);
-        eVar.d(f55333f, h0Var.e);
-        eVar.a(f55334g, h0Var.f55313f);
-        eVar.d(h, h0Var.f55314g);
-        eVar.d(f55335i, h0Var.h);
-        eVar.d(f55336j, h0Var.f55315i);
-        eVar.d(f55337k, h0Var.f55316j);
-        eVar.d(f55338l, h0Var.f55317k);
-        eVar.g(f55339m, h0Var.f55318l);
+    public Object apply(Object obj) {
+        ab.e eVar = (ab.e) obj;
+        eVar.getClass();
+        p7.d dVar = za.n.f60307a;
+        dVar.getClass();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        try {
+            dVar.l(eVar, byteArrayOutputStream);
+        } catch (IOException unused) {
+        }
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    @Override
+    public Object then(Task task) {
+        boolean z10;
+        File file;
+        int i3;
+        switch (this.f60186a) {
+            case 3:
+                if (task.isSuccessful()) {
+                    b bVar = (b) task.getResult();
+                    w9.c cVar = w9.c.f57426a;
+                    cVar.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f60165b);
+                    z10 = true;
+                    if (bVar.f60166c.delete()) {
+                        cVar.b("Deleted report file: " + file.getPath());
+                    } else {
+                        cVar.d("Crashlytics could not delete report file: " + file.getPath(), null);
+                    }
+                } else {
+                    Log.w("FirebaseCrashlytics", "Crashlytics report could not be enqueued to DataTransport", task.getException());
+                    z10 = false;
+                }
+                return Boolean.valueOf(z10);
+            case 4:
+            default:
+                i3 = -1;
+                break;
+            case 5:
+                i3 = 403;
+                break;
+        }
+        return Integer.valueOf(i3);
+    }
+
+    public j(x xVar) {
+        this.f60186a = 3;
     }
 }

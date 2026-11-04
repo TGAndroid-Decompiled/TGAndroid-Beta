@@ -1,29 +1,76 @@
 package org.telegram.ui.Components;
-public final class kd0 implements org.telegram.messenger.vs {
-    public final int f27825a;
-    public final org.telegram.messenger.r20 f27826b;
-    public final org.telegram.messenger.vs[] f27827c;
 
-    public kd0(int i10, org.telegram.messenger.r20 r20Var, org.telegram.messenger.vs[] vsVarArr) {
-        this.f27825a = i10;
-        this.f27826b = r20Var;
-        this.f27827c = vsVarArr;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class kd0 implements TextureView.SurfaceTextureListener {
+    public final boolean f35371a;
+    public final x9 f35372b;
+    public final nd0 f35373c;
+
+    public kd0(nd0 nd0Var, boolean z10, x9 x9Var) {
+        this.f35373c = nd0Var;
+        this.f35371a = z10;
+        this.f35372b = x9Var;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12 = org.telegram.messenger.at.p5;
-        if (i10 == i12) {
-            int intValue = ((Integer) objArr[0]).intValue();
-            String[] strArr = (String[]) objArr[1];
-            int[] iArr = (int[]) objArr[2];
-            if (intValue == this.f27825a) {
-                org.telegram.messenger.r20 r20Var = this.f27826b;
-                if (r20Var != null) {
-                    r20Var.a(iArr);
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i3, int i10) {
+        nd0 nd0Var = this.f35373c;
+        TextureView textureView = nd0Var.f36471j0;
+        if (nd0Var.m0 == null && surfaceTexture != null) {
+            py pyVar = new py(surfaceTexture, nd0Var.D0, nd0Var.I0, nd0Var.f36489x0, this.f35371a, this.f35372b, i3, i10);
+            nd0Var.m0 = pyVar;
+            if (!this.f35371a) {
+                pyVar.h(nd0Var.K0, nd0Var.L0);
+                py pyVar2 = nd0Var.m0;
+                Matrix transform = textureView.getTransform(null);
+                int width = textureView.getWidth();
+                int height = textureView.getHeight();
+                ca caVar = pyVar2.J;
+                if (caVar != null) {
+                    Matrix matrix = caVar.v;
+                    transform.invert(matrix);
+                    float f10 = width;
+                    float f11 = height;
+                    matrix.preScale(f10, f11);
+                    matrix.postScale(1.0f / f10, 1.0f / f11);
+                    caVar.c(matrix);
+                    pyVar2.c(false, false, false);
                 }
-                org.telegram.messenger.at.e().n(this.f27827c[0], i12);
             }
+            nd0Var.m0.e(nd0Var);
+            py pyVar3 = nd0Var.m0;
+            pyVar3.getClass();
+            pyVar3.postRunnable(new ly(pyVar3, i3, i10, 1));
+            nd0Var.m0.c(true, true, false);
         }
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        nd0 nd0Var = this.f35373c;
+        py pyVar = nd0Var.m0;
+        if (pyVar != null) {
+            pyVar.postRunnable(new my(pyVar, 0));
+            nd0Var.m0 = null;
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i3, int i10) {
+        nd0 nd0Var = this.f35373c;
+        py pyVar = nd0Var.m0;
+        if (pyVar != null) {
+            pyVar.postRunnable(new ly(pyVar, i3, i10, 1));
+            nd0Var.m0.c(false, true, false);
+            nd0Var.m0.postRunnable(new jb0(this, 3));
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

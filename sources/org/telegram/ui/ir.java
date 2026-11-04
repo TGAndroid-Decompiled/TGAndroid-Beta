@@ -1,13 +1,8 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public interface ir {
-    void a(TLRPC.User user);
-
-    void b(long j10);
-
-    void c(long j10, TLObject tLObject);
-
-    void d(long j10);
+import android.view.View;
+public final class ir implements View.OnFocusChangeListener {
+    @Override
+    public final void onFocusChange(View view, boolean z10) {
+    }
 }

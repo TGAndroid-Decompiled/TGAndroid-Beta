@@ -1,100 +1,105 @@
 package hh;
 
-import android.graphics.PointF;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.PathInterpolator;
-import android.widget.FrameLayout;
-import java.util.Iterator;
-import java.util.List;
-import java.util.WeakHashMap;
-import r0.h0;
-import r0.j1;
-import r0.o0;
-import r0.p0;
-import r0.s0;
-import r0.u0;
-import v7.u7;
-public final class e extends b2.h {
-    public static final RectF e;
-    public static final Rect f7691f;
-    public final ViewGroup f7692b;
-    public int f7693c;
-    public final je.b d = new je.b();
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.k6;
+public class e implements a {
+    public final e6 f14414a;
+    public d f14415b;
+    public d f14416c;
+    public d d;
+    public d f14417e;
+    public float f14418f;
+    public float h;
+    public float f14419n;
+    public float f14420r;
 
-    static {
-        new PointF();
-        e = new RectF();
-        f7691f = new Rect();
-    }
-
-    public e(FrameLayout frameLayout) {
-        this.f7692b = frameLayout;
-        WeakHashMap weakHashMap = h0.f46134a;
-        if (Build.VERSION.SDK_INT >= 30) {
-            s0.g(frameLayout, this);
-            return;
-        }
-        PathInterpolator pathInterpolator = p0.e;
-        View.OnApplyWindowInsetsListener o0Var = new o0(frameLayout, this);
-        frameLayout.setTag(2131296698, o0Var);
-        if (frameLayout.getTag(2131296686) == null && frameLayout.getTag(2131296687) == null) {
-            frameLayout.setOnApplyWindowInsetsListener(o0Var);
-        }
-    }
-
-    public static j1 e1(j1 j1Var, View view, View view2) {
-        if (view != null && view2 != null && j1Var != null) {
-            RectF rectF = e;
-            if (zg.h.c(view, view2, rectF)) {
-                Rect rect = f7691f;
-                rectF.round(rect);
-                int i10 = rect.left;
-                int i11 = rect.top;
-                int width = view2.getWidth() - rect.right;
-                int height = view2.getHeight() - rect.bottom;
-                if (i10 == 0 && i11 == 0 && width == 0 && height == 0) {
-                    return j1Var;
-                }
-                return j1Var.f46143a.m(Math.max(0, i10), Math.max(0, i11), Math.max(0, width), Math.max(0, height));
-            }
-            return null;
-        }
-        return null;
+    public e(e6 e6Var) {
+        this.f14414a = e6Var;
+        float N = g0.N(1.0f);
+        float N2 = g0.N(0.33333334f);
+        this.f14419n = N;
+        this.f14420r = N2;
+        float N3 = g0.N(1.0f);
+        float N4 = g0.N(0.6666667f);
+        this.f14418f = N3;
+        this.h = N4;
     }
 
     @Override
-    public final void V0() {
-        int i10 = this.f7693c - 1;
-        this.f7693c = i10;
-        if (i10 == 0) {
-            Iterator it = this.d.iterator();
-            while (it.hasNext()) {
-                ((d) it.next()).Q();
-            }
-        }
+    public int F() {
+        return 0;
     }
 
     @Override
-    public final j1 W0(j1 j1Var, List list) {
-        Iterator it = list.iterator();
-        int i10 = 0;
-        while (it.hasNext()) {
-            i10 |= ((u0) it.next()).f46167a.c();
+    public int M() {
+        return a(this.d);
+    }
+
+    @Override
+    public final float O() {
+        return -1.0f;
+    }
+
+    @Override
+    public final float W() {
+        return -1.0f;
+    }
+
+    public final int a(d dVar) {
+        boolean z10 = false;
+        if (dVar == null) {
+            return 0;
         }
-        if (u7.a(i10, 8)) {
-            Iterator it2 = this.d.iterator();
-            while (it2.hasNext()) {
-                d dVar = (d) it2.next();
-                j1 e12 = e1(j1Var, dVar.S(), this.f7692b);
-                if (e12 != null) {
-                    dVar.m(e12);
-                }
-            }
+        e6 e6Var = this.f14414a;
+        if ((e6Var instanceof ei.b) || (e6Var == null ? k6.I.q() : e6Var.a())) {
+            z10 = true;
         }
-        return j1Var;
+        return dVar.j(e6Var, z10);
+    }
+
+    @Override
+    public float a0() {
+        return 0.0f;
+    }
+
+    public float b() {
+        return this.f14420r;
+    }
+
+    public float c() {
+        return this.f14419n;
+    }
+
+    @Override
+    public int c0() {
+        return 0;
+    }
+
+    public final void d(int i3, int i10) {
+        this.f14415b = new c(i10, i3, 0);
+    }
+
+    public final void e(int i3, int i10) {
+        this.d = new c(i10, i3, 0);
+    }
+
+    public final void f(int i3, int i10) {
+        this.f14416c = new c(i10, i3, 0);
+    }
+
+    @Override
+    public int u0() {
+        return a(this.f14415b);
+    }
+
+    @Override
+    public final int w0() {
+        return a(this.f14417e);
+    }
+
+    @Override
+    public int x() {
+        return a(this.f14416c);
     }
 }

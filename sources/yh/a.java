@@ -1,79 +1,91 @@
 package yh;
 
+import android.animation.ValueAnimator;
+import android.graphics.Path;
+import android.text.Layout;
+import android.view.View;
+import b8.be;
 import java.util.ArrayList;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.i0;
-import org.telegram.messenger.k20;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.q51;
-public final class a implements k20 {
-    public final int f54460a;
-    public final e f54461b;
+import java.util.List;
+import java.util.Stack;
+import org.telegram.messenger.g0;
+import org.telegram.ui.Components.ks;
+import org.telegram.ui.Components.tg0;
+public final class a extends Path {
+    public final View f59470a;
+    public final Layout f59471b;
+    public final Stack f59472c;
+    public final List d;
+    public final int f59473e;
+    public final int f59474f;
+    public final ArrayList f59475g;
 
-    public a(e eVar, int i10) {
-        this.f54460a = i10;
-        this.f54461b = eVar;
+    public a(View view, Layout layout, Stack stack, List list, int i3, int i10, ArrayList arrayList) {
+        this.f59470a = view;
+        this.f59471b = layout;
+        this.f59472c = stack;
+        this.d = list;
+        this.f59473e = i3;
+        this.f59474f = i10;
+        this.f59475g = arrayList;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        String L0;
-        int i10;
-        int i11 = this.f54460a;
-        e eVar = this.f54461b;
-        switch (i11) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                q51 q51Var = (q51) obj2;
-                arrayList.add(b51.l(0, eVar.h));
-                b51 c10 = b51.c(1, 2131232175, dd.L0(2131751939, null));
-                c10.f24648q = true;
-                arrayList.add(c10);
-                arrayList.add(b51.E(2, i0.L(14.0f)));
-                ArrayList arrayList2 = eVar.f54490n;
-                if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    arrayList.add(b51.t(3, dd.L0(2131751969, null)));
-                    ArrayList arrayList3 = eVar.f54490n;
-                    int size = arrayList3.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        Object obj3 = arrayList3.get(i12);
-                        i12++;
-                        TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                        TLRPC.ChatFull M0 = eVar.getMessagesController().M0(chat.f19794id);
-                        b51 w9 = b51.w(chat);
-                        long j10 = chat.f19794id;
-                        w9.d = (int) (j10 ^ (j10 >>> 32));
-                        if (M0 != null) {
-                            ArrayList<TL_communities.CommunityPeer> arrayList4 = M0.linked_peers;
-                            if (arrayList4 != null) {
-                                i10 = arrayList4.size();
-                            } else {
-                                i10 = 0;
-                            }
-                            L0 = dd.G(i10, "Chats", new Object[0]);
-                        } else {
-                            L0 = dd.L0(2131748789, null);
-                        }
-                        w9.f24644m = L0;
-                        arrayList.add(w9);
-                    }
-                    return;
-                }
-                return;
-            default:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                if (tL_error != null) {
-                    eVar.getClass();
-                    cc.a0(eVar).f0(tL_error, false);
-                    return;
-                }
-                e0.d(eVar, eVar.f54487b, 0);
-                return;
+    public final void addRect(float f10, float f11, float f12, float f13, Path.Direction direction) {
+        f fVar;
+        float f14;
+        Stack stack = this.f59472c;
+        int i3 = 0;
+        if (stack != null && !stack.isEmpty()) {
+            fVar = (f) stack.remove(0);
+        } else {
+            fVar = new f();
         }
+        fVar.f59528y = false;
+        ArrayList arrayList = this.f59475g;
+        if (arrayList != null) {
+            float f15 = (f11 + f13) / 2.0f;
+            while (true) {
+                if (i3 >= arrayList.size()) {
+                    break;
+                }
+                tg0 tg0Var = (tg0) arrayList.get(i3);
+                if (f15 >= tg0Var.f38410b && f15 <= tg0Var.f38411c) {
+                    fVar.f59528y = true;
+                    break;
+                }
+                i3++;
+            }
+        }
+        fVar.f59518n = -1.0f;
+        ValueAnimator valueAnimator = fVar.f59522r;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        fVar.f59520p = true;
+        int max = (int) Math.max(f10, this.f59473e);
+        int i10 = (int) f11;
+        int i11 = this.f59474f;
+        if (i11 <= 0) {
+            f14 = 2.1474836E9f;
+        } else {
+            f14 = i11;
+        }
+        fVar.setBounds(max, i10, (int) Math.min(f12, f14), (int) f13);
+        fVar.h(this.f59471b.getPaint().getColor());
+        fVar.f59524t = ks.f35476c;
+        int width = fVar.getBounds().width() / g0.L(6.0f);
+        int i12 = f.B;
+        int b10 = be.b(width * i12, i12, f.A);
+        Stack stack2 = fVar.f59509c;
+        fVar.d = b10;
+        while (fVar.h.size() + stack2.size() < b10) {
+            stack2.push(new Object());
+        }
+        View view = this.f59470a;
+        if (view != null) {
+            fVar.f59513i = view;
+        }
+        this.d.add(fVar);
     }
 }

@@ -1,7 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public final class ry {
-    public int f30098a;
-    public FrameLayout f30099b;
+import android.graphics.PointF;
+import java.nio.ByteBuffer;
+public interface ry {
+    float getBlurAngle();
+
+    float getBlurExcludeBlurSize();
+
+    PointF getBlurExcludePoint();
+
+    float getBlurExcludeSize();
+
+    int getBlurType();
+
+    float getContrastValue();
+
+    float getEnhanceValue();
+
+    float getExposureValue();
+
+    float getFadeValue();
+
+    float getGrainValue();
+
+    float getHighlightsValue();
+
+    float getSaturationValue();
+
+    float getShadowsValue();
+
+    float getSharpenValue();
+
+    float getSoftenSkinValue();
+
+    int getTintHighlightsColor();
+
+    float getTintHighlightsIntensityValue();
+
+    int getTintShadowsColor();
+
+    float getTintShadowsIntensityValue();
+
+    float getVignetteValue();
+
+    float getWarmthValue();
+
+    ByteBuffer h();
+
+    boolean o();
+
+    boolean v();
 }

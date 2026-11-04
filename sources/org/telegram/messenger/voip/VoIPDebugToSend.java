@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.zip.GZIPOutputStream;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.b8;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.v2;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.r2;
 import org.telegram.messenger.voip.Instance;
+import org.telegram.messenger.w7;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -36,8 +36,8 @@ public class VoIPDebugToSend {
         }
     }
 
-    public VoIPDebugToSend(int i10) {
-        this.currentAccount = i10;
+    public VoIPDebugToSend(int i3) {
+        this.currentAccount = i3;
     }
 
     public static void b(VoIPDebugToSend voIPDebugToSend, TL_phone.saveCallDebug savecalldebug, TLRPC.InputFile inputFile) {
@@ -55,12 +55,12 @@ public class VoIPDebugToSend {
     }
 
     public void lambda$done$1(File file, TL_phone.saveCallDebug savecalldebug) {
-        b8.G(this.currentAccount).g0(file.getAbsolutePath(), new ag.e0(7, this, savecalldebug));
+        w7.G(this.currentAccount).g0(file.getAbsolutePath(), new mi.f(4, this, savecalldebug));
     }
 
     public void lambda$done$2(Data data, File file, TL_phone.saveCallDebug savecalldebug) {
         File file2 = new File(data.logPath);
-        Typeface typeface = org.telegram.messenger.i0.f16145a;
+        Typeface typeface = org.telegram.messenger.g0.f22580a;
         try {
             BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file2));
             GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(new BufferedOutputStream(new FileOutputStream(file)));
@@ -72,23 +72,23 @@ public class VoIPDebugToSend {
                 } else {
                     gZIPOutputStream.close();
                     bufferedInputStream.close();
-                    org.telegram.messenger.i0.g3(new o(this, file, savecalldebug, 0));
+                    org.telegram.messenger.g0.h3(new l(this, file, savecalldebug, 0));
                     return;
                 }
             }
-        } catch (FileNotFoundException e) {
-            f8.g(e, true);
-        } catch (IOException e7) {
-            f8.g(e7, true);
+        } catch (FileNotFoundException e10) {
+            a8.g(e10, true);
+        } catch (IOException e11) {
+            a8.g(e11, true);
         }
     }
 
     public void lambda$done$3(Data data, TL_phone.saveCallDebug savecalldebug, TLObject tLObject, TLRPC.TL_error tL_error) {
-        if (v2.f18578a) {
-            f8.b("Sent debug logs, response = " + tLObject);
+        if (r2.f25040a) {
+            a8.b("Sent debug logs, response = " + tLObject);
         }
         if ((tLObject instanceof TLRPC.TL_boolFalse) && !TextUtils.isEmpty(data.logPath)) {
-            Utilities.f14523g.c(new n(this, data, new File(a1.g.r(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
+            Utilities.f21389g.c(new k(this, data, new File(a1.g.s(new StringBuilder(), data.logPath, ".gzip")), savecalldebug, 0));
         }
     }
 
@@ -102,8 +102,8 @@ public class VoIPDebugToSend {
             TLRPC.TL_inputPhoneCall tL_inputPhoneCall = new TLRPC.TL_inputPhoneCall();
             savecalldebug.peer = tL_inputPhoneCall;
             tL_inputPhoneCall.access_hash = remove.access_hash;
-            tL_inputPhoneCall.f19859id = remove.callId;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new p(this, remove, savecalldebug, 0));
+            tL_inputPhoneCall.f27066id = remove.callId;
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(savecalldebug, new m(this, remove, savecalldebug, 0));
         }
     }
 
@@ -111,8 +111,8 @@ public class VoIPDebugToSend {
         if (TextUtils.isEmpty(finalState.debugLog)) {
             try {
                 finalState.debugLog = VoIPService.getStringFromFile(n1.e("" + j10));
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Exception e10) {
+                e10.printStackTrace();
             }
         }
         Data data = new Data();

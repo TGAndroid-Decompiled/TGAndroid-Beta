@@ -1,86 +1,38 @@
 package org.telegram.ui.Components;
+public final class c00 implements Runnable {
+    public final FragmentContextView f32492a;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class c00 extends tk0 {
-    public final j00 f24948c;
-
-    public c00(j00 j00Var) {
-        this.f24948c = j00Var;
+    public c00(FragmentContextView fragmentContextView) {
+        this.f32492a = fragmentContextView;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f47912f == 2) {
-            int b10 = c1Var.b();
-            j00 j00Var = this.f24948c;
-            if (b10 >= j00Var.f27226j2 && c1Var.b() <= j00Var.f27227k2) {
-                return true;
+    public final void run() {
+        String j02;
+        FragmentContextView fragmentContextView = this.f32492a;
+        org.telegram.ui.ActionBar.d2 d2Var = fragmentContextView.h;
+        if (fragmentContextView.f31460h0 != null && (d2Var instanceof org.telegram.ui.wm)) {
+            org.telegram.messenger.r3 groupCall = fragmentContextView.f31465n.getGroupCall();
+            if (groupCall != null && groupCall.j()) {
+                int currentTime = groupCall.f25049b.schedule_date - d2Var.getConnectionsManager().getCurrentTime();
+                if (currentTime >= 86400) {
+                    j02 = org.telegram.messenger.bd.G(Math.round(currentTime / 86400.0f), "Days", new Object[0]);
+                } else {
+                    j02 = org.telegram.messenger.g0.j0(currentTime);
+                }
+                g6 g6Var = fragmentContextView.f31463k0;
+                if (!fragmentContextView.f31462j0) {
+                    j02 = org.telegram.messenger.bd.M0(2131743450, null);
+                }
+                g6Var.t(j02, true, true);
+                org.telegram.messenger.g0.i3(fragmentContextView.f31466n0, 1000L);
+                fragmentContextView.f31472s.invalidate();
+                return;
             }
-            return false;
+            fragmentContextView.f31461i0 = false;
+            fragmentContextView.m0 = false;
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.f24948c.f27223g2;
-    }
-
-    @Override
-    public final int d(int i10) {
-        j00 j00Var = this.f24948c;
-        j00Var.getClass();
-        if (i10 == 0) {
-            return 0;
-        }
-        if (i10 != j00Var.f27224h2 && i10 != j00Var.f27228l2 && i10 != j00Var.f27232p2) {
-            if (i10 != j00Var.f27225i2 && i10 != j00Var.f27229m2) {
-                return 2;
-            }
-            return 3;
-        }
-        return 1;
-    }
-
-    @Override
-    public final void t(s4.c1 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c00.t(s4.c1, int):void");
-    }
-
-    @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        i00 i00Var;
-        i00 i00Var2;
-        boolean z10;
-        j00 j00Var = this.f24948c;
-        if (i10 == 0) {
-            Context context = j00Var.getContext();
-            if (!(j00Var.R1 instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) && j00Var.S1 == null) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            i00Var = new i00(j00Var, context, z10, j00Var.X1, j00Var.V1, j00Var.W1);
-            j00Var.f27222f2 = i00Var;
-        } else {
-            i00Var = null;
-            if (i10 == 1) {
-                ?? b9Var = new org.telegram.ui.Cells.b9(j00Var.getContext());
-                org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20873a7, b9Var, null);
-                i00Var2 = b9Var;
-            } else if (i10 == 2) {
-                ?? j4Var = new org.telegram.ui.Cells.j4(j00Var.getContext(), 1, 0, false);
-                org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d6, j4Var, null);
-                i00Var = j4Var;
-            } else if (i10 == 3) {
-                ?? g00Var = new g00(j00Var.getContext());
-                org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d6, g00Var, null);
-                i00Var2 = g00Var;
-            }
-            i00Var = i00Var2;
-        }
-        return new s4.c1(i00Var);
+        fragmentContextView.m0 = false;
     }
 }

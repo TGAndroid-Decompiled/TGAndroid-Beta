@@ -1,199 +1,29 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.text.Editable;
-import android.text.Spannable;
-import android.text.TextUtils;
+import android.view.View;
 import android.widget.FrameLayout;
-import java.util.HashSet;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.kj;
-import org.telegram.messenger.vi;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gr;
-public class m3 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
-    public boolean D;
-    public final org.telegram.ui.ActionBar.p6 f22291a;
-    public int f22292b;
-    public boolean f22293c;
-    public final k3 d;
-    public final int e;
-    public boolean f22294f;
-    public int h;
-    public boolean f22295n;
-    public boolean f22296r;
-    public boolean f22297s;
-    public final org.telegram.ui.Components.w4 f22298w;
-    public int f22299x;
-    public final org.telegram.ui.Components.e6 f22300y;
+public final class m3 extends FrameLayout {
+    public int f29627a;
 
-    public m3(Context context, String str, boolean z10, boolean z11, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
+    public m3(Context context) {
+        this(context, 8);
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f29627a, 1073741824));
+    }
+
+    public void setHeight(int i3) {
+        if (this.f29627a != i3) {
+            this.f29627a = i3;
+            requestLayout();
+        }
+    }
+
+    public m3(Context context, int i3) {
         super(context);
-        int i11;
-        int i12;
-        this.h = -1;
-        this.f22298w = new org.telegram.ui.Components.w4(this);
-        org.telegram.ui.Components.e6 e6Var = new org.telegram.ui.Components.e6(false, true, true);
-        this.f22300y = e6Var;
-        e6Var.n(0.2f, 160L, gr.h);
-        e6Var.w(org.telegram.messenger.i0.L(15.33f));
-        e6Var.f25744b = 5;
-        this.e = i10;
-        k3 k3Var = new k3(this, context, p6Var, i10, p6Var, z11);
-        this.d = k3Var;
-        e6Var.setCallback(k3Var);
-        k3Var.setTextSize(1, 17.0f);
-        org.telegram.ui.ActionBar.a7.E(k3Var, org.telegram.ui.ActionBar.t6.H6, p6Var);
-        int i13 = org.telegram.ui.ActionBar.t6.G6;
-        org.telegram.ui.ActionBar.a7.V(k3Var, i13, p6Var);
-        k3Var.setBackground(null);
-        if (z10) {
-            k3Var.setMaxLines(5);
-            k3Var.setSingleLine(false);
-        } else {
-            k3Var.setMaxLines(1);
-            k3Var.setSingleLine(true);
-        }
-        int L = org.telegram.messenger.i0.L(21.0f);
-        int L2 = org.telegram.messenger.i0.L(15.0f);
-        if (i10 > 0) {
-            i11 = 42;
-        } else {
-            i11 = 0;
-        }
-        k3Var.setPadding(L, L2, org.telegram.messenger.i0.L(i11 + 21), org.telegram.messenger.i0.L(15.0f));
-        k3Var.setGravity((dd.X ? 5 : 3) | 48);
-        if (z10) {
-            i12 = 131072;
-        } else {
-            i12 = 0;
-        }
-        k3Var.setInputType(i12 | 573441);
-        k3Var.setRawInputType((z10 ? 131072 : 0) | 573441);
-        k3Var.setHint(str);
-        this.f22291a = p6Var;
-        int w02 = org.telegram.ui.ActionBar.t6.w0(i13, p6Var);
-        this.f22292b = w02;
-        k3Var.setCursorColor(w02);
-        k3Var.setCursorSize(org.telegram.messenger.i0.L(19.0f));
-        k3Var.setCursorWidth(1.5f);
-        k3Var.addTextChangedListener(new l3(this, i10, z10));
-        k3Var.setOnFocusChangeListener(new m.r2(this, 2));
-        addView(k3Var, w7.b6.e(-1, -1, 48));
-        c();
-    }
-
-    public final void c() {
-        int i10;
-        if (this.d == null) {
-            return;
-        }
-        this.f22299x = this.e - getText().length();
-        String str = "";
-        if ((!TextUtils.isEmpty(getText()) || this.f22294f) && ((!this.f22295n || (this.f22297s && !this.f22296r)) && ((i10 = this.h) == -1 || this.f22299x <= i10))) {
-            str = "" + this.f22299x;
-        }
-        this.f22300y.t(str, true, true);
-    }
-
-    public CharSequence getText() {
-        return this.d.getText();
-    }
-
-    public TLRPC.TL_textWithEntities getTextWithEntities() {
-        TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
-        CharSequence[] charSequenceArr = {getText()};
-        tL_textWithEntities.entities = vi.b0(e20.f15506s0).W(charSequenceArr, true, true);
-        tL_textWithEntities.text = charSequenceArr[0].toString();
-        return tL_textWithEntities;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i10;
-        super.onDraw(canvas);
-        if (this.D) {
-            if (dd.X) {
-                L = 0.0f;
-            } else {
-                L = org.telegram.messenger.i0.L(22.0f);
-            }
-            float f7 = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (dd.X) {
-                i10 = org.telegram.messenger.i0.L(22.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.t6.f21053k0);
-        }
-    }
-
-    public void setDivider(boolean z10) {
-        this.D = z10;
-        setWillNotDraw(!z10);
-    }
-
-    public void setShowLimitOnFocus(boolean z10) {
-        this.f22295n = z10;
-    }
-
-    public void setShowLimitWhenEmpty(boolean z10) {
-        this.f22294f = z10;
-        if (z10) {
-            c();
-        }
-    }
-
-    public void setShowLimitWhenNear(int i10) {
-        this.h = i10;
-        c();
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f22293c = true;
-        k3 k3Var = this.d;
-        k3Var.setText(charSequence);
-        k3Var.setSelection(k3Var.getText().length());
-        this.f22293c = false;
-    }
-
-    @Override
-    public final void updateColors() {
-        k3 k3Var = this.d;
-        if (k3Var != null) {
-            try {
-                int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, this.f22291a);
-                if (w02 != this.f22292b) {
-                    this.f22292b = w02;
-                    k3Var.setCursorColor(w02);
-                }
-            } catch (Exception e) {
-                org.telegram.messenger.f8.g(e, true);
-            }
-        }
-    }
-
-    public void setText(TLRPC.TL_textWithEntities tL_textWithEntities) {
-        this.f22293c = true;
-        Spannable h02 = kj.h0(tL_textWithEntities, false);
-        k3 k3Var = this.d;
-        k3Var.setText(h02);
-        k3Var.setSelection(k3Var.getText().length());
-        this.f22293c = false;
-    }
-
-    public void a(boolean z10) {
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    public void b(Editable editable) {
+        this.f29627a = i3;
     }
 }

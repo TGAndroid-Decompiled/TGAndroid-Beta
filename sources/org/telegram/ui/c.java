@@ -2,35 +2,35 @@ package org.telegram.ui;
 
 import android.content.Intent;
 import android.net.Uri;
-public final class c implements org.telegram.ui.ActionBar.u1 {
-    public final int f36142a;
-    public final f f36143b;
+public final class c implements org.telegram.ui.ActionBar.p1 {
+    public final int f44179a;
+    public final g f44180b;
 
-    public c(f fVar, int i10) {
-        this.f36142a = i10;
-        this.f36143b = fVar;
+    public c(g gVar, int i3) {
+        this.f44179a = i3;
+        this.f44180b = gVar;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f36142a) {
+    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f44179a) {
             case 0:
-                f fVar = this.f36143b;
+                g gVar = this.f44180b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.w0.f18945b.getPackageName()));
-                    fVar.getParentActivity().startActivity(intent);
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25457b.getPackageName()));
+                    gVar.getParentActivity().startActivity(intent);
                     return;
-                } catch (Exception e) {
-                    org.telegram.messenger.f8.g(e, true);
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
             default:
-                f fVar2 = this.f36143b;
-                fVar2.getClass();
-                gf0 gf0Var = new gf0();
-                gf0Var.F = 2;
-                fVar2.presentFragment(gf0Var, true);
+                g gVar2 = this.f44180b;
+                gVar2.getClass();
+                xd0 xd0Var = new xd0();
+                xd0Var.G = 2;
+                gVar2.presentFragment(xd0Var, true);
                 return;
         }
     }

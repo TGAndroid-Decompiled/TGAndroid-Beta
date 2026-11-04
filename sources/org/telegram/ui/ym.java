@@ -1,137 +1,69 @@
 package org.telegram.ui;
-public final class ym extends gf.e {
-    public final int d;
-    public final org.telegram.ui.Cells.z e;
-    public final Object f43684f;
 
-    public ym(Object obj, org.telegram.ui.Cells.z zVar, int i10) {
-        this.d = i10;
-        this.f43684f = obj;
-        this.e = zVar;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+public abstract class ym extends FrameLayout {
+    public final xm f52363a;
+    public final org.telegram.ui.ActionBar.q4 f52364b;
+    public View f52365c;
+    public int d;
+    public boolean f52366e;
+
+    public ym(Context context, org.telegram.ui.ActionBar.q4 q4Var, Bundle bundle) {
+        super(context);
+        this.f52366e = true;
+        this.f52364b = q4Var;
+        xm xmVar = new xm(this, bundle);
+        this.f52363a = xmVar;
+        xmVar.jb = true;
     }
 
-    @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
-            case 0:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new zj(((fn) this.f43684f).f37191a, 2), 250L);
-                    return;
+    public void a() {
+        int i3;
+        xm xmVar = this.f52363a;
+        if (xmVar.onFragmentCreate()) {
+            this.f52365c = xmVar.fragmentView;
+            xmVar.setParentLayout(this.f52364b);
+            View view = this.f52365c;
+            if (view == null) {
+                this.f52365c = xmVar.createView(getContext());
+            } else {
+                ViewGroup viewGroup = (ViewGroup) view.getParent();
+                if (viewGroup != null) {
+                    xmVar.onRemoveFromParent();
+                    viewGroup.removeView(this.f52365c);
                 }
-                return;
-            case 1:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new zj(((fn) this.f43684f).f37191a, 3), 250L);
-                    return;
-                }
-                return;
-            case 2:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new zj(((fn) this.f43684f).f37191a, 4), 250L);
-                    return;
-                }
-                return;
-            case 3:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new zj(((fn) this.f43684f).f37191a, 5), 250L);
-                    return;
-                }
-                return;
-            case 4:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new zj(((fn) this.f43684f).f37191a, 6), 250L);
-                    return;
-                }
-                return;
-            case 5:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new zj(((fn) this.f43684f).f37191a, 7), 250L);
-                    return;
-                }
-                return;
-            default:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new ch(10, this, (org.telegram.ui.Cells.s0) this.e), 250L);
-                    return;
-                }
-                return;
+            }
+            wi wiVar = xmVar.A0;
+            if (wiVar != null && (i3 = this.d) != 0) {
+                wiVar.setPadding(0, i3, 0, 0);
+            }
+            xmVar.Pa();
+            addView(this.f52365c, b8.mf.c(-1.0f, -1));
+            if (this.f52366e) {
+                xmVar.onResume();
+            }
         }
     }
 
     @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                fn fnVar = (fn) this.f43684f;
-                un unVar = fnVar.f37191a;
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.e;
-                unVar.Sb = q1Var.getMessageObject().f1();
-                un unVar2 = fnVar.f37191a;
-                unVar2.Tb = 2;
-                unVar2.Ub = null;
-                q1Var.invalidate();
-                return;
-            case 1:
-                fn fnVar2 = (fn) this.f43684f;
-                un unVar3 = fnVar2.f37191a;
-                org.telegram.ui.Cells.q1 q1Var2 = (org.telegram.ui.Cells.q1) this.e;
-                unVar3.Sb = q1Var2.getMessageObject().f1();
-                un unVar4 = fnVar2.f37191a;
-                unVar4.Tb = 2;
-                unVar4.Ub = null;
-                q1Var2.invalidate();
-                return;
-            case 2:
-                fn fnVar3 = (fn) this.f43684f;
-                un unVar5 = fnVar3.f37191a;
-                org.telegram.ui.Cells.q1 q1Var3 = (org.telegram.ui.Cells.q1) this.e;
-                unVar5.Sb = q1Var3.getMessageObject().f1();
-                un unVar6 = fnVar3.f37191a;
-                unVar6.Tb = 2;
-                unVar6.Ub = null;
-                q1Var3.invalidate();
-                return;
-            case 3:
-                fn fnVar4 = (fn) this.f43684f;
-                un unVar7 = fnVar4.f37191a;
-                org.telegram.ui.Cells.q1 q1Var4 = (org.telegram.ui.Cells.q1) this.e;
-                unVar7.Sb = q1Var4.getMessageObject().f1();
-                un unVar8 = fnVar4.f37191a;
-                unVar8.Tb = 2;
-                unVar8.Ub = null;
-                q1Var4.invalidate();
-                return;
-            case 4:
-                fn fnVar5 = (fn) this.f43684f;
-                un unVar9 = fnVar5.f37191a;
-                org.telegram.ui.Cells.q1 q1Var5 = (org.telegram.ui.Cells.q1) this.e;
-                unVar9.Sb = q1Var5.getMessageObject().f1();
-                un unVar10 = fnVar5.f37191a;
-                unVar10.Tb = 2;
-                unVar10.Ub = null;
-                q1Var5.invalidate();
-                return;
-            case 5:
-                fn fnVar6 = (fn) this.f43684f;
-                un unVar11 = fnVar6.f37191a;
-                org.telegram.ui.Cells.q1 q1Var6 = (org.telegram.ui.Cells.q1) this.e;
-                unVar11.Sb = q1Var6.getMessageObject().f1();
-                un unVar12 = fnVar6.f37191a;
-                unVar12.Tb = 2;
-                unVar12.Ub = null;
-                q1Var6.invalidate();
-                return;
-            default:
-                am amVar = (am) this.f43684f;
-                un unVar13 = amVar.f35805a.Q;
-                org.telegram.ui.Cells.s0 s0Var = (org.telegram.ui.Cells.s0) this.e;
-                unVar13.Sb = s0Var.getMessageObject().f1();
-                un unVar14 = amVar.f35805a.Q;
-                unVar14.Tb = 4;
-                unVar14.Ub = null;
-                s0Var.getMessageObject().f16716r = true;
-                s0Var.invalidate();
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
+    public void setTopPadding(int i3) {
+        this.d = i3;
+    }
+
+    public void b(boolean z10) {
     }
 }

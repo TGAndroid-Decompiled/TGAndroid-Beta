@@ -1,28 +1,28 @@
 package org.telegram.ui.Components;
 public final class bj implements Runnable {
-    public final int f24844a;
-    public final dj f24845b;
+    public final int f32303a;
+    public final dj f32304b;
 
-    public bj(dj djVar, int i10) {
-        this.f24844a = i10;
-        this.f24845b = djVar;
+    public bj(dj djVar, int i3) {
+        this.f32303a = i3;
+        this.f32304b = djVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f24844a) {
+        switch (this.f32303a) {
             case 0:
-                dj djVar = this.f24845b;
-                if (djVar.f25498f != null) {
-                    djVar.f25502w = org.telegram.messenger.m5.h(new StringBuilder("+"), djVar.f25498f.phone, af.b.c());
-                    djVar.f25501s = djVar.f25498f;
-                    org.telegram.messenger.i0.g3(new bj(djVar, 1));
+                dj djVar = this.f32304b;
+                if (djVar.f33114f != null) {
+                    djVar.f33118w = org.telegram.messenger.k5.i(new StringBuilder("+"), djVar.f33114f.phone, mf.b.c());
+                    djVar.f33117s = djVar.f33114f;
+                    org.telegram.messenger.g0.h3(new bj(djVar, 1));
                     return;
                 }
                 return;
             default:
-                dj djVar2 = this.f24845b;
-                djVar2.f25497c.l(djVar2.f25502w, false);
+                dj djVar2 = this.f32304b;
+                djVar2.f33112c.l(djVar2.f33118w, false);
                 return;
         }
     }

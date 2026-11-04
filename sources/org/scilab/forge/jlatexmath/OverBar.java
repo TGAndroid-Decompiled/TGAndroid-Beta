@@ -2,21 +2,21 @@ package org.scilab.forge.jlatexmath;
 
 import ru.noties.jlatexmath.awt.Graphics2D;
 public class OverBar extends VerticalBox {
-    public OverBar(Box box, float f7, float f10) {
+    public OverBar(Box box, float f10, float f11) {
+        add(new StrutBox(0.0f, f11, 0.0f, 0.0f));
+        add(new HorizontalRule(f11, box.getWidth(), 0.0f));
         add(new StrutBox(0.0f, f10, 0.0f, 0.0f));
-        add(new HorizontalRule(f10, box.getWidth(), 0.0f));
-        add(new StrutBox(0.0f, f7, 0.0f, 0.0f));
         add(box);
     }
 
     @Override
-    public void add(int i10, Box box) {
-        super.add(i10, box);
+    public void add(int i3, Box box) {
+        super.add(i3, box);
     }
 
     @Override
-    public void draw(Graphics2D graphics2D, float f7, float f10) {
-        super.draw(graphics2D, f7, f10);
+    public void draw(Graphics2D graphics2D, float f10, float f11) {
+        super.draw(graphics2D, f10, f11);
     }
 
     @Override

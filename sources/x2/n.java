@@ -1,59 +1,60 @@
 package x2;
 
-import e9.b0;
-import e9.s1;
-import j$.util.Objects;
-public final class n extends m {
-    public final int D;
-    public final int E;
+import b8.uc;
+import d2.v;
+import e3.i0;
+import i2.c0;
+import w2.c1;
+public final class n extends a {
     public final int F;
-    public final boolean G;
-    public final int H;
-    public final boolean I;
-    public final int J;
-    public final boolean K;
-    public final boolean L;
-    public final boolean M;
-    public final int N;
-    public final boolean O;
-    public final String P;
-    public final boolean e;
-    public final j f52952f;
-    public final boolean h;
-    public final boolean f52953n;
-    public final boolean f52954r;
-    public final int f52955s;
-    public final int f52956w;
-    public final int f52957x;
-    public final int f52958y;
+    public final v G;
+    public long H;
+    public boolean I;
 
-    public n(int r7, b2.p1 r8, int r9, x2.j r10, int r11, java.lang.String r12, int r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: x2.n.<init>(int, b2.p1, int, x2.j, int, java.lang.String, int, boolean):void");
-    }
-
-    public static int c(n nVar, n nVar2) {
-        b0 c10 = b0.f6331a.c(nVar.f52953n, nVar2.f52953n);
-        Integer valueOf = Integer.valueOf(nVar.f52958y);
-        Integer valueOf2 = Integer.valueOf(nVar2.f52958y);
-        s1 s1Var = s1.f6414c;
-        return c10.b(valueOf, valueOf2, s1Var).a(nVar.D, nVar2.D).a(nVar.E, nVar2.E).b(Integer.valueOf(nVar.F), Integer.valueOf(nVar2.F), s1Var).c(nVar.G, nVar2.G).a(nVar.H, nVar2.H).c(nVar.f52954r, nVar2.f52954r).c(nVar.e, nVar2.e).c(nVar.h, nVar2.h).b(Integer.valueOf(nVar.f52957x), Integer.valueOf(nVar2.f52957x), s1Var).c(nVar.K, nVar2.K).c(nVar.M, nVar2.M).e();
+    public n(i2.h hVar, i2.n nVar, v vVar, int i3, Object obj, long j10, long j11, long j12, int i10, v vVar2) {
+        super(hVar, nVar, vVar, i3, obj, j10, j11, -9223372036854775807L, -9223372036854775807L, j12);
+        this.F = i10;
+        this.G = vVar2;
     }
 
     @Override
-    public final int a() {
-        return this.J;
-    }
-
-    @Override
-    public final boolean b(m mVar) {
-        n nVar = (n) mVar;
-        if (this.I || Objects.equals(this.P, nVar.P)) {
-            this.f52952f.getClass();
-            if (this.K == nVar.K && this.M == nVar.M) {
-                return true;
+    public final void a() {
+        c1[] c1VarArr;
+        c0 c0Var = this.f58154r;
+        ua.b bVar = this.f58128y;
+        bVar.getClass();
+        for (c1 c1Var : (c1[]) bVar.f55784c) {
+            if (c1Var.H != 0) {
+                c1Var.H = 0L;
+                c1Var.B = true;
             }
-            return false;
         }
-        return false;
+        i0 c2 = bVar.c(this.F);
+        c2.g(this.G);
+        try {
+            long open = c0Var.open(this.f58149b.b(this.H));
+            if (open != -1) {
+                open += this.H;
+            }
+            e3.l lVar = new e3.l(this.f58154r, this.H, open);
+            for (int i3 = 0; i3 != -1; i3 = c2.a(lVar, Integer.MAX_VALUE, true)) {
+                this.H += i3;
+            }
+            c2.d(this.h, 1, (int) this.H, 0, null);
+            uc.a(c0Var);
+            this.I = true;
+        } catch (Throwable th2) {
+            uc.a(c0Var);
+            throw th2;
+        }
+    }
+
+    @Override
+    public final boolean c() {
+        return this.I;
+    }
+
+    @Override
+    public final void X1() {
     }
 }

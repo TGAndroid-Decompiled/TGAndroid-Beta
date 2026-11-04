@@ -20,9 +20,9 @@ public class CameraEnumerationAndroid {
             public int max;
             public int min;
 
-            public FramerateRange(int i10, int i11) {
-                this.min = i10;
-                this.max = i11;
+            public FramerateRange(int i3, int i10) {
+                this.min = i3;
+                this.max = i10;
             }
 
             public boolean equals(Object obj) {
@@ -45,10 +45,10 @@ public class CameraEnumerationAndroid {
             }
         }
 
-        public CaptureFormat(int i10, int i11, int i12, int i13) {
-            this.width = i10;
-            this.height = i11;
-            this.framerate = new FramerateRange(i12, i13);
+        public CaptureFormat(int i3, int i10, int i11, int i12) {
+            this.width = i3;
+            this.height = i10;
+            this.framerate = new FramerateRange(i11, i12);
         }
 
         public boolean equals(Object obj) {
@@ -74,16 +74,16 @@ public class CameraEnumerationAndroid {
             return this.width + "x" + this.height + "@" + this.framerate;
         }
 
-        public static int frameSize(int i10, int i11, int i12) {
-            if (i12 == 17) {
-                return (ImageFormat.getBitsPerPixel(i12) * (i10 * i11)) / 8;
+        public static int frameSize(int i3, int i10, int i11) {
+            if (i11 == 17) {
+                return (ImageFormat.getBitsPerPixel(i11) * (i3 * i10)) / 8;
             }
             throw new UnsupportedOperationException("Don't know how to calculate the frame size of non-NV21 image formats.");
         }
 
-        public CaptureFormat(int i10, int i11, FramerateRange framerateRange) {
-            this.width = i10;
-            this.height = i11;
+        public CaptureFormat(int i3, int i10, FramerateRange framerateRange) {
+            this.width = i3;
+            this.height = i10;
             this.framerate = framerateRange;
         }
     }
@@ -100,7 +100,7 @@ public class CameraEnumerationAndroid {
         public abstract int diff(T t10);
     }
 
-    public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i10) {
+    public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i3) {
         return (CaptureFormat.FramerateRange) Collections.min(list, new ClosestComparator<CaptureFormat.FramerateRange>() {
             private static final int MAX_FPS_DIFF_THRESHOLD = 5000;
             private static final int MAX_FPS_HIGH_DIFF_WEIGHT = 3;
@@ -113,21 +113,21 @@ public class CameraEnumerationAndroid {
                 super();
             }
 
-            private int progressivePenalty(int i11, int i12, int i13, int i14) {
-                if (i11 < i12) {
-                    return i11 * i13;
+            private int progressivePenalty(int i10, int i11, int i12, int i13) {
+                if (i10 < i11) {
+                    return i10 * i12;
                 }
-                return i0.a.e(i11, i12, i14, i13 * i12);
+                return com.google.android.recaptcha.internal.a.e(i10, i11, i13, i12 * i11);
             }
 
             @Override
             public int diff(CaptureFormat.FramerateRange framerateRange) {
-                return progressivePenalty(framerateRange.min, 8000, 1, 4) + progressivePenalty(Math.abs((i10 * 1000) - framerateRange.max), 5000, 1, 3);
+                return progressivePenalty(framerateRange.min, 8000, 1, 4) + progressivePenalty(Math.abs((i3 * 1000) - framerateRange.max), 5000, 1, 3);
             }
         });
     }
 
-    public static Size getClosestSupportedSize(List<Size> list, final int i10, final int i11) {
+    public static Size getClosestSupportedSize(List<Size> list, final int i3, final int i10) {
         return (Size) Collections.min(list, new ClosestComparator<Size>() {
             {
                 super();
@@ -135,7 +135,7 @@ public class CameraEnumerationAndroid {
 
             @Override
             public int diff(Size size) {
-                return Math.abs(i11 - size.height) + Math.abs(i10 - size.width);
+                return Math.abs(i10 - size.height) + Math.abs(i3 - size.width);
             }
         });
     }

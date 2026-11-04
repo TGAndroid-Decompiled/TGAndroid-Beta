@@ -1,63 +1,58 @@
 package q1;
 
-import android.os.Bundle;
-import android.text.Editable;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.view.inputmethod.InputConnectionWrapper;
-import android.widget.EditText;
-import androidx.emoji2.text.l;
-import java.nio.ByteBuffer;
-public final class b extends InputConnectionWrapper {
-    public final EditText f45405a;
-    public final kb.a f45406b;
+import android.view.View;
+public final class b extends e {
+    public final int f53634a;
 
-    public b(EditText editText, InputConnection inputConnection, EditorInfo editorInfo) {
-        super(inputConnection, false);
-        int i10;
-        kb.a aVar = new kb.a(17);
-        this.f45405a = editText;
-        this.f45406b = aVar;
-        if (l.f1389j != null) {
-            l a2 = l.a();
-            if (a2.b() != 1 || editorInfo == null) {
+    @Override
+    public final float a(Object obj) {
+        switch (this.f53634a) {
+            case 0:
+                return ((View) obj).getAlpha();
+            case 1:
+                return ((View) obj).getTranslationX();
+            case 2:
+                return ((View) obj).getTranslationY();
+            case 3:
+                return ((View) obj).getScaleX();
+            case 4:
+                return ((View) obj).getScaleY();
+            case 5:
+                return ((View) obj).getRotation();
+            case 6:
+                return ((View) obj).getRotationX();
+            default:
+                return ((View) obj).getRotationY();
+        }
+    }
+
+    @Override
+    public final void b(Object obj, float f10) {
+        switch (this.f53634a) {
+            case 0:
+                ((View) obj).setAlpha(f10);
                 return;
-            }
-            if (editorInfo.extras == null) {
-                editorInfo.extras = new Bundle();
-            }
-            androidx.emoji2.text.f fVar = a2.e;
-            fVar.getClass();
-            Bundle bundle = editorInfo.extras;
-            p1.b bVar = (p1.b) ((ji.f) fVar.f1381c).f10442b;
-            int a10 = bVar.a(4);
-            if (a10 != 0) {
-                i10 = ((ByteBuffer) bVar.d).getInt(a10 + bVar.f44541a);
-            } else {
-                i10 = 0;
-            }
-            bundle.putInt("android.support.text.emoji.emojiCompat_metadataVersion", i10);
-            editorInfo.extras.putBoolean("android.support.text.emoji.emojiCompat_replaceAll", false);
+            case 1:
+                ((View) obj).setTranslationX(f10);
+                return;
+            case 2:
+                ((View) obj).setTranslationY(f10);
+                return;
+            case 3:
+                ((View) obj).setScaleX(f10);
+                return;
+            case 4:
+                ((View) obj).setScaleY(f10);
+                return;
+            case 5:
+                ((View) obj).setRotation(f10);
+                return;
+            case 6:
+                ((View) obj).setRotationX(f10);
+                return;
+            default:
+                ((View) obj).setRotationY(f10);
+                return;
         }
-    }
-
-    @Override
-    public final boolean deleteSurroundingText(int i10, int i11) {
-        Editable editableText = this.f45405a.getEditableText();
-        this.f45406b.getClass();
-        if (!kb.a.Q1(this, editableText, i10, i11, false) && !super.deleteSurroundingText(i10, i11)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean deleteSurroundingTextInCodePoints(int i10, int i11) {
-        Editable editableText = this.f45405a.getEditableText();
-        this.f45406b.getClass();
-        if (kb.a.Q1(this, editableText, i10, i11, true) || super.deleteSurroundingTextInCodePoints(i10, i11)) {
-            return true;
-        }
-        return false;
     }
 }

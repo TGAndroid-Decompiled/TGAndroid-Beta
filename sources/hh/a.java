@@ -1,6 +1,20 @@
 package hh;
 public interface a {
-    void c(int i10);
+    int F();
 
-    void d(float f7);
+    int M();
+
+    float O();
+
+    float W();
+
+    float a0();
+
+    int c0();
+
+    int u0();
+
+    int w0();
+
+    int x();
 }

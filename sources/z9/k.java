@@ -1,24 +1,63 @@
 package z9;
-public final class k implements ja.d {
-    public static final k f55340a = new Object();
-    public static final ja.c f55341b = ja.c.c("execution");
-    public static final ja.c f55342c = ja.c.c("customAttributes");
-    public static final ja.c d = ja.c.c("internalKeys");
-    public static final ja.c e = ja.c.c("background");
-    public static final ja.c f55343f = ja.c.c("currentProcessDetails");
-    public static final ja.c f55344g = ja.c.c("appProcessDetails");
-    public static final ja.c h = ja.c.c("uiOrientation");
+
+import android.util.Log;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.Callable;
+import java.util.concurrent.atomic.AtomicReference;
+public final class k implements Callable {
+    public final long f60187a;
+    public final Throwable f60188b;
+    public final Thread f60189c;
+    public final ha.c d;
+    public final m f60190e;
+
+    public k(m mVar, long j10, Throwable th2, Thread thread, ha.c cVar) {
+        this.f60190e = mVar;
+        this.f60187a = j10;
+        this.f60188b = th2;
+        this.f60189c = thread;
+        this.d = cVar;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        m0 m0Var = (m0) ((u1) obj);
-        eVar.d(f55341b, m0Var.f55362a);
-        eVar.d(f55342c, m0Var.f55363b);
-        eVar.d(d, m0Var.f55364c);
-        eVar.d(e, m0Var.d);
-        eVar.d(f55343f, m0Var.e);
-        eVar.d(f55344g, m0Var.f55365f);
-        eVar.g(h, m0Var.f55366g);
+    public final Object call() {
+        fa.f fVar;
+        String str;
+        long j10 = this.f60187a;
+        long j11 = j10 / 1000;
+        m mVar = this.f60190e;
+        String g7 = mVar.g();
+        if (g7 == null) {
+            Log.e("FirebaseCrashlytics", "Tried to write a fatal exception while no session was open.", null);
+            return Tasks.forResult(null);
+        }
+        mVar.f60197c.a();
+        x xVar = mVar.f60205m;
+        xVar.getClass();
+        String concat = "Persisting fatal event for session ".concat(g7);
+        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
+            Log.v("FirebaseCrashlytics", concat, null);
+        }
+        xVar.g(this.f60188b, this.f60189c, "crash", new ba.c(g7, j11, ed.p.f9954a), true);
+        try {
+            fVar = mVar.f60200g;
+            str = ".ae" + j10;
+            fVar.getClass();
+        } catch (IOException e10) {
+            Log.w("FirebaseCrashlytics", "Could not create app exception marker file.", e10);
+        }
+        if (!new File((File) fVar.d, str).createNewFile()) {
+            throw new IOException("Create new file failed.");
+        }
+        ha.c cVar = this.d;
+        mVar.c(false, cVar, false);
+        mVar.d(new e().f60175a, Boolean.FALSE);
+        if (!mVar.f60196b.a()) {
+            return Tasks.forResult(null);
+        }
+        return ((TaskCompletionSource) ((AtomicReference) cVar.f14378i).get()).getTask().onSuccessTask(mVar.f60198e.f286a, new z6.c(this, g7));
     }
 }

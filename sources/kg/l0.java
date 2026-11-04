@@ -1,25 +1,48 @@
 package kg;
-public class l0 {
-    public final int f11165a;
-    public final int f11166b;
-    public final String f11167c;
-    public final String d;
-    public final int e;
-    public boolean f11168f;
 
-    public l0(int i10, int i11, int i12, String str, String str2) {
-        this.f11165a = i10;
-        this.f11166b = i11;
-        this.f11167c = str;
-        this.d = str2;
-        this.e = i12;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class l0 {
+    public final int f17080a;
+    public final int f17081b;
+    public final String f17082c;
+    public final int d;
+    public final TLRPC.MessagesFilter f17083e;
+    public TLObject f17084f;
+    public j0 f17085g;
+    public boolean h;
+
+    public l0(int i3, int i10, String str) {
+        this.h = true;
+        this.f17080a = i3;
+        this.f17082c = str;
+        this.f17083e = null;
+        this.d = i10;
     }
 
-    public static l0 a(int i10, int i11) {
-        return new l0(i10, i11, -1, null, null);
+    public final boolean a() {
+        int i3 = this.d;
+        if (i3 == 0 || i3 == 1 || i3 == 2 || i3 == 3 || i3 == 5) {
+            return true;
+        }
+        return false;
     }
 
-    public static l0 b(int i10, int i11, String str) {
-        return new l0(i10, -1, i11, null, str);
+    public final boolean b(l0 l0Var) {
+        if (this.d != l0Var.d) {
+            if (a() && l0Var.a()) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public l0(int i3, int i10, TLRPC.MessagesFilter messagesFilter, int i11) {
+        this.h = true;
+        this.f17080a = i3;
+        this.f17081b = i10;
+        this.f17083e = messagesFilter;
+        this.d = i11;
     }
 }

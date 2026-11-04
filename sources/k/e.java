@@ -5,98 +5,98 @@ import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
-import l.b0;
+import l.a0;
 public final class e extends ActionMode {
-    public final Context f10481a;
-    public final a f10482b;
+    public final Context f16393a;
+    public final a f16394b;
 
     public e(Context context, a aVar) {
-        this.f10481a = context;
-        this.f10482b = aVar;
+        this.f16393a = context;
+        this.f16394b = aVar;
     }
 
     @Override
     public final void finish() {
-        this.f10482b.b();
+        this.f16394b.c();
     }
 
     @Override
     public final View getCustomView() {
-        return this.f10482b.c();
+        return this.f16394b.d();
     }
 
     @Override
     public final Menu getMenu() {
-        return new b0(this.f10481a, this.f10482b.d());
+        return new a0(this.f16393a, this.f16394b.e());
     }
 
     @Override
     public final MenuInflater getMenuInflater() {
-        return this.f10482b.e();
+        return this.f16394b.f();
     }
 
     @Override
     public final CharSequence getSubtitle() {
-        return this.f10482b.f();
+        return this.f16394b.g();
     }
 
     @Override
     public final Object getTag() {
-        return this.f10482b.f10474b;
+        return this.f16394b.f16385b;
     }
 
     @Override
     public final CharSequence getTitle() {
-        return this.f10482b.g();
+        return this.f16394b.h();
     }
 
     @Override
     public final boolean getTitleOptionalHint() {
-        return this.f10482b.f10473a;
+        return this.f16394b.f16384a;
     }
 
     @Override
     public final void invalidate() {
-        this.f10482b.h();
+        this.f16394b.i();
     }
 
     @Override
     public final boolean isTitleOptional() {
-        return this.f10482b.i();
+        return this.f16394b.j();
     }
 
     @Override
     public final void setCustomView(View view) {
-        this.f10482b.l(view);
+        this.f16394b.m(view);
     }
 
     @Override
     public final void setSubtitle(CharSequence charSequence) {
-        this.f10482b.n(charSequence);
+        this.f16394b.o(charSequence);
     }
 
     @Override
     public final void setTag(Object obj) {
-        this.f10482b.f10474b = obj;
+        this.f16394b.f16385b = obj;
     }
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f10482b.q(charSequence);
+        this.f16394b.q(charSequence);
     }
 
     @Override
     public final void setTitleOptionalHint(boolean z10) {
-        this.f10482b.r(z10);
+        this.f16394b.r(z10);
     }
 
     @Override
-    public final void setSubtitle(int i10) {
-        this.f10482b.m(i10);
+    public final void setSubtitle(int i3) {
+        this.f16394b.n(i3);
     }
 
     @Override
-    public final void setTitle(int i10) {
-        this.f10482b.o(i10);
+    public final void setTitle(int i3) {
+        this.f16394b.p(i3);
     }
 }

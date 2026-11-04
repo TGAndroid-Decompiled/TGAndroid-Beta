@@ -1,248 +1,106 @@
 package r2;
 
-import android.media.MediaCodec;
-import android.media.MediaCrypto;
-import android.media.MediaFormat;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Trace;
-import android.view.Surface;
-import e2.l0;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import org.telegram.ui.web.v1;
-import ph.x1;
-import v7.t6;
-public final class c implements l {
-    public final MediaCodec f46218a;
-    public final f f46219b;
-    public final m f46220c;
-    public final j d;
-    public boolean e;
-    public int f46221f = 0;
+import android.net.Uri;
+import android.os.SystemClock;
+import b8.zb;
+import g9.g2;
+import g9.i0;
+import g9.t0;
+import java.util.HashMap;
+import org.telegram.ui.Cells.f1;
+public final class c {
+    public final w f54080a;
+    public final HashMap f54081b;
+    public final d f54082c;
 
-    public c(MediaCodec mediaCodec, HandlerThread handlerThread, m mVar, j jVar) {
-        this.f46218a = mediaCodec;
-        this.f46219b = new f(handlerThread);
-        this.f46220c = mVar;
-        this.d = jVar;
+    public c(d dVar, w wVar) {
+        this.f54082c = dVar;
+        this.f54080a = wVar;
+        HashMap hashMap = new HashMap();
+        g2 it = t0.q(wVar.f54232b.keySet()).iterator();
+        while (it.hasNext()) {
+            String str = (String) it.next();
+            Uri uri = (Uri) wVar.f54232b.get(str);
+            uri.getClass();
+            hashMap.put(uri, new b(this.f54082c, uri, str));
+        }
+        this.f54081b = hashMap;
     }
 
-    public static void o(c cVar, MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i10) {
-        boolean z10;
-        j jVar;
-        f fVar = cVar.f46219b;
-        MediaCodec mediaCodec = cVar.f46218a;
-        HandlerThread handlerThread = fVar.f46231b;
-        if (fVar.f46232c == null) {
-            z10 = true;
+    public static m a(c cVar, Uri uri) {
+        b bVar = (b) f1.p(cVar.f54081b, uri, uri);
+        bVar.getClass();
+        return bVar.f54072e;
+    }
+
+    public static void b(c cVar, Uri uri, boolean z10) {
+        Uri uri2;
+        b bVar = (b) f1.p(cVar.f54081b, uri, uri);
+        bVar.getClass();
+        if (z10) {
+            uri2 = bVar.a();
         } else {
-            z10 = false;
+            uri2 = bVar.f54069a;
         }
-        t6.p(z10);
-        handlerThread.start();
-        Handler handler = new Handler(handlerThread.getLooper());
-        mediaCodec.setCallback(fVar, handler);
-        fVar.f46232c = handler;
-        Trace.beginSection("configureCodec");
-        mediaCodec.configure(mediaFormat, surface, mediaCrypto, i10);
-        Trace.endSection();
-        cVar.f46220c.start();
-        Trace.beginSection("startCodec");
-        mediaCodec.start();
-        Trace.endSection();
-        if (Build.VERSION.SDK_INT >= 35 && (jVar = cVar.d) != null) {
-            jVar.a(mediaCodec);
-        }
-        cVar.f46221f = 1;
+        bVar.c(uri2);
     }
 
-    public static String p(int i10, String str) {
-        StringBuilder sb2 = new StringBuilder(str);
-        if (i10 == 1) {
-            sb2.append("Audio");
-        } else if (i10 == 2) {
-            sb2.append("Video");
-        } else {
-            sb2.append("Unknown(");
-            sb2.append(i10);
-            sb2.append(")");
-        }
-        return sb2.toString();
-    }
-
-    @Override
-    public final void a(int i10, int i11, int i12, long j10) {
-        this.f46220c.a(i10, i11, i12, j10);
-    }
-
-    @Override
-    public final void b(int i10, h2.d dVar, long j10, int i11) {
-        this.f46220c.b(i10, dVar, j10, i11);
-    }
-
-    @Override
-    public final void c(int i10) {
-        this.f46218a.releaseOutputBuffer(i10, false);
-    }
-
-    @Override
-    public final void d(a3.m mVar, Handler handler) {
-        this.f46218a.setOnFrameRenderedListener(new a(this, mVar, 0), handler);
-    }
-
-    @Override
-    public final void e() {
-        this.f46218a.detachOutputSurface();
-    }
-
-    @Override
-    public final void f(int i10, long j10) {
-        this.f46218a.releaseOutputBuffer(i10, j10);
-    }
-
-    @Override
-    public final void flush() {
-        this.f46220c.flush();
-        this.f46218a.flush();
-        f fVar = this.f46219b;
-        synchronized (fVar.f46230a) {
-            fVar.f46238l++;
-            Handler handler = fVar.f46232c;
-            String str = l0.f6165a;
-            handler.post(new x1(fVar, 3));
-        }
-        this.f46218a.start();
-    }
-
-    @Override
-    public final int g() {
-        throw new UnsupportedOperationException("Method not decompiled: r2.c.g():int");
-    }
-
-    @Override
-    public final ByteBuffer getInputBuffer(int i10) {
-        return this.f46218a.getInputBuffer(i10);
-    }
-
-    @Override
-    public final ByteBuffer getOutputBuffer(int i10) {
-        return this.f46218a.getOutputBuffer(i10);
-    }
-
-    @Override
-    public final MediaFormat getOutputFormat() {
-        MediaFormat mediaFormat;
-        f fVar = this.f46219b;
-        synchronized (fVar.f46230a) {
-            try {
-                mediaFormat = fVar.h;
-                if (mediaFormat == null) {
-                    throw new IllegalStateException();
+    public static boolean c(c cVar, Uri uri, long j10) {
+        HashMap hashMap = cVar.f54081b;
+        b bVar = (b) f1.p(hashMap, uri, uri);
+        bVar.getClass();
+        bVar.f54075r = SystemClock.elapsedRealtime() + j10;
+        d dVar = cVar.f54082c;
+        w wVar = cVar.f54080a;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        for (b bVar2 : hashMap.values()) {
+            if (!bVar2.f54070b.equals(wVar.d) && elapsedRealtime > bVar2.f54075r) {
+                Uri c2 = wVar.c();
+                String str = bVar2.f54070b;
+                zb.p(wVar.f54232b.containsKey(str));
+                wVar.d = str;
+                if (c2.equals(dVar.G)) {
+                    dVar.g(bVar2.f54069a);
                 }
-            } catch (Throwable th2) {
-                throw th2;
+                b bVar3 = (b) hashMap.get(c2);
+                bVar3.getClass();
+                bVar2.f54078x = bVar3.f54078x;
+                bVar3.f54078x = false;
+                return true;
             }
         }
-        return mediaFormat;
-    }
-
-    @Override
-    public final void h(v1 v1Var) {
-        f fVar = this.f46219b;
-        v1 v1Var2 = new v1(25, this, v1Var);
-        synchronized (fVar.f46230a) {
-            fVar.b();
-            v1Var2.run();
-        }
-    }
-
-    @Override
-    public final int i(android.media.MediaCodec.BufferInfo r11) {
-        throw new UnsupportedOperationException("Method not decompiled: r2.c.i(android.media.MediaCodec$BufferInfo):int");
-    }
-
-    @Override
-    public final boolean j(n2.u uVar) {
-        f fVar = this.f46219b;
-        synchronized (fVar.f46230a) {
-            fVar.f46241o = uVar;
+        Uri uri2 = dVar.G;
+        if (uri2 == null || uri.equals(uri2)) {
+            i0 i0Var = dVar.f54092x;
+            long elapsedRealtime2 = SystemClock.elapsedRealtime();
+            boolean z10 = false;
+            int i3 = 0;
+            while (true) {
+                if (i3 >= i0Var.size()) {
+                    break;
+                }
+                Uri c10 = ((w) i0Var.get(i3)).c();
+                c cVar2 = (c) dVar.d.get(c10);
+                cVar2.getClass();
+                HashMap hashMap2 = cVar2.f54081b;
+                b bVar4 = (b) f1.p(hashMap2, c10, c10);
+                bVar4.getClass();
+                if (elapsedRealtime2 <= bVar4.f54075r) {
+                    i3++;
+                } else {
+                    dVar.G = c10;
+                    Uri d = dVar.d(c10);
+                    b bVar5 = (b) f1.p(hashMap2, c10, c10);
+                    bVar5.getClass();
+                    bVar5.c(d);
+                    z10 = true;
+                    break;
+                }
+            }
+            if (!z10) {
+                return false;
+            }
         }
         return true;
-    }
-
-    @Override
-    public final void k(int i10) {
-        this.f46218a.setVideoScalingMode(i10);
-    }
-
-    @Override
-    public final void l(Surface surface) {
-        this.f46218a.setOutputSurface(surface);
-    }
-
-    @Override
-    public final void m(ArrayList arrayList) {
-        this.f46218a.subscribeToVendorParameters(arrayList);
-    }
-
-    @Override
-    public final void n(ArrayList arrayList) {
-        this.f46218a.unsubscribeFromVendorParameters(arrayList);
-    }
-
-    @Override
-    public final void release() {
-        j jVar;
-        j jVar2;
-        try {
-            if (this.f46221f == 1) {
-                this.f46220c.shutdown();
-                f fVar = this.f46219b;
-                synchronized (fVar.f46230a) {
-                    fVar.f46239m = true;
-                    fVar.f46231b.quit();
-                    fVar.a();
-                }
-            }
-            this.f46221f = 2;
-            if (!this.e) {
-                try {
-                    int i10 = Build.VERSION.SDK_INT;
-                    if (i10 >= 30 && i10 < 33) {
-                        this.f46218a.stop();
-                    }
-                    if (i10 >= 35 && (jVar2 = this.d) != null) {
-                        jVar2.c(this.f46218a);
-                    }
-                    this.f46218a.release();
-                    this.e = true;
-                } finally {
-                }
-            }
-        } catch (Throwable th2) {
-            if (!this.e) {
-                try {
-                    int i11 = Build.VERSION.SDK_INT;
-                    if (i11 >= 30 && i11 < 33) {
-                        this.f46218a.stop();
-                    }
-                    if (i11 >= 35 && (jVar = this.d) != null) {
-                        jVar.c(this.f46218a);
-                    }
-                    this.f46218a.release();
-                    this.e = true;
-                } finally {
-                }
-            }
-            throw th2;
-        }
-    }
-
-    @Override
-    public final void setParameters(Bundle bundle) {
-        this.f46220c.setParameters(bundle);
     }
 }

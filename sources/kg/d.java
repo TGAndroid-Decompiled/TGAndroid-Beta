@@ -1,15 +1,20 @@
 package kg;
-public final class d {
-    public final String f11024a;
-    public final String f11025b;
-    public final int f11026c;
-    public final int d;
-    public int e;
 
-    public d(int i10, int i11, String str, String str2) {
-        this.f11024a = str;
-        this.f11025b = str2;
-        this.f11026c = i10;
-        this.d = i11;
+import java.util.Comparator;
+import org.telegram.messenger.hp;
+public final class d implements Comparator {
+    public final int f16943a;
+    public final hp f16944b;
+    public final int f16945c;
+
+    public d(hp hpVar, int i3, int i10) {
+        this.f16943a = i10;
+        this.f16944b = hpVar;
+        this.f16945c = i3;
+    }
+
+    @Override
+    public final int compare(java.lang.Object r6, java.lang.Object r7) {
+        throw new UnsupportedOperationException("Method not decompiled: kg.d.compare(java.lang.Object, java.lang.Object):int");
     }
 }

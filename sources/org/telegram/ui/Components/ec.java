@@ -1,96 +1,82 @@
 package org.telegram.ui.Components;
+public final class ec {
+    public static final ec E;
+    public static final ec F;
+    public static final ec G;
+    public static final ec H;
+    public static final ec I;
+    public static final ec J;
+    public static final ec[] K;
+    public static final ec f33345e;
+    public static final ec f33346f;
+    public static final ec h;
+    public static final ec f33347n;
+    public static final ec f33348r;
+    public static final ec f33349s;
+    public static final ec f33350w;
+    public static final ec f33351x;
+    public static final ec f33352y;
+    public final String f33353a;
+    public final int f33354b;
+    public final boolean f33355c;
+    public final dc d;
 
-import android.content.Context;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-public class ec extends p80 {
-    public final Path L;
-    public final RectF M;
-    public fc N;
-    public fc O;
-
-    public ec(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, p6Var);
-        this.L = new Path();
-        this.M = new RectF();
+    static {
+        dc dcVar = dc.SAVED_TO_GALLERY;
+        ec ecVar = new ec("PHOTO", 0, "PhotoSavedHint", 2131747272, dcVar);
+        f33345e = ecVar;
+        ec ecVar2 = new ec("PHOTOS", 1, "PhotosSavedHint", dcVar);
+        f33346f = ecVar2;
+        ec ecVar3 = new ec("VIDEO", 2, "VideoSavedHint", 2131743595, dcVar);
+        h = ecVar3;
+        ec ecVar4 = new ec("VIDEOS", 3, "VideosSavedHint", dcVar);
+        f33347n = ecVar4;
+        ec ecVar5 = new ec("LIVEPHOTO", 4, "LivePhotoSavedHint", 2131748842, dcVar);
+        f33348r = ecVar5;
+        ec ecVar6 = new ec("LIVEPHOTOS", 5, "LivePhotosSavedHint", dcVar);
+        f33349s = ecVar6;
+        ec ecVar7 = new ec("MEDIA", 6, "MediaSavedHint", dcVar);
+        f33350w = ecVar7;
+        dc dcVar2 = dc.SAVED_TO_DOWNLOADS;
+        ec ecVar8 = new ec("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", 2131747271, dcVar2);
+        f33351x = ecVar8;
+        ec ecVar9 = new ec("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", 2131743594, dcVar2);
+        f33352y = ecVar9;
+        ec ecVar10 = new ec("GIF", 9, "GifSavedHint", 2131750478, dc.SAVED_TO_GIFS);
+        E = ecVar10;
+        ec ecVar11 = new ec("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", 2131750477, dcVar2);
+        F = ecVar11;
+        dc dcVar3 = dc.SAVED_TO_MUSIC;
+        ec ecVar12 = new ec("AUDIO", 11, "AudioSavedHint", 2131753908, dcVar3);
+        G = ecVar12;
+        ec ecVar13 = new ec("AUDIOS", 12, "AudiosSavedHint", dcVar3);
+        H = ecVar13;
+        ec ecVar14 = new ec("UNKNOWN", 13, "FileSavedHintLinked", 2131750829, dcVar2);
+        I = ecVar14;
+        ec ecVar15 = new ec("UNKNOWNS", 14, "FilesSavedHintLinked", dcVar2);
+        J = ecVar15;
+        K = new ec[]{ecVar, ecVar2, ecVar3, ecVar4, ecVar5, ecVar6, ecVar7, ecVar8, ecVar9, ecVar10, ecVar11, ecVar12, ecVar13, ecVar14, ecVar15};
     }
 
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.O != null && getMeasuredWidth() > 0) {
-            SpannableString spannableString = new SpannableString(" btn");
-            spannableString.setSpan(this.O, 1, spannableString.length(), 33);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.ellipsize(getText(), getPaint(), (((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - this.O.a()) - org.telegram.messenger.i0.L(4.0f), TextUtils.TruncateAt.END));
-            spannableStringBuilder.append((CharSequence) spannableString);
-            setText(spannableStringBuilder);
-            this.O = null;
-        }
+    public ec(String str, int i3, String str2, int i10, dc dcVar) {
+        this.f33353a = str2;
+        this.f33354b = i10;
+        this.d = dcVar;
+        this.f33355c = false;
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        Layout layout;
-        fc fcVar;
-        Runnable runnable;
-        fc fcVar2;
-        int action = motionEvent.getAction();
-        float x10 = motionEvent.getX() - getPaddingLeft();
-        int y3 = ((int) motionEvent.getY()) - getPaddingTop();
-        if ((getText() instanceof Spanned) && (layout = getLayout()) != null && y3 >= 0 && y3 < layout.getHeight()) {
-            int lineForVertical = layout.getLineForVertical(y3);
-            Spanned spanned = (Spanned) getText();
-            fc[] fcVarArr = (fc[]) spanned.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), fc.class);
-            for (int i10 = 0; i10 < fcVarArr.length; i10++) {
-                fcVar = fcVarArr[i10];
-                int spanStart = spanned.getSpanStart(fcVar);
-                int spanEnd = spanned.getSpanEnd(fcVar);
-                Path path = this.L;
-                layout.getSelectionPath(spanStart, spanEnd, path);
-                RectF rectF = this.M;
-                path.computeBounds(rectF, true);
-                if (rectF.contains(x10, y3)) {
-                    break;
-                }
-            }
-        }
-        fcVar = null;
-        if (action == 0) {
-            this.N = fcVar;
-            if (fcVar != null) {
-                fcVar.c(this, true);
-                return true;
-            }
-        } else if (action != 1 && action != 3) {
-            if (action == 2 && (fcVar2 = this.N) != null && fcVar2 != fcVar) {
-                fcVar2.c(this, false);
-                this.N = null;
-            }
-        } else {
-            fc fcVar3 = this.N;
-            if (fcVar3 != null) {
-                fcVar3.c(this, false);
-                if (action == 1 && (runnable = this.N.d) != null) {
-                    runnable.run();
-                }
-            }
-            this.N = null;
-        }
-        if (this.N == null && !super.onTouchEvent(motionEvent)) {
-            return false;
-        }
-        return true;
+    public static ec valueOf(String str) {
+        return (ec) Enum.valueOf(ec.class, str);
     }
 
-    public ec(Context context) {
-        super(context, null);
-        this.L = new Path();
-        this.M = new RectF();
+    public static ec[] values() {
+        return (ec[]) K.clone();
+    }
+
+    public ec(String str, int i3, String str2, dc dcVar) {
+        this.f33353a = str2;
+        this.d = dcVar;
+        this.f33354b = 0;
+        this.f33355c = true;
     }
 }

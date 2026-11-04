@@ -1,87 +1,80 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
-public final class ap extends org.telegram.ui.Components.tk0 {
-    public final bp f35820c;
+public final class ap implements Runnable {
+    public final int f43820a;
+    public final ip f43821b;
 
-    public ap(bp bpVar) {
-        this.f35820c = bpVar;
+    public ap(ip ipVar, int i3) {
+        this.f43820a = i3;
+        this.f43821b = ipVar;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f47912f == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.f35820c.f36095h3.N.size() + 2;
-    }
-
-    @Override
-    public final int d(int i10) {
-        if (i10 == 0) {
-            return 0;
-        }
-        if (i10 <= this.f35820c.f36095h3.N.size()) {
-            return 1;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        bp bpVar = this.f35820c;
-        cp cpVar = bpVar.f36095h3;
-        int i11 = c1Var.f47912f;
-        View view = c1Var.f47909a;
-        if (i11 != 0) {
-            boolean z10 = true;
-            if (i11 != 1) {
-                if (i11 == 2) {
-                    ((org.telegram.ui.Cells.b9) view).setText(org.telegram.messenger.dd.L0(2131743669, null));
+    public final void run() {
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        int i3 = this.f43820a;
+        ip ipVar = this.f43821b;
+        int i10 = 1;
+        switch (i3) {
+            case 0:
+                TLRPC.User user = ipVar.f46355w;
+                fp fpVar = ipVar.Y0;
+                if (fpVar != null) {
+                    if (ipVar.L) {
+                        tL_chatAdminRights = ipVar.N;
+                    } else {
+                        tL_chatAdminRights = null;
+                    }
+                    fpVar.b(0, tL_chatAdminRights, null, ipVar.T);
+                }
+                Bundle k10 = a1.g.k("scrollToTopOnResume", true);
+                k10.putLong("chat_id", ipVar.f46357x.f27001id);
+                if (!ipVar.getMessagesController().E(k10, ipVar, null, null)) {
+                    ipVar.y0(false);
+                    return;
+                }
+                wm wmVar = new wm(k10);
+                ipVar.presentFragment(wmVar, true);
+                if (org.telegram.ui.Components.fc.a(wmVar)) {
+                    boolean z10 = ipVar.f46325a1;
+                    if (z10 && ipVar.L) {
+                        String str = user.first_name;
+                        org.telegram.ui.Components.ib ibVar = new org.telegram.ui.Components.ib(wmVar.getParentActivity(), wmVar.f51557ya);
+                        ibVar.d(2131624048, "Shield");
+                        org.telegram.messenger.k5.r("UserAddedAsAdminHint", null, 2131743778, new Object[]{str}, ibVar.f34651b);
+                        org.telegram.ui.Components.ac.g(wmVar, ibVar, 1500).j();
+                        return;
+                    } else if (!z10 && !ipVar.M && ipVar.L) {
+                        org.telegram.ui.Components.fc.C(user.first_name, wmVar).j();
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                ipVar.w0(false);
+                return;
+            default:
+                if (ipVar.f46348r) {
+                    long j10 = ipVar.f46343n;
+                    org.telegram.ui.ActionBar.s1[] s1VarArr = {new org.telegram.ui.ActionBar.s1(3, ipVar.getParentActivity(), null)};
+                    ipVar.getMessagesController().c5(ipVar.f46350s, j10, true, false, true, new yf(s1VarArr, 2), new yf(s1VarArr, 3));
+                    s1VarArr[0].r(300L);
+                }
+                fp fpVar2 = ipVar.Y0;
+                if (fpVar2 != null) {
+                    TLRPC.TL_chatAdminRights tL_chatAdminRights2 = ipVar.N;
+                    if (!tL_chatAdminRights2.change_info && !tL_chatAdminRights2.post_messages && !tL_chatAdminRights2.manage_direct_messages && !tL_chatAdminRights2.manage_welcome_messages && !tL_chatAdminRights2.edit_messages && !tL_chatAdminRights2.delete_messages && !tL_chatAdminRights2.ban_users && !tL_chatAdminRights2.invite_users && ((!ipVar.H || !tL_chatAdminRights2.manage_topics) && !tL_chatAdminRights2.pin_messages && !tL_chatAdminRights2.manage_ranks && !tL_chatAdminRights2.add_admins && !tL_chatAdminRights2.anonymous && !tL_chatAdminRights2.manage_call && ((!ipVar.F || (!tL_chatAdminRights2.post_stories && !tL_chatAdminRights2.edit_stories && !tL_chatAdminRights2.delete_stories)) && !tL_chatAdminRights2.other))) {
+                        i10 = 0;
+                    }
+                    fpVar2.b(i10, tL_chatAdminRights2, ipVar.P, ipVar.T);
+                    ipVar.finishFragment();
                     return;
                 }
                 return;
-            }
-            TLRPC.TL_username tL_username = (TLRPC.TL_username) cpVar.N.get(i10 - 1);
-            la laVar = (la) view;
-            if (laVar.H) {
-                cpVar.O = null;
-            }
-            if (i10 >= cpVar.N.size()) {
-                z10 = false;
-            }
-            laVar.a(tL_username, z10, false, 0L);
-            if (tL_username != null && tL_username.editable) {
-                cpVar.O = laVar;
-                return;
-            }
-            return;
         }
-        org.telegram.ui.Cells.p4 p4Var = (org.telegram.ui.Cells.p4) view;
-        org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d6, p4Var, bpVar.f31008n2);
-        p4Var.setText(org.telegram.messenger.dd.L0(2131743670, null));
-    }
-
-    @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        bp bpVar = this.f35820c;
-        org.telegram.ui.ActionBar.p6 p6Var = bpVar.f31008n2;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return new s4.c1(new org.telegram.ui.Cells.b9(12, bpVar.getContext(), p6Var));
-            }
-            return new s4.c1(new fa(this, bpVar.getContext(), p6Var));
-        }
-        return new s4.c1(new org.telegram.ui.Cells.p4(bpVar.getContext(), p6Var));
     }
 }

@@ -1,33 +1,81 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.graphics.RectF;
 import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class vt0 extends g31 {
-    public final ih.s f42604e2;
-    public final x21[] f42605f2;
-    public final PremiumPreviewFragment f42606g2;
+public final class vt0 implements org.telegram.messenger.u10 {
+    public final int f50612a;
+    public final ProfileActivity f50613b;
 
-    public vt0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.p6 p6Var, int i11, ih.s sVar, x21[] x21VarArr) {
-        super(premiumPreviewFragment2, activity, true, num, i10, true, p6Var, i11);
-        this.f42606g2 = premiumPreviewFragment;
-        this.f42604e2 = sVar;
-        this.f42605f2 = x21VarArr;
+    public vt0(ProfileActivity profileActivity, int i3) {
+        this.f50612a = i3;
+        this.f50613b = profileActivity;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        this.f42604e2.a(l4, num);
-        x21 x21Var = this.f42605f2[0];
-        if (x21Var != null) {
-            this.f42606g2.f33722u0 = null;
-            x21Var.dismiss();
+    public final void a(Object obj) {
+        int i3 = this.f50612a;
+        ProfileActivity profileActivity = this.f50613b;
+        switch (i3) {
+            case 0:
+                View view = (View) obj;
+                RectF rectF = ProfileActivity.T6;
+                if (view instanceof org.telegram.ui.Cells.w8) {
+                    org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
+                    w8Var.f30822a.setLoading(profileActivity.f41790j5);
+                    w8Var.f30823b.setLoading(profileActivity.f41790j5);
+                    return;
+                }
+                return;
+            case 1:
+                ProfileActivity.q0(profileActivity, (Boolean) obj);
+                return;
+            case 2:
+                RectF rectF2 = ProfileActivity.T6;
+                profileActivity.getClass();
+                ArrayList arrayList = new ArrayList(1);
+                arrayList.add((TLRPC.InputStickerSet) obj);
+                profileActivity.showDialog(new org.telegram.ui.Components.pu(profileActivity, profileActivity.getParentActivity(), profileActivity.A0, arrayList));
+                return;
+            default:
+                View view2 = (View) obj;
+                RectF rectF3 = ProfileActivity.T6;
+                if (view2 instanceof org.telegram.ui.Cells.n4) {
+                    ((org.telegram.ui.Cells.n4) view2).setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.L6, profileActivity.A0));
+                } else if (view2 instanceof org.telegram.ui.Cells.w8) {
+                    ((org.telegram.ui.Cells.w8) view2).updateColors();
+                } else if (view2 instanceof org.telegram.ui.Cells.l8) {
+                    ((org.telegram.ui.Cells.l8) view2).updateColors();
+                } else if (view2 instanceof org.telegram.ui.Cells.j) {
+                    ((org.telegram.ui.Cells.j) view2).updateColors();
+                } else if (view2 instanceof org.telegram.ui.Cells.h5) {
+                    ((org.telegram.ui.Cells.h5) view2).getCheckBox().invalidate();
+                } else if (view2 instanceof lg.g1) {
+                    lg.g1 g1Var = (lg.g1) view2;
+                    org.telegram.ui.Components.mp mpVar = g1Var.f18313r;
+                    int L = org.telegram.messenger.g0.L(8.0f);
+                    int i10 = org.telegram.ui.ActionBar.k6.f28081o6;
+                    org.telegram.ui.ActionBar.e6 e6Var = g1Var.f18307a;
+                    int w02 = org.telegram.ui.ActionBar.k6.w0(i10, e6Var);
+                    g1Var.a(w02);
+                    int r12 = org.telegram.ui.ActionBar.k6.r1(0.1f, w02);
+                    int w03 = org.telegram.ui.ActionBar.k6.w0(i10, e6Var);
+                    g1Var.a(w03);
+                    int r13 = org.telegram.ui.ActionBar.k6.r1(0.22f, w03);
+                    mpVar.setBackground(org.telegram.ui.ActionBar.k6.k0(L, L, L, L, r12, r13, r13));
+                    int w04 = org.telegram.ui.ActionBar.k6.w0(i10, e6Var);
+                    g1Var.a(w04);
+                    mpVar.setTextColor(w04);
+                } else if (view2 instanceof org.telegram.ui.Cells.e6) {
+                    ((org.telegram.ui.Cells.e6) view2).updateColors();
+                }
+                bw0 bw0Var = profileActivity.d;
+                profileActivity.f41719a.getClass();
+                bw0Var.d(RecyclerView.R(view2));
+                profileActivity.d.getClass();
+                return;
         }
     }
 }

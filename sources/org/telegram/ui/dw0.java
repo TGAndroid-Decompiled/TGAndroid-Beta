@@ -1,30 +1,43 @@
 package org.telegram.ui;
+public final class dw0 implements b5.h {
+    public int f44820a;
+    public final ew0 f44821b;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class dw0 implements RequestDelegate {
-    public final int f36690a;
-    public final fw0 f36691b;
-
-    public dw0(fw0 fw0Var, int i10) {
-        this.f36690a = i10;
-        this.f36691b = fw0Var;
+    public dw0(ew0 ew0Var) {
+        this.f44821b = ew0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36690a) {
-            case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                fw0 fw0Var = this.f36691b;
-                fw0Var.f37246c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new dw0(fw0Var, 1));
-                return;
-            default:
-                this.f36691b.f37246c.getMessagesController().P2(true);
-                return;
+    public final void a(int i3) {
+        boolean z10;
+        ew0 ew0Var = this.f44821b;
+        ProfileActivity profileActivity = ew0Var.f45062n;
+        int k10 = profileActivity.f41817o0.E0.k(i3);
+        if (this.f44820a != k10) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        ew0Var.a(z10);
+        this.f44820a = k10;
+        if (profileActivity.f41839r0 == null) {
+            return;
+        }
+        if (profileActivity.T0.x()) {
+            org.telegram.messenger.g0.i3(new pu0(ew0Var, 3), 500L);
+        } else {
+            ew0Var.c();
+        }
+    }
+
+    @Override
+    public final void b(float f10, int i3, int i10) {
+        pi.q qVar;
+        qVar = ((org.telegram.ui.ActionBar.d2) this.f44821b.f45062n).glassEngine;
+        qVar.g();
+    }
+
+    @Override
+    public final void c(int i3) {
     }
 }

@@ -1,190 +1,79 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class p5 extends t0 {
-    public boolean A0;
-    public p0 B0;
-    public boolean C0;
-    public boolean D0;
-    public final o5 f20655z0;
+import android.util.SparseIntArray;
+import org.telegram.ui.l71;
+public final class p5 extends t4 {
+    public final int U;
+    public final Object V;
 
-    public p5(Context context, o5 o5Var, int i10, int i11, boolean z10, p6 p6Var) {
-        super(context, null, i10, i11, z10, p6Var);
-        this.C0 = true;
-        this.D0 = true;
-        this.f20655z0 = o5Var;
-        setDelegate(new m5(o5Var));
+    public p5(boolean z10, SparseIntArray sparseIntArray, int i3) {
+        super(2, z10, false, null);
+        this.U = i3;
+        this.V = sparseIntArray;
     }
 
     @Override
-    public final void E() {
-        p0 p0Var = this.B0;
-        if (p0Var != null) {
-            p0Var.k(getSearchField());
+    public int h(int i3) {
+        switch (this.U) {
+            case 0:
+                SparseIntArray sparseIntArray = (SparseIntArray) this.V;
+                int indexOfKey = sparseIntArray.indexOfKey(i3);
+                if (indexOfKey > 0) {
+                    return sparseIntArray.valueAt(indexOfKey);
+                }
+                return k6.em[i3];
+            case 1:
+                return ((SparseIntArray) this.V).get(i3);
+            default:
+                return super.h(i3);
         }
     }
 
     @Override
-    public final void F(boolean z10) {
-        this.f20655z0.f20626a.w(z10, true);
-    }
-
-    @Override
-    public final t0 J(p0 p0Var) {
-        this.B0 = p0Var;
-        return this;
-    }
-
-    @Override
-    public final t0 M() {
-        N();
-        return this;
-    }
-
-    @Override
-    public final t0 N() {
-        this.A0 = true;
-        this.f20655z0.f20626a.setSearchItem(this);
-        return this;
-    }
-
-    @Override
-    public final void P(CharSequence charSequence, boolean z10) {
-        this.f20655z0.f20626a.setSearchFieldText(charSequence);
-    }
-
-    @Override
-    public final boolean T(boolean z10) {
-        i5 i5Var = this.f20655z0.f20626a;
-        if (i5Var.F) {
-            i5Var.j(z10);
-            return false;
-        }
-        return i5Var.w(z10, true);
-    }
-
-    public final void X() {
-        if (!this.C0) {
-            super.setVisibility(8);
+    public int j(int i3) {
+        switch (this.U) {
+            case 0:
+                return ((SparseIntArray) this.V).get(i3);
+            case 1:
+                return ((SparseIntArray) this.V).get(i3);
+            default:
+                return super.j(i3);
         }
     }
 
-    public final void Y(boolean z10, boolean z11) {
-        boolean z12 = this.C0;
-        o5 o5Var = this.f20655z0;
-        if (z12 == z10) {
-            if (!z10 && !z11 && getVisibility() != 8) {
-                super.setVisibility(8);
-                o5Var.f20629f = true;
-                o5Var.requestLayout();
+    @Override
+    public void p(int i3, int i10, int i11) {
+        switch (this.U) {
+            case 2:
+                if (!((l71) this.V).f47162f2) {
+                    super.p(i3, i10, i11);
+                    return;
+                }
                 return;
-            } else if (z10 && getVisibility() != 0) {
-                super.setVisibility(0);
+            default:
+                super.p(i3, i10, i11);
                 return;
-            } else {
+        }
+    }
+
+    @Override
+    public void q(int i3, int i10, int i11, int i12, int i13, int i14, boolean z10, boolean z11) {
+        switch (this.U) {
+            case 2:
+                if (!((l71) this.V).f47162f2) {
+                    super.q(i3, i10, i11, i12, i13, i14, z10, z11);
+                    return;
+                }
                 return;
-            }
+            default:
+                super.q(i3, i10, i11, i12, i13, i14, z10, z11);
+                return;
         }
-        this.C0 = z10;
-        if (z10) {
-            setEnabled(this.D0);
-        } else {
-            this.D0 = isEnabled();
-            setEnabled(false);
-        }
-        if (z10) {
-            super.setVisibility(0);
-        } else if (!z11 || !isLaidOut() || !o5Var.isLaidOut()) {
-            super.setVisibility(8);
-        }
-        if (!z11 || !o5Var.f20626a.t()) {
-            o5Var.f20629f = true;
-        }
-        o5Var.requestLayout();
     }
 
-    public o5 getParentMenu() {
-        return this.f20655z0;
-    }
-
-    @Override
-    public EditTextBoldCursor getSearchField() {
-        return this.f20655z0.f20626a.getSearchField();
-    }
-
-    public p0 getSearchListener() {
-        return this.B0;
-    }
-
-    @Override
-    public s5 getSubMenuOverlay() {
-        return this.f20655z0.f20626a.getMenuOverlay();
-    }
-
-    @Override
-    public b5 getSubMenuOverlayHost() {
-        return this.f20655z0.f20626a;
-    }
-
-    @Override
-    public final boolean i() {
-        o5 o5Var = this.f20655z0;
-        if (o5Var.f20627b && !o5Var.f20626a.s()) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final void n() {
-        this.f20655z0.f20626a.setSearchFieldText("");
-    }
-
-    @Override
-    public void setSearchFieldCaption(CharSequence charSequence) {
-        this.f20655z0.f20626a.setSearchFieldCaption(charSequence);
-    }
-
-    @Override
-    public void setSearchFieldHint(CharSequence charSequence) {
-        this.f20655z0.f20626a.setSearchFieldHint(charSequence);
-        setContentDescription(charSequence);
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        boolean z10;
-        o5 o5Var = this.f20655z0;
-        if (o5Var != null && i10 != 4) {
-            boolean z11 = false;
-            if (i10 == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            i5 i5Var = o5Var.f20626a;
-            if (o5Var.isLaidOut() && i5Var.t() && (!o5Var.f20627b || (i5Var.s() && i5Var.getActionModeFactor() > 0.0f))) {
-                z11 = true;
-            }
-            Y(z10, z11);
-            return;
-        }
-        super.setVisibility(i10);
-    }
-
-    @Override
-    public final boolean u() {
-        return this.A0;
-    }
-
-    @Override
-    public final boolean v() {
-        return this.f20655z0.f20626a.F;
-    }
-
-    @Override
-    public final boolean w() {
-        return this.f20655z0.f20626a.F;
+    public p5(l71 l71Var, int i3, boolean z10) {
+        super(i3, true, z10, null);
+        this.U = 2;
+        this.V = l71Var;
     }
 }

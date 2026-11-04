@@ -1,75 +1,69 @@
 package s4;
 public final class a {
-    public int f47876a;
-    public int f47877b;
-    public Object f47878c;
+    public final int f54638a;
+    public int f54639b;
+    public int f54640c;
     public int d;
+    public int f54641e;
+    public int f54642f;
+    public int f54643g;
+    public int h;
+    public int f54644i;
+    public final b f54645j;
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && a.class == obj.getClass()) {
-                a aVar = (a) obj;
-                int i10 = this.f47876a;
-                if (i10 == aVar.f47876a) {
-                    if (i10 != 8 || Math.abs(this.d - this.f47877b) != 1 || this.d != aVar.f47877b || this.f47877b != aVar.d) {
-                        if (this.d == aVar.d && this.f47877b == aVar.f47877b) {
-                            Object obj2 = this.f47878c;
-                            if (obj2 != null) {
-                                if (!obj2.equals(aVar.f47878c)) {
-                                    return false;
-                                }
-                            } else if (aVar.f47878c != null) {
-                                return false;
-                            }
-                        } else {
-                            return false;
-                        }
-                    }
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        }
-        return true;
+    public a(b bVar, int i3, int i10) {
+        this.f54645j = bVar;
+        this.f54638a = i3;
+        this.f54639b = i10;
+        a();
     }
 
-    public final int hashCode() {
-        return (((this.f47876a * 31) + this.f47877b) * 31) + this.d;
+    public final void a() {
+        b bVar = this.f54645j;
+        int[] iArr = (int[]) bVar.f54648a;
+        int[] iArr2 = (int[]) bVar.f54649b;
+        int i3 = Integer.MAX_VALUE;
+        int i10 = Integer.MIN_VALUE;
+        int i11 = Integer.MIN_VALUE;
+        int i12 = 0;
+        int i13 = Integer.MAX_VALUE;
+        int i14 = Integer.MAX_VALUE;
+        int i15 = Integer.MIN_VALUE;
+        for (int i16 = this.f54638a; i16 <= this.f54639b; i16++) {
+            int i17 = iArr[i16];
+            i12 += iArr2[i17];
+            int i18 = (i17 >> 10) & 31;
+            int i19 = (i17 >> 5) & 31;
+            int i20 = i17 & 31;
+            if (i18 > i15) {
+                i15 = i18;
+            }
+            if (i18 < i3) {
+                i3 = i18;
+            }
+            if (i19 > i10) {
+                i10 = i19;
+            }
+            if (i19 < i13) {
+                i13 = i19;
+            }
+            if (i20 > i11) {
+                i11 = i20;
+            }
+            if (i20 < i14) {
+                i14 = i20;
+            }
+        }
+        this.d = i3;
+        this.f54641e = i15;
+        this.f54642f = i13;
+        this.f54643g = i10;
+        this.h = i14;
+        this.f54644i = i11;
+        this.f54640c = i12;
     }
 
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(Integer.toHexString(System.identityHashCode(this)));
-        sb2.append("[");
-        int i10 = this.f47876a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    if (i10 != 8) {
-                        str = "??";
-                    } else {
-                        str = "mv";
-                    }
-                } else {
-                    str = "up";
-                }
-            } else {
-                str = "rm";
-            }
-        } else {
-            str = "add";
-        }
-        sb2.append(str);
-        sb2.append(",s:");
-        sb2.append(this.f47877b);
-        sb2.append("c:");
-        sb2.append(this.d);
-        sb2.append(",p:");
-        sb2.append(this.f47878c);
-        sb2.append("]");
-        return sb2.toString();
+    public final int b() {
+        return ((this.f54644i - this.h) + 1) * ((this.f54643g - this.f54642f) + 1) * ((this.f54641e - this.d) + 1);
     }
 }

@@ -1,33 +1,23 @@
 package a9;
 
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class m0 extends k0 {
-    public final TaskCompletionSource h;
-    public final k0 f348n;
-    public final e f349r;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class m0 extends q6.a {
+    public static final Parcelable.Creator<m0> CREATOR = new n0(0);
+    public final int f224a;
+    public final f f225b;
 
-    public m0(e eVar, TaskCompletionSource taskCompletionSource, TaskCompletionSource taskCompletionSource2, k0 k0Var) {
-        super(taskCompletionSource);
-        this.h = taskCompletionSource2;
-        this.f348n = k0Var;
-        this.f349r = eVar;
+    public m0(int i3, f fVar) {
+        this.f224a = i3;
+        this.f225b = fVar;
     }
 
     @Override
-    public final void b() {
-        synchronized (this.f349r.f328f) {
-            try {
-                e eVar = this.f349r;
-                TaskCompletionSource taskCompletionSource = this.h;
-                eVar.e.add(taskCompletionSource);
-                taskCompletionSource.getTask().addOnCompleteListener(new n4.q(eVar, taskCompletionSource));
-                if (this.f349r.f333l.getAndIncrement() > 0) {
-                    this.f349r.f326b.b("Already connected to the service.", new Object[0]);
-                }
-                e.b(this.f349r, this.f348n);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(this.f224a);
+        j8.a.l(parcel, 3, this.f225b, i3);
+        j8.a.t(parcel, s6);
     }
 }

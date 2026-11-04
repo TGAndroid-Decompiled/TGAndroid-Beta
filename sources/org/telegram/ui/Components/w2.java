@@ -1,45 +1,37 @@
 package org.telegram.ui.Components;
 
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
+import android.view.View;
 import org.telegram.ui.LaunchActivity;
-public final class w2 implements Runnable {
-    public final int f32052a = 1;
-    public final int f32053b;
-    public final int[] f32054c;
-    public final Runnable d;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class w2 implements View.OnClickListener {
+    public final int f39860a;
+    public final org.telegram.ui.ActionBar.t2 f39861b;
 
-    public w2(int i10, int[] iArr, org.telegram.ui.y60 y60Var) {
-        this.f32053b = i10;
-        this.f32054c = iArr;
-        this.d = y60Var;
+    public w2(org.telegram.ui.ActionBar.t2 t2Var, int i3) {
+        this.f39860a = i3;
+        this.f39861b = t2Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f32052a;
-        Runnable runnable = this.d;
-        int[] iArr = this.f32054c;
-        int i11 = this.f32053b;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f39860a) {
             case 0:
-                iArr[0] = i11;
-                runnable.run();
+                this.f39861b.dismiss();
                 return;
-            default:
-                Pattern pattern = LaunchActivity.D1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                if (runnable != null) {
-                    runnable.run();
+            case 1:
+                org.telegram.ui.ActionBar.d2 Q = LaunchActivity.Q();
+                if (Q != null) {
+                    Q.presentFragment(new PremiumPreviewFragment(0, "contact"));
+                    this.f39861b.dismiss();
                     return;
                 }
                 return;
+            case 2:
+                this.f39861b.dismiss();
+                return;
+            default:
+                this.f39861b.dismiss();
+                return;
         }
-    }
-
-    public w2(int[] iArr, int i10, Runnable runnable) {
-        this.f32054c = iArr;
-        this.f32053b = i10;
-        this.d = runnable;
     }
 }

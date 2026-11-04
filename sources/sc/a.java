@@ -1,67 +1,10 @@
 package sc;
+public final class a {
+    public final String f54700a;
+    public final String f54701b;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.net.SocketException;
-import java.net.SocketTimeoutException;
-import java.util.List;
-import java.util.logging.Level;
-import p4.r;
-public final class a implements Runnable {
-    public final InputStream f48153a;
-    public final Socket f48154b;
-    public final j f48155c;
-
-    public a(j jVar, InputStream inputStream, Socket socket) {
-        this.f48155c = jVar;
-        this.f48153a = inputStream;
-        this.f48154b = socket;
-    }
-
-    @Override
-    public final void run() {
-        OutputStream outputStream;
-        InputStream inputStream = this.f48153a;
-        j jVar = this.f48155c;
-        Socket socket = this.f48154b;
-        OutputStream outputStream2 = null;
-        try {
-            try {
-                outputStream = socket.getOutputStream();
-            } catch (Exception e) {
-                e = e;
-            }
-        } catch (Throwable th2) {
-            th = th2;
-        }
-        try {
-            d dVar = new d(jVar, new r(1), this.f48153a, outputStream, socket.getInetAddress());
-            while (!socket.isClosed()) {
-                dVar.c();
-            }
-            j.d(outputStream);
-        } catch (Exception e7) {
-            e = e7;
-            outputStream2 = outputStream;
-            if ((!(e instanceof SocketException) || !"NanoHttpd Shutdown".equals(e.getMessage())) && !(e instanceof SocketTimeoutException)) {
-                j.d.log(Level.SEVERE, "Communication with the client broken, or an bug in the handler code", (Throwable) e);
-            }
-            j.d(outputStream2);
-            j.d(inputStream);
-            j.d(socket);
-            ((List) jVar.f48188c.f3651c).remove(this);
-        } catch (Throwable th3) {
-            th = th3;
-            outputStream2 = outputStream;
-            j.d(outputStream2);
-            j.d(inputStream);
-            j.d(socket);
-            ((List) jVar.f48188c.f3651c).remove(this);
-            throw th;
-        }
-        j.d(inputStream);
-        j.d(socket);
-        ((List) jVar.f48188c.f3651c).remove(this);
+    public a(String str, String str2) {
+        this.f54700a = str;
+        this.f54701b = str2;
     }
 }

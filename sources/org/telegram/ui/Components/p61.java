@@ -1,6 +1,4 @@
 package org.telegram.ui.Components;
 public interface p61 {
-    void B(boolean z10, float[] fArr);
-
-    boolean k();
+    void e(int i3, int i10);
 }

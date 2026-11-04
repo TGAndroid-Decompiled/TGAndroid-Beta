@@ -1,25 +1,58 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class zy0 implements org.telegram.ui.Components.jk0, org.telegram.ui.ActionBar.u1 {
-    public final ProxyListActivity f44255a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+import java.lang.reflect.Method;
+public final class zy0 extends AnimatorListenerAdapter {
+    public final int f52764a;
+    public final org.telegram.ui.Components.rk0 f52765b;
 
-    public zy0(ProxyListActivity proxyListActivity) {
-        this.f44255a = proxyListActivity;
+    public zy0(org.telegram.ui.Components.rk0 rk0Var, int i3) {
+        this.f52764a = i3;
+        this.f52765b = rk0Var;
     }
 
     @Override
-    public boolean f(int i10, View view) {
-        ProxyListActivity proxyListActivity = this.f44255a;
-        if (i10 >= proxyListActivity.f33968n && i10 < proxyListActivity.f33969r) {
-            proxyListActivity.f33964a.M(i10);
-            return true;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f52764a) {
+            case 0:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f52765b.f37747b;
+                secretMediaViewer.Y.getNextView().setText((CharSequence) null);
+                mp0 mp0Var = secretMediaViewer.Z;
+                mp0Var.m0 = false;
+                if (mp0Var.f52736n0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) mp0Var.f52738p0.getLayoutParams()).topMargin = mp0Var.f52736n0;
+                    mp0Var.f52736n0 = -1;
+                    mp0Var.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                ((SecretMediaViewer) this.f52765b.f37747b).Y.setTranslationY(0.0f);
+                return;
         }
-        return false;
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        ProxyListActivity.a0(this.f44255a);
+    public void onAnimationStart(Animator animator) {
+        switch (this.f52764a) {
+            case 0:
+                mp0 mp0Var = ((SecretMediaViewer) this.f52765b.f37747b).Z;
+                Method method = mp0Var.f52730g0;
+                if (method != null) {
+                    try {
+                        method.invoke(mp0Var, null);
+                        return;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                        return;
+                    }
+                }
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
+        }
     }
 }

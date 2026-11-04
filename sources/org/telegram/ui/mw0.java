@@ -1,136 +1,94 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.RectF;
-import org.telegram.messenger.ImageReceiver;
-public final class mw0 extends AnimatorListenerAdapter {
-    public final int f39626a;
-    public final ProfileActivity f39627b;
+import android.graphics.drawable.Drawable;
+public final class mw0 extends Drawable implements org.telegram.ui.ActionBar.j5 {
+    public final org.telegram.ui.Components.g6 f47802a;
+    public final Paint f47803b;
+    public int f47804c;
+    public float d;
+    public float f47805e;
+    public final org.telegram.ui.Cells.j0 f47806f;
+    public org.telegram.ui.Cells.t0 h;
 
-    public mw0(ProfileActivity profileActivity, int i10) {
-        this.f39626a = i10;
-        this.f39627b = profileActivity;
+    public mw0(String str) {
+        Paint paint = new Paint(1);
+        this.f47803b = paint;
+        this.d = 1.0f;
+        this.f47805e = 1.0f;
+        this.f47806f = new org.telegram.ui.Cells.j0(this);
+        org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(false, false, false);
+        this.f47802a = g6Var;
+        g6Var.setCallback(new sq(1, this));
+        g6Var.t(str, true, true);
+        g6Var.w(org.telegram.messenger.g0.L(11.0f));
+        g6Var.f33983b = 17;
+        paint.setColor(520093696);
     }
 
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f39626a) {
-            case 1:
-                this.f39627b.O5 = null;
-                return;
-            case 4:
-                ProfileActivity profileActivity = this.f39627b;
-                profileActivity.N1 = false;
-                profileActivity.f33779a.O0 = true;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void a(int i3) {
+        Paint paint = this.f47803b;
+        if (paint.getColor() != i3) {
+            paint.setColor(i3);
+            invalidateSelf();
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ei.r rVar;
-        org.telegram.ui.ActionBar.l lVar;
-        int w02;
-        int i10 = this.f39626a;
-        ProfileActivity profileActivity = this.f39627b;
-        switch (i10) {
-            case 0:
-                rVar = ((org.telegram.ui.ActionBar.k2) profileActivity).glassEngine;
-                rVar.g();
-                lVar = ((org.telegram.ui.ActionBar.k2) profileActivity).actionBar;
-                if (profileActivity.f33880o2) {
-                    w02 = 1090519039;
-                } else if (profileActivity.f33830g6 != null) {
-                    w02 = 553648127;
-                } else {
-                    w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20968f8, profileActivity.f33957z0);
-                }
-                lVar.C(w02, false);
-                iw0 iw0Var = profileActivity.f33809e0;
-                ImageReceiver imageReceiver = iw0Var.U;
-                org.telegram.ui.Components.s5 m10 = imageReceiver.m();
-                if (m10 != null) {
-                    m10.w(iw0Var);
-                }
-                imageReceiver.f();
-                org.telegram.messenger.lc lcVar = iw0Var.W;
-                if (lcVar != null) {
-                    lcVar.a();
-                    iw0Var.W = null;
-                }
-                iw0Var.V = 0.0f;
-                iw0Var.invalidate();
-                profileActivity.H0 = false;
-                profileActivity.L5(false);
-                return;
-            case 1:
-                if (profileActivity.O5 != null && !profileActivity.R5) {
-                    AnimatorSet animatorSet = new AnimatorSet();
-                    profileActivity.P5 = animatorSet;
-                    animatorSet.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f33850j5, 1.0f));
-                    profileActivity.P5.setDuration(100L);
-                    profileActivity.P5.addListener(new ms0(this, 2));
-                    profileActivity.P5.start();
-                }
-                profileActivity.L5(false);
-                profileActivity.O5 = null;
-                return;
-            case 2:
-                super.onAnimationEnd(animator);
-                RectF rectF = ProfileActivity.S6;
-                profileActivity.y4(true);
-                return;
-            case 3:
-                AnimatorSet animatorSet2 = profileActivity.f33934w;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    profileActivity.f33934w = null;
-                    return;
-                }
-                return;
-            case 4:
-                profileActivity.N1 = false;
-                profileActivity.f33779a.O0 = true;
-                profileActivity.f33840i2.removeListener(this);
-                profileActivity.f33796c1.setBackgroundColor(-16777216);
-                profileActivity.X.setVisibility(8);
-                profileActivity.f33871n0.setVisibility(0);
-                profileActivity.f33871n0.setAlpha(1.0f);
-                return;
-            case 5:
-                profileActivity.f33840i2.removeListener(this);
-                profileActivity.f33871n0.setVisibility(8);
-                profileActivity.f33871n0.setAlpha(1.0f);
-                return;
-            default:
-                profileActivity.f33935w0 = null;
-                profileActivity.fragmentView.invalidate();
-                return;
+    public final void draw(Canvas canvas) {
+        float f10 = this.d * this.f47805e;
+        if (f10 <= 0.0f) {
+            return;
         }
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getBounds());
+        canvas.save();
+        float a10 = this.f47806f.a(0.1f);
+        canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
+        Paint paint = this.f47803b;
+        int alpha = paint.getAlpha();
+        paint.setAlpha((int) (alpha * f10));
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f), paint);
+        paint.setAlpha(alpha);
+        int i3 = this.f47804c;
+        org.telegram.ui.Components.g6 g6Var = this.f47802a;
+        g6Var.u(i3);
+        g6Var.B = (int) (f10 * 255.0f);
+        g6Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        g6Var.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f39626a) {
-            case 0:
-                return;
-            case 4:
-                ProfileActivity profileActivity = this.f39627b;
-                ProfileActivity.G3(profileActivity, false);
-                profileActivity.f33871n0.setAnimatedFileMaybe(profileActivity.f33809e0.getImageReceiver().m());
-                profileActivity.f33871n0.L();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final int getAlpha() {
+        return (int) (this.d * 255.0f);
     }
 
-    private final void a(Animator animator) {
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(17.33f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return (int) (this.f47802a.d + org.telegram.messenger.g0.L(11.0f));
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i3) {
+        this.d = i3 / 255.0f;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

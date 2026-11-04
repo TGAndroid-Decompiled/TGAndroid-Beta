@@ -1,83 +1,126 @@
 package org.telegram.ui.web;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.e20;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.q2;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.Components.v51;
-public final class n1 extends a51 {
-    public static final int f42947b = 0;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import b8.mf;
+import java.io.InputStream;
+import org.json.JSONObject;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.rz;
+import org.telegram.messenger.sz;
+import org.telegram.messenger.u10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.yg0;
+public final class n1 implements u10 {
+    public final int f50966a;
+    public final rz f50967b;
+    public final boolean[] f50968c;
+    public final sz d;
+    public final u1 f50969e;
+    public final u10 f50970f;
 
-    static {
-        a51.h(new a51());
+    public n1(rz rzVar, boolean[] zArr, sz szVar, u1 u1Var, u10 u10Var, int i3) {
+        this.f50966a = i3;
+        this.f50967b = rzVar;
+        this.f50968c = zArr;
+        this.d = szVar;
+        this.f50969e = u1Var;
+        this.f50970f = u10Var;
     }
 
     @Override
-    public final void b(View view, b51 b51Var, boolean z10, q51 q51Var, v51 v51Var) {
-        o1 o1Var = (o1) view;
-        CharSequence charSequence = b51Var.f24645n;
-        String str = (String) b51Var.f24643l;
-        long j10 = b51Var.B;
-        ImageView imageView = o1Var.f42954a;
-        o1Var.f42955b.setText(charSequence);
-        q2 q2Var = o1Var.f42956c;
-        q2Var.setText(str);
-        if (TextUtils.isEmpty(charSequence)) {
-            q2Var.setTranslationY(-org.telegram.messenger.i0.L(14.0f));
-            q2Var.setScaleX(1.3f);
-            q2Var.setScaleY(1.3f);
-        } else {
-            q2Var.setTranslationY(0.0f);
-            q2Var.setScaleX(1.0f);
-            q2Var.setScaleY(1.0f);
+    public final void a(Object obj) {
+        switch (this.f50966a) {
+            case 0:
+                rz rzVar = this.f50967b;
+                boolean[] zArr = this.f50968c;
+                sz szVar = this.d;
+                u1 u1Var = this.f50969e;
+                u10 u10Var = this.f50970f;
+                InputStream inputStream = (InputStream) obj;
+                sz.a(rzVar);
+                if (!zArr[0]) {
+                    rz d = sz.d(szVar, "readHTML");
+                    String str = u1Var.f51046a;
+                    final n1 n1Var = new n1(d, zArr, szVar, u1Var, u10Var, 1);
+                    if (inputStream == null) {
+                        n1Var.a(null);
+                        return;
+                    }
+                    Context context = LaunchActivity.K1;
+                    if (context == null) {
+                        context = org.telegram.messenger.t0.f25457b;
+                    }
+                    Activity W = org.telegram.messenger.g0.W(context);
+                    if (W == null) {
+                        n1Var.a(null);
+                        return;
+                    }
+                    View rootView = W.findViewById(16908290).getRootView();
+                    if (!(rootView instanceof ViewGroup)) {
+                        n1Var.a(null);
+                        return;
+                    }
+                    final yg0 yg0Var = new yg0(context, 16);
+                    ((ViewGroup) rootView).addView(yg0Var);
+                    final WebView webView = new WebView(context);
+                    WebSettings settings = webView.getSettings();
+                    settings.setAllowContentAccess(false);
+                    settings.setDatabaseEnabled(false);
+                    settings.setAllowFileAccess(false);
+                    settings.setJavaScriptEnabled(true);
+                    settings.setSaveFormData(false);
+                    settings.setGeolocationEnabled(false);
+                    settings.setDomStorageEnabled(false);
+                    settings.setAllowFileAccessFromFileURLs(false);
+                    settings.setAllowUniversalAccessFromFileURLs(false);
+                    webView.setWebViewClient(new p1(u1Var, inputStream));
+                    webView.setWebChromeClient(new WebChromeClient());
+                    yg0Var.addView(webView, mf.c(-1.0f, -1));
+                    final boolean[] zArr2 = {false};
+                    webView.addJavascriptInterface(new Object() {
+                        @JavascriptInterface
+                        public void done(String str2) {
+                            org.telegram.messenger.g0.h3(new y(zArr2, webView, yg0Var, str2, n1Var, 6));
+                        }
+                    }, "Instant");
+                    webView.loadUrl(str);
+                    return;
+                }
+                return;
+            default:
+                rz rzVar2 = this.f50967b;
+                boolean[] zArr3 = this.f50968c;
+                sz szVar2 = this.d;
+                u1 u1Var2 = this.f50969e;
+                u10 u10Var2 = this.f50970f;
+                JSONObject jSONObject = (JSONObject) obj;
+                sz.a(rzVar2);
+                if (!zArr3[0]) {
+                    rz d10 = sz.d(szVar2, "parseJSON");
+                    try {
+                        u1Var2.f51048c = u1Var2.i(u1Var2.f51046a, jSONObject);
+                    } catch (Exception e10) {
+                        sz.c(szVar2, "error: " + e10);
+                        a8.g(e10, true);
+                    }
+                    sz.a(d10);
+                    u10Var2.a(u1Var2);
+                    TLRPC.TL_webPage tL_webPage = u1Var2.f51048c;
+                    if (tL_webPage != null) {
+                        u1.f51044e.put(tL_webPage, u1Var2);
+                    }
+                    sz.b(szVar2);
+                    return;
+                }
+                return;
         }
-        o1Var.e = str;
-        if (TextUtils.isEmpty(charSequence)) {
-            if (!str.isEmpty() && !TextUtils.isEmpty(str)) {
-                charSequence = str;
-            } else {
-                charSequence = "";
-            }
-        }
-        String charSequence2 = charSequence.toString();
-        f5 f5Var = o1Var.d;
-        if (f5Var != null) {
-            f5Var.n(imageView);
-            o1Var.d = null;
-        }
-        o1Var.h = null;
-        if (j10 != 0) {
-            f5 m10 = f5.m(e20.f15506s0, j10, null, 1);
-            o1Var.d = m10;
-            m10.a(imageView);
-            imageView.setImageDrawable(o1Var.d);
-        } else {
-            ShapeDrawable d02 = t6.d0(org.telegram.messenger.i0.L(6.0f), t6.r1(0.1f, t6.x0(null, t6.G6, false)));
-            o1Var.h = d02;
-            eq eqVar = new eq(d02, new jg.x0(charSequence2));
-            int L = org.telegram.messenger.i0.L(28.0f);
-            int L2 = org.telegram.messenger.i0.L(28.0f);
-            eqVar.h = L;
-            eqVar.f25905n = L2;
-            imageView.setImageDrawable(eqVar);
-        }
-        o1Var.f42957f = z10;
-        o1Var.invalidate();
-    }
-
-    @Override
-    public final View d(Context context, uk0 uk0Var, int i10, p6 p6Var) {
-        return new o1(context);
     }
 }

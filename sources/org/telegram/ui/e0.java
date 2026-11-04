@@ -1,61 +1,17 @@
 package org.telegram.ui;
 
 import android.view.View;
-import android.widget.PopupWindow;
-public final class e0 implements PopupWindow.OnDismissListener {
-    public final int f36704a;
-    public final Object f36705b;
+public final class e0 implements View.OnTouchListener {
+    public final int f44844a;
+    public final Object f44845b;
 
-    public e0(Object obj, int i10) {
-        this.f36704a = i10;
-        this.f36705b = obj;
+    public e0(Object obj, int i3) {
+        this.f44844a = i3;
+        this.f44845b = obj;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f36704a) {
-            case 0:
-                h4 h4Var = (h4) this.f36705b;
-                View view = h4Var.f39098f;
-                if (view != null) {
-                    h4Var.d = null;
-                    view.invalidate();
-                    h4Var.f39098f = null;
-                    return;
-                }
-                return;
-            case 1:
-                un unVar = (un) this.f36705b;
-                unVar.f42051e9 = null;
-                unVar.f42087h9 = null;
-                unVar.f42076g9 = null;
-                unVar.B0.R = true;
-                unVar.s8(false, true, 0.0f);
-                mk mkVar = unVar.Z;
-                if (mkVar != null && mkVar.getEditField() != null) {
-                    unVar.Z.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
-            default:
-                oj ojVar = (oj) this.f36705b;
-                ojVar.f40172b = null;
-                un unVar2 = ojVar.f40179x;
-                unVar2.f42051e9 = null;
-                unVar2.f42087h9 = null;
-                unVar2.f42076g9 = null;
-                unVar2.B0.R = true;
-                if (unVar2.f42063f9) {
-                    unVar2.s8(false, true, 0.0f);
-                } else {
-                    unVar2.f42063f9 = true;
-                }
-                mk mkVar2 = unVar2.Z;
-                if (mkVar2 != null && mkVar2.getEditField() != null) {
-                    unVar2.Z.getEditField().setAllowDrawCursor(true);
-                    return;
-                }
-                return;
-        }
+    public final boolean onTouch(android.view.View r18, android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e0.onTouch(android.view.View, android.view.MotionEvent):boolean");
     }
 }

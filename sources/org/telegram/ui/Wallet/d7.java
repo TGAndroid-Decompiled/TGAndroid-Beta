@@ -1,32 +1,33 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.k20;
+import org.telegram.messenger.u10;
 public final class d7 implements Runnable {
-    public final int f34430a;
-    public final WalletEngine2 f34431b;
-    public final byte[] f34432c;
-    public final d2 d;
-    public final String e;
-    public final k20 f34433f;
+    public final int f42435a = 1;
+    public final WalletEngine2 f42436b;
+    public final String f42437c;
+    public final u10 d;
 
-    public d7(WalletEngine2 walletEngine2, byte[] bArr, d2 d2Var, String str, k20 k20Var, int i10) {
-        this.f34430a = i10;
-        this.f34431b = walletEngine2;
-        this.f34432c = bArr;
-        this.d = d2Var;
-        this.e = str;
-        this.f34433f = k20Var;
+    public d7(WalletEngine2 walletEngine2, String str, u10 u10Var) {
+        this.f42436b = walletEngine2;
+        this.f42437c = str;
+        this.d = u10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34430a) {
+        switch (this.f42435a) {
             case 0:
-                this.f34431b.lambda$signMessage$11(this.f34432c, this.d, this.e, this.f34433f);
+                this.f42436b.lambda$previewSignMessage$7(this.d, this.f42437c);
                 return;
             default:
-                this.f34431b.lambda$prepareTonConnectTransfer$5(this.f34432c, this.d, this.e, this.f34433f);
+                this.f42436b.lambda$getTransactionByHash$39(this.f42437c, this.d);
                 return;
         }
+    }
+
+    public d7(WalletEngine2 walletEngine2, u10 u10Var, String str) {
+        this.f42436b = walletEngine2;
+        this.d = u10Var;
+        this.f42437c = str;
     }
 }

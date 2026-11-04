@@ -1,26 +1,166 @@
 package i0;
 
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Typeface;
-import java.lang.reflect.Array;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-public final class j extends i {
+import android.graphics.fonts.Font;
+import android.graphics.fonts.FontFamily;
+import android.graphics.fonts.FontStyle;
+import android.os.ParcelFileDescriptor;
+import android.util.Log;
+import b8.sc;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
+public final class j extends sc {
+    public static Font g(FontFamily fontFamily, int i3) {
+        int i10;
+        int i11;
+        if ((i3 & 1) != 0) {
+            i10 = 700;
+        } else {
+            i10 = 400;
+        }
+        if ((i3 & 2) != 0) {
+            i11 = 1;
+        } else {
+            i11 = 0;
+        }
+        FontStyle fontStyle = new FontStyle(i10, i11);
+        Font font = fontFamily.getFont(0);
+        int i12 = i(fontStyle, font.getStyle());
+        for (int i13 = 1; i13 < fontFamily.getSize(); i13++) {
+            Font font2 = fontFamily.getFont(i13);
+            int i14 = i(fontStyle, font2.getStyle());
+            if (i14 < i12) {
+                font = font2;
+                i12 = i14;
+            }
+        }
+        return font;
+    }
+
+    public static FontFamily h(o0.i[] iVarArr, ContentResolver contentResolver) {
+        ParcelFileDescriptor openFileDescriptor;
+        FontFamily.Builder builder = null;
+        for (o0.i iVar : iVarArr) {
+            try {
+                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f20494a, "r", null);
+            } catch (IOException e10) {
+                Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
+            }
+            if (openFileDescriptor == null) {
+                if (openFileDescriptor == null) {
+                }
+            } else {
+                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f20496c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f20495b).build();
+                if (builder == null) {
+                    builder = new FontFamily.Builder(build);
+                } else {
+                    builder.addFont(build);
+                }
+            }
+            openFileDescriptor.close();
+        }
+        if (builder == null) {
+            return null;
+        }
+        return builder.build();
+    }
+
+    public static int i(FontStyle fontStyle, FontStyle fontStyle2) {
+        int i3;
+        int abs = Math.abs(fontStyle.getWeight() - fontStyle2.getWeight()) / 100;
+        if (fontStyle.getSlant() == fontStyle2.getSlant()) {
+            i3 = 0;
+        } else {
+            i3 = 2;
+        }
+        return abs + i3;
+    }
+
     @Override
-    public final Typeface j(Object obj) {
+    public final Typeface a(Context context, h0.e eVar, Resources resources, int i3) {
+        h0.f[] fVarArr;
         try {
-            Object newInstance = Array.newInstance(this.f7780f, 1);
-            Array.set(newInstance, 0, obj);
-            return (Typeface) this.f7785l.invoke(null, newInstance, "sans-serif", -1, -1);
-        } catch (IllegalAccessException | InvocationTargetException e) {
-            throw new RuntimeException(e);
+            FontFamily.Builder builder = null;
+            for (h0.f fVar : eVar.f14067a) {
+                try {
+                    Font build = new Font.Builder(resources, fVar.f14072f).setWeight(fVar.f14069b).setSlant(fVar.f14070c ? 1 : 0).setTtcIndex(fVar.f14071e).setFontVariationSettings(fVar.d).build();
+                    if (builder == null) {
+                        builder = new FontFamily.Builder(build);
+                    } else {
+                        builder.addFont(build);
+                    }
+                } catch (IOException unused) {
+                }
+            }
+            if (builder == null) {
+                return null;
+            }
+            FontFamily build2 = builder.build();
+            return new Typeface.CustomFallbackBuilder(build2).setStyle(g(build2, i3).getStyle()).build();
+        } catch (Exception e10) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
+            return null;
         }
     }
 
     @Override
-    public final Method m(Class cls) {
-        Class cls2 = Integer.TYPE;
-        Method declaredMethod = Typeface.class.getDeclaredMethod("createFromFamiliesWithDefault", Array.newInstance(cls, 1).getClass(), String.class, cls2, cls2);
-        declaredMethod.setAccessible(true);
-        return declaredMethod;
+    public final Typeface b(Context context, o0.i[] iVarArr, int i3) {
+        try {
+            FontFamily h = h(iVarArr, context.getContentResolver());
+            if (h == null) {
+                return null;
+            }
+            return new Typeface.CustomFallbackBuilder(h).setStyle(g(h, i3).getStyle()).build();
+        } catch (Exception e10) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
+            return null;
+        }
+    }
+
+    @Override
+    public final Typeface c(Context context, List list, int i3) {
+        ContentResolver contentResolver = context.getContentResolver();
+        try {
+            FontFamily h = h((o0.i[]) list.get(0), contentResolver);
+            if (h == null) {
+                return null;
+            }
+            Typeface.CustomFallbackBuilder customFallbackBuilder = new Typeface.CustomFallbackBuilder(h);
+            for (int i10 = 1; i10 < list.size(); i10++) {
+                FontFamily h7 = h((o0.i[]) list.get(i10), contentResolver);
+                if (h7 != null) {
+                    customFallbackBuilder.addCustomFallback(h7);
+                }
+            }
+            return customFallbackBuilder.setStyle(g(h, i3).getStyle()).build();
+        } catch (Exception e10) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
+            return null;
+        }
+    }
+
+    @Override
+    public final Typeface d(Context context, InputStream inputStream) {
+        throw new RuntimeException("Do not use this function in API 29 or later.");
+    }
+
+    @Override
+    public final Typeface e(Context context, Resources resources, int i3, String str, int i10) {
+        try {
+            Font build = new Font.Builder(resources, i3).build();
+            return new Typeface.CustomFallbackBuilder(new FontFamily.Builder(build).build()).setStyle(build.getStyle()).build();
+        } catch (Exception e10) {
+            Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
+            return null;
+        }
+    }
+
+    @Override
+    public final o0.i f(o0.i[] iVarArr, int i3) {
+        throw new RuntimeException("Do not use this function in API 29 or later.");
     }
 }

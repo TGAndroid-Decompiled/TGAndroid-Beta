@@ -1,58 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import androidx.mediarouter.app.MediaRouteButton;
-import java.lang.reflect.Field;
-public abstract class oc extends MediaRouteButton {
-    public boolean f29090a;
+import android.animation.TimeInterpolator;
+public final class oc implements TimeInterpolator {
+    public final int f36800a;
 
-    public final void a() {
-        boolean b10 = b();
-        if (this.f29090a != b10) {
-            this.f29090a = b10;
-            c(b10);
+    @Override
+    public final float getInterpolation(float f10) {
+        switch (this.f36800a) {
+            case 0:
+                return ((((6.0f * f10) - 15.0f) * f10) + 10.0f) * f10 * f10 * f10;
+            default:
+                return f10;
         }
-    }
-
-    public final boolean b() {
-        Field declaredField;
-        try {
-            declaredField = MediaRouteButton.class.getDeclaredField("mConnectionState");
-            declaredField.setAccessible(true);
-        } catch (Exception unused) {
-        }
-        if (((Integer) declaredField.get(this)).intValue() <= 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public abstract void c(boolean z10);
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a();
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        a();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        a();
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
     }
 }

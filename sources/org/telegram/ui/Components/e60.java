@@ -1,3 +1,9 @@
 package org.telegram.ui.Components;
-public final class e60 extends s4.j {
+
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public interface e60 {
+    void g(RectF rectF);
+
+    void h(Canvas canvas, float f10);
 }

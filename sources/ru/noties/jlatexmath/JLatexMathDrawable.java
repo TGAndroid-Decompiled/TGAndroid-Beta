@@ -38,8 +38,8 @@ public class JLatexMathDrawable extends Drawable {
             this.latex = str;
         }
 
-        public Builder align(int i10) {
-            this.align = i10;
+        public Builder align(int i3) {
+            this.align = i3;
             return this;
         }
 
@@ -52,28 +52,28 @@ public class JLatexMathDrawable extends Drawable {
             return new JLatexMathDrawable(this);
         }
 
-        public Builder color(int i10) {
-            this.color = i10;
+        public Builder color(int i3) {
+            this.color = i3;
             return this;
         }
 
-        public Builder padding(int i10) {
-            this.insets = new Insets(i10, i10, i10, i10);
+        public Builder padding(int i3) {
+            this.insets = new Insets(i3, i3, i3, i3);
             return this;
         }
 
-        public Builder textSize(float f7) {
-            this.textSize = f7;
+        public Builder textSize(float f10) {
+            this.textSize = f10;
             return this;
         }
 
-        public Builder background(int i10) {
-            this.background = new ColorDrawable(i10);
+        public Builder background(int i3) {
+            this.background = new ColorDrawable(i3);
             return this;
         }
 
-        public Builder padding(int i10, int i11, int i12, int i13) {
-            this.insets = new Insets(i11, i10, i13, i12);
+        public Builder padding(int i3, int i10, int i11, int i12) {
+            this.insets = new Insets(i10, i3, i12, i11);
             return this;
         }
 
@@ -137,7 +137,7 @@ public class JLatexMathDrawable extends Drawable {
     }
 
     @Override
-    public void setAlpha(int i10) {
+    public void setAlpha(int i3) {
     }
 
     @Override

@@ -1,13 +1,28 @@
 package j7;
-public abstract class b {
-    public static final k6.c f9703a;
-    public static final k6.c[] f9704b;
 
-    static {
-        k6.c cVar = new k6.c("sms_code_autofill", 2L);
-        k6.c cVar2 = new k6.c("sms_code_browser", 2L);
-        k6.c cVar3 = new k6.c("sms_retrieve", 1L);
-        f9703a = cVar3;
-        f9704b = new k6.c[]{cVar, cVar2, cVar3, new k6.c("user_consent", 3L)};
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+public final class b implements d, IInterface {
+    public final IBinder f16207a;
+
+    public b(IBinder iBinder) {
+        this.f16207a = iBinder;
+    }
+
+    public final void H0(Parcel parcel, int i3) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            this.f16207a.transact(i3, parcel, obtain, 0);
+            obtain.readException();
+        } finally {
+            parcel.recycle();
+            obtain.recycle();
+        }
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.f16207a;
     }
 }

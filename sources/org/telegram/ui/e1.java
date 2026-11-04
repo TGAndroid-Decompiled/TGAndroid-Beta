@@ -1,45 +1,18 @@
 package org.telegram.ui;
 
-import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
-public final class e1 extends s4.s {
-    public final j1 S;
+public final class e1 extends g.p {
+    public final i1 f44852c;
 
-    public e1(j1 j1Var) {
-        super(true);
-        this.S = j1Var;
+    public e1(i1 i1Var) {
+        this.f44852c = i1Var;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        j1 j1Var = this.S;
-        ArrayList<TL_iv.PageBlock> arrayList = j1Var.f38247s.items;
-        org.telegram.messenger.cj cjVar = (org.telegram.messenger.cj) j1Var.f38248w.f37922b.get(arrayList.get((arrayList.size() - i10) - 1));
-        if (cjVar.f15158a != cjVar.f15159b && (b10 = cjVar.f15160c) == cjVar.d && b10 != 0) {
-            int size = j1Var.f38248w.f37921a.size();
-            for (int i11 = 0; i11 < size; i11++) {
-                org.telegram.messenger.cj cjVar2 = (org.telegram.messenger.cj) j1Var.f38248w.f37921a.get(i11);
-                if (cjVar2 != cjVar) {
-                    byte b11 = cjVar2.f15160c;
-                    byte b12 = cjVar.f15160c;
-                    if (b11 <= b12 && cjVar2.d >= b12) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        return false;
-    }
-
-    @Override
-    public final boolean y0() {
-        return false;
+    public final int i(int i3) {
+        i1 i1Var = this.f44852c;
+        ArrayList<TL_iv.PageBlock> arrayList = i1Var.f46030s.items;
+        return ((org.telegram.messenger.ri) i1Var.f46031w.f45773b.get(arrayList.get((arrayList.size() - i3) - 1))).f25146i;
     }
 }

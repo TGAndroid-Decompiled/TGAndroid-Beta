@@ -1,45 +1,34 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class yx implements RequestDelegate {
-    public final int f19636a;
-    public final rz f19637b;
-    public final TLRPC.InputMedia f19638c;
-    public final dz d;
+import org.telegram.tgnet.tl.TL_update;
+public final class yx implements Runnable {
+    public final int f26675a;
+    public final yy f26676b;
+    public final TL_update.TL_updateNewMessage f26677c;
 
-    public yx(rz rzVar, TLRPC.InputMedia inputMedia, dz dzVar, int i10) {
-        this.f19636a = i10;
-        this.f19637b = rzVar;
-        this.f19638c = inputMedia;
-        this.d = dzVar;
+    public yx(yy yyVar, TL_update.TL_updateNewMessage tL_updateNewMessage, int i3) {
+        this.f26675a = i3;
+        this.f26676b = yyVar;
+        this.f26677c = tL_updateNewMessage;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19636a) {
+    public final void run() {
+        switch (this.f26675a) {
             case 0:
-                final rz rzVar = this.f19637b;
-                final TLRPC.InputMedia inputMedia = this.f19638c;
-                final dz dzVar = this.d;
-                i0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.iy.run():void");
-                    }
-                });
+                hp messagesController = this.f26676b.getMessagesController();
+                TL_update.TL_updateNewMessage tL_updateNewMessage = this.f26677c;
+                messagesController.M3(tL_updateNewMessage.pts, -1, tL_updateNewMessage.pts_count);
+                return;
+            case 1:
+                hp messagesController2 = this.f26676b.getMessagesController();
+                TL_update.TL_updateNewMessage tL_updateNewMessage2 = this.f26677c;
+                messagesController2.M3(tL_updateNewMessage2.pts, -1, tL_updateNewMessage2.pts_count);
                 return;
             default:
-                final rz rzVar2 = this.f19637b;
-                final TLRPC.InputMedia inputMedia2 = this.f19638c;
-                final dz dzVar2 = this.d;
-                i0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.iy.run():void");
-                    }
-                });
+                hp messagesController3 = this.f26676b.getMessagesController();
+                TL_update.TL_updateNewMessage tL_updateNewMessage3 = this.f26677c;
+                messagesController3.M3(tL_updateNewMessage3.pts, -1, tL_updateNewMessage3.pts_count);
                 return;
         }
     }

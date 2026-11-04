@@ -1,44 +1,42 @@
 package org.telegram.ui;
-
-import android.util.SparseIntArray;
 public final class nn implements Runnable {
-    public final int f39933a;
-    public final sn f39934b;
+    public final int f48024a;
+    public final bo f48025b;
 
-    public nn(sn snVar, int i10) {
-        this.f39933a = i10;
-        this.f39934b = snVar;
+    public nn(bo boVar, int i3) {
+        this.f48024a = i3;
+        this.f48025b = boVar;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.ActionBar.z4 z4Var;
-        org.telegram.ui.ActionBar.z4 z4Var2;
-        switch (this.f39933a) {
+        switch (this.f48024a) {
             case 0:
-                SparseIntArray sparseIntArray = new SparseIntArray();
-                sn snVar = this.f39934b;
-                snVar.e = sparseIntArray;
-                un unVar = snVar.G;
-                org.telegram.ui.ActionBar.c5 c5Var = (org.telegram.ui.ActionBar.c5) unVar.getThemedDrawable("drawableMsgOut");
-                snVar.f41414t = c5Var;
-                z4Var = ((org.telegram.ui.ActionBar.k2) unVar).parentLayout;
-                c5Var.J = z4Var.getMessageDrawableOutStart();
-                org.telegram.ui.ActionBar.c5 c5Var2 = (org.telegram.ui.ActionBar.c5) unVar.getThemedDrawable("drawableMsgOutMedia");
-                snVar.f41415u = c5Var2;
-                z4Var2 = ((org.telegram.ui.ActionBar.k2) unVar).parentLayout;
-                c5Var2.J = z4Var2.getMessageDrawableOutMediaStart();
-                snVar.f41414t.K = 0.0f;
-                snVar.f41415u.K = 0.0f;
-                unVar.Tc();
-                snVar.u(0.0f);
+                bo boVar = this.f48025b;
+                boVar.f44094d0 = true;
+                boVar.h0();
+                return;
+            case 1:
+                bo boVar2 = this.f48025b;
+                boVar2.Y = boVar2.getMessagesController().M0(Long.valueOf(boVar2.f44089a0));
+                boVar2.e0();
+                return;
+            case 2:
+                this.f48025b.g0(false);
+                return;
+            case 3:
+                bo boVar3 = this.f48025b;
+                boVar3.f44094d0 = true;
+                if (boVar3.f44090b.length() > 0) {
+                    boVar3.c0(boVar3.f44090b.getText().toString());
+                }
+                boVar3.h0();
+                return;
+            case 4:
+                this.f48025b.e0();
                 return;
             default:
-                sn snVar2 = this.f39934b;
-                snVar2.f41414t.J = null;
-                snVar2.f41415u.J = null;
-                snVar2.e = null;
-                snVar2.u(1.0f);
+                this.f48025b.g0(true);
                 return;
         }
     }

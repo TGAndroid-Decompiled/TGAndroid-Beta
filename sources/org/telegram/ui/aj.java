@@ -1,57 +1,59 @@
 package org.telegram.ui;
+public final class aj implements Runnable {
+    public final int f43786a;
+    public final wm f43787b;
 
-import android.text.style.CharacterStyle;
-public final class aj extends gf.e {
-    public final int d;
-    public final int e;
-    public final org.telegram.ui.Cells.q1 f35792f;
-    public final un f35793g;
-    public final Object h;
-
-    public aj(un unVar, int i10, Object obj, org.telegram.ui.Cells.q1 q1Var, int i11) {
-        this.d = i11;
-        this.f35793g = unVar;
-        this.e = i10;
-        this.h = obj;
-        this.f35792f = q1Var;
+    public aj(wm wmVar, int i3) {
+        this.f43786a = i3;
+        this.f43787b = wmVar;
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
+    public final void run() {
+        int i3 = this.f43786a;
+        wm wmVar = this.f43787b;
+        switch (i3) {
             case 0:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new ag.d3(this, this.e, 17), 240L);
-                    return;
-                }
+                int i10 = wm.f51227jd;
+                wmVar.n7();
+                return;
+            case 1:
+                wm.r2(wmVar);
+                return;
+            case 2:
+                wm.r2(wmVar);
+                return;
+            case 3:
+                int i11 = wm.f51227jd;
+                wmVar.lb();
+                return;
+            case 4:
+                int i12 = wm.f51227jd;
+                wmVar.lb();
+                return;
+            case 5:
+                int i13 = wm.f51227jd;
+                wmVar.lb();
+                return;
+            case 6:
+                int i14 = wm.f51227jd;
+                wmVar.lb();
+                return;
+            case 7:
+                int i15 = wm.f51227jd;
+                wmVar.lb();
+                return;
+            case 8:
+                int i16 = wm.f51227jd;
+                wmVar.lb();
+                return;
+            case 9:
+                int i17 = wm.f51227jd;
+                wmVar.lb();
                 return;
             default:
-                if (!z10) {
-                    org.telegram.messenger.i0.h3(new ag.d3(this, this.e, 19), 240L);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i10 = this.e;
-                un unVar = this.f35793g;
-                unVar.Sb = i10;
-                unVar.Tb = 1;
-                unVar.Ub = (CharacterStyle) this.h;
-                this.f35792f.invalidate();
-                return;
-            default:
-                int i11 = this.e;
-                un unVar2 = this.f35793g;
-                unVar2.Sb = i11;
-                unVar2.Tb = 3;
-                unVar2.Vb = (String) this.h;
-                this.f35792f.invalidate();
+                int i18 = wm.f51227jd;
+                wmVar.lb();
                 return;
         }
     }

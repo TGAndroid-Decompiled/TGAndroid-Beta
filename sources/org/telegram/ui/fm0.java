@@ -1,58 +1,80 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class fm0 implements om0 {
-    public final Runnable f37189a;
-    public final qm0 f37190b;
+import android.content.Context;
+import android.view.View;
+public final class fm0 extends org.telegram.ui.Components.qt0 {
+    public int f45307g0;
+    public boolean f45308h0;
+    public final hm0 f45309i0;
 
-    public fm0(qm0 qm0Var, Runnable runnable) {
-        this.f37190b = qm0Var;
-        this.f37189a = runnable;
+    public fm0(hm0 hm0Var, Context context) {
+        super(context, null);
+        this.f45309i0 = hm0Var;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        String str3;
-        qm0 qm0Var = this.f37190b;
-        qm0Var.f40851y0 = tL_paymentSavedCredentialsCard;
-        qm0Var.f40847w0 = str;
-        qm0Var.U0 = z10;
-        qm0Var.f40849x0 = str2;
-        qm0Var.J0 = tL_inputPaymentCredentialsGooglePay;
-        org.telegram.ui.Cells.a9[] a9VarArr = qm0Var.Y;
-        org.telegram.ui.Cells.a9 a9Var = a9VarArr[0];
-        if (a9Var != null) {
-            a9Var.setVisibility(0);
-            org.telegram.ui.Cells.a9 a9Var2 = a9VarArr[0];
-            String str4 = qm0Var.f40849x0;
-            if (str4 != null && str4.length() > 1) {
-                str3 = qm0Var.f40849x0.substring(0, 1).toUpperCase() + qm0Var.f40849x0.substring(1);
-            } else {
-                str3 = qm0Var.f40849x0;
+    public final void onLayout(boolean r11, int r12, int r13, int r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.fm0.onLayout(boolean, int, int, int, int):void");
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        int i11;
+        float f10;
+        int size = View.MeasureSpec.getSize(i3);
+        int size2 = View.MeasureSpec.getSize(i10);
+        setMeasuredDimension(size, size2);
+        int L = org.telegram.messenger.g0.L(20.0f);
+        int i12 = 0;
+        hm0 hm0Var = this.f45309i0;
+        if (L >= 0) {
+            if (!org.telegram.messenger.g0.E) {
+                size2 -= hm0Var.N.getEmojiPadding();
+                i10 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
             }
-            a9Var2.b(2131232272, str3, org.telegram.messenger.dd.L0(2131747430, null), true);
-            org.telegram.ui.Cells.a9 a9Var3 = a9VarArr[1];
-            if (a9Var3 != null) {
-                a9Var3.setVisibility(0);
+        } else {
+            this.f45308h0 = true;
+            hm0Var.N.j();
+            this.f45308h0 = false;
+        }
+        int i13 = i10;
+        int childCount = getChildCount();
+        while (i12 < childCount) {
+            View childAt = getChildAt(i12);
+            if (childAt != null && childAt.getVisibility() != 8) {
+                org.telegram.ui.Components.jt jtVar = hm0Var.N;
+                if (jtVar != null && jtVar.l(childAt)) {
+                    if (!org.telegram.messenger.g0.E && !org.telegram.messenger.g0.Q1()) {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
+                    } else if (org.telegram.messenger.g0.Q1()) {
+                        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+                        if (org.telegram.messenger.g0.Q1()) {
+                            f10 = 200.0f;
+                        } else {
+                            f10 = 320.0f;
+                        }
+                        childAt.measure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(f10), getPaddingTop() + (size2 - org.telegram.messenger.g0.f22602m)), 1073741824));
+                    } else {
+                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(getPaddingTop() + (size2 - org.telegram.messenger.g0.f22602m), 1073741824));
+                    }
+                } else {
+                    i11 = i3;
+                    measureChildWithMargins(childAt, i11, 0, i13, 0);
+                    i12++;
+                    i3 = i11;
+                }
             }
+            i11 = i3;
+            i12++;
+            i3 = i11;
         }
-        Runnable runnable = this.f37189a;
-        if (runnable != null) {
-            runnable.run();
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f45308h0) {
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-    }
-
-    @Override
-    public final void b() {
+        super.requestLayout();
     }
 }

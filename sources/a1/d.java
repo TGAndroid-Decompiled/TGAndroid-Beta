@@ -1,5 +1,7 @@
 package a1;
 
+import ai.t6;
+import ai.w1;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -9,104 +11,100 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+import b8.mf;
+import ci.e9;
 import com.google.android.gms.tasks.OnFailureListener;
-import ih.s;
+import dh.n0;
+import ii.a3;
+import ii.v2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.regex.Pattern;
-import kotlin.jvm.internal.i;
-import org.telegram.messenger.at;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.ds;
-import org.telegram.messenger.e20;
+import kotlin.jvm.internal.j;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.h10;
+import org.telegram.messenger.hi;
+import org.telegram.messenger.hp;
 import org.telegram.messenger.hs;
-import org.telegram.messenger.i0;
-import org.telegram.messenger.i20;
-import org.telegram.messenger.k20;
-import org.telegram.messenger.k6;
-import org.telegram.messenger.kj;
-import org.telegram.messenger.l20;
+import org.telegram.messenger.i6;
+import org.telegram.messenger.ii;
+import org.telegram.messenger.k5;
+import org.telegram.messenger.l10;
+import org.telegram.messenger.lr;
 import org.telegram.messenger.m5;
-import org.telegram.messenger.o5;
-import org.telegram.messenger.pz;
-import org.telegram.messenger.ri;
-import org.telegram.messenger.rz;
-import org.telegram.messenger.si;
-import org.telegram.messenger.t1;
-import org.telegram.messenger.wp;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.pr;
+import org.telegram.messenger.q1;
+import org.telegram.messenger.wy;
+import org.telegram.messenger.yy;
+import org.telegram.messenger.zi;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.k2;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.ActionBar.w4;
-import org.telegram.ui.ActionBar.x1;
-import org.telegram.ui.Components.ac0;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.o4;
+import org.telegram.ui.ActionBar.p1;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.s1;
+import org.telegram.ui.Components.ab0;
+import org.telegram.ui.Components.an;
 import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.dc0;
-import org.telegram.ui.Components.fc0;
+import org.telegram.ui.Components.cb0;
+import org.telegram.ui.Components.fb0;
+import org.telegram.ui.Components.fc;
 import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.jn;
-import org.telegram.ui.Components.q4;
-import org.telegram.ui.Components.s4;
-import org.telegram.ui.Components.uy0;
-import org.telegram.ui.Components.w7;
-import org.telegram.ui.Components.xy0;
-import org.telegram.ui.Components.yb0;
+import org.telegram.ui.Components.hb0;
+import org.telegram.ui.Components.ox0;
+import org.telegram.ui.Components.r4;
+import org.telegram.ui.Components.rx0;
+import org.telegram.ui.Components.t4;
+import org.telegram.ui.Components.z7;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.a50;
-import org.telegram.ui.ei0;
-import org.telegram.ui.g31;
-import org.telegram.ui.gf0;
-import org.telegram.ui.h4;
-import org.telegram.ui.ht;
-import org.telegram.ui.i41;
-import org.telegram.ui.k30;
-import org.telegram.ui.l30;
-import org.telegram.ui.la1;
-import org.telegram.ui.nb1;
-import org.telegram.ui.q31;
-import org.telegram.ui.tx;
-import org.telegram.ui.un;
-import org.telegram.ui.v8;
-import org.telegram.ui.zx;
-import rh.e6;
-import rh.r4;
-import sg.o0;
-import w7.b6;
-import x2.l;
-import xh.h2;
-import xh.m2;
-public final class d implements OnFailureListener, u1, q4, tx, yb0, si, ds, l20, t1, l {
-    public final int f36a;
-    public final Object f37b;
-    public final Object f38c;
+import org.telegram.ui.g11;
+import org.telegram.ui.gs;
+import org.telegram.ui.h20;
+import org.telegram.ui.i20;
+import org.telegram.ui.i4;
+import org.telegram.ui.m91;
+import org.telegram.ui.n81;
+import org.telegram.ui.nw;
+import org.telegram.ui.q11;
+import org.telegram.ui.uw;
+import org.telegram.ui.vg0;
+import org.telegram.ui.wm;
+import org.telegram.ui.wy0;
+import org.telegram.ui.x30;
+import org.telegram.ui.xd0;
+import z2.k;
+public final class d implements OnFailureListener, q1, nw, p1, r4, ab0, ii, lr, o10, k {
+    public final int f40a;
+    public final Object f41b;
+    public final Object f42c;
     public final Object d;
-    public final Object e;
+    public final Object f43e;
 
     public d(CancellationSignal cancellationSignal, e1.d dVar, Executor executor, v0.h hVar) {
-        this.f36a = 1;
-        this.f37b = cancellationSignal;
-        this.e = dVar;
-        this.f38c = executor;
-        this.d = hVar;
+        this.f40a = 3;
+        this.f42c = cancellationSignal;
+        this.f41b = dVar;
+        this.d = executor;
+        this.f43e = hVar;
     }
 
     @Override
-    public boolean H() {
-        switch (this.f36a) {
-            case 5:
+    public boolean G() {
+        switch (this.f40a) {
+            case 4:
                 return false;
-            case 6:
+            case 8:
                 return false;
             default:
                 return false;
@@ -114,89 +112,186 @@ public final class d implements OnFailureListener, u1, q4, tx, yb0, si, ds, l20,
     }
 
     @Override
-    public void K(int i10, int i11, boolean z10) {
+    public void L(int i3, int i10, boolean z10) {
         TLRPC.BotInlineResult botInlineResult;
-        switch (this.f36a) {
-            case 3:
-                un.G0((un) this.e, (TLRPC.TL_document) this.f37b, (String) this.f38c, this.d, z10, i10);
+        switch (this.f40a) {
+            case 6:
+                wm.G0((wm) this.f41b, (TLRPC.TL_document) this.f42c, (String) this.d, this.f43e, z10, i3);
                 return;
-            case 7:
-                jn jnVar = (jn) this.e;
-                jnVar.f27494j0.e((TLRPC.TL_messageMediaPoll) this.f37b, jnVar.O, jnVar.f27499m1, (ArrayList) this.f38c, z10, i10, ((Long) this.d).longValue());
-                jnVar.f30964b.a(true);
+            case 10:
+                an anVar = (an) this.f41b;
+                anVar.f31924k0.c((TLRPC.TL_messageMediaPoll) this.f42c, anVar.P, anVar.f31929n1, (ArrayList) this.d, z10, i3, ((Long) this.f43e).longValue());
+                anVar.f38416b.a(true);
                 return;
-            case 8:
-                ht htVar = (ht) this.e;
-                TLRPC.Document document = (TLRPC.Document) this.f37b;
-                TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) this.f38c;
+            case 11:
+                gs gsVar = (gs) this.f41b;
+                TLRPC.Document document = (TLRPC.Document) this.f42c;
+                TLRPC.BotInlineResult botInlineResult2 = (TLRPC.BotInlineResult) this.d;
                 if (document != null) {
                     botInlineResult = document;
                 } else {
                     botInlineResult = botInlineResult2;
                 }
-                htVar.r(i10, i11, this.d, botInlineResult, z10);
+                gsVar.s(i3, i10, this.f43e, botInlineResult, z10);
                 return;
             default:
-                ((ht) this.e).l((TLRPC.Document) this.f37b, (String) this.f38c, this.d, z10, i10, i11);
+                ((gs) this.f41b).l((TLRPC.Document) this.f42c, (String) this.d, this.f43e, z10, i3, i10);
                 return;
         }
     }
 
     @Override
-    public boolean O(zx zxVar) {
-        switch (this.f36a) {
+    public boolean N(uw uwVar) {
+        switch (this.f40a) {
+            case 4:
+                return false;
+            case 8:
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public g9.s1 c(int r17, d2.o1 r18, int[] r19) {
+        throw new UnsupportedOperationException("Method not decompiled: a1.d.c(int, d2.o1, int[]):g9.s1");
+    }
+
+    @Override
+    public Object d(Number number, Object obj) {
+        Context context = (Context) this.f41b;
+        int[] iArr = (int[]) this.f42c;
+        e6 e6Var = (e6) this.d;
+        rx0 rx0Var = (rx0) this.f43e;
+        Integer num = (Integer) number;
+        Float f10 = (Float) obj;
+        LinearLayout f11 = k5.f(context, 1);
+        LinearLayout linearLayout = new LinearLayout(context);
+        f11.addView(linearLayout, mf.t(-2, -2, 1, 0, 0, 0, 0));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(iArr[num.intValue() - 1]);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        linearLayout.addView(imageView, mf.o(24, 24));
+        if (num.intValue() == 7) {
+            for (int i3 = 0; i3 < 2; i3++) {
+                ImageView imageView2 = new ImageView(context);
+                imageView2.setImageResource(iArr[num.intValue() - 1]);
+                imageView2.setScaleType(ImageView.ScaleType.CENTER);
+                linearLayout.addView(imageView2, mf.o(24, 24));
+            }
+        }
+        TextView textView = new TextView(context);
+        textView.setTypeface(g0.o1("fonts/num.otf"));
+        r6.V(textView, k6.f27988j5, e6Var);
+        StringBuilder sb2 = new StringBuilder("x");
+        int i10 = (f10.floatValue() > 0.0f ? 1 : (f10.floatValue() == 0.0f ? 0 : -1));
+        Object obj2 = f10;
+        if (i10 <= 0) {
+            obj2 = "0";
+        }
+        sb2.append(obj2);
+        textView.setText(sb2.toString());
+        textView.setTextSize(1, 13.0f);
+        textView.setGravity(17);
+        f11.addView(textView, mf.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
+        return new ox0(rx0Var, f11, false);
+    }
+
+    @Override
+    public void g(s1 s1Var, int i3) {
+        String str;
+        int i10 = this.f40a;
+        Object obj = this.f43e;
+        Object obj2 = this.d;
+        Object obj3 = this.f42c;
+        Object obj4 = this.f41b;
+        switch (i10) {
             case 5:
-                return false;
-            case 6:
-                return false;
+                ((i4) obj4).P((String) obj3, (String) obj2, (sf.b) obj);
+                return;
+            case 7:
+                wm.z0((wm) obj4, (TLRPC.User) obj3, (AtomicBoolean) obj2, (TLRPC.TL_attachMenuBot) obj);
+                return;
+            case 14:
+                String str2 = (String) obj;
+                String str3 = LaunchActivity.E1;
+                vg0 vg0Var = new vg0((LaunchActivity) obj4, (d2) obj3);
+                vg0Var.N0((String) obj2, false);
+                if (str2 != null) {
+                    String[] split = str2.split(" ", 2);
+                    String str4 = split[0];
+                    if (split.length > 1) {
+                        str = split[1];
+                    } else {
+                        str = null;
+                    }
+                    fb0 fb0Var = vg0Var.k1;
+                    if (fb0Var != null) {
+                        fb0Var.getEditText().setText(str4);
+                    } else {
+                        vg0Var.B1 = str4;
+                    }
+                    fb0 fb0Var2 = vg0Var.f50513l1;
+                    if (fb0Var2 != null) {
+                        fb0Var2.getEditText().setText(str);
+                    } else {
+                        vg0Var.C1 = str;
+                    }
+                }
+                vg0Var.show();
+                return;
+            case 15:
+                xd0.Z((xd0) obj4, (String) obj3, (String) obj2, (String) obj);
+                return;
+            case 16:
+                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) obj4;
+                notificationsCustomSettingsActivity.getClass();
+                SharedPreferences.Editor edit = ((SharedPreferences) obj3).edit();
+                edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
+                edit.apply();
+                notificationsCustomSettingsActivity.q0(true);
+                notificationsCustomSettingsActivity.getNotificationsController().b0(notificationsCustomSettingsActivity.f41339s);
+                return;
             default:
-                return false;
+                m91 m91Var = (m91) obj4;
+                HashSet hashSet = (HashSet) obj3;
+                HashSet hashSet2 = new HashSet();
+                m91Var.B0 = hashSet2;
+                hashSet2.addAll(hashSet);
+                m91Var.Z0(true, false);
+                fc.a0(m91Var).U(bd.K0(hashSet.size(), "TopicsDeleted"), false, new n81(m91Var, 4), new wy0(m91Var, (ArrayList) obj2, (Runnable) obj)).j();
+                m91Var.G0();
+                s1Var.dismiss();
+                return;
         }
     }
 
     @Override
-    public void a(c5.g gVar, List list) {
-        switch (this.f36a) {
-            case 19:
-                i0.g3(new r4((Object) list, (Object) ((k20) this.e), (Object) ((TLRPC.TL_inputStorePaymentStarsTopup) this.f37b), (Object) ((TL_stars.TL_starsTopupOption) this.f38c), (Object) ((Activity) this.d), 4));
-                return;
-            default:
-                i0.g3(new v8((e6) this.e, list, (s) this.f37b, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.f38c, gVar, (Activity) this.d, 20));
-                return;
-        }
-    }
-
-    @Override
-    public e9.x1 b(int r17, b2.p1 r18, int[] r19) {
-        throw new UnsupportedOperationException("Method not decompiled: a1.d.b(int, b2.p1, int[]):e9.x1");
-    }
-
-    @Override
-    public void c(String str, ArrayList arrayList) {
+    public void h(String str, ArrayList arrayList) {
         ArrayList arrayList2;
         ArrayList arrayList3;
-        switch (this.f36a) {
-            case 14:
-                ArrayList arrayList4 = (ArrayList) this.f37b;
-                ArrayList arrayList5 = (ArrayList) this.f38c;
-                Runnable runnable = (Runnable) this.d;
-                TLRPC.messages_AvailableEffects E0 = wp.r1(((g31) this.e).V).E0();
+        switch (this.f40a) {
+            case 17:
+                ArrayList arrayList4 = (ArrayList) this.f42c;
+                ArrayList arrayList5 = (ArrayList) this.d;
+                Runnable runnable = (Runnable) this.f43e;
+                TLRPC.messages_AvailableEffects E0 = hp.s1(((g11) this.f41b).W).E0();
                 HashSet hashSet = new HashSet();
                 if (E0 != null) {
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    for (int i3 = 0; i3 < arrayList.size(); i3++) {
                         try {
-                            if (!((ri) arrayList.get(i10)).f17936a.startsWith("animated_")) {
-                                String c10 = k6.c(((ri) arrayList.get(i10)).f17936a);
-                                for (int i11 = 0; i11 < E0.effects.size(); i11++) {
-                                    TLRPC.TL_availableEffect tL_availableEffect = E0.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f19825id)) && (tL_availableEffect.emoticon.contains(c10) || c10.contains(tL_availableEffect.emoticon))) {
+                            if (!((hi) arrayList.get(i3)).f22931a.startsWith("animated_")) {
+                                String c2 = i6.c(((hi) arrayList.get(i3)).f22931a);
+                                for (int i10 = 0; i10 < E0.effects.size(); i10++) {
+                                    TLRPC.TL_availableEffect tL_availableEffect = E0.effects.get(i10);
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f27032id)) && (tL_availableEffect.emoticon.contains(c2) || c2.contains(tL_availableEffect.emoticon))) {
                                         if (tL_availableEffect.effect_animation_id == 0) {
                                             arrayList2 = arrayList4;
                                         } else {
                                             arrayList2 = arrayList5;
                                         }
-                                        arrayList2.add(o0.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f19825id));
+                                        arrayList2.add(n0.e(tL_availableEffect));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f27032id));
                                     }
                                 }
                             }
@@ -207,13 +302,13 @@ public final class d implements OnFailureListener, u1, q4, tx, yb0, si, ds, l20,
                 runnable.run();
                 return;
             default:
-                HashMap hashMap = (HashMap) this.e;
-                HashMap hashMap2 = (HashMap) this.f37b;
-                ArrayList arrayList6 = (ArrayList) this.f38c;
-                Runnable runnable2 = (Runnable) this.d;
+                HashMap hashMap = (HashMap) this.f41b;
+                HashMap hashMap2 = (HashMap) this.f42c;
+                ArrayList arrayList6 = (ArrayList) this.d;
+                Runnable runnable2 = (Runnable) this.f43e;
                 int size = arrayList.size();
-                for (int i12 = 0; i12 < size; i12++) {
-                    String str2 = ((ri) arrayList.get(i12)).f17936a;
+                for (int i11 = 0; i11 < size; i11++) {
+                    String str2 = ((hi) arrayList.get(i11)).f22931a;
                     if (hashMap != null) {
                         arrayList3 = (ArrayList) hashMap.get(str2);
                     } else {
@@ -230,125 +325,41 @@ public final class d implements OnFailureListener, u1, q4, tx, yb0, si, ds, l20,
     }
 
     @Override
-    public Object d(Number number, Object obj) {
-        Context context = (Context) this.e;
-        int[] iArr = (int[]) this.f37b;
-        p6 p6Var = (p6) this.f38c;
-        xy0 xy0Var = (xy0) this.d;
-        Integer num = (Integer) number;
-        Float f7 = (Float) obj;
-        LinearLayout f10 = m5.f(context, 1);
-        LinearLayout linearLayout = new LinearLayout(context);
-        f10.addView(linearLayout, b6.t(-2, -2, 1, 0, 0, 0, 0));
-        ImageView imageView = new ImageView(context);
-        imageView.setImageResource(iArr[num.intValue() - 1]);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        linearLayout.addView(imageView, b6.o(24, 24));
-        if (num.intValue() == 7) {
-            for (int i10 = 0; i10 < 2; i10++) {
-                ImageView imageView2 = new ImageView(context);
-                imageView2.setImageResource(iArr[num.intValue() - 1]);
-                imageView2.setScaleType(ImageView.ScaleType.CENTER);
-                linearLayout.addView(imageView2, b6.o(24, 24));
-            }
-        }
-        TextView textView = new TextView(context);
-        textView.setTypeface(i0.o1("fonts/num.otf"));
-        a7.V(textView, t6.f21038j5, p6Var);
-        StringBuilder sb2 = new StringBuilder("x");
-        int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
-        Object obj2 = f7;
-        if (i11 <= 0) {
-            obj2 = "0";
-        }
-        sb2.append(obj2);
-        textView.setText(sb2.toString());
-        textView.setTextSize(1, 13.0f);
-        textView.setGravity(17);
-        f10.addView(textView, b6.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
-        return new uy0(xy0Var, f10, false);
-    }
-
-    @Override
-    public void h(x1 x1Var, int i10) {
-        String str;
-        int i11 = this.f36a;
-        Object obj = this.d;
-        Object obj2 = this.f38c;
-        Object obj3 = this.f37b;
-        Object obj4 = this.e;
-        switch (i11) {
-            case 2:
-                ((h4) obj4).P((String) obj3, (String) obj2, (gf.e) obj);
-                return;
-            case 4:
-                un.e0((un) obj4, (TLRPC.User) obj3, (AtomicBoolean) obj2, (TLRPC.TL_attachMenuBot) obj);
-                return;
-            case 11:
-                String str2 = (String) obj;
-                Pattern pattern = LaunchActivity.D1;
-                ei0 ei0Var = new ei0((LaunchActivity) obj4, (k2) obj3);
-                ei0Var.N0((String) obj2, false);
-                if (str2 != null) {
-                    String[] split = str2.split(" ", 2);
-                    String str3 = split[0];
-                    if (split.length > 1) {
-                        str = split[1];
-                    } else {
-                        str = null;
-                    }
-                    dc0 dc0Var = ei0Var.f36837j1;
-                    if (dc0Var != null) {
-                        dc0Var.getEditText().setText(str3);
-                    } else {
-                        ei0Var.A1 = str3;
-                    }
-                    dc0 dc0Var2 = ei0Var.f36838k1;
-                    if (dc0Var2 != null) {
-                        dc0Var2.getEditText().setText(str);
-                    } else {
-                        ei0Var.B1 = str;
-                    }
-                }
-                ei0Var.show();
-                return;
-            case 12:
-                gf0.Z((gf0) obj4, (String) obj3, (String) obj2, (String) obj);
-                return;
-            case 13:
-                NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) obj4;
-                notificationsCustomSettingsActivity.getClass();
-                SharedPreferences.Editor edit = ((SharedPreferences) obj3).edit();
-                edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
-                edit.apply();
-                notificationsCustomSettingsActivity.q0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().b0(notificationsCustomSettingsActivity.f33410s);
+    public void k(e5.f fVar, List list) {
+        switch (this.f40a) {
+            case 1:
+                g0.h3(new t6((Object) list, (Object) ((n10) this.f41b), (Object) ((TLRPC.TL_inputStorePaymentStarsTopup) this.f42c), (Object) ((TL_stars.TL_starsTopupOption) this.d), (Object) ((Activity) this.f43e), 6));
                 return;
             default:
-                nb1 nb1Var = (nb1) obj4;
-                HashSet hashSet = (HashSet) obj3;
-                HashSet hashSet2 = new HashSet();
-                nb1Var.A0 = hashSet2;
-                hashSet2.addAll(hashSet);
-                nb1Var.Z0(true, false);
-                cc.a0(nb1Var).U(dd.J0(hashSet.size(), "TopicsDeleted"), false, new la1(nb1Var, 4), new i41(nb1Var, (ArrayList) obj2, (Runnable) obj, 7)).j();
-                nb1Var.G0();
-                x1Var.dismiss();
+                g0.h3(new w1((e9) this.f41b, list, (org.telegram.ui.Wallet.s1) this.f42c, (TLRPC.TL_inputStorePaymentStarsGiveaway) this.d, fVar, (Activity) this.f43e, 3));
                 return;
         }
     }
 
     @Override
-    public void onFailure(Exception e) {
-        switch (this.f36a) {
+    public void l(cb0 cb0Var, int i3) {
+        x30 x30Var = (x30) this.f41b;
+        cb0 cb0Var2 = (cb0) this.f42c;
+        h20 h20Var = (h20) this.d;
+        i20 i20Var = (i20) this.f43e;
+        try {
+            x30Var.f28589c.performHapticFeedback(3, 2);
+        } catch (Exception unused) {
+        }
+        t4.g(x30Var.L1, x30Var.K1, 0L, 604800L, 2, cb0Var2, h20Var, i20Var);
+    }
+
+    @Override
+    public void onFailure(Exception e10) {
+        switch (this.f40a) {
             case 0:
-                CredentialProviderPlayServicesImpl.runFallbackClearCredFlow$lambda$27((CredentialProviderPlayServicesImpl) this.e, (CancellationSignal) this.f37b, (Executor) this.f38c, (v0.h) this.d, e);
+                CredentialProviderPlayServicesImpl.runFallbackClearCredFlow$lambda$27((CredentialProviderPlayServicesImpl) this.f41b, (CancellationSignal) this.f42c, (Executor) this.d, (v0.h) this.f43e, e10);
                 return;
             default:
-                i.e(e, "e");
-                b1.b bVar = new b1.b((e1.d) this.e, e, (Executor) this.f38c, (v0.h) this.d);
+                j.e(e10, "e");
+                b1.b bVar = new b1.b((e1.d) this.f41b, e10, (Executor) this.d, (v0.h) this.f43e);
                 CredentialProviderPlayServicesImpl.Companion.getClass();
-                if (!h.a((CancellationSignal) this.f37b)) {
+                if (!h.a((CancellationSignal) this.f42c)) {
                     bVar.invoke();
                     return;
                 }
@@ -358,175 +369,162 @@ public final class d implements OnFailureListener, u1, q4, tx, yb0, si, ds, l20,
 
     @Override
     public void run(long j10) {
-        q31 q31Var = (q31) this.e;
-        TLRPC.User user = (TLRPC.User) this.f37b;
-        TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.f38c;
-        TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.d;
+        q11 q11Var = (q11) this.f41b;
+        TLRPC.User user = (TLRPC.User) this.f42c;
+        TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) this.d;
+        TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f43e;
         if (j10 != 0) {
-            q31Var.P1 = wp.r1(q31Var.f21584a).L0(Long.valueOf(j10));
-            q31Var.e1(user, inputCheckPasswordSRP, twoStepVerificationActivity);
+            q11Var.Q1 = hp.s1(q11Var.f28583a).M0(Long.valueOf(j10));
+            q11Var.e1(user, inputCheckPasswordSRP, twoStepVerificationActivity);
             return;
         }
-        q31Var.getClass();
+        q11Var.getClass();
     }
 
     @Override
-    public void t(ac0 ac0Var, int i10) {
-        a50 a50Var = (a50) this.e;
-        ac0 ac0Var2 = (ac0) this.f37b;
-        k30 k30Var = (k30) this.f38c;
-        l30 l30Var = (l30) this.d;
-        try {
-            a50Var.f21590c.performHapticFeedback(3, 2);
-        } catch (Exception unused) {
-        }
-        s4.g(a50Var.K1, a50Var.J1, 0L, 604800L, 2, ac0Var2, k30Var, l30Var);
-    }
-
-    @Override
-    public boolean z(zx zxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, nb1 nb1Var) {
+    public boolean y(uw uwVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i3, int i10, m91 m91Var) {
         String H;
         long j10;
         TLRPC.TL_document tL_document;
-        int i12 = this.f36a;
-        Object obj = this.d;
-        Object obj2 = this.f38c;
-        Object obj3 = this.f37b;
-        Object obj4 = this.e;
-        switch (i12) {
-            case 5:
-                w7 w7Var = (w7) obj4;
-                ArrayList arrayList2 = (ArrayList) obj3;
-                TLRPC.TL_document tL_document2 = (TLRPC.TL_document) obj2;
-                kj kjVar = (kj) obj;
-                if (arrayList.size() <= 1 && ((hs) arrayList.get(0)).f16109a != e20.i(w7Var.f21584a).e() && charSequence == null && arrayList2 != null) {
-                    hs hsVar = (hs) arrayList.get(0);
-                    long j11 = hsVar.f16109a;
-                    Bundle g10 = g.g("scrollToTopOnResume", true);
-                    if (o5.C(j11)) {
-                        g10.putInt("enc_id", (int) (j11 & 4294967295L));
-                    } else if (o5.E(j11)) {
-                        g10.putLong("user_id", j11);
-                    } else {
-                        g10.putLong("chat_id", -j11);
-                    }
-                    un unVar = new un(g10);
-                    if (hsVar.f16110b != 0) {
-                        gg.e.a(unVar, hsVar);
-                    }
-                    if (w7Var.f32127w2.u0(unVar, true, false)) {
-                        unVar.Yb(arrayList2);
-                        if (hsVar.f16110b != 0) {
-                            zxVar.removeSelfFromStack();
-                        }
-                    } else {
-                        zxVar.finishFragment();
-                    }
+        int i11 = this.f40a;
+        Object obj = this.f43e;
+        Object obj2 = this.d;
+        Object obj3 = this.f42c;
+        Object obj4 = this.f41b;
+        switch (i11) {
+            case 4:
+                TLRPC.User user = (TLRPC.User) obj3;
+                String str = (String) obj2;
+                hb0 hb0Var = (hb0) obj;
+                a3 a3Var = ((v2) obj4).d;
+                long j11 = ((pr) arrayList.get(0)).f24797a;
+                Bundle k10 = g.k("scrollToTopOnResume", true);
+                if (m5.C(j11)) {
+                    k10.putInt("enc_id", (int) (j11 & 4294967295L));
+                } else if (m5.E(j11)) {
+                    k10.putLong("user_id", j11);
                 } else {
-                    int i13 = 0;
-                    while (i13 < arrayList.size()) {
-                        long j12 = ((hs) arrayList.get(i13)).f16109a;
-                        if (charSequence != null) {
-                            j10 = j12;
-                            rz.C(w7Var.f21584a).r0(pz.b(charSequence.toString(), j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
-                        } else {
-                            j10 = j12;
+                    k10.putLong("chat_id", -j11);
+                }
+                k10.putString("start_text", "@" + l10.n(user) + " " + str);
+                Activity activity = a3Var.m0;
+                if (activity instanceof LaunchActivity) {
+                    d2 lastFragment = ((LaunchActivity) activity).M().getLastFragment();
+                    if (hp.s1(a3Var.I).E(k10, lastFragment, null, null)) {
+                        hb0Var.dismiss();
+                        a3Var.f14801e0 = true;
+                        g0.r(a3Var.f14821v0);
+                        a3Var.E.h();
+                        hs.f(a3Var.I).n(a3Var, 114);
+                        hs.e().n(a3Var, 264);
+                        hs.f(a3Var.I).n(a3Var, 234);
+                        if (!a3Var.R0) {
+                            super/*android.app.Dialog*/.dismiss();
+                            a3Var.R0 = true;
                         }
-                        if (arrayList2 != null) {
-                            rz.C(w7Var.f21584a).q0(arrayList2, j10, false, false, true, 0, 0, null, -1, 0L, 0L, null);
-                            tL_document = tL_document2;
-                        } else {
-                            tL_document = tL_document2;
-                            rz.C(w7Var.f21584a).r0(pz.e(tL_document, null, kjVar.f16690k.attachPath, j10, null, null, null, null, null, z11, i10, 0, 0, w7Var.f32107m2, false));
-                        }
-                        i13++;
-                        tL_document2 = tL_document;
-                    }
-                    zxVar.finishFragment();
-                    k2 Q = LaunchActivity.Q();
-                    if (Q != null) {
-                        cc a02 = cc.a0(Q);
-                        if (arrayList.size() == 1 && ((hs) arrayList.get(0)).f16109a == e20.i(w7Var.f21584a).e()) {
-                            H = dd.L0(2131750507, null);
-                        } else if (arrayList.size() == 1 && ((hs) arrayList.get(0)).f16109a > 0) {
-                            H = dd.a0(null, null, 2131750506, o5.t(((hs) arrayList.get(0)).f16109a));
-                        } else if (arrayList.size() == 1 && ((hs) arrayList.get(0)).f16109a < 0) {
-                            H = dd.a0(null, null, 2131750511, o5.t(((hs) arrayList.get(0)).f16109a));
-                        } else {
-                            H = dd.H(',', "FwdMessageToManyChats", arrayList.size());
-                        }
-                        a02.Q(2131624027, 36, H).j();
+                        o4 o4Var = new o4(new wm(k10));
+                        o4Var.f28396b = true;
+                        lastFragment.presentFragment(o4Var);
                     }
                 }
                 return true;
-            case 6:
-                TLRPC.User user = (TLRPC.User) obj3;
-                String str = (String) obj2;
-                fc0 fc0Var = (fc0) obj;
-                bi biVar = ((gh) obj4).e;
-                long j13 = ((hs) arrayList.get(0)).f16109a;
-                Bundle g11 = g.g("scrollToTopOnResume", true);
-                if (o5.C(j13)) {
-                    g11.putInt("enc_id", (int) (j13 & 4294967295L));
-                } else if (o5.E(j13)) {
-                    g11.putLong("user_id", j13);
+            case 8:
+                z7 z7Var = (z7) obj4;
+                ArrayList arrayList2 = (ArrayList) obj3;
+                TLRPC.TL_document tL_document2 = (TLRPC.TL_document) obj2;
+                zi ziVar = (zi) obj;
+                if (arrayList.size() <= 1 && ((pr) arrayList.get(0)).f24797a != h10.i(z7Var.f28583a).e() && charSequence == null && arrayList2 != null) {
+                    pr prVar = (pr) arrayList.get(0);
+                    long j12 = prVar.f24797a;
+                    Bundle k11 = g.k("scrollToTopOnResume", true);
+                    if (m5.C(j12)) {
+                        k11.putInt("enc_id", (int) (j12 & 4294967295L));
+                    } else if (m5.E(j12)) {
+                        k11.putLong("user_id", j12);
+                    } else {
+                        k11.putLong("chat_id", -j12);
+                    }
+                    wm wmVar = new wm(k11);
+                    if (prVar.f24798b != 0) {
+                        rg.c.a(wmVar, prVar);
+                    }
+                    if (z7Var.f40975x2.u0(wmVar, true, false)) {
+                        wmVar.dc(arrayList2);
+                        if (prVar.f24798b != 0) {
+                            uwVar.removeSelfFromStack();
+                        }
+                    } else {
+                        uwVar.finishFragment();
+                    }
                 } else {
-                    g11.putLong("chat_id", -j13);
-                }
-                g11.putString("start_text", "@" + i20.n(user) + " " + str);
-                k2 k2Var = biVar.W1;
-                if (wp.r1(biVar.D3).E(g11, k2Var, null, null)) {
-                    fc0Var.dismiss();
-                    biVar.a(true);
-                    w4 w4Var = new w4(new un(g11));
-                    w4Var.f21447b = true;
-                    k2Var.presentFragment(w4Var);
+                    int i12 = 0;
+                    while (i12 < arrayList.size()) {
+                        long j13 = ((pr) arrayList.get(i12)).f24797a;
+                        if (charSequence != null) {
+                            j10 = j13;
+                            yy.C(z7Var.f28583a).r0(wy.b(charSequence.toString(), j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                        } else {
+                            j10 = j13;
+                        }
+                        if (arrayList2 != null) {
+                            yy.C(z7Var.f28583a).q0(arrayList2, j10, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+                            tL_document = tL_document2;
+                        } else {
+                            tL_document = tL_document2;
+                            yy.C(z7Var.f28583a).r0(wy.e(tL_document, null, ziVar.f26868k.attachPath, j10, null, null, null, null, null, z11, i3, 0, 0, z7Var.f40955n2, false));
+                        }
+                        i12++;
+                        tL_document2 = tL_document;
+                    }
+                    uwVar.finishFragment();
+                    d2 Q = LaunchActivity.Q();
+                    if (Q != null) {
+                        fc a02 = fc.a0(Q);
+                        if (arrayList.size() == 1 && ((pr) arrayList.get(0)).f24797a == h10.i(z7Var.f28583a).e()) {
+                            H = bd.M0(2131750506, null);
+                        } else if (arrayList.size() == 1 && ((pr) arrayList.get(0)).f24797a > 0) {
+                            H = bd.a0(null, null, 2131750505, m5.t(((pr) arrayList.get(0)).f24797a));
+                        } else if (arrayList.size() == 1 && ((pr) arrayList.get(0)).f24797a < 0) {
+                            H = bd.a0(null, null, 2131750510, m5.t(((pr) arrayList.get(0)).f24797a));
+                        } else {
+                            H = bd.H(',', "FwdMessageToManyChats", arrayList.size());
+                        }
+                        a02.Q(2131624028, 36, H).j();
+                    }
                 }
                 return true;
             default:
                 TLRPC.User user2 = (TLRPC.User) obj3;
                 String str2 = (String) obj2;
-                fc0 fc0Var2 = (fc0) obj;
-                m2 m2Var = ((h2) obj4).d;
-                long j14 = ((hs) arrayList.get(0)).f16109a;
-                Bundle g12 = g.g("scrollToTopOnResume", true);
-                if (o5.C(j14)) {
-                    g12.putInt("enc_id", (int) (j14 & 4294967295L));
-                } else if (o5.E(j14)) {
-                    g12.putLong("user_id", j14);
+                hb0 hb0Var2 = (hb0) obj;
+                bi biVar = ((gh) obj4).f34095e;
+                long j14 = ((pr) arrayList.get(0)).f24797a;
+                Bundle k12 = g.k("scrollToTopOnResume", true);
+                if (m5.C(j14)) {
+                    k12.putInt("enc_id", (int) (j14 & 4294967295L));
+                } else if (m5.E(j14)) {
+                    k12.putLong("user_id", j14);
                 } else {
-                    g12.putLong("chat_id", -j14);
+                    k12.putLong("chat_id", -j14);
                 }
-                g12.putString("start_text", "@" + i20.n(user2) + " " + str2);
-                Activity activity = m2Var.f53906l0;
-                if (activity instanceof LaunchActivity) {
-                    k2 lastFragment = ((LaunchActivity) activity).M().getLastFragment();
-                    if (wp.r1(m2Var.H).E(g12, lastFragment, null, null)) {
-                        fc0Var2.dismiss();
-                        m2Var.f53897d0 = true;
-                        i0.r(m2Var.f53917u0);
-                        m2Var.D.h();
-                        at.f(m2Var.H).n(m2Var, 114);
-                        at.e().n(m2Var, 264);
-                        at.f(m2Var.H).n(m2Var, 234);
-                        if (!m2Var.Q0) {
-                            m2.j(m2Var);
-                            m2Var.Q0 = true;
-                        }
-                        w4 w4Var2 = new w4(new un(g12));
-                        w4Var2.f21447b = true;
-                        lastFragment.presentFragment(w4Var2);
-                    }
+                k12.putString("start_text", "@" + l10.n(user2) + " " + str2);
+                d2 d2Var = biVar.X1;
+                if (hp.s1(biVar.E3).E(k12, d2Var, null, null)) {
+                    hb0Var2.dismiss();
+                    biVar.a(true);
+                    o4 o4Var2 = new o4(new wm(k12));
+                    o4Var2.f28396b = true;
+                    d2Var.presentFragment(o4Var2);
                 }
                 return true;
         }
     }
 
-    public d(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f36a = i10;
-        this.e = obj;
-        this.f37b = obj2;
-        this.f38c = obj3;
-        this.d = obj4;
+    public d(Object obj, Object obj2, Object obj3, Object obj4, int i3) {
+        this.f40a = i3;
+        this.f41b = obj;
+        this.f42c = obj2;
+        this.d = obj3;
+        this.f43e = obj4;
     }
 }

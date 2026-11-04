@@ -1,50 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class a1 implements Predicate {
-    public final int f34167a;
-    public final TL_wallet.tonConnectSession f34168b;
+import org.telegram.ui.e51;
+public final class a1 implements Runnable {
+    public final int f42121a;
+    public final e51 f42122b;
+    public final String f42123c;
 
-    public a1(TL_wallet.tonConnectSession tonconnectsession, int i10) {
-        this.f34167a = i10;
-        this.f34168b = tonconnectsession;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f34167a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f34167a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f34167a;
-        return Predicate$CC.$default$or(this, predicate);
+    public a1(e51 e51Var, String str, int i3) {
+        this.f42121a = i3;
+        this.f42122b = e51Var;
+        this.f42123c = str;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
-        switch (this.f34167a) {
+    public final void run() {
+        switch (this.f42121a) {
             case 0:
-                if (tonconnectsession.f20056id == this.f34168b.f20056id) {
-                    return true;
-                }
-                return false;
+                this.f42122b.a(this.f42123c);
+                return;
             default:
-                if (tonconnectsession.f20056id == this.f34168b.f20056id) {
-                    return true;
-                }
-                return false;
+                this.f42122b.a(this.f42123c);
+                return;
         }
     }
 }

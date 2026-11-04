@@ -1,39 +1,18 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class u11 extends s4.r {
-    public final int Q;
-    public final g31 R;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class u11 implements View.OnClickListener {
+    public final TLRPC.TL_authorization f49942a;
+    public final b21 f49943b;
 
-    public u11(g31 g31Var, int i10) {
-        super(40);
-        this.Q = i10;
-        this.R = g31Var;
+    public u11(b21 b21Var, TLRPC.TL_authorization tL_authorization) {
+        this.f49943b = b21Var;
+        this.f49942a = tL_authorization;
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.z0 z0Var, int i10) {
-        switch (this.Q) {
-            case 0:
-                try {
-                    org.telegram.ui.Components.qw qwVar = new org.telegram.ui.Components.qw(this, recyclerView.getContext(), 2);
-                    qwVar.f48056a = i10;
-                    w0(qwVar);
-                    return;
-                } catch (Exception e) {
-                    org.telegram.messenger.f8.g(e, true);
-                    return;
-                }
-            default:
-                try {
-                    org.telegram.ui.Components.qw qwVar2 = new org.telegram.ui.Components.qw(this, recyclerView.getContext(), 4);
-                    qwVar2.f48056a = i10;
-                    w0(qwVar2);
-                    return;
-                } catch (Exception e7) {
-                    org.telegram.messenger.f8.g(e7, true);
-                    return;
-                }
-        }
+    public final void onClick(View view) {
+        b21.I0(this.f49943b, this.f49942a.country);
     }
 }

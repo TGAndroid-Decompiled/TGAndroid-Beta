@@ -1,82 +1,67 @@
 package j2;
 
-import android.content.ClipData;
-import android.media.metrics.LogSessionId;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.ContentInfo;
-import v7.t6;
-public final class k implements r0.d, r0.f {
-    public final int f9379a;
-    public Object f9380b;
+import android.os.Environment;
+import android.text.TextUtils;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.FilesMigrationService;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.az;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.t0;
+public final class k extends Thread {
+    public final int f16161a = 0;
+    public final Object f16162b;
 
-    public k() {
-        this.f9379a = 0;
-        this.f9380b = e.b();
+    public k(FilesMigrationService filesMigrationService) {
+        this.f16162b = filesMigrationService;
     }
 
     @Override
-    public ClipData a() {
-        return ((ContentInfo) this.f9380b).getClip();
-    }
-
-    @Override
-    public void b(Uri uri) {
-        ((ContentInfo.Builder) this.f9380b).setLinkUri(uri);
-    }
-
-    @Override
-    public r0.g build() {
-        return new r0.g(new k(((ContentInfo.Builder) this.f9380b).build()));
-    }
-
-    @Override
-    public void c(int i10) {
-        ((ContentInfo.Builder) this.f9380b).setFlags(i10);
-    }
-
-    @Override
-    public ContentInfo d() {
-        return (ContentInfo) this.f9380b;
-    }
-
-    @Override
-    public int e() {
-        return ((ContentInfo) this.f9380b).getSource();
-    }
-
-    public void f(LogSessionId logSessionId) {
-        t6.p(((LogSessionId) this.f9380b).equals(e.b()));
-        this.f9380b = logSessionId;
-    }
-
-    @Override
-    public int l() {
-        return ((ContentInfo) this.f9380b).getFlags();
-    }
-
-    @Override
-    public void setExtras(Bundle bundle) {
-        ((ContentInfo.Builder) this.f9380b).setExtras(bundle);
-    }
-
-    public String toString() {
-        switch (this.f9379a) {
-            case 2:
-                return "ContentInfoCompat{" + ((ContentInfo) this.f9380b) + "}";
+    public final void run() {
+        switch (this.f16161a) {
+            case 0:
+                do {
+                    try {
+                    } catch (InterruptedException e10) {
+                        throw new IllegalStateException(e10);
+                    }
+                } while (((l) this.f16162b).j());
+                return;
             default:
-                return super.toString();
+                FilesMigrationService filesMigrationService = (FilesMigrationService) this.f16162b;
+                File externalStorageDirectory = Environment.getExternalStorageDirectory();
+                if (!TextUtils.isEmpty(az.f21632h0)) {
+                    ArrayList d12 = g0.d1();
+                    int size = d12.size();
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 < size) {
+                            File file = (File) d12.get(i3);
+                            if (file.getAbsolutePath().startsWith(az.f21632h0)) {
+                                externalStorageDirectory = file;
+                            } else {
+                                i3++;
+                            }
+                        }
+                    }
+                }
+                File file2 = new File(t0.f25457b.getExternalFilesDir(null), "Telegram");
+                File file3 = new File(externalStorageDirectory, "Telegram");
+                filesMigrationService.f21224a = FilesMigrationService.b(file3);
+                long currentTimeMillis = System.currentTimeMillis();
+                if (file3.canRead() && file3.canWrite()) {
+                    filesMigrationService.c(file3, file2);
+                }
+                a8.b("move time = " + (System.currentTimeMillis() - currentTimeMillis));
+                t0.f25457b.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
+                g0.h3(new org.telegram.messenger.a(this, 10));
+                return;
         }
     }
 
-    public k(ContentInfo contentInfo) {
-        this.f9379a = 2;
-        contentInfo.getClass();
-        this.f9380b = contentInfo;
-    }
-
-    public k(ClipData clipData, int i10) {
-        this.f9379a = 1;
-        this.f9380b = r0.c.a(clipData, i10);
+    public k(l lVar) {
+        super("ExoPlayer:SimpleDecoder");
+        this.f16162b = lVar;
     }
 }

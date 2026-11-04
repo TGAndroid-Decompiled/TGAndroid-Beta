@@ -2,6 +2,7 @@ package m;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import b8.ae;
 public final class g extends v implements i {
     public final h d;
 
@@ -12,7 +13,7 @@ public final class g extends v implements i {
         setFocusable(true);
         setVisibility(0);
         setEnabled(true);
-        w7.t.a(this, getContentDescription());
+        ae.a(this, getContentDescription());
         setOnTouchListener(new l.b(this, this));
     }
 
@@ -37,8 +38,8 @@ public final class g extends v implements i {
     }
 
     @Override
-    public final boolean setFrame(int i10, int i11, int i12, int i13) {
-        boolean frame = super.setFrame(i10, i11, i12, i13);
+    public final boolean setFrame(int i3, int i10, int i11, int i12) {
+        boolean frame = super.setFrame(i3, i10, i11, i12);
         Drawable drawable = getDrawable();
         Drawable background = getBackground();
         if (drawable != null && background != null) {

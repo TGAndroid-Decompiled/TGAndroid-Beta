@@ -1,28 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
-public final class yx0 extends ac0 {
-    public final zx0 f32924y0;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
+public final class yx0 extends ReplacementSpan {
+    public float f40850a;
+    public final String f40851b;
+    public final int f40852c;
+    public final Paint d;
 
-    public yx0(zx0 zx0Var, Context context) {
-        super(13, context, null);
-        this.f32924y0 = zx0Var;
+    public yx0(int i3, Paint paint, String str) {
+        this.f40851b = str;
+        this.f40852c = i3;
+        this.d = paint;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21038j5, false);
-        zx0 zx0Var = this.f32924y0;
-        if (x02 != zx0Var.f33254a) {
-            zx0Var.f33254a = x02;
-            setTextColor(x02);
-        }
-        super.onDraw(canvas);
-        float L = org.telegram.messenger.i0.L(31.0f);
-        zx0Var.e.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21004h7, false));
-        canvas.drawLine(org.telegram.messenger.i0.L(2.0f), L, getMeasuredWidth() - org.telegram.messenger.i0.L(2.0f), L, zx0Var.e);
-        float measuredHeight = getMeasuredHeight() - org.telegram.messenger.i0.L(31.0f);
-        canvas.drawLine(org.telegram.messenger.i0.L(2.0f), measuredHeight, getMeasuredWidth() - org.telegram.messenger.i0.L(2.0f), measuredHeight, zx0Var.e);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i3, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        float f11 = (i11 + i13) / 2.0f;
+        paint.setColor(this.f40852c);
+        float L = org.telegram.messenger.g0.L(19.0f) / 2.0f;
+        canvas.drawRoundRect(f10, f11 - L, f10 + this.f40850a + org.telegram.messenger.g0.L(11.33f), f11 + L, L, L, this.d);
+        canvas.drawText(this.f40851b, org.telegram.messenger.g0.N(5.66f) + f10, i13 - org.telegram.messenger.g0.L(6.0f), paint);
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i3, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        float N = org.telegram.messenger.g0.N(11.33f);
+        float measureText = paint.measureText(this.f40851b);
+        this.f40850a = measureText;
+        return (int) (N + measureText);
     }
 }

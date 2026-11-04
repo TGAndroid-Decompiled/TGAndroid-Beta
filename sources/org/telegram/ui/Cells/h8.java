@@ -1,51 +1,20 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class h8 extends AnimatorListenerAdapter {
-    public final int f22002a;
-    public final boolean f22003b;
-    public final k8 f22004c;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public final class h8 extends CharacterStyle implements UpdateAppearance {
+    public final int f29350a;
+    public final org.telegram.ui.ActionBar.e6 f29351b;
 
-    public h8(k8 k8Var, boolean z10, int i10) {
-        this.f22002a = i10;
-        this.f22004c = k8Var;
-        this.f22003b = z10;
+    public h8(int i3, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.f29350a = i3;
+        this.f29351b = e6Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f22002a) {
-            case 0:
-                if (!this.f22003b) {
-                    this.f22004c.h.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                if (!this.f22003b) {
-                    this.f22004c.f22186y.setVisibility(4);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f22002a) {
-            case 0:
-                if (this.f22003b) {
-                    this.f22004c.h.setVisibility(0);
-                    return;
-                }
-                return;
-            default:
-                if (this.f22003b) {
-                    this.f22004c.f22186y.setVisibility(0);
-                    return;
-                }
-                return;
-        }
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(this.f29350a, this.f29351b));
+        textPaint.setUnderlineText(true);
     }
 }

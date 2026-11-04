@@ -6,20 +6,20 @@ public class RoundRectangle2D {
         public float arcwidth;
         public float height;
         public float width;
-        public float f47850x;
-        public float f47851y;
+        public float f54557x;
+        public float f54558y;
 
-        public Float(float f7, float f10, float f11, float f12, float f13, float f14) {
-            this.f47850x = f7;
-            this.f47851y = f10;
-            this.width = f11;
-            this.height = f12;
-            this.arcwidth = f13;
-            this.archeight = f14;
+        public Float(float f10, float f11, float f12, float f13, float f14, float f15) {
+            this.f54557x = f10;
+            this.f54558y = f11;
+            this.width = f12;
+            this.height = f13;
+            this.arcwidth = f14;
+            this.archeight = f15;
         }
 
         public String toString() {
-            return "Float{x=" + this.f47850x + ", y=" + this.f47851y + ", width=" + this.width + ", height=" + this.height + ", arcwidth=" + this.arcwidth + ", archeight=" + this.archeight + '}';
+            return "Float{x=" + this.f54557x + ", y=" + this.f54558y + ", width=" + this.width + ", height=" + this.height + ", arcwidth=" + this.arcwidth + ", archeight=" + this.archeight + '}';
         }
     }
 }

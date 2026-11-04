@@ -2,35 +2,44 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.ChatActivityEnterView;
 public final class af extends AnimatorListenerAdapter {
-    public final int f24388a;
-    public final ChatActivityEnterView f24389b;
+    public final boolean f31822a;
+    public final ChatActivityEnterView f31823b;
 
-    public af(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f24389b = chatActivityEnterView;
-        this.f24388a = i10;
+    public af(ChatActivityEnterView chatActivityEnterView, boolean z10) {
+        this.f31823b = chatActivityEnterView;
+        this.f31822a = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f24389b;
-        if (animator.equals(chatActivityEnterView.f23791t2)) {
-            int i10 = this.f24388a;
-            if (i10 != 3 && chatActivityEnterView.E0 != null && !org.telegram.messenger.i0.C1()) {
-                chatActivityEnterView.E0.requestFocus();
+        ChatActivityEnterView chatActivityEnterView = this.f31823b;
+        if (animator.equals(chatActivityEnterView.f31205u2)) {
+            chatActivityEnterView.f31205u2 = null;
+        }
+        chatActivityEnterView.v0();
+        chatActivityEnterView.f31152l1.setAlpha(1.0f);
+        chatActivityEnterView.f31152l1.setTranslationX(0.0f);
+        yf yfVar = chatActivityEnterView.P1;
+        if (yfVar != null && org.telegram.messenger.az.O < 3) {
+            ChatActivityEnterView chatActivityEnterView2 = yfVar.f40698c0;
+            chatActivityEnterView2.f31121f4 = true;
+            chatActivityEnterView2.f31127g4 = System.currentTimeMillis();
+        }
+        ve veVar = chatActivityEnterView.F0;
+        if (veVar != null) {
+            veVar.setAlpha(0.0f);
+        }
+        if (this.f31822a) {
+            mi0 mi0Var = chatActivityEnterView.f31136i1;
+            if (mi0Var != null) {
+                mi0Var.setVisibility(8);
             }
-            chatActivityEnterView.w();
-            if (i10 != 3) {
-                wf wfVar = chatActivityEnterView.O1;
-                if (wfVar != null) {
-                    wfVar.setVisibility(8);
-                }
-                ChatActivityEnterView.RecordCircle recordCircle = chatActivityEnterView.N1;
-                if (recordCircle != null) {
-                    recordCircle.d();
-                }
+            sd sdVar = chatActivityEnterView.f31118f1;
+            if (sdVar != null) {
+                sdVar.setVisibility(8);
             }
+            chatActivityEnterView.v0();
         }
     }
 }

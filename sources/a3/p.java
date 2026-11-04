@@ -1,58 +1,8 @@
 package a3;
 
-import android.content.Context;
-import android.graphics.SurfaceTexture;
-import android.view.Surface;
-public final class p extends Surface {
-    public static int d;
-    public static boolean e;
-    public final boolean f177a;
-    public final o f178b;
-    public boolean f179c;
-
-    public p(o oVar, SurfaceTexture surfaceTexture, boolean z10) {
-        super(surfaceTexture);
-        this.f178b = oVar;
-        this.f177a = z10;
-    }
-
-    public static int a(android.content.Context r5) {
-        throw new UnsupportedOperationException("Method not decompiled: a3.p.a(android.content.Context):int");
-    }
-
-    public static synchronized boolean b(Context context) {
-        boolean z10;
-        synchronized (p.class) {
-            try {
-                z10 = true;
-                if (!e) {
-                    d = a(context);
-                    e = true;
-                }
-                if (d == 0) {
-                    z10 = false;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return z10;
-    }
-
-    @Override
-    public final void release() {
-        super.release();
-        synchronized (this.f178b) {
-            try {
-                if (!this.f179c) {
-                    o oVar = this.f178b;
-                    oVar.f174b.getClass();
-                    oVar.f174b.sendEmptyMessage(2);
-                    this.f179c = true;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+import java.io.IOException;
+public final class p extends IOException {
+    public p(java.lang.Throwable r4) {
+        throw new UnsupportedOperationException("Method not decompiled: a3.p.<init>(java.lang.Throwable):void");
     }
 }

@@ -1,123 +1,55 @@
 package org.telegram.messenger;
+public final class eo implements cs {
+    public final int f22377a;
+    public final int f22378b;
+    public final int f22379c;
+    public final long d;
+    public final vo f22380e;
+    public final hp f22381f;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-public final class eo implements RequestDelegate {
-    public final int f15617a;
-    public final f1 f15618b;
-    public final Object f15619c;
-    public final Object d;
-    public final Object e;
-    public final Object f15620f;
-    public final TLObject f15621g;
-
-    public eo(f1 f1Var, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i10) {
-        this.f15617a = i10;
-        this.f15618b = f1Var;
-        this.f15619c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f15620f = obj4;
-        this.f15621g = tLObject;
+    public eo(hp hpVar, int i3, int i10, int i11, long j10, vo voVar) {
+        this.f22381f = hpVar;
+        this.f22377a = i3;
+        this.f22378b = i10;
+        this.f22379c = i11;
+        this.d = j10;
+        this.f22380e = voVar;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f15617a) {
-            case 0:
-                wp wpVar = (wp) this.f15618b;
-                Context context = (Context) this.f15619c;
-                org.telegram.ui.ActionBar.x1 x1Var = (org.telegram.ui.ActionBar.x1) this.d;
-                as asVar = (as) this.e;
-                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) this.f15620f;
-                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) this.f15621g;
-                wpVar.getClass();
-                if (tL_error == null) {
-                    if (context != null) {
-                        i0.g3(new gn(1, context, x1Var));
-                    }
-                    wpVar.L3((TLRPC.Updates) tLObject, false);
-                    i0.g3(new a(asVar, 27));
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        int i11 = hs.I;
+        vo voVar = this.f22380e;
+        int i12 = this.f22377a;
+        hp hpVar = this.f22381f;
+        int i13 = hs.H;
+        if (i3 == i13 && ((Integer) objArr[0]).intValue() == i12) {
+            int intValue = ((Integer) objArr[1]).intValue();
+            boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
+            boolean booleanValue2 = ((Boolean) objArr[3]).booleanValue();
+            int intValue2 = ((Integer) objArr[4]).intValue();
+            int i14 = this.f22378b;
+            if (intValue < i14 / 2 && !booleanValue2 && booleanValue) {
+                int i15 = this.f22379c;
+                if (i15 != 0) {
+                    hpVar.Z2(this.d, 0L, false, i14, i15, 0, false, 0, this.f22377a, 3, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
+                    return;
+                } else {
+                    hpVar.Z2(this.d, 0L, false, i14, i15, 0, false, 0, this.f22377a, 2, intValue2, 0, 0L, -1, 0, 0, 0, false, 0, true, false, false, null, 0L);
                     return;
                 }
-                i0.g3(new hn(wpVar, asVar, context, x1Var, tL_error, k2Var, tL_channels_convertToGigagroup, 1));
-                return;
-            default:
-                final u10 u10Var = (u10) this.f15618b;
-                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f15619c;
-                final String str = (String) this.d;
-                final s10 s10Var = (s10) this.e;
-                final bi.e eVar = (bi.e) this.f15620f;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f15621g;
-                u10Var.getClass();
-                if (tLObject instanceof TLRPC.TL_messages_translateResult) {
-                    ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
-                    if (arrayList.size() <= 0) {
-                        i0.g3(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r6) {
-                                    case 0:
-                                        u10 u10Var2 = u10Var;
-                                        u10Var2.getClass();
-                                        TL_stories.StoryItem storyItem2 = storyItem;
-                                        storyItem2.translatedLng = str;
-                                        storyItem2.translatedText = null;
-                                        u10Var2.getMessagesController().O1().f48925k.h(storyItem2.dialogId, storyItem2);
-                                        u10Var2.J.remove(s10Var);
-                                        eVar.run();
-                                        return;
-                                    default:
-                                        u10 u10Var3 = u10Var;
-                                        u10Var3.getClass();
-                                        TL_stories.StoryItem storyItem3 = storyItem;
-                                        storyItem3.translatedLng = str;
-                                        storyItem3.translatedText = null;
-                                        u10Var3.getMessagesController().O1().f48925k.h(storyItem3.dialogId, storyItem3);
-                                        u10Var3.J.remove(s10Var);
-                                        eVar.run();
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    } else {
-                        i0.g3(new hn(u10Var, storyItem, str, tL_textWithEntities, arrayList.get(0), s10Var, eVar, 4));
-                        return;
-                    }
-                }
-                i0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r6) {
-                            case 0:
-                                u10 u10Var2 = u10Var;
-                                u10Var2.getClass();
-                                TL_stories.StoryItem storyItem2 = storyItem;
-                                storyItem2.translatedLng = str;
-                                storyItem2.translatedText = null;
-                                u10Var2.getMessagesController().O1().f48925k.h(storyItem2.dialogId, storyItem2);
-                                u10Var2.J.remove(s10Var);
-                                eVar.run();
-                                return;
-                            default:
-                                u10 u10Var3 = u10Var;
-                                u10Var3.getClass();
-                                TL_stories.StoryItem storyItem3 = storyItem;
-                                storyItem3.translatedLng = str;
-                                storyItem3.translatedText = null;
-                                u10Var3.getMessagesController().O1().f48925k.h(storyItem3.dialogId, storyItem3);
-                                u10Var3.J.remove(s10Var);
-                                eVar.run();
-                                return;
-                        }
-                    }
-                });
-                return;
+            }
+            hpVar.getNotificationCenter().n(this, i13);
+            hpVar.getNotificationCenter().n(this, i11);
+            if (voVar != null) {
+                voVar.j(booleanValue);
+            }
+        } else if (i3 == i11 && ((Integer) objArr[0]).intValue() == i12) {
+            hpVar.getNotificationCenter().n(this, i13);
+            hpVar.getNotificationCenter().n(this, i11);
+            if (voVar != null) {
+                voVar.a();
+            }
         }
     }
 }

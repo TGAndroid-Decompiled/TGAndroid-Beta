@@ -3,19 +3,19 @@ package org.telegram.messenger;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-public class ImportingService extends Service implements vs {
-    public e0.r f14426a;
+public class ImportingService extends Service implements cs {
+    public e0.q f21287a;
 
     public ImportingService() {
-        for (int i10 = 0; i10 < 4; i10++) {
-            at.f(i10).b(this, at.f14801v1);
-            at.f(i10).b(this, at.f14808w1);
+        for (int i3 = 0; i3 < 4; i3++) {
+            hs.f(i3).b(this, hs.f23320v1);
+            hs.f(i3).b(this, hs.f23327w1);
         }
     }
 
     public static boolean a() {
-        for (int i10 = 0; i10 < 4; i10++) {
-            if (rz.C(i10).F.size() != 0) {
+        for (int i3 = 0; i3 < 4; i3++) {
+            if (yy.C(i3).G.size() != 0) {
                 return true;
             }
         }
@@ -23,8 +23,8 @@ public class ImportingService extends Service implements vs {
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if ((i10 == at.f14801v1 || i10 == at.f14808w1) && !a() && !a()) {
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        if ((i3 == hs.f23320v1 || i3 == hs.f23327w1) && !a() && !a()) {
             stopSelf();
         }
     }
@@ -41,69 +41,69 @@ public class ImportingService extends Service implements vs {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.k0(w0.f18945b).b(5, null);
-        for (int i10 = 0; i10 < 4; i10++) {
-            at.f(i10).n(this, at.f14801v1);
-            at.f(i10).n(this, at.f14808w1);
+        new e0.j0(t0.f25457b).b(5, null);
+        for (int i3 = 0; i3 < 4; i3++) {
+            hs.f(i3).n(this, hs.f23320v1);
+            hs.f(i3).n(this, hs.f23327w1);
         }
-        if (v2.f18578a) {
-            f8.b("destroy import service");
+        if (r2.f25040a) {
+            a8.b("destroy import service");
         }
     }
 
     @Override
-    public final int onStartCommand(Intent intent, int i10, int i11) {
+    public final int onStartCommand(Intent intent, int i3, int i10) {
         if (!a()) {
-            for (int i12 = 0; i12 < 4; i12++) {
-                if (rz.C(i12).D.m() == 0) {
+            for (int i11 = 0; i11 < 4; i11++) {
+                if (yy.C(i11).E.m() == 0) {
                 }
             }
             stopSelf();
             return 2;
         }
-        if (v2.f18578a) {
-            f8.b("start import service");
+        if (r2.f25040a) {
+            a8.b("start import service");
         }
-        if (this.f14426a == null) {
-            pt.i();
-            e0.r rVar = new e0.r(w0.f18945b, null);
-            this.f14426a = rVar;
-            rVar.F.icon = 17301640;
-            rVar.F.when = System.currentTimeMillis();
-            e0.r rVar2 = this.f14426a;
-            rVar2.f6077y = pt.f17636j0;
-            rVar2.g(dd.L0(2131689472, null));
-            int i13 = 0;
+        if (this.f21287a == null) {
+            us.i();
+            e0.q qVar = new e0.q(t0.f25457b, null);
+            this.f21287a = qVar;
+            qVar.F.icon = 17301640;
+            qVar.F.when = System.currentTimeMillis();
+            e0.q qVar2 = this.f21287a;
+            qVar2.f9299y = us.f25747k0;
+            qVar2.g(bd.M0(2131689472, null));
+            int i12 = 0;
             while (true) {
-                if (i13 < 4) {
-                    if (rz.C(i13).D.m() != 0) {
-                        this.f14426a.p(dd.L0(2131749276, null));
-                        this.f14426a.f(dd.L0(2131749276, null));
+                if (i12 < 4) {
+                    if (yy.C(i12).E.m() != 0) {
+                        this.f21287a.p(bd.M0(2131749275, null));
+                        this.f21287a.f(bd.M0(2131749275, null));
                         break;
                     }
-                    i13++;
+                    i12++;
                 } else {
-                    this.f14426a.p(dd.L0(2131749275, null));
-                    this.f14426a.f(dd.L0(2131749275, null));
+                    this.f21287a.p(bd.M0(2131749274, null));
+                    this.f21287a.f(bd.M0(2131749274, null));
                     break;
                 }
             }
         }
-        e0.r rVar3 = this.f14426a;
-        rVar3.f6067n = 100;
-        rVar3.f6068o = 0;
-        rVar3.f6069p = true;
+        e0.q qVar3 = this.f21287a;
+        qVar3.f9289n = 100;
+        qVar3.f9290o = 0;
+        qVar3.f9291p = true;
         try {
-            startForeground(5, rVar3.b());
+            startForeground(5, qVar3.b());
         } catch (Throwable th2) {
-            f8.g(th2, true);
+            a8.g(th2, true);
         }
-        new e0.k0(w0.f18945b).e(null, 5, this.f14426a.b());
+        new e0.j0(t0.f25457b).e(null, 5, this.f21287a.b());
         return 2;
     }
 
-    public final void onTimeout(int i10, int i11) {
-        f8.b("ImportingService timeout, type = " + i11);
+    public final void onTimeout(int i3, int i10) {
+        a8.b("ImportingService timeout, type = " + i10);
         try {
             stopForeground(true);
         } catch (Throwable unused) {

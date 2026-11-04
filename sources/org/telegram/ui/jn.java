@@ -1,63 +1,50 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class jn extends TextView implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.Cells.y f38473a;
-    public int f38474b;
-    public boolean f38475c;
-    public final un d;
+import org.telegram.tgnet.TLRPC;
+public final class jn extends eq0 {
+    public final ln f46653a;
 
-    public jn(un unVar, Activity activity) {
-        super(activity);
-        this.d = unVar;
-        setSingleLine(true);
-        setLines(1);
-        setMaxLines(1);
-        setEllipsize(TextUtils.TruncateAt.END);
-        org.telegram.ui.ActionBar.a7.V(this, org.telegram.ui.ActionBar.t6.Gi, unVar.getResourceProvider());
-        int themedColor = unVar.getThemedColor(org.telegram.ui.ActionBar.t6.Ci);
-        this.f38474b = themedColor;
-        org.telegram.ui.Cells.y e = org.telegram.ui.ActionBar.j6.e(themedColor, 16.0f);
-        this.f38473a = e;
-        setBackground(e);
-        setTextSize(1, 14.0f);
-        setTypeface(org.telegram.messenger.i0.o());
-        setGravity(17);
-        setPadding(org.telegram.messenger.i0.L(14.0f), 0, org.telegram.messenger.i0.L(14.0f), 0);
+    public jn(ln lnVar) {
+        this.f46653a = lnVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), (int) (org.telegram.messenger.i0.f16172q.x * 0.45f)), Integer.MIN_VALUE), i11);
+    public final org.telegram.ui.mq0 E(org.telegram.messenger.zi r8, org.telegram.tgnet.TLRPC.FileLocation r9, int r10, boolean r11, boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.jn.E(org.telegram.messenger.zi, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.mq0");
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.t6.Ci);
-            if (themedColor == this.f38474b && this.f38475c == org.telegram.ui.ActionBar.t6.I.q()) {
-                return;
-            }
-            Drawable background = getBackground();
-            org.telegram.ui.Cells.y yVar = this.f38473a;
-            if (background == yVar) {
-                this.f38475c = org.telegram.ui.ActionBar.t6.I.q();
-                org.telegram.ui.ActionBar.t6.H1(yVar, themedColor, false);
-                org.telegram.ui.ActionBar.t6.H1(yVar, org.telegram.ui.ActionBar.j6.b(themedColor), true);
-                this.f38474b = themedColor;
-                invalidate();
-            }
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+    public final void G() {
+        this.f46653a.f47371e.getImageReceiver().O0(true, true);
+    }
+
+    @Override
+    public final boolean N() {
+        ln lnVar = this.f46653a;
+        long j10 = lnVar.C0;
+        if (j10 == 0) {
+            return true;
         }
+        TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
+        tL_photos_updateProfilePhoto.bot = lnVar.getMessagesController().o1(j10);
+        tL_photos_updateProfilePhoto.flags |= 2;
+        tL_photos_updateProfilePhoto.f27135id = new TLRPC.TL_inputPhotoEmpty();
+        lnVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new l(this, 2));
+        return false;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void f(String str, String str2, boolean z10) {
+        this.f46653a.f47388s.p(str, str2, z10);
+    }
+
+    @Override
+    public final boolean t() {
+        return false;
+    }
+
+    @Override
+    public final int y() {
+        return 1;
     }
 }

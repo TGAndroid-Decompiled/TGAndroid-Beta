@@ -1,102 +1,99 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class k2 extends Drawable {
-    public final long f16550a;
-    public final Drawable f16551b;
-    public final Paint f16552c;
-    public final Path d;
-    public boolean e;
-    public final org.telegram.ui.Components.t5 f16553f;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.messenger.support.LongSparseLongArray;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class k2 extends c1 {
+    public static volatile k2[] f23791b = new k2[4];
+    public final LongSparseLongArray f23792a;
 
-    public k2(Context context) {
-        Paint paint = new Paint(1);
-        this.f16552c = paint;
-        Path path = new Path();
-        this.d = path;
-        this.e = false;
-        this.f16553f = new org.telegram.ui.Components.t5(new a(this, 3), 420L, org.telegram.ui.Components.gr.h, 0);
-        this.f16550a = System.currentTimeMillis();
-        this.f16551b = i0.a.f(context, 2131231245);
-        paint.setPathEffect(new CornerPathEffect(i0.L(1.0f)));
-        path.rewind();
-        path.moveTo(-i0.N(1.33f), i0.N(0.16f));
-        path.lineTo(-i0.N(1.33f), -i0.N(3.5f));
-        path.lineTo(i0.N(1.33f), -i0.N(3.5f));
-        path.lineTo(i0.N(1.33f), i0.N(0.16f));
-        path.lineTo(i0.N(3.5f), i0.N(0.16f));
-        path.lineTo(0.0f, i0.N(3.5f));
-        path.lineTo(-i0.N(3.5f), i0.N(0.16f));
-        path.close();
+    public k2(int i3) {
+        super(i3);
+        this.f23792a = new LongSparseLongArray();
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        Drawable drawable = this.f16551b;
-        drawable.setBounds(bounds);
-        drawable.draw(canvas);
-        float d = this.f16553f.d(this.e);
-        if (d > 0.0f) {
-            canvas.save();
-            canvas.translate(getBounds().centerX(), getBounds().centerY());
-            canvas.translate(-i0.N(8.166f), i0.N(5.0f));
-            float f7 = (d * 0.5f) + 0.5f;
-            canvas.scale(f7, f7);
-            int r12 = org.telegram.ui.ActionBar.t6.r1(0.4f, -1);
-            Paint paint = this.f16552c;
-            paint.setColor(r12);
-            Path path = this.d;
-            canvas.drawPath(path, paint);
-            float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f16550a) % 450)) / 450.0f;
-            float f10 = 0.5f + currentTimeMillis;
-            canvas.save();
-            canvas.clipRect(-i0.L(5.0f), i0.T1(-i0.N(3.5f), i0.N(3.5f), currentTimeMillis), i0.L(5.0f), i0.T1(-i0.N(3.5f), i0.N(3.5f), f10));
-            paint.setColor(org.telegram.ui.ActionBar.t6.r1(1.0f, -1));
-            canvas.drawPath(path, paint);
-            canvas.restore();
-            if (f10 > 1.0f) {
-                canvas.save();
-                canvas.clipRect(-i0.L(5.0f), i0.T1(-i0.N(3.5f), i0.N(3.5f), 0.0f), i0.L(5.0f), i0.T1(-i0.N(3.5f), i0.N(3.5f), f10 - 1.0f));
-                paint.setColor(org.telegram.ui.ActionBar.t6.r1(1.0f, -1));
-                canvas.drawPath(path, paint);
-                canvas.restore();
+    public static k2 b(int i3) {
+        k2 k2Var;
+        k2 k2Var2 = f23791b[i3];
+        if (k2Var2 == null) {
+            synchronized (f2.class) {
+                try {
+                    k2Var = f23791b[i3];
+                    if (k2Var == null) {
+                        k2[] k2VarArr = f23791b;
+                        k2 k2Var3 = new k2(i3);
+                        k2VarArr[i3] = k2Var3;
+                        k2Var = k2Var3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
             }
-            canvas.restore();
-            invalidateSelf();
+            return k2Var;
+        }
+        return k2Var2;
+    }
+
+    public final void a(long j10, long j11, TLRPC.JoinChatBotResult joinChatBotResult) {
+        this.f23792a.get(j11, 0L);
+        getNotificationCenter().k(hs.Q5, new j2(j10, joinChatBotResult));
+        HashSet hashSet = ii.a3.f14789b1;
+        if (hashSet != null) {
+            Iterator it = hashSet.iterator();
+            while (it.hasNext()) {
+                ii.a3 a3Var = (ii.a3) it.next();
+                ii.q4 q4Var = a3Var.f14825x0;
+                if (q4Var != null && q4Var.f15169g == 5) {
+                    long j12 = q4Var.f15165b;
+                    if (j12 == j10 || j12 == 0) {
+                        TLObject tLObject = q4Var.f15178q;
+                        if ((tLObject instanceof TLRPC.TL_webViewResultUrl) && ((TLRPC.TL_webViewResultUrl) tLObject).query_id == j11) {
+                            a3Var.o(false);
+                            return;
+                        }
+                    }
+                }
+            }
         }
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f16551b.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f16551b.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f16551b.setAlpha(i10);
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f16552c.setColorFilter(colorFilter);
-        this.f16551b.setColorFilter(colorFilter);
+    public final void c(final long j10, final long j11, final long j12, boolean z10) {
+        org.telegram.ui.ActionBar.d2 Q;
+        if (LaunchActivity.K1 == null || (Q = LaunchActivity.Q()) == null) {
+            return;
+        }
+        TLRPC.User a22 = getMessagesController().a2(Long.valueOf(j11));
+        if (!z10) {
+            if (!b6.h(this.currentAccount, j11) && !getMessagesController().W6.contains(Long.valueOf(j11))) {
+                org.telegram.ui.Components.t4.n(Q, a22, new Runnable() {
+                    @Override
+                    public final void run() {
+                        long j13 = j12;
+                        k2 k2Var = k2.this;
+                        long j14 = j10;
+                        long j15 = j11;
+                        k2Var.c(j14, j15, j13, true);
+                        b6.n(k2Var.currentAccount, j15);
+                    }
+                }, new ai.y1(26));
+                return;
+            } else {
+                c(j10, j11, j12, true);
+                return;
+            }
+        }
+        this.f23792a.put(j12, j11);
+        org.telegram.ui.ActionBar.d2 Q2 = LaunchActivity.Q();
+        ii.q4 b10 = ii.q4.b(this.currentAccount, j10, j11, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
+        b10.d = j12;
+        ii.a3 a3Var = new ii.a3(LaunchActivity.K1, null);
+        a3Var.B(false);
+        a3Var.C0 = true;
+        a3Var.m0 = LaunchActivity.K1;
+        a3Var.x(Q2, b10);
+        a3Var.show();
     }
 }

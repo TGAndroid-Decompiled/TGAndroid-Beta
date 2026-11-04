@@ -1,30 +1,65 @@
 package f9;
 
-import v7.t6;
-public final class c extends d {
-    public c(java.lang.String r2, java.lang.String r3) {
-        throw new UnsupportedOperationException("Method not decompiled: f9.c.<init>(java.lang.String, java.lang.String):void");
+import java.util.Arrays;
+public class c extends i {
+    public final int f11505a = 1;
+    public final Object f11506b;
+
+    public c(i iVar) {
+        iVar.getClass();
+        this.f11506b = iVar;
     }
 
     @Override
-    public final void b(StringBuilder sb2, byte[] bArr, int i10) {
-        int i11 = 0;
-        t6.n(0, i10, bArr.length);
-        for (int i12 = i10; i12 >= 3; i12 -= 3) {
-            int i13 = i11 + 2;
-            int i14 = (bArr[i11 + 1] & 255) << 8;
-            i11 += 3;
-            int i15 = i14 | ((bArr[i11] & 255) << 16) | (bArr[i13] & 255);
-            a aVar = this.f6969a;
-            char[] cArr = aVar.f6965b;
-            char[] cArr2 = aVar.f6965b;
-            sb2.append(cArr[i15 >>> 18]);
-            sb2.append(cArr2[(i15 >>> 12) & 63]);
-            sb2.append(cArr2[(i15 >>> 6) & 63]);
-            sb2.append(cArr2[i15 & 63]);
+    public final boolean apply(Object obj) {
+        switch (this.f11505a) {
+            case 0:
+                return c(((Character) obj).charValue());
+            default:
+                return c(((Character) obj).charValue());
         }
-        if (i11 < i10) {
-            a(sb2, bArr, i11, i10 - i11);
+    }
+
+    @Override
+    public final boolean c(char c2) {
+        switch (this.f11505a) {
+            case 0:
+                if (Arrays.binarySearch((char[]) this.f11506b, c2) >= 0) {
+                    return true;
+                }
+                return false;
+            default:
+                return !((i) this.f11506b).c(c2);
         }
+    }
+
+    @Override
+    public i d() {
+        switch (this.f11505a) {
+            case 1:
+                return (i) this.f11506b;
+            default:
+                return super.d();
+        }
+    }
+
+    public final String toString() {
+        switch (this.f11505a) {
+            case 0:
+                StringBuilder sb2 = new StringBuilder("CharMatcher.anyOf(\"");
+                for (char c2 : (char[]) this.f11506b) {
+                    sb2.append(i.a(c2));
+                }
+                sb2.append("\")");
+                return sb2.toString();
+            default:
+                return ((i) this.f11506b) + ".negate()";
+        }
+    }
+
+    public c(String str) {
+        char[] charArray = str.toString().toCharArray();
+        this.f11506b = charArray;
+        Arrays.sort(charArray);
     }
 }

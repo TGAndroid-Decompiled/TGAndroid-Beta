@@ -1,21 +1,73 @@
 package r0;
 
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.Rect;
+import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
 public abstract class a0 {
-    public static j1 a(View view) {
-        WindowInsets rootWindowInsets = view.getRootWindowInsets();
-        if (rootWindowInsets == null) {
-            return null;
+    public static void a(WindowInsets windowInsets, View view) {
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener = (View.OnApplyWindowInsetsListener) view.getTag(2131296698);
+        if (onApplyWindowInsetsListener != null) {
+            onApplyWindowInsetsListener.onApplyWindowInsets(view, windowInsets);
         }
-        j1 h = j1.h(null, rootWindowInsets);
-        g1 g1Var = h.f46143a;
-        g1Var.r(h);
-        g1Var.d(view.getRootView());
-        return h;
     }
 
-    public static void b(View view, int i10, int i11) {
-        view.setScrollIndicators(i10, i11);
+    public static k1 b(View view, k1 k1Var, Rect rect) {
+        WindowInsets g7 = k1Var.g();
+        if (g7 != null) {
+            return k1.h(view, view.computeSystemWindowInsets(g7, rect));
+        }
+        rect.setEmpty();
+        return k1Var;
+    }
+
+    public static ColorStateList c(View view) {
+        return view.getBackgroundTintList();
+    }
+
+    public static PorterDuff.Mode d(View view) {
+        return view.getBackgroundTintMode();
+    }
+
+    public static float e(View view) {
+        return view.getElevation();
+    }
+
+    public static void f(View view, ColorStateList colorStateList) {
+        view.setBackgroundTintList(colorStateList);
+    }
+
+    public static void g(View view, PorterDuff.Mode mode) {
+        view.setBackgroundTintMode(mode);
+    }
+
+    public static void h(View view, float f10) {
+        view.setElevation(f10);
+    }
+
+    public static void i(View view, m mVar) {
+        View.OnApplyWindowInsetsListener onApplyWindowInsetsListener;
+        if (mVar != null) {
+            onApplyWindowInsetsListener = new z(view, mVar);
+        } else {
+            onApplyWindowInsetsListener = null;
+        }
+        if (Build.VERSION.SDK_INT < 30) {
+            view.setTag(2131296687, onApplyWindowInsetsListener);
+        }
+        if (view.getTag(2131296686) != null) {
+            return;
+        }
+        if (onApplyWindowInsetsListener != null) {
+            view.setOnApplyWindowInsetsListener(onApplyWindowInsetsListener);
+        } else {
+            view.setOnApplyWindowInsetsListener((View.OnApplyWindowInsetsListener) view.getTag(2131296698));
+        }
+    }
+
+    public static void j(View view) {
+        view.stopNestedScroll();
     }
 }

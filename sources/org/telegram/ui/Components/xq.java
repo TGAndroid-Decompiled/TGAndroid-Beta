@@ -1,151 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class xq extends tk0 {
-    public final yq f32622c;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class xq implements Interpolator {
+    public static final xq f40452f = new xq(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final xq f40453g = new xq(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final xq h = new xq(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final xq f40454i = new xq(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final xq f40455j = new xq(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final xq f40456k = new xq(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f40457l;
+    public final PointF f40458a;
+    public final PointF f40459b;
+    public final PointF f40460c;
+    public final PointF d;
+    public final PointF f40461e;
 
-    public xq(yq yqVar) {
-        this.f32622c = yqVar;
+    static {
+        new PathInterpolator(b8.rc.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f40457l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+    }
+
+    public xq(float f10, float f11, float f12, float f13) {
+        PointF pointF = new PointF(f10, f11);
+        PointF pointF2 = new PointF(f12, f13);
+        this.f40460c = new PointF();
+        this.d = new PointF();
+        this.f40461e = new PointF();
+        float f14 = pointF.x;
+        if (f14 >= 0.0f && f14 <= 1.0f) {
+            float f15 = pointF2.x;
+            if (f15 >= 0.0f && f15 <= 1.0f) {
+                this.f40458a = pointF;
+                this.f40459b = pointF2;
+                return;
+            }
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
+        }
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f47912f == 3) {
-            return true;
+    public final float getInterpolation(float f10) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i3 = 1;
+        float f11 = f10;
+        while (true) {
+            pointF = this.f40459b;
+            pointF2 = this.f40458a;
+            pointF3 = this.f40460c;
+            pointF4 = this.d;
+            pointF5 = this.f40461e;
+            if (i3 >= 14) {
+                break;
+            }
+            float f12 = pointF2.x * 3.0f;
+            pointF5.x = f12;
+            float f13 = ((pointF.x - pointF2.x) * 3.0f) - f12;
+            pointF4.x = f13;
+            float f14 = (1.0f - pointF5.x) - f13;
+            pointF3.x = f14;
+            float f15 = (((((f14 * f11) + pointF4.x) * f11) + pointF5.x) * f11) - f10;
+            if (Math.abs(f15) < 0.001d) {
+                break;
+            }
+            f11 -= f15 / (((((pointF3.x * 3.0f) * f11) + (pointF4.x * 2.0f)) * f11) + pointF5.x);
+            i3++;
         }
-        return false;
+        float f16 = pointF2.y * 3.0f;
+        pointF5.y = f16;
+        float f17 = ((pointF.y - pointF2.y) * 3.0f) - f16;
+        pointF4.y = f17;
+        float f18 = (1.0f - pointF5.y) - f17;
+        pointF3.y = f18;
+        return ((((f18 * f11) + pointF4.y) * f11) + pointF5.y) * f11;
     }
 
-    @Override
-    public final int b() {
-        yq yqVar = this.f32622c;
-        if (yqVar.R1) {
-            return yqVar.Q1.size() + 3;
-        }
-        if (yqVar.S1) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public final int d(int i10) {
-        if (i10 != 0) {
-            int i11 = 1;
-            if (i10 != 1) {
-                i11 = 2;
-                if (i10 != 2) {
-                    return 3;
-                }
-            }
-            return i11;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        TLObject L0;
-        String str;
-        boolean z10;
-        int i11 = c1Var.f47912f;
-        View view = c1Var.f47909a;
-        boolean z11 = true;
-        if (i11 == 3) {
-            yq yqVar = this.f32622c;
-            TLRPC.Peer peer = (TLRPC.Peer) yqVar.Q1.get(i10 - 3);
-            long C1 = org.telegram.messenger.kj.C1(peer);
-            if (C1 > 0) {
-                L0 = org.telegram.messenger.wp.r1(yqVar.f21584a).Z1(Long.valueOf(C1));
-                str = org.telegram.messenger.dd.L0(2131743375, null);
-            } else {
-                L0 = org.telegram.messenger.wp.r1(yqVar.f21584a).L0(Long.valueOf(-C1));
-                str = null;
-            }
-            org.telegram.ui.Cells.j4 j4Var = (org.telegram.ui.Cells.j4) view;
-            if (i10 != b() - 1) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            j4Var.e(L0, null, str, z10);
-            if (peer != yqVar.V1) {
-                z11 = false;
-            }
-            j4Var.c(z11, false);
-        } else if (i11 == 2) {
-            org.telegram.ui.Cells.p4 p4Var = (org.telegram.ui.Cells.p4) view;
-            p4Var.setTextSize(15.0f);
-            p4Var.setPadding(0, 0, 0, org.telegram.messenger.i0.L(2.0f));
-            p4Var.setText(org.telegram.messenger.dd.L0(2131743469, null).replace(":", ""));
-        } else if (i11 == 1) {
-            ((org.telegram.ui.Cells.b9) view).setText(org.telegram.messenger.i0.H2(org.telegram.messenger.i0.R2(org.telegram.messenger.dd.L0(2131743456, null), org.telegram.ui.ActionBar.t6.L6, 0, new ho(this, 5), null), true, org.telegram.messenger.i0.L(1.0f), org.telegram.messenger.i0.L(1.0f)));
-        }
-    }
-
-    @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        FrameLayout frameLayout;
-        String a02;
-        String a03;
-        Context context = viewGroup.getContext();
-        yq yqVar = this.f32622c;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    boolean z10 = yqVar.T1;
-                    ?? z2Var = new jg.z2(context, 6);
-                    z2Var.setOrientation(1);
-                    ?? imageView = new ImageView(context);
-                    imageView.setAutoRepeat(true);
-                    imageView.f(2131624325, 112, 112, null);
-                    imageView.d();
-                    z2Var.addView(imageView, w7.b6.t(112, 112, 49, 0, 24, 0, 0));
-                    TextView textView = new TextView(context);
-                    textView.setTypeface(org.telegram.messenger.i0.o());
-                    if (z10) {
-                        a02 = org.telegram.messenger.dd.a0(null, null, 2131744921, new Object[0]);
-                    } else {
-                        a02 = org.telegram.messenger.dd.a0(null, null, 2131744918, new Object[0]);
-                    }
-                    textView.setText(a02);
-                    textView.setTextSize(1, 20.0f);
-                    org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.G6, null);
-                    z2Var.addView(textView, w7.b6.t(-2, -2, 1, 0, 14, 0, 7));
-                    TextView textView2 = new TextView(context);
-                    textView2.setTextSize(1, 14.0f);
-                    textView2.setGravity(1);
-                    org.telegram.ui.ActionBar.a7.V(textView2, org.telegram.ui.ActionBar.t6.f21038j5, null);
-                    if (z10) {
-                        a03 = org.telegram.messenger.dd.a0(null, null, 2131743484, new Object[0]);
-                    } else {
-                        a03 = org.telegram.messenger.dd.a0(null, null, 2131743359, new Object[0]);
-                    }
-                    textView2.setText(a03);
-                    textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
-                    z2Var.addView(textView2, w7.b6.t(-2, -2, 1, 28, 0, 28, 17));
-                    frameLayout = z2Var;
-                } else {
-                    frameLayout = new org.telegram.ui.Cells.j4(context, 1, 0, false);
-                }
-            } else {
-                frameLayout = new org.telegram.ui.Cells.p4(context, 22);
-            }
-        } else {
-            org.telegram.ui.Cells.b9 b9Var = new org.telegram.ui.Cells.b9(context);
-            org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20873a7, b9Var, yqVar.I0);
-            b9Var.setTopPadding(17);
-            b9Var.setBottomPadding(17);
-            frameLayout = b9Var;
-        }
-        frameLayout.setLayoutParams(new s4.o0(-1, -2));
-        return new s4.c1(frameLayout);
+    public xq(double d, double d10, double d11, double d12) {
+        this((float) d, (float) d10, (float) d11, (float) d12);
     }
 }

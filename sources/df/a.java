@@ -1,12 +1,22 @@
 package df;
+public final class a {
+    public final int f8839a;
+    public final boolean f8840b;
+    public final int f8841c;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public final class a extends cf.a {
-    public static final Logger f5873s = Logger.getLogger(a.class.getName());
-    public final Level f5874r;
+    public a(int i3, int i10, boolean z10) {
+        this.f8839a = i3;
+        this.f8841c = i10;
+        this.f8840b = z10;
+    }
 
-    public a(java.io.BufferedInputStream r24) {
-        throw new UnsupportedOperationException("Method not decompiled: df.a.<init>(java.io.BufferedInputStream):void");
+    public static a a(int i3) {
+        return new a(i3, -1, false);
+    }
+
+    public a(int i3, boolean z10, int i10) {
+        this.f8839a = i3;
+        this.f8840b = z10;
+        this.f8841c = i10;
     }
 }

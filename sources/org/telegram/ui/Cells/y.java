@@ -8,8 +8,8 @@ public final class y extends RippleDrawable {
         int save = canvas.save();
         try {
             super.draw(canvas);
-        } catch (Exception e) {
-            org.telegram.messenger.f8.e("probably forgot to put setCallback", e);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.e("probably forgot to put setCallback", e10);
         } finally {
             canvas.restoreToCount(save);
         }

@@ -1,15 +1,21 @@
 package org.telegram.ui.Components;
-public final class dr0 extends g.o {
-    public final br0 f25584c;
-    public final au0 d;
 
-    public dr0(au0 au0Var, br0 br0Var) {
-        this.d = au0Var;
-        this.f25584c = br0Var;
+import android.content.Context;
+public final class dr0 extends qs0 {
+    public final ws0 h;
+
+    public dr0(ws0 ws0Var, Context context) {
+        super(ws0Var, context);
+        this.h = ws0Var;
     }
 
     @Override
-    public final int i(int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.dr0.i(int):int");
+    public final void f() {
+        super.f();
+        ws0 ws0Var = this.h;
+        rr0 g02 = ws0Var.g0(0);
+        if (g02 != null && g02.f37787n.getVisibility() == 0) {
+            ws0Var.L.f();
+        }
     }
 }

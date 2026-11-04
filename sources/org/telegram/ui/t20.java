@@ -1,44 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class t20 extends org.telegram.ui.Components.uk0 {
-    public final a50 f41516e3;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class t20 extends org.telegram.ui.Components.oo0 {
+    public final x30 S2;
 
-    public t20(a50 a50Var, LaunchActivity launchActivity) {
-        super(launchActivity, null);
-        this.f41516e3 = a50Var;
+    public t20(x30 x30Var, Context context, String str, String str2, String str3, String str4) {
+        super(context, null, str, str2, false, str3, str4, true);
+        this.S2 = x30Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        org.telegram.ui.Components.y10 y10Var = (org.telegram.ui.Components.y10) view;
-        a50 a50Var = this.f41516e3;
-        h40 h40Var = a50Var.H1;
-        x20 x20Var = a50Var.R3;
-        if (x20Var.f31811r == null && !a50Var.E4.k()) {
-            y10Var.setAlpha(1.0f);
-            y10Var.setTranslationX(0.0f);
-            y10Var.setTranslationY(0.0f);
+    public final void R0(a0.h hVar, int i3, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
-        t20 t20Var = a50Var.f35592d4;
-        y10Var.getClass();
-        t20Var.getClass();
-        if (RecyclerView.R(y10Var) == -1 && y10Var.getRenderer() != null) {
-            return true;
+        int m10 = hVar.m();
+        x30 x30Var = this.S2;
+        if (m10 == 1) {
+            x30Var.m1().m(((TLRPC.Dialog) hVar.n(0)).f27005id, Integer.valueOf(i3), 41);
+        } else {
+            x30Var.m1().k(0L, 41, Integer.valueOf(i3), Integer.valueOf(hVar.m()), null, null);
         }
-        if (y10Var.getTranslationY() != 0.0f && y10Var.getRenderer() != null && y10Var.getRenderer().f31667c != null) {
-            float top = h40Var.getTop() - getTop();
-            float measuredHeight = h40Var.getMeasuredHeight() + top;
-            float f7 = x20Var.f31794c;
-            canvas.save();
-            float f10 = 1.0f - f7;
-            canvas.clipRect(0.0f, top * f10, getMeasuredWidth(), (getMeasuredHeight() * f7) + (measuredHeight * f10));
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
-        }
-        return super.drawChild(canvas, view, j10);
     }
 }

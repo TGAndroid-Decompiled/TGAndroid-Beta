@@ -1,33 +1,137 @@
 package f6;
 
-import android.support.v4.media.session.MediaSessionCompat$Token;
-import ve.r;
-public final class f {
-    public final int f6919a;
-    public final boolean f6920b;
-    public boolean f6921c;
-    public boolean d;
-    public final Object e;
-    public final Object f6922f;
-    public final Object f6923g;
+import android.content.Context;
+import android.os.Parcel;
+import android.os.RemoteException;
+public abstract class f {
+    public static final i6.b f11480b = new i6.b("Session", null);
+    public final x f11481a;
 
-    public f(boolean z10, int i10, String str, String str2, MediaSessionCompat$Token mediaSessionCompat$Token, boolean z11, boolean z12) {
-        this.f6920b = z10;
-        this.f6919a = i10;
-        this.f6922f = str;
-        this.f6923g = str2;
-        this.e = mediaSessionCompat$Token;
-        this.f6921c = z11;
-        this.d = z12;
+    public f(Context context, String str, String str2) {
+        x xVar;
+        try {
+            xVar = com.google.android.gms.internal.cast.d.b(context).Z0(str, str2, new j(this));
+        } catch (RemoteException | d e10) {
+            com.google.android.gms.internal.cast.d.f6891a.a(e10, "Unable to call %s on %s.", "newSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+            xVar = null;
+        }
+        this.f11481a = xVar;
     }
 
-    public f(r rVar, int i10, f fVar, se.b bVar, boolean z10) {
-        this.f6921c = true;
-        this.d = false;
-        this.e = rVar;
-        this.f6919a = i10;
-        this.f6920b = z10;
-        this.f6922f = fVar;
-        this.f6923g = bVar;
+    public final String a() {
+        p6.m.d("Must be called from the main thread.");
+        x xVar = this.f11481a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel R0 = vVar.R0(vVar.P0(), 3);
+                String readString = R0.readString();
+                R0.recycle();
+                return readString;
+            } catch (RemoteException e10) {
+                f11480b.a(e10, "Unable to call %s on %s.", "getSessionId", x.class.getSimpleName());
+            }
+        }
+        return null;
+    }
+
+    public final boolean b() {
+        boolean z10;
+        p6.m.d("Must be called from the main thread.");
+        x xVar = this.f11481a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel R0 = vVar.R0(vVar.P0(), 5);
+                int i3 = com.google.android.gms.internal.cast.u.f7057a;
+                if (R0.readInt() != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                R0.recycle();
+                return z10;
+            } catch (RemoteException e10) {
+                f11480b.a(e10, "Unable to call %s on %s.", "isConnected", x.class.getSimpleName());
+            }
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        boolean z10;
+        p6.m.d("Must be called from the main thread.");
+        x xVar = this.f11481a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel R0 = vVar.R0(vVar.P0(), 6);
+                int i3 = com.google.android.gms.internal.cast.u.f7057a;
+                if (R0.readInt() != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                R0.recycle();
+                return z10;
+            } catch (RemoteException e10) {
+                f11480b.a(e10, "Unable to call %s on %s.", "isConnecting", x.class.getSimpleName());
+            }
+        }
+        return false;
+    }
+
+    public final void d(int i3) {
+        x xVar = this.f11481a;
+        if (xVar == null) {
+            return;
+        }
+        try {
+            v vVar = (v) xVar;
+            Parcel P0 = vVar.P0();
+            P0.writeInt(i3);
+            vVar.T0(P0, 13);
+        } catch (RemoteException e10) {
+            f11480b.a(e10, "Unable to call %s on %s.", "notifySessionEnded", x.class.getSimpleName());
+        }
+    }
+
+    public final int e() {
+        p6.m.d("Must be called from the main thread.");
+        x xVar = this.f11481a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel R0 = vVar.R0(vVar.P0(), 17);
+                int readInt = R0.readInt();
+                R0.recycle();
+                if (readInt >= 211100000) {
+                    v vVar2 = (v) xVar;
+                    Parcel R02 = vVar2.R0(vVar2.P0(), 18);
+                    int readInt2 = R02.readInt();
+                    R02.recycle();
+                    return readInt2;
+                }
+            } catch (RemoteException e10) {
+                f11480b.a(e10, "Unable to call %s on %s.", "getSessionStartType", x.class.getSimpleName());
+            }
+        }
+        return 0;
+    }
+
+    public final z6.a f() {
+        x xVar = this.f11481a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel R0 = vVar.R0(vVar.P0(), 1);
+                z6.a M0 = z6.b.M0(R0.readStrongBinder());
+                R0.recycle();
+                return M0;
+            } catch (RemoteException e10) {
+                f11480b.a(e10, "Unable to call %s on %s.", "getWrappedObject", x.class.getSimpleName());
+            }
+        }
+        return null;
     }
 }

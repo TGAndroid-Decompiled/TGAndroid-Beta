@@ -1,62 +1,146 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import java.util.HashSet;
-public final class jn0 extends LinearLayout implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.Components.p80 f38476a;
-    public final org.telegram.ui.Components.p80 f38477b;
-    public final ln0 f38478c;
+import android.graphics.drawable.Drawable;
+import android.util.Pair;
+import android.view.VelocityTracker;
+import java.io.File;
+import java.io.Serializable;
+import java.util.Collections;
+public final class jn0 implements Runnable {
+    public final int f46654a = 0;
+    public final boolean f46655b;
+    public final boolean f46656c;
+    public final boolean d;
+    public final Object f46657e;
+    public final Serializable f46658f;
+    public final Object h;
 
-    public jn0(ln0 ln0Var, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.p6 p6Var;
-        int i10;
-        org.telegram.ui.ActionBar.p6 p6Var2;
-        this.f38478c = ln0Var;
-        setOrientation(1);
-        int i11 = org.telegram.ui.ActionBar.t6.f20930d6;
-        rn0 rn0Var = ln0Var.f39334p0;
-        org.telegram.ui.ActionBar.a7.i(i11, this, rn0Var.getResourceProvider());
-        org.telegram.ui.Components.g9 g9Var = new org.telegram.ui.Components.g9(getContext());
-        g9Var.setImageDrawable(new org.telegram.ui.Components.ci0(2131624316, org.telegram.messenger.i0.L(120.0f), org.telegram.messenger.i0.L(120.0f)));
-        addView(g9Var, w7.b6.t(120, 120, 1, 0, 6, 0, 0));
-        Context context2 = getContext();
-        int i12 = org.telegram.ui.ActionBar.t6.f21312y6;
-        p6Var = ((org.telegram.ui.ActionBar.k2) rn0Var).resourceProvider;
-        org.telegram.ui.Components.p80 a2 = w7.g6.a(context2, 14.0f, i12, false, p6Var);
-        this.f38476a = a2;
-        a2.setGravity(17);
-        if (ln0Var.m0 == 0) {
-            i10 = 2131750092;
-        } else {
-            i10 = 2131750091;
+    public jn0(ho0 ho0Var, int[] iArr, int[] iArr2, boolean z10, boolean z11, boolean z12) {
+        this.f46657e = ho0Var;
+        this.f46658f = iArr;
+        this.h = iArr2;
+        this.f46655b = z10;
+        this.f46656c = z11;
+        this.d = z12;
+    }
+
+    @Override
+    public final void run() {
+        int intValue;
+        float f10;
+        float f11;
+        org.telegram.ui.Components.p7 p7Var;
+        org.telegram.ui.Components.ec ecVar;
+        int i3 = this.f46654a;
+        Object obj = this.h;
+        Serializable serializable = this.f46658f;
+        Object obj2 = this.f46657e;
+        switch (i3) {
+            case 0:
+                PhotoViewer photoViewer = (PhotoViewer) obj2;
+                File file = (File) serializable;
+                org.telegram.messenger.zi ziVar = (org.telegram.messenger.zi) obj;
+                Drawable[] drawableArr = PhotoViewer.V8;
+                Pair L0 = org.telegram.messenger.g0.L0(file);
+                int i10 = photoViewer.W3;
+                photoViewer.W3 = i10 - 1;
+                String absolutePath = file.getAbsolutePath();
+                boolean z10 = this.f46655b;
+                if (z10) {
+                    intValue = 0;
+                } else {
+                    intValue = ((Integer) L0.first).intValue();
+                }
+                org.telegram.messenger.ye yeVar = new org.telegram.messenger.ye(i10, absolutePath, intValue, z10, 0, 0);
+                yeVar.n(L0);
+                photoViewer.f41402d2 = 2;
+                photoViewer.f41560v2 = false;
+                photoViewer.d = new pp0(photoViewer, photoViewer.d, ziVar, yeVar, this.f46656c, this.d);
+                photoViewer.f41514q1.f();
+                if (photoViewer.V6 == null) {
+                    photoViewer.V6 = VelocityTracker.obtain();
+                }
+                photoViewer.C7 = 3;
+                photoViewer.s3(false, false);
+                photoViewer.m3(true, false);
+                wm wmVar = photoViewer.f41481m4;
+                if (wmVar != null && wmVar.f51237a0 != null && wmVar.T9()) {
+                    photoViewer.f41481m4.f51237a0.L();
+                } else {
+                    photoViewer.V1();
+                }
+                photoViewer.M0.setAlpha(255);
+                photoViewer.f41420f0.setAlpha(1.0f);
+                photoViewer.c2(null, null, null, null, null, null, Collections.singletonList(yeVar), 0, null);
+                ci.t4 t4Var = photoViewer.Q0;
+                float f12 = 96.0f;
+                if (photoViewer.f41533s1) {
+                    f10 = 154.0f;
+                } else {
+                    f10 = 96.0f;
+                }
+                t4Var.setTranslationY(org.telegram.messenger.g0.L(f10));
+                mi.x1 x1Var = photoViewer.T0;
+                if (photoViewer.f41533s1) {
+                    f11 = 154.0f;
+                } else {
+                    f11 = 96.0f;
+                }
+                x1Var.setTranslationY(org.telegram.messenger.g0.L(f11));
+                photoViewer.G.setTranslationY(-p7Var.getHeight());
+                cq0 cq0Var = photoViewer.R1;
+                if (photoViewer.f41533s1) {
+                    f12 = 154.0f;
+                }
+                cq0Var.setTranslationY(org.telegram.messenger.g0.L(f12));
+                photoViewer.L0();
+                photoViewer.j3();
+                photoViewer.C7 = 0;
+                return;
+            default:
+                ho0 ho0Var = (ho0) obj2;
+                int[] iArr = (int[]) serializable;
+                int i11 = iArr[0] + 1;
+                iArr[0] = i11;
+                int i12 = ((int[]) obj)[0];
+                if (i11 == i12) {
+                    gq0 gq0Var = ho0Var.f45959b.f41420f0;
+                    boolean z11 = this.f46655b;
+                    boolean z12 = this.f46656c;
+                    int i13 = z11 ? 1 : 0;
+                    boolean z13 = this.d;
+                    if ((z12 ? 1 : 0) + i13 + (z13 ? 1 : 0) > 1) {
+                        ecVar = org.telegram.ui.Components.ec.f33350w;
+                    } else if (z13) {
+                        if (i12 > 1) {
+                            ecVar = org.telegram.ui.Components.ec.f33349s;
+                        } else {
+                            ecVar = org.telegram.ui.Components.ec.f33348r;
+                        }
+                    } else if (z11) {
+                        if (i12 > 1) {
+                            ecVar = org.telegram.ui.Components.ec.f33347n;
+                        } else {
+                            ecVar = org.telegram.ui.Components.ec.h;
+                        }
+                    } else if (i12 > 1) {
+                        ecVar = org.telegram.ui.Components.ec.f33346f;
+                    } else {
+                        ecVar = org.telegram.ui.Components.ec.f33345e;
+                    }
+                    new org.telegram.ui.Components.fc(gq0Var, null).m(ecVar, i12, -115203550, -1, null).j();
+                    return;
+                }
+                return;
         }
-        a2.setText(org.telegram.messenger.dd.L0(i10, null));
-        addView(a2, w7.b6.t(-1, -2, 1, 64, 8, 64, 8));
-        Context context3 = getContext();
-        int i13 = org.telegram.ui.ActionBar.t6.Uc;
-        p6Var2 = ((org.telegram.ui.ActionBar.k2) rn0Var).resourceProvider;
-        org.telegram.ui.Components.p80 a10 = w7.g6.a(context3, 14.0f, i13, false, p6Var2);
-        this.f38477b = a10;
-        a10.setGravity(17);
-        a10.setText(org.telegram.messenger.i0.I2(org.telegram.messenger.i0.T2(org.telegram.messenger.dd.L0(2131750093, null), new kg0(this, 14)), true, org.telegram.messenger.i0.L(2.6666667f), org.telegram.messenger.i0.L(1.33f), 1.0f, 2131232240));
-        addView(a10, w7.b6.t(-1, -2, 1, 32, 4, 32, 24));
     }
 
-    @Override
-    public final void updateColors() {
-        rn0 rn0Var = this.f38478c.f39334p0;
-        setBackgroundColor(rn0Var.getThemedColor(org.telegram.ui.ActionBar.t6.f20930d6));
-        this.f38476a.setTextColor(rn0Var.getThemedColor(org.telegram.ui.ActionBar.t6.f21312y6));
-        int i10 = org.telegram.ui.ActionBar.t6.Uc;
-        int themedColor = rn0Var.getThemedColor(i10);
-        org.telegram.ui.Components.p80 p80Var = this.f38477b;
-        p80Var.setTextColor(themedColor);
-        p80Var.setLinkTextColor(rn0Var.getThemedColor(i10));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public jn0(PhotoViewer photoViewer, File file, boolean z10, org.telegram.messenger.zi ziVar, boolean z11, boolean z12) {
+        this.f46657e = photoViewer;
+        this.f46658f = file;
+        this.f46655b = z10;
+        this.h = ziVar;
+        this.f46656c = z11;
+        this.d = z12;
     }
 }

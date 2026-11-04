@@ -1,84 +1,65 @@
 package u6;
 
-import android.app.Application;
-import android.os.Build;
-import android.os.Process;
-import android.os.StrictMode;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import n6.l;
-import w7.a0;
-public abstract class d {
-    public static String f50184a;
-    public static int f50185b;
-    public static Boolean f50186c;
+import android.os.Parcel;
+import b8.y9;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.internal.cast.o;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class d extends o implements b {
+    public final int f55733b;
+    public final TaskCompletionSource f55734c;
 
-    public static String a() {
-        BufferedReader bufferedReader;
-        if (f50184a == null) {
-            if (Build.VERSION.SDK_INT >= 28) {
-                f50184a = Application.getProcessName();
-            } else {
-                int i10 = f50185b;
-                if (i10 == 0) {
-                    i10 = Process.myPid();
-                    f50185b = i10;
-                }
-                String str = null;
-                str = null;
-                str = null;
-                BufferedReader bufferedReader2 = null;
-                if (i10 > 0) {
-                    try {
-                        String str2 = "/proc/" + i10 + "/cmdline";
-                        StrictMode.ThreadPolicy allowThreadDiskReads = StrictMode.allowThreadDiskReads();
-                        bufferedReader = new BufferedReader(new FileReader(str2));
-                        StrictMode.setThreadPolicy(allowThreadDiskReads);
-                        try {
-                            String readLine = bufferedReader.readLine();
-                            l.g(readLine);
-                            str = readLine.trim();
-                        } catch (IOException unused) {
-                        } catch (Throwable th2) {
-                            th = th2;
-                            bufferedReader2 = bufferedReader;
-                            b.a(bufferedReader2);
-                            throw th;
-                        }
-                    } catch (IOException unused2) {
-                        bufferedReader = null;
-                    } catch (Throwable th3) {
-                        th = th3;
-                    }
-                    b.a(bufferedReader);
-                }
-                f50184a = str;
-            }
-        }
-        return f50184a;
+    public d(e eVar, TaskCompletionSource taskCompletionSource, int i3) {
+        super("com.google.android.gms.common.moduleinstall.internal.IModuleInstallCallbacks", 6);
+        this.f55733b = i3;
+        this.f55734c = taskCompletionSource;
     }
 
-    public static boolean b() {
-        Boolean bool = f50186c;
-        if (bool == null) {
-            if (Build.VERSION.SDK_INT >= 28) {
-                bool = Boolean.valueOf(Process.isIsolated());
-            } else {
-                try {
-                    Object invoke = Process.class.getDeclaredMethod("isIsolated", null).invoke(null, null);
-                    Object[] objArr = new Object[0];
-                    if (invoke != null) {
-                        bool = (Boolean) invoke;
-                    } else {
-                        throw new RuntimeException(a0.a(objArr));
+    @Override
+    public final boolean I0(int i3, Parcel parcel, Parcel parcel2) {
+        if (i3 != 1) {
+            if (i3 != 2) {
+                if (i3 != 3) {
+                    if (i3 != 4) {
+                        return false;
                     }
-                } catch (ReflectiveOperationException unused) {
-                    bool = Boolean.FALSE;
+                    Status status = (Status) m7.a.a(parcel, Status.CREATOR);
+                    m7.a.d(parcel);
+                    throw new UnsupportedOperationException();
                 }
+                Status status2 = (Status) m7.a.a(parcel, Status.CREATOR);
+                t6.b bVar = (t6.b) m7.a.a(parcel, t6.b.CREATOR);
+                m7.a.d(parcel);
+                throw new UnsupportedOperationException();
             }
-            f50186c = bool;
+            m7.a.d(parcel);
+            l0((Status) m7.a.a(parcel, Status.CREATOR), (t6.c) m7.a.a(parcel, t6.c.CREATOR));
+            return true;
         }
-        return bool.booleanValue();
+        m7.a.d(parcel);
+        w0((Status) m7.a.a(parcel, Status.CREATOR), (t6.a) m7.a.a(parcel, t6.a.CREATOR));
+        return true;
+    }
+
+    @Override
+    public void l0(Status status, t6.c cVar) {
+        switch (this.f55733b) {
+            case 1:
+                y9.b(status, cVar, this.f55734c);
+                return;
+            default:
+                throw new UnsupportedOperationException();
+        }
+    }
+
+    @Override
+    public void w0(Status status, t6.a aVar) {
+        switch (this.f55733b) {
+            case 0:
+                y9.b(status, aVar, this.f55734c);
+                return;
+            default:
+                throw new UnsupportedOperationException();
+        }
     }
 }

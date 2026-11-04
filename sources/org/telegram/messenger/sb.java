@@ -1,29 +1,34 @@
 package org.telegram.messenger;
+public final class sb implements Runnable {
+    public final int f25297a;
+    public final ub f25298b;
+    public final Boolean f25299c;
 
-import android.os.SystemClock;
-public final class sb {
-    public final int f18076a;
-    public final ic f18077b;
-
-    public sb(ic icVar, int i10) {
-        this.f18077b = icVar;
-        this.f18076a = i10;
+    public sb(ub ubVar, Boolean bool, int i3) {
+        this.f25297a = i3;
+        this.f25298b = ubVar;
+        this.f25299c = bool;
     }
 
-    public final void a(d9 d9Var, final String str, final long j10, final long j11, final boolean z10) {
-        this.f18077b.f16263u.put(str, new long[]{j10, j11});
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j12 = d9Var.S;
-        if (j12 != 0 && j12 >= elapsedRealtime - 100 && j10 != j11) {
-            return;
+    @Override
+    public final void run() {
+        int i3 = this.f25297a;
+        Boolean bool = this.f25299c;
+        ub ubVar = this.f25298b;
+        switch (i3) {
+            case 0:
+                ubVar.h.f26775u.remove(ubVar.f25667a.f24343e);
+                g0.h3(new sb(ubVar, bool, 1));
+                return;
+            default:
+                nb nbVar = ubVar.f25667a;
+                if (bool.booleanValue()) {
+                    hs.f(nbVar.f24352o).k(142, nbVar.f24343e, nbVar.f24353p);
+                    return;
+                } else {
+                    hs.f(nbVar.f24352o).k(143, nbVar.f24343e, 2);
+                    return;
+                }
         }
-        d9Var.S = elapsedRealtime;
-        final int i10 = this.f18076a;
-        i0.g3(new Runnable() {
-            @Override
-            public final void run() {
-                at.f(i10).k(at.W1, str, Long.valueOf(j10), Long.valueOf(j11), Boolean.valueOf(z10));
-            }
-        });
     }
 }

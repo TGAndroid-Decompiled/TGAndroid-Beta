@@ -1,25 +1,31 @@
 package k2;
 
-import m4.n1;
-public final class g0 implements e2.o, e2.j {
-    public final long f10661a;
+import android.os.Handler;
+import java.util.concurrent.Executor;
+public final class g0 implements Executor {
+    public final int f16507a;
+    public final Object f16508b;
 
-    public g0(long j10) {
-        this.f10661a = j10;
+    public g0(Object obj, int i3) {
+        this.f16507a = i3;
+        this.f16508b = obj;
     }
 
     @Override
-    public void accept(Object obj) {
-        ((n1) obj).f(this.f10661a);
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        z zVar;
-        s0 s0Var = (s0) obj;
-        w0 w0Var = s0Var.f10763b;
-        if (s0Var.equals(w0Var.f10793j) && (zVar = w0Var.f10797n) != null) {
-            zVar.f(this.f10661a);
+    public final void execute(Runnable runnable) {
+        switch (this.f16507a) {
+            case 0:
+                ((g2.j0) this.f16508b).d(runnable);
+                return;
+            case 1:
+                ((Handler) this.f16508b).post(runnable);
+                return;
+            case 2:
+                g2.n0.W(((o4.e0) this.f16508b).f20628l, runnable);
+                return;
+            default:
+                ((r4.b) this.f16508b).post(runnable);
+                return;
         }
     }
 }

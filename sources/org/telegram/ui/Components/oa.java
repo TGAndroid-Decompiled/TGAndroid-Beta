@@ -1,38 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
 import android.widget.FrameLayout;
-public final class oa extends FrameLayout {
-    public final wb D;
-    public final bb f29072a;
-    public final Rect f29073b;
-    public final GestureDetector f29074c;
-    public boolean d;
-    public boolean e;
-    public float f29075f;
-    public float h;
-    public float f29076n;
-    public boolean f29077r;
-    public boolean f29078s;
-    public boolean f29079w;
-    public boolean f29080x;
-    public final FrameLayout f29081y;
+public final class oa implements Runnable {
+    public final int f36789a;
+    public final ac f36790b;
 
-    public oa(wb wbVar, bb bbVar, FrameLayout frameLayout) {
-        super(bbVar.getContext());
-        this.D = wbVar;
-        this.f29081y = frameLayout;
-        this.f29073b = new Rect();
-        this.f29072a = bbVar;
-        GestureDetector gestureDetector = new GestureDetector(bbVar.getContext(), new lb(this, bbVar));
-        this.f29074c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(bbVar);
+    public oa(ac acVar, int i3) {
+        this.f36789a = i3;
+        this.f36790b = acVar;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oa.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void run() {
+        switch (this.f36789a) {
+            case 0:
+                this.f36790b.b();
+                return;
+            case 1:
+                ac acVar = this.f36790b;
+                FrameLayout frameLayout = acVar.h;
+                fb fbVar = acVar.f31788e;
+                za zaVar = acVar.f31798p;
+                if (zaVar != null && !fbVar.top) {
+                    zaVar.c(0.0f);
+                    acVar.f31798p.d(acVar);
+                }
+                fbVar.transitionRunningExit = false;
+                fbVar.onExitTransitionEnd();
+                fbVar.onHide();
+                frameLayout.removeView(acVar.f31789f);
+                frameLayout.removeOnLayoutChangeListener(acVar.f31787c);
+                fbVar.onDetach();
+                Runnable runnable = acVar.v;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                ac acVar2 = this.f36790b;
+                FrameLayout frameLayout2 = acVar2.h;
+                frameLayout2.removeView(acVar2.f31789f);
+                frameLayout2.removeOnLayoutChangeListener(acVar2.f31787c);
+                return;
+        }
     }
 }

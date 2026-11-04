@@ -1,18 +1,18 @@
 package org.telegram.ui;
-public final class i0 extends org.telegram.ui.ActionBar.d5 {
-    public final int f37907r;
-    public final Object f37908s;
+public final class i0 extends org.telegram.ui.ActionBar.u4 {
+    public final int f46020r;
+    public final Object f46021s;
 
-    public i0(Object obj, int i10) {
-        this.f37907r = i10;
-        this.f37908s = obj;
+    public i0(Object obj, int i3) {
+        this.f46020r = i3;
+        this.f46021s = obj;
     }
 
     @Override
-    public void w() {
-        switch (this.f37907r) {
+    public void v() {
+        switch (this.f46020r) {
             case 1:
-                ((org.telegram.ui.Components.pp0) this.f37908s).Q1 = true;
+                ((org.telegram.ui.Components.oo0) this.f46021s).R1 = true;
                 return;
             default:
                 return;
@@ -20,25 +20,25 @@ public final class i0 extends org.telegram.ui.ActionBar.d5 {
     }
 
     @Override
-    public boolean y() {
+    public boolean x() {
         boolean z10;
-        switch (this.f37907r) {
+        switch (this.f46020r) {
             case 0:
-                h4 h4Var = (h4) this.f37908s;
-                org.telegram.ui.Cells.k9 k9Var = h4Var.Q0;
-                if (k9Var != null && k9Var.x()) {
-                    h4Var.Q0.f(false);
+                i4 i4Var = (i4) this.f46021s;
+                org.telegram.ui.Cells.h9 h9Var = i4Var.R0;
+                if (h9Var != null && h9Var.x()) {
+                    i4Var.R0.f(false);
                     return false;
                 }
                 return true;
             case 1:
             default:
-                return super.y();
+                return super.x();
             case 2:
-                z10 = ((org.telegram.ui.Wallet.a2) this.f37908s).f34178m;
+                z10 = ((org.telegram.ui.Wallet.y1) this.f46021s).f43466m;
                 break;
             case 3:
-                z10 = ((org.telegram.ui.Wallet.u2) this.f37908s).d;
+                z10 = ((org.telegram.ui.Wallet.s2) this.f46021s).d;
                 break;
         }
         return !z10;

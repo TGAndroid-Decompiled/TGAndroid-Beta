@@ -1,61 +1,49 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class b31 extends AnimatorListenerAdapter {
-    public final boolean f35930a;
-    public final Runnable f35931b;
-    public final boolean[] f35932c;
-    public final boolean d;
-    public final Runnable e;
-    public final c31 f35933f;
+import android.content.Context;
+import android.widget.LinearLayout;
+import java.util.HashSet;
+public final class b31 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f43909a;
+    public final org.telegram.ui.Components.s70 f43910b;
+    public final org.telegram.ui.Components.s70 f43911c;
+    public final gi.d d;
+    public final gi.d f43912e;
 
-    public b31(c31 c31Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
-        this.f35933f = c31Var;
-        this.f35930a = z10;
-        this.f35931b = runnable;
-        this.f35932c = zArr;
-        this.d = z11;
-        this.e = runnable2;
+    public b31(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f43909a = e6Var;
+        setOrientation(1);
+        int i3 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.Components.s70 a10 = b8.rf.a(context, 15.0f, i3, true, e6Var);
+        this.f43910b = a10;
+        a10.setGravity(17);
+        addView(a10, b8.mf.t(-1, -2, 55, 32, 20, 32, 0));
+        org.telegram.ui.Components.s70 a11 = b8.rf.a(context, 13.0f, i3, false, e6Var);
+        this.f43911c = a11;
+        a11.setGravity(17);
+        addView(a11, b8.mf.s(-1, -2, 55, 32.0f, 9.33f, 32.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        gi.d h = org.telegram.messenger.k5.h(24, context, e6Var, true);
+        this.d = h;
+        gi.d h7 = org.telegram.messenger.k5.h(24, context, e6Var, true);
+        this.f43912e = h7;
+        linearLayout.addView(h, b8.mf.q(0, 42, 1.0f, 112, 0, 0, 12, 0));
+        linearLayout.addView(h7, b8.mf.q(0, 42, 1.0f, 112, 0, 0, 0, 0));
+        addView(linearLayout, b8.mf.t(-1, -2, 55, 24, 18, 24, 16));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        Runnable runnable;
-        c31 c31Var = this.f35933f;
-        l0 l0Var = c31Var.f36177s;
-        boolean z10 = this.f35930a;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        c31Var.I = f7;
-        org.telegram.messenger.i0.X1(c31Var.f36173c, c31Var.d, f7, c31Var.e);
-        l0Var.invalidate();
-        if (!z10) {
-            c31Var.f36178w.setAlpha(c31Var.I);
-        }
-        if (c31Var.I < 0.5f && !z10 && (runnable = this.f35931b) != null) {
-            boolean[] zArr = this.f35932c;
-            if (!zArr[0]) {
-                zArr[0] = true;
-                runnable.run();
-            }
-        }
-        if (!z10) {
-            if (this.d) {
-                c31Var.f36171a.f40663b = false;
-                c31Var.P.f37305h0.invalidate();
-            }
-            org.telegram.messenger.at.e().k(org.telegram.messenger.at.f14735k1, 4);
-        }
-        c31Var.K = null;
-        l0Var.invalidate();
-        Runnable runnable2 = this.e;
-        if (runnable2 != null) {
-            runnable2.run();
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.G6));
+    }
+
+    @Override
+    public final void updateColors() {
+        int i3 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f43909a;
+        this.f43910b.setTextColor(org.telegram.ui.ActionBar.k6.w0(i3, e6Var));
+        this.f43911c.setTextColor(org.telegram.ui.ActionBar.k6.w0(i3, e6Var));
     }
 }

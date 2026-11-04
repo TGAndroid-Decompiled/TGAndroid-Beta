@@ -1,86 +1,61 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.View;
-public final class ls extends org.telegram.ui.Cells.p8 {
-    public final int W = 0;
-    public final Object f39365a0;
+import java.util.Comparator;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.TLRPC;
+public final class ls implements Comparator {
+    public final int f47428a;
+    public final Object f47429b;
 
-    public ls(ns nsVar, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, p6Var);
-        this.f39365a0 = nsVar;
+    public ls(Object obj, int i3) {
+        this.f47428a = i3;
+        this.f47429b = obj;
     }
 
     @Override
-    public int e(int i10) {
-        switch (this.W) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f47428a) {
+            case 0:
+                return ((Comparator) this.f47429b).compare(((ks) obj).f47004a, ((ks) obj2).f47004a);
+            case 1:
+                LongSparseIntArray longSparseIntArray = (LongSparseIntArray) this.f47429b;
+                int i3 = longSparseIntArray.get(((Long) obj).longValue());
+                int i10 = longSparseIntArray.get(((Long) obj2).longValue());
+                if (i3 > i10) {
+                    return 1;
+                }
+                if (i3 < i10) {
+                    return -1;
+                }
+                return 0;
             case 2:
-                ProfileActivity profileActivity = ((wx0) this.f39365a0).e;
-                RectF rectF = ProfileActivity.S6;
-                profileActivity.getClass();
-                return i10;
+                org.telegram.messenger.yc ycVar = (org.telegram.messenger.yc) this.f47429b;
+                org.telegram.messenger.yc ycVar2 = (org.telegram.messenger.yc) obj;
+                org.telegram.messenger.yc ycVar3 = (org.telegram.messenger.yc) obj2;
+                if (ycVar2 != ycVar) {
+                    if (ycVar3 != ycVar) {
+                        int i11 = ycVar2.f26569k;
+                        int i12 = ycVar3.f26569k;
+                        if (i11 == i12) {
+                            return ycVar2.f26561a.compareTo(ycVar3.f26561a);
+                        }
+                        if (i11 <= i12) {
+                            if (i11 >= i12) {
+                                return 0;
+                            }
+                        }
+                    }
+                    return 1;
+                }
+                return -1;
             default:
-                return i10;
+                StickersActivity stickersActivity = (StickersActivity) this.f47429b;
+                int indexOf = stickersActivity.d.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf2 = stickersActivity.d.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf >= 0 && indexOf2 >= 0) {
+                    return indexOf - indexOf2;
+                }
+                return 0;
         }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.W) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int L = org.telegram.messenger.i0.L(21.0f);
-                int measuredHeight = getMeasuredHeight();
-                ns nsVar = (ns) this.f39365a0;
-                int measuredHeight2 = (measuredHeight - nsVar.U.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.g9 g9Var = nsVar.U;
-                g9Var.layout(L, measuredHeight2, g9Var.getMeasuredWidth() + L, nsVar.U.getMeasuredHeight() + measuredHeight2);
-                return;
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                int L2 = org.telegram.messenger.i0.L(21.0f);
-                int measuredHeight3 = getMeasuredHeight();
-                ru0 ru0Var = (ru0) this.f39365a0;
-                int measuredHeight4 = (measuredHeight3 - ru0Var.d.f33757u0.getMeasuredHeight()) / 2;
-                org.telegram.ui.Components.g9 g9Var2 = ru0Var.d.f33757u0;
-                g9Var2.layout(L2, measuredHeight4, g9Var2.getMeasuredWidth() + L2, ru0Var.d.f33757u0.getMeasuredHeight() + measuredHeight4);
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.W) {
-            case 0:
-                super.onMeasure(i10, i11);
-                ns nsVar = (ns) this.f39365a0;
-                nsVar.U.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(30.0f), 1073741824));
-                nsVar.U.setRoundRadius(org.telegram.messenger.i0.L(30.0f));
-                return;
-            case 1:
-                super.onMeasure(i10, i11);
-                ru0 ru0Var = (ru0) this.f39365a0;
-                ru0Var.d.f33757u0.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(30.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(30.0f), 1073741824));
-                ru0Var.d.f33757u0.setRoundRadius(org.telegram.messenger.i0.L(30.0f));
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    public ls(ru0 ru0Var, Activity activity) {
-        super(activity);
-        this.f39365a0 = ru0Var;
-    }
-
-    public ls(wx0 wx0Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(18, context, p6Var, false, false);
-        this.f39365a0 = wx0Var;
     }
 }

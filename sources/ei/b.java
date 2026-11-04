@@ -1,212 +1,265 @@
 package ei;
 
-import android.os.Build;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import org.telegram.messenger.i0;
-import org.telegram.ui.ActionBar.i5;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.uk0;
-import w7.b6;
-import w7.b9;
-public final class b {
-    public final r f6597a;
-    public final hi.c f6598b;
-    public final tg.b f6599c;
-    public final tg.b d;
-    public final hi.d e;
-    public final tg.b f6600f;
-    public final e f6601g;
-    public final hi.f h;
-    public final hi.f f6602i;
-    public Runnable f6603j;
-    public final hi.a f6604k;
-    public FrameLayout f6605l;
-    public ViewGroup f6606m;
-    public ug.a f6607n;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.util.SparseIntArray;
+import j$.util.Objects;
+import java.util.HashSet;
+import org.telegram.messenger.az;
+public class b implements org.telegram.ui.ActionBar.e6 {
+    public final HashSet f10106a = new HashSet();
+    public final SparseIntArray f10107b;
+    public final Paint f10108c;
+    public Paint d;
+    public PorterDuffColorFilter f10109e;
+    public org.telegram.ui.ActionBar.t4 f10110f;
 
-    public b(r rVar, org.telegram.ui.ActionBar.o oVar) {
-        this.f6597a = rVar;
-        rVar.f6671a = new a1.c(this, 20);
-        rVar.d = new gi.b(i0.L(48.0f));
-        hi.c cVar = new hi.c();
-        this.f6598b = cVar;
-        cVar.a(oVar.c());
-        rVar.E.add(new p(cVar, oVar));
-        if (Build.VERSION.SDK_INT >= 31) {
-            e eVar = new e();
-            this.f6601g = eVar;
-            hi.f fVar = new hi.f(cVar);
-            fVar.f7720f = cVar;
-            fVar.h = eVar.d(2);
-            this.h = fVar;
-            hi.f fVar2 = new hi.f(cVar);
-            this.f6602i = fVar2;
-            fVar2.f7720f = cVar;
-            fVar2.h = eVar.d(3);
-            tg.b bVar = new tg.b(fVar, fVar2, cVar);
-            this.f6599c = bVar;
-            bVar.f48714j = rVar;
-            bVar.f48715k = true;
-            hi.d dVar = new hi.d(fVar, fVar2);
-            this.e = dVar;
-            tg.b bVar2 = new tg.b(fVar2, fVar2, cVar);
-            this.f6600f = bVar2;
-            bVar2.f48714j = rVar;
-            tg.b bVar3 = new tg.b(dVar, fVar2, cVar);
-            this.d = bVar3;
-            bVar3.f48714j = rVar;
-            bVar3.f48715k = true;
-            this.f6604k = eVar.d(1);
-            return;
-        }
-        this.f6604k = hi.e.f7716a;
-        this.f6601g = null;
-        this.h = null;
-        this.f6602i = null;
-        tg.b bVar4 = new tg.b(cVar, cVar, cVar);
-        this.f6599c = bVar4;
-        bVar4.f48714j = rVar;
-        this.e = null;
-        this.d = bVar4;
-        this.f6600f = bVar4;
+    public b() {
+        SparseIntArray sparseIntArray = new SparseIntArray();
+        this.f10107b = sparseIntArray;
+        Paint paint = new Paint();
+        this.f10108c = paint;
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28035lg, -1308622848);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28053mg, -1056964608);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Mj, -1214008894);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Nj, -1946157057);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Oj, 452984831);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Pj, -665229191);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Qj, -667862461);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Rj, -665229191);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Cj, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.J5, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28122q7, -2406842);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.H5, -10177041);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27907eg, i0.a.f(0.2f, -16777216, -1));
+        int i3 = org.telegram.ui.ActionBar.k6.P5;
+        sparseIntArray.put(i3, i0.a.f(0.5f, -16777216, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Q5, i0.a.f(0.5f, -16777216, -1));
+        int i10 = org.telegram.ui.ActionBar.k6.O5;
+        sparseIntArray.put(i10, i0.a.o(-1, 17));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.E8, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.F8, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28102p7, -1152913);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27972i6, 385875967);
+        int i11 = org.telegram.ui.ActionBar.k6.I5;
+        sparseIntArray.put(i11, 436207615);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Hf, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Oi, -1711276033);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.H6, i0.a.f(0.5f, -16777216, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28176t5, i0.a.f(0.5f, -16777216, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.wj, i0.a.f(0.2f, -16777216, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27988j5, -592138);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.r5, -8553091);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28214v6, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.If, 1946157055);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Kf, 1946157055);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27998jg, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ai, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28160s8, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27888dg, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28262xf, i0.a.o(-1, 30));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28243wf, -14670806);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28275y8, -1);
+        sparseIntArray.put(i3, i0.a.f(0.5f, -16777216, -1));
+        sparseIntArray.put(i10, i0.a.o(-1, 17));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28273y6, i0.a.o(-1, 127));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Oe, -14606046);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ne, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Xf, -1221292);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Sf, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Yf, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Tf, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27852bg, 2030043135);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27832ag, -10638868);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ke, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Je, org.telegram.ui.ActionBar.k6.r1(0.6f, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.ig, -1515107571);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Vc, -5316609);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ie, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Le, org.telegram.ui.ActionBar.k6.r1(0.9f, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Kl, org.telegram.ui.ActionBar.k6.r1(0.8f, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ge, -14670806);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27954h5, -14737633);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27971i5, -16777216);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.M5, -15393241);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27878d6, -15198183);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ml, -15198183);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ql, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.G6, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Af, -8553090);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27955h6, -10177027);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ef, 181267199);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28280yf, i0.a.o(-1, 125));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Bf, -2130706433);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Cf, i0.a.o(-1, 125));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Df, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ff, -10177041);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28299zf, i0.a.o(-16777216, 30));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Gf, i0.a.o(-1, 125));
+        int i12 = org.telegram.ui.ActionBar.k6.f27879d7;
+        sparseIntArray.put(i12, -16777216);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28071ng, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.U5, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27899e7, -14079703);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27918f7, -8158332);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27824a7, -16777216);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.L6, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28026l6, -10177041);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28007k6, -10177041);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.A6, i0.a.f(0.3f, -1, -16777216));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.tj, -14605274);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.uj, -7616267);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.vj, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.H8, -233499371);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Jf, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.B6, -8355712);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27853bh, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Tg, -14538189);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.A5, -14538189);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Z8, -9316522);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.X8, -1446156);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Zc, -2110438831);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.M6, -10263709);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.N6, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.B5, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.E5, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28061n5, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.kk, -832444);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f27973i7, -12692893);
+        int i13 = org.telegram.ui.ActionBar.k6.f27990j7;
+        sparseIntArray.put(i13, -10329502);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.C5, -1);
+        sparseIntArray.put(i11, 436207615);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Qi, -13816531);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ri, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Pi, -657931);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.J7, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Li, -8553091);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Mi, -10177041);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.G8, -232841441);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28179t8, 385875967);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28044m7, -12500671);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28027l7, -13133079);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28063n7, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ci, -15033089);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28006k5, -10177041);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.R5, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Uc, -12147733);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28120q5, -8553091);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.ij, -592138);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.kj, -14737633);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.lj, -12632257);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.jj, -8796932);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.xj, 1140850687);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28086ob, i0.a.f(0.4f, -16777216, -1));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28144rb, 0);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28163sb, 0);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28182tb, 0);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ae, i0.a.o(-1, 75));
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.h7, -10177041);
+        sparseIntArray.put(i13, -12237499);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.f28008k7, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.K7, -10703370);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.L7, -12547121);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Jl, -1);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Hl, -1207959553);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Il, 352321535);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Gj, -8553091);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Jj, -11292689);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Hj, -12829636);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Ij, -11184811);
+        sparseIntArray.put(org.telegram.ui.ActionBar.k6.Nl, -15198183);
+        k();
+        paint.setColor(h(i12));
     }
 
-    public static int c(int i10) {
-        return Math.max(i0.L(8.0f), i0.L(48.0f) - i10);
+    @Override
+    public final boolean a() {
+        return org.telegram.ui.ActionBar.k6.I.q();
     }
 
-    public static int d(int i10) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.l.getCurrentActionBarHeight();
-        return i0.L(7.0f) + ((i10 + currentActionBarHeight) - ((currentActionBarHeight - i0.L(46.0f)) / 2));
+    @Override
+    public final void b(float f10, float f11, int i3, int i10) {
+        org.telegram.ui.ActionBar.k6.r(f10, f11, i3, i10);
     }
 
-    public static void e(ViewGroup viewGroup, int i10, int i11, int i12, int i13) {
-        int i14 = -c(i10);
-        int i15 = -c(i11);
-        i0.A3(viewGroup, 0, i14, 0, i15);
-        viewGroup.setPadding(0, (i10 + i12) - i14, 0, (i11 + i13) - i15);
+    @Override
+    public final ColorFilter c() {
+        if (this.f10109e == null) {
+            this.f10109e = new PorterDuffColorFilter(h(org.telegram.ui.ActionBar.k6.G6), PorterDuff.Mode.SRC_IN);
+        }
+        return this.f10109e;
     }
 
-    public final fi.g a(View view) {
-        fi.g gVar = new fi.g(this.f6604k);
-        fi.h hVar = new fi.h(i0.L(32.0f));
-        fi.h hVar2 = new fi.h(i0.L(56.0f));
-        fi.h hVar3 = new fi.h(i0.L(48.0f));
-        if (gVar.f7131y != 1) {
-            gVar.f7131y = 1;
-            gVar.f7129w = true;
-            gVar.f7130x = true;
-            gVar.invalidateSelf();
+    @Override
+    public final Paint d(String str) {
+        if (str.equals("paintDivider")) {
+            return this.f10108c;
         }
-        gVar.G = this.f6598b;
-        gVar.f7129w = true;
-        gVar.updateColors();
-        gVar.invalidateSelf();
-        gVar.I = 160;
-        hi.c cVar = gVar.G;
-        if (cVar != null) {
-            gVar.H = t6.r1(160 / 255.0f, cVar.f7712b);
-        }
-        gVar.f7129w = true;
-        gVar.invalidateSelf();
-        gVar.D = hVar;
-        gVar.f7129w = true;
-        gVar.invalidateSelf();
-        gVar.E = hVar2;
-        gVar.f7129w = true;
-        gVar.invalidateSelf();
-        gVar.K = 210;
-        hi.c cVar2 = gVar.G;
-        if (cVar2 != null) {
-            gVar.J = t6.r1(210 / 255.0f, cVar2.f7712b);
-        }
-        gVar.f7130x = true;
-        gVar.invalidateSelf();
-        gVar.F = hVar3;
-        gVar.f7130x = true;
-        gVar.invalidateSelf();
-        this.f6597a.f6673c.add(new q(view, gVar));
-        return gVar;
-    }
-
-    public final fi.g b(View view) {
-        fi.g gVar = new fi.g(this.f6604k);
-        fi.h hVar = new fi.h(i0.L(28.0f));
-        fi.h hVar2 = new fi.h(i0.L(40.0f));
-        fi.h hVar3 = new fi.h(i0.L(30.0f));
-        if (gVar.f7131y != 4) {
-            gVar.f7131y = 4;
-            gVar.f7129w = true;
-            gVar.f7130x = true;
-            gVar.invalidateSelf();
-        }
-        gVar.G = this.f6598b;
-        gVar.f7129w = true;
-        gVar.updateColors();
-        gVar.invalidateSelf();
-        gVar.I = 160;
-        hi.c cVar = gVar.G;
-        if (cVar != null) {
-            gVar.H = t6.r1(160 / 255.0f, cVar.f7712b);
-        }
-        gVar.f7129w = true;
-        gVar.invalidateSelf();
-        gVar.D = hVar;
-        gVar.f7129w = true;
-        gVar.invalidateSelf();
-        gVar.E = hVar2;
-        gVar.f7129w = true;
-        gVar.invalidateSelf();
-        gVar.K = 210;
-        hi.c cVar2 = gVar.G;
-        if (cVar2 != null) {
-            gVar.J = t6.r1(210 / 255.0f, cVar2.f7712b);
-        }
-        gVar.f7130x = true;
-        gVar.invalidateSelf();
-        gVar.F = hVar3;
-        gVar.f7130x = true;
-        gVar.invalidateSelf();
-        this.f6597a.f6673c.add(new q(view, gVar));
-        return gVar;
-    }
-
-    public final void f(FrameLayout frameLayout, uk0 uk0Var, View view, p6 p6Var) {
-        this.f6605l = frameLayout;
-        this.f6606m = uk0Var;
-        uk0Var.setCaptureSectionsDecoratorAllowed(true);
-        this.f6607n = new a(1, uk0Var, frameLayout);
-        this.f6597a.b(uk0Var);
-        uk0Var.setClipToPadding(false);
-        g(frameLayout, view, p6Var);
-    }
-
-    public final void g(FrameLayout frameLayout, View view, p6 p6Var) {
-        if (view != null) {
-            i0.E2(view);
-            frameLayout.addView(view, b6.e(-1, -2, 48));
-            boolean z10 = view instanceof i5;
-            tg.b bVar = this.f6599c;
-            if (z10) {
-                i5 i5Var = (i5) view;
-                i5Var.setExtraHeight(i0.L(6.0f));
-                wg.d m10 = b9.m(p6Var);
-                i5Var.L = bVar;
-                i5Var.M = m10;
-                i5Var.m();
-                i5Var.f20423n0 = this.d;
-                i5Var.f20424o0 = this.e;
-            } else if (view instanceof org.telegram.ui.ActionBar.l) {
-                org.telegram.ui.ActionBar.l lVar = (org.telegram.ui.ActionBar.l) view;
-                lVar.setAddToContainer(false);
-                lVar.setCenterTitleAndGlass(true);
-                lVar.setExtraHeight(i0.L(6.0f));
-                lVar.T0 = true;
-                lVar.M(bVar, b9.m(p6Var), false);
+        if (str.equals("paintChatActionBackground")) {
+            if (this.d == null) {
+                Paint paint = new Paint(1);
+                this.d = paint;
+                paint.setColor(i0.a.f(0.1f, -16777216, -1));
             }
+            return this.d;
         }
+        return org.telegram.ui.ActionBar.k6.V0(str);
+    }
+
+    @Override
+    public final boolean e() {
+        return az.H0;
+    }
+
+    @Override
+    public final int f(int i3) {
+        return h(i3);
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final Drawable getDrawable(String str) {
+        if (Objects.equals(str, "drawableMsgOutMedia")) {
+            if (this.f10110f == null) {
+                this.f10110f = new org.telegram.ui.ActionBar.t4(1, true, false, this);
+            }
+            return this.f10110f;
+        }
+        return null;
+    }
+
+    @Override
+    public final int h(int i3) {
+        SparseIntArray sparseIntArray = this.f10107b;
+        int indexOfKey = sparseIntArray.indexOfKey(i3);
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
+        }
+        Integer valueOf = Integer.valueOf(i3);
+        HashSet hashSet = this.f10106a;
+        if (!hashSet.contains(valueOf)) {
+            hashSet.add(Integer.valueOf(i3));
+        }
+        return org.telegram.ui.ActionBar.k6.v0(i3);
+    }
+
+    @Override
+    public final int j(int i3) {
+        return h(i3);
+    }
+
+    public void k() {
+    }
+
+    @Override
+    public final void i(int i3, int i10) {
     }
 }

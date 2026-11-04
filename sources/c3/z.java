@@ -1,80 +1,66 @@
 package c3;
 
-import java.io.Serializable;
+import android.util.Range;
+import b8.zb;
 public final class z {
-    public int f3719a;
-    public int f3720b;
-    public int f3721c;
-    public int d;
-    public int e;
-    public int f3722f;
-    public Serializable f3723g;
+    public long f4134a;
+    public long f4135b;
+    public double f4136c;
+    public Range d;
 
-    public boolean a(int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        if ((i10 & (-2097152)) != -2097152 || (i11 = (i10 >>> 19) & 3) == 1 || (i12 = (i10 >>> 17) & 3) == 0 || (i13 = (i10 >>> 12) & 15) == 0 || i13 == 15 || (i14 = (i10 >>> 10) & 3) == 3) {
-            return false;
-        }
-        this.f3719a = i11;
-        this.f3723g = b.f3612s[3 - i12];
-        int i17 = b.f3613t[i14];
-        this.f3721c = i17;
-        int i18 = 2;
-        if (i11 == 2) {
-            this.f3721c = i17 / 2;
-        } else if (i11 == 0) {
-            this.f3721c = i17 / 4;
-        }
-        int i19 = (i10 >>> 9) & 1;
-        int i20 = 1152;
-        if (i12 != 1) {
-            if (i12 != 2) {
-                if (i12 == 3) {
-                    i20 = 384;
-                } else {
-                    throw new IllegalArgumentException();
-                }
-            }
-        } else if (i11 != 3) {
-            i20 = 576;
-        }
-        this.f3722f = i20;
-        if (i12 == 3) {
-            if (i11 == 3) {
-                i16 = b.f3614u[i13 - 1];
-            } else {
-                i16 = b.v[i13 - 1];
-            }
-            this.e = i16;
-            this.f3720b = (((i16 * 12) / this.f3721c) + i19) * 4;
+    public z() {
+        Range range = new Range(Double.valueOf(0.0d), Double.valueOf(1.0d / 1.0f));
+        this.d = range;
+        this.f4136c = ((Double) range.getUpper()).doubleValue();
+        this.f4134a = -9223372036854775807L;
+        this.f4135b = -9223372036854775807L;
+    }
+
+    public final void a(long j10, long j11) {
+        boolean z10;
+        double doubleValue;
+        long j12;
+        boolean z11 = false;
+        if (j10 != -9223372036854775807L) {
+            z10 = true;
         } else {
-            int i21 = 144;
-            if (i11 == 3) {
-                if (i12 == 2) {
-                    i15 = b.f3615w[i13 - 1];
-                } else {
-                    i15 = b.f3616x[i13 - 1];
-                }
-                this.e = i15;
-                this.f3720b = ((i15 * 144) / this.f3721c) + i19;
-            } else {
-                int i22 = b.f3617y[i13 - 1];
-                this.e = i22;
-                if (i12 == 1) {
-                    i21 = 72;
-                }
-                this.f3720b = ((i21 * i22) / this.f3721c) + i19;
+            z10 = false;
+        }
+        zb.f(z10);
+        if (j11 != -9223372036854775807L) {
+            z11 = true;
+        }
+        zb.f(z11);
+        long j13 = this.f4134a;
+        if (j13 != -9223372036854775807L) {
+            if (this.f4135b != -9223372036854775807L && j10 != j13) {
+                doubleValue = (j11 - j12) / (j10 - j13);
+                this.f4136c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f4136c * 0.800000011920929d);
+                this.f4134a = j10;
+                this.f4135b = j11;
             }
         }
-        if (((i10 >> 6) & 3) == 3) {
-            i18 = 1;
+        doubleValue = ((Double) this.d.getUpper()).doubleValue();
+        this.f4136c = (((Double) this.d.clamp(Double.valueOf(doubleValue))).doubleValue() * 0.20000000298023224d) + (this.f4136c * 0.800000011920929d);
+        this.f4134a = j10;
+        this.f4135b = j11;
+    }
+
+    public final void b() {
+        this.f4136c = ((Double) this.d.getUpper()).doubleValue();
+        this.f4134a = -9223372036854775807L;
+        this.f4135b = -9223372036854775807L;
+    }
+
+    public final void c(float f10) {
+        boolean z10;
+        if (f10 > 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        this.d = i18;
-        return true;
+        zb.f(z10);
+        this.d = new Range(Double.valueOf(0.0d), Double.valueOf(1.0d / f10));
+        b();
     }
 }

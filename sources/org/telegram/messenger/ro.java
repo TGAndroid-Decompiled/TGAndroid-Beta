@@ -1,17 +1,32 @@
 package org.telegram.messenger;
-public final class ro implements Runnable {
-    public final int f17953a;
-    public final int f17954b;
-    public final z2 f17955c;
 
-    public ro(int i10, z2 z2Var, int i11) {
-        this.f17953a = i11;
-        this.f17954b = i10;
-        this.f17955c = z2Var;
+import android.util.Base64;
+import java.util.Arrays;
+public final class ro {
+    public final long f25193a;
+    public final long f25194b;
+    public final byte[] f25195c;
+
+    public ro(long j10, String str, long j11) {
+        this.f25193a = j10;
+        this.f25194b = j11;
+        this.f25195c = Base64.decode(str, 8);
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ro.run():void");
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof ro)) {
+            return false;
+        }
+        ro roVar = (ro) obj;
+        if (this.f25193a != roVar.f25193a || this.f25194b != roVar.f25194b || !Arrays.equals(this.f25195c, roVar.f25195c)) {
+            return false;
+        }
+        return true;
+    }
+
+    public ro(long j10, long j11, byte[] bArr) {
+        this.f25193a = j10;
+        this.f25194b = j11;
+        this.f25195c = bArr;
     }
 }

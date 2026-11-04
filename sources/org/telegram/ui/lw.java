@@ -1,52 +1,34 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class lw extends FragmentContextView {
-    public final int X0;
-    public final zx Y0;
+public final class lw implements Runnable {
+    public final int f47448a;
+    public final mw f47449b;
 
-    public lw(zx zxVar, Context context, zx zxVar2, int i10) {
-        super(context, zxVar2, true);
-        this.X0 = i10;
-        switch (i10) {
-            case 1:
-                this.Y0 = zxVar;
-                super(context, zxVar2, false);
-                return;
-            default:
-                this.Y0 = zxVar;
-                return;
-        }
+    public lw(mw mwVar, int i3) {
+        this.f47448a = i3;
+        this.f47449b = mwVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.X0) {
+    public final void run() {
+        int i3;
+        switch (this.f47448a) {
             case 0:
-                zx zxVar = this.Y0;
-                org.telegram.ui.Components.zr zrVar = zxVar.J1;
-                FrameLayout frameLayout = zxVar.G1;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                zrVar.i(frameLayout, z10, true);
+                mw mwVar = this.f47449b;
+                uw uwVar = mwVar.f47801o0;
+                Context context = mwVar.getContext();
+                i3 = ((org.telegram.ui.ActionBar.d2) uwVar).currentAccount;
+                uwVar.showDialog(new vg.i0(3, i3, context, uwVar, null));
                 return;
             default:
-                zx zxVar2 = this.Y0;
-                org.telegram.ui.Components.zr zrVar2 = zxVar2.J1;
-                FrameLayout frameLayout2 = zxVar2.I1;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
+                uw uwVar2 = this.f47449b.f47801o0;
+                rv rvVar = uwVar2.N0;
+                if (rvVar != null) {
+                    rvVar.dismiss();
+                    uwVar2.N0 = null;
+                    return;
                 }
-                zrVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

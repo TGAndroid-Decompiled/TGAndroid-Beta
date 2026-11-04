@@ -1,47 +1,28 @@
 package org.telegram.ui.Components;
+public final class o90 implements Runnable {
+    public final int f36787a;
+    public final x90 f36788b;
 
-import android.widget.FrameLayout;
-public final class o90 extends oh.q {
-    public final int E = 1;
-    public final Object F;
-
-    public o90(kg.q1 q1Var, kg.q1 q1Var2, FrameLayout frameLayout, long j10) {
-        super(q1Var2, frameLayout, j10, true);
-        this.F = q1Var;
+    public o90(x90 x90Var, int i3) {
+        this.f36787a = i3;
+        this.f36788b = x90Var;
     }
 
     @Override
-    public final void f(String str, boolean z10, boolean z11) {
-        switch (this.E) {
+    public final void run() {
+        switch (this.f36787a) {
             case 0:
-                oh.c cVar = (oh.c) this.F;
-                ew0 ew0Var = cVar.N1;
-                if (this.e.isEmpty()) {
-                    if (ew0Var.getVisibility() != 4) {
-                        ew0Var.setVisibility(4);
-                        return;
-                    }
-                    return;
-                } else if (z11) {
-                    cVar.f26095s1.J.setText("");
-                    return;
-                } else {
-                    super.f(str, z10, z11);
+                x90 x90Var = this.f36788b;
+                ci.j1 j1Var = x90Var.f40293f;
+                if (x90Var.f40291d0.d.f22212r) {
+                    j1Var.x0(-j1Var.computeVerticalScrollOffset(), 250, ni.l.V);
                     return;
                 }
+                j1Var.x0(j1Var.computeVerticalScrollRange() - (j1Var.computeVerticalScrollExtent() + j1Var.computeVerticalScrollOffset()), 250, ni.l.V);
+                return;
             default:
-                if (z11) {
-                    kg.q1.Z((kg.q1) this.F).setSearchFieldText("");
-                    return;
-                } else {
-                    super.f(str, z10, z11);
-                    return;
-                }
+                this.f36788b.h(true, false);
+                return;
         }
-    }
-
-    public o90(oh.c cVar, org.telegram.ui.ActionBar.k2 k2Var, org.telegram.ui.ActionBar.p2 p2Var, long j10) {
-        super(k2Var, p2Var, j10, false);
-        this.F = cVar;
     }
 }

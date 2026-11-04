@@ -1,4 +1,17 @@
 package x7;
-public abstract class k2 extends b8.b implements l3 {
-    public static final int f53237b = 0;
+public final class k2 implements ma.d {
+    public static final k2 f58347a = new Object();
+
+    static {
+        t4.c.o(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, new e(1)), 2)), 3)), 4)), 5)), 6)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ma.e eVar = (ma.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

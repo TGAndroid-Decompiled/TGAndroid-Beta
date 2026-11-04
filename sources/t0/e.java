@@ -1,7 +1,7 @@
 package t0;
 
 import android.os.Bundle;
-import m2.t;
+import org.telegram.ui.Components.y00;
 public interface e {
-    boolean o(t tVar, int i10, Bundle bundle);
+    boolean m(y00 y00Var, int i3, Bundle bundle);
 }

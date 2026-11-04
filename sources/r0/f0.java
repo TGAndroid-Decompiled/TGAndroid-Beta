@@ -1,23 +1,13 @@
 package r0;
 
-import android.view.ContentInfo;
 import android.view.View;
-import j$.util.Objects;
+import android.view.WindowInsets;
 public abstract class f0 {
-    public static String[] a(View view) {
-        return view.getReceiveContentMimeTypes();
+    public static WindowInsets a(View view, WindowInsets windowInsets) {
+        return view.dispatchApplyWindowInsets(windowInsets);
     }
 
-    public static g b(View view, g gVar) {
-        ContentInfo d = gVar.f46127a.d();
-        Objects.requireNonNull(d);
-        ContentInfo performReceiveContent = view.performReceiveContent(d);
-        if (performReceiveContent == null) {
-            return null;
-        }
-        if (performReceiveContent == d) {
-            return gVar;
-        }
-        return new g(new j2.k(performReceiveContent));
+    public static CharSequence b(View view) {
+        return view.getStateDescription();
     }
 }

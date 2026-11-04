@@ -1,52 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class wy extends ReplacementSpan {
-    public final int f32335a;
+import android.content.Context;
+public final class wy extends u4.c0 {
+    public final kg.f0 f40169r;
 
-    public wy(int i10) {
-        this.f32335a = i10;
+    public wy(kg.f0 f0Var, Context context) {
+        super(context);
+        this.f40169r = f0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int i15 = this.f32335a;
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f32335a) {
-            case 0:
-                return (int) paint.measureText(charSequence, i10, i11);
-            case 1:
-                return org.telegram.messenger.i0.L(16.0f);
-            case 2:
-                return org.telegram.messenger.i0.L(12.0f);
-            case 3:
-                return org.telegram.messenger.i0.L(12.0f);
-            default:
-                return org.telegram.messenger.i0.L(16.0f);
-        }
-    }
-
-    public wy(boolean z10) {
-        this.f32335a = 0;
-    }
-
-    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void d(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-    }
-
-    private final void e(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public final void g(android.view.View r6, u4.y0 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wy.g(android.view.View, u4.y0):void");
     }
 }

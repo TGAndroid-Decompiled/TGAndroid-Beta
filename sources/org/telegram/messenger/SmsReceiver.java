@@ -8,7 +8,7 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class SmsReceiver extends BroadcastReceiver {
-    public static final int f14518a = 0;
+    public static final int f21383a = 0;
 
     @Override
     public final void onReceive(Context context, Intent intent) {
@@ -16,11 +16,11 @@ public class SmsReceiver extends BroadcastReceiver {
         if (intent != null) {
             try {
                 String str = "";
-                SharedPreferences sharedPreferences = w0.f18945b.getSharedPreferences("mainconfig", 0);
+                SharedPreferences sharedPreferences = t0.f25457b.getSharedPreferences("mainconfig", 0);
                 String string = sharedPreferences.getString("sms_hash", null);
                 if ("com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
-                    synchronized (i0.f16162k) {
-                        z10 = i0.f16160j;
+                    synchronized (g0.f22598k) {
+                        z10 = g0.f22596j;
                     }
                     if (z10) {
                         str = (String) intent.getExtras().get("com.google.android.gms.auth.api.phone.EXTRA_SMS_MESSAGE");
@@ -37,12 +37,12 @@ public class SmsReceiver extends BroadcastReceiver {
                                 SharedPreferences.Editor edit = sharedPreferences.edit();
                                 edit.putString("sms_hash_code", string + "|" + replace).commit();
                             }
-                            i0.g3(new o4(replace, 5));
+                            g0.h3(new l4(replace, 5));
                         }
                     }
                 }
             } catch (Throwable th2) {
-                f8.g(th2, true);
+                a8.g(th2, true);
             }
         }
     }

@@ -1,66 +1,68 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class v10 extends s4.n {
-    public final ArrayList f31136b;
-    public final ArrayList f31137c;
-    public final z10 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.accessibility.AccessibilityEvent;
+import android.widget.ImageView;
+public final class v10 extends ImageView {
+    public final int f38953a;
+    public final int f38954b;
+    public final Object f38955c;
 
-    public v10(z10 z10Var, ArrayList arrayList, ArrayList arrayList2) {
-        this.d = z10Var;
-        this.f31136b = arrayList;
-        this.f31137c = arrayList2;
+    public v10(Object obj, Context context, int i3, int i10) {
+        super(context);
+        this.f38953a = i10;
+        this.f38955c = obj;
+        this.f38954b = i3;
     }
 
     @Override
-    public final boolean a(int i10, int i11) {
-        return true;
+    public void onDraw(Canvas canvas) {
+        switch (this.f38953a) {
+            case 1:
+                super.onDraw(canvas);
+                org.telegram.ui.yz yzVar = (org.telegram.ui.yz) this.f38955c;
+                w70 w70Var = yzVar.f52461s;
+                if (yzVar.f52460r) {
+                    int i3 = this.f38954b / 2;
+                    w70Var.setBounds(i3, i3, getWidth() - i3, getHeight() - i3);
+                    w70Var.draw(canvas);
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
     }
 
     @Override
-    public final boolean b(int i10, int i11) {
-        TLRPC.GroupCallParticipant groupCallParticipant;
-        TLRPC.GroupCallParticipant groupCallParticipant2;
-        ArrayList arrayList = this.f31136b;
-        int size = arrayList.size();
-        z10 z10Var = this.d;
-        if (i10 < size && i11 < z10Var.e.size()) {
-            return ((org.telegram.messenger.v3) arrayList.get(i10)).equals(z10Var.e.get(i11));
+    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        switch (this.f38953a) {
+            case 0:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                if (accessibilityEvent.getEventType() == 32768) {
+                    ((org.telegram.ui.x20) ((w10) this.f38955c).d).f40192j1.x(this.f38954b, true);
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityEvent(accessibilityEvent);
+                return;
         }
-        int size2 = i10 - arrayList.size();
-        int size3 = i11 - z10Var.e.size();
-        ArrayList arrayList2 = this.f31137c;
-        if (size3 >= 0 && size3 < z10Var.f32962f.size() && size2 >= 0 && size2 < arrayList2.size()) {
-            if (org.telegram.messenger.kj.C1(((TLRPC.GroupCallParticipant) arrayList2.get(size2)).peer) != org.telegram.messenger.kj.C1(((TLRPC.GroupCallParticipant) z10Var.f32962f.get(size3)).peer)) {
-                return false;
-            }
-            return true;
-        }
-        if (i10 < arrayList.size()) {
-            groupCallParticipant = ((org.telegram.messenger.v3) arrayList.get(i10)).f18588a;
-        } else {
-            groupCallParticipant = (TLRPC.GroupCallParticipant) arrayList2.get(size2);
-        }
-        if (i11 < z10Var.e.size()) {
-            groupCallParticipant2 = ((org.telegram.messenger.v3) z10Var.e.get(i11)).f18588a;
-        } else {
-            groupCallParticipant2 = (TLRPC.GroupCallParticipant) z10Var.f32962f.get(size3);
-        }
-        if (org.telegram.messenger.kj.C1(groupCallParticipant.peer) != org.telegram.messenger.kj.C1(groupCallParticipant2.peer)) {
-            return false;
-        }
-        return true;
     }
 
     @Override
-    public final int d() {
-        z10 z10Var = this.d;
-        return z10Var.f32962f.size() + z10Var.e.size();
-    }
-
-    @Override
-    public final int e() {
-        return this.f31137c.size() + this.f31136b.size();
+    public boolean verifyDrawable(Drawable drawable) {
+        switch (this.f38953a) {
+            case 1:
+                if (drawable != ((org.telegram.ui.yz) this.f38955c).f52461s && !super.verifyDrawable(drawable)) {
+                    return false;
+                }
+                return true;
+            default:
+                return super.verifyDrawable(drawable);
+        }
     }
 }

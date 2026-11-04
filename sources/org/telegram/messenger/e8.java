@@ -1,6 +1,7 @@
 package org.telegram.messenger;
-public final class e8 extends Exception {
-    public e8(String str) {
-        super(str);
-    }
+public final class e8 {
+    public long f22324a;
+    public int f22325b;
+    public int f22326c;
+    public long d;
 }

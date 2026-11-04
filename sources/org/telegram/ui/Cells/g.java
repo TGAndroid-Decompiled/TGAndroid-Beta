@@ -3,20 +3,20 @@ package org.telegram.ui.Cells;
 import android.graphics.RectF;
 import android.text.Layout;
 import android.text.style.ClickableSpan;
-import org.telegram.ui.Components.t80;
+import org.telegram.ui.Components.w70;
 import org.telegram.ui.ProfileActivity;
-public final class g extends gf.e {
-    public t80 d;
-    public final Layout e;
-    public final ClickableSpan f21907f;
-    public final float f21908g;
-    public final i h;
+public final class g extends sf.b {
+    public w70 d;
+    public final Layout f29250e;
+    public final ClickableSpan f29251f;
+    public final float f29252g;
+    public final j h;
 
-    public g(i iVar, Layout layout, ClickableSpan clickableSpan, float f7) {
-        this.h = iVar;
-        this.e = layout;
-        this.f21907f = clickableSpan;
-        this.f21908g = f7;
+    public g(j jVar, Layout layout, ClickableSpan clickableSpan, float f10) {
+        this.h = jVar;
+        this.f29250e = layout;
+        this.f29251f = clickableSpan;
+        this.f29252g = f10;
     }
 
     @Override
@@ -28,24 +28,24 @@ public final class g extends gf.e {
         } else {
             j10 = 350;
         }
-        org.telegram.messenger.i0.h3(fVar, j10);
+        org.telegram.messenger.g0.i3(fVar, j10);
     }
 
     @Override
     public final void d() {
-        i iVar = this.h;
-        ji.a aVar = iVar.E;
-        t80 t80Var = iVar.G;
-        if (t80Var != null) {
-            aVar.n(t80Var, true);
+        j jVar = this.h;
+        m2.p0 p0Var = jVar.F;
+        w70 w70Var = jVar.H;
+        if (w70Var != null) {
+            p0Var.n(w70Var, true);
         }
-        t80 k10 = ji.a.k(this.e, this.f21907f, this.f21908g);
+        w70 k10 = m2.p0.k(this.f29250e, this.f29251f, this.f29252g);
         this.d = k10;
-        iVar.G = k10;
-        int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21337ze, iVar.I);
-        RectF rectF = ProfileActivity.S6;
-        this.d.g(org.telegram.ui.ActionBar.t6.r1(0.8f, w02), org.telegram.ui.ActionBar.t6.r1(1.3f, w02), org.telegram.ui.ActionBar.t6.r1(1.0f, w02), org.telegram.ui.ActionBar.t6.r1(4.0f, w02));
-        this.d.f30592x.setStrokeWidth(org.telegram.messenger.i0.N(1.25f));
-        aVar.c(this.d, null);
+        jVar.H = k10;
+        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28298ze, jVar.J);
+        RectF rectF = ProfileActivity.T6;
+        this.d.g(org.telegram.ui.ActionBar.k6.r1(0.8f, w02), org.telegram.ui.ActionBar.k6.r1(1.3f, w02), org.telegram.ui.ActionBar.k6.r1(1.0f, w02), org.telegram.ui.ActionBar.k6.r1(4.0f, w02));
+        this.d.f39944x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
+        p0Var.c(this.d, null);
     }
 }

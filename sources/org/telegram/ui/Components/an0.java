@@ -1,31 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class an0 extends zf.z {
-    public final org.telegram.ui.zx I0;
-    public final Context J0;
-    public final org.telegram.ui.jx K0;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+public final class an0 extends u4.t0 {
+    public final le f31951a;
 
-    public an0(org.telegram.ui.jx jxVar, Context context, org.telegram.ui.zx zxVar, int i10, int i11, s4.j jVar, boolean z10, org.telegram.ui.zx zxVar2, Context context2) {
-        super(context, zxVar, i10, i11, jVar, z10);
-        this.K0 = jxVar;
-        this.I0 = zxVar2;
-        this.J0 = context2;
+    public an0(le leVar) {
+        this.f31951a = leVar;
     }
 
     @Override
-    public final void f() {
-        ag.b1 b1Var;
-        int i10 = this.B0;
-        super.f();
-        org.telegram.ui.jx jxVar = this.K0;
-        if (!jxVar.K0 && (b1Var = jxVar.f26869a0) != null) {
-            b1Var.v0(0);
-            jxVar.K0 = true;
+    public final void b(RecyclerView recyclerView, int i3, int i10) {
+        boolean z10;
+        float f10;
+        le leVar = this.f31951a;
+        View view = leVar.f33427u;
+        if (leVar.f33428w.I0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        if (b() != 0 || i10 == 0 || this.D0 > 0) {
+        Boolean bool = leVar.f33429x;
+        if (bool != null && z10 == bool.booleanValue()) {
             return;
         }
-        jxVar.f26870b0.e(false, false);
+        view.animate().cancel();
+        ViewPropertyAnimator animate = view.animate();
+        if (z10) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        animate.alpha(f10).setDuration(150L).start();
+        leVar.f33429x = Boolean.valueOf(z10);
     }
 }

@@ -1,426 +1,551 @@
 package org.telegram.messenger;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.LongSparseArray;
-import android.util.SparseArray;
+import j$.util.Objects;
+import java.io.File;
 import java.util.ArrayList;
-import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
-import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.tgnet.NativeByteBuffer;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Locale;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_update;
-public final class d4 implements Runnable {
-    public final int f15293a;
-    public final long f15294b;
-    public final Object f15295c;
-    public final Object d;
+public final class d4 extends c1 {
+    public static volatile p5 f22138s = new p5("chatThemeQueue");
+    public static final d4[] f22139w = new d4[4];
+    public final HashMap f22140a;
+    public ArrayList f22141b;
+    public volatile long f22142c;
+    public volatile long d;
+    public final HashMap f22143e;
+    public final k2.u1 f22144f;
+    public final LongSparseArray h;
+    public final HashMap f22145n;
+    public final HashMap f22146r;
 
-    public d4(Object obj, long j10, Object obj2, int i10) {
-        this.f15293a = i10;
-        this.f15295c = obj;
-        this.f15294b = j10;
-        this.d = obj2;
+    public d4(int i3) {
+        super(i3);
+        this.f22140a = new HashMap();
+        this.f22143e = new HashMap();
+        this.f22144f = new Object();
+        this.h = new LongSparseArray();
+        this.f22145n = new HashMap();
+        this.f22146r = new HashMap();
+        k();
     }
 
-    private final void a() {
-        org.telegram.ui.Components.ec[] ecVarArr = (org.telegram.ui.Components.ec[]) this.d;
-        ((boolean[]) this.f15295c)[0] = false;
-        long j10 = this.f15294b;
-        if (j10 == -1) {
-            ecVarArr[0].setText(dd.L0(2131743938, null));
-            org.telegram.ui.ActionBar.a7.V(ecVarArr[0], org.telegram.ui.ActionBar.t6.f21154p7, null);
+    public static d4 f(int i3) {
+        d4 d4Var;
+        d4[] d4VarArr = f22139w;
+        d4 d4Var2 = d4VarArr[i3];
+        if (d4Var2 == null) {
+            synchronized (d4.class) {
+                try {
+                    d4Var = d4VarArr[i3];
+                    if (d4Var == null) {
+                        d4Var = new d4(i3);
+                        d4VarArr[i3] = d4Var;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return d4Var;
+        }
+        return d4Var2;
+    }
+
+    public static String j(TLRPC.WallPaper wallPaper) {
+        if (wallPaper != null) {
+            TLRPC.WallPaperSettings wallPaperSettings = wallPaper.settings;
+            if (wallPaperSettings != null && !TextUtils.isEmpty(wallPaperSettings.emoticon)) {
+                return wallPaper.settings.emoticon;
+            }
+            return "";
+        }
+        return null;
+    }
+
+    public static void n(String str) {
+        new ImageReceiver(null).q0(ac.b(li.b0(h10.f22829t0).T(str)), "50_50", null, null, null, 0);
+        i6.k(str);
+    }
+
+    public static boolean v(TLRPC.WallPaper wallPaper, TLRPC.WallPaper wallPaper2) {
+        if (wallPaper == null && wallPaper2 == null) {
+            return true;
+        }
+        if ((wallPaper instanceof TLRPC.TL_wallPaper) && (wallPaper2 instanceof TLRPC.TL_wallPaper)) {
+            if (wallPaper.f27155id == wallPaper2.f27155id) {
+                return true;
+            }
+            return false;
+        }
+        if ((wallPaper instanceof TLRPC.TL_wallPaperNoFile) && (wallPaper2 instanceof TLRPC.TL_wallPaperNoFile)) {
+            if (wallPaper.settings != null && wallPaper2.settings != null) {
+                return TextUtils.equals(j(wallPaper), j(wallPaper2));
+            }
+            if (wallPaper.f27155id == wallPaper2.f27155id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void a(long j10, boolean z10, boolean z11) {
+        TLRPC.TL_messages_setChatWallPaper tL_messages_setChatWallPaper = new TLRPC.TL_messages_setChatWallPaper();
+        if (j10 >= 0) {
+            tL_messages_setChatWallPaper.peer = hp.n1(hp.s1(this.currentAccount).a2(Long.valueOf(j10)));
+            tL_messages_setChatWallPaper.revert = z11;
+            if (!z11) {
+                TLRPC.UserFull b22 = getMessagesController().b2(j10);
+                if (b22 != null) {
+                    b22.wallpaper = null;
+                    b22.flags &= -16777217;
+                    getMessagesStorage().j2(b22, false);
+                }
+                r(j10, null);
+                if (z10) {
+                    hs.f(this.currentAccount).k(hs.E0, Long.valueOf(j10), b22);
+                }
+            }
+        } else {
+            long j11 = -j10;
+            tL_messages_setChatWallPaper.peer = hp.l1(hp.s1(this.currentAccount).M0(Long.valueOf(j11)));
+            TLRPC.ChatFull N0 = getMessagesController().N0(j11);
+            if (N0 != null) {
+                N0.wallpaper = null;
+                N0.flags2 &= -129;
+                getMessagesStorage().N1(N0, false);
+            }
+            r(j10, null);
+            if (z10) {
+                hs f10 = hs.f(this.currentAccount);
+                Boolean bool = Boolean.FALSE;
+                f10.k(hs.T, N0, 0, bool, bool);
+            }
+        }
+        getConnectionsManager().sendRequest(tL_messages_setChatWallPaper, new ei.u5(8));
+    }
+
+    public final ArrayList b() {
+        SharedPreferences h = h();
+        int i3 = h.getInt("count", 0);
+        ArrayList arrayList = new ArrayList(i3);
+        for (int i10 = 0; i10 < i3; i10++) {
+            SerializedData serializedData = new SerializedData(Utilities.v(h.getString("theme_" + i10, "")));
+            try {
+                TLRPC.TL_theme TLdeserialize = TLRPC.Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (TLdeserialize != null) {
+                    arrayList.add(new org.telegram.ui.ActionBar.p3(this.currentAccount, TLdeserialize));
+                }
+            } catch (Throwable th2) {
+                a8.g(th2, true);
+            }
+        }
+        return arrayList;
+    }
+
+    public final org.telegram.ui.ActionBar.p3 c(long j10) {
+        jg.b bVar;
+        LongSparseArray longSparseArray = this.h;
+        jg.b bVar2 = (jg.b) longSparseArray.get(j10);
+        if (bVar2 == null) {
+            String string = t0.f25457b.getSharedPreferences("chatthemeconfig_emoji", 0).getString("chatTheme_" + this.currentAccount + "_" + j10, null);
+            if (string != null) {
+                if (string.startsWith("gift_")) {
+                    bVar = new jg.b(null, string.substring(5));
+                } else if (string.startsWith("emoticon_")) {
+                    bVar = new jg.b(string.substring(9), null);
+                } else if (!TextUtils.isEmpty(string)) {
+                    bVar = new jg.b(string, null);
+                }
+                bVar2 = bVar;
+                longSparseArray.put(j10, bVar2);
+            }
+            bVar2 = null;
+            longSparseArray.put(j10, bVar2);
+        }
+        return i(bVar2);
+    }
+
+    public final TLRPC.WallPaper d(long j10) {
+        if (j10 >= 0) {
+            TLRPC.UserFull b22 = getMessagesController().b2(j10);
+            if (b22 != null) {
+                return b22.wallpaper;
+            }
+        } else {
+            TLRPC.ChatFull N0 = getMessagesController().N0(-j10);
+            if (N0 != null) {
+                return N0.wallpaper;
+            }
+        }
+        SharedPreferences sharedPreferences = t0.f25457b.getSharedPreferences("chatthemeconfig_emoji", 0);
+        String string = sharedPreferences.getString("chatWallpaper_" + this.currentAccount + "_" + j10, null);
+        if (string != null) {
+            SerializedData serializedData = new SerializedData(Utilities.v(string));
+            try {
+                return TLRPC.WallPaper.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+            } catch (Throwable th2) {
+                a8.g(th2, true);
+            }
+        }
+        return null;
+    }
+
+    public final ArrayList e(int i3) {
+        ArrayList arrayList;
+        ArrayList arrayList2;
+        boolean hasFlag = TLObject.hasFlag(i3, 1);
+        boolean hasFlag2 = TLObject.hasFlag(i3, 2);
+        boolean hasFlag3 = TLObject.hasFlag(i3, 4);
+        ArrayList arrayList3 = new ArrayList();
+        if (hasFlag3 && (arrayList2 = (ArrayList) this.f22144f.d) != null) {
+            arrayList3.addAll(arrayList2);
+        }
+        if (hasFlag2 && (arrayList = this.f22141b) != null) {
+            arrayList3.addAll(arrayList);
+        }
+        int i10 = 0;
+        if (hasFlag && (arrayList3.isEmpty() || !((org.telegram.ui.ActionBar.p3) arrayList3.get(0)).f28419a)) {
+            org.telegram.ui.ActionBar.p3 p3Var = new org.telegram.ui.ActionBar.p3(this.currentAccount);
+            p3Var.f28422e = "❌";
+            p3Var.f28421c = jg.b.d("❌");
+            p3Var.d = TLRPC.ChatTheme.ofEmoticon("❌");
+            p3Var.f28419a = true;
+            org.telegram.ui.ActionBar.o3 o3Var = new org.telegram.ui.ActionBar.o3();
+            o3Var.f28382a = org.telegram.ui.ActionBar.p3.d(true);
+            p3Var.f28423f.add(o3Var);
+            org.telegram.ui.ActionBar.o3 o3Var2 = new org.telegram.ui.ActionBar.o3();
+            o3Var2.f28382a = org.telegram.ui.ActionBar.p3.d(false);
+            p3Var.f28423f.add(o3Var2);
+            arrayList3.add(0, p3Var);
+        }
+        int size = arrayList3.size();
+        while (i10 < size) {
+            Object obj = arrayList3.get(i10);
+            i10++;
+            ((org.telegram.ui.ActionBar.p3) obj).k();
+        }
+        return arrayList3;
+    }
+
+    public final File g(long j10) {
+        File h = t0.h();
+        Locale locale = Locale.US;
+        long j11 = this.f22142c;
+        return new File(h, j10 + "_" + j11 + ".jpg");
+    }
+
+    public final SharedPreferences h() {
+        Context context = t0.f25457b;
+        return context.getSharedPreferences("chatthemeconfig_" + this.currentAccount, 0);
+    }
+
+    public final org.telegram.ui.ActionBar.p3 i(jg.b bVar) {
+        if (bVar != null) {
+            String str = bVar.f16249b;
+            if (!TextUtils.isEmpty(str)) {
+                return (org.telegram.ui.ActionBar.p3) this.f22143e.get(str);
+            }
+            ArrayList arrayList = this.f22141b;
+            int size = arrayList.size();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj = arrayList.get(i3);
+                i3++;
+                org.telegram.ui.ActionBar.p3 p3Var = (org.telegram.ui.ActionBar.p3) obj;
+                if (bVar.equals(p3Var.f28421c)) {
+                    return p3Var;
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final void k() {
+        SharedPreferences h = h();
+        this.f22142c = 0L;
+        this.d = 0L;
+        try {
+            this.f22142c = h.getLong("hash", 0L);
+            this.d = h.getLong("lastReload", 0L);
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+        this.f22141b = b();
+        qr messagesStorage = getMessagesStorage();
+        u3 u3Var = new u3(this, 0);
+        messagesStorage.getClass();
+        messagesStorage.I(new pq(4, messagesStorage, u3Var));
+        n("❌");
+        if (!this.f22141b.isEmpty()) {
+            ArrayList arrayList = this.f22141b;
+            int size = arrayList.size();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj = arrayList.get(i3);
+                i3++;
+                n(((org.telegram.ui.ActionBar.p3) obj).f28422e);
+            }
+        }
+    }
+
+    public final void l(boolean z10) {
+        ArrayList arrayList = this.f22141b;
+        int size = arrayList.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            org.telegram.ui.ActionBar.p3 p3Var = (org.telegram.ui.ActionBar.p3) obj;
+            long h = p3Var.h(z10 ? 1 : 0);
+            if (h != 0 && !g(h).exists()) {
+                p3Var.n(z10 ? 1 : 0, null);
+            }
+        }
+    }
+
+    public final void m(boolean z10) {
+        ArrayList arrayList = this.f22141b;
+        int size = arrayList.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            org.telegram.ui.ActionBar.p3 p3Var = (org.telegram.ui.ActionBar.p3) obj;
+            long h = p3Var.h(z10 ? 1 : 0);
+            if (h != 0 && !this.f22140a.containsKey(Long.valueOf(h))) {
+                p3Var.p(z10 ? 1 : 0, new p1(this, 1));
+            }
+        }
+    }
+
+    public final void o(TL_update.TL_updatePeerWallpaper tL_updatePeerWallpaper) {
+        if (tL_updatePeerWallpaper.peer instanceof TLRPC.TL_peerUser) {
+            TLRPC.UserFull b22 = getMessagesController().b2(tL_updatePeerWallpaper.peer.user_id);
+            if (b22 != null && !v(b22.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
+                long j10 = b22.f27151id;
+                if ((tL_updatePeerWallpaper.flags & 1) != 0) {
+                    b22.wallpaper_overridden = tL_updatePeerWallpaper.wallpaper_overridden;
+                    b22.wallpaper = tL_updatePeerWallpaper.wallpaper;
+                    b22.flags |= 16777216;
+                } else {
+                    b22.wallpaper_overridden = false;
+                    b22.wallpaper = null;
+                    b22.flags &= -16777217;
+                }
+                getMessagesStorage().j2(b22, false);
+                r(j10, b22.wallpaper);
+                g0.h3(new a4(this, j10, b22, 0));
+                return;
+            }
             return;
         }
-        ecVarArr[0].setText(dd.a0(null, null, 2131747251, Long.valueOf(j10)));
-        org.telegram.ui.ActionBar.a7.V(ecVarArr[0], org.telegram.ui.ActionBar.t6.f21278w6, null);
-    }
-
-    private final void b() {
-        vi viVar = (vi) this.f15295c;
-        TL_bots.BotInfo botInfo = (TL_bots.BotInfo) this.d;
-        long j10 = this.f15294b;
-        viVar.getClass();
-        try {
-            SQLitePreparedStatement executeFast = viVar.getMessagesStorage().f16333b.executeFast("REPLACE INTO bot_info_v2 VALUES(?, ?, ?)");
-            executeFast.requery();
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(botInfo.getObjectSize());
-            botInfo.serializeToStream(nativeByteBuffer);
-            executeFast.bindLong(1, botInfo.user_id);
-            executeFast.bindLong(2, j10);
-            executeFast.bindByteBuffer(3, nativeByteBuffer);
-            executeFast.step();
-            nativeByteBuffer.reuse();
-            executeFast.dispose();
-        } catch (Exception e) {
-            f8.g(e, true);
-        }
-    }
-
-    private final void c() {
-        vi viVar = (vi) this.f15295c;
-        TL_update.TL_updateBotCommands tL_updateBotCommands = (TL_update.TL_updateBotCommands) this.d;
-        long j10 = this.f15294b;
-        viVar.getClass();
-        try {
-            TL_bots.BotInfo H0 = viVar.H0(tL_updateBotCommands.bot_id, j10);
-            if (H0 != null) {
-                H0.commands = tL_updateBotCommands.commands;
-            }
-            SQLitePreparedStatement executeFast = viVar.getMessagesStorage().f16333b.executeFast("REPLACE INTO bot_info_v2 VALUES(?, ?, ?)");
-            executeFast.requery();
-            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(H0.getObjectSize());
-            H0.serializeToStream(nativeByteBuffer);
-            executeFast.bindLong(1, H0.user_id);
-            executeFast.bindLong(2, j10);
-            executeFast.bindByteBuffer(3, nativeByteBuffer);
-            executeFast.step();
-            nativeByteBuffer.reuse();
-            executeFast.dispose();
-        } catch (Exception e) {
-            f8.g(e, true);
-        }
-    }
-
-    private final void d() {
-        vi viVar = (vi) this.f15295c;
-        ArrayList arrayList = (ArrayList) this.d;
-        long j10 = this.f15294b;
-        try {
-            viVar.getMessagesStorage().f16333b.beginTransaction();
-            SQLitePreparedStatement executeFast = viVar.getMessagesStorage().f16333b.executeFast("REPLACE INTO chat_pinned_v2 VALUES(?, ?, ?)");
-            int size = arrayList.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                TLRPC.Message message = (TLRPC.Message) arrayList.get(i10);
-                kj.q5(message);
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(message.getObjectSize());
-                message.serializeToStream(nativeByteBuffer);
-                executeFast.requery();
-                executeFast.bindLong(1, j10);
-                executeFast.bindInteger(2, message.f19815id);
-                executeFast.bindByteBuffer(3, nativeByteBuffer);
-                executeFast.step();
-                nativeByteBuffer.reuse();
-            }
-            executeFast.dispose();
-            viVar.getMessagesStorage().f16333b.commitTransaction();
-        } catch (Exception e) {
-            f8.g(e, true);
-        }
-    }
-
-    private final void f() {
-        wp wpVar = (wp) this.f15295c;
-        TLRPC.messages_SavedReactionTags messages_savedreactiontags = (TLRPC.messages_SavedReactionTags) this.d;
-        if (wpVar.f19094b8 == null) {
-            wpVar.f19094b8 = new a0.h();
-        }
-        boolean z10 = messages_savedreactiontags instanceof TLRPC.TL_messages_savedReactionsTags;
-        long j10 = this.f15294b;
-        if (z10) {
-            wpVar.f19094b8.k((TLRPC.TL_messages_savedReactionsTags) messages_savedreactiontags, j10);
-            wpVar.getNotificationCenter().k(at.f14719h3, Long.valueOf(j10));
-        }
-        TLRPC.TL_messages_getSavedReactionTags tL_messages_getSavedReactionTags = new TLRPC.TL_messages_getSavedReactionTags();
-        if (z10) {
-            tL_messages_getSavedReactionTags.hash = messages_savedreactiontags.hash;
-        }
-        if (j10 != 0) {
-            tL_messages_getSavedReactionTags.flags |= 1;
-            tL_messages_getSavedReactionTags.peer = wpVar.i1(j10);
-        }
-        wpVar.getConnectionsManager().sendRequest(tL_messages_getSavedReactionTags, new im(wpVar, j10, messages_savedreactiontags, tL_messages_getSavedReactionTags, 0));
-    }
-
-    private final void g() {
-        TLRPC.Chat chat;
-        TLRPC.Chat chat2;
-        TLRPC.InputChannel inputChannel;
-        ds dsVar = (ds) this.f15295c;
-        TLRPC.Updates updates = (TLRPC.Updates) this.d;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            chat = null;
-            if (i11 < updates.chats.size()) {
-                chat2 = updates.chats.get(i11);
-                if (this.f15294b == chat2.f19794id) {
-                    break;
-                }
-                i11++;
+        TLRPC.ChatFull N0 = getMessagesController().N0(-m5.o(tL_updatePeerWallpaper.peer));
+        if (N0 != null && !v(N0.wallpaper, tL_updatePeerWallpaper.wallpaper)) {
+            long j11 = -N0.f27002id;
+            if ((tL_updatePeerWallpaper.flags & 1) != 0) {
+                N0.wallpaper = tL_updatePeerWallpaper.wallpaper;
+                N0.flags2 |= 128;
             } else {
-                chat2 = null;
-                break;
+                N0.wallpaper = null;
+                N0.flags2 &= -129;
+            }
+            getMessagesStorage().N1(N0, false);
+            r(j11, N0.wallpaper);
+            g0.h3(new b4(0, this, N0));
+        }
+    }
+
+    public final void p(TLRPC.ChatTheme chatTheme) {
+        if (chatTheme instanceof TLRPC.TL_chatThemeUniqueGift) {
+            TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift = (TLRPC.TL_chatThemeUniqueGift) chatTheme;
+            String str = tL_chatThemeUniqueGift.gift.slug;
+            HashMap hashMap = this.f22143e;
+            if (!hashMap.containsKey(str)) {
+                org.telegram.ui.ActionBar.p3 p3Var = new org.telegram.ui.ActionBar.p3(this.currentAccount, tL_chatThemeUniqueGift);
+                p3Var.k();
+                hashMap.put(tL_chatThemeUniqueGift.gift.slug, p3Var);
+                qr messagesStorage = getMessagesStorage();
+                messagesStorage.getClass();
+                messagesStorage.I(new pq(3, messagesStorage, Collections.singletonList(chatTheme)));
             }
         }
-        if (chat2 != null && (inputChannel = chat2.migrated_to) != null) {
-            long j10 = inputChannel.channel_id;
-            while (true) {
-                if (i10 >= updates.chats.size()) {
-                    break;
+    }
+
+    public final void q(final ResultCallback resultCallback, final boolean z10) {
+        boolean z11;
+        if (this.f22142c == 0 || this.d == 0) {
+            k();
+        }
+        if (System.currentTimeMillis() - this.d > 7200000) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        ArrayList arrayList = this.f22141b;
+        if (arrayList == null || arrayList.isEmpty() || z11) {
+            TL_account.getChatThemes getchatthemes = new TL_account.getChatThemes();
+            getchatthemes.hash = this.f22142c;
+            ConnectionsManager connectionsManager = getConnectionsManager();
+            p5 p5Var = f22138s;
+            Objects.requireNonNull(p5Var);
+            connectionsManager.sendRequestTyped(getchatthemes, new v3(p5Var), new n10() {
+                @Override
+                public final void a(java.lang.Object r13, java.lang.Object r14) {
+                    throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.w3.a(java.lang.Object, java.lang.Object):void");
                 }
-                TLRPC.Chat chat3 = updates.chats.get(i10);
-                if (j10 == chat3.f19794id) {
-                    chat = chat3;
-                    break;
-                }
-                i10++;
+            });
+        }
+        ArrayList arrayList2 = this.f22141b;
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            resultCallback.onComplete(e((z10 ? 1 : 0) | 2));
+        }
+    }
+
+    public final void r(long j10, TLRPC.WallPaper wallPaper) {
+        if (wallPaper != null) {
+            if (wallPaper.document == null) {
+                return;
             }
-            if (chat != null) {
-                dsVar.run(j10);
+            SerializedData serializedData = new SerializedData(wallPaper.getObjectSize());
+            wallPaper.serializeToStream(serializedData);
+            String f10 = Utilities.f(serializedData.toByteArray());
+            SharedPreferences.Editor edit = t0.f25457b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+            edit.putString("chatWallpaper_" + this.currentAccount + "_" + j10, f10).apply();
+            return;
+        }
+        SharedPreferences.Editor edit2 = t0.f25457b.getSharedPreferences("chatthemeconfig_emoji", 0).edit();
+        edit2.remove("chatWallpaper_" + this.currentAccount + "_" + j10).apply();
+    }
+
+    public final void s(long r6, jg.b r8, org.telegram.tgnet.TLRPC.ChatTheme r9, boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.d4.s(long, jg.b, org.telegram.tgnet.TLRPC$ChatTheme, boolean):void");
+    }
+
+    public final void t(long j10, String str) {
+        boolean isEmpty = TextUtils.isEmpty(str);
+        HashMap hashMap = this.f22146r;
+        HashMap hashMap2 = this.f22145n;
+        if (isEmpty) {
+            String str2 = (String) hashMap2.remove(Long.valueOf(j10));
+            if (str2 != null) {
+                hashMap.remove(str2);
+            }
+        } else if (j10 == 0) {
+            Long l10 = (Long) hashMap.remove(str);
+            if (l10 != null) {
+                hashMap2.remove(l10);
+            }
+        } else {
+            String str3 = (String) hashMap2.put(Long.valueOf(j10), str);
+            Long l11 = (Long) hashMap.put(str, Long.valueOf(j10));
+            if (str3 != null && !TextUtils.equals(str, str3)) {
+                hashMap.remove(str3);
+            }
+            if (l11 != null && l11.longValue() != j10) {
+                hashMap2.remove(l11);
             }
         }
     }
 
-    private final void h() {
-        long j10 = this.f15294b;
-        TLRPC.TL_messages_savedReactionsTags tL_messages_savedReactionsTags = (TLRPC.TL_messages_savedReactionsTags) this.d;
-        SQLiteDatabase sQLiteDatabase = ((wp) this.f15295c).getMessagesStorage().f16333b;
-        SQLitePreparedStatement sQLitePreparedStatement = null;
-        try {
-            try {
-                sQLiteDatabase.executeFast("DELETE FROM saved_reaction_tags WHERE topic_id = " + j10).stepThis().dispose();
-                sQLitePreparedStatement = sQLiteDatabase.executeFast("REPLACE INTO saved_reaction_tags VALUES(?, ?)");
-                sQLitePreparedStatement.requery();
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tL_messages_savedReactionsTags.getObjectSize());
-                tL_messages_savedReactionsTags.serializeToStream(nativeByteBuffer);
-                sQLitePreparedStatement.bindLong(1, j10);
-                sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
-                sQLitePreparedStatement.step();
-                sQLitePreparedStatement.dispose();
-            } catch (Exception e) {
-                f8.g(e, true);
-                if (sQLitePreparedStatement != null) {
-                    sQLitePreparedStatement.dispose();
-                }
-            }
-        } catch (Throwable th2) {
-            if (sQLitePreparedStatement != null) {
-                sQLitePreparedStatement.dispose();
-            }
-            throw th2;
-        }
-    }
-
-    private final void i() {
-        ((wp) this.f15295c).getNotificationCenter().k(at.f14711g1, Long.valueOf(this.f15294b), Integer.valueOf(((TLRPC.TL_chatOnlines) this.d).onlines));
-    }
-
-    private final void j() {
-        SQLiteCursor sQLiteCursor;
-        SQLiteCursor sQLiteCursor2;
+    public final int u(long j10, String str, org.telegram.ui.ActionBar.b6 b6Var, zi ziVar, ai.y1 y1Var) {
+        boolean z10;
+        TLRPC.ChatFull N0;
         TLRPC.UserFull userFull;
-        is isVar = (is) this.f15295c;
-        long j10 = this.f15294b;
-        TL_account.RequirementToContact requirementToContact = (TL_account.RequirementToContact) this.d;
-        isVar.getClass();
-        SQLitePreparedStatement sQLitePreparedStatement = null;
-        try {
-            try {
-                sQLiteCursor2 = isVar.f16333b.queryFinalized("SELECT uid, info, pinned FROM user_settings WHERE uid = " + j10, new Object[0]);
-                try {
-                    boolean next = sQLiteCursor2.next();
-                    if (next) {
-                        NativeByteBuffer byteBufferValue = sQLiteCursor2.byteBufferValue(1);
-                        userFull = TLRPC.UserFull.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        if (userFull != null) {
-                            userFull.pinned_msg_id = sQLiteCursor2.intValue(2);
-                        }
-                        byteBufferValue.reuse();
-                    } else {
-                        userFull = null;
-                    }
-                    sQLiteCursor2.dispose();
-                    if (next && userFull != null && i20.a(userFull, requirementToContact)) {
-                        SQLitePreparedStatement executeFast = isVar.f16333b.executeFast("REPLACE INTO user_settings VALUES(?, ?, ?)");
-                        try {
-                            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(userFull.getObjectSize());
-                            userFull.serializeToStream(nativeByteBuffer);
-                            executeFast.bindLong(1, j10);
-                            executeFast.bindByteBuffer(2, nativeByteBuffer);
-                            executeFast.bindInteger(3, userFull.pinned_msg_id);
-                            executeFast.step();
-                            executeFast.dispose();
-                            nativeByteBuffer.reuse();
-                        } catch (Exception e) {
-                            e = e;
-                            sQLiteCursor2 = null;
-                            sQLitePreparedStatement = executeFast;
-                            isVar.o(e, true);
-                            if (sQLitePreparedStatement != null) {
-                                sQLitePreparedStatement.dispose();
-                            }
-                            if (sQLiteCursor2 != null) {
-                                sQLiteCursor2.dispose();
-                            }
-                        } catch (Throwable th2) {
-                            th = th2;
-                            sQLiteCursor = 0;
-                            sQLitePreparedStatement = executeFast;
-                            if (sQLitePreparedStatement != null) {
-                                sQLitePreparedStatement.dispose();
-                            }
-                            if (sQLiteCursor != 0) {
-                                sQLiteCursor.dispose();
-                            }
-                            throw th;
-                        }
-                    }
-                } catch (Exception e7) {
-                    e = e7;
-                }
-            } catch (Throwable th3) {
-                th = th3;
-                sQLiteCursor = "SELECT uid, info, pinned FROM user_settings WHERE uid = ";
+        TLRPC.WallPaper wallPaper;
+        String str2;
+        TLRPC.TL_messages_setChatWallPaper tL_messages_setChatWallPaper = new TLRPC.TL_messages_setChatWallPaper();
+        int i3 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+        if (i3 >= 0) {
+            tL_messages_setChatWallPaper.peer = hp.n1(hp.s1(this.currentAccount).a2(Long.valueOf(j10)));
+        } else {
+            tL_messages_setChatWallPaper.peer = hp.l1(hp.s1(this.currentAccount).M0(Long.valueOf(-j10)));
+        }
+        tL_messages_setChatWallPaper.for_both = b6Var.f27434o;
+        if (ziVar != null && (ziVar.f26868k.action instanceof TLRPC.TL_messageActionSetChatWallPaper)) {
+            tL_messages_setChatWallPaper.flags |= 2;
+            tL_messages_setChatWallPaper.f27120id = ziVar.f1();
+            if (i3 >= 0) {
+                userFull = hp.s1(this.currentAccount).b2(j10);
+                N0 = null;
+            } else {
+                N0 = hp.s1(this.currentAccount).N0(-j10);
+                userFull = null;
             }
-        } catch (Exception e10) {
-            e = e10;
-            sQLiteCursor2 = null;
-        } catch (Throwable th4) {
-            th = th4;
-            sQLiteCursor = 0;
-        }
-    }
-
-    private final void k() {
-        long j10 = this.f15294b;
-        ((is) this.f15295c).getMessagesController().c3((TLRPC.Chat) this.d, j10);
-    }
-
-    private final void l() {
-        ((is) this.f15295c).getMessagesController().f19234r7.q(this.f15294b, (TLRPC.TL_forumTopic) this.d, false);
-    }
-
-    private final void m() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.d4.m():void");
-    }
-
-    private final void n() {
-        is isVar = (is) this.f15295c;
-        long j10 = this.f15294b;
-        a0.h hVar = (a0.h) this.d;
-        isVar.getClass();
-        SQLitePreparedStatement sQLitePreparedStatement = null;
-        try {
-            try {
-                SQLiteDatabase sQLiteDatabase = isVar.f16333b;
-                sQLiteDatabase.executeFast("DELETE FROM channel_admins_v3 WHERE did = " + j10).stepThis().dispose();
-                isVar.f16333b.beginTransaction();
-                SQLitePreparedStatement executeFast = isVar.f16333b.executeFast("REPLACE INTO channel_admins_v3 VALUES(?, ?, ?)");
-                for (int i10 = 0; i10 < hVar.m(); i10++) {
-                    try {
-                        executeFast.requery();
-                        executeFast.bindLong(1, j10);
-                        executeFast.bindLong(2, hVar.j(i10));
-                        TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) hVar.n(i10);
-                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(channelParticipant.getObjectSize());
-                        channelParticipant.serializeToStream(nativeByteBuffer);
-                        executeFast.bindByteBuffer(3, nativeByteBuffer);
-                        executeFast.step();
-                        nativeByteBuffer.reuse();
-                    } catch (Exception e) {
-                        e = e;
-                        sQLitePreparedStatement = executeFast;
-                        isVar.o(e, true);
-                        isVar = isVar.f16333b;
-                        if (isVar != 0) {
-                            isVar.commitTransaction();
-                        }
-                        if (sQLitePreparedStatement != null) {
-                            sQLitePreparedStatement.dispose();
-                            return;
-                        }
-                        return;
-                    } catch (Throwable th2) {
-                        th = th2;
-                        sQLitePreparedStatement = executeFast;
-                        SQLiteDatabase sQLiteDatabase2 = isVar.f16333b;
-                        if (sQLiteDatabase2 != null) {
-                            sQLiteDatabase2.commitTransaction();
-                        }
-                        if (sQLitePreparedStatement != null) {
-                            sQLitePreparedStatement.dispose();
-                        }
-                        throw th;
-                    }
-                }
-                executeFast.dispose();
-                isVar.f16333b.commitTransaction();
-                SQLiteDatabase sQLiteDatabase3 = isVar.f16333b;
-                if (sQLiteDatabase3 != null) {
-                    sQLiteDatabase3.commitTransaction();
-                }
-            } catch (Throwable th3) {
-                th = th3;
+            TLRPC.TL_messageActionSetChatWallPaper tL_messageActionSetChatWallPaper = (TLRPC.TL_messageActionSetChatWallPaper) ziVar.f26868k.action;
+            TLRPC.TL_wallPaper tL_wallPaper = new TLRPC.TL_wallPaper();
+            TLRPC.WallPaper wallPaper2 = tL_messageActionSetChatWallPaper.wallpaper;
+            tL_wallPaper.f27155id = wallPaper2.f27155id;
+            tL_wallPaper.document = wallPaper2.document;
+            TLRPC.TL_wallPaperSettings tL_wallPaperSettings = new TLRPC.TL_wallPaperSettings();
+            tL_wallPaper.settings = tL_wallPaperSettings;
+            tL_wallPaperSettings.intensity = (int) (b6Var.f27430k * 100.0f);
+            tL_wallPaperSettings.motion = b6Var.f27429j;
+            tL_wallPaperSettings.blur = b6Var.f27428i;
+            tL_wallPaperSettings.background_color = b6Var.d;
+            tL_wallPaperSettings.second_background_color = b6Var.f27425e;
+            tL_wallPaperSettings.third_background_color = b6Var.f27426f;
+            tL_wallPaperSettings.fourth_background_color = b6Var.f27427g;
+            tL_wallPaperSettings.rotation = b6Var.h;
+            tL_wallPaper.uploadingImage = str;
+            if (userFull != null) {
+                wallPaper = userFull.wallpaper;
+            } else if (N0 != null) {
+                wallPaper = N0.wallpaper;
+            } else {
+                wallPaper = null;
             }
-        } catch (Exception e7) {
-            e = e7;
-        }
-    }
-
-    private final void o() {
-        is isVar = (is) this.f15295c;
-        long j10 = this.f15294b;
-        NativeByteBuffer nativeByteBuffer = (NativeByteBuffer) this.d;
-        isVar.getClass();
-        try {
-            SQLitePreparedStatement executeFast = isVar.f16333b.executeFast("REPLACE INTO pending_tasks VALUES(?, ?)");
-            executeFast.bindLong(1, j10);
-            executeFast.bindByteBuffer(2, nativeByteBuffer);
-            executeFast.step();
-            executeFast.dispose();
-        } catch (Exception e) {
-            isVar.o(e, true);
-        } finally {
-            nativeByteBuffer.reuse();
-        }
-    }
-
-    private final void p() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.d4.p():void");
-    }
-
-    private final void q() {
-        is isVar = (is) this.f15295c;
-        SparseArray sparseArray = (SparseArray) this.d;
-        isVar.getClass();
-        if (sparseArray.size() != 0) {
-            int min = Math.min(sparseArray.size(), 100);
-            for (int i10 = 0; i10 < min; i10++) {
-                isVar.getNotificationCenter().k(at.f14756o1, Long.valueOf(this.f15294b), Integer.valueOf(sparseArray.keyAt(i10)), (TLRPC.TL_messageReactions) sparseArray.valueAt(i10));
+            if (wallPaper != null && (str2 = wallPaper.uploadingImage) != null && str2.equals(str)) {
+                tL_wallPaper.stripedThumb = wallPaper.stripedThumb;
             }
+            tL_wallPaper.settings.flags |= 121;
+            TLRPC.TL_wallPaper tL_wallPaper2 = new TLRPC.TL_wallPaper();
+            TLRPC.WallPaper wallPaper3 = tL_messageActionSetChatWallPaper.wallpaper;
+            tL_wallPaper2.pattern = wallPaper3.pattern;
+            TLRPC.ChatFull chatFull = N0;
+            tL_wallPaper2.f27155id = wallPaper3.f27155id;
+            tL_wallPaper2.document = wallPaper3.document;
+            int i10 = wallPaper3.flags;
+            tL_wallPaper2.creator = wallPaper3.creator;
+            tL_wallPaper2.dark = wallPaper3.dark;
+            tL_wallPaper2.isDefault = wallPaper3.isDefault;
+            tL_wallPaper2.slug = wallPaper3.slug;
+            tL_wallPaper2.access_hash = wallPaper3.access_hash;
+            tL_wallPaper2.stripedThumb = wallPaper3.stripedThumb;
+            tL_wallPaper2.settings = tL_wallPaper.settings;
+            tL_wallPaper2.flags = i10 | 4;
+            z10 = false;
+            if (userFull != null) {
+                userFull.wallpaper = tL_wallPaper2;
+                userFull.flags |= 16777216;
+                getMessagesStorage().j2(userFull, false);
+                hs.f(this.currentAccount).k(hs.E0, Long.valueOf(j10), userFull);
+            } else if (chatFull != null) {
+                chatFull.wallpaper = tL_wallPaper2;
+                chatFull.flags2 |= 128;
+                getMessagesStorage().N1(chatFull, false);
+                hs f10 = hs.f(this.currentAccount);
+                Boolean bool = Boolean.FALSE;
+                f10.k(hs.T, chatFull, 0, bool, bool);
+            }
+        } else {
+            tL_messages_setChatWallPaper.flags |= 1;
+            tL_messages_setChatWallPaper.wallpaper = hp.r1(b6Var);
+            z10 = true;
         }
-    }
-
-    private final void r() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.d4.r():void");
-    }
-
-    private final void s() {
-        Boolean bool;
-        u10 u10Var = (u10) this.f15295c;
-        long j10 = this.f15294b;
-        String str = (String) this.d;
-        synchronized (u10Var) {
-            u10Var.d.put(Long.valueOf(j10), str);
-            LongSparseArray longSparseArray = u10Var.f18349a;
-            bool = Boolean.TRUE;
-            longSparseArray.put(j10, bool);
-            u10Var.H();
-        }
-        at.f(u10Var.currentAccount).k(at.P1, Long.valueOf(j10), bool);
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.d4.run():void");
-    }
-
-    public d4(Object obj, Object obj2, long j10, int i10) {
-        this.f15293a = i10;
-        this.f15295c = obj;
-        this.d = obj2;
-        this.f15294b = j10;
+        tL_messages_setChatWallPaper.flags |= 4;
+        tL_messages_setChatWallPaper.settings = hp.g2(b6Var);
+        return ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_setChatWallPaper, new y3(this, j10, z10, str, y1Var));
     }
 }

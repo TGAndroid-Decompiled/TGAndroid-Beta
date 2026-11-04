@@ -1,16 +1,33 @@
 package org.telegram.messenger;
 
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-public final class v0 extends ConnectivityManager.NetworkCallback {
-    @Override
-    public final void onAvailable(Network network) {
-        w0.f18949r = -1;
+import android.content.SharedPreferences;
+import java.util.ArrayList;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+public abstract class v0 {
+    public static void a() {
+        t0.f25457b.getSharedPreferences("saved_tokens_login", 0).edit().clear().apply();
+        t0.f25457b.getSharedPreferences("saved_tokens", 0).edit().clear().apply();
     }
 
-    @Override
-    public final void onCapabilitiesChanged(Network network, NetworkCapabilities networkCapabilities) {
-        w0.f18949r = -1;
+    public static ArrayList b() {
+        SharedPreferences sharedPreferences = t0.f25457b.getSharedPreferences("saved_tokens_login", 0);
+        int i3 = sharedPreferences.getInt("count", 0);
+        if (i3 == 0) {
+            return null;
+        }
+        ArrayList arrayList = new ArrayList();
+        for (int i10 = 0; i10 < i3; i10++) {
+            try {
+                SerializedData serializedData = new SerializedData(Utilities.v(sharedPreferences.getString("log_in_token_" + i10, "")));
+                TLRPC.auth_Authorization TLdeserialize = TLRPC.auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
+                if (TLdeserialize instanceof TLRPC.TL_auth_authorization) {
+                    arrayList.add((TLRPC.TL_auth_authorization) TLdeserialize);
+                }
+            } catch (Exception e10) {
+                a8.g(e10, true);
+            }
+        }
+        return arrayList;
     }
 }

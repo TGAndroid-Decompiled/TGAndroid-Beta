@@ -1,15 +1,19 @@
 package t8;
 
-import java.util.Arrays;
-import java.util.List;
-public final class a {
-    public final int f48572a;
-    public final List f48573b;
-    public final List f48574c;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class a extends q6.a {
+    public static final Parcelable.Creator<a> CREATOR = new q8.i(14);
+    public int f54981a;
+    public String[] f54982b;
 
-    public a(int i10, c[] cVarArr, hb.a[] aVarArr) {
-        this.f48572a = i10;
-        this.f48573b = Arrays.asList(cVarArr);
-        this.f48574c = Arrays.asList(aVarArr);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        int i10 = this.f54981a;
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(i10);
+        j8.a.n(parcel, 3, this.f54982b);
+        j8.a.t(parcel, s6);
     }
 }

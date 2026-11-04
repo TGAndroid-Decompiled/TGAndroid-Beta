@@ -1,20 +1,29 @@
 package wd;
-public final class d extends ed.c {
-    public Object f52824a;
-    public int f52825b;
-    public final u9.b f52826c;
-    public u9.b d;
-    public c e;
+public final class d implements k {
+    public final c[] f57479a;
 
-    public d(u9.b bVar, ed.c cVar) {
-        super(cVar);
-        this.f52826c = bVar;
+    public d(c[] cVarArr) {
+        this.f57479a = cVarArr;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f52824a = obj;
-        this.f52825b |= Integer.MIN_VALUE;
-        return this.f52826c.p(null, this);
+    public final void a(Throwable th2) {
+        b();
+    }
+
+    public final void b() {
+        for (c cVar : this.f57479a) {
+            l0 l0Var = cVar.f57475f;
+            if (l0Var != null) {
+                l0Var.dispose();
+            } else {
+                kotlin.jvm.internal.j.h("handle");
+                throw null;
+            }
+        }
+    }
+
+    public final String toString() {
+        return "DisposeHandlersOnCancel[" + this.f57479a + ']';
     }
 }

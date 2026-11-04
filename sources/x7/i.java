@@ -1,79 +1,27 @@
 package x7;
 
 import java.util.Map;
-public final class i extends d {
-    public final Object f53204b;
-    public int f53205c;
-    public final j d;
+public final class i implements ma.d {
+    public static final i f58312b = new i(0);
+    public static final i f58313c = new i(1);
+    public final int f58314a;
 
-    public i(j jVar, int i10) {
-        super(0, false);
-        this.d = jVar;
-        Object[] objArr = jVar.f53216c;
-        objArr.getClass();
-        this.f53204b = objArr[i10];
-        this.f53205c = i10;
+    public i(int i3) {
+        this.f58314a = i3;
     }
 
-    public final void a() {
-        int i10 = this.f53205c;
-        Object obj = this.f53204b;
-        j jVar = this.d;
-        if (i10 != -1 && i10 < jVar.size()) {
-            int i11 = this.f53205c;
-            Object[] objArr = jVar.f53216c;
-            objArr.getClass();
-            if (w7.u8.a(obj, objArr[i11])) {
+    @Override
+    public final void a(Object obj, Object obj2) {
+        switch (this.f58314a) {
+            case 0:
+                Map.Entry entry = (Map.Entry) obj;
+                ma.e eVar = (ma.e) obj2;
+                eVar.a(j.f58327g, entry.getKey());
+                eVar.a(j.h, entry.getValue());
                 return;
-            }
+            default:
+                ma.e eVar2 = (ma.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
         }
-        Object obj2 = j.f53213s;
-        this.f53205c = jVar.e(obj);
-    }
-
-    @Override
-    public final Object getKey() {
-        return this.f53204b;
-    }
-
-    @Override
-    public final Object getValue() {
-        j jVar = this.d;
-        Map a2 = jVar.a();
-        if (a2 != null) {
-            return a2.get(this.f53204b);
-        }
-        a();
-        int i10 = this.f53205c;
-        if (i10 == -1) {
-            return null;
-        }
-        Object[] objArr = jVar.d;
-        objArr.getClass();
-        return objArr[i10];
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        j jVar = this.d;
-        Map a2 = jVar.a();
-        Object obj2 = this.f53204b;
-        if (a2 != null) {
-            return a2.put(obj2, obj);
-        }
-        a();
-        int i10 = this.f53205c;
-        if (i10 == -1) {
-            jVar.put(obj2, obj);
-            return null;
-        }
-        Object[] objArr = jVar.d;
-        objArr.getClass();
-        Object obj3 = objArr[i10];
-        int i11 = this.f53205c;
-        Object[] objArr2 = jVar.d;
-        objArr2.getClass();
-        objArr2[i11] = obj;
-        return obj3;
     }
 }

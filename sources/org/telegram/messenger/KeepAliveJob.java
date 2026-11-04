@@ -4,25 +4,25 @@ import android.content.Intent;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.support.JobIntentService;
 public class KeepAliveJob extends JobIntentService {
-    public static volatile CountDownLatch f14427a;
-    public static volatile boolean f14428b;
-    public static final Object f14429c = new Object();
-    public static final ag.f3 d = new ag.f3(16);
+    public static volatile CountDownLatch f21288a;
+    public static volatile boolean f21289b;
+    public static final Object f21290c = new Object();
+    public static final ai.y1 d = new ai.y1(29);
 
     public static void a() {
-        synchronized (f14429c) {
+        synchronized (f21290c) {
             try {
-                if (f14427a != null) {
-                    if (v2.f18578a) {
-                        f8.b("finish keep-alive job");
+                if (f21288a != null) {
+                    if (r2.f25040a) {
+                        a8.b("finish keep-alive job");
                     }
-                    f14427a.countDown();
+                    f21288a.countDown();
                 }
-                if (f14428b) {
-                    if (v2.f18578a) {
-                        f8.b("finish queued keep-alive job");
+                if (f21289b) {
+                    if (r2.f25040a) {
+                        a8.b("finish queued keep-alive job");
                     }
-                    f14428b = false;
+                    f21289b = false;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -32,26 +32,26 @@ public class KeepAliveJob extends JobIntentService {
 
     @Override
     public final void onHandleWork(Intent intent) {
-        synchronized (f14429c) {
+        synchronized (f21290c) {
             try {
-                if (!f14428b) {
+                if (!f21289b) {
                     return;
                 }
-                f14427a = new CountDownLatch(1);
-                if (v2.f18578a) {
-                    f8.b("started keep-alive job");
+                f21288a = new CountDownLatch(1);
+                if (r2.f25040a) {
+                    a8.b("started keep-alive job");
                 }
-                Utilities.e.d(d, 60000L);
+                Utilities.f21387e.e(d, 60000L);
                 try {
-                    f14427a.await();
+                    f21288a.await();
                 } catch (Throwable unused) {
                 }
-                Utilities.e.a(d);
-                synchronized (f14429c) {
-                    f14427a = null;
+                Utilities.f21387e.a(d);
+                synchronized (f21290c) {
+                    f21288a = null;
                 }
-                if (v2.f18578a) {
-                    f8.b("ended keep-alive job");
+                if (r2.f25040a) {
+                    a8.b("ended keep-alive job");
                 }
             } catch (Throwable th2) {
                 throw th2;

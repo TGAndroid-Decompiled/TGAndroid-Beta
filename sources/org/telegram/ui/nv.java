@@ -1,36 +1,29 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class nv implements DialogInterface.OnDismissListener {
-    public final int f39975a;
-    public final zx f39976b;
-
-    public nv(zx zxVar, int i10) {
-        this.f39975a = i10;
-        this.f39976b = zxVar;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+public final class nv extends org.telegram.ui.Components.w9 {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f39975a) {
-            case 0:
-                zx zxVar = this.f39976b;
-                if (zxVar.R3 != null) {
-                    zxVar.getMessagesController().h4(0L, zxVar.R3);
-                    zxVar.R3 = null;
-                    zxVar.X4();
-                    return;
-                }
-                return;
-            case 1:
-                this.f39976b.n4(true);
-                return;
-            case 2:
-                this.f39976b.n4(true);
-                return;
-            default:
-                zx.l0(this.f39976b);
-                return;
-        }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final int z1() {
+        return org.telegram.messenger.g0.L(48.0f);
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
     }
 }

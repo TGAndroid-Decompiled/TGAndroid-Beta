@@ -1,27 +1,22 @@
 package org.telegram.ui.ActionBar;
+public final class m4 {
+    public static final m4 f28340a;
+    public static final m4 f28341b;
+    public static final m4[] f28342c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.at;
-import org.telegram.messenger.e20;
-public final class m4 extends AnimatorListenerAdapter {
-    public final int f20586a;
-    public final q4 f20587b;
-
-    public m4(q4 q4Var, int i10) {
-        this.f20586a = i10;
-        this.f20587b = q4Var;
+    static {
+        ?? r02 = new Enum("BACK", 0);
+        f28340a = r02;
+        ?? r12 = new Enum("MENU", 1);
+        f28341b = r12;
+        f28342c = new m4[]{r02, r12};
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f20586a) {
-            case 0:
-                at.f(e20.f15506s0).d(new lg.s(this, 26));
-                return;
-            default:
-                at.f(e20.f15506s0).d(new lg.s(this, 27));
-                return;
-        }
+    public static m4 valueOf(String str) {
+        return (m4) Enum.valueOf(m4.class, str);
+    }
+
+    public static m4[] values() {
+        return (m4[]) f28342c.clone();
     }
 }

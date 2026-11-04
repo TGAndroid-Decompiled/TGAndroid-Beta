@@ -1,5 +1,41 @@
 package y7;
+public final class a implements d {
+    public final int f59039a;
 
-import q5.d;
-public final class a extends d {
+    public a(int i3) {
+        this.f59039a = i3;
+    }
+
+    @Override
+    public final Class annotationType() {
+        return d.class;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof d) {
+                if (this.f59039a == ((a) ((d) obj)).f59039a) {
+                    Object obj2 = c.f59056a;
+                    if (obj2.equals(obj2)) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int hashCode() {
+        return (this.f59039a ^ 14552422) + (c.f59056a.hashCode() ^ 2041407134);
+    }
+
+    @Override
+    public final String toString() {
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f59039a + "intEncoding=" + c.f59056a + ')';
+    }
 }

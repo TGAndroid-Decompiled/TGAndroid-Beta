@@ -1,59 +1,59 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.k20;
-import org.telegram.messenger.r20;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.y01;
+import org.telegram.ui.ma1;
 public final class o implements Runnable {
-    public final int f34961a;
-    public final k0 f34962b;
-    public final String f34963c;
-    public final r20 d;
-    public final TL_wallet.nftItem e;
-    public final String f34964f;
+    public final int f42971a;
+    public final k0 f42972b;
+    public final String f42973c;
+    public final u10 d;
+    public final TL_wallet.nftItem f42974e;
+    public final String f42975f;
     public final String h;
-    public final byte[] f34965n;
-    public final long f34966r;
-    public final d2 f34967s;
-    public final TLRPC.User f34968w;
-    public final String f34969x;
-    public final r20 f34970y;
+    public final byte[] f42976n;
+    public final long f42977r;
+    public final b2 f42978s;
+    public final TLRPC.User f42979w;
+    public final String f42980x;
+    public final u10 f42981y;
 
-    public o(k0 k0Var, String str, r20 r20Var, TL_wallet.nftItem nftitem, String str2, String str3, byte[] bArr, long j10, d2 d2Var, TLRPC.User user, String str4, r20 r20Var2, int i10) {
-        this.f34961a = i10;
-        this.f34962b = k0Var;
-        this.f34963c = str;
-        this.d = r20Var;
-        this.e = nftitem;
-        this.f34964f = str2;
+    public o(k0 k0Var, String str, u10 u10Var, TL_wallet.nftItem nftitem, String str2, String str3, byte[] bArr, long j10, b2 b2Var, TLRPC.User user, String str4, u10 u10Var2, int i3) {
+        this.f42971a = i3;
+        this.f42972b = k0Var;
+        this.f42973c = str;
+        this.d = u10Var;
+        this.f42974e = nftitem;
+        this.f42975f = str2;
         this.h = str3;
-        this.f34965n = bArr;
-        this.f34966r = j10;
-        this.f34967s = d2Var;
-        this.f34968w = user;
-        this.f34969x = str4;
-        this.f34970y = r20Var2;
+        this.f42976n = bArr;
+        this.f42977r = j10;
+        this.f42978s = b2Var;
+        this.f42979w = user;
+        this.f42980x = str4;
+        this.f42981y = u10Var2;
     }
 
     @Override
     public final void run() {
-        switch (this.f34961a) {
+        switch (this.f42971a) {
             case 0:
-                k0 k0Var = this.f34962b;
-                String str = this.f34963c;
-                r20 r20Var = this.d;
-                o oVar = new o(k0Var, str, r20Var, this.e, this.f34964f, this.h, this.f34965n, this.f34966r, this.f34967s, this.f34968w, this.f34969x, this.f34970y, 1);
+                k0 k0Var = this.f42972b;
+                String str = this.f42973c;
+                u10 u10Var = this.d;
+                o oVar = new o(k0Var, str, u10Var, this.f42974e, this.f42975f, this.h, this.f42976n, this.f42977r, this.f42978s, this.f42979w, this.f42980x, this.f42981y, 1);
                 if (k0Var.K() && !k0Var.J()) {
                     k0.H("send " + str + ": asking passcode");
-                    org.telegram.ui.ActionBar.k2 T = LaunchActivity.T();
+                    org.telegram.ui.ActionBar.d2 T = LaunchActivity.T();
                     if (T != 0) {
                         ?? obj = new Object();
-                        obj.f20390a = true;
+                        obj.f27395a = true;
                         boolean[] zArr = {false};
-                        x xVar = new x(zArr, r20Var);
-                        xVar.V = new y01(26, zArr, oVar);
+                        x xVar = new x(zArr, u10Var);
+                        xVar.W = new ma1(7, zArr, oVar);
                         T.showAsSheet(xVar, obj);
                         return;
                     }
@@ -63,22 +63,22 @@ public final class o implements Runnable {
                 return;
             default:
                 StringBuilder sb2 = new StringBuilder("send ");
-                final String str2 = this.f34963c;
+                final String str2 = this.f42973c;
                 sb2.append(str2);
                 sb2.append(": ready, get secret phrase");
                 k0.H(sb2.toString());
-                final k0 k0Var2 = this.f34962b;
-                final r20 r20Var2 = this.d;
-                final TL_wallet.nftItem nftitem = this.e;
-                final String str3 = this.f34964f;
+                final k0 k0Var2 = this.f42972b;
+                final u10 u10Var2 = this.d;
+                final TL_wallet.nftItem nftitem = this.f42974e;
+                final String str3 = this.f42975f;
                 final String str4 = this.h;
-                final byte[] bArr = this.f34965n;
-                final long j10 = this.f34966r;
-                final d2 d2Var = this.f34967s;
-                final TLRPC.User user = this.f34968w;
-                final String str5 = this.f34969x;
-                final r20 r20Var3 = this.f34970y;
-                k0Var2.z(new k20() {
+                final byte[] bArr = this.f42976n;
+                final long j10 = this.f42977r;
+                final b2 b2Var = this.f42978s;
+                final TLRPC.User user = this.f42979w;
+                final String str5 = this.f42980x;
+                final u10 u10Var3 = this.f42981y;
+                k0Var2.z(new n10() {
                     @Override
                     public final void a(java.lang.Object r29, java.lang.Object r30) {
                         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.r.a(java.lang.Object, java.lang.Object):void");

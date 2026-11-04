@@ -1,257 +1,37 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import java.util.HashSet;
-import org.telegram.messenger.f8;
-import org.telegram.ui.Components.a80;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.xt;
-public final class t1 extends LinearLayout implements k6 {
-    public boolean f20859a;
-    public final org.telegram.ui.Components.t5 f20860b;
-    public final Paint f20861c;
-    public final x1 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.content.DialogInterface;
+public final class t1 extends AnimatorListenerAdapter {
+    public final int f28580a;
+    public final v1 f28581b;
 
-    public t1(x1 x1Var, Context context) {
-        super(context);
-        this.d = x1Var;
-        ?? obj = new Object();
-        obj.f30531f = 0L;
-        obj.f30532g = 200L;
-        obj.h = gr.f26523f;
-        obj.f30528a = this;
-        obj.d = 0.0f;
-        obj.f30530c = 0.0f;
-        obj.e = false;
-        this.f20860b = obj;
-        this.f20861c = new Paint(1);
+    public t1(v1 v1Var, int i3) {
+        this.f28580a = i3;
+        this.f28581b = v1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        x1 x1Var = this.d;
-        Drawable drawable = x1Var.B0;
-        if (x1Var.f21493k0 && !x1Var.V0) {
-            drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            View view = x1Var.V;
-            if (view != null && x1Var.f21495l0) {
-                int bottom = view.getBottom();
-                canvas.save();
-                canvas.clipRect(0, bottom, getMeasuredWidth(), getMeasuredHeight());
-                drawable.draw(canvas);
-                canvas.restore();
-            } else {
-                drawable.draw(canvas);
-            }
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float L;
-        float f7;
-        x1 x1Var = this.d;
-        if (x1Var.V0) {
-            if (x1Var.f21483f0 == 3 && x1Var.f21501r != null) {
-                L = org.telegram.messenger.i0.L(18.0f);
-                float scaleX = x1Var.f21501r.getScaleX() * x1Var.f21501r.getWidth();
-                float scaleY = x1Var.f21501r.getScaleY() * x1Var.f21501r.getHeight();
-                org.telegram.messenger.i0.P.set((getWidth() - scaleX) / 2.0f, (getHeight() - scaleY) / 2.0f, (getWidth() + scaleX) / 2.0f, (getHeight() + scaleY) / 2.0f);
-            } else {
-                L = org.telegram.messenger.i0.L(20.0f);
-                org.telegram.messenger.i0.P.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
-            }
-            if (x1Var.H0 != null) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            float e = this.f20860b.e(false, f7);
-            Paint paint = x1Var.H0;
-            if (paint != null) {
-                paint.setAlpha((int) (e * 255.0f));
-                canvas.drawRoundRect(org.telegram.messenger.i0.P, L, L, x1Var.H0);
-            }
-            if (x1Var.I0 == null) {
-                Paint paint2 = new Paint(1);
-                x1Var.I0 = paint2;
-                paint2.setColor(i0.b.o(-16777216, (int) (x1Var.S0 * 255.0f)));
-            }
-            RectF rectF = org.telegram.messenger.i0.P;
-            canvas.drawRoundRect(rectF, L, L, x1Var.I0);
-            int i10 = x1Var.W0;
-            Paint paint3 = this.f20861c;
-            paint3.setColor(i10);
-            paint3.setAlpha((int) ((((x1Var.D0 - 1.0f) * e) + 1.0f) * paint3.getAlpha()));
-            canvas.drawRoundRect(rectF, L, L, paint3);
-        }
-        super.draw(canvas);
-    }
-
-    @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        x1 x1Var = this.d;
-        if (x1Var.H) {
-            x1Var.q();
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        x1 x1Var = this.d;
-        int[] iArr = x1Var.f21514z0;
-        if (x1Var.f21483f0 == 3) {
-            int measuredWidth = ((i12 - i10) - x1Var.f21501r.getMeasuredWidth()) / 2;
-            int measuredHeight = ((i13 - i11) - x1Var.f21501r.getMeasuredHeight()) / 2;
-            FrameLayout frameLayout = x1Var.f21501r;
-            frameLayout.layout(measuredWidth, measuredHeight, frameLayout.getMeasuredWidth() + measuredWidth, x1Var.f21501r.getMeasuredHeight() + measuredHeight);
-        } else {
-            p1 p1Var = x1Var.f21508w;
-            if (p1Var != null) {
-                if (x1Var.f21512y == null) {
-                    x1Var.f21512y = new ViewTreeObserver.OnScrollChangedListener() {
-                        @Override
-                        public final void onScrollChanged() {
-                            boolean z11;
-                            x1 x1Var2 = t1.this.d;
-                            boolean z12 = false;
-                            if (x1Var2.f21482f != null && x1Var2.f21508w.getScrollY() > x1Var2.f21510x.getTop()) {
-                                z11 = true;
-                            } else {
-                                z11 = false;
-                            }
-                            x1.a(x1Var2, 0, z11);
-                            if (x1Var2.f21507v0 != null) {
-                                if (x1Var2.f21508w.getHeight() + x1Var2.f21508w.getScrollY() < x1Var2.f21510x.getBottom()) {
-                                    z12 = true;
-                                }
-                            }
-                            x1.a(x1Var2, 1, z12);
-                            x1Var2.f21508w.invalidate();
-                        }
-                    };
-                    p1Var.getViewTreeObserver().addOnScrollChangedListener(x1Var.f21512y);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f28580a) {
+            case 0:
+                v1 v1Var = this.f28581b;
+                DialogInterface.OnShowListener onShowListener = v1Var.f28736s1;
+                if (onShowListener != null) {
+                    onShowListener.onShow(v1Var);
+                    return;
                 }
-                x1Var.f21512y.onScrollChanged();
-            }
-        }
-        getLocationOnScreen(iArr);
-        Matrix matrix = x1Var.F0;
-        if (matrix != null && x1Var.G0 != null) {
-            matrix.reset();
-            x1Var.F0.postScale(8.0f, 8.0f);
-            x1Var.F0.postTranslate(-iArr[0], -iArr[1]);
-            x1Var.G0.setLocalMatrix(x1Var.F0);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.t1.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        x1 x1Var = this.d;
-        if (x1Var.H) {
-            x1Var.q();
-            return false;
-        }
-        super.onTouchEvent(motionEvent);
-        return true;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f20859a) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void updateColors() {
-        int i10;
-        int f7;
-        int f10;
-        x1 x1Var = this.d;
-        try {
-            x1Var.s();
-            int i11 = x1Var.f21479d1;
-            if (i11 >= 0 && (f10 = x1Var.f(i11)) != x1Var.W0) {
-                x1Var.W0 = f10;
-                Drawable drawable = x1Var.B0;
-                if (drawable != null) {
-                    drawable.setColorFilter(new PorterDuffColorFilter(x1Var.W0, PorterDuff.Mode.MULTIPLY));
+                return;
+            default:
+                v1 v1Var2 = this.f28581b;
+                v1Var2.u().removeView(v1Var2.f28733p1);
+                DialogInterface.OnDismissListener onDismissListener = v1Var2.f28737t1;
+                if (onDismissListener != null) {
+                    onDismissListener.onDismiss(v1Var2);
+                    return;
                 }
-                FrameLayout frameLayout = x1Var.f21501r;
-                if (frameLayout != null && (frameLayout.getBackground() instanceof ShapeDrawable)) {
-                    t6.C1(x1Var.W0, x1Var.f21501r.getBackground());
-                }
-                t1 t1Var = x1Var.f21477c1;
-                if (t1Var != null) {
-                    t1Var.invalidate();
-                }
-            }
-            a80 a80Var = x1Var.f21509w0;
-            if (a80Var != null) {
-                a80Var.setProgressColor(x1Var.f(t6.F5));
-                x1Var.f21509w0.setBackColor(x1Var.f(t6.G5));
-                x1Var.f21509w0.invalidate();
-            }
-            if (x1Var.f21508w != null && (f7 = x1Var.f(t6.A5)) != x1Var.f21484f1) {
-                x1Var.f21484f1 = f7;
-                org.telegram.messenger.i0.y3(x1Var.f21508w, f7);
-            }
-            if (!x1Var.f21490i1) {
-                nh.p pVar = x1Var.f21482f;
-                if (pVar != null && pVar.getCurrentTextColor() == x1Var.f21486g1) {
-                    nh.p pVar2 = x1Var.f21482f;
-                    int f11 = x1Var.f(t6.f21038j5);
-                    x1Var.f21486g1 = f11;
-                    pVar2.setTextColor(f11);
-                }
-                xt xtVar = x1Var.f21496n;
-                if (xtVar != null && xtVar.getCurrentTextColor() == x1Var.f21488h1) {
-                    xt xtVar2 = x1Var.f21496n;
-                    if (x1Var.W) {
-                        i10 = t6.f21312y6;
-                    } else {
-                        i10 = t6.f21038j5;
-                    }
-                    int f12 = x1Var.f(i10);
-                    x1Var.f21488h1 = f12;
-                    xtVar2.setTextColor(f12);
-                }
-            }
-        } catch (Exception e) {
-            f8.g(e, true);
+                return;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

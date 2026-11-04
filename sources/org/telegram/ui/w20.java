@@ -1,16 +1,29 @@
 package org.telegram.ui;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class w20 extends s4.m0 {
+import android.content.DialogInterface;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class w20 implements DialogInterface.OnShowListener {
+    public final int f50679a;
+    public final org.telegram.ui.ActionBar.s1 f50680b;
+    public final EditTextBoldCursor f50681c;
+    public final Object d;
+
+    public w20(Object obj, org.telegram.ui.ActionBar.s1 s1Var, EditTextBoldCursor editTextBoldCursor, int i3) {
+        this.f50679a = i3;
+        this.d = obj;
+        this.f50680b = s1Var;
+        this.f50681c = editTextBoldCursor;
+    }
+
     @Override
-    public final void c(Rect rect, View view, RecyclerView recyclerView, s4.z0 z0Var) {
-        RecyclerView.R(view);
-        if (!a50.f35575w5) {
-            rect.set(org.telegram.messenger.i0.L(4.0f), 0, org.telegram.messenger.i0.L(4.0f), 0);
-        } else {
-            rect.set(0, org.telegram.messenger.i0.L(4.0f), 0, org.telegram.messenger.i0.L(4.0f));
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f50679a) {
+            case 0:
+                ((c30) this.d).f44213b.u1(null, this.f50680b, this.f50681c, true);
+                return;
+            default:
+                ((x20) this.d).f51696p1.f44213b.u1(null, this.f50680b, this.f50681c, true);
+                return;
         }
     }
 }

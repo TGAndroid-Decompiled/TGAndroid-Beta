@@ -1,9 +1,63 @@
 package x7;
-public final class z6 {
-    public Long f53439a;
-    public Long f53440b;
-    public Long f53441c;
-    public Long d;
-    public Long e;
-    public Long f53442f;
+
+import java.util.ArrayDeque;
+import java.util.Arrays;
+public abstract class z6 {
+    public static byte[] a(ArrayDeque arrayDeque, int i3) {
+        if (arrayDeque.isEmpty()) {
+            return new byte[0];
+        }
+        byte[] bArr = (byte[]) arrayDeque.remove();
+        if (bArr.length == i3) {
+            return bArr;
+        }
+        int length = i3 - bArr.length;
+        byte[] copyOf = Arrays.copyOf(bArr, i3);
+        while (length > 0) {
+            byte[] bArr2 = (byte[]) arrayDeque.remove();
+            int min = Math.min(length, bArr2.length);
+            System.arraycopy(bArr2, 0, copyOf, i3 - length, min);
+            length -= min;
+        }
+        return copyOf;
+    }
+
+    public static byte[] b(rf.a aVar) {
+        int i3;
+        ArrayDeque arrayDeque = new ArrayDeque(20);
+        int min = Math.min(8192, Math.max(128, Integer.highestOneBit(0) * 2));
+        int i10 = 0;
+        while (i10 < 2147483639) {
+            int min2 = Math.min(min, 2147483639 - i10);
+            byte[] bArr = new byte[min2];
+            arrayDeque.add(bArr);
+            int i11 = 0;
+            while (i11 < min2) {
+                int read = aVar.read(bArr, i11, min2 - i11);
+                if (read == -1) {
+                    return a(arrayDeque, i10);
+                }
+                i11 += read;
+                i10 += read;
+            }
+            long j10 = min;
+            if (min < 4096) {
+                i3 = 4;
+            } else {
+                i3 = 2;
+            }
+            long j11 = j10 * i3;
+            if (j11 > 2147483647L) {
+                min = Integer.MAX_VALUE;
+            } else if (j11 < -2147483648L) {
+                min = Integer.MIN_VALUE;
+            } else {
+                min = (int) j11;
+            }
+        }
+        if (aVar.read() == -1) {
+            return a(arrayDeque, 2147483639);
+        }
+        throw new OutOfMemoryError("input is too large to fit in a byte array");
+    }
 }

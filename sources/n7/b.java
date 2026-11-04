@@ -1,29 +1,43 @@
 package n7;
-public final class b extends d {
-    public static final b f13660a = new Object();
 
+import android.os.IBinder;
+import android.os.IInterface;
+import p6.h;
+public final class b extends h {
     @Override
-    public final Object a() {
-        throw new IllegalStateException("Optional.get() cannot be called on an absent value");
+    public final int d() {
+        return 261200000;
     }
 
     @Override
-    public final boolean b() {
-        return false;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+    public final IInterface g(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
         }
-        return false;
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cloudmessaging.internal.ICloudMessagingService");
+        if (queryLocalInterface instanceof c) {
+            return (c) queryLocalInterface;
+        }
+        return new c(iBinder);
     }
 
-    public final int hashCode() {
-        return 2040732332;
+    @Override
+    public final m6.c[] i() {
+        return l6.h.f18074b;
     }
 
-    public final String toString() {
-        return "Optional.absent()";
+    @Override
+    public final String n() {
+        return "com.google.android.gms.cloudmessaging.internal.ICloudMessagingService";
+    }
+
+    @Override
+    public final String o() {
+        return "com.google.android.gms.cloudmessaging.service.START";
+    }
+
+    @Override
+    public final boolean w() {
+        return true;
     }
 }

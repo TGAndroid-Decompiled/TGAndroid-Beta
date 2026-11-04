@@ -1,143 +1,34 @@
 package yg;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.i0;
-import org.telegram.messenger.w0;
-import org.telegram.ui.ActionBar.t6;
-import rf.o;
-public final class c extends Drawable {
-    public final int f54454a;
-    public final Drawable f54455b;
-    public int f54456c;
-    public int d;
+import org.telegram.ui.Cells.f1;
+import org.telegram.ui.na1;
+import org.telegram.ui.uw;
+import xg.b0;
+public final class c implements Runnable {
+    public final int f59438a;
+    public final e f59439b;
 
-    public c() {
-        this.f54454a = 1;
-        this.d = 255;
-        this.f54455b = i0.a.f(w0.f18945b, 2131232694);
+    public c(e eVar, int i3) {
+        this.f59438a = i3;
+        this.f59439b = eVar;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f54454a) {
+    public final void run() {
+        switch (this.f59438a) {
             case 0:
-                this.f54455b.draw(canvas);
+                this.f59439b.E();
                 return;
             default:
-                float exactCenterX = getBounds().exactCenterX();
-                float exactCenterY = getBounds().exactCenterY();
-                int x02 = t6.x0(null, t6.G6, false);
-                int x03 = t6.x0(null, t6.f20930d6, false);
-                int i10 = this.f54456c;
-                Drawable drawable = this.f54455b;
-                if (i10 != x03) {
-                    this.f54456c = x03;
-                    drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
-                }
-                canvas.drawCircle(exactCenterX, exactCenterY, i0.L(7.6666665f), t6.n0(i0.b.o(x03, this.d)));
-                canvas.drawCircle(exactCenterX, exactCenterY, i0.L(6.6666665f), t6.n0(i0.b.o(x02, this.d)));
-                o.d(drawable, exactCenterX, exactCenterY, 17);
-                canvas.translate(0.0f, i0.L(0.66f));
-                canvas.save();
-                canvas.rotate(90.0f, exactCenterX, exactCenterY);
-                o.b(canvas, drawable, 0.8f);
-                canvas.restore();
+                StringBuilder sb2 = new StringBuilder("https://t.me/giftcode/");
+                e eVar = this.f59439b;
+                sb2.append(eVar.h);
+                String sb3 = sb2.toString();
+                uw uwVar = new uw(f1.l(3, "onlySelect", "dialogsType", true));
+                uwVar.D2 = new na1(27, eVar, sb3);
+                eVar.f59444e.presentFragment(uwVar);
+                ((b0) eVar).f58656r.dismiss();
                 return;
         }
-    }
-
-    @Override
-    public final int getAlpha() {
-        switch (this.f54454a) {
-            case 0:
-                return this.f54455b.getAlpha();
-            default:
-                return this.d;
-        }
-    }
-
-    @Override
-    public int getIntrinsicHeight() {
-        switch (this.f54454a) {
-            case 1:
-                return i0.L(13.333333f);
-            default:
-                return super.getIntrinsicHeight();
-        }
-    }
-
-    @Override
-    public int getIntrinsicWidth() {
-        switch (this.f54454a) {
-            case 1:
-                return i0.L(13.333333f);
-            default:
-                return super.getIntrinsicWidth();
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f54454a) {
-            case 0:
-                return this.f54455b.getOpacity();
-            default:
-                return -3;
-        }
-    }
-
-    @Override
-    public void onBoundsChange(Rect rect) {
-        switch (this.f54454a) {
-            case 0:
-                super.onBoundsChange(rect);
-                int width = rect.width();
-                int i10 = this.f54456c;
-                int i11 = (width - i10) / 2;
-                int height = rect.height();
-                int i12 = this.d;
-                int i13 = (height - i12) / 2;
-                this.f54455b.setBounds(i11, i13, i10 + i11, i12 + i13);
-                return;
-            default:
-                super.onBoundsChange(rect);
-                return;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f54454a) {
-            case 0:
-                this.f54455b.setAlpha(i10);
-                return;
-            default:
-                this.d = i10;
-                this.f54455b.setAlpha(i10);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f54454a;
-    }
-
-    public c(int i10, int i11, Drawable drawable) {
-        this.f54454a = 0;
-        this.f54456c = i10;
-        this.d = i11;
-        this.f54455b = drawable;
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
     }
 }

@@ -1,3 +1,5 @@
 package z7;
-public abstract class ka {
+
+import android.os.IInterface;
+public interface ka extends IInterface {
 }

@@ -1,72 +1,58 @@
 package p4;
 
-import android.content.IntentFilter;
+import android.content.Context;
+import android.media.session.MediaSession;
 import android.os.Bundle;
-import android.os.Parcelable;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class l {
-    public final Bundle f44777a;
-    public final ArrayList f44778b;
-    public final ArrayList f44779c;
-    public final HashSet d;
+import android.os.RemoteCallbackList;
+import java.util.List;
+public class l {
+    public final MediaSession f53164a;
+    public final k f53165b;
+    public final p f53166c;
+    public final Bundle f53167e;
+    public w f53169g;
+    public List h;
+    public i f53170i;
+    public int f53171j;
+    public int f53172k;
+    public android.support.v4.media.session.s f53173l;
+    public r f53174m;
+    public final Object d = new Object();
+    public final RemoteCallbackList f53168f = new RemoteCallbackList();
 
-    public l(String str, String str2) {
-        this.f44778b = new ArrayList();
-        this.f44779c = new ArrayList();
-        this.d = new HashSet();
-        Bundle bundle = new Bundle();
-        this.f44777a = bundle;
-        if (str != null) {
-            bundle.putString("id", str);
-            if (str2 != null) {
-                bundle.putString("name", str2);
-                return;
-            }
-            throw new NullPointerException("name must not be null");
+    public l(Context context, String str, Bundle bundle) {
+        MediaSession a10 = a(context, str, bundle);
+        this.f53164a = a10;
+        k kVar = new k(this);
+        this.f53165b = kVar;
+        this.f53166c = new p(a10.getSessionToken(), kVar);
+        this.f53167e = bundle;
+        a10.setFlags(3);
+    }
+
+    public MediaSession a(Context context, String str, Bundle bundle) {
+        return new MediaSession(context, str);
+    }
+
+    public final android.support.v4.media.session.s b() {
+        android.support.v4.media.session.s sVar;
+        synchronized (this.d) {
+            sVar = this.f53173l;
         }
-        throw new NullPointerException("id must not be null");
+        return sVar;
     }
 
-    public final void a(ArrayList arrayList) {
-        if (arrayList != null) {
-            if (!arrayList.isEmpty()) {
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    IntentFilter intentFilter = (IntentFilter) obj;
-                    if (intentFilter != null) {
-                        ArrayList arrayList2 = this.f44779c;
-                        if (!arrayList2.contains(intentFilter)) {
-                            arrayList2.add(intentFilter);
-                        }
-                    }
-                }
-                return;
-            }
-            return;
+    public r c() {
+        r rVar;
+        synchronized (this.d) {
+            rVar = this.f53174m;
         }
-        throw new IllegalArgumentException("filters must not be null");
+        return rVar;
     }
 
-    public final m b() {
-        ArrayList<? extends Parcelable> arrayList = new ArrayList<>(this.f44779c);
-        Bundle bundle = this.f44777a;
-        bundle.putParcelableArrayList("controlFilters", arrayList);
-        bundle.putStringArrayList("groupMemberIds", new ArrayList<>(this.f44778b));
-        bundle.putStringArrayList("allowedPackages", new ArrayList<>(this.d));
-        return new m(bundle);
-    }
-
-    public l(m mVar) {
-        this.f44778b = new ArrayList();
-        this.f44779c = new ArrayList();
-        this.d = new HashSet();
-        this.f44777a = new Bundle(mVar.f44780a);
-        this.f44778b = mVar.c();
-        this.f44779c = mVar.b();
-        this.d = mVar.a();
+    public void d(r rVar) {
+        synchronized (this.d) {
+            this.f53174m = rVar;
+        }
     }
 }

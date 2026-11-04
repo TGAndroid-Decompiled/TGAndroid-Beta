@@ -1,46 +1,79 @@
 package e0;
 
 import android.app.Notification;
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Build;
-import androidx.core.graphics.drawable.IconCompat;
-public final class l extends z {
-    public IconCompat e;
-    public IconCompat f6043f;
-    public boolean f6044g;
+import java.util.ArrayList;
+public final class l extends y {
+    public final int f9269e;
+    public Object f9270f;
+
+    public l(boolean z10) {
+        this.f9269e = 0;
+    }
 
     @Override
-    public final void b(cc.f fVar) {
-        Context context = (Context) fVar.f4117c;
-        Notification.BigPictureStyle bigContentTitle = new Notification.BigPictureStyle((Notification.Builder) fVar.d).setBigContentTitle(this.f6087b);
-        IconCompat iconCompat = this.e;
-        if (iconCompat != null) {
-            if (Build.VERSION.SDK_INT >= 31) {
-                k.a(bigContentTitle, iconCompat.m(context));
-            } else if (iconCompat.i() == 1) {
-                bigContentTitle = bigContentTitle.bigPicture(this.e.f());
-            }
-        }
-        if (this.f6044g) {
-            IconCompat iconCompat2 = this.f6043f;
-            if (iconCompat2 == null) {
-                bigContentTitle.bigLargeIcon((Bitmap) null);
-            } else {
-                j.a(bigContentTitle, iconCompat2.m(context));
-            }
-        }
-        if (this.d) {
-            bigContentTitle.setSummaryText(this.f6088c);
-        }
-        if (Build.VERSION.SDK_INT >= 31) {
-            k.c(bigContentTitle, false);
-            k.b(bigContentTitle, null);
+    public final void b(e0 e0Var) {
+        switch (this.f9269e) {
+            case 0:
+                Notification.BigTextStyle bigText = new Notification.BigTextStyle((Notification.Builder) e0Var.d).setBigContentTitle(this.f9311b).bigText((CharSequence) this.f9270f);
+                if (this.d) {
+                    bigText.setSummaryText(this.f9312c);
+                    return;
+                }
+                return;
+            default:
+                Notification.InboxStyle bigContentTitle = new Notification.InboxStyle((Notification.Builder) e0Var.d).setBigContentTitle(this.f9311b);
+                if (this.d) {
+                    bigContentTitle.setSummaryText(this.f9312c);
+                }
+                ArrayList arrayList = (ArrayList) this.f9270f;
+                int size = arrayList.size();
+                int i3 = 0;
+                while (i3 < size) {
+                    Object obj = arrayList.get(i3);
+                    i3++;
+                    bigContentTitle.addLine((CharSequence) obj);
+                }
+                return;
         }
     }
 
     @Override
     public final String c() {
-        return "androidx.core.app.NotificationCompat$BigPictureStyle";
+        switch (this.f9269e) {
+            case 0:
+                return "androidx.core.app.NotificationCompat$BigTextStyle";
+            default:
+                return "androidx.core.app.NotificationCompat$InboxStyle";
+        }
+    }
+
+    public void d(String str) {
+        if (str != null) {
+            ((ArrayList) this.f9270f).add(q.d(str));
+        }
+    }
+
+    public void e(String str) {
+        this.f9270f = q.d(str);
+    }
+
+    public void f(String str) {
+        this.f9311b = q.d(str);
+    }
+
+    public void g(String str) {
+        this.f9312c = q.d(str);
+        this.d = true;
+    }
+
+    public l(int i3) {
+        this.f9269e = i3;
+        switch (i3) {
+            case 1:
+                this.f9270f = new ArrayList();
+                return;
+            default:
+                return;
+        }
     }
 }

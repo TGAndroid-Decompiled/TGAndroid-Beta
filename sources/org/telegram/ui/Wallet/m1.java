@@ -1,94 +1,113 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.r20;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.q70;
-public final class m1 implements r20 {
-    public final int f34888a = 0;
-    public final vh.d f34889b;
-    public final vh.d f34890c;
-    public final z2 d;
-    public final org.telegram.ui.ActionBar.p6 e;
-    public final a2 f34891f;
-    public final Object f34892g;
-    public final Object h;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.u10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.f60;
+public final class m1 implements n10 {
+    public final int f42816a;
+    public final c2 f42817b;
+    public final long f42818c;
+    public final int d;
+    public final Object f42819e;
 
-    public m1(vh.d dVar, vh.d dVar2, e2 e2Var, a2 a2Var, z2 z2Var, org.telegram.ui.ActionBar.p6 p6Var, g gVar) {
-        this.f34889b = dVar;
-        this.f34890c = dVar2;
-        this.f34892g = e2Var;
-        this.f34891f = a2Var;
-        this.d = z2Var;
-        this.e = p6Var;
-        this.h = gVar;
+    public m1(c2 c2Var, Object obj, long j10, int i3, int i10) {
+        this.f42816a = i10;
+        this.f42817b = c2Var;
+        this.f42819e = obj;
+        this.f42818c = j10;
+        this.d = i3;
     }
 
     @Override
-    public final void a(Object obj) {
-        vh.d dVar;
-        boolean z10;
-        switch (this.f34888a) {
+    public final void a(Object obj, Object obj2) {
+        final long j10;
+        final int i3;
+        final TL_wallet.tonConnectRequest tonconnectrequest;
+        TL_wallet.tonConnectSession tonconnectsession;
+        switch (this.f42816a) {
             case 0:
-                e2 e2Var = (e2) this.f34892g;
-                g gVar = (g) this.h;
-                Boolean bool = (Boolean) obj;
-                vh.d dVar2 = this.f34889b;
-                dVar2.setEnabled(false);
-                vh.d dVar3 = this.f34890c;
-                dVar3.setEnabled(false);
-                if (bool.booleanValue()) {
-                    dVar = dVar3;
-                } else {
-                    dVar = dVar2;
+                final f60 f60Var = (f60) this.f42819e;
+                final TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                final c2 c2Var = this.f42817b;
+                k0 k0Var = c2Var.f42378b;
+                byte[] bArr = null;
+                if (tL_error == null && tonconnectpending != null) {
+                    ArrayList<TL_wallet.tonConnectRequest> arrayList = tonconnectpending.requests;
+                    int size = arrayList.size();
+                    int i10 = 0;
+                    while (true) {
+                        j10 = this.f42818c;
+                        i3 = this.d;
+                        if (i10 < size) {
+                            TL_wallet.tonConnectRequest tonconnectrequest2 = arrayList.get(i10);
+                            i10++;
+                            TL_wallet.tonConnectRequest tonconnectrequest3 = tonconnectrequest2;
+                            if (tonconnectrequest3.session_id == j10 && tonconnectrequest3.msg_id == i3) {
+                                tonconnectrequest = tonconnectrequest3;
+                            }
+                        } else {
+                            tonconnectrequest = null;
+                        }
+                    }
+                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f27264id == j10 && tonconnectrequest.expires > c2Var.f42381f.getCurrentTime()) {
+                        final String t10 = k0Var.t();
+                        if (k0Var.y() != null) {
+                            bArr = (byte[]) k0Var.y().clone();
+                        }
+                        final byte[] bArr2 = bArr;
+                        k0Var.z(new n10() {
+                            @Override
+                            public final void a(Object obj3, Object obj4) {
+                                c2 c2Var2 = c2.this;
+                                f60 f60Var2 = f60Var;
+                                TL_wallet.tonConnectPending tonconnectpending2 = tonconnectpending;
+                                TL_wallet.tonConnectRequest tonconnectrequest4 = tonconnectrequest;
+                                String str = t10;
+                                byte[] bArr3 = bArr2;
+                                long j11 = j10;
+                                int i11 = i3;
+                                h0 h0Var = (h0) obj3;
+                                String str2 = (String) obj4;
+                                c2Var2.getClass();
+                                if (h0Var != null && str2 == null) {
+                                    h0 b10 = h0Var.b();
+                                    Utilities.f21387e.c(new ii.b1(c2Var2, tonconnectpending2, tonconnectrequest4, b10, str, bArr3, new s1(1, b10, f60Var2), j11, i11));
+                                    return;
+                                }
+                                c2Var2.h = false;
+                                if (str2 == null) {
+                                    str2 = "Recovery phrase is unavailable";
+                                }
+                                f60Var2.a(null, str2);
+                            }
+                        }, true, false);
+                        return;
+                    }
+                    c2Var.h = false;
+                    f60Var.a(null, "This request has expired or has already been answered");
+                    return;
                 }
-                dVar.setLoading(true);
-                boolean booleanValue = bool.booleanValue();
-                z2 z2Var = this.d;
-                org.telegram.ui.ActionBar.p6 p6Var = this.e;
-                a2 a2Var = this.f34891f;
-                e2Var.f(a2Var, booleanValue, new q70(dVar2, dVar3, z2Var, p6Var, gVar, a2Var, 3));
+                c2Var.h = false;
+                f60Var.a(null, c2.z(tL_error, "getPending"));
                 return;
             default:
-                boolean[] zArr = (boolean[]) this.f34892g;
-                boolean[] zArr2 = (boolean[]) this.h;
-                String str = (String) obj;
-                vh.d dVar4 = this.f34889b;
-                boolean z11 = false;
-                dVar4.setLoading(false);
-                vh.d dVar5 = this.f34890c;
-                dVar5.setLoading(false);
-                z2 z2Var2 = this.d;
-                if (str == null) {
-                    z2Var2.dismiss();
-                    return;
-                } else if (zArr[0]) {
-                    cc.b0(str);
+                u10 u10Var = (u10) this.f42819e;
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                c2 c2Var2 = this.f42817b;
+                c2Var2.getClass();
+                if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
+                    c2Var2.e(this.d, this.f42818c, u10Var);
                     return;
                 } else {
-                    cc.c0(str, z2Var2.E, this.e);
-                    a2 a2Var2 = this.f34891f;
-                    if (!a2Var2.f34179n && zArr2[0]) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    dVar4.setEnabled(z10);
-                    if (!a2Var2.f34179n && !a2Var2.f34180o) {
-                        z11 = true;
-                    }
-                    dVar5.setEnabled(z11);
+                    u10Var.a(c2.z(tL_error2, "closeSession"));
                     return;
                 }
         }
-    }
-
-    public m1(vh.d dVar, vh.d dVar2, z2 z2Var, boolean[] zArr, org.telegram.ui.ActionBar.p6 p6Var, a2 a2Var, boolean[] zArr2) {
-        this.f34889b = dVar;
-        this.f34890c = dVar2;
-        this.d = z2Var;
-        this.f34892g = zArr;
-        this.e = p6Var;
-        this.f34891f = a2Var;
-        this.h = zArr2;
     }
 }

@@ -1,27 +1,14 @@
 package org.telegram.ui.Components;
+public final class ni0 {
+    public float f36563a;
+    public float f36564b;
+    public float f36565c;
+    public float d;
 
-import org.telegram.tgnet.TLObject;
-public final class ni0 implements Runnable {
-    public final int f28855a;
-    public final wi0 f28856b;
-    public final TLObject f28857c;
-
-    public ni0(wi0 wi0Var, TLObject tLObject, int i10) {
-        this.f28855a = i10;
-        this.f28856b = wi0Var;
-        this.f28857c = tLObject;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f28855a) {
-            case 0:
-                wi0 wi0Var = this.f28856b;
-                org.telegram.messenger.at.f(wi0Var.f32252b).d(new ni0(wi0Var, this.f28857c, 1));
-                return;
-            default:
-                wi0.a(this.f28856b, this.f28857c);
-                return;
-        }
+    public ni0(float f10, float f11, float f12, float f13) {
+        this.f36563a = f10;
+        this.f36564b = f11;
+        this.f36565c = f12;
+        this.d = f13;
     }
 }

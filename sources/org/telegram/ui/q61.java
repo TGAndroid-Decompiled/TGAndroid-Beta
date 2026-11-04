@@ -1,31 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class q61 extends c61 {
-    public uh D;
-    public final int f40701w;
-    public final int f40702x;
-    public int f40703y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.ViewGroup;
+public final class q61 extends AnimatorListenerAdapter {
+    public final int f48792a;
+    public final l71 f48793b;
 
-    public q61(Context context, int i10, int i11, bg.h hVar, int i12) {
-        super(context, i11, hVar, null);
-        this.f40701w = i10;
-        this.f40702x = i12;
+    public q61(l71 l71Var, int i3) {
+        this.f48792a = i3;
+        this.f48793b = l71Var;
     }
 
     @Override
-    public final void b(e61 e61Var) {
-        int i10;
-        if (e61Var != null && (i10 = this.f40703y) >= 0) {
-            e61Var.a(this.f40701w, this.f40702x, i10, this.D);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f48792a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                l71 l71Var = this.f48793b;
+                l71Var.f47210z0.invalidate();
+                l71Var.f47208y0[1].setVisibility(8);
+                l71Var.f47158e2 = null;
+                return;
+            case 1:
+                this.f48793b.D0 = null;
+                return;
+            case 2:
+                l71 l71Var2 = this.f48793b;
+                if (l71Var2.F0.getTag() == null) {
+                    l71Var2.F0.setVisibility(4);
+                }
+                l71Var2.J0 = null;
+                return;
+            case 3:
+                l71 l71Var3 = this.f48793b;
+                if (l71Var3.G0.getTag() == null) {
+                    l71Var3.G0.setVisibility(4);
+                }
+                l71Var3.K0 = null;
+                return;
+            case 4:
+                l71 l71Var4 = this.f48793b;
+                ac acVar = l71Var4.f47174j2;
+                if (acVar != null) {
+                    if (acVar.getParent() != null) {
+                        ((ViewGroup) l71Var4.f47174j2.getParent()).removeView(l71Var4.f47174j2);
+                    }
+                    l71Var4.f47174j2 = null;
+                }
+                l71Var4.f47179l2 = null;
+                super.onAnimationEnd(animator);
+                return;
+            default:
+                l71 l71Var5 = this.f48793b;
+                if (!l71Var5.f47191r1.a()) {
+                    l71Var5.T1.setVisibility(8);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void c() {
-    }
-
-    @Override
-    public final void f() {
     }
 }

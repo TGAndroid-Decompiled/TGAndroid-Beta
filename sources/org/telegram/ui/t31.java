@@ -1,18 +1,12 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class t31 implements View.OnClickListener {
-    public final TLRPC.TL_authorization f41531a;
-    public final a41 f41532b;
-
-    public t31(a41 a41Var, TLRPC.TL_authorization tL_authorization) {
-        this.f41532b = a41Var;
-        this.f41531a = tL_authorization;
-    }
-
+import android.graphics.Canvas;
+public final class t31 extends c41 {
     @Override
-    public final void onClick(View view) {
-        a41.I0(this.f41532b, this.f41531a.country);
+    public final void onDraw(Canvas canvas) {
+        if (getTranslationY() != 0.0f) {
+            canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27878d6, false));
+        }
+        super.onDraw(canvas);
     }
 }

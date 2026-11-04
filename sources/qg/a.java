@@ -1,22 +1,27 @@
 package qg;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.i0;
-public final class a extends ReplacementSpan {
-    public final int f45531a;
+import org.telegram.ui.Components.j6;
+public final class a {
+    public final CharSequence f53908a;
+    public final int f53909b = 2;
+    public final Runnable f53910c;
+    public final float d;
+    public final float f53911e;
+    public final j6 f53912f;
 
-    public a(int i10) {
-        this.f45531a = i10;
+    public a(String str, Runnable runnable) {
+        this.f53908a = str;
+        this.f53910c = runnable;
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return i0.L(this.f45531a);
+    public a(String str) {
+        this.f53908a = str;
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    public a(String str, float f10, float f11, j6 j6Var) {
+        this.f53908a = str;
+        this.d = f10;
+        this.f53911e = f11;
+        this.f53912f = j6Var;
     }
 }

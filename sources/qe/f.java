@@ -1,3 +1,8 @@
 package qe;
-public final class f extends ve.e {
+public interface f {
+    int b(boolean z10);
+
+    int getHeight();
+
+    int getWidth();
 }

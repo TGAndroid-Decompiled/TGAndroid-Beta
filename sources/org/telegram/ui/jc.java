@@ -1,55 +1,38 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class jc implements ValueAnimator.AnimatorUpdateListener {
-    public final int f38357a;
-    public boolean f38358b = false;
-    public final org.telegram.messenger.vs f38359c;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class jc implements org.telegram.messenger.u10 {
+    public final int f46595a;
+    public final nc f46596b;
 
-    public jc(org.telegram.messenger.vs vsVar, int i10) {
-        this.f38357a = i10;
-        this.f38359c = vsVar;
+    public jc(nc ncVar, int i3) {
+        this.f46595a = i3;
+        this.f46596b = ncVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f38357a) {
+    public final void a(Object obj) {
+        TLRPC.WallPaper wallPaper;
+        View view = (View) obj;
+        switch (this.f46595a) {
             case 0:
-                zc zcVar = (zc) this.f38359c;
-                zcVar.f43906n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                zcVar.m0.invalidate();
-                if (!this.f38358b && zcVar.f43906n0 > 0.5f) {
-                    this.f38358b = true;
-                    return;
-                }
-                return;
-            case 1:
-                rn0 rn0Var = (rn0) this.f38359c;
-                rn0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rn0Var.X.invalidate();
-                if (!this.f38358b && rn0Var.Y > 0.5f) {
-                    this.f38358b = true;
-                    return;
-                }
-                return;
-            case 2:
-                k91 k91Var = (k91) this.f38359c;
-                k91Var.f38744j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k91Var.f38741i2.invalidate();
-                if (!this.f38358b && k91Var.f38744j2 > 0.5f) {
-                    this.f38358b = true;
+                nc ncVar = this.f46596b;
+                ncVar.getClass();
+                if (view instanceof org.telegram.ui.Components.yz0) {
+                    view.setBackgroundColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27971i5, ncVar.f47946b));
                     return;
                 }
                 return;
             default:
-                vh.o8 o8Var = (vh.o8) this.f38359c;
-                o8Var.D2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vh.y7 y7Var = o8Var.C2;
-                if (y7Var != null) {
-                    y7Var.invalidate();
-                }
-                if (!this.f38358b && o8Var.D2 > 0.5f) {
-                    this.f38358b = true;
+                if (view instanceof org.telegram.ui.Components.yz0) {
+                    org.telegram.ui.Components.yz0 yz0Var = (org.telegram.ui.Components.yz0) view;
+                    if (yz0Var.H.f38832a.f28420b) {
+                        wallPaper = null;
+                    } else {
+                        wallPaper = this.f46596b.f47953w;
+                    }
+                    yz0Var.setFallbackWallpaper(wallPaper);
                     return;
                 }
                 return;

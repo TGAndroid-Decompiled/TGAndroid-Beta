@@ -1,5 +1,11 @@
 package org.telegram.ui.Cells;
 
-import android.widget.FrameLayout;
-public abstract class t3 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
+import android.text.TextPaint;
+import org.telegram.ui.Components.tz;
+public final class t3 extends tz {
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(true);
+    }
 }

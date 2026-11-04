@@ -1,40 +1,58 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class g3 extends View {
-    public boolean f21911a;
-    public final Paint f21912b;
-    public final org.telegram.ui.ActionBar.p6 f21913c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.xs;
+public final class g3 implements TextWatcher {
+    public final int f29255a;
+    public final xs f29256b;
+    public final boolean f29257c;
+    public final h3 d;
 
-    public g3(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context);
-        this.f21912b = new Paint();
-        this.f21913c = p6Var;
-        setPadding(0, org.telegram.messenger.i0.L(8.0f), 0, org.telegram.messenger.i0.L(8.0f));
+    public g3(h3 h3Var, int i3, xs xsVar, boolean z10) {
+        this.d = h3Var;
+        this.f29255a = i3;
+        this.f29256b = xsVar;
+        this.f29257c = z10;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z10 = this.f21911a;
-        org.telegram.ui.ActionBar.p6 p6Var = this.f21913c;
-        Paint paint = this.f21912b;
-        if (z10) {
-            paint.setColor(i0.b.f(0.2f, -16777216, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21030ih, p6Var)));
-        } else {
-            paint.setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20931d7, p6Var));
+    public final void afterTextChanged(Editable editable) {
+        h3 h3Var = this.d;
+        boolean z10 = h3Var.f29315a;
+        int i3 = this.f29255a;
+        if (!z10) {
+            if (i3 > 0 && editable != null && editable.length() > i3) {
+                h3Var.f29315a = true;
+                CharSequence subSequence = editable.subSequence(0, i3);
+                xs xsVar = this.f29256b;
+                xsVar.setText(subSequence);
+                xsVar.setSelection(xsVar.length());
+                h3Var.f29315a = false;
+            }
+            h3Var.b(editable);
         }
-        canvas.drawLine(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop(), paint);
+        if (this.f29257c) {
+            while (true) {
+                int indexOf = editable.toString().indexOf("\n");
+                if (indexOf < 0) {
+                    break;
+                }
+                editable.delete(indexOf, indexOf + 1);
+            }
+        }
+        org.telegram.ui.Components.g6 g6Var = h3Var.f29325y;
+        if (g6Var != null && i3 > 0) {
+            g6Var.a();
+            h3Var.c();
+        }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), getPaddingBottom() + getPaddingTop() + 1);
+    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
     }
 
-    public void setForceDarkTheme(boolean z10) {
-        this.f21911a = z10;
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
     }
 }

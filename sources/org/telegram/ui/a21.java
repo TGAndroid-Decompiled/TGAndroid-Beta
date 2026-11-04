@@ -1,68 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-public final class a21 extends AnimatorListenerAdapter {
-    public final int f35545a;
-    public final boolean f35546b;
-    public final g31 f35547c;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class a21 implements View.OnClickListener {
+    public final k21 f43569a;
+    public final TLRPC.TL_authorization f43570b;
+    public final SessionsActivity f43571c;
+    public final b21 d;
 
-    public a21(g31 g31Var, boolean z10, int i10) {
-        this.f35545a = i10;
-        this.f35547c = g31Var;
-        this.f35546b = z10;
+    public a21(b21 b21Var, k21 k21Var, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
+        this.d = b21Var;
+        this.f43569a = k21Var;
+        this.f43570b = tL_authorization;
+        this.f43571c = sessionsActivity;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        int i11;
-        switch (this.f35545a) {
-            case 0:
-                g31 g31Var = this.f35547c;
-                t11 t11Var = g31Var.f37307i0;
-                int i12 = 8;
-                boolean z10 = this.f35546b;
-                if (z10) {
-                    i10 = 0;
-                } else {
-                    i10 = 8;
-                }
-                t11Var.setVisibility(i10);
-                e21 e21Var = g31Var.f37305h0;
-                if (!z10) {
-                    i12 = 0;
-                }
-                e21Var.setVisibility(i12);
-                g31Var.F1 = null;
-                if (!z10 && (arrayList2 = g31Var.B1) != null) {
-                    arrayList2.clear();
-                    ArrayList arrayList3 = g31Var.E1;
-                    if (arrayList3 != null) {
-                        arrayList3.clear();
-                    }
-                    g31Var.f37322q0.E(false);
-                }
-                if (!z10 && (arrayList = g31Var.C1) != null) {
-                    arrayList.clear();
-                    return;
-                }
-                return;
-            default:
-                g31 g31Var2 = this.f35547c;
-                FrameLayout frameLayout = g31Var2.f37309j0;
-                if (this.f35546b && g31Var2.f37307i0.getVisibility() == 0) {
-                    i11 = 0;
-                } else {
-                    i11 = 8;
-                }
-                frameLayout.setVisibility(i11);
-                g31Var2.I1 = null;
-                return;
+    public final void onClick(View view) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.k1.getParentActivity());
+        String M0 = org.telegram.messenger.bd.M0(2131744214, null);
+        org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
+        s1Var.U = M0;
+        s1Var.S = org.telegram.messenger.bd.M0(2131754073, null);
+        alertDialog$Builder.k(org.telegram.messenger.bd.M0(2131744219, null), new b7(this, this.f43569a, this.f43570b, 21));
+        alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), null);
+        this.f43571c.showDialog(s1Var);
+        TextView textView = (TextView) s1Var.d(-1);
+        if (textView != null) {
+            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28122q7, null);
         }
     }
 }

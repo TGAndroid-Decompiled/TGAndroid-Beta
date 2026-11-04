@@ -2,29 +2,29 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class wi implements cj {
-    public final int f32249a;
-    public final org.telegram.messenger.f5 f32250b;
+    public final int f40011a;
+    public final org.telegram.messenger.d5 f40012b;
 
-    public wi(org.telegram.messenger.f5 f5Var, int i10) {
-        this.f32249a = i10;
-        this.f32250b = f5Var;
+    public wi(org.telegram.messenger.d5 d5Var, int i3) {
+        this.f40011a = i3;
+        this.f40012b = d5Var;
     }
 
     @Override
     public final String run() {
-        switch (this.f32249a) {
+        switch (this.f40011a) {
             case 0:
-                ArrayList arrayList = this.f32250b.e;
+                ArrayList arrayList = this.f40012b.f22150e;
                 if (arrayList.isEmpty()) {
                     return "";
                 }
-                return af.b.c().b((String) arrayList.get(0));
+                return mf.b.c().b((String) arrayList.get(0));
             default:
-                ArrayList arrayList2 = this.f32250b.e;
+                ArrayList arrayList2 = this.f40012b.f22150e;
                 if (arrayList2.isEmpty()) {
                     return "";
                 }
-                return af.b.c().b((String) arrayList2.get(0));
+                return mf.b.c().b((String) arrayList2.get(0));
         }
     }
 }

@@ -1,18 +1,11 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class bu implements DialogInterface.OnShowListener {
-    public final hu f24922a;
+import java.util.ArrayList;
+public final class bu extends nu {
+    public final pu h;
 
-    public bu(hu huVar) {
-        this.f24922a = huVar;
-    }
-
-    @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        n81 n81Var = this.f24922a.f26921j1;
-        if (jf0.f27400p0.P && n81Var.f()) {
-            n81Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.ActionBar.l1(this, 2));
-        }
+    public bu(int i3, ArrayList arrayList, pu puVar) {
+        super(i3, arrayList, puVar);
+        this.h = puVar;
     }
 }

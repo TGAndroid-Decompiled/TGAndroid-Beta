@@ -1,84 +1,65 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.dd;
-public final class r1 extends FrameLayout {
-    public final TextView f20722a;
-    public final ImageView f20723b;
+import java.util.HashSet;
+import org.telegram.ui.Components.fh0;
+public final class r1 extends Drawable implements z5 {
+    public final View f28495a;
+    public final GradientDrawable f28496b;
+    public final int f28497c;
+    public final int d;
+    public final e6 f28498e;
 
-    public r1(Context context, p6 p6Var) {
-        super(context);
-        int i10;
-        int i11 = t6.I5;
-        Drawable h02 = t6.h0(t6.w0(i11, p6Var), 2, -1);
-        w6 N = a7.N(i11);
-        setBackground(h02);
-        a7.k(this, h02, null, N, p6Var);
-        setPadding(org.telegram.messenger.i0.L(23.0f), 0, org.telegram.messenger.i0.L(23.0f), 0);
-        ImageView imageView = new ImageView(context);
-        this.f20723b = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        a7.t(imageView, t6.J5, p6Var, PorterDuff.Mode.MULTIPLY);
-        if (dd.X) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        addView(imageView, w7.b6.e(-2, 40, i10 | 16));
-        TextView textView = new TextView(context);
-        this.f20722a = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        a7.V(textView, t6.f21038j5, p6Var);
-        textView.setTextSize(1, 16.0f);
-        addView(textView, w7.b6.e(-2, -2, (dd.X ? 5 : 3) | 16));
-    }
-
-    public final void a(int i10, CharSequence charSequence) {
-        int L;
-        int i11;
-        TextView textView = this.f20722a;
-        textView.setText(charSequence);
-        ImageView imageView = this.f20723b;
-        if (i10 != 0) {
-            imageView.setImageResource(i10);
-            imageView.setVisibility(0);
-            if (dd.X) {
-                L = 0;
-            } else {
-                L = org.telegram.messenger.i0.L(56.0f);
-            }
-            if (dd.X) {
-                i11 = org.telegram.messenger.i0.L(56.0f);
-            } else {
-                i11 = 0;
-            }
-            textView.setPadding(L, 0, i11, 0);
-            return;
-        }
-        imageView.setVisibility(4);
-        textView.setPadding(0, 0, 0, 0);
+    public r1(fh0 fh0Var, int i3, int i10, int i11, e6 e6Var) {
+        this.f28495a = fh0Var;
+        this.f28497c = i10;
+        this.d = i11;
+        this.f28498e = e6Var;
+        GradientDrawable gradientDrawable = new GradientDrawable();
+        this.f28496b = gradientDrawable;
+        gradientDrawable.setColor(i3);
+        gradientDrawable.setCornerRadius(org.telegram.messenger.g0.L(128.0f));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(48.0f), 1073741824));
+    public final void draw(Canvas canvas) {
+        View view = this.f28495a;
+        int width = view.getWidth();
+        int i3 = this.f28497c;
+        GradientDrawable gradientDrawable = this.f28496b;
+        gradientDrawable.setBounds((int) ((width - i3) / 2.0f), (int) ((view.getHeight() - i3) / 2.0f), (int) ((view.getWidth() + i3) / 2.0f), (int) ((view.getHeight() + i3) / 2.0f));
+        gradientDrawable.draw(canvas);
     }
 
-    public void setGravity(int i10) {
-        this.f20722a.setGravity(i10);
+    @Override
+    public final int getOpacity() {
+        return this.f28496b.getOpacity();
     }
 
-    public void setTextColor(int i10) {
-        this.f20722a.setTextColor(i10);
+    @Override
+    public final void setAlpha(int i3) {
+        this.f28496b.setAlpha(i3);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f28496b.setColorFilter(colorFilter);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i3 = this.d;
+        if (i3 >= 0) {
+            this.f28496b.setColor(k6.w0(i3, this.f28498e));
+            invalidateSelf();
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

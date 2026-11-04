@@ -1,66 +1,72 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class cf implements Runnable {
-    public final int f36308a;
-    public final un f36309b;
-    public final int f36310c;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class cf implements View.OnClickListener {
+    public final int f44329a;
+    public final wm f44330b;
+    public final int f44331c;
+    public final ArrayList d;
+    public final String f44332e;
+    public final String f44333f;
+    public final Serializable h;
+    public final TLRPC.InputPeer f44334n;
+    public final int[] f44335r;
+    public final boolean f44336s;
+    public final bf f44337w;
+    public final Object f44338x;
 
-    public cf(un unVar, int i10, int i11) {
-        this.f36308a = i11;
-        this.f36309b = unVar;
-        this.f36310c = i10;
+    public cf(wm wmVar, int i3, ArrayList arrayList, String str, String str2, String str3, TLRPC.InputPeer inputPeer, int[] iArr, Object obj, boolean z10, bf bfVar, int i10) {
+        this.f44329a = i10;
+        this.f44330b = wmVar;
+        this.f44331c = i3;
+        this.d = arrayList;
+        this.f44332e = str;
+        this.f44333f = str2;
+        this.h = str3;
+        this.f44334n = inputPeer;
+        this.f44335r = iArr;
+        this.f44338x = obj;
+        this.f44336s = z10;
+        this.f44337w = bfVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Cells.q1 q1Var;
-        org.telegram.messenger.kj messageObject;
-        switch (this.f36308a) {
+    public final void onClick(View view) {
+        switch (this.f44329a) {
             case 0:
-                this.f36309b.getConnectionsManager().cancelRequest(this.f36310c, true);
+                boolean z10 = this.f44336s;
+                bf bfVar = this.f44337w;
+                wm.P0(this.f44330b, this.f44331c, this.d, this.f44332e, this.f44333f, (String) this.h, this.f44334n, this.f44335r, (TL_iv.RichMessage) this.f44338x, z10, bfVar);
                 return;
             case 1:
-                this.f36309b.l(this.f36310c, 0, false, 0, true, 0);
-                return;
-            case 2:
-                this.f36309b.getConnectionsManager().cancelRequest(this.f36310c, true);
-                return;
-            case 3:
-                un unVar = this.f36309b;
-                vj vjVar = unVar.f42303z0;
-                if (vjVar != null) {
-                    int childCount = vjVar.getChildCount();
-                    for (int i10 = 0; i10 < childCount; i10++) {
-                        View childAt = unVar.f42303z0.getChildAt(i10);
-                        if ((childAt instanceof org.telegram.ui.Cells.q1) && (messageObject = (q1Var = (org.telegram.ui.Cells.q1) childAt).getMessageObject()) != null && messageObject.T(unVar.U3)) {
-                            q1Var.C3(this.f36310c, true, true);
-                        }
-                    }
-                }
-                unVar.U3 = null;
-                return;
-            case 4:
-                this.f36309b.actionBar.getActionBarMenuOnItemClick().b(this.f36310c);
-                return;
-            case 5:
-                this.f36309b.getConnectionsManager().cancelRequest(this.f36310c, true);
-                return;
-            case 6:
-                un.b0(this.f36309b, this.f36310c);
-                return;
-            case 7:
-                this.f36309b.actionBar.setSubtitle(org.telegram.messenger.dd.G(this.f36310c, "messages", new Object[0]));
-                return;
-            case 8:
-                this.f36309b.getConnectionsManager().cancelRequest(this.f36310c, true);
-                return;
-            case 9:
-                un.N0(this.f36309b, this.f36310c);
+                boolean z11 = this.f44336s;
+                bf bfVar2 = this.f44337w;
+                wm.B0(this.f44330b, this.f44331c, this.d, this.f44332e, this.f44333f, (String) this.h, this.f44334n, this.f44335r, (CharSequence) this.f44338x, z11, bfVar2);
                 return;
             default:
-                un.H1(this.f36309b, this.f36310c);
+                boolean z12 = this.f44336s;
+                bf bfVar3 = this.f44337w;
+                wm.G1(this.f44330b, this.f44331c, this.d, (String[]) this.h, this.f44332e, this.f44333f, this.f44334n, this.f44335r, (CharSequence) this.f44338x, z12, bfVar3);
                 return;
         }
+    }
+
+    public cf(wm wmVar, int i3, ArrayList arrayList, String[] strArr, String str, String str2, TLRPC.InputPeer inputPeer, int[] iArr, CharSequence charSequence, boolean z10, bf bfVar) {
+        this.f44329a = 2;
+        this.f44330b = wmVar;
+        this.f44331c = i3;
+        this.d = arrayList;
+        this.h = strArr;
+        this.f44332e = str;
+        this.f44333f = str2;
+        this.f44334n = inputPeer;
+        this.f44335r = iArr;
+        this.f44338x = charSequence;
+        this.f44336s = z10;
+        this.f44337w = bfVar;
     }
 }

@@ -1,169 +1,76 @@
 package a9;
 
-import com.google.android.gms.internal.play_billing.s1;
-import j$.util.List;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.RandomAccess;
-import java.util.function.UnaryOperator;
-public abstract class k extends h implements List, RandomAccess, j$.util.List {
-    public static final i f342b = new i(m.d, 0);
+import android.net.Uri;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+import com.google.android.gms.wearable.internal.DataItemAssetParcelable;
+import java.util.HashMap;
+import java.util.Map;
+public final class k extends q6.a {
+    public static final Parcelable.Creator<k> CREATOR = new c(8);
+    public final Uri f211a;
+    public final HashMap f212b;
+    public final byte[] f213c;
 
-    @Override
-    public final void add(int i10, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean addAll(int i10, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (indexOf(obj) >= 0) {
-            return true;
+    public k(Uri uri, Bundle bundle, byte[] bArr) {
+        this.f211a = uri;
+        HashMap hashMap = new HashMap();
+        ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
+        p6.m.g(classLoader);
+        bundle.setClassLoader(classLoader);
+        for (String str : bundle.keySet()) {
+            Parcelable parcelable = bundle.getParcelable(str);
+            p6.m.g(parcelable);
+            hashMap.put(str, (DataItemAssetParcelable) parcelable);
         }
-        return false;
+        this.f212b = hashMap;
+        this.f213c = bArr;
     }
 
-    @Override
-    public final boolean equals(Object obj) {
-        Object next;
-        Object next2;
-        if (obj != this) {
-            if (obj instanceof List) {
-                List list = (List) obj;
-                int size = size();
-                if (size == list.size()) {
-                    if (list instanceof RandomAccess) {
-                        for (int i10 = 0; i10 < size; i10++) {
-                            Object obj2 = get(i10);
-                            Object obj3 = list.get(i10);
-                            if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
-                            }
-                        }
-                        return true;
-                    }
-                    i listIterator = listIterator(0);
-                    Iterator it = list.iterator();
-                    while (true) {
-                        if (listIterator.hasNext()) {
-                            if (!it.hasNext() || ((next = listIterator.next()) != (next2 = it.next()) && (next == null || !next.equals(next2)))) {
-                                break;
-                            }
-                        } else if (!it.hasNext()) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
+    public final String toString() {
+        Object valueOf;
+        boolean isLoggable = Log.isLoggable("DataItem", 3);
+        StringBuilder sb2 = new StringBuilder("DataItemParcelable[@");
+        sb2.append(Integer.toHexString(hashCode()));
+        byte[] bArr = this.f213c;
+        if (bArr == null) {
+            valueOf = "null";
+        } else {
+            valueOf = Integer.valueOf(bArr.length);
         }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        int size = size();
-        int i10 = 1;
-        for (int i11 = 0; i11 < size; i11++) {
-            i10 = (i10 * 31) + get(i11).hashCode();
+        sb2.append(",dataSz=".concat(valueOf.toString()));
+        HashMap hashMap = this.f212b;
+        int size = hashMap.size();
+        sb2.append(", numAssets=" + size);
+        sb2.append(", uri=".concat(String.valueOf(this.f211a)));
+        if (!isLoggable) {
+            sb2.append("]");
+            return sb2.toString();
         }
-        return i10;
-    }
-
-    @Override
-    public final int indexOf(Object obj) {
-        if (obj == null) {
-            return -1;
+        sb2.append("]\n  assets: ");
+        for (String str : hashMap.keySet()) {
+            String valueOf2 = String.valueOf(hashMap.get(str));
+            sb2.append("\n    " + str + ": " + valueOf2);
         }
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (obj.equals(get(i10))) {
-                return i10;
-            }
+        sb2.append("\n  ]");
+        return sb2.toString();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.l(parcel, 2, this.f211a, i3);
+        Bundle bundle = new Bundle();
+        ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
+        p6.m.g(classLoader);
+        bundle.setClassLoader(classLoader);
+        for (Map.Entry entry : this.f212b.entrySet()) {
+            bundle.putParcelable((String) entry.getKey(), new DataItemAssetParcelable((DataItemAssetParcelable) entry.getValue()));
         }
-        return -1;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public int l(Object[] objArr) {
-        int size = size();
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = get(i10);
-        }
-        return size;
-    }
-
-    @Override
-    public final int lastIndexOf(Object obj) {
-        if (obj == null) {
-            return -1;
-        }
-        for (int size = size() - 1; size >= 0; size--) {
-            if (obj.equals(get(size))) {
-                return size;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return listIterator(0);
-    }
-
-    @Override
-    public k subList(int i10, int i11) {
-        s1.b(i10, i11, size());
-        int i12 = i11 - i10;
-        if (i12 == size()) {
-            return this;
-        }
-        if (i12 == 0) {
-            return m.d;
-        }
-        return new j(this, i10, i12);
-    }
-
-    @Override
-    public final i listIterator(int i10) {
-        int size = size();
-        if (i10 >= 0 && i10 <= size) {
-            if (isEmpty()) {
-                return f342b;
-            }
-            return new i(this, i10);
-        }
-        throw new IndexOutOfBoundsException(s1.c(i10, size, "index"));
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void replaceAll(UnaryOperator unaryOperator) {
-        List.CC.$default$replaceAll(this, unaryOperator);
-    }
-
-    @Override
-    public final Object set(int i10, Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void sort(Comparator comparator) {
-        List.CC.$default$sort(this, comparator);
+        j8.a.c(parcel, 4, bundle);
+        j8.a.d(parcel, 5, this.f213c);
+        j8.a.t(parcel, s6);
     }
 }

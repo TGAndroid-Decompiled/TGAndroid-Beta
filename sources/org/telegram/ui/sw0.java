@@ -1,116 +1,184 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.UndoView;
-public final class sw0 implements fq {
-    public final int f41477a;
-    public final TLRPC.ChatParticipant f41478b;
-    public final boolean f41479c;
-    public final boolean[] d;
-    public final ProfileActivity e;
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class sw0 extends View {
+    public static final String[] f49630s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f49631a;
+    public pw0 f49632b;
+    public pw0 f49633c;
+    public final PointF d;
+    public boolean f49634e;
+    public boolean f49635f;
+    public float h;
+    public long f49636n;
+    public boolean f49637r;
 
-    public sw0(ProfileActivity profileActivity, int i10, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
-        this.e = profileActivity;
-        this.f41477a = i10;
-        this.f41478b = chatParticipant;
-        this.f41479c = z10;
-        this.d = zArr;
+    public sw0(ProfileActivity profileActivity, pw0 pw0Var) {
+        super(profileActivity.getParentActivity());
+        this.d = new PointF();
+        this.h = 1.0f;
+        this.f49637r = false;
+        this.f49631a = profileActivity;
+        this.f49632b = pw0Var;
     }
 
-    @Override
-    public final void a(TLRPC.User user) {
-        int i10;
-        ProfileActivity profileActivity = this.e;
-        UndoView undoView = profileActivity.L;
-        long j10 = -profileActivity.f33810e1;
-        if (profileActivity.D2.megagroup) {
-            i10 = 10;
-        } else {
-            i10 = 9;
+    public final boolean a() {
+        pw0 pw0Var = this.f49632b;
+        if (!pw0Var.f48693b || this.h < 1.0f) {
+            return false;
         }
-        undoView.m(j10, user, i10);
+        if (pw0Var.f48694c.B() != null) {
+            this.f49632b.f48694c.B().N(0, false, false);
+            this.f49632b.f48694c.B().H(true);
+        }
+        this.f49637r = true;
+        this.h = 0.0f;
+        invalidate();
+        return true;
+    }
+
+    public final void b(pw0 pw0Var) {
+        if (this.f49632b != pw0Var && pw0Var != null) {
+            ArrayList arrayList = pw0Var.f48695e;
+            if (this.f49637r) {
+                this.f49633c = pw0Var;
+                return;
+            }
+            if (this.f49635f) {
+                for (int i3 = 0; i3 < this.f49632b.f48695e.size(); i3++) {
+                    ((rw0) this.f49632b.f48695e.get(i3)).H0(null);
+                }
+                this.f49635f = false;
+            }
+            pw0 pw0Var2 = this.f49632b;
+            ArrayList arrayList2 = pw0Var2.f48699j;
+            arrayList2.remove(this);
+            if (arrayList2.isEmpty() && pw0Var2.f48698i) {
+                pw0Var2.b(true);
+                pw0Var2.f48698i = false;
+            }
+            this.f49632b = pw0Var;
+            if (!this.f49635f) {
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    ((rw0) arrayList.get(i10)).H0(this);
+                }
+                this.f49635f = true;
+            }
+        }
     }
 
     @Override
-    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLRPC.ChatFull chatFull;
-        boolean z10;
-        TLRPC.ChatParticipant tL_chatParticipant;
-        int i11 = 0;
-        TLRPC.ChatParticipant chatParticipant = this.f41478b;
-        ProfileActivity profileActivity = this.e;
-        int i12 = this.f41477a;
-        if (i12 == 0) {
-            if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
-                TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
-                if (i10 == 1) {
-                    TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
-                    tL_chatChannelParticipant.channelParticipant = tL_channelParticipantAdmin;
-                    tL_channelParticipantAdmin.flags |= 4;
-                } else {
-                    tL_chatChannelParticipant.channelParticipant = new TLRPC.TL_channelParticipant();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f49632b.f48699j.add(this);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f49635f) {
+            for (int i3 = 0; i3 < this.f49632b.f48695e.size(); i3++) {
+                ((rw0) this.f49632b.f48695e.get(i3)).H0(null);
+            }
+            this.f49635f = false;
+        }
+        pw0 pw0Var = this.f49632b;
+        ArrayList arrayList = pw0Var.f48699j;
+        arrayList.remove(this);
+        if (arrayList.isEmpty() && pw0Var.f48698i) {
+            pw0Var.b(true);
+            pw0Var.f48698i = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f49632b.f48693b) {
+            boolean z10 = true;
+            if (!this.f49635f) {
+                for (int i3 = 0; i3 < this.f49632b.f48695e.size(); i3++) {
+                    ((rw0) this.f49632b.f48695e.get(i3)).H0(this);
                 }
-                tL_chatChannelParticipant.channelParticipant.inviter_id = profileActivity.getUserConfig().e();
-                tL_chatChannelParticipant.channelParticipant.peer = new TLRPC.TL_peerUser();
-                TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
-                channelParticipant.peer.user_id = chatParticipant.user_id;
-                channelParticipant.date = chatParticipant.date;
-                channelParticipant.banned_rights = tL_chatBannedRights;
-                channelParticipant.admin_rights = tL_chatAdminRights;
-                channelParticipant.rank = str;
-            } else if (chatParticipant != null) {
-                if (i10 == 1) {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipantAdmin();
-                } else {
-                    tL_chatParticipant = new TLRPC.TL_chatParticipant();
-                }
-                tL_chatParticipant.user_id = chatParticipant.user_id;
-                tL_chatParticipant.date = chatParticipant.date;
-                tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
-                int indexOf = profileActivity.f33915t2.participants.participants.indexOf(chatParticipant);
-                if (indexOf >= 0) {
-                    profileActivity.f33915t2.participants.participants.set(indexOf, tL_chatParticipant);
+                this.f49635f = true;
+                if (!this.f49634e) {
+                    this.f49634e = true;
+                    post(new pu0(this, 4));
                 }
             }
-            if (i10 == 1 && !this.f41479c) {
-                this.d[0] = true;
+            if (!this.f49637r) {
+                return;
             }
-        } else if (i12 == 1 && i10 == 0 && profileActivity.D2.megagroup && (chatFull = profileActivity.f33915t2) != null && chatFull.participants != null) {
-            int i13 = 0;
-            while (true) {
-                if (i13 < profileActivity.f33915t2.participants.participants.size()) {
-                    if (org.telegram.messenger.kj.C1(((TLRPC.TL_chatChannelParticipant) profileActivity.f33915t2.participants.participants.get(i13)).channelParticipant.peer) == chatParticipant.user_id) {
-                        TLRPC.ChatFull chatFull2 = profileActivity.f33915t2;
-                        chatFull2.participants_count--;
-                        chatFull2.participants.participants.remove(i13);
-                        z10 = true;
-                        break;
-                    }
-                    i13++;
-                } else {
-                    z10 = false;
-                    break;
-                }
-            }
-            TLRPC.ChatFull chatFull3 = profileActivity.f33915t2;
-            if (chatFull3 != null && chatFull3.participants != null) {
+            long currentTimeMillis = System.currentTimeMillis();
+            this.h = Utilities.i(this.h + (((float) Utilities.k(currentTimeMillis - this.f49636n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f49636n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f49631a;
+            hu0 hu0Var = profileActivity.f41719a;
+            int i10 = profileActivity.U2;
+            PointF pointF = this.d;
+            float f10 = 2.0f;
+            if (i10 >= 0) {
+                int i11 = 0;
                 while (true) {
-                    if (i11 >= profileActivity.f33915t2.participants.participants.size()) {
+                    if (i11 >= hu0Var.getChildCount()) {
                         break;
-                    } else if (profileActivity.f33915t2.participants.participants.get(i11).user_id == chatParticipant.user_id) {
-                        profileActivity.f33915t2.participants.participants.remove(i11);
-                        z10 = true;
-                        break;
-                    } else {
-                        i11++;
                     }
+                    View childAt = hu0Var.getChildAt(i11);
+                    if (i10 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.w8)) {
+                        yh.l lVar = ((org.telegram.ui.Cells.w8) childAt).f30822a;
+                        pointF.set(lVar.getX() + childAt.getX() + hu0Var.getX() + org.telegram.messenger.g0.L(12.0f), (lVar.getMeasuredHeight() / 2.0f) + lVar.getY() + childAt.getY() + hu0Var.getY());
+                        break;
+                    }
+                    i11++;
                 }
             }
-            if (z10) {
-                profileActivity.G5(true);
-                profileActivity.J5();
-                profileActivity.d.f();
+            float f11 = fx.f();
+            this.f49632b.f48694c.y0((getWidth() - org.telegram.messenger.g0.L(f11)) / 2.0f, Math.max(0.0f, pointF.y - (org.telegram.messenger.g0.L(f11) * 0.5f)), org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(f11));
+            canvas.save();
+            canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
+            pw0 pw0Var = null;
+            this.f49632b.f48694c.h(canvas, null);
+            this.f49632b.f48694c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            canvas.restore();
+            int L = org.telegram.messenger.g0.L(110.0f);
+            int size = this.f49632b.d.size() - 1;
+            while (size >= 0) {
+                rw0 rw0Var = (rw0) this.f49632b.d.get(size);
+                float f12 = size;
+                float s6 = org.telegram.messenger.g0.s(this.h, f12, this.f49632b.d.size(), 1.8f);
+                float f13 = L;
+                boolean z11 = z10;
+                float f14 = f13 * 0.88f;
+                float c2 = com.google.android.recaptcha.internal.a.c(f14, this.f49632b.d.size() - 1, getWidth(), f10);
+                float f15 = pointF.x;
+                float f16 = f10;
+                float f17 = pointF.y;
+                float f18 = ((c2 - f15) * s6) + (f14 * f12) + f15;
+                double d = this.h;
+                PointF pointF2 = pointF;
+                float interpolation = org.telegram.ui.Components.xq.h.getInterpolation(Utilities.i(s6 / 0.4f, 1.0f, 0.0f));
+                float f19 = (f13 / f16) * interpolation;
+                float f20 = f13 * interpolation;
+                rw0Var.y0(f18 - f19, (f17 - ((f17 + f13) * ((float) Math.pow(d, 2.0d)))) - f19, f20, f20);
+                rw0Var.h(canvas, null);
+                size--;
+                pw0Var = null;
+                pointF = pointF2;
+                z10 = z11;
+                f10 = f16;
             }
+            pw0 pw0Var2 = pw0Var;
+            if (this.h >= 1.0f) {
+                this.f49637r = false;
+                b(this.f49633c);
+                this.f49633c = pw0Var2;
+                return;
+            }
+            invalidate();
         }
     }
 }

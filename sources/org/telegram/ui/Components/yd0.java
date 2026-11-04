@@ -1,135 +1,46 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
-import org.telegram.ui.PhotoViewer;
-public final class yd0 implements eg.e {
-    public final int f32814a;
-    public final FrameLayout f32815b;
+import org.telegram.ui.LaunchActivity;
+public final class yd0 extends FrameLayout {
+    public float f40686a;
+    public float f40687b;
+    public boolean f40688c;
+    public boolean d;
+    public final PipRoundVideoView f40689e;
 
-    public yd0(int i10, FrameLayout frameLayout) {
-        this.f32814a = i10;
-        this.f32815b = frameLayout;
+    public yd0(PipRoundVideoView pipRoundVideoView, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.f40689e = pipRoundVideoView;
     }
 
     @Override
-    public final boolean a() {
-        int i10 = this.f32814a;
-        FrameLayout frameLayout = this.f32815b;
-        switch (i10) {
-            case 0:
-                ae0 ae0Var = ((be0) frameLayout).f24714a;
-                if (ae0Var != null) {
-                    PhotoViewer photoViewer = ((org.telegram.ui.zp0) ae0Var).f44037a;
-                    Drawable[] drawableArr = PhotoViewer.U8;
-                    return photoViewer.O0();
-                }
-                return false;
-            case 1:
-                vh.b0 b0Var = (vh.b0) frameLayout;
-                b0Var.d.invalidate();
-                return b0Var.f50940f.j();
-            default:
-                vh.g0 g0Var = (vh.g0) frameLayout;
-                g0Var.e.invalidate();
-                return g0Var.h.j();
+    public final void onDraw(Canvas canvas) {
+        gi.k3 k3Var = org.telegram.ui.ActionBar.k6.f28004k3;
+        if (k3Var != null) {
+            k3Var.setAlpha((int) (getAlpha() * 255.0f));
+            org.telegram.ui.ActionBar.k6.f28004k3.setBounds(org.telegram.messenger.g0.L(1.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(125.0f), org.telegram.messenger.g0.L(125.0f));
+            org.telegram.ui.ActionBar.k6.f28004k3.draw(canvas);
+            org.telegram.ui.ActionBar.k6.S1.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28143ra, false));
+            org.telegram.ui.ActionBar.k6.S1.setAlpha((int) (getAlpha() * 255.0f));
+            canvas.drawCircle(org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(63.0f), org.telegram.messenger.g0.L(59.5f), org.telegram.ui.ActionBar.k6.S1);
         }
     }
 
     @Override
-    public final void b() {
-        switch (this.f32814a) {
-            case 0:
-                ((be0) this.f32815b).f24715b.o();
-                return;
-            case 1:
-                ((vh.b0) this.f32815b).f50940f.o();
-                return;
-            default:
-                ((vh.g0) this.f32815b).h.o();
-                return;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f40686a = motionEvent.getRawX();
+            this.f40687b = motionEvent.getRawY();
+            this.d = true;
         }
+        return true;
     }
 
     @Override
-    public final void c() {
-        switch (this.f32814a) {
-            case 0:
-                ((be0) this.f32815b).f24715b.f6583a.g(1, true);
-                return;
-            case 1:
-                ((vh.b0) this.f32815b).f50940f.f6583a.g(1, true);
-                return;
-            default:
-                ((vh.g0) this.f32815b).h.f6583a.g(1, true);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean d() {
-        int i10 = this.f32814a;
-        FrameLayout frameLayout = this.f32815b;
-        switch (i10) {
-            case 0:
-                ae0 ae0Var = ((be0) frameLayout).f24714a;
-                if (ae0Var == null) {
-                    return false;
-                }
-                PhotoViewer photoViewer = ((org.telegram.ui.zp0) ae0Var).f44037a;
-                Drawable[] drawableArr = PhotoViewer.U8;
-                return photoViewer.P0(-90.0f, false, null);
-            case 1:
-                vh.b0 b0Var = (vh.b0) frameLayout;
-                vh.z zVar = b0Var.f50940f;
-                boolean m10 = zVar.m(-90.0f);
-                zVar.i();
-                b0Var.d.invalidate();
-                return m10;
-            default:
-                vh.g0 g0Var = (vh.g0) frameLayout;
-                vh.z zVar2 = g0Var.h;
-                boolean m11 = zVar2.m(-90.0f);
-                zVar2.i();
-                g0Var.e.invalidate();
-                return m11;
-        }
-    }
-
-    @Override
-    public final void e() {
-        switch (this.f32814a) {
-            case 0:
-                ((be0) this.f32815b).f24715b.k();
-                return;
-            case 1:
-                ((vh.b0) this.f32815b).f50940f.k();
-                return;
-            default:
-                ((vh.g0) this.f32815b).h.k();
-                return;
-        }
-    }
-
-    @Override
-    public final void f(float f7) {
-        switch (this.f32814a) {
-            case 0:
-                be0 be0Var = (be0) this.f32815b;
-                be0Var.f24715b.setRotation(f7);
-                be0Var.getClass();
-                ae0 ae0Var = be0Var.f24714a;
-                if (ae0Var != null) {
-                    ((org.telegram.ui.zp0) ae0Var).b(false);
-                    return;
-                }
-                return;
-            case 1:
-                ((vh.b0) this.f32815b).f50940f.setRotation(f7);
-                return;
-            default:
-                ((vh.g0) this.f32815b).h.setRotation(f7);
-                return;
-        }
+    public final boolean onTouchEvent(android.view.MotionEvent r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yd0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

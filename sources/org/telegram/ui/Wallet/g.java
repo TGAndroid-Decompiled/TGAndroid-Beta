@@ -3,32 +3,29 @@ package org.telegram.ui.Wallet;
 import android.graphics.Bitmap;
 import java.io.Serializable;
 import java.util.ArrayList;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.ge;
-import org.telegram.messenger.k20;
-import org.telegram.messenger.m20;
-import org.telegram.messenger.r20;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.w60;
-import org.telegram.ui.Components.z60;
+import org.telegram.ui.Components.f60;
+import org.telegram.ui.Components.fc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.af;
-import org.telegram.ui.q70;
-import org.telegram.ui.un;
+import org.telegram.ui.n60;
+import org.telegram.ui.wm;
 public final class g implements Runnable {
-    public final int f34528a;
-    public final Object f34529b;
-    public final Object f34530c;
+    public final int f42553a;
+    public final Object f42554b;
+    public final Object f42555c;
     public final Object d;
 
-    public g(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34528a = i10;
-        this.f34529b = obj;
-        this.f34530c = obj2;
+    public g(Object obj, Object obj2, Object obj3, int i3) {
+        this.f42553a = i3;
+        this.f42554b = obj;
+        this.f42555c = obj2;
         this.d = obj3;
     }
 
@@ -36,18 +33,18 @@ public final class g implements Runnable {
     public final void run() {
         String str;
         boolean z10;
-        int i10 = this.f34528a;
+        int i3 = this.f42553a;
         boolean z11 = true;
         byte[] bArr = null;
-        int i11 = 0;
+        int i10 = 0;
         Object obj = this.d;
-        Object obj2 = this.f34530c;
-        Object obj3 = this.f34529b;
-        switch (i10) {
+        Object obj2 = this.f42555c;
+        Object obj3 = this.f42554b;
+        switch (i3) {
             case 0:
                 WalletEngine2.ImportedWalletProof importedWalletProof = (WalletEngine2.ImportedWalletProof) obj3;
                 Exception exc = (Exception) obj2;
-                k20 k20Var = (k20) obj;
+                n10 n10Var = (n10) obj;
                 if (importedWalletProof == null) {
                     StringBuilder sb2 = new StringBuilder("failed to prove: ");
                     String str2 = "PROOF_ERROR";
@@ -61,24 +58,24 @@ public final class g implements Runnable {
                     if (exc != null && exc.getMessage() != null) {
                         str2 = exc.getMessage();
                     }
-                    k20Var.a(null, str2);
+                    n10Var.a(null, str2);
                     return;
                 }
                 k0.H("proof done");
-                k20Var.a(importedWalletProof, null);
+                n10Var.a(importedWalletProof, null);
                 return;
             case 1:
                 k0 k0Var = (k0) obj3;
                 b0 b0Var = (b0) obj;
                 if (k0Var.N.get((String) obj2) == b0Var) {
-                    b0Var.e = true;
-                    ArrayList arrayList = b0Var.f34223f;
+                    b0Var.f42214e = true;
+                    ArrayList arrayList = b0Var.f42215f;
                     k0Var.k0(b0Var);
                     int size = arrayList.size();
-                    while (i11 < size) {
-                        Object obj4 = arrayList.get(i11);
-                        i11++;
-                        ((r20) obj4).a(b0Var);
+                    while (i10 < size) {
+                        Object obj4 = arrayList.get(i10);
+                        i10++;
+                        ((u10) obj4).a(b0Var);
                     }
                     arrayList.clear();
                     k0Var.L();
@@ -86,74 +83,74 @@ public final class g implements Runnable {
                 }
                 return;
             case 2:
-                ((z1) obj3).f35454f = false;
+                ((x1) obj3).f43388f = false;
                 ((k) obj2).a((String) obj);
                 return;
             case 3:
-                a2 a2Var = (a2) obj2;
-                vh.d dVar = (vh.d) obj;
-                if (!((w60) obj3).canScrollVertically(1)) {
-                    a2Var.f34181p = true;
+                y1 y1Var = (y1) obj2;
+                gi.d dVar = (gi.d) obj;
+                if (!((ai.l4) obj3).canScrollVertically(1)) {
+                    y1Var.f43469p = true;
                 }
-                if (!a2Var.f34181p || a2Var.f34178m || a2Var.f34179n) {
+                if (!y1Var.f43469p || y1Var.f43466m || y1Var.f43467n) {
                     z11 = false;
                 }
                 dVar.setEnabled(z11);
                 return;
             case 4:
-                e2 e2Var = (e2) obj3;
+                c2 c2Var = (c2) obj3;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj2;
-                e2Var.getClass();
-                k kVar = new k((r20) obj, 2);
+                c2Var.getClass();
+                k kVar = new k((u10) obj, 2);
                 if (tonconnectsession != null && tonconnectsession.dapp_client_id != null && tonconnectsession.client_id != null && tonconnectsession.nonce != null) {
-                    if (!e2Var.f34452c.add(Long.valueOf(tonconnectsession.f20056id))) {
+                    if (!c2Var.f42379c.add(Long.valueOf(tonconnectsession.f27264id))) {
                         kVar.a("A TON Connect operation is already in progress");
                         return;
                     }
-                    m mVar = new m(e2Var, tonconnectsession, kVar, 3);
+                    m mVar = new m(c2Var, tonconnectsession, kVar, 3);
                     if (tonconnectsession.closed) {
                         mVar.a(null);
                         return;
                     } else {
-                        e2Var.f34451b.m0(new g(e2Var, mVar, tonconnectsession, 7));
+                        c2Var.f42378b.m0(new g(c2Var, mVar, tonconnectsession, 7));
                         return;
                     }
                 }
                 kVar.a("Missing TON Connect session data");
                 return;
             case 5:
-                ((ih.s) obj3).a((TL_wallet.inputTonConnectOauthSession) obj2, (String) obj);
+                ((s1) obj3).a((TL_wallet.inputTonConnectOauthSession) obj2, (String) obj);
                 return;
             case 6:
-                e2 e2Var2 = (e2) obj3;
-                z1 z1Var = (z1) obj2;
-                e2Var2.getClass();
-                k kVar2 = new k((q70) obj, 3);
-                TL_wallet.tonConnectSession tonconnectsession2 = z1Var.e;
+                c2 c2Var2 = (c2) obj3;
+                x1 x1Var = (x1) obj2;
+                c2Var2.getClass();
+                k kVar2 = new k((n60) obj, 3);
+                TL_wallet.tonConnectSession tonconnectsession2 = x1Var.f43387e;
                 if (!tonconnectsession2.closed && !tonconnectsession2.closing && tonconnectsession2.manifest_error == null && tonconnectsession2.manifest != null) {
-                    if (z1Var.f35454f) {
+                    if (x1Var.f43388f) {
                         kVar2.a("A TON Connect operation is already in progress");
                         return;
                     }
-                    z1Var.f35454f = true;
-                    e2Var2.f34451b.m0(new k7(e2Var2, z1Var, kVar2, tonconnectsession2, 8));
+                    x1Var.f43388f = true;
+                    c2Var2.f42378b.m0(new e7(c2Var2, x1Var, kVar2, tonconnectsession2, 8));
                     return;
                 }
                 kVar2.a("The dApp manifest is unavailable or the session is closed");
                 return;
             case 7:
-                e2 e2Var3 = (e2) obj3;
+                c2 c2Var3 = (c2) obj3;
                 m mVar2 = (m) obj2;
                 TL_wallet.tonConnectSession tonconnectsession3 = (TL_wallet.tonConnectSession) obj;
-                k0 k0Var2 = e2Var3.f34451b;
+                k0 k0Var2 = c2Var3.f42378b;
                 String t10 = k0Var2.t();
-                byte[] y3 = k0Var2.y();
-                if (y3 != null) {
-                    bArr = (byte[]) y3.clone();
+                byte[] y9 = k0Var2.y();
+                if (y9 != null) {
+                    bArr = (byte[]) y9.clone();
                 }
                 byte[] bArr2 = bArr;
                 if (t10 != null && bArr2 != null) {
-                    k0Var2.z(new af(e2Var3, mVar2, tonconnectsession3, t10, bArr2, 6), true, false);
+                    k0Var2.z(new ci.g3(c2Var3, mVar2, tonconnectsession3, t10, bArr2, 7), true, false);
                     return;
                 } else {
                     mVar2.a("Wallet is not ready");
@@ -161,157 +158,157 @@ public final class g implements Runnable {
                 }
             case 8:
                 boolean[] zArr = (boolean[]) obj2;
-                s2 s2Var = (s2) obj;
-                v2.f35308a.remove((ge) obj3);
+                q2 q2Var = (q2) obj;
+                t2.f43197a.remove((ai.d3) obj3);
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    cc.b0(dd.L0(2131742985, null));
-                    s2Var.a();
+                    fc.b0(bd.M0(2131742969, null));
+                    q2Var.a();
                     return;
                 }
                 return;
             case 9:
-                u2 u2Var = (u2) obj3;
-                vh.d dVar2 = (vh.d) obj2;
-                vh.d dVar3 = (vh.d) obj;
-                boolean a2 = u2Var.a();
-                if (!a2 && !u2Var.d) {
+                s2 s2Var = (s2) obj3;
+                gi.d dVar2 = (gi.d) obj2;
+                gi.d dVar3 = (gi.d) obj;
+                boolean a10 = s2Var.a();
+                if (!a10 && !s2Var.d) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
                 dVar2.setEnabled(z10);
-                if (a2 || u2Var.d) {
+                if (a10 || s2Var.d) {
                     z11 = false;
                 }
                 dVar3.setEnabled(z11);
                 return;
             case 10:
-                ((k7) obj3).run();
-                ((z60) obj2).K((z60) obj);
+                ((e7) obj3).run();
+                ((f60) obj2).K((f60) obj);
                 return;
             case 11:
-                a3[] a3VarArr = (a3[]) obj2;
+                y2[] y2VarArr = (y2[]) obj2;
                 TL_wallet.walletTransactionPeerUser wallettransactionpeeruser = (TL_wallet.walletTransactionPeerUser) obj;
-                if (((m20) obj3) == null) {
-                    a3 a3Var = a3VarArr[0];
-                    if (a3Var != null) {
-                        a3Var.dismiss();
+                if (((p10) obj3) == null) {
+                    y2 y2Var = y2VarArr[0];
+                    if (y2Var != null) {
+                        y2Var.dismiss();
                     }
-                    org.telegram.ui.ActionBar.k2 T = LaunchActivity.T();
+                    org.telegram.ui.ActionBar.d2 T = LaunchActivity.T();
                     if (T != null) {
-                        T.presentFragment(un.ma(wallettransactionpeeruser.user_id));
+                        T.presentFragment(wm.ra(wallettransactionpeeruser.user_id));
                         return;
                     }
                     return;
                 }
                 return;
             case 12:
-                a3[] a3VarArr2 = (a3[]) obj3;
-                a3VarArr2[0].setOnDismissListener(new mg.g(11, (TLRPC.User) obj2, (TL_wallet.walletTransactionPeerUser) obj));
-                a3VarArr2[0].dismiss();
+                y2[] y2VarArr2 = (y2[]) obj3;
+                y2VarArr2[0].setOnDismissListener(new ci.h3(15, (TLRPC.User) obj2, (TL_wallet.walletTransactionPeerUser) obj));
+                y2VarArr2[0].dismiss();
                 return;
             case 13:
-                a3[] a3VarArr3 = (a3[]) obj2;
+                y2[] y2VarArr3 = (y2[]) obj2;
                 TL_wallet.WalletTransactionPeer walletTransactionPeer = (TL_wallet.WalletTransactionPeer) obj;
-                if (((m20) obj3) == null) {
-                    a3 a3Var2 = a3VarArr3[0];
-                    if (a3Var2 != null) {
-                        a3Var2.dismiss();
+                if (((p10) obj3) == null) {
+                    y2 y2Var2 = y2VarArr3[0];
+                    if (y2Var2 != null) {
+                        y2Var2.dismiss();
                     }
-                    org.telegram.ui.ActionBar.k2 T2 = LaunchActivity.T();
+                    org.telegram.ui.ActionBar.d2 T2 = LaunchActivity.T();
                     if (T2 != null) {
-                        T2.presentFragment(un.ma(-walletTransactionPeer.channel_id));
+                        T2.presentFragment(wm.ra(-walletTransactionPeer.channel_id));
                         return;
                     }
                     return;
                 }
                 return;
             case 14:
-                ((k20) obj).a(((String[]) obj3)[0], Boolean.valueOf(((boolean[]) obj2)[0]));
+                ((n10) obj).a(((String[]) obj3)[0], Boolean.valueOf(((boolean[]) obj2)[0]));
                 return;
             case 15:
-                g6 g6Var = (g6) obj3;
-                c6 c6Var = (c6) obj2;
-                g6Var.f34560b = c6Var;
-                c6Var.j(g6Var.f34562c);
-                g6Var.f34568g0 = Float.NaN;
-                g6Var.b(g6Var.f34563c0, g6Var.f34567f0);
-                g6Var.e.setVisibility(0);
-                ((d6) obj).run();
-                l3 l3Var = g6Var.d;
-                if (l3Var != null) {
-                    g6Var.d = null;
-                    l3Var.run();
+                a6 a6Var = (a6) obj3;
+                x5 x5Var = (x5) obj2;
+                a6Var.f42138b = x5Var;
+                x5Var.j(a6Var.f42140c);
+                a6Var.f42148h0 = Float.NaN;
+                a6Var.b(a6Var.f42142d0, a6Var.f42147g0);
+                a6Var.f42143e.setVisibility(0);
+                ((y5) obj).run();
+                j3 j3Var = a6Var.d;
+                if (j3Var != null) {
+                    a6Var.d = null;
+                    j3Var.run();
                     return;
                 }
                 return;
             case 16:
-                ((k20) obj).a((String) obj3, (String) obj2);
+                ((n10) obj).a((String) obj3, (String) obj2);
                 return;
             case 17:
-                ((WalletEngine2) obj3).lambda$previewSignMessage$8((d2) obj2, (r20) obj);
+                ((WalletEngine2) obj3).lambda$previewSignMessage$8((b2) obj2, (u10) obj);
                 return;
             case 18:
-                ((k20) obj).a((Long) obj3, (String) obj2);
+                ((n10) obj).a((Long) obj3, (String) obj2);
                 return;
             case 19:
-                ((WalletEngine2) obj3).lambda$previewTonConnect$2((d2) obj2, (k20) obj);
+                ((WalletEngine2) obj3).lambda$previewTonConnect$2((b2) obj2, (n10) obj);
                 return;
             case 20:
-                g8 g8Var = (g8) obj3;
+                a8 a8Var = (a8) obj3;
                 int[] iArr = (int[]) obj2;
                 Bitmap bitmap = (Bitmap) obj;
-                g8Var.C = false;
-                h8 h8Var = g8Var.f34588d0;
-                boolean z12 = h8Var.f34635a1;
-                l6 l6Var = h8Var.f34639c;
+                a8Var.C = false;
+                b8 b8Var = a8Var.f42168d0;
+                boolean z12 = b8Var.f42293b1;
+                f6 f6Var = b8Var.f42294c;
                 if (!z12) {
-                    if (g8Var.f34603u == null) {
-                        g8Var.f34603u = Bitmap.createBitmap(288, 288, Bitmap.Config.ARGB_8888);
-                        if (l6Var.isShown() && l6Var.getAlpha() > 0.0f) {
-                            f8 f8Var = g8Var.f34600r;
-                            f8Var.a(0.0f);
-                            f8Var.f34507b = 1.0f;
+                    if (a8Var.f42184u == null) {
+                        a8Var.f42184u = Bitmap.createBitmap(288, 288, Bitmap.Config.ARGB_8888);
+                        if (f6Var.isShown() && f6Var.getAlpha() > 0.0f) {
+                            z7 z7Var = a8Var.f42181r;
+                            z7Var.a(0.0f);
+                            z7Var.f43512b = 1.0f;
                         }
                     }
-                    g8Var.f34603u.setPixels(iArr, 0, 288, 0, 0, 288, 288);
-                    if (bitmap != null && g8Var.f34604w == null) {
-                        g8Var.f34604w = bitmap;
+                    a8Var.f42184u.setPixels(iArr, 0, 288, 0, 0, 288, 288);
+                    if (bitmap != null && a8Var.f42185w == null) {
+                        a8Var.f42185w = bitmap;
                     }
-                    if (g8Var.D) {
-                        g8Var.c();
+                    if (a8Var.D) {
+                        a8Var.c();
                     }
-                    h8Var.f0();
+                    b8Var.f0();
                     return;
                 }
                 return;
             default:
-                t8 t8Var = (t8) obj3;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, t8Var.getParentActivity(), t8Var.getResourceProvider());
-                String L0 = dd.L0(2131743157, null);
-                org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
-                x1Var.R = L0;
-                x1Var.T = dd.L0(2131743160, null);
-                alertDialog$Builder.h(dd.L0(2131752589, null), null);
-                alertDialog$Builder.k(dd.L0(2131743162, null), new o8(t8Var, (k0) obj2, (f0) obj));
+                n8 n8Var = (n8) obj3;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, n8Var.getParentActivity(), n8Var.getResourceProvider());
+                String M0 = bd.M0(2131743141, null);
+                org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
+                s1Var.S = M0;
+                s1Var.U = bd.M0(2131743144, null);
+                alertDialog$Builder.h(bd.M0(2131752589, null), null);
+                alertDialog$Builder.k(bd.M0(2131743146, null), new i8(n8Var, (k0) obj2, (f0) obj));
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
                 return;
         }
     }
 
-    public g(k20 k20Var, Serializable serializable, Serializable serializable2, int i10) {
-        this.f34528a = i10;
-        this.d = k20Var;
-        this.f34529b = serializable;
-        this.f34530c = serializable2;
+    public g(n10 n10Var, Serializable serializable, Serializable serializable2, int i3) {
+        this.f42553a = i3;
+        this.d = n10Var;
+        this.f42554b = serializable;
+        this.f42555c = serializable2;
     }
 
-    public g(k0 k0Var, WalletEngine2.ImportedWalletProof importedWalletProof, Exception exc, k20 k20Var) {
-        this.f34528a = 0;
-        this.f34529b = importedWalletProof;
-        this.f34530c = exc;
-        this.d = k20Var;
+    public g(k0 k0Var, WalletEngine2.ImportedWalletProof importedWalletProof, Exception exc, n10 n10Var) {
+        this.f42553a = 0;
+        this.f42554b = importedWalletProof;
+        this.f42555c = exc;
+        this.d = n10Var;
     }
 }

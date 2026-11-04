@@ -1,38 +1,47 @@
 package l8;
 
 import android.os.Parcel;
-import android.os.Parcelable;
-import g8.g;
-import java.util.Arrays;
-import n6.l;
-import w7.h0;
-public final class a extends o6.a {
-    public static final Parcelable.Creator<a> CREATOR = new g(20);
-    public String f11690a;
-    public String f11691b;
+import android.os.RemoteException;
+import p6.m;
+public final class a {
+    public final u7.h f18096a;
+
+    public a(u7.h hVar) {
+        m.g(hVar);
+        this.f18096a = hVar;
+    }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+        boolean z10 = false;
+        if (!(obj instanceof a)) {
+            return false;
         }
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            if (l.k(this.f11690a, aVar.f11690a) && l.k(this.f11691b, aVar.f11691b)) {
-                return true;
+        try {
+            u7.h hVar = this.f18096a;
+            u7.h hVar2 = ((a) obj).f18096a;
+            u7.f fVar = (u7.f) hVar;
+            Parcel P0 = fVar.P0();
+            u7.b.c(P0, hVar2);
+            Parcel O0 = fVar.O0(P0, 17);
+            if (O0.readInt() != 0) {
+                z10 = true;
             }
+            O0.recycle();
+            return z10;
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
         }
-        return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f11690a, this.f11691b});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.l(parcel, 1, this.f11690a);
-        h0.l(parcel, 2, this.f11691b);
-        h0.r(parcel, q6);
+        try {
+            u7.f fVar = (u7.f) this.f18096a;
+            Parcel O0 = fVar.O0(fVar.P0(), 18);
+            int readInt = O0.readInt();
+            O0.recycle();
+            return readInt;
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
     }
 }

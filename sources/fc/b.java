@@ -1,14 +1,48 @@
 package fc;
 
-import java.nio.ByteBuffer;
+import d2.t0;
+import e5.u;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import zb.h;
 public abstract class b {
-    public int f6992a;
-    public int f6993b;
-    public int f6994c;
+    public static final int[] f11549a = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 36, -1, -1, -1, 37, 38, -1, -1, -1, -1, 39, 40, -1, 41, 42, 43, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 44, -1, -1, -1, -1, -1, -1, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, -1, -1, -1, -1, -1};
+    public static final Charset f11550b = StandardCharsets.ISO_8859_1;
 
-    public final int a() {
-        return this.f6993b + 1 + this.f6994c;
+    public static void a(java.lang.String r8, dc.d r9, zb.a r10, java.nio.charset.Charset r11) {
+        throw new UnsupportedOperationException("Method not decompiled: fc.b.a(java.lang.String, dc.d, zb.a, java.nio.charset.Charset):void");
     }
 
-    public abstract void b(ByteBuffer byteBuffer);
+    public static e0.e0 b(java.lang.String r31, dc.b r32, java.util.HashMap r33) {
+        throw new UnsupportedOperationException("Method not decompiled: fc.b.b(java.lang.String, dc.b, java.util.HashMap):e0.e0");
+    }
+
+    public static boolean c(String str) {
+        byte[] bytes = str.getBytes(h.f60372b);
+        int length = bytes.length;
+        if (length % 2 != 0) {
+            return false;
+        }
+        for (int i3 = 0; i3 < length; i3 += 2) {
+            int i10 = bytes[i3] & 255;
+            if ((i10 < 129 || i10 > 159) && (i10 < 224 || i10 > 235)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean d(int i3, dc.e eVar, dc.b bVar) {
+        int i10 = eVar.d;
+        u uVar = eVar.f8786c[bVar.ordinal()];
+        int i11 = uVar.f9633b;
+        int i12 = 0;
+        for (t0 t0Var : (t0[]) uVar.f9634c) {
+            i12 += t0Var.f8413a;
+        }
+        if (i10 - (i12 * i11) < (i3 + 7) / 8) {
+            return false;
+        }
+        return true;
+    }
 }

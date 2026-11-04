@@ -1,3 +1,12 @@
 package org.telegram.ui.Components;
-public interface nv0 {
+public final class nv0 extends org.telegram.ui.eq0 {
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
 }

@@ -1,14 +1,22 @@
 package dg;
 public final class b {
-    public final int f5883a;
-    public final int f5884b;
-    public final int f5885c;
-    public int d;
-    public int e = 255;
+    public static final b f8925a;
+    public static final b f8926b;
+    public static final b[] f8927c;
 
-    public b(int i10, int i11, int i12) {
-        this.f5883a = i10;
-        this.f5884b = i11;
-        this.f5885c = i12;
+    static {
+        ?? r02 = new Enum("STARS", 0);
+        f8925a = r02;
+        ?? r12 = new Enum("TON", 1);
+        f8926b = r12;
+        f8927c = new b[]{r02, r12};
+    }
+
+    public static b valueOf(String str) {
+        return (b) Enum.valueOf(b.class, str);
+    }
+
+    public static b[] values() {
+        return (b[]) f8927c.clone();
     }
 }

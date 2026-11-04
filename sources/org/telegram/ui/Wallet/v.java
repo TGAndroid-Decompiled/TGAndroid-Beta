@@ -2,36 +2,36 @@ package org.telegram.ui.Wallet;
 
 import android.content.SharedPreferences;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.k20;
-import org.telegram.messenger.wp;
+import org.telegram.messenger.hp;
+import org.telegram.messenger.n10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.d01;
-public final class v implements k20 {
-    public final int f35298a;
-    public final boolean f35299b;
-    public final Object f35300c;
+import org.telegram.ui.e51;
+public final class v implements n10 {
+    public final int f43275a;
+    public final boolean f43276b;
+    public final Object f43277c;
     public final Object d;
-    public final Object e;
+    public final Object f43278e;
 
-    public v(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f35298a = i10;
-        this.f35300c = obj;
+    public v(Object obj, Object obj2, Object obj3, boolean z10, int i3) {
+        this.f43275a = i3;
+        this.f43277c = obj;
         this.d = obj2;
-        this.e = obj3;
-        this.f35299b = z10;
+        this.f43278e = obj3;
+        this.f43276b = z10;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String str;
-        switch (this.f35298a) {
+        switch (this.f43275a) {
             case 0:
-                k0 k0Var = (k0) this.f35300c;
+                k0 k0Var = (k0) this.f43277c;
                 h0 h0Var = (h0) this.d;
-                k20 k20Var = (k20) this.e;
-                boolean z10 = this.f35299b;
+                n10 n10Var = (n10) this.f43278e;
+                boolean z10 = this.f43276b;
                 TL_wallet.proofChallenge proofchallenge = (TL_wallet.proofChallenge) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (proofchallenge == null) {
@@ -41,45 +41,45 @@ public final class v implements k20 {
                     } else {
                         str = tL_error.text;
                     }
-                    k20Var.a(null, str);
+                    n10Var.a(null, str);
                     return;
                 }
-                int currentTime = ConnectionsManager.getInstance(k0Var.f34781a).getCurrentTime();
+                int currentTime = ConnectionsManager.getInstance(k0Var.f42718a).getCurrentTime();
                 StringBuilder sb2 = new StringBuilder("received proof challenge, expires at ");
-                i0.a.t(sb2, proofchallenge.expires, ", now = ", currentTime, ", expires in ");
+                com.google.android.recaptcha.internal.a.r(sb2, proofchallenge.expires, ", now = ", currentTime, ", expires in ");
                 sb2.append(proofchallenge.expires - currentTime);
                 sb2.append("s");
                 k0.H(sb2.toString());
-                Utilities.d.c(new bi.y2(k0Var, z10, h0Var, proofchallenge, currentTime, k20Var));
+                Utilities.d.c(new mi.q2(k0Var, z10, h0Var, proofchallenge, currentTime, n10Var));
                 return;
             default:
-                e2 e2Var = (e2) this.f35300c;
+                c2 c2Var = (c2) this.f43277c;
                 m mVar = (m) this.d;
-                a2 a2Var = (a2) this.e;
-                boolean z11 = this.f35299b;
+                y1 y1Var = (y1) this.f43278e;
+                boolean z11 = this.f43276b;
                 h0 h0Var2 = (h0) obj;
                 String str2 = (String) obj2;
                 if (h0Var2 != null && str2 == null) {
                     h0 b10 = h0Var2.b();
-                    d01 d01Var = new d01(14, b10, mVar);
-                    String str3 = a2Var.e;
-                    TL_wallet.tonConnectSession tonconnectsession = a2Var.f34169a;
+                    e51 e51Var = new e51(10, b10, mVar);
+                    String str3 = y1Var.f43459e;
+                    TL_wallet.tonConnectSession tonconnectsession = y1Var.f43456a;
                     if ("sendTransaction".equals(str3)) {
-                        SharedPreferences sharedPreferences = wp.r1(e2Var.f34450a).f7;
-                        if (sharedPreferences.contains(e2.l(tonconnectsession.f20056id, a2Var.f34170b) + ".transfer")) {
-                            e2Var.B(a2Var, b10, d01Var);
+                        SharedPreferences sharedPreferences = hp.s1(c2Var.f42377a).f22999e7;
+                        if (sharedPreferences.contains(c2.l(tonconnectsession.f27264id, y1Var.f43457b) + ".transfer")) {
+                            c2Var.B(y1Var, b10, e51Var);
                             return;
                         }
                     }
-                    u1 u1Var = new u1(e2Var, a2Var, d01Var, z11, b10);
+                    ci.a3 a3Var = new ci.a3(c2Var, y1Var, e51Var, z11, b10);
                     if (tonconnectsession.closed) {
-                        u1Var.a(null);
+                        a3Var.a(null);
                         return;
                     }
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
-                    tonconnectregisterkey.session_id = tonconnectsession.f20056id;
+                    tonconnectregisterkey.session_id = tonconnectsession.f27264id;
                     tonconnectregisterkey.client_id = tonconnectsession.client_id;
-                    e2Var.f34453f.sendRequestTyped(tonconnectregisterkey, new a3.b(1), new q(d01Var, b10, a2Var, u1Var, 6));
+                    c2Var.f42381f.sendRequestTyped(tonconnectregisterkey, new c3.b(1), new q(e51Var, b10, y1Var, a3Var, 6));
                     return;
                 }
                 if (str2 == null) {

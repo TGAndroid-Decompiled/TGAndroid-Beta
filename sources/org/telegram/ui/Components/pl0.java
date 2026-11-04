@@ -1,35 +1,33 @@
 package org.telegram.ui.Components;
+public final class pl0 extends u4.o {
+    public final tl0 f37177b;
 
-import android.view.View;
-public final class pl0 implements View.OnClickListener {
-    public final int f29450a;
-    public final vl0 f29451b;
-
-    public pl0(vl0 vl0Var, int i10) {
-        this.f29450a = i10;
-        this.f29451b = vl0Var;
+    public pl0(tl0 tl0Var) {
+        this.f37177b = tl0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f29450a;
-        vl0 vl0Var = this.f29451b;
-        switch (i10) {
-            case 0:
-                vl0Var.f31324f.a(((Integer) view.getTag(2131296461)).intValue());
-                return;
-            case 1:
-                vl0Var.f31324f.a(((Integer) view.getTag(2131296461)).intValue());
-                return;
-            case 2:
-                vl0Var.f31324f.a(((Integer) view.getTag(2131296461)).intValue());
-                return;
-            case 3:
-                vl0Var.f31324f.a(((Integer) view.getTag(2131296461)).intValue());
-                return;
-            default:
-                vl0Var.f31324f.a(((Integer) view.getTag(2131296461)).intValue());
-                return;
+    public final boolean a(int i3, int i10) {
+        tl0 tl0Var = this.f37177b;
+        return ((ql0) tl0Var.f38490n.get(i3)).equals(tl0Var.f38491r.get(i10));
+    }
+
+    @Override
+    public final boolean b(int i3, int i10) {
+        tl0 tl0Var = this.f37177b;
+        if (((ql0) tl0Var.f38490n.get(i3)).f37490a.h == ((ql0) tl0Var.f38491r.get(i10)).f37490a.h) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f37177b.f38491r.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f37177b.f38490n.size();
     }
 }

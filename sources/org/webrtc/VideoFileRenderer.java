@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Components.v41;
+import org.telegram.ui.Components.iv0;
 import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 public class VideoFileRenderer implements VideoSink {
@@ -26,17 +26,17 @@ public class VideoFileRenderer implements VideoSink {
     private final FileOutputStream videoOutFile;
     private YuvConverter yuvConverter;
 
-    public VideoFileRenderer(String str, int i10, int i11, final EglBase.Context context) {
-        if (i10 % 2 != 1 && i11 % 2 != 1) {
+    public VideoFileRenderer(String str, int i3, int i10, final EglBase.Context context) {
+        if (i3 % 2 != 1 && i10 % 2 != 1) {
             this.outputFileName = str;
-            this.outputFileWidth = i10;
-            this.outputFileHeight = i11;
-            int i12 = ((i10 * i11) * 3) / 2;
-            this.outputFrameSize = i12;
-            this.outputFrameBuffer = ByteBuffer.allocateDirect(i12);
+            this.outputFileWidth = i3;
+            this.outputFileHeight = i10;
+            int i11 = ((i3 * i10) * 3) / 2;
+            this.outputFrameSize = i11;
+            this.outputFrameBuffer = ByteBuffer.allocateDirect(i11);
             FileOutputStream fileOutputStream = new FileOutputStream(str);
             this.videoOutFile = fileOutputStream;
-            fileOutputStream.write(("YUV4MPEG2 C420 W" + i10 + " H" + i11 + " Ip F30:1 A1:1\n").getBytes(Charset.forName("US-ASCII")));
+            fileOutputStream.write(("YUV4MPEG2 C420 W" + i3 + " H" + i10 + " Ip F30:1 A1:1\n").getBytes(Charset.forName("US-ASCII")));
             HandlerThread handlerThread = new HandlerThread("VideoFileRendererRenderThread");
             this.renderThread = handlerThread;
             handlerThread.start();
@@ -76,8 +76,8 @@ public class VideoFileRenderer implements VideoSink {
             this.videoOutFile.close();
             Logging.d("VideoFileRenderer", "Video written to disk as " + this.outputFileName + ". The number of frames is " + this.frameCount + " and the dimensions of the frames are " + this.outputFileWidth + "x" + this.outputFileHeight + ".");
             this.fileThread.quit();
-        } catch (IOException e) {
-            throw new RuntimeException("Error closing output file", e);
+        } catch (IOException e10) {
+            throw new RuntimeException("Error closing output file", e10);
         }
     }
 
@@ -88,41 +88,41 @@ public class VideoFileRenderer implements VideoSink {
             this.videoOutFile.write("FRAME\n".getBytes(Charset.forName("US-ASCII")));
             this.videoOutFile.write(this.outputFrameBuffer.array(), this.outputFrameBuffer.arrayOffset(), this.outputFrameSize);
             this.frameCount++;
-        } catch (IOException e) {
-            throw new RuntimeException("Error writing video to disk", e);
+        } catch (IOException e10) {
+            throw new RuntimeException("Error writing video to disk", e10);
         }
     }
 
     public void lambda$onFrame$0(VideoFrame videoFrame) {
+        int i3;
         int i10;
-        int i11;
         VideoFrame.Buffer buffer = videoFrame.getBuffer();
         if (videoFrame.getRotation() % 180 == 0) {
-            i10 = this.outputFileWidth;
+            i3 = this.outputFileWidth;
         } else {
+            i3 = this.outputFileHeight;
+        }
+        int i11 = i3;
+        if (videoFrame.getRotation() % 180 == 0) {
             i10 = this.outputFileHeight;
+        } else {
+            i10 = this.outputFileWidth;
         }
         int i12 = i10;
-        if (videoFrame.getRotation() % 180 == 0) {
-            i11 = this.outputFileHeight;
-        } else {
-            i11 = this.outputFileWidth;
-        }
-        int i13 = i11;
         float width = buffer.getWidth() / buffer.getHeight();
-        float f7 = i12 / i13;
+        float f10 = i11 / i12;
         int width2 = buffer.getWidth();
         int height = buffer.getHeight();
-        if (f7 > width) {
-            height = (int) ((width / f7) * height);
+        if (f10 > width) {
+            height = (int) ((width / f10) * height);
         } else {
-            width2 = (int) ((f7 / width) * width2);
+            width2 = (int) ((f10 / width) * width2);
         }
-        VideoFrame.Buffer cropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i12, i13);
+        VideoFrame.Buffer cropAndScale = buffer.cropAndScale((buffer.getWidth() - width2) / 2, (buffer.getHeight() - height) / 2, width2, height, i11, i12);
         videoFrame.release();
         VideoFrame.I420Buffer i420 = cropAndScale.toI420();
         cropAndScale.release();
-        this.fileThreadHandler.post(new v41(this, i420, videoFrame, 12));
+        this.fileThreadHandler.post(new iv0(this, i420, videoFrame, 16));
     }
 
     @Override
@@ -138,9 +138,9 @@ public class VideoFileRenderer implements VideoSink {
         this.fileThreadHandler.post(new h(this, 3));
         try {
             this.fileThread.join();
-        } catch (InterruptedException e) {
+        } catch (InterruptedException e10) {
             Thread.currentThread().interrupt();
-            Logging.e("VideoFileRenderer", "Interrupted while waiting for the write to disk to complete.", e);
+            Logging.e("VideoFileRenderer", "Interrupted while waiting for the write to disk to complete.", e10);
         }
     }
 

@@ -1,164 +1,83 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class km0 implements TextWatcher {
-    public final String[] f38927a = {"34", "37"};
-    public final String[] f38928b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
-    public final String[] f38929c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
-    public int d = -1;
-    public int e;
-    public final qm0 f38930f;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class km0 extends org.telegram.ui.ActionBar.d2 {
+    public Bitmap f46984a;
+    public BitmapDrawable f46985b;
+    public jm0 f46986c;
+    public im0 d;
+    public boolean f46987e;
+    public boolean f46988f;
 
-    public km0(qm0 qm0Var) {
-        this.f38930f = qm0Var;
+    @Override
+    public final View createView(Context context) {
+        this.actionBar.setBackgroundColor(-13421773);
+        this.actionBar.C(-12763843, false);
+        this.actionBar.setTitleColor(-1);
+        this.actionBar.D(-1, false);
+        this.actionBar.setBackButtonImage(2131231240);
+        this.actionBar.setAllowOverlayTitle(true);
+        this.actionBar.setTitle(org.telegram.messenger.bd.M0(2131751699, null));
+        this.actionBar.setActionBarMenuOnItemClick(new hx(this, 24));
+        this.actionBar.q().h(1, 2131231242, org.telegram.messenger.g0.L(56.0f), org.telegram.messenger.bd.M0(2131751355, null));
+        im0 im0Var = new im0(this, context);
+        this.d = im0Var;
+        this.fragmentView = im0Var;
+        im0Var.H = getArguments().getBoolean("freeform", false);
+        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
+        return this.fragmentView;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        boolean z10;
-        int i11;
-        int i12;
-        String[] strArr;
-        int i13;
-        String str;
-        qm0 qm0Var = this.f38930f;
-        if (qm0Var.f40836o0) {
-            return;
-        }
-        int i14 = 0;
-        EditTextBoldCursor editTextBoldCursor = qm0Var.f40825f[0];
-        int selectionStart = editTextBoldCursor.getSelectionStart();
-        String obj = editTextBoldCursor.getText().toString();
-        int i15 = 3;
-        int i16 = 1;
-        if (this.d == 3) {
-            obj = obj.substring(0, this.e) + obj.substring(this.e + 1);
-            selectionStart--;
-        }
-        StringBuilder sb2 = new StringBuilder(obj.length());
-        int i17 = 0;
-        while (i17 < obj.length()) {
-            int i18 = i17 + 1;
-            String substring = obj.substring(i17, i18);
-            if ("0123456789".contains(substring)) {
-                sb2.append(substring);
-            }
-            i17 = i18;
-        }
-        qm0Var.f40836o0 = true;
-        String str2 = null;
-        int i19 = 100;
-        if (sb2.length() > 0) {
-            String sb3 = sb2.toString();
-            int i20 = 0;
-            while (true) {
-                if (i20 < i15) {
-                    if (i20 != 0) {
-                        if (i20 != i16) {
-                            strArr = this.f38928b;
-                            i13 = 14;
-                            str = "xxxx xxxx xxxx xx";
-                        } else {
-                            strArr = this.f38927a;
-                            i13 = 15;
-                            str = "xxxx xxxx xxxx xxx";
-                        }
-                    } else {
-                        strArr = this.f38929c;
-                        i13 = 16;
-                        str = "xxxx xxxx xxxx xxxx";
-                    }
-                    i10 = i16;
-                    for (int i21 = i14; i21 < strArr.length; i21++) {
-                        String str3 = strArr[i21];
-                        if (sb3.length() <= str3.length()) {
-                            if (str3.startsWith(sb3)) {
-                                i19 = i13;
-                                str2 = str;
-                                break;
-                            }
-                        } else if (sb3.startsWith(str3)) {
-                            i19 = i13;
-                            str2 = str;
-                            break;
-                        }
-                    }
-                    if (str2 != null) {
-                        break;
-                    }
-                    i20++;
-                    i16 = i10;
-                    i14 = 0;
-                    i15 = 3;
-                } else {
-                    i10 = i16;
-                    break;
-                }
-            }
-            if (sb2.length() > i19) {
-                sb2.setLength(i19);
-            }
-        } else {
-            i10 = 1;
-        }
-        if (str2 != null) {
-            if (sb2.length() == i19) {
-                qm0Var.f40825f[i10].requestFocus();
-            }
-            org.telegram.ui.ActionBar.a7.V(editTextBoldCursor, org.telegram.ui.ActionBar.t6.G6, qm0Var.Y0);
-            int i22 = 0;
-            while (true) {
-                if (i22 >= sb2.length()) {
-                    break;
-                } else if (i22 < str2.length()) {
-                    if (str2.charAt(i22) == ' ') {
-                        sb2.insert(i22, ' ');
-                        i22++;
-                        if (selectionStart == i22 && (i12 = this.d) != 2 && i12 != 3) {
-                            selectionStart++;
-                        }
-                    }
-                    i22++;
-                } else {
-                    sb2.insert(i22, ' ');
-                    if (selectionStart == i22 + 1 && (i11 = this.d) != 2 && i11 != 3) {
-                        selectionStart++;
-                    }
-                }
-            }
-        }
-        if (!sb2.toString().equals(editable.toString())) {
-            z10 = false;
-            editable.replace(0, editable.length(), sb2);
-        } else {
-            z10 = false;
-        }
-        if (selectionStart >= 0) {
-            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
-        }
-        qm0Var.f40836o0 = z10;
+    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        if (i11 == 0 && i12 == 1) {
-            this.d = 1;
-        } else if (i11 == 1 && i12 == 0) {
-            if (charSequence.charAt(i10) == ' ' && i10 > 0) {
-                this.d = 3;
-                this.e = i10 - 1;
-                return;
+    public final boolean onFragmentCreate() {
+        int max;
+        if (this.f46984a == null) {
+            String string = getArguments().getString("photoPath");
+            Uri uri = (Uri) getArguments().getParcelable("photoUri");
+            if (string == null && uri == null) {
+                return false;
             }
-            this.d = 2;
-        } else {
-            this.d = -1;
+            if (string != null && !t4.c.p(string)) {
+                return false;
+            }
+            if (org.telegram.messenger.g0.Q1()) {
+                max = org.telegram.messenger.g0.L(520.0f);
+            } else {
+                Point point = org.telegram.messenger.g0.f22608q;
+                max = Math.max(point.x, point.y);
+            }
+            float f10 = max;
+            Bitmap K = org.telegram.messenger.zb.K(string, uri, f10, f10, true);
+            this.f46984a = K;
+            if (K == null) {
+                return false;
+            }
         }
+        this.f46985b = new BitmapDrawable(this.f46984a);
+        super.onFragmentCreate();
+        return true;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        Bitmap bitmap = this.f46984a;
+        if (bitmap != null && !this.f46987e) {
+            bitmap.recycle();
+            this.f46984a = null;
+        }
+        this.f46985b = null;
     }
 }

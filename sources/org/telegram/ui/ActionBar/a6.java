@@ -1,79 +1,24 @@
 package org.telegram.ui.ActionBar;
+public enum a6 {
+    DEFAULT(k6.f28091og, k6.f28111pg, k6.f28131qg, k6.Dg, k6.Eg, k6.Fg),
+    PRIMARY(k6.f28149rg, k6.f28167sg, k6.f28186tg, k6.Gg, k6.Hg, k6.Ig),
+    DANGER(k6.f28205ug, k6.f28224vg, k6.f28244wg, k6.Jg, k6.Kg, k6.Lg),
+    SUCCESS(k6.f28263xg, k6.f28281yg, k6.f28300zg, k6.Mg, k6.Ng, k6.Og),
+    DEFAULT_IN_TEXT(k6.Ag, k6.Bg, k6.Cg, k6.Pg, k6.Qg, k6.Rg);
+    
+    public final int f27386a;
+    public final int f27387b;
+    public final int f27388c;
+    public final int d;
+    public final int f27389e;
+    public final int f27390f;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.k91;
-public final class a6 extends c5 {
-    public final int U;
-    public final Object V;
-
-    public a6(boolean z10, SparseIntArray sparseIntArray, int i10) {
-        super(2, z10, false, null);
-        this.U = i10;
-        this.V = sparseIntArray;
-    }
-
-    @Override
-    public int h(int i10) {
-        switch (this.U) {
-            case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.V;
-                int indexOfKey = sparseIntArray.indexOfKey(i10);
-                if (indexOfKey > 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
-                }
-                return t6.em[i10];
-            case 1:
-                return ((SparseIntArray) this.V).get(i10);
-            default:
-                return super.h(i10);
-        }
-    }
-
-    @Override
-    public int j(int i10) {
-        switch (this.U) {
-            case 0:
-                return ((SparseIntArray) this.V).get(i10);
-            case 1:
-                return ((SparseIntArray) this.V).get(i10);
-            default:
-                return super.j(i10);
-        }
-    }
-
-    @Override
-    public void p(int i10, int i11, int i12) {
-        switch (this.U) {
-            case 2:
-                if (!((k91) this.V).f38728e2) {
-                    super.p(i10, i11, i12);
-                    return;
-                }
-                return;
-            default:
-                super.p(i10, i11, i12);
-                return;
-        }
-    }
-
-    @Override
-    public void q(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
-        switch (this.U) {
-            case 2:
-                if (!((k91) this.V).f38728e2) {
-                    super.q(i10, i11, i12, i13, i14, i15, z10, z11);
-                    return;
-                }
-                return;
-            default:
-                super.q(i10, i11, i12, i13, i14, i15, z10, z11);
-                return;
-        }
-    }
-
-    public a6(k91 k91Var, int i10, boolean z10) {
-        super(i10, true, z10, null);
-        this.U = 2;
-        this.V = k91Var;
+    a6(int i3, int i10, int i11, int i12, int i13, int i14) {
+        this.f27386a = i3;
+        this.f27387b = i10;
+        this.f27388c = i11;
+        this.d = i12;
+        this.f27389e = i13;
+        this.f27390f = i14;
     }
 }

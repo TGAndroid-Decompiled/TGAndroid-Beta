@@ -1,30 +1,26 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class jr0 extends AnimatorListenerAdapter {
-    public final kr0 f38535a;
+import android.view.View;
+public final class jr0 implements View.OnClickListener {
+    public final int f46681a;
+    public final org.telegram.ui.Components.f60 f46682b;
 
-    public jr0(kr0 kr0Var) {
-        this.f38535a = kr0Var;
+    public jr0(org.telegram.ui.Components.f60 f60Var, int i3) {
+        this.f46681a = i3;
+        this.f46682b = f60Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        kr0 kr0Var = this.f38535a;
-        PhotoViewer photoViewer = kr0Var.f38966c;
-        photoViewer.f33559n4 = 0;
-        photoViewer.I1();
-        photoViewer.L0.setAlpha(255);
-        photoViewer.f33477e0.invalidate();
-        photoViewer.P0.setTranslationY(0.0f);
-        if (photoViewer.f33613t4) {
-            PhotoViewer.b0(photoViewer, kr0Var.f38965b.intValue());
-        }
-        ds0 ds0Var = kr0Var.f38964a;
-        if (ds0Var != null) {
-            ds0Var.d();
+    public final void onClick(View view) {
+        switch (this.f46681a) {
+            case 0:
+                org.telegram.ui.Components.ac.e();
+                this.f46682b.s();
+                return;
+            default:
+                org.telegram.ui.Components.ac.e();
+                this.f46682b.s();
+                return;
         }
     }
 }

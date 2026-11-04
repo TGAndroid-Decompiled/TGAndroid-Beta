@@ -3,8 +3,8 @@ public class StyleAtom extends Atom {
     private Atom at;
     private int style;
 
-    public StyleAtom(int i10, Atom atom) {
-        this.style = i10;
+    public StyleAtom(int i3, Atom atom) {
+        this.style = i3;
         this.at = atom;
     }
 

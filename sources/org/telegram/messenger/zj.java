@@ -1,25 +1,38 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.tl.TL_update;
 public final class zj implements Runnable {
-    public final int f19725a;
-    public final wp f19726b;
-    public final TLRPC.User f19727c;
+    public final int f26928a;
+    public final hp f26929b;
+    public final TL_update.TL_updatePeerBlocked f26930c;
 
-    public zj(wp wpVar, TLRPC.User user, int i10) {
-        this.f19725a = i10;
-        this.f19726b = wpVar;
-        this.f19727c = user;
+    public zj(hp hpVar, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i3) {
+        this.f26928a = i3;
+        this.f26929b = hpVar;
+        this.f26930c = tL_updatePeerBlocked;
     }
 
     @Override
     public final void run() {
-        switch (this.f19725a) {
+        switch (this.f26928a) {
             case 0:
-                this.f19726b.f19219q1.remove(Long.valueOf(this.f19727c.f19943id));
+                g0.h3(new zj(this.f26929b, this.f26930c, 1));
                 return;
             default:
-                this.f19726b.getContactsController().a(this.f19727c);
+                hp hpVar = this.f26929b;
+                LongSparseIntArray longSparseIntArray = hpVar.H0;
+                TL_update.TL_updatePeerBlocked tL_updatePeerBlocked = this.f26930c;
+                long C1 = zi.C1(tL_updatePeerBlocked.peer_id);
+                if (tL_updatePeerBlocked.blocked) {
+                    if (longSparseIntArray.indexOfKey(C1) < 0) {
+                        longSparseIntArray.put(C1, 1);
+                    }
+                } else {
+                    longSparseIntArray.delete(C1);
+                }
+                hpVar.getNotificationCenter().k(43, new Object[0]);
+                hpVar.P1().m0(C1, tL_updatePeerBlocked.blocked_my_stories_from, false);
                 return;
         }
     }

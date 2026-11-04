@@ -1,36 +1,56 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class n21 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39679a;
-    public final q21 f39680b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class n21 implements r9 {
+    public TLObject f47855a = null;
+    public TLRPC.TL_error f47856b = null;
+    public final SessionsActivity f47857c;
 
-    public n21(q21 q21Var, int i10) {
-        this.f39679a = i10;
-        this.f39680b = q21Var;
+    public n21(SessionsActivity sessionsActivity) {
+        this.f47857c = sessionsActivity;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39679a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q21 q21Var = this.f39680b;
-                q21Var.N = floatValue;
-                q21Var.V.f37305h0.invalidate();
-                return;
-            case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q21 q21Var2 = this.f39680b;
-                q21Var2.N = floatValue2;
-                q21Var2.V.f37305h0.invalidate();
-                return;
-            default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q21 q21Var3 = this.f39680b;
-                q21Var3.N = floatValue3;
-                q21Var3.V.f37305h0.invalidate();
-                return;
+    public final void M(String str) {
+        TLObject tLObject = this.f47855a;
+        if (tLObject instanceof TLRPC.TL_authorization) {
+            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
+            boolean z10 = tL_authorization.password_pending;
+            SessionsActivity sessionsActivity = this.f47857c;
+            if (z10) {
+                sessionsActivity.f41987e.add(0, tL_authorization);
+                sessionsActivity.V = 4;
+                sessionsActivity.p0(false);
+            } else {
+                sessionsActivity.d.add(0, tL_authorization);
+            }
+            sessionsActivity.r0();
+            sessionsActivity.f41984a.f();
+            sessionsActivity.f41990r.m(0L, this.f47855a, 11);
+        } else if (this.f47856b != null) {
+            org.telegram.messenger.g0.h3(new l21(this, 0));
         }
+    }
+
+    @Override
+    public final String M0() {
+        return null;
+    }
+
+    @Override
+    public final boolean e1(String str, i9 i9Var) {
+        this.f47855a = null;
+        this.f47856b = null;
+        org.telegram.messenger.g0.i3(new wy0(this, str, i9Var, 3), 750L);
+        return true;
+    }
+
+    @Override
+    public final void V0(org.telegram.messenger.rr rrVar) {
+    }
+
+    @Override
+    public final void onDismiss() {
     }
 }

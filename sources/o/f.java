@@ -4,70 +4,70 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f13907a;
-    public c f13908b;
-    public final WeakHashMap f13909c = new WeakHashMap();
+    public c f20472a;
+    public c f20473b;
+    public final WeakHashMap f20474c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
         throw new UnsupportedOperationException("Method not decompiled: o.f.equals(java.lang.Object):boolean");
     }
 
-    public final int hashCode() {
-        Iterator it = iterator();
-        int i10 = 0;
-        while (true) {
-            b bVar = (b) it;
-            if (bVar.hasNext()) {
-                i10 += ((Map.Entry) bVar.next()).hashCode();
-            } else {
-                return i10;
-            }
-        }
-    }
-
-    @Override
-    public final Iterator iterator() {
-        b bVar = new b(this.f13907a, this.f13908b, 0);
-        this.f13909c.put(bVar, Boolean.FALSE);
-        return bVar;
-    }
-
-    public c l(Object obj) {
-        c cVar = this.f13907a;
-        while (cVar != null && !cVar.f13901a.equals(obj)) {
-            cVar = cVar.f13903c;
+    public c h(Object obj) {
+        c cVar = this.f20472a;
+        while (cVar != null && !cVar.f20466a.equals(obj)) {
+            cVar = cVar.f20468c;
         }
         return cVar;
     }
 
-    public Object m(Object obj) {
-        c l4 = l(obj);
-        if (l4 == null) {
+    public final int hashCode() {
+        Iterator it = iterator();
+        int i3 = 0;
+        while (true) {
+            b bVar = (b) it;
+            if (bVar.hasNext()) {
+                i3 += ((Map.Entry) bVar.next()).hashCode();
+            } else {
+                return i3;
+            }
+        }
+    }
+
+    public Object i(Object obj) {
+        c h = h(obj);
+        if (h == null) {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f13909c;
+        WeakHashMap weakHashMap = this.f20474c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
-                eVar.a(l4);
+                eVar.a(h);
             }
         }
-        c cVar = l4.d;
+        c cVar = h.d;
         if (cVar != null) {
-            cVar.f13903c = l4.f13903c;
+            cVar.f20468c = h.f20468c;
         } else {
-            this.f13907a = l4.f13903c;
+            this.f20472a = h.f20468c;
         }
-        c cVar2 = l4.f13903c;
+        c cVar2 = h.f20468c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f13908b = cVar;
+            this.f20473b = cVar;
         }
-        l4.f13903c = null;
-        l4.d = null;
-        return l4.f13902b;
+        h.f20468c = null;
+        h.d = null;
+        return h.f20467b;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        b bVar = new b(this.f20472a, this.f20473b, 0);
+        this.f20474c.put(bVar, Boolean.FALSE);
+        return bVar;
     }
 
     public final String toString() {

@@ -1,75 +1,16 @@
 package db;
-public final class e {
-    public final Boolean f5841a;
-    public final Double f5842b;
-    public final Integer f5843c;
-    public final Integer d;
-    public final Long e;
+public final class e implements ma.d {
+    public static final e f8638a = new Object();
+    public static final ma.c f8639b = ma.c.c("performance");
+    public static final ma.c f8640c = ma.c.c("crashlytics");
+    public static final ma.c d = ma.c.c("sessionSamplingRate");
 
-    public e(Boolean bool, Double d, Integer num, Integer num2, Long l4) {
-        this.f5841a = bool;
-        this.f5842b = d;
-        this.f5843c = num;
-        this.d = num2;
-        this.e = l4;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof e)) {
-            return false;
-        }
-        e eVar = (e) obj;
-        if (kotlin.jvm.internal.i.a(this.f5841a, eVar.f5841a) && kotlin.jvm.internal.i.a(this.f5842b, eVar.f5842b) && kotlin.jvm.internal.i.a(this.f5843c, eVar.f5843c) && kotlin.jvm.internal.i.a(this.d, eVar.d) && kotlin.jvm.internal.i.a(this.e, eVar.e)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int hashCode2;
-        int hashCode3;
-        int hashCode4;
-        int i10 = 0;
-        Boolean bool = this.f5841a;
-        if (bool == null) {
-            hashCode = 0;
-        } else {
-            hashCode = bool.hashCode();
-        }
-        int i11 = hashCode * 31;
-        Double d = this.f5842b;
-        if (d == null) {
-            hashCode2 = 0;
-        } else {
-            hashCode2 = d.hashCode();
-        }
-        int i12 = (i11 + hashCode2) * 31;
-        Integer num = this.f5843c;
-        if (num == null) {
-            hashCode3 = 0;
-        } else {
-            hashCode3 = num.hashCode();
-        }
-        int i13 = (i12 + hashCode3) * 31;
-        Integer num2 = this.d;
-        if (num2 == null) {
-            hashCode4 = 0;
-        } else {
-            hashCode4 = num2.hashCode();
-        }
-        int i14 = (i13 + hashCode4) * 31;
-        Long l4 = this.e;
-        if (l4 != null) {
-            i10 = l4.hashCode();
-        }
-        return i14 + i10;
-    }
-
-    public final String toString() {
-        return "SessionConfigs(sessionEnabled=" + this.f5841a + ", sessionSamplingRate=" + this.f5842b + ", sessionRestartTimeout=" + this.f5843c + ", cacheDuration=" + this.d + ", cacheUpdatedTime=" + this.e + ')';
+    @Override
+    public final void a(Object obj, Object obj2) {
+        k kVar = (k) obj;
+        ma.e eVar = (ma.e) obj2;
+        eVar.a(f8639b, kVar.f8695a);
+        eVar.a(f8640c, kVar.f8696b);
+        eVar.c(d, kVar.f8697c);
     }
 }

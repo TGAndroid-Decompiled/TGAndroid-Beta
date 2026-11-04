@@ -1,29 +1,27 @@
 package kg;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-public final class u0 extends org.telegram.ui.Cells.q {
-    public f2 e;
-    public Paint f11277f;
-    public float h;
+import android.location.Location;
+import org.telegram.messenger.uy;
+import org.telegram.tgnet.TLRPC;
+public final class u0 implements uy {
+    public final e1 f17201a;
+
+    public u0(e1 e1Var) {
+        this.f17201a = e1Var;
+    }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int L = org.telegram.messenger.i0.L(10.0f);
-        f2 f2Var = this.e;
-        f2Var.f11071c.set(org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(5.0f), getMeasuredWidth() - org.telegram.messenger.i0.L(5.0f), getMeasuredHeight() - org.telegram.messenger.i0.L(5.0f));
-        float f7 = -L;
-        f2Var.f11069a.set(f7, f7, getWidth() + L, getHeight() + L);
-        canvas.save();
-        float f10 = 1.0f - this.h;
-        canvas.scale(f10, f10, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        f2Var.d(canvas);
-        canvas.restore();
-        invalidate();
-        RectF rectF = org.telegram.messenger.i0.P;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(18.0f), org.telegram.messenger.i0.L(18.0f), this.f11277f);
-        super.draw(canvas);
+    public final void B(Location location) {
+        e1 e1Var = this.f17201a;
+        TLRPC.User user = e1Var.f17020x0;
+        if (user != null && user.bot_inline_geo) {
+            e1Var.A0 = location;
+            e1Var.T(true, user, e1Var.f17013s0, "");
+        }
+    }
+
+    @Override
+    public final void y() {
+        this.f17201a.Q();
     }
 }

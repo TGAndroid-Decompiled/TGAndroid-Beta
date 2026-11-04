@@ -1,169 +1,74 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class g60 extends tk0 {
-    public final m60 f26324c;
+public final class g60 implements RequestDelegate {
+    public final int f34006a = 1;
+    public final Context f34007b;
+    public final long f34008c;
+    public final int d;
+    public final Object f34009e;
+    public final Object f34010f;
+    public final Object f34011g;
+    public final Object h;
+    public final Object f34012i;
 
-    public g60(m60 m60Var) {
-        this.f26324c = m60Var;
+    public g60(Context context, ei.k0 k0Var, long j10, byte[] bArr, org.telegram.messenger.video.a aVar, fc fcVar, org.telegram.messenger.video.d dVar, int i3) {
+        this.f34007b = context;
+        this.f34009e = k0Var;
+        this.f34008c = j10;
+        this.f34010f = bArr;
+        this.f34011g = aVar;
+        this.h = fcVar;
+        this.f34012i = dVar;
+        this.d = i3;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        int i10 = c1Var.f47912f;
-        if (i10 == 3 || i10 == 1) {
-            return true;
-        }
-        return false;
-    }
-
-    public final TLObject E(int i10) {
-        m60 m60Var = this.f26324c;
-        if (m60Var.f28382d2 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) m60Var.f28383e2.get(i10 - m60Var.P1);
-            if (org.telegram.messenger.o5.E(dialog.f19798id)) {
-                return org.telegram.messenger.wp.r1(m60Var.f21584a).Z1(Long.valueOf(dialog.f19798id));
-            }
-            return org.telegram.messenger.wp.r1(m60Var.f21584a).L0(Long.valueOf(-dialog.f19798id));
-        }
-        return (TLObject) m60Var.V1.get(i10 - m60Var.P1);
-    }
-
-    @Override
-    public final int b() {
-        return this.f26324c.T1;
-    }
-
-    @Override
-    public final int d(int i10) {
-        m60 m60Var = this.f26324c;
-        if (i10 == m60Var.O1) {
-            return 1;
-        }
-        m60Var.getClass();
-        if (i10 == 0) {
-            return 2;
-        }
-        if (i10 >= m60Var.P1 && i10 < m60Var.Q1) {
-            return 3;
-        }
-        if (i10 == m60Var.S1) {
-            return 4;
-        }
-        if (i10 == m60Var.R1) {
-            return 5;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        long j10;
-        boolean z10;
-        long j11;
-        boolean z11;
-        int i11 = c1Var.f47912f;
-        View view = c1Var.f47909a;
-        if (i11 != 2) {
-            if (i11 == 3) {
-                org.telegram.ui.Cells.j4 j4Var = (org.telegram.ui.Cells.j4) view;
-                TLObject E = E(i10);
-                Object object = j4Var.getObject();
-                if (object instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) object).f19943id;
-                } else if (object instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) object).f19794id;
-                } else {
-                    j10 = 0;
-                }
-                m60 m60Var = this.f26324c;
-                boolean z12 = false;
-                if (i10 != m60Var.Q1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                j4Var.e(E, null, null, z10);
-                if (E instanceof TLRPC.User) {
-                    j11 = ((TLRPC.User) E).f19943id;
-                } else if (E instanceof TLRPC.Chat) {
-                    j11 = -((TLRPC.Chat) E).f19794id;
-                } else {
-                    j11 = 0;
-                }
-                if (j11 != 0) {
-                    a0.h hVar = m60Var.K1;
-                    if (hVar != null && hVar.h(j11) >= 0) {
-                        j4Var.c(true, false);
-                        j4Var.setCheckBoxEnabled(false);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f34006a) {
+            case 0:
+                org.telegram.messenger.g0.h3(new ii.b1((org.telegram.ui.ActionBar.s1) this.f34009e, tLObject, (org.telegram.messenger.c) this.f34010f, (m60) this.f34011g, this.f34008c, this.f34007b, (org.telegram.ui.ActionBar.d2) this.h, this.d, (TLRPC.Peer) this.f34012i));
+                return;
+            default:
+                ei.k0 k0Var = (ei.k0) this.f34009e;
+                byte[] bArr = (byte[]) this.f34010f;
+                org.telegram.messenger.video.a aVar = (org.telegram.messenger.video.a) this.f34011g;
+                fc fcVar = (fc) this.h;
+                org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f34012i;
+                Context context = this.f34007b;
+                if (tLObject != null) {
+                    if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) {
+                        org.telegram.messenger.g0.h3(new ci.w3(tLObject, context, k0Var, this.f34008c, bArr, aVar, fcVar, dVar));
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
+                        org.telegram.messenger.g0.i3(new org.telegram.ui.wx0(aVar, fcVar, context, k0Var, 0), 200L);
+                        return;
+                    } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
+                        org.telegram.messenger.g0.i3(new org.telegram.ui.rw(aVar, fcVar, this.d, 12), 200L);
+                        return;
+                    } else {
                         return;
                     }
-                    if (m60Var.W1.h(j11) >= 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (j10 == j11) {
-                        z12 = true;
-                    }
-                    j4Var.c(z11, z12);
-                    j4Var.setCheckBoxEnabled(true);
+                } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
+                    org.telegram.messenger.g0.i3(new org.telegram.ui.wx0(aVar, fcVar, context, k0Var, 1), 200L);
+                    return;
+                } else {
                     return;
                 }
-                return;
-            }
-            return;
         }
-        view.requestLayout();
     }
 
-    @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.b5 b5Var;
-        boolean z10;
-        Context context = viewGroup.getContext();
-        if (i10 != 2) {
-            m60 m60Var = this.f26324c;
-            if (i10 != 3) {
-                if (i10 != 4) {
-                    if (i10 != 5) {
-                        org.telegram.ui.Cells.b5 b5Var2 = new org.telegram.ui.Cells.b5(context);
-                        b5Var2.b(2131232202, 7, org.telegram.messenger.dd.L0(2131743416, null), true);
-                        int i11 = org.telegram.ui.ActionBar.t6.f21115n5;
-                        b5Var2.a(i11, i11);
-                        b5Var = b5Var2;
-                    } else {
-                        f60 f60Var = new f60(context, null, 0, null, 0);
-                        f60Var.setLayoutParams(new s4.o0(-1, -1));
-                        f60Var.e.setVisibility(8);
-                        org.telegram.ui.st stVar = m60Var.f28382d2;
-                        nh.p pVar = f60Var.d;
-                        if (stVar != null) {
-                            pVar.setText(org.telegram.messenger.dd.L0(2131750727, null));
-                        } else {
-                            pVar.setText(org.telegram.messenger.dd.L0(2131748240, null));
-                        }
-                        f60Var.setAnimateLayoutChange(true);
-                        b5Var = f60Var;
-                    }
-                } else {
-                    b5Var = new View(context);
-                }
-            } else {
-                if (m60Var.f28382d2 != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                b5Var = new org.telegram.ui.Cells.j4(context, 1, 0, z10);
-            }
-        } else {
-            b5Var = new bi.t0(this, context, 14);
-        }
-        return new s4.c1(b5Var);
+    public g60(org.telegram.ui.ActionBar.s1 s1Var, org.telegram.messenger.c cVar, m60 m60Var, long j10, Context context, org.telegram.ui.ActionBar.d2 d2Var, int i3, TLRPC.Peer peer) {
+        this.f34009e = s1Var;
+        this.f34010f = cVar;
+        this.f34011g = m60Var;
+        this.f34008c = j10;
+        this.f34007b = context;
+        this.h = d2Var;
+        this.d = i3;
+        this.f34012i = peer;
     }
 }

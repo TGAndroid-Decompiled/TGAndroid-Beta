@@ -1,44 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.text.Spanned;
-import android.text.style.LeadingMarginSpan;
-public final class ia implements LeadingMarginSpan {
-    public final int f27057a;
-    public final int f27058b;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ia extends org.telegram.ui.ActionBar.k {
+    public final qt0 G1;
+    public final ma H1;
 
-    public ia(int i10, int i11) {
-        this.f27057a = i10;
-        this.f27058b = i11;
+    public ia(ma maVar, Context context, qt0 qt0Var) {
+        super(context, null);
+        this.H1 = maVar;
+        this.G1 = qt0Var;
     }
 
     @Override
-    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i10, int i11, int i12, int i13, int i14, CharSequence charSequence, int i15, int i16, boolean z10, Layout layout) {
-        int i17;
-        if (((Spanned) charSequence).getSpanStart(this) == i15) {
-            Paint.Style style = paint.getStyle();
-            int color = paint.getColor();
-            paint.setColor(-11491093);
-            paint.setStyle(Paint.Style.FILL);
-            if (layout != null) {
-                if (layout.getLineForOffset(i15) != layout.getLineCount() - 1) {
-                    i17 = (int) layout.getSpacingAdd();
-                } else {
-                    i17 = 0;
-                }
-                i14 -= i17;
-            }
-            int i18 = this.f27058b;
-            canvas.drawCircle((i11 * i18) + i10, (i12 + i14) / 2.0f, i18, paint);
-            paint.setColor(color);
-            paint.setStyle(style);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        ma maVar = this.H1;
+        if (maVar.D1 && maVar.E1) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        if (getAlpha() != f10) {
+            super.setAlpha(f10);
+            this.G1.invalidate();
         }
     }
 
     @Override
-    public final int getLeadingMargin(boolean z10) {
-        return (this.f27058b * 2) + this.f27057a;
+    public final void setTag(Object obj) {
+        super.setTag(obj);
+        this.H1.a1();
     }
 }

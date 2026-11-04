@@ -1,35 +1,27 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class gg0 implements org.telegram.ui.Components.i80 {
-    public final org.telegram.ui.Components.j80 f37507a;
-    public final hg0 f37508b;
+public final class gg0 extends bh.d {
+    public final int f45657n;
 
-    public gg0(hg0 hg0Var, org.telegram.ui.Components.j80 j80Var) {
-        this.f37508b = hg0Var;
-        this.f37507a = j80Var;
+    public gg0(int i3, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.f45657n = i3;
     }
 
     @Override
-    public final void d() {
-        ig0.b0(this.f37508b.d);
-    }
-
-    @Override
-    public final void g() {
-        hg0 hg0Var = this.f37508b;
-        ig0 ig0Var = hg0Var.d;
-        Context context = this.f37507a.getContext();
-        ig0 ig0Var2 = hg0Var.d;
-        ig0Var.f38041l0 = new org.telegram.ui.Components.c60(context, ig0Var2.e, ig0Var2.d, ig0Var2.f38040k0, ig0Var2, ig0Var2.f38042n, true, ig0Var2.h);
-        hg0Var.d.f38041l0.show();
-    }
-
-    @Override
-    public final void b() {
-    }
-
-    @Override
-    public final void n() {
+    public final int getHeaderHeight() {
+        switch (this.f45657n) {
+            case 0:
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
+                }
+                return org.telegram.messenger.g0.L(54.0f);
+            default:
+                if (getResources().getConfiguration().orientation == 2) {
+                    return org.telegram.messenger.g0.L(48.0f);
+                }
+                return org.telegram.messenger.g0.L(54.0f);
+        }
     }
 }

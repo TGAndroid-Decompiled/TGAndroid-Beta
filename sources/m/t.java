@@ -3,20 +3,20 @@ package m;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.TextView;
-import w7.r6;
+import org.telegram.ui.Components.y00;
 public final class t {
-    public final TextView f12550a;
-    public final k2.m0 f12551b;
+    public final TextView f18729a;
+    public final y00 f18730b;
 
     public t(TextView textView) {
-        this.f12550a = textView;
+        this.f18729a = textView;
         ?? obj = new Object();
-        obj.f10701a = new q1.g(textView);
-        this.f12551b = obj;
+        obj.f40562a = new s1.g(textView);
+        this.f18730b = obj;
     }
 
-    public final void a(AttributeSet attributeSet, int i10) {
-        TypedArray obtainStyledAttributes = this.f12550a.getContext().obtainStyledAttributes(attributeSet, f.a.f6700i, i10, 0);
+    public final void a(AttributeSet attributeSet, int i3) {
+        TypedArray obtainStyledAttributes = this.f18729a.getContext().obtainStyledAttributes(attributeSet, f.a.f11313i, i3, 0);
         try {
             boolean z10 = true;
             if (obtainStyledAttributes.hasValue(14)) {
@@ -31,10 +31,10 @@ public final class t {
     }
 
     public final void b(boolean z10) {
-        ((r6) this.f12551b.f10701a).b(z10);
+        ((x7.p) this.f18730b.f40562a).b(z10);
     }
 
     public final void c(boolean z10) {
-        ((r6) this.f12551b.f10701a).c(z10);
+        ((x7.p) this.f18730b.f40562a).c(z10);
     }
 }

@@ -1,46 +1,46 @@
 package d1;
 
-import kotlin.jvm.internal.i;
+import kotlin.jvm.internal.j;
 import v0.h;
 public final class a implements Runnable {
-    public final int f5627a;
-    public final f f5628b;
-    public final w0.d f5629c;
+    public final int f7984a;
+    public final e f7985b;
+    public final w0.d f7986c;
 
-    public a(f fVar, w0.d dVar, int i10) {
-        this.f5627a = i10;
-        this.f5628b = fVar;
-        this.f5629c = dVar;
+    public a(e eVar, w0.d dVar, int i3) {
+        this.f7984a = i3;
+        this.f7985b = eVar;
+        this.f7986c = dVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f5627a) {
+        switch (this.f7984a) {
             case 0:
-                h hVar = this.f5628b.f5641f;
+                h hVar = this.f7985b.f7996f;
                 if (hVar != null) {
-                    hVar.g(this.f5629c);
+                    hVar.a(this.f7986c);
                     return;
                 } else {
-                    i.h("callback");
+                    j.h("callback");
                     throw null;
                 }
             case 1:
-                h hVar2 = this.f5628b.f5641f;
+                h hVar2 = this.f7985b.f7996f;
                 if (hVar2 != null) {
-                    hVar2.g(this.f5629c);
+                    hVar2.a(this.f7986c);
                     return;
                 } else {
-                    i.h("callback");
+                    j.h("callback");
                     throw null;
                 }
             default:
-                h hVar3 = this.f5628b.f5641f;
+                h hVar3 = this.f7985b.f7996f;
                 if (hVar3 != null) {
-                    hVar3.g(this.f5629c);
+                    hVar3.a(this.f7986c);
                     return;
                 } else {
-                    i.h("callback");
+                    j.h("callback");
                     throw null;
                 }
         }

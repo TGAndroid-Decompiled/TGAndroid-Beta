@@ -1,22 +1,24 @@
 package wc;
 
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.Map;
-public abstract class c {
-    public static final Map f52820a;
+import bd.h;
+import gf.p;
+import java.util.regex.Pattern;
+public final class c extends h {
+    public static final Pattern f57455e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
 
-    static {
-        Map map;
-        try {
-            Field declaredField = ue.b.class.getDeclaredField("a");
-            declaredField.setAccessible(true);
-            map = (Map) declaredField.get(null);
-        } catch (Throwable th2) {
-            Map map2 = Collections.EMPTY_MAP;
-            th2.printStackTrace();
-            map = map2;
+    @Override
+    public final p b() {
+        String a10 = a(f57455e);
+        if (a10 == null) {
+            return null;
         }
-        f52820a = map;
+        ?? pVar = new p();
+        pVar.f57456g = com.google.android.recaptcha.internal.a.j(a10, 2, 2);
+        return pVar;
+    }
+
+    @Override
+    public final char d() {
+        return '$';
     }
 }

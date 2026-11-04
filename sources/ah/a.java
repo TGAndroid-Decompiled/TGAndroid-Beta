@@ -1,233 +1,177 @@
 package ah;
 
-import android.content.Context;
-import android.graphics.BlendMode;
-import android.graphics.BlendModeColorFilter;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.RippleDrawable;
-import android.os.Build;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import fe.e;
-import java.util.HashSet;
-import org.telegram.messenger.i0;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.w6;
-import org.telegram.ui.Cells.y;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.kp;
-import vg.f;
-import w7.b6;
-public final class a extends FrameLayout implements e, k6 {
-    public final fe.b f823a;
-    public final fe.b f824b;
-    public ImageView f825c;
-    public ImageView d;
-    public kp e;
-    public p6 f826f;
-    public float h;
-    public int f827n;
-    public f f828r;
-
-    public a(Context context) {
-        super(context);
-        gr grVar = gr.h;
-        this.f823a = new fe.b(0, this, grVar, 320L, false);
-        this.f824b = new fe.b(1, this, grVar, 320L, true);
-        this.h = 1.0f;
-    }
-
-    public static a c(Context context, p6 p6Var, tg.b bVar, wg.a aVar) {
-        int i10 = t6.Kl;
-        int w02 = t6.w0(i10, p6Var);
-        a aVar2 = new a(context);
-        aVar2.f826f = p6Var;
-        aVar2.setBlurredBackgroundDrawable(bVar.c(aVar2, aVar, false));
-        aVar2.setIconColor(w02);
-        int L = i0.L(22.0f);
-        int r12 = t6.r1(0.15f, w02);
-        int L2 = i0.L(6.0f);
-        y Y = t6.Y(L, r12, L2, L2, L2, L2);
-        w6 L3 = a7.L(0.15f, i10);
-        aVar2.setBackground(Y);
-        a7.k(aVar2, Y, null, L3, p6Var);
-        return aVar2;
-    }
-
-    public static a d(Context context, tg.b bVar, wg.a aVar, p6 p6Var, int i10, int i11) {
-        int i12 = t6.Kl;
-        int w02 = t6.w0(i12, p6Var);
-        a aVar2 = new a(context);
-        aVar2.f826f = p6Var;
-        aVar2.setBlurredBackgroundDrawable(bVar.c(aVar2, aVar, false));
-        aVar2.f(i10, i11);
-        aVar2.setIconColor(w02);
-        int L = i0.L(22.0f);
-        int r12 = t6.r1(0.15f, w02);
-        int L2 = i0.L(6.0f);
-        y Y = t6.Y(L, r12, L2, L2, L2, L2);
-        w6 L3 = a7.L(0.15f, i12);
-        aVar2.setBackground(Y);
-        a7.k(aVar2, Y, null, L3, p6Var);
-        return aVar2;
-    }
-
-    public final void a() {
-        int i10;
-        float f7 = 1.0f - this.f823a.e;
-        float T1 = i0.T1(f7 / 2.0f, f7, this.f824b.e);
-        ImageView imageView = this.f825c;
-        if (imageView != null) {
-            imageView.setAlpha(T1);
-            this.f825c.setScaleX(i0.T1(0.4f, 1.0f, f7));
-            this.f825c.setScaleY(i0.T1(0.4f, 1.0f, f7) * this.h);
-            ImageView imageView2 = this.f825c;
-            if (f7 > 0.0f) {
-                i10 = 0;
-            } else {
-                i10 = 8;
-            }
-            imageView2.setVisibility(i10);
-        }
-    }
-
-    public final void b() {
-        int i10;
-        float f7 = this.f823a.e;
-        float T1 = i0.T1(f7 / 2.0f, f7, this.f824b.e);
-        ImageView imageView = this.d;
-        if (imageView != null) {
-            imageView.setAlpha(T1);
-            this.d.setScaleX(i0.T1(0.4f, 1.0f, f7));
-            this.d.setScaleY(i0.T1(0.4f, 1.0f, f7));
-            if (f7 > 0.0f) {
-                i10 = 0;
-            } else {
-                i10 = 8;
-            }
-            if (this.d.getVisibility() != i10) {
-                this.d.setVisibility(i10);
-                this.e.f27917c = -1L;
-            }
-        }
-    }
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import ci.w5;
+import dh.l0;
+import mi.s0;
+import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.np;
+import org.telegram.ui.Components.tm0;
+public final class a implements Drawable.Callback {
+    public final int f422a;
+    public Object f423b;
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        this.f828r.draw(canvas);
-        super.draw(canvas);
-    }
-
-    public final void e(boolean z10, boolean z11) {
-        super.setEnabled(z10);
-        this.f824b.a(z10, z11);
-    }
-
-    public final void f(int i10, int i11) {
-        if (this.f825c == null) {
-            if (i10 == 0) {
+    public final void invalidateDrawable(Drawable drawable) {
+        switch (this.f422a) {
+            case 0:
+                ((b) this.f423b).f426c.invalidate();
                 return;
-            }
-            ImageView imageView = new ImageView(getContext());
-            this.f825c = imageView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER);
-            addView(this.f825c, b6.e(i11, i11, 17));
-            a();
-        }
-        this.f825c.setImageResource(i10);
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        this.f828r.setBounds(0, 0, i10, i11);
-    }
-
-    public void setBlurredBackgroundDrawable(f fVar) {
-        this.f828r = fVar;
-        fVar.p(i0.L(6.0f));
-        this.f828r.q(i0.L(22.0f));
-    }
-
-    @Override
-    public void setEnabled(boolean z10) {
-        e(z10, false);
-    }
-
-    public void setIcon(int i10) {
-        f(i10, 48);
-    }
-
-    public void setIconColor(int i10) {
-        BlendMode blendMode;
-        ImageView imageView = this.f825c;
-        if (imageView == null) {
-            return;
-        }
-        this.f827n = i10;
-        if (Build.VERSION.SDK_INT >= 29) {
-            blendMode = BlendMode.SRC_IN;
-            imageView.setColorFilter(new BlendModeColorFilter(i10, blendMode));
-            return;
-        }
-        imageView.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
-    }
-
-    public void setIconPadding(int i10) {
-        ImageView imageView = this.f825c;
-        if (imageView != null) {
-            imageView.setPadding(0, i10, 0, 0);
+            case 1:
+                ((d) this.f423b).f452c.invalidate();
+                return;
+            case 2:
+                ((w5) this.f423b).h.invalidate();
+                return;
+            case 3:
+                l0 l0Var = (l0) this.f423b;
+                View view = l0Var.V;
+                if (view != null) {
+                    view.invalidate();
+                    if (l0Var.Q && l0Var.V.getParent() != null && (l0Var.V.getParent().getParent() instanceof View)) {
+                        ((View) l0Var.V.getParent().getParent()).invalidate();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                ((eh.d) this.f423b).invalidateSelf();
+                return;
+            case 5:
+                return;
+            case 6:
+                ((s0) this.f423b).f19872b.invalidate();
+                return;
+            case 7:
+                ((np) this.f423b).invalidateSelf();
+                return;
+            case 8:
+                ((tm0) this.f423b).f38499b.run();
+                return;
+            case 9:
+                ((l11) this.f423b).invalidateSelf();
+                return;
+            default:
+                ((z4.d) this.f423b).invalidateSelf();
+                return;
         }
     }
 
     @Override
-    public final void updateColors() {
-        f fVar = this.f828r;
-        if (fVar != null) {
-            fVar.updateColors();
-            invalidate();
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        switch (this.f422a) {
+            case 0:
+                ((b) this.f423b).f426c.invalidate();
+                return;
+            case 1:
+                ((d) this.f423b).f452c.invalidate();
+                return;
+            case 2:
+                return;
+            case 3:
+                View view = ((l0) this.f423b).V;
+                if (view != null) {
+                    view.scheduleDrawable(drawable, runnable, j10);
+                    return;
+                }
+                return;
+            case 4:
+                ((eh.d) this.f423b).scheduleSelf(runnable, j10);
+                return;
+            case 5:
+                Drawable.Callback callback = (Drawable.Callback) this.f423b;
+                if (callback != null) {
+                    callback.scheduleDrawable(drawable, runnable, j10);
+                    return;
+                }
+                return;
+            case 6:
+                return;
+            case 7:
+                ((np) this.f423b).scheduleSelf(runnable, j10);
+                return;
+            case 8:
+            case 9:
+                return;
+            default:
+                ((z4.d) this.f423b).scheduleSelf(runnable, j10);
+                return;
         }
-        int w02 = t6.w0(t6.Kl, this.f826f);
-        if (this.f825c != null && w02 != this.f827n) {
-            setIconColor(w02);
-        }
-        int L = i0.L(22.0f);
-        int r12 = t6.r1(0.15f, w02);
-        if (getBackground() instanceof RippleDrawable) {
-            t6.H1(getBackground(), r12, true);
-            return;
-        }
-        int L2 = i0.L(6.0f);
-        setBackground(t6.Y(L, r12, L2, L2, L2, L2));
     }
 
     @Override
-    public final void v(int i10, float f7, float f10, fe.f fVar) {
-        if (i10 == 0) {
-            a();
-            b();
-        }
-        if (i10 == 1) {
-            a();
-            b();
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        switch (this.f422a) {
+            case 0:
+                ((b) this.f423b).f426c.invalidate();
+                return;
+            case 1:
+                ((d) this.f423b).f452c.invalidate();
+                return;
+            case 2:
+                return;
+            case 3:
+                View view = ((l0) this.f423b).V;
+                if (view != null) {
+                    view.unscheduleDrawable(drawable, runnable);
+                    return;
+                }
+                return;
+            case 4:
+                ((eh.d) this.f423b).unscheduleSelf(runnable);
+                return;
+            case 5:
+                Drawable.Callback callback = (Drawable.Callback) this.f423b;
+                if (callback != null) {
+                    callback.unscheduleDrawable(drawable, runnable);
+                    return;
+                }
+                return;
+            case 6:
+                return;
+            case 7:
+                ((np) this.f423b).unscheduleSelf(runnable);
+                return;
+            case 8:
+            case 9:
+                return;
+            default:
+                ((z4.d) this.f423b).unscheduleSelf(runnable);
+                return;
         }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public a(Object obj, int i3) {
+        this.f422a = i3;
+        this.f423b = obj;
     }
 
-    @Override
-    public final void E(float f7, int i10) {
+    private final void a(Drawable drawable) {
+    }
+
+    private final void f(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void g(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void h(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void i(Drawable drawable, Runnable runnable) {
+    }
+
+    private final void b(Drawable drawable, Runnable runnable, long j10) {
+    }
+
+    private final void c(Drawable drawable, Runnable runnable, long j10) {
+    }
+
+    private final void d(Drawable drawable, Runnable runnable, long j10) {
+    }
+
+    private final void e(Drawable drawable, Runnable runnable, long j10) {
     }
 }

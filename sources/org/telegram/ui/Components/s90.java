@@ -1,33 +1,35 @@
 package org.telegram.ui.Components;
+public final class s90 implements Runnable {
+    public final int f37953a;
+    public final t90 f37954b;
 
-import org.telegram.tgnet.TLRPC;
-public final class s90 extends g.o {
-    public final y90 f30252c;
-
-    public s90(y90 y90Var) {
-        this.f30252c = y90Var;
+    public s90(t90 t90Var, int i3) {
+        this.f37953a = i3;
+        this.f37954b = t90Var;
     }
 
     @Override
-    public final int i(int i10) {
-        y90 y90Var = this.f30252c;
-        zf.x0 x0Var = y90Var.f32783f;
-        if (i10 != 0) {
-            int i11 = i10 - 1;
-            Object J = x0Var.J(i11);
-            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (J instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (x0Var.I() != null || x0Var.U != null) {
-                i10 = i11;
-            }
-            r90 r90Var = y90Var.d;
-            r90Var.B1();
-            return r90Var.R.get(i10);
+    public final void run() {
+        switch (this.f37953a) {
+            case 0:
+                t90 t90Var = this.f37954b;
+                if (t90Var.W != -1) {
+                    org.telegram.messenger.hs.f(t90Var.Y.f40291d0.f33042x).j(t90Var.W);
+                    t90Var.W = -1;
+                    return;
+                }
+                return;
+            case 1:
+                this.f37954b.Y.i();
+                return;
+            default:
+                t90 t90Var2 = this.f37954b;
+                if (t90Var2.W != -1) {
+                    org.telegram.messenger.hs.f(t90Var2.Y.f40291d0.f33042x).j(t90Var2.W);
+                    t90Var2.W = -1;
+                    return;
+                }
+                return;
         }
-        return 100;
     }
 }

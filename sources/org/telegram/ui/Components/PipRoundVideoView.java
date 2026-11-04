@@ -12,65 +12,65 @@ import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import org.telegram.ui.LaunchActivity;
-public class PipRoundVideoView implements org.telegram.messenger.vs {
-    public static PipRoundVideoView F;
-    public DecelerateInterpolator D;
-    public final RectF E = new RectF();
-    public ze0 f24077a;
-    public int f24078b;
-    public TextureView f24079c;
+public class PipRoundVideoView implements org.telegram.messenger.cs {
+    public static PipRoundVideoView G;
+    public DecelerateInterpolator E;
+    public final RectF F = new RectF();
+    public yd0 f31497a;
+    public int f31498b;
+    public TextureView f31499c;
     public ImageView d;
-    public af0 e;
-    public Bitmap f24080f;
+    public zd0 f31500e;
+    public Bitmap f31501f;
     public int h;
-    public int f24081n;
-    public AnimatorSet f24082r;
-    public Runnable f24083s;
-    public WindowManager.LayoutParams f24084w;
-    public WindowManager f24085x;
-    public SharedPreferences f24086y;
+    public int f31502n;
+    public AnimatorSet f31503r;
+    public Runnable f31504s;
+    public WindowManager.LayoutParams f31505w;
+    public WindowManager f31506x;
+    public SharedPreferences f31507y;
 
-    public static int b(float f7, int i10, int i11, boolean z10) {
-        int i12;
+    public static int b(float f10, int i3, int i10, boolean z10) {
+        int i11;
         int round;
         if (z10) {
-            i12 = org.telegram.messenger.i0.f16172q.x;
+            i11 = org.telegram.messenger.g0.f22608q.x;
         } else {
-            i12 = org.telegram.messenger.i0.f16172q.y - i11;
-            i11 = org.telegram.ui.ActionBar.l.getCurrentActionBarHeight();
+            i11 = org.telegram.messenger.g0.f22608q.y - i10;
+            i10 = org.telegram.ui.ActionBar.k.getCurrentActionBarHeight();
         }
-        int i13 = i12 - i11;
-        if (i10 == 0) {
-            round = org.telegram.messenger.i0.L(10.0f);
-        } else if (i10 == 1) {
-            round = i13 - org.telegram.messenger.i0.L(10.0f);
+        int i12 = i11 - i10;
+        if (i3 == 0) {
+            round = org.telegram.messenger.g0.L(10.0f);
+        } else if (i3 == 1) {
+            round = i12 - org.telegram.messenger.g0.L(10.0f);
         } else {
-            round = Math.round((i13 - org.telegram.messenger.i0.L(20.0f)) * f7) + org.telegram.messenger.i0.L(10.0f);
+            round = Math.round((i12 - org.telegram.messenger.g0.L(20.0f)) * f10) + org.telegram.messenger.g0.L(10.0f);
         }
         if (!z10) {
-            return org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() + round;
+            return org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + round;
         }
         return round;
     }
 
     public final void a(boolean z10) {
         if (z10) {
-            TextureView textureView = this.f24079c;
+            TextureView textureView = this.f31499c;
             if (textureView != null && textureView.getParent() != null) {
-                if (this.f24079c.getWidth() > 0 && this.f24079c.getHeight() > 0) {
-                    int width = this.f24079c.getWidth();
-                    int height = this.f24079c.getHeight();
+                if (this.f31499c.getWidth() > 0 && this.f31499c.getHeight() > 0) {
+                    int width = this.f31499c.getWidth();
+                    int height = this.f31499c.getHeight();
                     Bitmap.Config config = Bitmap.Config.ARGB_8888;
-                    this.f24080f = org.telegram.messenger.ks.b(width, height);
+                    this.f31501f = org.telegram.messenger.sr.c(width, height);
                 }
                 try {
-                    this.f24079c.getBitmap(this.f24080f);
+                    this.f31499c.getBitmap(this.f31501f);
                 } catch (Throwable unused) {
-                    this.f24080f = null;
+                    this.f31501f = null;
                 }
-                this.d.setImageBitmap(this.f24080f);
+                this.d.setImageBitmap(this.f31501f);
                 try {
-                    this.e.removeView(this.f24079c);
+                    this.f31500e.removeView(this.f31499c);
                 } catch (Exception unused2) {
                 }
                 this.d.setVisibility(0);
@@ -79,193 +79,193 @@ public class PipRoundVideoView implements org.telegram.messenger.vs {
             }
             return;
         }
-        if (this.f24080f != null) {
+        if (this.f31501f != null) {
             this.d.setImageDrawable(null);
-            this.f24080f.recycle();
-            this.f24080f = null;
+            this.f31501f.recycle();
+            this.f31501f = null;
         }
         try {
-            this.f24085x.removeView(this.f24077a);
+            this.f31506x.removeView(this.f31497a);
         } catch (Exception unused3) {
         }
-        if (F == this) {
-            F = null;
+        if (G == this) {
+            G = null;
         }
-        org.telegram.messenger.at.f(this.f24078b).n(this, org.telegram.messenger.at.f14700e2);
+        org.telegram.messenger.hs.f(this.f31498b).n(this, org.telegram.messenger.hs.f23221e2);
     }
 
     public final void c(boolean z10) {
-        float f7;
         float f10;
-        AnimatorSet animatorSet = this.f24082r;
+        float f11;
+        AnimatorSet animatorSet = this.f31503r;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f24082r = animatorSet2;
-        ze0 ze0Var = this.f24077a;
+        this.f31503r = animatorSet2;
+        yd0 yd0Var = this.f31497a;
         Property property = View.ALPHA;
-        float f11 = 1.0f;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ze0Var, property, f7);
-        ze0 ze0Var2 = this.f24077a;
-        Property property2 = View.SCALE_X;
+        float f12 = 1.0f;
         if (z10) {
             f10 = 1.0f;
         } else {
-            f10 = 0.8f;
+            f10 = 0.0f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(ze0Var2, property2, f10);
-        ze0 ze0Var3 = this.f24077a;
-        Property property3 = View.SCALE_Y;
-        if (!z10) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(yd0Var, property, f10);
+        yd0 yd0Var2 = this.f31497a;
+        Property property2 = View.SCALE_X;
+        if (z10) {
+            f11 = 1.0f;
+        } else {
             f11 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(ze0Var3, property3, f11));
-        this.f24082r.setDuration(150L);
-        if (this.D == null) {
-            this.D = new DecelerateInterpolator();
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(yd0Var2, property2, f11);
+        yd0 yd0Var3 = this.f31497a;
+        Property property3 = View.SCALE_Y;
+        if (!z10) {
+            f12 = 0.8f;
         }
-        this.f24082r.addListener(new ha0(3, this, z10));
-        this.f24082r.setInterpolator(this.D);
-        this.f24082r.start();
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(yd0Var3, property3, f12));
+        this.f31503r.setDuration(150L);
+        if (this.E == null) {
+            this.E = new DecelerateInterpolator();
+        }
+        this.f31503r.addListener(new s9(17, this, z10));
+        this.f31503r.setInterpolator(this.E);
+        this.f31503r.start();
     }
 
     public final void d(LaunchActivity launchActivity, Runnable runnable) {
         if (launchActivity == null) {
             return;
         }
-        F = this;
-        this.f24083s = runnable;
-        ze0 ze0Var = new ze0(this, launchActivity);
-        this.f24077a = ze0Var;
-        ze0Var.setWillNotDraw(false);
-        this.h = org.telegram.messenger.i0.L(126.0f);
-        this.f24081n = org.telegram.messenger.i0.L(126.0f);
-        af0 af0Var = new af0(this, launchActivity, 0);
-        this.e = af0Var;
-        af0Var.setOutlineProvider(new bi.d2(13));
-        this.e.setClipToOutline(true);
-        this.e.a(1.0f, 0);
-        this.f24077a.addView(this.e, w7.b6.d(120, 120.0f, 51, 3.0f, 3.0f, 0.0f, 0.0f));
-        this.f24077a.setAlpha(1.0f);
-        this.f24077a.setScaleX(0.8f);
-        this.f24077a.setScaleY(0.8f);
-        this.f24079c = new TextureView(launchActivity);
-        float N = (org.telegram.messenger.i0.N(2.0f) + org.telegram.messenger.i0.N(120.0f)) / org.telegram.messenger.i0.N(120.0f);
-        this.f24079c.setScaleX(N);
-        this.f24079c.setScaleY(N);
-        this.e.addView(this.f24079c, w7.b6.c(-1.0f, -1));
+        G = this;
+        this.f31504s = runnable;
+        yd0 yd0Var = new yd0(this, launchActivity);
+        this.f31497a = yd0Var;
+        yd0Var.setWillNotDraw(false);
+        this.h = org.telegram.messenger.g0.L(126.0f);
+        this.f31502n = org.telegram.messenger.g0.L(126.0f);
+        zd0 zd0Var = new zd0(0, launchActivity, this);
+        this.f31500e = zd0Var;
+        zd0Var.setOutlineProvider(new cg.p0(16));
+        this.f31500e.setClipToOutline(true);
+        this.f31500e.a(1.0f, 0);
+        this.f31497a.addView(this.f31500e, b8.mf.d(120, 120.0f, 51, 3.0f, 3.0f, 0.0f, 0.0f));
+        this.f31497a.setAlpha(1.0f);
+        this.f31497a.setScaleX(0.8f);
+        this.f31497a.setScaleY(0.8f);
+        this.f31499c = new TextureView(launchActivity);
+        float N = (org.telegram.messenger.g0.N(2.0f) + org.telegram.messenger.g0.N(120.0f)) / org.telegram.messenger.g0.N(120.0f);
+        this.f31499c.setScaleX(N);
+        this.f31499c.setScaleY(N);
+        this.f31500e.addView(this.f31499c, b8.mf.c(-1.0f, -1));
         ImageView imageView = new ImageView(launchActivity);
         this.d = imageView;
-        this.e.addView(imageView, w7.b6.c(-1.0f, -1));
+        this.f31500e.addView(imageView, b8.mf.c(-1.0f, -1));
         this.d.setVisibility(4);
-        this.f24085x = (WindowManager) launchActivity.getSystemService("window");
-        SharedPreferences sharedPreferences = org.telegram.messenger.w0.f18945b.getSharedPreferences("pipconfig", 0);
-        this.f24086y = sharedPreferences;
-        int i10 = sharedPreferences.getInt("sidex", 1);
-        int i11 = this.f24086y.getInt("sidey", 0);
-        float f7 = this.f24086y.getFloat("px", 0.0f);
-        float f10 = this.f24086y.getFloat("py", 0.0f);
+        this.f31506x = (WindowManager) launchActivity.getSystemService("window");
+        SharedPreferences sharedPreferences = org.telegram.messenger.t0.f25457b.getSharedPreferences("pipconfig", 0);
+        this.f31507y = sharedPreferences;
+        int i3 = sharedPreferences.getInt("sidex", 1);
+        int i10 = this.f31507y.getInt("sidey", 0);
+        float f10 = this.f31507y.getFloat("px", 0.0f);
+        float f11 = this.f31507y.getFloat("py", 0.0f);
         try {
             WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-            this.f24084w = layoutParams;
-            int i12 = this.h;
-            layoutParams.width = i12;
-            layoutParams.height = this.f24081n;
-            layoutParams.x = b(f7, i10, i12, true);
-            this.f24084w.y = b(f10, i11, this.f24081n, false);
-            WindowManager.LayoutParams layoutParams2 = this.f24084w;
+            this.f31505w = layoutParams;
+            int i11 = this.h;
+            layoutParams.width = i11;
+            layoutParams.height = this.f31502n;
+            layoutParams.x = b(f10, i3, i11, true);
+            this.f31505w.y = b(f11, i10, this.f31502n, false);
+            WindowManager.LayoutParams layoutParams2 = this.f31505w;
             layoutParams2.format = -3;
             layoutParams2.gravity = 51;
             layoutParams2.type = 99;
             layoutParams2.flags = 16777736;
-            org.telegram.messenger.i0.x3(this.f24085x, this.f24077a, layoutParams2);
-            this.f24085x.addView(this.f24077a, this.f24084w);
-            int i13 = org.telegram.messenger.e20.f15506s0;
-            this.f24078b = i13;
-            org.telegram.messenger.at.f(i13).c(this, org.telegram.messenger.at.f14700e2);
+            org.telegram.messenger.g0.y3(this.f31506x, this.f31497a, layoutParams2);
+            this.f31506x.addView(this.f31497a, this.f31505w);
+            int i12 = org.telegram.messenger.h10.f22829t0;
+            this.f31498b = i12;
+            org.telegram.messenger.hs.f(i12).c(this, org.telegram.messenger.hs.f23221e2);
             c(true);
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        af0 af0Var;
-        if (i10 == org.telegram.messenger.at.f14700e2 && (af0Var = this.e) != null) {
-            af0Var.invalidate();
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        zd0 zd0Var;
+        if (i3 == org.telegram.messenger.hs.f23221e2 && (zd0Var = this.f31500e) != null) {
+            zd0Var.invalidate();
         }
     }
 
     public final void e(boolean z10) {
-        float f7;
         float f10;
-        AnimatorSet animatorSet = this.f24082r;
+        float f11;
+        AnimatorSet animatorSet = this.f31503r;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f24082r = animatorSet2;
-        ze0 ze0Var = this.f24077a;
+        this.f31503r = animatorSet2;
+        yd0 yd0Var = this.f31497a;
         Property property = View.ALPHA;
-        float f11 = 1.0f;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(ze0Var, property, f7);
-        ze0 ze0Var2 = this.f24077a;
-        Property property2 = View.SCALE_X;
+        float f12 = 1.0f;
         if (z10) {
             f10 = 1.0f;
         } else {
-            f10 = 0.8f;
+            f10 = 0.0f;
         }
-        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(ze0Var2, property2, f10);
-        ze0 ze0Var3 = this.f24077a;
-        Property property3 = View.SCALE_Y;
-        if (!z10) {
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(yd0Var, property, f10);
+        yd0 yd0Var2 = this.f31497a;
+        Property property2 = View.SCALE_X;
+        if (z10) {
+            f11 = 1.0f;
+        } else {
             f11 = 0.8f;
         }
-        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(ze0Var3, property3, f11));
-        this.f24082r.setDuration(150L);
-        if (this.D == null) {
-            this.D = new DecelerateInterpolator();
+        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(yd0Var2, property2, f11);
+        yd0 yd0Var3 = this.f31497a;
+        Property property3 = View.SCALE_Y;
+        if (!z10) {
+            f12 = 0.8f;
         }
-        this.f24082r.addListener(new bf0(this, 0));
-        this.f24082r.setInterpolator(this.D);
-        this.f24082r.start();
+        animatorSet2.playTogether(ofFloat, ofFloat2, ObjectAnimator.ofFloat(yd0Var3, property3, f12));
+        this.f31503r.setDuration(150L);
+        if (this.E == null) {
+            this.E = new DecelerateInterpolator();
+        }
+        this.f31503r.addListener(new ae0(this, 0));
+        this.f31503r.setInterpolator(this.E);
+        this.f31503r.start();
     }
 
     public int getX() {
-        return this.f24084w.x;
+        return this.f31505w.x;
     }
 
     public int getY() {
-        return this.f24084w.y;
+        return this.f31505w.y;
     }
 
-    public void setX(int i10) {
-        WindowManager.LayoutParams layoutParams = this.f24084w;
-        layoutParams.x = i10;
+    public void setX(int i3) {
+        WindowManager.LayoutParams layoutParams = this.f31505w;
+        layoutParams.x = i3;
         try {
-            this.f24085x.updateViewLayout(this.f24077a, layoutParams);
+            this.f31506x.updateViewLayout(this.f31497a, layoutParams);
         } catch (Exception unused) {
         }
     }
 
-    public void setY(int i10) {
-        WindowManager.LayoutParams layoutParams = this.f24084w;
-        layoutParams.y = i10;
+    public void setY(int i3) {
+        WindowManager.LayoutParams layoutParams = this.f31505w;
+        layoutParams.y = i3;
         try {
-            this.f24085x.updateViewLayout(this.f24077a, layoutParams);
+            this.f31506x.updateViewLayout(this.f31497a, layoutParams);
         } catch (Exception unused) {
         }
     }

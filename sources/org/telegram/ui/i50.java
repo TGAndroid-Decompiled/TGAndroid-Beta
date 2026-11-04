@@ -1,44 +1,32 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class i50 implements org.telegram.ui.Components.i10, org.telegram.ui.ActionBar.u1, r0.m {
-    public final int f37943a;
-    public final u50 f37944b;
+import java.util.ArrayList;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public abstract class i50 {
+    public String G;
+    public int H;
+    public org.telegram.ui.ActionBar.f1 I;
+    public org.telegram.ui.ActionBar.t2 J;
+    public org.telegram.ui.Components.t70 f46111b;
+    public a3 d;
+    public int f46113e;
+    public View f46114f;
+    public boolean h;
+    public TLRPC.Chat f46115n;
+    public boolean f46116r;
+    public View f46117s;
+    public org.telegram.ui.Components.w70 f46118w;
+    public VideoPlayerHolderBase f46119x;
+    public w2 f46120y;
+    public int f46110a = 0;
+    public final m2.p0 f46112c = new m2.p0();
+    public final a0.h E = new a0.h();
+    public ArrayList F = new ArrayList();
 
-    public i50(u50 u50Var, int i10) {
-        this.f37943a = i10;
-        this.f37944b = u50Var;
-    }
+    public abstract void a(g4 g4Var, org.telegram.ui.Components.py0 py0Var);
 
-    @Override
-    public r0.j1 R0(View view, r0.j1 j1Var) {
-        int i10 = org.telegram.messenger.i0.I0(j1Var, false).d;
-        u50 u50Var = this.f37944b;
-        u50Var.m0 = i10;
-        jg.a3 a3Var = u50Var.F;
-        if (a3Var != null) {
-            a3Var.setPadding(0, 0, 0, i10);
-        }
-        u50Var.o0();
-        u50Var.m0();
-        return r0.j1.f46142b;
-    }
-
-    @Override
-    public void a(int i10) {
-        u50 u50Var = this.f37944b;
-        u50Var.f41802b.a(Math.min(i10, u50Var.f41805c0));
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f37943a) {
-            case 1:
-                this.f37944b.t0();
-                return;
-            default:
-                this.f37944b.finishFragment();
-                return;
-        }
-    }
+    public abstract boolean b(TL_iv.PageBlock pageBlock, g4 g4Var);
 }

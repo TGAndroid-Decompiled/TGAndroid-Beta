@@ -1,88 +1,134 @@
 package x2;
 
-import e9.b0;
-import e9.v1;
-import e9.z;
-import java.io.File;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import org.telegram.tgnet.TLRPC;
-import z9.d0;
-import z9.h1;
-import zf.k1;
-import zf.y;
-public final class e implements Comparator {
-    public final int f52927a;
+import android.util.SparseArray;
+import b8.zb;
+import d2.v;
+import e3.b0;
+import e3.i0;
+import e3.o;
+import e3.q;
+import e3.s;
+public final class e implements q {
+    public static final s f58139w = new Object();
+    public final o f58140a;
+    public final int f58141b;
+    public final v f58142c;
+    public final SparseArray d = new SparseArray();
+    public final d f58143e = d.f58138a;
+    public boolean f58144f;
+    public ua.b h;
+    public long f58145n;
+    public b0 f58146r;
+    public v[] f58147s;
 
-    public e(int i10) {
-        this.f52927a = i10;
+    public e(o oVar, int i3, v vVar) {
+        this.f58140a = oVar;
+        this.f58141b = i3;
+        this.f58142c = vVar;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        v1 a2;
-        switch (this.f52927a) {
-            case 0:
-                List list = (List) obj;
-                List list2 = (List) obj2;
-                return z.f(n.c((n) Collections.max(list, new e(3)), (n) Collections.max(list2, new e(3)))).a(list.size(), list2.size()).b((n) Collections.max(list, new e(4)), (n) Collections.max(list2, new e(4)), new e(4)).e();
-            case 1:
-                return ((f) Collections.max((List) obj)).compareTo((f) Collections.max((List) obj2));
-            case 2:
-                return ((k) ((List) obj).get(0)).compareTo((k) ((List) obj2).get(0));
-            case 3:
-                return n.c((n) obj, (n) obj2);
-            case 4:
-                n nVar = (n) obj;
-                n nVar2 = (n) obj2;
-                boolean z10 = nVar.e;
-                int i10 = nVar.f52955s;
-                if (z10 && nVar.f52953n) {
-                    a2 = o.f52959l;
-                } else {
-                    a2 = o.f52959l.a();
-                }
-                boolean z11 = nVar.f52952f.F;
-                b0 b0Var = b0.f6331a;
-                if (z11) {
-                    b0Var = b0Var.b(Integer.valueOf(i10), Integer.valueOf(nVar2.f52955s), o.f52959l.a());
-                }
-                b0 b10 = b0Var.c(nVar.O, nVar2.O).b(Integer.valueOf(nVar.f52956w), Integer.valueOf(nVar2.f52956w), a2);
-                if (nVar.K && nVar.M) {
-                    b10 = b10.a(nVar.N, nVar2.N);
-                }
-                return b10.c(nVar.L, nVar2.L).b(Integer.valueOf(i10), Integer.valueOf(nVar2.f52955s), a2).e();
-            case 5:
-                return Long.compare(((File) obj2).lastModified(), ((File) obj).lastModified());
-            case 6:
-                return ((d0) ((h1) obj)).f55277a.compareTo(((d0) ((h1) obj2)).f55277a);
-            case 7:
-                return ((y2.p) obj).f54192a - ((y2.p) obj2).f54192a;
-            case 8:
-                return Float.compare(((y2.p) obj).f54194c, ((y2.p) obj2).f54194c);
-            case 9:
-                int i11 = ((y) obj).f55697b;
-                int i12 = ((y) obj2).f55697b;
-                if (i11 < i12) {
-                    return 1;
-                }
-                if (i11 > i12) {
-                    return -1;
-                }
-                return 0;
-            case 10:
-                return Double.compare(((TLRPC.TL_topPeer) obj2).rating, ((TLRPC.TL_topPeer) obj).rating);
-            default:
-                int i13 = ((k1) obj).f55575b;
-                int i14 = ((k1) obj2).f55575b;
-                if (i13 < i14) {
-                    return 1;
-                }
-                if (i13 > i14) {
-                    return -1;
-                }
-                return 0;
+    public final void L() {
+        SparseArray sparseArray = this.d;
+        v[] vVarArr = new v[sparseArray.size()];
+        for (int i3 = 0; i3 < sparseArray.size(); i3++) {
+            v vVar = ((c) sparseArray.valueAt(i3)).f58135e;
+            vVar.getClass();
+            vVarArr[i3] = vVar;
         }
+        this.f58147s = vVarArr;
+    }
+
+    public final e3.j a() {
+        b0 b0Var = this.f58146r;
+        if (b0Var instanceof e3.j) {
+            return (e3.j) b0Var;
+        }
+        if (b0Var instanceof w3.d) {
+            return ((w3.d) b0Var).f57306a;
+        }
+        return null;
+    }
+
+    public final void b(ua.b bVar, long j10, long j11) {
+        this.h = bVar;
+        this.f58145n = j11;
+        boolean z10 = this.f58144f;
+        o oVar = this.f58140a;
+        if (!z10) {
+            oVar.c(this);
+            if (j10 != -9223372036854775807L) {
+                oVar.d(0L, j10);
+            }
+            this.f58144f = true;
+            return;
+        }
+        if (j10 == -9223372036854775807L) {
+            j10 = 0;
+        }
+        oVar.d(0L, j10);
+        int i3 = 0;
+        while (true) {
+            SparseArray sparseArray = this.d;
+            if (i3 < sparseArray.size()) {
+                c cVar = (c) sparseArray.valueAt(i3);
+                if (bVar == null) {
+                    cVar.f58136f = cVar.f58134c;
+                } else {
+                    cVar.f58137g = j11;
+                    i0 c2 = bVar.c(cVar.f58132a);
+                    cVar.f58136f = c2;
+                    v vVar = cVar.f58135e;
+                    if (vVar != null) {
+                        c2.g(vVar);
+                    }
+                }
+                i3++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void f(b0 b0Var) {
+        this.f58146r = b0Var;
+    }
+
+    @Override
+    public final i0 i0(int i3, int i10) {
+        boolean z10;
+        v vVar;
+        SparseArray sparseArray = this.d;
+        c cVar = (c) sparseArray.get(i3);
+        if (cVar == null) {
+            if (this.f58147s == null) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            zb.p(z10);
+            if (i10 == this.f58141b) {
+                vVar = this.f58142c;
+            } else {
+                vVar = null;
+            }
+            cVar = new c(i3, i10, vVar, this.f58143e);
+            ua.b bVar = this.h;
+            long j10 = this.f58145n;
+            if (bVar == null) {
+                cVar.f58136f = cVar.f58134c;
+            } else {
+                cVar.f58137g = j10;
+                i0 c2 = bVar.c(i10);
+                cVar.f58136f = c2;
+                v vVar2 = cVar.f58135e;
+                if (vVar2 != null) {
+                    c2.g(vVar2);
+                }
+            }
+            sparseArray.put(i3, cVar);
+        }
+        return cVar;
     }
 }

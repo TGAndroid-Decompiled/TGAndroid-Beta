@@ -1,22 +1,41 @@
 package g;
 
-import android.os.Bundle;
-import android.view.View;
-public final class q {
-    public int f7208a;
-    public int f7209b;
-    public int f7210c;
-    public int d;
-    public p e;
-    public View f7211f;
-    public View f7212g;
-    public l.l h;
-    public l.h f7213i;
-    public k.c f7214j;
-    public boolean f7215k;
-    public boolean f7216l;
-    public boolean f7217m;
-    public boolean f7218n;
-    public boolean f7219o;
-    public Bundle f7220p;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import androidx.appcompat.widget.ContentFrameLayout;
+import b8.oc;
+public final class q extends ContentFrameLayout {
+    public final s f11722r;
+
+    public q(s sVar, k.c cVar) {
+        super(cVar);
+        this.f11722r = sVar;
+    }
+
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (!this.f11722r.j(keyEvent) && !super.dispatchKeyEvent(keyEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            int x10 = (int) motionEvent.getX();
+            int y9 = (int) motionEvent.getY();
+            if (x10 < -5 || y9 < -5 || x10 > getWidth() + 5 || y9 > getHeight() + 5) {
+                s sVar = this.f11722r;
+                sVar.i(sVar.p(0), true);
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void setBackgroundResource(int i3) {
+        setBackgroundDrawable(oc.b(getContext(), i3));
+    }
 }

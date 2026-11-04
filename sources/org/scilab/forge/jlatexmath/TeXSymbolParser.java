@@ -42,8 +42,8 @@ public class TeXSymbolParser {
         boolean z10;
         HashMap hashMap = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
-        for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-            Element element = (Element) elementsByTagName.item(i10);
+        for (int i3 = 0; i3 < elementsByTagName.getLength(); i3++) {
+            Element element = (Element) elementsByTagName.item(i3);
             String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
@@ -56,7 +56,7 @@ public class TeXSymbolParser {
             if (num != null) {
                 hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
             } else {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", g.n("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", g.q("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }
         }
         return hashMap;
@@ -69,8 +69,8 @@ public class TeXSymbolParser {
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
             setTypeMappings();
-        } catch (Exception e) {
-            throw new XMLResourceParseException(str, e);
+        } catch (Exception e10) {
+            throw new XMLResourceParseException(str, e10);
         }
     }
 }

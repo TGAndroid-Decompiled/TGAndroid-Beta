@@ -4,38 +4,38 @@ import android.view.View;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_aicompose;
 public final class o implements View.OnClickListener {
-    public final int f28992a;
-    public final r f28993b;
+    public final int f36665a;
+    public final r f36666b;
 
-    public o(r rVar, int i10) {
-        this.f28992a = i10;
-        this.f28993b = rVar;
+    public o(r rVar, int i3) {
+        this.f36665a = i3;
+        this.f36666b = rVar;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f28992a) {
+        switch (this.f36665a) {
             case 0:
-                this.f28993b.dismiss();
+                this.f36666b.dismiss();
                 return;
             default:
-                r rVar = this.f28993b;
-                TL_aicompose.AiComposeTone aiComposeTone = rVar.P1;
+                r rVar = this.f36666b;
+                TL_aicompose.AiComposeTone aiComposeTone = rVar.Q1;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
-                    int i10 = rVar.Z1 + 1;
-                    rVar.Z1 = i10;
-                    TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = rVar.a2;
-                    if (i10 >= aicomposetoneexampleArr.length) {
-                        rVar.Z1 = 0;
+                    int i3 = rVar.f37578a2 + 1;
+                    rVar.f37578a2 = i3;
+                    TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = rVar.f37579b2;
+                    if (i3 >= aicomposetoneexampleArr.length) {
+                        rVar.f37578a2 = 0;
                     }
-                    int i11 = rVar.Z1;
-                    if (aicomposetoneexampleArr[i11] == null) {
+                    int i10 = rVar.f37578a2;
+                    if (aicomposetoneexampleArr[i10] == null) {
                         TL_aicompose.getToneExample gettoneexample = new TL_aicompose.getToneExample();
                         gettoneexample.tone = TL_aicompose.InputAiComposeTone.from(aiComposeTone);
-                        gettoneexample.num = i11;
-                        ConnectionsManager.getInstance(rVar.f21584a).sendRequestTyped(gettoneexample, new a3.b(1), new p(rVar, i11, 0));
+                        gettoneexample.num = i10;
+                        ConnectionsManager.getInstance(rVar.f28583a).sendRequestTyped(gettoneexample, new c3.b(1), new p(rVar, i10, 0));
                     }
-                    rVar.Y1.O(true);
+                    rVar.Z1.O(true);
                     return;
                 }
                 return;

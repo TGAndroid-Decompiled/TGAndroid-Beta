@@ -1,52 +1,41 @@
 package z7;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class o extends j {
-    public final transient com.google.android.gms.internal.cast.i0 f55053c;
-    public final transient Object[] d;
-    public final transient int e = 1;
-
-    public o(com.google.android.gms.internal.cast.i0 i0Var, Object[] objArr) {
-        this.f55053c = i0Var;
-        this.d = objArr;
-    }
+import java.util.Set;
+public abstract class o extends j implements Set {
+    public transient n f59987b;
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.f55053c.get(key))) {
-                return true;
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
             }
         }
         return false;
     }
 
     @Override
-    public final Iterator iterator() {
-        i iVar = this.f54994b;
-        if (iVar == null) {
-            iVar = new n(this);
-            this.f54994b = iVar;
+    public final int hashCode() {
+        int i3;
+        int i10 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i3 = obj.hashCode();
+            } else {
+                i3 = 0;
+            }
+            i10 += i3;
         }
-        return iVar.listIterator(0);
-    }
-
-    @Override
-    public final int l(Object[] objArr) {
-        i iVar = this.f54994b;
-        if (iVar == null) {
-            iVar = new n(this);
-            this.f54994b = iVar;
-        }
-        return iVar.l(objArr);
-    }
-
-    @Override
-    public final int size() {
-        return this.e;
+        return i10;
     }
 }

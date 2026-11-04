@@ -2,30 +2,19 @@ package g8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.q;
-import e6.p;
-import w7.h0;
-public final class e extends o6.a implements q {
-    public static final Parcelable.Creator<e> CREATOR = new p(29);
-    public final Status f7454a;
-    public final f f7455b;
+import f6.c0;
+public final class e extends q6.a {
+    public static final Parcelable.Creator<e> CREATOR = new c0(7);
+    public final byte[] f12037a;
 
-    public e(Status status, f fVar) {
-        this.f7454a = status;
-        this.f7455b = fVar;
+    public e(byte[] bArr) {
+        this.f12037a = bArr;
     }
 
     @Override
-    public final Status a() {
-        return this.f7454a;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.k(parcel, 1, this.f7454a, i10);
-        h0.k(parcel, 2, this.f7455b, i10);
-        h0.r(parcel, q6);
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.d(parcel, 2, this.f12037a);
+        j8.a.t(parcel, s6);
     }
 }

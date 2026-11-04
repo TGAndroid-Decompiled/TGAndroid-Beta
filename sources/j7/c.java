@@ -1,8 +1,6 @@
 package j7;
-public abstract class c {
-    public static final int f9705a = 0;
 
-    static {
-        c.class.getClassLoader();
-    }
+import com.google.android.gms.internal.cast.o;
+public abstract class c extends o implements d {
+    public static final int f16208b = 0;
 }

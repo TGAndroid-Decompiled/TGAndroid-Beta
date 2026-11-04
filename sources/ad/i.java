@@ -1,4 +1,7 @@
 package ad;
-public final class i {
-    public static final i f400a = new Object();
+public final class i extends k {
+    @Override
+    public final String toString() {
+        return "</" + i() + ">";
+    }
 }

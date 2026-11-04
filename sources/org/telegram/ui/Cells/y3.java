@@ -1,104 +1,101 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import android.widget.Button;
-public final class y3 extends org.telegram.ui.Components.f6 {
-    public final int f23616s;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import java.util.HashSet;
+import org.telegram.messenger.bd;
+import org.telegram.tgnet.TLRPC;
+public abstract class y3 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
+    public org.telegram.ui.Components.k9 f30981a;
+    public org.telegram.ui.ActionBar.k5 f30982b;
+    public org.telegram.ui.ActionBar.k5 f30983c;
+    public ImageView d;
+    public org.telegram.ui.Components.u8 f30984e;
+    public TLRPC.User f30985f;
+    public Paint h;
+    public int f30986n;
+    public boolean f30987r;
+    public int f30988s;
 
-    public y3(Context context, boolean z10, boolean z11, boolean z12, int i10) {
-        super(context, z10, z11, z12);
-        this.f23616s = i10;
+    public final void a(int i3, int i10) {
+        this.f30986n = i3;
+        ImageView imageView = this.d;
+        imageView.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.MULTIPLY));
+        this.f30983c.setTextColor(i10);
+        org.telegram.ui.ActionBar.k6.H1(imageView.getDrawable(), i10 & 620756991, true);
     }
 
     @Override
-    public CharSequence getAccessibilityClassName() {
-        switch (this.f23616s) {
-            case 0:
-                return Button.class.getName();
-            case 1:
-                return Button.class.getName();
-            default:
-                return super.getAccessibilityClassName();
+    public final void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
+        float L;
+        int i3;
+        if (this.f30987r) {
+            if (bd.f21784a0) {
+                L = 0.0f;
+            } else {
+                L = org.telegram.messenger.g0.L(68.0f);
+            }
+            float f10 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (bd.f21784a0) {
+                i3 = org.telegram.messenger.g0.L(68.0f);
+            } else {
+                i3 = 0;
+            }
+            canvas2 = canvas;
+            canvas2.drawLine(f10, measuredHeight, measuredWidth - i3, getMeasuredHeight() - 1, this.h);
+        } else {
+            canvas2 = canvas;
+        }
+        super.dispatchDraw(canvas2);
+    }
+
+    public CharSequence getName() {
+        return this.f30982b.getText();
+    }
+
+    public TLRPC.User getUser() {
+        return this.f30985f;
+    }
+
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(58.0f), 1073741824));
+    }
+
+    public void setDrawDivider(boolean z10) {
+        this.f30987r = z10;
+        invalidate();
+    }
+
+    @Override
+    public final void updateColors() {
+        int x02;
+        try {
+            this.h.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ug, false));
+            if (this.d != null && this.f30983c != null && (x02 = org.telegram.ui.ActionBar.k6.x0(null, this.f30986n, false)) != this.f30988s) {
+                this.f30988s = x02;
+                a(this.f30986n, x02);
+            }
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 
     @Override
-    public int getBaseline() {
-        switch (this.f23616s) {
-            case 5:
-                return Math.round((getHeight() - getDrawable().e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
-            default:
-                return super.getBaseline();
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.f23616s) {
-            case 4:
-                if (sg.e0.b(this)) {
-                    return;
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f23616s) {
-            case 2:
-                canvas.save();
-                canvas.translate(org.telegram.messenger.i0.L(17.0f), 0.0f);
-                super.onDraw(canvas);
-                canvas.restore();
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f23616s) {
-            case 3:
-                super.onMeasure(i10, i11);
-                setPivotX(getMeasuredWidth());
-                return;
-            case 4:
-            default:
-                super.onMeasure(i10, i11);
-                return;
-            case 5:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.f16172q.x, Integer.MIN_VALUE), i11);
-                setMeasuredDimension(View.resolveSize((int) Math.ceil(getDrawable().c()), i10), getMeasuredHeight());
-                return;
-        }
-    }
-
-    public y3(Context context, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        super(context, z10, z11, z12, z13, z14);
-        this.f23616s = 5;
-    }
-
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.f23616s) {
-            case 4:
-                if (sg.e0.b(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
-        }
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

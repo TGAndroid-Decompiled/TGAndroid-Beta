@@ -1,17 +1,15 @@
 package x7;
-public final class f5 implements ja.d {
-    public static final f5 f53168a = new Object();
 
-    static {
-        sc.e.v(sc.e.m(c0.class, new z(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+import java.lang.ref.Reference;
+import java.util.ArrayList;
+public abstract class f5 {
+    public static void a(ArrayList arrayList, Object obj) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Object obj2 = ((Reference) arrayList.get(size)).get();
+            if (obj2 == null || obj2 == obj) {
+                arrayList.remove(size);
+                return;
+            }
         }
-        throw new ClassCastException();
     }
 }

@@ -8,20 +8,20 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.n;
+import org.telegram.tgnet.m;
 public class TL_aicompose {
 
     public static class AiComposeTone extends TLObject {
         public long emoji_id;
         public String title;
 
-        public static AiComposeTone TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (AiComposeTone) TLObject.TLdeserialize(AiComposeTone.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static AiComposeTone TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return (AiComposeTone) TLObject.TLdeserialize(AiComposeTone.class, fromConstructor(i3), inputSerializedData, i3, z10);
         }
 
-        private static AiComposeTone fromConstructor(int i10) {
-            if (i10 != -1683135468) {
-                if (i10 != -805945687) {
+        private static AiComposeTone fromConstructor(int i3) {
+            if (i3 != -1683135468) {
+                if (i3 != -805945687) {
                     return null;
                 }
                 return new TL_aiComposeTone();
@@ -31,8 +31,8 @@ public class TL_aicompose {
     }
 
     public static class InputAiComposeTone extends TLObject {
-        public static InputAiComposeTone TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (InputAiComposeTone) TLObject.TLdeserialize(InputAiComposeTone.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static InputAiComposeTone TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return (InputAiComposeTone) TLObject.TLdeserialize(InputAiComposeTone.class, fromConstructor(i3), inputSerializedData, i3, z10);
         }
 
         public static boolean equals(InputAiComposeTone inputAiComposeTone, InputAiComposeTone inputAiComposeTone2) {
@@ -49,7 +49,7 @@ public class TL_aicompose {
                     if (inputAiComposeTone2 instanceof inputAiComposeToneID) {
                         inputAiComposeToneID inputaicomposetoneid = (inputAiComposeToneID) inputAiComposeTone;
                         inputAiComposeToneID inputaicomposetoneid2 = (inputAiComposeToneID) inputAiComposeTone2;
-                        if (inputaicomposetoneid.f20007id == inputaicomposetoneid2.f20007id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
+                        if (inputaicomposetoneid.f27215id == inputaicomposetoneid2.f27215id && inputaicomposetoneid.access_hash == inputaicomposetoneid2.access_hash) {
                             return true;
                         }
                     }
@@ -70,7 +70,7 @@ public class TL_aicompose {
             if (aiComposeTone instanceof TL_aiComposeTone) {
                 inputAiComposeToneID inputaicomposetoneid = new inputAiComposeToneID();
                 TL_aiComposeTone tL_aiComposeTone = (TL_aiComposeTone) aiComposeTone;
-                inputaicomposetoneid.f20007id = tL_aiComposeTone.f20006id;
+                inputaicomposetoneid.f27215id = tL_aiComposeTone.f27214id;
                 inputaicomposetoneid.access_hash = tL_aiComposeTone.access_hash;
                 return inputaicomposetoneid;
             } else if (aiComposeTone instanceof TL_aiComposeToneDefault) {
@@ -82,8 +82,8 @@ public class TL_aicompose {
             }
         }
 
-        private static InputAiComposeTone fromConstructor(int i10) {
-            switch (i10) {
+        private static InputAiComposeTone fromConstructor(int i3) {
+            switch (i3) {
                 case 125026432:
                     return new inputAiComposeToneID();
                 case 235681199:
@@ -111,7 +111,7 @@ public class TL_aicompose {
         public boolean creator;
         public aiComposeToneExample example_english;
         public int flags;
-        public long f20006id;
+        public long f27214id;
         public int installs_count;
         public String prompt;
         public String slug;
@@ -121,7 +121,7 @@ public class TL_aicompose {
             int readInt32 = inputSerializedData.readInt32(z10);
             this.flags = readInt32;
             this.creator = TLObject.hasFlag(readInt32, 1);
-            this.f20006id = inputSerializedData.readInt64(z10);
+            this.f27214id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
             this.slug = inputSerializedData.readString(z10);
             this.title = inputSerializedData.readString(z10);
@@ -148,7 +148,7 @@ public class TL_aicompose {
             int flag = TLObject.setFlag(this.flags, 1, this.creator);
             this.flags = flag;
             outputSerializedData.writeInt32(flag);
-            outputSerializedData.writeInt64(this.f20006id);
+            outputSerializedData.writeInt64(this.f27214id);
             outputSerializedData.writeInt64(this.access_hash);
             outputSerializedData.writeString(this.slug);
             outputSerializedData.writeString(this.title);
@@ -199,7 +199,7 @@ public class TL_aicompose {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.hash = inputSerializedData.readInt64(z10);
             this.tones = Vector.deserialize(inputSerializedData, new c(17), z10);
-            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -214,13 +214,13 @@ public class TL_aicompose {
     public static class Tones extends TLObject {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static Tones TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return (Tones) TLObject.TLdeserialize(Tones.class, fromConstructor(i10), inputSerializedData, i10, z10);
+        public static Tones TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return (Tones) TLObject.TLdeserialize(Tones.class, fromConstructor(i3), inputSerializedData, i3, z10);
         }
 
-        private static Tones fromConstructor(int i10) {
-            if (i10 != -1040948989) {
-                if (i10 != 1822232318) {
+        private static Tones fromConstructor(int i3) {
+            if (i3 != -1040948989) {
+                if (i3 != 1822232318) {
                     return null;
                 }
                 return new TL_tones();
@@ -234,14 +234,14 @@ public class TL_aicompose {
         public TLRPC.TL_textWithEntities from;
         public TLRPC.TL_textWithEntities to;
 
-        public static aiComposeToneExample TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static aiComposeToneExample TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             aiComposeToneExample aicomposetoneexample;
-            if (i10 == -237623060) {
+            if (i3 == -237623060) {
                 aicomposetoneexample = new aiComposeToneExample();
             } else {
                 aicomposetoneexample = null;
             }
-            return (aiComposeToneExample) TLObject.TLdeserialize(aiComposeToneExample.class, aicomposetoneexample, inputSerializedData, i10, z10);
+            return (aiComposeToneExample) TLObject.TLdeserialize(aiComposeToneExample.class, aicomposetoneexample, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -278,8 +278,8 @@ public class TL_aicompose {
         }
 
         @Override
-        public AiComposeTone deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return AiComposeTone.TLdeserialize(inputSerializedData, i10, z10);
+        public AiComposeTone deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return AiComposeTone.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -294,8 +294,8 @@ public class TL_aicompose {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -310,8 +310,8 @@ public class TL_aicompose {
         }
 
         @Override
-        public Tones deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Tones.TLdeserialize(inputSerializedData, i10, z10);
+        public Tones deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return Tones.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -328,8 +328,8 @@ public class TL_aicompose {
         }
 
         @Override
-        public aiComposeToneExample deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return aiComposeToneExample.TLdeserialize(inputSerializedData, i10, z10);
+        public aiComposeToneExample deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return aiComposeToneExample.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -344,8 +344,8 @@ public class TL_aicompose {
         }
 
         @Override
-        public Tones deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Tones.TLdeserialize(inputSerializedData, i10, z10);
+        public Tones deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return Tones.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -368,18 +368,18 @@ public class TL_aicompose {
     public static class inputAiComposeToneID extends InputAiComposeTone {
         public static final int constructor = 125026432;
         public long access_hash;
-        public long f20007id;
+        public long f27215id;
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f20007id = inputSerializedData.readInt64(z10);
+            this.f27215id = inputSerializedData.readInt64(z10);
             this.access_hash = inputSerializedData.readInt64(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(125026432);
-            outputSerializedData.writeInt64(this.f20007id);
+            outputSerializedData.writeInt64(this.f27215id);
             outputSerializedData.writeInt64(this.access_hash);
         }
     }
@@ -429,8 +429,8 @@ public class TL_aicompose {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -463,8 +463,8 @@ public class TL_aicompose {
         }
 
         @Override
-        public AiComposeTone deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return AiComposeTone.TLdeserialize(inputSerializedData, i10, z10);
+        public AiComposeTone deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return AiComposeTone.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 

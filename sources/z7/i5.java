@@ -1,15 +1,15 @@
 package z7;
-public final class i5 implements ja.d {
-    public static final i5 f54981a = new Object();
+public final class i5 implements ma.d {
+    public static final i5 f59916a = new Object();
 
     static {
-        sc.e.v(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, new s(1)), 2)), 3)), 4)), 5)), 6)), 7)), 8)), 9)));
+        t4.c.o(t4.c.k(b0.class, new y(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
+            ma.e eVar = (ma.e) obj2;
             throw null;
         }
         throw new ClassCastException();

@@ -2,21 +2,21 @@ package org.telegram.messenger.video;
 
 import java.util.ArrayList;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.o6;
-import org.telegram.ui.y6;
+import org.telegram.ui.p6;
+import org.telegram.ui.z6;
 public final class o implements Runnable {
-    public final int f18736a;
-    public final boolean f18737b;
-    public final long f18738c;
+    public final int f25934a;
+    public final boolean f25935b;
+    public final long f25936c;
     public final Object d;
-    public final Object e;
+    public final Object f25937e;
 
-    public o(Object obj, long j10, boolean z10, Object obj2, int i10) {
-        this.f18736a = i10;
+    public o(Object obj, long j10, boolean z10, Object obj2, int i3) {
+        this.f25934a = i3;
         this.d = obj;
-        this.f18738c = j10;
-        this.f18737b = z10;
-        this.e = obj2;
+        this.f25936c = j10;
+        this.f25935b = z10;
+        this.f25937e = obj2;
     }
 
     @Override
@@ -24,19 +24,19 @@ public final class o implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.o.run():void");
     }
 
-    public o(y6 y6Var, boolean z10, long j10, o6 o6Var) {
-        this.f18736a = 1;
-        this.d = y6Var;
-        this.f18737b = z10;
-        this.f18738c = j10;
-        this.e = o6Var;
+    public o(z6 z6Var, boolean z10, long j10, p6 p6Var) {
+        this.f25934a = 1;
+        this.d = z6Var;
+        this.f25935b = z10;
+        this.f25936c = j10;
+        this.f25937e = p6Var;
     }
 
     public o(ProfileActivity profileActivity, long j10, ArrayList arrayList, boolean z10) {
-        this.f18736a = 2;
+        this.f25934a = 2;
         this.d = profileActivity;
-        this.f18738c = j10;
-        this.e = arrayList;
-        this.f18737b = z10;
+        this.f25936c = j10;
+        this.f25937e = arrayList;
+        this.f25935b = z10;
     }
 }

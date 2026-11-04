@@ -1,4 +1,164 @@
 package org.telegram.ui;
-public interface xk0 {
-    void d(String str, String str2);
+
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class xk0 implements TextWatcher {
+    public final String[] f52037a = {"34", "37"};
+    public final String[] f52038b = {"300", "301", "302", "303", "304", "305", "309", "36", "38", "39"};
+    public final String[] f52039c = {"2221", "2222", "2223", "2224", "2225", "2226", "2227", "2228", "2229", "2200", "2201", "2202", "2203", "2204", "8600", "9860", "223", "224", "225", "226", "227", "228", "229", "23", "24", "25", "26", "270", "271", "2720", "50", "51", "52", "53", "54", "55", "4", "60", "62", "64", "65", "35"};
+    public int d = -1;
+    public int f52040e;
+    public final dl0 f52041f;
+
+    public xk0(dl0 dl0Var) {
+        this.f52041f = dl0Var;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        int i3;
+        boolean z10;
+        int i10;
+        int i11;
+        String[] strArr;
+        int i12;
+        String str;
+        dl0 dl0Var = this.f52041f;
+        if (dl0Var.f44763p0) {
+            return;
+        }
+        int i13 = 0;
+        EditTextBoldCursor editTextBoldCursor = dl0Var.f44750f[0];
+        int selectionStart = editTextBoldCursor.getSelectionStart();
+        String obj = editTextBoldCursor.getText().toString();
+        int i14 = 3;
+        int i15 = 1;
+        if (this.d == 3) {
+            obj = obj.substring(0, this.f52040e) + obj.substring(this.f52040e + 1);
+            selectionStart--;
+        }
+        StringBuilder sb2 = new StringBuilder(obj.length());
+        int i16 = 0;
+        while (i16 < obj.length()) {
+            int i17 = i16 + 1;
+            String substring = obj.substring(i16, i17);
+            if ("0123456789".contains(substring)) {
+                sb2.append(substring);
+            }
+            i16 = i17;
+        }
+        dl0Var.f44763p0 = true;
+        String str2 = null;
+        int i18 = 100;
+        if (sb2.length() > 0) {
+            String sb3 = sb2.toString();
+            int i19 = 0;
+            while (true) {
+                if (i19 < i14) {
+                    if (i19 != 0) {
+                        if (i19 != i15) {
+                            strArr = this.f52038b;
+                            i12 = 14;
+                            str = "xxxx xxxx xxxx xx";
+                        } else {
+                            strArr = this.f52037a;
+                            i12 = 15;
+                            str = "xxxx xxxx xxxx xxx";
+                        }
+                    } else {
+                        strArr = this.f52039c;
+                        i12 = 16;
+                        str = "xxxx xxxx xxxx xxxx";
+                    }
+                    i3 = i15;
+                    for (int i20 = i13; i20 < strArr.length; i20++) {
+                        String str3 = strArr[i20];
+                        if (sb3.length() <= str3.length()) {
+                            if (str3.startsWith(sb3)) {
+                                i18 = i12;
+                                str2 = str;
+                                break;
+                            }
+                        } else if (sb3.startsWith(str3)) {
+                            i18 = i12;
+                            str2 = str;
+                            break;
+                        }
+                    }
+                    if (str2 != null) {
+                        break;
+                    }
+                    i19++;
+                    i15 = i3;
+                    i13 = 0;
+                    i14 = 3;
+                } else {
+                    i3 = i15;
+                    break;
+                }
+            }
+            if (sb2.length() > i18) {
+                sb2.setLength(i18);
+            }
+        } else {
+            i3 = 1;
+        }
+        if (str2 != null) {
+            if (sb2.length() == i18) {
+                dl0Var.f44750f[i3].requestFocus();
+            }
+            org.telegram.ui.ActionBar.r6.V(editTextBoldCursor, org.telegram.ui.ActionBar.k6.G6, dl0Var.Z0);
+            int i21 = 0;
+            while (true) {
+                if (i21 >= sb2.length()) {
+                    break;
+                } else if (i21 < str2.length()) {
+                    if (str2.charAt(i21) == ' ') {
+                        sb2.insert(i21, ' ');
+                        i21++;
+                        if (selectionStart == i21 && (i11 = this.d) != 2 && i11 != 3) {
+                            selectionStart++;
+                        }
+                    }
+                    i21++;
+                } else {
+                    sb2.insert(i21, ' ');
+                    if (selectionStart == i21 + 1 && (i10 = this.d) != 2 && i10 != 3) {
+                        selectionStart++;
+                    }
+                }
+            }
+        }
+        if (!sb2.toString().equals(editable.toString())) {
+            z10 = false;
+            editable.replace(0, editable.length(), sb2);
+        } else {
+            z10 = false;
+        }
+        if (selectionStart >= 0) {
+            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+        }
+        dl0Var.f44763p0 = z10;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+        if (i10 == 0 && i11 == 1) {
+            this.d = 1;
+        } else if (i10 == 1 && i11 == 0) {
+            if (charSequence.charAt(i3) == ' ' && i3 > 0) {
+                this.d = 3;
+                this.f52040e = i3 - 1;
+                return;
+            }
+            this.d = 2;
+        } else {
+            this.d = -1;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    }
 }

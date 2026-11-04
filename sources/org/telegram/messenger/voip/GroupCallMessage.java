@@ -2,7 +2,6 @@ package org.telegram.messenger.voip;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import v7.u7;
 public class GroupCallMessage {
     private static final int FLAG_IS_OUT = 1;
     private static final int FLAG_SEND_CONFIRMED = 8;
@@ -15,53 +14,53 @@ public class GroupCallMessage {
     public final TLRPC.TL_textWithEntities message;
     public final long randomId;
     public final long reactionAnimatedEmojiId;
-    public final sg.o0 visibleReaction;
+    public final dh.n0 visibleReaction;
 
     public GroupCallMessage(int r3, long r4, long r6, org.telegram.tgnet.TLRPC.TL_textWithEntities r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.GroupCallMessage.<init>(int, long, long, org.telegram.tgnet.TLRPC$TL_textWithEntities):void");
     }
 
     public boolean isOut() {
-        return u7.a(this.flags, 1);
+        return x7.u.a(this.flags, 1);
     }
 
     public boolean isSendConfirmed() {
-        return u7.a(this.flags, 8);
+        return x7.u.a(this.flags, 8);
     }
 
     public boolean isSendDelayed() {
-        return u7.a(this.flags, 2);
+        return x7.u.a(this.flags, 2);
     }
 
     public boolean isSendError() {
-        return u7.a(this.flags, 4);
+        return x7.u.a(this.flags, 4);
     }
 
     public void notifyStateUpdate() {
         ArrayList<Runnable> arrayList = this.listeners;
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Runnable runnable = arrayList.get(i10);
-            i10++;
+        int i3 = 0;
+        while (i3 < size) {
+            Runnable runnable = arrayList.get(i3);
+            i3++;
             runnable.run();
         }
     }
 
     public void setIsOut(boolean z10) {
-        this.flags = u7.b(this.flags, 1, z10);
+        this.flags = x7.u.b(this.flags, 1, z10);
     }
 
     public void setIsSendConfirmed(boolean z10) {
-        this.flags = u7.b(this.flags, 8, z10);
+        this.flags = x7.u.b(this.flags, 8, z10);
     }
 
     public void setIsSendDelayed(boolean z10) {
-        this.flags = u7.b(this.flags, 2, z10);
+        this.flags = x7.u.b(this.flags, 2, z10);
     }
 
     public void setIsSendError(boolean z10) {
-        this.flags = u7.b(this.flags, 4, z10);
+        this.flags = x7.u.b(this.flags, 4, z10);
     }
 
     public void subscribeToStateUpdates(Runnable runnable) {

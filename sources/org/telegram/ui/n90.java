@@ -1,8 +1,18 @@
 package org.telegram.ui;
-public final class n90 implements org.telegram.ui.Components.pz0 {
-    public final LaunchActivity f39775a;
 
-    public n90(LaunchActivity launchActivity) {
-        this.f39775a = launchActivity;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class n90 extends org.telegram.ui.Cells.y8 {
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setEnabled(true);
+    }
+
+    @Override
+    public final void onPopulateAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
+        super.onPopulateAccessibilityEvent(accessibilityEvent);
+        accessibilityEvent.setContentDescription(getTextView().getText());
+        setContentDescription(getTextView().getText());
     }
 }

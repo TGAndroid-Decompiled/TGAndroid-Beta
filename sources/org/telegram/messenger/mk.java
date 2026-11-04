@@ -1,51 +1,40 @@
 package org.telegram.messenger;
-
-import j$.util.concurrent.ConcurrentHashMap;
-import java.util.ArrayList;
 public final class mk implements Runnable {
-    public final int f17138a;
-    public final wp f17139b;
-    public final rf.q f17140c;
-    public final ConcurrentHashMap d;
-    public final ConcurrentHashMap e;
+    public final int f24215a;
+    public final hp f24216b;
+    public final long f24217c;
+    public final long d;
+    public final int f24218e;
 
-    public mk(wp wpVar, rf.q qVar, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i10) {
-        this.f17138a = i10;
-        this.f17139b = wpVar;
-        this.f17140c = qVar;
-        this.d = concurrentHashMap;
-        this.e = concurrentHashMap2;
+    public mk(int i3, long j10, long j11, hp hpVar) {
+        this.f24215a = 1;
+        this.f24216b = hpVar;
+        this.f24217c = j10;
+        this.d = j11;
+        this.f24218e = i3;
     }
 
     @Override
     public final void run() {
-        switch (this.f17138a) {
+        switch (this.f24215a) {
             case 0:
-                wp wpVar = this.f17139b;
-                int i10 = wpVar.currentAccount;
-                rf.q qVar = this.f17140c;
-                qVar.b(i10, this.d, this.e, 0);
-                i0.g3(new tl(wpVar, qVar, 0));
+                this.f24216b.z(this.f24217c, this.f24218e, this.d);
                 return;
             case 1:
-                wp wpVar2 = this.f17139b;
-                int i11 = wpVar2.currentAccount;
-                rf.q qVar2 = this.f17140c;
-                qVar2.b(i11, this.d, this.e, 0);
-                i0.g3(new tl(wpVar2, qVar2, 2));
+                long j10 = this.d;
+                this.f24216b.p0(this.f24217c, this.f24218e, j10);
                 return;
             default:
-                wp wpVar3 = this.f17139b;
-                is messagesStorage = wpVar3.getMessagesStorage();
-                rf.q qVar3 = this.f17140c;
-                ArrayList arrayList = qVar3.f46559a;
-                mk mkVar = new mk(wpVar3, qVar3, this.d, this.e, 1);
-                messagesStorage.getClass();
-                if (arrayList != null && !arrayList.isEmpty()) {
-                    messagesStorage.I(new ng(messagesStorage, arrayList, mkVar, 3));
-                    return;
-                }
+                this.f24216b.z(this.f24217c, this.f24218e, this.d);
                 return;
         }
+    }
+
+    public mk(hp hpVar, int i3, long j10, long j11, int i10) {
+        this.f24215a = i10;
+        this.f24216b = hpVar;
+        this.f24218e = i3;
+        this.f24217c = j10;
+        this.d = j11;
     }
 }

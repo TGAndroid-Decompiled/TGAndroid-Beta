@@ -1,33 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class l01 extends AnimatorListenerAdapter {
-    public final int f28009a;
-    public final ThemeEditorView f28010b;
+import org.telegram.tgnet.TLRPC;
+public final class l01 {
+    public TLRPC.TL_forumTopic f35539a;
+    public org.telegram.messenger.mv f35540b;
+    public final n01 f35541c;
 
-    public l01(ThemeEditorView themeEditorView, int i10) {
-        this.f28009a = i10;
-        this.f28010b = themeEditorView;
+    public l01(n01 n01Var) {
+        this.f35541c = n01Var;
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28009a) {
-            case 0:
-                ThemeEditorView themeEditorView = this.f28010b;
-                j01 j01Var = themeEditorView.f24211c;
-                if (j01Var != null) {
-                    j01Var.setBackground(null);
-                    themeEditorView.f24215j.removeView(themeEditorView.f24211c);
-                    return;
-                }
-                return;
-            default:
-                ThemeEditorView themeEditorView2 = this.f28010b;
-                org.telegram.ui.ActionBar.t6.x1(themeEditorView2.f24220o, true, false, false);
-                themeEditorView2.b();
-                return;
+    public final long a() {
+        org.telegram.messenger.mv mvVar = this.f35540b;
+        if (mvVar != null) {
+            return mvVar.f24264a;
         }
+        TLRPC.TL_forumTopic tL_forumTopic = this.f35539a;
+        if (tL_forumTopic == null) {
+            return 0L;
+        }
+        if (this.f35541c.f36312c) {
+            return org.telegram.messenger.m5.o(tL_forumTopic.from_id);
+        }
+        return tL_forumTopic.f27053id;
     }
 }

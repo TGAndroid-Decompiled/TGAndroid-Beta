@@ -1,34 +1,36 @@
 package org.telegram.ui;
-public final class j40 implements Runnable {
-    public final int f38271a;
-    public final l40 f38272b;
 
-    public j40(l40 l40Var, int i10) {
-        this.f38271a = i10;
-        this.f38272b = l40Var;
+import android.content.Context;
+public final class j40 extends org.telegram.ui.Components.r00 {
+    public final r40 f46492r;
+
+    public j40(r40 r40Var, Context context, int i3) {
+        super(context, i3);
+        this.f46492r = r40Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38271a) {
-            case 0:
-                l40 l40Var = this.f38272b;
-                bi.t0 t0Var = l40Var.f39073b;
-                if (t0Var != null) {
-                    t0Var.setVisibility(0);
-                }
-                org.telegram.messenger.i0.h3(new j40(l40Var, 2), 16L);
-                return;
-            case 1:
-                bi.t0 t0Var2 = this.f38272b.f39073b;
-                if (t0Var2 != null) {
-                    t0Var2.setVisibility(4);
-                    return;
-                }
-                return;
-            default:
-                super/*android.app.Dialog*/.dismiss();
-                return;
+    public final void a(org.telegram.ui.Components.y10 y10Var) {
+        super.a(y10Var);
+        r40.e0(this.f46492r);
+    }
+
+    @Override
+    public final void b() {
+        super.b();
+        r40.e0(this.f46492r);
+    }
+
+    @Override
+    public final void c(org.telegram.ui.Components.y10 y10Var) {
+        r40 r40Var = this.f46492r;
+        if (y10Var == r40Var.Y) {
+            r40Var.Y = null;
         }
+        if (y10Var == r40Var.Z) {
+            r40Var.Z = null;
+        }
+        super.c(y10Var);
+        r40.e0(r40Var);
     }
 }

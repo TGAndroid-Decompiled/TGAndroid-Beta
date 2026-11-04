@@ -1,74 +1,8 @@
 package kg;
 
-import android.view.ViewGroup;
-import java.util.HashSet;
-import org.telegram.messenger.a30;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.i5;
-import org.telegram.messenger.w3;
-import org.telegram.messenger.wp;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cc;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class a0 implements Runnable {
-    public final int f10992a;
-    public final q0 f10993b;
-
-    public a0(q0 q0Var, int i10) {
-        this.f10992a = i10;
-        this.f10993b = q0Var;
-    }
-
-    @Override
-    public final void run() {
-        String G;
-        int i10 = this.f10992a;
-        q0 q0Var = this.f10993b;
-        switch (i10) {
-            case 0:
-                if (LaunchActivity.Q() != null) {
-                    ?? obj = new Object();
-                    obj.f20390a = true;
-                    q0Var.C2.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
-                    return;
-                }
-                return;
-            case 1:
-                q0Var.f11240p2.g(q0Var.T1, false);
-                q0Var.t1();
-                return;
-            case 2:
-                HashSet hashSet = q0Var.f11241q2;
-                cc X = cc.X();
-                if (X != null) {
-                    if (hashSet.size() == 1) {
-                        G = dd.a0(null, null, 2131749153, i5.p((TLRPC.User) hashSet.iterator().next()));
-                    } else {
-                        G = dd.G(hashSet.size(), "InviteLinkSent", Integer.valueOf(hashSet.size()));
-                    }
-                    a30.s(G, X, 2131624343, 36);
-                    return;
-                }
-                return;
-            case 3:
-                vh.d dVar = q0Var.K2;
-                TLRPC.ChatFull M0 = wp.r1(q0Var.f21584a).M0(-q0Var.S1);
-                dVar.c(Math.max(M0.boosts_unrestrict - M0.boosts_applied, 0), false);
-                return;
-            default:
-                if (w3.N(q0Var.n1())) {
-                    if (q0Var.f11247w2.getParent() != null) {
-                        ((ViewGroup) q0Var.f11247w2.getParent()).removeView(q0Var.f11247w2);
-                    }
-                    bi.t0 t0Var = q0Var.D2;
-                    if (t0Var != null && t0Var.getParent() != null) {
-                        ((ViewGroup) q0Var.D2.getParent()).removeView(q0Var.D2);
-                    }
-                    q0Var.f26724k1.setPadding(0, 0, 0, 0);
-                    return;
-                }
-                return;
-        }
-    }
+import org.telegram.tgnet.TLObject;
+public final class a0 {
+    public TLObject f16917a;
+    public int f16918b;
+    public CharSequence f16919c;
 }

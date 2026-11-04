@@ -1,32 +1,23 @@
 package zf;
 
-import android.location.Location;
+import org.telegram.messenger.hs;
 public final class a implements Runnable {
-    public final int f55454a;
-    public final c f55455b;
-    public final String f55456c;
-    public final Location d;
+    public final int f60446a;
+    public final c f60447b;
 
-    public a(c cVar, String str, Location location, int i10) {
-        this.f55454a = i10;
-        this.f55455b = cVar;
-        this.f55456c = str;
-        this.d = location;
+    public a(c cVar, int i3) {
+        this.f60446a = i3;
+        this.f60447b = cVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f55454a) {
+        switch (this.f60446a) {
             case 0:
-                c cVar = this.f55455b;
-                cVar.getClass();
-                org.telegram.messenger.i0.g3(new a(cVar, this.f55456c, this.d, 1));
+                this.f60447b.g(false);
                 return;
             default:
-                c cVar2 = this.f55455b;
-                cVar2.E = null;
-                cVar2.f55474w = null;
-                cVar2.H(this.f55456c, this.d, true);
+                hs.f(this.f60447b.f60455c).k(307, new Object[0]);
                 return;
         }
     }

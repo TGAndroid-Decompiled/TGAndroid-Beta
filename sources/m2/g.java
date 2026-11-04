@@ -1,18 +1,13 @@
 package m2;
-public final class g {
-    public final n3.a[] f12653a;
-    public final long[] f12654b;
-    public final String f12655c;
-    public final String d;
 
-    public g(String str, String str2, long[] jArr, n3.a[] aVarArr) {
-        this.f12655c = str;
-        this.d = str2;
-        this.f12654b = jArr;
-        this.f12653a = aVarArr;
-    }
+import k2.p1;
+public final class g extends Exception {
+    public final int f18859a;
+    public final boolean f18860b;
 
-    public final String a() {
-        return this.f12655c + "/" + this.d;
+    public g(int i3, boolean z10) {
+        super(p1.i(i3, "AudioOutput write failed: "));
+        this.f18860b = z10;
+        this.f18859a = i3;
     }
 }

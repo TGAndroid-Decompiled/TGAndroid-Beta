@@ -1,19 +1,5 @@
 package yd;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ServiceConfigurationError;
-public abstract class f {
-    public static final Collection f54421a;
-
-    static {
-        try {
-            Iterator it = Arrays.asList(new ud.b()).iterator();
-            kotlin.jvm.internal.i.e(it, "<this>");
-            f54421a = qd.d.a(new qd.a(new qd.e(it, 1)));
-        } catch (Throwable th2) {
-            throw new ServiceConfigurationError(th2.getMessage(), th2);
-        }
-    }
+public final class f {
+    public static final f f59406a = new Object();
+    public static final int f59407b = (int) be.a.i("kotlinx.coroutines.channels.defaultBuffer", 64, 1, 2147483646);
 }

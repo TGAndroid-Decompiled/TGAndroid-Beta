@@ -1,60 +1,156 @@
 package bi;
 
-import android.graphics.Bitmap;
+import android.content.res.Resources;
+import android.graphics.BlendMode;
+import android.graphics.BlendModeColorFilter;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class v extends ReplacementSpan {
-    public static final int h = 0;
-    public final String f3392a;
-    public final Bitmap f3393b;
-    public final int f3394c;
-    public final int d;
-    public final int e;
-    public final Paint f3395f;
+import android.graphics.Path;
+import android.graphics.Region;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.os.Build;
+import android.view.RoundedCorner;
+import android.view.View;
+import android.view.WindowInsets;
+public abstract class v {
+    public static float f3876a = -1.0f;
 
-    public v(String str, Bitmap bitmap, int i10, int i11, int i12, int i13) {
-        Paint paint = new Paint(3);
-        this.f3395f = paint;
-        this.f3392a = str;
-        this.f3393b = bitmap;
-        this.f3394c = i10;
-        this.d = i11;
-        this.e = i13;
-        paint.setColor(i12);
+    public static Canvas a(int i3, int i10, Object obj) {
+        RenderNode d = o4.v0.d(obj);
+        d.setPosition(0, 0, i3, i10);
+        return d.beginRecording();
     }
 
-    public static v a(String str, int i10, float f7) {
-        u a2;
-        if (str != null && !str.isEmpty() && (a2 = u.a(str, f7, true)) != null) {
-            return new v(str, a2.f3369a, a2.f3370b, a2.f3371c, i10, a2.d);
+    public static void b(Canvas canvas, Path path) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            canvas.clipOutPath(path);
+        } else {
+            canvas.clipPath(path, Region.Op.DIFFERENCE);
         }
-        return null;
     }
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        Bitmap bitmap = this.f3393b;
-        if (bitmap == null) {
-            return;
-        }
-        int color = paint.getColor();
-        Paint paint2 = this.f3395f;
-        paint2.setColor(color);
-        canvas.drawBitmap(bitmap, f7, i13 - (this.d - this.e), paint2);
+    public static void c(Canvas canvas, Object obj) {
+        canvas.drawRenderNode(o4.v0.d(obj));
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            int i12 = this.d;
-            int i13 = this.e;
-            int i14 = -(i12 - i13);
-            fontMetricsInt.ascent = i14;
-            fontMetricsInt.top = i14;
-            fontMetricsInt.descent = i13;
-            fontMetricsInt.bottom = i13;
+    public static void d(Object obj) {
+        o4.v0.d(obj).endRecording();
+    }
+
+    public static boolean e(Object obj) {
+        if (obj != null && o4.v0.d(obj).hasDisplayList()) {
+            return true;
         }
-        return this.f3394c;
+        return false;
+    }
+
+    public static boolean f() {
+        if (Build.VERSION.SDK_INT >= 31) {
+            return true;
+        }
+        return false;
+    }
+
+    public static float g(View view) {
+        float f10;
+        int identifier;
+        WindowInsets windowInsets;
+        float f11;
+        if (Build.VERSION.SDK_INT >= 31) {
+            if (view != null) {
+                windowInsets = view.getRootWindowInsets();
+            } else {
+                windowInsets = null;
+            }
+            if (windowInsets == null) {
+                f11 = -1.0f;
+            } else {
+                RoundedCorner roundedCorner = windowInsets.getRoundedCorner(0);
+                if (roundedCorner != null) {
+                    f11 = roundedCorner.getRadius();
+                } else {
+                    f11 = 0.0f;
+                }
+            }
+            if (f11 >= 0.0f) {
+                return f11;
+            }
+        }
+        if (f3876a < 0.0f) {
+            try {
+                Resources system = Resources.getSystem();
+                int identifier2 = system.getIdentifier("rounded_corner_radius_top", "dimen", "android");
+                if (identifier2 != 0) {
+                    f10 = system.getDimensionPixelSize(identifier2);
+                } else {
+                    f10 = 0.0f;
+                }
+                if (f10 <= 0.0f && (identifier = system.getIdentifier("rounded_corner_radius", "dimen", "android")) != 0) {
+                    f10 = system.getDimensionPixelSize(identifier);
+                }
+            } catch (Exception unused) {
+                f10 = 0.0f;
+            }
+            f3876a = Math.max(0.0f, f10);
+        }
+        return f3876a;
+    }
+
+    public static void h(Object obj, float f10) {
+        o4.v0.d(obj).setAlpha(f10);
+    }
+
+    public static void i(int i3, Paint paint) {
+        BlendMode blendMode;
+        switch (i3) {
+            case 1:
+                blendMode = BlendMode.PLUS;
+                break;
+            case 2:
+                blendMode = BlendMode.SCREEN;
+                break;
+            case 3:
+                blendMode = BlendMode.COLOR_DODGE;
+                break;
+            case 4:
+                blendMode = BlendMode.OVERLAY;
+                break;
+            case 5:
+                blendMode = BlendMode.SOFT_LIGHT;
+                break;
+            case 6:
+                blendMode = BlendMode.COLOR_BURN;
+                break;
+            default:
+                blendMode = null;
+                break;
+        }
+        paint.setBlendMode(blendMode);
+    }
+
+    public static void j(Object obj, float f10) {
+        RenderEffect renderEffect;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        RenderNode renderNode = (RenderNode) obj;
+        if (f10 > 0.0f) {
+            renderEffect = RenderEffect.createBlurEffect(f10, f10, tileMode);
+        } else {
+            renderEffect = null;
+        }
+        renderNode.setRenderEffect(renderEffect);
+    }
+
+    public static void k(Object obj, float f10, float[] fArr) {
+        o4.v0.d(obj).setRenderEffect(RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(fArr), RenderEffect.createBlurEffect(f10, f10, Shader.TileMode.CLAMP)));
+    }
+
+    public static ColorFilter l(int i3) {
+        BlendMode blendMode;
+        blendMode = BlendMode.SRC_IN;
+        return new BlendModeColorFilter(i3, blendMode);
     }
 }

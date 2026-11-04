@@ -1,56 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import org.telegram.messenger.ImageReceiver;
-public final class b50 extends g50 {
-    public ImageReceiver f24634a;
-    public float f24635b;
-    public final d50 f24636c;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b50 implements org.telegram.ui.d90 {
+    public final c50 f32086a;
 
-    public b50(d50 d50Var, Context context) {
-        super(context);
-        this.f24636c = d50Var;
-        setWillNotDraw(false);
+    public b50(c50 c50Var) {
+        this.f32086a = c50Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        d50 d50Var = this.f24636c;
-        FrameLayout frameLayout = d50Var.f25406x;
-        kl0 kl0Var = d50Var.f25404w;
-        nh.f fVar = d50Var.f25408y;
-        super.dispatchDraw(canvas);
-        if (this.f24634a == null) {
-            return;
+    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
+        int i3;
+        org.telegram.ui.za zaVar = this.f32086a.f32565a.f32935c.f34600b2;
+        if (zaVar != null) {
+            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
+            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
+            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
+            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
+            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
+            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
+            org.telegram.ui.kb kbVar = zaVar.f52592a;
+            tL_channelAdminLogEvent.user_id = org.telegram.messenger.h10.i(kbVar.getAccountInstance().f21919a).f22848n;
+            i3 = ((org.telegram.ui.ActionBar.d2) kbVar).currentAccount;
+            if (new org.telegram.messenger.zi(i3, tL_channelAdminLogEvent, kbVar.f46875o0, kbVar.f46874n0, kbVar.f46865f, kbVar.U, true).U >= 0) {
+                kbVar.W0();
+                kbVar.F.f();
+                org.telegram.ui.kb.P0(kbVar);
+            }
         }
-        float f7 = this.f24635b;
-        if (f7 < 1.0f) {
-            this.f24635b = Math.min(1.0f, f7 + 0.064f);
-            invalidate();
-        }
-        canvas.save();
-        canvas.translate(fVar.getLeft() + frameLayout.getLeft() + kl0Var.getLeft(), fVar.getTop() + frameLayout.getTop() + kl0Var.getTop());
-        if (this.f24634a.M0 != fVar.getWidth()) {
-            float width = fVar.getWidth() / this.f24634a.M0;
-            canvas.scale(width, width);
-        }
-        ImageReceiver imageReceiver = this.f24634a;
-        canvas.translate(-imageReceiver.K0, -imageReceiver.L0);
-        float alpha = this.f24634a.getAlpha();
-        this.f24634a.setAlpha(this.f24635b);
-        this.f24634a.h(canvas, null);
-        this.f24634a.setAlpha(alpha);
-        canvas.restore();
     }
 
     @Override
-    public final void setImageReceiver(ImageReceiver imageReceiver) {
-        if (this.f24634a == null) {
-            this.f24635b = 0.0f;
-        }
-        this.f24634a = imageReceiver;
-        invalidate();
+    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    }
+
+    @Override
+    public final void c(TLObject tLObject) {
     }
 }

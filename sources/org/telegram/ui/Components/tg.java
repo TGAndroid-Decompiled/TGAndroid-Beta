@@ -1,68 +1,53 @@
 package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
-import android.widget.LinearLayout;
-import org.telegram.messenger.Utilities;
-public final class tg implements o1.g {
-    public final int f30652a = 0;
-    public final boolean f30653b;
-    public final float f30654c;
-    public final float d;
-    public final KeyEvent.Callback e;
+public final class tg implements org.telegram.messenger.r10 {
+    public final int f38407a;
+    public final KeyEvent.Callback f38408b;
 
-    public tg(bi biVar, float f7, float f10, boolean z10) {
-        this.e = biVar;
-        this.f30654c = f7;
-        this.d = f10;
-        this.f30653b = z10;
+    public tg(KeyEvent.Callback callback, int i3) {
+        this.f38407a = i3;
+        this.f38408b = callback;
     }
 
     @Override
-    public final void a(o1.j jVar, float f7, float f10) {
-        switch (this.f30652a) {
+    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
+        switch (this.f38407a) {
             case 0:
-                bi biVar = (bi) this.e;
-                LinearLayout linearLayout = biVar.f24765f3;
-                LinearLayout linearLayout2 = biVar.f24771h3;
-                float f11 = f7 / 500.0f;
-                mh mhVar = biVar.V1;
-                uh uhVar = biVar.f24812s2;
-                Float valueOf = Float.valueOf(f11);
-                mhVar.getClass();
-                mhVar.a(uhVar, valueOf);
-                biVar.R2.setAlpha(org.telegram.messenger.i0.T1(this.f30654c, this.d, f11));
-                biVar.L1(biVar.f24812s2, 0);
-                biVar.L1(biVar.f24816t2, 0);
-                if (!(biVar.f24816t2 instanceof jm) || this.f30653b) {
-                    f11 = 1.0f - f11;
-                }
-                float i10 = Utilities.i(f11, 1.0f, 0.0f);
-                linearLayout2.setAlpha(i10);
-                float f12 = 1.0f - i10;
-                linearLayout.setAlpha(f12);
-                linearLayout.setTranslationX(i10 * (-org.telegram.messenger.i0.L(16.0f)));
-                linearLayout2.setTranslationX(f12 * org.telegram.messenger.i0.L(16.0f));
+                bi biVar = (bi) this.f38408b;
+                CharSequence charSequence = (CharSequence) obj;
+                Integer num = (Integer) obj2;
+                Integer num2 = (Integer) obj3;
+                Boolean bool = (Boolean) obj4;
+                dh dhVar = biVar.f32299z2;
+                dhVar.setText(charSequence);
+                dhVar.w(charSequence.length(), charSequence.length());
+                biVar.n1();
+                return;
+            case 1:
+                bi biVar2 = (bi) this.f38408b;
+                CharSequence charSequence2 = (CharSequence) obj;
+                Integer num3 = (Integer) obj2;
+                Integer num4 = (Integer) obj3;
+                Boolean bool2 = (Boolean) obj4;
+                fh fhVar = biVar2.K2;
+                fhVar.setText(charSequence2);
+                fhVar.w(charSequence2.length(), charSequence2.length());
+                biVar2.n1();
                 return;
             default:
-                eo0 eo0Var = (eo0) this.e;
-                boolean z10 = this.f30653b;
-                if (z10) {
-                    if (f7 > this.f30654c / 2.0f || !eo0Var.f25893s) {
-                        return;
-                    }
-                } else if (f7 < this.d / 2.0f || !eo0Var.f25892r) {
-                    return;
-                }
-                eo0Var.f25893s = !z10;
-                eo0Var.f25892r = z10;
+                sc scVar = (sc) this.f38408b;
+                Integer num5 = (Integer) obj2;
+                Integer num6 = (Integer) obj3;
+                Boolean bool3 = (Boolean) obj4;
+                gi.g gVar = scVar.f13144f;
+                gVar.setText((CharSequence) obj);
+                gVar.d();
+                gVar.k(true);
+                gi.e eVar = scVar.f13141d0;
+                org.telegram.messenger.g0.r(eVar);
+                eVar.run();
                 return;
         }
-    }
-
-    public tg(eo0 eo0Var, boolean z10, float f7, float f10) {
-        this.e = eo0Var;
-        this.f30653b = z10;
-        this.f30654c = f7;
-        this.d = f10;
     }
 }

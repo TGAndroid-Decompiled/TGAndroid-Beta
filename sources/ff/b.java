@@ -1,43 +1,64 @@
 package ff;
 
-import java.io.InputStream;
-public final class b extends a {
-    public final long d;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public abstract class b {
+    public static final Map f11590a;
+    public static final Pattern f11591b;
 
-    public b(InputStream inputStream, long j10, long j11) {
-        super(inputStream, j10);
-        this.d = j10 + j11;
-    }
-
-    public final long e() {
-        return this.d - this.f7056b;
-    }
-
-    @Override
-    public final int read() {
-        if (this.f7056b == this.d) {
-            return -1;
+    static {
+        HashMap hashMap = new HashMap();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(b.class.getResourceAsStream("/org/commonmark/internal/util/entities.properties"), Charset.forName("UTF-8")));
+            while (true) {
+                String readLine = bufferedReader.readLine();
+                if (readLine != null) {
+                    if (readLine.length() != 0) {
+                        int indexOf = readLine.indexOf("=");
+                        hashMap.put(readLine.substring(0, indexOf), readLine.substring(indexOf + 1));
+                    }
+                } else {
+                    bufferedReader.close();
+                    hashMap.put("NewLine", "\n");
+                    f11590a = hashMap;
+                    f11591b = Pattern.compile("^&#[Xx]?");
+                    return;
+                }
+            }
+        } catch (IOException e10) {
+            throw new IllegalStateException("Failed reading data for HTML named character references", e10);
         }
-        return super.read();
     }
 
-    @Override
-    public final long skip(long j10) {
-        long j11 = this.f7056b;
-        long j12 = this.d;
-        if (j11 + j10 > j12) {
-            j10 = (int) (j12 - j11);
+    public static String a(String str) {
+        int i3;
+        Matcher matcher = f11591b.matcher(str);
+        if (matcher.find()) {
+            if (matcher.end() == 2) {
+                i3 = 10;
+            } else {
+                i3 = 16;
+            }
+            try {
+                int parseInt = Integer.parseInt(str.substring(matcher.end(), str.length() - 1), i3);
+                if (parseInt == 0) {
+                    return "�";
+                }
+                return new String(Character.toChars(parseInt));
+            } catch (IllegalArgumentException unused) {
+                return "�";
+            }
         }
-        return super.skip(j10);
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        long j10 = this.f7056b;
-        long j11 = this.d;
-        if (i11 + j10 <= j11 || (i11 = (int) (j11 - j10)) != 0) {
-            return super.read(bArr, i10, i11);
+        String str2 = (String) f11590a.get(com.google.android.recaptcha.internal.a.j(str, 1, 1));
+        if (str2 != null) {
+            return str2;
         }
-        return -1;
+        return str;
     }
 }

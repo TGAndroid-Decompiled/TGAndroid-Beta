@@ -1,19 +1,15 @@
 package n1;
 
-import m1.j;
-public abstract class f {
-    public static final int[] f13416a;
+import android.content.SharedPreferences;
+import java.util.Set;
+import kotlin.jvm.internal.j;
+public final class f {
+    public final SharedPreferences f20126a;
+    public final Set f20127b;
 
-    static {
-        int[] iArr = new int[j.d(8).length];
-        iArr[0] = 1;
-        iArr[1] = 2;
-        iArr[6] = 3;
-        iArr[2] = 4;
-        iArr[3] = 5;
-        iArr[4] = 6;
-        iArr[5] = 7;
-        iArr[7] = 8;
-        f13416a = iArr;
+    public f(SharedPreferences prefs, Set set) {
+        j.e(prefs, "prefs");
+        this.f20126a = prefs;
+        this.f20127b = set;
     }
 }

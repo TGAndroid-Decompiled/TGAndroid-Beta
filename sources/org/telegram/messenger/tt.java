@@ -1,31 +1,18 @@
 package org.telegram.messenger;
+public final class tt {
+    public final int f25591a;
+    public final int f25592b;
+    public final int f25593c;
+    public final int d;
+    public final int f25594e;
+    public final int f25595f;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class tt implements DialogInterface.OnCancelListener {
-    public final int f18305a;
-    public final int f18306b;
-    public final int f18307c;
-    public final Object d;
-
-    public tt(int i10, int i11, Object obj, int i12) {
-        this.f18305a = i12;
-        this.f18306b = i10;
-        this.f18307c = i11;
-        this.d = obj;
-    }
-
-    @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f18305a) {
-            case 0:
-                ConnectionsManager.getInstance(this.f18306b).cancelRequest(this.f18307c, true);
-                ((k20) this.d).a(null, "CANCELLED");
-                return;
-            default:
-                ConnectionsManager.getInstance(this.f18306b).cancelRequest(this.f18307c, true);
-                ((org.telegram.ui.ActionBar.x1[]) this.d)[0] = null;
-                return;
-        }
+    public tt(int i3, int i10, int i11, int i12, int i13, int i14) {
+        this.f25591a = i3;
+        this.f25592b = i10;
+        this.f25593c = i11;
+        this.d = i12;
+        this.f25594e = i13;
+        this.f25595f = i14;
     }
 }

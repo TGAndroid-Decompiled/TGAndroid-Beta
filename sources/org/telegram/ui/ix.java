@@ -1,31 +1,24 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
 import android.view.View;
-public final class ix implements ValueAnimator.AnimatorUpdateListener {
-    public int f38202a;
-    public final float f38203b;
-    public final float f38204c;
-    public final zx d;
+public final class ix extends org.telegram.ui.Components.q31 {
+    public static final int f46430b = 0;
 
-    public ix(zx zxVar, float f7, boolean z10, float f10) {
-        this.d = zxVar;
-        this.f38203b = f7;
-        this.f38204c = f10;
-        this.f38202a = (int) f7;
+    static {
+        org.telegram.ui.Components.q31.h(new org.telegram.ui.Components.q31());
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        ((Float) valueAnimator.getAnimatedValue()).getClass();
-        int T1 = (int) org.telegram.messenger.i0.T1(this.f38203b, this.f38204c, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-        int i10 = T1 - this.f38202a;
-        this.f38202a = T1;
-        zx zxVar = this.d;
-        zxVar.f44137e0[0].f43733a.scrollBy(0, i10);
-        View view = zxVar.fragmentView;
-        if (view != null) {
-            view.invalidate();
-        }
+    public final void b(View view, org.telegram.ui.Components.r31 r31Var, boolean z10, org.telegram.ui.Components.f41 f41Var, org.telegram.ui.Components.l41 l41Var) {
+        jx jxVar = (jx) view;
+        jxVar.f46704n = (org.telegram.messenger.u10) r31Var.G;
+        jxVar.f46705r = r31Var;
+        jxVar.b(r31Var.f37640z, false);
+    }
+
+    @Override
+    public final View d(Context context, org.telegram.ui.Components.tj0 tj0Var, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new jx(context, e6Var);
     }
 }

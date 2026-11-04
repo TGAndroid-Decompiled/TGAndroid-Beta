@@ -1,14 +1,14 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.at;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.i0;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.hs;
 public class TLParseException extends RuntimeException {
     private TLParseException(String str) {
         super(str);
     }
 
-    public static void doThrowOrLog(InputSerializedData inputSerializedData, String str, int i10, boolean z10) {
+    public static void doThrowOrLog(InputSerializedData inputSerializedData, String str, int i3, boolean z10) {
         TLDataSourceType tLDataSourceType;
         if (inputSerializedData != null) {
             tLDataSourceType = inputSerializedData.getDataSourceType();
@@ -16,13 +16,13 @@ public class TLParseException extends RuntimeException {
             tLDataSourceType = null;
         }
         boolean z11 = false;
-        TLParseException tLParseException = new TLParseException(String.format("can't parse magic %x in %s. Source: %s", Integer.valueOf(i10), str, tLDataSourceType));
-        if (i10 != -847714938) {
+        TLParseException tLParseException = new TLParseException(String.format("can't parse magic %x in %s. Source: %s", Integer.valueOf(i3), str, tLDataSourceType));
+        if (i3 != -847714938) {
             z11 = true;
         }
-        f8.g(tLParseException, z11);
-        if (i10 != -847714938 && i10 != -779361553 && i10 != -212046591) {
-            i0.g3(new lg.s(tLParseException, 14));
+        a8.g(tLParseException, z11);
+        if (i3 != -847714938 && i3 != -779361553 && i3 != -212046591) {
+            g0.h3(new lg.n(tLParseException, 18));
         }
         if (!z10) {
             return;
@@ -31,6 +31,6 @@ public class TLParseException extends RuntimeException {
     }
 
     public static void lambda$doThrowOrLog$0(TLParseException tLParseException) {
-        at.e().k(at.M5, tLParseException);
+        hs.e().k(hs.M5, tLParseException);
     }
 }

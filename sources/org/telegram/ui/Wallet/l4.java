@@ -1,28 +1,23 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-public final class l4 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34842a;
-    public final b6 f34843b;
+import android.view.View;
+public final class l4 implements View.OnClickListener {
+    public final int f42780a;
+    public final org.telegram.ui.ActionBar.t2[] f42781b;
 
-    public l4(b6 b6Var, int i10) {
-        this.f34842a = i10;
-        this.f34843b = b6Var;
+    public l4(org.telegram.ui.ActionBar.t2[] t2VarArr, int i3) {
+        this.f42780a = i3;
+        this.f42781b = t2VarArr;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34842a) {
+    public final void onClick(View view) {
+        switch (this.f42780a) {
             case 0:
-                b6 b6Var = this.f34843b;
-                b6Var.getClass();
-                b6Var.M0(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                this.f42781b[0].dismiss();
                 return;
             default:
-                b6 b6Var2 = this.f34843b;
-                b6Var2.getClass();
-                b6Var2.H0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b6Var2.T0();
+                this.f42781b[0].dismiss();
                 return;
         }
     }

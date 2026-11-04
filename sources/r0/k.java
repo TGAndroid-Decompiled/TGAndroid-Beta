@@ -2,13 +2,13 @@ package r0;
 
 import android.view.View;
 public interface k {
-    void k(int i10, View view);
+    void m(int i3, View view);
 
-    void m(View view, int i10, int i11, int i12, int i13, int i14);
+    void o(View view, int i3, int i10, int i11, int i12, int i13);
 
-    boolean n(View view, View view2, int i10, int i11);
+    boolean p(View view, View view2, int i3, int i10);
 
-    void q(View view, View view2, int i10, int i11);
+    void s(View view, View view2, int i3, int i10);
 
-    void s(View view, int i10, int i11, int[] iArr, int i12);
+    void t(View view, int i3, int i10, int[] iArr, int i11);
 }

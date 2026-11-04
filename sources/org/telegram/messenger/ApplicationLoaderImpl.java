@@ -9,11 +9,11 @@ import android.text.TextUtils;
 import androidx.core.content.FileProvider;
 import java.io.File;
 import org.telegram.tgnet.TLRPC;
-public class ApplicationLoaderImpl extends w0 {
+public class ApplicationLoaderImpl extends t0 {
     @Override
     public final boolean b(Context context) {
-        if (Build.VERSION.SDK_INT >= 26 && !w0.f18945b.getPackageManager().canRequestPackageInstalls()) {
-            org.telegram.ui.Components.s4.j(context, null).show();
+        if (Build.VERSION.SDK_INT >= 26 && !t0.f25457b.getPackageManager().canRequestPackageInstalls()) {
+            org.telegram.ui.Components.t4.j(context, null).show();
             return false;
         }
         return true;
@@ -22,12 +22,12 @@ public class ApplicationLoaderImpl extends w0 {
     @Override
     public final File g() {
         if (q()) {
-            k1 e = k1.e();
-            if (e.d != null) {
-                File file = new File(e.d);
+            h1 e10 = h1.e();
+            if (e10.d != null) {
+                File file = new File(e10.d);
                 if (!file.exists()) {
-                    e.d = null;
-                    e.f();
+                    e10.d = null;
+                    e10.f();
                     return null;
                 }
                 return file;
@@ -38,34 +38,34 @@ public class ApplicationLoaderImpl extends w0 {
 
     @Override
     public final boolean q() {
-        return !TextUtils.isEmpty("null");
+        return !TextUtils.isEmpty("https://telegram.org/dl/android/apk-public-beta.json");
     }
 
     @Override
     public final boolean v(Activity activity, TLRPC.Document document) {
         boolean z10 = false;
         try {
-            b8.r(null, document);
-            b8.G(e20.f15506s0);
-            File K = b8.K(document, null, true, true);
+            w7.r(null, document);
+            w7.G(h10.f22829t0);
+            File K = w7.K(document, null, true, true);
             z10 = K.exists();
             if (z10) {
                 Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setFlags(1);
                 if (Build.VERSION.SDK_INT >= 24) {
-                    w0.d();
+                    t0.d();
                     intent.setDataAndType(FileProvider.d(activity, "org.telegram.messenger.beta.provider", K), "application/vnd.android.package-archive");
                 } else {
                     intent.setDataAndType(Uri.fromFile(K), "application/vnd.android.package-archive");
                 }
                 try {
                     activity.startActivityForResult(intent, 500);
-                } catch (Exception e) {
-                    f8.g(e, true);
+                } catch (Exception e10) {
+                    a8.g(e10, true);
                 }
             }
-        } catch (Exception e7) {
-            f8.g(e7, true);
+        } catch (Exception e11) {
+            a8.g(e11, true);
         }
         return z10;
     }

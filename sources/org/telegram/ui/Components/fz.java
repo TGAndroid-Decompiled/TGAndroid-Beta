@@ -1,24 +1,19 @@
 package org.telegram.ui.Components;
+public final class fz {
+    public byte f33887a;
+    public byte f33888b;
+    public byte f33889c;
+    public byte d;
+    public byte f33890e;
+    public byte f33891f;
+    public float f33892g;
+    public float h;
+    public short f33893i;
+    public float f33894j;
+    public float f33895k;
+    public final gz f33896l;
 
-import android.graphics.SurfaceTexture;
-public final class fz implements SurfaceTexture.OnFrameAvailableListener {
-    public final int f26235a;
-    public final org.telegram.messenger.s5 f26236b;
-
-    public fz(org.telegram.messenger.s5 s5Var, int i10) {
-        this.f26235a = i10;
-        this.f26236b = s5Var;
-    }
-
-    @Override
-    public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        switch (this.f26235a) {
-            case 0:
-                ((gz) this.f26236b).c(false, true, true);
-                return;
-            default:
-                ((r40) this.f26236b).requestRender(true, false);
-                return;
-        }
+    public fz(gz gzVar) {
+        this.f33896l = gzVar;
     }
 }

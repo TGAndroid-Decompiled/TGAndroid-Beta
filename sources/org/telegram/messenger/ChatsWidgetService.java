@@ -10,22 +10,22 @@ public class ChatsWidgetService extends RemoteViewsService {
     public final RemoteViewsService.RemoteViewsFactory onGetViewFactory(Intent intent) {
         Context applicationContext = getApplicationContext();
         ?? obj = new Object();
-        obj.f16015a = new ArrayList();
-        obj.f16019g = new a0.h();
+        obj.f22310a = new ArrayList();
+        obj.f22315g = new a0.h();
         obj.h = new a0.h();
-        obj.f16016b = applicationContext;
-        org.telegram.ui.ActionBar.t6.T(applicationContext);
+        obj.f22311b = applicationContext;
+        org.telegram.ui.ActionBar.k6.T(applicationContext);
         boolean z10 = false;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
-        obj.f16017c = intExtra;
+        obj.f22312c = intExtra;
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("shortcut_widget", 0);
-        int i10 = sharedPreferences.getInt("account" + intExtra, -1);
-        if (i10 >= 0) {
-            obj.d = c.a(i10);
+        int i3 = sharedPreferences.getInt("account" + intExtra, -1);
+        if (i3 >= 0) {
+            obj.d = c.a(i3);
         }
         StringBuilder sb2 = new StringBuilder("deleted");
         sb2.append(intExtra);
-        obj.f16020i = (sharedPreferences.getBoolean(sb2.toString(), false) || obj.d == null) ? true : true;
+        obj.f22316i = (sharedPreferences.getBoolean(sb2.toString(), false) || obj.d == null) ? true : true;
         return obj;
     }
 }

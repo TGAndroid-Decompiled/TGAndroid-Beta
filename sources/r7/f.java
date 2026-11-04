@@ -1,49 +1,29 @@
 package r7;
 
-import android.location.Location;
 import android.os.Parcel;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import v7.i5;
-public final class f extends b8.b {
-    public final int f46355b;
-    public final TaskCompletionSource f46356c;
+import android.os.Parcelable;
+public final class f extends q6.a {
+    public static final Parcelable.Creator<f> CREATOR = new q8.i(2);
+    public final String f54407a;
+    public final String f54408b;
+    public final String f54409c;
 
-    public f(int i10, TaskCompletionSource taskCompletionSource) {
-        super("com.google.android.gms.location.internal.ILocationStatusCallback", 9);
-        this.f46355b = i10;
-        switch (i10) {
-            case 1:
-                this.f46356c = taskCompletionSource;
-                super("com.google.android.gms.location.internal.ISettingsCallbacks", 9);
-                return;
-            default:
-                this.f46356c = taskCompletionSource;
-                return;
-        }
+    public f(String str, String str2, String str3) {
+        this.f54407a = str;
+        this.f54408b = str2;
+        this.f54409c = str3;
+    }
+
+    public final String toString() {
+        return a1.g.s(com.google.android.recaptcha.internal.a.n("DocumentId[packageName=", this.f54407a, ", corpusName=", this.f54408b, ", uri="), this.f54409c, "]");
     }
 
     @Override
-    public final boolean L0(Parcel parcel, int i10) {
-        switch (this.f46355b) {
-            case 0:
-                if (i10 == 1) {
-                    d.b(parcel);
-                    i5.a((Status) d.a(parcel, Status.CREATOR), (Location) d.a(parcel, Location.CREATOR), this.f46356c);
-                    return true;
-                }
-                return false;
-            default:
-                if (i10 == 1) {
-                    g8.e eVar = (g8.e) d.a(parcel, g8.e.CREATOR);
-                    d.b(parcel);
-                    Status status = eVar.f7454a;
-                    ?? obj = new Object();
-                    obj.f2047a = eVar;
-                    i5.a(status, obj, this.f46356c);
-                    return true;
-                }
-                return false;
-        }
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.m(parcel, 1, this.f54407a);
+        j8.a.m(parcel, 2, this.f54408b);
+        j8.a.m(parcel, 3, this.f54409c);
+        j8.a.t(parcel, s6);
     }
 }

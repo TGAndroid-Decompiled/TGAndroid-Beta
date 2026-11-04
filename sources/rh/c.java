@@ -1,67 +1,38 @@
 package rh;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.io.Serializable;
-import org.telegram.messenger.p20;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.hu0;
-import org.telegram.ui.Components.ju0;
-import org.telegram.ui.rc1;
-public final class c implements fe.e, hu0, ju0, org.telegram.ui.ActionBar.u1, p20 {
-    public final i f46706a;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import b8.mf;
+import org.telegram.messenger.g0;
+public abstract class c extends FrameLayout {
+    public final LinearLayout f54539a;
+    public float f54540b;
+    public final Rect f54541c;
+    public final Rect d;
+    public final Paint f54542e;
 
-    public c(i iVar) {
-        this.f46706a = iVar;
+    public c(Context context) {
+        super(context);
+        this.f54541c = new Rect();
+        this.d = new Rect();
+        this.f54542e = new Paint(1);
+        setPadding(g0.L(8.0f), g0.L(8.0f), g0.L(8.0f), g0.L(8.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f54539a = linearLayout;
+        linearLayout.setOrientation(0);
+        addView(linearLayout, mf.c(-1.0f, -1));
     }
 
-    @Override
-    public int c() {
-        return this.f46706a.f47063n;
-    }
-
-    @Override
-    public float f(RecyclerView recyclerView) {
-        return org.telegram.ui.Cells.f1.c(recyclerView);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        i iVar = this.f46706a;
-        iVar.getClass();
-        iVar.presentFragment(new rc1(6, null));
-    }
-
-    @Override
-    public RecyclerView j(View view) {
-        i iVar = this.f46706a;
-        if (iVar.f47047a == 1) {
-            return ((h) view).f47002c;
-        }
-        iVar.K.getClass();
-        return ((e8) view).f46888a;
-    }
-
-    @Override
-    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f7 = (Float) serializable;
-        Float f10 = (Float) serializable2;
-        i.a0(this.f46706a, (b51) obj);
-    }
-
-    @Override
-    public void q(RecyclerView recyclerView) {
-        org.telegram.ui.Cells.f1.b(recyclerView);
-    }
-
-    @Override
-    public void v(int i10, float f7, float f10, fe.f fVar) {
-        this.f46706a.x0();
-    }
-
-    @Override
-    public void E(float f7, int i10) {
+    public void setLensVisibility(float f10) {
+        this.f54540b = f10;
+        int L = g0.L(f10 * 7.0f);
+        Rect rect = this.f54541c;
+        Rect rect2 = this.d;
+        rect2.set(rect);
+        int i3 = -L;
+        rect2.inset(i3, i3);
     }
 }

@@ -1,13 +1,11 @@
 package wd;
-public abstract class n {
-    public static final ea.a f52849a = new ea.a("NONE");
-    public static final ea.a f52850b = new ea.a("PENDING");
 
-    public static final java.io.Serializable a(wd.b r4, wd.c r5, ed.c r6) {
-        throw new UnsupportedOperationException("Method not decompiled: wd.n.a(wd.b, wd.c, ed.c):java.io.Serializable");
-    }
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+public final class n extends v {
+    public static final AtomicIntegerFieldUpdater f57517c = AtomicIntegerFieldUpdater.newUpdater(n.class, "_resumed$volatile");
+    private volatile int _resumed$volatile;
 
-    public static final java.lang.Object b(wd.b r6, ed.c r7) {
-        throw new UnsupportedOperationException("Method not decompiled: wd.n.b(wd.b, ed.c):java.lang.Object");
+    public n(wd.m r3, java.lang.Throwable r4, boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: wd.n.<init>(wd.m, java.lang.Throwable, boolean):void");
     }
 }

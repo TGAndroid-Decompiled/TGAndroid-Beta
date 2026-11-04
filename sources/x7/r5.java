@@ -1,17 +1,6 @@
 package x7;
-public final class r5 implements ja.d {
-    public static final r5 f53327a = new Object();
-
-    static {
-        sc.e.v(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, new z(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+public abstract class r5 {
+    public static int a(android.content.Context r15, java.lang.String r16, java.lang.String r17) {
+        throw new UnsupportedOperationException("Method not decompiled: x7.r5.a(android.content.Context, java.lang.String, java.lang.String):int");
     }
 }

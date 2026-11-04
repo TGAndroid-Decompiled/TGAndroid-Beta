@@ -1,74 +1,47 @@
 package kg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.ui.Components.f6;
-import org.telegram.ui.Components.kp;
-public final class w0 extends f6 {
-    public final int f11319s;
-    public final x0 f11320w;
+import org.telegram.messenger.hp;
+import org.telegram.messenger.qr;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class w0 implements Runnable {
+    public final String f17224a;
+    public final String f17225b;
+    public final hp f17226c;
+    public final qr d;
+    public final e1 f17227e;
 
-    public w0(x0 x0Var, Context context, int i10) {
-        super(context, true, true, true);
-        this.f11319s = i10;
-        this.f11320w = x0Var;
+    public w0(e1 e1Var, String str, String str2, hp hpVar, qr qrVar) {
+        this.f17227e = e1Var;
+        this.f17224a = str;
+        this.f17225b = str2;
+        this.f17226c = hpVar;
+        this.d = qrVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f11319s) {
-            case 0:
-                x0 x0Var = this.f11320w;
-                if (x0Var.O > 0.0f) {
-                    if (x0Var.N == null) {
-                        x0Var.N = new kp(x0Var.f11328f.getTextColor());
-                    }
-                    int L = (int) ((1.0f - x0Var.O) * org.telegram.messenger.i0.L(24.0f));
-                    x0Var.N.setBounds(0, L, getWidth(), getHeight() + L);
-                    x0Var.N.setAlpha((int) (x0Var.O * 255.0f));
-                    x0Var.N.draw(canvas);
-                    invalidate();
-                }
-                float f7 = x0Var.O;
-                if (f7 < 1.0f) {
-                    if (f7 != 0.0f) {
-                        canvas.save();
-                        canvas.translate(0.0f, (int) (x0Var.O * org.telegram.messenger.i0.L(-24.0f)));
-                        canvas.scale(1.0f, 1.0f - (x0Var.O * 0.4f));
-                        super.onDraw(canvas);
-                        canvas.restore();
-                        return;
-                    }
-                    super.onDraw(canvas);
+    public final void run() {
+        e1 e1Var = this.f17227e;
+        if (e1Var.f17023z0 == this) {
+            e1Var.f17023z0 = null;
+            TLRPC.User user = e1Var.f17020x0;
+            if (user == null && !e1Var.f17018w0) {
+                String str = this.f17225b;
+                e1Var.f17011r0 = str;
+                hp hpVar = this.f17226c;
+                TLObject f22 = hpVar.f2(str);
+                if (f22 instanceof TLRPC.User) {
+                    e1Var.R((TLRPC.User) f22);
                     return;
                 }
-                return;
-            default:
-                x0 x0Var2 = this.f11320w;
-                if (x0Var2.O > 0.0f) {
-                    if (x0Var2.N == null) {
-                        x0Var2.N = new kp(x0Var2.f11328f.getTextColor());
-                    }
-                    int L2 = (int) ((1.0f - x0Var2.O) * org.telegram.messenger.i0.L(24.0f));
-                    x0Var2.N.setBounds(0, L2, getWidth(), getHeight() + L2);
-                    x0Var2.N.setAlpha((int) (x0Var2.O * 255.0f));
-                    x0Var2.N.draw(canvas);
-                    invalidate();
-                }
-                float f10 = x0Var2.O;
-                if (f10 < 1.0f) {
-                    if (f10 != 0.0f) {
-                        canvas.save();
-                        canvas.translate(0.0f, (int) (x0Var2.O * org.telegram.messenger.i0.L(-24.0f)));
-                        canvas.scale(1.0f, 1.0f - (x0Var2.O * 0.4f));
-                        super.onDraw(canvas);
-                        canvas.restore();
-                        return;
-                    }
-                    super.onDraw(canvas);
-                    return;
-                }
-                return;
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                tL_contacts_resolveUsername.username = e1Var.f17011r0;
+                e1Var.f17015u0 = ConnectionsManager.getInstance(e1Var.f16997f).sendRequest(tL_contacts_resolveUsername, new ai.q1(this, str, hpVar, this.d, 8));
+            } else if (e1Var.f17018w0) {
+            } else {
+                e1Var.T(true, user, this.f17224a, "");
+            }
         }
     }
 }

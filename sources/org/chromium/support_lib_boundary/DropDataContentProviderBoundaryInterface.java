@@ -22,5 +22,5 @@ public interface DropDataContentProviderBoundaryInterface {
 
     Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2);
 
-    void setClearCachedDataIntervalMs(int i10);
+    void setClearCachedDataIntervalMs(int i3);
 }

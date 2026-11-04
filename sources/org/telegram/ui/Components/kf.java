@@ -1,24 +1,22 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class kf extends i41 {
-    public final lf f27833m1;
+import android.view.ViewGroup;
+import org.telegram.tgnet.TLRPC;
+public final class kf extends ey {
+    public final ChatActivityEnterView W2;
 
-    public kf(lf lfVar, Context context, org.telegram.ui.ActionBar.k2 k2Var, x41 x41Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, k2Var, x41Var, p6Var);
-        this.f27833m1 = lfVar;
+    public kf(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.d2 d2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.e6 e6Var, boolean z12, boolean z13) {
+        super(d2Var, z10, true, true, context, true, chatFull, viewGroup, z11, e6Var, z12, z13);
+        this.W2 = chatActivityEnterView;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        ChatActivityEnterView chatActivityEnterView = this.f27833m1.f28144a;
-        if (chatActivityEnterView.f23677a3 == this) {
-            chatActivityEnterView.f23677a3 = null;
-        }
-        sf sfVar = chatActivityEnterView.Z2;
-        if (sfVar != null) {
-            sfVar.B(false);
+    public final void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        ChatActivityEnterView chatActivityEnterView = this.W2;
+        if (chatActivityEnterView.W0 != null && chatActivityEnterView.f31176p3 == 0) {
+            chatActivityEnterView.f31087a3.x(f10);
         }
     }
 }

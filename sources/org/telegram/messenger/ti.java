@@ -1,32 +1,19 @@
 package org.telegram.messenger;
-
-import j$.util.Objects;
 public final class ti {
-    public final boolean f18266a;
-    public final String f18267b;
-    public final String f18268c;
-
-    public ti(String str, String str2, boolean z10) {
-        this.f18266a = z10;
-        this.f18267b = str;
-        this.f18268c = str2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && ti.class == obj.getClass()) {
-                ti tiVar = (ti) obj;
-                if (this.f18266a == tiVar.f18266a && Objects.equals(this.f18267b, tiVar.f18267b) && Objects.equals(this.f18268c, tiVar.f18268c)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Objects.hash(Boolean.valueOf(this.f18266a), this.f18267b, this.f18268c);
-    }
+    public int f25527a;
+    public int f25528b;
+    public int f25529c;
+    public int d;
+    public float f25530e;
+    public float f25531f;
+    public float f25532g;
+    public float h;
+    public boolean f25533i;
+    public boolean f25534j;
+    public boolean f25535k;
+    public boolean f25536l;
+    public org.telegram.ui.Cells.q1 f25537m;
+    public float f25538n;
+    public boolean f25539o;
+    public boolean f25540p;
 }

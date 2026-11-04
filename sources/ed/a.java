@@ -1,147 +1,121 @@
 package ed;
 
-import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-public abstract class a implements cd.c, d, Serializable {
-    private final cd.c completion;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+public class a implements Iterator {
+    public final int f9943a;
+    public int f9944b;
+    public final Object f9945c;
 
-    public a(cd.c cVar) {
-        this.completion = cVar;
-    }
-
-    public cd.c create(cd.c completion) {
-        kotlin.jvm.internal.i.e(completion, "completion");
-        throw new UnsupportedOperationException("create(Continuation) has not been overridden");
+    public a(Object[] array) {
+        this.f9943a = 1;
+        kotlin.jvm.internal.j.e(array, "array");
+        this.f9945c = array;
     }
 
     @Override
-    public d getCallerFrame() {
-        cd.c cVar = this.completion;
-        if (cVar instanceof d) {
-            return (d) cVar;
+    public final boolean hasNext() {
+        switch (this.f9943a) {
+            case 0:
+                if (this.f9944b < ((d) this.f9945c).h()) {
+                    return true;
+                }
+                return false;
+            case 1:
+                if (this.f9944b < ((Object[]) this.f9945c).length) {
+                    return true;
+                }
+                return false;
+            default:
+                if (this.f9944b < ((zc.b) this.f9945c).f60377a) {
+                    return true;
+                }
+                return false;
         }
-        return null;
     }
 
-    public final cd.c getCompletion() {
-        return this.completion;
-    }
-
-    public StackTraceElement getStackTraceElement() {
-        int i10;
-        String str;
-        Method method;
-        Object invoke;
-        Method method2;
-        Object invoke2;
-        Object obj;
-        Integer num;
-        int i11;
-        e eVar = (e) getClass().getAnnotation(e.class);
-        String str2 = null;
-        if (eVar == null) {
-            return null;
-        }
-        int v = eVar.v();
-        if (v <= 1) {
-            int i12 = -1;
-            try {
-                Field declaredField = getClass().getDeclaredField("label");
-                declaredField.setAccessible(true);
-                Object obj2 = declaredField.get(this);
-                if (obj2 instanceof Integer) {
-                    num = (Integer) obj2;
-                } else {
-                    num = null;
+    @Override
+    public final Object next() {
+        switch (this.f9943a) {
+            case 0:
+                if (hasNext()) {
+                    int i3 = this.f9944b;
+                    this.f9944b = i3 + 1;
+                    return ((d) this.f9945c).get(i3);
                 }
-                if (num != null) {
-                    i11 = num.intValue();
-                } else {
-                    i11 = 0;
-                }
-                i10 = i11 - 1;
-            } catch (Exception unused) {
-                i10 = -1;
-            }
-            if (i10 >= 0) {
-                i12 = eVar.l()[i10];
-            }
-            f fVar = g.f6487b;
-            f fVar2 = g.f6486a;
-            if (fVar == null) {
+                throw new NoSuchElementException();
+            case 1:
                 try {
-                    f fVar3 = new f(Class.class.getDeclaredMethod("getModule", null), getClass().getClassLoader().loadClass("java.lang.Module").getDeclaredMethod("getDescriptor", null), getClass().getClassLoader().loadClass("java.lang.module.ModuleDescriptor").getDeclaredMethod("name", null));
-                    g.f6487b = fVar3;
-                    fVar = fVar3;
-                } catch (Exception unused2) {
-                    g.f6487b = fVar2;
-                    fVar = fVar2;
+                    int i10 = this.f9944b;
+                    this.f9944b = i10 + 1;
+                    return ((Object[]) this.f9945c)[i10];
+                } catch (ArrayIndexOutOfBoundsException e10) {
+                    this.f9944b--;
+                    throw new NoSuchElementException(e10.getMessage());
                 }
-            }
-            if (fVar != fVar2 && (method = fVar.f6483a) != null && (invoke = method.invoke(getClass(), null)) != null && (method2 = fVar.f6484b) != null && (invoke2 = method2.invoke(invoke, null)) != null) {
-                Method method3 = fVar.f6485c;
-                if (method3 != null) {
-                    obj = method3.invoke(invoke2, null);
-                } else {
-                    obj = null;
+            default:
+                zc.b bVar = (zc.b) this.f9945c;
+                String[] strArr = bVar.f60379c;
+                int i11 = this.f9944b;
+                String str = strArr[i11];
+                String str2 = bVar.f60378b[i11];
+                if (str == null) {
+                    str = "";
                 }
-                if (obj instanceof String) {
-                    str2 = obj;
+                ?? obj = new Object();
+                if (str2 != null) {
+                    obj.f60374a = str2.trim();
+                    if (str2.length() != 0) {
+                        obj.f60375b = str;
+                        obj.f60376c = bVar;
+                        this.f9944b++;
+                        return obj;
+                    }
+                    throw new IllegalArgumentException("String must not be empty");
                 }
-            }
-            if (str2 == null) {
-                str = eVar.c();
-            } else {
-                str = str2 + '/' + eVar.c();
-            }
-            return new StackTraceElement(str, eVar.m(), eVar.f(), i12);
+                throw new IllegalArgumentException("Object must not be null");
         }
-        throw new IllegalStateException(("Debug metadata version mismatch. Expected: 1, got " + v + ". Please update the Kotlin standard library.").toString());
     }
 
-    public abstract Object invokeSuspend(Object obj);
-
     @Override
-    public final void resumeWith(Object obj) {
-        cd.c cVar = this;
-        while (true) {
-            a aVar = (a) cVar;
-            cd.c cVar2 = aVar.completion;
-            kotlin.jvm.internal.i.b(cVar2);
-            try {
-                obj = aVar.invokeSuspend(obj);
-                if (obj == dd.a.f5864a) {
+    public final void remove() {
+        switch (this.f9943a) {
+            case 0:
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            case 1:
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            default:
+                zc.b bVar = (zc.b) this.f9945c;
+                int i3 = this.f9944b;
+                int i10 = i3 - 1;
+                this.f9944b = i10;
+                int i11 = bVar.f60377a;
+                if (i10 < i11) {
+                    int i12 = (i11 - i10) - 1;
+                    if (i12 > 0) {
+                        String[] strArr = bVar.f60378b;
+                        System.arraycopy(strArr, i3, strArr, i10, i12);
+                        String[] strArr2 = bVar.f60379c;
+                        System.arraycopy(strArr2, i3, strArr2, i10, i12);
+                    }
+                    int i13 = bVar.f60377a - 1;
+                    bVar.f60377a = i13;
+                    bVar.f60378b[i13] = null;
+                    bVar.f60379c[i13] = null;
                     return;
                 }
-            } catch (Throwable th2) {
-                obj = l9.b.a(th2);
-            }
-            aVar.releaseIntercepted();
-            if (cVar2 instanceof a) {
-                cVar = cVar2;
-            } else {
-                cVar2.resumeWith(obj);
-                return;
-            }
+                throw new IllegalArgumentException("Must be false");
         }
     }
 
-    public String toString() {
-        StringBuilder sb2 = new StringBuilder("Continuation at ");
-        Object stackTraceElement = getStackTraceElement();
-        if (stackTraceElement == null) {
-            stackTraceElement = getClass().getName();
-        }
-        sb2.append(stackTraceElement);
-        return sb2.toString();
+    public a(d dVar) {
+        this.f9943a = 0;
+        this.f9945c = dVar;
     }
 
-    public cd.c create(Object obj, cd.c completion) {
-        kotlin.jvm.internal.i.e(completion, "completion");
-        throw new UnsupportedOperationException("create(Any?;Continuation) has not been overridden");
-    }
-
-    public void releaseIntercepted() {
+    public a(zc.b bVar) {
+        this.f9943a = 2;
+        this.f9945c = bVar;
+        this.f9944b = 0;
     }
 }

@@ -1,40 +1,26 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class i6 extends Drawable {
-    public static Paint f20433c;
-    public Paint f20434a;
-    public float f20435b;
+import org.telegram.messenger.hs;
+public final class i6 implements Runnable {
+    public final int f27647a;
+    public final j6 f27648b;
+
+    public i6(j6 j6Var, int i3) {
+        this.f27647a = i3;
+        this.f27648b = j6Var;
+    }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int L;
-        Rect bounds = getBounds();
-        float f7 = this.f20435b;
-        if (Math.abs(f7 - (-1.0f)) < 0.01f) {
-            L = Math.max(bounds.width(), bounds.height()) / 2;
-        } else if (Math.abs(f7 - (-2.0f)) < 0.01f) {
-            L = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
-        } else {
-            L = org.telegram.messenger.i0.L(f7);
+    public final void run() {
+        int i3 = this.f27647a;
+        j6 j6Var = this.f27648b;
+        switch (i3) {
+            case 0:
+                j6Var.s();
+                return;
+            default:
+                hs.e().k(270, j6Var, Boolean.TRUE, null, -1);
+                return;
         }
-        canvas.drawCircle(bounds.centerX(), bounds.centerY(), L, this.f20434a);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

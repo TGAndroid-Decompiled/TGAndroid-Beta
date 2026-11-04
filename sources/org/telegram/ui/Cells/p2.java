@@ -1,35 +1,14 @@
 package org.telegram.ui.Cells;
+public interface p2 {
+    void l(t2 t2Var);
 
-import android.view.animation.Interpolator;
-import org.telegram.messenger.a30;
-public final class p2 implements Interpolator {
-    public final int f22444a;
+    boolean m();
 
-    public p2(int i10) {
-        this.f22444a = i10;
-    }
+    void q();
 
-    @Override
-    public final float getInterpolation(float f7) {
-        switch (this.f22444a) {
-            case 0:
-                if (f7 < 0.33f) {
-                    return (f7 / 0.33f) * 0.1f;
-                }
-                float f10 = f7 - 0.33f;
-                if (f10 < 0.33f) {
-                    return a30.v(f10, 0.34f, 0.15f, 0.1f);
-                }
-                return (((f10 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
-            case 1:
-                return (float) Math.pow(f7, 2.0d);
-            case 2:
-                return f7 * f7 * f7 * f7 * f7;
-            case 3:
-            case 4:
-            default:
-                float f11 = f7 - 1.0f;
-                return (f11 * f11 * f11 * f11 * f11) + 1.0f;
-        }
-    }
+    void r(t2 t2Var);
+
+    void u(t2 t2Var);
+
+    void w(t2 t2Var);
 }

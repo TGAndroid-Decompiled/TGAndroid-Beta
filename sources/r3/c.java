@@ -1,19 +1,31 @@
 package r3;
 
-import b2.r0;
-import b2.t0;
-import b2.x;
-public final class c implements t0 {
-    public final float f46306a;
-    public final int f46307b;
+import a1.g;
+import d2.p0;
+import d2.r0;
+import d2.v;
+import java.util.Arrays;
+public final class c implements r0 {
+    public final byte[] f54242a;
+    public final String f54243b;
+    public final String f54244c;
 
-    public c(float f7, int i10) {
-        this.f46306a = f7;
-        this.f46307b = i10;
+    public c(byte[] bArr, String str, String str2) {
+        this.f54242a = bArr;
+        this.f54243b = str;
+        this.f54244c = str2;
     }
 
     @Override
-    public final x a() {
+    public final void a(p0 p0Var) {
+        String str = this.f54243b;
+        if (str != null) {
+            p0Var.f8260a = str;
+        }
+    }
+
+    @Override
+    public final v b() {
         return null;
     }
 
@@ -27,23 +39,16 @@ public final class c implements t0 {
             return true;
         }
         if (obj != null && c.class == obj.getClass()) {
-            c cVar = (c) obj;
-            if (this.f46306a == cVar.f46306a && this.f46307b == cVar.f46307b) {
-                return true;
-            }
+            return Arrays.equals(this.f54242a, ((c) obj).f54242a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return ((Float.valueOf(this.f46306a).hashCode() + 527) * 31) + this.f46307b;
+        return Arrays.hashCode(this.f54242a);
     }
 
     public final String toString() {
-        return "smta: captureFrameRate=" + this.f46306a + ", svcTemporalLayerCount=" + this.f46307b;
-    }
-
-    @Override
-    public final void b(r0 r0Var) {
+        return g.o(this.f54242a.length, "\"", com.google.android.recaptcha.internal.a.n("ICY: title=\"", this.f54243b, "\", url=\"", this.f54244c, "\", rawMetadata.length=\""));
     }
 }

@@ -1,11 +1,9 @@
 package ve;
-public abstract class a extends df.c {
+public final class a extends RuntimeException {
+    public Throwable f56566a;
+
     @Override
-    public final void e(df.c cVar) {
-        if (cVar instanceof a) {
-            this.f5877b = cVar;
-            return;
-        }
-        throw new IllegalArgumentException("Parent of block must also be block (can not be inline)");
+    public final Throwable getCause() {
+        return this.f56566a;
     }
 }

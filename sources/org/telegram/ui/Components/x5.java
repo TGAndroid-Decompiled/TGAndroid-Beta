@@ -1,110 +1,274 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import java.util.ArrayList;
-import java.util.Locale;
-public final class x5 {
-    public static final mh.g h = new mh.g("progress", 5);
-    public final TextPaint f32423c;
-    public ObjectAnimator d;
-    public final org.telegram.ui.Cells.q1 f32425g;
-    public final ArrayList f32421a = new ArrayList();
-    public final ArrayList f32422b = new ArrayList();
-    public float e = 0.0f;
-    public int f32424f = 1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+public final class x5 extends AnimatorListenerAdapter {
+    public final int f40235a;
+    public final Object f40236b;
 
-    public x5(org.telegram.ui.Cells.q1 q1Var, TextPaint textPaint) {
-        this.f32423c = textPaint;
-        this.f32425g = q1Var;
+    public x5(Object obj, int i3) {
+        this.f40235a = i3;
+        this.f40236b = obj;
     }
 
-    public final int a() {
-        ArrayList arrayList = this.f32421a;
-        int size = arrayList.size();
-        float f7 = 0.0f;
-        for (int i10 = 0; i10 < size; i10++) {
-            f7 += ((StaticLayout) arrayList.get(i10)).getLineWidth(0);
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f40235a) {
+            case 13:
+                ((kl) this.f40236b).f35433a.P = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        return (int) Math.ceil(f7);
     }
 
-    public final void b(int i10, boolean z10) {
-        boolean z11;
-        float f7;
-        String str;
-        TextPaint textPaint;
-        float f10;
-        ArrayList arrayList;
-        int i11 = this.f32424f;
-        ArrayList arrayList2 = this.f32421a;
-        if (i11 == i10 && !arrayList2.isEmpty()) {
-            return;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40235a) {
+            case 0:
+                y5 y5Var = (y5) this.f40236b;
+                y5Var.d = null;
+                y5Var.f40618b.clear();
+                return;
+            case 1:
+                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f40236b;
+                animatedPhoneNumberEditText.N1 = null;
+                animatedPhoneNumberEditText.L1.clear();
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                g6 g6Var = (g6) this.f40236b;
+                g6Var.b();
+                g6Var.f33995o = null;
+                g6Var.f33990j = 0.0f;
+                g6Var.f33993m = 0.0f;
+                g6Var.f33992l = 0.0f;
+                g6Var.f33991k = 0.0f;
+                g6Var.f33998r = 0.0f;
+                g6Var.f33997q = 0.0f;
+                g6Var.invalidateSelf();
+                Runnable runnable = g6Var.f33984b0;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                g6Var.f34000t = null;
+                CharSequence charSequence = g6Var.f34001u;
+                if (charSequence != null) {
+                    g6Var.t(charSequence, true, g6Var.v);
+                    g6Var.f34001u = null;
+                    g6Var.v = false;
+                    return;
+                }
+                vf vfVar = g6Var.I;
+                if (vfVar != null) {
+                    vfVar.run();
+                    return;
+                }
+                return;
+            case 3:
+                k9 k9Var = (k9) this.f40236b;
+                k9Var.setVisibility(8);
+                k9Var.setImageDrawable(null);
+                k9Var.setAlpha(1.0f);
+                return;
+            case 4:
+                r8 r8Var = (r8) ((org.telegram.messenger.b9) this.f40236b).k1;
+                r8Var.f37674f = false;
+                r8Var.f37673e.setVisibility(8);
+                return;
+            case 5:
+                w8 w8Var = (w8) this.f40236b;
+                if (w8Var.f39951f != null) {
+                    w8Var.f39950e = 1.0f;
+                    w8Var.k();
+                    if (w8Var.f39952g) {
+                        w8Var.f39952g = false;
+                        Runnable runnable2 = w8Var.f39954j;
+                        if (runnable2 != null) {
+                            runnable2.run();
+                        }
+                    }
+                    w8Var.d();
+                }
+                w8Var.f39951f = null;
+                return;
+            case 6:
+                ((xe) this.f40236b).f40327f.f31098c0.setVisibility(8);
+                return;
+            case 7:
+                ((bg) this.f40236b).f32187e0 = 1.0f;
+                return;
+            case 8:
+                ((bi) ((eh) this.f40236b).d).f32266r1.setVisibility(8);
+                return;
+            case 9:
+                ((hh) this.f40236b).d.f32270s1.setVisibility(8);
+                return;
+            case 10:
+                bi biVar = (bi) this.f40236b;
+                biVar.U2 = null;
+                if (!biVar.f32246l3) {
+                    if (biVar.S2.getTag() == null && biVar.L2 == 0 && !biVar.O2) {
+                        biVar.V2.setVisibility(4);
+                    }
+                    biVar.f32221d3.setVisibility(4);
+                    return;
+                }
+                org.telegram.ui.ActionBar.q0 q0Var = biVar.Z2;
+                if (q0Var != null) {
+                    q0Var.setVisibility(4);
+                    return;
+                }
+                return;
+            case 11:
+                super.onAnimationEnd(animator);
+                uj ujVar = (uj) this.f40236b;
+                ujVar.f38771s.setVisibility(8);
+                ujVar.f38769n = 0;
+                jj jjVar = ujVar.f38770r;
+                jjVar.setAlpha(1.0f);
+                jjVar.setScaleX(1.0f);
+                jjVar.setScaleY(1.0f);
+                jjVar.setTranslationX(0.0f);
+                jjVar.invalidate();
+                return;
+            case 12:
+                tj tjVar = (tj) this.f40236b;
+                if (tjVar.Y.I.getTag() == null) {
+                    tjVar.Y.I.setVisibility(4);
+                }
+                tjVar.Y.J = null;
+                return;
+            case 13:
+                kl klVar = (kl) this.f40236b;
+                if (animator.equals(klVar.f35433a.P)) {
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = klVar.f35433a;
+                    chatAttachAlertPhotoLayout.f31269d0 = true;
+                    chatAttachAlertPhotoLayout.P = null;
+                    return;
+                }
+                return;
+            case 14:
+                zl zlVar = (zl) this.f40236b;
+                am amVar = zlVar.Q;
+                amVar.K = null;
+                amVar.L = false;
+                zlVar.invalidate();
+                return;
+            case 15:
+                xl xlVar = (xl) this.f40236b;
+                xlVar.f40390b.R = true;
+                xlVar.O.f40783z.invalidate();
+                return;
+            case 16:
+                vo voVar = (vo) this.f40236b;
+                wz0 wz0Var = voVar.I1;
+                if (wz0Var != null) {
+                    if (wz0Var.getParent() != null) {
+                        ((ViewGroup) voVar.I1.getParent()).removeView(voVar.I1);
+                    }
+                    voVar.I1 = null;
+                }
+                voVar.K1 = null;
+                super.onAnimationEnd(animator);
+                return;
+            case 17:
+                wz0 wz0Var2 = (wz0) this.f40236b;
+                wz0Var2.f40176c = null;
+                wz0Var2.f40174a.setShader(null);
+                wz0Var2.f40179n = null;
+                wz0Var2.f40180r = null;
+                wz0Var2.setImageDrawable(null);
+                org.telegram.messenger.g0.E2(wz0Var2);
+                return;
+            case 18:
+                CheckBox checkBox = (CheckBox) this.f40236b;
+                if (animator.equals(checkBox.f31316s)) {
+                    checkBox.f31316s = null;
+                }
+                if (!checkBox.f31319y) {
+                    checkBox.H = null;
+                    return;
+                }
+                return;
+            case 19:
+                CheckBoxBase checkBoxBase = (CheckBoxBase) this.f40236b;
+                if (animator.equals(checkBoxBase.f31333p)) {
+                    checkBoxBase.f31333p = null;
+                }
+                if (!checkBoxBase.f31334q) {
+                    checkBoxBase.C = null;
+                    return;
+                }
+                return;
+            case 20:
+                cq cqVar = (cq) this.f40236b;
+                cqVar.f32805l = 1.0f;
+                cqVar.f32808o = null;
+                cqVar.f32809p = null;
+                cqVar.f32810q = null;
+                View view = cqVar.H;
+                if (view != null) {
+                    if (cqVar.h == 0 && cqVar.G) {
+                        view.setVisibility(8);
+                    }
+                    cqVar.H.invalidate();
+                }
+                cqVar.f32798c = -1;
+                return;
+            case 21:
+                jt jtVar = (jt) this.f40236b;
+                jtVar.P = false;
+                jtVar.d.setTranslationY(0.0f);
+                jtVar.d.setAlpha(0.0f);
+                jtVar.c(0.0f);
+                jtVar.S = 0.0f;
+                jtVar.j();
+                return;
+            case 22:
+                ((qt) this.f40236b).f37524a.G1 = false;
+                return;
+            case 23:
+                super.onAnimationEnd(animator);
+                ((iu) this.f40236b).d = null;
+                return;
+            case 24:
+                ((ey) this.f40236b).f33518a0 = null;
+                return;
+            case 25:
+                super.onAnimationEnd(animator);
+                ((nx) this.f40236b).f36641n = null;
+                return;
+            case 26:
+                ((zy) this.f40236b).a();
+                return;
+            case 27:
+                bz bzVar = (bz) this.f40236b;
+                bzVar.V = bzVar.f32448d0;
+                bzVar.f32447c0 = bzVar.f32453g0;
+                bzVar.W = bzVar.f32450e0;
+                bzVar.f32443a0 = bzVar.f32452f0;
+                bzVar.f32448d0 = -1;
+                bzVar.f32450e0 = -1;
+                bzVar.f32452f0 = -1;
+                bzVar.f32453g0 = -1;
+                return;
+            case 28:
+                nz nzVar = (nz) this.f40236b;
+                nzVar.f36660w = 1.0f;
+                nzVar.invalidate();
+                return;
+            default:
+                j40 j40Var = (j40) this.f40236b;
+                if (animator == j40Var.f34928a0) {
+                    j40Var.c(true);
+                    j40Var.setVisibility(4);
+                    return;
+                }
+                return;
         }
-        ObjectAnimator objectAnimator = this.d;
-        if (objectAnimator != null) {
-            objectAnimator.cancel();
-            this.d = null;
-        }
-        ArrayList arrayList3 = this.f32422b;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList2);
-        arrayList2.clear();
-        Locale locale = Locale.US;
-        int i12 = this.f32424f;
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(i12);
-        String sb3 = sb2.toString();
-        StringBuilder sb4 = new StringBuilder();
-        sb4.append(i10);
-        String sb5 = sb4.toString();
-        if (i10 > this.f32424f) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f32424f = i10;
-        float f11 = 0.0f;
-        this.e = 0.0f;
-        int i13 = 0;
-        while (i13 < sb5.length()) {
-            int i14 = i13 + 1;
-            String substring = sb5.substring(i13, i14);
-            if (!arrayList3.isEmpty() && i13 < sb3.length()) {
-                str = sb3.substring(i13, i14);
-            } else {
-                str = null;
-            }
-            if (str != null && str.equals(substring)) {
-                arrayList2.add((StaticLayout) arrayList3.get(i13));
-                arrayList3.set(i13, null);
-                f10 = f11;
-                arrayList = arrayList3;
-            } else {
-                f10 = f11;
-                arrayList = arrayList3;
-                arrayList2.add(new StaticLayout(substring, this.f32423c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
-            }
-            f11 = f10;
-            i13 = i14;
-            arrayList3 = arrayList;
-        }
-        float f12 = f11;
-        ArrayList arrayList4 = arrayList3;
-        if (z10 && !arrayList4.isEmpty()) {
-            if (z11) {
-                f7 = -1.0f;
-            } else {
-                f7 = 1.0f;
-            }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f7, f12);
-            this.d = ofFloat;
-            ofFloat.setDuration(150L);
-            this.d.addListener(new w5(this, 0));
-            this.d.start();
-        }
-        this.f32425g.invalidate();
     }
 }

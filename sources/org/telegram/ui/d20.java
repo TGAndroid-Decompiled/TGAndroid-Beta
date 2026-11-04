@@ -1,56 +1,47 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class d20 extends s4.s0 {
-    public final a50 f36468a;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class d20 implements TextWatcher {
+    public final x30 f44519a;
 
-    public d20(a50 a50Var) {
-        this.f36468a = a50Var;
+    public d20(x30 x30Var) {
+        this.f44519a = x30Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        org.telegram.ui.Components.dk0 dk0Var;
-        a50 a50Var = this.f36468a;
-        h40 h40Var = a50Var.H1;
-        if (i10 == 0) {
-            int L = org.telegram.messenger.i0.L(74.0f);
-            h40Var.getChildAt(0);
-            if ((a50Var.f35644p2 - L) + a50Var.f21615s0 < org.telegram.ui.ActionBar.l.getCurrentActionBarHeight() && h40Var.canScrollVertically(1) && (dk0Var = (org.telegram.ui.Components.dk0) h40Var.K(0)) != null) {
-                View view = dk0Var.f47909a;
-                if (view.getTop() > 0) {
-                    h40Var.w0(0, view.getTop(), null);
-                    return;
-                }
-                return;
-            }
-            return;
+    public final void afterTextChanged(Editable editable) {
+        String str;
+        int i3;
+        x30 x30Var = this.f44519a;
+        x30Var.f51795s5.a(TextUtils.isEmpty(editable), true);
+        int codePointCount = Character.codePointCount(editable, 0, editable.length());
+        int i10 = x30Var.V1;
+        if (codePointCount + 25 > i10) {
+            str = "" + (i10 - codePointCount);
+        } else {
+            str = null;
         }
-        org.telegram.ui.Components.q30 q30Var = a50Var.f35590d2;
-        if (q30Var != null) {
-            q30Var.b(true);
+        x30Var.E1.a();
+        x30Var.E1.setText(str);
+        org.telegram.ui.Components.h6 h6Var = x30Var.E1;
+        if (codePointCount >= i10) {
+            i3 = -1280137;
+        } else {
+            i3 = -1;
         }
-        org.telegram.ui.Components.q30 q30Var2 = a50Var.f35594e2;
-        if (q30Var2 != null) {
-            q30Var2.b(true);
+        h6Var.setTextColor(i3);
+        if (codePointCount > i10) {
+            org.telegram.messenger.p2.APP_ERROR.a();
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        org.telegram.messenger.u3 u3Var;
-        a50 a50Var = this.f36468a;
-        if (a50Var.H1.getChildCount() > 0 && (u3Var = a50Var.R2) != null) {
-            if (!u3Var.f18377u && !u3Var.f18376t && a50Var.P1.N0() > a50Var.G1.F - 5) {
-                a50Var.R2.k(false);
-            }
-            a50.P0(a50Var);
-            p40 p40Var = a50Var.L2;
-            if (p40Var != null) {
-                p40Var.invalidate();
-            }
-            a50Var.f21587b.invalidate();
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
     }
 }

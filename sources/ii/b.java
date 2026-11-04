@@ -1,93 +1,56 @@
 package ii;
 
-import android.content.Context;
-import android.util.SparseArray;
-import android.util.SparseIntArray;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import org.telegram.tgnet.SerializedData;
-public final class b {
-    public static SparseIntArray f8585b;
-    public static final b f8586c = new b();
-    public final SparseArray f8587a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class b implements RequestDelegate {
+    public final int f14832a;
+    public final k f14833b;
+    public final org.telegram.ui.ActionBar.s1 f14834c;
 
-    public b() {
-        this.f8587a = new SparseArray();
+    public b(k kVar, org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        this.f14832a = i3;
+        this.f14833b = kVar;
+        this.f14834c = s1Var;
     }
 
-    public static SparseArray a(Context context, String str, SparseArray sparseArray) {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getAssets().open(str));
-        try {
-            SerializedData serializedData = new SerializedData(bufferedInputStream);
-            int readInt32 = serializedData.readInt32(true);
-            int i10 = 0;
-            if (sparseArray == null) {
-                sparseArray = new SparseArray(readInt32);
-                while (i10 < readInt32) {
-                    sparseArray.append(serializedData.readInt32(true), serializedData.readString(true));
-                    i10++;
-                }
-            } else {
-                while (i10 < readInt32) {
-                    sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
-                    i10++;
-                }
-            }
-            bufferedInputStream.close();
-            return sparseArray;
-        } catch (Throwable th2) {
-            try {
-                bufferedInputStream.close();
-            } catch (Throwable th3) {
-                th2.addSuppressed(th3);
-            }
-            throw th2;
-        }
-    }
-
-    public final String b(String str) {
-        if (str != null) {
-            return (String) this.f8587a.get(str.hashCode());
-        }
-        return null;
-    }
-
-    public final String c(int i10, Context context, String str) {
-        String str2;
-        if (str != null) {
-            str2 = b(str);
-        } else {
-            str2 = null;
-        }
-        if (str2 == null && i10 != 0) {
-            if (context != null && i10 != 0) {
-                if (f8585b == null) {
-                    try {
-                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
-                        SerializedData serializedData = new SerializedData(bufferedInputStream);
-                        int readInt32 = serializedData.readInt32(true);
-                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
-                        for (int i11 = 0; i11 < readInt32; i11++) {
-                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
+    @Override
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f14832a) {
+            case 0:
+                final k kVar = this.f14833b;
+                final org.telegram.ui.ActionBar.s1 s1Var = this.f14834c;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                k.B0(kVar, s1Var, tLObject, tL_error);
+                                return;
+                            default:
+                                k.C0(kVar, s1Var, tLObject, tL_error);
+                                return;
                         }
-                        bufferedInputStream.close();
-                        f8585b = sparseIntArray;
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
-                }
-                int i12 = f8585b.get(i10);
-                if (i12 != 0) {
-                    return (String) this.f8587a.get(i12);
-                }
-            }
-            return null;
+                });
+                return;
+            default:
+                final k kVar2 = this.f14833b;
+                final org.telegram.ui.ActionBar.s1 s1Var2 = this.f14834c;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r5) {
+                            case 0:
+                                k.B0(kVar2, s1Var2, tLObject, tL_error);
+                                return;
+                            default:
+                                k.C0(kVar2, s1Var2, tLObject, tL_error);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        return str2;
-    }
-
-    public b(a aVar) {
-        SparseArray sparseArray = aVar.f8584a;
-        this.f8587a = sparseArray == null ? new SparseArray() : sparseArray;
     }
 }

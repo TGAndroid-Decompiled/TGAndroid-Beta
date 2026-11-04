@@ -1,82 +1,83 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class p31 implements org.telegram.messenger.vs {
-    public final int f40353a;
-    public final TLRPC.Chat f40354b;
-    public TLRPC.ChannelParticipantsFilter f40355c;
-    public boolean f40356f;
-    public boolean h;
-    public boolean f40358r;
-    public boolean f40359s;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList e = new ArrayList();
-    public int f40357n = -1;
+import android.app.Activity;
+import android.view.MotionEvent;
+import android.view.View;
+public final class p31 extends org.telegram.ui.Components.n61 {
+    public boolean W;
+    public final r41 f48453a0;
 
-    public p31(int i10, long j10, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
-        this.f40353a = i10;
-        this.f40354b = org.telegram.messenger.wp.r1(i10).L0(Long.valueOf(j10));
-        TLRPC.ChatFull M0 = org.telegram.messenger.wp.r1(i10).M0(j10);
-        this.f40355c = channelParticipantsFilter;
-        if (M0 == null) {
-            if (!this.f40359s) {
-                this.f40359s = true;
-                org.telegram.messenger.at.f(i10).c(this, org.telegram.messenger.at.T);
-            }
-            org.telegram.messenger.wp.r1(i10).T2(0, j10, false);
-        }
+    public p31(r41 r41Var, Activity activity) {
+        super(activity, null);
+        this.f48453a0 = r41Var;
     }
 
-    public final void a() {
-        if (!this.f40359s) {
-            return;
-        }
-        this.f40359s = false;
-        int i10 = this.f40353a;
-        org.telegram.messenger.at.f(i10).n(this, org.telegram.messenger.at.T);
-        if (this.f40357n >= 0) {
-            ConnectionsManager.getInstance(i10).cancelRequest(this.f40357n, true);
-            this.f40357n = -1;
-        }
-        this.f40356f = false;
-    }
-
-    public final void b() {
-        int size;
-        if (!this.f40356f && !this.h) {
-            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f40355c;
-            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f19793q)) {
-                this.f40356f = true;
-                TLRPC.Chat chat = this.f40354b;
-                if (org.telegram.messenger.w3.T(chat)) {
-                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                    tL_channels_getParticipants.channel = org.telegram.messenger.wp.h1(chat);
-                    tL_channels_getParticipants.filter = this.f40355c;
-                    tL_channels_getParticipants.limit = 30;
-                    if (this.f40358r) {
-                        size = 0;
-                    } else {
-                        size = this.d.size();
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int actionMasked = motionEvent.getActionMasked();
+        if (actionMasked == 0) {
+            r41 r41Var = this.f48453a0;
+            if (r41Var.f49078k0 != null) {
+                View currentView = getCurrentView();
+                xd xdVar = r41Var.f49078k0;
+                if (currentView == xdVar) {
+                    boolean G = xdVar.G(motionEvent.getX() - r41Var.f49078k0.getX(), motionEvent.getY() - r41Var.f49078k0.getY());
+                    xdVar.R0 = G;
+                    if (G && xdVar.f51915b1.f49776b.canScrollHorizontally(-1)) {
+                        z10 = true;
+                        this.W = z10;
                     }
-                    tL_channels_getParticipants.offset = size;
-                    ConnectionsManager.getInstance(this.f40353a).sendRequestTyped(tL_channels_getParticipants, new a3.b(1), new z4(this, 24));
                 }
             }
+            z10 = false;
+            this.W = z10;
+        }
+        try {
+            boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
+            if (actionMasked != 1 && actionMasked != 3) {
+                return dispatchTouchEvent;
+            }
+            this.W = false;
+            return dispatchTouchEvent;
+        } catch (Throwable th2) {
+            if (actionMasked == 1 || actionMasked == 3) {
+                this.W = false;
+            }
+            throw th2;
         }
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == org.telegram.messenger.at.T) {
-            long j10 = ((TLRPC.ChatFull) objArr[0]).f19795id;
-            TLRPC.Chat chat = this.f40354b;
-            if (j10 == chat.f19794id && !org.telegram.messenger.w3.T(chat) && this.f40356f) {
-                this.f40356f = false;
-                b();
-            }
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (!this.W && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.W && A(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void s() {
+        r41 r41Var = this.f48453a0;
+        r41Var.p0(r41Var.f49076i0.getCurrentPosition(), true);
+        r41Var.q0(false, 0.0f);
+    }
+
+    @Override
+    public final void u(boolean z10) {
+        r41 r41Var = this.f48453a0;
+        float positionAnimated = r41Var.f49076i0.getPositionAnimated();
+        r41Var.q0(!z10, positionAnimated);
+        if (!z10) {
+            r41Var.p0(Math.round(positionAnimated), true);
         }
     }
 }

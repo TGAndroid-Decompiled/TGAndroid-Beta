@@ -1,34 +1,28 @@
 package v7;
 
-import android.os.Build;
-public abstract class k {
-    public static boolean a(int i10) {
-        if ((i10 & 32768) != 0) {
-            return true;
-        }
-        return false;
+import j$.util.Objects;
+import x7.j5;
+public final class k extends d {
+    public final transient Object[] f56463c;
+    public final transient int d;
+    public final transient int f56464e;
+
+    public k(int i3, int i10, Object[] objArr) {
+        this.f56463c = objArr;
+        this.d = i3;
+        this.f56464e = i10;
     }
 
-    public static boolean b(int i10) {
-        if (i10 != 15 && i10 != 255) {
-            if (i10 != 32768) {
-                if (i10 != 32783) {
-                    if (i10 != 33023 && i10 != 0) {
-                        return false;
-                    }
-                    return true;
-                }
-                int i11 = Build.VERSION.SDK_INT;
-                if (i11 >= 28 && i11 <= 29) {
-                    return false;
-                }
-                return true;
-            } else if (Build.VERSION.SDK_INT < 30) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return true;
+    @Override
+    public final Object get(int i3) {
+        j5.a(i3, this.f56464e);
+        Object obj = this.f56463c[i3 + i3 + this.d];
+        Objects.requireNonNull(obj);
+        return obj;
+    }
+
+    @Override
+    public final int size() {
+        return this.f56464e;
     }
 }

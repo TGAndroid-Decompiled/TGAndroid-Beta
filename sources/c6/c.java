@@ -1,55 +1,44 @@
 package c6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.Arrays;
-import w7.h0;
-public final class c extends o6.a {
-    public final long f3851a;
-    public final long f3852b;
-    public final String f3853c;
-    public final String d;
-    public final long e;
-    public static final g6.b f3850f = new g6.b("AdBreakStatus", null);
-    public static final Parcelable.Creator<c> CREATOR = new v(9);
+import android.util.Log;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.r;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import org.telegram.messenger.d1;
+import p6.m;
+public final class c implements Runnable {
+    public static final d1 f4218c = new d1("RevokeAccessOperation", new String[0]);
+    public final String f4219a;
+    public final r f4220b;
 
-    public c(long j10, long j11, String str, String str2, long j12) {
-        this.f3851a = j10;
-        this.f3852b = j11;
-        this.f3853c = str;
-        this.d = str2;
-        this.e = j12;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof c)) {
-            return false;
-        }
-        c cVar = (c) obj;
-        if (this.f3851a == cVar.f3851a && this.f3852b == cVar.f3852b && g6.a.d(this.f3853c, cVar.f3853c) && g6.a.d(this.d, cVar.d) && this.e == cVar.e) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Long.valueOf(this.f3851a), Long.valueOf(this.f3852b), this.f3853c, this.d, Long.valueOf(this.e)});
+    public c(String str) {
+        m.e(str);
+        this.f4219a = str;
+        this.f4220b = new r(null, 0);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.s(parcel, 2, 8);
-        parcel.writeLong(this.f3851a);
-        h0.s(parcel, 3, 8);
-        parcel.writeLong(this.f3852b);
-        h0.l(parcel, 4, this.f3853c);
-        h0.l(parcel, 5, this.d);
-        h0.s(parcel, 6, 8);
-        parcel.writeLong(this.e);
-        h0.r(parcel, q6);
+    public final void run() {
+        d1 d1Var = f4218c;
+        Status status = Status.h;
+        try {
+            String str = this.f4219a;
+            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://accounts.google.com/o/oauth2/revoke?token=" + str).openConnection();
+            httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode == 200) {
+                status = Status.f6577e;
+            } else {
+                Log.e(d1Var.f22118a, d1Var.f22119b.concat("Unable to revoke access!"));
+            }
+            d1Var.a("Response Code: " + responseCode, new Object[0]);
+        } catch (IOException e10) {
+            Log.e(d1Var.f22118a, d1Var.f22119b.concat("IOException when revoking access: ".concat(String.valueOf(e10.toString()))));
+        } catch (Exception e11) {
+            Log.e(d1Var.f22118a, d1Var.f22119b.concat("Exception when revoking access: ".concat(String.valueOf(e11.toString()))));
+        }
+        this.f4220b.a(status);
     }
 }

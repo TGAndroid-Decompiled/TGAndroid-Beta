@@ -1,121 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.messenger.Utilities;
-public final class lb extends GestureDetector.SimpleOnGestureListener {
-    public final bb f28102a;
-    public final oa f28103b;
+import org.telegram.messenger.support.SparseLongArray;
+public final class lb extends ib implements org.telegram.messenger.cs {
+    public final jb d;
+    public SparseLongArray f35673e;
+    public final org.telegram.ui.ActionBar.d2 f35674f;
+    public final int h;
+    public ac f35675n;
 
-    public lb(oa oaVar, bb bbVar) {
-        this.f28103b = oaVar;
-        this.f28102a = bbVar;
+    public lb(int i3, org.telegram.ui.ActionBar.d2 d2Var) {
+        super(d2Var.getContext(), d2Var.getResourceProvider());
+        this.f35674f = d2Var;
+        this.h = i3;
+        this.f34651b.setLayoutParams(b8.mf.i(-2.0f, -2.0f, 8388659, 56.0f, 6.0f, 8.0f, 0.0f));
+        this.f34650a.setLayoutParams(b8.mf.h(56.0f, 48.0f, 8388659));
+        jb jbVar = new jb(this, d2Var, getContext(), d2Var.getCurrentAccount(), d2Var.getResourceProvider());
+        this.d = jbVar;
+        jbVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(0.0f));
+        this.d.setDelegate(new kb(this));
+        this.d.setTop(true);
+        this.d.setClipChildren(false);
+        this.d.setClipToPadding(false);
+        this.d.setVisibility(0);
+        this.d.setBubbleOffset(-org.telegram.messenger.g0.L(80.0f));
+        this.d.setHint(org.telegram.messenger.bd.M0(2131745885, null));
+        addView(this.d, b8.mf.d(-2, 92.5f, 1, 0.0f, 36.0f, 0.0f, 0.0f));
+        this.d.p(null, null, true);
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        oa oaVar = this.f28103b;
-        if (oaVar.f29078s) {
-            return false;
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        if (i3 == org.telegram.messenger.hs.f23256k3) {
+            this.f35673e = (SparseLongArray) objArr[0];
         }
-        bb bbVar = this.f28102a;
-        oaVar.f29079w = bb.access$1400(bbVar, true);
-        oaVar.f29080x = bb.access$1400(bbVar, false);
-        return true;
+    }
+
+    public final void f() {
+        if (this.d.getReactionsWindow() != null) {
+            this.d.e();
+            if (this.d.getReactionsWindow().f8931a != null) {
+                this.d.getReactionsWindow().f8931a.animate().alpha(0.0f).setDuration(180L).start();
+            }
+        }
     }
 
     @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        boolean z10 = false;
-        if (Math.abs(f7) <= 2000.0f) {
-            return false;
-        }
-        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        oa oaVar = this.f28103b;
-        if ((i10 < 0 && oaVar.f29079w) || (f7 > 0.0f && oaVar.f29080x)) {
-            z10 = true;
-        }
-        float signum = Math.signum(f7);
-        bb bbVar = this.f28102a;
-        o1.j jVar = new o1.j(bbVar, o1.j.f13942o, signum * bbVar.getWidth() * 2.0f);
-        if (!z10) {
-            jVar.a(new o1.f(this) {
-                public final lb f27328b;
-
-                {
-                    this.f27328b = this;
-                }
-
-                @Override
-                public final void a(o1.j jVar2, boolean z11, float f11, float f12) {
-                    switch (r2) {
-                        case 0:
-                            this.f27328b.f28103b.D.b();
-                            return;
-                        default:
-                            this.f27328b.f28103b.D.b();
-                            return;
-                    }
-                }
-            });
-            jVar.b(new a7(bbVar, 2));
-        }
-        jVar.f13958m.a(1.0f);
-        jVar.f13958m.b(100.0f);
-        jVar.f13949a = f7;
-        jVar.h();
-        if (z10) {
-            o1.j jVar2 = new o1.j((Object) bbVar, (o1.h) o1.j.v, 0.0f);
-            jVar2.a(new o1.f(this) {
-                public final lb f27328b;
-
-                {
-                    this.f27328b = this;
-                }
-
-                @Override
-                public final void a(o1.j jVar22, boolean z11, float f11, float f12) {
-                    switch (r2) {
-                        case 0:
-                            this.f27328b.f28103b.D.b();
-                            return;
-                        default:
-                            this.f27328b.f28103b.D.b();
-                            return;
-                    }
-                }
-            });
-            jVar2.b(new Object());
-            jVar.f13958m.a(1.0f);
-            jVar.f13958m.b(10.0f);
-            jVar.f13949a = f7;
-            jVar2.h();
-        }
-        oaVar.f29078s = true;
-        return true;
+    public int getMeasuredBackgroundHeight() {
+        return org.telegram.messenger.g0.L(30.0f) + this.f34651b.getMeasuredHeight();
     }
 
     @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        oa oaVar = this.f28103b;
-        float f11 = oaVar.h + f7;
-        oaVar.h = f11;
-        float f12 = oaVar.f29076n + f10;
-        oaVar.f29076n = f12;
-        if (Utilities.t(0.0f, 0.0f, f11, f12) > org.telegram.messenger.i0.e) {
-            oaVar.f29077r = true;
-        }
-        if (!oaVar.d) {
-            return false;
-        }
-        float f13 = oaVar.f29075f - f7;
-        oaVar.f29075f = f13;
-        bb bbVar = this.f28102a;
-        bbVar.setTranslationX(f13);
-        float f14 = oaVar.f29075f;
-        if (f14 == 0.0f || ((f14 < 0.0f && oaVar.f29079w) || (f14 > 0.0f && oaVar.f29080x))) {
-            bbVar.setAlpha(1.0f - (Math.abs(f14) / bbVar.getWidth()));
-        }
-        return true;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        org.telegram.messenger.hs.f(org.telegram.messenger.h10.f22829t0).c(this, org.telegram.messenger.hs.f23256k3);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.hs.f(org.telegram.messenger.h10.f22829t0).n(this, org.telegram.messenger.hs.f23256k3);
+    }
+
+    public void setBulletin(ac acVar) {
+        this.f35675n = acVar;
     }
 }

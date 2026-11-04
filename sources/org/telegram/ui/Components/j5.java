@@ -1,37 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.text.Layout;
-import android.view.View;
-import java.lang.ref.WeakReference;
-public final class j5 implements l5 {
-    public final WeakReference f27274a;
-    public final boolean f27275b;
-    public Layout f27276c;
-    public o5 d;
-    public Rect e;
-    public f5 f27277f;
-    public org.telegram.messenger.g6 h;
-    public boolean f27278n;
-    public float f27279r;
-    public float f27280s;
-    public boolean f27281w;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class j5 extends AnimatorListenerAdapter {
+    public final int f34961a;
+    public final p5 f34962b;
 
-    public j5(View view, boolean z10) {
-        this.f27274a = new WeakReference(view);
-        this.f27275b = z10;
+    public j5(p5 p5Var, int i3) {
+        this.f34961a = i3;
+        this.f34962b = p5Var;
     }
 
     @Override
-    public final void invalidate() {
-        View view = (View) this.f27274a.get();
-        if (view == null) {
-            return;
-        }
-        if (this.f27275b && view.getParent() != null) {
-            ((View) view.getParent()).invalidate();
-        } else {
-            view.invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f34961a) {
+            case 0:
+                p5.access$002(this.f34962b, null);
+                p5.access$102(false);
+                return;
+            case 1:
+                p5 p5Var = this.f34962b;
+                p5.access$002(p5Var, null);
+                if (p5.access$200(p5Var) != null) {
+                    p5.access$200(p5Var).run();
+                    p5.access$202(p5Var, null);
+                    return;
+                }
+                return;
+            default:
+                p5.access$302(this.f34962b, null);
+                return;
         }
     }
 }

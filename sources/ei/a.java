@@ -1,144 +1,144 @@
 package ei;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
+import android.graphics.drawable.Drawable;
+import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
-import g.y;
-import j$.util.Objects;
-import jg.l0;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.y1;
-import org.telegram.ui.Cells.a5;
-import org.telegram.ui.Components.j30;
-import org.telegram.ui.Components.jn0;
-import org.telegram.ui.Components.n90;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.aw0;
-import org.telegram.ui.hx0;
-import org.telegram.ui.jy0;
-import org.telegram.ui.lu;
-import org.telegram.ui.sa;
-import org.telegram.ui.y6;
-import org.telegram.ui.z5;
-import rh.h8;
-public final class a implements ug.a {
-    public final int f6594a;
-    public final Object f6595b;
-    public final Object f6596c;
+import android.widget.ImageView;
+import b8.mf;
+import b8.pf;
+import org.telegram.messenger.bd;
+import org.telegram.ui.Components.xq;
+public final class a extends FrameLayout {
+    public final ImageView f10067a;
+    public final org.telegram.ui.Components.g6 f10068b;
+    public final Paint f10069c;
+    public final Paint d;
+    public boolean f10070e;
+    public int f10071f;
+    public float h;
+    public ValueAnimator f10072n;
 
-    public a(int i10, Object obj, Object obj2) {
-        this.f6594a = i10;
-        this.f6596c = obj;
-        this.f6595b = obj2;
+    public a(Context context, hh.b bVar) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f10069c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.h = 1.0f;
+        pf.a(this);
+        org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(false, true, true);
+        this.f10068b = g6Var;
+        g6Var.u(-9866632);
+        g6Var.w(org.telegram.messenger.g0.L(9.0f));
+        g6Var.setCallback(this);
+        g6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
+        g6Var.J = true;
+        paint.setColor(-14670806);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        FrameLayout frameLayout = new FrameLayout(context);
+        eh.j jVar = new eh.j();
+        jVar.f10051a = bVar;
+        jVar.a();
+        jVar.f10056g.setColor(-14670806);
+        jVar.invalidateSelf();
+        jVar.f10055f = org.telegram.messenger.g0.L(1.0f);
+        frameLayout.setBackground(jVar);
+        addView(frameLayout, mf.e(40, 40, 17));
+        ImageView e10 = org.telegram.messenger.camera.q.e(context, 2131231778);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        e10.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
+        frameLayout.addView(e10, mf.e(20, 20, 17));
+        ImageView imageView = new ImageView(context);
+        this.f10067a = imageView;
+        imageView.setImageResource(2131231779);
+        imageView.setColorFilter(new PorterDuffColorFilter(-2960428, mode));
+        frameLayout.addView(imageView, mf.e(20, 20, 17));
+        imageView.setPivotX(org.telegram.messenger.g0.L(10.27f));
+        imageView.setPivotY(org.telegram.messenger.g0.L(9.58f));
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (z11 && this.f10070e == z10) {
+            return;
+        }
+        this.f10070e = z10;
+        float f10 = 180.0f;
+        ImageView imageView = this.f10067a;
+        if (z11) {
+            ViewPropertyAnimator animate = imageView.animate();
+            if (z10) {
+                f10 = 0.0f;
+            }
+            org.telegram.messenger.camera.q.l(animate.rotation(f10), xq.h, 420L);
+            return;
+        }
+        if (z10) {
+            f10 = 0.0f;
+        }
+        imageView.setRotation(f10);
     }
 
     @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        float f7;
-        Canvas canvas2;
-        float f10;
-        switch (this.f6594a) {
-            case 0:
-                jn0 jn0Var = (jn0) this.f6596c;
-                yg.d.a(jn0Var, canvas, rectF, jn0Var, (FrameLayout) this.f6595b);
-                return;
-            case 1:
-                uk0 uk0Var = (uk0) this.f6596c;
-                yg.d.a(uk0Var, canvas, rectF, uk0Var, (FrameLayout) this.f6595b);
-                return;
-            case 2:
-                ((y6) this.f6596c).f43574b0.d(canvas, rectF, (z5) this.f6595b);
-                return;
-            case 3:
-                ((j30) this.f6596c).f27259n.K(canvas, rectF, (FrameLayout) this.f6595b);
-                return;
-            case 4:
-                ((n90) this.f6596c).R.K(canvas, rectF, (l0) this.f6595b);
-                return;
-            case 5:
-                lu luVar = (lu) this.f6596c;
-                a5 a5Var = (a5) this.f6595b;
-                int childCount = luVar.f39382a.getChildCount();
-                for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = luVar.f39382a.getChildAt(i10);
-                    if (childAt instanceof uk0) {
-                        uk0 uk0Var2 = (uk0) childAt;
-                        yg.d.a(uk0Var2, canvas, rectF, uk0Var2, a5Var);
-                    }
-                }
-                return;
-            case 6:
-                ProfileActivity profileActivity = (ProfileActivity) this.f6596c;
-                tg.j jVar = (tg.j) this.f6595b;
-                Paint paint = profileActivity.M6;
-                ViewGroup viewGroup = (ViewGroup) profileActivity.fragmentView;
-                hx0 hx0Var = profileActivity.N;
-                if (hx0Var != null && hx0Var.getParent() == profileActivity.f33779a) {
-                    f7 = profileActivity.Q5;
-                } else {
-                    f7 = 0.0f;
-                }
-                int i11 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-                if (i11 < 0) {
-                    jy0 jy0Var = profileActivity.f33796c1;
-                    RectF rectF2 = ProfileActivity.S6;
-                    if (zg.h.c(jy0Var, viewGroup, rectF2) && RectF.intersects(rectF2, rectF)) {
-                        yg.d.a(new sa(profileActivity, 4), canvas, rectF, profileActivity.f33796c1, viewGroup);
-                    }
-                    aw0 aw0Var = profileActivity.f33779a;
-                    Objects.requireNonNull(aw0Var);
-                    yg.d.a(new sa(aw0Var, 5), canvas, rectF, profileActivity.f33779a, viewGroup);
-                    jVar.d(canvas, rectF);
-                }
-                if (f7 > 0.0f) {
-                    if (i11 < 0) {
-                        f10 = profileActivity.N.getY() + profileActivity.f33779a.getY();
-                    } else {
-                        f10 = Float.MAX_VALUE;
-                    }
-                    paint.setColor(t6.w0(t6.f20873a7, profileActivity.f33957z0));
-                    paint.setAlpha((int) (f7 * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(rectF.left, rectF.top, rectF.right, Math.min(rectF.bottom, f10), paint);
-                } else {
-                    canvas2 = canvas;
-                }
-                profileActivity.N.K(canvas2, rectF, viewGroup);
-                ProfileActivity.N3(profileActivity.f33913t0, canvas2, rectF, viewGroup);
-                ProfileActivity.N3(profileActivity.f33871n0, canvas2, rectF, viewGroup);
-                ProfileActivity.N3(profileActivity.m0, canvas2, rectF, viewGroup);
-                return;
-            case 7:
-                ((rh.i) this.f6596c).f47055f.d(canvas, rectF, (y1) this.f6595b);
-                return;
-            case 8:
-                ((h8) this.f6596c).U.d(canvas, rectF, (y1) this.f6595b);
-                return;
-            default:
-                ((wh.g) this.f6596c).U.d(canvas, rectF, (y1) this.f6595b);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        super.dispatchDraw(canvas);
+        float f10 = this.h;
+        org.telegram.ui.Components.g6 g6Var = this.f10068b;
+        float i3 = g6Var.i() * f10;
+        float max = Math.max(org.telegram.messenger.g0.L(12.0f), g6Var.c() + org.telegram.messenger.g0.L(6.0f));
+        canvas.save();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getWidth() - max, 0.0f, getWidth(), org.telegram.messenger.g0.L(13.0f));
+        canvas.scale(i3, i3, rectF.centerX(), rectF.centerY());
+        rectF.inset(-org.telegram.messenger.g0.L(2.0f), -org.telegram.messenger.g0.L(2.0f));
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
+        rectF.set(getWidth() - max, 0.0f, getWidth(), org.telegram.messenger.g0.L(13.0f));
+        canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f10069c);
+        canvas.translate(((max - g6Var.c()) / 2.0f) + rectF.left, org.telegram.messenger.g0.L(7.0f));
+        g6Var.draw(canvas);
+        canvas.restore();
+        canvas.restore();
+    }
+
+    public void setCount(int i3) {
+        String E;
+        if (i3 <= 0) {
+            E = "";
+        } else {
+            E = bd.E(i3, ',');
         }
+        this.f10068b.t(E, true, true);
+        if (this.f10071f != i3) {
+            ValueAnimator valueAnimator = this.f10072n;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f10072n = null;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f10072n = ofFloat;
+            ofFloat.addUpdateListener(new bh.f(this, 11));
+            this.f10072n.addListener(new ai.e1(this, 7));
+            org.telegram.messenger.camera.q.i(2.5f, this.f10072n);
+            this.f10072n.setDuration(200L);
+            this.f10072n.start();
+            this.f10071f = i3;
+        }
+        invalidate();
     }
 
     @Override
-    public final void g(y yVar, RectF rectF) {
-        switch (this.f6594a) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            default:
-                yVar.f7259b = true;
-                return;
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f10068b && !super.verifyDrawable(drawable)) {
+            return false;
         }
+        return true;
     }
 }

@@ -1,18 +1,18 @@
 package kg;
 
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-public final class l extends a {
-    public final ArrayList d;
-    public final Bitmap e;
-    public final int f11164f;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class l extends FrameLayout {
+    public boolean f17078a;
+    public final m f17079b;
 
-    public l(int r22, android.content.Context r23, org.telegram.ui.ActionBar.p6 r24) {
-        throw new UnsupportedOperationException("Method not decompiled: kg.l.<init>(int, android.content.Context, org.telegram.ui.ActionBar.p6):void");
+    public l(m mVar, Context context) {
+        super(context);
+        this.f17079b = mVar;
     }
 
     @Override
-    public final s4.g0 a() {
-        return new f(this, 0);
+    public final void onMeasure(int r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: kg.l.onMeasure(int, int):void");
     }
 }

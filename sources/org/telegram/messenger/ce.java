@@ -1,67 +1,40 @@
 package org.telegram.messenger;
-public final class ce implements Runnable {
-    public final int f15138a;
-    public final boolean[] f15139b;
-    public final org.telegram.ui.ActionBar.x1 f15140c;
 
-    public ce(org.telegram.ui.ActionBar.x1 x1Var, boolean[] zArr, int i10) {
-        this.f15138a = i10;
-        this.f15140c = x1Var;
-        this.f15139b = zArr;
+import org.telegram.ui.Components.f60;
+public final class ce implements Runnable {
+    public final int f22011a;
+    public final float f22012b;
+    public final cs f22013c;
+    public final Object d;
+
+    public ce(cs csVar, Object obj, float f10, int i3) {
+        this.f22011a = i3;
+        this.f22013c = csVar;
+        this.d = obj;
+        this.f22012b = f10;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f15138a;
-        boolean[] zArr = this.f15139b;
-        org.telegram.ui.ActionBar.x1 x1Var = this.f15140c;
-        switch (i10) {
+        switch (this.f22011a) {
             case 0:
-                String[] strArr = MediaController.U1;
-                if (!zArr[0]) {
-                    x1Var.show();
-                    return;
-                }
-                return;
-            case 1:
-                String[] strArr2 = MediaController.U1;
-                if (!zArr[0]) {
-                    x1Var.show();
-                    return;
-                }
-                return;
-            case 2:
-                String[] strArr3 = MediaController.U1;
-                try {
-                    if (x1Var.isShowing()) {
-                        x1Var.dismiss();
-                    } else {
-                        zArr[0] = true;
+                MediaController mediaController = (MediaController) this.f22013c;
+                zi ziVar = (zi) this.d;
+                if (mediaController.f21324j0 != null && mediaController.f21348v0 != null && !mediaController.f21320h0) {
+                    if (mediaController.L(ziVar)) {
+                        mediaController.i0(mediaController.f21348v0, this.f22012b);
                     }
-                    return;
-                } catch (Exception e) {
-                    f8.g(e, true);
+                    mediaController.f21324j0.h0();
                     return;
                 }
+                return;
             default:
-                String[] strArr4 = MediaController.U1;
-                try {
-                    if (x1Var.isShowing()) {
-                        x1Var.dismiss();
-                    } else {
-                        zArr[0] = true;
-                    }
-                    return;
-                } catch (Exception e7) {
-                    f8.g(e7, true);
-                    return;
-                }
+                org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f22013c;
+                f60 f60Var = (f60) this.d;
+                i4Var.f46088i0.N.c(true, 0.0f);
+                f60Var.f33742p = new org.telegram.ui.c0(i4Var, this.f22012b, 0);
+                f60Var.Z();
+                return;
         }
-    }
-
-    public ce(boolean[] zArr, org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        this.f15138a = i10;
-        this.f15139b = zArr;
-        this.f15140c = x1Var;
     }
 }

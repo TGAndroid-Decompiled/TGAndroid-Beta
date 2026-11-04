@@ -1,30 +1,40 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class lv implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39390a;
-    public final zx f39391b;
+import android.view.View;
+public final class lv {
+    public final int f47444a;
+    public final mv f47445b;
+    public final View f47446c;
 
-    public lv(zx zxVar, int i10) {
-        this.f39390a = i10;
-        this.f39391b = zxVar;
+    public lv(mv mvVar, View view, int i3) {
+        this.f47444a = i3;
+        this.f47445b = mvVar;
+        this.f47446c = view;
     }
 
-    @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39390a) {
+    public final void a(boolean z10) {
+        switch (this.f47444a) {
             case 0:
-                this.f39391b.P4(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                zx zxVar = this.f39391b;
-                zxVar.getClass();
-                zxVar.R4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                View view = this.f47446c;
+                if (view instanceof ei.q) {
+                    this.f47445b.P0.F0.i((ei.q) view, false);
+                    if (z10) {
+                        org.telegram.messenger.g0.i3(new org.telegram.ui.Components.go(15), 500L);
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                zx zxVar2 = this.f39391b;
-                zxVar2.getClass();
-                zxVar2.L4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                View view2 = this.f47446c;
+                if (view2 instanceof ei.q) {
+                    this.f47445b.P0.F0.i((ei.q) view2, false);
+                    if (z10) {
+                        org.telegram.messenger.g0.i3(new org.telegram.ui.Components.go(15), 500L);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }

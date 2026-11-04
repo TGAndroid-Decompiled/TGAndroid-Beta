@@ -1,30 +1,19 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class sb1 extends hg.b {
-    public final TLRPC.TL_forumTopic f41336c;
+import android.content.Context;
+public final class sb1 extends org.telegram.ui.Components.voip.l0 {
+    public final zb1 W;
 
-    public sb1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
-        super(i10, false);
-        this.f41336c = tL_forumTopic;
+    public sb1(zb1 zb1Var, Context context, float f10, float f11) {
+        super(context, f10, f11);
+        this.W = zb1Var;
     }
 
-    public final boolean equals(Object obj) {
-        TLRPC.TL_forumTopic tL_forumTopic;
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || sb1.class != obj.getClass()) {
-            return false;
-        }
-        sb1 sb1Var = (sb1) obj;
-        if (this.f7681a != sb1Var.f7681a) {
-            return false;
-        }
-        TLRPC.TL_forumTopic tL_forumTopic2 = this.f41336c;
-        if (tL_forumTopic2 == null || (tL_forumTopic = sb1Var.f41336c) == null || tL_forumTopic2.f19846id == tL_forumTopic.f19846id) {
-            return true;
-        }
-        return false;
+    @Override
+    public final int[] getFloatingViewLocation() {
+        int[] iArr = new int[2];
+        zb1 zb1Var = this.W;
+        zb1Var.Z.getLocationOnScreen(iArr);
+        return new int[]{iArr[0], iArr[1], zb1Var.Z.getMeasuredWidth()};
     }
 }

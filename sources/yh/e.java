@@ -1,225 +1,171 @@
 package yh;
 
-import android.content.Context;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.View;
-import android.widget.FrameLayout;
-import bi.o4;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.messenger.a4;
-import org.telegram.messenger.at;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.vs;
-import org.telegram.messenger.w3;
-import org.telegram.messenger.wp;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.k2;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.x1;
-import org.telegram.ui.Cells.k6;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.r8;
-import org.telegram.ui.Components.s4;
-import org.telegram.ui.Components.v51;
-import org.telegram.ui.z01;
-import org.telegram.ui.z70;
-import rh.q2;
-import vh.m6;
-import w7.b6;
-import w7.b9;
-public final class e extends k2 implements vs {
-    public hi.c f54486a;
-    public long f54487b;
-    public TLRPC.Chat f54488c;
-    public TLRPC.User d;
-    public FrameLayout e;
-    public v51 f54489f;
-    public d h;
-    public ArrayList f54490n;
-    public xa.n f54491r;
+import java.util.HashMap;
+import org.telegram.messenger.az;
+import org.telegram.messenger.g0;
+import org.telegram.ui.Components.g40;
+import org.telegram.ui.Components.s30;
+import org.telegram.ui.yg0;
+public final class e {
+    public static HashMap f59495n;
+    public final double f59496a;
+    public final double f59497b;
+    public final int f59498c;
+    public final yg0 d;
+    public final g40 f59499e;
+    public d f59500f;
+    public final int f59501g;
+    public final int h;
+    public boolean f59502i;
+    public final ArrayList f59503j = new ArrayList();
+    public final HashMap f59504k = new HashMap();
+    public int f59505l = 0;
+    public final c f59506m = new c(this, 0);
 
-    public static void Z(e eVar, b51 b51Var) {
-        e eVar2;
-        if (b51Var.d == 1) {
-            eVar2 = eVar;
-            s4.Q(eVar.getParentActivity(), eVar2, dd.L0(2131751906, null), null, dd.L0(2131751907, null), null, Integer.MAX_VALUE, dd.L0(2131751753, null), eVar.resourceProvider, new b(eVar));
-        } else {
-            eVar2 = eVar;
-        }
-        Object obj = b51Var.G;
-        if (obj instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            eVar2.getMessagesController().L0(Long.valueOf(-eVar2.f54487b));
-            eVar2.showDialog(new ai.a(eVar2.getParentActivity(), chat, eVar2.f54487b, new q2(16, eVar2, chat)));
-        }
+    public e(int i3, yg0 yg0Var, int i10, int i11) {
+        double d = 1.0d / ((int) g0.f22609r);
+        this.f59496a = d;
+        this.f59497b = d * 4.0d;
+        this.f59498c = i3;
+        this.f59501g = i10;
+        this.h = i11;
+        this.d = yg0Var;
+        g40 g40Var = new g40(2, yg0Var.getContext(), this);
+        this.f59499e = g40Var;
+        g40Var.setSurfaceTextureListener(new s30(this, 5));
+        g40Var.setOpaque(false);
+        yg0Var.addView(g40Var);
     }
 
-    public final void a0(String str, boolean z10) {
-        if (!w3.T(this.f54488c) && this.d == null) {
-            x1 x1Var = new x1(3, getParentActivity(), null);
-            x1Var.r(250L);
-            getMessagesController().T(getParentActivity(), -this.f54487b, this, new o4(this, x1Var, str, z10, 7), null);
-            return;
-        }
-        wp messagesController = getMessagesController();
-        long j10 = this.f54487b;
-        a aVar = new a(this, 1);
-        messagesController.getClass();
-        TL_communities.TL_communities_create tL_communities_create = new TL_communities.TL_communities_create();
-        tL_communities_create.title = str;
-        tL_communities_create.peer = messagesController.i1(j10);
-        tL_communities_create.hidden = z10;
-        messagesController.getConnectionsManager().sendRequestTypedAndProcessUpdates(tL_communities_create, new a3.b(1), new org.telegram.messenger.d(aVar, 5));
-    }
-
-    public final void b0(long j10, boolean z10) {
-        if (!w3.T(this.f54488c) && this.d == null) {
-            x1 x1Var = new x1(3, getParentActivity(), null);
-            x1Var.r(250L);
-            getMessagesController().T(getParentActivity(), -this.f54487b, this, new c(this, x1Var, j10, z10, 0), null);
-            return;
-        }
-        int i10 = this.currentAccount;
-        long j11 = -this.f54487b;
-        wp.r1(i10).O2(-j11, j10, false, z10, new z70(this, j11, 2));
-    }
-
-    @Override
-    public final View createView(Context context) {
-        int i10;
-        setHasOwnBackground(true);
-        this.actionBar.setAddToContainer(false);
-        this.actionBar.setAllowOverlayTitle(false);
-        this.actionBar.setBackButtonDrawable(new c2(false));
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new z01(this, 20));
-        hi.c cVar = new hi.c();
-        cVar.a(getThemedColor(t6.f20930d6));
-        this.f54486a = cVar;
-        tg.b bVar = new tg.b(cVar, cVar, cVar);
-        this.actionBar.setBackground(null);
-        this.actionBar.M(bVar, b9.p(this.resourceProvider), false);
-        this.actionBar.Q0 = true;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.e = frameLayout;
-        a7.i(t6.f20873a7, frameLayout, null);
-        d dVar = new d(context, this.resourceProvider);
-        this.h = dVar;
-        dVar.setTitle(dd.L0(2131751847, null));
-        d dVar2 = this.h;
-        if (this.d != null) {
-            i10 = 2131751933;
-        } else if (w3.V(this.f54488c)) {
-            i10 = 2131751932;
-        } else {
-            i10 = 2131751931;
-        }
-        dVar2.setSubtitle(dd.L0(i10, null));
-        this.h.setTag(-33024);
-        TLRPC.User user = this.d;
-        if (user != null) {
-            this.h.f54468a.e(user, new r8(0, this.d));
-        } else {
-            TLRPC.Chat chat = this.f54488c;
-            if (chat != null) {
-                this.h.f54468a.e(chat, new r8(this.f54488c));
+    public static e d(int i3, View view, ViewGroup viewGroup) {
+        int min;
+        if (view != null) {
+            if (f59495n == null) {
+                f59495n = new HashMap();
             }
-        }
-        v51 v51Var = new v51(this, new a(this, 0), new b(this), new xg.a(24, this));
-        this.f54489f = v51Var;
-        v51Var.setClipToPadding(false);
-        v51 v51Var2 = this.f54489f;
-        q51 q51Var = v51Var2.f31183f3;
-        q51Var.f29638r = false;
-        q51Var.f29639s = true;
-        v51Var2.r1();
-        this.e.addView(this.f54489f, b6.c(-1.0f, -1));
-        this.e.addView(this.actionBar, b6.e(-1, -2, 48));
-        FrameLayout frameLayout2 = this.e;
-        this.fragmentView = frameLayout2;
-        return frameLayout2;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        int i12;
-        if (i10 == at.T) {
-            TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j10 = chatFull.f19795id;
-            View B1 = this.f54489f.B1((int) (j10 ^ (j10 >>> 32)));
-            if (B1 instanceof k6) {
-                k6 k6Var = (k6) B1;
-                ArrayList<TL_communities.CommunityPeer> arrayList = chatFull.linked_peers;
-                if (arrayList != null) {
-                    i12 = arrayList.size();
+            e eVar = (e) f59495n.get(Integer.valueOf(i3));
+            if (eVar == null) {
+                int o10 = az.o();
+                if (o10 != 1) {
+                    if (o10 != 2) {
+                        Point point = g0.f22608q;
+                        min = Math.min(720, (int) (((point.x + point.y) / 2.0f) * 0.7f));
+                    } else {
+                        Point point2 = g0.f22608q;
+                        min = Math.min(1280, (int) (((point2.x + point2.y) / 2.0f) * 1.0f));
+                    }
                 } else {
-                    i12 = 0;
+                    Point point3 = g0.f22608q;
+                    min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
                 }
-                k6Var.setSubLabel(dd.G(i12, "Chats", new Object[0]));
-                return;
+                if (viewGroup != null) {
+                    HashMap hashMap = f59495n;
+                    Integer valueOf = Integer.valueOf(i3);
+                    yg0 yg0Var = new yg0(viewGroup.getContext(), 22);
+                    viewGroup.addView(yg0Var);
+                    e eVar2 = new e(i3, yg0Var, min, min);
+                    hashMap.put(valueOf, eVar2);
+                    eVar = eVar2;
+                } else {
+                    return null;
+                }
             }
-            this.f54489f.f31183f3.O(false);
+            eVar.a(view);
+            return eVar;
+        }
+        return null;
+    }
+
+    public static e e(View view) {
+        Activity W = g0.W(view.getContext());
+        ViewGroup viewGroup = null;
+        if (W != null) {
+            View rootView = W.findViewById(16908290).getRootView();
+            if (rootView instanceof ViewGroup) {
+                viewGroup = (ViewGroup) rootView;
+            }
+        }
+        return d(0, view, viewGroup);
+    }
+
+    public static void f(boolean z10) {
+        d dVar;
+        HashMap hashMap = f59495n;
+        if (hashMap != null) {
+            for (e eVar : hashMap.values()) {
+                if (eVar.f59498c == 0 && (dVar = eVar.f59500f) != null) {
+                    dVar.f59485b = z10;
+                }
+            }
         }
     }
 
-    @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f54487b = this.arguments.getLong("dialog_id", 0L);
-        this.f54488c = getMessagesController().L0(Long.valueOf(-this.f54487b));
-        this.d = getMessagesController().Z1(Long.valueOf(this.f54487b));
-        this.f54490n = getMessagesController().R7;
-        wp messagesController = getMessagesController();
-        m6 m6Var = new m6(this, 3);
-        int i10 = this.classGuid;
-        messagesController.getClass();
-        messagesController.getConnectionsManager().bindRequestToGuid(messagesController.getConnectionsManager().sendRequestTyped(new TL_communities.TL_communities_getJoinedCommunities(), new a3.b(1), new a4(3, messagesController, m6Var)), i10);
-        at notificationCenter = getNotificationCenter();
-        notificationCenter.getClass();
-        xa.n nVar = new xa.n(notificationCenter, this);
-        nVar.e(at.T);
-        this.f54491r = nVar;
-        return super.onFragmentCreate();
-    }
-
-    @Override
-    public final void onFragmentDestroy() {
-        xa.n nVar = this.f54491r;
-        if (nVar != null) {
-            nVar.a();
-            this.f54491r = null;
+    public final void a(View view) {
+        if (!this.f59502i) {
+            ArrayList arrayList = this.f59503j;
+            if (!arrayList.contains(view)) {
+                arrayList.add(view);
+                int i3 = this.f59505l;
+                this.f59505l = i3 + 1;
+                this.f59504k.put(view, Integer.valueOf(i3));
+            }
         }
-        super.onFragmentDestroy();
     }
 
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        super.onInsets(i10, i11, i12, i13);
-        this.f54489f.setPadding(0, i11, 0, i13);
+    public final void b(View view) {
+        this.f59503j.remove(view);
+        this.f59504k.remove(view);
+        if (!this.f59502i) {
+            c cVar = this.f59506m;
+            g0.r(cVar);
+            g0.i3(cVar, 30L);
+        }
     }
 
-    @Override
-    public final void onThemeColorsChanged() {
-        super.onThemeColorsChanged();
-        try {
-            hi.c cVar = this.f54486a;
-            if (cVar != null) {
-                cVar.a(getThemedColor(t6.f20930d6));
+    public final void c(Canvas canvas, View view, int i3, int i10, float f10, boolean z10) {
+        if (canvas != null && view != null) {
+            canvas.save();
+            Integer num = (Integer) this.f59504k.get(view);
+            if (num == null) {
+                num = 0;
             }
-            org.telegram.ui.ActionBar.l lVar = this.actionBar;
-            if (lVar != null) {
-                lVar.invalidate();
+            int i11 = this.f59501g;
+            int i12 = this.h;
+            if (i3 > i11 || i10 > i12) {
+                float max = Math.max(i3 / i11, i10 / i12);
+                canvas.scale(max, max);
             }
-        } catch (Exception e) {
-            f8.g(e, true);
+            if (num.intValue() % 4 == 1) {
+                canvas.rotate(180.0f, i11 / 2.0f, i12 / 2.0f);
+            }
+            if (num.intValue() % 4 == 2) {
+                canvas.scale(-1.0f, 1.0f, i11 / 2.0f, i12 / 2.0f);
+            }
+            if (num.intValue() % 4 == 3) {
+                canvas.scale(1.0f, -1.0f, i11 / 2.0f, i12 / 2.0f);
+            }
+            g40 g40Var = this.f59499e;
+            if (z10) {
+                Bitmap bitmap = g40Var.getBitmap();
+                if (bitmap != null) {
+                    Paint paint = new Paint(7);
+                    paint.setColor(-1);
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                    bitmap.recycle();
+                }
+            } else {
+                g40Var.setAlpha(f10);
+                g40Var.draw(canvas);
+            }
+            canvas.restore();
         }
     }
 }

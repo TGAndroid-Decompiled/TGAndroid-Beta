@@ -1,32 +1,32 @@
 package k2;
 
-import android.os.SystemClock;
-import java.io.Serializable;
+import j$.util.Objects;
 public final class v0 {
-    public long f10781a = -9223372036854775807L;
-    public long f10782b = -9223372036854775807L;
-    public Serializable f10783c;
+    public final long f16753a;
+    public final float f16754b;
+    public final long f16755c;
 
-    public void a(Exception exc) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        if (((Exception) this.f10783c) == null) {
-            this.f10783c = exc;
+    public v0(u0 u0Var) {
+        this.f16753a = u0Var.f16744a;
+        this.f16754b = u0Var.f16745b;
+        this.f16755c = u0Var.f16746c;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        if (this.f10781a == -9223372036854775807L && w0.f10784c0.get() <= 0) {
-            this.f10781a = 200 + elapsedRealtime;
+        if (!(obj instanceof v0)) {
+            return false;
         }
-        long j10 = this.f10781a;
-        if (j10 != -9223372036854775807L && elapsedRealtime >= j10) {
-            Exception exc2 = (Exception) this.f10783c;
-            if (exc2 != exc) {
-                exc2.addSuppressed(exc);
-            }
-            Exception exc3 = (Exception) this.f10783c;
-            this.f10783c = null;
-            this.f10781a = -9223372036854775807L;
-            this.f10782b = -9223372036854775807L;
-            throw exc3;
+        v0 v0Var = (v0) obj;
+        if (this.f16753a == v0Var.f16753a && this.f16754b == v0Var.f16754b && this.f16755c == v0Var.f16755c) {
+            return true;
         }
-        this.f10782b = elapsedRealtime + 50;
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f16753a), Float.valueOf(this.f16754b), Long.valueOf(this.f16755c));
     }
 }

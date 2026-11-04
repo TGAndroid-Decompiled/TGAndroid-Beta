@@ -7,23 +7,23 @@ public interface o0 {
 
     int b();
 
-    void c(int i10);
+    void c(int i3);
 
     void dismiss();
 
     CharSequence e();
 
-    Drawable g();
+    Drawable h();
 
     void i(CharSequence charSequence);
 
     void j(Drawable drawable);
 
-    void k(int i10);
+    void k(int i3);
 
-    void l(int i10);
+    void l(int i3);
 
-    void m(int i10, int i11);
+    void m(int i3, int i10);
 
     int n();
 

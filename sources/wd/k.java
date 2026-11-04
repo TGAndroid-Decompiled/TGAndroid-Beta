@@ -1,3 +1,4 @@
 package wd;
-public interface k extends b, c {
+public interface k extends q1 {
+    void a(Throwable th2);
 }

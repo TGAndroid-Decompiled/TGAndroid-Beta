@@ -1,271 +1,231 @@
 package org.telegram.ui.Components;
 
-import android.graphics.BlendMode;
 import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.RecordingCanvas;
-import android.graphics.RectF;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.view.View;
-public final class xg0 implements yg0 {
-    public final float f32553f;
-    public final Paint f32555i;
-    public final RectF f32556j;
-    public final zg0 f32557k;
-    public final Paint f32550a = new Paint(1);
-    public final RenderNode f32551b = new RenderNode("render");
-    public final RenderNode f32552c = new RenderNode("effectNotch");
-    public final RenderNode d = new RenderNode("effect");
-    public final RenderNode e = new RenderNode("blur");
-    public final RectF f32554g = new RectF();
-    public final RectF h = new RectF();
+import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.LeadingMarginSpan;
+import android.text.style.MetricAffectingSpan;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.TreeSet;
+import org.telegram.messenger.Utilities;
+public final class xg0 implements LeadingMarginSpan {
+    public final float[] E;
+    public final Path F;
+    public final Paint G;
+    public final float[] H;
+    public final Path I;
+    public int J;
+    public e0.g K;
+    public SpannableString L;
+    public final boolean f40354a;
+    public boolean f40355b = true;
+    public int f40356c;
+    public int d;
+    public boolean f40357e;
+    public boolean f40358f;
+    public boolean h;
+    public boolean f40359n;
+    public boolean f40360r;
+    public final wg0 f40361s;
+    public mi.x5 f40362w;
+    public final Drawable f40363x;
+    public final Paint f40364y;
 
-    public xg0(zg0 zg0Var, float f7) {
-        this.f32557k = zg0Var;
-        Paint paint = new Paint();
-        this.f32555i = paint;
-        this.f32556j = new RectF();
-        this.f32553f = f7;
-        paint.setColor(-16777216);
-        paint.setBlendMode(BlendMode.SRC_IN);
+    public xg0(boolean z10, boolean z11, wg0 wg0Var) {
+        Paint paint = new Paint(1);
+        this.f40364y = paint;
+        this.E = new float[8];
+        this.F = new Path();
+        Paint paint2 = new Paint(1);
+        this.G = paint2;
+        this.H = new float[8];
+        this.I = new Path();
+        this.J = -1;
+        this.f40354a = z10;
+        this.f40361s = wg0Var;
+        this.f40357e = z11;
+        this.f40363x = k2.p1.g(org.telegram.messenger.t0.f25457b, 2131231966);
+        paint2.setColor(this.J);
+        paint.setColor(i0.a.o(this.J, 30));
+    }
+
+    public static void a(SpannableStringBuilder spannableStringBuilder) {
+        int i3;
+        int i10;
+        int i11;
+        TreeSet treeSet = new TreeSet();
+        HashMap hashMap = new HashMap();
+        wg0[] wg0VarArr = (wg0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), wg0.class);
+        int i12 = 0;
+        while (true) {
+            int i13 = 1;
+            if (i12 >= wg0VarArr.length) {
+                break;
+            }
+            wg0 wg0Var = wg0VarArr[i12];
+            int spanStart = spannableStringBuilder.getSpanStart(wg0Var);
+            int spanEnd = spannableStringBuilder.getSpanEnd(wg0Var);
+            treeSet.add(Integer.valueOf(spanStart));
+            Integer valueOf = Integer.valueOf(spanStart);
+            if (hashMap.containsKey(Integer.valueOf(spanStart))) {
+                i10 = ((Integer) hashMap.get(Integer.valueOf(spanStart))).intValue();
+            } else {
+                i10 = 0;
+            }
+            if (wg0Var.f40007a.f40357e) {
+                i13 = 16;
+            }
+            hashMap.put(valueOf, Integer.valueOf(i13 | i10));
+            treeSet.add(Integer.valueOf(spanEnd));
+            Integer valueOf2 = Integer.valueOf(spanEnd);
+            if (hashMap.containsKey(Integer.valueOf(spanEnd))) {
+                i11 = ((Integer) hashMap.get(Integer.valueOf(spanEnd))).intValue();
+            } else {
+                i11 = 0;
+            }
+            hashMap.put(valueOf2, Integer.valueOf(i11 | 2));
+            spannableStringBuilder.removeSpan(wg0Var);
+            spannableStringBuilder.removeSpan(wg0Var.f40007a);
+            i12++;
+        }
+        Iterator it = treeSet.iterator();
+        int i14 = 0;
+        int i15 = 0;
+        boolean z10 = false;
+        while (it.hasNext()) {
+            Integer num = (Integer) it.next();
+            int intValue = num.intValue();
+            int intValue2 = ((Integer) hashMap.get(num)).intValue();
+            if (i14 != intValue) {
+                int i16 = intValue - 1;
+                if (i16 >= 0 && i16 < spannableStringBuilder.length() && spannableStringBuilder.charAt(i16) == '\n') {
+                    i3 = intValue - 1;
+                } else {
+                    i3 = intValue;
+                }
+                if (i15 > 0) {
+                    c(spannableStringBuilder, i14, i3, z10);
+                }
+                i14 = intValue + 1;
+                if (i14 >= spannableStringBuilder.length() || spannableStringBuilder.charAt(intValue) != '\n') {
+                    i14 = intValue;
+                }
+            }
+            if ((intValue2 & 2) != 0) {
+                i15--;
+            }
+            if ((intValue2 & 1) != 0 || (intValue2 & 16) != 0) {
+                i15++;
+                if ((intValue2 & 16) != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+            }
+        }
+        if (i14 < spannableStringBuilder.length() && i15 > 0) {
+            c(spannableStringBuilder, i14, spannableStringBuilder.length(), z10);
+        }
+    }
+
+    public static void b(Spannable spannable, int i3, int i10, boolean z10) {
+        xg0[] xg0VarArr = (xg0[]) spannable.getSpans(i3, i10, xg0.class);
+        if (xg0VarArr != null && xg0VarArr.length > 0) {
+            return;
+        }
+        int j10 = Utilities.j(i3, spannable.length(), 0);
+        int j11 = Utilities.j(i10, spannable.length(), 0);
+        ?? metricAffectingSpan = new MetricAffectingSpan();
+        xg0 xg0Var = new xg0(false, z10, metricAffectingSpan);
+        metricAffectingSpan.f40007a = xg0Var;
+        xg0Var.f40356c = j10;
+        xg0Var.d = j11;
+        spannable.setSpan(metricAffectingSpan, j10, j11, 33);
+        spannable.setSpan(xg0Var, j10, j11, 33);
+    }
+
+    public static int c(Editable editable, int i3, int i10, boolean z10) {
+        if (editable == 0) {
+            return -1;
+        }
+        int j10 = Utilities.j(i3, editable.length(), 0);
+        int j11 = Utilities.j(i10, editable.length(), 0);
+        if (j10 > 0 && editable.charAt(j10 - 1) != '\n') {
+            editable.insert(j10, "\n");
+            j10++;
+            j11++;
+        }
+        int i11 = j11 + 1;
+        if (j11 >= editable.length() || editable.charAt(j11) != '\n') {
+            editable.insert(j11, "\n");
+        }
+        ?? metricAffectingSpan = new MetricAffectingSpan();
+        xg0 xg0Var = new xg0(true, z10, metricAffectingSpan);
+        metricAffectingSpan.f40007a = xg0Var;
+        xg0Var.f40356c = j10;
+        xg0Var.d = j11;
+        editable.setSpan(xg0Var, Utilities.j(j10, editable.length(), 0), Utilities.j(j11, editable.length(), 0), 33);
+        editable.setSpan(metricAffectingSpan, Utilities.j(j10, editable.length(), 0), Utilities.j(j11, editable.length(), 0), 33);
+        editable.insert(Utilities.j(j11, editable.length(), 0), "\ufeff");
+        editable.delete(Utilities.j(j11, editable.length(), 0), Utilities.j(i11, editable.length(), 0));
+        return i11;
+    }
+
+    public static java.util.ArrayList d(org.telegram.ui.Components.bt r19, android.text.Layout r20, java.util.ArrayList r21, boolean[] r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xg0.d(org.telegram.ui.Components.bt, android.text.Layout, java.util.ArrayList, boolean[]):java.util.ArrayList");
+    }
+
+    public static ArrayList e(Layout layout, ArrayList arrayList) {
+        xg0[] xg0VarArr;
+        if (layout == null) {
+            if (arrayList != null) {
+                arrayList.clear();
+                return arrayList;
+            }
+        } else {
+            CharSequence text = layout.getText();
+            if (text != null && (text instanceof Spanned)) {
+                Spanned spanned = (Spanned) text;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                for (xg0 xg0Var : (xg0[]) spanned.getSpans(0, spanned.length(), xg0.class)) {
+                    boolean z10 = xg0Var.f40359n;
+                    tg0 tg0Var = new tg0(null, layout, spanned, xg0Var);
+                    if (arrayList == null) {
+                        arrayList = new ArrayList();
+                    }
+                    arrayList.add(tg0Var);
+                }
+                return arrayList;
+            } else if (arrayList != null) {
+                arrayList.clear();
+            }
+        }
+        return arrayList;
     }
 
     @Override
-    public final void a(float f7) {
-        RenderNode renderNode = this.d;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        renderNode.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
-        this.f32552c.setRenderEffect(RenderEffect.createBlurEffect(f7, f7, tileMode));
-        this.f32550a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
-    }
-
-    @Override
-    public final void b(px pxVar, Canvas canvas) {
-        Paint paint;
-        float T1;
-        float f7;
+    public final int getLeadingMargin(boolean z10) {
         float f10;
-        float f11;
-        float f12;
-        float f13;
-        Paint paint2;
-        zg0 zg0Var = this.f32557k;
-        Paint paint3 = zg0Var.f33152a;
-        Path path = zg0Var.f33153b;
-        if (!canvas.isHardwareAccelerated()) {
-            return;
-        }
-        RectF rectF = this.f32554g;
-        rectF.set(0.0f, 0.0f, zg0Var.getWidth(), zg0Var.getHeight());
-        int childCount = zg0Var.getChildCount();
-        RectF rectF2 = this.f32556j;
-        if (childCount > 0) {
-            View childAt = zg0Var.getChildAt(0);
-            float scaleX = childAt.getScaleX() * childAt.getWidth();
-            float scaleY = childAt.getScaleY() * childAt.getHeight();
-            float x10 = childAt.getX();
-            float y3 = childAt.getY();
-            rectF2.set(x10, y3, scaleX + x10, scaleY + y3);
-            org.telegram.messenger.ls lsVar = zg0Var.f33156n;
-            if (lsVar != null) {
-                rectF2.union(lsVar.e);
-            }
-            rectF2.inset(-org.telegram.messenger.i0.L(20.0f), -org.telegram.messenger.i0.L(20.0f));
-            rectF2.intersect(rectF);
-            rectF2.top = 0.0f;
+        if (this.f40355b) {
+            f10 = 8.0f;
         } else {
-            rectF2.set(rectF);
+            f10 = 10.0f;
         }
-        rectF2.bottom += org.telegram.messenger.i0.L(32.0f);
-        int ceil = (int) Math.ceil(rectF2.width());
-        int ceil2 = (int) Math.ceil(rectF2.height());
-        float f14 = rectF2.left;
-        float f15 = rectF2.top;
-        this.f32551b.setPosition(0, 0, ceil, ceil2);
-        this.e.setPosition(0, 0, ceil, ceil2);
-        this.d.setPosition(0, 0, ceil, ceil2);
-        this.f32552c.setPosition(0, 0, ceil, ceil2);
-        float f16 = ceil;
-        float f17 = ceil2;
-        rectF2.set(0.0f, 0.0f, f16, f17);
-        RecordingCanvas beginRecording = this.f32551b.beginRecording();
-        float f18 = -f14;
-        float f19 = -f15;
-        beginRecording.translate(f18, f19);
-        int z12 = (int) ((1.0f - org.telegram.messenger.i0.z1(zg0Var.e, 0.5f, 1.0f)) * 255.0f);
-        int b10 = w7.u.b(z12, 0, 255);
-        zg0.a((zg0) pxVar.f29561b, beginRecording);
-        this.f32551b.endRecording();
-        float f20 = this.f32553f;
-        float z10 = c3.i0.z(f20, 1.0f, 2.0f, c3.i0.u(zg0Var.f33155f, 0.5f, f20, (f20 / 4.0f) + 1.0f));
-        RecordingCanvas beginRecording2 = this.e.beginRecording();
-        float f21 = 1.0f / z10;
-        beginRecording2.scale(f21, f21, 0.0f, 0.0f);
-        beginRecording2.drawRenderNode(this.f32551b);
-        this.e.endRecording();
-        float f22 = f20 + 2.0f;
-        RecordingCanvas beginRecording3 = this.d.beginRecording();
-        float f23 = 1.0f / f22;
-        beginRecording3.scale(f23, f23, 0.0f, 0.0f);
-        Paint paint4 = this.f32555i;
-        if (b10 < 255) {
-            beginRecording3.saveLayer(rectF2, null);
-            beginRecording3.drawRenderNode(this.f32551b);
-            beginRecording3.drawRect(rectF2, paint4);
-            beginRecording3.restore();
-        }
-        float L = org.telegram.messenger.i0.L(7.0f) * f22;
-        float f24 = zg0Var.e;
-        if (f24 < 0.5f) {
-            paint = paint4;
-            T1 = org.telegram.messenger.i0.T1(0.0f, L, f24 / 0.5f);
-        } else {
-            paint = paint4;
-            T1 = org.telegram.messenger.i0.T1(L, 0.0f, (f24 - 0.5f) / 0.5f);
-        }
-        if (zg0Var.getChildCount() > 0) {
-            View childAt2 = zg0Var.getChildAt(0);
-            float scaleX2 = (((childAt2.getScaleX() * childAt2.getWidth()) / 2.0f) + childAt2.getX()) - f14;
-            f7 = T1;
-            float scaleY2 = ((((childAt2.getScaleY() * childAt2.getHeight()) / 2.0f) + childAt2.getY()) + org.telegram.messenger.i0.L(32.0f)) - f15;
-            float scaleX3 = childAt2.getScaleX() * (childAt2.getWidth() / 2.0f);
-            path.rewind();
-            f10 = f14;
-            path.moveTo(scaleX2 - scaleX3, scaleY2 - (((float) Math.cos(0.7853981633974483d)) * scaleX3));
-            path.lineTo(scaleX2, (scaleY2 - scaleX3) - (0.25f * f7));
-            path.lineTo(scaleX2 + scaleX3, scaleY2 - (((float) Math.cos(0.7853981633974483d)) * scaleX3));
-            path.close();
-            beginRecording3.drawPath(path, paint3);
-        } else {
-            f7 = T1;
-            f10 = f14;
-        }
-        if (b10 > 0) {
-            if (b10 != 255) {
-                beginRecording3.saveLayerAlpha(rectF2, b10);
-            }
-            beginRecording3.drawRenderNode(this.f32551b);
-            if (b10 != 255) {
-                beginRecording3.restore();
-            }
-        }
-        this.d.endRecording();
-        RecordingCanvas beginRecording4 = this.f32552c.beginRecording();
-        beginRecording4.scale(f23, f23, 0.0f, 0.0f);
-        if (zg0Var.f33156n != null) {
-            beginRecording4.translate(f18, f19);
-            beginRecording4.translate(0.0f, org.telegram.messenger.i0.L(32.0f));
-            org.telegram.messenger.ls lsVar2 = zg0Var.f33156n;
-            if (lsVar2.f16997c) {
-                float min = Math.min(lsVar2.e.width(), zg0Var.f33156n.e.height()) / 2.0f;
-                RectF rectF3 = zg0Var.f33156n.e;
-                float width = rectF3.bottom - (rectF3.width() / 2.0f);
-                beginRecording4.drawCircle(zg0Var.f33156n.e.centerX(), width, min, paint3);
-                path.rewind();
-                float f25 = f7 / 2.0f;
-                path.moveTo(zg0Var.f33156n.e.centerX() - f25, width);
-                path.lineTo(zg0Var.f33156n.e.centerX(), min + width + f7);
-                path.lineTo(zg0Var.f33156n.e.centerX() + f25, width);
-                path.close();
-                beginRecording4.drawPath(path, paint3);
-            } else if (lsVar2.f16996b) {
-                beginRecording4.drawPath(lsVar2.d, paint3);
-            } else {
-                float max = Math.max(lsVar2.e.width(), zg0Var.f33156n.e.height()) / 2.0f;
-                RectF rectF4 = zg0Var.f33156n.e;
-                RectF rectF5 = this.h;
-                rectF5.set(rectF4);
-                beginRecording4.drawRoundRect(rectF5, max, max, paint3);
-                path.rewind();
-                float f26 = f7 / 2.0f;
-                path.moveTo(rectF5.centerX() - f26, rectF5.bottom);
-                path.lineTo(rectF5.centerX(), rectF5.bottom + f7);
-                path.lineTo(rectF5.centerX() + f26, rectF5.bottom);
-                path.close();
-                beginRecording4.drawPath(path, paint3);
-            }
-            f11 = f17;
-            f12 = f16;
-            f13 = z10;
-            paint2 = paint;
-        } else {
-            f11 = f17;
-            f12 = f16;
-            f13 = z10;
-            paint2 = paint;
-            beginRecording4.drawRect(0.0f, 0.0f, f12, org.telegram.messenger.i0.L(32.0f), paint3);
-            path.rewind();
-            path.moveTo((f12 - f7) / 2.0f, org.telegram.messenger.i0.L(32.0f));
-            path.lineTo(f12 / 2.0f, org.telegram.messenger.i0.L(32.0f) + f7);
-            path.lineTo((f12 + f7) / 2.0f, org.telegram.messenger.i0.L(32.0f));
-            path.close();
-            beginRecording4.drawPath(path, paint3);
-        }
-        this.f32552c.endRecording();
-        canvas.save();
-        canvas.translate(f10, f15 - org.telegram.messenger.i0.L(32.0f));
-        org.telegram.messenger.ls lsVar3 = zg0Var.f33156n;
-        if (lsVar3 != null) {
-            canvas.clipRect(0.0f, lsVar3.e.top, f12, f11);
-        }
-        Paint paint5 = this.f32550a;
-        canvas.saveLayer(rectF2, paint5);
-        canvas.scale(f22, f22);
-        canvas.drawRenderNode(this.f32552c);
-        canvas.drawRenderNode(this.d);
-        canvas.restore();
-        int b11 = w7.u.b((z12 * 3) / 4, 0, 255);
-        if (b11 < 255) {
-            canvas.saveLayer(rectF2, null);
-            if (zg0Var.f33155f != 0.0f) {
-                canvas.saveLayer(rectF2, paint5);
-                canvas.scale(f13, f13);
-                canvas.drawRenderNode(this.e);
-                canvas.restore();
-            } else {
-                canvas.drawRenderNode(this.f32551b);
-            }
-            canvas.drawRect(rectF2, paint2);
-            canvas.restore();
-        }
-        if (b11 > 0) {
-            if (b11 != 255) {
-                canvas.saveLayerAlpha(rectF2, b11);
-            }
-            if (zg0Var.f33155f != 0.0f) {
-                canvas.saveLayer(rectF2, paint5);
-                canvas.scale(f13, f13);
-                canvas.drawRenderNode(this.e);
-                canvas.restore();
-            } else {
-                canvas.drawRenderNode(this.f32551b);
-            }
-            if (b11 != 255) {
-                canvas.restore();
-            }
-        }
-        canvas.restore();
+        return org.telegram.messenger.g0.L(f10);
     }
 
     @Override
-    public final void c(float f7) {
-        Shader.TileMode tileMode;
-        if (f7 == 0.0f) {
-            this.e.setRenderEffect(null);
-            return;
-        }
-        RenderNode renderNode = this.e;
-        float f10 = this.f32557k.d;
-        float f11 = this.f32553f;
-        tileMode = Shader.TileMode.DECAL;
-        renderNode.setRenderEffect(RenderEffect.createBlurEffect((f7 * f10) / f11, (f7 * f10) / f11, tileMode));
-    }
-
-    @Override
-    public final void d(int i10, int i11) {
+    public final void drawLeadingMargin(Canvas canvas, Paint paint, int i3, int i10, int i11, int i12, int i13, CharSequence charSequence, int i14, int i15, boolean z10, Layout layout) {
     }
 }

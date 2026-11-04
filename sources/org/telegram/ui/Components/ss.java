@@ -1,71 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-public final class ss implements Runnable {
-    public final int f30433a;
-    public final ts f30434b;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
+public final class ss extends ShapeDrawable {
+    public final int f38114a = 1;
+    public final EditTextBoldCursor f38115b;
 
-    public ss(ts tsVar, int i10) {
-        this.f30433a = i10;
-        this.f30434b = tsVar;
+    public ss(EditTextBoldCursor editTextBoldCursor, RectShape rectShape) {
+        super(rectShape);
+        this.f38115b = editTextBoldCursor;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        Bitmap bitmap;
-        switch (this.f30433a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f38114a) {
             case 0:
-                ts tsVar = this.f30434b;
-                try {
-                    i10 = tsVar.f30713x + 0;
-                    bitmap = tsVar.f30706b;
-                } catch (Exception e) {
-                    org.telegram.messenger.f8.g(e, true);
-                    tsVar.E = true;
-                }
-                if (bitmap != null) {
-                    if (bitmap.getWidth() == tsVar.f30714y) {
-                        if (tsVar.f30706b.getHeight() != i10) {
-                        }
-                        tsVar.f30706b.eraseColor(0);
-                        tsVar.f30707c.save();
-                        tsVar.f30707c.translate(0.0f, 0);
-                        tsVar.c(tsVar.f30707c);
-                        tsVar.f30707c.restore();
-                        tsVar.f30706b.prepareToDraw();
-                        org.telegram.messenger.i0.g3(tsVar.H);
-                        return;
-                    }
-                }
-                Bitmap bitmap2 = tsVar.f30706b;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
-                }
-                tsVar.f30706b = Bitmap.createBitmap(tsVar.f30714y, i10, Bitmap.Config.ARGB_8888);
-                tsVar.f30707c = new Canvas(tsVar.f30706b);
-                tsVar.f30706b.eraseColor(0);
-                tsVar.f30707c.save();
-                tsVar.f30707c.translate(0.0f, 0);
-                tsVar.c(tsVar.f30707c);
-                tsVar.f30707c.restore();
-                tsVar.f30706b.prepareToDraw();
-                org.telegram.messenger.i0.g3(tsVar.H);
+                super.draw(canvas);
+                this.f38115b.H0 = true;
                 return;
             default:
-                ts tsVar2 = this.f30434b;
-                tsVar2.f30708f = false;
-                tsVar2.g();
-                if (!tsVar2.f30705a) {
-                    tsVar2.j();
-                    return;
-                } else if (tsVar2.f30712w == tsVar2.J) {
-                    tsVar2.G = true;
+                EditTextBoldCursor editTextBoldCursor = this.f38115b;
+                if (editTextBoldCursor.f31409e1) {
+                    editTextBoldCursor.H0 = true;
                     return;
                 } else {
+                    super.draw(canvas);
                     return;
                 }
         }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f38114a) {
+            case 1:
+                return org.telegram.messenger.g0.L(this.f38115b.f31418j0 + 20);
+            default:
+                return super.getIntrinsicHeight();
+        }
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f38114a) {
+            case 1:
+                return org.telegram.messenger.g0.L(this.f38115b.F0);
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    public ss(EditTextBoldCursor editTextBoldCursor) {
+        this.f38115b = editTextBoldCursor;
     }
 }

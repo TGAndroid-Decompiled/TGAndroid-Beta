@@ -1,95 +1,170 @@
 package org.telegram.ui.Components;
 
+import android.text.TextUtils;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class cr0 extends yy {
-    public final qu0 X;
-    public final br0 Y;
-    public final au0 Z;
+import android.widget.EditText;
+import android.widget.ImageView;
+public final class cr0 extends org.telegram.ui.ActionBar.m0 {
+    public final ws0 f32825a;
 
-    public cr0(au0 au0Var, br0 br0Var) {
-        super(100, false);
-        this.Z = au0Var;
-        this.Y = br0Var;
-        this.X = new Object();
+    public cr0(ws0 ws0Var) {
+        this.f32825a = ws0Var;
     }
 
     @Override
-    public final int A() {
-        if (this.Y.h.getAdapter() != this.Z.Q) {
-            return 0;
-        }
-        return B();
+    public final void g() {
+        org.telegram.ui.ActionBar.q0 q0Var = this.f32825a.f40117q0;
+        q0Var.setTranslationX(((View) q0Var.getParent()).getMeasuredWidth() - q0Var.getRight());
     }
 
     @Override
-    public final qu0 D1(int i10) {
-        TLRPC.Document document;
-        int i11;
-        int i12;
-        s4.g0 adapter = this.Y.h.getAdapter();
-        au0 au0Var = this.Z;
-        pt0[] pt0VarArr = au0Var.f24562v1;
-        if (adapter == au0Var.Q && !pt0VarArr[5].f29532a.isEmpty()) {
-            document = ((org.telegram.messenger.kj) pt0VarArr[5].f29532a.get(i10)).F0();
-        } else {
-            document = null;
+    public final void h() {
+        ws0 ws0Var = this.f32825a;
+        qq0 qq0Var = ws0Var.M0;
+        ImageView imageView = ws0Var.f40130u0;
+        ws0Var.Y0 = false;
+        ws0Var.Z0 = null;
+        org.telegram.ui.ActionBar.q0 q0Var = ws0Var.f40114p0;
+        if (q0Var != null) {
+            q0Var.setVisibility(0);
         }
-        qu0 qu0Var = this.X;
-        qu0Var.f29809b = 100.0f;
-        qu0Var.f29808a = 100.0f;
-        if (document != null) {
-            TLRPC.PhotoSize w9 = org.telegram.messenger.b8.w(document.thumbs, 90, false, null, false);
-            if (w9 != null && (i11 = w9.f19819w) != 0 && (i12 = w9.h) != 0) {
-                qu0Var.f29808a = i11;
-                qu0Var.f29809b = i12;
+        if (imageView != null && ws0Var.k0(0.0f) > 0.5f) {
+            imageView.setVisibility(0);
+        }
+        if (qq0Var != null) {
+            qq0Var.d.M(new org.telegram.ui.cq(2));
+            qq0Var.h = 0L;
+            qq0Var.g(false);
+        }
+        er0 er0Var = ws0Var.W;
+        if (er0Var != null) {
+            org.telegram.ui.xm xmVar = er0Var.f52363a;
+            org.telegram.ui.om omVar = xmVar.Sc;
+            if (omVar != null) {
+                omVar.h();
             }
-            ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
-            for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                TLRPC.DocumentAttribute documentAttribute = arrayList.get(i13);
-                if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    qu0Var.f29808a = documentAttribute.f19801w;
-                    qu0Var.f29809b = documentAttribute.h;
-                    break;
+            xmVar.H3 = false;
+            xmVar.f51459r0 = false;
+            xmVar.Lc(false);
+            xmVar.md();
+        }
+        ws0Var.X0 = false;
+        ws0Var.setSearchItemVisibility(0);
+        ws0Var.f40098j0.G(null, true);
+        ws0Var.f40103l0.G(null, true);
+        ws0Var.f40101k0.G(null, true);
+        ws0Var.m0.F(null, true);
+        is0 is0Var = ws0Var.V;
+        if (is0Var != null) {
+            is0Var.E(null, null);
+        }
+        ws0Var.V0(false);
+        fh0 fh0Var = ws0Var.f40132v0;
+        if (fh0Var != null) {
+            fh0Var.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(320L).setInterpolator(xq.h).start();
+        }
+        if (ws0Var.C0) {
+            ws0Var.C0 = false;
+        } else {
+            ws0Var.z1(false);
+        }
+    }
+
+    @Override
+    public final void i() {
+        boolean z10;
+        ws0 ws0Var = this.f32825a;
+        ws0Var.Y0 = true;
+        qq0 qq0Var = ws0Var.M0;
+        if (qq0Var != null) {
+            if ((ws0Var.getSelectedTab() == 11 || ws0Var.getSelectedTab() == 12) && qq0Var.a()) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            qq0Var.g(z10);
+        }
+        ImageView imageView = ws0Var.f40130u0;
+        if (imageView != null) {
+            imageView.setVisibility(8);
+        }
+        org.telegram.ui.ActionBar.q0 q0Var = ws0Var.f40114p0;
+        if (q0Var != null) {
+            q0Var.setVisibility(8);
+        }
+        ws0Var.setSearchItemVisibility(8);
+        ws0Var.V0(true);
+        fh0 fh0Var = ws0Var.f40132v0;
+        if (fh0Var != null) {
+            fh0Var.animate().scaleX(0.6f).scaleY(0.6f).alpha(0.0f).setDuration(320L).setInterpolator(xq.h).start();
+        }
+    }
+
+    @Override
+    public final void k(EditTextBoldCursor editTextBoldCursor) {
+        er0 er0Var = this.f32825a.W;
+        if (er0Var != null) {
+            er0Var.f52363a.J9();
+        }
+    }
+
+    @Override
+    public final void l(EditText editText) {
+        boolean z10;
+        is0 is0Var;
+        String obj = editText.getText().toString();
+        ws0 ws0Var = this.f32825a;
+        er0 er0Var = ws0Var.W;
+        if (er0Var != null) {
+            org.telegram.ui.xm xmVar = er0Var.f52363a;
+            org.telegram.ui.ActionBar.q0 q0Var = xmVar.f51371k0;
+            if (q0Var != null) {
+                xmVar.I3 = obj;
+                q0Var.P(obj, false);
+            }
+            if (TextUtils.isEmpty(obj) && ws0Var.Z0 == null) {
+                org.telegram.ui.xm xmVar2 = er0Var.f52363a;
+                org.telegram.ui.om omVar = xmVar2.Sc;
+                if (omVar != null) {
+                    omVar.h();
                 }
+                xmVar2.H3 = false;
+                xmVar2.f51459r0 = false;
+                xmVar2.Lc(false);
+                xmVar2.md();
             }
         }
-        return qu0Var;
-    }
-
-    @Override
-    public final void U(hf.e eVar, s4.z0 z0Var, View view, s0.c cVar) {
-        a9.r rVar;
-        super.U(eVar, z0Var, view, cVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = cVar.f47861a;
-        AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-        if (collectionItemInfo != null) {
-            rVar = new a9.r(collectionItemInfo);
+        ws0Var.setSearchItemVisibility(8);
+        if (obj.length() == 0 && ws0Var.Z0 == null) {
+            z10 = false;
         } else {
-            rVar = null;
+            z10 = true;
         }
-        if (rVar != null) {
-            Object obj = rVar.f355a;
-            if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
+        ws0Var.X0 = z10;
+        ws0Var.post(new sp0(this, 1));
+        int i3 = ws0Var.f40108n0[0].F;
+        if (i3 == 1) {
+            tr0 tr0Var = ws0Var.f40098j0;
+            if (tr0Var != null) {
+                tr0Var.G(obj, true);
             }
-        }
-    }
-
-    @Override
-    public final void z0(s4.z0 z0Var, int[] iArr) {
-        super.z0(z0Var, iArr);
-        br0 br0Var = this.Y;
-        int i10 = br0Var.E;
-        if (i10 != 0 && !au0.y0(i10)) {
-            if (br0Var.E == 1) {
-                iArr[1] = Math.max(iArr[1], org.telegram.messenger.i0.L(56.0f) * 2);
-                return;
+        } else if (i3 == 3) {
+            tr0 tr0Var2 = ws0Var.f40103l0;
+            if (tr0Var2 != null) {
+                tr0Var2.G(obj, true);
             }
-            return;
+        } else if (i3 == 4) {
+            tr0 tr0Var3 = ws0Var.f40101k0;
+            if (tr0Var3 != null) {
+                tr0Var3.G(obj, true);
+            }
+        } else if (i3 == 7) {
+            pr0 pr0Var = ws0Var.m0;
+            if (pr0Var != null) {
+                pr0Var.F(obj, true);
+            }
+        } else if (i3 == 11 && (is0Var = ws0Var.V) != null) {
+            is0Var.E(ws0Var.Z0, obj);
         }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.t7.a(1) * 2);
     }
 }

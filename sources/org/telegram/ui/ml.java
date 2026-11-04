@@ -1,127 +1,204 @@
 package org.telegram.ui;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import java.io.Serializable;
+import android.animation.ValueAnimator;
+import android.view.View;
+import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class ml implements Runnable {
-    public final int f39564a = 1;
-    public final int f39565b;
-    public final int f39566c;
-    public final boolean d;
-    public final Object e;
-    public final Object f39567f;
-    public final Serializable h;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class ml implements hq0 {
+    public final TL_iv.RichMessage f47695a;
+    public final ArrayList f47696b;
+    public final org.telegram.messenger.zi f47697c;
 
-    public ml(e2.c cVar, Bitmap bitmap, int i10, int i11, String str, boolean z10) {
-        this.e = cVar;
-        this.f39567f = bitmap;
-        this.f39565b = i10;
-        this.f39566c = i11;
-        this.h = str;
-        this.d = z10;
+    public ml(TL_iv.RichMessage richMessage, ArrayList arrayList, org.telegram.messenger.zi ziVar) {
+        this.f47695a = richMessage;
+        this.f47696b = arrayList;
+        this.f47697c = ziVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.wb wbVar;
-        int i10;
-        int i11;
-        int i12;
-        Rect rect;
-        int i13 = this.f39564a;
-        Serializable serializable = this.h;
-        int i14 = this.f39566c;
-        int i15 = this.f39565b;
-        Object obj = this.f39567f;
-        Object obj2 = this.e;
-        switch (i13) {
-            case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                ArrayList arrayList2 = (ArrayList) serializable;
-                un unVar = ((nl) obj2).f39925b;
-                if (this.d) {
-                    i10 = ((org.telegram.ui.ActionBar.k2) unVar).currentAccount;
-                    org.telegram.messenger.wp.r1(i10).e7.edit().remove("pin_" + unVar.f42108j6).commit();
-                    unVar.Xc(0, true);
-                    wbVar = null;
-                } else {
-                    wbVar = null;
-                    unVar.getNotificationCenter().k(56, Long.valueOf(unVar.f42108j6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i15), Boolean.valueOf(unVar.f42048e5));
-                }
-                if (i14 == unVar.Q3) {
-                    unVar.O3 = wbVar;
-                    return;
-                }
-                return;
-            default:
-                e2.c cVar = (e2.c) obj2;
-                Bitmap bitmap = (Bitmap) obj;
-                String str = (String) serializable;
-                Paint paint = (Paint) cVar.d;
-                int i16 = cVar.f6116a;
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    float width = bitmap.getWidth() / bitmap.getHeight();
-                    int round = (int) Math.round(Math.sqrt(width * 324.0f));
-                    int round2 = (int) Math.round(Math.sqrt(324.0f / width));
-                    if (i15 != 90 && i15 != 270) {
-                        i12 = round2;
-                        i11 = round;
-                    } else {
-                        i11 = round2;
-                        i12 = round;
+    public final boolean a(int i3) {
+        if (i3 >= 0) {
+            ArrayList arrayList = this.f47696b;
+            if (i3 < arrayList.size()) {
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i3);
+                if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                    TLRPC.Document b10 = e4.b(this.f47695a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    if (b10 != null) {
+                        return org.telegram.messenger.zi.L4(b10);
                     }
-                    int i17 = i16 * 2;
-                    Bitmap createBitmap = Bitmap.createBitmap(i17 + i11, i17 + i12, Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    Rect rect2 = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
-                    int i18 = i16 + round;
-                    int i19 = i16 + round2;
-                    Rect rect3 = new Rect(i16, i16, i18, i19);
-                    float f7 = i16;
-                    canvas.translate((i11 / 2.0f) + f7, (i12 / 2.0f) + f7);
-                    if (i14 == 1) {
-                        canvas.scale(-1.0f, 1.0f);
-                        rect = rect2;
-                    } else {
-                        rect = rect2;
-                        if (i14 == 2) {
-                            canvas.scale(1.0f, -1.0f);
+                    return false;
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final File b(int i3) {
+        TLRPC.Document b10;
+        TLRPC.PhotoSize w10;
+        if (i3 >= 0) {
+            ArrayList arrayList = this.f47696b;
+            if (i3 < arrayList.size()) {
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i3);
+                boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
+                TL_iv.RichMessage richMessage = this.f47695a;
+                if (z10) {
+                    TLRPC.Photo f10 = e4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                    if (f10 != null && (w10 = org.telegram.messenger.w7.w(f10.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
+                        return e4.c(w10);
+                    }
+                } else if ((pageBlock instanceof TL_iv.pageBlockVideo) && (b10 = e4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
+                    return e4.c(b10);
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final String c(int i3) {
+        TLObject d = d(i3);
+        if (d instanceof TLRPC.Photo) {
+            d = org.telegram.messenger.w7.w(((TLRPC.Photo) d).sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
+        }
+        return org.telegram.messenger.w7.r(null, d);
+    }
+
+    @Override
+    public final TLObject d(int i3) {
+        if (i3 >= 0) {
+            ArrayList arrayList = this.f47696b;
+            if (i3 < arrayList.size()) {
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i3);
+                boolean z10 = pageBlock instanceof TL_iv.pageBlockPhoto;
+                TL_iv.RichMessage richMessage = this.f47695a;
+                if (z10) {
+                    return e4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
+                }
+                if (pageBlock instanceof TL_iv.pageBlockVideo) {
+                    return e4.b(richMessage, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                }
+                return null;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final boolean e(int i3) {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PhotoSize f(TLObject tLObject, int[] iArr) {
+        if (tLObject instanceof TLRPC.Photo) {
+            TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(((TLRPC.Photo) tLObject).sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
+            if (w10 != null) {
+                int i3 = w10.size;
+                iArr[0] = i3;
+                if (i3 == 0) {
+                    iArr[0] = -1;
+                }
+                return w10;
+            }
+            iArr[0] = -1;
+            return null;
+        }
+        if (tLObject instanceof TLRPC.Document) {
+            TLRPC.Document document = (TLRPC.Document) tLObject;
+            TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(document.thumbs, 320, false, null, true);
+            if (w11 == null) {
+                w11 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
+            }
+            if (w11 != null) {
+                int i10 = w11.size;
+                iArr[0] = i10;
+                if (i10 == 0) {
+                    iArr[0] = -1;
+                }
+                return w11;
+            }
+            iArr[0] = -1;
+        }
+        return null;
+    }
+
+    @Override
+    public final Object g() {
+        org.telegram.messenger.zi ziVar = this.f47697c;
+        if (ziVar != null) {
+            return ziVar;
+        }
+        return this.f47695a;
+    }
+
+    @Override
+    public final TL_iv.PageBlock get(int i3) {
+        return (TL_iv.PageBlock) this.f47696b.get(i3);
+    }
+
+    @Override
+    public final List getAll() {
+        return this.f47696b;
+    }
+
+    @Override
+    public final void h(TL_iv.PageBlock pageBlock) {
+        org.telegram.messenger.cv cvVar;
+        org.telegram.messenger.zi ziVar = this.f47697c;
+        if (ziVar != null && (cvVar = ziVar.f26915w2) != null) {
+            ArrayList arrayList = cvVar.f22070g;
+            if (pageBlock != null) {
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    org.telegram.messenger.xt xtVar = (org.telegram.messenger.xt) arrayList.get(i3);
+                    if (xtVar instanceof org.telegram.messenger.ou) {
+                        org.telegram.messenger.ou ouVar = (org.telegram.messenger.ou) xtVar;
+                        ArrayList arrayList2 = ouVar.Y;
+                        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
+                            if (((org.telegram.messenger.qt) arrayList2.get(i10)).f24951b == pageBlock) {
+                                int max = Math.max(0, Math.min(i10, arrayList2.size() - 1));
+                                ValueAnimator valueAnimator = ouVar.f24612l0;
+                                if (valueAnimator != null) {
+                                    valueAnimator.cancel();
+                                    ouVar.f24612l0 = null;
+                                }
+                                if (ouVar.f24602b0 != max || ouVar.f24603c0 != 0.0f) {
+                                    ouVar.f24602b0 = max;
+                                    ouVar.f24603c0 = 0.0f;
+                                    ouVar.f24604d0 = false;
+                                    ouVar.f24605e0 = false;
+                                    View view = ouVar.W;
+                                    if (view != null) {
+                                        view.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            }
                         }
+                        continue;
                     }
-                    canvas.rotate(i15);
-                    float f10 = -i16;
-                    canvas.translate(f10 - (round / 2.0f), f10 - (round2 / 2.0f));
-                    try {
-                        canvas.drawBitmap(bitmap, rect, rect3, (Paint) null);
-                    } catch (Exception unused) {
-                    }
-                    Utilities.stackBlurBitmap(createBitmap, 6);
-                    if (i16 > 0) {
-                        float f11 = i18;
-                        canvas.drawRect(0.0f, 0.0f, f11, f7, paint);
-                        float f12 = i19;
-                        canvas.drawRect(0.0f, f7, f7, f12, paint);
-                        float f13 = i18 + i16;
-                        canvas.drawRect(f11, f7, f13, f12, paint);
-                        canvas.drawRect(0.0f, f12, f13, i19 + i16, paint);
-                    }
-                    org.telegram.messenger.i0.g3(new ag.n0(cVar, str, createBitmap, this.d, bitmap, 7));
-                    return;
                 }
-                return;
+            }
         }
     }
 
-    public ml(nl nlVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i10, int i11) {
-        this.e = nlVar;
-        this.d = z10;
-        this.f39567f = arrayList;
-        this.h = arrayList2;
-        this.f39565b = i10;
-        this.f39566c = i11;
+    @Override
+    public final CharSequence i(int i3) {
+        return null;
+    }
+
+    @Override
+    public final int j() {
+        return this.f47696b.size();
     }
 }

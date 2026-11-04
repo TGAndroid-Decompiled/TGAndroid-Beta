@@ -1,38 +1,57 @@
 package p7;
+public final class l extends n {
+    public final transient n f53378c;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import w7.h0;
-public final class l extends o6.a {
-    public static final Parcelable.Creator<l> CREATOR = new m8.i(29);
-    public final boolean f44885a;
-
-    public l(boolean z10) {
-        this.f44885a = z10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if ((obj instanceof l) && this.f44885a == ((l) obj).f44885a) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        if (this.f44885a) {
-            return 1;
-        }
-        return 0;
+    public l(n nVar) {
+        this.f53378c = nVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.s(parcel, 1, 4);
-        parcel.writeInt(this.f44885a ? 1 : 0);
-        h0.r(parcel, q6);
+    public final boolean contains(Object obj) {
+        return this.f53378c.contains(obj);
+    }
+
+    @Override
+    public final Object get(int i3) {
+        n nVar = this.f53378c;
+        a.e(i3, nVar.size());
+        return nVar.get((nVar.size() - 1) - i3);
+    }
+
+    @Override
+    public final int indexOf(Object obj) {
+        n nVar = this.f53378c;
+        int lastIndexOf = nVar.lastIndexOf(obj);
+        if (lastIndexOf < 0) {
+            return -1;
+        }
+        return (nVar.size() - 1) - lastIndexOf;
+    }
+
+    @Override
+    public final int lastIndexOf(Object obj) {
+        n nVar = this.f53378c;
+        int indexOf = nVar.indexOf(obj);
+        if (indexOf < 0) {
+            return -1;
+        }
+        return (nVar.size() - 1) - indexOf;
+    }
+
+    @Override
+    public final n m() {
+        return this.f53378c;
+    }
+
+    @Override
+    public final n subList(int i3, int i10) {
+        n nVar = this.f53378c;
+        a.m(i3, i10, nVar.size());
+        return nVar.subList(nVar.size() - i10, nVar.size() - i3).m();
+    }
+
+    @Override
+    public final int size() {
+        return this.f53378c.size();
     }
 }

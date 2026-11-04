@@ -1,19 +1,40 @@
 package rd;
 
-import java.io.Serializable;
-import java.util.regex.Pattern;
-public final class c implements Serializable {
-    public final Pattern f46494a;
+import kotlin.jvm.internal.j;
+public final class c extends a {
+    static {
+        new a((char) 1, (char) 0);
+    }
 
-    public c() {
-        Pattern compile = Pattern.compile("^[a-zA-Z0-9/_]{1,100}$");
-        kotlin.jvm.internal.i.d(compile, "compile(...)");
-        this.f46494a = compile;
+    public final boolean equals(Object obj) {
+        if (obj instanceof c) {
+            char c2 = this.f54490a;
+            char c10 = this.f54491b;
+            if (j.f(c2, c10) > 0) {
+                c cVar = (c) obj;
+                if (j.f(cVar.f54490a, cVar.f54491b) > 0) {
+                    return true;
+                }
+            }
+            c cVar2 = (c) obj;
+            if (c2 == cVar2.f54490a && c10 == cVar2.f54491b) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        char c2 = this.f54490a;
+        char c10 = this.f54491b;
+        if (j.f(c2, c10) > 0) {
+            return -1;
+        }
+        return (c2 * 31) + c10;
     }
 
     public final String toString() {
-        String pattern = this.f46494a.toString();
-        kotlin.jvm.internal.i.d(pattern, "toString(...)");
-        return pattern;
+        return this.f54490a + ".." + this.f54491b;
     }
 }

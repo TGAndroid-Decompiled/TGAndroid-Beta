@@ -1,68 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeAnimator;
-import android.animation.ValueAnimator;
-public final class jv0 extends TimeAnimator {
-    public int f27578a;
-    public int f27579b;
-    public ValueAnimator.AnimatorUpdateListener f27580c;
-    public Float d;
-    public float[] e;
+import android.content.Context;
+import org.telegram.tgnet.TLRPC;
+public final class jv0 extends oo0 {
+    public final xv0 S2;
 
-    @Override
-    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
-        this.f27580c = animatorUpdateListener;
+    public jv0(xv0 xv0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, null, str, false, str2, false, e6Var);
+        this.S2 = xv0Var;
     }
 
     @Override
-    public final void end() {
-        this.f27580c = null;
-        super.end();
-    }
-
-    @Override
-    public final Object getAnimatedValue() {
-        return this.d;
-    }
-
-    @Override
-    public final void setFloatValues(float[] fArr) {
-        super.setFloatValues(fArr);
-        this.e = fArr;
-    }
-
-    @Override
-    public final void start() {
-        setTimeListener(new TimeAnimator.TimeListener() {
-            @Override
-            public final void onTimeUpdate(TimeAnimator timeAnimator, long j10, long j11) {
-                int i10;
-                jv0 jv0Var = jv0.this;
-                int i11 = jv0Var.f27578a;
-                if (i11 > 0 && (i10 = jv0Var.f27579b) > 0) {
-                    int i12 = i11 - 1;
-                    jv0Var.f27578a = i12;
-                    if (jv0Var.f27580c != null) {
-                        float[] fArr = jv0Var.e;
-                        if (fArr != null && fArr.length == 2) {
-                            float interpolation = jv0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
-                            float[] fArr2 = jv0Var.e;
-                            float f7 = fArr2[0];
-                            jv0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
-                            jv0Var.f27580c.onAnimationUpdate(jv0Var);
-                            return;
-                        }
-                        jv0Var.end();
-                        return;
-                    }
-                    return;
-                }
-                jv0Var.end();
+    public final void K() {
+        super.K();
+        org.telegram.ui.ActionBar.d2 d2Var = this.S2.D1;
+        if (d2Var instanceof org.telegram.ui.wm) {
+            org.telegram.messenger.g0.a3(d2Var.getParentActivity(), d2Var.getClassGuid());
+            if (((org.telegram.ui.wm) d2Var).f51237a0.getVisibility() == 0) {
+                d2Var.getFragmentView().requestLayout();
             }
-        });
-        int duration = (int) (((float) getDuration()) / org.telegram.messenger.i0.f16175t);
-        this.f27578a = duration;
-        this.f27579b = duration;
-        super.start();
+        }
+    }
+
+    @Override
+    public final void R0(a0.h hVar, int i3, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        org.telegram.messenger.g0.i3(new org.telegram.ui.f4(this, hVar, i3, 24), 100L);
     }
 }

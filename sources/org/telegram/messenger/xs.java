@@ -1,72 +1,21 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-public final class xs extends ArrayList {
-    public HashSet f19474a;
+public abstract class xs {
+    public static final HashSet f26433a;
 
-    @Override
-    public final boolean add(Object obj) {
-        if (this.f19474a.add(obj)) {
-            return super.add(obj);
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        boolean z10 = false;
-        for (Object obj : collection) {
-            if (add(obj)) {
-                z10 = true;
-            }
-        }
-        return z10;
-    }
-
-    @Override
-    public final void clear() {
-        this.f19474a.clear();
-        super.clear();
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return this.f19474a.contains(obj);
-    }
-
-    @Override
-    public final Object remove(int i10) {
-        Object remove = super.remove(i10);
-        if (remove != null) {
-            this.f19474a.remove(remove);
-        }
-        return remove;
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final void add(int i10, Object obj) {
-        if (this.f19474a.add(obj)) {
-            super.add(i10, obj);
-        }
-    }
-
-    @Override
-    public final boolean addAll(int i10, Collection collection) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        if (this.f19474a.remove(obj)) {
-            return super.remove(obj);
-        }
-        return false;
+    static {
+        HashSet hashSet = new HashSet();
+        f26433a = hashSet;
+        hashSet.add("com.google.android.projection.gearhead");
+        hashSet.add("com.google.android.mediasimulator");
+        hashSet.add("com.android.car.media");
+        hashSet.add("com.android.car.carlauncher");
+        hashSet.add("com.google.android.car.kitchensink");
+        hashSet.add("com.google.android.wearable.app");
+        hashSet.add("com.google.android.wearable.media.sessions");
+        hashSet.add("com.google.android.googlequicksearchbox");
+        hashSet.add("com.google.android.apps.gsa.staticplugins");
+        hashSet.add("com.google.android.bluetooth");
     }
 }

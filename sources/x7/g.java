@@ -1,27 +1,15 @@
 package x7;
-public final class g extends e9.v {
-    public final int f53172f;
-    public final j h;
+public final class g {
+    public static final g f58296a;
+    public static final g[] f58297b;
 
-    public g(j jVar, int i10) {
-        super(jVar);
-        this.f53172f = i10;
-        this.h = jVar;
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f58296a = r02;
+        f58297b = new g[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
-    @Override
-    public final Object b(int i10) {
-        switch (this.f53172f) {
-            case 0:
-                Object[] objArr = this.h.f53216c;
-                objArr.getClass();
-                return objArr[i10];
-            case 1:
-                return new i(this.h, i10);
-            default:
-                Object[] objArr2 = this.h.d;
-                objArr2.getClass();
-                return objArr2[i10];
-        }
+    public static g[] values() {
+        return (g[]) f58297b.clone();
     }
 }

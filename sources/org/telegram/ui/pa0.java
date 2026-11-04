@@ -1,58 +1,26 @@
 package org.telegram.ui;
-public final class pa0 implements Runnable {
-    public final int f40437a;
-    public final ta0 f40438b;
-    public final String f40439c;
+public final class pa0 implements org.telegram.ui.ActionBar.p1 {
+    public final int f48501a;
+    public final xd0 f48502b;
 
-    public pa0(ta0 ta0Var, String str, int i10) {
-        this.f40437a = i10;
-        this.f40438b = ta0Var;
-        this.f40439c = str;
+    public pa0(xd0 xd0Var, int i3) {
+        this.f48501a = i3;
+        this.f48502b = xd0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40437a) {
+    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f48501a) {
             case 0:
-                ta0 ta0Var = this.f40438b;
-                if (ta0Var.a()) {
-                    ta0Var.w(this.f40439c);
-                    return;
-                }
-                return;
-            case 1:
-                this.f40438b.w(this.f40439c);
-                return;
-            case 2:
-                ta0 ta0Var2 = this.f40438b;
-                ta0Var2.getClass();
-                String str = this.f40439c;
-                if ("disable".equalsIgnoreCase(str)) {
-                    ta0Var2.x("turnPasswordOffRow");
-                }
-                if ("change".equalsIgnoreCase(str)) {
-                    ta0Var2.x("changePasswordRow");
-                }
-                if ("change-email".equalsIgnoreCase(str)) {
-                    ta0Var2.x("emailRow");
-                    return;
-                }
+                xd0 xd0Var = this.f48502b;
+                xd0Var.f51948b[xd0Var.f51946a].d();
+                xd0Var.t1(true, true);
                 return;
             default:
-                ta0 ta0Var3 = this.f40438b;
-                ta0Var3.getClass();
-                String str2 = this.f40439c;
-                if ("disable".equalsIgnoreCase(str2)) {
-                    ta0Var3.x("disablePasscodeRow");
-                }
-                if ("change".equalsIgnoreCase(str2)) {
-                    ta0Var3.x("changePasscodeRow");
-                }
-                if ("auto-lock".equalsIgnoreCase(str2)) {
-                    ta0Var3.x("autoLockRow");
-                }
-                if ("fingerprint".equalsIgnoreCase(str2)) {
-                    ta0Var3.x("fingerprintRow");
+                xd0 xd0Var2 = this.f48502b;
+                xd0Var2.m0 = true;
+                if (xd0Var2.f51946a != 0) {
+                    xd0Var2.D1(0, true, null, true);
                     return;
                 }
                 return;

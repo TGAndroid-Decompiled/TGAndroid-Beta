@@ -1,4 +1,8 @@
 package wd;
-public interface b {
-    Object p(c cVar, ed.c cVar2);
+public final class b implements q1 {
+    public static final b f57462a = new Object();
+
+    public final String toString() {
+        return "Active";
+    }
 }

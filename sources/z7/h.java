@@ -1,45 +1,80 @@
 package z7;
-public final class h extends i {
-    public final transient int f54830c;
-    public final transient int d;
-    public final i e;
 
-    public h(i iVar, int i10, int i11) {
-        this.e = iVar;
-        this.f54830c = i10;
-        this.d = i11;
+import b8.bh;
+import java.util.Map;
+public final class h extends bh {
+    public final Object f59888b;
+    public int f59889c;
+    public final i d;
+
+    public h(i iVar, int i3) {
+        super(1, false);
+        this.d = iVar;
+        Object[] objArr = iVar.f59907c;
+        objArr.getClass();
+        this.f59888b = objArr[i3];
+        this.f59889c = i3;
+    }
+
+    public final void a() {
+        int i3 = this.f59889c;
+        Object obj = this.f59888b;
+        i iVar = this.d;
+        if (i3 != -1 && i3 < iVar.size()) {
+            int i10 = this.f59889c;
+            Object[] objArr = iVar.f59907c;
+            objArr.getClass();
+            if (x7.w6.a(obj, objArr[i10])) {
+                return;
+            }
+        }
+        Object obj2 = i.f59904s;
+        this.f59889c = iVar.f(obj);
     }
 
     @Override
-    public final Object get(int i10) {
-        w7.t9.a(i10, this.d);
-        return this.e.get(i10 + this.f54830c);
+    public final Object getKey() {
+        return this.f59888b;
     }
 
     @Override
-    public final int m() {
-        return this.e.n() + this.f54830c + this.d;
+    public final Object getValue() {
+        i iVar = this.d;
+        Map b10 = iVar.b();
+        if (b10 != null) {
+            return b10.get(this.f59888b);
+        }
+        a();
+        int i3 = this.f59889c;
+        if (i3 == -1) {
+            return null;
+        }
+        Object[] objArr = iVar.d;
+        objArr.getClass();
+        return objArr[i3];
     }
 
     @Override
-    public final int n() {
-        return this.e.n() + this.f54830c;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.e.o();
-    }
-
-    @Override
-    public final i subList(int i10, int i11) {
-        w7.t9.b(i10, i11, this.d);
-        int i12 = this.f54830c;
-        return this.e.subList(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final Object setValue(Object obj) {
+        i iVar = this.d;
+        Map b10 = iVar.b();
+        Object obj2 = this.f59888b;
+        if (b10 != null) {
+            return b10.put(obj2, obj);
+        }
+        a();
+        int i3 = this.f59889c;
+        if (i3 == -1) {
+            iVar.put(obj2, obj);
+            return null;
+        }
+        Object[] objArr = iVar.d;
+        objArr.getClass();
+        Object obj3 = objArr[i3];
+        int i10 = this.f59889c;
+        Object[] objArr2 = iVar.d;
+        objArr2.getClass();
+        objArr2[i10] = obj;
+        return obj3;
     }
 }

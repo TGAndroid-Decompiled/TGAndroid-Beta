@@ -32,8 +32,8 @@ public class VideoTrack extends MediaStreamTrack {
 
     @Override
     public void dispose() {
-        for (Long l4 : this.sinks.values()) {
-            long longValue = l4.longValue();
+        for (Long l10 : this.sinks.values()) {
+            long longValue = l10.longValue();
             nativeRemoveSink(getNativeMediaStreamTrack(), longValue);
             nativeFreeSink(longValue);
         }

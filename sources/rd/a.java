@@ -1,17 +1,19 @@
 package rd;
 
-import java.nio.charset.Charset;
-public abstract class a {
-    public static final Charset f46490a;
+import b8.hd;
+import java.util.Iterator;
+public abstract class a implements Iterable {
+    public final char f54490a;
+    public final char f54491b;
+    public final int f54492c = 1;
 
-    static {
-        Charset forName = Charset.forName("UTF-8");
-        kotlin.jvm.internal.i.d(forName, "forName(...)");
-        f46490a = forName;
-        kotlin.jvm.internal.i.d(Charset.forName("UTF-16"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("UTF-16BE"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("UTF-16LE"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("US-ASCII"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("ISO-8859-1"), "forName(...)");
+    public a(char c2, char c10) {
+        this.f54490a = c2;
+        this.f54491b = (char) hd.a(c2, c10, 1);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new b(this.f54490a, this.f54491b, this.f54492c);
     }
 }

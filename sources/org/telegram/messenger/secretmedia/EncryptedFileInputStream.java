@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.RandomAccessFile;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.rw;
+import org.telegram.messenger.xv;
 public class EncryptedFileInputStream extends FileInputStream {
     private static final int MODE_CBC = 1;
     private static final int MODE_CTR = 0;
@@ -24,32 +24,32 @@ public class EncryptedFileInputStream extends FileInputStream {
         randomAccessFile.close();
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i10, int i11, rw rwVar) {
-        Utilities.b(bArr, rwVar.f17982a, rwVar.f17983b, i10, i11, 0, 0);
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i3, int i10, xv xvVar) {
+        Utilities.b(bArr, xvVar.f26451a, xvVar.f26452b, i3, i10, 0, 0);
     }
 
     @Override
-    public int read(byte[] bArr, int i10, int i11) {
-        int i12;
+    public int read(byte[] bArr, int i3, int i10) {
+        int i11;
         byte[] bArr2;
         if (this.currentMode == 1 && this.fileOffset == 0) {
             super.read(new byte[32], 0, 32);
-            Utilities.b(bArr, this.key, this.iv, i10, i11, this.fileOffset, 0);
+            Utilities.b(bArr, this.key, this.iv, i3, i10, this.fileOffset, 0);
             this.fileOffset += 32;
             skip((bArr2[0] & 255) - 32);
         }
-        int read = super.read(bArr, i10, i11);
-        int i13 = this.currentMode;
-        if (i13 == 1) {
-            i12 = i11;
-            Utilities.b(bArr, this.key, this.iv, i10, i12, this.fileOffset, 0);
+        int read = super.read(bArr, i3, i10);
+        int i12 = this.currentMode;
+        if (i12 == 1) {
+            i11 = i10;
+            Utilities.b(bArr, this.key, this.iv, i3, i11, this.fileOffset, 0);
         } else {
-            i12 = i11;
-            if (i13 == 0) {
-                Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.iv, i10, i12, this.fileOffset);
+            i11 = i10;
+            if (i12 == 0) {
+                Utilities.aesCtrDecryptionByteArray(bArr, this.key, this.iv, i3, i11, this.fileOffset);
             }
         }
-        this.fileOffset += i12;
+        this.fileOffset += i11;
         return read;
     }
 
@@ -59,24 +59,24 @@ public class EncryptedFileInputStream extends FileInputStream {
         return super.skip(j10);
     }
 
-    public static void decryptBytesWithKeyFile(byte[] bArr, int i10, int i11, File file) {
+    public static void decryptBytesWithKeyFile(byte[] bArr, int i3, int i10, File file) {
         byte[] bArr2 = new byte[32];
         byte[] bArr3 = new byte[16];
         RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
         randomAccessFile.read(bArr2, 0, 32);
         randomAccessFile.read(bArr3, 0, 16);
         randomAccessFile.close();
-        Utilities.aesCtrDecryptionByteArray(bArr, bArr2, bArr3, i10, i11, 0);
+        Utilities.aesCtrDecryptionByteArray(bArr, bArr2, bArr3, i3, i10, 0);
     }
 
-    public EncryptedFileInputStream(File file, rw rwVar) {
+    public EncryptedFileInputStream(File file, xv xvVar) {
         super(file);
         byte[] bArr = new byte[32];
         this.key = bArr;
         this.iv = new byte[16];
         this.currentMode = 1;
-        System.arraycopy(rwVar.f17982a, 0, bArr, 0, bArr.length);
-        byte[] bArr2 = rwVar.f17983b;
+        System.arraycopy(xvVar.f26451a, 0, bArr, 0, bArr.length);
+        byte[] bArr2 = xvVar.f26452b;
         byte[] bArr3 = this.iv;
         System.arraycopy(bArr2, 0, bArr3, 0, bArr3.length);
     }

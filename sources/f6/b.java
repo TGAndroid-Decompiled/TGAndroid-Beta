@@ -1,79 +1,94 @@
 package f6;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Parcel;
-import android.os.RemoteException;
-import com.google.android.gms.internal.cast.u;
-public final class b extends AsyncTask {
-    public static final g6.b f6915c = new g6.b("FetchBitmapTask", null);
-    public final e f6916a;
-    public final bh.d f6917b;
+import android.os.Parcelable;
+import android.text.TextUtils;
+import b8.hc;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
+public final class b extends q6.a {
+    public static final Parcelable.Creator<b> CREATOR;
+    public static final a0 H = new a0(false);
+    public static final b0 I = new b0(0);
+    public static final g6.a J;
+    public final boolean E;
+    public final a0 F;
+    public b0 G;
+    public final String f11455a;
+    public final ArrayList f11456b;
+    public final boolean f11457c;
+    public final e6.i d;
+    public final boolean f11458e;
+    public final g6.a f11459f;
+    public final boolean h;
+    public final double f11460n;
+    public final boolean f11461r;
+    public final boolean f11462s;
+    public final boolean f11463w;
+    public final List f11464x;
+    public final boolean f11465y;
 
-    public b(Context context, int i10, int i11, bh.d dVar) {
-        e eVar;
-        this.f6917b = dVar;
-        Context applicationContext = context.getApplicationContext();
-        d6.j jVar = new d6.j(this);
-        g6.b bVar = com.google.android.gms.internal.cast.d.f4635a;
-        try {
-            com.google.android.gms.internal.cast.f b10 = com.google.android.gms.internal.cast.d.b(applicationContext.getApplicationContext());
-            x6.b bVar2 = new x6.b(applicationContext.getApplicationContext());
-            Parcel R0 = b10.R0(b10.P0(), 8);
-            int readInt = R0.readInt();
-            R0.recycle();
-            if (readInt >= 233700000) {
-                eVar = b10.b1(bVar2, new x6.b(this), jVar, i10, i11);
-            } else {
-                eVar = b10.a1(new x6.b(this), jVar, i10, i11);
-            }
-        } catch (RemoteException e) {
-            e = e;
-            com.google.android.gms.internal.cast.d.f4635a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
-            eVar = null;
-            this.f6916a = eVar;
-        } catch (d6.d e7) {
-            e = e7;
-            com.google.android.gms.internal.cast.d.f4635a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
-            eVar = null;
-            this.f6916a = eVar;
+    static {
+        new g6.f(g6.f.Z, g6.f.f11994a0, 10000L, null, hc.a("smallIconDrawableResId"), hc.a("stopLiveStreamDrawableResId"), hc.a("pauseDrawableResId"), hc.a("playDrawableResId"), hc.a("skipNextDrawableResId"), hc.a("skipPrevDrawableResId"), hc.a("forwardDrawableResId"), hc.a("forward10DrawableResId"), hc.a("forward30DrawableResId"), hc.a("rewindDrawableResId"), hc.a("rewind10DrawableResId"), hc.a("rewind30DrawableResId"), hc.a("disconnectDrawableResId"), hc.a("notificationImageSizeDimenResId"), hc.a("castingToDeviceStringResId"), hc.a("stopLiveStreamStringResId"), hc.a("pauseStringResId"), hc.a("playStringResId"), hc.a("skipNextStringResId"), hc.a("skipPrevStringResId"), hc.a("forwardStringResId"), hc.a("forward10StringResId"), hc.a("forward30StringResId"), hc.a("rewindStringResId"), hc.a("rewind10StringResId"), hc.a("rewind30StringResId"), hc.a("disconnectStringResId"), null, false, false);
+        J = new g6.a("com.google.android.gms.cast.framework.media.MediaIntentReceiver", null, null, null, false, false);
+        CREATOR = new c0(1);
+    }
+
+    public b(String str, ArrayList arrayList, boolean z10, e6.i iVar, boolean z11, g6.a aVar, boolean z12, double d, boolean z13, boolean z14, boolean z15, ArrayList arrayList2, boolean z16, boolean z17, a0 a0Var, b0 b0Var) {
+        this.f11455a = true == TextUtils.isEmpty(str) ? "" : str;
+        int size = arrayList == null ? 0 : arrayList.size();
+        ArrayList arrayList3 = new ArrayList(size);
+        this.f11456b = arrayList3;
+        if (size > 0) {
+            arrayList3.addAll(arrayList);
         }
-        this.f6916a = eVar;
+        this.f11457c = z10;
+        this.d = iVar == null ? new e6.i() : iVar;
+        this.f11458e = z11;
+        this.f11459f = aVar;
+        this.h = z12;
+        this.f11460n = d;
+        this.f11461r = z13;
+        this.f11462s = z14;
+        this.f11463w = z15;
+        this.f11464x = arrayList2;
+        this.f11465y = z16;
+        this.E = z17;
+        this.F = a0Var;
+        this.G = b0Var;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        Uri uri;
-        e eVar;
-        Uri[] uriArr = (Uri[]) objArr;
-        if (uriArr.length == 1 && (uri = uriArr[0]) != null && (eVar = this.f6916a) != null) {
-            try {
-                c cVar = (c) eVar;
-                Parcel P0 = cVar.P0();
-                u.c(P0, uri);
-                Parcel R0 = cVar.R0(P0, 1);
-                Bitmap bitmap = (Bitmap) u.a(R0, Bitmap.CREATOR);
-                R0.recycle();
-                return bitmap;
-            } catch (RemoteException e) {
-                f6915c.a(e, "Unable to call %s on %s.", "doFetch", e.class.getSimpleName());
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        bh.d dVar = this.f6917b;
-        if (dVar != null) {
-            a aVar = (a) dVar.e;
-            if (aVar != null) {
-                aVar.q(bitmap);
-            }
-            dVar.d = null;
-        }
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.m(parcel, 2, this.f11455a);
+        j8.a.o(parcel, 3, DesugarCollections.unmodifiableList(this.f11456b));
+        j8.a.r(parcel, 4, 4);
+        parcel.writeInt(this.f11457c ? 1 : 0);
+        j8.a.l(parcel, 5, this.d, i3);
+        j8.a.r(parcel, 6, 4);
+        parcel.writeInt(this.f11458e ? 1 : 0);
+        j8.a.l(parcel, 7, this.f11459f, i3);
+        j8.a.r(parcel, 8, 4);
+        parcel.writeInt(this.h ? 1 : 0);
+        j8.a.r(parcel, 9, 8);
+        parcel.writeDouble(this.f11460n);
+        j8.a.r(parcel, 10, 4);
+        parcel.writeInt(this.f11461r ? 1 : 0);
+        j8.a.r(parcel, 11, 4);
+        parcel.writeInt(this.f11462s ? 1 : 0);
+        j8.a.r(parcel, 12, 4);
+        parcel.writeInt(this.f11463w ? 1 : 0);
+        j8.a.o(parcel, 13, DesugarCollections.unmodifiableList(this.f11464x));
+        j8.a.r(parcel, 14, 4);
+        parcel.writeInt(this.f11465y ? 1 : 0);
+        j8.a.r(parcel, 15, 4);
+        parcel.writeInt(0);
+        j8.a.r(parcel, 16, 4);
+        parcel.writeInt(this.E ? 1 : 0);
+        j8.a.l(parcel, 17, this.F, i3);
+        j8.a.l(parcel, 18, this.G, i3);
+        j8.a.t(parcel, s6);
     }
 }

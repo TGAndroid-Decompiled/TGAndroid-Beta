@@ -72,7 +72,7 @@ public interface NetworkChangeDetector {
 
         void onNetworkDisconnect(long j10);
 
-        void onNetworkPreference(List<ConnectionType> list, int i10);
+        void onNetworkPreference(List<ConnectionType> list, int i3);
     }
 
     void destroy();

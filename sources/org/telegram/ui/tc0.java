@@ -1,36 +1,23 @@
 package org.telegram.ui;
+public final class tc0 implements org.telegram.ui.ActionBar.p1 {
+    public final int f49771a;
+    public final dd0 f49772b;
 
-import android.content.Context;
-public final class tc0 extends zr {
-    public final int h;
-    public final Object f41616n;
-
-    public tc0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f41616n = obj;
+    public tc0(dd0 dd0Var, int i3) {
+        this.f49771a = i3;
+        this.f49772b = dd0Var;
     }
 
     @Override
-    public final void a() {
-        switch (this.h) {
+    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f49771a) {
             case 0:
-                ((vc0) this.f41616n).h(null);
+                dd0 dd0Var = this.f49772b;
+                dd0Var.c(true);
+                dd0Var.f44663v0.D1(0, true, null, true);
                 return;
-            case 1:
-                ((nd0) this.f41616n).h(null);
-                return;
-            case 2:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f41616n;
-                if (passcodeActivity.E == 0) {
-                    postDelayed(new kg0(this, 3), 260L);
-                    return;
-                } else {
-                    passcodeActivity.u0();
-                    return;
-                }
             default:
-                ((rc1) this.f41616n).H0();
+                this.f49772b.f44663v0.D1(0, true, null, true);
                 return;
         }
     }

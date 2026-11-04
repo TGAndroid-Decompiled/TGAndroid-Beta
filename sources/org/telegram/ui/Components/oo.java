@@ -1,39 +1,92 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.tl.TL_stories;
-public final class oo implements org.telegram.messenger.r20 {
-    public final int f29199a;
-    public final dp f29200b;
+import android.graphics.Bitmap;
+import android.graphics.Point;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.lc1;
+public final class oo implements zh {
+    public final vo f36874a;
 
-    public oo(dp dpVar, int i10) {
-        this.f29199a = i10;
-        this.f29200b = dpVar;
+    public oo(vo voVar) {
+        this.f36874a = voVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f29199a) {
-            case 0:
-                dp dpVar = this.f29200b;
-                dpVar.V1 = (TL_stories.TL_premium_boostsStatus) obj;
-                dpVar.U1 = true;
-                dpVar.Z0(true);
-                dpVar.T1 = false;
-                return;
-            default:
-                org.telegram.messenger.h3 h3Var = (org.telegram.messenger.h3) obj;
-                dp dpVar2 = this.f29200b;
-                if (dpVar2.getContext() != null) {
-                    org.telegram.ui.un unVar = dpVar2.f25547r1;
-                    kg.q0 q0Var = new kg.q0(22, dpVar2.f21584a, dpVar2.getContext(), unVar, dpVar2.I0);
-                    q0Var.A1(h3Var);
-                    q0Var.z1(dpVar2.V1, true);
-                    q0Var.B1(dpVar2.f25547r1.a());
-                    q0Var.I2 = new mo(dpVar2, 2);
-                    q0Var.show();
-                    return;
+    public final void I0(Object obj) {
+        lo loVar = new lo(obj, null, true, 3);
+        vo voVar = this.f36874a;
+        loVar.X1 = voVar.W1;
+        loVar.h1(voVar.f39191s1.a());
+        loVar.K1 = new no(this, 1);
+        vo.I0(voVar, loVar);
+    }
+
+    @Override
+    public final boolean L1() {
+        System.currentTimeMillis();
+        return true;
+    }
+
+    @Override
+    public final void Y(ng ngVar) {
+        ngVar.run();
+    }
+
+    @Override
+    public final boolean g0() {
+        return false;
+    }
+
+    @Override
+    public final void o1(int i3, boolean z10, boolean z11, int i10, int i11, long j10, boolean z12, boolean z13, long j11) {
+        vo voVar = this.f36874a;
+        try {
+            HashMap<Object, Object> selectedPhotos = voVar.P1.f32215b2.getSelectedPhotos();
+            if (!selectedPhotos.isEmpty()) {
+                org.telegram.messenger.ye yeVar = (org.telegram.messenger.ye) selectedPhotos.values().iterator().next();
+                String str = yeVar.h;
+                if (str == null) {
+                    str = yeVar.I;
                 }
-                return;
+                if (str != null) {
+                    File z14 = org.telegram.messenger.w7.z(4);
+                    File file = new File(z14, Utilities.f21385b.nextInt() + ".jpg");
+                    Point c12 = org.telegram.messenger.g0.c1();
+                    Bitmap K = org.telegram.messenger.zb.K(str, null, (float) c12.x, (float) c12.y, true);
+                    K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
+                    lo loVar = new lo(new lc1(file, file, ""), K, false, 2);
+                    loVar.X1 = voVar.W1;
+                    loVar.H1 = false;
+                    loVar.G1 = false;
+                    loVar.f47186p1 = 0.2f;
+                    loVar.h1(voVar.f39191s1.a());
+                    loVar.K1 = new no(this, 0);
+                    vo.I0(voVar, loVar);
+                }
+            }
+        } catch (Throwable th2) {
+            org.telegram.messenger.a8.g(th2, true);
         }
+    }
+
+    @Override
+    public final void a1(TLRPC.User user) {
+    }
+
+    @Override
+    public final void r0() {
+    }
+
+    @Override
+    public final void v0() {
+    }
+
+    @Override
+    public final void R1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i3, int i10, long j10, boolean z11, long j11) {
     }
 }

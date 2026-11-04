@@ -1,109 +1,87 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class xv implements ug.a {
-    public final int f43460a;
-    public final org.telegram.ui.ActionBar.k2 f43461b;
-    public final FrameLayout f43462c;
-    public final Object d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xv extends AnimatorListenerAdapter {
+    public final int f52108a;
+    public final float f52109b;
+    public final uw f52110c;
 
-    public xv(org.telegram.ui.ActionBar.k2 k2Var, FrameLayout frameLayout, Object obj, int i10) {
-        this.f43460a = i10;
-        this.f43461b = k2Var;
-        this.f43462c = frameLayout;
-        this.d = obj;
+    public xv(uw uwVar, float f10, int i3) {
+        this.f52108a = i3;
+        this.f52110c = uwVar;
+        this.f52109b = f10;
     }
 
     @Override
-    public final void d(Canvas canvas, RectF rectF) {
+    public final void onAnimationEnd(Animator animator) {
+        int i3;
         int i10;
-        Canvas canvas2;
-        RectF rectF2;
-        switch (this.f43460a) {
+        switch (this.f52108a) {
             case 0:
-                zx zxVar = (zx) this.f43461b;
-                sx sxVar = (sx) this.f43462c;
-                PointF pointF = (PointF) this.d;
-                jx jxVar = zxVar.C0;
-                if (jxVar != null) {
-                    i10 = (int) (jxVar.getAlpha() * 255.0f);
+                super.onAnimationEnd(animator);
+                uw uwVar = this.f52110c;
+                uwVar.f50317w3 = null;
+                int i11 = 0;
+                uwVar.P = false;
+                uwVar.R = true;
+                uwVar.S = true;
+                uwVar.fragmentView.invalidate();
+                if (uwVar.L) {
+                    i3 = 81;
+                } else {
+                    i3 = 0;
+                }
+                uwVar.f50333z3 = -(org.telegram.messenger.g0.L(i3 + 48) - this.f52109b);
+                uwVar.f50230f0[0].setTranslationY(0.0f);
+                while (true) {
+                    tw[] twVarArr = uwVar.f50230f0;
+                    if (i11 < twVarArr.length) {
+                        tw twVar = twVarArr[i11];
+                        if (twVar != null) {
+                            twVar.f49897a.requestLayout();
+                        }
+                        i11++;
+                    } else {
+                        uwVar.fragmentView.requestLayout();
+                        iw iwVar = uwVar.Y;
+                        if (iwVar != null && uwVar.f50207b.f53841f) {
+                            iwVar.f36302r.requestFocus();
+                            org.telegram.messenger.g0.K3(uwVar.Y.f36302r);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                break;
+            default:
+                super.onAnimationEnd(animator);
+                uw uwVar2 = this.f52110c;
+                uwVar2.f50317w3 = null;
+                uwVar2.Q = 0;
+                uwVar2.P = true;
+                if (uwVar2.L) {
+                    i10 = 81;
                 } else {
                     i10 = 0;
                 }
-                yx[] yxVarArr = zxVar.f44137e0;
-                int length = yxVarArr.length;
-                int i11 = 0;
-                while (i11 < length) {
-                    yx yxVar = yxVarArr[i11];
-                    if (yxVar != null && yxVar.getVisibility() == 0 && yxVar.getAlpha() > 0.0f) {
-                        float h42 = zxVar.h4();
-                        if (yxVar.F != null && h42 > 0.0f) {
-                            if (zg.h.b(yxVar.f43733a, sxVar, pointF)) {
-                                canvas.save();
-                                canvas.clipRect(rectF);
-                                canvas.translate(pointF.x, pointF.y);
-                                yxVar.f43733a.dispatchDraw(canvas);
-                                canvas.restore();
-                            } else {
-                                return;
-                            }
-                        } else {
-                            vx vxVar = yxVar.f43733a;
-                            canvas2 = canvas;
-                            rectF2 = rectF;
-                            yg.d.b(vxVar, canvas2, rectF2, vxVar, sxVar, 255 - i10);
-                            i11++;
-                            canvas = canvas2;
-                            rectF = rectF2;
+                uwVar2.f50333z3 = org.telegram.messenger.g0.L(i10 + 48) - this.f52109b;
+                uwVar2.f50230f0[0].setTranslationY(0.0f);
+                int i12 = 0;
+                while (true) {
+                    tw[] twVarArr2 = uwVar2.f50230f0;
+                    if (i12 < twVarArr2.length) {
+                        tw twVar2 = twVarArr2[i12];
+                        if (twVar2 != null) {
+                            twVar2.f49897a.requestLayout();
                         }
+                        i12++;
+                    } else {
+                        uwVar2.F0.l(false, 1.0f);
+                        uwVar2.fragmentView.requestLayout();
+                        return;
                     }
-                    canvas2 = canvas;
-                    rectF2 = rectF;
-                    i11++;
-                    canvas = canvas2;
-                    rectF = rectF2;
                 }
-                Canvas canvas3 = canvas;
-                RectF rectF3 = rectF;
-                jx jxVar2 = zxVar.C0;
-                if (jxVar2 != null && jxVar2.getVisibility() == 0 && zxVar.C0.getAlpha() > 0.0f) {
-                    jx jxVar3 = zxVar.C0;
-                    yg.d.b(jxVar3, canvas3, rectF3, jxVar3, sxVar, i10);
-                    return;
-                }
-                return;
-            default:
-                s61 s61Var = (s61) this.f43461b;
-                z5 z5Var = (z5) this.d;
-                s51 s51Var = s61Var.S;
-                FrameLayout frameLayout = this.f43462c;
-                if (s51Var != null) {
-                    yg.d.a(s51Var, canvas, rectF, s51Var, frameLayout);
-                }
-                zb zbVar = s61Var.f41248i0;
-                if (zbVar != null) {
-                    org.telegram.ui.Components.uk0 uk0Var = zbVar.F;
-                    yg.d.a(uk0Var, canvas, rectF, uk0Var, frameLayout);
-                }
-                le leVar = s61Var.f41249j0;
-                if (leVar != null && leVar.getParent() == s61Var.f41247h0 && s61Var.f41249j0.getVisibility() == 0) {
-                    s61Var.f41249j0.d(canvas, rectF, z5Var);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void g(g.y yVar, RectF rectF) {
-        switch (this.f43460a) {
-            case 0:
-            default:
-                yVar.f7259b = true;
-                return;
         }
     }
 }

@@ -1,48 +1,39 @@
 package mg;
 
-import java.util.Calendar;
-import org.telegram.messenger.dd;
-import org.telegram.ui.Components.wb0;
-public final class d implements wb0 {
-    public final int f13088a;
-    public final long f13089b;
-    public final Calendar f13090c;
-    public final int d;
+import android.animation.ValueAnimator;
+public final class d implements ValueAnimator.AnimatorUpdateListener {
+    public final int f19303a;
+    public final g f19304b;
 
-    public d(long j10, Calendar calendar, int i10, int i11) {
-        this.f13088a = i11;
-        this.f13089b = j10;
-        this.f13090c = calendar;
-        this.d = i10;
+    public d(g gVar, int i3) {
+        this.f19303a = i3;
+        this.f19304b = gVar;
     }
 
     @Override
-    public final String e(int i10) {
-        int i11 = this.f13088a;
-        int i12 = this.d;
-        Calendar calendar = this.f13090c;
-        long j10 = this.f13089b;
-        switch (i11) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f19303a) {
             case 0:
-                if (i10 == 0) {
-                    return dd.L0(2131748546, "MessageScheduleToday");
-                }
-                long j11 = (i10 * 86400000) + j10;
-                calendar.setTimeInMillis(j11);
-                if (calendar.get(1) == i12) {
-                    return dd.D0().v0().format(j11);
-                }
-                return dd.D0().x0().format(j11);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g gVar = this.f19304b;
+                gVar.f19350k0 = floatValue;
+                gVar.I = true;
+                gVar.invalidate();
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g gVar2 = this.f19304b;
+                gVar2.f19351l0 = floatValue2;
+                gVar2.I = true;
+                gVar2.invalidate();
+                return;
             default:
-                if (i10 == 0) {
-                    return dd.L0(2131748546, null);
-                }
-                long j12 = (i10 * 86400000) + j10;
-                calendar.setTimeInMillis(j12);
-                if (calendar.get(1) == i12) {
-                    return dd.D0().z0().format(j12) + " " + dd.D0().v0().format(j12);
-                }
-                return dd.D0().x0().format(j12);
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g gVar3 = this.f19304b;
+                gVar3.f19365w0 = floatValue3;
+                gVar3.f19362u0.setAlpha(gVar3.f19365w0);
+                gVar3.invalidate();
+                return;
         }
     }
 }

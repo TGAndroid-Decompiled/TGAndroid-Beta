@@ -1,108 +1,133 @@
 package k2;
 
-import java.nio.ByteBuffer;
-public final class f1 extends c2.n {
-    public int f10651i;
-    public int f10652j;
-    public boolean f10653k;
-    public int f10654l;
-    public byte[] f10655m;
-    public int f10656n;
-    public long f10657o;
+import ai.e3;
+import android.util.Pair;
+import ci.v3;
+import ei.h9;
+import java.io.IOException;
+public final class f1 implements w2.k0, p2.k {
+    public final h1 f16502a;
+    public final i1 f16503b;
 
-    @Override
-    public final ByteBuffer a() {
-        int i10;
-        if (super.c() && (i10 = this.f10656n) > 0) {
-            l(i10).put(this.f10655m, 0, this.f10656n).flip();
-            this.f10656n = 0;
-        }
-        return super.a();
+    public f1(i1 i1Var, h1 h1Var) {
+        this.f16503b = i1Var;
+        this.f16502a = h1Var;
     }
 
     @Override
-    public final void b(ByteBuffer byteBuffer) {
-        int position = byteBuffer.position();
-        int limit = byteBuffer.limit();
-        int i10 = limit - position;
-        if (i10 != 0) {
-            int min = Math.min(i10, this.f10654l);
-            this.f10657o += min / this.f3553b.d;
-            this.f10654l -= min;
-            byteBuffer.position(position + min);
-            if (this.f10654l > 0) {
-                return;
+    public final void A(int i3, w2.g0 g0Var, Exception exc) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new h9(this, a10, exc, 20));
+        }
+    }
+
+    @Override
+    public final void D(int i3, w2.g0 g0Var, w2.c0 c0Var) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new c1(this, a10, c0Var, 0));
+        }
+    }
+
+    @Override
+    public final void I(int i3, w2.g0 g0Var) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new e1(this, a10, 1));
+        }
+    }
+
+    @Override
+    public final void K(int i3, w2.g0 g0Var, w2.u uVar, w2.c0 c0Var, int i10) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new ai.p1(this, a10, uVar, c0Var, i10, 4));
+        }
+    }
+
+    @Override
+    public final void M(int i3, w2.g0 g0Var, int i10) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new e3(this, a10, i10, 18));
+        }
+    }
+
+    public final Pair a(int i3, w2.g0 g0Var) {
+        w2.g0 g0Var2;
+        h1 h1Var = this.f16502a;
+        w2.g0 g0Var3 = null;
+        if (g0Var != null) {
+            int i10 = 0;
+            while (true) {
+                if (i10 < h1Var.f16533c.size()) {
+                    if (((w2.g0) h1Var.f16533c.get(i10)).d == g0Var.d) {
+                        Object obj = g0Var.f57081a;
+                        Object obj2 = h1Var.f16532b;
+                        int i11 = a.f16436g;
+                        g0Var2 = g0Var.a(Pair.create(obj2, obj));
+                        break;
+                    }
+                    i10++;
+                } else {
+                    g0Var2 = null;
+                    break;
+                }
             }
-            int i11 = i10 - min;
-            int length = (this.f10656n + i11) - this.f10655m.length;
-            ByteBuffer l4 = l(length);
-            int i12 = e2.l0.i(length, 0, this.f10656n);
-            l4.put(this.f10655m, 0, i12);
-            int i13 = e2.l0.i(length - i12, 0, i11);
-            byteBuffer.limit(byteBuffer.position() + i13);
-            l4.put(byteBuffer);
-            byteBuffer.limit(limit);
-            int i14 = i11 - i13;
-            int i15 = this.f10656n - i12;
-            this.f10656n = i15;
-            byte[] bArr = this.f10655m;
-            System.arraycopy(bArr, i12, bArr, 0, i15);
-            byteBuffer.get(this.f10655m, this.f10656n, i14);
-            this.f10656n += i14;
-            l4.flip();
-        }
-    }
-
-    @Override
-    public final boolean c() {
-        if (super.c() && this.f10656n == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final long g(long j10) {
-        return Math.max(0L, j10 - e2.l0.Y(this.f3553b.f3547a, this.f10652j + this.f10651i));
-    }
-
-    @Override
-    public final c2.j h(c2.j jVar) {
-        if (e2.l0.M(jVar.f3549c)) {
-            this.f10653k = true;
-            if (this.f10651i == 0 && this.f10652j == 0) {
-                return c2.j.e;
+            if (g0Var2 == null) {
+                return null;
             }
-            return jVar;
+            g0Var3 = g0Var2;
         }
-        throw new c2.l(jVar);
+        return Pair.create(Integer.valueOf(i3 + h1Var.d), g0Var3);
     }
 
     @Override
-    public final void i() {
-        if (this.f10653k) {
-            this.f10653k = false;
-            int i10 = this.f10652j;
-            int i11 = this.f3553b.d;
-            this.f10655m = new byte[i10 * i11];
-            this.f10654l = this.f10651i * i11;
-        }
-        this.f10656n = 0;
-    }
-
-    @Override
-    public final void j() {
-        int i10;
-        if (this.f10653k) {
-            if (this.f10656n > 0) {
-                this.f10657o += i10 / this.f3553b.d;
-            }
-            this.f10656n = 0;
+    public final void b(int i3, w2.g0 g0Var) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new e1(this, a10, 0));
         }
     }
 
     @Override
-    public final void k() {
-        this.f10655m = e2.l0.f6166b;
+    public final void d(int i3, w2.g0 g0Var, w2.c0 c0Var) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new c1(this, a10, c0Var, 1));
+        }
+    }
+
+    @Override
+    public final void j(int i3, w2.g0 g0Var, w2.u uVar, w2.c0 c0Var, IOException iOException, boolean z10) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new v3(this, a10, uVar, c0Var, iOException, z10, 1));
+        }
+    }
+
+    @Override
+    public final void t(int i3, w2.g0 g0Var, w2.u uVar, w2.c0 c0Var) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new d1(this, a10, uVar, c0Var, 1));
+        }
+    }
+
+    @Override
+    public final void x(int i3, w2.g0 g0Var, v7.s sVar) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new h9(this, a10, sVar, 19));
+        }
+    }
+
+    @Override
+    public final void z(int i3, w2.g0 g0Var, w2.u uVar, w2.c0 c0Var) {
+        Pair a10 = a(i3, g0Var);
+        if (a10 != null) {
+            this.f16503b.f16587i.d(new d1(this, a10, uVar, c0Var, 0));
+        }
     }
 }

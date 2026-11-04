@@ -74,11 +74,11 @@ public abstract class e {
     }
 
     public static int k(int[] iArr) {
-        for (int i10 = 0; i10 < iArr.length - 1; i10++) {
-            if (iArr[i10] == 12352) {
-                int i11 = iArr[i10 + 1];
-                if (i11 != 4) {
-                    if (i11 != 64) {
+        for (int i3 = 0; i3 < iArr.length - 1; i3++) {
+            if (iArr[i3] == 12352) {
+                int i10 = iArr[i3 + 1];
+                if (i10 != 4) {
+                    if (i10 != 64) {
                         return 1;
                     }
                     return 3;

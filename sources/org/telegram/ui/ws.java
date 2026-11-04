@@ -1,33 +1,46 @@
 package org.telegram.ui;
-public final class ws implements Runnable {
-    public final int f43158a;
-    public final kt f43159b;
 
-    public ws(kt ktVar, int i10) {
-        this.f43158a = i10;
-        this.f43159b = ktVar;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+public final class ws implements DialogInterface.OnClickListener {
+    public final DataSettingsActivity f51596a;
+    public final SharedPreferences f51597b;
+    public final int f51598c;
+
+    public ws(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i3) {
+        this.f51596a = dataSettingsActivity;
+        this.f51597b = sharedPreferences;
+        this.f51598c = i3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43158a) {
-            case 0:
-                this.f43159b.f38978c0 = null;
-                return;
-            case 1:
-                kt ktVar = this.f43159b;
-                ktVar.A.w0(null);
-                org.telegram.ui.Components.lc0 lc0Var = ktVar.C;
-                if (lc0Var != null) {
-                    lc0Var.a();
-                    ktVar.f38999z.removeView(ktVar.C);
-                    ktVar.C = null;
-                    return;
+    public final void onClick(DialogInterface dialogInterface, int i3) {
+        int i10;
+        DataSettingsActivity dataSettingsActivity = this.f51596a;
+        dataSettingsActivity.getClass();
+        if (i3 != 0) {
+            i10 = 3;
+            if (i3 != 1) {
+                if (i3 != 2) {
+                    if (i3 != 3) {
+                        i10 = -1;
+                    } else {
+                        i10 = 2;
+                    }
+                } else {
+                    i10 = 1;
                 }
-                return;
-            default:
-                this.f43159b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.gr.h).start();
-                return;
+            }
+        } else {
+            i10 = 0;
+        }
+        if (i10 != -1) {
+            this.f51597b.edit().putInt("VoipDataSaving", i10).commit();
+            dataSettingsActivity.V = true;
+        }
+        n4 n4Var = dataSettingsActivity.f41243a;
+        if (n4Var != null) {
+            n4Var.g(this.f51598c);
         }
     }
 }

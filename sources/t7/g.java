@@ -1,50 +1,20 @@
 package t7;
 
-import j$.util.Objects;
-import w7.t7;
-public final class g extends d {
-    public static final g e = new g(0, new Object[0]);
-    public final transient Object[] f48555c;
-    public final transient int d;
+import b8.y9;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class g extends v {
+    public final TaskCompletionSource f54958b;
 
-    public g(int i10, Object[] objArr) {
-        this.f48555c = objArr;
-        this.d = i10;
+    public g(TaskCompletionSource taskCompletionSource) {
+        this.f54958b = taskCompletionSource;
     }
 
     @Override
-    public final Object get(int i10) {
-        t7.a(i10, this.d);
-        Object obj = this.f48555c[i10];
-        Objects.requireNonNull(obj);
-        return obj;
+    public final void X(t tVar) {
+        y9.a(tVar.f54980a, Boolean.TRUE, this.f54958b);
     }
 
     @Override
-    public final int l(Object[] objArr) {
-        Object[] objArr2 = this.f48555c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i10);
-        return i10;
-    }
-
-    @Override
-    public final int m() {
-        return this.d;
-    }
-
-    @Override
-    public final int n() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.f48555c;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final void zze() {
     }
 }

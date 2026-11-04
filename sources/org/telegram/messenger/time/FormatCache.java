@@ -28,13 +28,13 @@ public abstract class FormatCache<F extends Format> {
         public int hashCode() {
             Object[] objArr;
             if (this.hashCode == 0) {
-                int i10 = 0;
+                int i3 = 0;
                 for (Object obj : this.keys) {
                     if (obj != null) {
-                        i10 = obj.hashCode() + (i10 * 7);
+                        i3 = obj.hashCode() + (i3 * 7);
                     }
                 }
-                this.hashCode = i10;
+                this.hashCode = i3;
             }
             return this.hashCode;
         }
@@ -76,16 +76,16 @@ public abstract class FormatCache<F extends Format> {
 
     public abstract F createInstance(String str, TimeZone timeZone, Locale locale);
 
-    public F getDateInstance(int i10, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i10), (Integer) null, timeZone, locale);
+    public F getDateInstance(int i3, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance(Integer.valueOf(i3), (Integer) null, timeZone, locale);
     }
 
     public F getInstance() {
         return getDateTimeInstance(3, 3, TimeZone.getDefault(), Locale.getDefault());
     }
 
-    public F getTimeInstance(int i10, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance((Integer) null, Integer.valueOf(i10), timeZone, locale);
+    public F getTimeInstance(int i3, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance((Integer) null, Integer.valueOf(i3), timeZone, locale);
     }
 
     public F getInstance(String str, TimeZone timeZone, Locale locale) {
@@ -97,18 +97,18 @@ public abstract class FormatCache<F extends Format> {
                 locale = Locale.getDefault();
             }
             MultipartKey multipartKey = new MultipartKey(str, timeZone, locale);
-            F f7 = this.cInstanceCache.get(multipartKey);
-            if (f7 == null) {
+            F f10 = this.cInstanceCache.get(multipartKey);
+            if (f10 == null) {
                 F createInstance = createInstance(str, timeZone, locale);
                 F putIfAbsent = this.cInstanceCache.putIfAbsent(multipartKey, createInstance);
                 return putIfAbsent != null ? putIfAbsent : createInstance;
             }
-            return f7;
+            return f10;
         }
         throw new NullPointerException("pattern must not be null");
     }
 
-    public F getDateTimeInstance(int i10, int i11, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i10), Integer.valueOf(i11), timeZone, locale);
+    public F getDateTimeInstance(int i3, int i10, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance(Integer.valueOf(i3), Integer.valueOf(i10), timeZone, locale);
     }
 }

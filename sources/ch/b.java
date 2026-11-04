@@ -1,139 +1,190 @@
 package ch;
 
-import a3.d;
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import fe.f;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import org.telegram.messenger.a30;
-import org.telegram.messenger.i0;
-import org.telegram.ui.Components.voip.c2;
-public abstract class b extends ViewGroup {
-    public int f4182a;
-    public int f4183b;
-    public final LinkedHashMap f4184c;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import b8.mf;
+import ei.d4;
+import java.util.Date;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.g0;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.k5;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Cells.pa;
+import org.telegram.ui.Components.u8;
+public final class b extends pa {
+    public final TextView f4774c0;
+    public final FrameLayout f4775d0;
+    public Drawable f4776e0;
+    public Drawable f4777f0;
+    public TL_stories.Boost f4778g0;
+    public final a f4779h0;
 
     public b(Context context) {
-        super(context);
-        this.f4184c = new LinkedHashMap(16);
-    }
-
-    public final void a(c2 c2Var) {
-        addView(c2Var);
-        this.f4184c.put(c2Var, new a(c2Var, new d(this, 27)));
-    }
-
-    public final void b(boolean z10, boolean z11) {
-        boolean z12;
-        int min;
+        super(context, 0, 0, false);
+        int i3;
         int i10;
-        boolean z13;
-        f fVar;
-        int measuredWidth;
-        int i11;
-        int measuredWidth2 = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        if (measuredWidth2 > measuredHeight) {
-            z12 = false;
+        this.f4779h0 = new a(getContext());
+        this.f4775d0 = new FrameLayout(getContext());
+        TextView textView = new TextView(getContext());
+        this.f4774c0 = textView;
+        textView.setTextColor(k6.w0(k6.G6, this.E));
+        this.f4774c0.setTypeface(g0.o());
+        this.f4774c0.setTextSize(12.0f);
+        this.f4774c0.setGravity(17);
+        this.f4775d0.addView(this.f4774c0, mf.c(22.0f, -2));
+        this.f4775d0.setPadding(g0.L(8.0f), 0, g0.L(8.0f), 0);
+        FrameLayout frameLayout = this.f4775d0;
+        boolean z10 = bd.f21784a0;
+        if (z10) {
+            i3 = 3;
         } else {
-            z12 = true;
+            i3 = 5;
         }
-        if (measuredWidth2 > 0 && measuredHeight > 0) {
-            LinkedHashMap linkedHashMap = this.f4184c;
-            int i12 = 0;
-            for (a aVar : linkedHashMap.values()) {
-                if (aVar.h) {
-                    i12++;
-                }
-            }
-            if (i12 == 0) {
-                i12 = 1;
-            }
-            if (!z12) {
-                int min2 = Math.min(i0.L(50.0f) + Math.max((int) (a30.A(50.0f, i12, measuredWidth2) / (i12 + 0.333f)), 0), measuredWidth2 / i12);
-                min = i0.L(76.0f);
-                i10 = (measuredWidth2 - (i12 * min2)) / 2;
-                measuredWidth2 = min2;
+        int i11 = i3 | 48;
+        if (z10) {
+            i10 = 9;
+        } else {
+            i10 = 0;
+        }
+        addView(frameLayout, mf.d(-2, -2.0f, i11, i10, 9.0f, z10 ? 0 : 9, 0.0f));
+    }
+
+    private void setAvatarColorByMonths(int i3) {
+        u8 u8Var = this.F;
+        if (i3 == 12) {
+            u8Var.i(-31392, -2796986);
+        } else if (i3 == 6) {
+            u8Var.i(-10703110, -12481584);
+        } else {
+            u8Var.i(-6631068, -11945404);
+        }
+    }
+
+    public TL_stories.Boost getBoost() {
+        return this.f4778g0;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i3;
+        if (this.T) {
+            if (bd.f21784a0) {
+                L = 0.0f;
             } else {
-                min = Math.min(i0.L(50.0f) + Math.max((int) (a30.A(50.0f, i12, measuredHeight) / (i12 + 0.333f)), 0), measuredHeight / i12);
-                i10 = (measuredHeight - (i12 * min)) / 2;
+                L = g0.L(70.0f);
             }
-            int i13 = 0;
-            for (Map.Entry entry : linkedHashMap.entrySet()) {
-                a aVar2 = (a) entry.getValue();
-                boolean z14 = aVar2.h;
-                c2 c2Var = aVar2.e;
-                f fVar2 = aVar2.f4179b;
-                fe.b bVar = aVar2.f4180c;
-                f fVar3 = aVar2.f4178a;
-                if (z14) {
-                    if (!z12) {
-                        measuredWidth = ((measuredWidth2 - c2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i13) + i10;
-                        i11 = getMeasuredHeight() - i0.L(76.0f);
-                    } else {
-                        measuredWidth = ((measuredWidth2 - c2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
-                        i11 = (min * i13) + i10;
-                    }
-                    if (!z11 && ((z10 || fVar3.h) && bVar.f7022f)) {
-                        fVar3.a(measuredWidth);
-                    } else {
-                        fVar3.c(measuredWidth);
-                    }
-                    if (!z11 && ((z10 || fVar2.h) && bVar.f7022f)) {
-                        fVar2.a(i11);
-                    } else {
-                        fVar2.c(i11);
-                    }
-                    i13++;
-                }
-                boolean z15 = aVar2.h;
-                if (!z11 && (z10 || ((fVar = bVar.h) != null && fVar.h))) {
-                    z13 = true;
-                } else {
-                    z13 = false;
-                }
-                bVar.a(z15, z13);
+            float f10 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (bd.f21784a0) {
+                i3 = g0.L(70.0f);
+            } else {
+                i3 = 0;
             }
-            invalidate();
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i3, getMeasuredHeight() - 1, k6.f28002k0);
         }
     }
 
-    public final void c(c2 c2Var, boolean z10, boolean z11) {
-        a aVar = (a) this.f4184c.get(c2Var);
-        if (aVar != null && aVar.h != z10) {
-            aVar.h = z10;
-            b(z11, false);
+    public void setStatus(TL_stories.Boost boost) {
+        int i3;
+        this.f4778g0 = boost;
+        boolean z10 = boost.gift;
+        FrameLayout frameLayout = this.f4775d0;
+        TextView textView = this.f4774c0;
+        int i10 = 0;
+        k5 k5Var = this.f29824b;
+        if (!z10 && !boost.giveaway) {
+            frameLayout.setVisibility(8);
+        } else {
+            frameLayout.setVisibility(0);
+            int i11 = ((boost.expires - boost.date) / 30) / 86400;
+            long j10 = boost.stars;
+            int i12 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+            d4 d4Var = this.f29822a;
+            u8 u8Var = this.F;
+            if (i12 > 0) {
+                k5Var.l(bd.G((int) j10, "BoostingBoostStars", new Object[0]), false);
+                u8Var.g(26);
+                d4Var.e(null, u8Var);
+                k5Var.i(null);
+            } else if (boost.unclaimed) {
+                k5Var.l(bd.M0(2131753177, null), false);
+                u8Var.g(18);
+                setAvatarColorByMonths(i11);
+                d4Var.e(null, u8Var);
+                k5Var.i(null);
+            } else if (boost.user_id == -1) {
+                k5Var.l(bd.M0(2131753178, null), false);
+                u8Var.g(19);
+                setAvatarColorByMonths(i11);
+                d4Var.e(null, u8Var);
+                k5Var.i(null);
+            }
+            String format = bd.E0().o0().format(new Date(boost.expires * 1000));
+            int i13 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
+            k5 k5Var2 = this.f29826c;
+            if (i13 > 0) {
+                k5Var2.l(bd.a0(null, null, 2131753244, format), false);
+            } else {
+                k5Var2.l(bd.a0(null, null, 2131753524, format), false);
+            }
+            if (boost.gift) {
+                if (this.f4777f0 == null) {
+                    Drawable drawable = getResources().getDrawable(2131231947);
+                    this.f4777f0 = drawable;
+                    drawable.setColorFilter(new PorterDuffColorFilter(-3240417, PorterDuff.Mode.MULTIPLY));
+                }
+                textView.setTextColor(-3240417);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f4777f0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablePadding(g0.L(4.0f));
+                textView.setText(bd.M0(2131753501, null));
+                frameLayout.setBackground(k6.e0(g0.L(12.0f), g0.L(12.0f), k6.r1(0.2f, -3240417)));
+            }
+            if (boost.giveaway) {
+                if (this.f4776e0 == null) {
+                    Drawable drawable2 = getResources().getDrawable(2131231953);
+                    this.f4776e0 = drawable2;
+                    drawable2.setColorFilter(new PorterDuffColorFilter(-13397548, PorterDuff.Mode.MULTIPLY));
+                }
+                textView.setTextColor(-13397548);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f4776e0, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablePadding(g0.L(4.0f));
+                textView.setText(bd.M0(2131753492, null));
+                frameLayout.setBackground(k6.e0(g0.L(12.0f), g0.L(12.0f), k6.r1(0.2f, -13397548)));
+            }
         }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+        int i14 = boost.multiplier;
+        if (i14 > 0) {
+            String valueOf = String.valueOf(i14);
+            a aVar = this.f4779h0;
+            aVar.f4773f = valueOf;
+            aVar.f4772e = aVar.f4769a.measureText(valueOf);
+            aVar.invalidateSelf();
+            k5Var.i(aVar);
+        } else {
+            k5Var.i(null);
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        setMeasuredDimension(size, size2);
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i0.L(76.0f), 1073741824);
-        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i0.L(76.0f), 1073741824);
-        int childCount = getChildCount();
-        for (int i12 = 0; i12 < childCount; i12++) {
-            getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
-        }
-        if (this.f4182a == size && this.f4183b == size2) {
-            b(true, false);
+        if (frameLayout.getVisibility() == 0) {
+            int L = g0.L(22.0f) + ((int) textView.getPaint().measureText(textView.getText().toString()));
+            if (bd.f21784a0) {
+                i3 = L;
+            } else {
+                i3 = 0;
+            }
+            int paddingTop = k5Var.getPaddingTop();
+            if (!bd.f21784a0) {
+                i10 = L;
+            }
+            k5Var.setPadding(i3, paddingTop, i10, k5Var.getPaddingBottom());
             return;
         }
-        b(false, true);
-        this.f4182a = size;
-        this.f4183b = size2;
+        k5Var.setPadding(0, k5Var.getPaddingTop(), 0, k5Var.getPaddingBottom());
     }
 }

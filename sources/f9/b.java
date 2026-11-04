@@ -1,35 +1,45 @@
 package f9;
+public final class b extends g {
+    public static final b f11501c = new b("CharMatcher.any()", 0);
+    public static final b d = new b("CharMatcher.ascii()", 1);
+    public static final b f11502e = new b("CharMatcher.javaIsoControl()", 2);
+    public static final b f11503f = new b("CharMatcher.none()", 3);
+    public final int f11504b;
 
-import v7.t6;
-public final class b extends d {
-    public final char[] e;
+    public b(String str, int i3) {
+        super(str);
+        this.f11504b = i3;
+    }
 
-    public b(a aVar) {
-        super(aVar, (Character) null);
-        boolean z10;
-        this.e = new char[512];
-        char[] cArr = aVar.f6965b;
-        if (cArr.length == 16) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        t6.f(z10);
-        for (int i10 = 0; i10 < 256; i10++) {
-            char[] cArr2 = this.e;
-            cArr2[i10] = cArr[i10 >>> 4];
-            cArr2[i10 | 256] = cArr[i10 & 15];
+    @Override
+    public final boolean c(char c2) {
+        switch (this.f11504b) {
+            case 0:
+                return true;
+            case 1:
+                if (c2 <= 127) {
+                    return true;
+                }
+                return false;
+            case 2:
+                if (c2 > 31 && (c2 < 127 || c2 > 159)) {
+                    return false;
+                }
+                return true;
+            default:
+                return false;
         }
     }
 
     @Override
-    public final void b(StringBuilder sb2, byte[] bArr, int i10) {
-        t6.n(0, i10, bArr.length);
-        for (int i11 = 0; i11 < i10; i11++) {
-            int i12 = bArr[i11] & 255;
-            char[] cArr = this.e;
-            sb2.append(cArr[i12]);
-            sb2.append(cArr[i12 | 256]);
+    public i d() {
+        switch (this.f11504b) {
+            case 0:
+                return f11503f;
+            case 3:
+                return f11501c;
+            default:
+                return super.d();
         }
     }
 }

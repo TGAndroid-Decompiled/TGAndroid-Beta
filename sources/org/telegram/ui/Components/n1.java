@@ -1,32 +1,31 @@
 package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
-import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
 public final class n1 implements DialogInterface.OnCancelListener {
-    public final int f28632a = 1;
-    public final int f28633b;
-    public final int[] f28634c;
+    public final int f36324a = 1;
+    public final int f36325b;
+    public final int[] f36326c;
     public final Runnable d;
 
-    public n1(int i10, int[] iArr, org.telegram.ui.y60 y60Var) {
-        this.f28633b = i10;
-        this.f28634c = iArr;
-        this.d = y60Var;
+    public n1(int i3, int[] iArr, org.telegram.ui.ly lyVar) {
+        this.f36325b = i3;
+        this.f36326c = iArr;
+        this.d = lyVar;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f28632a;
+        int i3 = this.f36324a;
         Runnable runnable = this.d;
-        int[] iArr = this.f28634c;
-        int i11 = this.f28633b;
-        switch (i10) {
+        int[] iArr = this.f36326c;
+        int i10 = this.f36325b;
+        switch (i3) {
             case 0:
-                for (int i12 : iArr) {
-                    if (i12 != 0) {
-                        ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
+                for (int i11 : iArr) {
+                    if (i11 != 0) {
+                        ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
                     }
                 }
                 if (runnable != null) {
@@ -35,8 +34,8 @@ public final class n1 implements DialogInterface.OnCancelListener {
                 }
                 return;
             default:
-                Pattern pattern = LaunchActivity.D1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
+                String str = LaunchActivity.E1;
+                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -45,9 +44,9 @@ public final class n1 implements DialogInterface.OnCancelListener {
         }
     }
 
-    public n1(int[] iArr, int i10, Runnable runnable) {
-        this.f28634c = iArr;
-        this.f28633b = i10;
+    public n1(int[] iArr, int i3, Runnable runnable) {
+        this.f36326c = iArr;
+        this.f36325b = i3;
         this.d = runnable;
     }
 }

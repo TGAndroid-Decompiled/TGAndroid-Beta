@@ -1,46 +1,19 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class my implements Runnable {
-    public final int f17214a = 0;
-    public final rz f17215b;
-    public final boolean f17216c;
-    public final TLRPC.TL_error d;
-    public final TLRPC.Message e;
-    public final TLObject f17217f;
-    public final kj h;
-    public final HashMap f17218n;
-    public final String f17219r;
-    public final TLObject f17220s;
+public final class my implements RequestDelegate {
+    public final TLRPC.TL_messages_initHistoryImport f24288a;
+    public final py f24289b;
 
-    public my(rz rzVar, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, kj kjVar, String str, HashMap hashMap, boolean z10, TLObject tLObject2) {
-        this.f17215b = rzVar;
-        this.d = tL_error;
-        this.e = message;
-        this.f17217f = tLObject;
-        this.h = kjVar;
-        this.f17219r = str;
-        this.f17218n = hashMap;
-        this.f17216c = z10;
-        this.f17220s = tLObject2;
+    public my(py pyVar, TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport) {
+        this.f24289b = pyVar;
+        this.f24288a = tL_messages_initHistoryImport;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.my.run():void");
-    }
-
-    public my(rz rzVar, boolean z10, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, kj kjVar, HashMap hashMap, String str, TLObject tLObject2) {
-        this.f17215b = rzVar;
-        this.f17216c = z10;
-        this.d = tL_error;
-        this.e = message;
-        this.f17217f = tLObject;
-        this.h = kjVar;
-        this.f17218n = hashMap;
-        this.f17219r = str;
-        this.f17220s = tLObject2;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        g0.h3(new ul(this, tLObject, this.f24288a, tL_error, 25));
     }
 }

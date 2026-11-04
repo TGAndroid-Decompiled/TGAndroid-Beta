@@ -1,22 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.TextView;
-public final class rc extends pn0 {
-    public final sc G;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class rc implements RequestDelegate {
+    public final int f49192a;
+    public final ad f49193b;
 
-    public rc(sc scVar, Context context, int i10, long j10, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(i10, j10, context, p6Var);
-        this.G = scVar;
+    public rc(ad adVar, int i3) {
+        this.f49192a = i3;
+        this.f49193b = adVar;
     }
 
     @Override
-    public final void b(int i10, boolean z10) {
-        super.b(i10, z10);
-        sc scVar = this.G;
-        TextView textView = scVar.d;
-        if (textView != null) {
-            textView.setTextColor(scVar.f41338b.h.getTextColor());
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f49192a) {
+            case 0:
+                org.telegram.messenger.g0.h3(new sc(1, this.f49193b, tLObject));
+                return;
+            case 1:
+                org.telegram.messenger.g0.h3(new org.telegram.messenger.voip.l0(29, this.f49193b, tL_error));
+                return;
+            case 2:
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    org.telegram.messenger.g0.h3(new qc(this.f49193b, 3));
+                    return;
+                }
+                return;
+            default:
+                org.telegram.messenger.g0.h3(new p1(this.f49193b, tL_error, tLObject, 11));
+                return;
         }
     }
 }

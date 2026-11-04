@@ -1,25 +1,33 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class u50 implements RequestDelegate {
-    public final int f30864a;
-    public final w50 f30865b;
+import android.view.KeyEvent;
+public final class u50 implements org.telegram.ui.ActionBar.d1 {
+    public final int f38652a;
+    public final f60 f38653b;
 
-    public u50(w50 w50Var, int i10) {
-        this.f30864a = i10;
-        this.f30865b = w50Var;
+    public u50(f60 f60Var, int i3) {
+        this.f38652a = i3;
+        this.f38653b = f60Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f30864a) {
+    public final void k(KeyEvent keyEvent) {
+        f60 f60Var;
+        b60 b60Var;
+        f60 f60Var2;
+        b60 b60Var2;
+        switch (this.f38652a) {
             case 0:
-                org.telegram.messenger.i0.g3(new jg(this.f30865b, tL_error, tLObject, 9));
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (b60Var = (f60Var = this.f38653b).f33737m) != null && b60Var.isShowing()) {
+                    f60Var.u();
+                    return;
+                }
                 return;
             default:
-                org.telegram.messenger.i0.g3(new at(18, this.f30865b, tL_error));
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (b60Var2 = (f60Var2 = this.f38653b).f33737m) != null && b60Var2.isShowing()) {
+                    f60Var2.u();
+                    return;
+                }
                 return;
         }
     }

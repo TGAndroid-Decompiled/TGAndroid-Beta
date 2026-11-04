@@ -1,47 +1,36 @@
 package a9;
 
-import com.google.android.gms.internal.play_billing.s1;
-public final class j extends k {
-    public final transient int f340c;
-    public final transient int d;
-    public final k e;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class j extends q6.a {
+    public static final Parcelable.Creator<j> CREATOR = new c(6);
+    public final int f206a;
+    public final boolean f207b;
+    public final boolean f208c;
+    public final boolean d;
+    public final boolean f209e;
 
-    public j(k kVar, int i10, int i11) {
-        this.e = kVar;
-        this.f340c = i10;
-        this.d = i11;
+    public j(int i3, boolean z10, boolean z11, boolean z12, boolean z13) {
+        this.f206a = i3;
+        this.f207b = z10;
+        this.f208c = z11;
+        this.d = z12;
+        this.f209e = z13;
     }
 
     @Override
-    public final Object get(int i10) {
-        s1.a(i10, this.d);
-        return this.e.get(i10 + this.f340c);
-    }
-
-    @Override
-    public final int m() {
-        return this.e.n() + this.f340c + this.d;
-    }
-
-    @Override
-    public final int n() {
-        return this.e.n() + this.f340c;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.e.o();
-    }
-
-    @Override
-    public final k subList(int i10, int i11) {
-        s1.b(i10, i11, this.d);
-        int i12 = this.f340c;
-        return this.e.subList(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.r(parcel, 1, 4);
+        parcel.writeInt(this.f206a);
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(this.f207b ? 1 : 0);
+        j8.a.r(parcel, 3, 4);
+        parcel.writeInt(this.f208c ? 1 : 0);
+        j8.a.r(parcel, 4, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        j8.a.r(parcel, 5, 4);
+        parcel.writeInt(this.f209e ? 1 : 0);
+        j8.a.t(parcel, s6);
     }
 }

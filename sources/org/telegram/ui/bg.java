@@ -1,23 +1,41 @@
 package org.telegram.ui;
+public final class bg implements org.telegram.messenger.kr {
+    public final int f44039a;
+    public final wm f44040b;
 
-import android.view.View;
-public final class bg implements View.OnLongClickListener {
-    public final int f36047a;
-    public final Object f36048b;
-    public final Object f36049c;
-    public final Object d;
-    public final Object e;
-
-    public bg(Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f36047a = i10;
-        this.f36048b = obj;
-        this.f36049c = obj2;
-        this.d = obj3;
-        this.e = obj4;
+    public bg(wm wmVar, int i3) {
+        this.f44039a = i3;
+        this.f44040b = wmVar;
     }
 
     @Override
-    public final boolean onLongClick(android.view.View r49) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bg.onLongClick(android.view.View):boolean");
+    public final void a(int i3) {
+        switch (this.f44039a) {
+            case 0:
+                wm wmVar = this.f44040b;
+                if (wmVar.getParentActivity() != null && wmVar.fragmentView != null && i3 > 0) {
+                    org.telegram.ui.Components.fc.a0(wmVar).m(org.telegram.ui.Components.ec.f33348r, i3, 0, 0, wmVar.f51557ya).j();
+                    return;
+                }
+                return;
+            case 1:
+                wm wmVar2 = this.f44040b;
+                if (i3 == 0) {
+                    wmVar2.D6 = false;
+                    wmVar2.ha();
+                    return;
+                }
+                wmVar2.l(i3, 0, false, 0, true, 0);
+                return;
+            default:
+                wm wmVar3 = this.f44040b;
+                if (i3 == 0) {
+                    wmVar3.vd(true);
+                    return;
+                } else {
+                    wmVar3.finishFragment();
+                    return;
+                }
+        }
     }
 }

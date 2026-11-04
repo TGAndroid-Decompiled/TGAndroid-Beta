@@ -1,27 +1,13 @@
 package org.telegram.ui.Components;
-public final class eq0 implements Runnable {
-    public final int f25911a;
-    public final ts0 f25912b;
-    public final int f25913c;
+public final class eq0 extends org.telegram.ui.eq0 {
+    public final ws0 f33449a;
 
-    public eq0(ts0 ts0Var, int i10, int i11) {
-        this.f25911a = i11;
-        this.f25912b = ts0Var;
-        this.f25913c = i10;
+    public eq0(ws0 ws0Var) {
+        this.f33449a = ws0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25911a) {
-            case 0:
-                this.f25912b.h.scrollBy(0, this.f25913c);
-                return;
-            case 1:
-                this.f25912b.h.scrollBy(0, this.f25913c);
-                return;
-            default:
-                this.f25912b.h.scrollBy(0, this.f25913c);
-                return;
-        }
+    public final org.telegram.ui.mq0 E(org.telegram.messenger.zi r19, org.telegram.tgnet.TLRPC.FileLocation r20, int r21, boolean r22, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.eq0.E(org.telegram.messenger.zi, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.mq0");
     }
 }

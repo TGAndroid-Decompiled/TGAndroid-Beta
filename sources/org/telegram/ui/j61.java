@@ -1,25 +1,61 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class j61 extends iq {
-    public final boolean[] f38292c1;
-    public final s61 f38293d1;
-    public final l61 f38294e1;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+public final class j61 extends FrameLayout {
+    public final int f46520a;
+    public final RectF f46521b;
+    public final l71 f46522c;
 
-    public j61(l61 l61Var, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, s61 s61Var) {
-        super(j10, j11, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
-        this.f38294e1 = l61Var;
-        this.f38292c1 = zArr;
-        this.f38293d1 = s61Var;
+    public j61(l71 l71Var, Context context, int i3) {
+        super(context);
+        this.f46520a = i3;
+        switch (i3) {
+            case 1:
+                this.f46522c = l71Var;
+                super(context);
+                this.f46521b = new RectF();
+                return;
+            default:
+                this.f46522c = l71Var;
+                this.f46521b = new RectF();
+                return;
+        }
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f38292c1[0]) {
-            s61 s61Var = this.f38293d1;
-            if (org.telegram.ui.Components.cc.a(s61Var)) {
-                org.telegram.ui.Components.cc.C(this.f38294e1.f39105a.first_name, s61Var).j();
-            }
+    public final void onDraw(Canvas canvas) {
+        switch (this.f46520a) {
+            case 0:
+                RectF rectF = this.f46521b;
+                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                l71 l71Var = this.f46522c;
+                j61 j61Var = l71Var.F0;
+                b71 b71Var = l71Var.f47210z0;
+                l61 l61Var = l71Var.f47141a;
+                org.telegram.ui.ActionBar.k6.t(j61Var, b71Var, l61Var);
+                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, l61Var.d("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.k6.d1()) {
+                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, l61Var.d("paintChatActionBackgroundDarken"));
+                    return;
+                }
+                return;
+            default:
+                RectF rectF2 = this.f46521b;
+                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                l71 l71Var2 = this.f46522c;
+                j61 j61Var2 = l71Var2.G0;
+                b71 b71Var2 = l71Var2.f47210z0;
+                l61 l61Var2 = l71Var2.f47141a;
+                org.telegram.ui.ActionBar.k6.t(j61Var2, b71Var2, l61Var2);
+                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, l61Var2.d("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.k6.d1()) {
+                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, l61Var2.d("paintChatActionBackgroundDarken"));
+                    return;
+                }
+                return;
         }
     }
 }

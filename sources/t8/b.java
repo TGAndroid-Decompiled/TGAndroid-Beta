@@ -1,112 +1,43 @@
 package t8;
 
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.util.Log;
-import android.util.SparseArray;
-import b2.h;
-import com.google.android.gms.internal.vision.f3;
-import com.google.android.gms.internal.vision.t2;
-import java.nio.ByteBuffer;
-import java.util.HashSet;
-import n6.l;
-import q5.d;
-import sc.e;
-public final class b extends h {
-    public final q8.a f48575b;
-    public final t2 f48576c;
-    public final Object d;
-    public boolean e;
-
-    public b(t2 t2Var) {
-        super(5);
-        this.f48575b = new q8.a();
-        this.d = new Object();
-        this.e = true;
-        this.f48576c = t2Var;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class b extends q6.a {
+    public static final Parcelable.Creator<b> CREATOR = new q8.i(16);
+    public int f54983a;
+    public int f54984b;
+    public int f54985c;
+    public int d;
+    public int f54986e;
+    public int f54987f;
+    public boolean h;
+    public String f54988n;
 
     @Override
-    public final void X0() {
-        super.X0();
-        synchronized (this.d) {
-            try {
-                if (!this.e) {
-                    return;
-                }
-                this.f48576c.l();
-                this.e = false;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public final SparseArray e1(d dVar) {
-        ByteBuffer o10;
-        a[] n10;
-        Bitmap bitmap = (Bitmap) dVar.d;
-        if (bitmap != null) {
-            int width = bitmap.getWidth();
-            int height = bitmap.getHeight();
-            int i10 = width * height;
-            o10 = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i10);
-            int i11 = i10;
-            for (int i12 = 0; i12 < i10; i12++) {
-                int i13 = i12 % width;
-                int i14 = i12 / width;
-                int pixel = bitmap.getPixel(i13, i14);
-                float red = Color.red(pixel);
-                float green = Color.green(pixel);
-                float blue = Color.blue(pixel);
-                o10.put(i12, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
-                if (i14 % 2 == 0 && i13 % 2 == 0) {
-                    float d = e.d(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
-                    float d10 = e.d(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
-                    int i15 = i11 + 1;
-                    o10.put(i11, (byte) d);
-                    i11 += 2;
-                    o10.put(i15, (byte) d10);
-                }
-            }
-        } else {
-            o10 = dVar.o();
-        }
-        synchronized (this.d) {
-            if (this.e) {
-                t2 t2Var = this.f48576c;
-                l.g(o10);
-                n10 = t2Var.n(o10, f3.b(dVar));
-            } else {
-                throw new IllegalStateException("Cannot use detector after release()");
-            }
-        }
-        HashSet hashSet = new HashSet();
-        SparseArray sparseArray = new SparseArray(n10.length);
-        int i16 = 0;
-        for (a aVar : n10) {
-            int i17 = aVar.f48572a;
-            i16 = Math.max(i16, i17);
-            if (hashSet.contains(Integer.valueOf(i17))) {
-                i17 = i16 + 1;
-                i16 = i17;
-            }
-            hashSet.add(Integer.valueOf(i17));
-            sparseArray.append(this.f48575b.a(i17), aVar);
-        }
-        return sparseArray;
-    }
-
-    public final void finalize() {
-        try {
-            synchronized (this.d) {
-                if (this.e) {
-                    Log.w("FaceDetector", "FaceDetector was not released with FaceDetector.release()");
-                    X0();
-                }
-            }
-        } finally {
-            super.finalize();
-        }
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        int i10 = this.f54983a;
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(i10);
+        int i11 = this.f54984b;
+        j8.a.r(parcel, 3, 4);
+        parcel.writeInt(i11);
+        int i12 = this.f54985c;
+        j8.a.r(parcel, 4, 4);
+        parcel.writeInt(i12);
+        int i13 = this.d;
+        j8.a.r(parcel, 5, 4);
+        parcel.writeInt(i13);
+        int i14 = this.f54986e;
+        j8.a.r(parcel, 6, 4);
+        parcel.writeInt(i14);
+        int i15 = this.f54987f;
+        j8.a.r(parcel, 7, 4);
+        parcel.writeInt(i15);
+        boolean z10 = this.h;
+        j8.a.r(parcel, 8, 4);
+        parcel.writeInt(z10 ? 1 : 0);
+        j8.a.m(parcel, 9, this.f54988n);
+        j8.a.t(parcel, s6);
     }
 }

@@ -4,7 +4,7 @@ public class ResizeAtom extends Atom {
     private float h;
     private int hunit;
     private boolean keepaspectratio;
-    private float f14335w;
+    private float f21194w;
     private int wunit;
 
     public ResizeAtom(Atom atom, String str, String str2, boolean z10) {
@@ -17,7 +17,7 @@ public class ResizeAtom extends Atom {
             this.wunit = -1;
         } else {
             this.wunit = (int) length[0];
-            this.f14335w = length[1];
+            this.f21194w = length[1];
         }
         if (length2.length != 2) {
             this.hunit = -1;
@@ -30,17 +30,17 @@ public class ResizeAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         float factor;
-        float f7;
+        float f10;
         double d;
         double d10;
         double d11;
         Box createBox = this.base.createBox(teXEnvironment);
-        int i10 = this.wunit;
-        if (i10 == -1 && this.hunit == -1) {
+        int i3 = this.wunit;
+        if (i3 == -1 && this.hunit == -1) {
             return createBox;
         }
-        if (i10 != -1 && this.hunit != -1) {
-            double factor2 = (SpaceAtom.getFactor(i10, teXEnvironment) * this.f14335w) / createBox.width;
+        if (i3 != -1 && this.hunit != -1) {
+            double factor2 = (SpaceAtom.getFactor(i3, teXEnvironment) * this.f21194w) / createBox.width;
             double factor3 = (SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h) / createBox.height;
             if (this.keepaspectratio) {
                 d = Math.min(factor2, factor3);
@@ -50,14 +50,14 @@ public class ResizeAtom extends Atom {
                 return new ScaleBox(createBox, d11, d10);
             }
         } else {
-            if (i10 != -1 && this.hunit == -1) {
-                factor = SpaceAtom.getFactor(i10, teXEnvironment) * this.f14335w;
-                f7 = createBox.width;
+            if (i3 != -1 && this.hunit == -1) {
+                factor = SpaceAtom.getFactor(i3, teXEnvironment) * this.f21194w;
+                f10 = createBox.width;
             } else {
                 factor = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
-                f7 = createBox.height;
+                f10 = createBox.height;
             }
-            d = factor / f7;
+            d = factor / f10;
         }
         d11 = d;
         d10 = d11;

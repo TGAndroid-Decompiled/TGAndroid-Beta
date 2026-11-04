@@ -1,18 +1,42 @@
 package org.telegram.ui.Components;
-public final class k41 {
-    public final t41 f27726a;
-    public final x41 f27727b;
+public final class k41 extends u4.k {
+    public final l41 F;
 
-    public k41(x41 x41Var, t41 t41Var) {
-        this.f27727b = x41Var;
-        this.f27726a = t41Var;
+    public k41(l41 l41Var) {
+        this.F = l41Var;
     }
 
-    public final int a() {
-        return this.f27727b.f32417s.f32080w;
+    @Override
+    public final void M() {
+        l41 l41Var = this.F;
+        if (l41Var.b1()) {
+            l41Var.invalidate();
+        }
+        l41Var.F1();
     }
 
-    public final void b(boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k41.b(boolean):void");
+    @Override
+    public final void O() {
+        l41 l41Var = this.F;
+        if (l41Var.b1()) {
+            l41Var.invalidate();
+        }
+        l41Var.F1();
+    }
+
+    @Override
+    public final void P(u4.d1 d1Var) {
+        l41 l41Var = this.F;
+        l41Var.invalidate();
+        l41Var.F1();
+    }
+
+    @Override
+    public final void Q() {
+        l41 l41Var = this.F;
+        if (l41Var.b1()) {
+            l41Var.invalidate();
+        }
+        l41Var.F1();
     }
 }

@@ -1,77 +1,88 @@
 package org.telegram.messenger;
 
+import android.content.SharedPreferences;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class of implements Runnable {
-    public final int f17429a;
-    public final vi f17430b;
-    public final TLRPC.messages_Messages f17431c;
-    public final int d;
-    public final long e;
-    public final ArrayList f17432f;
-    public final int h;
-    public final int f17433n;
-    public final boolean f17434r;
-    public final int f17435s;
-    public final int f17436w;
+    public final int f24531a = 0;
+    public final li f24532b;
+    public final boolean f24533c;
+    public final ArrayList d;
+    public final int f24534e;
 
-    public of(vi viVar, TLRPC.messages_Messages messages_messages, int i10, long j10, ArrayList arrayList, int i11, int i12, boolean z10, int i13, int i14, int i15) {
-        this.f17429a = i15;
-        this.f17430b = viVar;
-        this.f17431c = messages_messages;
-        this.d = i10;
-        this.e = j10;
-        this.f17432f = arrayList;
-        this.h = i11;
-        this.f17433n = i12;
-        this.f17434r = z10;
-        this.f17435s = i13;
-        this.f17436w = i14;
+    public of(li liVar, boolean z10, int i3, ArrayList arrayList) {
+        this.f24532b = liVar;
+        this.f24533c = z10;
+        this.f24534e = i3;
+        this.d = arrayList;
     }
 
     @Override
     public final void run() {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        switch (this.f17429a) {
+        int i3 = this.f24531a;
+        int i10 = this.f24534e;
+        ArrayList arrayList = this.d;
+        boolean z10 = this.f24533c;
+        li liVar = this.f24532b;
+        switch (i3) {
             case 0:
-                i0.g3(new of(this.f17430b, this.f17431c, this.d, this.e, this.f17432f, this.h, this.f17433n, this.f17434r, this.f17435s, this.f17436w, 1));
+                SharedPreferences.Editor edit = hp.s1(liVar.currentAccount).f23009f7.edit();
+                if (z10) {
+                    liVar.f24033k0 = false;
+                    liVar.f24034l0 = true;
+                    edit.putLong("lastGifLoadTime", System.currentTimeMillis()).apply();
+                } else {
+                    liVar.f24027h0[i10] = false;
+                    liVar.f24029i0[i10] = true;
+                    if (i10 == 0) {
+                        edit.putLong("lastStickersLoadTime", System.currentTimeMillis()).apply();
+                    } else if (i10 == 1) {
+                        edit.putLong("lastStickersLoadTimeMask", System.currentTimeMillis()).apply();
+                    } else if (i10 == 3) {
+                        edit.putLong("lastStickersLoadTimeGreet", System.currentTimeMillis()).apply();
+                    } else if (i10 == 5) {
+                        edit.putLong("lastStickersLoadTimeEmojiPacks", System.currentTimeMillis()).apply();
+                    } else if (i10 == 7) {
+                        edit.putLong("lastStickersLoadTimePremiumStickers", System.currentTimeMillis()).apply();
+                    } else {
+                        edit.putLong("lastStickersLoadTimeFavs", System.currentTimeMillis()).apply();
+                    }
+                }
+                if (arrayList != null) {
+                    if (z10) {
+                        liVar.f24031j0 = arrayList;
+                    } else {
+                        liVar.f24025g0[i10] = arrayList;
+                    }
+                    if (i10 == 3) {
+                        liVar.n1();
+                    }
+                    liVar.getNotificationCenter().k(86, Boolean.valueOf(z10), Integer.valueOf(i10));
+                    return;
+                }
                 return;
             default:
-                TLRPC.messages_Messages messages_messages = this.f17431c;
-                int i10 = messages_messages.count;
-                vi viVar = this.f17430b;
-                wp messagesController = viVar.getMessagesController();
-                ArrayList<TLRPC.User> arrayList = messages_messages.users;
-                int i11 = this.d;
-                if (i11 != 0) {
-                    z10 = true;
+                if (z10) {
+                    liVar.f24031j0 = arrayList;
+                    liVar.f24033k0 = false;
+                    liVar.f24034l0 = true;
                 } else {
-                    z10 = false;
+                    liVar.f24025g0[i10] = arrayList;
+                    liVar.f24027h0[i10] = false;
+                    liVar.f24029i0[i10] = true;
                 }
-                messagesController.V3(arrayList, z10);
-                wp messagesController2 = viVar.getMessagesController();
-                ArrayList<TLRPC.Chat> arrayList2 = messages_messages.chats;
-                if (i11 != 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
+                if (i10 == 3) {
+                    liVar.n1();
                 }
-                messagesController2.P3(arrayList2, z11);
-                at notificationCenter = viVar.getNotificationCenter();
-                Long valueOf = Long.valueOf(this.e);
-                Integer valueOf2 = Integer.valueOf(i10);
-                Integer valueOf3 = Integer.valueOf(this.h);
-                Integer valueOf4 = Integer.valueOf(this.f17433n);
-                Boolean valueOf5 = Boolean.valueOf(this.f17434r);
-                if (this.f17435s != 0) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                notificationCenter.k(32, valueOf, valueOf2, this.f17432f, valueOf3, valueOf4, valueOf5, Boolean.valueOf(z12), Integer.valueOf(this.f17436w));
+                liVar.getNotificationCenter().k(86, Boolean.valueOf(z10), Integer.valueOf(i10));
+                liVar.V0(i10, z10, false, false);
                 return;
         }
+    }
+
+    public of(li liVar, boolean z10, ArrayList arrayList, int i3) {
+        this.f24532b = liVar;
+        this.f24533c = z10;
+        this.d = arrayList;
+        this.f24534e = i3;
     }
 }

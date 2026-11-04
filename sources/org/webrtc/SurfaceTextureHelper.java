@@ -5,6 +5,7 @@ import android.opengl.GLES20;
 import android.os.Handler;
 import android.os.HandlerThread;
 import java.util.concurrent.Callable;
+import k2.p1;
 import org.webrtc.EglBase;
 import org.webrtc.TextureBufferImpl;
 import org.webrtc.VideoFrame;
@@ -47,8 +48,8 @@ public class SurfaceTextureHelper {
             public SurfaceTextureHelper call() {
                 try {
                     return new SurfaceTextureHelper(context, handler, z10, yuvConverter, frameRefMonitor);
-                } catch (RuntimeException e) {
-                    Logging.e("SurfaceTextureHelper", str + " create failure", e);
+                } catch (RuntimeException e10) {
+                    Logging.e("SurfaceTextureHelper", str + " create failure", e10);
                     return null;
                 }
             }
@@ -84,13 +85,13 @@ public class SurfaceTextureHelper {
         }
     }
 
-    public void lambda$setFrameRotation$4(int i10) {
-        this.frameRotation = i10;
+    public void lambda$setFrameRotation$4(int i3) {
+        this.frameRotation = i3;
     }
 
-    public void lambda$setTextureSize$2(int i10, int i11) {
-        this.textureWidth = i10;
-        this.textureHeight = i11;
+    public void lambda$setTextureSize$2(int i3, int i10) {
+        this.textureWidth = i3;
+        this.textureHeight = i10;
         tryDeliverTextureFrame();
     }
 
@@ -189,20 +190,20 @@ public class SurfaceTextureHelper {
         return this.isTextureInUse;
     }
 
-    public void setFrameRotation(int i10) {
-        this.handler.post(new i(this, i10, 1));
+    public void setFrameRotation(int i3) {
+        this.handler.post(new i(this, i3, 1));
     }
 
-    public void setTextureSize(int i10, int i11) {
-        if (i10 > 0) {
-            if (i11 > 0) {
-                this.surfaceTexture.setDefaultBufferSize(i10, i11);
-                this.handler.post(new i2.u(this, i10, i11, 14));
+    public void setTextureSize(int i3, int i10) {
+        if (i3 > 0) {
+            if (i10 > 0) {
+                this.surfaceTexture.setDefaultBufferSize(i3, i10);
+                this.handler.post(new k2.u(this, i3, i10, 15));
                 return;
             }
-            throw new IllegalArgumentException(i0.a.i(i11, "Texture height must be positive, but was "));
+            throw new IllegalArgumentException(p1.i(i10, "Texture height must be positive, but was "));
         }
-        throw new IllegalArgumentException(i0.a.i(i10, "Texture width must be positive, but was "));
+        throw new IllegalArgumentException(p1.i(i3, "Texture width must be positive, but was "));
     }
 
     public void startListening(VideoSink videoSink) {
@@ -291,10 +292,10 @@ public class SurfaceTextureHelper {
                     }
                 }, handler);
                 return;
-            } catch (RuntimeException e) {
+            } catch (RuntimeException e10) {
                 this.eglBase.release();
                 handler.getLooper().quit();
-                throw e;
+                throw e10;
             }
         }
         throw new IllegalStateException("SurfaceTextureHelper must be created on the handler thread");

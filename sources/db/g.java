@@ -1,19 +1,17 @@
 package db;
-public final class g extends ed.c {
-    public h f5845a;
-    public Object f5846b;
-    public final h f5847c;
-    public int d;
-
-    public g(h hVar, ed.c cVar) {
-        super(cVar);
-        this.f5847c = hVar;
-    }
+public final class g implements ma.d {
+    public static final g f8658a = new Object();
+    public static final ma.c f8659b = ma.c.c("eventType");
+    public static final ma.c f8660c = ma.c.c("sessionData");
+    public static final ma.c d = ma.c.c("applicationInfo");
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f5846b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.f5847c.b(this);
+    public final void a(Object obj, Object obj2) {
+        o0 o0Var = (o0) obj;
+        ma.e eVar = (ma.e) obj2;
+        o0Var.getClass();
+        eVar.a(f8659b, m.f8701b);
+        eVar.a(f8660c, o0Var.f8710a);
+        eVar.a(d, o0Var.f8711b);
     }
 }

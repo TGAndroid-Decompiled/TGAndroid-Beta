@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
-public abstract class tk0 extends s4.g0 {
-    public abstract boolean D(s4.c1 c1Var);
+public interface tk0 {
+    void a(int i3);
 }

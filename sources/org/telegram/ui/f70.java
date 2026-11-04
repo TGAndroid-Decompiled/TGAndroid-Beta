@@ -1,62 +1,32 @@
 package org.telegram.ui;
+public final class f70 implements org.telegram.messenger.u10 {
+    public final int f45173a;
+    public final Runnable f45174b;
 
-import android.telephony.PhoneNumberUtils;
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.tgnet.TLRPC;
-public final class f70 implements Predicate {
-    public final int f37027a;
-    public final Object f37028b;
-
-    public f70(Object obj, int i10) {
-        this.f37027a = i10;
-        this.f37028b = obj;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f37027a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f37027a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            case 2:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f37027a;
-        return Predicate$CC.$default$or(this, predicate);
+    public f70(ai.p6 p6Var, int i3) {
+        this.f45173a = i3;
+        this.f45174b = p6Var;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f37027a) {
+    public final void a(Object obj) {
+        int i3 = this.f45173a;
+        Runnable runnable = this.f45174b;
+        String str = (String) obj;
+        switch (i3) {
             case 0:
-                String str = (String) this.f37028b;
-                String str2 = (String) obj;
-                if (str2 != null && str2.equals(str)) {
-                    return true;
+                String str2 = LaunchActivity.E1;
+                if (runnable != null && "paid".equals(str)) {
+                    runnable.run();
+                    return;
                 }
-                return false;
-            case 1:
-                return PhoneNumberUtils.compare((String) this.f37028b, (String) obj);
-            case 2:
-                String str3 = (String) this.f37028b;
-                String str4 = (String) obj;
-                if (str4 != null && str4.equals(str3)) {
-                    return true;
-                }
-                return false;
+                return;
             default:
-                return un.O0((un) this.f37028b, (TLRPC.MessageEntity) obj);
+                if (runnable != null && "paid".equals(str)) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
     }
 }

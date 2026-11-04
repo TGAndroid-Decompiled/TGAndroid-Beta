@@ -1,71 +1,23 @@
 package a9;
 
-import java.util.Iterator;
-public final class n extends l {
-    public static final Object[] f350f;
-    public static final n h;
-    public final transient Object[] d;
-    public final transient Object[] e;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class n extends q6.a {
+    public static final Parcelable.Creator<n> CREATOR = new c(11);
+    public final int f226a;
+    public final b f227b;
 
-    static {
-        Object[] objArr = new Object[0];
-        f350f = objArr;
-        h = new n(objArr, objArr);
-    }
-
-    public n(Object[] objArr, Object[] objArr2) {
-        this.d = objArr;
-        this.e = objArr2;
+    public n(int i3, b bVar) {
+        this.f226a = i3;
+        this.f227b = bVar;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj != null) {
-            int length = this.e.length;
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final int hashCode() {
-        return 0;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        m mVar = this.f345b;
-        if (mVar == null) {
-            i iVar = k.f342b;
-            mVar = m.d;
-            this.f345b = mVar;
-        }
-        return mVar.listIterator(0);
-    }
-
-    @Override
-    public final int l(Object[] objArr) {
-        System.arraycopy(this.d, 0, objArr, 0, 0);
-        return 0;
-    }
-
-    @Override
-    public final int m() {
-        return 0;
-    }
-
-    @Override
-    public final int n() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.d;
-    }
-
-    @Override
-    public final int size() {
-        return 0;
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(this.f226a);
+        j8.a.l(parcel, 3, this.f227b, i3);
+        j8.a.t(parcel, s6);
     }
 }

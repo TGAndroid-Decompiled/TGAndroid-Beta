@@ -1,45 +1,129 @@
 package h3;
 
-import c3.e;
-import c3.f;
-import c3.g;
-import c3.i;
-import c3.p;
-import c3.s;
-public final class a {
-    public final e f7603a;
-    public final i f7604b;
-    public f f7605c;
-    public final int d;
+import e3.d0;
+import e3.l;
+import e3.o;
+import e3.p;
+import e3.q;
+import e3.s;
+import g2.y;
+import g9.g0;
+import g9.i0;
+import g9.s1;
+import java.util.List;
+public final class a implements o {
+    public final int f14182a;
+    public final y f14183b;
+    public final d0 f14184c;
 
-    public a(g gVar, i iVar, long j10, long j11, long j12, long j13, long j14, int i10) {
-        this.f7604b = iVar;
-        this.d = i10;
-        this.f7603a = new e(gVar, j10, j11, j12, j13, j14);
-    }
-
-    public static int a(int i10, byte[] bArr) {
-        return (bArr[i10 + 3] & 255) | ((bArr[i10] & 255) << 24) | ((bArr[i10 + 1] & 255) << 16) | ((bArr[i10 + 2] & 255) << 8);
-    }
-
-    public static int c(p pVar, long j10, s sVar) {
-        if (j10 == pVar.getPosition()) {
-            return 0;
+    public a(int i3) {
+        this.f14182a = i3;
+        switch (i3) {
+            case 1:
+                this.f14183b = new y(4);
+                this.f14184c = new d0(-1, -1, "image/webp");
+                return;
+            default:
+                this.f14183b = new y(4);
+                this.f14184c = new d0(-1, -1, "image/avif");
+                return;
         }
-        sVar.f3687a = j10;
-        return 1;
     }
 
-    public final int b(c3.p r28, c3.s r29) {
-        throw new UnsupportedOperationException("Method not decompiled: h3.a.b(c3.p, c3.s):int");
+    @Override
+    public final o a() {
+        int i3 = this.f14182a;
+        return this;
     }
 
-    public final void d(long j10) {
-        f fVar = this.f7605c;
-        if (fVar != null && fVar.f3644a == j10) {
-            return;
+    @Override
+    public final boolean b(p pVar) {
+        switch (this.f14182a) {
+            case 0:
+                l lVar = (l) pVar;
+                lVar.w(4, false);
+                y yVar = this.f14183b;
+                yVar.K(4);
+                lVar.h(yVar.f11923a, 0, 4, false);
+                if (yVar.C() != 1718909296) {
+                    return false;
+                }
+                yVar.K(4);
+                lVar.h(yVar.f11923a, 0, 4, false);
+                if (yVar.C() != 1635150182) {
+                    return false;
+                }
+                return true;
+            default:
+                y yVar2 = this.f14183b;
+                yVar2.K(4);
+                l lVar2 = (l) pVar;
+                lVar2.h(yVar2.f11923a, 0, 4, false);
+                if (yVar2.C() != 1380533830) {
+                    return false;
+                }
+                lVar2.w(4, false);
+                yVar2.K(4);
+                lVar2.h(yVar2.f11923a, 0, 4, false);
+                if (yVar2.C() != 1464156752) {
+                    return false;
+                }
+                return true;
         }
-        e eVar = this.f7603a;
-        this.f7605c = new f(j10, eVar.f3640a.g(j10), eVar.f3642c, eVar.d, eVar.e, eVar.f3643f);
+    }
+
+    @Override
+    public final void c(q qVar) {
+        switch (this.f14182a) {
+            case 0:
+                this.f14184c.c(qVar);
+                return;
+            default:
+                this.f14184c.c(qVar);
+                return;
+        }
+    }
+
+    @Override
+    public final void d(long j10, long j11) {
+        switch (this.f14182a) {
+            case 0:
+                this.f14184c.d(j10, j11);
+                return;
+            default:
+                this.f14184c.d(j10, j11);
+                return;
+        }
+    }
+
+    @Override
+    public final List e() {
+        switch (this.f14182a) {
+            case 0:
+            default:
+                g0 g0Var = i0.f12083b;
+                return s1.f12146e;
+        }
+    }
+
+    @Override
+    public final int f(p pVar, s sVar) {
+        switch (this.f14182a) {
+            case 0:
+                return this.f14184c.f(pVar, sVar);
+            default:
+                return this.f14184c.f(pVar, sVar);
+        }
+    }
+
+    @Override
+    public final void release() {
+        int i3 = this.f14182a;
+    }
+
+    private final void g() {
+    }
+
+    private final void h() {
     }
 }

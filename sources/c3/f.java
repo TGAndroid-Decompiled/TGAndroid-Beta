@@ -1,29 +1,58 @@
 package c3;
-public final class f {
-    public final long f3644a;
-    public final long f3645b;
-    public final long f3646c;
-    public long d = 0;
-    public long e;
-    public long f3647f;
-    public long f3648g;
-    public long h;
 
-    public f(long j10, long j11, long j12, long j13, long j14, long j15) {
-        this.f3644a = j10;
-        this.f3645b = j11;
-        this.e = j12;
-        this.f3647f = j13;
-        this.f3648g = j14;
-        this.f3646c = j15;
-        this.h = a(j11, 0L, j12, j13, j14, j15);
+import java.util.Arrays;
+public final class f {
+    public long f4025a;
+    public long f4026b;
+    public long f4027c;
+    public long d;
+    public long f4028e;
+    public long f4029f;
+    public final boolean[] f4030g = new boolean[15];
+    public int h;
+
+    public final boolean a() {
+        if (this.d > 15 && this.h == 0) {
+            return true;
+        }
+        return false;
     }
 
-    public static long a(long j10, long j11, long j12, long j13, long j14, long j15) {
-        if (j13 + 1 < j14 && j11 + 1 < j12) {
-            long j16 = ((float) (j10 - j11)) * (((float) (j14 - j13)) / ((float) (j12 - j11)));
-            return e2.l0.j(((j16 + j13) - j15) - (j16 / 20), j13, j14 - 1);
+    public final void b(long j10) {
+        long j11 = this.d;
+        if (j11 == 0) {
+            this.f4025a = j10;
+        } else if (j11 == 1) {
+            long j12 = j10 - this.f4025a;
+            this.f4026b = j12;
+            this.f4029f = j12;
+            this.f4028e = 1L;
+        } else {
+            long j13 = j10 - this.f4027c;
+            int i3 = (int) (j11 % 15);
+            int i10 = (Math.abs(j13 - this.f4026b) > 1000000L ? 1 : (Math.abs(j13 - this.f4026b) == 1000000L ? 0 : -1));
+            boolean[] zArr = this.f4030g;
+            if (i10 <= 0) {
+                this.f4028e++;
+                this.f4029f += j13;
+                if (zArr[i3]) {
+                    zArr[i3] = false;
+                    this.h--;
+                }
+            } else if (!zArr[i3]) {
+                zArr[i3] = true;
+                this.h++;
+            }
         }
-        return j13;
+        this.d++;
+        this.f4027c = j10;
+    }
+
+    public final void c() {
+        this.d = 0L;
+        this.f4028e = 0L;
+        this.f4029f = 0L;
+        this.h = 0;
+        Arrays.fill(this.f4030g, false);
     }
 }

@@ -1,56 +1,22 @@
 package th;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.tw;
-public final class i extends hg.c {
-    public final boolean d;
-    public final tw e;
+import android.view.View;
+import b8.be;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.Components.l41;
+public final class i extends l41 {
+    public final int f55425n3;
 
-    public i(tw twVar, boolean z10) {
-        this.e = twVar;
-        this.d = z10;
+    public i(d2 d2Var, h hVar, int i3) {
+        super(d2Var, hVar, null, null);
+        this.f55425n3 = i3;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        ArrayList arrayList;
-        boolean z10 = this.d;
-        tw twVar = this.e;
-        if (z10) {
-            arrayList = twVar.D;
-        } else {
-            arrayList = twVar.f49241y;
-        }
-        return arrayList.size();
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        l lVar = (l) c1Var.f47909a;
-        lVar.f49165b = i10;
-        boolean z10 = this.d;
-        tw twVar = this.e;
-        if (z10) {
-            lVar.setDialogId(((j) twVar.D.get(i10)).f49092c);
-        } else {
-            lVar.setDialogId(((j) twVar.f49241y.get(i10)).f49092c);
-        }
-    }
-
-    @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        l lVar = new l(this.e, viewGroup.getContext());
-        boolean z10 = this.d;
-        lVar.N = z10;
-        if (z10) {
-            lVar.d(1.0f, 1.0f, 0.0f, false);
-        }
-        return new s4.c1(lVar);
+    public final void onMeasure(int i3, int i10) {
+        int min = Math.min(g0.L(220.0f), View.MeasureSpec.getSize(i3));
+        View.MeasureSpec.getSize(i10);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(g0.L(be.b(this.f55425n3, 1, 5) * 48), 1073741824));
     }
 }

@@ -1,63 +1,66 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class oi0 extends hg.b {
-    public int f40167c;
-    public int d;
-    public CharSequence e;
-    public CharSequence f40168f;
-    public si0 f40169g;
-    public int h;
-    public boolean f40170i;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class oi0 implements View.OnTouchListener {
+    public final int f48299a;
+    public final yj0 f48300b;
 
-    public static oi0 b(int i10, String str, boolean z10) {
-        ?? bVar = new hg.b(1, true);
-        bVar.f40167c = i10;
-        bVar.e = str;
-        bVar.f40170i = z10;
-        return bVar;
-    }
-
-    public static oi0 c(int i10, String str, String str2) {
-        ?? bVar = new hg.b(5, true);
-        bVar.f40167c = i10;
-        bVar.e = str;
-        bVar.f40168f = str2;
-        return bVar;
-    }
-
-    public static oi0 d(int i10, String str) {
-        ?? bVar = new hg.b(4, true);
-        bVar.f40167c = i10;
-        bVar.e = str;
-        return bVar;
+    public oi0(yj0 yj0Var, int i3) {
+        this.f48299a = i3;
+        this.f48300b = yj0Var;
     }
 
     @Override
-    public final boolean a(hg.b bVar) {
-        if (this != bVar) {
-            if (oi0.class == bVar.getClass()) {
-                oi0 oi0Var = (oi0) bVar;
-                if (this.f40167c == oi0Var.f40167c && this.d == oi0Var.d && this.h == oi0Var.h && this.f40170i == oi0Var.f40170i && Objects.equals(this.e, oi0Var.e) && Objects.equals(this.f40168f, oi0Var.f40168f) && this.f40169g == oi0Var.f40169g) {
-                    return true;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        int i3 = this.f48299a;
+        yj0 yj0Var = this.f48300b;
+        switch (i3) {
+            case 0:
+                if (yj0Var.getParentActivity() == null) {
+                    return false;
                 }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && oi0.class == obj.getClass()) {
-            oi0 oi0Var = (oi0) obj;
-            if (this.f40167c == oi0Var.f40167c && this.h == oi0Var.h && ((this.f7681a == 8 || (this.d == oi0Var.d && Objects.equals(this.e, oi0Var.e) && (this.f7681a == 6 || Objects.equals(this.f40168f, oi0Var.f40168f)))) && this.f40169g == oi0Var.f40169g)) {
+                if (motionEvent.getAction() == 1) {
+                    os osVar = new os(null, false);
+                    osVar.f48344r = new rb0(6, yj0Var, view);
+                    yj0Var.presentFragment(osVar);
+                }
                 return true;
-            }
+            case 1:
+                if (yj0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yj0Var.getParentActivity());
+                    String M0 = org.telegram.messenger.bd.M0(2131747474, null);
+                    org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
+                    s1Var.S = M0;
+                    alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.bd.M0(2131747516, null), org.telegram.messenger.bd.M0(2131747577, null)}, new m4(yj0Var, 3));
+                    alertDialog$Builder.k(org.telegram.messenger.bd.M0(2131752589, null), null);
+                    yj0Var.showDialog(s1Var);
+                }
+                return true;
+            case 2:
+                if (yj0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    os osVar2 = new os(null, false);
+                    osVar2.f48344r = new pi0(yj0Var, 2);
+                    yj0Var.presentFragment(osVar2);
+                }
+                return true;
+            default:
+                if (yj0Var.getParentActivity() == null) {
+                    return false;
+                }
+                if (motionEvent.getAction() == 1) {
+                    os osVar3 = new os(null, false);
+                    osVar3.f48344r = new pi0(yj0Var, 3);
+                    yj0Var.presentFragment(osVar3);
+                }
+                return true;
         }
-        return false;
     }
 }

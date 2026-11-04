@@ -1,26 +1,17 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class l implements org.telegram.ui.Components.bx0 {
-    public final View f39036a;
-    public final TLRPC.StickerSetCovered f39037b;
-    public final n f39038c;
+import org.telegram.tgnet.RequestDelegate;
+public final class l implements RequestDelegate {
+    public final int f47057a;
+    public final Object f47058b;
 
-    public l(n nVar, View view, TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f39038c = nVar;
-        this.f39036a = view;
-        this.f39037b = stickerSetCovered;
+    public l(Object obj, int i3) {
+        this.f47057a = i3;
+        this.f47058b = obj;
     }
 
     @Override
-    public final void a() {
-        org.telegram.ui.Components.dh0 dh0Var = ((org.telegram.ui.Cells.v) this.f39036a).f23162f;
-        if (dh0Var != null) {
-            dh0Var.a(true, true);
-        }
-        a0.h hVar = this.f39038c.f39648a;
-        TLRPC.StickerSetCovered stickerSetCovered = this.f39037b;
-        hVar.k(stickerSetCovered, stickerSetCovered.set.f19821id);
+    public final void run(org.telegram.tgnet.TLObject r20, org.telegram.tgnet.TLRPC.TL_error r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.l.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

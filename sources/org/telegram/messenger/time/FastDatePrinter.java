@@ -29,8 +29,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     public static class CharacterLiteral implements Rule {
         private final char mValue;
 
-        public CharacterLiteral(char c10) {
-            this.mValue = c10;
+        public CharacterLiteral(char c2) {
+            this.mValue = c2;
         }
 
         @Override
@@ -45,17 +45,17 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     public interface NumberRule extends Rule {
-        void appendTo(StringBuffer stringBuffer, int i10);
+        void appendTo(StringBuffer stringBuffer, int i3);
     }
 
     public static class PaddedNumberField implements NumberRule {
         private final int mField;
         private final int mSize;
 
-        public PaddedNumberField(int i10, int i11) {
-            if (i11 >= 3) {
-                this.mField = i10;
-                this.mSize = i11;
+        public PaddedNumberField(int i3, int i10) {
+            if (i10 >= 3) {
+                this.mField = i3;
+                this.mSize = i10;
                 return;
             }
             throw new IllegalArgumentException();
@@ -72,28 +72,28 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public final void appendTo(StringBuffer stringBuffer, int i10) {
-            if (i10 < 100) {
-                int i11 = this.mSize;
+        public final void appendTo(StringBuffer stringBuffer, int i3) {
+            if (i3 < 100) {
+                int i10 = this.mSize;
                 while (true) {
-                    i11--;
-                    if (i11 >= 2) {
+                    i10--;
+                    if (i10 >= 2) {
                         stringBuffer.append('0');
                     } else {
-                        stringBuffer.append((char) ((i10 / 10) + 48));
-                        stringBuffer.append((char) ((i10 % 10) + 48));
+                        stringBuffer.append((char) ((i3 / 10) + 48));
+                        stringBuffer.append((char) ((i3 % 10) + 48));
                         return;
                     }
                 }
             } else {
-                int length = i10 < 1000 ? 3 : Integer.toString(i10).length();
-                int i12 = this.mSize;
+                int length = i3 < 1000 ? 3 : Integer.toString(i3).length();
+                int i11 = this.mSize;
                 while (true) {
-                    i12--;
-                    if (i12 >= length) {
+                    i11--;
+                    if (i11 >= length) {
                         stringBuffer.append('0');
                     } else {
-                        stringBuffer.append(Integer.toString(i10));
+                        stringBuffer.append(Integer.toString(i3));
                         return;
                     }
                 }
@@ -129,8 +129,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         private final int mField;
         private final String[] mValues;
 
-        public TextField(int i10, String[] strArr) {
-            this.mField = i10;
+        public TextField(int i3, String[] strArr) {
+            this.mField = i3;
             this.mValues = strArr;
         }
 
@@ -142,16 +142,16 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         @Override
         public int estimateLength() {
             int length = this.mValues.length;
-            int i10 = 0;
+            int i3 = 0;
             while (true) {
                 length--;
                 if (length >= 0) {
                     int length2 = this.mValues[length].length();
-                    if (length2 > i10) {
-                        i10 = length2;
+                    if (length2 > i3) {
+                        i3 = length2;
                     }
                 } else {
-                    return i10;
+                    return i3;
                 }
             }
         }
@@ -162,12 +162,12 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         private final int mStyle;
         private final TimeZone mTimeZone;
 
-        public TimeZoneDisplayKey(TimeZone timeZone, boolean z10, int i10, Locale locale) {
+        public TimeZoneDisplayKey(TimeZone timeZone, boolean z10, int i3, Locale locale) {
             this.mTimeZone = timeZone;
             if (z10) {
-                this.mStyle = Integer.MIN_VALUE | i10;
+                this.mStyle = Integer.MIN_VALUE | i3;
             } else {
-                this.mStyle = i10;
+                this.mStyle = i3;
             }
             this.mLocale = locale;
         }
@@ -197,11 +197,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         private final String mStandard;
         private final int mStyle;
 
-        public TimeZoneNameRule(TimeZone timeZone, Locale locale, int i10) {
+        public TimeZoneNameRule(TimeZone timeZone, Locale locale, int i3) {
             this.mLocale = locale;
-            this.mStyle = i10;
-            this.mStandard = FastDatePrinter.getTimeZoneDisplay(timeZone, false, i10, locale);
-            this.mDaylight = FastDatePrinter.getTimeZoneDisplay(timeZone, true, i10, locale);
+            this.mStyle = i3;
+            this.mStandard = FastDatePrinter.getTimeZoneDisplay(timeZone, false, i3, locale);
+            this.mDaylight = FastDatePrinter.getTimeZoneDisplay(timeZone, true, i3, locale);
         }
 
         @Override
@@ -231,22 +231,22 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
         @Override
         public void appendTo(StringBuffer stringBuffer, Calendar calendar) {
-            int i10 = calendar.get(16) + calendar.get(15);
-            if (i10 < 0) {
+            int i3 = calendar.get(16) + calendar.get(15);
+            if (i3 < 0) {
                 stringBuffer.append('-');
-                i10 = -i10;
+                i3 = -i3;
             } else {
                 stringBuffer.append('+');
             }
-            int i11 = i10 / 3600000;
-            stringBuffer.append((char) ((i11 / 10) + 48));
-            stringBuffer.append((char) ((i11 % 10) + 48));
+            int i10 = i3 / 3600000;
+            stringBuffer.append((char) ((i10 / 10) + 48));
+            stringBuffer.append((char) ((i10 % 10) + 48));
             if (this.mColon) {
                 stringBuffer.append(':');
             }
-            int i12 = (i10 / 60000) - (i11 * 60);
-            stringBuffer.append((char) ((i12 / 10) + 48));
-            stringBuffer.append((char) ((i12 % 10) + 48));
+            int i11 = (i3 / 60000) - (i10 * 60);
+            stringBuffer.append((char) ((i11 / 10) + 48));
+            stringBuffer.append((char) ((i11 % 10) + 48));
         }
 
         @Override
@@ -269,17 +269,17 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public final void appendTo(StringBuffer stringBuffer, int i10) {
-            stringBuffer.append((char) ((i10 / 10) + 48));
-            stringBuffer.append((char) ((i10 % 10) + 48));
+        public final void appendTo(StringBuffer stringBuffer, int i3) {
+            stringBuffer.append((char) ((i3 / 10) + 48));
+            stringBuffer.append((char) ((i3 % 10) + 48));
         }
     }
 
     public static class TwoDigitNumberField implements NumberRule {
         private final int mField;
 
-        public TwoDigitNumberField(int i10) {
-            this.mField = i10;
+        public TwoDigitNumberField(int i3) {
+            this.mField = i3;
         }
 
         @Override
@@ -293,13 +293,13 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public final void appendTo(StringBuffer stringBuffer, int i10) {
-            if (i10 < 100) {
-                stringBuffer.append((char) ((i10 / 10) + 48));
-                stringBuffer.append((char) ((i10 % 10) + 48));
+        public final void appendTo(StringBuffer stringBuffer, int i3) {
+            if (i3 < 100) {
+                stringBuffer.append((char) ((i3 / 10) + 48));
+                stringBuffer.append((char) ((i3 % 10) + 48));
                 return;
             }
-            stringBuffer.append(Integer.toString(i10));
+            stringBuffer.append(Integer.toString(i3));
         }
     }
 
@@ -317,9 +317,9 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public final void appendTo(StringBuffer stringBuffer, int i10) {
-            stringBuffer.append((char) ((i10 / 10) + 48));
-            stringBuffer.append((char) ((i10 % 10) + 48));
+        public final void appendTo(StringBuffer stringBuffer, int i3) {
+            stringBuffer.append((char) ((i3 / 10) + 48));
+            stringBuffer.append((char) ((i3 % 10) + 48));
         }
     }
 
@@ -337,21 +337,21 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public final void appendTo(StringBuffer stringBuffer, int i10) {
-            if (i10 < 10) {
-                stringBuffer.append((char) (i10 + 48));
+        public final void appendTo(StringBuffer stringBuffer, int i3) {
+            if (i3 < 10) {
+                stringBuffer.append((char) (i3 + 48));
                 return;
             }
-            stringBuffer.append((char) ((i10 / 10) + 48));
-            stringBuffer.append((char) ((i10 % 10) + 48));
+            stringBuffer.append((char) ((i3 / 10) + 48));
+            stringBuffer.append((char) ((i3 % 10) + 48));
         }
     }
 
     public static class UnpaddedNumberField implements NumberRule {
         private final int mField;
 
-        public UnpaddedNumberField(int i10) {
-            this.mField = i10;
+        public UnpaddedNumberField(int i3) {
+            this.mField = i3;
         }
 
         @Override
@@ -365,14 +365,14 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public final void appendTo(StringBuffer stringBuffer, int i10) {
-            if (i10 < 10) {
-                stringBuffer.append((char) (i10 + 48));
-            } else if (i10 < 100) {
-                stringBuffer.append((char) ((i10 / 10) + 48));
-                stringBuffer.append((char) ((i10 % 10) + 48));
+        public final void appendTo(StringBuffer stringBuffer, int i3) {
+            if (i3 < 10) {
+                stringBuffer.append((char) (i3 + 48));
+            } else if (i3 < 100) {
+                stringBuffer.append((char) ((i3 / 10) + 48));
+                stringBuffer.append((char) ((i3 % 10) + 48));
             } else {
-                stringBuffer.append(Integer.toString(i10));
+                stringBuffer.append(Integer.toString(i3));
             }
         }
     }
@@ -388,12 +388,12 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         return applyRules(calendar, new StringBuffer(this.mMaxLengthEstimate)).toString();
     }
 
-    public static String getTimeZoneDisplay(TimeZone timeZone, boolean z10, int i10, Locale locale) {
-        TimeZoneDisplayKey timeZoneDisplayKey = new TimeZoneDisplayKey(timeZone, z10, i10, locale);
+    public static String getTimeZoneDisplay(TimeZone timeZone, boolean z10, int i3, Locale locale) {
+        TimeZoneDisplayKey timeZoneDisplayKey = new TimeZoneDisplayKey(timeZone, z10, i3, locale);
         ConcurrentMap<TimeZoneDisplayKey, String> concurrentMap = cTimeZoneDisplayCache;
         String str = concurrentMap.get(timeZoneDisplayKey);
         if (str == null) {
-            String displayName = timeZone.getDisplayName(z10, i10, locale);
+            String displayName = timeZone.getDisplayName(z10, i3, locale);
             String putIfAbsent = concurrentMap.putIfAbsent(timeZoneDisplayKey, displayName);
             if (putIfAbsent != null) {
                 return putIfAbsent;
@@ -408,13 +408,13 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         Rule[] ruleArr = (Rule[]) parsePattern.toArray(new Rule[parsePattern.size()]);
         this.mRules = ruleArr;
         int length = ruleArr.length;
-        int i10 = 0;
+        int i3 = 0;
         while (true) {
             length--;
             if (length >= 0) {
-                i10 += this.mRules[length].estimateLength();
+                i3 += this.mRules[length].estimateLength();
             } else {
-                this.mMaxLengthEstimate = i10;
+                this.mMaxLengthEstimate = i3;
                 return;
             }
         }
@@ -485,11 +485,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
     }
 
     public List<Rule> parsePattern() {
+        int i3;
         int i10;
-        int i11;
         NumberRule selectNumberRule;
         TwoDigitYearField twoDigitYearField;
-        int i12;
+        int i11;
         NumberRule numberRule;
         ?? textField;
         NumberRule numberRule2;
@@ -503,15 +503,15 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         String[] shortWeekdays = dateFormatSymbols.getShortWeekdays();
         String[] amPmStrings = dateFormatSymbols.getAmPmStrings();
         int length = this.mPattern.length();
+        int i12 = 0;
         int i13 = 0;
-        int i14 = 0;
-        while (i14 < length) {
-            int[] iArr = {i14};
+        while (i13 < length) {
+            int[] iArr = {i13};
             String parseToken = parseToken(this.mPattern, iArr);
-            int i15 = iArr[i13];
+            int i14 = iArr[i12];
             int length2 = parseToken.length();
             if (length2 != 0) {
-                char charAt = parseToken.charAt(i13);
+                char charAt = parseToken.charAt(i12);
                 if (charAt != 'y') {
                     if (charAt != 'z') {
                         switch (charAt) {
@@ -522,92 +522,92 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                 } else {
                                     numberRule2 = new StringLiteral(substring);
                                 }
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             case 'S':
-                                i12 = 1;
+                                i11 = 1;
                                 numberRule = selectNumberRule(14, length2);
                                 selectNumberRule = numberRule;
-                                i11 = i12;
-                                i10 = 0;
+                                i10 = i11;
+                                i3 = 0;
                                 break;
                             case 'W':
-                                i12 = 1;
+                                i11 = 1;
                                 numberRule = selectNumberRule(4, length2);
                                 selectNumberRule = numberRule;
-                                i11 = i12;
-                                i10 = 0;
+                                i10 = i11;
+                                i3 = 0;
                                 break;
                             case 'Z':
-                                i12 = 1;
+                                i11 = 1;
                                 if (length2 == 1) {
                                     numberRule = TimeZoneNumberRule.INSTANCE_NO_COLON;
                                 } else {
                                     numberRule = TimeZoneNumberRule.INSTANCE_COLON;
                                 }
                                 selectNumberRule = numberRule;
-                                i11 = i12;
-                                i10 = 0;
+                                i10 = i11;
+                                i3 = 0;
                                 break;
                             case 'a':
                                 textField = new TextField(9, amPmStrings);
                                 numberRule2 = textField;
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             case 'd':
                                 textField = selectNumberRule(5, length2);
                                 numberRule2 = textField;
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             case 'h':
                                 textField = new TwelveHourField(selectNumberRule(10, length2));
                                 numberRule2 = textField;
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             case 'k':
                                 textField = new TwentyFourHourField(selectNumberRule(11, length2));
                                 numberRule2 = textField;
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             case 'm':
                                 textField = selectNumberRule(12, length2);
                                 numberRule2 = textField;
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             case 's':
                                 textField = selectNumberRule(13, length2);
                                 numberRule2 = textField;
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             case 'w':
                                 textField = selectNumberRule(3, length2);
                                 numberRule2 = textField;
-                                i11 = 1;
+                                i10 = 1;
                                 selectNumberRule = numberRule2;
-                                i10 = 0;
+                                i3 = 0;
                                 break;
                             default:
                                 switch (charAt) {
                                     case 'D':
                                         textField = selectNumberRule(6, length2);
                                         numberRule2 = textField;
-                                        i11 = 1;
+                                        i10 = 1;
                                         selectNumberRule = numberRule2;
-                                        i10 = 0;
+                                        i3 = 0;
                                         break;
                                     case 'E':
                                         if (length2 < 4) {
@@ -616,27 +616,27 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                             strArr = weekdays;
                                         }
                                         numberRule2 = new TextField(7, strArr);
-                                        i11 = 1;
+                                        i10 = 1;
                                         selectNumberRule = numberRule2;
-                                        i10 = 0;
+                                        i3 = 0;
                                         break;
                                     case 'F':
                                         textField = selectNumberRule(8, length2);
                                         numberRule2 = textField;
-                                        i11 = 1;
+                                        i10 = 1;
                                         selectNumberRule = numberRule2;
-                                        i10 = 0;
+                                        i3 = 0;
                                         break;
                                     case 'G':
-                                        i10 = 0;
+                                        i3 = 0;
                                         twoDigitYearField = new TextField(0, eras);
                                         break;
                                     case 'H':
                                         textField = selectNumberRule(11, length2);
                                         numberRule2 = textField;
-                                        i11 = 1;
+                                        i10 = 1;
                                         selectNumberRule = numberRule2;
-                                        i10 = 0;
+                                        i3 = 0;
                                         break;
                                     default:
                                         switch (charAt) {
@@ -675,44 +675,44 @@ public class FastDatePrinter implements DatePrinter, Serializable {
                                                 throw new IllegalArgumentException("Illegal pattern component: ".concat(parseToken));
                                         }
                                         numberRule2 = textField;
-                                        i11 = 1;
+                                        i10 = 1;
                                         selectNumberRule = numberRule2;
-                                        i10 = 0;
+                                        i3 = 0;
                                         break;
                                 }
                                 selectNumberRule = twoDigitYearField;
-                                i11 = 1;
+                                i10 = 1;
                                 break;
                         }
                     } else if (length2 >= 4) {
-                        i12 = 1;
+                        i11 = 1;
                         numberRule = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 1);
                         selectNumberRule = numberRule;
-                        i11 = i12;
-                        i10 = 0;
+                        i10 = i11;
+                        i3 = 0;
                     } else {
-                        i10 = 0;
+                        i3 = 0;
                         twoDigitYearField = new TimeZoneNameRule(this.mTimeZone, this.mLocale, 0);
                         selectNumberRule = twoDigitYearField;
-                        i11 = 1;
+                        i10 = 1;
                     }
                 } else {
-                    i10 = 0;
+                    i3 = 0;
                     if (length2 == 2) {
                         twoDigitYearField = TwoDigitYearField.INSTANCE;
                         selectNumberRule = twoDigitYearField;
-                        i11 = 1;
+                        i10 = 1;
                     } else {
                         if (length2 < 4) {
                             length2 = 4;
                         }
-                        i11 = 1;
+                        i10 = 1;
                         selectNumberRule = selectNumberRule(1, length2);
                     }
                 }
                 arrayList.add(selectNumberRule);
-                i14 = i15 + i11;
-                i13 = i10;
+                i13 = i14 + i10;
+                i12 = i3;
             } else {
                 return arrayList;
             }
@@ -722,53 +722,53 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
     public String parseToken(String str, int[] iArr) {
         StringBuilder sb2 = new StringBuilder();
-        int i10 = iArr[0];
+        int i3 = iArr[0];
         int length = str.length();
-        char charAt = str.charAt(i10);
+        char charAt = str.charAt(i3);
         if ((charAt >= 'A' && charAt <= 'Z') || (charAt >= 'a' && charAt <= 'z')) {
             sb2.append(charAt);
             while (true) {
-                int i11 = i10 + 1;
-                if (i11 >= length || str.charAt(i11) != charAt) {
+                int i10 = i3 + 1;
+                if (i10 >= length || str.charAt(i10) != charAt) {
                     break;
                 }
                 sb2.append(charAt);
-                i10 = i11;
+                i3 = i10;
             }
         } else {
             sb2.append('\'');
             boolean z10 = false;
-            while (i10 < length) {
-                char charAt2 = str.charAt(i10);
+            while (i3 < length) {
+                char charAt2 = str.charAt(i3);
                 if (charAt2 == '\'') {
-                    int i12 = i10 + 1;
-                    if (i12 < length && str.charAt(i12) == '\'') {
+                    int i11 = i3 + 1;
+                    if (i11 < length && str.charAt(i11) == '\'') {
                         sb2.append(charAt2);
-                        i10 = i12;
+                        i3 = i11;
                     } else {
                         z10 = !z10;
                     }
                 } else if (!z10 && ((charAt2 >= 'A' && charAt2 <= 'Z') || (charAt2 >= 'a' && charAt2 <= 'z'))) {
-                    i10--;
+                    i3--;
                     break;
                 } else {
                     sb2.append(charAt2);
                 }
-                i10++;
+                i3++;
             }
         }
-        iArr[0] = i10;
+        iArr[0] = i3;
         return sb2.toString();
     }
 
-    public NumberRule selectNumberRule(int i10, int i11) {
-        if (i11 != 1) {
-            if (i11 != 2) {
-                return new PaddedNumberField(i10, i11);
+    public NumberRule selectNumberRule(int i3, int i10) {
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return new PaddedNumberField(i3, i10);
             }
-            return new TwoDigitNumberField(i10);
+            return new TwoDigitNumberField(i3);
         }
-        return new UnpaddedNumberField(i10);
+        return new UnpaddedNumberField(i3);
     }
 
     public String toString() {
@@ -784,11 +784,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
         @Override
         public void appendTo(StringBuffer stringBuffer, Calendar calendar) {
-            int i10 = calendar.get(10);
-            if (i10 == 0) {
-                i10 = calendar.getLeastMaximum(10) + 1;
+            int i3 = calendar.get(10);
+            if (i3 == 0) {
+                i3 = calendar.getLeastMaximum(10) + 1;
             }
-            this.mRule.appendTo(stringBuffer, i10);
+            this.mRule.appendTo(stringBuffer, i3);
         }
 
         @Override
@@ -797,8 +797,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public void appendTo(StringBuffer stringBuffer, int i10) {
-            this.mRule.appendTo(stringBuffer, i10);
+        public void appendTo(StringBuffer stringBuffer, int i3) {
+            this.mRule.appendTo(stringBuffer, i3);
         }
     }
 
@@ -811,11 +811,11 @@ public class FastDatePrinter implements DatePrinter, Serializable {
 
         @Override
         public void appendTo(StringBuffer stringBuffer, Calendar calendar) {
-            int i10 = calendar.get(11);
-            if (i10 == 0) {
-                i10 = calendar.getMaximum(11) + 1;
+            int i3 = calendar.get(11);
+            if (i3 == 0) {
+                i3 = calendar.getMaximum(11) + 1;
             }
-            this.mRule.appendTo(stringBuffer, i10);
+            this.mRule.appendTo(stringBuffer, i3);
         }
 
         @Override
@@ -824,8 +824,8 @@ public class FastDatePrinter implements DatePrinter, Serializable {
         }
 
         @Override
-        public void appendTo(StringBuffer stringBuffer, int i10) {
-            this.mRule.appendTo(stringBuffer, i10);
+        public void appendTo(StringBuffer stringBuffer, int i3) {
+            this.mRule.appendTo(stringBuffer, i3);
         }
     }
 

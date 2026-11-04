@@ -1,17 +1,18 @@
 package org.telegram.utils.twidget;
 
-import org.telegram.messenger.k20;
+import ai.z1;
+import org.telegram.messenger.n10;
 import org.telegram.tgnet.TLRPC;
-public final class i implements k20 {
-    public final boolean[] f44361a;
-    public final org.telegram.messenger.voip.g f44362b;
-    public final w f44363c;
+public final class i implements n10 {
+    public final boolean[] f52887a;
+    public final z1 f52888b;
+    public final u f52889c;
     public final long d;
 
-    public i(boolean[] zArr, org.telegram.messenger.voip.g gVar, w wVar, long j10) {
-        this.f44361a = zArr;
-        this.f44362b = gVar;
-        this.f44363c = wVar;
+    public i(boolean[] zArr, z1 z1Var, u uVar, long j10) {
+        this.f52887a = zArr;
+        this.f52888b = z1Var;
+        this.f52889c = uVar;
         this.d = j10;
     }
 
@@ -20,17 +21,17 @@ public final class i implements k20 {
         String str;
         TLRPC.TL_messages_botWidgetQueryAnswer tL_messages_botWidgetQueryAnswer = (TLRPC.TL_messages_botWidgetQueryAnswer) obj;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-        boolean[] zArr = this.f44361a;
+        boolean[] zArr = this.f52887a;
         if (zArr[0]) {
             return;
         }
-        int i10 = 1;
+        int i3 = 1;
         zArr[0] = true;
-        org.telegram.messenger.i0.r(this.f44362b);
-        w wVar = this.f44363c;
+        org.telegram.messenger.g0.r(this.f52888b);
+        u uVar = this.f52889c;
         long j10 = this.d;
         if (tL_messages_botWidgetQueryAnswer != null) {
-            wVar.a(0, p.A(tL_messages_botWidgetQueryAnswer.result), j10);
+            uVar.a(0, p.A(tL_messages_botWidgetQueryAnswer.result), j10);
             return;
         }
         if (tL_error != null) {
@@ -40,11 +41,11 @@ public final class i implements k20 {
         }
         if (!"WIDGET_RESPONSE_TIMEOUT".equals(str)) {
             if (str != null && str.startsWith("FLOOD_WAIT")) {
-                i10 = 2;
+                i3 = 2;
             } else {
-                i10 = 3;
+                i3 = 3;
             }
         }
-        wVar.a(i10, null, j10);
+        uVar.a(i3, null, j10);
     }
 }

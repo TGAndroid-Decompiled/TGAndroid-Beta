@@ -1,69 +1,56 @@
 package g6;
 
-import android.support.v4.media.session.a0;
-import android.text.TextUtils;
 import android.util.Log;
-import c3.g0;
-import c6.b0;
-import c6.e0;
-import c6.f0;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-public abstract class p {
-    public final b f7398a;
-    public final String f7399b;
-    public a0 f7400c;
-    public final List d;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.internal.cast.z;
+public final class p {
+    public final int f12028a;
+    public final c f12029b;
 
-    public p(String str) {
-        a.b(str);
-        this.f7399b = str;
-        this.f7398a = new b("MediaControlChannel", null);
-        this.d = DesugarCollections.synchronizedList(new ArrayList());
+    public p(c cVar, int i3) {
+        this.f12028a = i3;
+        this.f12029b = cVar;
     }
 
-    public final void a(o oVar) {
-        this.d.add(oVar);
-    }
-
-    public final long b() {
-        a0 a0Var = this.f7400c;
-        if (a0Var == null) {
-            b bVar = this.f7398a;
-            Log.e(bVar.f7368a, bVar.d("Attempt to generate requestId without a sink", new Object[0]));
-            return 0L;
-        }
-        return ((AtomicLong) a0Var.f876c).getAndIncrement();
-    }
-
-    public final void c(long j10, String str) {
-        a0 a0Var = this.f7400c;
-        if (a0Var == null) {
-            b bVar = this.f7398a;
-            Log.e(bVar.f7368a, bVar.d("Attempt to send text message without a sink", new Object[0]));
-            return;
-        }
-        f0 f0Var = (f0) a0Var.f875b;
-        if (f0Var != null) {
-            e0 e0Var = (e0) f0Var;
-            String str2 = this.f7399b;
-            a.b(str2);
-            if (!TextUtils.isEmpty(str)) {
-                if (str.length() <= 524288) {
-                    com.google.android.gms.common.api.internal.v b10 = com.google.android.gms.common.api.internal.w.b();
-                    b10.f4496c = new b0(e0Var, str2, str, 1);
-                    b10.f4494a = 8405;
-                    e0Var.e(1, b10.a()).addOnFailureListener(new g0(a0Var, j10, 2));
+    public final void a(com.google.android.gms.common.api.q qVar) {
+        m mVar = (m) qVar;
+        switch (this.f12028a) {
+            case 0:
+                Status a10 = mVar.a();
+                int i3 = a10.f6581a;
+                c cVar = this.f12029b;
+                if (i3 != 0) {
+                    i6.b bVar = cVar.f11980a;
+                    String str = a10.f6582b;
+                    Log.w(bVar.f14620a, bVar.d("Error fetching queue item ids, statusCode=" + i3 + ", statusMessage=" + str, new Object[0]));
+                }
+                cVar.f11989l = null;
+                if (!cVar.h.isEmpty()) {
+                    z zVar = cVar.f11986i;
+                    q qVar2 = cVar.f11987j;
+                    zVar.removeCallbacks(qVar2);
+                    zVar.postDelayed(qVar2, 500L);
                     return;
                 }
-                b bVar2 = e0.G;
-                Log.w(bVar2.f7368a, bVar2.d("Message send failed. Message exceeds maximum size", new Object[0]));
-                throw new IllegalArgumentException("Message exceeds maximum size524288");
-            }
-            throw new IllegalArgumentException("The message payload cannot be null or empty");
+                return;
+            default:
+                Status a11 = mVar.a();
+                int i10 = a11.f6581a;
+                c cVar2 = this.f12029b;
+                if (i10 != 0) {
+                    i6.b bVar2 = cVar2.f11980a;
+                    String str2 = a11.f6582b;
+                    Log.w(bVar2.f14620a, bVar2.d("Error fetching queue items, statusCode=" + i10 + ", statusMessage=" + str2, new Object[0]));
+                }
+                cVar2.f11988k = null;
+                if (!cVar2.h.isEmpty()) {
+                    z zVar2 = cVar2.f11986i;
+                    q qVar3 = cVar2.f11987j;
+                    zVar2.removeCallbacks(qVar3);
+                    zVar2.postDelayed(qVar3, 500L);
+                    return;
+                }
+                return;
         }
-        throw new IllegalStateException("Device is not connected");
     }
 }

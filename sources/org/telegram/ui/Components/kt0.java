@@ -1,17 +1,21 @@
 package org.telegram.ui.Components;
-public final class kt0 implements org.telegram.messenger.o20 {
-    public final int f27955a;
-    public final Object f27956b;
-    public final Object f27957c;
+public final class kt0 extends q1.e {
+    public final it0 f35483a;
+    public final jt0 f35484b;
+    public float f35485c = 1.0f;
 
-    public kt0(int i10, Object obj, Object obj2) {
-        this.f27955a = i10;
-        this.f27956b = obj;
-        this.f27957c = obj2;
+    public kt0(it0 it0Var, jt0 jt0Var) {
+        this.f35483a = it0Var;
+        this.f35484b = jt0Var;
     }
 
     @Override
-    public final void a(java.lang.Object r18, java.lang.Object r19, java.lang.Object r20, java.lang.Object r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.kt0.a(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object):void");
+    public final float a(Object obj) {
+        return this.f35483a.get(obj) * this.f35485c;
+    }
+
+    @Override
+    public final void b(Object obj, float f10) {
+        this.f35484b.c(obj, f10 / this.f35485c);
     }
 }

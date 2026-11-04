@@ -1,28 +1,27 @@
 package z7;
+public final class f extends b8.d {
+    public final int f59859f;
+    public final i h;
 
-import java.io.Serializable;
-public final class f extends x7.d implements Serializable {
-    public final Object f54726b;
-    public final e9.m f54727c;
-
-    public f(Object obj, e9.m mVar) {
-        super(1, false);
-        this.f54726b = obj;
-        this.f54727c = mVar;
+    public f(i iVar, int i3) {
+        super(iVar);
+        this.f59859f = i3;
+        this.h = iVar;
     }
 
     @Override
-    public final Object getKey() {
-        return this.f54726b;
-    }
-
-    @Override
-    public final Object getValue() {
-        return this.f54727c;
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+    public final Object b(int i3) {
+        switch (this.f59859f) {
+            case 0:
+                Object[] objArr = this.h.f59907c;
+                objArr.getClass();
+                return objArr[i3];
+            case 1:
+                return new h(this.h, i3);
+            default:
+                Object[] objArr2 = this.h.d;
+                objArr2.getClass();
+                return objArr2[i3];
+        }
     }
 }

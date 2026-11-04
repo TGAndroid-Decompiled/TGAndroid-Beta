@@ -1,18 +1,19 @@
 package org.telegram.ui.Components;
-public final class gv extends kg.l1 {
-    @Override
-    public final void invalidate() {
-        if (sg.e0.b(this)) {
-            return;
-        }
-        super.invalidate();
+
+import android.content.Context;
+public final class gv extends rx {
+    public final ey I;
+
+    public gv(ey eyVar, Context context) {
+        super(eyVar, context, 1);
+        this.I = eyVar;
     }
 
     @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (sg.e0.b(this)) {
-            return;
+    public final void setTranslationY(float f10) {
+        if (f10 != getTranslationY()) {
+            super.setTranslationY(f10);
+            this.I.K.invalidate();
         }
-        super.invalidate(i10, i11, i12, i13);
     }
 }

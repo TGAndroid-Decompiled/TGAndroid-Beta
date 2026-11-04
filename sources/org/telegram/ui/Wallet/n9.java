@@ -1,67 +1,15 @@
 package org.telegram.ui.Wallet;
-
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-public final class n9 extends ReplacementSpan {
-    public final String f34951a;
-    public final String f34952b;
-    public final boolean f34953c;
+public final class n9 {
+    public float f42950a;
+    public float f42951b;
+    public float f42952c;
     public float d;
-    public int e;
-    public int f34954f;
-    public p9 h;
-    public p9 f34955n;
-    public final q9 f34956r;
-
-    public n9(q9 q9Var, String str, boolean z10, boolean z11) {
-        String str2;
-        this.f34956r = q9Var;
-        this.f34951a = str;
-        if (z10) {
-            str2 = q9Var.P;
-        } else {
-            str2 = "";
-        }
-        this.f34952b = str2;
-        this.f34953c = z11;
-    }
-
-    public final int a() {
-        int i10 = this.e;
-        return Math.round((q9.S.getInterpolation(this.f34956r.I) * (this.f34954f - i10)) + i10);
-    }
-
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        Canvas canvas2;
-        Paint paint2;
-        int i15;
-        float textSize = paint.getTextSize();
-        if (this.f34953c) {
-            paint.setTextSize((28.0f * textSize) / 44.0f);
-        }
-        float f10 = f7 - this.d;
-        p9 p9Var = this.f34955n;
-        if (p9Var != null) {
-            paint2 = paint;
-            i15 = i13;
-            canvas2 = canvas;
-            p9Var.b(canvas2, paint2, this.f34952b, f10, i15);
-        } else {
-            canvas2 = canvas;
-            paint2 = paint;
-            i15 = i13;
-        }
-        this.h.b(canvas2, paint2, this.f34951a, f10, i15);
-        paint2.setTextSize(textSize);
-    }
-
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
-        }
-        return a();
-    }
+    public float f42953e;
+    public float f42954f;
+    public float f42955g;
+    public float h;
+    public float f42956i;
+    public float f42957j;
+    public int f42958k;
+    public float f42959l;
 }

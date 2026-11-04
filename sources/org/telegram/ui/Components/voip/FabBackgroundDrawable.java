@@ -7,29 +7,29 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public class FabBackgroundDrawable extends Drawable {
-    public final Paint f31358a = new Paint(1);
-    public final Paint f31359b;
-    public Bitmap f31360c;
+    public final Paint f39201a = new Paint(1);
+    public final Paint f39202b;
+    public Bitmap f39203c;
 
     public FabBackgroundDrawable() {
         Paint paint = new Paint();
-        this.f31359b = paint;
+        this.f39202b = paint;
         paint.setColor(1275068416);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10;
-        if (this.f31360c == null) {
+        int i3;
+        if (this.f39203c == null) {
             onBoundsChange(getBounds());
         }
         int min = Math.min(getBounds().width(), getBounds().height());
-        Bitmap bitmap = this.f31360c;
+        Bitmap bitmap = this.f39203c;
         if (bitmap != null) {
-            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f31360c.getWidth() / 2), getBounds().centerY() - (this.f31360c.getHeight() / 2), this.f31359b);
+            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f39203c.getWidth() / 2), getBounds().centerY() - (this.f39203c.getHeight() / 2), this.f39202b);
         }
-        float f7 = min / 2;
-        canvas.drawCircle(f7, f7, i10 - org.telegram.messenger.i0.L(4.0f), this.f31358a);
+        float f10 = min / 2;
+        canvas.drawCircle(f10, f10, i3 - org.telegram.messenger.g0.L(4.0f), this.f39201a);
     }
 
     @Override
@@ -39,31 +39,31 @@ public class FabBackgroundDrawable extends Drawable {
 
     @Override
     public final boolean getPadding(Rect rect) {
-        int L = org.telegram.messenger.i0.L(4.0f);
+        int L = org.telegram.messenger.g0.L(4.0f);
         rect.set(L, L, L, L);
         return true;
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        int i10;
+        int i3;
         int min = Math.min(rect.width(), rect.height());
         if (min <= 0) {
-            this.f31360c = null;
+            this.f39203c = null;
             return;
         }
-        this.f31360c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
-        float f7 = min / 2;
-        new Canvas(this.f31360c).drawCircle(f7, f7, i10 - org.telegram.messenger.i0.L(4.0f), new Paint(1));
+        this.f39203c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
+        float f10 = min / 2;
+        new Canvas(this.f39203c).drawCircle(f10, f10, i3 - org.telegram.messenger.g0.L(4.0f), new Paint(1));
     }
 
-    public void setColor(int i10) {
-        this.f31358a.setColor(i10);
+    public void setColor(int i3) {
+        this.f39201a.setColor(i3);
         invalidateSelf();
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void setAlpha(int i3) {
     }
 
     @Override

@@ -1,68 +1,123 @@
 package p3;
 
-import b2.u0;
-import java.nio.ByteBuffer;
-import java.nio.charset.CharacterCodingException;
-import java.nio.charset.CharsetDecoder;
-import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import v7.r6;
-import w7.l;
-public final class a extends l {
-    public static final Pattern f44700c = Pattern.compile("(.+?)='(.*?)';", 32);
-    public final CharsetDecoder f44701a = StandardCharsets.UTF_8.newDecoder();
-    public final CharsetDecoder f44702b = StandardCharsets.ISO_8859_1.newDecoder();
+import d2.p0;
+import d2.r0;
+import d2.u;
+import d2.u0;
+import d2.v;
+import j$.util.Objects;
+import java.util.Arrays;
+public final class a implements r0 {
+    public static final v f53137g;
+    public static final v h;
+    public final String f53138a;
+    public final String f53139b;
+    public final long f53140c;
+    public final long d;
+    public final byte[] f53141e;
+    public int f53142f;
+
+    static {
+        u uVar = new u();
+        uVar.f8431r = u0.n("application/id3");
+        f53137g = new v(uVar);
+        u uVar2 = new u();
+        uVar2.f8431r = u0.n("application/x-scte35");
+        h = new v(uVar2);
+    }
+
+    public a(String str, String str2, long j10, long j11, byte[] bArr) {
+        this.f53138a = str;
+        this.f53139b = str2;
+        this.f53140c = j10;
+        this.d = j11;
+        this.f53141e = bArr;
+    }
 
     @Override
-    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
-        String str;
-        CharsetDecoder charsetDecoder = this.f44702b;
-        CharsetDecoder charsetDecoder2 = this.f44701a;
-        String str2 = null;
-        try {
-            str = charsetDecoder2.decode(byteBuffer).toString();
-        } catch (CharacterCodingException unused) {
-            try {
-                String charBuffer = charsetDecoder.decode(byteBuffer).toString();
-                charsetDecoder.reset();
-                byteBuffer.rewind();
-                str = charBuffer;
-            } catch (CharacterCodingException unused2) {
-                charsetDecoder.reset();
-                byteBuffer.rewind();
-                str = null;
-            } catch (Throwable th2) {
-                charsetDecoder.reset();
-                byteBuffer.rewind();
-                throw th2;
-            }
-        } finally {
-            charsetDecoder2.reset();
-            byteBuffer.rewind();
-        }
-        byte[] bArr = new byte[byteBuffer.limit()];
-        byteBuffer.get(bArr);
-        if (str == null) {
-            return new u0(new c(bArr, null, null));
-        }
-        Matcher matcher = f44700c.matcher(str);
-        String str3 = null;
-        for (int i10 = 0; matcher.find(i10); i10 = matcher.end()) {
-            String group = matcher.group(1);
-            String group2 = matcher.group(2);
-            if (group != null) {
-                String c10 = r6.c(group);
-                c10.getClass();
-                if (!c10.equals("streamurl")) {
-                    if (c10.equals("streamtitle")) {
-                        str2 = group2;
-                    }
-                } else {
-                    str3 = group2;
+    public final v b() {
+        String str = this.f53138a;
+        str.getClass();
+        char c2 = 65535;
+        switch (str.hashCode()) {
+            case -1468477611:
+                if (str.equals("urn:scte:scte35:2014:bin")) {
+                    c2 = 0;
+                    break;
                 }
+                break;
+            case -795945609:
+                if (str.equals("https://aomedia.org/emsg/ID3")) {
+                    c2 = 1;
+                    break;
+                }
+                break;
+            case 1303648457:
+                if (str.equals("https://developer.apple.com/streaming/emsg-id3")) {
+                    c2 = 2;
+                    break;
+                }
+                break;
+        }
+        switch (c2) {
+            case 0:
+                return h;
+            case 1:
+            case 2:
+                return f53137g;
+            default:
+                return null;
+        }
+    }
+
+    @Override
+    public final byte[] c() {
+        if (b() != null) {
+            return this.f53141e;
+        }
+        return null;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && a.class == obj.getClass()) {
+            a aVar = (a) obj;
+            if (this.f53140c == aVar.f53140c && this.d == aVar.d && Objects.equals(this.f53138a, aVar.f53138a) && Objects.equals(this.f53139b, aVar.f53139b) && Arrays.equals(this.f53141e, aVar.f53141e)) {
+                return true;
             }
         }
-        return new u0(new c(bArr, str2, str3));
+        return false;
+    }
+
+    public final int hashCode() {
+        int i3;
+        if (this.f53142f == 0) {
+            int i10 = 0;
+            String str = this.f53138a;
+            if (str != null) {
+                i3 = str.hashCode();
+            } else {
+                i3 = 0;
+            }
+            int i11 = (527 + i3) * 31;
+            String str2 = this.f53139b;
+            if (str2 != null) {
+                i10 = str2.hashCode();
+            }
+            long j10 = this.f53140c;
+            long j11 = this.d;
+            this.f53142f = Arrays.hashCode(this.f53141e) + ((((((i11 + i10) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31);
+        }
+        return this.f53142f;
+    }
+
+    public final String toString() {
+        return "EMSG: scheme=" + this.f53138a + ", id=" + this.d + ", durationMs=" + this.f53140c + ", value=" + this.f53139b;
+    }
+
+    @Override
+    public final void a(p0 p0Var) {
     }
 }

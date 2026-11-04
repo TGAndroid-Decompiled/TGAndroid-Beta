@@ -1,14 +1,21 @@
 package n2;
+public final class k extends x2.b {
+    public final j d;
 
-import u2.g0;
-public interface k {
-    void E(int i10, g0 g0Var);
+    public k(j jVar, long j10, long j11) {
+        super(j10, j11);
+        this.d = jVar;
+    }
 
-    void J(int i10, g0 g0Var);
+    @Override
+    public final long D() {
+        a();
+        return this.d.d(this.f58131c);
+    }
 
-    void b(int i10, g0 g0Var, int i11);
-
-    void j(int i10, g0 g0Var, Exception exc);
-
-    void l(int i10, g0 g0Var, oa.d dVar);
+    @Override
+    public final long t() {
+        a();
+        return this.d.e(this.f58131c);
+    }
 }

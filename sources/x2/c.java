@@ -1,180 +1,75 @@
 package x2;
 
-import android.os.SystemClock;
-import b2.p1;
-import b2.x;
-import e2.l0;
-import java.util.Arrays;
-import java.util.List;
-import org.telegram.ui.dx0;
-import v7.t6;
-public abstract class c implements q {
-    public final p1 f52921a;
-    public final int f52922b;
-    public final int[] f52923c;
-    public final x[] d;
-    public final long[] e;
-    public int f52924f;
+import d2.o;
+import d2.v;
+import e3.h0;
+import e3.i0;
+import g2.n0;
+import g2.y;
+public final class c implements i0 {
+    public final int f58132a;
+    public final v f58133b;
+    public final e3.n f58134c = new e3.n();
+    public final d d;
+    public v f58135e;
+    public i0 f58136f;
+    public long f58137g;
 
-    public c(p1 p1Var, int[] iArr) {
-        boolean z10;
-        int i10 = 0;
-        if (iArr.length > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public c(int i3, int i10, v vVar, d dVar) {
+        this.f58132a = i10;
+        this.f58133b = vVar;
+        this.d = dVar;
+    }
+
+    @Override
+    public final int a(o oVar, int i3, boolean z10) {
+        return c(oVar, i3, z10);
+    }
+
+    @Override
+    public final int c(o oVar, int i3, boolean z10) {
+        i0 i0Var = this.f58136f;
+        String str = n0.f11873a;
+        return i0Var.a(oVar, i3, z10);
+    }
+
+    @Override
+    public final void d(long j10, int i3, int i10, int i11, h0 h0Var) {
+        long j11 = this.f58137g;
+        if (j11 != -9223372036854775807L && j10 >= j11) {
+            this.f58136f = this.f58134c;
         }
-        t6.p(z10);
-        p1Var.getClass();
-        this.f52921a = p1Var;
-        int length = iArr.length;
-        this.f52922b = length;
-        this.d = new x[length];
-        for (int i11 = 0; i11 < iArr.length; i11++) {
-            this.d[i11] = p1Var.d[iArr[i11]];
+        i0 i0Var = this.f58136f;
+        String str = n0.f11873a;
+        i0Var.d(j10, i3, i10, i11, h0Var);
+    }
+
+    @Override
+    public final void e(int i3, y yVar) {
+        com.google.android.recaptcha.internal.a.a(this, yVar, i3);
+    }
+
+    @Override
+    public final void f(y yVar, int i3, int i10) {
+        i0 i0Var = this.f58136f;
+        String str = n0.f11873a;
+        i0Var.e(i3, yVar);
+    }
+
+    @Override
+    public final void g(v vVar) {
+        this.d.getClass();
+        v vVar2 = this.f58133b;
+        if (vVar2 != null) {
+            vVar = vVar.d(vVar2);
         }
-        Arrays.sort(this.d, new dx0(27));
-        this.f52923c = new int[this.f52922b];
-        while (true) {
-            int i12 = this.f52922b;
-            if (i10 < i12) {
-                this.f52923c[i10] = p1Var.a(this.d[i10]);
-                i10++;
-            } else {
-                this.e = new long[i12];
-                return;
-            }
-        }
+        this.f58135e = vVar;
+        i0 i0Var = this.f58136f;
+        String str = n0.f11873a;
+        i0Var.g(vVar);
     }
 
     @Override
-    public final boolean a(int i10, long j10) {
-        if (this.e[i10] > j10) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final p1 b() {
-        return this.f52921a;
-    }
-
-    @Override
-    public final boolean d(long j10, v2.f fVar, List list) {
-        return false;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && getClass() == obj.getClass()) {
-            c cVar = (c) obj;
-            if (this.f52921a.equals(cVar.f52921a) && Arrays.equals(this.f52923c, cVar.f52923c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public final x f(int i10) {
-        return this.d[i10];
-    }
-
-    @Override
-    public final int h(int i10) {
-        return this.f52923c[i10];
-    }
-
-    public final int hashCode() {
-        if (this.f52924f == 0) {
-            this.f52924f = Arrays.hashCode(this.f52923c) + (System.identityHashCode(this.f52921a) * 31);
-        }
-        return this.f52924f;
-    }
-
-    @Override
-    public int i(long j10, List list) {
-        return list.size();
-    }
-
-    @Override
-    public final int l() {
-        return this.f52923c[c()];
-    }
-
-    @Override
-    public final int length() {
-        return this.f52923c.length;
-    }
-
-    @Override
-    public final x m() {
-        return this.d[c()];
-    }
-
-    @Override
-    public final boolean o(int i10, long j10) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        boolean a2 = a(i10, elapsedRealtime);
-        for (int i11 = 0; i11 < this.f52922b && !a2; i11++) {
-            if (i11 != i10 && !a(i11, elapsedRealtime)) {
-                a2 = true;
-            } else {
-                a2 = false;
-            }
-        }
-        if (!a2) {
-            return false;
-        }
-        long[] jArr = this.e;
-        jArr[i10] = Math.max(jArr[i10], l0.a(elapsedRealtime, j10));
-        return true;
-    }
-
-    @Override
-    public final int s(x xVar) {
-        for (int i10 = 0; i10 < this.f52922b; i10++) {
-            if (this.d[i10] == xVar) {
-                return i10;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final int u(int i10) {
-        for (int i11 = 0; i11 < this.f52922b; i11++) {
-            if (this.f52923c[i11] == i10) {
-                return i11;
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public void g() {
-    }
-
-    @Override
-    public void j() {
-    }
-
-    @Override
-    public final void r() {
-    }
-
-    @Override
-    public final void t() {
-    }
-
-    @Override
-    public final void e(boolean z10) {
-    }
-
-    @Override
-    public void p(float f7) {
+    public final void b(long j10) {
     }
 }

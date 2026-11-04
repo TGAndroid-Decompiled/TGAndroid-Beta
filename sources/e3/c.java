@@ -1,17 +1,10 @@
 package e3;
-public final class c implements a {
-    public final int f6228a;
-    public final int f6229b;
-    public final int f6230c;
-
-    public c(int i10, int i11, int i12) {
-        this.f6228a = i10;
-        this.f6229b = i11;
-        this.f6230c = i12;
-    }
-
-    @Override
-    public final int getType() {
-        return 1751742049;
-    }
+public final class c {
+    public boolean f9430a;
+    public int f9431b;
+    public int f9432c;
+    public boolean d;
+    public int f9433e;
+    public int f9434f;
+    public int f9435g;
 }

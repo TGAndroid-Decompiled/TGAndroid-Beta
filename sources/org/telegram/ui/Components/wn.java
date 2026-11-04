@@ -1,6 +1,14 @@
 package org.telegram.ui.Components;
-
-import org.telegram.tgnet.TLRPC;
 public interface wn {
-    void b(TLRPC.Document document);
+    void dismiss();
+
+    void p();
+
+    void q();
+
+    void t();
+
+    void v();
+
+    void z(int i3);
 }

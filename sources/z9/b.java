@@ -1,28 +1,41 @@
 package z9;
-public final class b implements ja.d {
-    public static final b f55242a = new Object();
-    public static final ja.c f55243b = ja.c.c("pid");
-    public static final ja.c f55244c = ja.c.c("processName");
-    public static final ja.c d = ja.c.c("reasonCode");
-    public static final ja.c e = ja.c.c("importance");
-    public static final ja.c f55245f = ja.c.c("pss");
-    public static final ja.c f55246g = ja.c.c("rss");
-    public static final ja.c h = ja.c.c("timestamp");
-    public static final ja.c f55247i = ja.c.c("traceFile");
-    public static final ja.c f55248j = ja.c.c("buildIdMappingForArch");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        b0 b0Var = (b0) ((g1) obj);
-        eVar.g(f55243b, b0Var.f55249a);
-        eVar.d(f55244c, b0Var.f55250b);
-        eVar.g(d, b0Var.f55251c);
-        eVar.g(e, b0Var.d);
-        eVar.f(f55245f, b0Var.e);
-        eVar.f(f55246g, b0Var.f55252f);
-        eVar.f(h, b0Var.f55253g);
-        eVar.d(f55247i, b0Var.h);
-        eVar.d(f55248j, b0Var.f55254i);
+import ca.d0;
+import java.io.File;
+public final class b {
+    public final d0 f60164a;
+    public final String f60165b;
+    public final File f60166c;
+
+    public b(d0 d0Var, String str, File file) {
+        this.f60164a = d0Var;
+        if (str != null) {
+            this.f60165b = str;
+            this.f60166c = file;
+            return;
+        }
+        throw new NullPointerException("Null sessionId");
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                if (this.f60164a.equals(bVar.f60164a) && this.f60165b.equals(bVar.f60165b) && this.f60166c.equals(bVar.f60166c)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((((this.f60164a.hashCode() ^ 1000003) * 1000003) ^ this.f60165b.hashCode()) * 1000003) ^ this.f60166c.hashCode();
+    }
+
+    public final String toString() {
+        return "CrashlyticsReportWithSessionId{report=" + this.f60164a + ", sessionId=" + this.f60165b + ", reportFile=" + this.f60166c + "}";
     }
 }

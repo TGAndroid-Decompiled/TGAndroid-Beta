@@ -1,42 +1,29 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.voip.VideoCapturerDevice;
+import java.io.File;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_phone;
 public final class l implements Runnable {
-    public final int f18834a;
+    public final int f26025a;
+    public final Object f26026b;
+    public final Object f26027c;
+    public final Object d;
 
-    public l(int i10) {
-        this.f18834a = i10;
+    public l(Object obj, Object obj2, Object obj3, int i3) {
+        this.f26025a = i3;
+        this.f26026b = obj;
+        this.f26027c = obj2;
+        this.d = obj3;
     }
 
     @Override
     public final void run() {
-        switch (this.f18834a) {
+        switch (this.f26025a) {
             case 0:
-                VideoCapturerDevice.AnonymousClass1.a();
-                return;
-            case 1:
-                VideoCapturerDevice.AnonymousClass2.a();
-                return;
-            case 2:
-                VoIPPreNotificationService.d();
-                return;
-            case 3:
-                VoIPService.r0();
-                return;
-            case 4:
-                VoIPService.S0();
-                return;
-            case 5:
-                VoIPService.H();
-                return;
-            case 6:
-                VoIPService.R0();
-                return;
-            case 7:
-                VoIPService.S();
+                VoIPDebugToSend.c((VoIPDebugToSend) this.f26026b, (File) this.f26027c, (TL_phone.saveCallDebug) this.d);
                 return;
             default:
-                VoIPService.d1();
+                ((VoIPService) this.f26026b).lambda$startConferenceGroupCall$53((TLRPC.TL_error) this.f26027c, (String) this.d);
                 return;
         }
     }

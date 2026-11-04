@@ -1,58 +1,75 @@
 package qg;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import java.util.ArrayList;
-public final class f extends AnimatorListenerAdapter {
-    public final int f45545a;
-    public final ArrayList f45546b;
-    public final g f45547c;
+import android.util.DisplayMetrics;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import org.telegram.messenger.g0;
+public final class f extends GestureDetector.SimpleOnGestureListener {
+    public float f53921a;
+    public float f53922b;
+    public final h f53923c;
 
-    public f(g gVar, ArrayList arrayList, int i10) {
-        this.f45545a = i10;
-        this.f45547c = gVar;
-        this.f45546b = arrayList;
+    public f(h hVar) {
+        this.f53923c = hVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f45545a) {
-            case 0:
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f45546b;
-                    int size = arrayList.size();
-                    g gVar = this.f45547c;
-                    if (i10 < size) {
-                        gVar.removeView((View) arrayList.get(i10));
-                        i10++;
-                    } else {
-                        gVar.getClass();
-                        gVar.h.clear();
-                        gVar.f45549b = null;
-                        gVar.f45550c = false;
-                        ((h) gVar.f45552n).f45554b.setAllowDrawCursor(true);
-                        return;
-                    }
-                }
-            default:
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f45546b;
-                    int size2 = arrayList2.size();
-                    g gVar2 = this.f45547c;
-                    if (i11 < size2) {
-                        gVar2.removeView((View) arrayList2.get(i11));
-                        i11++;
-                    } else {
-                        gVar2.h.clear();
-                        gVar2.f45549b = null;
-                        gVar2.f45550c = false;
-                        ((h) gVar2.f45552n).f45554b.setAllowDrawCursor(true);
-                        return;
-                    }
-                }
+    public final boolean onDown(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        DisplayMetrics displayMetrics;
+        float f12;
+        h hVar = this.f53923c;
+        if (hVar.f53934f && !hVar.f53935n) {
+            q1.h hVar2 = hVar.f53932c.f53653m;
+            if ((f10 / 7.0f) + ((float) hVar2.f53661i) >= hVar.getWidth() / 2.0f) {
+                displayMetrics = hVar.getResources().getDisplayMetrics();
+                f12 = 2.1474836E9f;
+            } else {
+                displayMetrics = hVar.getResources().getDisplayMetrics();
+                f12 = -2.1474836E9f;
+            }
+            hVar2.f53661i = h.a(displayMetrics, f12);
+            hVar.d.f53653m.f53661i = h.b(hVar.getResources().getDisplayMetrics(), (f11 / 10.0f) + ((float) hVar.d.f53653m.f53661i));
+            hVar.f53932c.h();
+            hVar.d.h();
+            hVar.h = true;
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        h hVar = this.f53923c;
+        int i3 = hVar.G;
+        if (!hVar.f53935n) {
+            g0.r(hVar.f53936r);
+        }
+        if (!hVar.f53934f && (Math.abs(f10) >= i3 || Math.abs(f11) >= i3)) {
+            this.f53921a = (float) hVar.f53932c.f53653m.f53661i;
+            this.f53922b = (float) hVar.d.f53653m.f53661i;
+            hVar.f53934f = true;
+        }
+        if (hVar.f53934f && !hVar.f53935n) {
+            hVar.f53932c.f53653m.f53661i = (motionEvent2.getRawX() + this.f53921a) - motionEvent.getRawX();
+            hVar.d.f53653m.f53661i = (motionEvent2.getRawY() + this.f53922b) - motionEvent.getRawY();
+            hVar.f53932c.h();
+            hVar.d.h();
+        }
+        return hVar.f53934f;
+    }
+
+    @Override
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        h hVar = this.f53923c;
+        if (!hVar.f53935n && !hVar.f53937s) {
+            hVar.c(true);
+            return true;
+        }
+        return false;
     }
 }

@@ -1,24 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.widget.TextView;
-import org.telegram.ui.LaunchActivity;
-public final class j6 extends ta {
-    public j6(LaunchActivity launchActivity, org.telegram.ui.aa0 aa0Var) {
-        super(launchActivity, null);
-        org.telegram.ui.Cells.q qVar = new org.telegram.ui.Cells.q(getContext());
-        TextView textView = new TextView(getContext());
-        addView(qVar, w7.b6.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
-        textView.setGravity(8388611);
-        textView.setPadding(0, org.telegram.messenger.i0.L(8.0f), 0, org.telegram.messenger.i0.L(8.0f));
-        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.vj, null);
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(Typeface.SANS_SERIF);
-        addView(textView, w7.b6.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
-        qVar.setImageDrawable(launchActivity.getDrawable(aa0Var.f35725b));
-        qVar.setOuterPadding(org.telegram.messenger.i0.L(8.0f));
-        qVar.setBackgroundOuterPadding(org.telegram.messenger.i0.L(24.0f));
-        qVar.setForeground(aa0Var.f35726c);
-        org.telegram.messenger.m5.q(null, null, 2131754238, new Object[]{org.telegram.messenger.dd.L0(aa0Var.d, null)}, textView);
+import android.util.Property;
+public abstract class j6 extends Property {
+    public final int f34969a;
+
+    public j6(String str, int i3) {
+        super(Float.class, str);
+        this.f34969a = i3;
+        switch (i3) {
+            case 1:
+                super(Integer.class, str);
+                return;
+            default:
+                return;
+        }
+    }
+
+    public void a(Object obj, Float f10) {
+        c(obj, f10.floatValue());
+    }
+
+    public abstract void b(int i3, Object obj);
+
+    public abstract void c(Object obj, float f10);
+
+    @Override
+    public final void set(Object obj, Object obj2) {
+        switch (this.f34969a) {
+            case 0:
+                c(obj, ((Float) obj2).floatValue());
+                return;
+            default:
+                b(((Integer) obj2).intValue(), obj);
+                return;
+        }
     }
 }

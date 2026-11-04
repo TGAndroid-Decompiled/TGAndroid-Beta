@@ -1,45 +1,39 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class p8 implements Runnable {
-    public final am f29372a;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class p8 extends View {
+    public n8 f37076a;
+    public final u5 f37077b;
+    public boolean f37078c;
+    public boolean d;
+    public final b10 f37079e;
+    public Drawable f37080f;
+    public Drawable h;
+    public boolean f37081n;
+    public Paint f37082r;
+    public Paint f37083s;
+    public boolean f37084w;
+    public final r8 f37085x;
 
-    public p8(am amVar) {
-        this.f29372a = amVar;
+    public p8(r8 r8Var, Context context) {
+        super(context);
+        this.f37085x = r8Var;
+        u5 u5Var = new u5(400L, org.telegram.messenger.g0.H);
+        this.f37077b = u5Var;
+        this.f37079e = new b10();
+        u5Var.f38643a = this;
     }
 
     @Override
-    public final void run() {
-        ag.c2 c2Var;
-        am amVar = this.f29372a;
-        org.telegram.messenger.i0.h3(amVar.D, 1000L);
-        TLRPC.TL_emojiList tL_emojiList = amVar.f29659n;
-        if (tL_emojiList != null && !tL_emojiList.document_id.isEmpty() && amVar.f29663x == 1.0f) {
-            if (amVar.f29664y || ((c2Var = amVar.f29656b.f26070k) != null && c2Var.J())) {
-                int i10 = amVar.f29662w + 1;
-                amVar.f29662w = i10;
-                amVar.f29661s++;
-                if (i10 > tL_emojiList.document_id.size() - 1) {
-                    amVar.f29662w = 0;
-                }
-                if (amVar.f29661s > 6) {
-                    amVar.f29661s = 0;
-                }
-                f5 f5Var = new f5(4, amVar.f29660r, tL_emojiList.document_id.get(amVar.f29662w).longValue());
-                amVar.f29655a = f5Var;
-                amVar.d.setAnimatedEmojiDrawable(f5Var);
-                int[] iArr = o8.f29042c0[amVar.f29661s];
-                int i11 = iArr[0];
-                int i12 = iArr[1];
-                int i13 = iArr[2];
-                int i14 = iArr[3];
-                u10 u10Var = new u10();
-                amVar.f29658f = u10Var;
-                u10Var.d(i11, i12, i13, i14);
-                amVar.f29663x = 0.0f;
-                amVar.b();
-                amVar.invalidate();
-            }
-        }
+    public final void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.p8.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f37085x.Q, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
     }
 }

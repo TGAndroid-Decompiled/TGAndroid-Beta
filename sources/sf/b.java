@@ -1,22 +1,44 @@
 package sf;
-public final class b {
-    public static final b f48267a;
-    public static final b f48268b;
-    public static final b[] f48269c;
 
-    static {
-        ?? r02 = new Enum("STARS", 0);
-        f48267a = r02;
-        ?? r12 = new Enum("TON", 1);
-        f48268b = r12;
-        f48269c = new b[]{r02, r12};
+import org.telegram.messenger.k7;
+public class b {
+    public Runnable f54707a;
+    public Runnable f54708b;
+    public Runnable f54709c;
+
+    public b(Runnable runnable, Runnable runnable2) {
+        this.f54707a = runnable;
+        this.f54709c = runnable2;
     }
 
-    public static b valueOf(String str) {
-        return (b) Enum.valueOf(b.class, str);
+    public final void a(boolean z10) {
+        Runnable runnable = this.f54708b;
+        if (runnable != null) {
+            runnable.run();
+        }
+        c(z10);
     }
 
-    public static b[] values() {
-        return (b[]) f48269c.clone();
+    public void b() {
+        c(false);
+    }
+
+    public void c(boolean z10) {
+        Runnable runnable = this.f54709c;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public void d() {
+        Runnable runnable = this.f54707a;
+        if (runnable != null) {
+            runnable.run();
+            this.f54707a = null;
+        }
+    }
+
+    public final void e(k7 k7Var) {
+        this.f54708b = k7Var;
     }
 }

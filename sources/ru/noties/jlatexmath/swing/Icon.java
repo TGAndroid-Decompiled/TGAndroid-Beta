@@ -7,5 +7,5 @@ public interface Icon {
 
     int getIconWidth();
 
-    void paintIcon(Component component, Graphics graphics, int i10, int i11);
+    void paintIcon(Component component, Graphics graphics, int i3, int i10);
 }

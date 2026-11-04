@@ -5,24 +5,24 @@ import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
-import e2.l0;
-import g2.b;
-import g2.b0;
-import g2.c;
-import g2.d0;
-import g2.e;
-import g2.h;
-import g2.m;
-import g2.n;
-import g2.s;
+import b8.zb;
+import g2.n0;
+import i2.b;
+import i2.b0;
+import i2.c;
+import i2.d0;
+import i2.e;
+import i2.h;
+import i2.m;
+import i2.n;
+import i2.s;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import n4.q;
-import org.telegram.messenger.x8;
-import v7.t6;
+import org.telegram.messenger.s8;
+import p4.q;
 public final class ExtendedDefaultDataSource implements h {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";
@@ -40,7 +40,7 @@ public final class ExtendedDefaultDataSource implements h {
     private final LongSparseArray<Uri> mtprotoUris;
     private h rawResourceDataSource;
     private h rtmpDataSource;
-    private x8 streamLoadOperation;
+    private s8 streamLoadOperation;
     private final List<d0> transferListeners;
 
     public ExtendedDefaultDataSource(Context context, String str, boolean z10) {
@@ -48,8 +48,8 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     private void addListenersToDataSource(h hVar) {
-        for (int i10 = 0; i10 < this.transferListeners.size(); i10++) {
-            hVar.addTransferListener(this.transferListeners.get(i10));
+        for (int i3 = 0; i3 < this.transferListeners.size(); i3++) {
+            hVar.addTransferListener(this.transferListeners.get(i3));
         }
     }
 
@@ -115,8 +115,8 @@ public final class ExtendedDefaultDataSource implements h {
                 addListenersToDataSource(hVar);
             } catch (ClassNotFoundException unused) {
                 Log.w("ExtendedDefaultDataSource", "Attempting to play RTMP stream without depending on the RTMP extension");
-            } catch (Exception e) {
-                throw new RuntimeException("Error instantiating RTMP extension", e);
+            } catch (Exception e10) {
+                throw new RuntimeException("Error instantiating RTMP extension", e10);
             }
             if (this.rtmpDataSource == null) {
                 this.rtmpDataSource = this.baseDataSource;
@@ -127,9 +127,9 @@ public final class ExtendedDefaultDataSource implements h {
 
     private h getStreamDataSource() {
         if (this.streamLoadOperation == null) {
-            x8 x8Var = new x8();
-            this.streamLoadOperation = x8Var;
-            addListenersToDataSource(x8Var);
+            s8 s8Var = new s8();
+            this.streamLoadOperation = s8Var;
+            addListenersToDataSource(s8Var);
         }
         return this.streamLoadOperation;
     }
@@ -190,16 +190,16 @@ public final class ExtendedDefaultDataSource implements h {
         } else {
             z10 = false;
         }
-        t6.p(z10);
-        Uri uri = nVar.f7315a;
+        zb.p(z10);
+        Uri uri = nVar.f14564a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(nVar.f7315a.toString().substring(8)));
-            m a2 = nVar.a();
-            a2.e = uri;
-            nVar = a2.d();
+            uri = this.mtprotoUris.get(Long.parseLong(nVar.f14564a.toString().substring(8)));
+            m a10 = nVar.a();
+            a10.f14560e = uri;
+            nVar = a10.d();
         }
         String scheme = uri.getScheme();
-        String str = l0.f6165a;
+        String str = n0.f11873a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {
@@ -231,14 +231,14 @@ public final class ExtendedDefaultDataSource implements h {
     }
 
     @Override
-    public int read(byte[] bArr, int i10, int i11) {
+    public int read(byte[] bArr, int i3, int i10) {
         h hVar = this.dataSource;
         hVar.getClass();
-        return hVar.read(bArr, i10, i11);
+        return hVar.read(bArr, i3, i10);
     }
 
-    public ExtendedDefaultDataSource(Context context, String str, int i10, int i11, boolean z10) {
-        this(context, new s(str, i10, i11, z10, new q(19)), (LongSparseArray<Uri>) null);
+    public ExtendedDefaultDataSource(Context context, String str, int i3, int i10, boolean z10) {
+        this(context, new s(str, i3, i10, z10, new q(23)), (LongSparseArray<Uri>) null);
     }
 
     public ExtendedDefaultDataSource(Context context, h hVar, LongSparseArray<Uri> longSparseArray) {

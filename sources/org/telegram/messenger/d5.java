@@ -1,39 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
-public final class d5 implements Runnable {
-    public final int f15296a;
-    public final i5 f15297b;
-    public final HashMap f15298c;
-    public final HashMap d;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class d5 {
+    public int f22147a;
+    public String f22148b;
+    public String f22149c;
+    public boolean d;
+    public final ArrayList f22150e = new ArrayList(4);
+    public final ArrayList f22151f = new ArrayList(4);
+    public final ArrayList f22152g = new ArrayList(4);
+    public final ArrayList h = new ArrayList(4);
+    public String f22153i;
+    public String f22154j;
+    public boolean f22155k;
+    public int f22156l;
+    public TLRPC.User f22157m;
 
-    public d5(i5 i5Var, HashMap hashMap, HashMap hashMap2, int i10) {
-        this.f15296a = i10;
-        this.f15297b = i5Var;
-        this.f15298c = hashMap;
-        this.d = hashMap2;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f15296a) {
-            case 0:
-                i5 i5Var = this.f15297b;
-                Utilities.e.c(new d5(i5Var, this.f15298c, this.d, 1));
-                if (!i5Var.e) {
-                    i5Var.e = true;
-                    is messagesStorage = i5Var.getMessagesStorage();
-                    messagesStorage.f16331a.c(new lr(messagesStorage, false, 0));
-                    return;
-                }
-                return;
-            default:
-                i5 i5Var2 = this.f15297b;
-                HashMap hashMap = this.f15298c;
-                HashMap hashMap2 = this.d;
-                i5Var2.f16225k0 = hashMap;
-                i5Var2.f16226l0 = hashMap2;
-                return;
+    public static String a(String str, String str2) {
+        if (!TextUtils.isEmpty(str)) {
+            return str.substring(0, 1);
         }
+        if (!TextUtils.isEmpty(str2)) {
+            return str2.substring(0, 1);
+        }
+        return "#";
     }
 }

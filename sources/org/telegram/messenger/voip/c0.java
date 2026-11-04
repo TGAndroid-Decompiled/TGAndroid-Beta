@@ -1,23 +1,25 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class c0 implements RequestDelegate {
-    public final int f18786a;
+import android.media.AudioManager;
+public final class c0 implements Runnable {
+    public final int f25983a;
+    public final VoIPService f25984b;
+    public final AudioManager f25985c;
 
-    public c0(int i10) {
-        this.f18786a = i10;
+    public c0(VoIPService voIPService, AudioManager audioManager, int i3) {
+        this.f25983a = i3;
+        this.f25984b = voIPService;
+        this.f25985c = audioManager;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18786a) {
+    public final void run() {
+        switch (this.f25983a) {
             case 0:
-                VoIPService.lambda$callFailed$114(tLObject, tL_error);
+                VoIPService.C(this.f25984b, this.f25985c);
                 return;
             default:
-                VoIPService.lambda$createGroupInstance$67(tLObject, tL_error);
+                VoIPService.g1(this.f25984b, this.f25985c);
                 return;
         }
     }

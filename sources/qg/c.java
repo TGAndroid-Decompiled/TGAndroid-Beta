@@ -1,152 +1,150 @@
 package qg;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.a30;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.i0;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.c2;
+import android.widget.Toast;
+import b8.mf;
+import m2.t;
+import mi.h0;
+import org.telegram.messenger.az;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.camera.q;
+import org.telegram.messenger.k5;
+import org.telegram.ui.ActionBar.d2;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import w7.b6;
-public class c extends FrameLayout implements k6 {
-    public int f45536a;
-    public final p6 f45537b;
-    public final ImageView f45538c;
-    public final TextView d;
-    public Runnable e;
-    public final c2 f45539f;
-    public final Paint h;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.ActionBar.t2;
+import org.telegram.ui.ActionBar.w3;
+import org.telegram.ui.Components.pm0;
+import org.telegram.ui.Components.qt0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.j5;
+public final class c implements Runnable {
+    public final int f53913a;
+    public final h f53914b;
 
-    public c(Context context, p6 p6Var) {
-        super(context);
+    public c(h hVar, int i3) {
+        this.f53913a = i3;
+        this.f53914b = hVar;
+    }
+
+    @Override
+    public final void run() {
+        int i3;
         int i10;
-        float f7;
-        float f10;
-        this.h = new Paint(1);
-        this.f45537b = p6Var;
-        TextView textView = new TextView(context);
-        this.d = textView;
-        a30.n(textView, 1, 20.0f);
-        if (dd.X) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        textView.setGravity(i10);
-        int i11 = t6.f21038j5;
-        a7.V(textView, i11, p6Var);
-        boolean z10 = dd.X;
-        if (z10) {
-            f7 = 16.0f;
-        } else {
-            f7 = 53.0f;
-        }
-        if (z10) {
-            f10 = 53.0f;
-        } else {
-            f10 = 16.0f;
-        }
-        addView(textView, b6.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f45538c = imageView;
-        c2 c2Var = new c2(false);
-        this.f45539f = c2Var;
-        imageView.setImageDrawable(c2Var);
-        int w02 = t6.w0(i11, p6Var);
-        this.f45536a = w02;
-        c2Var.a(w02);
-        c2Var.b(t6.w0(i11, p6Var));
-        c2Var.f20203k = 220.0f;
-        addView(imageView, b6.d(24, 24.0f, (dd.X ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        imageView.setOnClickListener(new ag.g(this, 28));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int w02 = t6.w0(t6.f20931d7, this.f45537b);
-        Paint paint = this.h;
-        paint.setColor(w02);
-        canvas.drawRect(0.0f, getHeight() - i0.f1(), getWidth(), getHeight(), paint);
-    }
-
-    public int getHeaderHeight() {
-        return i0.L(56.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(getHeaderHeight(), 1073741824));
-    }
-
-    public void setBackImage(int i10) {
-        this.f45538c.setImageResource(i10);
-    }
-
-    public void setCloseImageVisible(boolean z10) {
-        int i10;
-        float f7;
-        float f10;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 8;
-        }
-        this.f45538c.setVisibility(i10);
-        boolean z11 = dd.X;
-        if (!z11 && z10) {
-            f7 = 53.0f;
-        } else {
-            f7 = 22.0f;
-        }
-        if (z11 && z10) {
-            f10 = 53.0f;
-        } else {
-            f10 = 22.0f;
-        }
-        this.d.setLayoutParams(b6.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
-    }
-
-    public void setOnCloseClickListener(Runnable runnable) {
-        this.e = runnable;
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    @Override
-    public final void updateColors() {
-        c2 c2Var = this.f45539f;
-        if (c2Var != null) {
-            try {
-                int w02 = t6.w0(t6.f21038j5, this.f45537b);
-                if (w02 != this.f45536a) {
-                    this.f45536a = w02;
-                    c2Var.a(w02);
-                    c2Var.b(w02);
-                    ImageView imageView = this.f45538c;
-                    if (imageView != null) {
-                        imageView.invalidate();
-                    }
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16 = this.f53913a;
+        h hVar = this.f53914b;
+        switch (i16) {
+            case 0:
+                d2 Q = LaunchActivity.Q();
+                ?? t2Var = new t2(Q.getParentActivity(), false);
+                if (Q.getFragmentView() instanceof qt0) {
+                    t2Var.f46497j1 = (qt0) Q.getFragmentView();
                 }
-            } catch (Exception e) {
-                f8.g(e, true);
-            }
+                Activity parentActivity = Q.getParentActivity();
+                LinearLayout e10 = k5.e(parentActivity, 1);
+                TextView textView = new TextView(parentActivity);
+                textView.setText("Saturation " + (j5.k1 * 5.0f));
+                int i17 = k6.f28061n5;
+                r6.V(textView, i17, null);
+                q.n(textView, 1, 16.0f, 1, 1);
+                textView.setSingleLine(true);
+                if (bd.f21784a0) {
+                    i3 = 3;
+                } else {
+                    i3 = 5;
+                }
+                textView.setGravity(i3 | 48);
+                if (bd.f21784a0) {
+                    i10 = 3;
+                } else {
+                    i10 = 5;
+                }
+                e10.addView(textView, mf.d(-2, -1.0f, i10 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                pm0 pm0Var = new pm0(parentActivity);
+                pm0Var.setDelegate(new t(9, t2Var, textView));
+                pm0Var.setReportChanges(true);
+                e10.addView(pm0Var, mf.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                TextView textView2 = new TextView(parentActivity);
+                textView2.setText("Alpha " + j5.m1);
+                r6.V(textView2, i17, null);
+                q.n(textView2, 1, 16.0f, 1, 1);
+                textView2.setSingleLine(true);
+                if (bd.f21784a0) {
+                    i11 = 3;
+                } else {
+                    i11 = 5;
+                }
+                textView2.setGravity(i11 | 48);
+                if (bd.f21784a0) {
+                    i12 = 3;
+                } else {
+                    i12 = 5;
+                }
+                e10.addView(textView2, mf.d(-2, -1.0f, i12 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                pm0 pm0Var2 = new pm0(parentActivity);
+                pm0Var2.setDelegate(new h0(8, t2Var, textView2));
+                pm0Var2.setReportChanges(true);
+                e10.addView(pm0Var2, mf.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                TextView textView3 = new TextView(parentActivity);
+                textView3.setText("Blur Radius");
+                r6.V(textView3, i17, null);
+                q.n(textView3, 1, 16.0f, 1, 1);
+                textView3.setSingleLine(true);
+                if (bd.f21784a0) {
+                    i13 = 3;
+                } else {
+                    i13 = 5;
+                }
+                textView3.setGravity(i13 | 48);
+                if (bd.f21784a0) {
+                    i14 = 3;
+                } else {
+                    i14 = 5;
+                }
+                e10.addView(textView3, mf.d(-2, -1.0f, i14 | 48, 21.0f, 13.0f, 21.0f, 0.0f));
+                pm0 pm0Var3 = new pm0(parentActivity);
+                pm0Var3.setDelegate(new org.telegram.ui.f(t2Var, 5));
+                pm0Var3.setReportChanges(true);
+                e10.addView(pm0Var3, mf.d(-1, 38.0f, 0, 5.0f, 4.0f, 5.0f, 0.0f));
+                e10.addOnLayoutChangeListener(new w3(pm0Var, pm0Var3, pm0Var2));
+                ScrollView scrollView = new ScrollView(parentActivity);
+                scrollView.addView(e10);
+                t2Var.O = scrollView;
+                t2Var.show();
+                hVar.c(false);
+                return;
+            case 1:
+                hVar.getClass();
+                az.K();
+                Context context = hVar.getContext();
+                if (az.J0) {
+                    i15 = 2131751619;
+                } else {
+                    i15 = 2131751620;
+                }
+                Toast.makeText(context, bd.M0(i15, null), 0).show();
+                return;
+            case 2:
+                ProfileActivity.V4((Activity) hVar.getContext(), false);
+                return;
+            default:
+                hVar.f53935n = true;
+                try {
+                    hVar.performHapticFeedback(0);
+                    return;
+                } catch (Exception unused) {
+                    return;
+                }
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

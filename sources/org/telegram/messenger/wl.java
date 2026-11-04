@@ -1,25 +1,29 @@
 package org.telegram.messenger;
 
-import j$.util.function.Consumer$CC;
-import java.util.ArrayList;
-import java.util.function.Consumer;
-public final class wl implements Consumer {
-    public final wp f19066a;
-    public final long f19067b;
+import android.content.DialogInterface;
+public final class wl implements DialogInterface.OnCancelListener {
+    public final int f26223a;
+    public final c1 f26224b;
+    public final int f26225c;
 
-    public wl(wp wpVar, long j10) {
-        this.f19066a = wpVar;
-        this.f19067b = j10;
+    public wl(c1 c1Var, int i3, int i10) {
+        this.f26223a = i10;
+        this.f26224b = c1Var;
+        this.f26225c = i3;
     }
 
     @Override
-    public final void accept(Object obj) {
-        wp wpVar = this.f19066a;
-        wpVar.getClass();
-        i0.g3(new pk(wpVar, (ArrayList) obj, this.f19067b, 2));
-    }
-
-    public Consumer andThen(Consumer consumer) {
-        return Consumer$CC.$default$andThen(this, consumer);
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f26223a) {
+            case 0:
+                ((hp) this.f26224b).getConnectionsManager().cancelRequest(this.f26225c, true);
+                return;
+            case 1:
+                ((hp) this.f26224b).getConnectionsManager().cancelRequest(this.f26225c, true);
+                return;
+            default:
+                ((vv) this.f26224b).getConnectionsManager().cancelRequest(this.f26225c, true);
+                return;
+        }
     }
 }

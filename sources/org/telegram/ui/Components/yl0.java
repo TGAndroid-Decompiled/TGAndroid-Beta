@@ -1,12 +1,13 @@
 package org.telegram.ui.Components;
+public final class yl0 extends u4.k {
+    public final org.telegram.ui.cw F;
 
-import android.view.View;
-public interface yl0 {
-    void D();
+    public yl0(org.telegram.ui.cw cwVar) {
+        this.F = cwVar;
+    }
 
-    void E0(float f7);
-
-    boolean G1(int i10, View view);
-
-    void d(int i10, boolean z10);
+    @Override
+    public final void P(u4.d1 d1Var) {
+        this.F.invalidate();
+    }
 }

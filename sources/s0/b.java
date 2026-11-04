@@ -1,200 +1,96 @@
 package s0;
 
-import android.os.Build;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class b {
-    public static final b f47855c;
-    public static final b d;
-    public static final b e;
-    public static final b f47856f;
-    public static final b f47857g;
-    public static final b h;
-    public final Object f47858a;
-    public final int f47859b;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
+import android.util.Base64;
+import b8.ke;
+import com.google.firebase.components.ComponentRegistrar;
+import com.google.firebase.concurrent.ExecutorsRegistrar;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ScheduledExecutorService;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.t0;
+import tg.z;
+public final class b implements s3.g, t9.e, ta.a, i2.g, z, u5.e, t9.d {
+    public final int f54562a;
 
-    static {
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction2;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction3;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction4;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction5;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction6;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction7;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction8;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction9;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction10;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction11;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction12;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction13;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction14;
-        AccessibilityNodeInfo.AccessibilityAction accessibilityAction15;
-        new b(null, 1, null, null);
-        new b(null, 2, null, null);
-        new b(null, 4, null, null);
-        new b(null, 8, null, null);
-        f47855c = new b(null, 16, null, null);
-        new b(null, 32, null, null);
-        new b(null, 64, null, null);
-        new b(null, 128, null, null);
-        new b(null, 256, null, e.class);
-        new b(null, 512, null, e.class);
-        new b(null, 1024, null, f.class);
-        new b(null, 2048, null, f.class);
-        d = new b(null, 4096, null, null);
-        e = new b(null, 8192, null, null);
-        new b(null, 16384, null, null);
-        new b(null, 32768, null, null);
-        new b(null, 65536, null, null);
-        new b(null, 131072, null, j.class);
-        new b(null, 262144, null, null);
-        new b(null, 524288, null, null);
-        new b(null, 1048576, null, null);
-        new b(null, 2097152, null, k.class);
-        int i10 = Build.VERSION.SDK_INT;
-        new b(AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN, 16908342, null, null);
-        new b(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_TO_POSITION, 16908343, null, h.class);
-        f47856f = new b(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP, 16908344, null, null);
-        new b(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT, 16908345, null, null);
-        f47857g = new b(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null);
-        new b(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT, 16908347, null, null);
-        if (i10 >= 29) {
-            accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_UP;
-        } else {
-            accessibilityAction = null;
-        }
-        new b(accessibilityAction, 16908358, null, null);
-        if (i10 >= 29) {
-            accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_DOWN;
-        } else {
-            accessibilityAction2 = null;
-        }
-        new b(accessibilityAction2, 16908359, null, null);
-        if (i10 >= 29) {
-            accessibilityAction3 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_LEFT;
-        } else {
-            accessibilityAction3 = null;
-        }
-        new b(accessibilityAction3, 16908360, null, null);
-        if (i10 >= 29) {
-            accessibilityAction4 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_RIGHT;
-        } else {
-            accessibilityAction4 = null;
-        }
-        new b(accessibilityAction4, 16908361, null, null);
-        new b(AccessibilityNodeInfo.AccessibilityAction.ACTION_CONTEXT_CLICK, 16908348, null, null);
-        if (i10 >= 24) {
-            accessibilityAction5 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS;
-        } else {
-            accessibilityAction5 = null;
-        }
-        h = new b(accessibilityAction5, 16908349, null, i.class);
-        if (i10 >= 26) {
-            accessibilityAction6 = AccessibilityNodeInfo.AccessibilityAction.ACTION_MOVE_WINDOW;
-        } else {
-            accessibilityAction6 = null;
-        }
-        new b(accessibilityAction6, 16908354, null, g.class);
-        if (i10 >= 28) {
-            accessibilityAction7 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TOOLTIP;
-        } else {
-            accessibilityAction7 = null;
-        }
-        new b(accessibilityAction7, 16908356, null, null);
-        if (i10 >= 28) {
-            accessibilityAction8 = AccessibilityNodeInfo.AccessibilityAction.ACTION_HIDE_TOOLTIP;
-        } else {
-            accessibilityAction8 = null;
-        }
-        new b(accessibilityAction8, 16908357, null, null);
-        if (i10 >= 30) {
-            accessibilityAction9 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PRESS_AND_HOLD;
-        } else {
-            accessibilityAction9 = null;
-        }
-        new b(accessibilityAction9, 16908362, null, null);
-        if (i10 >= 30) {
-            accessibilityAction10 = AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER;
-        } else {
-            accessibilityAction10 = null;
-        }
-        new b(accessibilityAction10, 16908372, null, null);
-        if (i10 >= 32) {
-            accessibilityAction11 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_START;
-        } else {
-            accessibilityAction11 = null;
-        }
-        new b(accessibilityAction11, 16908373, null, null);
-        if (i10 >= 32) {
-            accessibilityAction12 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_DROP;
-        } else {
-            accessibilityAction12 = null;
-        }
-        new b(accessibilityAction12, 16908374, null, null);
-        if (i10 >= 32) {
-            accessibilityAction13 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_CANCEL;
-        } else {
-            accessibilityAction13 = null;
-        }
-        new b(accessibilityAction13, 16908375, null, null);
-        if (i10 >= 33) {
-            accessibilityAction14 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TEXT_SUGGESTIONS;
-        } else {
-            accessibilityAction14 = null;
-        }
-        new b(accessibilityAction14, 16908376, null, null);
-        if (i10 >= 34) {
-            accessibilityAction15 = g1.a.e();
-        } else {
-            accessibilityAction15 = null;
-        }
-        new b(accessibilityAction15, 16908382, null, null);
+    public b(int i3) {
+        this.f54562a = i3;
     }
 
-    public b(Object obj, int i10, CharSequence charSequence, Class cls) {
-        this.f47859b = i10;
-        if (obj == null) {
-            this.f47858a = new AccessibilityNodeInfo.AccessibilityAction(i10, charSequence);
-        } else {
-            this.f47858a = obj;
+    @Override
+    public Typeface a() {
+        switch (this.f54562a) {
+            case 20:
+                return g0.o1("fonts/rmedium.ttf");
+            case 21:
+                return g0.o1("fonts/rmediumitalic.ttf");
+            case 22:
+                return Typeface.create("serif", 1);
+            case 23:
+                return g0.o1("fonts/rcondensedbold.ttf");
+            case 24:
+                return g0.o1("fonts/rmono.ttf");
+            default:
+                return g0.o1("fonts/mw_bold.ttf");
         }
     }
 
-    public final boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof b)) {
-            return false;
-        }
-        Object obj2 = ((b) obj).f47858a;
-        Object obj3 = this.f47858a;
-        if (obj3 == null) {
-            if (obj2 != null) {
-                return false;
+    @Override
+    public Object apply(Object obj) {
+        byte[] decode;
+        Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
+        try {
+            ArrayList arrayList = new ArrayList();
+            while (rawQuery.moveToNext()) {
+                k4.j a10 = n5.i.a();
+                a10.I(rawQuery.getString(1));
+                a10.f16871c = x5.a.b(rawQuery.getInt(2));
+                String string = rawQuery.getString(3);
+                if (string == null) {
+                    decode = null;
+                } else {
+                    decode = Base64.decode(string, 0);
+                }
+                a10.f16870b = decode;
+                arrayList.add(a10.l());
             }
-            return true;
-        } else if (!obj3.equals(obj2)) {
-            return false;
-        } else {
-            return true;
+            return arrayList;
+        } finally {
+            rawQuery.close();
         }
     }
 
-    public final int hashCode() {
-        Object obj = this.f47858a;
-        if (obj != null) {
-            return obj.hashCode();
-        }
-        return 0;
+    @Override
+    public List b(ComponentRegistrar componentRegistrar) {
+        return componentRegistrar.getComponents();
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("AccessibilityActionCompat: ");
-        String e7 = c.e(this.f47859b);
-        if (e7.equals("ACTION_UNKNOWN")) {
-            Object obj = this.f47858a;
-            if (((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
-                e7 = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
-            }
+    @Override
+    public i2.h createDataSource() {
+        return new i2.b(t0.f25457b);
+    }
+
+    @Override
+    public boolean d(int i3, int i10, int i11, int i12, int i13) {
+        return false;
+    }
+
+    @Override
+    public Object q1(ke keVar) {
+        switch (this.f54562a) {
+            case 27:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7932a.get();
+            case 28:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7934c.get();
+            default:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7933b.get();
         }
-        sb2.append(e7);
-        return sb2.toString();
+    }
+
+    @Override
+    public void c(ta.b bVar) {
     }
 }

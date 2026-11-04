@@ -1,5 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.graphics.Canvas;
-public abstract class tu0 extends Canvas {
+public final class tu0 {
+    public String f38555a;
+    public boolean f38556b;
+    public long f38557c;
+    public String d;
 }

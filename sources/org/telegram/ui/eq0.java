@@ -1,44 +1,263 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-public final class eq0 extends org.telegram.ui.Components.g71 {
-    public final org.telegram.ui.Components.w9 f36890g0;
-    public final PhotoViewer f36891h0;
-
-    public eq0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f36891h0 = photoViewer;
-        new Path();
-        this.f36890g0 = new org.telegram.ui.Components.w9(photoViewer.f33449b0, this, 0, false);
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public class eq0 implements kq0 {
+    @Override
+    public boolean A() {
+        return false;
     }
 
     @Override
-    public final void b(Canvas canvas, RectF rectF) {
-        canvas.save();
-        canvas.clipRect(rectF);
-        PhotoViewer photoViewer = this.f36891h0;
-        canvas.translate((-getX()) - photoViewer.R7.getX(), (-getY()) - photoViewer.R7.getY());
-        photoViewer.U0(canvas, this.f36890g0, -14803426, 855638016, false, true, false);
-        canvas.restore();
+    public CharSequence C(int i3) {
+        return null;
     }
 
     @Override
-    public final void invalidate() {
-        int i10;
-        if (org.telegram.messenger.uz.f18507c0 && ((i10 = this.f36891h0.f33559n4) == 1 || i10 == 2 || i10 == 3)) {
-            return;
-        }
-        super.invalidate();
+    public mq0 E(org.telegram.messenger.zi ziVar, TLRPC.FileLocation fileLocation, int i3, boolean z10, boolean z11) {
+        return null;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            super.setTranslationY(f7);
-            this.f36891h0.f33477e0.invalidate();
-        }
+    public int H() {
+        return 0;
+    }
+
+    @Override
+    public boolean I() {
+        return true;
+    }
+
+    @Override
+    public boolean K() {
+        return false;
+    }
+
+    @Override
+    public boolean L() {
+        return false;
+    }
+
+    @Override
+    public boolean N() {
+        return true;
+    }
+
+    @Override
+    public boolean O() {
+        return false;
+    }
+
+    @Override
+    public boolean P() {
+        return false;
+    }
+
+    @Override
+    public boolean Q() {
+        return false;
+    }
+
+    @Override
+    public int R(Object obj) {
+        return -1;
+    }
+
+    @Override
+    public int S(int i3) {
+        return -1;
+    }
+
+    @Override
+    public boolean T() {
+        return !(this instanceof rk);
+    }
+
+    @Override
+    public boolean U() {
+        return !(this instanceof tk);
+    }
+
+    @Override
+    public org.telegram.messenger.zi V() {
+        return null;
+    }
+
+    @Override
+    public boolean Z() {
+        return false;
+    }
+
+    @Override
+    public long a() {
+        return 0L;
+    }
+
+    @Override
+    public boolean b() {
+        return false;
+    }
+
+    @Override
+    public String b0() {
+        return null;
+    }
+
+    @Override
+    public ArrayList c() {
+        return null;
+    }
+
+    @Override
+    public CharSequence c0(int i3) {
+        return null;
+    }
+
+    @Override
+    public boolean g() {
+        return !(this instanceof rk);
+    }
+
+    @Override
+    public boolean h() {
+        return false;
+    }
+
+    @Override
+    public org.telegram.messenger.cc j(int i3) {
+        return null;
+    }
+
+    @Override
+    public int k(int i3, org.telegram.messenger.b20 b20Var) {
+        return -1;
+    }
+
+    @Override
+    public boolean l() {
+        return false;
+    }
+
+    @Override
+    public boolean p() {
+        return false;
+    }
+
+    @Override
+    public boolean q() {
+        return false;
+    }
+
+    @Override
+    public boolean r() {
+        return false;
+    }
+
+    @Override
+    public boolean t() {
+        return true;
+    }
+
+    @Override
+    public boolean u() {
+        return !(this instanceof org.telegram.ui.Components.ll);
+    }
+
+    @Override
+    public HashMap v() {
+        return null;
+    }
+
+    @Override
+    public boolean w() {
+        return false;
+    }
+
+    @Override
+    public boolean x(int i3) {
+        return false;
+    }
+
+    @Override
+    public int y() {
+        return -1;
+    }
+
+    @Override
+    public boolean z() {
+        return !(this instanceof org.telegram.ui.Components.sh);
+    }
+
+    @Override
+    public void B(int i3) {
+    }
+
+    @Override
+    public void F(boolean z10) {
+    }
+
+    @Override
+    public void M(org.telegram.messenger.b20 b20Var) {
+    }
+
+    @Override
+    public void X(int i3) {
+    }
+
+    @Override
+    public void Y(int i3) {
+    }
+
+    @Override
+    public void a0(int i3) {
+    }
+
+    @Override
+    public void e(CharSequence charSequence) {
+    }
+
+    @Override
+    public void D() {
+    }
+
+    @Override
+    public void G() {
+    }
+
+    @Override
+    public void J() {
+    }
+
+    @Override
+    public void W() {
+    }
+
+    @Override
+    public void d() {
+    }
+
+    @Override
+    public void i() {
+    }
+
+    @Override
+    public void m() {
+    }
+
+    @Override
+    public void n() {
+    }
+
+    @Override
+    public void s() {
+    }
+
+    @Override
+    public void f(String str, String str2, boolean z10) {
+    }
+
+    @Override
+    public void o(int i3, org.telegram.messenger.b20 b20Var, boolean z10, int i10, int i11, boolean z11) {
     }
 }

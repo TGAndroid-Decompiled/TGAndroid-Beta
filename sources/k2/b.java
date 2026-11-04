@@ -1,92 +1,167 @@
 package k2;
 
-import android.util.SparseArray;
-import e9.x1;
-import j$.util.Objects;
-import java.util.List;
-public final class b {
-    public static final x1 e;
-    public static final b f10602f;
-    public static final x1 f10603g;
-    public static final e9.q0 h;
-    public final SparseArray f10604a = new SparseArray();
-    public final int f10605b;
-    public final e9.n0 f10606c;
-    public final e9.n0 d;
+import b8.zb;
+public abstract class b implements l1 {
+    public boolean E;
+    public boolean F;
+    public w2.g0 H;
+    public z2.n I;
+    public final int f16444b;
+    public q1 d;
+    public int f16446e;
+    public l2.k f16447f;
+    public g2.h0 h;
+    public int f16448n;
+    public w2.d1 f16449r;
+    public d2.v[] f16450s;
+    public long f16451w;
+    public long f16452x;
+    public final Object f16443a = new Object();
+    public final tf.b f16445c = new Object();
+    public long f16453y = Long.MIN_VALUE;
+    public d2.n1 G = d2.n1.f8245a;
 
-    static {
-        x1 y3 = e9.n0.y(12);
-        e = y3;
-        f10602f = new b(e9.n0.y(a.d), y3, x1.e);
-        Object[] objArr = {2, 5, 6};
-        e9.s.d(3, objArr);
-        f10603g = e9.n0.s(3, objArr);
-        a5.a aVar = new a5.a(4, 6);
-        aVar.w(5, 6);
-        aVar.w(17, 6);
-        aVar.w(7, 6);
-        aVar.w(30, 10);
-        aVar.w(18, 6);
-        aVar.w(6, 8);
-        aVar.w(8, 8);
-        aVar.w(14, 8);
-        h = aVar.d(true);
+    public b(int i3) {
+        this.f16444b = i3;
     }
 
-    public b(x1 x1Var, List list, List list2) {
-        for (int i10 = 0; i10 < x1Var.d; i10++) {
-            a aVar = (a) x1Var.get(i10);
-            this.f10604a.put(aVar.f10593a, aVar);
-        }
-        int i11 = 0;
-        for (int i12 = 0; i12 < this.f10604a.size(); i12++) {
-            i11 = Math.max(i11, ((a) this.f10604a.valueAt(i12)).f10594b);
-        }
-        this.f10605b = i11;
-        this.f10606c = e9.n0.u(list);
-        this.d = e9.n0.u(list2);
+    public final int B(long j10) {
+        w2.d1 d1Var = this.f16449r;
+        d1Var.getClass();
+        return d1Var.m(j10 - this.f16451w);
     }
 
-    public static x1 a(int[] iArr, int i10) {
-        e9.k0 t10 = e9.n0.t();
-        if (iArr == null) {
-            iArr = new int[0];
-        }
-        for (int i11 : iArr) {
-            t10.c(new a(i11, i10));
-        }
-        return t10.f();
+    public abstract int C(d2.v vVar);
+
+    public int D() {
+        return 0;
     }
 
-    public static k2.b b(android.content.Context r8, android.content.Intent r9, b2.f r10, android.media.AudioDeviceInfo r11, java.util.List r12) {
-        throw new UnsupportedOperationException("Method not decompiled: k2.b.b(android.content.Context, android.content.Intent, b2.f, android.media.AudioDeviceInfo, java.util.List):k2.b");
+    public boolean E(long j10) {
+        return false;
     }
 
-    public final android.util.Pair c(b2.f r14, b2.x r15) {
-        throw new UnsupportedOperationException("Method not decompiled: k2.b.c(b2.f, b2.x):android.util.Pair");
+    public final k2.l e(java.lang.Throwable r12, d2.v r13, boolean r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: k2.b.e(java.lang.Throwable, d2.v, boolean, int):k2.l");
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof b) {
-                b bVar = (b) obj;
-                if (e2.l0.m(this.f10604a, bVar.f10604a) && this.f10605b == bVar.f10605b && Objects.equals(this.f10606c, bVar.f10606c) && Objects.equals(this.d, bVar.d)) {
-                    return true;
-                }
-                return false;
+    public long h(long j10, long j11) {
+        if (this.f16448n == 1) {
+            if (m() || l()) {
+                return 1000000L;
             }
-            return false;
+            return 10000L;
         }
-        return true;
+        return 10000L;
     }
 
-    public final int hashCode() {
-        int n10 = e2.l0.n(this.f10604a);
-        int hashCode = Objects.hashCode(this.f10606c);
-        return Objects.hashCode(this.d) + ((hashCode + ((n10 + (this.f10605b * 31)) * 31)) * 31);
+    public w0 i() {
+        return null;
     }
 
-    public final String toString() {
-        return "AudioCapabilities[maxChannelCount=" + this.f10605b + ", audioProfiles=" + this.f10604a + ", speakerLayoutChannelMasks=" + this.f10606c + ", spatializerChannelMasks=" + this.d + "]";
+    public abstract String j();
+
+    public final boolean k() {
+        if (this.f16453y == Long.MIN_VALUE) {
+            return true;
+        }
+        return false;
+    }
+
+    public abstract boolean l();
+
+    public abstract boolean m();
+
+    public abstract void n();
+
+    public abstract void p(long j10, boolean z10, boolean z11);
+
+    public final int w(tf.b bVar, j2.h hVar, int i3) {
+        w2.d1 d1Var = this.f16449r;
+        d1Var.getClass();
+        int o10 = d1Var.o(bVar, hVar, i3);
+        if (o10 == -4) {
+            if (hVar.isEndOfStream()) {
+                this.f16453y = Long.MIN_VALUE;
+                if (this.E) {
+                    return -4;
+                }
+                return -3;
+            }
+            long j10 = hVar.f16158e + this.f16451w;
+            hVar.f16158e = j10;
+            this.f16453y = Math.max(this.f16453y, j10);
+            return o10;
+        }
+        if (o10 == -5) {
+            d2.v vVar = (d2.v) bVar.f55095b;
+            vVar.getClass();
+            long j11 = vVar.f8493x;
+            if (j11 != Long.MAX_VALUE) {
+                d2.u a10 = vVar.a();
+                a10.f8435w = j11 + this.f16451w;
+                bVar.f55095b = new d2.v(a10);
+            }
+        }
+        return o10;
+    }
+
+    public abstract void x(long j10, long j11);
+
+    public final void y(d2.v[] vVarArr, w2.d1 d1Var, long j10, long j11, w2.g0 g0Var) {
+        zb.p(!this.E);
+        this.f16449r = d1Var;
+        this.H = g0Var;
+        if (this.f16453y == Long.MIN_VALUE) {
+            this.f16453y = j10;
+        }
+        this.f16450s = vVarArr;
+        this.f16451w = j11;
+        u(vVarArr, j10, j11, g0Var);
+    }
+
+    public final void z(long j10, boolean z10, boolean z11) {
+        this.E = false;
+        this.f16452x = j10;
+        this.f16453y = j10;
+        if (!z11) {
+            if (B(j10) != 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+        }
+        p(j10, z10, z11);
+    }
+
+    public void f() {
+    }
+
+    public void q() {
+    }
+
+    public void r() {
+    }
+
+    public void s() {
+    }
+
+    public void t() {
+    }
+
+    public void v() {
+    }
+
+    public void A(float f10, float f11) {
+    }
+
+    @Override
+    public void d(int i3, Object obj) {
+    }
+
+    public void o(boolean z10, boolean z11) {
+    }
+
+    public void u(d2.v[] vVarArr, long j10, long j11, w2.g0 g0Var) {
     }
 }

@@ -1,15 +1,25 @@
 package k5;
-public final class d implements ja.d {
-    public static final d f10879a = new Object();
-    public static final ja.c f10880b = ja.c.c("clientType");
-    public static final ja.c f10881c = ja.c.c("androidClientInfo");
+public final class d {
+    public static final d f16877a;
+    public static final d f16878b;
+    public static final d f16879c;
+    public static final d[] d;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        j jVar = (j) ((q) obj);
-        jVar.getClass();
-        eVar.d(f10880b, p.f10918a);
-        eVar.d(f10881c, jVar.f10905a);
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f16877a = r02;
+        ?? r12 = new Enum("VERY_LOW", 1);
+        f16878b = r12;
+        ?? r32 = new Enum("HIGHEST", 2);
+        f16879c = r32;
+        d = new d[]{r02, r12, r32};
+    }
+
+    public static d valueOf(String str) {
+        return (d) Enum.valueOf(d.class, str);
+    }
+
+    public static d[] values() {
+        return (d[]) d.clone();
     }
 }

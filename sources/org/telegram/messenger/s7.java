@@ -1,35 +1,27 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class s7 implements Runnable {
-    public final int f18067a;
-    public final b8 f18068b;
-    public final String f18069c;
+    public final int f25281a;
+    public final w7 f25282b;
+    public final TLRPC.Document f25283c;
+    public final boolean d;
 
-    public s7(b8 b8Var, String str, int i10) {
-        this.f18067a = i10;
-        this.f18068b = b8Var;
-        this.f18069c = str;
+    public s7(w7 w7Var, TLRPC.Document document, boolean z10, int i3) {
+        this.f25281a = i3;
+        this.f25282b = w7Var;
+        this.f25283c = document;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18067a) {
+        switch (this.f25281a) {
             case 0:
-                b8 b8Var = this.f18068b;
-                m7 m7Var = (m7) b8Var.f14946w.remove(this.f18069c);
-                if (m7Var != null && ((ArrayList) m7Var.f17054e1.d).remove(m7Var)) {
-                    Utilities.d.c(new b7(m7Var, 7));
-                    return;
-                }
+                this.f25282b.e0(this.f25283c, this.d);
                 return;
             default:
-                b8 b8Var2 = this.f18068b;
-                m7 m7Var2 = (m7) b8Var2.f14946w.remove(this.f18069c);
-                if (m7Var2 != null && ((ArrayList) m7Var2.f17054e1.d).remove(m7Var2)) {
-                    Utilities.d.c(new b7(m7Var2, 7));
-                    return;
-                }
+                this.f25282b.b0(this.f25283c, this.d);
                 return;
         }
     }

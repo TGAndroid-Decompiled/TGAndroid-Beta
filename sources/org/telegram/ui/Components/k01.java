@@ -1,66 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import java.io.File;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class k01 implements c81 {
-    public final ThemeEditorView f27681a;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class k01 extends sj0 {
+    public final ArrayList f35234c = new ArrayList();
+    public String d;
+    public final n01 f35235e;
 
-    public k01(ThemeEditorView themeEditorView) {
-        this.f27681a = themeEditorView;
+    public k01(n01 n01Var) {
+        this.f35235e = n01Var;
     }
 
     @Override
-    public final void a() {
-        int i10 = 0;
-        while (true) {
-            ThemeEditorView themeEditorView = this.f27681a;
-            if (i10 < themeEditorView.e.size()) {
-                org.telegram.ui.ActionBar.c7 c7Var = (org.telegram.ui.ActionBar.c7) themeEditorView.e.get(i10);
-                int x02 = org.telegram.ui.ActionBar.t6.x0(c7Var.f20238i, c7Var.e, false);
-                c7Var.h = x02;
-                if (i10 == 0) {
-                    themeEditorView.f24219n.f24221i1.c(x02);
-                }
-                i10++;
-            } else {
-                ThemeEditorView.EditorAlert editorAlert = themeEditorView.f24219n;
-                int i11 = ThemeEditorView.EditorAlert.D1;
-                editorAlert.L0(true);
-                return;
-            }
-        }
+    public final boolean D(u4.d1 d1Var) {
+        return true;
     }
 
     @Override
-    public final void b(File file, Bitmap bitmap, boolean z10) {
-        org.telegram.ui.ActionBar.s6 s6Var = this.f27681a.f24220o;
-        org.telegram.ui.ActionBar.t6.im.delete(org.telegram.ui.ActionBar.t6.Be);
-        org.telegram.ui.ActionBar.t6.im.delete(org.telegram.ui.ActionBar.t6.Ce);
-        org.telegram.ui.ActionBar.t6.im.delete(org.telegram.ui.ActionBar.t6.De);
-        org.telegram.ui.ActionBar.t6.im.delete(org.telegram.ui.ActionBar.t6.Ee);
-        org.telegram.ui.ActionBar.t6.im.delete(org.telegram.ui.ActionBar.t6.Fe);
-        org.telegram.ui.ActionBar.t6.f20997h0 = null;
-        s6Var.v(null);
-        if (bitmap != null) {
-            org.telegram.ui.ActionBar.t6.f20961f0 = new BitmapDrawable(bitmap);
-            org.telegram.ui.ActionBar.t6.x1(s6Var, false, false, false);
-            int[] q6 = org.telegram.messenger.i0.q(org.telegram.ui.ActionBar.t6.f20961f0);
-            int i10 = q6[0];
-            org.telegram.ui.ActionBar.t6.f20905c0 = i10;
-            org.telegram.ui.ActionBar.t6.X = i10;
-            int i11 = q6[1];
-            org.telegram.ui.ActionBar.t6.f20924d0 = i11;
-            org.telegram.ui.ActionBar.t6.f20886b0 = i11;
-            org.telegram.ui.ActionBar.t6.i();
-            org.telegram.ui.ActionBar.t6.h(org.telegram.ui.ActionBar.t6.f20943e0);
-            org.telegram.messenger.at.e().k(org.telegram.messenger.at.f14831z4, new Object[0]);
-            return;
-        }
-        org.telegram.ui.ActionBar.t6.f20961f0 = null;
-        org.telegram.ui.ActionBar.t6.f20943e0 = null;
-        org.telegram.ui.ActionBar.t6.x1(s6Var, false, false, false);
-        org.telegram.ui.ActionBar.t6.u1(true);
+    public final int b() {
+        return this.f35234c.size();
+    }
+
+    @Override
+    public final void t(u4.d1 r35, int r36) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k01.t(u4.d1, int):void");
+    }
+
+    @Override
+    public final u4.d1 x(ViewGroup viewGroup, int i3) {
+        m01 m01Var = new m01(this.f35235e, viewGroup.getContext());
+        m01Var.setLayoutParams(new u4.p0(-1, -2));
+        return new u4.d1(m01Var);
     }
 }

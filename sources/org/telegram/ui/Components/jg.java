@@ -1,323 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.webkit.WebResourceRequest;
-import android.widget.Toast;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import org.json.JSONObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class jg implements Runnable {
-    public final int f27423a;
-    public final Object f27424b;
-    public final Object f27425c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+public final class jg extends w5 {
+    public gh.g f35065s;
+    public final Path f35066w;
+    public final RectF f35067x;
+    public FragmentContextView f35068y;
 
-    public jg(Object obj, Object obj2, Object obj3, int i10) {
-        this.f27423a = i10;
-        this.f27424b = obj;
-        this.f27425c = obj2;
-        this.d = obj3;
-    }
-
-    private final void a() {
-        InputStream errorStream;
-        JSONObject optJSONObject;
-        String optString;
-        String str = (String) this.f27425c;
-        WebResourceRequest webResourceRequest = (WebResourceRequest) this.d;
-        org.telegram.ui.lr0 lr0Var = (org.telegram.ui.lr0) ((ji.i) this.f27424b).f10447b;
-        try {
-            HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(str).openConnection();
-            httpURLConnection.setRequestMethod("POST");
-            for (Map.Entry<String, String> entry : webResourceRequest.getRequestHeaders().entrySet()) {
-                httpURLConnection.addRequestProperty(entry.getKey(), entry.getValue());
-            }
-            httpURLConnection.setDoOutput(true);
-            OutputStream outputStream = httpURLConnection.getOutputStream();
-            JSONObject jSONObject = new JSONObject();
-            JSONObject jSONObject2 = new JSONObject();
-            JSONObject put = new JSONObject().put("userAgent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36,gzip(gfe)").put("clientName", "WEB").put("clientVersion", webResourceRequest.getRequestHeaders().get("X-Youtube-Client-Version")).put("osName", "Windows").put("osVersion", "10.0");
-            outputStream.write(jSONObject.put("context", jSONObject2.put("client", put.put("originalUrl", "https://www.youtube.com/watch?v=" + lr0Var.f31277x).put("platform", "DESKTOP"))).put("videoId", lr0Var.f31277x).toString().getBytes("UTF-8"));
-            outputStream.close();
-            if (httpURLConnection.getResponseCode() == 200) {
-                errorStream = httpURLConnection.getInputStream();
-            } else {
-                errorStream = httpURLConnection.getErrorStream();
-            }
-            byte[] bArr = new byte[10240];
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            while (true) {
-                int read = errorStream.read(bArr);
-                if (read == -1) {
-                    break;
-                }
-                byteArrayOutputStream.write(bArr, 0, read);
-            }
-            byteArrayOutputStream.close();
-            errorStream.close();
-            JSONObject optJSONObject2 = new JSONObject(byteArrayOutputStream.toString("UTF-8")).optJSONObject("storyboards");
-            if (optJSONObject2 != null && (optJSONObject = optJSONObject2.optJSONObject("playerStoryboardSpecRenderer")) != null && (optString = optJSONObject.optString("spec")) != null) {
-                if (lr0Var.H == 0) {
-                    lr0Var.f31275s = optString;
-                } else {
-                    ve0.a(lr0Var, optString);
-                }
-            }
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+    public jg(Context context) {
+        super(context);
+        this.f35066w = new Path();
+        this.f35067x = new RectF();
+        setOrientation(1);
+        gh.g gVar = this.f35065s;
+        if (gVar != null) {
+            gVar.updateColors();
         }
-    }
-
-    private final void b() {
-        int i10;
-        long C1;
-        ArrayList arrayList;
-        boolean z10;
-        char c10;
-        Object obj;
-        rs0 rs0Var = (rs0) this.f27424b;
-        ArrayList arrayList2 = (ArrayList) this.d;
-        org.telegram.ui.ActionBar.k2 k2Var = rs0Var.f30084s.f24568x1;
-        String lowerCase = ((String) this.f27425c).trim().toLowerCase();
-        if (lowerCase.length() == 0) {
-            org.telegram.messenger.i0.g3(new jg(rs0Var, new ArrayList(), new ArrayList(), 23));
-            return;
-        }
-        boolean z11 = true;
-        boolean z12 = 0;
-        String R0 = org.telegram.messenger.dd.D0().R0(lowerCase, true, false);
-        R0 = (lowerCase.equals(R0) || R0.length() == 0) ? null : null;
-        if (R0 != null) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        int i11 = i10 + 1;
-        String[] strArr = new String[i11];
-        strArr[0] = lowerCase;
-        if (R0 != null) {
-            strArr[1] = R0;
-        }
-        ArrayList arrayList3 = new ArrayList();
-        ArrayList arrayList4 = new ArrayList();
-        int size = arrayList2.size();
-        int i12 = 0;
-        while (i12 < size) {
-            TLObject tLObject = (TLObject) arrayList2.get(i12);
-            if (tLObject instanceof TLRPC.ChatParticipant) {
-                C1 = ((TLRPC.ChatParticipant) tLObject).user_id;
-            } else {
-                if (tLObject instanceof TLRPC.ChannelParticipant) {
-                    C1 = org.telegram.messenger.kj.C1(((TLRPC.ChannelParticipant) tLObject).peer);
-                }
-                arrayList = arrayList2;
-                z10 = z11;
-                i12++;
-                z11 = z10;
-                arrayList2 = arrayList;
-                z12 = 0;
-            }
-            TLRPC.User Z1 = k2Var.getMessagesController().Z1(Long.valueOf(C1));
-            if (Z1.f19943id != k2Var.getUserConfig().e()) {
-                String lowerCase2 = org.telegram.messenger.i20.p(Z1).toLowerCase();
-                String R02 = org.telegram.messenger.dd.D0().R0(lowerCase2, z11, z12);
-                if (lowerCase2.equals(R02)) {
-                    R02 = null;
-                }
-                boolean z13 = z12;
-                for (int i13 = z12; i13 < i11; i13++) {
-                    String str = strArr[i13];
-                    if (!lowerCase2.startsWith(str) && !sc.e.y(" ", str, lowerCase2) && (R02 == null || (!R02.startsWith(str) && !sc.e.y(" ", str, R02)))) {
-                        String n10 = org.telegram.messenger.i20.n(Z1);
-                        if (n10 != null && n10.startsWith(str)) {
-                            z13 = 2;
-                        }
-                        c10 = z13;
-                    } else {
-                        c10 = 1;
-                    }
-                    if (c10 != 0) {
-                        arrayList = arrayList2;
-                        z10 = true;
-                        if (c10 == 1) {
-                            arrayList3.add(org.telegram.messenger.i0.r0(Z1.first_name, Z1.last_name, str));
-                            obj = null;
-                        } else {
-                            obj = null;
-                            arrayList3.add(org.telegram.messenger.i0.r0("@" + org.telegram.messenger.i20.n(Z1), null, "@" + str));
-                        }
-                        arrayList4.add(tLObject);
-                        i12++;
-                        z11 = z10;
-                        arrayList2 = arrayList;
-                        z12 = 0;
-                    } else {
-                        z11 = true;
-                        arrayList2 = arrayList2;
-                        z13 = c10;
-                    }
-                }
-            }
-            arrayList = arrayList2;
-            z10 = z11;
-            i12++;
-            z11 = z10;
-            arrayList2 = arrayList;
-            z12 = 0;
-        }
-        org.telegram.messenger.i0.g3(new jg(rs0Var, arrayList3, arrayList4, 23));
-    }
-
-    private final void c() {
-        int i10;
-        TLRPC.Document document;
-        boolean z10;
-        String str;
-        vs0 vs0Var = (vs0) this.f27424b;
-        ArrayList arrayList = (ArrayList) this.d;
-        vs0Var.getClass();
-        String lowerCase = ((String) this.f27425c).trim().toLowerCase();
-        if (lowerCase.length() == 0) {
-            org.telegram.messenger.i0.g3(new hi0(12, vs0Var, new ArrayList()));
-            return;
-        }
-        String R0 = org.telegram.messenger.dd.D0().R0(lowerCase, true, false);
-        R0 = (lowerCase.equals(R0) || R0.length() == 0) ? null : null;
-        if (R0 != null) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        int i11 = i10 + 1;
-        String[] strArr = new String[i11];
-        strArr[0] = lowerCase;
-        if (R0 != null) {
-            strArr[1] = R0;
-        }
-        ArrayList arrayList2 = new ArrayList();
-        for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            org.telegram.messenger.kj kjVar = (org.telegram.messenger.kj) arrayList.get(i12);
-            int i13 = 0;
-            while (true) {
-                if (i13 < i11) {
-                    String str2 = strArr[i13];
-                    String I0 = kjVar.I0();
-                    if (I0 != null && I0.length() != 0) {
-                        if (I0.toLowerCase().contains(str2)) {
-                            arrayList2.add(kjVar);
-                            break;
-                        } else if (vs0Var.f31902r == 4) {
-                            if (kjVar.D == 0) {
-                                document = org.telegram.messenger.kj.o1(kjVar.f16690k).webpage.document;
-                            } else {
-                                document = org.telegram.messenger.kj.o1(kjVar.f16690k).document;
-                            }
-                            int i14 = 0;
-                            while (true) {
-                                if (i14 < document.attributes.size()) {
-                                    TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i14);
-                                    if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                                        String str3 = documentAttribute.performer;
-                                        if (str3 != null) {
-                                            z10 = str3.toLowerCase().contains(str2);
-                                        } else {
-                                            z10 = false;
-                                        }
-                                        if (!z10 && (str = documentAttribute.title) != null) {
-                                            z10 = str.toLowerCase().contains(str2);
-                                        }
-                                    } else {
-                                        i14++;
-                                    }
-                                } else {
-                                    z10 = false;
-                                    break;
-                                }
-                            }
-                            if (z10) {
-                                arrayList2.add(kjVar);
-                                break;
-                            }
-                        } else {
-                            continue;
-                        }
-                    }
-                    i13++;
-                }
-            }
-        }
-        org.telegram.messenger.i0.g3(new hi0(12, vs0Var, arrayList2));
-    }
-
-    private final void d() {
-        dx0 dx0Var = (dx0) this.f27424b;
-        ArrayList arrayList = (ArrayList) this.f27425c;
-        Boolean bool = (Boolean) this.d;
-        dx0Var.P1 = arrayList;
-        if (arrayList.isEmpty()) {
-            dx0Var.dismiss();
-            return;
-        }
-        dx0Var.f25621k1.f();
-        if (bool.booleanValue()) {
-            dx0Var.Q1 = new HashMap();
-            int size = dx0Var.P1.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                org.telegram.messenger.kz kzVar = (org.telegram.messenger.kz) dx0Var.P1.get(i10);
-                dx0Var.Q1.put(kzVar.f16846a, kzVar);
-                org.telegram.messenger.b8.G(dx0Var.f21584a).i0(false, 67108864, kzVar.f16846a, true);
-            }
-        }
-        dx0Var.Z0();
-    }
-
-    private final void f() {
-        int i10;
-        dx0 dx0Var = (dx0) this.f27424b;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f27425c;
-        TLObject tLObject = (TLObject) this.d;
-        org.telegram.ui.ActionBar.k2 k2Var = dx0Var.C1;
-        TLRPC.StickerSet stickerSet = dx0Var.J1.set;
-        if (stickerSet.masks) {
-            i10 = 1;
-        } else if (stickerSet.emojis) {
-            i10 = 5;
-        } else {
-            i10 = 0;
-        }
-        try {
-            if (tL_error == null) {
-                if (dx0Var.a2) {
-                    wb.g(k2Var, new gw0(dx0Var.f25631s1.getContext(), dx0Var.J1, 1, 2, null, dx0Var.I0), 1500).j();
-                }
-                if (tLObject instanceof TLRPC.TL_messages_stickerSetInstallResultArchive) {
-                    org.telegram.messenger.vi.b0(dx0Var.f21584a).A1(k2Var, true, i10, (TLRPC.TL_messages_stickerSetInstallResultArchive) tLObject);
-                }
-            } else {
-                Toast.makeText(dx0Var.getContext(), org.telegram.messenger.dd.L0(2131751106, null), 0).show();
-            }
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
-        }
-        org.telegram.messenger.vi.b0(dx0Var.f21584a).a1(i10, false, true);
+        Color.alpha(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27878d6, false));
+        invalidate();
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.jg.run():void");
+    public final void dispatchDraw(Canvas canvas) {
+        boolean z10;
+        FragmentContextView fragmentContextView;
+        int currentStyle;
+        FragmentContextView fragmentContextView2;
+        Canvas canvas2 = canvas;
+        if (getMetadata().f53856c.f53866a == 0.0f) {
+            return;
+        }
+        gh.g gVar = this.f35065s;
+        if (gVar != null) {
+            gVar.draw(canvas2);
+        }
+        FragmentContextView fragmentContextView3 = this.f35068y;
+        qe.h hVar = this.f39888c;
+        if (fragmentContextView3 != null && ((currentStyle = fragmentContextView3.getCurrentStyle()) == 3 || currentStyle == 1)) {
+            int entriesCount = getEntriesCount();
+            boolean z11 = false;
+            for (int i3 = 0; i3 < entriesCount; i3++) {
+                qe.e i10 = hVar.i(i3);
+                float paddingTop = getPaddingTop() + i10.b().top;
+                View view = ((v5) i10.f53849a).f39008a;
+                float c2 = i10.c();
+                if (c2 > 0.0f && ((fragmentContextView2 = this.f35068y) == view || fragmentContextView2.getParent() == view)) {
+                    qc capsuleBlobDrawable = this.f35068y.getCapsuleBlobDrawable();
+                    int L = org.telegram.messenger.g0.L(1.0f) + ((int) capsuleBlobDrawable.d());
+                    int i11 = -L;
+                    capsuleBlobDrawable.setBounds(getPaddingLeft() - L, i11, (getMeasuredWidth() - getPaddingRight()) + L, (L * 2) + org.telegram.messenger.g0.L(36.0f) + i11);
+                    capsuleBlobDrawable.setAlpha((int) (c2 * 255.0f));
+                    canvas2.save();
+                    canvas2.translate(0.0f, paddingTop);
+                    capsuleBlobDrawable.draw(canvas2);
+                    canvas2.restore();
+                    z11 = true;
+                }
+            }
+            z10 = z11;
+        } else {
+            z10 = false;
+        }
+        canvas2.save();
+        canvas2.clipPath(this.f35066w);
+        int entriesCount2 = getEntriesCount();
+        int i12 = 0;
+        while (i12 < entriesCount2) {
+            qe.e i13 = hVar.i(i12);
+            float paddingTop2 = getPaddingTop() + i13.b().top;
+            View view2 = ((v5) i13.f53849a).f39008a;
+            float min = Math.min(1.0f, i13.f53851c.f53866a) * i13.c();
+            if (min > 0.0f && (!z10 || (fragmentContextView = this.f35068y) == null || (fragmentContextView != view2 && fragmentContextView.getParent() != view2))) {
+                int alpha = org.telegram.ui.ActionBar.k6.f28002k0.getAlpha();
+                org.telegram.ui.ActionBar.k6.f28002k0.setAlpha((int) (alpha * min));
+                float f10 = 1.0f - min;
+                canvas2.drawLine(getPaddingLeft() + (org.telegram.messenger.g0.L(16.0f) * f10), paddingTop2, getWidth() - ((org.telegram.messenger.g0.L(16.0f) * f10) + getPaddingRight()), paddingTop2, org.telegram.ui.ActionBar.k6.f28002k0);
+                org.telegram.ui.ActionBar.k6.f28002k0.setAlpha(alpha);
+            }
+            i12++;
+            canvas2 = canvas;
+        }
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public jg(hd0 hd0Var, TLRPC.TL_error tL_error, TLObject tLObject, boolean z10) {
-        this.f27423a = 14;
-        this.f27424b = hd0Var;
-        this.f27425c = tL_error;
-        this.d = tLObject;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        gh.g gVar;
+        if (!super.dispatchTouchEvent(motionEvent)) {
+            if (motionEvent.getAction() != 0 || (gVar = this.f35065s) == null || !gVar.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void e() {
+        j();
+        invalidate();
+    }
+
+    public final void j() {
+        float f10 = getMetadata().f53859g.f53866a;
+        float f11 = getMetadata().f53856c.f53866a;
+        RectF rectF = this.f35067x;
+        rectF.set(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getPaddingTop() + f10);
+        float min = Math.min(org.telegram.messenger.g0.L(18.0f), Math.min(rectF.width(), rectF.height()) / 2.0f);
+        Path path = this.f35066w;
+        path.rewind();
+        path.addRoundRect(rectF, min, min, Path.Direction.CW);
+        gh.g gVar = this.f35065s;
+        if (gVar != null) {
+            gVar.setAlpha((int) (f11 * 255.0f));
+            this.f35065s.setBounds(getPaddingLeft() - org.telegram.messenger.g0.L(7.0f), 0, org.telegram.messenger.g0.L(7.0f) + (getMeasuredWidth() - getPaddingRight()), getPaddingBottom() + getPaddingTop() + ((int) f10));
+            this.f35065s.r(Math.min(org.telegram.messenger.g0.L(18.0f), f10 / 2.0f));
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        super.onLayout(z10, i3, i10, i11, i12);
+        j();
+    }
+
+    public void setBlurredBackground(gh.g gVar) {
+        this.f35065s = gVar;
+    }
+
+    public void setCallFragmentContextView(FragmentContextView fragmentContextView) {
+        this.f35068y = fragmentContextView;
+        fragmentContextView.getCapsuleBlobDrawable().setCallback(this);
+    }
+
+    @Override
+    public final void setPadding(int i3, int i10, int i11, int i12) {
+        super.setPadding(i3, i10, i11, i12);
+        j();
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable)) {
+            FragmentContextView fragmentContextView = this.f35068y;
+            if (fragmentContextView == null || fragmentContextView.getCapsuleBlobDrawable() != drawable) {
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 }

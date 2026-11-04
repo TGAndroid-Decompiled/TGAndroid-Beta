@@ -1,13 +1,23 @@
 package wf;
 
 import android.graphics.Bitmap;
-import java.util.List;
-public final class a {
-    public final Bitmap f52852a;
-    public final List f52853b;
+import android.graphics.Canvas;
+import android.view.View;
+import b8.cg;
+public interface a {
+    void c(cg cgVar);
 
-    public a(Bitmap bitmap, int i10, List list) {
-        this.f52853b = list;
-        this.f52852a = bitmap;
-    }
+    Bitmap g();
+
+    void i(Canvas canvas);
+
+    Bitmap l();
+
+    void m(Canvas canvas);
+
+    boolean o();
+
+    View q();
+
+    void r(cg cgVar);
 }

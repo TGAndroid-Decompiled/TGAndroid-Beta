@@ -1,45 +1,77 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.Canvas;
-public final class st extends vy {
-    public int V2;
-    public boolean W2;
-    public boolean X2;
-    public final wt Y2;
+import android.view.OrientationEventListener;
+import org.telegram.ui.PhotoViewer;
+public final class st extends OrientationEventListener {
+    public final int f38116a;
+    public final Object f38117b;
 
-    public st(wt wtVar, org.telegram.ui.ActionBar.k2 k2Var, boolean z10, Context context, boolean z11, boolean z12, org.telegram.ui.ActionBar.p6 p6Var, boolean z13) {
-        super(k2Var, z10, false, false, context, z11, null, null, z12, p6Var, false, z13);
-        this.Y2 = wtVar;
+    public st(int i3, Context context, Object obj) {
+        super(context);
+        this.f38116a = i3;
+        this.f38117b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        wt wtVar = this.Y2;
-        int i10 = wtVar.L;
-        if (i10 == 2 || i10 == 3) {
-            wtVar.g(canvas, this);
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        super.onLayout(z10, i10, i11, i12, i13);
-        wt wtVar = this.Y2;
-        if (wtVar.b()) {
-            int i15 = i13 - i11;
-            if (!this.W2 && wtVar.f32317y) {
-                this.X2 = true;
-            }
-            if (this.X2 && (i14 = this.V2) > 0 && i15 > 0 && i15 != i14) {
-                setTranslationY(i15 - i14);
-                org.telegram.messenger.a30.m(animate().translationY(0.0f), org.telegram.ui.ActionBar.m1.f20562w, 250L);
-                this.X2 = false;
-            }
-            this.W2 = wtVar.f32317y;
-            this.V2 = i15;
+    public final void onOrientationChanged(int i3) {
+        Activity activity;
+        zd0 zd0Var;
+        Activity activity2;
+        int i10;
+        switch (this.f38116a) {
+            case 0:
+                ut utVar = (ut) this.f38117b;
+                d71 d71Var = utVar.k1;
+                if (utVar.f38874x1 != null && d71Var.getVisibility() == 0 && (activity = utVar.f38867q1) != null && d71Var.U && utVar.E1) {
+                    if (i3 >= 240 && i3 <= 300) {
+                        utVar.F1 = true;
+                        return;
+                    } else if (utVar.F1 && i3 > 0) {
+                        if (i3 >= 330 || i3 <= 30) {
+                            activity.setRequestedOrientation(utVar.D1);
+                            utVar.E1 = false;
+                            utVar.F1 = false;
+                            return;
+                        }
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f38117b;
+                if (photoViewer.X3 != null && (zd0Var = photoViewer.f41599z2) != null && zd0Var.getVisibility() == 0 && (activity2 = photoViewer.E) != null && (i10 = photoViewer.Z3) != 0) {
+                    if (i10 == 1) {
+                        if (i3 >= 240 && i3 <= 300) {
+                            photoViewer.f41376a4 = true;
+                            return;
+                        } else if (photoViewer.f41376a4 && i3 > 0) {
+                            if (i3 >= 330 || i3 <= 30) {
+                                activity2.setRequestedOrientation(photoViewer.Y3);
+                                photoViewer.Z3 = 0;
+                                photoViewer.f41376a4 = false;
+                                return;
+                            }
+                            return;
+                        } else {
+                            return;
+                        }
+                    } else if (i3 > 0 && (i3 >= 330 || i3 <= 30)) {
+                        photoViewer.f41376a4 = true;
+                        return;
+                    } else if (photoViewer.f41376a4 && i3 >= 240 && i3 <= 300) {
+                        activity2.setRequestedOrientation(photoViewer.Y3);
+                        photoViewer.Z3 = 0;
+                        photoViewer.f41376a4 = false;
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
         }
     }
 }

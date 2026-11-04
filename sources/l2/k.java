@@ -1,21 +1,32 @@
 package l2;
-public final class k extends v2.b {
-    public final j d;
 
-    public k(j jVar, long j10, long j11) {
-        super(j10, j11);
-        this.d = jVar;
+import android.media.metrics.LogSessionId;
+import android.os.Build;
+public final class k {
+    public static final k f17727c;
+    public final String f17728a;
+    public final j f17729b;
+
+    static {
+        new k("");
+        f17727c = new k("preload");
     }
 
-    @Override
-    public final long C() {
-        a();
-        return this.d.d(this.f50304c);
+    public k(String str) {
+        j jVar;
+        this.f17728a = str;
+        if (Build.VERSION.SDK_INT >= 31) {
+            jVar = new j();
+        } else {
+            jVar = null;
+        }
+        this.f17729b = jVar;
     }
 
-    @Override
-    public final long k() {
-        a();
-        return this.d.e(this.f50304c);
+    public final synchronized LogSessionId a() {
+        j jVar;
+        jVar = this.f17729b;
+        jVar.getClass();
+        return (LogSessionId) jVar.f17726b;
     }
 }

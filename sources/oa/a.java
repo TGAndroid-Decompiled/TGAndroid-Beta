@@ -1,38 +1,24 @@
 package oa;
 
-import java.util.ArrayList;
-public final class a {
-    public final String f14113a;
-    public final ArrayList f14114b;
+import java.util.Map;
+public final class a implements ma.d {
+    public final int f20941a;
 
-    public a(String str, ArrayList arrayList) {
-        if (str != null) {
-            this.f14113a = str;
-            this.f14114b = arrayList;
-            return;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        switch (this.f20941a) {
+            case 0:
+                ma.e eVar = (ma.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
+            case 1:
+                Map.Entry entry = (Map.Entry) obj;
+                ma.e eVar2 = (ma.e) obj2;
+                eVar2.a(pa.e.f53432g, entry.getKey());
+                eVar2.a(pa.e.h, entry.getValue());
+                return;
+            default:
+                ma.e eVar3 = (ma.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
         }
-        throw new NullPointerException("Null userAgent");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof a) {
-                a aVar = (a) obj;
-                if (this.f14113a.equals(aVar.f14113a) && this.f14114b.equals(aVar.f14114b)) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return ((this.f14113a.hashCode() ^ 1000003) * 1000003) ^ this.f14114b.hashCode();
-    }
-
-    public final String toString() {
-        return "HeartBeatResult{userAgent=" + this.f14113a + ", usedDates=" + this.f14114b + "}";
     }
 }

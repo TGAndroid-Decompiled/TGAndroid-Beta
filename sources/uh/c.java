@@ -1,93 +1,142 @@
 package uh;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import org.telegram.messenger.i0;
-import org.telegram.ui.Components.bk0;
-import org.telegram.ui.Components.qt0;
-import org.telegram.ui.Components.ss0;
-import org.telegram.ui.l10;
-public final class c extends qt0 {
-    public final i f50249u3;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
+import java.io.File;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.t0;
+import org.telegram.messenger.w7;
+import org.telegram.messenger.zi;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.RadialProgress2;
+public final class c extends th.c {
+    public final String f56350b;
+    public final Uri f56351c;
+    public final String d;
+    public final long f56352e;
+    public final String f56353f;
+    public final Drawable h;
+    public final StaticLayout f56354n;
 
-    public c(i iVar, Context context) {
-        super(context);
-        this.f50249u3 = iVar;
-    }
-
-    @Override
-    public final boolean A1() {
-        return this.f50249u3.f50260b;
-    }
-
-    @Override
-    public final boolean B1() {
-        return true;
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 0;
-        int i11 = 0;
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            int bottom = getChildAt(i12).getBottom() - getPaddingTop();
-            if (bottom > i11) {
-                i11 = bottom;
-            }
+    public c(String str) {
+        long j10;
+        this.f56350b = str;
+        this.f56351c = null;
+        File file = new File(str);
+        try {
+            j10 = file.length();
+        } catch (Throwable unused) {
+            j10 = 0;
         }
-        float f7 = i11;
-        i iVar = this.f50249u3;
-        l10 l10Var = iVar.J;
-        if (iVar.f50260b) {
-            ss0 ss0Var = iVar.f50264r;
-            int i13 = 0;
-            for (int i14 = 0; i14 < ss0Var.getChildCount(); i14++) {
-                int bottom2 = ss0Var.getChildAt(i14).getBottom() - ss0Var.getPaddingTop();
-                if (bottom2 > i13) {
-                    i13 = bottom2;
+        this.f56352e = j10;
+        String name = file.getName();
+        this.d = name;
+        String[] split = name.split("\\.");
+        String str2 = split.length > 1 ? split[split.length - 1] : "?";
+        this.f56353f = str2;
+        int m1 = g0.m1(name, false);
+        if (m1 != 0) {
+            this.h = t0.f25457b.getResources().getDrawable(m1);
+        } else {
+            this.h = null;
+        }
+        if (!TextUtils.isEmpty(str2)) {
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setTextSize(g0.L(13.0f));
+            textPaint.setTypeface(g0.o());
+            textPaint.setColor(k6.x0(null, k6.pj, false));
+            this.f56354n = new StaticLayout(TextUtils.ellipsize(str2, textPaint, g0.L(34.0f), TextUtils.TruncateAt.END), textPaint, g0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            return;
+        }
+        this.f56354n = null;
+    }
+
+    public static b d(View view, String str, String str2, TLRPC.Document document, zi ziVar) {
+        b bVar = new b();
+        bVar.f56339a.setColor(k6.x0(null, k6.G6, false));
+        bVar.f56340b.setColor(k6.x0(null, k6.f28273y6, false));
+        bVar.d = true;
+        RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
+        bVar.f56341c = radialProgress2;
+        radialProgress2.setCircleRadius(g0.L(21.0f));
+        bVar.f56341c.g(k6.We, k6.Xe, k6.f27979id, k6.f27995jd);
+        if (zi.K3(document)) {
+            if (zi.X2(document)) {
+                TLRPC.PhotoSize w10 = w7.w(document.thumbs, g0.L(22.0f), true, null, false);
+                bVar.f56341c.j(w7.w(document.thumbs, g0.L(44.0f), true, w10, true), w10, document, ziVar);
+            } else {
+                String t02 = zi.t0(document, true);
+                if (!TextUtils.isEmpty(t02)) {
+                    bVar.f56341c.h(t02);
+                } else {
+                    bVar.f56341c.i(null, null, null);
                 }
             }
-            f7 = i0.T1(f7, i13, iVar.f50261c);
+            bVar.f56341c.setIcon(0, false, false);
+        } else {
+            bVar.f56341c.setIcon(5, false, false);
         }
-        if (iVar.f50266w.b() <= 0) {
-            i10 = 8;
+        if (str == null) {
+            str = "";
         }
-        l10Var.setVisibility(i10);
-        l10Var.setTranslationY(f7);
-    }
-
-    @Override
-    public final int getAnimateToColumnsCount() {
-        return this.f50249u3.e;
-    }
-
-    @Override
-    public final float getChangeColumnsProgress() {
-        return this.f50249u3.f50261c;
-    }
-
-    @Override
-    public final int getColumnsCount() {
-        return this.f50249u3.d;
-    }
-
-    @Override
-    public final bk0 getMovingAdapter() {
-        i iVar = this.f50249u3;
-        if (iVar.G.D == 0 && !iVar.W.G.E1) {
-            return iVar.f50266w;
+        bVar.f56342e = str;
+        if (str2 == null) {
+            str2 = "";
         }
-        return null;
+        bVar.f56343f = str2;
+        bVar.f56349m = -1;
+        bVar.f56344g = null;
+        bVar.h = null;
+        bVar.invalidateSelf();
+        view.addOnAttachStateChangeListener(new a(bVar));
+        return bVar;
     }
 
     @Override
-    public final bk0 getSupportingAdapter() {
-        return this.f50249u3.f50267x;
+    public final void c(Canvas canvas, int i3, int i10) {
+        Drawable drawable = this.h;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, i3, i10);
+            drawable.draw(canvas);
+            canvas.save();
+            canvas.translate((i3 - g0.L(34.0f)) / 2.0f, g0.L(15.0f));
+            this.f56354n.draw(canvas);
+            canvas.restore();
+        }
     }
 
-    @Override
-    public final ss0 getSupportingListView() {
-        return this.f50249u3.f50264r;
+    public c(Uri uri) {
+        this.f56350b = null;
+        this.f56351c = uri;
+        String A = MediaController.A(uri);
+        A = A == null ? "?" : A;
+        this.d = A;
+        String[] split = A.split("\\.");
+        String str = split.length > 1 ? split[split.length - 1] : "?";
+        this.f56353f = str;
+        this.f56352e = 0L;
+        int m1 = g0.m1(A, false);
+        if (m1 != 0) {
+            this.h = t0.f25457b.getResources().getDrawable(m1);
+        } else {
+            this.h = null;
+        }
+        if (!TextUtils.isEmpty(str)) {
+            TextPaint textPaint = new TextPaint(1);
+            textPaint.setTextSize(g0.L(13.0f));
+            textPaint.setTypeface(g0.o());
+            textPaint.setColor(k6.x0(null, k6.pj, false));
+            this.f56354n = new StaticLayout(TextUtils.ellipsize(str, textPaint, g0.L(34.0f), TextUtils.TruncateAt.END), textPaint, g0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            return;
+        }
+        this.f56354n = null;
     }
 }

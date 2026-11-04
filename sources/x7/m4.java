@@ -1,30 +1,17 @@
 package x7;
+public final class m4 implements ma.d {
+    public static final m4 f58369a = new Object();
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class m4 extends o6.a {
-    public static final Parcelable.Creator<m4> CREATOR = new n5(0);
-    public final String f53254a;
-    public final String f53255b;
-    public final float f53256c;
-    public final int d;
-
-    public m4(float f7, int i10, String str, String str2) {
-        this.f53255b = str2;
-        this.f53256c = f7;
-        this.f53254a = str;
-        this.d = i10;
+    static {
+        t4.c.o(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, new e(1)), 2)));
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.h0.q(parcel, 20293);
-        w7.h0.l(parcel, 2, this.f53255b);
-        w7.h0.s(parcel, 3, 4);
-        parcel.writeFloat(this.f53256c);
-        w7.h0.l(parcel, 4, this.f53254a);
-        w7.h0.s(parcel, 5, 4);
-        parcel.writeInt(this.d);
-        w7.h0.r(parcel, q6);
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ma.e eVar = (ma.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

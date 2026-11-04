@@ -1,84 +1,36 @@
 package org.telegram.messenger;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.recaptcha.RecaptchaAction;
-import com.google.android.recaptcha.RecaptchaTasksClient;
-public final class c3 implements OnSuccessListener {
-    public final int f15058a;
-    public final String f15059b;
-    public final String f15060c;
-    public final e3 d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class c3 implements RequestDelegate {
+    public final int f21936a;
+    public final u10 f21937b;
 
-    public c3(String str, String str2, e3 e3Var, int i10) {
-        this.f15058a = i10;
-        this.f15059b = str;
-        this.f15060c = str2;
-        this.d = e3Var;
+    public c3(u10 u10Var, int i3) {
+        this.f21936a = i3;
+        this.f21937b = u10Var;
     }
 
     @Override
-    public final void onSuccess(Object obj) {
-        RecaptchaAction recaptchaAction;
-        int i10 = this.f15058a;
-        e3 e3Var = this.d;
-        String str = this.f15060c;
-        String str2 = this.f15059b;
-        switch (i10) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.ChannelParticipant channelParticipant;
+        switch (this.f21936a) {
             case 0:
-                RecaptchaTasksClient recaptchaTasksClient = (RecaptchaTasksClient) obj;
-                str2.getClass();
-                char c10 = 65535;
-                switch (str2.hashCode()) {
-                    case -1849137896:
-                        if (str2.equals("SIGNUP")) {
-                            c10 = 0;
-                            break;
-                        }
-                        break;
-                    case -902467304:
-                        if (str2.equals("signup")) {
-                            c10 = 1;
-                            break;
-                        }
-                        break;
-                    case 72611657:
-                        if (str2.equals("LOGIN")) {
-                            c10 = 2;
-                            break;
-                        }
-                        break;
-                    case 103149417:
-                        if (str2.equals("login")) {
-                            c10 = 3;
-                            break;
-                        }
-                        break;
-                }
-                switch (c10) {
-                    case 0:
-                    case 1:
-                        recaptchaAction = RecaptchaAction.SIGNUP;
-                        break;
-                    case 2:
-                    case 3:
-                        recaptchaAction = RecaptchaAction.LOGIN;
-                        break;
-                    default:
-                        recaptchaAction = RecaptchaAction.custom(str2);
-                        break;
-                }
-                recaptchaTasksClient.executeTask(recaptchaAction).addOnSuccessListener(new c3(str2, str, e3Var, 1)).addOnFailureListener(new d3(e3Var, 1));
+                g0.h3(new fg(tLObject, this.f21937b, tL_error));
                 return;
             default:
-                String str3 = (String) obj;
-                a1.g.z(str3, a1.g.v("CaptchaController: got token for {action=", str2, ", key_id=", str, "}: "));
-                if (str3 == null) {
-                    e3Var.a("RECAPTCHA_FAILED_TOKEN_NULL");
-                    return;
-                } else {
-                    e3Var.a(str3);
+                u10 u10Var = this.f21937b;
+                if (u10Var != null) {
+                    if (tLObject instanceof TLRPC.TL_channels_channelParticipant) {
+                        channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
+                    } else {
+                        channelParticipant = null;
+                    }
+                    u10Var.a(channelParticipant);
                     return;
                 }
+                return;
         }
     }
 }

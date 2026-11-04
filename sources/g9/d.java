@@ -1,43 +1,86 @@
 package g9;
 
-import java.math.RoundingMode;
-public abstract class d {
-    public static final int[] f7468a;
+import b8.ra;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+public class d extends b8.x {
+    public final Map f12065b;
+    public final k1 f12066c;
 
-    static {
-        int[] iArr = new int[RoundingMode.values().length];
-        f7468a = iArr;
-        try {
-            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
+    public d(k1 k1Var, Map map) {
+        super(1);
+        this.f12066c = k1Var;
+        map.getClass();
+        this.f12065b = map;
+    }
+
+    @Override
+    public final void clear() {
+        Iterator it = iterator();
+        while (true) {
+            ra raVar = (ra) it;
+            if (raVar.hasNext()) {
+                raVar.next();
+                raVar.remove();
+            } else {
+                return;
+            }
         }
-        try {
-            f7468a[RoundingMode.DOWN.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return this.f12065b.containsKey(obj);
+    }
+
+    @Override
+    public final boolean containsAll(Collection collection) {
+        return this.f12065b.keySet().containsAll(collection);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this != obj && !this.f12065b.keySet().equals(obj)) {
+            return false;
         }
-        try {
-            f7468a[RoundingMode.FLOOR.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
+        return true;
+    }
+
+    @Override
+    public final int hashCode() {
+        return this.f12065b.keySet().hashCode();
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return this.f12065b.isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new ra(this, this.f12065b.entrySet().iterator(), 4);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        int i3;
+        Collection collection = (Collection) this.f12065b.remove(obj);
+        if (collection != null) {
+            i3 = collection.size();
+            collection.clear();
+            this.f12066c.f12092f -= i3;
+        } else {
+            i3 = 0;
         }
-        try {
-            f7468a[RoundingMode.UP.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
+        if (i3 <= 0) {
+            return false;
         }
-        try {
-            f7468a[RoundingMode.CEILING.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            f7468a[RoundingMode.HALF_DOWN.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            f7468a[RoundingMode.HALF_UP.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
-        try {
-            f7468a[RoundingMode.HALF_EVEN.ordinal()] = 8;
-        } catch (NoSuchFieldError unused8) {
-        }
+        return true;
+    }
+
+    @Override
+    public final int size() {
+        return this.f12065b.size();
     }
 }

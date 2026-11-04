@@ -1,59 +1,6 @@
 package x1;
 
-import a6.d;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import c5.t;
-import com.google.android.gms.common.api.m;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import td.z1;
-public final class a implements Runnable {
-    public static Handler f52900f;
-    public final d e;
-    public volatile int f52902b = 1;
-    public final AtomicBoolean f52903c = new AtomicBoolean();
-    public final AtomicBoolean d = new AtomicBoolean();
-    public final b f52901a = new b(this, new t(this, 7));
-
-    public a(d dVar) {
-        this.e = dVar;
-    }
-
-    public final void a() {
-        d dVar = this.e;
-        int i10 = 0;
-        for (m mVar : dVar.f300j) {
-            if (mVar.b(dVar)) {
-                i10++;
-            }
-        }
-        try {
-            dVar.f299i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
-        } catch (InterruptedException e) {
-            Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    public final void b(Object obj) {
-        Handler handler;
-        synchronized (a.class) {
-            try {
-                if (f52900f == null) {
-                    f52900f = new Handler(Looper.getMainLooper());
-                }
-                handler = f52900f;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        handler.post(new z1(this, obj, false, 7));
-    }
-
-    @Override
-    public final void run() {
-        this.e.b();
-    }
+import ci.u0;
+public final class a extends u0 {
+    public static final a f58124b = new u0(9);
 }

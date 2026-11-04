@@ -7,16 +7,16 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.n;
+import org.telegram.tgnet.m;
 import org.telegram.tgnet.tl.TL_stories;
 public class TL_stats {
 
     public static class BroadcastRevenueTransaction extends TLObject {
-        public static BroadcastRevenueTransaction TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static BroadcastRevenueTransaction TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TLObject tL_broadcastRevenueTransactionRefund;
-            if (i10 != 1121127726) {
-                if (i10 != 1434332356) {
-                    if (i10 != 1515784568) {
+            if (i3 != 1121127726) {
+                if (i3 != 1434332356) {
+                    if (i3 != 1515784568) {
                         tL_broadcastRevenueTransactionRefund = null;
                     } else {
                         tL_broadcastRevenueTransactionRefund = new TL_broadcastRevenueTransactionWithdrawal();
@@ -27,15 +27,15 @@ public class TL_stats {
             } else {
                 tL_broadcastRevenueTransactionRefund = new TL_broadcastRevenueTransactionRefund();
             }
-            return (BroadcastRevenueTransaction) TLObject.TLdeserialize(BroadcastRevenueTransaction.class, tL_broadcastRevenueTransactionRefund, inputSerializedData, i10, z10);
+            return (BroadcastRevenueTransaction) TLObject.TLdeserialize(BroadcastRevenueTransaction.class, tL_broadcastRevenueTransactionRefund, inputSerializedData, i3, z10);
         }
     }
 
     public static abstract class PostInteractionCounters extends TLObject {
-        public static PostInteractionCounters TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static PostInteractionCounters TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TLObject tL_postInteractionCountersStory;
-            if (i10 != -1974989273) {
-                if (i10 != -419066241) {
+            if (i3 != -1974989273) {
+                if (i3 != -419066241) {
                     tL_postInteractionCountersStory = null;
                 } else {
                     tL_postInteractionCountersStory = new TL_postInteractionCountersMessage();
@@ -43,15 +43,15 @@ public class TL_stats {
             } else {
                 tL_postInteractionCountersStory = new TL_postInteractionCountersStory();
             }
-            return (PostInteractionCounters) TLObject.TLdeserialize(PostInteractionCounters.class, tL_postInteractionCountersStory, inputSerializedData, i10, z10);
+            return (PostInteractionCounters) TLObject.TLdeserialize(PostInteractionCounters.class, tL_postInteractionCountersStory, inputSerializedData, i3, z10);
         }
     }
 
     public static abstract class PublicForward extends TLObject {
-        public static PublicForward TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static PublicForward TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TLObject tL_publicForwardStory;
-            if (i10 != -302797360) {
-                if (i10 != 32685898) {
+            if (i3 != -302797360) {
+                if (i3 != 32685898) {
                     tL_publicForwardStory = null;
                 } else {
                     tL_publicForwardStory = new TL_publicForwardMessage();
@@ -59,18 +59,18 @@ public class TL_stats {
             } else {
                 tL_publicForwardStory = new TL_stories.TL_publicForwardStory();
             }
-            return (PublicForward) TLObject.TLdeserialize(PublicForward.class, tL_publicForwardStory, inputSerializedData, i10, z10);
+            return (PublicForward) TLObject.TLdeserialize(PublicForward.class, tL_publicForwardStory, inputSerializedData, i3, z10);
         }
     }
 
     public static abstract class StatsGraph extends TLObject {
         public float rate;
 
-        public static StatsGraph TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static StatsGraph TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TLObject tL_statsGraph;
-            if (i10 != -1901828938) {
-                if (i10 != -1092839390) {
-                    if (i10 != 1244130093) {
+            if (i3 != -1901828938) {
+                if (i3 != -1092839390) {
+                    if (i3 != 1244130093) {
                         tL_statsGraph = null;
                     } else {
                         tL_statsGraph = new TL_statsGraphAsync();
@@ -81,7 +81,7 @@ public class TL_stats {
             } else {
                 tL_statsGraph = new TL_statsGraph();
             }
-            return (StatsGraph) TLObject.TLdeserialize(StatsGraph.class, tL_statsGraph, inputSerializedData, i10, z10);
+            return (StatsGraph) TLObject.TLdeserialize(StatsGraph.class, tL_statsGraph, inputSerializedData, i3, z10);
         }
     }
 
@@ -92,14 +92,14 @@ public class TL_stats {
         public StatsGraph top_hours_graph;
         public double usd_rate;
 
-        public static TL_broadcastRevenueStats TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_broadcastRevenueStats TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_broadcastRevenueStats tL_broadcastRevenueStats;
-            if (1409802903 != i10) {
+            if (1409802903 != i3) {
                 tL_broadcastRevenueStats = null;
             } else {
                 tL_broadcastRevenueStats = new TL_broadcastRevenueStats();
             }
-            return (TL_broadcastRevenueStats) TLObject.TLdeserialize(TL_broadcastRevenueStats.class, tL_broadcastRevenueStats, inputSerializedData, i10, z10);
+            return (TL_broadcastRevenueStats) TLObject.TLdeserialize(TL_broadcastRevenueStats.class, tL_broadcastRevenueStats, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -192,21 +192,21 @@ public class TL_stats {
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
+            int i3;
             int i10;
-            int i11;
             outputSerializedData.writeInt32(1515784568);
             if (this.pending) {
-                i10 = this.flags | 1;
+                i3 = this.flags | 1;
             } else {
-                i10 = this.flags & (-2);
+                i3 = this.flags & (-2);
+            }
+            this.flags = i3;
+            if (this.failed) {
+                i10 = i3 | 1;
+            } else {
+                i10 = i3 & (-2);
             }
             this.flags = i10;
-            if (this.failed) {
-                i11 = i10 | 1;
-            } else {
-                i11 = i10 & (-2);
-            }
-            this.flags = i11;
             outputSerializedData.writeInt64(this.amount);
             outputSerializedData.writeInt32(this.date);
             outputSerializedData.writeString(this.provider);
@@ -222,14 +222,14 @@ public class TL_stats {
         public int count;
         public ArrayList<BroadcastRevenueTransaction> transactions = new ArrayList<>();
 
-        public static TL_broadcastRevenueTransactions TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_broadcastRevenueTransactions TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_broadcastRevenueTransactions tL_broadcastRevenueTransactions;
-            if (-2028632986 != i10) {
+            if (-2028632986 != i3) {
                 tL_broadcastRevenueTransactions = null;
             } else {
                 tL_broadcastRevenueTransactions = new TL_broadcastRevenueTransactions();
             }
-            return (TL_broadcastRevenueTransactions) TLObject.TLdeserialize(TL_broadcastRevenueTransactions.class, tL_broadcastRevenueTransactions, inputSerializedData, i10, z10);
+            return (TL_broadcastRevenueTransactions) TLObject.TLdeserialize(TL_broadcastRevenueTransactions.class, tL_broadcastRevenueTransactions, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -250,14 +250,14 @@ public class TL_stats {
         public static final int constructor = -328886473;
         public String url;
 
-        public static TL_broadcastRevenueWithdrawalUrl TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_broadcastRevenueWithdrawalUrl TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_broadcastRevenueWithdrawalUrl tL_broadcastRevenueWithdrawalUrl;
-            if (-328886473 != i10) {
+            if (-328886473 != i3) {
                 tL_broadcastRevenueWithdrawalUrl = null;
             } else {
                 tL_broadcastRevenueWithdrawalUrl = new TL_broadcastRevenueWithdrawalUrl();
             }
-            return (TL_broadcastRevenueWithdrawalUrl) TLObject.TLdeserialize(TL_broadcastRevenueWithdrawalUrl.class, tL_broadcastRevenueWithdrawalUrl, inputSerializedData, i10, z10);
+            return (TL_broadcastRevenueWithdrawalUrl) TLObject.TLdeserialize(TL_broadcastRevenueWithdrawalUrl.class, tL_broadcastRevenueWithdrawalUrl, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -297,14 +297,14 @@ public class TL_stats {
         public TL_statsAbsValueAndPrev views_per_post;
         public TL_statsAbsValueAndPrev views_per_story;
 
-        public static TL_broadcastStats TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_broadcastStats TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_broadcastStats tL_broadcastStats;
-            if (constructor != i10) {
+            if (constructor != i3) {
                 tL_broadcastStats = null;
             } else {
                 tL_broadcastStats = new TL_broadcastStats();
             }
-            return (TL_broadcastStats) TLObject.TLdeserialize(TL_broadcastStats.class, tL_broadcastStats, inputSerializedData, i10, z10);
+            return (TL_broadcastStats) TLObject.TLdeserialize(TL_broadcastStats.class, tL_broadcastStats, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -368,21 +368,21 @@ public class TL_stats {
         public int flags;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_broadcastStats.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TL_broadcastStats.TLdeserialize(inputSerializedData, i3, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            int i10;
+            int i3;
             outputSerializedData.writeInt32(-1421720550);
             if (this.dark) {
-                i10 = this.flags | 1;
+                i3 = this.flags | 1;
             } else {
-                i10 = this.flags & (-2);
+                i3 = this.flags & (-2);
             }
-            this.flags = i10;
-            outputSerializedData.writeInt32(i10);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
             this.channel.serializeToStream(outputSerializedData);
         }
     }
@@ -394,21 +394,21 @@ public class TL_stats {
         public int flags;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_megagroupStats.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TL_megagroupStats.TLdeserialize(inputSerializedData, i3, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            int i10;
+            int i3;
             outputSerializedData.writeInt32(-589330937);
             if (this.dark) {
-                i10 = this.flags | 1;
+                i3 = this.flags | 1;
             } else {
-                i10 = this.flags & (-2);
+                i3 = this.flags & (-2);
             }
-            this.flags = i10;
-            outputSerializedData.writeInt32(i10);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
             this.channel.serializeToStream(outputSerializedData);
         }
     }
@@ -421,8 +421,8 @@ public class TL_stats {
         public String offset;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_publicForwards.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TL_publicForwards.TLdeserialize(inputSerializedData, i3, z10);
         }
 
         @Override
@@ -443,21 +443,21 @@ public class TL_stats {
         public int msg_id;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_messageStats.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TL_messageStats.TLdeserialize(inputSerializedData, i3, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            int i10;
+            int i3;
             outputSerializedData.writeInt32(-1226791947);
             if (this.dark) {
-                i10 = this.flags | 1;
+                i3 = this.flags | 1;
             } else {
-                i10 = this.flags & (-2);
+                i3 = this.flags & (-2);
             }
-            this.flags = i10;
-            outputSerializedData.writeInt32(i10);
+            this.flags = i3;
+            outputSerializedData.writeInt32(i3);
             this.channel.serializeToStream(outputSerializedData);
             outputSerializedData.writeInt32(this.msg_id);
         }
@@ -465,21 +465,21 @@ public class TL_stats {
 
     public static class TL_getStoryPublicForwards extends TLObject {
         public static final int constructor = -1505526026;
-        public int f20025id;
+        public int f27233id;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_publicForwards.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TL_publicForwards.TLdeserialize(inputSerializedData, i3, z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1505526026);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f20025id);
+            outputSerializedData.writeInt32(this.f27233id);
             outputSerializedData.writeString(this.offset);
             outputSerializedData.writeInt32(this.limit);
         }
@@ -489,11 +489,11 @@ public class TL_stats {
         public static final int constructor = 1646092192;
         public int flags;
         public String token;
-        public long f20026x;
+        public long f27234x;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return StatsGraph.TLdeserialize(inputSerializedData, i10, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return StatsGraph.TLdeserialize(inputSerializedData, i3, z10);
         }
 
         @Override
@@ -502,7 +502,7 @@ public class TL_stats {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.token);
             if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt64(this.f20026x);
+                outputSerializedData.writeInt64(this.f27234x);
             }
         }
     }
@@ -527,14 +527,14 @@ public class TL_stats {
         public ArrayList<TL_statsGroupTopInviter> top_inviters = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_megagroupStats TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_megagroupStats TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_megagroupStats tL_megagroupStats;
-            if (-276825834 != i10) {
+            if (-276825834 != i3) {
                 tL_megagroupStats = null;
             } else {
                 tL_megagroupStats = new TL_megagroupStats();
             }
-            return (TL_megagroupStats) TLObject.TLdeserialize(TL_megagroupStats.class, tL_megagroupStats, inputSerializedData, i10, z10);
+            return (TL_megagroupStats) TLObject.TLdeserialize(TL_megagroupStats.class, tL_megagroupStats, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -555,7 +555,7 @@ public class TL_stats {
             this.top_posters = Vector.deserialize(inputSerializedData, new b(28), z10);
             this.top_admins = Vector.deserialize(inputSerializedData, new b(29), z10);
             this.top_inviters = Vector.deserialize(inputSerializedData, new d(0), z10);
-            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -586,14 +586,14 @@ public class TL_stats {
         public StatsGraph reactions_by_emotion_graph;
         public StatsGraph views_graph;
 
-        public static TL_messageStats TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_messageStats TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_messageStats tL_messageStats;
-            if (2145983508 != i10) {
+            if (2145983508 != i3) {
                 tL_messageStats = null;
             } else {
                 tL_messageStats = new TL_messageStats();
             }
-            return (TL_messageStats) TLObject.TLdeserialize(TL_messageStats.class, tL_messageStats, inputSerializedData, i10, z10);
+            return (TL_messageStats) TLObject.TLdeserialize(TL_messageStats.class, tL_messageStats, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -685,14 +685,14 @@ public class TL_stats {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_publicForwards TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_publicForwards TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_publicForwards tL_publicForwards;
-            if (-1828487648 != i10) {
+            if (-1828487648 != i3) {
                 tL_publicForwards = null;
             } else {
                 tL_publicForwards = new TL_publicForwards();
             }
-            return (TL_publicForwards) TLObject.TLdeserialize(TL_publicForwards.class, tL_publicForwards, inputSerializedData, i10, z10);
+            return (TL_publicForwards) TLObject.TLdeserialize(TL_publicForwards.class, tL_publicForwards, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -703,8 +703,8 @@ public class TL_stats {
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new n(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -726,14 +726,14 @@ public class TL_stats {
         public double current;
         public double previous;
 
-        public static TL_statsAbsValueAndPrev TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_statsAbsValueAndPrev TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev;
-            if (-884757282 != i10) {
+            if (-884757282 != i3) {
                 tL_statsAbsValueAndPrev = null;
             } else {
                 tL_statsAbsValueAndPrev = new TL_statsAbsValueAndPrev();
             }
-            return (TL_statsAbsValueAndPrev) TLObject.TLdeserialize(TL_statsAbsValueAndPrev.class, tL_statsAbsValueAndPrev, inputSerializedData, i10, z10);
+            return (TL_statsAbsValueAndPrev) TLObject.TLdeserialize(TL_statsAbsValueAndPrev.class, tL_statsAbsValueAndPrev, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -755,14 +755,14 @@ public class TL_stats {
         public int max_date;
         public int min_date;
 
-        public static TL_statsDateRangeDays TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_statsDateRangeDays TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_statsDateRangeDays tL_statsDateRangeDays;
-            if (-1237848657 != i10) {
+            if (-1237848657 != i3) {
                 tL_statsDateRangeDays = null;
             } else {
                 tL_statsDateRangeDays = new TL_statsDateRangeDays();
             }
-            return (TL_statsDateRangeDays) TLObject.TLdeserialize(TL_statsDateRangeDays.class, tL_statsDateRangeDays, inputSerializedData, i10, z10);
+            return (TL_statsDateRangeDays) TLObject.TLdeserialize(TL_statsDateRangeDays.class, tL_statsDateRangeDays, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -797,8 +797,8 @@ public class TL_stats {
         }
 
         @Override
-        public TL_statsPollStats deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TL_statsPollStats.TLdeserialize(inputSerializedData, i10, z10);
+        public TL_statsPollStats deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TL_statsPollStats.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -867,14 +867,14 @@ public class TL_stats {
         public int kicked;
         public long user_id;
 
-        public static TL_statsGroupTopAdmin TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_statsGroupTopAdmin TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_statsGroupTopAdmin tL_statsGroupTopAdmin;
-            if (-682079097 != i10) {
+            if (-682079097 != i3) {
                 tL_statsGroupTopAdmin = null;
             } else {
                 tL_statsGroupTopAdmin = new TL_statsGroupTopAdmin();
             }
-            return (TL_statsGroupTopAdmin) TLObject.TLdeserialize(TL_statsGroupTopAdmin.class, tL_statsGroupTopAdmin, inputSerializedData, i10, z10);
+            return (TL_statsGroupTopAdmin) TLObject.TLdeserialize(TL_statsGroupTopAdmin.class, tL_statsGroupTopAdmin, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -900,14 +900,14 @@ public class TL_stats {
         public int invitations;
         public long user_id;
 
-        public static TL_statsGroupTopInviter TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_statsGroupTopInviter TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_statsGroupTopInviter tL_statsGroupTopInviter;
-            if (1398765469 != i10) {
+            if (1398765469 != i3) {
                 tL_statsGroupTopInviter = null;
             } else {
                 tL_statsGroupTopInviter = new TL_statsGroupTopInviter();
             }
-            return (TL_statsGroupTopInviter) TLObject.TLdeserialize(TL_statsGroupTopInviter.class, tL_statsGroupTopInviter, inputSerializedData, i10, z10);
+            return (TL_statsGroupTopInviter) TLObject.TLdeserialize(TL_statsGroupTopInviter.class, tL_statsGroupTopInviter, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -930,14 +930,14 @@ public class TL_stats {
         public int messages;
         public long user_id;
 
-        public static TL_statsGroupTopPoster TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_statsGroupTopPoster TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_statsGroupTopPoster tL_statsGroupTopPoster;
-            if (-1660637285 != i10) {
+            if (-1660637285 != i3) {
                 tL_statsGroupTopPoster = null;
             } else {
                 tL_statsGroupTopPoster = new TL_statsGroupTopPoster();
             }
-            return (TL_statsGroupTopPoster) TLObject.TLdeserialize(TL_statsGroupTopPoster.class, tL_statsGroupTopPoster, inputSerializedData, i10, z10);
+            return (TL_statsGroupTopPoster) TLObject.TLdeserialize(TL_statsGroupTopPoster.class, tL_statsGroupTopPoster, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -961,14 +961,14 @@ public class TL_stats {
         public double part;
         public double total;
 
-        public static TL_statsPercentValue TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_statsPercentValue TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_statsPercentValue tL_statsPercentValue;
-            if (-875679776 != i10) {
+            if (-875679776 != i3) {
                 tL_statsPercentValue = null;
             } else {
                 tL_statsPercentValue = new TL_statsPercentValue();
             }
-            return (TL_statsPercentValue) TLObject.TLdeserialize(TL_statsPercentValue.class, tL_statsPercentValue, inputSerializedData, i10, z10);
+            return (TL_statsPercentValue) TLObject.TLdeserialize(TL_statsPercentValue.class, tL_statsPercentValue, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -989,14 +989,14 @@ public class TL_stats {
         public static int constructor = 697941741;
         public StatsGraph votes_graph;
 
-        public static TL_statsPollStats TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static TL_statsPollStats TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TL_statsPollStats tL_statsPollStats;
-            if (i10 != constructor) {
+            if (i3 != constructor) {
                 tL_statsPollStats = null;
             } else {
                 tL_statsPollStats = new TL_statsPollStats();
             }
-            return (TL_statsPollStats) TLObject.TLdeserialize(TL_statsPollStats.class, tL_statsPollStats, inputSerializedData, i10, z10);
+            return (TL_statsPollStats) TLObject.TLdeserialize(TL_statsPollStats.class, tL_statsPollStats, inputSerializedData, i3, z10);
         }
 
         @Override

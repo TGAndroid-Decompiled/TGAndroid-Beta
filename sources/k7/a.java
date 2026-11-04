@@ -1,43 +1,17 @@
 package k7;
 
-import android.os.BadParcelableException;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class a {
-    static {
-        a.class.getClassLoader();
+import b8.y9;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class a extends com.google.android.gms.common.api.internal.h {
+    public final TaskCompletionSource f16898b;
+
+    public a(TaskCompletionSource taskCompletionSource) {
+        this.f16898b = taskCompletionSource;
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
-    }
-
-    public static void b(Parcel parcel) {
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
-        }
-        throw new BadParcelableException(i0.a.i(dataAvail, "Parcel data not fully consumed, unread size: "));
-    }
-
-    public static void c(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-            return;
-        }
-        parcel.writeInt(1);
-        parcelable.writeToParcel(parcel, 0);
-    }
-
-    public static void d(Parcel parcel, IInterface iInterface) {
-        if (iInterface == null) {
-            parcel.writeStrongBinder(null);
-        } else {
-            parcel.writeStrongBinder(iInterface.asBinder());
-        }
+    @Override
+    public final void G(Status status) {
+        y9.a(status, null, this.f16898b);
     }
 }

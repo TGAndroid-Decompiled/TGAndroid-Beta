@@ -9,24 +9,24 @@ import android.text.TextPaint;
 import android.view.View;
 import java.util.ArrayList;
 public class NumberTextView extends View {
-    public final ArrayList f24067a;
-    public final ArrayList f24068b;
-    public final TextPaint f24069c;
+    public final ArrayList f31485a;
+    public final ArrayList f31486b;
+    public final TextPaint f31487c;
     public ObjectAnimator d;
-    public float e;
-    public int f24070f;
+    public float f31488e;
+    public int f31489f;
     public boolean h;
-    public boolean f24071n;
-    public float f24072r;
-    public float f24073s;
+    public boolean f31490n;
+    public float f31491r;
+    public float f31492s;
 
     public NumberTextView(Context context) {
         super(context);
-        this.f24067a = new ArrayList();
-        this.f24068b = new ArrayList();
-        this.f24069c = new TextPaint(1);
-        this.e = 0.0f;
-        this.f24070f = 1;
+        this.f31485a = new ArrayList();
+        this.f31486b = new ArrayList();
+        this.f31487c = new TextPaint(1);
+        this.f31488e = 0.0f;
+        this.f31489f = 1;
     }
 
     public final void a(int r22, boolean r23) {
@@ -34,88 +34,88 @@ public class NumberTextView extends View {
     }
 
     public float getOldTextWidth() {
-        return this.f24073s;
+        return this.f31492s;
     }
 
     public float getProgress() {
-        return this.e;
+        return this.f31488e;
     }
 
     public float getTextWidth() {
-        return this.f24072r;
+        return this.f31491r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float f7;
         float f10;
         float f11;
+        float f12;
         StaticLayout staticLayout;
         float lineWidth;
-        ArrayList arrayList = this.f24067a;
+        ArrayList arrayList = this.f31485a;
         if (arrayList.isEmpty()) {
             return;
         }
         float height = ((StaticLayout) arrayList.get(0)).getHeight();
         if (this.h) {
-            f7 = org.telegram.messenger.i0.L(4.0f);
+            f10 = org.telegram.messenger.g0.L(4.0f);
         } else {
-            f7 = height;
+            f10 = height;
         }
-        if (this.f24071n) {
-            f10 = (getMeasuredWidth() - this.f24072r) / 2.0f;
-            f11 = ((getMeasuredWidth() - this.f24073s) / 2.0f) - f10;
+        if (this.f31490n) {
+            f11 = (getMeasuredWidth() - this.f31491r) / 2.0f;
+            f12 = ((getMeasuredWidth() - this.f31492s) / 2.0f) - f11;
         } else {
-            f10 = 0.0f;
             f11 = 0.0f;
+            f12 = 0.0f;
         }
         canvas.save();
-        canvas.translate(getPaddingLeft() + f10, (getMeasuredHeight() - height) / 2.0f);
+        canvas.translate(getPaddingLeft() + f11, (getMeasuredHeight() - height) / 2.0f);
         int size = arrayList.size();
-        ArrayList arrayList2 = this.f24068b;
+        ArrayList arrayList2 = this.f31486b;
         int max = Math.max(size, arrayList2.size());
-        for (int i10 = 0; i10 < max; i10++) {
+        for (int i3 = 0; i3 < max; i3++) {
             canvas.save();
             StaticLayout staticLayout2 = null;
-            if (i10 < arrayList2.size()) {
-                staticLayout = (StaticLayout) arrayList2.get(i10);
+            if (i3 < arrayList2.size()) {
+                staticLayout = (StaticLayout) arrayList2.get(i3);
             } else {
                 staticLayout = null;
             }
-            if (i10 < arrayList.size()) {
-                staticLayout2 = (StaticLayout) arrayList.get(i10);
+            if (i3 < arrayList.size()) {
+                staticLayout2 = (StaticLayout) arrayList.get(i3);
             }
-            float f12 = this.e;
-            int i11 = (f12 > 0.0f ? 1 : (f12 == 0.0f ? 0 : -1));
-            TextPaint textPaint = this.f24069c;
-            if (i11 > 0) {
+            float f13 = this.f31488e;
+            int i10 = (f13 > 0.0f ? 1 : (f13 == 0.0f ? 0 : -1));
+            TextPaint textPaint = this.f31487c;
+            if (i10 > 0) {
                 if (staticLayout != null) {
-                    textPaint.setAlpha((int) (f12 * 255.0f));
+                    textPaint.setAlpha((int) (f13 * 255.0f));
                     canvas.save();
-                    canvas.translate(f11, (this.e - 1.0f) * f7);
+                    canvas.translate(f12, (this.f31488e - 1.0f) * f10);
                     staticLayout.draw(canvas);
                     canvas.restore();
                     if (staticLayout2 != null) {
-                        textPaint.setAlpha((int) ((1.0f - this.e) * 255.0f));
-                        canvas.translate(0.0f, this.e * f7);
+                        textPaint.setAlpha((int) ((1.0f - this.f31488e) * 255.0f));
+                        canvas.translate(0.0f, this.f31488e * f10);
                     }
                 } else {
                     textPaint.setAlpha(255);
                 }
-            } else if (f12 < 0.0f) {
+            } else if (f13 < 0.0f) {
                 if (staticLayout != null) {
-                    textPaint.setAlpha((int) ((-f12) * 255.0f));
+                    textPaint.setAlpha((int) ((-f13) * 255.0f));
                     canvas.save();
-                    canvas.translate(f11, (this.e + 1.0f) * f7);
+                    canvas.translate(f12, (this.f31488e + 1.0f) * f10);
                     staticLayout.draw(canvas);
                     canvas.restore();
                 }
                 if (staticLayout2 != null) {
-                    if (i10 != max - 1 && staticLayout == null) {
+                    if (i3 != max - 1 && staticLayout == null) {
                         textPaint.setAlpha(255);
                     } else {
-                        textPaint.setAlpha((int) ((this.e + 1.0f) * 255.0f));
-                        canvas.translate(0.0f, this.e * f7);
+                        textPaint.setAlpha((int) ((this.f31488e + 1.0f) * 255.0f));
+                        canvas.translate(0.0f, this.f31488e * f10);
                     }
                 }
             } else if (staticLayout2 != null) {
@@ -128,47 +128,47 @@ public class NumberTextView extends View {
             if (staticLayout2 != null) {
                 lineWidth = staticLayout2.getLineWidth(0);
             } else {
-                lineWidth = staticLayout.getLineWidth(0) + org.telegram.messenger.i0.L(1.0f);
+                lineWidth = staticLayout.getLineWidth(0) + org.telegram.messenger.g0.L(1.0f);
             }
             canvas.translate(lineWidth, 0.0f);
             if (staticLayout2 != null && staticLayout != null) {
-                f11 = (staticLayout.getLineWidth(0) - staticLayout2.getLineWidth(0)) + f11;
+                f12 = (staticLayout.getLineWidth(0) - staticLayout2.getLineWidth(0)) + f12;
             }
         }
         canvas.restore();
     }
 
     public void setCenterAlign(boolean z10) {
-        this.f24071n = z10;
+        this.f31490n = z10;
     }
 
-    public void setProgress(float f7) {
-        if (this.e == f7) {
+    public void setProgress(float f10) {
+        if (this.f31488e == f10) {
             return;
         }
-        this.e = f7;
+        this.f31488e = f10;
         invalidate();
     }
 
-    public void setTextColor(int i10) {
-        this.f24069c.setColor(i10);
+    public void setTextColor(int i3) {
+        this.f31487c.setColor(i3);
         invalidate();
     }
 
-    public void setTextSize(int i10) {
-        this.f24069c.setTextSize(org.telegram.messenger.i0.L(i10));
-        this.f24068b.clear();
-        this.f24067a.clear();
-        a(this.f24070f, false);
+    public void setTextSize(int i3) {
+        this.f31487c.setTextSize(org.telegram.messenger.g0.L(i3));
+        this.f31486b.clear();
+        this.f31485a.clear();
+        a(this.f31489f, false);
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f24069c.setTypeface(typeface);
-        this.f24068b.clear();
-        this.f24067a.clear();
-        a(this.f24070f, false);
+        this.f31487c.setTypeface(typeface);
+        this.f31486b.clear();
+        this.f31485a.clear();
+        a(this.f31489f, false);
     }
 
-    public void setOnTextWidthProgressChangedListener(bc0 bc0Var) {
+    public void setOnTextWidthProgressChangedListener(db0 db0Var) {
     }
 }

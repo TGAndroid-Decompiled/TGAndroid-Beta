@@ -1,8 +1,10 @@
 package v0;
-public final class n {
-    public final b2.h f50293a;
 
-    public n(b2.h hVar) {
-        this.f50293a = hVar;
+import ci.u0;
+public final class n {
+    public final u0 f56433a;
+
+    public n(u0 u0Var) {
+        this.f56433a = u0Var;
     }
 }

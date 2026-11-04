@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
-public final class b implements org.telegram.messenger.rc {
-    public final int f24589a;
-    public final g0 f24590b;
+public final class b implements org.telegram.messenger.jc {
+    public final int f32018a;
+    public final e0 f32019b;
 
-    public b(g0 g0Var, int i10) {
-        this.f24589a = i10;
-        this.f24590b = g0Var;
+    public b(e0 e0Var, int i3) {
+        this.f32018a = i3;
+        this.f32019b = e0Var;
     }
 
     @Override
     public final void a(String str) {
-        switch (this.f24589a) {
+        switch (this.f32018a) {
             case 0:
-                g0 g0Var = this.f24590b;
-                g0Var.f26248j2 = str;
-                g0Var.G2.O(true);
+                e0 e0Var = this.f32019b;
+                e0Var.f33243k2 = str;
+                e0Var.H2.O(true);
                 return;
             default:
-                g0 g0Var2 = this.f24590b;
-                g0Var2.f26248j2 = str;
-                g0Var2.G2.O(true);
+                e0 e0Var2 = this.f32019b;
+                e0Var2.f33243k2 = str;
+                e0Var2.H2.O(true);
                 return;
         }
     }

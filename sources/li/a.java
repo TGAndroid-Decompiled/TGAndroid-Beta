@@ -1,106 +1,89 @@
 package li;
 
-import android.os.Handler;
-public final class a implements Runnable {
-    public final int f12026a;
-    public final l f12027b;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import ci.v6;
+import gi.q4;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.u10;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Cells.g6;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.ma;
+import org.telegram.ui.Components.sj0;
+import org.telegram.ui.Components.t4;
+import org.telegram.ui.Components.tj0;
+public final class a extends ma {
+    public f41 Q1;
+    public boolean R1;
+    public final FrameLayout S1;
+    public final boolean T1;
+    public final boolean U1;
+    public int V1;
 
-    public a(l lVar, int i10) {
-        this.f12026a = i10;
-        this.f12027b = lVar;
+    public a(android.content.Context r17, org.telegram.tgnet.TLRPC.Chat r18, long r19, org.telegram.messenger.u10 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: li.a.<init>(android.content.Context, org.telegram.tgnet.TLRPC$Chat, long, org.telegram.messenger.u10):void");
     }
 
     @Override
-    public final void run() {
-        o oVar;
-        boolean z10;
-        switch (this.f12026a) {
-            case 0:
-                this.f12027b.u();
-                return;
-            case 1:
-                this.f12027b.d0();
-                return;
-            case 2:
-                l lVar = this.f12027b;
-                Handler handler = lVar.f12140n;
-                if (handler != null) {
-                    handler.post(new a(lVar, 3));
-                    return;
-                }
-                return;
-            case 3:
-                l lVar2 = this.f12027b;
-                if (lVar2.V && lVar2.A != null && (oVar = lVar2.f12167x) != null) {
-                    synchronized (oVar) {
-                        z10 = oVar.E;
-                    }
-                    if (!z10) {
-                        try {
-                            o oVar2 = lVar2.f12167x;
-                            lVar2.f12169y = oVar2;
-                            Handler handler2 = lVar2.f12140n;
-                            if (handler2 != null) {
-                                handler2.removeCallbacks(lVar2.f12142n1);
-                                handler2.postDelayed(lVar2.f12142n1, 3000L);
-                            }
-                            oVar2.t(new d(lVar2, oVar2, 0), new d(lVar2, oVar2, 1));
-                            p pVar = lVar2.f12130j;
-                            pVar.b("first camera frame received; audio startup requested: segmentElapsedMs=" + l.z(lVar2.F0));
-                            return;
-                        } catch (RuntimeException e) {
-                            lVar2.k();
-                            lVar2.N(e);
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                l lVar3 = this.f12027b;
-                o oVar3 = lVar3.f12169y;
-                if (lVar3.V && !lVar3.f12110b0 && oVar3 != null && lVar3.f12167x == oVar3) {
-                    lVar3.f12169y = null;
-                    lVar3.N(new IllegalStateException("Timed out waiting for synchronized audio and video start"));
-                    return;
-                }
-                return;
-            case 5:
-                this.f12027b.g();
-                return;
-            case 6:
-                l lVar4 = this.f12027b;
-                lVar4.V = false;
-                lVar4.k();
-                o oVar4 = lVar4.f12167x;
-                if (oVar4 != null) {
-                    long p5 = oVar4.p();
-                    v vVar = lVar4.f12165w;
-                    if (vVar != null && p5 != Long.MAX_VALUE) {
-                        vVar.f12279q = Math.max(0L, p5) * 1000;
-                        Handler handler3 = vVar.f12287u;
-                        if (handler3 != null) {
-                            handler3.removeCallbacks(vVar.f12293x0);
-                        }
-                    }
-                }
-                lVar4.p();
-                o oVar5 = lVar4.f12167x;
-                if (oVar5 != null) {
-                    oVar5.u();
-                    lVar4.f12167x = null;
-                }
-                lVar4.f12110b0 = false;
-                x0 x0Var = (x0) lVar4.f12133k.f279b;
-                x0Var.f12313i.post(new l0(x0Var, 3));
-                return;
-            case 7:
-                this.f12027b.I();
-                return;
-            default:
-                this.f12027b.d0();
-                return;
+    public final sj0 L0(tj0 tj0Var) {
+        f41 f41Var = new f41(this.f36102l1, getContext(), this.f28583a, 0, false, new q4(this, 24), this.J0);
+        this.Q1 = f41Var;
+        f41Var.f33698r = false;
+        return f41Var;
+    }
+
+    @Override
+    public final CharSequence O0() {
+        int i3;
+        if (this.U1) {
+            i3 = 2131751982;
+        } else {
+            i3 = 2131751977;
+        }
+        return bd.M0(i3, null);
+    }
+
+    public final void d1(u10 u10Var, boolean z10, boolean z11) {
+        int i3;
+        if (z11 && !z10 && !this.U1) {
+            Context context = getContext();
+            e6 e6Var = this.J0;
+            String M0 = bd.M0(2131751970, null);
+            if (this.T1) {
+                i3 = 2131751973;
+            } else {
+                i3 = 2131751972;
+            }
+            t4.O(context, e6Var, M0, bd.M0(i3, null), bd.M0(2131754486, null), new v6(this, u10Var, z10, 6)).show();
+            return;
+        }
+        u10Var.a(Boolean.valueOf(z10));
+        dismiss();
+    }
+
+    public final void e1(boolean z10) {
+        boolean z11;
+        if (this.R1 != z10) {
+            this.R1 = z10;
+            tj0 tj0Var = this.f36102l1;
+            View T0 = tj0Var.T0(this.V1 + 1);
+            if (T0 instanceof g6) {
+                ((g6) T0).a(!z10);
+                z11 = false;
+            } else {
+                z11 = true;
+            }
+            View T02 = tj0Var.T0(this.V1 + 2);
+            if (T02 instanceof g6) {
+                ((g6) T02).a(z10);
+            } else {
+                z11 = true;
+            }
+            if (z11) {
+                this.Q1.O(true);
+            }
         }
     }
 }

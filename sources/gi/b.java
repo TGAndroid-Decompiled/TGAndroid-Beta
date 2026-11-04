@@ -1,18 +1,48 @@
 package gi;
-public final class b {
-    public static final b f7534c = new b(Float.POSITIVE_INFINITY);
-    public final float f7535a;
-    public final float f7536b;
 
-    public b(float f7) {
-        if (!Float.isNaN(Float.POSITIVE_INFINITY)) {
-            if (!Float.isNaN(f7) && f7 >= 0.0f) {
-                this.f7535a = Float.POSITIVE_INFINITY;
-                this.f7536b = f7;
+import android.animation.ValueAnimator;
+public final class b implements ValueAnimator.AnimatorUpdateListener {
+    public final int f12422a;
+    public final d f12423b;
+
+    public b(d dVar, int i3) {
+        this.f12422a = i3;
+        this.f12423b = dVar;
+    }
+
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f12422a) {
+            case 0:
+                d dVar = this.f12423b;
+                dVar.getClass();
+                dVar.T = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                dVar.invalidate();
                 return;
-            }
-            throw new IllegalArgumentException("epsY must be >= 0");
+            case 1:
+                d dVar2 = this.f12423b;
+                dVar2.getClass();
+                dVar2.f12516c0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar2.invalidate();
+                return;
+            case 2:
+                d dVar3 = this.f12423b;
+                dVar3.getClass();
+                dVar3.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar3.invalidate();
+                return;
+            case 3:
+                d dVar4 = this.f12423b;
+                dVar4.getClass();
+                dVar4.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar4.invalidate();
+                return;
+            default:
+                d dVar5 = this.f12423b;
+                dVar5.getClass();
+                dVar5.L = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dVar5.invalidate();
+                return;
         }
-        throw new IllegalArgumentException("epsX must be >= 0");
     }
 }

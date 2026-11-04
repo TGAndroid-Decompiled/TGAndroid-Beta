@@ -1,71 +1,36 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-public final class n5 implements fe.i, ie.a {
-    public final View f20613a;
-    public boolean f20614b;
-    public float f20615c = 1.0f;
-    public float d = 1.0f;
-    public float e = 1.0f;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class n5 extends Drawable {
+    public final int f28357a;
+    public final int f28358b;
 
-    public n5(View view) {
-        this.f20613a = view;
+    public n5(int i3, int i10) {
+        this.f28357a = i3;
+        this.f28358b = i10;
     }
 
     @Override
-    public final void a() {
-        View view = this.f20613a;
-        if (!o5.h(view)) {
-            if (view instanceof p5) {
-                ((p5) view).X();
-            } else {
-                view.setVisibility(8);
-            }
-            c(1.0f, 1.0f);
-        }
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        int i3 = this.f28357a;
+        int i10 = this.f28358b;
+        canvas.drawCircle((bounds.centerX() - i3) + i10, bounds.centerY(), (Math.max(bounds.width(), bounds.height()) / 2) + i3 + i10, k6.f28283z);
     }
 
     @Override
-    public final int b(boolean z10) {
+    public final int getOpacity() {
         return 0;
     }
 
-    public final void c(float f7, float f10) {
-        float f11 = this.f20615c;
-        if (f11 == f7 && this.d == f10) {
-            return;
-        }
-        int i10 = (f11 > 1.0f ? 1 : (f11 == 1.0f ? 0 : -1));
-        View view = this.f20613a;
-        if (i10 == 0) {
-            this.e = view.getAlpha();
-        }
-        this.f20615c = f7;
-        this.d = f10;
-        view.setAlpha(this.e * f7);
-        float min = Math.min(org.telegram.messenger.i0.T1(0.6f, 1.0f, f7), f10);
-        view.setScaleX(min);
-        view.setScaleY(min);
-    }
-
-    public final boolean equals(Object obj) {
-        if ((obj instanceof n5) && ((n5) obj).f20613a == this.f20613a) {
-            return true;
-        }
-        return false;
+    @Override
+    public final void setAlpha(int i3) {
     }
 
     @Override
-    public final int getHeight() {
-        return this.f20613a.getMeasuredHeight();
-    }
-
-    @Override
-    public final int getWidth() {
-        return o5.f(this.f20613a);
-    }
-
-    public final int hashCode() {
-        return this.f20613a.hashCode();
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -1,203 +1,156 @@
 package bh;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.graphics.RectF;
-import android.net.Uri;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
-import kg.x;
-import mg.i2;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.at;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.kj;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.ActionBar.k2;
-import org.telegram.ui.Cells.c2;
-import org.telegram.ui.Cells.w;
-import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.ec;
-import org.telegram.ui.Components.hu;
-import org.telegram.ui.Components.jf0;
-import org.telegram.ui.Components.lr;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.Components.voip.t0;
-import org.telegram.ui.Components.voip.u1;
-import org.telegram.ui.ExternalActionActivity;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PhotoViewer;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.Wallet.p3;
-import ph.d0;
-import ph.m;
-import th.w0;
-public final class c implements View.OnClickListener {
-    public final int f2776a;
+import ai.s;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import b8.mf;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.i6;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.wo;
+public final class c extends zg.c {
+    public final wo f3303s;
+    public TLRPC.TL_help_country f3304w;
+    public final TextPaint f3305x;
+    public final s f3306y;
 
-    public c(int i10) {
-        this.f2776a = i10;
+    public c(Context context, e6 e6Var) {
+        super(context, e6Var);
+        int i3;
+        TextPaint textPaint = new TextPaint();
+        this.f3305x = textPaint;
+        this.f3306y = new s(this, 16);
+        textPaint.setTextSize(g0.L(20.0f));
+        this.f60476f.setVisibility(8);
+        this.f60474c.setVisibility(8);
+        wo woVar = new wo(21, context, e6Var);
+        this.f3303s = woVar;
+        woVar.b(k6.B5, k6.f27990j7, k6.C5);
+        woVar.setDrawUnchecked(true);
+        woVar.setDrawBackgroundAsArc(10);
+        addView(woVar);
+        woVar.a(false, false);
+        if (bd.f21784a0) {
+            i3 = 5;
+        } else {
+            i3 = 3;
+        }
+        woVar.setLayoutParams(mf.d(24, 24.0f, i3 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        c2 c2Var;
-        switch (this.f2776a) {
-            case 0:
-                int i11 = e.e;
-                return;
-            case 1:
-                return;
-            case 2:
-                PhotoViewer.v1().k0(1.0f, 0.0f, 0.0f, false);
-                return;
-            case 3:
-                int i12 = w.L;
-                return;
-            case 4:
-                k2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    Q.presentFragment(new PremiumPreviewFragment(0, "contact"));
-                    return;
-                }
-                return;
-            case 5:
-                if (!MediaController.B().A0) {
-                    if (MediaController.B().H()) {
-                        MediaController.B().S(MediaController.B().f14483u0);
-                        return;
-                    } else {
-                        MediaController.B().R(MediaController.B().f14483u0, true);
-                        return;
-                    }
-                }
-                return;
-            case 6:
-                int i13 = cq.f25210f0;
-                return;
-            case 7:
-                int i14 = lr.f28244x;
-                return;
-            case 8:
-                float[] fArr = FragmentContextView.W0;
-                MediaController B = MediaController.B();
-                v61 v61Var = B.E0;
-                if (v61Var != null) {
-                    v61Var.s0(false);
-                }
-                B.n0();
-                B.m();
-                kj kjVar = B.f14483u0;
-                if (kjVar != null) {
-                    at f7 = at.f(kjVar.I1);
-                    kj kjVar2 = B.f14483u0;
-                    if (kjVar2 != null) {
-                        i10 = kjVar2.f1();
-                    } else {
-                        i10 = 0;
-                    }
-                    f7.k(150, Integer.valueOf(i10));
-                    return;
-                }
-                return;
-            case 9:
-                jf0 jf0Var = jf0.f27400p0;
-                hu huVar = jf0Var.U;
-                if (huVar != null) {
-                    huVar.I0();
-                } else {
-                    PhotoViewer photoViewer = jf0Var.V;
-                    if (photoViewer != null) {
-                        photoViewer.Q0();
-                        MediaController.B().F0();
-                    }
-                }
-                jf0.b(false);
-                return;
-            case 10:
-                t0.b();
-                return;
-            case 11:
-                ((c2) view).c(!c2Var.b(), true);
-                return;
-            case 12:
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    sharedInstance.hangUp();
-                    return;
-                } else {
-                    u1.a();
-                    return;
-                }
-            case 13:
-                i2.l1(0, null);
-                return;
-            case 14:
-                ArrayList arrayList = ExternalActionActivity.f33328y;
-                return;
-            case 15:
-                return;
-            case 16:
-                Pattern pattern = LaunchActivity.D1;
-                return;
-            case 17:
-                return;
-            case 18:
-                RectF rectF = ProfileActivity.S6;
-                try {
-                    view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://fragment.com")));
-                    return;
-                } catch (ActivityNotFoundException e) {
-                    f8.g(e, true);
-                    return;
-                }
-            case 19:
-                int i15 = p3.W;
-                return;
-            case 20:
-                int i16 = m.f45224s2;
-                return;
-            case 21:
-                ec[] ecVarArr = ph.w.f45346h2;
-                return;
-            case 22:
-                int i17 = d0.Y1;
-                return;
-            case 23:
-                int i18 = rh.t0.f47482s2;
-                return;
-            case 24:
-                int i19 = sg.f.e;
-                return;
-            case 25:
-                w0.b();
-                return;
-            case 26:
-                int i20 = x.e;
-                return;
-            case 27:
-                PhotoViewer.v1().k0(1.0f, 0.0f, 0.0f, false);
-                return;
-            default:
-                int i21 = xh.k.f53852n;
-                return;
+    public final int a() {
+        return 22;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    @Override
+    public final void c(boolean z10, boolean z11) {
+        wo woVar = this.f3303s;
+        if (woVar.getVisibility() == 0) {
+            woVar.a(z10, z11);
         }
     }
 
-    public c(Object obj, int i10) {
-        this.f2776a = i10;
+    @Override
+    public final void d() {
+        int i3;
+        float f10;
+        float f11;
+        int i10;
+        float f12;
+        float f13;
+        float f14;
+        float f15;
+        boolean z10 = bd.f21784a0;
+        int i11 = 3;
+        if (z10) {
+            i3 = 5;
+        } else {
+            i3 = 3;
+        }
+        int i12 = i3 | 16;
+        if (z10) {
+            f10 = 20.0f;
+        } else {
+            f10 = 52.0f;
+        }
+        if (z10) {
+            f11 = 52.0f;
+        } else {
+            f11 = 20.0f;
+        }
+        this.d.setLayoutParams(mf.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
+        boolean z11 = bd.f21784a0;
+        if (z11) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        int i13 = i10 | 16;
+        if (z11) {
+            f12 = 20.0f;
+        } else {
+            f12 = 52.0f;
+        }
+        if (z11) {
+            f13 = 52.0f;
+        } else {
+            f13 = 20.0f;
+        }
+        this.f60475e.setLayoutParams(mf.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        boolean z12 = bd.f21784a0;
+        if (z12) {
+            i11 = 5;
+        }
+        int i14 = i11 | 16;
+        if (z12) {
+            f14 = 15.0f;
+        } else {
+            f14 = 20.0f;
+        }
+        if (z12) {
+            f15 = 20.0f;
+        } else {
+            f15 = 15.0f;
+        }
+        this.f60476f.setLayoutParams(mf.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
-    private final void a(View view) {
+    public final void f() {
+        TLRPC.TL_help_country tL_help_country = this.f3304w;
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        CharSequence o10 = i6.o(bd.F0(tL_help_country.iso2), this.f3305x.getFontMetricsInt(), 0, this.f3306y);
+        if (o10 != null) {
+            spannableStringBuilder.append(o10).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(16), o10.length(), o10.length() + 1, 0);
+        } else {
+            spannableStringBuilder.append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new b(34), 0, 1, 0);
+        }
+        String i02 = bd.i0(2131750529, tL_help_country.iso2);
+        if (TextUtils.isEmpty(i02)) {
+            i02 = tL_help_country.default_name;
+        }
+        spannableStringBuilder.append((CharSequence) i02);
+        this.d.k(spannableStringBuilder);
     }
 
-    private final void b(View view) {
+    public TLRPC.TL_help_country getCountry() {
+        return this.f3304w;
     }
 
-    private final void c(View view) {
+    @Override
+    public int getFullHeight() {
+        return 44;
     }
 }

@@ -1,43 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-public final class e00 extends AnimatorListenerAdapter {
-    public final int f25652a;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.widget.TextView;
+public final class e00 extends u7 {
+    public final int E;
+    public final Context F;
+    public final FragmentContextView G;
 
-    public e00(int i10) {
-        this.f25652a = i10;
+    public e00(FragmentContextView fragmentContextView, Context context, Context context2, int i3) {
+        super(context);
+        this.E = i3;
+        this.G = fragmentContextView;
+        this.F = context2;
     }
 
     @Override
-    public void onAnimationEnd(Animator animator) {
-        switch (this.f25652a) {
+    public final TextView a() {
+        switch (this.E) {
             case 0:
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationEnd(Animator animator, boolean z10) {
-        View view;
-        switch (this.f25652a) {
-            case 1:
-                jf.f fVar = th.w0.Z.L;
-                if (fVar == null || (view = fVar.f9869j) == null) {
-                    return;
+                TextView textView = new TextView(this.F);
+                textView.setMaxLines(1);
+                textView.setLines(1);
+                textView.setSingleLine(true);
+                textView.setEllipsize(TextUtils.TruncateAt.END);
+                textView.setTextSize(1, 15.0f);
+                textView.setGravity(19);
+                FragmentContextView fragmentContextView = this.G;
+                int i3 = fragmentContextView.V;
+                if (i3 != 0 && i3 != 2) {
+                    if (i3 == 4) {
+                        textView.setGravity(51);
+                        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28178t7, fragmentContextView.f31471r0);
+                        textView.setTypeface(org.telegram.messenger.g0.o());
+                        textView.setTextSize(1, 15.0f);
+                    } else if (i3 == 1 || i3 == 3) {
+                        textView.setGravity(19);
+                        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.A7, fragmentContextView.f31471r0);
+                        textView.setTypeface(org.telegram.messenger.g0.o());
+                        textView.setTextSize(1, 14.0f);
+                    }
+                } else {
+                    textView.setGravity(19);
+                    textView.setTypeface(Typeface.DEFAULT);
+                    textView.setTextSize(1, 15.0f);
                 }
-                fVar.e(view);
-                return;
+                return textView;
             default:
-                super.onAnimationEnd(animator, z10);
-                return;
+                TextView textView2 = new TextView(this.F);
+                textView2.setMaxLines(1);
+                textView2.setLines(1);
+                textView2.setSingleLine(true);
+                textView2.setEllipsize(TextUtils.TruncateAt.END);
+                textView2.setGravity(3);
+                textView2.setTextSize(1, 13.0f);
+                org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28255x7, this.G.f31471r0);
+                return textView2;
         }
-    }
-
-    private final void a(Animator animator) {
     }
 }

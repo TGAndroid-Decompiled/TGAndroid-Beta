@@ -2,31 +2,35 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-public final class o5 extends l6 {
-    public final b6 f34986l0;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.tj0;
+public final class o5 extends q31 {
+    public static final int f43008b = 0;
 
-    public o5(b6 b6Var, Context context) {
-        super(context);
-        this.f34986l0 = b6Var;
+    static {
+        q31.h(new q31());
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
-        super.onMeasure(i10, makeMeasureSpec);
-        b6 b6Var = this.f34986l0;
-        if (b6Var.f34261r > 0 && getMeasuredHeight() > b6Var.f34261r) {
-            int paddingRight = getPaddingRight() + getPaddingLeft();
-            int paddingBottom = getPaddingBottom() + getPaddingTop();
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(paddingRight + ((int) ((getMeasuredWidth() - paddingRight) * (Math.max(0, b6Var.f34261r - paddingBottom) / Math.max(1, getMeasuredHeight() - paddingBottom)))), 1073741824), makeMeasureSpec);
-        }
+    public final void b(View view, r31 r31Var, boolean z10, f41 f41Var, l41 l41Var) {
+        ((p5) view).a(r31Var.f37626k, r31Var.f37627l, r31Var.f37628m);
     }
 
     @Override
-    public final void setStickerStyle(float[] fArr) {
-        super.setStickerStyle(fArr);
-        b6 b6Var = this.f34986l0;
-        b6Var.U0(b6Var.f34271x0);
-        b6Var.V0(fArr);
+    public final View d(Context context, tj0 tj0Var, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new p5(context, e6Var);
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
+    }
+
+    @Override
+    public final boolean g() {
+        return true;
     }
 }

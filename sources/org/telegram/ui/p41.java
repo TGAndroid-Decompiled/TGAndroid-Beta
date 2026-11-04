@@ -1,27 +1,31 @@
 package org.telegram.ui;
-public final class p41 implements Runnable {
-    public final int f40369a;
-    public final c51 f40370b;
 
-    public p41(c51 c51Var, int i10) {
-        this.f40369a = i10;
-        this.f40370b = c51Var;
+import android.content.Context;
+public final class p41 extends b41 {
+    public ah E;
+    public final int f48463w;
+    public final int f48464x;
+    public int f48465y;
+
+    public p41(Context context, int i3, int i10, mg.f fVar, int i11) {
+        super(context, i10, fVar, null);
+        this.f48463w = i3;
+        this.f48464x = i11;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f40369a;
-        c51 c51Var = this.f40370b;
-        switch (i10) {
-            case 0:
-                org.telegram.messenger.wp.r1(c51Var.currentAccount).l0(null);
-                return;
-            case 1:
-                gf.f.r(c51Var.getParentActivity(), org.telegram.messenger.dd.L0(2131752154, null));
-                return;
-            default:
-                c51Var.f36189c.f31183f3.O(true);
-                return;
+    public final void b(d41 d41Var) {
+        int i3;
+        if (d41Var != null && (i3 = this.f48465y) >= 0) {
+            d41Var.a(this.f48463w, this.f48464x, i3, this.E);
         }
+    }
+
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void f() {
     }
 }

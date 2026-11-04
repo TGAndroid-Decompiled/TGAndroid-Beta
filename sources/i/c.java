@@ -2,66 +2,66 @@ package i;
 
 import android.animation.ObjectAnimator;
 import android.graphics.drawable.AnimationDrawable;
-import v7.v7;
-public final class c extends v7 {
-    public final ObjectAnimator f7750a;
-    public final boolean f7751b;
+import b8.qc;
+public final class c extends qc {
+    public final ObjectAnimator f14477a;
+    public final boolean f14478b;
 
     public c(AnimationDrawable animationDrawable, boolean z10, boolean z11) {
+        int i3;
         int i10;
-        int i11;
         int numberOfFrames = animationDrawable.getNumberOfFrames();
-        int i12 = z10 ? numberOfFrames - 1 : 0;
+        int i11 = z10 ? numberOfFrames - 1 : 0;
         if (z10) {
-            i10 = 0;
+            i3 = 0;
         } else {
-            i10 = numberOfFrames - 1;
+            i3 = numberOfFrames - 1;
         }
         ?? obj = new Object();
         int numberOfFrames2 = animationDrawable.getNumberOfFrames();
-        obj.f7753b = numberOfFrames2;
-        int[] iArr = obj.f7752a;
+        obj.f14480b = numberOfFrames2;
+        int[] iArr = obj.f14479a;
         if (iArr == null || iArr.length < numberOfFrames2) {
-            obj.f7752a = new int[numberOfFrames2];
+            obj.f14479a = new int[numberOfFrames2];
         }
-        int[] iArr2 = obj.f7752a;
-        int i13 = 0;
-        for (int i14 = 0; i14 < numberOfFrames2; i14++) {
+        int[] iArr2 = obj.f14479a;
+        int i12 = 0;
+        for (int i13 = 0; i13 < numberOfFrames2; i13++) {
             if (z10) {
-                i11 = (numberOfFrames2 - i14) - 1;
+                i10 = (numberOfFrames2 - i13) - 1;
             } else {
-                i11 = i14;
+                i10 = i13;
             }
-            int duration = animationDrawable.getDuration(i11);
-            iArr2[i14] = duration;
-            i13 += duration;
+            int duration = animationDrawable.getDuration(i10);
+            iArr2[i13] = duration;
+            i12 += duration;
         }
-        obj.f7754c = i13;
-        ObjectAnimator ofInt = ObjectAnimator.ofInt(animationDrawable, "currentIndex", i12, i10);
+        obj.f14481c = i12;
+        ObjectAnimator ofInt = ObjectAnimator.ofInt(animationDrawable, "currentIndex", i11, i3);
         j.a.a(ofInt, true);
-        ofInt.setDuration(obj.f7754c);
+        ofInt.setDuration(obj.f14481c);
         ofInt.setInterpolator(obj);
-        this.f7751b = z11;
-        this.f7750a = ofInt;
+        this.f14478b = z11;
+        this.f14477a = ofInt;
     }
 
     @Override
     public final boolean a() {
-        return this.f7751b;
+        return this.f14478b;
     }
 
     @Override
     public final void b() {
-        this.f7750a.reverse();
+        this.f14477a.reverse();
     }
 
     @Override
     public final void c() {
-        this.f7750a.start();
+        this.f14477a.start();
     }
 
     @Override
     public final void d() {
-        this.f7750a.cancel();
+        this.f14477a.cancel();
     }
 }

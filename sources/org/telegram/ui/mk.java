@@ -1,245 +1,127 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class mk extends ChatActivityEnterView {
-    public int f39547t5;
-    public int f39548u5;
-    public int f39549v5;
-    public final un f39550w5;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class mk implements Runnable {
+    public final int f47689a = 1;
+    public final int f47690b;
+    public final int f47691c;
+    public final boolean d;
+    public final Object f47692e;
+    public final Object f47693f;
+    public final Serializable h;
 
-    public mk(un unVar, Activity activity, org.telegram.ui.Components.vu0 vu0Var, un unVar2, boolean z10, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(activity, vu0Var, unVar2, z10, p6Var);
-        this.f39550w5 = unVar;
+    public mk(g2.d dVar, Bitmap bitmap, int i3, int i10, String str, boolean z10) {
+        this.f47692e = dVar;
+        this.f47693f = bitmap;
+        this.f47690b = i3;
+        this.f47691c = i10;
+        this.h = str;
+        this.d = z10;
     }
 
     @Override
-    public final void A0(int i10, int i11) {
-        org.telegram.ui.ActionBar.l lVar;
-        org.telegram.ui.ActionBar.l lVar2;
-        un unVar = this.f39550w5;
-        if (unVar.Z != null) {
-            if (unVar.f42303z0 != null) {
-                if (unVar.Xa <= 0.0f) {
-                    lVar = ((org.telegram.ui.ActionBar.k2) unVar).actionBar;
-                    if (lVar != null) {
-                        lVar2 = ((org.telegram.ui.ActionBar.k2) unVar).actionBar;
-                        if (lVar2.u()) {
-                            return;
-                        }
-                    }
+    public final void run() {
+        org.telegram.ui.Components.ac acVar;
+        int i3;
+        int i10;
+        int i11;
+        Rect rect;
+        int i12 = this.f47689a;
+        Serializable serializable = this.h;
+        int i13 = this.f47691c;
+        int i14 = this.f47690b;
+        Object obj = this.f47693f;
+        Object obj2 = this.f47692e;
+        switch (i12) {
+            case 0:
+                ArrayList arrayList = (ArrayList) obj;
+                ArrayList arrayList2 = (ArrayList) serializable;
+                wm wmVar = ((nk) obj2).f48014b;
+                if (this.d) {
+                    i3 = ((org.telegram.ui.ActionBar.d2) wmVar).currentAccount;
+                    org.telegram.messenger.hp.s1(i3).f22989d7.edit().remove("pin_" + wmVar.f51376k6).commit();
+                    wmVar.cd(0, true);
+                    acVar = null;
                 } else {
+                    acVar = null;
+                    wmVar.getNotificationCenter().k(56, Long.valueOf(wmVar.f51376k6), arrayList, Boolean.TRUE, arrayList2, null, 0, Integer.valueOf(i14), Boolean.valueOf(wmVar.f51312f5));
+                }
+                if (i13 == wmVar.R3) {
+                    wmVar.P3 = acVar;
                     return;
                 }
-            }
-            this.f23756n3 = true;
-            this.f39548u5 = this.E0.getMeasuredHeight();
-            this.f39549v5 = this.E0.getScrollY();
-            unVar.l1.invalidate();
-            unVar.f42017c0 = unVar.Z.getBackgroundTop();
-        }
-    }
-
-    @Override
-    public final void F0() {
-        if (this.f39550w5.Ya != null) {
-            return;
-        }
-        super.F0();
-    }
-
-    @Override
-    public final boolean L0() {
-        if (!this.f39550w5.f42036d6) {
-            return false;
-        }
-        return true;
-    }
-
-    public final void S1() {
-        org.telegram.ui.ActionBar.l lVar;
-        un unVar = this.f39550w5;
-        lVar = ((org.telegram.ui.ActionBar.k2) unVar).actionBar;
-        if (!lVar.u() && !unVar.R9()) {
-            int backgroundTop = getBackgroundTop();
-            int i10 = unVar.f42017c0;
-            if (i10 != 0 && backgroundTop != i10 && this.f39547t5 == unVar.l1.getMeasuredHeight()) {
-                int i11 = (this.T1 + unVar.f42017c0) - backgroundTop;
-                setAnimatedTop(i11);
-                this.f23818y1.invalidate();
-                ValueAnimator valueAnimator = unVar.I9;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    unVar.I9.cancel();
-                }
-                View view = this.G1;
-                if (view != null && view.getVisibility() == 0) {
-                    this.G1.setTranslationY(((1.0f - getTopViewEnterProgress()) * this.G1.getLayoutParams().height) + this.T1);
-                }
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(i11, 0.0f);
-                unVar.I9 = ofFloat;
-                ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final mk f39295b;
-
-                    {
-                        this.f39295b = this;
+                return;
+            default:
+                g2.d dVar = (g2.d) obj2;
+                Bitmap bitmap = (Bitmap) obj;
+                String str = (String) serializable;
+                Paint paint = (Paint) dVar.d;
+                int i15 = dVar.f11818a;
+                if (bitmap != null && !bitmap.isRecycled()) {
+                    float width = bitmap.getWidth() / bitmap.getHeight();
+                    int round = (int) Math.round(Math.sqrt(width * 324.0f));
+                    int round2 = (int) Math.round(Math.sqrt(324.0f / width));
+                    if (i14 != 90 && i14 != 270) {
+                        i11 = round2;
+                        i10 = round;
+                    } else {
+                        i10 = round2;
+                        i11 = round;
                     }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        switch (r2) {
-                            case 0:
-                                mk mkVar = this.f39295b;
-                                un unVar2 = mkVar.f39550w5;
-                                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                mkVar.setAnimatedTop((int) floatValue);
-                                View view2 = mkVar.G1;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    mkVar.G1.setTranslationY(((1.0f - mkVar.getTopViewEnterProgress()) * mkVar.G1.getLayoutParams().height) + floatValue);
-                                } else {
-                                    unVar2.F9();
-                                    unVar2.H9();
-                                }
-                                mkVar.f23818y1.invalidate();
-                                mkVar.invalidate();
-                                return;
-                            default:
-                                this.f39295b.E0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                                return;
+                    int i16 = i15 * 2;
+                    Bitmap createBitmap = Bitmap.createBitmap(i16 + i10, i16 + i11, Bitmap.Config.ARGB_8888);
+                    Canvas canvas = new Canvas(createBitmap);
+                    Rect rect2 = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                    int i17 = i15 + round;
+                    int i18 = i15 + round2;
+                    Rect rect3 = new Rect(i15, i15, i17, i18);
+                    float f10 = i15;
+                    canvas.translate((i10 / 2.0f) + f10, (i11 / 2.0f) + f10);
+                    if (i13 == 1) {
+                        canvas.scale(-1.0f, 1.0f);
+                        rect = rect2;
+                    } else {
+                        rect = rect2;
+                        if (i13 == 2) {
+                            canvas.scale(1.0f, -1.0f);
                         }
                     }
-                });
-                unVar.I9.addListener(new s9(this, 16));
-                unVar.I9.setDuration(250L);
-                unVar.I9.setInterpolator(ci.o.V);
-                if (!unVar.H9) {
-                    unVar.I9.start();
-                }
-                unVar.F9();
-                unVar.H9();
-                unVar.f42017c0 = 0;
-            } else if (this.f39547t5 != unVar.l1.getMeasuredHeight()) {
-                unVar.f42017c0 = 0;
-            }
-            if (this.f23756n3) {
-                float scrollY = (this.f39549v5 - this.E0.getScrollY()) + (this.f39548u5 - this.E0.getMeasuredHeight());
-                org.telegram.ui.Components.se seVar = this.E0;
-                seVar.setOffsetY(seVar.getOffsetY() - scrollY);
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.E0.getOffsetY(), 0.0f);
-                ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                    public final mk f39295b;
-
-                    {
-                        this.f39295b = this;
+                    canvas.rotate(i14);
+                    float f11 = -i15;
+                    canvas.translate(f11 - (round / 2.0f), f11 - (round2 / 2.0f));
+                    try {
+                        canvas.drawBitmap(bitmap, rect, rect3, (Paint) null);
+                    } catch (Exception unused) {
                     }
-
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        switch (r2) {
-                            case 0:
-                                mk mkVar = this.f39295b;
-                                un unVar2 = mkVar.f39550w5;
-                                float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
-                                mkVar.setAnimatedTop((int) floatValue);
-                                View view2 = mkVar.G1;
-                                if (view2 != null && view2.getVisibility() == 0) {
-                                    mkVar.G1.setTranslationY(((1.0f - mkVar.getTopViewEnterProgress()) * mkVar.G1.getLayoutParams().height) + floatValue);
-                                } else {
-                                    unVar2.F9();
-                                    unVar2.H9();
-                                }
-                                mkVar.f23818y1.invalidate();
-                                mkVar.invalidate();
-                                return;
-                            default:
-                                this.f39295b.E0.setOffsetY(((Float) valueAnimator2.getAnimatedValue()).floatValue());
-                                return;
-                        }
+                    Utilities.stackBlurBitmap(createBitmap, 6);
+                    if (i15 > 0) {
+                        float f12 = i17;
+                        canvas.drawRect(0.0f, 0.0f, f12, f10, paint);
+                        float f13 = i18;
+                        canvas.drawRect(0.0f, f10, f10, f13, paint);
+                        float f14 = i17 + i15;
+                        canvas.drawRect(f12, f10, f14, f13, paint);
+                        canvas.drawRect(0.0f, f13, f14, i18 + i15, paint);
                     }
-                });
-                ValueAnimator valueAnimator2 = unVar.J9;
-                if (valueAnimator2 != null) {
-                    valueAnimator2.cancel();
+                    org.telegram.messenger.g0.h3(new gi.q1(dVar, str, createBitmap, this.d, bitmap));
+                    return;
                 }
-                unVar.J9 = ofFloat2;
-                ofFloat2.setDuration(250L);
-                ofFloat2.setInterpolator(ci.o.V);
-                ofFloat2.start();
-                this.f23756n3 = false;
-            }
-            this.f39547t5 = unVar.l1.getMeasuredHeight();
-            return;
-        }
-        ValueAnimator valueAnimator3 = unVar.J9;
-        if (valueAnimator3 != null) {
-            valueAnimator3.cancel();
-        }
-        ValueAnimator valueAnimator4 = unVar.I9;
-        if (valueAnimator4 != null) {
-            valueAnimator4.cancel();
-        }
-        unVar.f42017c0 = 0;
-        this.f23756n3 = false;
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void m0(boolean z10) {
-        super.m0(z10);
-        un unVar = this.f39550w5;
-        nf nfVar = unVar.Jb;
-        if (nfVar != null) {
-            org.telegram.messenger.i0.g3(nfVar);
-            unVar.Jb = null;
+                return;
         }
     }
 
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (getAlpha() != 1.0f) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        super.setVisibility(i10);
-        un unVar = this.f39550w5;
-        j6.m mVar = unVar.Yc;
-        boolean z11 = false;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (getMeasuredWidth() > 0 && !unVar.Oc) {
-            z11 = true;
-        }
-        mVar.h(1, z10, z11);
-    }
-
-    @Override
-    public final void y0(float f7) {
-        this.f39550w5.C7();
+    public mk(nk nkVar, boolean z10, ArrayList arrayList, ArrayList arrayList2, int i3, int i10) {
+        this.f47692e = nkVar;
+        this.d = z10;
+        this.f47693f = arrayList;
+        this.h = arrayList2;
+        this.f47690b = i3;
+        this.f47691c = i10;
     }
 }

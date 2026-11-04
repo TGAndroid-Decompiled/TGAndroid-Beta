@@ -1,96 +1,37 @@
 package tg;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.PointF;
 import android.graphics.RectF;
-import android.os.SystemClock;
 import android.view.View;
-import android.view.ViewGroup;
-import g.y;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.l50;
-import org.telegram.ui.lb1;
-public final class j implements ug.a {
-    public final ViewGroup f48776c;
-    public final l50 d;
-    public final ViewGroup e;
-    public boolean h;
-    public final RectF f48774a = new RectF();
-    public final PointF f48775b = new PointF();
-    public final RectF f48777f = new RectF();
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import org.telegram.ui.ActionBar.k6;
+public final class j extends ScrollView {
+    public final LinearLayout f55214a;
+    public final q f55215b;
 
-    public j(ViewGroup viewGroup, ViewGroup viewGroup2, l50 l50Var) {
-        this.f48776c = viewGroup;
-        this.d = l50Var;
-        this.e = viewGroup2;
+    public j(q qVar, Context context, LinearLayout linearLayout) {
+        super(context);
+        this.f55215b = qVar;
+        this.f55214a = linearLayout;
+        setWillNotDraw(false);
     }
 
     @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        long uptimeMillis = SystemClock.uptimeMillis();
-        ViewGroup viewGroup = this.f48776c;
-        ViewGroup viewGroup2 = this.e;
-        PointF pointF = this.f48775b;
-        if (!zg.h.b(viewGroup, viewGroup2, pointF)) {
-            return;
-        }
-        canvas.save();
-        canvas.clipRect(rectF);
-        canvas.translate(pointF.x, pointF.y);
-        if ((viewGroup instanceof ug.a) && !this.h) {
-            RectF rectF2 = this.f48777f;
-            rectF2.set(rectF);
-            rectF.offset(-pointF.x, -pointF.y);
-            ((ug.a) viewGroup).d(canvas, rectF);
-            rectF.set(rectF2);
-        } else {
-            for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
-                View childAt = viewGroup.getChildAt(i10);
-                RectF rectF3 = this.f48774a;
-                if (zg.h.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
-                    l50 l50Var = this.d;
-                    int i11 = l50Var.f39081a;
-                    Object obj = l50Var.f39082b;
-                    switch (i11) {
-                        case 0:
-                            ((uk0) obj).drawChild(canvas, childAt, uptimeMillis);
-                            continue;
-                        case 1:
-                            ProfileActivity profileActivity = (ProfileActivity) obj;
-                            if (childAt == profileActivity.N) {
-                                break;
-                            } else {
-                                profileActivity.f33779a.drawChild(canvas, childAt, uptimeMillis);
-                                continue;
-                            }
-                        default:
-                            ((lb1) obj).drawChild(canvas, childAt, uptimeMillis);
-                            continue;
-                    }
-                }
-            }
-        }
-        canvas.restore();
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float y9 = this.f55214a.getY() + org.telegram.messenger.g0.L(1.0f);
+        int L = org.telegram.messenger.g0.L(36.0f);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set((getMeasuredWidth() - L) / 2.0f, y9, (getMeasuredWidth() + L) / 2.0f, org.telegram.messenger.g0.L(4.0f) + y9);
+        k6.f28171t0.setColor(-10790053);
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), k6.f28171t0);
     }
 
     @Override
-    public final void g(y yVar, RectF rectF) {
-        ViewGroup viewGroup = this.f48776c;
-        ViewGroup viewGroup2 = this.e;
-        PointF pointF = this.f48775b;
-        if (!zg.h.b(viewGroup, viewGroup2, pointF)) {
-            yVar.f7259b = true;
-        } else if ((viewGroup instanceof ug.a) && !this.h) {
-            yVar.c(pointF.x);
-            yVar.c(pointF.y);
-            RectF rectF2 = this.f48777f;
-            rectF2.set(rectF);
-            rectF.offset(-pointF.x, -pointF.y);
-            ((ug.a) viewGroup).g(yVar, rectF);
-            rectF.set(rectF2);
-        } else {
-            yVar.f7259b = true;
-        }
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(i3, i10);
+        ((LinearLayout.LayoutParams) this.f55215b.f55286j1.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i3) - org.telegram.messenger.g0.L(24.0f)) * 0.8333333f) + org.telegram.messenger.g0.L(88.0f));
     }
 }

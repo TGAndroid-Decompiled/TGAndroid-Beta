@@ -1,40 +1,37 @@
 package org.telegram.ui.ActionBar;
 
+import android.content.Context;
+import android.view.MenuItem;
 import android.view.View;
-public final class b4 implements Runnable {
-    public final int f20187a;
-    public final d4 f20188b;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+public final class b4 extends ArrayAdapter {
+    public final i4 f27410a;
 
-    public b4(d4 d4Var, int i10) {
-        this.f20187a = i10;
-        this.f20188b = d4Var;
+    public b4(i4 i4Var, Context context) {
+        super(context, 0);
+        this.f27410a = i4Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20187a) {
-            case 0:
-                d4 d4Var = this.f20188b;
-                View view = d4Var.f20262m;
-                if (view.getWindowVisibility() == 0 && view.isShown()) {
-                    c4 c4Var = d4Var.f20268s;
-                    c4Var.getClass();
-                    System.currentTimeMillis();
-                    c4Var.f20208c = false;
-                    d4Var.f20268s.a();
-                    return;
-                }
-                return;
-            default:
-                d4 d4Var2 = this.f20188b;
-                View view2 = d4Var2.f20262m;
-                if (view2.getWindowVisibility() == 0 && view2.isShown()) {
-                    c4 c4Var2 = d4Var2.f20268s;
-                    c4Var2.f20207b = false;
-                    c4Var2.a();
-                    return;
-                }
-                return;
+    public final View getView(int i3, View view, ViewGroup viewGroup) {
+        i4 i4Var = this.f27410a;
+        h4 h4Var = i4Var.f27622q;
+        MenuItem menuItem = (MenuItem) getItem(i3);
+        int width = i4Var.I.getWidth();
+        boolean z10 = false;
+        if (view != null) {
+            int i10 = h4Var.f27573a;
+            if (((i4) h4Var.f27576e).Q.f27774j != null) {
+                z10 = true;
+            }
+            k4.e(view, menuItem, z10);
+        } else {
+            view = k4.b(((i4) h4Var.f27576e).Q, (Context) h4Var.d, menuItem, true, false, false);
+            int i11 = h4Var.f27574b;
+            view.setPadding(i11, 0, i11, 0);
         }
+        view.setMinimumWidth(width);
+        return view;
     }
 }

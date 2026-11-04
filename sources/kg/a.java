@@ -1,55 +1,48 @@
 package kg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.FrameLayout;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.uk0;
-import w7.b6;
-public abstract class a extends FrameLayout implements t0 {
-    public final p6 f10989a;
-    public final uk0 f10990b;
-    public final s4.a0 f10991c;
+import java.util.Locale;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.bd;
+public final class a implements Runnable {
+    public final int f16914a;
+    public final c f16915b;
+    public final String f16916c;
 
-    public a(Context context, p6 p6Var) {
-        super(context);
-        this.f10989a = p6Var;
-        uk0 uk0Var = new uk0(context, p6Var);
-        this.f10990b = uk0Var;
-        uk0Var.setNestedScrollingEnabled(true);
-        uk0Var.setAdapter(a());
-        s4.a0 a0Var = new s4.a0(1, false);
-        this.f10991c = a0Var;
-        uk0Var.setLayoutManager(a0Var);
-        uk0Var.setClipToPadding(false);
-        addView(uk0Var, b6.c(-1.0f, -1));
-    }
-
-    public abstract s4.g0 a();
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Paint W0 = t6.W0("paintDivider", this.f10989a);
-        if (W0 == null) {
-            W0 = t6.f21053k0;
-        }
-        canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, W0);
+    public a(c cVar, String str, int i3) {
+        this.f16914a = i3;
+        this.f16915b = cVar;
+        this.f16916c = str;
     }
 
     @Override
-    public void setOffset(float f7) {
-        if (Math.abs(f7 / getMeasuredWidth()) == 1.0f) {
-            uk0 uk0Var = this.f10990b;
-            if (uk0Var.K(0) == null || uk0Var.K(0).f47909a.getTop() != uk0Var.getPaddingTop()) {
-                uk0Var.v0(0);
-            }
+    public final void run() {
+        Locale locale;
+        switch (this.f16914a) {
+            case 0:
+                c cVar = this.f16915b;
+                String str = this.f16916c;
+                cVar.getClass();
+                org.telegram.messenger.g0.h3(new a(cVar, str, 1));
+                return;
+            default:
+                c cVar2 = this.f16915b;
+                String str2 = this.f16916c;
+                Locale locale2 = null;
+                cVar2.f16935r = null;
+                int i3 = cVar2.f16936s + 1;
+                cVar2.f16936s = i3;
+                Locale locale3 = bd.E0().f21812y;
+                if (cVar2.d) {
+                    if (locale3.getLanguage().contains("en")) {
+                        locale = locale3;
+                        Utilities.f21387e.c(new ai.p1(cVar2, locale3, str2, locale, i3, 5));
+                        return;
+                    }
+                    locale2 = Locale.US;
+                }
+                locale = locale2;
+                Utilities.f21387e.c(new ai.p1(cVar2, locale3, str2, locale, i3, 5));
+                return;
         }
-    }
-
-    public void setTopOffset(int i10) {
-        this.f10990b.setPadding(0, i10, 0, 0);
     }
 }

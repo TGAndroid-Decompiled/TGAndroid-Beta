@@ -1,11 +1,26 @@
 package q2;
-public final class f {
-    public static final f f45428c = new f(-9223372036854775807L, -9223372036854775807L);
-    public final long f45429a;
-    public final long f45430b;
 
-    public f(long j10, long j11) {
-        this.f45429a = j10;
-        this.f45430b = j11;
+import java.util.List;
+public final class f extends x2.b {
+    public final List d;
+    public final long f53678e;
+
+    public f(long j10, List list) {
+        super(0L, list.size() - 1);
+        this.f53678e = j10;
+        this.d = list;
+    }
+
+    @Override
+    public final long D() {
+        a();
+        r2.k kVar = (r2.k) this.d.get((int) this.f58131c);
+        return this.f53678e + kVar.f54143e + kVar.f54142c;
+    }
+
+    @Override
+    public final long t() {
+        a();
+        return this.f53678e + ((r2.k) this.d.get((int) this.f58131c)).f54143e;
     }
 }

@@ -1,96 +1,78 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.TextPaint;
-public final class ll0 extends Drawable {
-    public final RectF f28200a = new RectF();
-    public final Paint f28201b;
-    public final TextPaint f28202c;
-    public int d;
-    public String e;
-    public final int f28203f;
-    public int f28204g;
-    public final int h;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class ll0 implements fj0 {
+    public final int f35788a;
+    public final int f35789b;
+    public final org.telegram.ui.ActionBar.d2 f35790c;
+    public final Object d;
 
-    public ll0(int i10) {
-        Paint paint = new Paint(1);
-        this.f28201b = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f28202c = textPaint;
-        this.f28204g = 255;
-        this.h = 255;
-        this.f28203f = i10;
-        textPaint.setTextSize(org.telegram.messenger.i0.L(11));
-        textPaint.setTypeface(org.telegram.messenger.i0.o());
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.i0.L(1.0f));
-        if (i10 == 0) {
-            this.e = org.telegram.messenger.dd.L0(2131745879, null);
-        } else {
-            this.e = org.telegram.messenger.dd.L0(2131750844, null);
+    public ll0(Object obj, int i3, org.telegram.ui.ActionBar.d2 d2Var, int i10) {
+        this.f35788a = i10;
+        this.d = obj;
+        this.f35789b = i3;
+        this.f35790c = d2Var;
+    }
+
+    @Override
+    public final void f(int i3, View view) {
+        dh.n0 n0Var;
+        switch (this.f35788a) {
+            case 0:
+                tl0 tl0Var = (tl0) this.d;
+                ArrayList arrayList = tl0Var.f38491r;
+                ci.j1 j1Var = tl0Var.d;
+                if (i3 >= 0 && i3 < arrayList.size()) {
+                    if (!org.telegram.messenger.h10.i(this.f35789b).q()) {
+                        new vg.v0(this.f35790c, 24, true).show();
+                        return;
+                    }
+                    long j10 = ((ql0) arrayList.get(i3)).f37490a.h;
+                    if (tl0Var.h == j10) {
+                        n0Var = null;
+                    } else {
+                        n0Var = ((ql0) arrayList.get(i3)).f37490a;
+                    }
+                    if (tl0Var.f(n0Var)) {
+                        for (int i10 = 0; i10 < j1Var.getChildCount(); i10++) {
+                            if (j1Var.getChildAt(i10) == view) {
+                                float f10 = 50.0f;
+                                if (i10 <= 1) {
+                                    if (i10 == 0) {
+                                        f10 = 90.0f;
+                                    }
+                                    j1Var.w0(-org.telegram.messenger.g0.L(f10), 0, null);
+                                } else if (i10 >= j1Var.getChildCount() - 2) {
+                                    if (i10 == j1Var.getChildCount() - 1) {
+                                        f10 = 80.0f;
+                                    }
+                                    j1Var.w0(org.telegram.messenger.g0.L(f10), 0, null);
+                                }
+                            }
+                        }
+                        j1Var.M(new org.telegram.ui.cq(3));
+                        if (tl0Var.h == j10) {
+                            tl0Var.h = 0L;
+                            return;
+                        }
+                        tl0Var.h = j10;
+                        ((sl0) view).a(true, true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                vg.h1 h1Var = (vg.h1) this.d;
+                if (view instanceof org.telegram.ui.yr0) {
+                    org.telegram.ui.yr0 yr0Var = (org.telegram.ui.yr0) view;
+                    PremiumPreviewFragment.v0(this.f35789b, yr0Var.f52390f.f47430a);
+                    h1Var.t(new vg.v0(this.f35790c, yr0Var.f52390f.f47430a, false));
+                    return;
+                }
+                return;
         }
-        this.d = (int) Math.ceil(textPaint.measureText(this.e));
-    }
-
-    public final void a() {
-        String L0;
-        if (this.f28203f == 0) {
-            L0 = org.telegram.messenger.dd.L0(2131745879, null);
-        } else {
-            L0 = org.telegram.messenger.dd.L0(2131750844, null);
-        }
-        if (!L0.equals(this.e)) {
-            this.e = L0;
-            this.d = (int) Math.ceil(this.f28202c.measureText(L0));
-        }
-    }
-
-    public final void b(int i10) {
-        this.f28202c.setColor(i10);
-        this.f28201b.setColor(i10);
-        this.f28204g = Color.alpha(i10);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f28200a;
-        rectF.set(bounds);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(2.0f), this.f28201b);
-        canvas.drawText(this.e, rectF.left + org.telegram.messenger.i0.L(5.0f), rectF.top + org.telegram.messenger.i0.L(12.0f), this.f28202c);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.i0.L(16.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.i0.L(10.0f) + this.d;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        if (this.h != i10) {
-            int i11 = (int) ((i10 / 255.0f) * this.f28204g);
-            this.f28201b.setAlpha(i11);
-            this.f28202c.setAlpha(i11);
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

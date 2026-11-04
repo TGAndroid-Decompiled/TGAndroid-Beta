@@ -4,12 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 public class AppStartReceiver extends BroadcastReceiver {
-    public static final int f14355a = 0;
+    public static final int f21215a = 0;
 
     @Override
     public final void onReceive(Context context, Intent intent) {
         if (intent != null && "android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
-            i0.g3(new ag.f3(9));
+            g0.h3(new ai.y1(22));
         }
     }
 }

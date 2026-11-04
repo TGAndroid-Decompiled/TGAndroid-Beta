@@ -1,5 +1,6 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-public abstract class qj0 extends Drawable {
+import java.util.ArrayList;
+public abstract class qj0 {
+    public static final ArrayList f37482a = new ArrayList();
 }

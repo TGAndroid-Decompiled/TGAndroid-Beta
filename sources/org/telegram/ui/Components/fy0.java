@@ -1,25 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.util.Pair;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-public final class fy0 extends ArrayList {
-    public final Class f26233a;
-    public final Class f26234b;
+import org.telegram.tgnet.TLRPC;
+public final class fy0 {
+    public final long f33883a;
+    public final TLRPC.InputFile f33884b;
+    public final TLRPC.InputEncryptedFile f33885c;
+    public final byte[] d;
+    public final byte[] f33886e;
 
-    public fy0(Class cls, Class cls2) {
-        this.f26233a = cls;
-        this.f26234b = cls2;
-    }
-
-    public final li.k l() {
-        int size = size();
-        Object[] objArr = (Object[]) Array.newInstance(this.f26233a, size);
-        Object[] objArr2 = (Object[]) Array.newInstance(this.f26234b, size);
-        for (int i10 = 0; i10 < size; i10++) {
-            objArr[i10] = ((Pair) get(i10)).first;
-            objArr2[i10] = ((Pair) get(i10)).second;
-        }
-        return new li.k(objArr, objArr2);
+    public fy0(long j10, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
+        this.f33883a = j10;
+        this.f33884b = inputFile;
+        this.f33885c = inputEncryptedFile;
+        this.d = bArr;
+        this.f33886e = bArr2;
     }
 }

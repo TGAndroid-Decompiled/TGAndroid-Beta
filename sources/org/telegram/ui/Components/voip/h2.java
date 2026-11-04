@@ -2,55 +2,55 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
 public final class h2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31533a;
-    public final k2 f31534b;
+    public final int f39391a;
+    public final j2 f39392b;
 
-    public h2(k2 k2Var, int i10) {
-        this.f31533a = i10;
-        this.f31534b = k2Var;
+    public h2(j2 j2Var, int i3) {
+        this.f39391a = i3;
+        this.f39392b = j2Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31533a) {
+        switch (this.f39391a) {
             case 0:
-                k2 k2Var = this.f31534b;
-                k2Var.getClass();
-                k2Var.H = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                k2Var.invalidate();
-                k2Var.T.c();
+                j2 j2Var = this.f39392b;
+                j2Var.getClass();
+                j2Var.I = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j2Var.invalidate();
+                j2Var.U.c();
                 return;
             case 1:
-                k2 k2Var2 = this.f31534b;
-                k2Var2.getClass();
-                k2Var2.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k2Var2.invalidate();
-                k2Var2.T.c();
+                j2 j2Var2 = this.f39392b;
+                j2Var2.getClass();
+                j2Var2.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j2Var2.invalidate();
+                j2Var2.U.c();
                 return;
             case 2:
-                k2 k2Var3 = this.f31534b;
-                k2Var3.getClass();
-                k2Var3.H = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                k2Var3.invalidate();
-                k2Var3.T.c();
+                j2 j2Var3 = this.f39392b;
+                j2Var3.getClass();
+                j2Var3.I = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j2Var3.invalidate();
+                j2Var3.U.c();
                 return;
             case 3:
-                k2 k2Var4 = this.f31534b;
-                k2Var4.getClass();
-                k2Var4.E = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                k2Var4.invalidate();
+                j2 j2Var4 = this.f39392b;
+                j2Var4.getClass();
+                j2Var4.F = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j2Var4.invalidate();
                 return;
             case 4:
-                k2 k2Var5 = this.f31534b;
-                k2Var5.getClass();
-                k2Var5.F = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                k2Var5.invalidate();
+                j2 j2Var5 = this.f39392b;
+                j2Var5.getClass();
+                j2Var5.G = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j2Var5.invalidate();
                 return;
             default:
-                k2 k2Var6 = this.f31534b;
-                k2Var6.getClass();
-                k2Var6.E = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                k2Var6.invalidate();
+                j2 j2Var6 = this.f39392b;
+                j2Var6.getClass();
+                j2Var6.F = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                j2Var6.invalidate();
                 return;
         }
     }

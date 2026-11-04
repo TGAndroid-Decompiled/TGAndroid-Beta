@@ -1,84 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.app.Activity;
 import android.view.View;
-import android.view.ViewGroup;
-public abstract class r9 extends uk0 {
-    public int f29962e3;
-    public int f29963f3;
-    public boolean f29964g3;
-    public int f29965h3;
-    public boolean f29966i3;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+public final class r9 implements View.OnClickListener {
+    public final int f37692a = 0;
+    public final t9 f37693b;
 
-    public final void A1() {
-        if (getLayoutParams() == null) {
-            return;
+    public r9(t9 t9Var) {
+        this.f37693b = t9Var;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        int i3 = this.f37692a;
+        t9 t9Var = this.f37693b;
+        switch (i3) {
+            case 0:
+                int i10 = t9Var.f38361w + 1;
+                t9Var.f38361w = i10;
+                if (i10 >= 10) {
+                    t9Var.setVisibility(8);
+                    org.telegram.messenger.az.f21639j1 = null;
+                    org.telegram.messenger.az.y();
+                    return;
+                }
+                return;
+            default:
+                org.telegram.messenger.t0.u();
+                boolean z10 = org.telegram.messenger.r2.f25040a;
+                if (org.telegram.messenger.t0.f25456a.b(t9Var.getContext())) {
+                    TLRPC.TL_help_appUpdate tL_help_appUpdate = t9Var.f38358n;
+                    if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
+                        if (!org.telegram.messenger.t0.f25456a.v((Activity) t9Var.getContext(), t9Var.f38358n.document)) {
+                            org.telegram.messenger.w7.G(t9Var.f38360s).X(t9Var.f38358n.document, "update", 3, 1);
+                            t9Var.a(true);
+                            return;
+                        }
+                        return;
+                    } else if (tL_help_appUpdate.url != null) {
+                        sf.c.t(t9Var.getContext(), t9Var.f38358n.url);
+                        return;
+                    } else {
+                        return;
+                    }
+                }
+                return;
         }
-        if (org.telegram.messenger.uz.f()) {
-            this.f29962e3 = z1();
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f29962e3;
-            return;
-        }
-        this.f29962e3 = 0;
-        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
     }
 
-    @Override
-    public final void d(Canvas canvas, RectF rectF) {
-        this.f29966i3 = true;
-        super.d(canvas, rectF);
-        this.f29966i3 = false;
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        if (this.f29962e3 != 0 && !Y0()) {
-            canvas.clipRect(0, this.f29962e3, getMeasuredWidth(), getMeasuredHeight() + this.f29965h3);
-            super.dispatchDraw(canvas);
-            return;
-        }
-        super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view.getY() + view.getMeasuredHeight() < this.f29962e3 && !this.f29966i3 && !Y0()) {
-            return true;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        A1();
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        this.f29964g3 = true;
-        A1();
-        super.setPadding(getPaddingLeft(), this.f29963f3 + this.f29962e3, getPaddingRight(), getPaddingBottom());
-        this.f29964g3 = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public void requestLayout() {
-        if (this.f29964g3) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void setPadding(int i10, int i11, int i12, int i13) {
-        this.f29963f3 = i11;
-        super.setPadding(i10, i11 + this.f29962e3, i12, i13);
-    }
-
-    public int z1() {
-        return org.telegram.messenger.i0.L(203.0f);
+    public r9(t9 t9Var, LaunchActivity launchActivity) {
+        this.f37693b = t9Var;
     }
 }

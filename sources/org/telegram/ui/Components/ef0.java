@@ -1,25 +1,32 @@
 package org.telegram.ui.Components;
+public enum ef0 {
+    MESSAGE(2131746739, 2131231154, 2131232494),
+    NOTIFICATION_MUTE(2131746695, 2131231155, 2131232495),
+    NOTIFICATION_UNMUTE(2131746694, 2131231161, 2131232500),
+    DISCUSS(2131746748, 2131231154, 2131232494),
+    GIFT(2131746743, 2131231216, 2131231503),
+    SHARE(2131746737, 2131230863, 2131232363),
+    CALL(2131746749, 2131231151, 2131232491),
+    VIDEO(2131746735, 2131231162, 2131232501),
+    JOIN(2131746742, 2131231153, 2131232493),
+    REPORT(2131746738, 2131232673, 2131232333),
+    LEAVE(2131746741, 2131231620, 2131231620),
+    VOICE_CHAT(2131746734, 2131231633, 2131231633),
+    STREAM(2131746740, 2131231633, 2131231633),
+    STORY(2131746750, 2131231160, 2131232499),
+    STOP(2131746736, 2131231159, 2131232498),
+    SET_PHOTO(2131746745, 2131231156, 2131232496),
+    EDIT_USERNAME(2131746744, 2131231152, 2131232492),
+    EDIT_INFO(2131746747, 2131231152, 2131232492),
+    SETTINGS(2131745505, 2131231158, 2131232497);
+    
+    public final int f33383a;
+    public final int f33384b;
+    public final int f33385c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ef0 extends AnimatorListenerAdapter {
-    public final int f25806a;
-    public final jf0 f25807b;
-
-    public ef0(jf0 jf0Var, int i10) {
-        this.f25806a = i10;
-        this.f25807b = jf0Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f25806a) {
-            case 0:
-                this.f25807b.F = null;
-                return;
-            default:
-                this.f25807b.u();
-                return;
-        }
+    ef0(int i3, int i10, int i11) {
+        this.f33383a = i3;
+        this.f33384b = i10;
+        this.f33385c = i11;
     }
 }

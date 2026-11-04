@@ -1,19 +1,37 @@
 package org.telegram.messenger;
+
+import org.telegram.tgnet.TLRPC;
 public final class ej {
-    public int f15571a;
-    public int f15572b;
-    public int f15573c;
-    public int d;
-    public float e;
-    public float f15574f;
-    public float f15575g;
-    public float h;
-    public boolean f15576i;
-    public boolean f15577j;
-    public boolean f15578k;
-    public boolean f15579l;
-    public org.telegram.ui.Cells.q1 f15580m;
-    public float f15581n;
-    public boolean f15582o;
-    public boolean f15583p;
+    public final dg.a f22361a;
+    public final long f22362b;
+
+    public ej(dg.a aVar, long j10) {
+        this.f22361a = aVar;
+        this.f22362b = j10;
+    }
+
+    public static ej a() {
+        return new ej(dg.a.g(0L, dg.b.f8925a), 0L);
+    }
+
+    public static ej b(TLRPC.SuggestedPost suggestedPost) {
+        if (suggestedPost == null) {
+            return a();
+        }
+        return new ej(dg.a.l(suggestedPost.price), suggestedPost.schedule_date);
+    }
+
+    public final TLRPC.SuggestedPost c() {
+        TLRPC.SuggestedPost suggestedPost = new TLRPC.SuggestedPost();
+        dg.a aVar = this.f22361a;
+        if (aVar != null && !aVar.k()) {
+            suggestedPost.price = aVar.o();
+        }
+        long j10 = this.f22362b;
+        if (j10 > 0) {
+            suggestedPost.schedule_date = (int) j10;
+            suggestedPost.flags |= 1;
+        }
+        return suggestedPost;
+    }
 }

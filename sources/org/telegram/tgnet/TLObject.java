@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import org.telegram.tgnet.Vector;
-import v7.u7;
 public class TLObject {
     public static final int FLAG_0 = 1;
     public static final int FLAG_1 = 2;
@@ -44,9 +43,9 @@ public class TLObject {
     public boolean disableFree = false;
     public int networkType;
 
-    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t10, InputSerializedData inputSerializedData, int i10, boolean z10) {
+    public static <T extends TLObject> T TLdeserialize(Class<T> cls, T t10, InputSerializedData inputSerializedData, int i3, boolean z10) {
         if (t10 == null) {
-            TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i10, z10);
+            TLParseException.doThrowOrLog(inputSerializedData, cls.getName(), i3, z10);
             return null;
         }
         t10.readParams(inputSerializedData, z10);
@@ -63,15 +62,15 @@ public class TLObject {
         return tLDeserializer.deserialize(serializedData2, serializedData2.readInt32(false), false);
     }
 
-    public static boolean hasFlag(int i10, int i11) {
-        return u7.a(i10, i11);
+    public static boolean hasFlag(int i3, int i10) {
+        return x7.u.a(i3, i10);
     }
 
-    public static int setFlag(int i10, int i11, boolean z10) {
-        return u7.b(i10, i11, z10);
+    public static int setFlag(int i3, int i10, boolean z10) {
+        return x7.u.b(i3, i10, z10);
     }
 
-    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
+    public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
         return null;
     }
 

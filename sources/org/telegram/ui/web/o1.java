@@ -1,89 +1,88 @@
 package org.telegram.ui.web;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.f8;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.q2;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.f5;
-import w7.b6;
-public final class o1 extends FrameLayout implements k6 {
-    public final ImageView f42954a;
-    public final TextView f42955b;
-    public final q2 f42956c;
-    public f5 d;
-    public String e;
-    public boolean f42957f;
-    public ShapeDrawable h;
+import android.webkit.ValueCallback;
+import android.webkit.WebView;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.a8;
+import org.telegram.ui.Components.iv0;
+public final class o1 implements ValueCallback {
+    public final int f50978a;
+    public final Object f50979b;
+    public final WebView f50980c;
+    public final Object d;
+    public final Object f50981e;
 
-    public o1(Context context) {
-        super(context);
-        ImageView imageView = new ImageView(context);
-        this.f42954a = imageView;
-        addView(imageView, b6.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f42955b = textView;
-        a7.V(textView, t6.G6, null);
-        textView.setTextSize(1, 16.0f);
-        textView.setMaxLines(1);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        addView(textView, b6.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
-        q2 q2Var = new q2(this, context, 11);
-        this.f42956c = q2Var;
-        a7.V(q2Var, t6.f21312y6, null);
-        q2Var.setTextSize(1, 13.0f);
-        q2Var.setMaxLines(1);
-        q2Var.setEllipsize(truncateAt);
-        q2Var.setPivotX(0.0f);
-        addView(q2Var, b6.d(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        imageView2.setScaleType(ImageView.ScaleType.CENTER);
-        imageView2.setImageResource(2131231245);
-        a7.t(imageView2, t6.A6, null, PorterDuff.Mode.SRC_IN);
-        addView(imageView2, b6.d(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+    public o1(u1 u1Var, WebView webView, File file, n1 n1Var, int i3) {
+        this.f50978a = i3;
+        this.f50979b = u1Var;
+        this.f50980c = webView;
+        this.d = file;
+        this.f50981e = n1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.f42957f) {
-            canvas.drawRect(org.telegram.messenger.i0.L(64.0f), getHeight() - 1, getWidth(), getHeight(), t6.f21053k0);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(56.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            ShapeDrawable shapeDrawable = this.h;
-            if (shapeDrawable != null) {
-                t6.C1(t6.r1(0.1f, t6.x0(null, t6.G6, false)), shapeDrawable);
-                ImageView imageView = this.f42954a;
-                if (imageView != null) {
-                    imageView.invalidate();
+    public final void onReceiveValue(Object obj) {
+        switch (this.f50978a) {
+            case 0:
+                u1 u1Var = (u1) this.f50979b;
+                WebView webView = this.f50980c;
+                File file = (File) this.d;
+                String str = (String) obj;
+                webView.saveWebArchive(file.getAbsolutePath(), false, new o1(u1Var, webView, file, (n1) this.f50981e, 1));
+                return;
+            case 1:
+                u1 u1Var2 = (u1) this.f50979b;
+                WebView webView2 = this.f50980c;
+                File file2 = (File) this.d;
+                n1 n1Var = (n1) this.f50981e;
+                String str2 = (String) obj;
+                webView2.evaluateJavascript(org.telegram.messenger.g0.y2(null, 2131624109).replace("$OPEN$", "false"), new e0(1));
+                try {
+                    za.p pVar = new za.p(file2);
+                    u1Var2.f51047b = pVar;
+                    if (!((ArrayList) pVar.f60312b).isEmpty()) {
+                        n1Var.a(((b1) ((ArrayList) u1Var2.f51047b.f60312b).get(0)).a());
+                        return;
+                    }
+                } catch (Exception e10) {
+                    a8.g(e10, true);
                 }
-            }
-        } catch (Exception e) {
-            f8.g(e, true);
+                n1Var.a(null);
+                return;
+            default:
+                ui.j jVar = (ui.j) this.f50979b;
+                WebView webView3 = this.f50980c;
+                d5.g gVar = (d5.g) this.f50981e;
+                String str3 = (String) obj;
+                org.telegram.messenger.g0.r((iv0) this.d);
+                synchronized (jVar.f56401a) {
+                    if (!jVar.f56419u && jVar.f56413o == webView3 && jVar.f56414p == gVar && !jVar.f56416r) {
+                        if (!"true".equals(str3)) {
+                            a8.d("WEB proxy: Base64 bridge installation failed; transport stopped");
+                            jVar.q();
+                            return;
+                        } else if (!jVar.j(webView3)) {
+                            jVar.h();
+                            return;
+                        } else {
+                            jVar.f56417s = false;
+                            jVar.f56416r = true;
+                            a8.b("WEB proxy: Base64 bridge ready");
+                            jVar.n(16, 0, new byte[]{1});
+                            return;
+                        }
+                    }
+                    return;
+                }
         }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public o1(ui.j jVar, iv0 iv0Var, WebView webView, d5.g gVar) {
+        this.f50978a = 2;
+        this.f50979b = jVar;
+        this.d = iv0Var;
+        this.f50980c = webView;
+        this.f50981e = gVar;
     }
 }

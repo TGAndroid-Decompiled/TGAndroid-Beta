@@ -1,84 +1,38 @@
 package tg;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import java.util.Arrays;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.i0;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.t6;
-import vg.k;
-public final class i extends Drawable {
-    public wg.a f48764a;
-    public int f48765b;
-    public int f48766c;
-    public int f48767f;
-    public vg.g f48770j;
-    public boolean f48772l;
-    public float f48773m;
-    public float d = 1.0f;
-    public final RectF e = new RectF();
-    public final Paint f48768g = new Paint(1);
-    public final k h = new k();
-    public final float[] f48769i = new float[8];
-    public int f48771k = a7.f20159b;
+import ug.o1;
+public final class i extends o1 {
+    public final q E;
 
-    public final void a() {
-        this.f48771k = a7.f20159b;
-        wg.a aVar = this.f48764a;
-        if (aVar == null) {
-            return;
-        }
-        this.f48765b = t6.r1(this.d, aVar.u());
-        this.f48766c = t6.r1(this.d, this.f48764a.E());
-        float N = i0.N(1.0f);
-        this.f48770j = new vg.g(this.f48765b, N, this.f48766c, i0.N(0.6666667f), 0, 0.0f);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        if (this.f48771k != a7.f20159b) {
-            try {
-                a();
-            } catch (Exception e) {
-                f8.g(e, true);
-            }
-        }
-        float centerX = getBounds().centerX();
-        float centerY = getBounds().centerY();
-        float min = (Math.min(getBounds().width(), getBounds().height()) / 2.0f) - this.f48767f;
-        RectF rectF = this.e;
-        rectF.set(centerX - min, centerY - min, centerX + min, centerY + min);
-        if (this.f48772l) {
-            rectF.set(getBounds());
-            min = this.f48773m;
-        }
-        Paint paint = this.f48768g;
-        if (Color.alpha(paint.getColor()) > 0) {
-            canvas.drawCircle(centerX, centerY, min, paint);
-        }
-        if (this.f48770j != null) {
-            Arrays.fill(this.f48769i, min);
-            this.h.a(canvas, rectF.left, rectF.top, rectF.right, rectF.bottom, this.f48769i, this.f48770j, 1.0f);
-        }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10 / 255.0f;
-        a();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public i(q qVar, Context context, Bitmap bitmap) {
+        super(context);
+        this.E = qVar;
+        Paint paint = new Paint(1);
+        this.f56195b = paint;
+        Paint paint2 = new Paint(1);
+        this.f56196c = paint2;
+        Paint paint3 = new Paint(1);
+        this.d = paint3;
+        this.f56197e = 0.5f;
+        this.f56198f = 0.5f;
+        this.h = new Path();
+        this.f56199n = new Rect();
+        this.f56200r = new RectF();
+        this.f56194a = bitmap;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
+        paint.setColor(-1);
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        paint2.setColor(-1711276033);
+        paint3.setStyle(style);
+        paint3.setStrokeWidth(org.telegram.messenger.g0.L(12.0f));
     }
 }

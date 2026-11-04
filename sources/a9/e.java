@@ -1,132 +1,102 @@
 package a9;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.RemoteException;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicInteger;
-public final class e {
-    public static final HashMap f324o = new HashMap();
-    public final Context f325a;
-    public final j0 f326b;
-    public final String f327c;
-    public boolean f329g;
-    public final Intent h;
-    public final n0 f330i;
-    public d f334m;
-    public IInterface f335n;
-    public final ArrayList d = new ArrayList();
-    public final HashSet e = new HashSet();
-    public final Object f328f = new Object();
-    public final l0 f332k = new IBinder.DeathRecipient() {
-        @Override
-        public final void binderDied() {
-            e eVar = e.this;
-            int i10 = 0;
-            eVar.f326b.b("reportBinderDeath", new Object[0]);
-            if (eVar.f331j.get() == null) {
-                eVar.f326b.b("%s : Binder has died.", eVar.f327c);
-                ArrayList arrayList = eVar.d;
-                int size = arrayList.size();
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((k0) obj).a(new RemoteException(String.valueOf(eVar.f327c).concat(" : Binder has died.")));
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+public final class e extends q6.a {
+    public static final Parcelable.Creator<e> CREATOR = new c(1);
+    public final f f187a;
+    public final int f188b;
+    public final int f189c;
+    public final int d;
+
+    public e(f fVar, int i3, int i10, int i11) {
+        this.f187a = fVar;
+        this.f188b = i3;
+        this.f189c = i10;
+        this.d = i11;
+    }
+
+    public final void b(z8.a aVar) {
+        f fVar = this.f187a;
+        int i3 = this.f188b;
+        if (i3 != 1) {
+            if (i3 != 2) {
+                if (i3 != 3) {
+                    if (i3 != 4) {
+                        Log.w("ChannelEventParcelable", "Unknown type: " + i3);
+                        return;
+                    }
+                    aVar.c(fVar);
+                    return;
                 }
-                eVar.d.clear();
-                synchronized (eVar.f328f) {
-                    eVar.e();
-                }
+                aVar.d(fVar);
                 return;
             }
-            throw new ClassCastException();
+            aVar.b(fVar);
+            return;
         }
-    };
-    public final AtomicInteger f333l = new AtomicInteger(0);
-    public final WeakReference f331j = new WeakReference(null);
-
-    public e(Context context, j0 j0Var, String str, Intent intent, n0 n0Var) {
-        this.f325a = context;
-        this.f326b = j0Var;
-        this.f327c = str;
-        this.h = intent;
-        this.f330i = n0Var;
+        aVar.a(fVar);
     }
 
-    public static void b(e eVar, k0 k0Var) {
-        IInterface iInterface = eVar.f335n;
-        j0 j0Var = eVar.f326b;
-        ArrayList arrayList = eVar.d;
-        int i10 = 0;
-        if (iInterface == null && !eVar.f329g) {
-            j0Var.b("Initiate binding to the service.", new Object[0]);
-            arrayList.add(k0Var);
-            d dVar = new d(eVar, 0);
-            eVar.f334m = dVar;
-            eVar.f329g = true;
-            if (!eVar.f325a.bindService(eVar.h, dVar, 1)) {
-                j0Var.b("Failed to bind to the service.", new Object[0]);
-                eVar.f329g = false;
-                int size = arrayList.size();
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    ((k0) obj).a(new RuntimeException("Failed to bind to the service."));
+    public final String toString() {
+        String str;
+        String str2;
+        String valueOf = String.valueOf(this.f187a);
+        int i3 = this.f188b;
+        if (i3 != 1) {
+            if (i3 != 2) {
+                if (i3 != 3) {
+                    if (i3 != 4) {
+                        str = Integer.toString(i3);
+                    } else {
+                        str = "OUTPUT_CLOSED";
+                    }
+                } else {
+                    str = "INPUT_CLOSED";
                 }
-                arrayList.clear();
+            } else {
+                str = "CHANNEL_CLOSED";
             }
-        } else if (eVar.f329g) {
-            j0Var.b("Waiting to bind to the service.", new Object[0]);
-            arrayList.add(k0Var);
         } else {
-            k0Var.run();
+            str = "CHANNEL_OPENED";
         }
-    }
-
-    public final Handler a() {
-        Handler handler;
-        HashMap hashMap = f324o;
-        synchronized (hashMap) {
-            try {
-                if (!hashMap.containsKey(this.f327c)) {
-                    HandlerThread handlerThread = new HandlerThread(this.f327c, 10);
-                    handlerThread.start();
-                    hashMap.put(this.f327c, new Handler(handlerThread.getLooper()));
+        int i10 = this.f189c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 3) {
+                        str2 = Integer.toString(i10);
+                    } else {
+                        str2 = "CLOSE_REASON_LOCAL_CLOSE";
+                    }
+                } else {
+                    str2 = "CLOSE_REASON_REMOTE_CLOSE";
                 }
-                handler = (Handler) hashMap.get(this.f327c);
-            } catch (Throwable th2) {
-                throw th2;
+            } else {
+                str2 = "CLOSE_REASON_DISCONNECTED";
             }
+        } else {
+            str2 = "CLOSE_REASON_NORMAL";
         }
-        return handler;
+        StringBuilder n4 = com.google.android.recaptcha.internal.a.n("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
+        n4.append(str2);
+        n4.append(", appErrorCode=");
+        n4.append(this.d);
+        n4.append("]");
+        return n4.toString();
     }
 
-    public final void c(k0 k0Var, TaskCompletionSource taskCompletionSource) {
-        a().post(new m0(this, k0Var.c(), taskCompletionSource, k0Var));
-    }
-
-    public final void d(TaskCompletionSource taskCompletionSource) {
-        synchronized (this.f328f) {
-            this.e.remove(taskCompletionSource);
-        }
-        a().post(new c(this, 1));
-    }
-
-    public final void e() {
-        HashSet hashSet = this.e;
-        Iterator it = hashSet.iterator();
-        while (it.hasNext()) {
-            ((TaskCompletionSource) it.next()).trySetException(new RemoteException(String.valueOf(this.f327c).concat(" : Binder has died.")));
-        }
-        hashSet.clear();
+    @Override
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.l(parcel, 2, this.f187a, i3);
+        j8.a.r(parcel, 3, 4);
+        parcel.writeInt(this.f188b);
+        j8.a.r(parcel, 4, 4);
+        parcel.writeInt(this.f189c);
+        j8.a.r(parcel, 5, 4);
+        parcel.writeInt(this.d);
+        j8.a.t(parcel, s6);
     }
 }

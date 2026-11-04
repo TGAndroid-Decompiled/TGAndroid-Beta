@@ -1,25 +1,18 @@
 package k2;
-
-import android.content.Context;
 public final class l0 {
-    public final Context f10698a;
-    public q0 f10699b;
-    public x0 f10700c;
-    public b d;
-    public final float e;
+    public final r0 f16620a;
 
-    public l0(Context context) {
-        Context context2;
-        if (context != null) {
-            context2 = context.getApplicationContext();
-        } else {
-            context2 = null;
+    public l0(r0 r0Var) {
+        this.f16620a = r0Var;
+    }
+
+    public final void a() {
+        r0 r0Var = this.f16620a;
+        if (r0Var.U) {
+            r0Var.T.getClass();
+        } else if (!r0Var.f16703k0) {
+            return;
         }
-        this.f10698a = context2;
-        this.f10700c = x0.f10810a;
-        if (context == null) {
-            this.d = b.f10602f;
-        }
-        this.e = 8.0f;
+        r0Var.f16705n.f(2);
     }
 }

@@ -1,7 +1,27 @@
 package z4;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-@Retention(RetentionPolicy.RUNTIME)
-public @interface b {
+import android.animation.AnimatorSet;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
+import java.util.ArrayList;
+public final class b extends Drawable.ConstantState {
+    public o f59704a;
+    public AnimatorSet f59705b;
+    public ArrayList f59706c;
+    public a0.f d;
+
+    @Override
+    public final int getChangingConfigurations() {
+        return 0;
+    }
+
+    @Override
+    public final Drawable newDrawable() {
+        throw new IllegalStateException("No constant state support for SDK < 24.");
+    }
+
+    @Override
+    public final Drawable newDrawable(Resources resources) {
+        throw new IllegalStateException("No constant state support for SDK < 24.");
+    }
 }

@@ -1,17 +1,15 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import org.telegram.ui.Components.Switch;
-public final class k5 extends Switch {
-    public final l5 f22123a0;
-
-    public k5(l5 l5Var, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, p6Var);
-        this.f22123a0 = l5Var;
-    }
+import android.view.View;
+public final class k5 extends View {
+    public int f29505a;
 
     @Override
-    public final int a(int i10) {
-        return this.f22123a0.a(i10);
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(org.telegram.messenger.camera.q.B(2.0f, this.f29505a, 1073741824), org.telegram.messenger.camera.q.B(2.0f, this.f29505a, 1073741824));
+    }
+
+    public void setItemSize(int i3) {
+        this.f29505a = i3;
     }
 }

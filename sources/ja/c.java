@@ -1,49 +1,40 @@
 package ja;
 
-import java.lang.annotation.Annotation;
-import java.util.Collections;
-import java.util.Map;
-import n4.q;
-public final class c {
-    public final String f9773a;
-    public final Map f9774b;
+import b8.ib;
+import dd.k;
+import hd.j;
+import od.p;
+import p1.e;
+public final class c extends j implements p {
+    public Object f16229a;
+    public final e f16230b;
+    public final Long f16231c;
 
-    public c(String str, Map map) {
-        this.f9773a = str;
-        this.f9774b = map;
+    public c(e eVar, Long l10, fd.c cVar) {
+        super(2, cVar);
+        this.f16230b = eVar;
+        this.f16231c = l10;
     }
 
-    public static q a(String str) {
-        return new q(str);
+    @Override
+    public final fd.c create(Object obj, fd.c cVar) {
+        c cVar2 = new c(this.f16230b, this.f16231c, cVar);
+        cVar2.f16229a = obj;
+        return cVar2;
     }
 
-    public static c c(String str) {
-        return new c(str, Collections.EMPTY_MAP);
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        k kVar = k.f8801a;
+        ((c) create((p1.b) obj, (fd.c) obj2)).invokeSuspend(kVar);
+        return kVar;
     }
 
-    public final Annotation b(Class cls) {
-        return (Annotation) this.f9774b.get(cls);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof c)) {
-            return false;
-        }
-        c cVar = (c) obj;
-        if (this.f9773a.equals(cVar.f9773a) && this.f9774b.equals(cVar.f9774b)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f9774b.hashCode() + (this.f9773a.hashCode() * 31);
-    }
-
-    public final String toString() {
-        return "FieldDescriptor{name=" + this.f9773a + ", properties=" + this.f9774b.values() + "}";
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        gd.a aVar = gd.a.f12241a;
+        ib.b(obj);
+        ((p1.b) this.f16229a).d(this.f16230b, this.f16231c);
+        return k.f8801a;
     }
 }

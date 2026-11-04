@@ -1,350 +1,430 @@
 package d1;
 
+import android.app.Notification;
+import android.app.Person;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+import android.graphics.drawable.Icon;
+import android.icu.text.DecimalFormatSymbols;
+import android.media.AudioManager;
+import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Base64;
-import c7.b0;
-import c7.e0;
-import c7.i0;
-import c7.j;
-import c7.k;
-import c7.m;
-import c7.o;
-import c7.s;
-import c7.t;
-import c7.u;
-import c7.v;
-import c7.w;
-import c7.x;
-import c7.y;
-import com.google.android.gms.fido.common.Transport;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.concurrent.Executor;
-import kotlin.jvm.internal.i;
-import n7.s0;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import v0.h;
-import v7.o6;
-public final class f extends b1.d {
-    public final Context e;
-    public h f5641f;
-    public Executor f5642g;
-    public CancellationSignal h;
-    public final c1.c f5643i;
+import android.provider.Settings;
+import android.text.PrecomputedText;
+import android.view.DisplayCutout;
+import android.view.ViewConfiguration;
+import android.webkit.WebView;
+import android.widget.TextView;
+import androidx.core.graphics.drawable.IconCompat;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.internal.clearcut.e2;
+import e0.k0;
+import e6.p;
+import e6.q;
+import g6.h;
+import g6.i;
+import g6.l;
+import java.util.concurrent.atomic.AtomicInteger;
+import m.z0;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.hs;
+import org.telegram.messenger.t0;
+import org.telegram.messenger.zi;
+import org.telegram.ui.Components.m51;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.t9;
+import p6.m;
+public abstract class f {
+    public static int f7999a;
+    public static AtomicInteger f8000b;
+    public static boolean f8001c;
+    public static int d;
+    public static e2 f8002e;
 
-    public f(Context context) {
-        i.e(context, "context");
-        this.e = context;
-        this.f5643i = new c1.c(this, new Handler(Looper.getMainLooper()), 1);
-    }
-
-    public static v0.f e(u uVar) {
-        JSONObject jSONObject;
-        try {
-            k kVar = uVar.f4040f;
-            s0 s0Var = uVar.f4039c;
-            try {
-                JSONObject jSONObject2 = new JSONObject();
-                if (s0Var != null && s0Var.t().length > 0) {
-                    jSONObject2.put("rawId", u6.b.c(s0Var.t()));
-                }
-                String str = uVar.f4041n;
-                if (str != null) {
-                    jSONObject2.put("authenticatorAttachment", str);
-                }
-                String str2 = uVar.f4038b;
-                if (str2 != null && kVar == null) {
-                    jSONObject2.put("type", str2);
-                }
-                String str3 = uVar.f4037a;
-                if (str3 != null) {
-                    jSONObject2.put("id", str3);
-                }
-                String str4 = "response";
-                c7.i iVar = uVar.e;
-                boolean z10 = true;
-                if (iVar != null) {
-                    jSONObject = iVar.b();
-                } else {
-                    j jVar = uVar.d;
-                    if (jVar != null) {
-                        jSONObject = jVar.b();
-                    } else {
-                        z10 = false;
-                        if (kVar != null) {
-                            try {
-                                JSONObject jSONObject3 = new JSONObject();
-                                jSONObject3.put("code", kVar.f4002a.f4032a);
-                                String str5 = kVar.f4003b;
-                                if (str5 != null) {
-                                    jSONObject3.put("message", str5);
-                                }
-                                str4 = "error";
-                                jSONObject = jSONObject3;
-                            } catch (JSONException e) {
-                                throw new RuntimeException("Error encoding AuthenticatorErrorResponse to JSON object", e);
-                            }
-                        } else {
-                            jSONObject = null;
-                        }
-                    }
-                }
-                if (jSONObject != null) {
-                    jSONObject2.put(str4, jSONObject);
-                }
-                c7.g gVar = uVar.h;
-                if (gVar != null) {
-                    jSONObject2.put("clientExtensionResults", gVar.b());
-                } else if (z10) {
-                    jSONObject2.put("clientExtensionResults", new JSONObject());
-                }
-                String jSONObject4 = jSONObject2.toString();
-                i.d(jSONObject4, "toJson(...)");
-                Bundle bundle = new Bundle();
-                bundle.putString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON", jSONObject4);
-                return new v0.f(jSONObject4, bundle);
-            } catch (JSONException e7) {
-                throw new RuntimeException("Error encoding PublicKeyCredential to JSON object", e7);
-            }
-        } catch (Throwable th2) {
-            throw new w0.c(2, "The PublicKeyCredential response json had an unexpected exception when parsing: " + th2.getMessage());
+    public static void A(float f10) {
+        BasePendingResult basePendingResult;
+        h e10 = e();
+        if (e10 == null) {
+            return;
         }
+        if (f8000b == null) {
+            f8000b = new AtomicInteger(0);
+        }
+        f8000b.incrementAndGet();
+        double d10 = f10;
+        m.d("Must be called from the main thread.");
+        if (!e10.w()) {
+            basePendingResult = h.t();
+        } else {
+            l lVar = new l(e10, d10, 0);
+            h.x(lVar);
+            basePendingResult = lVar;
+        }
+        basePendingResult.b(new t9(2));
     }
 
-    public final v d(v0.e request) {
-        Double d;
-        c7.f fVar;
-        m mVar;
-        c7.f fVar2;
-        s sVar;
-        t tVar;
-        i0 i0Var;
-        e0 e0Var;
-        c7.c cVar;
-        String str;
-        String str2;
-        String str3;
-        JSONArray jSONArray;
-        ArrayList arrayList;
+    public static boolean B(ViewConfiguration viewConfiguration) {
+        return viewConfiguration.shouldShowMenuShortcutsWhenKeyboardPresent();
+    }
+
+    public static void C() {
+        AtomicInteger atomicInteger;
+        long a10;
+        boolean m10;
+        q e10;
         long j10;
-        i.e(request, "request");
-        LinkedHashMap linkedHashMap = g.f5644a;
-        String str4 = request.d;
-        Context context = this.e;
-        i.e(context, "context");
-        if (k6.d.d.d(context, k6.e.f10936a) == 0) {
-            PackageManager packageManager = context.getPackageManager();
-            i.d(packageManager, "getPackageManager(...)");
-            if (Build.VERSION.SDK_INT >= 28) {
-                PackageInfo packageInfo = packageManager.getPackageInfo("com.google.android.gms", 0);
-                i.d(packageInfo, "getPackageInfo(...)");
-                j10 = b5.d.s(packageInfo);
-            } else {
-                j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
-            }
-            if (j10 > 241217000) {
-                return new v(str4);
-            }
-        }
-        JSONObject jSONObject = new JSONObject(str4);
-        byte[] a2 = o6.a(jSONObject);
-        JSONObject jSONObject2 = jSONObject.getJSONObject("user");
-        String str5 = "id";
-        String string = jSONObject2.getString("id");
-        i.d(string, "getString(...)");
-        byte[] decode = Base64.decode(string, 11);
-        i.d(decode, "decode(...)");
-        String string2 = jSONObject2.getString("name");
-        String string3 = jSONObject2.getString("displayName");
-        String optString = jSONObject2.optString("icon", "");
-        i.b(string3);
-        if (string3.length() != 0) {
-            if (decode.length != 0) {
-                i.b(string2);
-                if (string2.length() != 0) {
-                    b0 b0Var = new b0(string2, decode, optString, string3);
-                    JSONObject jSONObject3 = jSONObject.getJSONObject("rp");
-                    String string4 = jSONObject3.getString("id");
-                    String optString2 = jSONObject3.optString("name", "");
-                    String optString3 = jSONObject3.optString("icon", "");
-                    i.b(optString3);
-                    if (optString3.length() == 0) {
-                        optString3 = null;
+        int i3 = f7999a;
+        if (i3 == 0) {
+            PhotoViewer.v1().l3();
+        } else if (i3 == 1) {
+            MediaController B = MediaController.B();
+            if (B.f21348v0 != null) {
+                B.U1 = true;
+                if (u() && ((atomicInteger = f8000b) == null || atomicInteger.get() <= 0)) {
+                    h e11 = e();
+                    if (e11 == null) {
+                        a10 = -1;
+                    } else {
+                        a10 = e11.a();
                     }
-                    i.b(optString2);
-                    if (optString2.length() != 0) {
-                        i.b(string4);
-                        if (string4.length() != 0) {
-                            y yVar = new y(string4, optString2, optString3);
-                            JSONArray jSONArray2 = jSONObject.getJSONArray("pubKeyCredParams");
-                            ArrayList arrayList2 = new ArrayList();
-                            int length = jSONArray2.length();
-                            int i10 = 0;
-                            while (i10 < length) {
-                                JSONObject jSONObject4 = jSONArray2.getJSONObject(i10);
-                                LinkedHashMap linkedHashMap2 = g.f5644a;
-                                byte[] bArr = a2;
-                                int i11 = (int) jSONObject4.getLong("alg");
-                                String optString4 = jSONObject4.optString("type", "");
-                                i.b(optString4);
-                                if (optString4.length() != 0) {
-                                    try {
-                                        o.a(i11);
-                                        arrayList2.add(new x(optString4, i11));
-                                    } catch (Throwable unused) {
+                    long D = B.D(B.f21348v0);
+                    if (D >= 0 && a10 >= 0 && Math.abs(D - a10) > 1000) {
+                        zi ziVar = B.f21348v0;
+                        if ((B.f21324j0 != null || B.F0 != null) && ziVar != null && B.L(ziVar)) {
+                            try {
+                                m51 m51Var = B.f21324j0;
+                                if (m51Var != null) {
+                                    j10 = m51Var.U();
+                                    if (j10 != -9223372036854775807L) {
+                                        ziVar.f26828b0 = Utilities.l(((float) a10) / ((float) j10));
                                     }
-                                    i10++;
-                                    a2 = bArr;
+                                    B.f21324j0.q0(a10, false);
+                                    if (!B.U1) {
+                                        v(a10);
+                                    }
                                 } else {
-                                    throw new JSONException("PublicKeyCredentialCreationOptions PublicKeyCredentialParameter type missing or unexpectedly empty");
-                                }
-                            }
-                            byte[] bArr2 = a2;
-                            y yVar2 = yVar;
-                            ArrayList arrayList3 = new ArrayList();
-                            LinkedHashMap linkedHashMap3 = g.f5644a;
-                            if (jSONObject.has("excludeCredentials")) {
-                                JSONArray jSONArray3 = jSONObject.getJSONArray("excludeCredentials");
-                                int length2 = jSONArray3.length();
-                                int i12 = 0;
-                                while (i12 < length2) {
-                                    JSONObject jSONObject5 = jSONArray3.getJSONObject(i12);
-                                    LinkedHashMap linkedHashMap4 = g.f5644a;
-                                    String string5 = jSONObject5.getString(str5);
-                                    i.d(string5, "getString(...)");
-                                    y yVar3 = yVar2;
-                                    byte[] decode2 = Base64.decode(string5, 11);
-                                    i.d(decode2, "decode(...)");
-                                    String string6 = jSONObject5.getString("type");
-                                    i.b(string6);
-                                    if (string6.length() != 0) {
-                                        if (decode2.length != 0) {
-                                            if (jSONObject5.has("transports")) {
-                                                str3 = str5;
-                                                arrayList = new ArrayList();
-                                                JSONArray jSONArray4 = jSONObject5.getJSONArray("transports");
-                                                int length3 = jSONArray4.length();
-                                                jSONArray = jSONArray3;
-                                                int i13 = 0;
-                                                while (i13 < length3) {
-                                                    try {
-                                                        JSONArray jSONArray5 = jSONArray4;
-                                                        arrayList.add(Transport.a(jSONArray4.getString(i13)));
-                                                        i13++;
-                                                        jSONArray4 = jSONArray5;
-                                                    } catch (a7.a e) {
-                                                        throw new y0.a(new x0.a(4), e.getMessage());
-                                                    }
-                                                }
-                                                continue;
-                                            } else {
-                                                str3 = str5;
-                                                jSONArray = jSONArray3;
-                                                arrayList = null;
-                                            }
-                                            arrayList3.add(new w(string6, decode2, arrayList));
-                                            i12++;
-                                            yVar2 = yVar3;
-                                            str5 = str3;
-                                            jSONArray3 = jSONArray;
-                                        } else {
-                                            throw new JSONException("PublicKeyCredentialDescriptor id value is not found or unexpectedly empty");
+                                    m51 m51Var2 = B.F0;
+                                    if (m51Var2 != null) {
+                                        j10 = m51Var2.U();
+                                        B.F0.p0(a10);
+                                        if (!B.U1) {
+                                            v(a10);
                                         }
                                     } else {
-                                        throw new JSONException("PublicKeyCredentialDescriptor type value is not found or unexpectedly empty");
+                                        j10 = 1;
                                     }
                                 }
+                                if (j10 != 0) {
+                                    hs.f(ziVar.I1).k(hs.f23245i2, Integer.valueOf(ziVar.f1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j10))));
+                                }
+                            } catch (Exception e12) {
+                                a8.g(e12, true);
                             }
-                            y yVar4 = yVar2;
-                            LinkedHashMap linkedHashMap5 = g.f5644a;
-                            String str6 = "none";
-                            String optString5 = jSONObject.optString("attestation", "none");
-                            i.b(optString5);
-                            if (optString5.length() != 0) {
-                                str6 = optString5;
-                            }
-                            c7.e a10 = c7.e.a(str6);
-                            if (jSONObject.has("timeout")) {
-                                d = Double.valueOf(jSONObject.getLong("timeout") / 1000);
-                            } else {
-                                d = null;
-                            }
-                            if (jSONObject.has("authenticatorSelection")) {
-                                JSONObject jSONObject6 = jSONObject.getJSONObject("authenticatorSelection");
-                                boolean optBoolean = jSONObject6.optBoolean("requireResidentKey", false);
-                                String optString6 = jSONObject6.optString("residentKey", "");
-                                i.b(optString6);
-                                if (optString6.length() > 0) {
-                                    e0Var = e0.a(optString6);
-                                } else {
-                                    e0Var = null;
-                                }
-                                Boolean valueOf = Boolean.valueOf(optBoolean);
-                                String optString7 = jSONObject6.optString("authenticatorAttachment", "");
-                                i.b(optString7);
-                                if (optString7.length() > 0) {
-                                    cVar = c7.c.a(optString7);
-                                } else {
-                                    cVar = null;
-                                }
-                                if (cVar == null) {
-                                    str = null;
-                                } else {
-                                    str = cVar.f3966a;
-                                }
-                                if (e0Var == null) {
-                                    str2 = null;
-                                } else {
-                                    str2 = e0Var.f3975a;
-                                }
-                                fVar = null;
-                                mVar = new m(str, valueOf, null, str2);
-                            } else {
-                                fVar = null;
-                                mVar = null;
-                            }
-                            if (jSONObject.has("extensions")) {
-                                JSONObject jSONObject7 = jSONObject.getJSONObject("extensions");
-                                String optString8 = jSONObject7.optString("appid", "");
-                                i.b(optString8);
-                                if (optString8.length() > 0) {
-                                    sVar = new s(optString8);
-                                } else {
-                                    sVar = fVar;
-                                }
-                                if (jSONObject7.optBoolean("thirdPartyPayment", false)) {
-                                    tVar = new t(true);
-                                } else {
-                                    tVar = fVar;
-                                }
-                                if (jSONObject7.optBoolean("uvm", false)) {
-                                    i0Var = new i0(true);
-                                } else {
-                                    i0Var = fVar;
-                                }
-                                fVar2 = new c7.f(sVar, null, i0Var, null, null, null, null, null, tVar, null, null, null);
-                            } else {
-                                fVar2 = fVar;
-                            }
-                            return new v(yVar4, b0Var, bArr2, arrayList2, d, arrayList3, mVar, null, null, a10.f3972a, fVar2, null, null);
                         }
-                        throw new JSONException("PublicKeyCredentialCreationOptions rp ID is missing or unexpectedly empty");
                     }
-                    throw new JSONException("PublicKeyCredentialCreationOptions rp name is missing or unexpectedly empty");
+                    h e13 = e();
+                    if (e13 == null) {
+                        m10 = false;
+                    } else if (f7999a == 0) {
+                        m10 = !e13.l();
+                    } else {
+                        m10 = e13.m();
+                    }
+                    if (m10) {
+                        B.S(B.f21348v0);
+                    } else {
+                        B.R(B.f21348v0, true);
+                    }
+                    h e14 = e();
+                    float f10 = 1.0f;
+                    if (e14 != null && (e10 = e14.e()) != null) {
+                        f10 = (float) e10.d;
+                    }
+                    B.m0(true, f10);
                 }
-                throw new JSONException("PublicKeyCredentialCreationOptions UserEntity missing user name or they are unexpectedly empty");
+                B.n0();
+                B.U1 = false;
             }
-            throw new JSONException("PublicKeyCredentialCreationOptions UserEntity missing user id or they are unexpectedly empty");
         }
-        throw new JSONException("PublicKeyCredentialCreationOptions UserEntity missing displayName or they are unexpectedly empty");
+    }
+
+    public static void D(long j10) {
+        long a10;
+        if (j10 >= 0) {
+            h e10 = e();
+            if (e10 == null) {
+                a10 = -1;
+            } else {
+                a10 = e10.a();
+            }
+            if (a10 != -1 && Math.abs(a10 - j10) <= 1500) {
+                return;
+            }
+            v(j10);
+        }
+    }
+
+    public static Person E(k0 k0Var) {
+        Person.Builder name = new Person.Builder().setName(k0Var.f9264a);
+        IconCompat iconCompat = k0Var.f9265b;
+        Icon icon = null;
+        if (iconCompat != null) {
+            icon = iconCompat.m(null);
+        }
+        return name.setIcon(icon).setUri(k0Var.f9266c).setKey(k0Var.d).setBot(k0Var.f9267e).setImportant(k0Var.f9268f).build();
+    }
+
+    public static void a(Notification.Builder builder, Person person) {
+        builder.addPerson(person);
+    }
+
+    public static void b(int i3) {
+        f6.a c2;
+        f7999a = i3;
+        if (!f8001c) {
+            try {
+                if (f() == null || (c2 = f6.a.c(f())) == null) {
+                    return;
+                }
+                c2.b().a(new a7.l(i3));
+                f8001c = true;
+            } catch (Exception e10) {
+                a8.g(e10, true);
+            }
+        }
+    }
+
+    public static Handler c(Looper looper) {
+        return Handler.createAsync(looper);
+    }
+
+    public static void d(boolean z10) {
+        boolean z11;
+        Context f10;
+        AudioManager audioManager;
+        e2 e2Var = f8002e;
+        if (e2Var != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z11 != z10) {
+            if (z10) {
+                Context f11 = f();
+                if (f11 != null && (audioManager = (AudioManager) f11.getSystemService("audio")) != null) {
+                    d = audioManager.getStreamVolume(3);
+                    ContentResolver contentResolver = f11.getContentResolver();
+                    Uri uri = Settings.System.CONTENT_URI;
+                    e2 e2Var2 = new e2(new Handler(), 3);
+                    f8002e = e2Var2;
+                    contentResolver.registerContentObserver(uri, true, e2Var2);
+                    A(g());
+                    audioManager.adjustStreamVolume(3, 0, 1);
+                }
+            } else if (e2Var != null && (f10 = f()) != null) {
+                f10.getContentResolver().unregisterContentObserver(f8002e);
+                f8002e = null;
+                AudioManager audioManager2 = (AudioManager) f10.getSystemService("audio");
+                if (audioManager2 != null) {
+                    audioManager2.setStreamVolume(3, d, 0);
+                    C();
+                }
+            }
+        }
+    }
+
+    public static h e() {
+        f6.c c2;
+        if (f() != null) {
+            try {
+                f6.a c10 = f6.a.c(f());
+                if (c10 != null && (c2 = c10.b().c()) != null && c2.b()) {
+                    m.d("Must be called from the main thread.");
+                    return c2.f11473j;
+                }
+            } catch (Exception e10) {
+                a8.g(e10, true);
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public static Context f() {
+        LaunchActivity launchActivity = LaunchActivity.K1;
+        if (launchActivity == null) {
+            return t0.f25457b;
+        }
+        return launchActivity;
+    }
+
+    public static float g() {
+        AudioManager audioManager;
+        int i3;
+        Context f10 = f();
+        if (f10 == null || (audioManager = (AudioManager) f10.getSystemService("audio")) == null) {
+            return 0.0f;
+        }
+        int streamVolume = audioManager.getStreamVolume(3);
+        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
+        if (Build.VERSION.SDK_INT >= 28) {
+            i3 = audioManager.getStreamMinVolume(3);
+        } else {
+            i3 = 0;
+        }
+        return Utilities.l((streamVolume - i3) / (streamMaxVolume - i3));
+    }
+
+    public static String[] h(DecimalFormatSymbols decimalFormatSymbols) {
+        return decimalFormatSymbols.getDigitStrings();
+    }
+
+    public static int i(Object obj) {
+        return ((Icon) obj).getResId();
+    }
+
+    public static String j(Object obj) {
+        return ((Icon) obj).getResPackage();
+    }
+
+    public static int k(DisplayCutout displayCutout) {
+        return displayCutout.getSafeInsetBottom();
+    }
+
+    public static int l(DisplayCutout displayCutout) {
+        return displayCutout.getSafeInsetLeft();
+    }
+
+    public static int m(DisplayCutout displayCutout) {
+        return displayCutout.getSafeInsetRight();
+    }
+
+    public static int n(DisplayCutout displayCutout) {
+        return displayCutout.getSafeInsetTop();
+    }
+
+    public static int o(ViewConfiguration viewConfiguration) {
+        return viewConfiguration.getScaledHoverSlop();
+    }
+
+    public static PrecomputedText.Params p(z0 z0Var) {
+        return z0Var.getTextMetricsParams();
+    }
+
+    public static int q(Object obj) {
+        return ((Icon) obj).getType();
+    }
+
+    public static Uri r(Object obj) {
+        return ((Icon) obj).getUri();
+    }
+
+    public static final long s(PackageInfo packageInfo) {
+        return packageInfo.getLongVersionCode();
+    }
+
+    public static ClassLoader t() {
+        return WebView.getWebViewClassLoader();
+    }
+
+    public static boolean u() {
+        f6.c c2;
+        if (f() != null) {
+            try {
+                f6.a c10 = f6.a.c(f());
+                if (c10 != null && (c2 = c10.b().c()) != null) {
+                    if (!c2.c()) {
+                        if (c2.b()) {
+                        }
+                    }
+                    return true;
+                }
+            } catch (Exception e10) {
+                a8.g(e10, true);
+                return false;
+            }
+        }
+        return false;
+    }
+
+    public static void v(long j10) {
+        h e10 = e();
+        if (e10 == null) {
+            return;
+        }
+        if (f8000b == null) {
+            f8000b = new AtomicInteger(0);
+        }
+        f8000b.incrementAndGet();
+        e10.q(new p(j10)).b(new t9(3));
+    }
+
+    public static void w(TextView textView, int i3) {
+        textView.setFirstBaselineToTopHeight(i3);
+    }
+
+    public static void x(boolean z10) {
+        BasePendingResult basePendingResult;
+        BasePendingResult basePendingResult2;
+        h e10 = e();
+        if (e10 != null && z10 != e10.m()) {
+            if (f8000b == null) {
+                f8000b = new AtomicInteger(0);
+            }
+            f8000b.incrementAndGet();
+            if (z10) {
+                m.d("Must be called from the main thread.");
+                if (!e10.w()) {
+                    basePendingResult2 = h.t();
+                } else {
+                    i iVar = new i(e10, 6);
+                    h.x(iVar);
+                    basePendingResult2 = iVar;
+                }
+                basePendingResult2.b(new t9(0));
+                return;
+            }
+            m.d("Must be called from the main thread.");
+            if (!e10.w()) {
+                basePendingResult = h.t();
+            } else {
+                i iVar2 = new i(e10, 5);
+                h.x(iVar2);
+                basePendingResult = iVar2;
+            }
+            basePendingResult.b(new t9(1));
+        }
+    }
+
+    public static void y(Notification.Action.Builder builder, int i3) {
+        builder.setSemanticAction(i3);
+    }
+
+    public static void z(float f10) {
+        BasePendingResult basePendingResult;
+        h e10 = e();
+        if (e10 == null) {
+            return;
+        }
+        if (f8000b == null) {
+            f8000b = new AtomicInteger(0);
+        }
+        f8000b.incrementAndGet();
+        double d10 = f10;
+        m.d("Must be called from the main thread.");
+        if (!e10.w()) {
+            basePendingResult = h.t();
+        } else {
+            l lVar = new l(e10, d10, 1);
+            h.x(lVar);
+            basePendingResult = lVar;
+        }
+        basePendingResult.b(new t9(4));
     }
 }

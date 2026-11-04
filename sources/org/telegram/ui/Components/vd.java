@@ -1,32 +1,22 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class vd implements q4, jk0 {
-    public final ChatActivityEnterView f31250a;
+import android.view.ViewGroup;
+public final class vd implements View.OnClickListener {
+    public final int f39081a;
+    public final Object f39082b;
+    public final Object f39083c;
+    public final ViewGroup d;
 
-    public vd(ChatActivityEnterView chatActivityEnterView) {
-        this.f31250a = chatActivityEnterView;
+    public vd(int i3, ViewGroup viewGroup, Object obj, Object obj2) {
+        this.f39081a = i3;
+        this.d = viewGroup;
+        this.f39082b = obj;
+        this.f39083c = obj2;
     }
 
     @Override
-    public void K(int i10, int i11, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = this.f31250a;
-        boolean R0 = chatActivityEnterView.R0(z10, i10, i11, 0L, true);
-        pe peVar = chatActivityEnterView.L0;
-        if (peVar != null) {
-            peVar.g(!R0);
-            chatActivityEnterView.L0 = null;
-        }
-    }
-
-    @Override
-    public boolean f(int i10, View view) {
-        if (view instanceof xh.u) {
-            ChatActivityEnterView chatActivityEnterView = this.f31250a;
-            chatActivityEnterView.setFieldText(((xh.u) view).getCommand() + " ");
-            chatActivityEnterView.m0.c();
-            return true;
-        }
-        return false;
+    public final void onClick(android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vd.onClick(android.view.View):void");
     }
 }

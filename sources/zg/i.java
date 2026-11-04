@@ -1,98 +1,57 @@
 package zg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.jb0;
-import org.telegram.ui.xn;
-public final class i {
-    public static final Rect f55777f = new Rect();
-    public final hi.c f55778a = new hi.c();
-    public final hi.b f55779b = new hi.b();
-    public final q5.d f55780c = new q5.d(new zf.g(1));
-    public final q5.d d = new q5.d(new zf.g(2));
-    public final q5.d e = new q5.d(new zf.g(3));
+import android.content.Context;
+import b8.mf;
+import org.telegram.messenger.bd;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.k5;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+public final class i extends c {
+    public final k5 f60500s;
+    public Object f60501w;
 
-    public final int a(hi.a aVar) {
-        if (aVar instanceof hi.c) {
-            return ((hi.c) aVar).f7712b;
-        }
-        if (aVar instanceof hi.b) {
-            return ((Integer) this.d.k(((hi.b) aVar).d)).intValue();
-        } else if (aVar instanceof hi.g) {
-            return a(((hi.g) aVar).f7725a);
+    public i(Context context, e6 e6Var) {
+        super(context, e6Var);
+        int i3;
+        float f10;
+        float f11;
+        this.f60474c.setVisibility(8);
+        k5 k5Var = this.f60475e;
+        int i10 = k6.B6;
+        r6.Y(k5Var, i10, e6Var);
+        k5 k5Var2 = new k5(context);
+        this.f60500s = k5Var2;
+        k5Var2.setTextSize(16);
+        r6.Y(k5Var2, i10, e6Var);
+        if (bd.f21784a0) {
+            i3 = 3;
         } else {
-            return 0;
+            i3 = 5;
         }
-    }
-
-    public final int b(hi.a aVar) {
-        if (aVar instanceof hi.c) {
-            return ((hi.c) aVar).f7712b;
-        }
-        if (aVar instanceof hi.b) {
-            return ((Integer) this.e.k(((hi.b) aVar).d)).intValue();
-        } else if (aVar instanceof hi.g) {
-            return b(((hi.g) aVar).f7725a);
-        } else {
-            return 0;
-        }
-    }
-
-    public final hi.a c(Drawable drawable) {
-        boolean z10 = drawable instanceof ColorDrawable;
-        hi.c cVar = this.f55778a;
+        k5Var2.setGravity(i3);
+        addView(k5Var2);
+        boolean z10 = bd.f21784a0;
+        int i11 = (z10 ? 3 : 5) | 16;
         if (z10) {
-            cVar.a(((ColorDrawable) drawable).getColor());
-            return cVar;
-        }
-        boolean z11 = drawable instanceof jb0;
-        hi.b bVar = this.f55779b;
-        if (z11) {
-            jb0 jb0Var = (jb0) drawable;
-            if (jb0Var.f27348q < 0) {
-                cVar.a(-16777216);
-                return cVar;
-            }
-            bVar.a(jb0Var.f27342k);
-            return bVar;
-        }
-        boolean z12 = drawable instanceof BitmapDrawable;
-        q5.d dVar = this.f55780c;
-        if (z12) {
-            bVar.a((Bitmap) dVar.k(((BitmapDrawable) drawable).getBitmap()));
-            return bVar;
-        } else if (drawable instanceof xn) {
-            return c(((xn) drawable).c(false));
+            f10 = 20.0f;
         } else {
-            if (drawable != null) {
-                bVar.getClass();
-                float f7 = 120;
-                float f10 = f7 / 1.0f;
-                int round = Math.round(f10);
-                int round2 = Math.round(f10);
-                Bitmap bitmap = bVar.f7709f;
-                if (bitmap != null && !bitmap.isRecycled() && bVar.f7709f.getWidth() == round2 && bVar.f7709f.getHeight() == round2) {
-                    bVar.f7709f.eraseColor(0);
-                } else {
-                    bVar.f7709f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
-                }
-                Canvas canvas = new Canvas(bVar.f7709f);
-                canvas.scale(f7 / round, 160 / round2);
-                Rect bounds = drawable.getBounds();
-                Rect rect = f55777f;
-                rect.set(bounds);
-                drawable.setBounds(0, 0, 120, 160);
-                drawable.draw(canvas);
-                drawable.setBounds(rect);
-                bVar.a(bVar.f7709f);
-                bVar.f7709f = null;
-                bVar.a((Bitmap) dVar.k(bVar.d));
-            }
-            return bVar;
+            f10 = 0.0f;
         }
+        if (z10) {
+            f11 = 0.0f;
+        } else {
+            f11 = 20.0f;
+        }
+        k5Var2.setLayoutParams(mf.d(-1, -2.0f, i11, f10, 0.0f, f11, 0.0f));
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    public Object getGifCode() {
+        return this.f60501w;
     }
 }

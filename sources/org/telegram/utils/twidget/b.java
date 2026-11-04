@@ -3,7 +3,7 @@ package org.telegram.utils.twidget;
 import android.graphics.BlendMode;
 import android.graphics.Paint;
 public abstract class b {
-    public static final BlendMode[] f44318a;
+    public static final BlendMode[] f52811a;
 
     static {
         BlendMode blendMode;
@@ -24,15 +24,15 @@ public abstract class b {
         blendMode7 = BlendMode.COLOR_DODGE;
         blendMode8 = BlendMode.COLOR_BURN;
         blendMode9 = BlendMode.SOFT_LIGHT;
-        f44318a = new BlendMode[]{blendMode, blendMode2, BlendMode.SRC_OUT, BlendMode.SRC_ATOP, BlendMode.DST_OVER, blendMode3, BlendMode.DST_OUT, BlendMode.DST_ATOP, blendMode4, BlendMode.SRC, BlendMode.XOR, BlendMode.MULTIPLY, blendMode5, blendMode6, BlendMode.DARKEN, BlendMode.LIGHTEN, blendMode7, blendMode8, BlendMode.HARD_LIGHT, blendMode9, BlendMode.DIFFERENCE, BlendMode.EXCLUSION, BlendMode.HUE, BlendMode.SATURATION, BlendMode.COLOR, BlendMode.LUMINOSITY};
+        f52811a = new BlendMode[]{blendMode, blendMode2, BlendMode.SRC_OUT, BlendMode.SRC_ATOP, BlendMode.DST_OVER, blendMode3, BlendMode.DST_OUT, BlendMode.DST_ATOP, blendMode4, BlendMode.SRC, BlendMode.XOR, BlendMode.MULTIPLY, blendMode5, blendMode6, BlendMode.DARKEN, BlendMode.LIGHTEN, blendMode7, blendMode8, BlendMode.HARD_LIGHT, blendMode9, BlendMode.DIFFERENCE, BlendMode.EXCLUSION, BlendMode.HUE, BlendMode.SATURATION, BlendMode.COLOR, BlendMode.LUMINOSITY};
     }
 
-    public static void a(int i10, Paint paint) {
+    public static void a(int i3, Paint paint) {
         BlendMode blendMode;
-        if (i10 > 0) {
-            BlendMode[] blendModeArr = f44318a;
-            if (i10 < blendModeArr.length) {
-                blendMode = blendModeArr[i10];
+        if (i3 > 0) {
+            BlendMode[] blendModeArr = f52811a;
+            if (i3 < blendModeArr.length) {
+                blendMode = blendModeArr[i3];
                 paint.setBlendMode(blendMode);
             }
         }

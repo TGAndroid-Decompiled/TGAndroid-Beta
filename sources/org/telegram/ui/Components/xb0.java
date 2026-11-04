@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface xb0 {
-    void i(int i10);
+    void q(zb0 zb0Var);
 }

@@ -1,35 +1,96 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
+import android.os.Bundle;
 import android.view.View;
-public final class o31 extends View {
-    public final Paint f40037a;
-    public int f40038b;
-    public LinearGradient f40039c;
-    public final q31 d;
+public final class o31 implements org.telegram.ui.Components.hj0, qe.b {
+    public final r41 f48179a;
 
-    public o31(q31 q31Var, Context context) {
-        super(context);
-        this.d = q31Var;
-        this.f40037a = new Paint(1);
-        this.f40038b = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21002h5, q31Var.I0);
-        this.f40039c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.i0.L(68.0f), new int[]{org.telegram.ui.ActionBar.t6.r1(0.0f, this.f40038b), this.f40038b}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public o31(r41 r41Var) {
+        this.f48179a = r41Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f21002h5, this.d.I0);
-        if (w02 != this.f40038b) {
-            this.f40038b = w02;
-            this.f40039c = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.i0.L(68.0f), new int[]{org.telegram.ui.ActionBar.t6.r1(0.0f, w02), w02}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public void Y(int i3, float f10, float f11, qe.c cVar) {
+        this.f48179a.t0();
+    }
+
+    @Override
+    public boolean f(int i3, View view) {
+        final r41 r41Var = this.f48179a;
+        org.telegram.ui.ActionBar.s1[] s1VarArr = r41Var.f49075h0;
+        w31 w31Var = r41Var.X;
+        int i10 = w31Var.J;
+        if (i3 >= i10 && i3 <= w31Var.K) {
+            final org.telegram.messenger.zi ziVar = ((o41) r41Var.f49098z0.get(i3 - i10)).f48186b;
+            if (!ziVar.y4()) {
+                org.telegram.ui.Components.f60 H = org.telegram.ui.Components.f60.H(r41Var, view);
+                H.c(2131232378, org.telegram.messenger.bd.M0(2131743559, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                r41 r41Var2 = r41Var;
+                                r41Var2.getClass();
+                                r41Var2.presentFragment(new dg0(ziVar));
+                                return;
+                            default:
+                                r41 r41Var3 = r41Var;
+                                r41Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", r41Var3.f49065b);
+                                bundle.putInt("message_id", ziVar.f1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                r41Var3.presentFragment(new wm(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                H.c(2131232255, org.telegram.messenger.bd.M0(2131743560, null), new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                r41 r41Var2 = r41Var;
+                                r41Var2.getClass();
+                                r41Var2.presentFragment(new dg0(ziVar));
+                                return;
+                            default:
+                                r41 r41Var3 = r41Var;
+                                r41Var3.getClass();
+                                Bundle bundle = new Bundle();
+                                bundle.putLong("chat_id", r41Var3.f49065b);
+                                bundle.putInt("message_id", ziVar.f1());
+                                bundle.putBoolean("need_remove_previous_same_chat_activity", false);
+                                r41Var3.presentFragment(new wm(bundle), false);
+                                return;
+                        }
+                    }
+                }, false);
+                H.W(r41Var.T.U0(view, false));
+                H.Z();
+                return true;
+            }
+        } else {
+            int i11 = w31Var.V;
+            if (i3 >= i11 && i3 <= w31Var.W) {
+                ((k41) r41Var.R.get(i3 - i11)).c(r41Var.f49063a, r41Var, s1VarArr, true);
+                return true;
+            }
+            int i12 = w31Var.S;
+            if (i3 >= i12 && i3 <= w31Var.T) {
+                ((k41) r41Var.P.get(i3 - i12)).c(r41Var.f49063a, r41Var, s1VarArr, true);
+                return true;
+            }
+            int i13 = w31Var.Y;
+            if (i3 >= i13 && i3 <= w31Var.Z) {
+                ((k41) r41Var.Q.get(i3 - i13)).c(r41Var.f49063a, r41Var, s1VarArr, true);
+                return true;
+            }
         }
-        LinearGradient linearGradient = this.f40039c;
-        Paint paint = this.f40037a;
-        paint.setShader(linearGradient);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
+        return false;
+    }
+
+    @Override
+    public void F(float f10, int i3) {
     }
 }

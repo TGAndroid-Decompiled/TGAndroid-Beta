@@ -1,73 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class md implements Runnable {
-    public final int f39508a;
-    public final le f39509b;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class md implements TextWatcher {
+    public final xd f47652a;
 
-    public md(le leVar, int i10) {
-        this.f39508a = i10;
-        this.f39509b = leVar;
+    public md(xd xdVar) {
+        this.f47652a = xdVar;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        int i10 = this.f39508a;
-        boolean z11 = false;
-        le leVar = this.f39509b;
-        switch (i10) {
-            case 0:
-                gf.f.r(leVar.getContext(), org.telegram.messenger.dd.L0(2131748419, null));
-                return;
-            case 1:
-                gf.f.r(leVar.getContext(), org.telegram.messenger.dd.L0(2131748385, null));
-                return;
-            case 2:
-                org.telegram.ui.Components.v51 v51Var = leVar.X0;
-                if (v51Var != null) {
-                    boolean z12 = leVar.f28276e0;
-                    if (leVar.R0 != -1) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    org.telegram.ui.Components.q51 q51Var = v51Var.f31183f3;
-                    if (z10 == leVar.f39201a1.a()) {
-                        z11 = true;
-                    }
-                    q51Var.O(z11);
-                    if (z12 && leVar.R0 != -1) {
-                        leVar.a();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                leVar.f39211k1 = leVar.f39210j1;
-                return;
-            case 4:
-                leVar.J0.setLoading(false);
-                return;
-            case 5:
-                leVar.Y0.setVisibility(8);
-                return;
-            case 6:
-                leVar.Y0.setVisibility(8);
-                return;
-            default:
-                int i11 = leVar.f39215o0;
-                org.telegram.messenger.i0.r(leVar.f39224s1);
-                if (leVar.f39210j1 != leVar.f39211k1) {
-                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.wp.r1(i11).g1(-leVar.f39217p0);
-                    tL_channels_restrictSponsoredMessages.restricted = leVar.f39210j1;
-                    ConnectionsManager.getInstance(i11).sendRequest(tL_channels_restrictSponsoredMessages, new td(leVar, 0));
-                    return;
-                }
-                return;
+    public final void afterTextChanged(Editable editable) {
+        long parseLong;
+        xd xdVar = this.f47652a;
+        dd ddVar = xdVar.f51920g1;
+        ci.s sVar = xdVar.P0;
+        if (xdVar.M0) {
+            return;
         }
+        if (TextUtils.isEmpty(editable)) {
+            parseLong = 0;
+        } else {
+            parseLong = Long.parseLong(editable.toString());
+        }
+        xdVar.O0 = parseLong;
+        long j10 = xdVar.E0.amount;
+        int i3 = (parseLong > j10 ? 1 : (parseLong == j10 ? 0 : -1));
+        boolean z10 = true;
+        if (i3 > 0) {
+            xdVar.O0 = j10;
+            xdVar.M0 = true;
+            sVar.setText(Long.toString(j10));
+            sVar.setSelection(sVar.getText().length());
+            xdVar.M0 = false;
+        }
+        if (xdVar.O0 != xdVar.E0.amount) {
+            z10 = false;
+        }
+        xdVar.N0 = z10;
+        org.telegram.messenger.g0.r(ddVar);
+        ddVar.run();
+        xdVar.N0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
     }
 }

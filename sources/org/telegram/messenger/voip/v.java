@@ -1,25 +1,31 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.k20;
-public final class v implements k20 {
-    public final int f18872a;
-    public final VoIPService f18873b;
+import java.util.ArrayList;
+public final class v implements Runnable {
+    public final int f26065a;
+    public final VoIPService f26066b;
+    public final ArrayList f26067c;
+    public final ArrayList d;
+    public final ArrayList f26068e;
+    public final String f26069f;
 
-    public v(VoIPService voIPService, int i10) {
-        this.f18872a = i10;
-        this.f18873b = voIPService;
+    public v(VoIPService voIPService, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, String str, int i3) {
+        this.f26065a = i3;
+        this.f26066b = voIPService;
+        this.f26067c = arrayList;
+        this.d = arrayList2;
+        this.f26068e = arrayList3;
+        this.f26069f = str;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f18872a) {
+    public final void run() {
+        switch (this.f26065a) {
             case 0:
-                this.f18873b.lambda$switchToSpeaker$91(bool, bool2);
+                VoIPService.m1(this.f26066b, this.f26067c, this.d, this.f26068e, this.f26069f);
                 return;
             default:
-                this.f18873b.lambda$toggleSpeakerphoneOrShowRouteSheet$95(bool, bool2);
+                VoIPService.f(this.f26066b, this.f26067c, this.d, this.f26068e, this.f26069f);
                 return;
         }
     }

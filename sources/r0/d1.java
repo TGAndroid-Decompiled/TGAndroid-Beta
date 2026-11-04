@@ -1,48 +1,44 @@
 package r0;
 
+import android.view.DisplayCutout;
 import android.view.WindowInsets;
+import j$.util.Objects;
 public class d1 extends c1 {
-    public i0.c f46118o;
-    public i0.c f46119p;
-    public i0.c f46120q;
-
-    public d1(j1 j1Var, WindowInsets windowInsets) {
-        super(j1Var, windowInsets);
-        this.f46118o = null;
-        this.f46119p = null;
-        this.f46120q = null;
+    public d1(k1 k1Var, WindowInsets windowInsets) {
+        super(k1Var, windowInsets);
     }
 
     @Override
-    public i0.c h() {
-        if (this.f46119p == null) {
-            this.f46119p = i0.c.c(this.f46111c.getMandatorySystemGestureInsets());
+    public k1 a() {
+        return k1.h(null, this.f53993c.consumeDisplayCutout());
+    }
+
+    @Override
+    public h e() {
+        DisplayCutout displayCutout = this.f53993c.getDisplayCutout();
+        if (displayCutout == null) {
+            return null;
         }
-        return this.f46119p;
+        return new h(displayCutout);
     }
 
     @Override
-    public i0.c j() {
-        if (this.f46118o == null) {
-            this.f46118o = i0.c.c(this.f46111c.getSystemGestureInsets());
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return this.f46118o;
-    }
-
-    @Override
-    public i0.c l() {
-        if (this.f46120q == null) {
-            this.f46120q = i0.c.c(this.f46111c.getTappableElementInsets());
+        if (!(obj instanceof d1)) {
+            return false;
         }
-        return this.f46120q;
+        d1 d1Var = (d1) obj;
+        if (Objects.equals(this.f53993c, d1Var.f53993c) && Objects.equals(this.f53996g, d1Var.f53996g) && b1.B(this.h, d1Var.h)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public j1 m(int i10, int i11, int i12, int i13) {
-        return j1.h(null, this.f46111c.inset(i10, i11, i12, i13));
-    }
-
-    @Override
-    public void s(i0.c cVar) {
+    public int hashCode() {
+        return this.f53993c.hashCode();
     }
 }

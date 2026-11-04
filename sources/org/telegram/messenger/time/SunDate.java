@@ -25,25 +25,25 @@ public class SunDate {
         double[] dArr = new double[2];
         sunRiseSetForYear(calendar.get(1), calendar.get(2) + 1, calendar.get(5), d10, d, dArr);
         int offset = (TimeZone.getDefault().getOffset(System.currentTimeMillis()) / 1000) / 60;
-        int i10 = ((int) (dArr[0] * 60.0d)) + offset;
-        int i11 = ((int) (dArr[1] * 60.0d)) + offset;
-        if (i10 < 0) {
+        int i3 = ((int) (dArr[0] * 60.0d)) + offset;
+        int i10 = ((int) (dArr[1] * 60.0d)) + offset;
+        if (i3 < 0) {
+            i3 += 1440;
+        } else if (i3 > 1440) {
+            i3 -= 1440;
+        }
+        if (i10 < 0 || i10 > 1440) {
             i10 += 1440;
-        } else if (i10 > 1440) {
-            i10 -= 1440;
         }
-        if (i11 < 0 || i11 > 1440) {
-            i11 += 1440;
-        }
-        return new int[]{i10, i11};
+        return new int[]{i3, i10};
     }
 
     private static double cosd(double d) {
         return Math.cos(d * 0.017453292519943295d);
     }
 
-    private static long days_since_2000_Jan_0(int i10, int i11, int i12) {
-        return ((((i10 * 367) - (((((i11 + 9) / 12) + i10) * 7) / 4)) + ((i11 * 275) / 9)) + i12) - 730530;
+    private static long days_since_2000_Jan_0(int i3, int i10, int i11) {
+        return ((((i3 * 367) - (((((i10 + 9) / 12) + i3) * 7) / 4)) + ((i10 * 275) / 9)) + i11) - 730530;
     }
 
     private static double rev180(double d) {
@@ -58,40 +58,40 @@ public class SunDate {
         return Math.sin(d * 0.017453292519943295d);
     }
 
-    private static int sunRiseSetForYear(int i10, int i11, int i12, double d, double d10, double[] dArr) {
-        return sunRiseSetHelperForYear(i10, i11, i12, d, d10, -0.5833333333333334d, 1, dArr);
+    private static int sunRiseSetForYear(int i3, int i10, int i11, double d, double d10, double[] dArr) {
+        return sunRiseSetHelperForYear(i3, i10, i11, d, d10, -0.5833333333333334d, 1, dArr);
     }
 
-    private static int sunRiseSetHelperForYear(int i10, int i11, int i12, double d, double d10, double d11, int i13, double[] dArr) {
+    private static int sunRiseSetHelperForYear(int i3, int i10, int i11, double d, double d10, double d11, int i12, double[] dArr) {
         double d12;
-        int i14;
+        int i13;
         double[] dArr2 = new double[1];
         double[] dArr3 = new double[1];
         double[] dArr4 = new double[1];
-        double days_since_2000_Jan_0 = (days_since_2000_Jan_0(i10, i11, i12) + 0.5d) - (d / 360.0d);
+        double days_since_2000_Jan_0 = (days_since_2000_Jan_0(i3, i10, i11) + 0.5d) - (d / 360.0d);
         double revolution = revolution(GMST0(days_since_2000_Jan_0) + 180.0d + d);
         sun_RA_decAtDay(days_since_2000_Jan_0, dArr2, dArr3, dArr4);
         double d13 = 12.0d;
         double rev180 = 12.0d - (rev180(revolution - dArr2[0]) / 15.0d);
         double d14 = 0.2666d / dArr4[0];
-        if (i13 != 0) {
+        if (i12 != 0) {
             d12 = d11 - d14;
         } else {
             d12 = d11;
         }
         double sind = (sind(d12) - (sind(d10) * sind(dArr3[0]))) / (cosd(d10) * cosd(dArr3[0]));
         if (sind >= 1.0d) {
-            i14 = -1;
+            i13 = -1;
             d13 = 0.0d;
         } else if (sind <= -1.0d) {
-            i14 = 1;
+            i13 = 1;
         } else {
             d13 = acosd(sind) / 15.0d;
-            i14 = 0;
+            i13 = 0;
         }
         dArr[0] = rev180 - d13;
         dArr[1] = rev180 + d13;
-        return i14;
+        return i13;
     }
 
     private static void sun_RA_decAtDay(double d, double[] dArr, double[] dArr2, double[] dArr3) {

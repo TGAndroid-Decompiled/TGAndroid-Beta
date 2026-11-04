@@ -18,8 +18,8 @@ public class PredefinedTeXFormulaParser {
             newInstance.setIgnoringElementContentWhitespace(true);
             newInstance.setIgnoringComments(true);
             this.root = newInstance.newDocumentBuilder().parse(inputStream).getDocumentElement();
-        } catch (Exception e) {
-            throw new XMLResourceParseException("", e);
+        } catch (Exception e10) {
+            throw new XMLResourceParseException("", e10);
         }
     }
 
@@ -34,8 +34,8 @@ public class PredefinedTeXFormulaParser {
     public void parse(Map map) {
         if ("true".equals(getAttrValueAndCheckIfNotNull("enabled", this.root))) {
             NodeList elementsByTagName = this.root.getElementsByTagName(this.type);
-            for (int i10 = 0; i10 < elementsByTagName.getLength(); i10++) {
-                Element element = (Element) elementsByTagName.item(i10);
+            for (int i3 = 0; i3 < elementsByTagName.getLength(); i3++) {
+                Element element = (Element) elementsByTagName.item(i3);
                 if ("true".equals(getAttrValueAndCheckIfNotNull("enabled", element))) {
                     String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
                     if ("TeXFormula".equals(this.type)) {

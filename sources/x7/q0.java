@@ -1,3 +1,3 @@
 package x7;
-public abstract class q0 {
+public final class q0 extends p7.d {
 }

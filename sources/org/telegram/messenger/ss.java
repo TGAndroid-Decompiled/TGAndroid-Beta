@@ -1,24 +1,12 @@
 package org.telegram.messenger;
+public final class ss {
+    public final long f25411a;
+    public final long f25412b;
+    public final boolean f25413c;
 
-import android.view.View;
-public final class ss implements View.OnAttachStateChangeListener {
-    public final rs f18138a;
-    public final int f18139b;
-    public final at f18140c;
-
-    public ss(at atVar, rs rsVar, int i10) {
-        this.f18140c = atVar;
-        this.f18138a = rsVar;
-        this.f18139b = i10;
-    }
-
-    @Override
-    public final void onViewAttachedToWindow(View view) {
-        this.f18140c.b(this.f18138a, this.f18139b);
-    }
-
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        this.f18140c.n(this.f18138a, this.f18139b);
+    public ss(long j10, long j11, boolean z10) {
+        this.f25411a = j10;
+        this.f25412b = j11;
+        this.f25413c = z10;
     }
 }

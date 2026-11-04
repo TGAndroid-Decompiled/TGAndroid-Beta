@@ -1,46 +1,35 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class o01 extends hg.b {
-    public final org.telegram.messenger.cw f40002c;
-    public final String d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class o01 extends AnimatorListenerAdapter {
+    public final int f48164a;
+    public final q01 f48165b;
 
-    public o01(int i10) {
-        super(i10, false);
-        this.f40002c = null;
+    public o01(q01 q01Var, int i3) {
+        this.f48164a = i3;
+        this.f48165b = q01Var;
     }
 
-    public final boolean equals(Object obj) {
-        org.telegram.messenger.cw cwVar;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f48164a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                this.f48165b.J = null;
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                this.f48165b.J = null;
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                q01 q01Var = this.f48165b;
+                q01Var.O = 0.0f;
+                q01Var.J = null;
+                q01Var.N = false;
+                q01Var.d(true, false);
+                return;
         }
-        if (obj == null || o01.class != obj.getClass()) {
-            return false;
-        }
-        o01 o01Var = (o01) obj;
-        if (this.f7681a != o01Var.f7681a) {
-            return false;
-        }
-        String str = this.d;
-        if (str != null) {
-            return Objects.equals(str, o01Var.d);
-        }
-        org.telegram.messenger.cw cwVar2 = this.f40002c;
-        if (cwVar2 == null || (cwVar = o01Var.f40002c) == null || cwVar2.d == cwVar.d) {
-            return true;
-        }
-        return false;
-    }
-
-    public o01(org.telegram.messenger.cw cwVar) {
-        super(2, false);
-        this.f40002c = cwVar;
-    }
-
-    public o01(int i10, String str) {
-        super(i10, false);
-        this.d = str;
-        this.f40002c = null;
     }
 }

@@ -1,83 +1,39 @@
 package u7;
 
-import a9.o;
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-import w7.z7;
-public final class b extends o implements ListIterator {
-    public final int f50192b;
-    public int f50193c;
-    public final d d;
+import android.os.BadParcelableException;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+import k2.p1;
+public abstract class b {
+    public static final int f55736a = 0;
 
-    public b(d dVar, int i10) {
-        super(5);
-        int size = dVar.size();
-        if (i10 >= 0 && i10 <= size) {
-            this.f50192b = size;
-            this.f50193c = i10;
-            this.d = dVar;
+    static {
+        b.class.getClassLoader();
+    }
+
+    public static void a(Parcel parcel) {
+        int dataAvail = parcel.dataAvail();
+        if (dataAvail <= 0) {
             return;
         }
-        throw new IndexOutOfBoundsException(z7.c(i10, size, "index"));
+        throw new BadParcelableException(p1.i(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
-    public final Object a(int i10) {
-        return this.d.get(i10);
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.f50193c < this.f50192b) {
-            return true;
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
         }
-        return false;
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 
-    @Override
-    public final boolean hasPrevious() {
-        if (this.f50193c > 0) {
-            return true;
+    public static void c(Parcel parcel, IInterface iInterface) {
+        if (iInterface == null) {
+            parcel.writeStrongBinder(null);
+        } else {
+            parcel.writeStrongBinder(iInterface.asBinder());
         }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i10 = this.f50193c;
-            this.f50193c = i10 + 1;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.f50193c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f50193c - 1;
-            this.f50193c = i10;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f50193c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
     }
 }

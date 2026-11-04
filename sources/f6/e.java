@@ -1,5 +1,9 @@
 package f6;
 
-import android.os.IInterface;
-public interface e extends IInterface {
+import android.content.Context;
+import java.util.List;
+public interface e {
+    List getAdditionalSessionProviders(Context context);
+
+    b getCastOptions(Context context);
 }

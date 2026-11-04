@@ -1,106 +1,160 @@
 package wg;
 
-import i2.v;
-import org.telegram.messenger.i0;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-public class d implements a {
-    public final p6 f52863a;
-    public c f52864b;
-    public c f52865c;
-    public c d;
-    public c e;
-    public float f52866f;
-    public float h;
-    public float f52867n;
-    public float f52868r;
+import android.opengl.GLES20;
+import android.opengl.GLSurfaceView;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.opengles.GL10;
+import org.telegram.messenger.a8;
+import r4.u;
+public final class d implements GLSurfaceView.Renderer {
+    public long f57614a;
+    public boolean f57615b;
+    public int f57616c;
+    public final e d;
 
-    public d(p6 p6Var) {
-        this.f52863a = p6Var;
-        float N = i0.N(1.0f);
-        float N2 = i0.N(0.33333334f);
-        this.f52867n = N;
-        this.f52868r = N2;
-        float N3 = i0.N(1.0f);
-        float N4 = i0.N(0.6666667f);
-        this.f52866f = N3;
-        this.h = N4;
+    public d(e eVar) {
+        this.d = eVar;
     }
 
     @Override
-    public int E() {
-        return a(this.d);
-    }
+    public final void onDrawFrame(GL10 gl10) {
+        float min;
+        if (this.d.f57623r) {
+            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            GLES20.glClear(16384);
+        } else if (!this.d.f57627y) {
+            GLES20.glBindFramebuffer(36160, 0);
+            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+            GLES20.glClear(16384);
+            if (!this.d.E) {
+                this.d.E = true;
+                final int i3 = this.d.F;
+                this.d.post(new Runnable(this) {
+                    public final d f57612b;
 
-    @Override
-    public final float N() {
-        return -1.0f;
-    }
+                    {
+                        this.f57612b = this;
+                    }
 
-    @Override
-    public final float X() {
-        return -1.0f;
-    }
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                d dVar = this.f57612b;
+                                e.a(dVar.d, i3);
+                                return;
+                            default:
+                                d dVar2 = this.f57612b;
+                                int i10 = i3;
+                                e eVar = dVar2.d;
+                                if (eVar.f57620e && !eVar.f57623r && i10 == dVar2.d.H) {
+                                    e eVar2 = dVar2.d;
+                                    eVar2.f57624s = true;
+                                    Runnable runnable = eVar2.f57625w;
+                                    eVar2.f57625w = null;
+                                    if (runnable != null) {
+                                        runnable.run();
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
+            }
+        } else {
+            try {
+                long nanoTime = System.nanoTime();
+                f fVar = this.d.f57617a;
+                long j10 = this.f57614a;
+                if (j10 == 0) {
+                    min = 0.016666668f;
+                } else {
+                    min = Math.min(0.1f, ((float) (nanoTime - j10)) / 1.0E9f);
+                }
+                fVar.G = min;
+                this.f57614a = nanoTime;
+                e eVar = this.d;
+                eVar.f57617a.f57630c.A = eVar.f57626x;
+                this.d.f57617a.onDrawFrame(gl10);
+                int glGetError = GLES20.glGetError();
+                if (glGetError == 0) {
+                    if (!this.f57615b) {
+                        this.f57615b = true;
+                        final int i10 = this.f57616c;
+                        this.d.post(new Runnable(this) {
+                            public final d f57612b;
 
-    public final int a(c cVar) {
-        boolean z10 = false;
-        if (cVar == null) {
-            return 0;
+                            {
+                                this.f57612b = this;
+                            }
+
+                            @Override
+                            public final void run() {
+                                switch (r3) {
+                                    case 0:
+                                        d dVar = this.f57612b;
+                                        e.a(dVar.d, i10);
+                                        return;
+                                    default:
+                                        d dVar2 = this.f57612b;
+                                        int i102 = i10;
+                                        e eVar2 = dVar2.d;
+                                        if (eVar2.f57620e && !eVar2.f57623r && i102 == dVar2.d.H) {
+                                            e eVar22 = dVar2.d;
+                                            eVar22.f57624s = true;
+                                            Runnable runnable = eVar22.f57625w;
+                                            eVar22.f57625w = null;
+                                            if (runnable != null) {
+                                                runnable.run();
+                                                return;
+                                            }
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        });
+                        return;
+                    }
+                    return;
+                }
+                throw new IllegalStateException("Diamond GL error: " + glGetError);
+            } catch (RuntimeException e10) {
+                a8.g(e10, true);
+                this.d.f57623r = true;
+                this.d.post(new u(this, 25));
+            }
         }
-        p6 p6Var = this.f52863a;
-        if ((p6Var instanceof th.b) || (p6Var == null ? t6.I.q() : p6Var.a())) {
-            z10 = true;
+    }
+
+    @Override
+    public final void onSurfaceChanged(GL10 gl10, int i3, int i10) {
+        this.f57615b = false;
+        this.f57616c = this.d.H;
+        if (!this.d.f57623r) {
+            this.d.f57617a.onSurfaceChanged(gl10, i3, i10);
         }
-        return cVar.g(p6Var, z10);
-    }
-
-    public float b() {
-        return this.f52868r;
     }
 
     @Override
-    public float b0() {
-        return 0.0f;
-    }
-
-    public float c() {
-        return this.f52867n;
-    }
-
-    public final void d(int i10, int i11) {
-        this.f52864b = new v(i11, i10, 5);
-    }
-
-    public final void e(int i10, int i11) {
-        this.d = new v(i11, i10, 5);
-    }
-
-    public final void f(int i10, int i11) {
-        this.f52865c = new v(i11, i10, 5);
-    }
-
-    @Override
-    public int h0() {
-        return 0;
-    }
-
-    @Override
-    public int j0() {
-        return a(this.f52864b);
-    }
-
-    @Override
-    public final int n0() {
-        return a(this.e);
-    }
-
-    @Override
-    public int u() {
-        return a(this.f52865c);
-    }
-
-    @Override
-    public int w() {
-        return 0;
+    public final void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
+        e eVar = this.d;
+        int i3 = eVar.H + 1;
+        eVar.H = i3;
+        this.f57616c = i3;
+        this.f57615b = false;
+        this.f57614a = 0L;
+        this.d.f57623r = false;
+        f fVar = this.d.f57617a;
+        fVar.f57630c = null;
+        try {
+            fVar.onSurfaceCreated(gl10, eGLConfig);
+        } catch (RuntimeException e10) {
+            a8.g(e10, true);
+            this.d.f57623r = true;
+            this.d.post(new u(this, 25));
+        }
     }
 }

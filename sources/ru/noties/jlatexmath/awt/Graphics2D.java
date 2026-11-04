@@ -13,15 +13,15 @@ public interface Graphics2D extends Graphics {
 
     void draw(RoundRectangle2D.Float r12);
 
-    void drawArc(int i10, int i11, int i12, int i13, int i14, int i15);
+    void drawArc(int i3, int i10, int i11, int i12, int i13, int i14);
 
-    void drawChars(char[] cArr, int i10, int i11, int i12, int i13);
+    void drawChars(char[] cArr, int i3, int i10, int i11, int i12);
 
     void fill(Rectangle2D.Float r12);
 
-    void fillArc(int i10, int i11, int i12, int i13, int i14, int i15);
+    void fillArc(int i3, int i10, int i11, int i12, int i13, int i14);
 
-    void fillRect(int i10, int i11, int i12, int i13);
+    void fillRect(int i3, int i10, int i11, int i12);
 
     Color getColor();
 

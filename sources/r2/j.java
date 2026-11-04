@@ -1,57 +1,21 @@
 package r2;
 
-import android.media.LoudnessCodecController;
-import android.media.MediaCodec;
-import java.util.HashSet;
-import java.util.Iterator;
-import v7.t6;
-public final class j {
-    public final HashSet f46248a;
-    public final i f46249b;
-    public LoudnessCodecController f46250c;
+import g9.g0;
+import g9.i0;
+import g9.s1;
+import java.util.List;
+public final class j extends k {
+    public final String f54138x;
+    public final i0 f54139y;
 
-    public j() {
-        i iVar = i.f46246a;
-        this.f46248a = new HashSet();
-        this.f46249b = iVar;
+    public j(String str, long j10, long j11, String str2, String str3) {
+        this(str, null, "", 0L, -1, -9223372036854775807L, null, str2, str3, j10, j11, false, s1.f12146e);
+        g0 g0Var = i0.f12083b;
     }
 
-    public final void a(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController = this.f46250c;
-        if (loudnessCodecController != null && !loudnessCodecController.addMediaCodec(mediaCodec)) {
-            return;
-        }
-        t6.p(this.f46248a.add(mediaCodec));
-    }
-
-    public final void b() {
-        this.f46248a.clear();
-        LoudnessCodecController loudnessCodecController = this.f46250c;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-        }
-    }
-
-    public final void c(MediaCodec mediaCodec) {
-        LoudnessCodecController loudnessCodecController;
-        if (this.f46248a.remove(mediaCodec) && (loudnessCodecController = this.f46250c) != null) {
-            loudnessCodecController.removeMediaCodec(mediaCodec);
-        }
-    }
-
-    public final void d(int i10) {
-        LoudnessCodecController loudnessCodecController = this.f46250c;
-        if (loudnessCodecController != null) {
-            loudnessCodecController.close();
-            this.f46250c = null;
-        }
-        LoudnessCodecController create = LoudnessCodecController.create(i10, j9.r.f9764a, new h(this));
-        this.f46250c = create;
-        Iterator it = this.f46248a.iterator();
-        while (it.hasNext()) {
-            if (!create.addMediaCodec((MediaCodec) it.next())) {
-                it.remove();
-            }
-        }
+    public j(String str, j jVar, String str2, long j10, int i3, long j11, d2.s sVar, String str3, String str4, long j12, long j13, boolean z10, List list) {
+        super(str, jVar, j10, i3, j11, sVar, str3, str4, j12, j13, z10);
+        this.f54138x = str2;
+        this.f54139y = i0.q(list);
     }
 }

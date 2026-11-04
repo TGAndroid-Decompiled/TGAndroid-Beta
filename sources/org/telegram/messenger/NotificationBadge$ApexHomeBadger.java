@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import android.content.Intent;
 import java.util.Arrays;
 import java.util.List;
-public class NotificationBadge$ApexHomeBadger implements ms {
+public class NotificationBadge$ApexHomeBadger implements ur {
     @Override
-    public final void a(int i10) {
+    public final void a(int i3) {
         Intent intent = new Intent("com.anddoes.launcher.COUNTER_CHANGED");
-        intent.putExtra("package", ps.d.getPackageName());
-        intent.putExtra("count", i10);
-        intent.putExtra("class", ps.d.getClassName());
-        if (ps.a(intent)) {
-            i0.g3(new t(intent, 2));
+        intent.putExtra("package", wr.d.getPackageName());
+        intent.putExtra("count", i3);
+        intent.putExtra("class", wr.d.getClassName());
+        if (wr.a(intent)) {
+            g0.h3(new s(intent, 2));
         }
     }
 

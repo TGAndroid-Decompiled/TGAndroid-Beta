@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.SpinnerAdapter;
 public final class j0 implements ListAdapter, SpinnerAdapter {
-    public SpinnerAdapter f12444a;
-    public ListAdapter f12445b;
+    public SpinnerAdapter f18616a;
+    public ListAdapter f18617b;
 
     @Override
     public final boolean areAllItemsEnabled() {
-        ListAdapter listAdapter = this.f12445b;
+        ListAdapter listAdapter = this.f18617b;
         if (listAdapter != null) {
             return listAdapter.areAllItemsEnabled();
         }
@@ -20,7 +20,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final int getCount() {
-        SpinnerAdapter spinnerAdapter = this.f12444a;
+        SpinnerAdapter spinnerAdapter = this.f18616a;
         if (spinnerAdapter == null) {
             return 0;
         }
@@ -28,40 +28,40 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
     }
 
     @Override
-    public final View getDropDownView(int i10, View view, ViewGroup viewGroup) {
-        SpinnerAdapter spinnerAdapter = this.f12444a;
+    public final View getDropDownView(int i3, View view, ViewGroup viewGroup) {
+        SpinnerAdapter spinnerAdapter = this.f18616a;
         if (spinnerAdapter == null) {
             return null;
         }
-        return spinnerAdapter.getDropDownView(i10, view, viewGroup);
+        return spinnerAdapter.getDropDownView(i3, view, viewGroup);
     }
 
     @Override
-    public final Object getItem(int i10) {
-        SpinnerAdapter spinnerAdapter = this.f12444a;
+    public final Object getItem(int i3) {
+        SpinnerAdapter spinnerAdapter = this.f18616a;
         if (spinnerAdapter == null) {
             return null;
         }
-        return spinnerAdapter.getItem(i10);
+        return spinnerAdapter.getItem(i3);
     }
 
     @Override
-    public final long getItemId(int i10) {
-        SpinnerAdapter spinnerAdapter = this.f12444a;
+    public final long getItemId(int i3) {
+        SpinnerAdapter spinnerAdapter = this.f18616a;
         if (spinnerAdapter == null) {
             return -1L;
         }
-        return spinnerAdapter.getItemId(i10);
+        return spinnerAdapter.getItemId(i3);
     }
 
     @Override
-    public final int getItemViewType(int i10) {
+    public final int getItemViewType(int i3) {
         return 0;
     }
 
     @Override
-    public final View getView(int i10, View view, ViewGroup viewGroup) {
-        return getDropDownView(i10, view, viewGroup);
+    public final View getView(int i3, View view, ViewGroup viewGroup) {
+        return getDropDownView(i3, view, viewGroup);
     }
 
     @Override
@@ -71,7 +71,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final boolean hasStableIds() {
-        SpinnerAdapter spinnerAdapter = this.f12444a;
+        SpinnerAdapter spinnerAdapter = this.f18616a;
         if (spinnerAdapter != null && spinnerAdapter.hasStableIds()) {
             return true;
         }
@@ -87,17 +87,17 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
     }
 
     @Override
-    public final boolean isEnabled(int i10) {
-        ListAdapter listAdapter = this.f12445b;
+    public final boolean isEnabled(int i3) {
+        ListAdapter listAdapter = this.f18617b;
         if (listAdapter != null) {
-            return listAdapter.isEnabled(i10);
+            return listAdapter.isEnabled(i3);
         }
         return true;
     }
 
     @Override
     public final void registerDataSetObserver(DataSetObserver dataSetObserver) {
-        SpinnerAdapter spinnerAdapter = this.f12444a;
+        SpinnerAdapter spinnerAdapter = this.f18616a;
         if (spinnerAdapter != null) {
             spinnerAdapter.registerDataSetObserver(dataSetObserver);
         }
@@ -105,7 +105,7 @@ public final class j0 implements ListAdapter, SpinnerAdapter {
 
     @Override
     public final void unregisterDataSetObserver(DataSetObserver dataSetObserver) {
-        SpinnerAdapter spinnerAdapter = this.f12444a;
+        SpinnerAdapter spinnerAdapter = this.f18616a;
         if (spinnerAdapter != null) {
             spinnerAdapter.unregisterDataSetObserver(dataSetObserver);
         }

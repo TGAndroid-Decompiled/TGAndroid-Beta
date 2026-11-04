@@ -1,23 +1,16 @@
 package org.telegram.ui.Components;
-
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
 public final class z30 {
-    public final TLObject f32983a;
-    public TLRPC.User f32984b;
-    public final int f32985c;
-    public final boolean d;
-    public boolean e;
+    public final boolean f40902a;
+    public final int f40903b;
+    public final int f40904c;
+    public final long d;
+    public final long f40905e;
 
-    public z30(int i10, TLObject tLObject) {
-        boolean z10;
-        this.f32983a = tLObject;
-        this.f32985c = i10;
-        if ((tLObject instanceof TLRPC.User) && ((TLRPC.User) tLObject).self) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.d = z10;
+    public z30(int i3, int i10, long j10, long j11, boolean z10) {
+        this.f40902a = z10;
+        this.f40903b = i3;
+        this.f40904c = i10;
+        this.d = j10;
+        this.f40905e = j11;
     }
 }

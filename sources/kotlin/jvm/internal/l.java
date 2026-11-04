@@ -1,22 +1,32 @@
 package kotlin.jvm.internal;
-public final class l extends m implements pd.f {
-    public l(Class cls) {
-        super(b.NO_RECEIVER, cls, "dataStore", "getDataStore(Landroid/content/Context;)Landroidx/datastore/core/DataStore;", 0);
-    }
+public final class l implements d {
+    public final Class f17356a;
 
-    public final void c() {
-        ((l) ((pd.f) getReflected())).c();
-    }
-
-    @Override
-    public final pd.b computeReflected() {
-        q.f11446a.getClass();
-        return this;
+    public l(Class jClass) {
+        j.e(jClass, "jClass");
+        this.f17356a = jClass;
     }
 
     @Override
-    public final Object invoke(Object obj, Object obj2) {
-        c();
-        throw null;
+    public final Class a() {
+        return this.f17356a;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof l) {
+            if (j.a(this.f17356a, ((l) obj).f17356a)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f17356a.hashCode();
+    }
+
+    public final String toString() {
+        return this.f17356a + " (Kotlin reflection is not available)";
     }
 }

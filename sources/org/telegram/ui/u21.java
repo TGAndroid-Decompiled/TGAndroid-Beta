@@ -1,22 +1,16 @@
 package org.telegram.ui;
-public final class u21 implements Runnable {
-    public final int f41771a;
-    public final ih.b f41772b;
 
-    public u21(ih.b bVar, int i10) {
-        this.f41771a = i10;
-        this.f41772b = bVar;
+import android.content.Context;
+public final class u21 extends lw0 {
+    public final c31 H;
+
+    public u21(c31 c31Var, c31 c31Var2, Context context) {
+        super(context, c31Var2);
+        this.H = c31Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41771a) {
-            case 0:
-                org.telegram.messenger.i0.J3(((y11) this.f41772b.Z1).h);
-                return;
-            default:
-                this.f41772b.requestFocus();
-                return;
-        }
+    public final void f() {
+        this.H.f44218c.f35594g3.O(true);
     }
 }

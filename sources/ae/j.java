@@ -1,112 +1,128 @@
 package ae;
 
-import android.content.Context;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.kj;
-import org.telegram.ui.Components.v61;
-import org.telegram.ui.PhotoViewer;
-public final class j implements d6.h, y6.c {
-    public int f425a;
+import android.os.CancellationSignal;
+import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+import b8.f1;
+import be.w;
+import wd.u1;
+public final class j implements od.p {
+    public final int f402a;
 
-    public j() {
-        this.f425a = 3;
+    public j(int i3) {
+        this.f402a = i3;
     }
 
     @Override
-    public void A(d6.f fVar) {
-        d6.c cVar = (d6.c) fVar;
-        b5.d.d(false);
-        b5.d.C();
-    }
-
-    @Override
-    public void F(d6.f fVar, String str) {
-        MediaController B;
-        kj kjVar;
-        d6.c cVar = (d6.c) fVar;
-        if (cVar != null) {
-            n6.l.d("Must be called from the main thread.");
-            e6.h hVar = cVar.f5768j;
-            if (hVar == 0) {
-                return;
-            }
-            AtomicInteger atomicInteger = b5.d.f2489b;
-            if (atomicInteger != null) {
-                atomicInteger.set(0);
-            }
-            hVar.p(new Object());
-            n6.l.d("Must be called from the main thread.");
-            if (!hVar.w()) {
-                e6.h.t();
-            } else {
-                e6.h.x(new e6.i(hVar, 3));
-            }
-            int i10 = this.f425a;
-            long j10 = -1;
-            if (i10 == 0) {
-                v61 v61Var = PhotoViewer.v1().F2;
-                if (v61Var != null) {
-                    j10 = v61Var.S();
+    public final Object invoke(Object obj, Object obj2) {
+        int i3;
+        fd.b bVar;
+        int i10 = this.f402a;
+        Integer num = null;
+        dd.k kVar = dd.k.f8801a;
+        switch (i10) {
+            case 0:
+                fd.f fVar = (fd.f) obj2;
+                return Integer.valueOf(((Integer) obj).intValue() + 1);
+            case 1:
+                od.a f10 = (od.a) obj2;
+                kotlin.jvm.internal.j.e(f10, "f");
+                int i11 = b1.d.d;
+                f1.a((CancellationSignal) obj, f10);
+                return kVar;
+            case 2:
+                fd.f fVar2 = (fd.f) obj2;
+                if (fVar2 instanceof u1) {
+                    if (obj instanceof Integer) {
+                        num = (Integer) obj;
+                    }
+                    if (num != null) {
+                        i3 = num.intValue();
+                    } else {
+                        i3 = 1;
+                    }
+                    if (i3 == 0) {
+                        return fVar2;
+                    }
+                    return Integer.valueOf(i3 + 1);
                 }
-            } else if (i10 == 1 && (kjVar = (B = MediaController.B()).f14483u0) != null) {
-                j10 = B.D(kjVar);
-            }
-            if (j10 >= 0) {
-                b5.d.v(j10);
-            }
-            b5.d.d(true);
+                return obj;
+            case 3:
+                u1 u1Var = (u1) obj;
+                fd.f fVar3 = (fd.f) obj2;
+                if (u1Var != null) {
+                    return u1Var;
+                }
+                if (!(fVar3 instanceof u1)) {
+                    return null;
+                }
+                return (u1) fVar3;
+            case 4:
+                fd.f fVar4 = (fd.f) obj2;
+                return (w) obj;
+            case 5:
+                od.a f11 = (od.a) obj2;
+                kotlin.jvm.internal.j.e(f11, "f");
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!a1.h.a((CancellationSignal) obj)) {
+                    f11.invoke();
+                }
+                return kVar;
+            case 6:
+                od.a f12 = (od.a) obj2;
+                kotlin.jvm.internal.j.e(f12, "f");
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!a1.h.a((CancellationSignal) obj)) {
+                    f12.invoke();
+                }
+                return kVar;
+            case 7:
+                od.a f13 = (od.a) obj2;
+                kotlin.jvm.internal.j.e(f13, "f");
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!a1.h.a((CancellationSignal) obj)) {
+                    f13.invoke();
+                }
+                return kVar;
+            case 8:
+                String acc = (String) obj;
+                fd.f element = (fd.f) obj2;
+                kotlin.jvm.internal.j.e(acc, "acc");
+                kotlin.jvm.internal.j.e(element, "element");
+                if (acc.length() == 0) {
+                    return element.toString();
+                }
+                return acc + ", " + element;
+            case 9:
+                fd.h acc2 = (fd.h) obj;
+                fd.f element2 = (fd.f) obj2;
+                kotlin.jvm.internal.j.e(acc2, "acc");
+                kotlin.jvm.internal.j.e(element2, "element");
+                fd.h minusKey = acc2.minusKey(element2.getKey());
+                fd.i iVar = fd.i.f11567a;
+                if (minusKey != iVar) {
+                    fd.d dVar = fd.d.f11566a;
+                    fd.e eVar = (fd.e) minusKey.get(dVar);
+                    if (eVar == null) {
+                        bVar = new fd.b(element2, minusKey);
+                    } else {
+                        fd.h minusKey2 = minusKey.minusKey(dVar);
+                        if (minusKey2 == iVar) {
+                            return new fd.b(eVar, element2);
+                        }
+                        bVar = new fd.b(eVar, new fd.b(element2, minusKey2));
+                    }
+                    return bVar;
+                }
+                return element2;
+            case 10:
+                Boolean bool = (Boolean) obj;
+                bool.booleanValue();
+                fd.f fVar5 = (fd.f) obj2;
+                return bool;
+            case 11:
+                return ((fd.h) obj).plus((fd.f) obj2);
+            default:
+                return ((fd.h) obj).plus((fd.f) obj2);
         }
-    }
-
-    @Override
-    public void G(d6.f fVar, int i10) {
-        d6.c cVar = (d6.c) fVar;
-    }
-
-    @Override
-    public void j(d6.f fVar, String str) {
-        d6.c cVar = (d6.c) fVar;
-    }
-
-    @Override
-    public void k(d6.f fVar, int i10) {
-        d6.c cVar = (d6.c) fVar;
-    }
-
-    @Override
-    public void o(d6.f fVar, boolean z10) {
-        d6.c cVar = (d6.c) fVar;
-    }
-
-    @Override
-    public int p0(Context context, String str, boolean z10) {
-        return 0;
-    }
-
-    @Override
-    public void q(d6.f fVar, int i10) {
-        d6.c cVar = (d6.c) fVar;
-        b5.d.d(false);
-        b5.d.C();
-    }
-
-    @Override
-    public void t(d6.f fVar) {
-        d6.c cVar = (d6.c) fVar;
-    }
-
-    @Override
-    public void u(d6.f fVar, int i10) {
-        d6.c cVar = (d6.c) fVar;
-    }
-
-    @Override
-    public int x1(Context context, String str) {
-        return this.f425a;
-    }
-
-    public j(int i10) {
-        this.f425a = i10;
     }
 }

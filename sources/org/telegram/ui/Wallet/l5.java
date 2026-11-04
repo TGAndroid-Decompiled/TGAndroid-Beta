@@ -2,30 +2,35 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-public final class l5 extends View {
-    public final int f34844a;
-    public final b6 f34845b;
+import android.widget.FrameLayout;
+public final class l5 extends FrameLayout {
+    public View f42782a;
+    public float f42783b;
+    public int f42784c;
+    public final j5 d;
+    public final w5 f42785e;
 
-    public l5(b6 b6Var, Context context, int i10) {
+    public l5(w5 w5Var, Context context) {
         super(context);
-        this.f34844a = i10;
-        this.f34845b = b6Var;
+        this.f42785e = w5Var;
+        this.d = new j5(1, this);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f34844a) {
-            case 0:
-                int size = View.MeasureSpec.getSize(i10);
-                b6 b6Var = this.f34845b;
-                b6Var.Z.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - org.telegram.messenger.i0.L(24.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(size, org.telegram.messenger.i0.L(36.0f) + b6Var.Z.getMeasuredHeight());
-                return;
-            default:
-                b6 b6Var2 = this.f34845b;
-                b6Var2.e.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
-                setMeasuredDimension(View.MeasureSpec.getSize(i10), b6Var2.e.getMeasuredHeight());
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        getViewTreeObserver().addOnPreDrawListener(this.d);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        getViewTreeObserver().removeOnPreDrawListener(this.d);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        super.onLayout(z10, i3, i10, i11, i12);
+        this.f42785e.T0();
     }
 }

@@ -1,66 +1,36 @@
 package org.telegram.ui.Components;
+public final class ra implements q0.a {
+    public final int f37695a;
+    public final Object f37696b;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.os.Build;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import java.util.WeakHashMap;
-public final class ra extends Dialog {
-    public final qa f29967a;
-    public final WindowManager.LayoutParams f29968b;
-
-    public ra(Context context, mg.u uVar) {
-        super(context);
-        org.telegram.messenger.i0.S(getWindow());
-        qa qaVar = new qa(this, context);
-        this.f29967a = qaVar;
-        setContentView(qaVar, new ViewGroup.LayoutParams(-1, -1));
-        t tVar = new t(this, 15);
-        WeakHashMap weakHashMap = r0.h0.f46134a;
-        r0.z.i(qaVar, tVar);
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 30) {
-            qaVar.setSystemUiVisibility(1792);
-        } else {
-            qaVar.setSystemUiVisibility(1280);
-        }
-        boolean z10 = true;
-        qaVar.setTag(2131296351, new k7(uVar, 1));
-        try {
-            Window window = getWindow();
-            window.setWindowAnimations(2131755178);
-            window.setBackgroundDrawable(null);
-            WindowManager.LayoutParams attributes = window.getAttributes();
-            this.f29968b = attributes;
-            attributes.width = -1;
-            attributes.height = -1;
-            attributes.gravity = 51;
-            attributes.dimAmount = 0.0f;
-            attributes.format = -3;
-            attributes.flags = (((-3) & attributes.flags) | (-1946091240)) & (-1025);
-            if (i10 >= 28) {
-                attributes.layoutInDisplayCutoutMode = 1;
-            }
-            window.setAttributes(attributes);
-            if (org.telegram.messenger.i0.B(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f20873a7, false)) <= 0.721f) {
-                z10 = false;
-            }
-            org.telegram.messenger.i0.m3(this, z10);
-        } catch (Exception unused) {
-        }
-    }
-
-    public static qa a(Context context) {
-        return new ra(context, null).f29967a;
+    public ra(Object obj, int i3) {
+        this.f37695a = i3;
+        this.f37696b = obj;
     }
 
     @Override
-    public final void show() {
-        if (!org.telegram.messenger.i0.M1(getContext())) {
-            return;
+    public final void accept(Object obj) {
+        switch (this.f37695a) {
+            case 0:
+                ac acVar = (ac) this.f37696b;
+                Float f10 = (Float) obj;
+                za zaVar = acVar.f31798p;
+                if (zaVar != null) {
+                    fb fbVar = acVar.f31788e;
+                    if (!fbVar.top) {
+                        zaVar.c(fbVar.getHeight() - f10.floatValue());
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                zh zhVar = ((bi) this.f37696b).U3;
+                if (zhVar != null) {
+                    zhVar.I0(obj);
+                    return;
+                }
+                return;
         }
-        super.show();
     }
 }

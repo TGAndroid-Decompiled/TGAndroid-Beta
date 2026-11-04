@@ -1,36 +1,46 @@
 package org.telegram.ui;
-public final class ih implements org.telegram.messenger.r20 {
-    public final int f38055a;
-    public final long f38056b;
-    public final long f38057c;
-    public final Long d;
-    public final Object e;
 
-    public ih(Object obj, long j10, long j11, Long l4, int i10) {
-        this.f38055a = i10;
-        this.e = obj;
-        this.f38056b = j10;
-        this.f38057c = j11;
-        this.d = l4;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class ih implements org.telegram.ui.Components.d8 {
+    public final wm f46265a;
+
+    public ih(wm wmVar) {
+        this.f46265a = wmVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i10;
-        switch (this.f38055a) {
-            case 0:
-                un.A0((un) this.e, this.f38056b, this.f38057c, this.d, (Boolean) obj);
+    public final void W0(int i3, int i10) {
+        int i11;
+        wm wmVar = this.f46265a;
+        wmVar.getMessagesController().I4(i3, wmVar.f51376k6);
+        if (wmVar.f51466r8 != null || wmVar.f51453q8 != null) {
+            wmVar.f8();
+            UndoView undoView = wmVar.N3;
+            if (undoView == null) {
                 return;
-            default:
-                Boolean bool = (Boolean) obj;
-                i10 = ((org.telegram.ui.ActionBar.k2) ((nj) this.e).f39917b).currentAccount;
-                boolean z10 = false;
-                rh.e6 y3 = rh.e6.y(i10, false);
-                if (this.d.longValue() > 0 && bool.booleanValue()) {
-                    z10 = true;
-                }
-                y3.g0(this.f38056b, this.f38057c, z10, true);
-                return;
+            }
+            long j10 = wmVar.f51376k6;
+            TLRPC.User user = wmVar.f51306f;
+            TLRPC.UserFull userFull = wmVar.f51466r8;
+            if (userFull != null) {
+                i11 = userFull.ttl_period;
+            } else {
+                i11 = wmVar.f51453q8.ttl_period;
+            }
+            undoView.k(j10, i10, user, Integer.valueOf(i11), null, null);
         }
+    }
+
+    @Override
+    public final void dismiss() {
+        org.telegram.ui.ActionBar.f1 f1Var = this.f46265a.f51316f9;
+        if (f1Var != null) {
+            f1Var.dismiss();
+        }
+    }
+
+    @Override
+    public final void g1() {
     }
 }

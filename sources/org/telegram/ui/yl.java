@@ -1,10 +1,9 @@
 package org.telegram.ui;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class yl extends org.telegram.ui.Cells.s0 {
+import org.telegram.tgnet.TLRPC;
+public final class yl extends org.telegram.messenger.zi {
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setVisibleToUser(true);
+    public final boolean s(TLRPC.Chat chat, boolean z10) {
+        return false;
     }
 }

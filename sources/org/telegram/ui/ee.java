@@ -1,19 +1,28 @@
 package org.telegram.ui;
+public final class ee implements Runnable {
+    public final int f44969a;
+    public final org.telegram.ui.Components.nk0 f44970b;
 
-import android.content.Context;
-public final class ee extends org.telegram.ui.Components.wk0 {
-    public final he f36808c0;
-
-    public ee(he heVar, Context context, org.telegram.ui.ActionBar.p6 p6Var, le leVar) {
-        super(context, p6Var, leVar);
-        this.f36808c0 = heVar;
+    public ee(org.telegram.ui.Components.nk0 nk0Var, int i3) {
+        this.f44969a = i3;
+        this.f44970b = nk0Var;
     }
 
     @Override
-    public final boolean canScrollHorizontally(int i10) {
-        if (this.f36808c0.f37803x.Q0 && super.canScrollHorizontally(i10)) {
-            return true;
+    public final void run() {
+        switch (this.f44969a) {
+            case 0:
+                org.telegram.ui.Components.nk0 nk0Var = this.f44970b;
+                if (!nk0Var.N) {
+                    nk0Var.N = true;
+                    nk0Var.c(new org.telegram.ui.Components.lk0(nk0Var, 0), false);
+                    nk0Var.f36579s.invalidate();
+                    return;
+                }
+                return;
+            default:
+                this.f44970b.dismiss();
+                return;
         }
-        return false;
     }
 }

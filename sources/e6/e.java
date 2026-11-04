@@ -1,58 +1,26 @@
 package e6;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.telegram.ui.Cells.f1;
-public abstract class e {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String o10;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i11 >= length) {
-                break;
-            }
-            Object obj = objArr[i11];
-            if (obj == null) {
-                o10 = "null";
-            } else {
-                try {
-                    o10 = obj.toString();
-                } catch (Exception e) {
-                    String C = a1.g.C(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(C), (Throwable) e);
-                    o10 = f1.o("<", C, " threw ", e.getClass().getName(), ">");
-                }
-            }
-            objArr[i11] = o10;
-            i11++;
-        }
-        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
-        int i12 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
-                break;
-            }
-            sb2.append((CharSequence) str, i12, indexOf);
-            sb2.append(objArr[i10]);
-            i10++;
-            i12 = indexOf + 2;
-        }
-        sb2.append((CharSequence) str, i12, str.length());
-        if (i10 < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i10]);
-            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
-                sb2.append(", ");
-                sb2.append(objArr[i13]);
-            }
-            sb2.append(']');
-        }
-        return sb2.toString();
+import android.os.Bundle;
+import com.google.android.gms.cast.CastDevice;
+import java.util.Arrays;
+import java.util.UUID;
+public final class e implements com.google.android.gms.common.api.b {
+    public final CastDevice f9690a;
+    public final f6.e0 f9691b;
+    public final Bundle f9692c;
+    public final String d = UUID.randomUUID().toString();
+
+    public e(android.support.v4.media.session.a0 a0Var) {
+        this.f9690a = (CastDevice) a0Var.f1186b;
+        this.f9691b = (f6.e0) a0Var.f1187c;
+        this.f9692c = (Bundle) a0Var.d;
+    }
+
+    public final boolean equals(java.lang.Object r8) {
+        throw new UnsupportedOperationException("Method not decompiled: e6.e.equals(java.lang.Object):boolean");
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f9690a, this.f9692c, 0, this.d});
     }
 }

@@ -1,10 +1,8 @@
 package b5;
+public interface h {
+    void a(int i3);
 
-import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
-public final class h {
-    public final JsReplyProxyBoundaryInterface f2494a;
+    void b(float f10, int i3, int i10);
 
-    public h(JsReplyProxyBoundaryInterface jsReplyProxyBoundaryInterface) {
-        this.f2494a = jsReplyProxyBoundaryInterface;
-    }
+    void c(int i3);
 }

@@ -1,4 +1,36 @@
 package z7;
-public interface u {
-    int zza();
+
+import java.util.Iterator;
+public final class u extends o {
+    public final transient w f60049c;
+    public final transient v d;
+
+    public u(w wVar, v vVar) {
+        this.f60049c = wVar;
+        this.d = vVar;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if (this.f60049c.get(obj) != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h(Object[] objArr) {
+        return this.d.h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        this.f60049c.getClass();
+        return 1;
+    }
 }

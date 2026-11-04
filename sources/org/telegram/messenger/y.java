@@ -4,82 +4,43 @@ import android.text.TextPaint;
 import android.text.style.ClickableSpan;
 import android.view.View;
 public final class y extends ClickableSpan {
-    public final int f19508a;
-    public final Runnable f19509b;
+    public final int f26500a;
+    public final int f26501b;
+    public final org.telegram.ui.ActionBar.e6 f26502c;
+    public final Runnable d;
 
-    public y(int i10, Runnable runnable) {
-        this.f19508a = i10;
-        this.f19509b = runnable;
+    public y(int i3, int i10, org.telegram.ui.ActionBar.e6 e6Var, Runnable runnable) {
+        this.f26500a = i3;
+        this.f26501b = i10;
+        this.f26502c = e6Var;
+        this.d = runnable;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f19508a) {
-            case 0:
-                Runnable runnable = this.f19509b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                Runnable runnable2 = this.f19509b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-            case 2:
-                this.f19509b.run();
-                return;
-            case 3:
-                Runnable runnable3 = this.f19509b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
-                return;
-            case 4:
-                Runnable runnable4 = this.f19509b;
-                if (runnable4 != null) {
-                    runnable4.run();
-                    return;
-                }
-                return;
-            default:
-                Runnable runnable5 = this.f19509b;
-                if (runnable5 != null) {
-                    runnable5.run();
-                    return;
-                }
-                return;
+        Runnable runnable = this.d;
+        if (runnable != null) {
+            runnable.run();
         }
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f19508a) {
-            case 0:
-                textPaint.setUnderlineText(false);
-                textPaint.setColor(textPaint.linkColor);
-                return;
-            case 1:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 2:
-                super.updateDrawState(textPaint);
-                textPaint.setUnderlineText(false);
-                return;
-            case 3:
-                textPaint.setUnderlineText(false);
-                return;
-            case 4:
-                textPaint.setUnderlineText(false);
-                return;
-            default:
-                textPaint.setUnderlineText(false);
-                return;
+        boolean z10;
+        super.updateDrawState(textPaint);
+        int i3 = this.f26500a;
+        if (i3 == 4) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        textPaint.setUnderlineText(z10);
+        int i10 = this.f26501b;
+        if (i10 >= 0) {
+            textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(i10, this.f26502c));
+        }
+        if (i3 == 2) {
+            textPaint.setTypeface(g0.o());
         }
     }
 }

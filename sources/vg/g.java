@@ -1,18 +1,20 @@
 package vg;
 public final class g {
-    public final float f50868a;
-    public final int f50869b;
-    public final float f50870c;
-    public final int d;
-    public final float e;
-    public final int f50871f;
+    public final int f56611a;
+    public final int f56612b;
+    public final String f56613c;
+    public final String d;
+    public final int f56614e;
 
-    public g(int i10, float f7, int i11, float f10, int i12, float f11) {
-        this.f50868a = f7;
-        this.f50869b = i10;
-        this.f50870c = f10;
-        this.d = i11;
-        this.e = f11;
-        this.f50871f = i12;
+    public g(int i3) {
+        this.f56611a = i3;
+    }
+
+    public g(int i3, int i10, String str, String str2) {
+        this.f56611a = 1;
+        this.f56612b = i3;
+        this.f56613c = str;
+        this.d = str2;
+        this.f56614e = i10;
     }
 }

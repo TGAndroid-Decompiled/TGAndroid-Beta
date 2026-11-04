@@ -1,3 +1,3 @@
 package org.telegram.messenger;
-public interface ab {
+public abstract class ab {
 }

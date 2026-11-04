@@ -1,61 +1,39 @@
 package org.telegram.ui.web;
+public final class a0 implements Runnable {
+    public final int f50808a;
+    public final w0 f50809b;
+    public final String f50810c;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.x4;
-public final class a0 extends x4 {
-    public final int d;
-
-    public a0(int i10, p6 p6Var) {
-        super(1, p6Var);
-        this.d = i10;
+    public a0(w0 w0Var, String str, int i3) {
+        this.f50808a = i3;
+        this.f50809b = w0Var;
+        this.f50810c = str;
     }
 
     @Override
-    public final void k() {
-        switch (this.d) {
+    public final void run() {
+        switch (this.f50808a) {
             case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.f21529b;
-                sparseIntArray.append(t6.f21002h5, -14803426);
-                sparseIntArray.append(t6.f20873a7, -16777216);
-                return;
-            case 1:
-                SparseIntArray sparseIntArray2 = (SparseIntArray) this.f21529b;
-                sparseIntArray2.append(t6.f21002h5, -14737633);
-                sparseIntArray2.append(t6.f20873a7, -13421773);
-                return;
-            case 2:
-                ((SparseIntArray) this.f21529b).put(t6.f21286wf, -1071635414);
-                return;
-            case 3:
-                SparseIntArray sparseIntArray3 = (SparseIntArray) this.f21529b;
-                sparseIntArray3.put(t6.f21286wf, i0.b.f(0.2f, -16777216, -1));
-                sparseIntArray3.put(t6.Le, i0.b.f(0.5f, -16777216, -1));
-                return;
-            case 4:
-                ((SparseIntArray) this.f21529b).put(t6.f21286wf, i0.b.o(-1, 30));
-                return;
-            case 5:
-                ((SparseIntArray) this.f21529b).put(t6.f21286wf, i0.b.o(-1, 30));
-                return;
-            case 6:
-                SparseIntArray sparseIntArray4 = (SparseIntArray) this.f21529b;
-                sparseIntArray4.append(t6.f21002h5, -14803426);
-                sparseIntArray4.append(t6.f20873a7, -16777216);
-                return;
-            case 7:
-                ((SparseIntArray) this.f21529b).put(t6.f21286wf, i0.b.o(-1, 30));
-                return;
-            case 8:
-                SparseIntArray sparseIntArray5 = (SparseIntArray) this.f21529b;
-                sparseIntArray5.append(t6.f21002h5, -14737633);
-                sparseIntArray5.append(t6.f20873a7, -13421773);
+                t0 t0Var = this.f50809b.f51060a;
+                if (t0Var != null) {
+                    t0Var.d(this.f50810c);
+                    return;
+                }
                 return;
             default:
-                SparseIntArray sparseIntArray6 = (SparseIntArray) this.f21529b;
-                sparseIntArray6.append(t6.f21002h5, -14803426);
-                sparseIntArray6.append(t6.f20873a7, -16777216);
+                w0 w0Var = this.f50809b;
+                w0Var.O = false;
+                w0Var.Q = 0L;
+                w0Var.U = false;
+                String str = this.f50810c;
+                w0Var.f51062b = str;
+                w0Var.c();
+                t0 t0Var2 = w0Var.f51060a;
+                if (t0Var2 != null) {
+                    t0Var2.onResume();
+                    w0Var.f51060a.loadUrl(str);
+                    return;
+                }
                 return;
         }
     }

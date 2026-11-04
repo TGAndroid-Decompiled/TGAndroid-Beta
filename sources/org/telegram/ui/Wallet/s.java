@@ -1,75 +1,75 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.e20;
-import org.telegram.messenger.m20;
-import org.telegram.messenger.r20;
+import org.telegram.messenger.h10;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.d01;
-public final class s implements m20 {
-    public final int f35169a = 1;
-    public final k0 f35170b;
-    public final Object f35171c;
+import org.telegram.ui.e51;
+public final class s implements p10 {
+    public final int f43136a = 0;
+    public final k0 f43137b;
+    public final Object f43138c;
     public final Object d;
-    public final Object e;
+    public final Object f43139e;
 
-    public s(k0 k0Var, r20 r20Var, byte[] bArr, h0 h0Var) {
-        this.f35170b = k0Var;
-        this.f35171c = r20Var;
+    public s(k0 k0Var, u10 u10Var, byte[] bArr, h0 h0Var) {
+        this.f43137b = k0Var;
+        this.f43138c = u10Var;
         this.d = bArr;
-        this.e = h0Var;
+        this.f43139e = h0Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2, Object obj3) {
-        switch (this.f35169a) {
+        switch (this.f43136a) {
             case 0:
-                r20 r20Var = (r20) this.f35171c;
+                u10 u10Var = (u10) this.f43138c;
                 byte[] bArr = (byte[]) this.d;
-                h0 h0Var = (h0) this.e;
+                h0 h0Var = (h0) this.f43139e;
                 TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
-                k0 k0Var = this.f35170b;
-                int i10 = k0Var.f34781a;
+                k0 k0Var = this.f43137b;
+                int i3 = k0Var.f42718a;
                 if (tL_error == null || !"WALLET_PROOF_EXPIRED".equalsIgnoreCase(tL_error.text)) {
                     if (tL_error != null) {
                         String str = tL_error.text;
                         if (str == null) {
                             str = "NULL_ERROR";
                         }
-                        r20Var.a(str);
+                        u10Var.a(str);
                         return;
                     }
                     k0Var.l0(walletState);
-                    new p0(i10, k0.w(), k0Var.t()).p(e20.i(i10).e(), bArr, h0Var, r20Var);
+                    new o0(i3, k0.w(), k0Var.t()).p(h10.i(i3).e(), bArr, h0Var, u10Var);
                     k0Var.R();
                     return;
                 }
                 return;
             default:
-                ba baVar = (ba) this.f35171c;
+                w9 w9Var = (w9) this.f43138c;
                 TLRPC.User user = (TLRPC.User) this.d;
-                String str2 = (String) this.e;
+                String str2 = (String) this.f43139e;
                 String str3 = (String) obj;
                 Boolean bool = (Boolean) obj2;
-                r20 r20Var2 = (r20) obj3;
-                String str4 = baVar.f34285f;
-                k0 k0Var2 = this.f35170b;
+                u10 u10Var2 = (u10) obj3;
+                String str4 = w9Var.f43363f;
+                k0 k0Var2 = this.f43137b;
                 if (!k0.b(str4, k0Var2.t())) {
-                    r20Var2.a("WALLET_CHANGED");
+                    u10Var2.a("WALLET_CHANGED");
                     return;
                 } else {
-                    k0Var2.d0(user, str2, 0L, str3, null, baVar.e, null, new d01(18, baVar, r20Var2), null, null);
+                    k0Var2.d0(user, str2, 0L, str3, null, w9Var.f43361e, null, new e51(14, w9Var, u10Var2), null, null);
                     return;
                 }
         }
     }
 
-    public s(ba baVar, k0 k0Var, TLRPC.User user, String str) {
-        this.f35171c = baVar;
-        this.f35170b = k0Var;
+    public s(w9 w9Var, k0 k0Var, TLRPC.User user, String str) {
+        this.f43138c = w9Var;
+        this.f43137b = k0Var;
         this.d = user;
-        this.e = str;
+        this.f43139e = str;
     }
 }

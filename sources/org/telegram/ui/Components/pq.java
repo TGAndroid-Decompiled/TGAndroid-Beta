@@ -1,70 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
+import android.text.SpannableStringBuilder;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class pq implements DialogInterface.OnDismissListener {
-    public final int f29510a = 0;
-    public final boolean[] f29511b;
-    public final boolean[] f29512c;
-    public final int d;
-    public final Object e;
-    public final Object f29513f;
-    public final Object h;
+import org.telegram.tgnet.tl.TL_phone;
+public final class pq implements RequestDelegate {
+    public final int f37219a;
+    public final tq f37220b;
+    public final gi.d f37221c;
 
-    public pq(boolean[] zArr, ag.g3 g3Var, boolean[] zArr2, org.telegram.messenger.r20 r20Var, int[] iArr, int i10) {
-        this.f29511b = zArr;
-        this.e = g3Var;
-        this.f29512c = zArr2;
-        this.f29513f = r20Var;
-        this.h = iArr;
-        this.d = i10;
+    public pq(tq tqVar, gi.d dVar, int i3) {
+        this.f37219a = i3;
+        this.f37220b = tqVar;
+        this.f37221c = dVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f29510a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f37219a) {
             case 0:
-                org.telegram.messenger.r20 r20Var = (org.telegram.messenger.r20) this.f29513f;
-                int[] iArr = (int[]) this.h;
-                this.f29511b[0] = true;
-                ((ag.g3) this.e).run();
-                boolean[] zArr = this.f29512c;
-                if (!zArr[0]) {
-                    zArr[0] = true;
-                    r20Var.a(null);
-                }
-                if (iArr[0] >= 0) {
-                    ConnectionsManager.getInstance(this.d).cancelRequest(iArr[0], true);
-                    iArr[0] = -1;
-                    return;
-                }
+                final tq tqVar = this.f37220b;
+                final gi.d dVar = this.f37221c;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                tq tqVar2 = tqVar;
+                                tqVar2.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    tqVar2.U1 = groupcallstreamrtmpurl.url;
+                                    tqVar2.V1 = groupcallstreamrtmpurl.key;
+                                    tqVar2.W1 = new SpannableStringBuilder(tqVar2.V1);
+                                    tqVar2.X1.O(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                tq tqVar3 = tqVar;
+                                tqVar3.getClass();
+                                dVar.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    tqVar3.U1 = groupcallstreamrtmpurl2.url;
+                                    tqVar3.V1 = groupcallstreamrtmpurl2.key;
+                                    tqVar3.W1 = new SpannableStringBuilder(tqVar3.V1);
+                                    tqVar3.X1.O(true);
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                });
                 return;
             default:
-                Context context = (Context) this.e;
-                TLRPC.User user = (TLRPC.User) this.f29513f;
-                org.telegram.ui.web.o oVar = (org.telegram.ui.web.o) this.h;
-                if (!this.f29511b[0]) {
-                    boolean[] zArr2 = this.f29512c;
-                    if (!zArr2[0]) {
-                        zArr2[0] = true;
-                        xh.r3.e(context, this.d, user.f19943id);
-                        oVar.a(Boolean.TRUE, "cancelled");
-                        return;
+                final tq tqVar2 = this.f37220b;
+                final gi.d dVar2 = this.f37221c;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                tq tqVar22 = tqVar2;
+                                tqVar22.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
+                                    tqVar22.U1 = groupcallstreamrtmpurl.url;
+                                    tqVar22.V1 = groupcallstreamrtmpurl.key;
+                                    tqVar22.W1 = new SpannableStringBuilder(tqVar22.V1);
+                                    tqVar22.X1.O(true);
+                                    return;
+                                }
+                                return;
+                            default:
+                                tq tqVar3 = tqVar2;
+                                tqVar3.getClass();
+                                dVar2.setLoading(false);
+                                TLObject tLObject3 = tLObject;
+                                if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
+                                    TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
+                                    tqVar3.U1 = groupcallstreamrtmpurl2.url;
+                                    tqVar3.V1 = groupcallstreamrtmpurl2.key;
+                                    tqVar3.W1 = new SpannableStringBuilder(tqVar3.V1);
+                                    tqVar3.X1.O(true);
+                                    return;
+                                }
+                                return;
+                        }
                     }
-                    return;
-                }
+                });
                 return;
         }
-    }
-
-    public pq(boolean[] zArr, boolean[] zArr2, Context context, int i10, TLRPC.User user, org.telegram.ui.web.o oVar) {
-        this.f29511b = zArr;
-        this.f29512c = zArr2;
-        this.e = context;
-        this.d = i10;
-        this.f29513f = user;
-        this.h = oVar;
     }
 }

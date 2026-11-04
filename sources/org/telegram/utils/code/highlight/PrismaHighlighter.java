@@ -1,31 +1,31 @@
 package org.telegram.utils.code.highlight;
 
 import com.google.android.gms.internal.play_billing.s0;
-import di.t;
+import oi.r;
 public final class PrismaHighlighter implements AutoCloseable {
-    public long f44266a;
-    public final String[] f44267b;
-    public final t f44268c;
+    public long f52769a;
+    public final String[] f52770b;
+    public final r f52771c;
 
     public PrismaHighlighter(byte[] bArr) {
         if (bArr != null) {
             long nativeCreate = nativeCreate(bArr);
-            this.f44266a = nativeCreate;
+            this.f52769a = nativeCreate;
             if (nativeCreate != 0) {
                 try {
                     String[] nativeGetTokenNames = nativeGetTokenNames(nativeCreate);
-                    this.f44267b = nativeGetTokenNames;
+                    this.f52770b = nativeGetTokenNames;
                     if (nativeGetTokenNames != null && nativeGetTokenNames.length != 0 && "".equals(nativeGetTokenNames[0])) {
-                        this.f44268c = new t(nativeGetTokenNames);
+                        this.f52771c = new r(nativeGetTokenNames);
                         return;
                     }
                     throw new IllegalStateException("Invalid native token name table");
-                } catch (Error e) {
-                    e = e;
+                } catch (Error e10) {
+                    e = e10;
                     close();
                     throw e;
-                } catch (RuntimeException e7) {
-                    e = e7;
+                } catch (RuntimeException e11) {
+                    e = e11;
                     close();
                     throw e;
                 }
@@ -35,32 +35,32 @@ public final class PrismaHighlighter implements AutoCloseable {
         throw new NullPointerException("grammars");
     }
 
-    public static boolean b(int i10, String str) {
-        if (i10 > 0 && i10 < str.length() && Character.isHighSurrogate(str.charAt(i10 - 1)) && Character.isLowSurrogate(str.charAt(i10))) {
+    public static boolean b(int i3, String str) {
+        if (i3 > 0 && i3 < str.length() && Character.isHighSurrogate(str.charAt(i3 - 1)) && Character.isLowSurrogate(str.charAt(i3))) {
             return true;
         }
         return false;
     }
 
-    public static void d(int i10, int[] iArr, String str) {
+    public static void d(int[] iArr, String str, int i3) {
         if (iArr != null && iArr.length % 5 == 0) {
+            int i10 = 0;
             int i11 = 0;
-            int i12 = 0;
-            while (i11 < iArr.length) {
-                int i13 = iArr[i11];
-                int i14 = iArr[i11 + 1];
-                int i15 = iArr[i11 + 2];
-                int i16 = iArr[i11 + 3];
-                int i17 = iArr[i11 + 4];
-                if (i13 >= i12 && i14 > i13 && i14 <= str.length() && i15 >= 0 && i15 < i10 && i16 >= 0 && i16 < i10 && i17 >= -1 && i17 < i11 / 5 && !b(i13, str) && !b(i14, str)) {
-                    if (i17 >= 0) {
-                        int i18 = i17 * 5;
-                        if (i13 < iArr[i18] || i14 > iArr[i18 + 1]) {
+            while (i10 < iArr.length) {
+                int i12 = iArr[i10];
+                int i13 = iArr[i10 + 1];
+                int i14 = iArr[i10 + 2];
+                int i15 = iArr[i10 + 3];
+                int i16 = iArr[i10 + 4];
+                if (i12 >= i11 && i13 > i12 && i13 <= str.length() && i14 >= 0 && i14 < i3 && i15 >= 0 && i15 < i3 && i16 >= -1 && i16 < i10 / 5 && !b(i12, str) && !b(i13, str)) {
+                    if (i16 >= 0) {
+                        int i17 = i16 * 5;
+                        if (i12 < iArr[i17] || i13 > iArr[i17 + 1]) {
                             throw new IllegalStateException("Native token is outside its parent");
                         }
                     }
-                    i11 += 5;
-                    i12 = i13;
+                    i10 += 5;
+                    i11 = i12;
                 } else {
                     throw new IllegalStateException("Invalid native token range");
                 }
@@ -82,7 +82,7 @@ public final class PrismaHighlighter implements AutoCloseable {
 
     public final synchronized String[] a() {
         long j10;
-        j10 = this.f44266a;
+        j10 = this.f52769a;
         if (j10 != 0) {
         } else {
             throw new IllegalStateException("Highlighter is closed");
@@ -92,26 +92,26 @@ public final class PrismaHighlighter implements AutoCloseable {
 
     public final synchronized s0 c(String str, String str2) {
         int[] nativeHighlight;
-        long j10 = this.f44266a;
+        long j10 = this.f52769a;
         if (j10 != 0) {
             if (str != null) {
                 nativeHighlight = nativeHighlight(j10, str, str2);
-                d(this.f44267b.length, nativeHighlight, str);
+                d(nativeHighlight, str, this.f52770b.length);
             } else {
                 throw new NullPointerException("text");
             }
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return new s0(nativeHighlight, this.f44268c);
+        return new s0(nativeHighlight, this.f52771c);
     }
 
     @Override
     public final synchronized void close() {
-        long j10 = this.f44266a;
+        long j10 = this.f52769a;
         if (j10 != 0) {
             nativeDestroy(j10);
-            this.f44266a = 0L;
+            this.f52769a = 0L;
         }
     }
 }

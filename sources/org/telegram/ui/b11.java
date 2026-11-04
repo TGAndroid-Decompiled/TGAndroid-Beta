@@ -1,79 +1,61 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class b11 extends FrameLayout {
-    public float f35901a;
-    public final boolean f35902b;
-    public final boolean f35903c;
-    public boolean d;
-    public int e;
-    public final o1.i f35904f;
-    public final o1.j h;
-    public final s0 f35905n;
-    public final SecretMediaViewer f35906r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class b11 extends AnimatorListenerAdapter {
+    public final boolean f43885a;
+    public final Runnable f43886b;
+    public final boolean[] f43887c;
+    public final boolean d;
+    public final Runnable f43888e;
+    public final c11 f43889f;
 
-    public b11(SecretMediaViewer secretMediaViewer, Activity activity) {
-        super(activity);
-        this.f35906r = secretMediaViewer;
-        this.f35901a = 1.0f;
-        this.f35902b = true;
-        this.f35903c = true;
-        o1.i iVar = new o1.i(0.0f);
-        this.f35904f = iVar;
-        o1.j jVar = new o1.j(iVar);
-        jVar.f13958m = org.telegram.ui.Cells.f1.p(0.0f, 750.0f, 1.0f);
-        jVar.b(new ic0(this, 5));
-        this.h = jVar;
-        this.f35905n = new s0("progress", 7);
-        setWillNotDraw(false);
+    public b11(c11 c11Var, boolean z10, Runnable runnable, boolean[] zArr, boolean z11, Runnable runnable2) {
+        this.f43889f = c11Var;
+        this.f43885a = z10;
+        this.f43886b = runnable;
+        this.f43887c = zArr;
+        this.d = z11;
+        this.f43888e = runnable2;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f35904f.f13941a = 0.0f;
-        this.e = 0;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        float f7;
-        super.onLayout(z10, i10, i11, i12, i13);
-        SecretMediaViewer secretMediaViewer = this.f35906r;
-        sq0 sq0Var = secretMediaViewer.D;
-        if (sq0Var != null) {
-            f7 = ((float) sq0Var.S()) / ((float) secretMediaViewer.D.U());
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        Runnable runnable;
+        c11 c11Var = this.f43889f;
+        l0 l0Var = c11Var.f44197s;
+        boolean z10 = this.f43885a;
+        if (z10) {
+            f10 = 1.0f;
         } else {
-            f7 = 0.0f;
+            f10 = 0.0f;
         }
-        secretMediaViewer.O.h(false, f7);
-    }
-
-    @Override
-    public final void onMeasure(int r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b11.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f35901a < 1.0f) {
-            return false;
+        c11Var.J = f10;
+        org.telegram.messenger.g0.X1(c11Var.f44192c, c11Var.d, f10, c11Var.f44193e);
+        l0Var.invalidate();
+        if (!z10) {
+            c11Var.f44198w.setAlpha(c11Var.J);
         }
-        SecretMediaViewer secretMediaViewer = this.f35906r;
-        if (secretMediaViewer.O.e(motionEvent.getX() - org.telegram.messenger.i0.L(2.0f), motionEvent.getY(), motionEvent.getAction())) {
-            getParent().requestDisallowInterceptTouchEvent(true);
-            secretMediaViewer.P.invalidate();
+        if (c11Var.J < 0.5f && !z10 && (runnable = this.f43886b) != null) {
+            boolean[] zArr = this.f43887c;
+            if (!zArr[0]) {
+                zArr[0] = true;
+                runnable.run();
+            }
         }
-        return true;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.d) {
-            return;
+        if (!z10) {
+            if (this.d) {
+                c11Var.f44190a.f48718b = false;
+                c11Var.Q.f45456i0.invalidate();
+            }
+            org.telegram.messenger.hs.e().k(org.telegram.messenger.hs.k1, 4);
         }
-        super.requestLayout();
+        c11Var.L = null;
+        l0Var.invalidate();
+        Runnable runnable2 = this.f43888e;
+        if (runnable2 != null) {
+            runnable2.run();
+        }
     }
 }

@@ -11,7 +11,7 @@ public class VoIPPermissionActivity extends Activity {
     @Override
     public final void onCreate(Bundle bundle) {
         boolean isVideo;
-        int i10;
+        int i3;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
@@ -35,30 +35,30 @@ public class VoIPPermissionActivity extends Activity {
             try {
                 String[] strArr = (String[]) arrayList.toArray(new String[0]);
                 if (isVideo) {
-                    i10 = 102;
+                    i3 = 102;
                 } else {
-                    i10 = 101;
+                    i3 = 101;
                 }
-                requestPermissions(strArr, i10);
-            } catch (Exception e) {
-                org.telegram.messenger.f8.g(e, true);
+                requestPermissions(strArr, i3);
+            } catch (Exception e10) {
+                org.telegram.messenger.a8.g(e10, true);
             }
         }
     }
 
     @Override
-    public final void onRequestPermissionsResult(int i10, String[] strArr, int[] iArr) {
-        if (i10 != 101 && i10 != 102) {
+    public final void onRequestPermissionsResult(int i3, String[] strArr, int[] iArr) {
+        if (i3 != 101 && i3 != 102) {
             return;
         }
         boolean z10 = false;
-        int i11 = 0;
+        int i10 = 0;
         while (true) {
-            if (i11 < iArr.length) {
-                if (iArr[i11] != 0) {
+            if (i10 < iArr.length) {
+                if (iArr[i10] != 0) {
                     break;
                 }
-                i11++;
+                i10++;
             } else {
                 z10 = true;
                 break;
@@ -78,7 +78,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.n1.h(this, new ae1(this, 0), i10);
+            org.telegram.ui.Components.voip.n1.h(this, new pu0(this, 27), i3);
         } else {
             finish();
         }

@@ -1,66 +1,30 @@
 package ed;
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import td.a0;
-import td.m;
-public abstract class c extends a {
-    private final cd.h _context;
-    private transient cd.c intercepted;
+import b8.rb;
+import java.util.RandomAccess;
+public final class c extends d implements RandomAccess {
+    public final d f9946a;
+    public final int f9947b;
+    public final int f9948c;
 
-    public c(cd.c cVar, cd.h hVar) {
-        super(cVar);
-        this._context = hVar;
+    public c(d dVar, int i3, int i10) {
+        this.f9946a = dVar;
+        this.f9947b = i3;
+        rb.a(i3, i10, dVar.h());
+        this.f9948c = i10 - i3;
     }
 
     @Override
-    public cd.h getContext() {
-        cd.h hVar = this._context;
-        kotlin.jvm.internal.i.b(hVar);
-        return hVar;
-    }
-
-    public final cd.c intercepted() {
-        cd.c cVar;
-        cd.c cVar2 = this.intercepted;
-        if (cVar2 == null) {
-            cd.e eVar = (cd.e) getContext().get(cd.d.f4122a);
-            if (eVar != null) {
-                cVar = new yd.h((a0) eVar, this);
-            } else {
-                cVar = this;
-            }
-            this.intercepted = cVar;
-            return cVar;
+    public final Object get(int i3) {
+        int i10 = this.f9948c;
+        if (i3 >= 0 && i3 < i10) {
+            return this.f9946a.get(this.f9947b + i3);
         }
-        return cVar2;
+        throw new IndexOutOfBoundsException(a1.g.n(i3, i10, "index: ", ", size: "));
     }
 
     @Override
-    public void releaseIntercepted() {
-        m mVar;
-        cd.c cVar = this.intercepted;
-        if (cVar != null && cVar != this) {
-            cd.f fVar = getContext().get(cd.d.f4122a);
-            kotlin.jvm.internal.i.b(fVar);
-            cd.e eVar = (cd.e) fVar;
-            yd.h hVar = (yd.h) cVar;
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = yd.h.f54423n;
-            do {
-            } while (atomicReferenceFieldUpdater.get(hVar) == yd.a.d);
-            Object obj = atomicReferenceFieldUpdater.get(hVar);
-            if (obj instanceof m) {
-                mVar = (m) obj;
-            } else {
-                mVar = null;
-            }
-            if (mVar != null) {
-                mVar.o();
-            }
-        }
-        this.intercepted = b.f6482a;
-    }
-
-    public c(cd.c cVar) {
-        this(cVar, cVar != null ? cVar.getContext() : null);
+    public final int h() {
+        return this.f9948c;
     }
 }

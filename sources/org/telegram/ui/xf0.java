@@ -1,28 +1,77 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class xf0 implements Runnable {
-    public final ig0 f43367a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class xf0 implements RequestDelegate {
+    public final int f52017a;
+    public final dg0 f52018b;
 
-    public xf0(ig0 ig0Var) {
-        this.f43367a = ig0Var;
+    public xf0(dg0 dg0Var, int i3) {
+        this.f52017a = i3;
+        this.f52018b = dg0Var;
     }
 
     @Override
-    public final void run() {
-        ig0 ig0Var = this.f43367a;
-        if (ig0Var.f38028b == null) {
-            return;
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f52017a) {
+            case 0:
+                final dg0 dg0Var = this.f52018b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                dg0.Z(dg0Var, tL_error, tLObject);
+                                return;
+                            case 1:
+                                dg0.b0(dg0Var, tL_error, tLObject);
+                                return;
+                            default:
+                                dg0.a0(dg0Var, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            case 1:
+                final dg0 dg0Var2 = this.f52018b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                dg0.Z(dg0Var2, tL_error, tLObject);
+                                return;
+                            case 1:
+                                dg0.b0(dg0Var2, tL_error, tLObject);
+                                return;
+                            default:
+                                dg0.a0(dg0Var2, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final dg0 dg0Var3 = this.f52018b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                dg0.Z(dg0Var3, tL_error, tLObject);
+                                return;
+                            case 1:
+                                dg0.b0(dg0Var3, tL_error, tLObject);
+                                return;
+                            default:
+                                dg0.a0(dg0Var3, tL_error, tLObject);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-        for (int i10 = 0; i10 < ig0Var.f38028b.getChildCount(); i10++) {
-            View childAt = ig0Var.f38028b.getChildAt(i10);
-            if (childAt instanceof fg0) {
-                fg0 fg0Var = (fg0) childAt;
-                if (fg0Var.I) {
-                    fg0Var.b(fg0Var.f37141n, fg0Var.f37142r);
-                }
-            }
-        }
-        org.telegram.messenger.i0.h3(this, 500L);
     }
 }

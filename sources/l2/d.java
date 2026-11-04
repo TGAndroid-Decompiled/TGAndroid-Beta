@@ -1,63 +1,194 @@
 package l2;
 
-import g2.c0;
-import java.io.IOException;
-import u2.u;
-public final class d implements y2.g {
-    public final h f11578a;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.media.AudioDescriptor;
+import android.os.SystemClock;
+import com.google.firebase.FirebaseCommonRegistrar;
+import g2.p;
+import g9.i0;
+import m2.h0;
+import m2.n;
+import m2.n0;
+import m2.o0;
+import m2.p0;
+import m2.s0;
+import m2.x;
+import org.telegram.ui.ActionBar.p1;
+import org.telegram.ui.ActionBar.s1;
+public final class d implements p, p1, f9.k, k5.g, bb.d {
+    public final int f17688a;
 
-    @Override
-    public void M(y2.i iVar, long j10, long j11, boolean z10) {
-        this.f11578a.x((y2.o) iVar, j10, j11);
+    public d(int i3) {
+        this.f17688a = i3;
     }
 
-    public void a() {
-        long j10;
-        h hVar = this.f11578a;
-        synchronized (z2.b.f54564b) {
-            try {
-                if (z2.b.f54565c) {
-                    j10 = z2.b.d;
-                } else {
-                    j10 = -9223372036854775807L;
+    public static AudioDescriptor d(Object obj) {
+        return (AudioDescriptor) obj;
+    }
+
+    @Override
+    public String a(Context context) {
+        switch (this.f17688a) {
+            case 28:
+                ApplicationInfo applicationInfo = context.getApplicationInfo();
+                if (applicationInfo != null) {
+                    return String.valueOf(applicationInfo.targetSdkVersion);
                 }
-            } catch (Throwable th2) {
-                throw th2;
-            }
+                return "";
+            default:
+                return FirebaseCommonRegistrar.a(context);
         }
-        hVar.K = j10;
-        hVar.z(true);
     }
 
     @Override
-    public k4.d l(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
-        y2.o oVar = (y2.o) iVar;
-        h hVar = this.f11578a;
-        a5.a aVar = hVar.f11598q;
-        long j12 = oVar.f54188a;
-        g2.n nVar = oVar.f54189b;
-        c0 c0Var = oVar.d;
-        aVar.s(new u(nVar, c0Var.f7285c, c0Var.d, j10, j11, c0Var.f7284b), oVar.f54190c, iOException, true);
-        hVar.f11594m.getClass();
-        hVar.y(iOException);
-        return y2.l.e;
+    public Object apply(Object obj) {
+        return i0.u(Integer.valueOf(((x2.i) obj).f58159a));
     }
 
     @Override
-    public void o(y2.i iVar, long j10, long j11) {
-        y2.o oVar = (y2.o) iVar;
-        h hVar = this.f11578a;
-        long j12 = oVar.f54188a;
-        g2.n nVar = oVar.f54189b;
-        c0 c0Var = oVar.d;
-        u uVar = new u(nVar, c0Var.f7285c, c0Var.d, j10, j11, c0Var.f7284b);
-        hVar.f11594m.getClass();
-        hVar.f11598q.q(uVar, oVar.f54190c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        hVar.K = ((Long) oVar.f54191f).longValue() - j10;
-        hVar.z(true);
+    public void g(s1 s1Var, int i3) {
+        switch (this.f17688a) {
+            case 14:
+                s1Var.dismiss();
+                return;
+            default:
+                s1Var.dismiss();
+                return;
+        }
     }
 
     @Override
-    public void n(y2.i iVar, long j10, long j11, int i10) {
+    public void invoke(Object obj) {
+        long j10;
+        x xVar;
+        switch (this.f17688a) {
+            case 0:
+                ((b) obj).getClass();
+                return;
+            case 1:
+                ((b) obj).getClass();
+                return;
+            case 2:
+                ((b) obj).getClass();
+                return;
+            case 3:
+                ((b) obj).getClass();
+                return;
+            case 4:
+                ((b) obj).getClass();
+                return;
+            case 5:
+                ((b) obj).getClass();
+                return;
+            case 6:
+                ((b) obj).getClass();
+                return;
+            case 7:
+                ((b) obj).getClass();
+                return;
+            case 8:
+                ((b) obj).getClass();
+                return;
+            case 9:
+                ((b) obj).getClass();
+                return;
+            case 10:
+                ((b) obj).getClass();
+                return;
+            case 11:
+                ((b) obj).getClass();
+                return;
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            default:
+                x xVar2 = ((n0) obj).f18953a.f18993n;
+                if (xVar2 != null) {
+                    xVar2.G();
+                    return;
+                }
+                return;
+            case 18:
+                o0 o0Var = (o0) obj;
+                s0 s0Var = o0Var.f18955b;
+                if (o0Var.equals(s0Var.f18989j) && s0Var.f18993n != null) {
+                    p0 p0Var = s0Var.f18995p;
+                    int i3 = p0Var.f18960b;
+                    if (i3 != -1) {
+                        long j11 = ((n) p0Var.f18962e).f18948f / i3;
+                        h0 h0Var = s0Var.f18999t;
+                        h0Var.getClass();
+                        j10 = g2.n0.Y(h0Var.f18866a.getSampleRate(), j11);
+                    } else {
+                        j10 = -9223372036854775807L;
+                    }
+                    s0Var.f18993n.e0(g2.n0.h0(j10), ((n) s0Var.f18995p.f18962e).f18948f, SystemClock.elapsedRealtime() - s0Var.W);
+                    return;
+                }
+                return;
+            case 19:
+                o0 o0Var2 = (o0) obj;
+                o0Var2.getClass();
+                s0.f18979c0.getAndDecrement();
+                x xVar3 = o0Var2.f18955b.f18993n;
+                if (xVar3 != 0) {
+                    int i10 = o0Var2.f18954a.f18944a;
+                    xVar3.v(new Object());
+                    return;
+                }
+                return;
+            case 20:
+                o0 o0Var3 = (o0) obj;
+                s0 s0Var2 = o0Var3.f18955b;
+                if (o0Var3.equals(s0Var2.f18989j) && (xVar = s0Var2.f18993n) != null && s0Var2.O) {
+                    xVar.Z();
+                    return;
+                }
+                return;
+            case 21:
+                o0 o0Var4 = (o0) obj;
+                s0 s0Var3 = o0Var4.f18955b;
+                if (o0Var4.equals(s0Var3.f18989j) && s0Var3.M) {
+                    s0Var3.N = true;
+                    return;
+                }
+                return;
+        }
+    }
+
+    public d(a aVar) {
+        this.f17688a = 4;
+    }
+
+    public d(a aVar, float f10) {
+        this.f17688a = 11;
+    }
+
+    public d(a aVar, int i3) {
+        this.f17688a = 9;
+    }
+
+    public d(a aVar, long j10) {
+        this.f17688a = 2;
+    }
+
+    public d(a aVar, d2.n0 n0Var, int i3) {
+        this.f17688a = 10;
+    }
+
+    public d(a aVar, Object obj, int i3) {
+        this.f17688a = i3;
+    }
+
+    public d(a aVar, boolean z10) {
+        this.f17688a = 6;
+    }
+
+    @Override
+    public void b(Exception exc) {
     }
 }

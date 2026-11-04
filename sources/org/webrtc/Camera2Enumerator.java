@@ -27,10 +27,10 @@ public class Camera2Enumerator implements CameraEnumerator {
         this.cameraManager = (CameraManager) context.getSystemService("camera");
     }
 
-    public static List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates(Range<Integer>[] rangeArr, int i10) {
+    public static List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates(Range<Integer>[] rangeArr, int i3) {
         ArrayList arrayList = new ArrayList();
         for (Range<Integer> range : rangeArr) {
-            arrayList.add(new CameraEnumerationAndroid.CaptureFormat.FramerateRange(range.getLower().intValue() * i10, range.getUpper().intValue() * i10));
+            arrayList.add(new CameraEnumerationAndroid.CaptureFormat.FramerateRange(range.getLower().intValue() * i3, range.getUpper().intValue() * i3));
         }
         return arrayList;
     }
@@ -49,8 +49,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     private CameraCharacteristics getCameraCharacteristics(String str) {
         try {
             return this.cameraManager.getCameraCharacteristics(str);
-        } catch (AndroidException e) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
+        } catch (AndroidException e10) {
+            Logging.e("Camera2Enumerator", "Camera access exception: " + e10);
             return null;
         }
     }
@@ -91,8 +91,8 @@ public class Camera2Enumerator implements CameraEnumerator {
     public String[] getDeviceNames() {
         try {
             return this.cameraManager.getCameraIdList();
-        } catch (AndroidException e) {
-            Logging.e("Camera2Enumerator", "Camera access exception: " + e);
+        } catch (AndroidException e10) {
+            Logging.e("Camera2Enumerator", "Camera access exception: " + e10);
             return new String[0];
         }
     }
@@ -138,9 +138,9 @@ public class Camera2Enumerator implements CameraEnumerator {
                         Range[] rangeArr = (Range[]) cameraCharacteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES);
                         List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates = convertFramerates(rangeArr, getFpsUnitFactor(rangeArr));
                         List<Size> supportedSizes = getSupportedSizes(cameraCharacteristics);
-                        int i10 = 0;
+                        int i3 = 0;
                         for (CameraEnumerationAndroid.CaptureFormat.FramerateRange framerateRange : convertFramerates) {
-                            i10 = Math.max(i10, framerateRange.max);
+                            i3 = Math.max(i3, framerateRange.max);
                         }
                         ArrayList arrayList = new ArrayList();
                         for (Size size : supportedSizes) {
@@ -149,7 +149,7 @@ public class Camera2Enumerator implements CameraEnumerator {
                             } catch (Exception unused) {
                                 j10 = 0;
                             }
-                            int round = j10 == 0 ? i10 : ((int) Math.round(1.0E9d / j10)) * 1000;
+                            int round = j10 == 0 ? i3 : ((int) Math.round(1.0E9d / j10)) * 1000;
                             arrayList.add(new CameraEnumerationAndroid.CaptureFormat(size.width, size.height, 0, round));
                             Logging.d("Camera2Enumerator", "Format: " + size.width + "x" + size.height + "@" + round);
                         }
@@ -157,8 +157,8 @@ public class Camera2Enumerator implements CameraEnumerator {
                         long elapsedRealtime2 = SystemClock.elapsedRealtime();
                         Logging.d("Camera2Enumerator", "Get supported formats for camera index " + str + " done. Time spent: " + (elapsedRealtime2 - elapsedRealtime) + " ms.");
                         return arrayList;
-                    } catch (Exception e) {
-                        Logging.e("Camera2Enumerator", "getCameraCharacteristics()", e);
+                    } catch (Exception e10) {
+                        Logging.e("Camera2Enumerator", "getCameraCharacteristics()", e10);
                         return new ArrayList();
                     }
                 }

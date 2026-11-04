@@ -1,36 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Path;
-import android.graphics.RectF;
-public final class wd0 extends Path {
-    public int f32220a;
-    public int f32221b;
-    public int f32222c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wd0 extends AnimatorListenerAdapter {
+    public final int f39991a;
+    public final xd0 f39992b;
 
-    public final void a(int i10, int i11, int i12) {
-        if (this.f32220a == i10 && this.f32221b == i11 && this.f32222c == i12) {
-            return;
+    public wd0(xd0 xd0Var, int i3) {
+        this.f39991a = i3;
+        this.f39992b = xd0Var;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39991a) {
+            case 0:
+                xd0 xd0Var = this.f39992b;
+                xd0Var.h = false;
+                xd0Var.f40312a = xd0Var.f40314c;
+                xd0Var.invalidate();
+                int i3 = xd0Var.K;
+                if (i3 >= 0) {
+                    xd0Var.b(i3);
+                    xd0Var.K = -1;
+                    return;
+                }
+                return;
+            default:
+                xd0 xd0Var2 = this.f39992b;
+                xd0Var2.f40317n = false;
+                xd0Var2.h = false;
+                xd0Var2.invalidate();
+                int i10 = xd0Var2.K;
+                if (i10 >= 0) {
+                    xd0Var2.b(i10);
+                    xd0Var2.K = -1;
+                }
+                xd0Var2.a();
+                return;
         }
-        rewind();
-        RectF rectF = org.telegram.messenger.i0.P;
-        float f7 = i10 - i12;
-        float f10 = i11 + i12;
-        rectF.set(f7, i11 - i12, i10 + i12, f10);
-        arcTo(rectF, -180.0f, 270.0f, false);
-        float f11 = i12 / 81.0f;
-        float f12 = i10;
-        float f13 = f10 - (3.0f * f11);
-        cubicTo(f12 - (13.0f * f11), f10, f12 - (25.0f * f11), f13, f12 - (36.0f * f11), f10 - (8.42f * f11));
-        float f14 = f10 - f11;
-        cubicTo(f12 - (52.0f * f11), f14, f12 - (56.5f * f11), f14, f12 - (78.02f * f11), f14);
-        cubicTo(f12 - (80.0f * f11), f14, f12 - (81.0f * f11), f13, f12 - (79.52f * f11), f10 - (4.5f * f11));
-        float f15 = f12 - (63.73f * f11);
-        cubicTo(f12 - (78.0f * f11), f10 - (6.0f * f11), f15, f10 - (15.0f * f11), f15, f10 - (31.0f * f11));
-        float f16 = i11;
-        cubicTo(f12 - (74.5f * f11), f10 - (44.75f * f11), f7, (f11 * 18.87f) + f16, f7, f16);
-        close();
-        this.f32220a = i10;
-        this.f32221b = i11;
-        this.f32222c = i12;
     }
 }

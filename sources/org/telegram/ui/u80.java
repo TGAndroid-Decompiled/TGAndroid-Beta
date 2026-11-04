@@ -1,55 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.TLRPC;
-public final class u80 implements org.telegram.messenger.r20 {
-    public final int f41875a;
-    public final LaunchActivity f41876b;
+import java.util.ArrayList;
+public final class u80 implements org.telegram.ui.Components.r4, org.telegram.ui.ActionBar.p1, org.telegram.ui.Components.tt0 {
+    public final int f50015a;
+    public final e90 f50016b;
 
-    public u80(LaunchActivity launchActivity, int i10) {
-        this.f41875a = i10;
-        this.f41876b = launchActivity;
+    public u80(e90 e90Var, int i3) {
+        this.f50015a = i3;
+        this.f50016b = e90Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        org.telegram.ui.ActionBar.k2 lastFragment;
-        int i10 = this.f41875a;
-        LaunchActivity launchActivity = this.f41876b;
-        switch (i10) {
-            case 0:
-                boolean booleanValue = ((Boolean) obj).booleanValue();
-                if (launchActivity.f33384q0 != null && booleanValue && org.telegram.messenger.tc.c() < 100 && (lastFragment = launchActivity.f33384q0.getLastFragment()) != null && !(lastFragment instanceof ab0)) {
-                    int b10 = org.telegram.messenger.tc.b();
-                    org.telegram.ui.Components.cc a02 = org.telegram.ui.Components.cc.a0(lastFragment);
-                    org.telegram.ui.Components.i9 i9Var = new org.telegram.ui.Components.i9(b10 / 100.0f, lastFragment.getThemedColor(org.telegram.ui.ActionBar.t6.Y5));
-                    String L0 = org.telegram.messenger.dd.L0(2131748726, null);
-                    String a03 = org.telegram.messenger.dd.a0("LowPowerEnabledSubtitle", null, 2131748727, String.format("%d%%", Integer.valueOf(b10)));
-                    String L02 = org.telegram.messenger.dd.L0(2131751436, null);
-                    p70 p70Var = new p70(launchActivity, 11);
-                    a02.getClass();
-                    Context W = a02.W();
-                    org.telegram.ui.ActionBar.p6 p6Var = a02.f25078c;
-                    org.telegram.ui.Components.tb tbVar = new org.telegram.ui.Components.tb(W, p6Var);
-                    tbVar.f30618a.setImageDrawable(i9Var);
-                    tbVar.f30619b.setText(L0);
-                    tbVar.f30620c.setText(a03);
-                    org.telegram.ui.Components.ub ubVar = new org.telegram.ui.Components.ub(a02.W(), p6Var, true);
-                    ubVar.e(L02);
-                    ubVar.f30924b = p70Var;
-                    tbVar.setButton(ubVar);
-                    org.telegram.ui.Components.wb b11 = a02.b(tbVar, 2750);
-                    b11.f32201j = 5000;
-                    b11.j();
+    public void L(int i3, int i10, boolean z10) {
+        this.f50016b.a0(i3);
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        e90 e90Var = this.f50016b;
+        e90Var.T.a(e90Var.f44933e);
+        e90Var.finishFragment();
+    }
+
+    @Override
+    public void l(int i3) {
+        switch (this.f50015a) {
+            case 2:
+                e90 e90Var = this.f50016b;
+                ArrayList arrayList = e90Var.P;
+                if (i3 < arrayList.size()) {
+                    e90Var.f44939x.setText(org.telegram.messenger.bd.s(e90Var.getConnectionsManager().getCurrentTime() + ((Integer) arrayList.get(i3)).intValue(), false));
                     return;
                 }
+                e90Var.f44939x.setText("");
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) obj;
-                Pattern pattern = LaunchActivity.D1;
-                org.telegram.messenger.wp.r1(launchActivity.O).u3(null, user, null, 0, null, false, false);
+                e90 e90Var2 = this.f50016b;
+                e90Var2.G.clearFocus();
+                e90Var2.O = true;
+                ArrayList arrayList2 = e90Var2.R;
+                if (i3 < arrayList2.size()) {
+                    e90Var2.G.setText(((Integer) arrayList2.get(i3)).toString());
+                } else {
+                    e90Var2.G.setText("");
+                }
+                e90Var2.O = false;
                 return;
         }
+    }
+
+    @Override
+    public void p() {
+        int i3 = this.f50015a;
+    }
+
+    private final void a() {
+    }
+
+    private final void b() {
     }
 }

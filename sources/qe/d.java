@@ -1,5 +1,14 @@
 package qe;
-public final class d extends ve.e {
-    public boolean f45530g;
-    public c h;
+public interface d {
+    void G();
+
+    void a();
+
+    void o(boolean z10);
+
+    void s1();
+
+    boolean t();
+
+    boolean x(float f10);
 }

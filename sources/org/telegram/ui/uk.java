@@ -1,32 +1,30 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-public final class uk extends ps0 {
-    public uk(ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
+import android.app.Activity;
+import org.telegram.ui.Components.UndoView;
+public final class uk extends org.telegram.ui.Components.a10 {
+    public final wm k1;
+
+    public uk(wm wmVar, Activity activity, org.telegram.ui.ActionBar.d2 d2Var) {
+        super(activity, d2Var);
+        this.k1 = wmVar;
     }
 
     @Override
-    public final void c(Canvas canvas, float f7, float f10, float f11, float f12, float f13) {
-        if (f7 > 0.0f) {
-            View view = this.e;
-            if (view instanceof org.telegram.ui.Cells.q1) {
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-                RectF rectF = org.telegram.messenger.i0.P;
-                rectF.set(f10, (int) Math.max(f12, f11), q1Var.getMeasuredWidth() + f10, (int) Math.min(f13, q1Var.getMeasuredHeight() + f11));
-                canvas.saveLayerAlpha(rectF, (int) (f7 * 255.0f), 31);
-                canvas.translate(f10, f11 + q1Var.getPaddingTop());
-                q1Var.Kb = true;
-                q1Var.h1(canvas);
-                if (q1Var.B3() && q1Var.getCurrentMessagesGroup() == null) {
-                    q1Var.v1(1.0f, canvas, false);
-                }
-                q1Var.Kb = false;
-                canvas.restore();
-            }
+    public final void I0() {
+        wm wmVar = this.k1;
+        wmVar.f8();
+        UndoView undoView = wmVar.N3;
+        if (undoView == null) {
+            return;
         }
+        undoView.j(75, 0L, null);
+        wmVar.getMessagesController().k4(wmVar.f51376k6, "CONVERT_GIGAGROUP");
+    }
+
+    @Override
+    public final void J0() {
+        wm wmVar = this.k1;
+        wmVar.getMessagesController().S(wmVar.getParentActivity(), wmVar.f51292e, wmVar, new x0(this, 21));
     }
 }

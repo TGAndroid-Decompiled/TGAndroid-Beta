@@ -1,41 +1,63 @@
 package r2;
 
-import android.media.MediaCodec;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
-public final class a implements MediaCodec.OnFrameRenderedListener {
-    public final int f46214a;
-    public final a3.m f46215b;
+import android.net.Uri;
+import android.os.SystemClock;
+import g9.g0;
+import g9.g2;
+import g9.t0;
+import java.util.HashMap;
+import org.telegram.ui.Cells.f1;
+public final class a implements u {
+    public final d f54068a;
 
-    public a(l lVar, a3.m mVar, int i10) {
-        this.f46214a = i10;
-        this.f46215b = mVar;
+    public a(d dVar) {
+        this.f54068a = dVar;
     }
 
     @Override
-    public final void onFrameRendered(MediaCodec mediaCodec, long j10, long j11) {
-        switch (this.f46214a) {
-            case 0:
-                a3.m mVar = this.f46215b;
-                Handler handler = mVar.f145a;
-                if (Build.VERSION.SDK_INT < 30) {
-                    handler.sendMessageAtFrontOfQueue(Message.obtain(handler, 0, (int) (j10 >> 32), (int) j10));
-                    return;
-                } else {
-                    mVar.a(j10);
-                    return;
+    public final void a() {
+        this.f54068a.f54086e.remove(this);
+    }
+
+    @Override
+    public final boolean b(Uri uri, e5.u uVar, boolean z10) {
+        c cVar;
+        d dVar = this.f54068a;
+        HashMap hashMap = dVar.d;
+        if (dVar.H == null) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            c cVar2 = (c) hashMap.get(uri);
+            cVar2.getClass();
+            w wVar = cVar2.f54080a;
+            int size = wVar.f54232b.size();
+            g2 it = t0.q(wVar.f54232b.values()).iterator();
+            int i3 = 0;
+            while (it.hasNext()) {
+                Uri uri2 = (Uri) it.next();
+                c cVar3 = (c) hashMap.get(uri2);
+                if (cVar3 != null) {
+                    b bVar = (b) f1.p(cVar3.f54081b, uri2, uri2);
+                    bVar.getClass();
+                    if (elapsedRealtime <= bVar.f54075r) {
+                        i3++;
+                    }
                 }
-            default:
-                a3.m mVar2 = this.f46215b;
-                Handler handler2 = mVar2.f145a;
-                if (Build.VERSION.SDK_INT < 30) {
-                    handler2.sendMessageAtFrontOfQueue(Message.obtain(handler2, 0, (int) (j10 >> 32), (int) j10));
-                    return;
-                } else {
-                    mVar2.a(j10);
-                    return;
+            }
+            int size2 = dVar.f54092x.size();
+            g0 listIterator = dVar.f54092x.listIterator(0);
+            int i10 = 0;
+            while (listIterator.hasNext()) {
+                if (dVar.e((w) listIterator.next(), elapsedRealtime)) {
+                    i10++;
                 }
+            }
+            a3.h hVar = new a3.h(size, i3, size2, i10);
+            dVar.f54085c.getClass();
+            a3.i D4 = kb.a.D4(hVar, uVar);
+            if (D4 != null && (cVar = (c) hashMap.get(uri)) != null) {
+                return c.c(cVar, uri, D4.f93b);
+            }
         }
+        return false;
     }
 }

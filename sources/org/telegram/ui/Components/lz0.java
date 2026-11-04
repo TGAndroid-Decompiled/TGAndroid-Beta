@@ -1,18 +1,21 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class lz0 {
-    public final long f28310a;
-    public final TLRPC.InputFile f28311b;
-    public final TLRPC.InputEncryptedFile f28312c;
-    public final byte[] d;
-    public final byte[] e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class lz0 extends AnimatorListenerAdapter {
+    public final ThemeEditorView.EditorAlert f35935a;
 
-    public lz0(long j10, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
-        this.f28310a = j10;
-        this.f28311b = inputFile;
-        this.f28312c = inputEncryptedFile;
-        this.d = bArr;
-        this.e = bArr2;
+    public lz0(ThemeEditorView.EditorAlert editorAlert) {
+        this.f35935a = editorAlert;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        ThemeEditorView.EditorAlert editorAlert = this.f35935a;
+        editorAlert.k1.setVisibility(4);
+        editorAlert.f31656n1.setVisibility(4);
+        editorAlert.f31660r1.setVisibility(4);
+        editorAlert.f31668z1 = false;
     }
 }

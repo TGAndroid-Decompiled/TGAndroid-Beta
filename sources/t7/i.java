@@ -1,54 +1,52 @@
 package t7;
 
-import com.google.android.gms.internal.cast.i0;
-import java.util.Iterator;
-import java.util.Map;
-public final class i extends f {
-    public final transient i0 f48557c;
-    public final transient Object[] d;
-    public final transient int e;
+import android.os.Parcel;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationResult;
+import org.telegram.ui.Components.nh;
+import org.telegram.ui.Components.y00;
+public final class i extends com.google.android.gms.internal.cast.o implements i8.j {
+    public static final int f54961c = 0;
+    public final androidx.activity.n f54962b;
 
-    public i(i0 i0Var, Object[] objArr, int i10) {
-        this.f48557c = i0Var;
-        this.d = objArr;
-        this.e = i10;
+    public i(androidx.activity.n nVar) {
+        super("com.google.android.gms.location.ILocationCallback", 9);
+        this.f54962b = nVar;
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (obj instanceof Map.Entry) {
-            Map.Entry entry = (Map.Entry) obj;
-            Object key = entry.getKey();
-            Object value = entry.getValue();
-            if (value != null && value.equals(this.f48557c.get(key))) {
+    public final boolean L0(Parcel parcel, int i3) {
+        androidx.activity.n nVar = this.f54962b;
+        if (i3 != 1) {
+            if (i3 != 2) {
+                if (i3 != 3) {
+                    return false;
+                }
+                M0();
                 return true;
             }
+            LocationAvailability locationAvailability = (LocationAvailability) d.a(parcel, LocationAvailability.CREATOR);
+            d.b(parcel);
+            nVar.g().a(new Object());
+            return true;
         }
-        return false;
+        d.b(parcel);
+        nVar.g().a(new y00((LocationResult) d.a(parcel, LocationResult.CREATOR)));
+        return true;
     }
 
-    @Override
-    public final Iterator iterator() {
-        d dVar = this.f48554b;
-        if (dVar == null) {
-            dVar = new h(this);
-            this.f48554b = dVar;
-        }
-        return dVar.listIterator(0);
+    public final void M0() {
+        this.f54962b.g().a(new nh(this, 19));
     }
 
-    @Override
-    public final int l(Object[] objArr) {
-        d dVar = this.f48554b;
-        if (dVar == null) {
-            dVar = new h(this);
-            this.f48554b = dVar;
+    public final void N0(com.google.android.gms.common.api.internal.o oVar) {
+        androidx.activity.n nVar = this.f54962b;
+        synchronized (nVar) {
+            com.google.android.gms.common.api.internal.o oVar2 = (com.google.android.gms.common.api.internal.o) nVar.f1270c;
+            if (oVar2 != oVar) {
+                oVar2.f6726b = null;
+                nVar.f1270c = oVar;
+            }
         }
-        return dVar.l(objArr);
-    }
-
-    @Override
-    public final int size() {
-        return this.e;
     }
 }

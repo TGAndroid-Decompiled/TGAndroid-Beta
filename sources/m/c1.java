@@ -6,13 +6,13 @@ import android.text.TextPaint;
 import android.util.Log;
 import android.widget.TextView;
 public abstract class c1 {
-    public static StaticLayout a(CharSequence charSequence, Layout.Alignment alignment, int i10, int i11, TextView textView, TextPaint textPaint, f1 f1Var) {
-        StaticLayout.Builder obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10);
+    public static StaticLayout a(CharSequence charSequence, Layout.Alignment alignment, int i3, int i10, TextView textView, TextPaint textPaint, f1 f1Var) {
+        StaticLayout.Builder obtain = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i3);
         StaticLayout.Builder hyphenationFrequency = obtain.setAlignment(alignment).setLineSpacing(textView.getLineSpacingExtra(), textView.getLineSpacingMultiplier()).setIncludePad(textView.getIncludeFontPadding()).setBreakStrategy(textView.getBreakStrategy()).setHyphenationFrequency(textView.getHyphenationFrequency());
-        if (i11 == -1) {
-            i11 = Integer.MAX_VALUE;
+        if (i10 == -1) {
+            i10 = Integer.MAX_VALUE;
         }
-        hyphenationFrequency.setMaxLines(i11);
+        hyphenationFrequency.setMaxLines(i10);
         try {
             f1Var.a(obtain, textView);
         } catch (ClassCastException unused) {

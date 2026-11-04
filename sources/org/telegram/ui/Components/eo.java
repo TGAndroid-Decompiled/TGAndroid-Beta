@@ -1,70 +1,83 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class eo extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
-    public final int T;
-    public Object U;
+import java.util.ArrayList;
+import org.telegram.ui.WallpapersListActivity;
+public final class eo implements View.OnClickListener {
+    public final int f33432a;
+    public final vo f33433b;
 
-    public eo(int i10, int i11, int i12, Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(i10, i11, context, p6Var);
-        this.T = i12;
+    public eo(vo voVar, int i3) {
+        this.f33432a = i3;
+        this.f33433b = voVar;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.T) {
+    public final void onClick(View view) {
+        int i3 = this.f33432a;
+        vo voVar = this.f33433b;
+        switch (i3) {
             case 0:
-                canvas.save();
-                Path path = (Path) this.U;
-                path.rewind();
-                RectF rectF = org.telegram.messenger.i0.P;
-                rectF.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path.addRoundRect(rectF, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), Path.Direction.CW);
-                canvas.clipPath(path);
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild;
-            case 1:
-                canvas.save();
-                Path path2 = (Path) this.U;
-                path2.rewind();
-                RectF rectF2 = org.telegram.messenger.i0.P;
-                rectF2.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-                path2.addRoundRect(rectF2, org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(6.0f), Path.Direction.CW);
-                canvas.clipPath(path2);
-                boolean drawChild2 = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild2;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        int i12;
-        switch (this.T) {
-            case 2:
-                z60 z60Var = (z60) this.U;
-                if (this == z60Var.A && (i12 = z60Var.X) > 0) {
-                    i11 = View.MeasureSpec.makeMeasureSpec(Math.min(i12, View.MeasureSpec.getSize(i11)), View.MeasureSpec.getMode(i11));
+                bi biVar = voVar.P1;
+                if (biVar.f32275t2 == biVar.f32215b2) {
+                    voVar.R1.setText(org.telegram.messenger.bd.M0(2131752138, null));
+                    bi biVar2 = voVar.P1;
+                    if (biVar2.f32238j2 == null) {
+                        Context context = biVar2.getContext();
+                        org.telegram.ui.ActionBar.e6 e6Var = biVar2.J0;
+                        ?? thVar = new th(context, e6Var, biVar2);
+                        thVar.f37465r = org.telegram.messenger.g0.L(80.0f);
+                        thVar.f37468x = 3;
+                        ci.j1 j1Var = new ci.j1(thVar, context, e6Var, 14);
+                        thVar.f37464n = j1Var;
+                        ka kaVar = new ka(thVar, context);
+                        thVar.f37467w = kaVar;
+                        j1Var.setAdapter(kaVar);
+                        j1Var.setClipToPadding(false);
+                        j1Var.setItemAnimator(null);
+                        j1Var.setLayoutAnimation(null);
+                        j1Var.setVerticalScrollBarEnabled(false);
+                        org.telegram.ui.ActionBar.r6.m(j1Var, 21, org.telegram.ui.ActionBar.k6.A5, e6Var);
+                        thVar.addView(j1Var, b8.mf.c(-1.0f, -1));
+                        j1Var.setOnScrollListener(new ji(thVar, 1));
+                        fi.g gVar = new fi.g(thVar, thVar.f37465r, 2);
+                        thVar.f37466s = gVar;
+                        gVar.O = new ai.g2(thVar, 9);
+                        j1Var.setLayoutManager(gVar);
+                        biVar2.f32238j2 = thVar;
+                        thVar.setDelegate(new ra(biVar2, 1));
+                    }
+                    biVar2.F1(biVar2.f32238j2);
+                    qi qiVar = voVar.P1.f32238j2;
+                    boolean z10 = voVar.E1;
+                    ka kaVar2 = qiVar.f37467w;
+                    ((ArrayList) kaVar2.f35356e).clear();
+                    WallpapersListActivity.E0((ArrayList) kaVar2.f35356e, z10);
+                    kaVar2.f();
+                    return;
                 }
-                super.onMeasure(i10, i11);
+                voVar.R1.setText(org.telegram.messenger.bd.M0(2131745547, null));
+                bi biVar3 = voVar.P1;
+                biVar3.F1(biVar3.f32215b2);
+                return;
+            case 1:
+                if (voVar.P0()) {
+                    voVar.T0(true);
+                    voVar.Z0(true);
+                    return;
+                }
+                voVar.dismiss();
+                return;
+            case 2:
+                if (voVar.K1 == null) {
+                    voVar.V0(!voVar.E1);
+                    return;
+                }
                 return;
             default:
-                super.onMeasure(i10, i11);
+                voVar.K0(false);
                 return;
         }
-    }
-
-    public eo(z60 z60Var, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
-        super(2131232564, i10, context, p6Var);
-        this.T = 2;
-        this.U = z60Var;
     }
 }

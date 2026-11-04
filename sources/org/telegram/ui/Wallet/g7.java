@@ -1,26 +1,29 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.r20;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.messenger.n10;
 public final class g7 implements Runnable {
-    public final int f34580a;
-    public final r20 f34581b;
+    public final int f42580a;
+    public final AtomicBoolean f42581b;
+    public final n10 f42582c;
 
-    public g7(r20 r20Var, int i10) {
-        this.f34580a = i10;
-        this.f34581b = r20Var;
+    public g7(AtomicBoolean atomicBoolean, n10 n10Var, int i3) {
+        this.f42580a = i3;
+        this.f42581b = atomicBoolean;
+        this.f42582c = n10Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f34580a) {
+        switch (this.f42580a) {
             case 0:
-                this.f34581b.a("Wallet engine is closed");
+                WalletEngine2.lambda$emulateSend$17(this.f42581b, this.f42582c);
                 return;
             case 1:
-                this.f34581b.a(null);
+                WalletEngine2.lambda$emulateSendNFT$21(this.f42581b, this.f42582c);
                 return;
             default:
-                this.f34581b.a(null);
+                WalletEngine2.lambda$emulateSendNFT$22(this.f42581b, this.f42582c);
                 return;
         }
     }

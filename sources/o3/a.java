@@ -1,55 +1,21 @@
 package o3;
 
 import a1.g;
-import b2.r0;
-import b2.t0;
-import b2.v0;
-import e2.x;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-public final class a implements t0 {
-    public final int f14077a;
-    public final String f14078b;
-    public final String f14079c;
-    public final int d;
-    public final int e;
-    public final int f14080f;
-    public final int f14081g;
-    public final byte[] h;
+import d2.p0;
+import d2.r0;
+import d2.v;
+public final class a implements r0 {
+    public final int f20572a;
+    public final String f20573b;
 
-    public a(int i10, String str, String str2, int i11, int i12, int i13, int i14, byte[] bArr) {
-        this.f14077a = i10;
-        this.f14078b = str;
-        this.f14079c = str2;
-        this.d = i11;
-        this.e = i12;
-        this.f14080f = i13;
-        this.f14081g = i14;
-        this.h = bArr;
-    }
-
-    public static a d(x xVar) {
-        int m10 = xVar.m();
-        String n10 = v0.n(xVar.y(xVar.m(), StandardCharsets.US_ASCII));
-        String y3 = xVar.y(xVar.m(), StandardCharsets.UTF_8);
-        int m11 = xVar.m();
-        int m12 = xVar.m();
-        int m13 = xVar.m();
-        int m14 = xVar.m();
-        int m15 = xVar.m();
-        byte[] bArr = new byte[m15];
-        xVar.k(0, m15, bArr);
-        return new a(m10, n10, y3, m11, m12, m13, m14, bArr);
+    public a(int i3, String str) {
+        this.f20572a = i3;
+        this.f20573b = str;
     }
 
     @Override
-    public final b2.x a() {
+    public final v b() {
         return null;
-    }
-
-    @Override
-    public final void b(r0 r0Var) {
-        r0Var.a(this.f14077a, this.h);
     }
 
     @Override
@@ -57,24 +23,14 @@ public final class a implements t0 {
         return null;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && a.class == obj.getClass()) {
-            a aVar = (a) obj;
-            if (this.f14077a == aVar.f14077a && this.f14078b.equals(aVar.f14078b) && this.f14079c.equals(aVar.f14079c) && this.d == aVar.d && this.e == aVar.e && this.f14080f == aVar.f14080f && this.f14081g == aVar.f14081g && Arrays.equals(this.h, aVar.h)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((g.f(g.f((527 + this.f14077a) * 31, 31, this.f14078b), 31, this.f14079c) + this.d) * 31) + this.e) * 31) + this.f14080f) * 31) + this.f14081g) * 31);
-    }
-
     public final String toString() {
-        return "Picture: mimeType=" + this.f14078b + ", description=" + this.f14079c;
+        StringBuilder sb2 = new StringBuilder("Ait(controlCode=");
+        sb2.append(this.f20572a);
+        sb2.append(",url=");
+        return g.s(sb2, this.f20573b, ")");
+    }
+
+    @Override
+    public final void a(p0 p0Var) {
     }
 }

@@ -1,36 +1,25 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-public final class z11 extends View {
-    public final int f43785a;
-    public final Integer f43786b;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.Switch;
+public final class z11 implements View.OnClickListener {
+    public final org.telegram.ui.Components.cg f52503a;
+    public final TLRPC.TL_authorization f52504b;
+    public final b21 f52505c;
 
-    public z11(Context context, Integer num, int i10) {
-        super(context);
-        this.f43785a = i10;
-        this.f43786b = num;
+    public z11(b21 b21Var, org.telegram.ui.Components.cg cgVar, TLRPC.TL_authorization tL_authorization) {
+        this.f52505c = b21Var;
+        this.f52503a = cgVar;
+        this.f52504b = tL_authorization;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f43785a) {
-            case 0:
-                super.onMeasure(i10, i11);
-                Integer num = this.f43786b;
-                if (num != null) {
-                    setPivotX(num.intValue());
-                    return;
-                }
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                Integer num2 = this.f43786b;
-                if (num2 != null) {
-                    setPivotX(num2.intValue());
-                    return;
-                }
-                return;
-        }
+    public final void onClick(View view) {
+        org.telegram.ui.Components.cg cgVar = this.f52503a;
+        Switch r02 = (Switch) cgVar.f32704f;
+        r02.c(!r02.h, true);
+        this.f52504b.call_requests_disabled = !((Switch) cgVar.f32704f).h;
+        b21.J0(this.f52505c);
     }
 }

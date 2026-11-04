@@ -1,21 +1,22 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
+import b8.uf;
 import java.util.ArrayList;
 import java.util.Arrays;
-import org.telegram.messenger.at;
-import org.telegram.messenger.vs;
-import org.telegram.messenger.wp;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.aa0;
-public final class t extends uk0 implements vs {
-    public ArrayList f23062e3;
-    public s4.a0 f23063f3;
-    public int f23064g3;
+import org.telegram.messenger.cs;
+import org.telegram.messenger.hp;
+import org.telegram.messenger.hs;
+import org.telegram.ui.Components.tj0;
+import org.telegram.ui.t80;
+public final class t extends tj0 implements cs {
+    public ArrayList f30366f3;
+    public u4.b0 f30367g3;
+    public int f30368h3;
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == at.f14721h5) {
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        if (i3 == hs.f23242h5) {
             z1();
         }
     }
@@ -23,45 +24,45 @@ public final class t extends uk0 implements vs {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        at.e().c(this, at.f14721h5);
+        hs.e().c(this, hs.f23242h5);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        at.e().n(this, at.f14721h5);
+        hs.e().n(this, hs.f23242h5);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i10);
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
+    public final void onSizeChanged(int i3, int i10, int i11, int i12) {
+        super.onSizeChanged(i3, i10, i11, i12);
         a0();
     }
 
     public final void z1() {
-        ArrayList arrayList = this.f23062e3;
+        ArrayList arrayList = this.f30366f3;
         arrayList.clear();
-        arrayList.addAll(Arrays.asList(aa0.values()));
-        if (wp.r1(this.f23064g3).A3()) {
-            int i10 = 0;
-            while (i10 < arrayList.size()) {
-                if (((aa0) arrayList.get(i10)).e) {
-                    arrayList.remove(i10);
-                    i10--;
+        arrayList.addAll(Arrays.asList(t80.values()));
+        if (hp.s1(this.f30368h3).D3()) {
+            int i3 = 0;
+            while (i3 < arrayList.size()) {
+                if (((t80) arrayList.get(i3)).f49737e) {
+                    arrayList.remove(i3);
+                    i3--;
                 }
-                i10++;
+                i3++;
             }
         }
         getAdapter().f();
         a0();
-        for (int i11 = 0; i11 < arrayList.size(); i11++) {
-            if (w7.j6.a((aa0) arrayList.get(i11))) {
-                this.f23063f3.h1(i11, org.telegram.messenger.i0.L(16.0f));
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (uf.a((t80) arrayList.get(i10))) {
+                this.f30367g3.h1(i10, org.telegram.messenger.g0.L(16.0f));
                 return;
             }
         }

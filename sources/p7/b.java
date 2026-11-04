@@ -1,37 +1,29 @@
 package p7;
+public final class b extends e {
+    public static final b f53341a = new Object();
 
-import android.os.IBinder;
-import android.os.IInterface;
-public final class b extends n6.g {
     @Override
-    public final boolean D() {
-        return true;
+    public final Object a() {
+        throw new IllegalStateException("Optional.get() cannot be called on an absent value");
     }
 
     @Override
-    public final int m() {
-        return 12600000;
+    public final boolean b() {
+        return false;
     }
 
-    @Override
-    public final IInterface r(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
-        if (queryLocalInterface instanceof a) {
-            return (a) queryLocalInterface;
-        }
-        return new a(iBinder);
+        return false;
     }
 
-    @Override
-    public final String w() {
-        return "com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch";
+    public final int hashCode() {
+        return 2040732332;
     }
 
-    @Override
-    public final String x() {
-        return "com.google.android.gms.icing.LIGHTWEIGHT_INDEX_SERVICE";
+    public final String toString() {
+        return "Optional.absent()";
     }
 }

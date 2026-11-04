@@ -1,12 +1,31 @@
 package org.telegram.ui;
-public interface t9 {
-    void L(String str);
 
-    String P0();
+import com.google.android.gms.common.api.Status;
+public final class t9 implements com.google.android.gms.common.api.o {
+    public final int f49740a;
 
-    void X0(org.telegram.messenger.js jsVar);
+    public t9(int i3) {
+        this.f49740a = i3;
+    }
 
-    boolean i1(String str, k9 k9Var);
-
-    void onDismiss();
+    @Override
+    public final void a(Status status) {
+        switch (this.f49740a) {
+            case 0:
+                d1.f.f8000b.decrementAndGet();
+                return;
+            case 1:
+                d1.f.f8000b.decrementAndGet();
+                return;
+            case 2:
+                d1.f.f8000b.decrementAndGet();
+                return;
+            case 3:
+                d1.f.f8000b.decrementAndGet();
+                return;
+            default:
+                d1.f.f8000b.decrementAndGet();
+                return;
+        }
+    }
 }

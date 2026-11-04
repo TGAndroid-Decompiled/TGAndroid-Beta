@@ -1,64 +1,100 @@
 package p1;
 
-import android.os.Build;
-import android.view.View;
-import java.nio.ByteBuffer;
-import r0.h0;
-public abstract class c {
-    public int f44541a;
-    public int f44542b;
-    public int f44543c;
-    public Object d;
+import b8.ib;
+import dd.k;
+import hd.j;
+import java.util.LinkedHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import od.p;
+public final class c extends j implements p {
+    public final int f53061a;
+    public int f53062b;
+    public Object f53063c;
+    public final j d;
 
-    public c() {
-        if (hb.a.f7648b == null) {
-            hb.a.f7648b = new hb.a(17);
+    public c(p pVar, fd.c cVar, int i3) {
+        super(2, cVar);
+        this.f53061a = i3;
+        switch (i3) {
+            case 1:
+                this.d = (j) pVar;
+                super(2, cVar);
+                return;
+            default:
+                this.d = (j) pVar;
+                return;
         }
     }
 
-    public int a(int i10) {
-        if (i10 < this.f44543c) {
-            return ((ByteBuffer) this.d).getShort(this.f44542b + i10);
-        }
-        return 0;
-    }
-
-    public abstract Object b(View view);
-
-    public abstract void c(View view, Object obj);
-
-    public void d(View view, Object obj) {
-        Object tag;
-        r0.b bVar;
-        if (Build.VERSION.SDK_INT >= this.f44542b) {
-            c(view, obj);
-            return;
-        }
-        if (Build.VERSION.SDK_INT >= this.f44542b) {
-            tag = b(view);
-        } else {
-            tag = view.getTag(this.f44541a);
-            if (!((Class) this.d).isInstance(tag)) {
-                tag = null;
-            }
-        }
-        if (e(tag, obj)) {
-            View.AccessibilityDelegate d = h0.d(view);
-            if (d == null) {
-                bVar = null;
-            } else if (d instanceof r0.a) {
-                bVar = ((r0.a) d).f46105a;
-            } else {
-                bVar = new r0.b(d);
-            }
-            if (bVar == null) {
-                bVar = new r0.b();
-            }
-            h0.j(view, bVar);
-            view.setTag(this.f44541a, obj);
-            h0.f(this.f44543c, view);
+    @Override
+    public final fd.c create(Object obj, fd.c cVar) {
+        switch (this.f53061a) {
+            case 0:
+                c cVar2 = new c(this.d, cVar, 0);
+                cVar2.f53063c = obj;
+                return cVar2;
+            default:
+                c cVar3 = new c(this.d, cVar, 1);
+                cVar3.f53063c = obj;
+                return cVar3;
         }
     }
 
-    public abstract boolean e(Object obj, Object obj2);
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        b bVar = (b) obj;
+        fd.c cVar = (fd.c) obj2;
+        switch (this.f53061a) {
+            case 0:
+                return ((c) create(bVar, cVar)).invokeSuspend(k.f8801a);
+            default:
+                return ((c) create(bVar, cVar)).invokeSuspend(k.f8801a);
+        }
+    }
+
+    @Override
+    public final Object invokeSuspend(Object obj) {
+        switch (this.f53061a) {
+            case 0:
+                gd.a aVar = gd.a.f12241a;
+                int i3 = this.f53062b;
+                if (i3 != 0) {
+                    if (i3 == 1) {
+                        ib.b(obj);
+                    } else {
+                        throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                    }
+                } else {
+                    ib.b(obj);
+                    this.f53062b = 1;
+                    obj = this.d.invoke((b) this.f53063c, this);
+                    if (obj == aVar) {
+                        return aVar;
+                    }
+                }
+                b bVar = (b) obj;
+                kotlin.jvm.internal.j.c(bVar, "null cannot be cast to non-null type androidx.datastore.preferences.core.MutablePreferences");
+                ((AtomicBoolean) bVar.f53060b.f36540b).set(true);
+                return bVar;
+            default:
+                gd.a aVar2 = gd.a.f12241a;
+                int i10 = this.f53062b;
+                if (i10 != 0) {
+                    if (i10 == 1) {
+                        b bVar2 = (b) this.f53063c;
+                        ib.b(obj);
+                        return bVar2;
+                    }
+                    throw new IllegalStateException("call to 'resume' before 'invoke' with coroutine");
+                }
+                ib.b(obj);
+                b bVar3 = new b(new LinkedHashMap(((b) this.f53063c).a()), false);
+                this.f53063c = bVar3;
+                this.f53062b = 1;
+                if (this.d.invoke(bVar3, this) != aVar2) {
+                    return bVar3;
+                }
+                return aVar2;
+        }
+    }
 }

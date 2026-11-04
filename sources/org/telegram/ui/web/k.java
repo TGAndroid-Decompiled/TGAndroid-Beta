@@ -1,22 +1,11 @@
 package org.telegram.ui.web;
-public final class k implements Runnable {
-    public final int f42881a;
-    public final m f42882b;
+public final class k {
+    public final String f50918a;
+    public long f50919b;
+    public double f50920c;
 
-    public k(m mVar, int i10) {
-        this.f42881a = i10;
-        this.f42882b = mVar;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f42881a) {
-            case 0:
-                this.f42882b.l0();
-                return;
-            default:
-                this.f42882b.l0();
-                return;
-        }
+    public k(String str, long j10) {
+        this.f50918a = str;
+        this.f50919b = j10;
     }
 }

@@ -1,47 +1,18 @@
 package x7;
-public final class s extends o {
-    public static final s e = new s(0, new Object[0]);
-    public final transient Object[] f53329c;
-    public final transient int d;
-
-    public s(int i10, Object[] objArr) {
-        this.f53329c = objArr;
-        this.d = i10;
-    }
-
-    @Override
-    public final Object get(int i10) {
-        w7.v8.a(i10, this.d);
-        Object obj = this.f53329c[i10];
-        obj.getClass();
-        return obj;
-    }
-
-    @Override
-    public final int l(Object[] objArr) {
-        Object[] objArr2 = this.f53329c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i10);
-        return i10;
-    }
-
-    @Override
-    public final int m() {
-        return this.d;
-    }
-
-    @Override
-    public final int n() {
+public abstract class s {
+    public static int a(int i3) {
+        if (i3 != 0) {
+            if (i3 != 90) {
+                if (i3 != 180) {
+                    if (i3 == 270) {
+                        return 3;
+                    }
+                    throw new IllegalArgumentException(k2.p1.i(i3, "Invalid rotation: "));
+                }
+                return 2;
+            }
+            return 1;
+        }
         return 0;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.f53329c;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
     }
 }

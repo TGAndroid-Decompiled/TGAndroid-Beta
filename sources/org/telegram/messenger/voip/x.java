@@ -1,27 +1,38 @@
 package org.telegram.messenger.voip;
-
-import org.telegram.tgnet.TLRPC;
 public final class x implements Runnable {
-    public final int f18880a;
-    public final VoIPService f18881b;
-    public final TLRPC.Updates f18882c;
-    public final long d;
+    public final int f26076a;
+    public final VoIPService f26077b;
+    public final int f26078c;
 
-    public x(VoIPService voIPService, TLRPC.Updates updates, long j10, int i10) {
-        this.f18880a = i10;
-        this.f18881b = voIPService;
-        this.f18882c = updates;
-        this.d = j10;
+    public x(VoIPService voIPService, int i3, int i10) {
+        this.f26076a = i10;
+        this.f26077b = voIPService;
+        this.f26078c = i3;
     }
 
     @Override
     public final void run() {
-        switch (this.f18880a) {
+        switch (this.f26076a) {
             case 0:
-                this.f18881b.lambda$startConferenceGroupCall$38(this.f18882c, this.d);
+                this.f26077b.lambda$onSignalBarCountChanged$122(this.f26078c);
+                return;
+            case 1:
+                this.f26077b.lambda$onConnectionStateChanged$119(this.f26078c);
+                return;
+            case 2:
+                this.f26077b.lambda$startConferenceGroupCall$36(this.f26078c);
+                return;
+            case 3:
+                this.f26077b.lambda$startGroupCall$25(this.f26078c);
+                return;
+            case 4:
+                this.f26077b.lambda$createGroupInstance$72(this.f26078c);
+                return;
+            case 5:
+                this.f26077b.lambda$startScreenCapture$57(this.f26078c);
                 return;
             default:
-                this.f18881b.lambda$startConferenceGroupCall$46(this.f18882c, this.d);
+                this.f26077b.lambda$updateConnectionState$81(this.f26078c);
                 return;
         }
     }

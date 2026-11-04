@@ -1,80 +1,136 @@
 package h1;
 
-import android.database.DataSetObserver;
-import m.d2;
-import m.z2;
-import org.telegram.messenger.i0;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.vv0;
-import org.telegram.ui.zx0;
-import z4.g;
-public final class a extends DataSetObserver {
-    public final int f7569a;
-    public final Object f7570b;
+import android.database.Cursor;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageView;
+import b5.i;
+import com.google.android.gms.internal.clearcut.c;
+import k2.p1;
+import m.x2;
+import m.y2;
+public abstract class a extends BaseAdapter implements Filterable {
+    public boolean f14094a;
+    public boolean f14095b;
+    public Cursor f14096c;
+    public int d;
+    public c f14097e;
+    public i f14098f;
+    public b h;
 
-    public a(Object obj, int i10) {
-        this.f7569a = i10;
-        this.f7570b = obj;
-    }
+    public abstract void a(View view, Cursor cursor);
 
-    @Override
-    public final void onChanged() {
-        switch (this.f7569a) {
-            case 0:
-                z2 z2Var = (z2) this.f7570b;
-                z2Var.f7571a = true;
-                z2Var.notifyDataSetChanged();
-                return;
-            case 1:
-                d2 d2Var = (d2) this.f7570b;
-                if (d2Var.O.isShowing()) {
-                    d2Var.h();
-                    return;
+    public void b(Cursor cursor) {
+        Cursor cursor2 = this.f14096c;
+        if (cursor == cursor2) {
+            cursor2 = null;
+        } else {
+            if (cursor2 != null) {
+                c cVar = this.f14097e;
+                if (cVar != null) {
+                    cursor2.unregisterContentObserver(cVar);
                 }
-                return;
-            case 2:
-                zx0 zx0Var = (zx0) this.f7570b;
-                ProfileActivity profileActivity = zx0Var.f44251n;
-                int realCount = profileActivity.f33871n0.getRealCount();
-                if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.M.E) {
-                    profileActivity.A0 = 1;
+                i iVar = this.f14098f;
+                if (iVar != null) {
+                    cursor2.unregisterDataSetObserver(iVar);
                 }
-                zx0Var.a(false);
-                zx0Var.b(1.0f);
-                if (profileActivity.f33891q0 != null) {
-                    if (profileActivity.S0.x()) {
-                        i0.h3(new vv0(zx0Var, 6), 500L);
-                        return;
-                    } else {
-                        zx0Var.c();
-                        return;
-                    }
+            }
+            this.f14096c = cursor;
+            if (cursor != null) {
+                c cVar2 = this.f14097e;
+                if (cVar2 != null) {
+                    cursor.registerContentObserver(cVar2);
                 }
-                return;
-            default:
-                ((g) this.f7570b).f();
-                return;
+                i iVar2 = this.f14098f;
+                if (iVar2 != null) {
+                    cursor.registerDataSetObserver(iVar2);
+                }
+                this.d = cursor.getColumnIndexOrThrow("_id");
+                this.f14094a = true;
+                notifyDataSetChanged();
+            } else {
+                this.d = -1;
+                this.f14094a = false;
+                notifyDataSetInvalidated();
+            }
+        }
+        if (cursor2 != null) {
+            cursor2.close();
         }
     }
 
+    public abstract String c(Cursor cursor);
+
     @Override
-    public void onInvalidated() {
-        switch (this.f7569a) {
-            case 0:
-                z2 z2Var = (z2) this.f7570b;
-                z2Var.f7571a = false;
-                z2Var.notifyDataSetInvalidated();
-                return;
-            case 1:
-                ((d2) this.f7570b).dismiss();
-                return;
-            case 2:
-            default:
-                super.onInvalidated();
-                return;
-            case 3:
-                ((g) this.f7570b).f();
-                return;
+    public final int getCount() {
+        Cursor cursor;
+        if (this.f14094a && (cursor = this.f14096c) != null) {
+            return cursor.getCount();
         }
+        return 0;
+    }
+
+    @Override
+    public View getDropDownView(int i3, View view, ViewGroup viewGroup) {
+        if (this.f14094a) {
+            this.f14096c.moveToPosition(i3);
+            if (view == null) {
+                y2 y2Var = (y2) this;
+                view = y2Var.f18789s.inflate(y2Var.f18788r, viewGroup, false);
+            }
+            a(view, this.f14096c);
+            return view;
+        }
+        return null;
+    }
+
+    @Override
+    public final Filter getFilter() {
+        if (this.h == null) {
+            ?? filter = new Filter();
+            filter.f14099a = this;
+            this.h = filter;
+        }
+        return this.h;
+    }
+
+    @Override
+    public final Object getItem(int i3) {
+        Cursor cursor;
+        if (this.f14094a && (cursor = this.f14096c) != null) {
+            cursor.moveToPosition(i3);
+            return this.f14096c;
+        }
+        return null;
+    }
+
+    @Override
+    public final long getItemId(int i3) {
+        Cursor cursor;
+        if (!this.f14094a || (cursor = this.f14096c) == null || !cursor.moveToPosition(i3)) {
+            return 0L;
+        }
+        return this.f14096c.getLong(this.d);
+    }
+
+    @Override
+    public View getView(int i3, View view, ViewGroup viewGroup) {
+        if (this.f14094a) {
+            if (this.f14096c.moveToPosition(i3)) {
+                if (view == null) {
+                    y2 y2Var = (y2) this;
+                    view = y2Var.f18789s.inflate(y2Var.f18787n, viewGroup, false);
+                    view.setTag(new x2(view));
+                    ((ImageView) view.findViewById(2131296420)).setImageResource(y2Var.F);
+                }
+                a(view, this.f14096c);
+                return view;
+            }
+            throw new IllegalStateException(p1.i(i3, "couldn't move cursor to position "));
+        }
+        throw new IllegalStateException("this should only be called when the cursor is valid");
     }
 }

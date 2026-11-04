@@ -1,14 +1,10 @@
 package l9;
-public abstract class b {
-    public static final ad.f a(Throwable exception) {
-        kotlin.jvm.internal.i.e(exception, "exception");
-        return new ad.f(exception);
-    }
+public final class b {
+    public static final b f18128b = new b(new c0.b("Failure occurred while trying to finish a future.", 5));
+    public final Throwable f18129a;
 
-    public static final void b(Object obj) {
-        if (!(obj instanceof ad.f)) {
-            return;
-        }
-        throw ((ad.f) obj).f395a;
+    public b(Throwable th2) {
+        th2.getClass();
+        this.f18129a = th2;
     }
 }

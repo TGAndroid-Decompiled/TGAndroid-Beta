@@ -1,43 +1,27 @@
 package kg;
+public final class w1 implements Runnable {
+    public final y1 f17228a;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.tk0;
-public final class w1 extends tk0 {
-    public final b1 f11321c;
-
-    public w1(b1 b1Var) {
-        this.f11321c = b1Var;
+    public w1(y1 y1Var) {
+        this.f17228a = y1Var;
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return Integer.MAX_VALUE;
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        b1 b1Var = this.f11321c;
-        ArrayList arrayList = b1Var.f11353e3;
-        if (arrayList.isEmpty()) {
+    public final void a() {
+        y1 y1Var = this.f17228a;
+        if (y1Var.R) {
             return;
         }
-        y1 y1Var = (y1) c1Var.f47909a;
-        y1Var.f11345r = (TLRPC.Document) arrayList.get(i10 % arrayList.size());
-        y1Var.f11346s = true;
-        y1Var.a(true ^ b1Var.f11358j3, false, false);
+        y1Var.R = true;
+        y1Var.J.clear();
+        y1Var.K.clear();
+        y1Var.G.clear();
+        y1Var.F.clear();
+        y1Var.H.clear();
+        y1Var.I.clear();
     }
 
     @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        y1 y1Var = new y1(this.f11321c, viewGroup.getContext());
-        y1Var.setLayoutParams(new s4.o0(-1, -2));
-        return new s4.c1(y1Var);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: kg.w1.run():void");
     }
 }

@@ -1,8 +1,8 @@
 package w0;
 public final class c extends d {
-    public c(int i10, CharSequence charSequence) {
+    public c(int i3, CharSequence charSequence) {
         super(charSequence, "androidx.credentials.TYPE_CREATE_CREDENTIAL_PROVIDER_CONFIGURATION_EXCEPTION");
-        switch (i10) {
+        switch (i3) {
             case 2:
                 super(charSequence, "android.credentials.CreateCredentialException.TYPE_UNKNOWN");
                 return;

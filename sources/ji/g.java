@@ -1,32 +1,29 @@
 package ji;
 
-import org.telegram.messenger.i0;
+import org.telegram.messenger.hp;
+import org.telegram.messenger.hs;
 public final class g implements Runnable {
-    public final int f10444a;
-    public final k f10445b;
+    public final int f16306a;
+    public final n f16307b;
 
-    public g(k kVar, int i10) {
-        this.f10444a = i10;
-        this.f10445b = kVar;
-    }
-
-    private final void a() {
-        k kVar = this.f10445b;
-        kVar.g();
-        synchronized (kVar.f10453a) {
-            try {
-                if (kVar.f10470u) {
-                    return;
-                }
-                i0.h3(new g(kVar, 2), 1000L);
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public g(n nVar, int i3) {
+        this.f16306a = i3;
+        this.f16307b = nVar;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ji.g.run():void");
+        int i3 = this.f16306a;
+        n nVar = this.f16307b;
+        switch (i3) {
+            case 0:
+                n.b0(nVar);
+                return;
+            default:
+                hs notificationCenter = nVar.getNotificationCenter();
+                int i10 = hp.C8;
+                notificationCenter.k(2, 8192);
+                return;
+        }
     }
 }

@@ -3,40 +3,40 @@ package org.telegram.ui.ActionBar;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class c extends AnimatorListenerAdapter {
-    public final int f20189a;
-    public final boolean f20190b;
-    public final l f20191c;
+    public final int f27440a;
+    public final boolean f27441b;
+    public final k f27442c;
 
-    public c(l lVar, boolean z10, int i10) {
-        this.f20189a = i10;
-        this.f20191c = lVar;
-        this.f20190b = z10;
+    public c(k kVar, boolean z10, int i3) {
+        this.f27440a = i3;
+        this.f27442c = kVar;
+        this.f27441b = z10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        float f7;
         float f10;
-        switch (this.f20189a) {
+        float f11;
+        switch (this.f27440a) {
             case 0:
-                if (this.f20190b) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                l lVar = this.f20191c;
-                lVar.D1 = f7;
-                lVar.f();
-                return;
-            default:
-                if (this.f20190b) {
+                if (this.f27441b) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
                 }
-                l lVar2 = this.f20191c;
-                lVar2.D1 = f10;
-                lVar2.f();
+                k kVar = this.f27442c;
+                kVar.E1 = f10;
+                kVar.f();
+                return;
+            default:
+                if (this.f27441b) {
+                    f11 = 1.0f;
+                } else {
+                    f11 = 0.0f;
+                }
+                k kVar2 = this.f27442c;
+                kVar2.E1 = f11;
+                kVar2.f();
                 return;
         }
     }

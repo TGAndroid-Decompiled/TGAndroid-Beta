@@ -1,29 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import android.view.View;
-public final class re implements hk0 {
-    public final ChatActivityEnterView f29979a;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class re extends org.telegram.ui.ActionBar.f1 {
+    public final ChatActivityEnterView f37711o;
 
-    public re(ChatActivityEnterView chatActivityEnterView) {
-        this.f29979a = chatActivityEnterView;
+    public re(ChatActivityEnterView chatActivityEnterView, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f37711o = chatActivityEnterView;
     }
 
     @Override
-    public final void f(int i10, View view) {
-        if (view instanceof xh.u) {
-            String command = ((xh.u) view).getCommand();
-            if (!TextUtils.isEmpty(command)) {
-                ChatActivityEnterView chatActivityEnterView = this.f29979a;
-                if (chatActivityEnterView.c()) {
-                    s4.L(chatActivityEnterView.O2, chatActivityEnterView.Q2, new f2(4, this, command), chatActivityEnterView.W3);
-                    return;
-                }
-                org.telegram.ui.un unVar = chatActivityEnterView.P2;
-                if (unVar == null || !unVar.q7(view)) {
-                    s4.Z(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new ag.e0(29, this, command));
-                }
-            }
-        }
+    public final void dismiss() {
+        d(true);
+        this.f37711o.K0.invalidate();
     }
 }

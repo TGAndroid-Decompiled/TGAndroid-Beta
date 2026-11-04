@@ -1,27 +1,36 @@
 package m2;
-public final class q {
-    public final long f12679a;
-    public final long f12680b;
+public final class q implements Runnable {
+    public final int f18964a;
+    public final t f18965b;
+    public final k2.d f18966c;
 
-    public q(long j10, long j11) {
-        this.f12679a = j10;
-        this.f12680b = j11;
+    public q(t tVar, k2.d dVar, int i3) {
+        this.f18964a = i3;
+        this.f18965b = tVar;
+        this.f18966c = dVar;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void run() {
+        switch (this.f18964a) {
+            case 0:
+                t tVar = this.f18965b;
+                k2.d dVar = this.f18966c;
+                synchronized (dVar) {
+                }
+                String str = g2.n0.f11873a;
+                l2.f fVar = ((k2.c0) ((u) tVar.f19007c)).f16459a.f16572s;
+                l2.a S = fVar.S((w2.g0) fVar.d.f17692e);
+                fVar.V(S, 1013, new l2.c(S, dVar, 15));
+                return;
+            default:
+                t tVar2 = this.f18965b;
+                k2.d dVar2 = this.f18966c;
+                String str2 = g2.n0.f11873a;
+                l2.f fVar2 = ((k2.c0) ((u) tVar2.f19007c)).f16459a.f16572s;
+                l2.a U = fVar2.U();
+                fVar2.V(U, 1007, new l2.c(U, dVar2, 10));
+                return;
         }
-        if (obj != null && q.class == obj.getClass()) {
-            q qVar = (q) obj;
-            if (this.f12679a == qVar.f12679a && this.f12680b == qVar.f12680b) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return (((int) this.f12679a) * 31) + ((int) this.f12680b);
     }
 }

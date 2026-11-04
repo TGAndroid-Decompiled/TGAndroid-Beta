@@ -1,15 +1,13 @@
 package wd;
 
-import kotlin.jvm.internal.p;
-public final class e extends ed.c {
-    public p f52827a;
-    public Object f52828b;
-    public int f52829c;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+public final class e {
+    public static final AtomicIntegerFieldUpdater f57481b = AtomicIntegerFieldUpdater.newUpdater(e.class, "notCompletedCount$volatile");
+    public final e0[] f57482a;
+    private volatile int notCompletedCount$volatile;
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f52828b = obj;
-        this.f52829c |= Integer.MIN_VALUE;
-        return n.a(null, null, this);
+    public e(e0[] e0VarArr) {
+        this.f57482a = e0VarArr;
+        this.notCompletedCount$volatile = e0VarArr.length;
     }
 }

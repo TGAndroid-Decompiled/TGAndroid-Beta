@@ -1,73 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.camera.CameraView;
-public final class rl implements CameraView.CameraViewDelegate {
-    public final ChatAttachAlertPhotoLayout f30012a;
+public final class rl extends t8 {
+    public final sl F;
 
-    public rl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f30012a = chatAttachAlertPhotoLayout;
+    public rl(sl slVar, Context context) {
+        super(context);
+        this.F = slVar;
     }
 
     @Override
-    public final void onCameraInit() {
-        int i10;
-        float f7;
-        int i11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f30012a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f23884r0;
-        ImageView[] imageViewArr = chatAttachAlertPhotoLayout.S;
-        String currentFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode();
-        String nextFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getNextFlashMode();
-        if (currentFlashMode != null && nextFlashMode != null) {
-            int i12 = 4;
-            if (currentFlashMode.equals(nextFlashMode)) {
-                for (int i13 = 0; i13 < 2; i13++) {
-                    imageViewArr[i13].setVisibility(4);
-                    imageViewArr[i13].setAlpha(0.0f);
-                    imageViewArr[i13].setTranslationY(0.0f);
-                }
-            } else {
-                ChatAttachAlertPhotoLayout.p0(imageViewArr[0], chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode());
-                for (int i14 = 0; i14 < 2; i14++) {
-                    ImageView imageView2 = imageViewArr[i14];
-                    if (i14 == 0) {
-                        i10 = 0;
-                    } else {
-                        i10 = 4;
-                    }
-                    imageView2.setVisibility(i10);
-                    ImageView imageView3 = imageViewArr[i14];
-                    if (i14 == 0 && chatAttachAlertPhotoLayout.f23853b0) {
-                        f7 = 1.0f;
-                    } else {
-                        f7 = 0.0f;
-                    }
-                    imageView3.setAlpha(f7);
-                    imageViewArr[i14].setTranslationY(0.0f);
-                }
-            }
-            if (chatAttachAlertPhotoLayout.P.isFrontface()) {
-                i11 = 2131230929;
-            } else {
-                i11 = 2131230930;
-            }
-            imageView.setImageResource(i11);
-            if (chatAttachAlertPhotoLayout.P.hasFrontFaceCamera()) {
-                i12 = 0;
-            }
-            imageView.setVisibility(i12);
-            if (!chatAttachAlertPhotoLayout.f23853b0) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                chatAttachAlertPhotoLayout.O = animatorSet;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.P, View.ALPHA, 0.0f, 1.0f));
-                chatAttachAlertPhotoLayout.O.setDuration(180L);
-                chatAttachAlertPhotoLayout.O.addListener(new w5(this, 13));
-                chatAttachAlertPhotoLayout.O.start();
-            }
-        }
+    public final void onMeasure(int i3, int i10) {
+        sl slVar = this.F;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(slVar.f38055w.L0, 1073741824), View.MeasureSpec.makeMeasureSpec(slVar.f38055w.L0, 1073741824));
     }
 }

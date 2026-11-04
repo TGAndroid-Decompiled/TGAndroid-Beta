@@ -1,7 +1,9 @@
 package c3;
 
-import android.net.Uri;
-import java.util.Map;
-public interface r {
-    o[] e(Uri uri, Map map);
+import b8.bc;
+import d2.x1;
+public final class r implements x1 {
+    static {
+        bc.a(new q(0));
+    }
 }

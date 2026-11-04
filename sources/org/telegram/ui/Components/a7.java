@@ -1,48 +1,44 @@
 package org.telegram.ui.Components;
-public final class a7 implements o1.g {
-    public final int f24296a;
-    public final Object f24297b;
 
-    public a7(Object obj, int i10) {
-        this.f24296a = i10;
-        this.f24297b = obj;
+import android.widget.FrameLayout;
+import org.telegram.tgnet.TLRPC;
+public final class a7 implements Runnable {
+    public final int f31744a;
+    public final z7 f31745b;
+    public final TLRPC.TL_error f31746c;
+
+    public a7(z7 z7Var, TLRPC.TL_error tL_error, int i3) {
+        this.f31744a = i3;
+        this.f31745b = z7Var;
+        this.f31746c = tL_error;
     }
 
     @Override
-    public final void a(o1.j jVar, float f7, float f10) {
-        switch (this.f24296a) {
+    public final void run() {
+        FrameLayout frameLayout;
+        org.telegram.ui.ActionBar.e6 e6Var;
+        switch (this.f31744a) {
             case 0:
-                ((w7) this.f24297b).J1.setBufferedProgress(f7 / 1000.0f);
-                return;
+                z7 z7Var = this.f31745b;
+                frameLayout = (FrameLayout) z7Var.f28586b;
+                e6Var = z7Var.J0;
+                break;
             case 1:
-                wb wbVar = (wb) this.f24297b;
-                wbVar.f32206o = (int) f7;
-                wbVar.l();
-                return;
+                z7 z7Var2 = this.f31745b;
+                frameLayout = (FrameLayout) z7Var2.f28586b;
+                e6Var = z7Var2.J0;
+                break;
             case 2:
-                if (Math.abs(f7) > ((bb) this.f24297b).getWidth()) {
-                    jVar.d();
-                    return;
-                }
-                return;
-            case 3:
-                bi biVar = (bi) ((jh) this.f24297b).d;
-                uh uhVar = biVar.f24816t2;
-                if (uhVar == biVar.f24758d2 || uhVar == biVar.f24761e2 || (biVar.f24827w1 && biVar.f24793n3 != null)) {
-                    biVar.O1(1);
-                }
-                biVar.f24816t2.l(biVar.f24766f4);
-                biVar.X0.g();
-                biVar.f21587b.invalidate();
-                return;
-            case 4:
-                kk kkVar = (kk) this.f24297b;
-                kkVar.m0 = f7;
-                kkVar.k0();
-                return;
+                z7 z7Var3 = this.f31745b;
+                frameLayout = (FrameLayout) z7Var3.f28586b;
+                e6Var = z7Var3.J0;
+                break;
             default:
-                ((jb0) this.f24297b).y();
-                return;
+                z7 z7Var4 = this.f31745b;
+                frameLayout = (FrameLayout) z7Var4.f28586b;
+                e6Var = z7Var4.J0;
+                break;
         }
+        org.telegram.ui.Cells.f1.v(frameLayout, e6Var, this.f31746c, false);
     }
 }

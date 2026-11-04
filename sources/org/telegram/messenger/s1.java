@@ -1,136 +1,143 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.util.Pair;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import org.telegram.tgnet.RequestTimeDelegate;
-import org.telegram.tgnet.ResultCallback;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.WriteToSocketDelegate;
-import org.telegram.ui.Components.kn0;
-import org.telegram.ui.rc1;
-public final class s1 implements ResultCallback, WriteToSocketDelegate, OnSuccessListener, OnFailureListener, vh.l5, nc, RequestTimeDelegate, kn0, org.telegram.ui.ActionBar.u1 {
-    public final int f18055a;
-    public final Object f18056b;
+import org.telegram.tgnet.Vector;
+public final class s1 implements RequestDelegate {
+    public final int f25266a;
+    public final Object f25267b;
 
-    public s1(Object obj, int i10) {
-        this.f18055a = i10;
-        this.f18056b = obj;
+    public s1(Object obj, int i3) {
+        this.f25266a = i3;
+        this.f25267b = obj;
     }
 
     @Override
-    public void c(float f7) {
-        kj kjVar = ((pu) this.f18056b).W;
-        if (kjVar == null) {
-            return;
-        }
-        kjVar.f16652b0 = f7;
-        MediaController.B().i0(kjVar, f7);
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        ((org.telegram.ui.un) this.f18056b).presentFragment(new rc1(6, null));
-    }
-
-    @Override
-    public Bitmap i(BitmapFactory.Options options) {
-        ff ffVar = (ff) this.f18056b;
-        String str = ffVar.f14607i;
-        if (str == null) {
-            str = ffVar.I;
-        }
-        return BitmapFactory.decodeFile(str, options);
-    }
-
-    @Override
-    public void onComplete(Object obj) {
-        switch (this.f18055a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        TLRPC.ChannelParticipant channelParticipant;
+        boolean z10;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        switch (this.f25266a) {
+            case 0:
+                g0.h3(new b4(16, (v1) this.f25267b, tLObject));
+                return;
             case 1:
-                g4 g4Var = (g4) this.f18056b;
-                Pair pair = (Pair) obj;
-                if (pair != null) {
-                    g4Var.f15855a.put((Long) pair.first, (Bitmap) pair.second);
+                g0.h3(new b4(2, (z5) this.f25267b, tLObject));
+                return;
+            case 2:
+                i7 i7Var = (i7) this.f25267b;
+                if (tL_error != null) {
+                    i7Var.j(0, false);
+                    return;
+                } else if (tLObject instanceof Vector) {
+                    i7Var.E0 = false;
+                    Vector vector = (Vector) tLObject;
+                    if (!vector.objects.isEmpty()) {
+                        if (i7Var.f23500q0 == null) {
+                            i7Var.f23500q0 = new HashMap();
+                        }
+                        for (int i3 = 0; i3 < vector.objects.size(); i3++) {
+                            TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i3);
+                            i7Var.f23500q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
+                        }
+                    }
+                    for (int i10 = 0; i10 < i7Var.I0.size(); i10++) {
+                        h7 h7Var = (h7) i7Var.I0.get(i10);
+                        if (i7Var.M != null || i7Var.f23461a0 == h7Var.f22893e) {
+                            i7Var.I0.remove(i10);
+                            if (!i7Var.m(h7Var, null)) {
+                                TLRPC.TL_upload_file tL_upload_file = h7Var.f22894f;
+                                if (tL_upload_file != null) {
+                                    tL_upload_file.disableFree = false;
+                                    tL_upload_file.freeResources();
+                                    return;
+                                }
+                                TLRPC.TL_upload_webFile tL_upload_webFile = h7Var.f22895g;
+                                if (tL_upload_webFile != null) {
+                                    tL_upload_webFile.disableFree = false;
+                                    tL_upload_webFile.freeResources();
+                                    return;
+                                }
+                                TLRPC.TL_upload_cdnFile tL_upload_cdnFile = h7Var.h;
+                                if (tL_upload_cdnFile != null) {
+                                    tL_upload_cdnFile.disableFree = false;
+                                    tL_upload_cdnFile.freeResources();
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                    }
                     return;
                 } else {
-                    g4Var.getClass();
+                    i7Var.getClass();
+                    return;
+                }
+            case 3:
+                g0.h3(new a((Runnable) this.f25267b, 23));
+                return;
+            case 4:
+                uo uoVar = (uo) this.f25267b;
+                if (uoVar != null) {
+                    String str = null;
+                    if (tLObject instanceof TLRPC.TL_channels_channelParticipant) {
+                        channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
+                    } else {
+                        channelParticipant = null;
+                    }
+                    if (tL_error == null && channelParticipant != null && !channelParticipant.left) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (channelParticipant != null) {
+                        tL_chatAdminRights = channelParticipant.admin_rights;
+                    } else {
+                        tL_chatAdminRights = null;
+                    }
+                    if (channelParticipant != null) {
+                        str = channelParticipant.rank;
+                    }
+                    uoVar.a(z10, tL_chatAdminRights, str);
+                    return;
+                }
+                return;
+            case 5:
+                g0.h3(new yh(27, (ap) this.f25267b, tLObject));
+                return;
+            case 6:
+                bp bpVar = (bp) this.f25267b;
+                ArrayList arrayList = new ArrayList();
+                if (tLObject instanceof TLRPC.TL_savedMusic) {
+                    ArrayList<TLRPC.Document> arrayList2 = ((TLRPC.TL_savedMusic) tLObject).documents;
+                    int size = arrayList2.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        TLRPC.Document document = arrayList2.get(i11);
+                        i11++;
+                        arrayList.add(bpVar.d(document));
+                    }
+                }
+                g0.h3(new dg(bpVar, tLObject, arrayList, 15));
+                return;
+            case 7:
+                c00 c00Var = (c00) this.f25267b;
+                if (tLObject != null) {
+                    c00Var.getMessagesController().O3((TLRPC.Updates) tLObject, false);
+                    return;
+                } else {
+                    c00Var.getClass();
                     return;
                 }
             default:
-                org.telegram.ui.ActionBar.v3 v3Var = (org.telegram.ui.ActionBar.v3) this.f18056b;
-                Bitmap bitmap = (Bitmap) obj;
-                if (bitmap != null) {
-                    v3Var.a(new wf.a(bitmap, 0, null));
-                    return;
-                } else {
-                    v3Var.a(null);
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public void onError(Throwable th2) {
-        int i10 = this.f18055a;
-        org.telegram.tgnet.l.a(this, th2);
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        ((qc) this.f18056b).p(exc);
-    }
-
-    @Override
-    public void onSuccess(Object obj) {
-        ((rc) this.f18056b).a((String) obj);
-    }
-
-    @Override
-    public void q(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        MusicPlayerService musicPlayerService = (MusicPlayerService) this.f18056b;
-        if (z10) {
-            if (!TextUtils.isEmpty(musicPlayerService.f14504r)) {
-                kj kjVar = MediaController.B().f14483u0;
-                if (kjVar != null) {
-                    musicPlayerService.a(kjVar, true);
-                }
-                musicPlayerService.f14504r = null;
+                h10 h10Var = (h10) this.f25267b;
+                h10Var.getClass();
+                g0.h3(new pq(23, h10Var, tLObject));
                 return;
-            }
-            return;
         }
-        boolean z13 = MusicPlayerService.f14498w;
-    }
-
-    @Override
-    public void run(long j10) {
-        i0.g3(new ld((tz) this.f18056b, j10, 1));
-    }
-
-    @Override
-    public void onError(TLRPC.TL_error tL_error) {
-        int i10 = this.f18055a;
-        org.telegram.tgnet.l.b(this, tL_error);
-    }
-
-    @Override
-    public void run() {
-        Utilities.d.c(new z8((d9) this.f18056b, 3));
-    }
-
-    @Override
-    public void d(float f7) {
-    }
-
-    @Override
-    public void j(ImageReceiver imageReceiver) {
-    }
-
-    @Override
-    public void s(int i10, Drawable drawable) {
     }
 }

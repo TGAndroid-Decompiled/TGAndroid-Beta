@@ -1,3 +1,4 @@
 package x7;
-public abstract class f6 {
+public final class f6 {
+    public Float f58284a;
 }

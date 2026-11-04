@@ -1,79 +1,46 @@
 package org.telegram.ui;
+public final class qc implements Runnable {
+    public final int f48847a;
+    public final ad f48848b;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class qc extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.ActionBar.p6 f40742a;
-    public final u71 f40743b;
-    public final s4.a0 f40744c;
-    public final int d;
-    public int e;
-
-    public qc(int i10, Activity activity, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(activity);
-        this.d = i10;
-        this.f40742a = p6Var;
-        u71 u71Var = new u71(1, activity, p6Var);
-        this.f40743b = u71Var;
-        u71Var.setPadding(org.telegram.messenger.i0.L(6.0f), org.telegram.messenger.i0.L(5.0f), org.telegram.messenger.i0.L(6.0f), 0);
-        u71Var.setClipToPadding(false);
-        u71Var.setAdapter(new oc(this, activity, p6Var, i10));
-        s4.a0 a0Var = new s4.a0();
-        this.f40744c = a0Var;
-        a0Var.j1(0);
-        u71Var.setLayoutManager(a0Var);
-        addView(u71Var, w7.b6.c(-1.0f, -1));
+    public qc(ad adVar, int i3) {
+        this.f48847a = i3;
+        this.f48848b = adVar;
     }
 
-    public final void a(int i10, boolean z10) {
-        org.telegram.messenger.mp mpVar = org.telegram.messenger.wp.r1(this.d).f19231r4;
-        int i11 = 0;
-        if (mpVar != null) {
-            ArrayList arrayList = mpVar.f17166c;
-            int i12 = 0;
-            while (true) {
-                if (i12 >= arrayList.size()) {
-                    break;
-                } else if (((org.telegram.messenger.lp) arrayList.get(i12)).f16986c == i10) {
-                    i11 = i12;
-                    break;
-                } else {
-                    i12++;
+    @Override
+    public final void run() {
+        switch (this.f48847a) {
+            case 0:
+                this.f48848b.m0(true);
+                return;
+            case 1:
+                ad adVar = this.f48848b;
+                adVar.f43741l0 = true;
+                adVar.n0();
+                return;
+            case 2:
+                ad adVar2 = this.f48848b;
+                adVar2.E = null;
+                adVar2.F = null;
+                adVar2.f43743n0 = null;
+                adVar2.f43744o0 = null;
+                adVar2.f43746q0 = null;
+                adVar2.f43745p0 = null;
+                adVar2.f43748r0 = 0.0d;
+                adVar2.k0(false, true);
+                adVar2.f43734f.j(null, null, adVar2.f43754w, null);
+                adVar2.f43742n.setAnimation(adVar2.L);
+                adVar2.L.M(0);
+                return;
+            default:
+                ad adVar3 = this.f48848b;
+                adVar3.f43741l0 = true;
+                if (adVar3.f43758y.length() > 0) {
+                    adVar3.j0(adVar3.f43758y.getText().toString());
                 }
-            }
+                adVar3.n0();
+                return;
         }
-        if (i11 != this.e) {
-            this.e = i11;
-            if (!z10) {
-                this.f40744c.h1(i11, (org.telegram.messenger.i0.f16172q.x - org.telegram.messenger.i0.L(56.0f)) / 2);
-            }
-            org.telegram.messenger.i0.d0(this.f40743b, new nc(0, this, z10));
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getParent() != null) {
-            ViewParent parent = getParent();
-            boolean z10 = true;
-            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                z10 = false;
-            }
-            parent.requestDisallowInterceptTouchEvent(z10);
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void updateColors() {
-        org.telegram.messenger.i0.d0(this.f40743b, new ag.e0(14, this, org.telegram.messenger.wp.r1(this.d).f19231r4));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

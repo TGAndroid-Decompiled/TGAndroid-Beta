@@ -1,71 +1,64 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.HashSet;
-public final class xr extends View implements org.telegram.ui.ActionBar.k6 {
-    public final fe.b f32626a;
-    public final Paint f32627b;
-    public final RectF f32628c;
-    public final RectF d;
-    public final RectF e;
-    public final ho f32629f;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public abstract class xr extends f41 {
+    public final int Q;
+    public final int R;
+    public final ArrayList S;
+    public final ArrayList T;
+    public final ArrayList U;
+    public final ArrayList V;
+    public boolean W;
+    public boolean X;
+    public final ArrayList Y;
+    public boolean Z;
+    public boolean f40464a0;
+    public boolean f40465b0;
+    public int f40466c0;
+    public int f40467d0;
+    public String f40468e0;
+    public final gp f40469f0;
 
-    public xr(Context context) {
-        super(context);
-        this.f32626a = new fe.b(this, gr.h, 380L);
-        this.f32627b = new Paint(1);
-        this.f32628c = new RectF();
-        this.d = new RectF();
-        this.e = new RectF();
-        this.f32629f = new ho(this, 7);
-        updateColors();
+    public xr(tj0 tj0Var, Context context, int i3, int i10) {
+        super(tj0Var, context, i3, 0, false, null, null);
+        this.S = new ArrayList();
+        this.T = new ArrayList();
+        this.U = new ArrayList();
+        this.V = new ArrayList();
+        this.Y = new ArrayList();
+        dm0 dm0Var = (dm0) this;
+        this.f40469f0 = new gp(dm0Var, 6);
+        this.f33700w = new e(dm0Var, 9);
+        this.Q = i3;
+        this.R = i10;
+        O(false);
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.messenger.i0.h3(this.f32629f, 3000L);
+    public final void W(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xr.W(boolean):void");
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.messenger.i0.r(this.f32629f);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7 = this.f32626a.e;
-        RectF rectF = this.d;
-        RectF rectF2 = this.f32628c;
-        RectF rectF3 = this.e;
-        org.telegram.messenger.i0.Z1(rectF, rectF2, f7, rectF3);
-        float W1 = org.telegram.messenger.i0.W1(f7, org.telegram.messenger.i0.L(15.0f), 0);
-        canvas.drawRoundRect(rectF3, W1, W1, this.f32627b);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int currentActionBarHeight = org.telegram.ui.ActionBar.l.getCurrentActionBarHeight();
-        int paddingTop = getPaddingTop();
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(paddingTop + currentActionBarHeight, 1073741824));
-        this.f32628c.set(0.0f, 0.0f, getMeasuredWidth(), paddingTop);
-        int L = ((currentActionBarHeight / 2) + paddingTop) - org.telegram.messenger.i0.L(15.0f);
-        int L2 = org.telegram.messenger.i0.L(12.0f);
-        this.d.set(org.telegram.messenger.i0.L(12.0f), L, org.telegram.messenger.i0.L(30.0f) + L2, org.telegram.messenger.i0.L(30.0f) + L);
-    }
-
-    @Override
-    public final void updateColors() {
-        this.f32627b.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Vl, false));
-        invalidate();
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void X() {
+        ArrayList arrayList = new ArrayList();
+        int i3 = this.Q;
+        ArrayList arrayList2 = org.telegram.messenger.hp.s1(i3).f23169y;
+        int size = arrayList2.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList2.get(i10);
+            i10++;
+            TLRPC.Chat M0 = org.telegram.messenger.hp.s1(i3).M0(Long.valueOf(-((TLRPC.Dialog) obj).f27005id));
+            if (M0 != null && org.telegram.messenger.t3.V(M0) && org.telegram.messenger.t3.t0(M0) && !org.telegram.messenger.t3.r0(M0)) {
+                arrayList.add(M0);
+                if (arrayList.size() >= 100) {
+                    break;
+                }
+            }
+        }
+        ArrayList arrayList3 = this.Y;
+        arrayList3.clear();
+        arrayList3.addAll(arrayList);
     }
 }

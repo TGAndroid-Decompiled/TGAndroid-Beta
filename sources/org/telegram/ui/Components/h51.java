@@ -1,41 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.ui.LaunchActivity;
-public final class h51 extends URLSpan {
-    public final zz0 f26682a;
-    public boolean f26683b;
+import android.content.Context;
+import java.nio.ByteBuffer;
+public final class h51 extends k2.j {
+    public final m51 d;
 
-    public h51(String str, zz0 zz0Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f26682a = zz0Var;
+    public h51(Context context, m51 m51Var) {
+        super(context);
+        this.d = m51Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        if (this.f26683b && (view.getContext() instanceof LaunchActivity)) {
-            ((LaunchActivity) view.getContext()).Y0 = true;
-        }
-        gf.f.o(view.getContext(), Uri.parse(getURL()));
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        boolean z10;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        zz0 zz0Var = this.f26682a;
-        if (zz0Var != null) {
-            zz0Var.a(textPaint);
-            if (textPaint.linkColor == color) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public final m2.s0 a(Context context) {
+        ei.i4 i4Var = new ei.i4(context, 1);
+        ?? obj = new Object();
+        obj.f19553f = this.d;
+        ?? obj2 = new Object();
+        obj2.f3686e = new float[0];
+        obj2.f3683a = 3;
+        obj2.d = new float[513];
+        obj2.f3684b = new float[1024];
+        obj2.f3685c = new float[1024];
+        int[] iArr = new int[1024];
+        obj2.f3687f = iArr;
+        iArr[0] = 0;
+        int i3 = 512;
+        int i10 = 1;
+        while (i10 < 1024) {
+            for (int i11 = 0; i11 < i10; i11++) {
+                int[] iArr2 = (int[]) obj2.f3687f;
+                iArr2[i11 + i10] = iArr2[i11] + i3;
             }
-            textPaint.setUnderlineText(z10);
+            i10 <<= 1;
+            i3 >>= 1;
         }
+        obj2.f3688g = new float[1024];
+        obj2.h = new float[1024];
+        for (int i12 = 0; i12 < 1024; i12++) {
+            double d = (-3.1415927f) / i12;
+            ((float[]) obj2.f3688g)[i12] = (float) Math.sin(d);
+            ((float[]) obj2.h)[i12] = (float) Math.cos(d);
+        }
+        obj.f19551c = obj2;
+        obj.d = new float[1024];
+        obj.f19549a = 0;
+        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
+        obj.f19552e = allocateDirect;
+        allocateDirect.position(0);
+        i4Var.d = new k4.j(new m2.z0(obj));
+        return i4Var.a();
     }
 }

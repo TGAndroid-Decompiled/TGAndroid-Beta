@@ -1,21 +1,15 @@
 package org.telegram.ui;
+public final class xp0 implements Runnable {
+    public final int f52072a;
+    public final Object f52073b;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLObject;
-public final class xp0 extends org.telegram.ui.Components.dx0 {
-    public final yp0 f43443o2;
-
-    public xp0(yp0 yp0Var, Activity activity, org.telegram.messenger.kj kjVar, TLObject tLObject, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(activity, kjVar, tLObject, p6Var);
-        this.f43443o2 = yp0Var;
+    public xp0(Object obj, int i3) {
+        this.f52072a = i3;
+        this.f52073b = obj;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        PhotoViewer photoViewer = this.f43443o2.f43706b;
-        if (photoViewer.U3 == this) {
-            photoViewer.U3 = null;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.xp0.run():void");
     }
 }

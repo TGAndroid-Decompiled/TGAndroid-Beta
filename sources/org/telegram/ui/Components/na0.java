@@ -1,40 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class na0 extends org.telegram.ui.ActionBar.b1 {
-    public final int V;
+import android.graphics.RuntimeShader;
+import java.util.Arrays;
+public final class na0 {
+    public final RuntimeShader f36423a;
+    public final float[] f36424b = {1.0f, 1.0f, 0.0f, 0.0f};
+    public final float[] f36425c = {1.0f, 1.0f, 0.0f, 0.0f};
 
-    public na0(int i10, int i11, Context context, org.telegram.ui.ActionBar.p6 p6Var, boolean z10, boolean z11) {
-        super(i10, context, p6Var, z10, z11);
-        this.V = i11;
+    public na0(int i3) {
+        ma0.c();
+        this.f36423a = ma0.b(org.telegram.messenger.g0.y2(null, i3));
     }
 
-    @Override
-    public final void l() {
-        switch (this.V) {
-            case 0:
-                setBackground(null);
-                return;
-            default:
-                setBackground(null);
-                return;
+    public final void a(float[] fArr) {
+        float[] fArr2 = this.f36424b;
+        if (!Arrays.equals(fArr, fArr2)) {
+            System.arraycopy(fArr, 0, fArr2, 0, 4);
+            this.f36423a.setFloatUniform("transformGradient", fArr2);
         }
     }
 
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.V) {
-            case 0:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
-            default:
-                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
-                    return super.onTouchEvent(motionEvent);
-                }
-                return false;
+    public final void b(float[] fArr) {
+        float[] fArr2 = this.f36425c;
+        if (!Arrays.equals(fArr, fArr2)) {
+            System.arraycopy(fArr, 0, fArr2, 0, 4);
+            this.f36423a.setFloatUniform("transformPattern", fArr2);
         }
     }
 }

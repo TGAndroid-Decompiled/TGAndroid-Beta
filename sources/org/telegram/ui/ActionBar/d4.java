@@ -1,287 +1,256 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.view.ActionMode;
-import android.view.Display;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.transition.TransitionManager;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.view.WindowManager;
-import android.widget.PopupMenu;
-import java.util.Arrays;
-public final class d4 extends ActionMode {
-    public final Context f20253a;
-    public final ActionMode.Callback2 f20254b;
-    public final Menu f20255c;
-    public final Rect d;
-    public final Rect e;
-    public final Rect f20256f;
-    public final int[] f20257g;
-    public final int[] h;
-    public final int[] f20258i;
-    public final Rect f20259j;
-    public final Rect f20260k;
-    public final Rect f20261l;
-    public final View f20262m;
-    public final Point f20263n;
-    public final int f20264o;
-    public final b4 f20265p = new b4(this, 0);
-    public final b4 f20266q = new b4(this, 1);
-    public final s4 f20267r;
-    public final c4 f20268s;
+import android.widget.TextView;
+import b8.mf;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.hs;
+import org.telegram.messenger.ok;
+import org.telegram.messenger.zi;
+import org.telegram.ui.Components.a8;
+import org.telegram.ui.Components.ee0;
+import org.telegram.ui.Components.iv0;
+import org.telegram.ui.Components.nh;
+import org.telegram.ui.Components.xs;
+import org.telegram.ui.web.HttpGetFileTask;
+public final class d4 implements Runnable {
+    public final int f27458a;
+    public final Object f27459b;
 
-    public d4(Context context, ActionMode.Callback2 callback2, View view, s4 s4Var) {
-        this.f20253a = context;
-        this.f20254b = callback2;
-        PopupMenu popupMenu = new PopupMenu(context, null);
-        Menu menu = popupMenu.getMenu();
-        this.f20255c = menu;
-        setType(1);
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public final boolean onMenuItemClick(MenuItem menuItem) {
-                d4 d4Var = d4.this;
-                return d4Var.f20254b.onActionItemClicked(d4Var, menuItem);
-            }
-        });
-        this.d = new Rect();
-        this.e = new Rect();
-        this.f20256f = new Rect();
-        int[] iArr = new int[2];
-        this.f20257g = iArr;
-        this.h = new int[2];
-        this.f20258i = new int[2];
-        this.f20259j = new Rect();
-        this.f20260k = new Rect();
-        this.f20261l = new Rect();
-        this.f20262m = view;
-        view.getLocationOnScreen(iArr);
-        this.f20264o = org.telegram.messenger.i0.L(20.0f);
-        this.f20263n = new Point();
-        s4Var.e = menu;
-        s4Var.f20780g = new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public final boolean onMenuItemClick(MenuItem menuItem) {
-                d4 d4Var = d4.this;
-                return d4Var.f20254b.onActionItemClicked(d4Var, menuItem);
-            }
-        };
-        this.f20267r = s4Var;
-        c4 c4Var = new c4(s4Var);
-        this.f20268s = c4Var;
-        c4Var.f20207b = false;
-        c4Var.f20208c = false;
-        c4Var.d = false;
-        c4Var.e = true;
-        c4Var.f20209f = true;
+    public d4(Object obj, int i3) {
+        this.f27458a = i3;
+        this.f27459b = obj;
     }
 
-    public static boolean a(Rect rect, Rect rect2) {
-        if (rect.left <= rect2.right && rect2.left <= rect.right && rect.top <= rect2.bottom && rect2.top <= rect.bottom) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void b() {
-        Rect rect = this.d;
-        Rect rect2 = this.e;
-        rect2.set(rect);
-        View view = this.f20262m;
-        ViewParent parent = view.getParent();
-        if (parent instanceof ViewGroup) {
-            parent.getChildVisibleRect(view, rect2, null);
-            int[] iArr = this.f20258i;
-            rect2.offset(iArr[0], iArr[1]);
-        } else {
-            int[] iArr2 = this.f20257g;
-            rect2.offset(iArr2[0], iArr2[1]);
-        }
-        Display defaultDisplay = ((WindowManager) this.f20253a.getSystemService(WindowManager.class)).getDefaultDisplay();
-        Point point = this.f20263n;
-        defaultDisplay.getRealSize(point);
-        int i10 = point.x;
-        int i11 = point.y;
-        Rect rect3 = this.f20261l;
-        rect3.set(0, 0, i10, i11);
-        boolean a2 = a(rect2, rect3);
-        Rect rect4 = this.f20256f;
-        if (a2) {
-            Rect rect5 = this.f20259j;
-            if (a(rect2, rect5)) {
-                this.f20268s.d = false;
-                rect2.set(Math.max(rect2.left, rect5.left), Math.max(rect2.top, rect5.top), Math.min(rect2.right, rect5.right), Math.min(rect2.bottom, rect5.bottom + this.f20264o));
-                if (!rect2.equals(rect4)) {
-                    b4 b4Var = this.f20265p;
-                    view.removeCallbacks(b4Var);
-                    c4 c4Var = this.f20268s;
-                    c4Var.getClass();
-                    if (System.currentTimeMillis() - c4Var.f20210g > 500) {
-                        c4Var.f20208c = true;
-                    }
-                    view.postDelayed(b4Var, 50L);
-                    this.f20267r.f20778c.set(rect2);
-                    s4 s4Var = this.f20267r;
-                    if (s4Var.f20777b.f()) {
-                        s4Var.c();
-                    }
+    @Override
+    public final void run() {
+        long j10;
+        switch (this.f27458a) {
+            case 0:
+                i4 i4Var = ((e4) this.f27459b).f27476b;
+                i4Var.f27610c.dismiss();
+                i4Var.f27612f.removeAllViews();
+                return;
+            case 1:
+                ((e4) this.f27459b).f27476b.f27610c.dismiss();
+                return;
+            case 2:
+                i5 i5Var = (i5) this.f27459b;
+                if (!i5Var.f27646y && i5Var.N) {
+                    i5Var.c();
+                    return;
                 }
-                this.f20268s.a();
-                rect4.set(rect2);
-            }
+                return;
+            case 3:
+                Drawable drawable = (Drawable) this.f27459b;
+                k6.d = null;
+                k6.P();
+                if (!k6.f27835b) {
+                    k6.j(drawable);
+                    k6.h(drawable);
+                }
+                hs.e().k(276, new Object[0]);
+                return;
+            case 4:
+                ((CountDownLatch) this.f27459b).countDown();
+                return;
+            case 5:
+                org.telegram.messenger.camera.q.j(1, (d2) this.f27459b);
+                return;
+            case 6:
+                a8 a8Var = (a8) k6.f27897e5.remove((zi) this.f27459b);
+                if (a8Var != null) {
+                    a8Var.f31756i = null;
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.Components.voip.x xVar = (org.telegram.ui.Components.voip.x) this.f27459b;
+                xVar.Q0 = null;
+                xVar.setVisibleParticipant(true);
+                return;
+            case 8:
+                org.telegram.ui.Components.voip.s0 s0Var = (org.telegram.ui.Components.voip.s0) this.f27459b;
+                s0Var.L = false;
+                s0Var.j(false);
+                s0Var.X = false;
+                return;
+            case 9:
+                org.telegram.ui.Components.voip.s0 s0Var2 = (org.telegram.ui.Components.voip.s0) ((ee0) this.f27459b).f33374b;
+                s0Var2.f39595e.invalidate();
+                if (!s0Var2.f39595e.isInLayout()) {
+                    s0Var2.f39595e.requestLayout();
+                    s0Var2.d.requestLayout();
+                    s0Var2.f39596f.requestLayout();
+                    return;
+                }
+                return;
+            case 10:
+                ((org.telegram.ui.Components.voip.q0) this.f27459b).f39538a.a(false);
+                return;
+            case 11:
+                org.telegram.ui.Components.voip.p1 p1Var = (org.telegram.ui.Components.voip.p1) this.f27459b;
+                p1Var.f39512e = false;
+                HashMap hashMap = p1Var.f39509a;
+                ArrayList arrayList = p1Var.f39511c;
+                ArrayList arrayList2 = p1Var.f39510b;
+                if (!arrayList2.isEmpty() || !arrayList.isEmpty()) {
+                    if (p1Var.getParent() != null) {
+                        TransitionManager.beginDelayedTransition(p1Var, p1Var.d);
+                    }
+                    int i3 = 0;
+                    while (i3 < arrayList2.size()) {
+                        org.telegram.ui.Components.voip.o1 o1Var = (org.telegram.ui.Components.voip.o1) arrayList2.get(i3);
+                        int i10 = 0;
+                        while (true) {
+                            if (i10 >= arrayList.size()) {
+                                break;
+                            } else if (o1Var.f39499a.equals(((org.telegram.ui.Components.voip.o1) arrayList.get(i10)).f39499a)) {
+                                arrayList2.remove(i3);
+                                arrayList.remove(i10);
+                                i3--;
+                            } else {
+                                i10++;
+                            }
+                        }
+                        i3++;
+                    }
+                    for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                        p1Var.addView((View) arrayList2.get(i11), mf.t(-2, -2, 1, 4, 0, 0, 4));
+                    }
+                    for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                        p1Var.removeView((View) arrayList.get(i12));
+                    }
+                    hashMap.clear();
+                    for (int i13 = 0; i13 < p1Var.getChildCount(); i13++) {
+                        org.telegram.ui.Components.voip.o1 o1Var2 = (org.telegram.ui.Components.voip.o1) p1Var.getChildAt(i13);
+                        hashMap.put(o1Var2.f39499a, o1Var2);
+                    }
+                    arrayList2.clear();
+                    arrayList.clear();
+                    p1Var.f39512e = true;
+                    org.telegram.messenger.g0.i3(new d4(p1Var, 11), 700L);
+                    Runnable runnable = p1Var.h;
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 12:
+                TextView[] textViewArr = ((org.telegram.ui.Components.voip.w1) this.f27459b).f39662a;
+                TextView textView = textViewArr[0];
+                textViewArr[0] = textViewArr[1];
+                textViewArr[1] = textView;
+                return;
+            case 13:
+                TextView[] textViewArr2 = ((org.telegram.ui.Components.voip.w1) ((kg.g0) this.f27459b).f17032e).f39662a;
+                TextView textView2 = textViewArr2[0];
+                textViewArr2[0] = textViewArr2[1];
+                textViewArr2[1] = textView2;
+                return;
+            case 14:
+                org.telegram.ui.Components.voip.a2 a2Var = (org.telegram.ui.Components.voip.a2) this.f27459b;
+                if (a2Var.getVisibility() == 0) {
+                    a2Var.a();
+                    return;
+                }
+                return;
+            case 15:
+                org.telegram.ui.Components.voip.e2 e2Var = (org.telegram.ui.Components.voip.e2) this.f27459b;
+                e2Var.f39323e = Bitmap.createBitmap(e2Var.getMeasuredWidth(), e2Var.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                new Canvas(e2Var.f39323e).drawText(e2Var.d, e2Var.getMeasuredWidth() / 2, (int) ((e2Var.getMeasuredHeight() / 2) - ((e2Var.f39320a.ascent() + e2Var.f39320a.descent()) / 2.0f)), e2Var.f39320a);
+                e2Var.postInvalidate();
+                return;
+            case 16:
+                ((org.telegram.ui.web.l) this.f27459b).f50934x.f35594g3.O(true);
+                return;
+            case 17:
+                org.telegram.ui.web.j jVar = ((org.telegram.ui.web.n) ((gi.s2) this.f27459b).f13553c).f50956f;
+                if (jVar != null) {
+                    jVar.d();
+                    return;
+                }
+                return;
+            case 18:
+                ((xs) this.f27459b).requestFocus();
+                return;
+            case 19:
+                sf.c.t(((org.telegram.ui.web.p0) this.f27459b).f50986b.f50996e.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                return;
+            case 20:
+                gi.s2 s2Var = (gi.s2) this.f27459b;
+                Utilities.f21389g.c(new iv0(s2Var, new ArrayList(((org.telegram.ui.web.y0) s2Var.f13553c).f51112f), ((org.telegram.ui.web.y0) s2Var.f13553c).f51114r, 12));
+                return;
+            case 21:
+                HttpGetFileTask.a((HttpGetFileTask) this.f27459b);
+                return;
+            case 22:
+                ((org.telegram.ui.Wallet.v5) this.f27459b).invalidateSelf();
+                return;
+            case 23:
+                org.telegram.ui.web.m1 m1Var = (org.telegram.ui.web.m1) this.f27459b;
+                File databasePath = org.telegram.messenger.t0.f25457b.getDatabasePath("webview.db");
+                long j11 = 0;
+                if (databasePath != null && databasePath.exists()) {
+                    j10 = databasePath.length();
+                } else {
+                    j10 = 0;
+                }
+                File databasePath2 = org.telegram.messenger.t0.f25457b.getDatabasePath("webviewCache.db");
+                if (databasePath2 != null && databasePath2.exists()) {
+                    j10 += databasePath2.length();
+                }
+                File file = new File(org.telegram.messenger.t0.f25457b.getApplicationInfo().dataDir, "app_webview");
+                if (file.exists()) {
+                    j10 += org.telegram.ui.web.m1.e0(file, Boolean.FALSE);
+                }
+                File file2 = new File(org.telegram.messenger.t0.f25457b.getApplicationInfo().dataDir, "cache/WebView");
+                if (file2.exists()) {
+                    j10 += org.telegram.ui.web.m1.e0(file2, null);
+                }
+                File file3 = new File(org.telegram.messenger.t0.f25457b.getApplicationInfo().dataDir, "app_webview");
+                if (file3.exists()) {
+                    j11 = org.telegram.ui.web.m1.e0(file3, Boolean.TRUE);
+                }
+                org.telegram.messenger.g0.h3(new ok(m1Var, j10, j11, 2));
+                return;
+            case 24:
+                ((boolean[]) this.f27459b)[0] = true;
+                return;
+            case 25:
+                p2.d dVar = (p2.d) this.f27459b;
+                if (!dVar.f53097c) {
+                    p2.g gVar = dVar.f53096b;
+                    if (gVar != null) {
+                        gVar.b(dVar.f53095a);
+                    }
+                    dVar.d.f53108y.remove(dVar);
+                    dVar.f53097c = true;
+                    return;
+                }
+                return;
+            case 26:
+                ((p2.b) this.f27459b).b(null);
+                return;
+            case 27:
+                ((nh) this.f27459b).B();
+                return;
+            case 28:
+                ((r4.e) this.f27459b).k();
+                return;
+            default:
+                ((r4.g) this.f27459b).f54290n = -1;
+                return;
         }
-        this.f20268s.d = true;
-        rect2.setEmpty();
-        this.f20268s.a();
-        rect4.set(rect2);
-    }
-
-    public final void c() {
-        View view = this.f20262m;
-        int[] iArr = this.f20257g;
-        view.getLocationOnScreen(iArr);
-        View rootView = view.getRootView();
-        int[] iArr2 = this.f20258i;
-        rootView.getLocationOnScreen(iArr2);
-        Rect rect = this.f20259j;
-        view.getGlobalVisibleRect(rect);
-        rect.offset(iArr2[0], iArr2[1]);
-        int[] iArr3 = this.h;
-        boolean equals = Arrays.equals(iArr, iArr3);
-        Rect rect2 = this.f20260k;
-        if (equals && rect.equals(rect2)) {
-            return;
-        }
-        b();
-        iArr3[0] = iArr[0];
-        iArr3[1] = iArr[1];
-        rect2.set(rect);
-    }
-
-    @Override
-    public final void finish() {
-        s4 s4Var = this.f20267r;
-        s4Var.f20776a.removeOnLayoutChangeListener(s4Var.f20784l);
-        q4 q4Var = s4Var.f20777b;
-        if (!q4Var.F) {
-            q4Var.G = false;
-            q4Var.F = true;
-            q4Var.f20701x.cancel();
-            q4Var.f20700w.start();
-            q4Var.D.setEmpty();
-        }
-        c4 c4Var = this.f20268s;
-        c4Var.f20209f = false;
-        s4 s4Var2 = c4Var.f20206a;
-        s4Var2.f20776a.removeOnLayoutChangeListener(s4Var2.f20784l);
-        q4 q4Var2 = s4Var2.f20777b;
-        if (!q4Var2.F) {
-            q4Var2.G = false;
-            q4Var2.F = true;
-            q4Var2.f20701x.cancel();
-            q4Var2.f20700w.start();
-            q4Var2.D.setEmpty();
-        }
-        b4 b4Var = this.f20265p;
-        View view = this.f20262m;
-        view.removeCallbacks(b4Var);
-        view.removeCallbacks(this.f20266q);
-        this.f20254b.onDestroyActionMode(this);
-    }
-
-    @Override
-    public final View getCustomView() {
-        return null;
-    }
-
-    @Override
-    public final Menu getMenu() {
-        return this.f20255c;
-    }
-
-    @Override
-    public final MenuInflater getMenuInflater() {
-        return new MenuInflater(this.f20253a);
-    }
-
-    @Override
-    public final CharSequence getSubtitle() {
-        return null;
-    }
-
-    @Override
-    public final CharSequence getTitle() {
-        return null;
-    }
-
-    @Override
-    public final void hide(long j10) {
-        if (j10 == -1) {
-            j10 = ViewConfiguration.getDefaultActionModeHideDuration();
-        }
-        long min = Math.min(3000L, j10);
-        View view = this.f20262m;
-        b4 b4Var = this.f20266q;
-        view.removeCallbacks(b4Var);
-        if (min <= 0) {
-            b4Var.run();
-            return;
-        }
-        c4 c4Var = this.f20268s;
-        c4Var.f20207b = true;
-        c4Var.a();
-        view.postDelayed(b4Var, min);
-    }
-
-    @Override
-    public final void invalidate() {
-        this.f20254b.onPrepareActionMode(this, this.f20255c);
-        invalidateContentRect();
-    }
-
-    @Override
-    public final void invalidateContentRect() {
-        ActionMode.Callback2 callback2 = this.f20254b;
-        View view = this.f20262m;
-        Rect rect = this.d;
-        callback2.onGetContentRect(this, view, rect);
-        if (rect.left == 0 && rect.right == 0) {
-            rect.left = 1;
-            rect.right = 1;
-        }
-        b();
-    }
-
-    @Override
-    public final void onWindowFocusChanged(boolean z10) {
-        c4 c4Var = this.f20268s;
-        c4Var.e = z10;
-        c4Var.a();
-    }
-
-    @Override
-    public final void setSubtitle(int i10) {
-    }
-
-    @Override
-    public final void setTitle(int i10) {
-    }
-
-    @Override
-    public final void setSubtitle(CharSequence charSequence) {
-    }
-
-    @Override
-    public final void setTitle(CharSequence charSequence) {
-    }
-
-    @Override
-    public final void setCustomView(View view) {
     }
 }

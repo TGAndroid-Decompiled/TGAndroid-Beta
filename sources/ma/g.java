@@ -1,4 +1,6 @@
 package ma;
-public abstract class g implements ka.a {
-    public static final la.a f13045a = new la.a(2);
+public interface g {
+    g d(String str);
+
+    g g(boolean z10);
 }

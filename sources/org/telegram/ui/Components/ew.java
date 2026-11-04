@@ -1,15 +1,34 @@
 package org.telegram.ui.Components;
-public final class ew implements Runnable {
-    public final int f25944a;
-    public final Object f25945b;
 
-    public ew(Object obj, int i10) {
-        this.f25944a = i10;
-        this.f25945b = obj;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ew extends FrameLayout {
+    public final ey f33479a;
+
+    public ew(ey eyVar, Context context) {
+        super(context);
+        this.f33479a = eyVar;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ew.run():void");
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        ey eyVar = this.f33479a;
+        jw jwVar = eyVar.J;
+        gv gvVar = eyVar.W;
+        rw rwVar = eyVar.Q;
+        if (view != rwVar && view != gvVar) {
+            return super.drawChild(canvas, view, j10);
+        }
+        canvas.save();
+        float y9 = jwVar.getY() + jwVar.getMeasuredHeight() + 1.0f;
+        if (view == rwVar && gvVar != null) {
+            y9 = Math.max(y9, gvVar.getY() + gvVar.getMeasuredHeight() + 1.0f);
+        }
+        canvas.clipRect(0.0f, y9 - (org.telegram.messenger.g0.L(16.0f) * eyVar.f33521b.f53840e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        canvas.restore();
+        return drawChild;
     }
 }

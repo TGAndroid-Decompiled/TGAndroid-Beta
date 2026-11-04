@@ -1,16 +1,45 @@
 package vd;
 
-import ld.p;
-public final class c extends kotlin.jvm.internal.h implements p {
-    public static final c f50790a = new kotlin.jvm.internal.h(2, d.class, "createSegment", "createSegment(JLkotlinx/coroutines/channels/ChannelSegment;)Lkotlinx/coroutines/channels/ChannelSegment;", 1);
+import b8.zc;
+import java.util.concurrent.TimeUnit;
+public final class c {
+    public static final c f56560b;
+    public static final c f56561c;
+    public static final c d;
+    public static final c f56562e;
+    public static final c f56563f;
+    public static final c h;
+    public static final c[] f56564n;
+    public final TimeUnit f56565a;
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        long longValue = ((Number) obj).longValue();
-        h hVar = (h) obj2;
-        h hVar2 = d.f50791a;
-        b bVar = hVar.e;
-        kotlin.jvm.internal.i.b(bVar);
-        return new h(longValue, hVar, bVar, 0);
+    static {
+        c cVar = new c("NANOSECONDS", 0, TimeUnit.NANOSECONDS);
+        f56560b = cVar;
+        c cVar2 = new c("MICROSECONDS", 1, TimeUnit.MICROSECONDS);
+        c cVar3 = new c("MILLISECONDS", 2, TimeUnit.MILLISECONDS);
+        f56561c = cVar3;
+        c cVar4 = new c("SECONDS", 3, TimeUnit.SECONDS);
+        d = cVar4;
+        c cVar5 = new c("MINUTES", 4, TimeUnit.MINUTES);
+        f56562e = cVar5;
+        c cVar6 = new c("HOURS", 5, TimeUnit.HOURS);
+        f56563f = cVar6;
+        c cVar7 = new c("DAYS", 6, TimeUnit.DAYS);
+        h = cVar7;
+        c[] cVarArr = {cVar, cVar2, cVar3, cVar4, cVar5, cVar6, cVar7};
+        f56564n = cVarArr;
+        zc.a(cVarArr);
+    }
+
+    public c(String str, int i3, TimeUnit timeUnit) {
+        this.f56565a = timeUnit;
+    }
+
+    public static c valueOf(String str) {
+        return (c) Enum.valueOf(c.class, str);
+    }
+
+    public static c[] values() {
+        return (c[]) f56564n.clone();
     }
 }

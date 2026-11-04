@@ -1,40 +1,46 @@
 package org.telegram.messenger;
 
-import android.util.Pair;
-public final class z2 implements k20 {
-    public final b3 f19658a;
-    public final Pair f19659b;
-    public final Object f19660c;
-    public final int d;
+import com.google.android.gms.tasks.OnFailureListener;
+public final class z2 implements OnFailureListener {
+    public final int f26726a;
+    public final b3 f26727b;
 
-    public z2(b3 b3Var, Pair pair, Object obj, int i10) {
-        this.f19658a = b3Var;
-        this.f19659b = pair;
-        this.f19660c = obj;
-        this.d = i10;
+    public z2(b3 b3Var, int i3) {
+        this.f26726a = i3;
+        this.f26727b = b3Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        Object obj3;
-        Long l4 = (Long) obj;
-        b3 b3Var = this.f19658a;
-        Pair pair = this.f19659b;
-        if (b3Var.i(pair)) {
-            Object obj4 = this.f19660c;
-            if (obj2 != null && b3Var.b(obj4)) {
-                b3Var.a(pair, obj2);
-                obj3 = obj2;
-                i0.g3(new bi.n4((Object) b3Var, (Object) pair, obj3, false, 6));
-            } else {
-                obj3 = obj2;
-            }
-            long longValue = l4.longValue();
-            int i10 = this.d;
-            b3Var.f(i10, obj4, longValue, new a3(b3Var, pair, obj3, i10, obj4));
-            return;
+    public final void onFailure(Exception exc) {
+        String upperCase;
+        String upperCase2;
+        switch (this.f26726a) {
+            case 0:
+                a8.e("CaptchaController: getTasksClient failure", exc);
+                StringBuilder sb2 = new StringBuilder("RECAPTCHA_FAILED_GETCLIENT_EXCEPTION_");
+                if (exc == null) {
+                    upperCase = "NULL";
+                } else if (exc.getMessage() == null) {
+                    upperCase = "MSG_NULL";
+                } else {
+                    upperCase = exc.getMessage().replaceAll(" ", "_").toUpperCase();
+                }
+                sb2.append(upperCase);
+                b3.a(this.f26727b, sb2.toString());
+                return;
+            default:
+                a8.e("CaptchaController: executeTask failure", exc);
+                StringBuilder sb3 = new StringBuilder("RECAPTCHA_FAILED_TASK_EXCEPTION_");
+                if (exc == null) {
+                    upperCase2 = "NULL";
+                } else if (exc.getMessage() == null) {
+                    upperCase2 = "MSG_NULL";
+                } else {
+                    upperCase2 = exc.getMessage().replaceAll(" ", "_").toUpperCase();
+                }
+                sb3.append(upperCase2);
+                b3.a(this.f26727b, sb3.toString());
+                return;
         }
-        b3Var.a(pair, obj2);
-        i0.g3(new bi.n4((Object) b3Var, (Object) pair, obj2, true, 6));
     }
 }

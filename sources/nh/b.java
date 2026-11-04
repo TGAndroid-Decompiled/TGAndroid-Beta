@@ -1,86 +1,139 @@
 package nh;
 
-import android.animation.ValueAnimator;
-import org.telegram.ui.ActionBar.z2;
-import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.d50;
-import org.telegram.ui.Components.vy;
-import org.telegram.ui.Components.wt;
-import org.telegram.ui.Components.xj0;
-import org.telegram.ui.uq;
-public final class b implements ValueAnimator.AnimatorUpdateListener {
-    public final int f13802a;
-    public final int f13803b;
-    public final Object f13804c;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import lg.n;
+import org.telegram.messenger.camera.q;
+import org.telegram.messenger.g0;
+import org.telegram.ui.Components.voip.c2;
+import qe.c;
+public abstract class b extends ViewGroup {
+    public int f20393a;
+    public int f20394b;
+    public final LinkedHashMap f20395c;
 
-    public b(Object obj, int i10, int i11) {
-        this.f13802a = i11;
-        this.f13804c = obj;
-        this.f13803b = i10;
+    public b(Context context) {
+        super(context);
+        this.f20395c = new LinkedHashMap(16);
+    }
+
+    public final void a(c2 c2Var) {
+        addView(c2Var);
+        this.f20395c.put(c2Var, new a(c2Var, new n(this, 16)));
+    }
+
+    public final void b(boolean z10, boolean z11) {
+        boolean z12;
+        int min;
+        int i3;
+        boolean z13;
+        c cVar;
+        int measuredWidth;
+        int i10;
+        int measuredWidth2 = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+        if (measuredWidth2 > measuredHeight) {
+            z12 = false;
+        } else {
+            z12 = true;
+        }
+        if (measuredWidth2 > 0 && measuredHeight > 0) {
+            LinkedHashMap linkedHashMap = this.f20395c;
+            int i11 = 0;
+            for (a aVar : linkedHashMap.values()) {
+                if (aVar.h) {
+                    i11++;
+                }
+            }
+            if (i11 == 0) {
+                i11 = 1;
+            }
+            if (!z12) {
+                int min2 = Math.min(g0.L(50.0f) + Math.max((int) (q.A(50.0f, i11, measuredWidth2) / (i11 + 0.333f)), 0), measuredWidth2 / i11);
+                min = g0.L(76.0f);
+                i3 = (measuredWidth2 - (i11 * min2)) / 2;
+                measuredWidth2 = min2;
+            } else {
+                min = Math.min(g0.L(50.0f) + Math.max((int) (q.A(50.0f, i11, measuredHeight) / (i11 + 0.333f)), 0), measuredHeight / i11);
+                i3 = (measuredHeight - (i11 * min)) / 2;
+            }
+            int i12 = 0;
+            for (Map.Entry entry : linkedHashMap.entrySet()) {
+                a aVar2 = (a) entry.getValue();
+                boolean z14 = aVar2.h;
+                c2 c2Var = aVar2.f20391e;
+                c cVar2 = aVar2.f20389b;
+                qe.a aVar3 = aVar2.f20390c;
+                c cVar3 = aVar2.f20388a;
+                if (z14) {
+                    if (!z12) {
+                        measuredWidth = ((measuredWidth2 - c2Var.getMeasuredWidth()) / 2) + (measuredWidth2 * i12) + i3;
+                        i10 = getMeasuredHeight() - g0.L(76.0f);
+                    } else {
+                        measuredWidth = ((measuredWidth2 - c2Var.getMeasuredWidth()) / 2) + (getMeasuredWidth() - measuredWidth2);
+                        i10 = (min * i12) + i3;
+                    }
+                    if (!z11 && ((z10 || cVar3.h) && aVar3.f53841f)) {
+                        cVar3.a(measuredWidth);
+                    } else {
+                        cVar3.c(measuredWidth);
+                    }
+                    if (!z11 && ((z10 || cVar2.h) && aVar3.f53841f)) {
+                        cVar2.a(i10);
+                    } else {
+                        cVar2.c(i10);
+                    }
+                    i12++;
+                }
+                boolean z15 = aVar2.h;
+                if (!z11 && (z10 || ((cVar = aVar3.h) != null && cVar.h))) {
+                    z13 = true;
+                } else {
+                    z13 = false;
+                }
+                aVar3.a(z15, z13);
+            }
+            invalidate();
+        }
+    }
+
+    public final void c(c2 c2Var, boolean z10, boolean z11) {
+        a aVar = (a) this.f20395c.get(c2Var);
+        if (aVar != null && aVar.h != z10) {
+            aVar.h = z10;
+            b(z11, false);
+        }
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10;
-        switch (this.f13802a) {
-            case 0:
-                i iVar = (i) this.f13804c;
-                iVar.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                iVar.f13850n = floatValue;
-                iVar.setAlpha((int) ((1.0f - floatValue) * this.f13803b));
-                iVar.f13852p = true;
-                iVar.invalidateSelf();
-                return;
-            case 1:
-                z2 z2Var = (z2) this.f13804c;
-                z2Var.getClass();
-                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                z2Var.C0(this.f13803b, intValue, intValue);
-                return;
-            case 2:
-                q1 q1Var = (q1) this.f13804c;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (q1Var.getMessageObject() != null && q1Var.getMessageObject().f1() == this.f13803b) {
-                    q1Var.setSelectedBackgroundProgress(floatValue2);
-                    return;
-                }
-                return;
-            case 3:
-                wt wtVar = (wt) this.f13804c;
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                wtVar.d.setTranslationY(floatValue3);
-                int i11 = this.f13803b;
-                float f7 = i11;
-                float f10 = 1.0f - (floatValue3 / f7);
-                wtVar.R = f10;
-                if (i11 > 0 && ((i10 = wtVar.L) == 2 || i10 == 3)) {
-                    wtVar.d.setAlpha(f10);
-                }
-                wtVar.c(floatValue3 - f7);
-                return;
-            case 4:
-                ((vy) this.f13804c).Q0[this.f13803b] = (int) ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 5:
-                d50 d50Var = (d50) this.f13804c;
-                if (this.f13803b == d50Var.f25400s0) {
-                    float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                    if (floatValue4 >= 0.5f) {
-                        floatValue4 -= 1.0f;
-                    }
-                    d50Var.f25406x.setRotationY(floatValue4 * 180.0f);
-                    return;
-                }
-                return;
-            default:
-                uq uqVar = (uq) this.f13804c;
-                uqVar.getClass();
-                xj0 xj0Var = (xj0) uqVar.d;
-                xj0Var.f32593b.put(this.f13803b, (Float) valueAnimator.getAnimatedValue());
-                xj0Var.d = true;
-                xj0Var.f32592a.invalidate();
-                return;
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            View childAt = getChildAt(i13);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
         }
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        int size = View.MeasureSpec.getSize(i3);
+        int size2 = View.MeasureSpec.getSize(i10);
+        setMeasuredDimension(size, size2);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(g0.L(76.0f), 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(g0.L(76.0f), 1073741824);
+        int childCount = getChildCount();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            getChildAt(i11).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f20393a == size && this.f20394b == size2) {
+            b(true, false);
+            return;
+        }
+        b(false, true);
+        this.f20393a = size;
+        this.f20394b = size2;
     }
 }

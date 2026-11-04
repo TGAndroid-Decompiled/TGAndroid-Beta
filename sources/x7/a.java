@@ -1,83 +1,42 @@
 package x7;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
-public final class a extends e9.j2 {
-    public final Map f53106b;
-    public final f f53107c;
+public final class a extends j9 {
+    public final transient b8.m f58228c;
+    public final transient Object[] d;
+    public final transient int f58229e = 1;
 
-    public a(f fVar, Map map) {
-        super(1);
-        this.f53107c = fVar;
-        map.getClass();
-        this.f53106b = map;
-    }
-
-    @Override
-    public final void clear() {
-        Iterator it = iterator();
-        while (true) {
-            e9.d dVar = (e9.d) it;
-            if (dVar.hasNext()) {
-                dVar.next();
-                dVar.remove();
-            } else {
-                return;
-            }
-        }
+    public a(b8.m mVar, Object[] objArr) {
+        this.f58228c = mVar;
+        this.d = objArr;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f53106b.containsKey(obj);
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        return this.f53106b.keySet().containsAll(collection);
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj && !this.f53106b.keySet().equals(obj)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return this.f53106b.keySet().hashCode();
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        return this.f53106b.isEmpty();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new e9.d(this, this.f53106b.entrySet().iterator(), 5);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        Collection collection = (Collection) this.f53106b.remove(obj);
-        if (collection != null) {
-            int size = collection.size();
-            collection.clear();
-            this.f53107c.d -= size;
-            if (size > 0) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.f58228c.get(key))) {
                 return true;
             }
-            return false;
         }
         return false;
     }
 
     @Override
+    public final int h(Object[] objArr) {
+        return l().h(objArr);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return l().listIterator(0);
+    }
+
+    @Override
     public final int size() {
-        return this.f53106b.size();
+        return this.f58229e;
     }
 }

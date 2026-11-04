@@ -1,32 +1,32 @@
 package ii;
 
-import android.util.SparseArray;
-import bi.t6;
-import j$.util.Comparator$CC;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-public final class a {
-    public SparseArray f8584a;
+import org.telegram.messenger.u10;
+import org.telegram.tgnet.TLRPC;
+public final class a implements u10 {
+    public final int f14768a;
+    public final k f14769b;
 
-    public final void a(HashMap hashMap) {
-        if (this.f8584a == null) {
-            this.f8584a = new SparseArray(hashMap.size());
-            ArrayList arrayList = new ArrayList(hashMap.entrySet());
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new t6(1)));
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                Map.Entry entry = (Map.Entry) obj;
-                this.f8584a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
-            }
-            return;
-        }
-        for (Map.Entry entry2 : hashMap.entrySet()) {
-            this.f8584a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
+    public a(k kVar, int i3) {
+        this.f14768a = i3;
+        this.f14769b = kVar;
+    }
+
+    @Override
+    public final void a(Object obj) {
+        switch (this.f14768a) {
+            case 0:
+                org.telegram.messenger.g0.h3(new e(0, this.f14769b, (TLRPC.UserFull) obj));
+                return;
+            case 1:
+                k kVar = this.f14769b;
+                kVar.f15034b0.commission_permille = ((Integer) obj).intValue();
+                kVar.L0();
+                return;
+            default:
+                k kVar2 = this.f14769b;
+                kVar2.f15034b0.duration_months = ((Integer) kVar2.f15036d0.get(((Integer) obj).intValue())).intValue();
+                kVar2.L0();
+                return;
         }
     }
 }

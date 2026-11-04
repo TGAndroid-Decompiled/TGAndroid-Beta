@@ -1,8 +1,9 @@
 package org.telegram.messenger;
 
-import java.util.List;
-public interface ms {
-    void a(int i10);
-
-    List b();
+import android.graphics.ImageDecoder;
+public final class ms implements ImageDecoder.OnHeaderDecodedListener {
+    @Override
+    public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
+        imageDecoder.setPostProcessor(new Object());
+    }
 }

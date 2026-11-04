@@ -1,130 +1,51 @@
 package xh;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.a30;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.w6;
-import w7.b6;
-public final class f extends FrameLayout {
-    public final p6 f53766a;
-    public final ImageView f53767b;
-    public final FrameLayout.LayoutParams f53768c;
-    public final FrameLayout.LayoutParams d;
-    public final TextView e;
-    public final TextView f53769f;
-    public final TextView h;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import org.telegram.ui.Components.xq;
+public abstract class f {
+    public static final DecelerateInterpolator f58824a = new DecelerateInterpolator();
+    public static final LinearInterpolator f58825b;
+    public static final e f58826c;
+    public static final e d;
+    public static final e f58827e;
+    public static final e f58828f;
+    public static final e f58829g;
+    public static final e h;
+    public static final e f58830i;
+    public static final e f58831j;
+    public static final e f58832k;
+    public static final e f58833l;
+    public static final e f58834m;
+    public static final e f58835n;
+    public static final e f58836o;
+    public static final e f58837p;
+    public static final e f58838q;
+    public static final e f58839r;
+    public static final e f58840s;
+    public static final e f58841t;
 
-    public f(Context context, p6 p6Var) {
-        super(context);
-        this.f53766a = p6Var;
-        ImageView imageView = new ImageView(context);
-        this.f53767b = imageView;
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        FrameLayout.LayoutParams d = b6.d(28, 28.0f, 51, 17.0f, 14.33f, 0.0f, 0.0f);
-        this.f53768c = d;
-        addView(imageView, d);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        FrameLayout.LayoutParams d10 = b6.d(-1, -2.0f, 55, 62.0f, 10.0f, 40.0f, 8.66f);
-        this.d = d10;
-        addView(linearLayout, d10);
-        TextView textView = new TextView(context);
-        this.e = textView;
-        a30.n(textView, 1, 15.0f);
-        a7.V(textView, t6.G6, p6Var);
-        TextView f7 = a30.f(linearLayout, textView, b6.t(-1, -2, 55, 0, 0, 0, 0), context);
-        this.f53769f = f7;
-        f7.setTextSize(1, 14.0f);
-        a7.V(f7, t6.f21331z6, p6Var);
-        linearLayout.addView(f7, b6.t(-1, -2, 55, 0, 3, 0, 0));
-        ImageView imageView2 = new ImageView(context);
-        a7.t(imageView2, t6.M6, p6Var, mode);
-        imageView2.setImageResource(2131232058);
-        imageView2.setScaleType(scaleType);
-        addView(imageView2, b6.d(24, 24.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.h = textView2;
-        textView2.setTextColor(-1);
-        int L = org.telegram.messenger.i0.L(4.0f);
-        int i10 = t6.ik;
-        ShapeDrawable d02 = t6.d0(L, t6.w0(i10, p6Var));
-        w6 N = a7.N(i10);
-        textView2.setBackground(d02);
-        a7.k(textView2, d02, N, null, p6Var);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTypeface(org.telegram.messenger.i0.o());
-        textView2.setPadding(org.telegram.messenger.i0.L(5.0f), 0, org.telegram.messenger.i0.L(4.0f), 0);
-        textView2.setGravity(17);
-        textView2.setVisibility(8);
-        addView(textView2, b6.d(-2, 18.0f, 21, 0.0f, 0.0f, 35.33f, 0.0f));
-    }
-
-    public final void a(int i10, int i11, CharSequence charSequence, CharSequence charSequence2) {
-        ImageView imageView = this.f53767b;
-        imageView.setImageResource(i11);
-        ShapeDrawable d02 = t6.d0(org.telegram.messenger.i0.L(9.0f), i10);
-        int i12 = t6.ik;
-        p6 p6Var = this.f53766a;
-        if (i10 == t6.w0(i12, p6Var)) {
-            a7.C(imageView, d02, a7.N(i12), p6Var);
-        } else {
-            imageView.setBackground(d02);
-        }
-        TextView textView = this.e;
-        textView.setText(charSequence);
-        boolean isEmpty = TextUtils.isEmpty(charSequence2);
-        TextView textView2 = this.f53769f;
-        FrameLayout.LayoutParams layoutParams = this.d;
-        FrameLayout.LayoutParams layoutParams2 = this.f53768c;
-        if (isEmpty) {
-            layoutParams2.topMargin = org.telegram.messenger.i0.L(10.0f);
-            layoutParams2.bottomMargin = org.telegram.messenger.i0.L(10.0f);
-            textView.setTypeface(null);
-            textView.setTextSize(1, 16.0f);
-            layoutParams.topMargin = 0;
-            layoutParams.bottomMargin = 0;
-            layoutParams.gravity = 23;
-            textView2.setVisibility(8);
-            return;
-        }
-        layoutParams2.topMargin = org.telegram.messenger.i0.L(14.33f);
-        layoutParams2.bottomMargin = org.telegram.messenger.i0.L(10.0f);
-        textView.setTypeface(org.telegram.messenger.i0.o());
-        textView.setTextSize(1, 15.0f);
-        layoutParams.topMargin = org.telegram.messenger.i0.L(10.0f);
-        layoutParams.bottomMargin = org.telegram.messenger.i0.L(8.66f);
-        layoutParams.gravity = 55;
-        textView2.setText(charSequence2);
-        textView2.setVisibility(0);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-    }
-
-    public void setPercent(CharSequence charSequence) {
-        boolean isEmpty = TextUtils.isEmpty(charSequence);
-        TextView textView = this.h;
-        if (isEmpty) {
-            textView.setVisibility(8);
-            return;
-        }
-        textView.setVisibility(0);
-        textView.setText(charSequence);
+    static {
+        LinearInterpolator linearInterpolator = new LinearInterpolator();
+        f58825b = linearInterpolator;
+        f58826c = h.i(new DecelerateInterpolator(), 0, 240, 240, false);
+        d = h.i(linearInterpolator, 0, 240, 240, false);
+        f58827e = h.i(new DecelerateInterpolator(), 220, 240, 240, false);
+        f58828f = h.i(new xq(0.7f, -0.6f, 0.4f, 1.0f), 0, 200, 560, false);
+        f58829g = h.i(new xq(0.7f, -0.6f, 0.4f, 1.0f), 200, 400, 560, true);
+        h = h.i(new DecelerateInterpolator(), 0, 150, 560, false);
+        f58830i = h.i(new DecelerateInterpolator(), 210, 425, 560, false);
+        xq xqVar = xq.h;
+        f58831j = h.i(xqVar, 0, 320, 560, false);
+        f58832k = h.i(xqVar, 40, 320, 560, false);
+        f58833l = h.i(new DecelerateInterpolator(), 0, 250, 560, false);
+        f58834m = h.i(xqVar, 0, 460, 560, false);
+        f58835n = h.i(xqVar, 0, 325, 560, false);
+        f58836o = h.i(new DecelerateInterpolator(), 150, 250, 560, false);
+        f58837p = h.i(new DecelerateInterpolator(), 200, 480, 560, false);
+        f58838q = h.i(xqVar, 60, 320, 560, false);
+        f58839r = h.i(xqVar, 90, 380, 560, false);
+        f58840s = h.i(xqVar, 110, 440, 560, false);
+        f58841t = h.i(new DecelerateInterpolator(), 200, 460, 560, false);
     }
 }

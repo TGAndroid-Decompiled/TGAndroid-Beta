@@ -1,35 +1,27 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.DatePicker;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class dq implements DialogInterface.OnShowListener {
-    public final int f36652a;
-    public final View f36653b;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class dq implements m40 {
+    public final r40 f44793a;
+    public final nq f44794b;
 
-    public dq(int i10, View view) {
-        this.f36652a = i10;
-        this.f36653b = view;
+    public dq(nq nqVar, r40 r40Var) {
+        this.f44794b = nqVar;
+        this.f44793a = r40Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f36652a) {
-            case 0:
-                DatePicker datePicker = (DatePicker) this.f36653b;
-                int childCount = datePicker.getChildCount();
-                for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = datePicker.getChildAt(i10);
-                    ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
-                    layoutParams.width = -1;
-                    childAt.setLayoutParams(layoutParams);
-                }
-                return;
-            default:
-                org.telegram.messenger.i0.g3(new yg((EditTextBoldCursor) this.f36653b, 1));
-                return;
+    public final void e(TLRPC.User user) {
+        this.f44794b.y0(user.f27150id, null, null, null, "", true, 0, false);
+    }
+
+    @Override
+    public final void h(int i3, ArrayList arrayList) {
+        if (this.f44793a.getParentActivity() == null) {
+            return;
         }
+        nq nqVar = this.f44794b;
+        nqVar.getMessagesController().o(nqVar.f48074n, nqVar, arrayList, i3, new g3(this, 2), new cq(0), null);
     }
 }

@@ -1,18 +1,12 @@
 package a3;
 
-import android.content.Context;
-import android.os.Handler;
-public final class k {
-    public final Context f131a;
-    public boolean f132b;
-    public r2.k f133c;
-    public long d;
-    public Handler e;
-    public i2.c0 f134f;
-    public int f135g;
+import java.io.IOException;
+public interface k {
+    void M(m mVar, long j10, long j11, int i3);
 
-    public k(Context context) {
-        this.f131a = context;
-        this.f133c = new k0.b(context, false);
-    }
+    void h(m mVar, long j10, long j11);
+
+    i k(m mVar, long j10, long j11, IOException iOException, int i3);
+
+    void q0(m mVar, long j10, long j11, boolean z10);
 }

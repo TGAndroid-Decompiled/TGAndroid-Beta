@@ -1,408 +1,161 @@
 package n2;
 
-import android.media.ResourceBusyException;
-import android.media.UnsupportedSchemeException;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import e9.l0;
-import e9.m2;
-import e9.n0;
-import e9.x1;
-import e9.y0;
-import j$.util.Objects;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
+import b8.zb;
+import d2.h0;
+import d2.k1;
+import d2.m1;
+import d2.n0;
+import d2.n1;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import m4.v0;
-import v7.t6;
-import w7.d0;
-public final class e implements m {
-    public final Set D;
-    public int E;
-    public q F;
-    public b G;
-    public b H;
-    public Looper I;
-    public Handler J;
-    public byte[] K;
-    public j2.l L;
-    public volatile android.support.v4.media.session.q M;
-    public final UUID f13446a;
-    public final v0 f13447b;
-    public final ac.a f13448c;
-    public final HashMap d;
-    public final boolean e;
-    public final int[] f13449f;
-    public final boolean h;
-    public final m5.e f13450n;
-    public final hb.a f13451r;
-    public final l2.f f13452s;
-    public final long f13453w;
-    public final ArrayList f13454x;
-    public final Set f13455y;
+public final class e extends n1 {
+    public final long f20148e;
+    public final long f20149f;
+    public final long f20150g;
+    public final int h;
+    public final long f20151i;
+    public final long f20152j;
+    public final long f20153k;
+    public final o2.c f20154l;
+    public final n0 f20155m;
+    public final h0 f20156n;
 
-    public e(UUID uuid, ac.a aVar, HashMap hashMap, boolean z10, int[] iArr, boolean z11, hb.a aVar2) {
-        uuid.getClass();
-        t6.e("Use C.CLEARKEY_UUID instead", !b2.n.f2121c.equals(uuid));
-        this.f13446a = uuid;
-        this.f13447b = t.d;
-        this.f13448c = aVar;
-        this.d = hashMap;
-        this.e = z10;
-        this.f13449f = iArr;
-        this.h = z11;
-        this.f13451r = aVar2;
-        this.f13450n = new m5.e(1);
-        this.f13452s = new l2.f(this, 4);
-        this.f13454x = new ArrayList();
-        this.f13455y = Collections.newSetFromMap(new IdentityHashMap());
-        this.D = Collections.newSetFromMap(new IdentityHashMap());
-        this.f13453w = 300000L;
-    }
-
-    public static boolean c(b bVar) {
-        bVar.p();
-        if (bVar.f13433p == 1) {
-            f g10 = bVar.g();
-            g10.getClass();
-            Throwable cause = g10.getCause();
-            if ((cause instanceof ResourceBusyException) || d0.c(cause)) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    public static ArrayList f(b2.t tVar, UUID uuid, boolean z10) {
-        ArrayList arrayList = new ArrayList(tVar.d);
-        for (int i10 = 0; i10 < tVar.d; i10++) {
-            b2.s sVar = tVar.f2274a[i10];
-            if ((sVar.a(uuid) || (b2.n.d.equals(uuid) && sVar.a(b2.n.f2121c))) && (sVar.e != null || z10)) {
-                arrayList.add(sVar);
-            }
-        }
-        return arrayList;
-    }
-
-    @Override
-    public final g B0(j jVar, b2.x xVar) {
-        boolean z10 = false;
-        i(false);
-        if (this.E > 0) {
-            z10 = true;
-        }
-        t6.p(z10);
-        this.I.getClass();
-        return b(this.I, jVar, xVar, true);
-    }
-
-    @Override
-    public final void a() {
-        q aVar;
-        i(true);
-        int i10 = this.E;
-        this.E = i10 + 1;
-        if (i10 == 0) {
-            if (this.F == null) {
-                UUID uuid = this.f13446a;
-                this.f13447b.getClass();
-                try {
-                    try {
-                        aVar = new t(uuid);
-                    } catch (y unused) {
-                        e2.a.c("FrameworkMediaDrm", "Failed to instantiate a FrameworkMediaDrm for uuid: " + uuid + ".");
-                        aVar = new kb.a(12);
-                    }
-                    this.F = aVar;
-                    aVar.y(new m2.t(this, 1));
-                } catch (UnsupportedSchemeException e) {
-                    throw new Exception(e);
-                } catch (Exception e7) {
-                    throw new Exception(e7);
-                }
-            } else if (this.f13453w != -9223372036854775807L) {
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f13454x;
-                    if (i11 < arrayList.size()) {
-                        ((b) arrayList.get(i11)).b(null);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-    public final g b(Looper looper, j jVar, b2.x xVar, boolean z10) {
-        ArrayList arrayList;
-        if (this.M == null) {
-            this.M = new android.support.v4.media.session.q(this, looper, 7);
-        }
-        b2.t tVar = xVar.f2426w;
-        int i10 = 0;
-        b bVar = null;
-        if (tVar == null) {
-            int h = b2.v0.h(xVar.f2423s);
-            q qVar = this.F;
-            qVar.getClass();
-            if (qVar.d1() != 2 || !r.f13472c) {
-                int[] iArr = this.f13449f;
-                while (true) {
-                    if (i10 < iArr.length) {
-                        if (iArr[i10] == h) {
-                            break;
-                        }
-                        i10++;
-                    } else {
-                        i10 = -1;
-                        break;
-                    }
-                }
-                if (i10 != -1 && qVar.d1() != 1) {
-                    b bVar2 = this.G;
-                    if (bVar2 == null) {
-                        l0 l0Var = n0.f6390b;
-                        b e = e(x1.e, true, null, z10);
-                        this.f13454x.add(e);
-                        this.G = e;
-                    } else {
-                        bVar2.b(null);
-                    }
-                    return this.G;
-                }
-            }
-            return null;
-        }
-        if (this.K == null) {
-            arrayList = f(tVar, this.f13446a, false);
-            if (arrayList.isEmpty()) {
-                Exception exc = new Exception("Media does not support uuid: " + this.f13446a);
-                e2.a.d("DefaultDrmSessionMgr", "DRM error", exc);
-                if (jVar != null) {
-                    jVar.d(exc);
-                }
-                return new n(new f(6003, exc));
-            }
-        } else {
-            arrayList = null;
-        }
-        if (!this.e) {
-            bVar = this.H;
-        } else {
-            ArrayList arrayList2 = this.f13454x;
-            int size = arrayList2.size();
-            int i11 = 0;
-            while (true) {
-                if (i11 >= size) {
-                    break;
-                }
-                Object obj = arrayList2.get(i11);
-                i11++;
-                b bVar3 = (b) obj;
-                if (Objects.equals(bVar3.f13421a, arrayList)) {
-                    bVar = bVar3;
-                    break;
-                }
-            }
-        }
-        if (bVar == null) {
-            b e7 = e(arrayList, false, jVar, z10);
-            if (!this.e) {
-                this.H = e7;
-            }
-            this.f13454x.add(e7);
-            return e7;
-        }
-        bVar.b(jVar);
-        return bVar;
-    }
-
-    public final b d(List list, boolean z10, j jVar) {
-        this.F.getClass();
-        q qVar = this.F;
-        byte[] bArr = this.K;
-        Looper looper = this.I;
-        looper.getClass();
-        j2.l lVar = this.L;
-        lVar.getClass();
-        b bVar = new b(this.f13446a, qVar, this.f13450n, this.f13452s, list, this.h | z10, z10, bArr, this.d, this.f13448c, looper, this.f13451r, lVar);
-        bVar.b(jVar);
-        if (this.f13453w != -9223372036854775807L) {
-            bVar.b(null);
-        }
-        return bVar;
-    }
-
-    public final b e(List list, boolean z10, j jVar, boolean z11) {
-        b d = d(list, z10, jVar);
-        boolean c10 = c(d);
-        long j10 = this.f13453w;
-        Set set = this.D;
-        if (c10 && !set.isEmpty()) {
-            m2 it = y0.u(set).iterator();
-            while (it.hasNext()) {
-                ((g) it.next()).a(null);
-            }
-            d.a(jVar);
-            if (j10 != -9223372036854775807L) {
-                d.a(null);
-            }
-            d = d(list, z10, jVar);
-        }
-        if (c(d) && z11) {
-            Set set2 = this.f13455y;
-            if (!set2.isEmpty()) {
-                m2 it2 = y0.u(set2).iterator();
-                while (it2.hasNext()) {
-                    ((d) it2.next()).release();
-                }
-                if (!set.isEmpty()) {
-                    m2 it3 = y0.u(set).iterator();
-                    while (it3.hasNext()) {
-                        ((g) it3.next()).a(null);
-                    }
-                }
-                d.a(jVar);
-                if (j10 != -9223372036854775807L) {
-                    d.a(null);
-                }
-                return d(list, z10, jVar);
-            }
-        }
-        return d;
-    }
-
-    @Override
-    public final void g(Looper looper, j2.l lVar) {
+    public e(long j10, long j11, long j12, int i3, long j13, long j14, long j15, o2.c cVar, n0 n0Var, h0 h0Var) {
         boolean z10;
-        synchronized (this) {
-            try {
-                Looper looper2 = this.I;
-                if (looper2 == null) {
-                    this.I = looper;
-                    this.J = new Handler(looper);
-                } else {
-                    if (looper2 == looper) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    t6.p(z10);
-                    this.J.getClass();
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        this.L = lVar;
-    }
-
-    public final void h() {
-        if (this.F != null && this.E == 0 && this.f13454x.isEmpty() && this.f13455y.isEmpty()) {
-            q qVar = this.F;
-            qVar.getClass();
-            qVar.release();
-            this.F = null;
-        }
-    }
-
-    public final void i(boolean z10) {
-        if (z10 && this.I == null) {
-            e2.a.m("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed before setPlayer(), possibly on the wrong thread.", new IllegalStateException());
-            return;
-        }
-        Thread currentThread = Thread.currentThread();
-        Looper looper = this.I;
-        looper.getClass();
-        if (currentThread != looper.getThread()) {
-            e2.a.m("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed on the wrong thread.\nCurrent thread: " + Thread.currentThread().getName() + "\nExpected thread: " + this.I.getThread().getName(), new IllegalStateException());
-        }
-    }
-
-    @Override
-    public final l p(j jVar, b2.x xVar) {
-        boolean z10;
-        if (this.E > 0) {
+        boolean z11 = cVar.d;
+        if (h0Var != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        t6.p(z10);
-        this.I.getClass();
-        d dVar = new d(this, jVar);
-        Handler handler = this.J;
-        handler.getClass();
-        handler.post(new mh.k(1, dVar, xVar));
-        return dVar;
+        zb.p(z11 == z10);
+        this.f20148e = j10;
+        this.f20149f = j11;
+        this.f20150g = j12;
+        this.h = i3;
+        this.f20151i = j13;
+        this.f20152j = j14;
+        this.f20153k = j15;
+        this.f20154l = cVar;
+        this.f20155m = n0Var;
+        this.f20156n = h0Var;
     }
 
     @Override
-    public final void release() {
-        i(true);
-        int i10 = this.E - 1;
-        this.E = i10;
-        if (i10 != 0) {
-            return;
+    public final int b(Object obj) {
+        int intValue;
+        if (!(obj instanceof Integer) || (intValue = ((Integer) obj).intValue() - this.h) < 0 || intValue >= h()) {
+            return -1;
         }
-        if (this.f13453w != -9223372036854775807L) {
-            ArrayList arrayList = new ArrayList(this.f13454x);
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                ((b) arrayList.get(i11)).a(null);
+        return intValue;
+    }
+
+    @Override
+    public final k1 f(int i3, k1 k1Var, boolean z10) {
+        String str;
+        zb.j(i3, h());
+        Integer num = null;
+        o2.c cVar = this.f20154l;
+        if (z10) {
+            str = cVar.b(i3).f20540a;
+        } else {
+            str = null;
+        }
+        if (z10) {
+            num = Integer.valueOf(this.h + i3);
+        }
+        k1Var.getClass();
+        k1Var.h(str, num, 0, cVar.d(i3), g2.n0.S(cVar.b(i3).f20541b - cVar.b(0).f20541b) - this.f20151i, d2.c.f8039c, false);
+        return k1Var;
+    }
+
+    @Override
+    public final int h() {
+        return this.f20154l.f20522m.size();
+    }
+
+    @Override
+    public final Object l(int i3) {
+        zb.j(i3, h());
+        return Integer.valueOf(this.h + i3);
+    }
+
+    @Override
+    public final m1 m(int i3, m1 m1Var, long j10) {
+        boolean z10;
+        long j11;
+        boolean z11;
+        boolean z12;
+        long j12;
+        i c2;
+        zb.j(i3, 1);
+        o2.c cVar = this.f20154l;
+        boolean z13 = cVar.d;
+        long j13 = this.f20153k;
+        if (z13 && cVar.f20515e != -9223372036854775807L && cVar.f20513b == -9223372036854775807L) {
+            long j14 = 0;
+            if (j10 > 0) {
+                j13 += j10;
+                if (j13 > this.f20152j) {
+                    z10 = true;
+                    z11 = false;
+                    j13 = -9223372036854775807L;
+                    j11 = -9223372036854775807L;
+                    Object obj = m1.f8199q;
+                    if (!cVar.d && cVar.f20515e != j11 && cVar.f20513b == j11) {
+                        z12 = z10;
+                    } else {
+                        z12 = z11;
+                    }
+                    m1Var.b(obj, this.f20155m, cVar, this.f20148e, this.f20149f, this.f20150g, true, z12, this.f20156n, j13, this.f20152j, 0, h() - 1, this.f20151i);
+                    return m1Var;
+                }
             }
-        }
-        m2 it = y0.u(this.f13455y).iterator();
-        while (it.hasNext()) {
-            ((d) it.next()).release();
-        }
-        h();
-    }
-
-    @Override
-    public final int t0(b2.x xVar) {
-        i(false);
-        q qVar = this.F;
-        qVar.getClass();
-        int d12 = qVar.d1();
-        b2.t tVar = xVar.f2426w;
-        if (tVar == null) {
-            int h = b2.v0.h(xVar.f2423s);
+            long j15 = this.f20151i + j13;
+            long d = cVar.d(0);
             int i10 = 0;
+            while (i10 < cVar.f20522m.size() - 1 && j15 >= d) {
+                j15 -= d;
+                i10++;
+                d = cVar.d(i10);
+            }
+            o2.h b10 = cVar.b(i10);
+            List list = b10.f20542c;
+            z10 = true;
+            int size = list.size();
+            j11 = -9223372036854775807L;
+            int i11 = 0;
             while (true) {
-                int[] iArr = this.f13449f;
-                if (i10 < iArr.length) {
-                    if (iArr[i10] == h) {
+                if (i11 < size) {
+                    j12 = j14;
+                    if (((o2.a) list.get(i11)).f20505b == 2) {
                         break;
                     }
-                    i10++;
+                    i11++;
+                    j14 = j12;
                 } else {
-                    i10 = -1;
+                    j12 = j14;
+                    i11 = -1;
                     break;
                 }
             }
-            if (i10 == -1) {
-                return 0;
+            if (i11 != -1 && (c2 = ((o2.m) ((o2.a) b10.f20542c.get(i11)).f20506c.get(0)).c()) != null && c2.H(d) != j12) {
+                j13 = (c2.b(c2.s(j15, d)) + j13) - j15;
             }
-        } else if (this.K == null) {
-            UUID uuid = this.f13446a;
-            if (f(tVar, uuid, true).isEmpty()) {
-                if (tVar.d == 1 && tVar.f2274a[0].a(b2.n.f2121c)) {
-                    e2.a.l("DefaultDrmSessionMgr", "DrmInitData only contains common PSSH SchemeData. Assuming support for: " + uuid);
-                }
-                return 1;
-            }
-            String str = tVar.f2276c;
-            if (str != null && !"cenc".equals(str) && (!"cbcs".equals(str) ? "cbc1".equals(str) || "cens".equals(str) : Build.VERSION.SDK_INT < 25)) {
-                return 1;
-            }
+        } else {
+            z10 = true;
+            j11 = -9223372036854775807L;
         }
-        return d12;
+        z11 = false;
+        Object obj2 = m1.f8199q;
+        if (!cVar.d) {
+        }
+        z12 = z11;
+        m1Var.b(obj2, this.f20155m, cVar, this.f20148e, this.f20149f, this.f20150g, true, z12, this.f20156n, j13, this.f20152j, 0, h() - 1, this.f20151i);
+        return m1Var;
+    }
+
+    @Override
+    public final int o() {
+        return 1;
     }
 }

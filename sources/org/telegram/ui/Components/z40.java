@@ -1,52 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.os.SystemClock;
-public final class z40 implements Runnable {
-    public final int f32992a;
-    public final d50 f32993b;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class z40 extends m70 {
+    public final d50 N;
 
-    public z40(d50 d50Var, int i10) {
-        this.f32992a = i10;
-        this.f32993b = d50Var;
+    public z40(d50 d50Var, Context context, org.telegram.ui.ActionBar.d2 d2Var, org.telegram.ui.ActionBar.t2 t2Var, boolean z10) {
+        super(context, d2Var, t2Var, false, z10);
+        this.N = d50Var;
     }
 
     @Override
-    public final void run() {
-        li.w0 w0Var;
-        int i10 = this.f32992a;
-        d50 d50Var = this.f32993b;
-        switch (i10) {
-            case 0:
-                li.w0 w0Var2 = d50Var.Q;
-                if (w0Var2 != null && w0Var2.f12299a == 3) {
-                    long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
-                    long j10 = d50Var.F0;
-                    if (j10 == 0 || elapsedRealtimeNanos - j10 >= 70000000) {
-                        d50Var.D();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 1:
-                int i11 = d50.K0;
-                d50Var.t();
-                return;
-            default:
-                int i12 = d50.K0;
-                li.x0 x0Var = d50Var.O;
-                if (x0Var != null && (w0Var = d50Var.Q) != null) {
-                    if (w0Var.f12299a == 3) {
-                        d50Var.w();
-                        return;
-                    } else if (w0Var.e) {
-                        x0Var.p();
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void e(SpannableStringBuilder spannableStringBuilder) {
+        i50 i50Var = this.N.f32935c;
+        org.telegram.ui.ActionBar.j2 j2Var = i50Var.f28589c;
+        int i3 = i50.f34598f2;
+        ac Q = new fc(j2Var, i50Var.J0).Q(2131624028, 36, spannableStringBuilder);
+        Q.f31800r = false;
+        Q.k(true);
     }
 }

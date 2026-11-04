@@ -1,17 +1,12 @@
 package x7;
-public final class c6 implements ja.d {
-    public static final c6 f53128a = new Object();
-
-    static {
-        sc.e.v(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, new z(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+public abstract class c6 {
+    public static final Exception a(x0.a aVar, String str, Exception exc) {
+        if (exc instanceof y0.a) {
+            return new y0.a(aVar, str);
         }
-        throw new ClassCastException();
+        if (exc instanceof y0.b) {
+            return new y0.b(aVar, str);
+        }
+        throw new Exception();
     }
 }

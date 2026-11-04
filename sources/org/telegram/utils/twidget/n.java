@@ -2,26 +2,26 @@ package org.telegram.utils.twidget;
 
 import java.util.ArrayList;
 public final class n {
-    public final ArrayList f44428a = new ArrayList();
+    public final ArrayList f52935a = new ArrayList();
 
-    public final synchronized boolean a(int i10, int i11, boolean z10) {
-        int i12 = 0;
+    public final synchronized boolean a(int i3, int i10, boolean z10) {
+        int i11 = 0;
         while (true) {
-            if (i12 >= this.f44428a.size()) {
+            if (i11 >= this.f52935a.size()) {
                 break;
             }
-            int[] iArr = (int[]) this.f44428a.get(i12);
-            if (iArr[0] != i10) {
-                i12++;
-            } else if (iArr[1] == i11 && iArr[2] == z10 && i12 == 0) {
+            int[] iArr = (int[]) this.f52935a.get(i11);
+            if (iArr[0] != i3) {
+                i11++;
+            } else if (iArr[1] == i10 && iArr[2] == z10 && i11 == 0) {
                 return false;
             } else {
-                this.f44428a.remove(i12);
+                this.f52935a.remove(i11);
             }
         }
-        this.f44428a.add(0, new int[]{i10, i11, z10 ? 1 : 0});
-        while (this.f44428a.size() > 4) {
-            ArrayList arrayList = this.f44428a;
+        this.f52935a.add(0, new int[]{i3, i10, z10 ? 1 : 0});
+        while (this.f52935a.size() > 4) {
+            ArrayList arrayList = this.f52935a;
             arrayList.remove(arrayList.size() - 1);
         }
         return true;

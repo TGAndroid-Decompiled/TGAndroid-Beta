@@ -1,258 +1,76 @@
 package g2;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
-import android.content.res.Resources;
-import android.net.Uri;
-import android.text.TextUtils;
-import e2.l0;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.channels.FileChannel;
-import java.util.List;
-public final class b0 extends c {
-    public final Context f7279a;
-    public n f7280b;
-    public AssetFileDescriptor f7281c;
-    public FileInputStream d;
-    public long e;
-    public boolean f7282f;
+import android.os.SystemClock;
+import d2.k1;
+import d2.n1;
+import j$.util.Objects;
+public final class b0 {
+    public long f11802a;
+    public long f11803b;
+    public long f11804c;
+    public int d;
+    public boolean f11805e;
+    public int f11806f;
+    public int f11807g;
+    public Object h;
+    public final Object f11808i;
 
-    public b0(Context context) {
-        super(false);
-        this.f7279a = context.getApplicationContext();
+    public b0(f0 f0Var, int i3) {
+        this.f11808i = f0Var;
+        this.d = i3;
     }
 
-    @Deprecated
-    public static Uri buildRawResourceUri(int i10) {
-        return Uri.parse("rawresource:///" + i10);
+    public void a() {
+        Object l10;
+        int i3 = this.d;
+        f0 f0Var = (f0) this.f11808i;
+        j0 j0Var = (j0) f0Var.f11837f;
+        k2.i0 i0Var = (k2.i0) f0Var.f11833a;
+        if (i0Var.h() == 2 && i0Var.u() && i0Var.t0() == 0) {
+            n1 y02 = i0Var.y0();
+            if (y02.p()) {
+                l10 = null;
+            } else {
+                l10 = y02.l(i0Var.B());
+            }
+            int k02 = i0Var.k0();
+            int M = i0Var.M();
+            long b02 = i0Var.b0();
+            long max = Math.max(0L, i0Var.q() - Math.max(0L, b02 - i0Var.N0()));
+            if (l10 != null && k02 == -1) {
+                b02 -= n0.h0(y02.g(l10, (k1) f0Var.f11836e).f8164e);
+            }
+            ((h0) f0Var.d).getClass();
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            if (this.f11805e && Objects.equals(l10, this.h) && k02 == this.f11806f && M == this.f11807g && b02 == this.f11802a && max == this.f11803b) {
+                if (elapsedRealtime - this.f11804c >= i3) {
+                    ((k2.c0) f0Var.f11835c).f16459a.A1(new k2.l(2, new g0(1, i3), 1003));
+                    return;
+                }
+                return;
+            }
+            this.f11805e = true;
+            this.f11804c = elapsedRealtime;
+            this.h = l10;
+            this.f11806f = k02;
+            this.f11807g = M;
+            this.f11802a = b02;
+            this.f11803b = max;
+            j0Var.e(1);
+            j0Var.f11857a.sendEmptyMessageDelayed(1, i3);
+            return;
+        }
+        if (this.f11805e) {
+            j0Var.e(1);
+        }
+        this.f11805e = false;
     }
 
-    @Override
-    public final void close() {
-        this.f7280b = null;
-        try {
-            try {
-                FileInputStream fileInputStream = this.d;
-                if (fileInputStream != null) {
-                    fileInputStream.close();
-                }
-                this.d = null;
-                try {
-                    try {
-                        AssetFileDescriptor assetFileDescriptor = this.f7281c;
-                        if (assetFileDescriptor != null) {
-                            assetFileDescriptor.close();
-                        }
-                    } catch (IOException e) {
-                        throw new k(null, e, 2000);
-                    }
-                } finally {
-                    this.f7281c = null;
-                    if (this.f7282f) {
-                        this.f7282f = false;
-                        transferEnded();
-                    }
-                }
-            } catch (IOException e7) {
-                throw new k(null, e7, 2000);
-            }
-        } catch (Throwable th2) {
-            this.d = null;
-            try {
-                try {
-                    AssetFileDescriptor assetFileDescriptor2 = this.f7281c;
-                    if (assetFileDescriptor2 != null) {
-                        assetFileDescriptor2.close();
-                    }
-                    this.f7281c = null;
-                    if (this.f7282f) {
-                        this.f7282f = false;
-                        transferEnded();
-                    }
-                    throw th2;
-                } catch (IOException e10) {
-                    throw new k(null, e10, 2000);
-                }
-            } finally {
-                this.f7281c = null;
-                if (this.f7282f) {
-                    this.f7282f = false;
-                    transferEnded();
-                }
-            }
-        }
-    }
-
-    @Override
-    public final Uri getUri() {
-        n nVar = this.f7280b;
-        if (nVar != null) {
-            return nVar.f7315a;
-        }
-        return null;
-    }
-
-    @Override
-    public final long open(n nVar) {
-        String host;
-        Resources resourcesForApplication;
-        int parseInt;
-        int i10;
-        Resources resources;
-        long min;
-        this.f7280b = nVar;
-        transferInitializing(nVar);
-        Uri uri = nVar.f7315a;
-        long j10 = nVar.f7318f;
-        long j11 = nVar.e;
-        Uri normalizeScheme = uri.normalizeScheme();
-        boolean equals = TextUtils.equals("rawresource", normalizeScheme.getScheme());
-        Context context = this.f7279a;
-        if (equals) {
-            resources = context.getResources();
-            List<String> pathSegments = normalizeScheme.getPathSegments();
-            if (pathSegments.size() == 1) {
-                try {
-                    i10 = Integer.parseInt(pathSegments.get(0));
-                } catch (NumberFormatException unused) {
-                    throw new k("Resource identifier must be an integer.", null, 1004);
-                }
-            } else {
-                throw new k("rawresource:// URI must have exactly one path element, found " + pathSegments.size(), null, 2000);
-            }
-        } else if (TextUtils.equals("android.resource", normalizeScheme.getScheme())) {
-            String path = normalizeScheme.getPath();
-            path.getClass();
-            if (path.startsWith("/")) {
-                path = path.substring(1);
-            }
-            if (TextUtils.isEmpty(normalizeScheme.getHost())) {
-                host = context.getPackageName();
-            } else {
-                host = normalizeScheme.getHost();
-            }
-            if (host.equals(context.getPackageName())) {
-                resourcesForApplication = context.getResources();
-            } else {
-                try {
-                    resourcesForApplication = context.getPackageManager().getResourcesForApplication(host);
-                } catch (PackageManager.NameNotFoundException e) {
-                    throw new k("Package in android.resource:// URI not found. Check http://g.co/dev/packagevisibility.", e, 2005);
-                }
-            }
-            if (path.matches("\\d+")) {
-                try {
-                    parseInt = Integer.parseInt(path);
-                } catch (NumberFormatException unused2) {
-                    throw new k("Resource identifier must be an integer.", null, 1004);
-                }
-            } else {
-                parseInt = resourcesForApplication.getIdentifier(a1.g.C(host, ":", path), "raw", null);
-                if (parseInt == 0) {
-                    throw new k("Resource not found.", null, 2005);
-                }
-            }
-            i10 = parseInt;
-            resources = resourcesForApplication;
-        } else {
-            throw new k("Unsupported URI scheme (" + normalizeScheme.getScheme() + "). Only android.resource is supported.", null, 1004);
-        }
-        try {
-            AssetFileDescriptor openRawResourceFd = resources.openRawResourceFd(i10);
-            if (openRawResourceFd != null) {
-                this.f7281c = openRawResourceFd;
-                long length = openRawResourceFd.getLength();
-                FileInputStream fileInputStream = new FileInputStream(this.f7281c.getFileDescriptor());
-                this.d = fileInputStream;
-                int i11 = (length > (-1L) ? 1 : (length == (-1L) ? 0 : -1));
-                try {
-                    if (i11 != 0 && j11 > length) {
-                        throw new k(null, null, 2008);
-                    }
-                    long startOffset = this.f7281c.getStartOffset();
-                    long skip = fileInputStream.skip(startOffset + j11) - startOffset;
-                    if (skip == j11) {
-                        if (i11 == 0) {
-                            FileChannel channel = fileInputStream.getChannel();
-                            if (channel.size() == 0) {
-                                this.e = -1L;
-                            } else {
-                                long size = channel.size() - channel.position();
-                                this.e = size;
-                                if (size < 0) {
-                                    throw new k(null, null, 2008);
-                                }
-                            }
-                        } else {
-                            long j12 = length - skip;
-                            this.e = j12;
-                            if (j12 < 0) {
-                                throw new k(2008);
-                            }
-                        }
-                        int i12 = (j10 > (-1L) ? 1 : (j10 == (-1L) ? 0 : -1));
-                        if (i12 != 0) {
-                            long j13 = this.e;
-                            if (j13 == -1) {
-                                min = j10;
-                            } else {
-                                min = Math.min(j13, j10);
-                            }
-                            this.e = min;
-                        }
-                        this.f7282f = true;
-                        transferStarted(nVar);
-                        if (i12 != 0) {
-                            return j10;
-                        }
-                        return this.e;
-                    }
-                    throw new k(null, null, 2008);
-                } catch (a0 e7) {
-                    throw e7;
-                } catch (IOException e10) {
-                    throw new k(null, e10, 2000);
-                }
-            }
-            throw new k("Resource is compressed: " + normalizeScheme, null, 2000);
-        } catch (Resources.NotFoundException e11) {
-            throw new k(null, e11, 2005);
-        }
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        if (i11 == 0) {
-            return 0;
-        }
-        long j10 = this.e;
-        if (j10 != 0) {
-            if (j10 != -1) {
-                try {
-                    i11 = (int) Math.min(j10, i11);
-                } catch (IOException e) {
-                    throw new k(null, e, 2000);
-                }
-            }
-            FileInputStream fileInputStream = this.d;
-            String str = l0.f6165a;
-            int read = fileInputStream.read(bArr, i10, i11);
-            if (read == -1) {
-                if (this.e != -1) {
-                    throw new k("End of stream reached having not read sufficient data.", new EOFException(), 2000);
-                }
-            } else {
-                long j11 = this.e;
-                if (j11 != -1) {
-                    this.e = j11 - read;
-                }
-                bytesTransferred(read);
-                return read;
-            }
-        }
-        return -1;
+    public b0(String str, long j10, long j11, long j12, kg.l0 l0Var) {
+        this.f11808i = l0Var;
+        this.h = str;
+        this.f11802a = j10;
+        this.f11803b = j11;
+        this.f11804c = j12;
     }
 }

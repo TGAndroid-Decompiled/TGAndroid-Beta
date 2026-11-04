@@ -1,4 +1,5 @@
 package o1;
-public interface f {
-    void a(j jVar, boolean z10, float f7, float f10);
+
+import androidx.datastore.preferences.protobuf.x;
+public final class f extends x {
 }

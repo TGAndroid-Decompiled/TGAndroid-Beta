@@ -1,47 +1,78 @@
 package org.telegram.ui;
-public final class ti extends org.telegram.ui.ActionBar.k1 {
-    public final org.telegram.ui.Components.nj0 f41645o;
-    public final un f41646p;
 
-    public ti(un unVar, cb cbVar, org.telegram.ui.Components.nj0 nj0Var) {
-        super(cbVar, -2, -2);
-        this.f41646p = unVar;
-        this.f41645o = nj0Var;
-    }
+import android.content.SharedPreferences;
+import android.os.Bundle;
+public final class ti implements org.telegram.ui.Components.wn {
+    public final wm f49812a;
 
-    @Override
-    public final void d(boolean z10) {
-        super.d(z10);
-        org.telegram.ui.Components.nj0 nj0Var = this.f41645o;
-        if (nj0Var != null) {
-            nj0Var.d(z10);
-        }
+    public ti(wm wmVar) {
+        this.f49812a = wmVar;
     }
 
     @Override
     public final void dismiss() {
-        d(true);
-        un unVar = this.f41646p;
-        if (unVar.f42051e9 == this) {
-            org.telegram.ui.Components.wb wbVar = org.telegram.ui.Components.wb.f32194w;
-            org.telegram.ui.Components.wb wbVar2 = unVar.B1;
-            if (wbVar == wbVar2 && wbVar2 != null) {
-                wbVar2.b();
-                unVar.B1 = null;
+        this.f49812a.f51359j0.U(null, null);
+    }
+
+    @Override
+    public final void q() {
+        wm wmVar = this.f49812a;
+        wmVar.Ec(true);
+        org.telegram.ui.Components.fc.A(wmVar, wmVar.getMessagesController().r2(wmVar.f51376k6, wmVar.b(), null), wmVar.f51557ya).j();
+    }
+
+    @Override
+    public final void t() {
+        wm wmVar = this.f49812a;
+        if (wmVar.f51376k6 != 0 && wmVar.f51325g4 != 3) {
+            if (wmVar.f51306f != null) {
+                wmVar.getMessagesController().X3(wmVar.f51306f, true, false);
             }
-            unVar.f42051e9 = null;
-            unVar.f42087h9 = null;
-            unVar.f42076g9 = null;
-            unVar.B0.R = true;
-            if (unVar.f42063f9) {
-                unVar.s8(false, true, 0.0f);
-            } else {
-                unVar.f42063f9 = true;
+            Bundle bundle = new Bundle();
+            bundle.putLong("dialog_id", wmVar.f51376k6);
+            if (wmVar.b() != 0) {
+                bundle.putLong("topic_id", wmVar.b());
             }
-            mk mkVar = unVar.Z;
-            if (mkVar != null && mkVar.getEditField() != null) {
-                unVar.Z.getEditField().setAllowDrawCursor(true);
-            }
+            wmVar.presentFragment(new yw0(bundle, wmVar.f51557ya));
         }
+    }
+
+    @Override
+    public final void v() {
+        int i3;
+        wm wmVar = this.f49812a;
+        i3 = ((org.telegram.ui.ActionBar.d2) wmVar).currentAccount;
+        SharedPreferences sharedPreferences = org.telegram.messenger.hp.s1(i3).f22989d7;
+        boolean z10 = sharedPreferences.getBoolean("sound_enabled_" + org.telegram.messenger.us.v(wmVar.f51376k6, wmVar.b(), false), true);
+        boolean z11 = !z10 ? 1 : 0;
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("sound_enabled_" + org.telegram.messenger.us.v(wmVar.f51376k6, wmVar.b(), false), z11).apply();
+        if (org.telegram.ui.Components.fc.a(wmVar)) {
+            org.telegram.ui.Components.fc.S(z10 ? 1 : 0, wmVar, wmVar.getResourceProvider()).j();
+        }
+        wmVar.ud(false);
+    }
+
+    @Override
+    public final void z(int i3) {
+        wm wmVar = this.f49812a;
+        if (i3 == 0) {
+            if (wmVar.getMessagesController().r2(wmVar.f51376k6, wmVar.b(), null)) {
+                wmVar.Ec(true);
+            }
+            if (org.telegram.ui.Components.fc.a(wmVar)) {
+                org.telegram.ui.Components.fc.z(wmVar, 4, i3, wmVar.getResourceProvider()).j();
+                return;
+            }
+            return;
+        }
+        wmVar.getNotificationsController().H(wmVar.f51376k6, i3, wmVar.b());
+        if (org.telegram.ui.Components.fc.a(wmVar)) {
+            org.telegram.ui.Components.fc.z(wmVar, 5, i3, wmVar.getResourceProvider()).j();
+        }
+    }
+
+    @Override
+    public final void p() {
     }
 }

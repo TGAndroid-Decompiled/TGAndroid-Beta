@@ -4,11 +4,11 @@ import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 final class AudioRecorderNative {
-    public long f44271a;
-    public final AtomicBoolean f44272b = new AtomicBoolean(false);
+    public long f52774a;
+    public final AtomicBoolean f52775b = new AtomicBoolean(false);
 
     public AudioRecorderNative(long j10) {
-        this.f44271a = j10;
+        this.f52774a = j10;
     }
 
     public static AudioRecorderNative a(long j10, long j11, File file, File file2) {
@@ -34,7 +34,7 @@ final class AudioRecorderNative {
         return nGetWaveform(str);
     }
 
-    private static native long nCreate(String str, int i10, String str2, long j10, long j11);
+    private static native long nCreate(String str, int i3, String str2, long j10, long j11);
 
     private static native boolean nCropOpusFile(String str, String str2, long j10, long j11);
 
@@ -46,14 +46,14 @@ final class AudioRecorderNative {
 
     private static native byte[] nGetWaveform(String str);
 
-    private static native int nWriteFrame(long j10, ByteBuffer byteBuffer, int i10);
+    private static native int nWriteFrame(long j10, ByteBuffer byteBuffer, int i3);
 
     public final boolean c() {
-        if (!this.f44272b.compareAndSet(false, true)) {
+        if (!this.f52775b.compareAndSet(false, true)) {
             return false;
         }
-        long j10 = this.f44271a;
-        this.f44271a = 0L;
+        long j10 = this.f52774a;
+        this.f52774a = 0L;
         if (j10 == 0 || !nFinish(j10)) {
             return false;
         }
@@ -61,16 +61,16 @@ final class AudioRecorderNative {
     }
 
     public final long d() {
-        if (!this.f44272b.get()) {
-            return nFlush(this.f44271a);
+        if (!this.f52775b.get()) {
+            return nFlush(this.f52774a);
         }
         throw new IllegalStateException("Native audio recorder is already released");
     }
 
     public final void f() {
-        if (this.f44272b.compareAndSet(false, true)) {
-            long j10 = this.f44271a;
-            this.f44271a = 0L;
+        if (this.f52775b.compareAndSet(false, true)) {
+            long j10 = this.f52774a;
+            this.f52774a = 0L;
             if (j10 != 0) {
                 nDestroy(j10);
             }
@@ -85,9 +85,9 @@ final class AudioRecorderNative {
         }
     }
 
-    public final int g(ByteBuffer byteBuffer, int i10) {
-        if (!this.f44272b.get()) {
-            return nWriteFrame(this.f44271a, byteBuffer, i10);
+    public final int g(ByteBuffer byteBuffer, int i3) {
+        if (!this.f52775b.get()) {
+            return nWriteFrame(this.f52774a, byteBuffer, i3);
         }
         throw new IllegalStateException("Native audio recorder is already released");
     }

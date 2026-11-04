@@ -1,170 +1,107 @@
 package org.telegram.messenger;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.ImageSpan;
-import j$.util.Objects;
-public final class h6 extends ImageSpan {
-    public Paint.FontMetricsInt f16024a;
-    public float f16025b;
-    public int f16026c;
-    public String d;
-    public boolean e;
-    public int f16027f;
-    public boolean h;
-    public float f16028n;
-    public float f16029r;
-
-    public static void a(Paint.FontMetricsInt fontMetricsInt, int i10) {
-        int i11 = fontMetricsInt.descent;
-        int i12 = fontMetricsInt.ascent;
-        int i13 = i11 - i12;
-        if (i10 <= i13) {
-            return;
-        }
-        int i14 = i10 - i13;
-        int i15 = (i14 + 1) / 2;
-        int i16 = i12 - i15;
-        fontMetricsInt.ascent = i16;
-        fontMetricsInt.descent = i11 + (i14 - i15);
-        fontMetricsInt.top = Math.min(fontMetricsInt.top, i16);
-        fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
-    }
+import android.graphics.Rect;
+public final class h6 extends e6 {
+    public static final Paint f22887e = new Paint(2);
+    public static final Rect f22888f = new Rect();
+    public d6 f22889c;
+    public boolean d;
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        boolean z10;
-        this.f16028n = a1.g.A(this.f16025b, this.f16026c, 2.0f, f7);
-        this.f16029r = ((i14 - i12) / 2.0f) + i12;
-        boolean z11 = true;
-        this.h = true;
-        if (paint.getAlpha() != 255 && k6.f16574n) {
-            getDrawable().setAlpha(paint.getAlpha());
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        float f10 = k6.f16573m;
-        int i15 = this.f16026c;
-        float f11 = f10 - ((i15 - (this.f16025b * i15)) / 2.0f);
-        if (f11 != 0.0f) {
-            canvas.save();
-            canvas.translate(0.0f, f11);
-        } else {
-            z11 = false;
-        }
-        super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
-        if (z11) {
-            canvas.restore();
-        }
-        if (z10) {
-            getDrawable().setAlpha(255);
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
+    public final boolean a() {
+        Bitmap[][] bitmapArr = i6.f23450f;
+        d6 d6Var = this.f22889c;
+        if (bitmapArr[d6Var.f22158a][d6Var.f22159b] != null) {
             return true;
-        }
-        if (obj != null && h6.class == obj.getClass()) {
-            h6 h6Var = (h6) obj;
-            if (Float.compare(this.f16025b, h6Var.f16025b) == 0 && this.f16026c == h6Var.f16026c && Objects.equals(this.d, h6Var.d)) {
-                return true;
-            }
         }
         return false;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        boolean z10;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        Paint.FontMetricsInt fontMetricsInt2 = fontMetricsInt;
-        if (this.e && fontMetricsInt2 != null) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void b() {
+        if (!a()) {
+            d6 d6Var = this.f22889c;
+            i6.i(d6Var.f22158a, d6Var.f22159b);
         }
-        if (z10) {
-            i12 = fontMetricsInt2.top;
-        } else {
-            i12 = 0;
-        }
-        if (z10) {
-            i13 = fontMetricsInt2.ascent;
-        } else {
-            i13 = 0;
-        }
-        if (z10) {
-            i14 = fontMetricsInt2.descent;
-        } else {
-            i14 = 0;
-        }
-        if (z10) {
-            i15 = fontMetricsInt2.bottom;
-        } else {
-            i15 = 0;
-        }
-        if (z10) {
-            i16 = fontMetricsInt2.leading;
-        } else {
-            i16 = 0;
-        }
-        if (fontMetricsInt2 == null) {
-            fontMetricsInt2 = new Paint.FontMetricsInt();
-        }
-        Paint.FontMetricsInt fontMetricsInt3 = fontMetricsInt2;
-        int i17 = (int) (this.f16025b * this.f16026c);
-        Paint.FontMetricsInt fontMetricsInt4 = this.f16024a;
-        if (fontMetricsInt4 == null) {
-            int size = super.getSize(paint, charSequence, i10, i11, fontMetricsInt3);
-            int L = i0.L(8.0f);
-            int L2 = i0.L(10.0f);
-            int i18 = (-L2) - L;
-            fontMetricsInt3.top = i18;
-            int i19 = L2 - L;
-            fontMetricsInt3.bottom = i19;
-            fontMetricsInt3.ascent = i18;
-            fontMetricsInt3.leading = 0;
-            fontMetricsInt3.descent = i19;
-            if (z10) {
-                fontMetricsInt3.top = i12;
-                fontMetricsInt3.ascent = i13;
-                fontMetricsInt3.descent = i14;
-                fontMetricsInt3.bottom = i15;
-                fontMetricsInt3.leading = i16;
-                a(fontMetricsInt3, this.f16027f);
-            }
-            return size;
-        }
-        fontMetricsInt3.ascent = fontMetricsInt4.ascent;
-        fontMetricsInt3.descent = fontMetricsInt4.descent;
-        fontMetricsInt3.top = fontMetricsInt4.top;
-        fontMetricsInt3.bottom = fontMetricsInt4.bottom;
-        if (getDrawable() != null) {
-            getDrawable().setBounds(0, 0, i17, i17);
-        }
-        if (z10) {
-            fontMetricsInt3.top = i12;
-            fontMetricsInt3.ascent = i13;
-            fontMetricsInt3.descent = i14;
-            fontMetricsInt3.bottom = i15;
-            fontMetricsInt3.leading = i16;
-            a(fontMetricsInt3, this.f16027f);
-        }
-        return i17;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        if (getDrawable() instanceof g6) {
-            ((g6) getDrawable()).f15864b = 285212671 & textPaint.getColor();
+    public final void draw(Canvas canvas) {
+        Rect bounds;
+        int i3;
+        int i10;
+        int i11;
+        int i12;
+        boolean z10 = this.d;
+        d6 d6Var = this.f22889c;
+        if (!a()) {
+            i6.i(d6Var.f22158a, d6Var.f22159b);
+            Paint paint = i6.d;
+            paint.setColor(this.f22320b);
+            Rect bounds2 = getBounds();
+            canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), bounds2.width() * 0.4f, paint);
+            return;
         }
-        super.updateDrawState(textPaint);
+        if (this.f22319a) {
+            Rect bounds3 = getBounds();
+            int centerX = bounds3.centerX();
+            int centerY = bounds3.centerY();
+            boolean z11 = this.f22319a;
+            if (z11) {
+                i3 = i6.f23448c;
+            } else {
+                i3 = i6.f23447b;
+            }
+            bounds = f22888f;
+            bounds.left = centerX - (i3 / 2);
+            if (z11) {
+                i10 = i6.f23448c;
+            } else {
+                i10 = i6.f23447b;
+            }
+            bounds.right = (i10 / 2) + centerX;
+            if (z11) {
+                i11 = i6.f23448c;
+            } else {
+                i11 = i6.f23447b;
+            }
+            bounds.top = centerY - (i11 / 2);
+            if (z11) {
+                i12 = i6.f23448c;
+            } else {
+                i12 = i6.f23447b;
+            }
+            bounds.bottom = (i12 / 2) + centerY;
+        } else {
+            bounds = getBounds();
+        }
+        if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
+            if (z10) {
+                canvas.save();
+                canvas.scale(-1.0f, 1.0f, bounds.centerX(), bounds.centerY());
+            }
+            canvas.drawBitmap(i6.f23450f[d6Var.f22158a][d6Var.f22159b], (Rect) null, bounds, f22887e);
+            if (z10) {
+                canvas.restore();
+            }
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i3) {
+        f22887e.setAlpha(i3);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

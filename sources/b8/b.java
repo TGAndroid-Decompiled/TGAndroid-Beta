@@ -1,71 +1,27 @@
 package b8;
+public final class b extends d {
+    public final int f2475f;
+    public final g h;
 
-import android.os.BadParcelableException;
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public abstract class b extends Binder implements IInterface {
-    public final int f2505a;
-
-    public static void H0(Parcel parcel) {
-        int i10 = q7.a.f45500a;
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
-        }
-        StringBuilder sb2 = new StringBuilder(String.valueOf(dataAvail).length() + 45);
-        sb2.append("Parcel data not fully consumed, unread size: ");
-        sb2.append(dataAvail);
-        throw new BadParcelableException(sb2.toString());
-    }
-
-    public abstract boolean I0(int i10, Parcel parcel, Parcel parcel2);
-
-    public abstract boolean J0(int i10, Parcel parcel, Parcel parcel2);
-
-    public boolean K0(int i10, Parcel parcel, Parcel parcel2) {
-        return false;
-    }
-
-    public abstract boolean L0(Parcel parcel, int i10);
-
-    @Override
-    public IBinder asBinder() {
-        int i10 = this.f2505a;
-        return this;
+    public b(g gVar, int i3) {
+        super(gVar);
+        this.f2475f = i3;
+        this.h = gVar;
     }
 
     @Override
-    public boolean onTransact(int r5, android.os.Parcel r6, android.os.Parcel r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: b8.b.onTransact(int, android.os.Parcel, android.os.Parcel, int):boolean");
-    }
-
-    public b(String str, int i10) {
-        this.f2505a = i10;
-        switch (i10) {
-            case 4:
-                attachInterface(this, str);
-                return;
-            case 5:
-                attachInterface(this, str);
-                return;
-            case 6:
-                attachInterface(this, str);
-                return;
-            case 7:
-                attachInterface(this, str);
-                return;
-            case 8:
+    public final Object b(int i3) {
+        switch (this.f2475f) {
+            case 0:
+                Object[] objArr = this.h.f2614c;
+                objArr.getClass();
+                return objArr[i3];
+            case 1:
+                return new e(this.h, i3);
             default:
-                attachInterface(this, str);
-                return;
-            case 9:
-                attachInterface(this, str);
-                return;
-            case 10:
-                attachInterface(this, str);
-                return;
+                Object[] objArr2 = this.h.d;
+                objArr2.getClass();
+                return objArr2[i3];
         }
     }
 }

@@ -1,46 +1,13 @@
 package org.telegram.ui.Components;
+public final class i61 extends u4.k {
+    public final m61 F;
 
-import android.graphics.Point;
-import android.view.View;
-public final class i61 implements View.OnLayoutChangeListener {
-    public Boolean f27014a;
-    public boolean f27015b;
-    public final li.k f27016c;
-
-    public i61(li.k kVar, View view) {
-        this.f27016c = kVar;
-        o1.j jVar = new o1.j((Object) view, (o1.h) o1.j.f13943p, 0.0f);
-        kVar.f12102c = jVar;
-        jVar.f13958m.a(1.0f);
-        ((o1.j) kVar.f12102c).f13958m.b(350.0f);
+    public i61(m61 m61Var) {
+        this.F = m61Var;
     }
 
     @Override
-    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        boolean z10;
-        Point point = org.telegram.messenger.i0.f16172q;
-        if (point.x > point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        Boolean bool = this.f27014a;
-        if (bool == null || bool.booleanValue() != z10) {
-            this.f27014a = Boolean.valueOf(z10);
-            this.f27015b = true;
-        }
-        if (i15 != 0 && i15 != i11 && !this.f27015b) {
-            li.k kVar = this.f27016c;
-            ((o1.j) kVar.f12102c).d();
-            if (view.getVisibility() != 0) {
-                view.setTranslationY(0.0f);
-                return;
-            }
-            ((o1.j) kVar.f12102c).f13958m.f13965i = 0.0f;
-            view.setTranslationY((i15 - i11) + 0.0f);
-            ((o1.j) kVar.f12102c).h();
-            return;
-        }
-        this.f27015b = false;
+    public final void P(u4.d1 d1Var) {
+        this.F.invalidate();
     }
 }

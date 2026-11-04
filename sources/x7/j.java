@@ -1,455 +1,211 @@
 package x7;
 
-import java.io.Serializable;
-import java.util.AbstractMap;
-import java.util.Arrays;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.Charset;
 import java.util.Collection;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-public final class j extends AbstractMap implements Serializable {
-    public static final Object f53213s = new Object();
-    public transient Object f53214a;
-    public transient int[] f53215b;
-    public transient Object[] f53216c;
-    public transient Object[] d;
-    public transient int e = Math.min(Math.max(12, 1), 1073741823);
-    public transient int f53217f;
-    public transient h h;
-    public transient h f53218n;
-    public transient e9.o f53219r;
+public final class j implements ma.e {
+    public static final Charset f58326f = Charset.forName("UTF-8");
+    public static final ma.c f58327g = new ma.c("key", k2.p1.o(t4.c.i(h.class, new e(1))));
+    public static final ma.c h = new ma.c("value", k2.p1.o(t4.c.i(h.class, new e(2))));
+    public static final i f58328i = i.f58312b;
+    public OutputStream f58329a;
+    public final HashMap f58330b;
+    public final HashMap f58331c;
+    public final ma.d d;
+    public final b8.h0 f58332e = new b8.h0(this, 2);
 
-    public final Map a() {
-        Object obj = this.f53214a;
-        if (obj instanceof Map) {
-            return (Map) obj;
-        }
-        return null;
+    public j(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, ma.d dVar) {
+        this.f58329a = byteArrayOutputStream;
+        this.f58330b = hashMap;
+        this.f58331c = hashMap2;
+        this.d = dVar;
     }
 
-    public final void b(int i10, int i11) {
-        Object obj = this.f53214a;
-        obj.getClass();
-        int[] iArr = this.f53215b;
-        iArr.getClass();
-        Object[] objArr = this.f53216c;
-        objArr.getClass();
-        Object[] objArr2 = this.d;
-        objArr2.getClass();
-        int size = size();
-        int i12 = size - 1;
-        if (i10 < i12) {
-            Object obj2 = objArr[i12];
-            objArr[i10] = obj2;
-            objArr2[i10] = objArr2[i12];
-            objArr[i12] = null;
-            objArr2[i12] = null;
-            iArr[i10] = iArr[i12];
-            iArr[i12] = 0;
-            int a2 = w7.r8.a(obj2) & i11;
-            int b10 = w7.q8.b(a2, obj);
-            if (b10 == size) {
-                w7.q8.d(a2, i10 + 1, obj);
-                return;
+    public static int i(ma.c cVar) {
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            return ((e) hVar).f58268a;
+        }
+        throw new RuntimeException("Field has no @Protobuf config");
+    }
+
+    @Override
+    public final ma.e a(ma.c cVar, Object obj) {
+        g(cVar, obj, true);
+        return this;
+    }
+
+    @Override
+    public final ma.e b(ma.c cVar, boolean z10) {
+        h(cVar, z10 ? 1 : 0, true);
+        return this;
+    }
+
+    @Override
+    public final ma.e c(ma.c cVar, double d) {
+        d(cVar, d, true);
+        return this;
+    }
+
+    public final void d(ma.c cVar, double d, boolean z10) {
+        if (z10 && d == 0.0d) {
+            return;
+        }
+        k((i(cVar) << 3) | 1);
+        this.f58329a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
+    }
+
+    @Override
+    public final ma.e e(ma.c cVar, int i3) {
+        h(cVar, i3, true);
+        return this;
+    }
+
+    @Override
+    public final ma.e f(ma.c cVar, long j10) {
+        if (j10 != 0) {
+            h hVar = (h) cVar.b(h.class);
+            if (hVar != null) {
+                k(((e) hVar).f58268a << 3);
+                l(j10);
+                return this;
             }
-            while (true) {
-                int i13 = b10 - 1;
-                int i14 = iArr[i13];
-                int i15 = i14 & i11;
-                if (i15 != size) {
-                    b10 = i15;
-                } else {
-                    iArr[i13] = ((i10 + 1) & i11) | (i14 & (~i11));
+            throw new RuntimeException("Field has no @Protobuf config");
+        }
+        return this;
+    }
+
+    public final void g(ma.c cVar, Object obj, boolean z10) {
+        if (obj != null) {
+            if (obj instanceof CharSequence) {
+                CharSequence charSequence = (CharSequence) obj;
+                if (!z10 || charSequence.length() != 0) {
+                    k((i(cVar) << 3) | 2);
+                    byte[] bytes = charSequence.toString().getBytes(f58326f);
+                    k(bytes.length);
+                    this.f58329a.write(bytes);
+                }
+            } else if (obj instanceof Collection) {
+                for (Object obj2 : (Collection) obj) {
+                    g(cVar, obj2, false);
+                }
+            } else if (obj instanceof Map) {
+                for (Map.Entry entry : ((Map) obj).entrySet()) {
+                    j(f58328i, cVar, entry, false);
+                }
+            } else if (obj instanceof Double) {
+                d(cVar, ((Double) obj).doubleValue(), z10);
+            } else if (obj instanceof Float) {
+                float floatValue = ((Float) obj).floatValue();
+                if (!z10 || floatValue != 0.0f) {
+                    k((i(cVar) << 3) | 5);
+                    this.f58329a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
+                }
+            } else if (obj instanceof Number) {
+                long longValue = ((Number) obj).longValue();
+                if (!z10 || longValue != 0) {
+                    h hVar = (h) cVar.b(h.class);
+                    if (hVar != null) {
+                        k(((e) hVar).f58268a << 3);
+                        l(longValue);
+                        return;
+                    }
+                    throw new RuntimeException("Field has no @Protobuf config");
+                }
+            } else if (obj instanceof Boolean) {
+                h(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z10);
+            } else if (obj instanceof byte[]) {
+                byte[] bArr = (byte[]) obj;
+                if (z10 && bArr.length == 0) {
                     return;
                 }
+                k((i(cVar) << 3) | 2);
+                k(bArr.length);
+                this.f58329a.write(bArr);
+            } else {
+                ma.d dVar = (ma.d) this.f58330b.get(obj.getClass());
+                if (dVar != null) {
+                    j(dVar, cVar, obj, z10);
+                    return;
+                }
+                ma.f fVar = (ma.f) this.f58331c.get(obj.getClass());
+                if (fVar != null) {
+                    b8.h0 h0Var = this.f58332e;
+                    h0Var.f2645b = false;
+                    h0Var.d = cVar;
+                    h0Var.f2646c = z10;
+                    fVar.a(obj, h0Var);
+                } else if (obj instanceof f) {
+                    h(cVar, ((f) obj).zza(), true);
+                } else if (obj instanceof Enum) {
+                    h(cVar, ((Enum) obj).ordinal(), true);
+                } else {
+                    j(this.d, cVar, obj, z10);
+                }
             }
-        } else {
-            objArr[i10] = null;
-            objArr2[i10] = null;
-            iArr[i10] = 0;
         }
     }
 
-    public final boolean c() {
-        if (this.f53214a == null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void clear() {
-        if (c()) {
+    public final void h(ma.c cVar, int i3, boolean z10) {
+        if (z10 && i3 == 0) {
             return;
         }
-        this.e += 32;
-        Map a2 = a();
-        if (a2 != null) {
-            this.e = Math.min(Math.max(size(), 3), 1073741823);
-            a2.clear();
-            this.f53214a = null;
-            this.f53217f = 0;
+        h hVar = (h) cVar.b(h.class);
+        if (hVar != null) {
+            k(((e) hVar).f58268a << 3);
+            k(i3);
             return;
         }
-        Object[] objArr = this.f53216c;
-        objArr.getClass();
-        Arrays.fill(objArr, 0, this.f53217f, (Object) null);
-        Object[] objArr2 = this.d;
-        objArr2.getClass();
-        Arrays.fill(objArr2, 0, this.f53217f, (Object) null);
-        Object obj = this.f53214a;
-        obj.getClass();
-        if (obj instanceof byte[]) {
-            Arrays.fill((byte[]) obj, (byte) 0);
-        } else if (obj instanceof short[]) {
-            Arrays.fill((short[]) obj, (short) 0);
-        } else {
-            Arrays.fill((int[]) obj, 0);
-        }
-        int[] iArr = this.f53215b;
-        iArr.getClass();
-        Arrays.fill(iArr, 0, this.f53217f, 0);
-        this.f53217f = 0;
+        throw new RuntimeException("Field has no @Protobuf config");
     }
 
-    @Override
-    public final boolean containsKey(Object obj) {
-        Map a2 = a();
-        if (a2 != null) {
-            return a2.containsKey(obj);
-        }
-        if (e(obj) == -1) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean containsValue(Object obj) {
-        Map a2 = a();
-        if (a2 == null) {
-            for (int i10 = 0; i10 < this.f53217f; i10++) {
-                Object[] objArr = this.d;
-                objArr.getClass();
-                if (w7.u8.a(obj, objArr[i10])) {
-                    return true;
+    public final void j(ma.d dVar, ma.c cVar, Object obj, boolean z10) {
+        b8.b0 b0Var = new b8.b0(2);
+        b0Var.f2477b = 0L;
+        try {
+            OutputStream outputStream = this.f58329a;
+            this.f58329a = b0Var;
+            dVar.a(obj, this);
+            this.f58329a = outputStream;
+            long j10 = b0Var.f2477b;
+            b0Var.close();
+            if (z10 && j10 == 0) {
+                return;
+            }
+            k((i(cVar) << 3) | 2);
+            l(j10);
+            dVar.a(obj, this);
+        } catch (Throwable th2) {
+            try {
+                b0Var.close();
+            } catch (Throwable th3) {
+                try {
+                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th2, th3);
+                } catch (Exception unused) {
                 }
             }
-            return false;
+            throw th2;
         }
-        return a2.containsValue(obj);
     }
 
-    public final int d() {
-        return (1 << (this.e & 31)) - 1;
+    public final void k(int i3) {
+        while ((i3 & (-128)) != 0) {
+            this.f58329a.write((i3 & 127) | 128);
+            i3 >>>= 7;
+        }
+        this.f58329a.write(i3 & 127);
     }
 
-    public final int e(Object obj) {
-        if (c()) {
-            return -1;
+    public final void l(long j10) {
+        while (((-128) & j10) != 0) {
+            this.f58329a.write((((int) j10) & 127) | 128);
+            j10 >>>= 7;
         }
-        int a2 = w7.r8.a(obj);
-        int d = d();
-        Object obj2 = this.f53214a;
-        obj2.getClass();
-        int b10 = w7.q8.b(a2 & d, obj2);
-        if (b10 == 0) {
-            return -1;
-        }
-        int i10 = ~d;
-        int i11 = a2 & i10;
-        do {
-            int i12 = b10 - 1;
-            int[] iArr = this.f53215b;
-            iArr.getClass();
-            int i13 = iArr[i12];
-            if ((i13 & i10) == i11) {
-                Object[] objArr = this.f53216c;
-                objArr.getClass();
-                if (w7.u8.a(obj, objArr[i12])) {
-                    return i12;
-                }
-            }
-            b10 = i13 & d;
-        } while (b10 != 0);
-        return -1;
-    }
-
-    @Override
-    public final Set entrySet() {
-        h hVar = this.f53218n;
-        if (hVar == null) {
-            h hVar2 = new h(this, 0);
-            this.f53218n = hVar2;
-            return hVar2;
-        }
-        return hVar;
-    }
-
-    public final int f(int i10, int i11, int i12, int i13) {
-        Object c10 = w7.q8.c(i11);
-        int i14 = i11 - 1;
-        if (i13 != 0) {
-            w7.q8.d(i12 & i14, i13 + 1, c10);
-        }
-        Object obj = this.f53214a;
-        obj.getClass();
-        int[] iArr = this.f53215b;
-        iArr.getClass();
-        for (int i15 = 0; i15 <= i10; i15++) {
-            int b10 = w7.q8.b(i15, obj);
-            while (b10 != 0) {
-                int i16 = b10 - 1;
-                int i17 = iArr[i16];
-                int i18 = ((~i10) & i17) | i15;
-                int i19 = i18 & i14;
-                int b11 = w7.q8.b(i19, c10);
-                w7.q8.d(i19, b10, c10);
-                iArr[i16] = ((~i14) & i18) | (b11 & i14);
-                b10 = i17 & i10;
-            }
-        }
-        this.f53214a = c10;
-        this.e = ((32 - Integer.numberOfLeadingZeros(i14)) & 31) | (this.e & (-32));
-        return i14;
-    }
-
-    public final Object g(Object obj) {
-        if (!c()) {
-            int d = d();
-            Object obj2 = this.f53214a;
-            obj2.getClass();
-            int[] iArr = this.f53215b;
-            iArr.getClass();
-            Object[] objArr = this.f53216c;
-            objArr.getClass();
-            int a2 = w7.q8.a(obj, null, d, obj2, iArr, objArr, null);
-            if (a2 != -1) {
-                Object[] objArr2 = this.d;
-                objArr2.getClass();
-                Object obj3 = objArr2[a2];
-                b(a2, d);
-                this.f53217f--;
-                this.e += 32;
-                return obj3;
-            }
-        }
-        return f53213s;
-    }
-
-    @Override
-    public final Object get(Object obj) {
-        Map a2 = a();
-        if (a2 != null) {
-            return a2.get(obj);
-        }
-        int e = e(obj);
-        if (e == -1) {
-            return null;
-        }
-        Object[] objArr = this.d;
-        objArr.getClass();
-        return objArr[e];
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        if (size() == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final Set keySet() {
-        h hVar = this.h;
-        if (hVar == null) {
-            h hVar2 = new h(this, 1);
-            this.h = hVar2;
-            return hVar2;
-        }
-        return hVar;
-    }
-
-    @Override
-    public final Object put(Object obj, Object obj2) {
-        int i10;
-        int i11;
-        int i12;
-        int i13 = 32;
-        if (c()) {
-            if (c()) {
-                int i14 = this.e;
-                int max = Math.max(i14 + 1, 2);
-                int highestOneBit = Integer.highestOneBit(max);
-                if (max > highestOneBit && (highestOneBit = highestOneBit + highestOneBit) <= 0) {
-                    highestOneBit = 1073741824;
-                }
-                int max2 = Math.max(4, highestOneBit);
-                this.f53214a = w7.q8.c(max2);
-                this.e = ((32 - Integer.numberOfLeadingZeros(max2 - 1)) & 31) | (this.e & (-32));
-                this.f53215b = new int[i14];
-                this.f53216c = new Object[i14];
-                this.d = new Object[i14];
-            } else {
-                throw new IllegalStateException("Arrays already allocated");
-            }
-        }
-        Map a2 = a();
-        if (a2 != null) {
-            return a2.put(obj, obj2);
-        }
-        int[] iArr = this.f53215b;
-        iArr.getClass();
-        Object[] objArr = this.f53216c;
-        objArr.getClass();
-        Object[] objArr2 = this.d;
-        objArr2.getClass();
-        int i15 = this.f53217f;
-        int i16 = i15 + 1;
-        int a10 = w7.r8.a(obj);
-        int d = d();
-        int i17 = a10 & d;
-        Object obj3 = this.f53214a;
-        obj3.getClass();
-        int b10 = w7.q8.b(i17, obj3);
-        if (b10 == 0) {
-            if (i16 > d) {
-                if (d < 32) {
-                    i12 = 4;
-                } else {
-                    i12 = 2;
-                }
-                d = f(d, (d + 1) * i12, a10, i15);
-            } else {
-                Object obj4 = this.f53214a;
-                obj4.getClass();
-                w7.q8.d(i17, i16, obj4);
-            }
-            i10 = 1;
-        } else {
-            int i18 = ~d;
-            int i19 = a10 & i18;
-            int i20 = 0;
-            int i21 = 0;
-            while (true) {
-                int i22 = b10 - 1;
-                int i23 = iArr[i22];
-                i10 = 1;
-                int i24 = i23 & i18;
-                int i25 = i13;
-                if (i24 == i19 && w7.u8.a(obj, objArr[i22])) {
-                    Object obj5 = objArr2[i22];
-                    objArr2[i22] = obj2;
-                    return obj5;
-                }
-                int i26 = i23 & d;
-                int i27 = i21 + 1;
-                if (i26 == 0) {
-                    if (i27 >= 9) {
-                        LinkedHashMap linkedHashMap = new LinkedHashMap(d() + 1, 1.0f);
-                        if (isEmpty()) {
-                            i20 = -1;
-                        }
-                        while (i20 >= 0) {
-                            Object[] objArr3 = this.f53216c;
-                            objArr3.getClass();
-                            Object obj6 = objArr3[i20];
-                            Object[] objArr4 = this.d;
-                            objArr4.getClass();
-                            linkedHashMap.put(obj6, objArr4[i20]);
-                            int i28 = i20 + 1;
-                            if (i28 >= this.f53217f) {
-                                i20 = -1;
-                            } else {
-                                i20 = i28;
-                            }
-                        }
-                        this.f53214a = linkedHashMap;
-                        this.f53215b = null;
-                        this.f53216c = null;
-                        this.d = null;
-                        this.e += 32;
-                        return linkedHashMap.put(obj, obj2);
-                    } else if (i16 > d) {
-                        if (d < i25) {
-                            i11 = 4;
-                        } else {
-                            i11 = 2;
-                        }
-                        d = f(d, (d + 1) * i11, a10, i15);
-                    } else {
-                        iArr[i22] = (i16 & d) | i24;
-                    }
-                } else {
-                    i21 = i27;
-                    b10 = i26;
-                    i13 = i25;
-                }
-            }
-        }
-        int[] iArr2 = this.f53215b;
-        iArr2.getClass();
-        int length = iArr2.length;
-        if (i16 > length) {
-            int i29 = i10;
-            int min = Math.min(1073741823, (Math.max(i29, length >>> 1) + length) | i29);
-            if (min != length) {
-                int[] iArr3 = this.f53215b;
-                iArr3.getClass();
-                this.f53215b = Arrays.copyOf(iArr3, min);
-                Object[] objArr5 = this.f53216c;
-                objArr5.getClass();
-                this.f53216c = Arrays.copyOf(objArr5, min);
-                Object[] objArr6 = this.d;
-                objArr6.getClass();
-                this.d = Arrays.copyOf(objArr6, min);
-            }
-        }
-        int[] iArr4 = this.f53215b;
-        iArr4.getClass();
-        iArr4[i15] = (~d) & a10;
-        Object[] objArr7 = this.f53216c;
-        objArr7.getClass();
-        objArr7[i15] = obj;
-        Object[] objArr8 = this.d;
-        objArr8.getClass();
-        objArr8[i15] = obj2;
-        this.f53217f = i16;
-        this.e += 32;
-        return null;
-    }
-
-    @Override
-    public final Object remove(Object obj) {
-        Map a2 = a();
-        if (a2 != null) {
-            return a2.remove(obj);
-        }
-        Object g10 = g(obj);
-        if (g10 == f53213s) {
-            return null;
-        }
-        return g10;
-    }
-
-    @Override
-    public final int size() {
-        Map a2 = a();
-        if (a2 != null) {
-            return a2.size();
-        }
-        return this.f53217f;
-    }
-
-    @Override
-    public final Collection values() {
-        e9.o oVar = this.f53219r;
-        if (oVar == null) {
-            e9.o oVar2 = new e9.o((Object) this, 4);
-            this.f53219r = oVar2;
-            return oVar2;
-        }
-        return oVar;
+        this.f58329a.write(((int) j10) & 127);
     }
 }

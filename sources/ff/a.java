@@ -1,156 +1,43 @@
 package ff;
 
-import java.io.FilterInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-public class a extends FilterInputStream {
-    public final int f7055a = 0;
-    public long f7056b;
-    public long f7057c;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public abstract class a {
+    public static final Pattern f11587a = Pattern.compile("[\\\\&]");
+    public static final Pattern f11588b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
+    public static final Pattern f11589c;
+    public static final mb.b d;
 
-    public a(FilterInputStream filterInputStream) {
-        this(filterInputStream, 0L);
+    static {
+        Pattern.compile("(%[a-fA-F0-9]{0,2}|[^:/?#@!$&'()*+,;=a-zA-Z0-9\\-._~])");
+        f11589c = Pattern.compile("[ \t\r\n]+");
+        d = new mb.b(7);
     }
 
-    private final synchronized void a(int i10) {
-        this.f7057c = this.f7056b;
-        super.mark(i10);
-    }
-
-    private final synchronized void b(int i10) {
-        ((FilterInputStream) this).in.mark(i10);
-        this.f7057c = this.f7056b;
-    }
-
-    private final synchronized void c() {
-        super.reset();
-        this.f7056b = this.f7057c;
-    }
-
-    private final synchronized void d() {
-        if (((FilterInputStream) this).in.markSupported()) {
-            if (this.f7057c != -1) {
-                ((FilterInputStream) this).in.reset();
-                this.f7056b = this.f7057c;
-            } else {
-                throw new IOException("Mark not set");
+    public static String a(String str) {
+        if (f11587a.matcher(str).find()) {
+            Matcher matcher = f11588b.matcher(str);
+            if (matcher.find()) {
+                StringBuilder sb2 = new StringBuilder(str.length() + 16);
+                int i3 = 0;
+                do {
+                    sb2.append((CharSequence) str, i3, matcher.start());
+                    String group = matcher.group();
+                    d.getClass();
+                    if (group.charAt(0) == '\\') {
+                        sb2.append((CharSequence) group, 1, group.length());
+                    } else {
+                        sb2.append(b.a(group));
+                    }
+                    i3 = matcher.end();
+                } while (matcher.find());
+                if (i3 != str.length()) {
+                    sb2.append((CharSequence) str, i3, str.length());
+                }
+                return sb2.toString();
             }
-        } else {
-            throw new IOException("Mark not supported");
+            return str;
         }
-    }
-
-    @Override
-    public int available() {
-        switch (this.f7055a) {
-            case 1:
-                return (int) Math.min(((FilterInputStream) this).in.available(), this.f7056b);
-            default:
-                return super.available();
-        }
-    }
-
-    @Override
-    public final synchronized void mark(int i10) {
-        switch (this.f7055a) {
-            case 0:
-                a(i10);
-                return;
-            default:
-                b(i10);
-                return;
-        }
-    }
-
-    @Override
-    public int read(byte[] bArr) {
-        switch (this.f7055a) {
-            case 0:
-                return read(bArr, 0, bArr.length);
-            default:
-                return super.read(bArr);
-        }
-    }
-
-    @Override
-    public final synchronized void reset() {
-        switch (this.f7055a) {
-            case 0:
-                c();
-                return;
-            default:
-                d();
-                return;
-        }
-    }
-
-    @Override
-    public long skip(long j10) {
-        switch (this.f7055a) {
-            case 0:
-                long j11 = this.f7056b;
-                long skip = super.skip(j10);
-                this.f7056b = j11 + skip;
-                return skip;
-            default:
-                long skip2 = ((FilterInputStream) this).in.skip(Math.min(j10, this.f7056b));
-                this.f7056b -= skip2;
-                return skip2;
-        }
-    }
-
-    public a(InputStream inputStream, long j10) {
-        super(inputStream);
-        this.f7056b = j10;
-    }
-
-    @Override
-    public int read() {
-        switch (this.f7055a) {
-            case 0:
-                int read = super.read();
-                if (read >= 0) {
-                    this.f7056b++;
-                }
-                return read;
-            default:
-                if (this.f7056b == 0) {
-                    return -1;
-                }
-                int read2 = ((FilterInputStream) this).in.read();
-                if (read2 != -1) {
-                    this.f7056b--;
-                }
-                return read2;
-        }
-    }
-
-    public a(InputStream inputStream) {
-        super(inputStream);
-        this.f7057c = -1L;
-        this.f7056b = 1048577L;
-    }
-
-    @Override
-    public int read(byte[] bArr, int i10, int i11) {
-        switch (this.f7055a) {
-            case 0:
-                long j10 = this.f7056b;
-                int read = super.read(bArr, i10, i11);
-                if (read > 0) {
-                    this.f7056b = j10 + read;
-                }
-                return read;
-            default:
-                long j11 = this.f7056b;
-                if (j11 == 0) {
-                    return -1;
-                }
-                int read2 = ((FilterInputStream) this).in.read(bArr, i10, (int) Math.min(i11, j11));
-                if (read2 != -1) {
-                    this.f7056b -= read2;
-                }
-                return read2;
-        }
+        return str;
     }
 }

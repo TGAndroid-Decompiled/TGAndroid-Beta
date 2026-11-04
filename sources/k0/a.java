@@ -3,36 +3,35 @@ package k0;
 import android.app.AlertDialog;
 import android.hardware.fingerprint.FingerprintManager;
 import android.support.v4.media.session.a0;
-import androidx.biometric.w;
-import androidx.biometric.y;
-import androidx.lifecycle.z;
+import androidx.biometric.x;
+import androidx.biometric.z;
+import bb.c;
 import java.lang.ref.WeakReference;
-import k6.h;
-import org.telegram.messenger.dd;
-import org.telegram.ui.Wallet.u0;
+import org.telegram.messenger.bd;
+import org.telegram.ui.Wallet.t0;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final int f10519a;
-    public final Object f10520b;
+    public final int f16434a;
+    public final Object f16435b;
 
-    public a(Object obj, int i10) {
-        this.f10519a = i10;
-        this.f10520b = obj;
+    public a(Object obj, int i3) {
+        this.f16434a = i3;
+        this.f16435b = obj;
     }
 
     @Override
-    public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        switch (this.f10519a) {
+    public final void onAuthenticationError(int i3, CharSequence charSequence) {
+        switch (this.f16434a) {
             case 0:
-                ((w) ((a0) ((h) this.f10520b).f10944b).d).a(i10, charSequence);
+                ((x) ((a0) ((c) this.f16435b).f3211b).d).a(i3, charSequence);
                 return;
             default:
-                u0 u0Var = (u0) this.f10520b;
-                if (u0Var.f() && !u0Var.f35263f) {
-                    if (i10 == 5) {
-                        u0Var.c("AUTH_CANCELED");
+                t0 t0Var = (t0) this.f16435b;
+                if (t0Var.f() && !t0Var.f43188f) {
+                    if (i3 == 5) {
+                        t0Var.c("AUTH_CANCELED");
                         return;
                     } else {
-                        u0Var.a();
+                        t0Var.a();
                         return;
                     }
                 }
@@ -43,24 +42,24 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     @Override
     public final void onAuthenticationFailed() {
         AlertDialog alertDialog;
-        int i10 = this.f10519a;
-        Object obj = this.f10520b;
-        switch (i10) {
+        int i3 = this.f16434a;
+        Object obj = this.f16435b;
+        switch (i3) {
             case 0:
-                WeakReference weakReference = ((w) ((a0) ((h) obj).f10944b).d).f1122a;
-                if (weakReference.get() != null && ((y) weakReference.get()).f1132n) {
-                    y yVar = (y) weakReference.get();
-                    if (yVar.f1139u == null) {
-                        yVar.f1139u = new z();
+                WeakReference weakReference = ((x) ((a0) ((c) obj).f3211b).d).f1449a;
+                if (weakReference.get() != null && ((z) weakReference.get()).f1460n) {
+                    z zVar = (z) weakReference.get();
+                    if (zVar.f1467u == null) {
+                        zVar.f1467u = new androidx.lifecycle.z();
                     }
-                    y.h(yVar.f1139u, Boolean.TRUE);
+                    z.h(zVar.f1467u, Boolean.TRUE);
                     return;
                 }
                 return;
             default:
-                u0 u0Var = (u0) obj;
-                if (u0Var.f() && (alertDialog = u0Var.f35265i) != null) {
-                    alertDialog.setMessage(dd.L0(2131743143, null));
+                t0 t0Var = (t0) obj;
+                if (t0Var.f() && (alertDialog = t0Var.f43190i) != null) {
+                    alertDialog.setMessage(bd.M0(2131743127, null));
                     return;
                 }
                 return;
@@ -68,23 +67,23 @@ public final class a extends FingerprintManager.AuthenticationCallback {
     }
 
     @Override
-    public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
+    public final void onAuthenticationHelp(int i3, CharSequence charSequence) {
         AlertDialog alertDialog;
-        switch (this.f10519a) {
+        switch (this.f16434a) {
             case 0:
-                WeakReference weakReference = ((w) ((a0) ((h) this.f10520b).f10944b).d).f1122a;
+                WeakReference weakReference = ((x) ((a0) ((c) this.f16435b).f3211b).d).f1449a;
                 if (weakReference.get() != null) {
-                    y yVar = (y) weakReference.get();
-                    if (yVar.f1138t == null) {
-                        yVar.f1138t = new z();
+                    z zVar = (z) weakReference.get();
+                    if (zVar.f1466t == null) {
+                        zVar.f1466t = new androidx.lifecycle.z();
                     }
-                    y.h(yVar.f1138t, charSequence);
+                    z.h(zVar.f1466t, charSequence);
                     return;
                 }
                 return;
             default:
-                u0 u0Var = (u0) this.f10520b;
-                if (u0Var.f() && (alertDialog = u0Var.f35265i) != null) {
+                t0 t0Var = (t0) this.f16435b;
+                if (t0Var.f() && (alertDialog = t0Var.f43190i) != null) {
                     alertDialog.setMessage(charSequence);
                     return;
                 }

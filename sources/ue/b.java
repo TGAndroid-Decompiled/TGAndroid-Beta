@@ -1,65 +1,189 @@
 package ue;
 
-import c3.i0;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public abstract class b {
-    public static final Map f50240a;
-    public static final Pattern f50241b;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.concurrent.Semaphore;
+import x7.f5;
+public final class b implements Iterable {
+    public final boolean f55816a;
+    public final ArrayList f55817b;
+    public final ArrayList f55818c;
+    public final ArrayList d;
+    public boolean f55819e;
+    public final Semaphore f55820f;
+    public b h;
+    public a f55821n;
 
-    static {
-        HashMap hashMap = new HashMap();
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(b.class.getResourceAsStream("/org/commonmark/internal/util/entities.properties"), Charset.forName("UTF-8")));
-            while (true) {
-                String readLine = bufferedReader.readLine();
-                if (readLine != null) {
-                    if (readLine.length() != 0) {
-                        int indexOf = readLine.indexOf("=");
-                        hashMap.put(readLine.substring(0, indexOf), readLine.substring(indexOf + 1));
-                    }
-                } else {
-                    bufferedReader.close();
-                    hashMap.put("NewLine", "\n");
-                    f50240a = hashMap;
-                    f50241b = Pattern.compile("^&#[Xx]?");
-                    return;
+    public b() {
+        this(false, true);
+    }
+
+    public final boolean add(Object obj) {
+        Object obj2;
+        synchronized (this.f55817b) {
+            try {
+                boolean z10 = false;
+                if (indexOf(obj) != -1) {
+                    return false;
                 }
+                if (this.f55819e) {
+                    ArrayList arrayList = this.d;
+                    boolean z11 = false;
+                    for (int size = arrayList.size() - 1; size >= 0; size--) {
+                        Reference reference = (Reference) arrayList.get(size);
+                        if (reference != null) {
+                            obj2 = reference.get();
+                        } else {
+                            obj2 = null;
+                        }
+                        if (obj2 == null) {
+                            arrayList.remove(size);
+                        } else if (obj2 == obj) {
+                            z11 = true;
+                        }
+                    }
+                    if (!z11) {
+                        arrayList.add(new WeakReference(obj));
+                        z10 = true;
+                    }
+                    f5.a(this.f55818c, obj);
+                    return z10;
+                }
+                this.f55817b.add(new WeakReference(obj));
+                return true;
+            } catch (Throwable th2) {
+                throw th2;
             }
-        } catch (IOException e) {
-            throw new IllegalStateException("Failed reading data for HTML named character references", e);
         }
     }
 
-    public static String a(String str) {
-        int i10;
-        Matcher matcher = f50241b.matcher(str);
-        if (matcher.find()) {
-            if (matcher.end() == 2) {
-                i10 = 10;
-            } else {
-                i10 = 16;
-            }
+    public final void clear() {
+        synchronized (this.f55817b) {
             try {
-                int parseInt = Integer.parseInt(str.substring(matcher.end(), str.length() - 1), i10);
-                if (parseInt == 0) {
-                    return "�";
+                if (this.f55819e) {
+                    ArrayList arrayList = this.f55817b;
+                    int size = arrayList.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        Object obj = arrayList.get(i3);
+                        i3++;
+                        Reference reference = (Reference) obj;
+                        if (!this.f55818c.contains(reference)) {
+                            this.f55818c.add(reference);
+                        }
+                        f5.a(this.d, reference.get());
+                    }
+                } else {
+                    this.f55817b.clear();
                 }
-                return new String(Character.toChars(parseInt));
-            } catch (IllegalArgumentException unused) {
-                return "�";
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
-        String str2 = (String) f50240a.get(i0.m(1, 1, str));
-        if (str2 != null) {
-            return str2;
+    }
+
+    public final int indexOf(Object obj) {
+        if (obj != null) {
+            ArrayList arrayList = this.f55817b;
+            for (int size = arrayList.size() - 1; size >= 0; size--) {
+                if (((Reference) arrayList.get(size)).get() == obj) {
+                    return size;
+                }
+            }
+            return -1;
         }
-        return str;
+        return -1;
+    }
+
+    public final boolean isEmpty() {
+        boolean z10;
+        synchronized (this.f55817b) {
+            try {
+                if (this.f55819e) {
+                    if (this.f55817b.isEmpty() && this.d.isEmpty()) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    return z10;
+                }
+                ArrayList arrayList = this.f55817b;
+                if (arrayList != null) {
+                    for (int size = arrayList.size() - 2; size >= 0; size--) {
+                        if (((Reference) arrayList.get(size)).get() == null) {
+                            arrayList.remove(size);
+                        }
+                    }
+                }
+                return this.f55817b.isEmpty();
+            } finally {
+            }
+        }
+    }
+
+    @Override
+    public final Iterator iterator() {
+        Semaphore semaphore = this.f55820f;
+        if (semaphore != null) {
+            semaphore.acquireUninterruptibly();
+        }
+        synchronized (this.f55817b) {
+            try {
+                if (this.f55816a) {
+                    if (!this.f55819e) {
+                        this.f55819e = true;
+                        a aVar = this.f55821n;
+                        if (aVar == null) {
+                            this.f55821n = new a(this);
+                        } else {
+                            aVar.f55813a = this.f55817b.size();
+                            this.f55821n.f55814b = null;
+                        }
+                        return this.f55821n;
+                    }
+                    throw new IllegalStateException();
+                } else if (this.f55817b.isEmpty()) {
+                    return Collections.emptyIterator();
+                } else {
+                    return new a(this);
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public final boolean remove(Object obj) {
+        synchronized (this.f55817b) {
+            try {
+                int indexOf = indexOf(obj);
+                if (indexOf == -1) {
+                    return false;
+                }
+                if (this.f55819e) {
+                    Reference reference = (Reference) this.f55817b.get(indexOf);
+                    if (!this.f55818c.contains(reference)) {
+                        this.f55818c.add(reference);
+                    }
+                    f5.a(this.d, reference.get());
+                } else {
+                    this.f55817b.remove(indexOf);
+                }
+                return true;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    public b(boolean z10, boolean z11) {
+        this.f55818c = new ArrayList();
+        this.d = new ArrayList();
+        this.f55820f = z10 ? new Semaphore(1) : null;
+        this.f55816a = z11;
+        this.f55817b = new ArrayList();
     }
 }

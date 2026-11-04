@@ -1,22 +1,36 @@
 package n2;
 
-import android.os.Handler;
-import e2.l0;
-public final class d implements l {
-    public final j f13443a;
-    public g f13444b;
-    public boolean f13445c;
-    public final e d;
-
-    public d(e eVar, j jVar) {
-        this.d = eVar;
-        this.f13443a = jVar;
-    }
+import a3.r;
+import java.io.IOException;
+public final class d implements r {
+    public final h f20147a;
 
     @Override
-    public final void release() {
-        Handler handler = this.d.J;
-        handler.getClass();
-        l0.W(handler, new lg.s(this, 10));
+    public void a() {
+        h hVar = this.f20147a;
+        hVar.A.a();
+        IOException iOException = hVar.C;
+        if (iOException == null) {
+            return;
+        }
+        throw iOException;
+    }
+
+    public void b() {
+        long j10;
+        h hVar = this.f20147a;
+        synchronized (b3.b.f2346b) {
+            try {
+                if (b3.b.f2347c) {
+                    j10 = b3.b.d;
+                } else {
+                    j10 = -9223372036854775807L;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        hVar.K = j10;
+        hVar.z(true);
     }
 }

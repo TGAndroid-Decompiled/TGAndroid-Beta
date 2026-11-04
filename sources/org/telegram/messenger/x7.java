@@ -1,28 +1,15 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class x7 implements Runnable {
-    public final int f19407a;
-    public final b8 f19408b;
-    public final TLRPC.Document f19409c;
-    public final boolean d;
+    public final int f26352a;
+    public final mg.f f26353b;
 
-    public x7(b8 b8Var, TLRPC.Document document, boolean z10, int i10) {
-        this.f19407a = i10;
-        this.f19408b = b8Var;
-        this.f19409c = document;
-        this.d = z10;
+    public x7(mg.f fVar, int i3) {
+        this.f26352a = i3;
+        this.f26353b = fVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f19407a) {
-            case 0:
-                this.f19408b.e0(this.f19409c, this.d);
-                return;
-            default:
-                this.f19408b.b0(this.f19409c, this.d);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.x7.run():void");
     }
 }

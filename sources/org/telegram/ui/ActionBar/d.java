@@ -3,25 +3,25 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.ui.Components.vu0;
-public final class d extends y {
-    public final l h;
+import org.telegram.ui.Components.qt0;
+public final class d extends x {
+    public final k h;
 
-    public d(l lVar, Context context, l lVar2) {
-        super(context, lVar2);
-        this.h = lVar;
+    public d(k kVar, Context context, k kVar2) {
+        super(context, kVar2);
+        this.h = kVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        l lVar = this.h;
-        Paint paint = lVar.M0;
-        if (lVar.L0 && this.f21534a && lVar.f20521x != 0) {
-            lVar.N0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(lVar.f20521x);
+        k kVar = this.h;
+        Paint paint = kVar.N0;
+        if (kVar.M0 && this.f28785a && kVar.f27749x != 0) {
+            kVar.O0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            paint.setColor(kVar.f27749x);
             canvas2 = canvas;
-            lVar.K0.H(canvas2, 0.0f, lVar.N0, paint, true);
+            kVar.L0.H(canvas2, 0.0f, kVar.O0, paint, true);
         } else {
             canvas2 = canvas;
         }
@@ -31,38 +31,38 @@ public final class d extends y {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        vu0 vu0Var = this.h.K0;
-        if (vu0Var != null) {
-            vu0Var.O.add(this);
+        qt0 qt0Var = this.h.L0;
+        if (qt0Var != null) {
+            qt0Var.P.add(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        vu0 vu0Var = this.h.K0;
-        if (vu0Var != null) {
-            vu0Var.O.remove(this);
+        qt0 qt0Var = this.h.L0;
+        if (qt0Var != null) {
+            qt0Var.P.remove(this);
         }
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        l lVar = this.h;
-        lVar.invalidate();
-        Runnable runnable = lVar.f20479d1;
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        k kVar = this.h;
+        kVar.invalidate();
+        Runnable runnable = kVar.f27710e1;
         if (runnable != null) {
             runnable.run();
         }
     }
 
     @Override
-    public final void setBackgroundColor(int i10) {
-        l lVar = this.h;
-        lVar.f20521x = i10;
-        if (!lVar.L0) {
-            super.setBackgroundColor(i10);
+    public final void setBackgroundColor(int i3) {
+        k kVar = this.h;
+        kVar.f27749x = i3;
+        if (!kVar.M0) {
+            super.setBackgroundColor(i3);
         }
     }
 }

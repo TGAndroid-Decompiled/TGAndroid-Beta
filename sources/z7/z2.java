@@ -1,18 +1,17 @@
 package z7;
-public final class z2 implements ja.d {
-    public static final z2 f55220a = new Object();
-    public static final ja.c f55221b = new ja.c("errorCode", i0.a.o(sc.e.n(w.class, new s(1))));
-    public static final ja.c f55222c = new ja.c("isColdCall", i0.a.o(sc.e.n(w.class, new s(2))));
-    public static final ja.c d = new ja.c("imageInfo", i0.a.o(sc.e.n(w.class, new s(3))));
-    public static final ja.c e = new ja.c("subjectSegmenterOptions", i0.a.o(sc.e.n(w.class, new s(4))));
+public final class z2 implements ma.d {
+    public static final z2 f60139a = new Object();
+
+    static {
+        t4.c.o(t4.c.k(b0.class, t4.c.n(t4.c.k(b0.class, new y(1)), 2)));
+    }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        i1 i1Var = (i1) obj;
-        ja.e eVar = (ja.e) obj2;
-        eVar.d(f55221b, i1Var.f54975a);
-        eVar.d(f55222c, i1Var.f54976b);
-        eVar.d(d, null);
-        eVar.d(e, i1Var.f54977c);
+        if (obj == null) {
+            ma.e eVar = (ma.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

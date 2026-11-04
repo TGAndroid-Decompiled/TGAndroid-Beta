@@ -65,9 +65,9 @@ public interface CameraVideoCapturer extends VideoCapturer {
         }
 
         public static int access$104(CameraStatistics cameraStatistics) {
-            int i10 = cameraStatistics.freezePeriodCount + 1;
-            cameraStatistics.freezePeriodCount = i10;
-            return i10;
+            int i3 = cameraStatistics.freezePeriodCount + 1;
+            cameraStatistics.freezePeriodCount = i3;
+            return i3;
         }
 
         private void checkThread() {

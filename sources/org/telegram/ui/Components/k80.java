@@ -1,164 +1,492 @@
 package org.telegram.ui.Components;
 
-import android.graphics.CornerPathEffect;
-import android.graphics.Path;
-import android.os.Build;
-import android.text.Layout;
-public final class k80 extends jq {
-    public static CornerPathEffect f27772w;
-    public static int f27773x;
-    public Layout h;
-    public int f27774i;
-    public float f27775j;
-    public float f27776k;
-    public float f27777l;
-    public final boolean f27778m;
-    public boolean f27779n;
-    public int f27780o;
-    public int f27781p;
-    public float f27782q;
-    public float f27783r;
-    public float f27784s;
-    public float f27785t;
-    public float f27786u;
-    public float v;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
+import j$.util.DesugarCollections;
+import java.io.File;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.Executors;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public abstract class k80 {
+    public static final Pattern f35339a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f35340b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f35341c = Pattern.compile("^(\\d+)[.)]\\s");
 
-    public k80() {
-        this.f27775j = -1.0f;
-        this.f27779n = true;
-        this.f27784s = Float.MAX_VALUE;
-        this.f27786u = Float.MAX_VALUE;
-        this.f27550c = false;
+    public static TL_iv.RichText a(gf.p pVar, TL_iv.PageBlock pageBlock) {
+        h80 h80Var = new h80(pageBlock);
+        pVar.a(h80Var);
+        return k(l(h80.x(h80Var.f34343c)));
     }
 
-    public static CornerPathEffect c() {
-        if (f27772w == null || f27773x != org.telegram.messenger.i0.L(5.0f)) {
-            int L = org.telegram.messenger.i0.L(5.0f);
-            f27773x = L;
-            f27772w = new CornerPathEffect(L);
+    public static List b(TL_iv.RichText richText) {
+        int i3;
+        if (richText == null) {
+            return Collections.singletonList(n(""));
         }
-        return f27772w;
-    }
-
-    @Override
-    public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
-        Layout layout = this.h;
-        if (layout == null) {
-            f(f7, f10, f11, f12, direction);
-            return;
+        if (o(richText) <= 8192) {
+            return Collections.singletonList(richText);
         }
-        try {
-            float f13 = this.f27777l;
-            float f14 = f10 + f13;
-            float f15 = f12 + f13;
-            float f16 = this.f27775j;
-            if (f16 == -1.0f) {
-                this.f27775j = f14;
-            } else if (f16 != f14) {
-                this.f27775j = f14;
-                this.f27774i++;
+        String p10 = p(richText);
+        ArrayList arrayList = new ArrayList();
+        int i10 = 0;
+        while (i10 < p10.length()) {
+            if (p10.length() - i10 <= 8192) {
+                arrayList.add(n(p10.substring(i10)));
+                return arrayList;
             }
-            float lineRight = layout.getLineRight(this.f27774i);
-            float lineLeft = this.h.getLineLeft(this.f27774i);
-            if (f7 < lineRight) {
-                int i10 = (f7 > lineLeft ? 1 : (f7 == lineLeft ? 0 : -1));
-                if (i10 > 0 || f11 > lineLeft) {
-                    if (f11 > lineRight) {
-                        f11 = lineRight;
-                    }
-                    if (i10 < 0) {
-                        f7 = lineLeft;
-                    }
-                    float f17 = this.f27776k;
-                    float f18 = f7 + f17;
-                    float f19 = f11 + f17;
-                    float f20 = 0.0f;
-                    if (Build.VERSION.SDK_INT >= 28) {
-                        if (f15 - f14 > this.f27781p) {
-                            float f21 = this.f27777l;
-                            if (f15 != this.h.getHeight()) {
-                                f20 = this.h.getLineBottom(this.f27774i) - this.h.getSpacingAdd();
-                            }
-                            f15 = f21 + f20;
+            int i11 = i10 + 8192;
+            int i12 = i10 + 8191;
+            int lastIndexOf = p10.lastIndexOf(10, i12);
+            if (lastIndexOf <= i10) {
+                lastIndexOf = p10.lastIndexOf(32, i12);
+            }
+            if (lastIndexOf <= i10) {
+                i3 = 0;
+            } else {
+                i3 = 1;
+                i11 = lastIndexOf;
+            }
+            arrayList.add(n(p10.substring(i10, i11)));
+            i10 = i11 + i3;
+        }
+        return arrayList;
+    }
+
+    public static TL_iv.textMath c(String str) {
+        String trim;
+        TL_iv.textMath textmath = new TL_iv.textMath();
+        if (str == null) {
+            trim = "";
+        } else {
+            trim = str.trim();
+        }
+        textmath.source = trim;
+        textmath.tried = true;
+        mi.q a10 = mi.q.a(trim, org.telegram.messenger.g0.L(20.0f), true);
+        if (a10 != null) {
+            textmath.f27228w = a10.f19825b;
+            textmath.h = a10.f19826c;
+            textmath.depth = a10.d;
+            textmath.bitmap = a10.f19824a;
+        }
+        return textmath;
+    }
+
+    public static java.lang.String d(java.lang.String r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k80.d(java.lang.String):java.lang.String");
+    }
+
+    public static TL_iv.RichText e(TL_iv.RichText richText) {
+        if (richText == null) {
+            return null;
+        }
+        if (o(richText) <= 8192) {
+            return richText;
+        }
+        String p10 = p(richText);
+        return n(p10.substring(0, Math.min(p10.length(), 8192)));
+    }
+
+    public static void f(ArrayList arrayList, List list) {
+        List unmodifiableList;
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            xc.a aVar = (xc.a) it.next();
+            arrayList.add(aVar);
+            ArrayList arrayList2 = aVar.f58607f;
+            if (arrayList2 == null) {
+                unmodifiableList = Collections.EMPTY_LIST;
+            } else {
+                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
+            }
+            f(arrayList, unmodifiableList);
+        }
+    }
+
+    public static org.telegram.tgnet.TLRPC.TL_webPage g(org.telegram.messenger.zi r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k80.g(org.telegram.messenger.zi):org.telegram.tgnet.TLRPC$TL_webPage");
+    }
+
+    public static int h(int i3, CharSequence charSequence) {
+        char charAt;
+        if (i3 >= charSequence.length() || (charAt = charSequence.charAt(i3)) == '\n' || charAt == ' ') {
+            return 0;
+        }
+        if (charAt != '+' && charAt != '-') {
+            return 3;
+        }
+        int i10 = i3 + 3;
+        if (i10 < charSequence.length() && charSequence.charAt(i3 + 1) == charAt && charSequence.charAt(i3 + 2) == charAt && charSequence.charAt(i10) == ' ') {
+            return 3;
+        }
+        if (charAt != '+') {
+            return 2;
+        }
+        return 1;
+    }
+
+    public static File i(org.telegram.messenger.zi ziVar) {
+        File file;
+        TLRPC.Message message = ziVar.f26868k;
+        int i3 = ziVar.I1;
+        if (!TextUtils.isEmpty(message.attachPath)) {
+            file = new File(ziVar.f26868k.attachPath);
+        } else {
+            file = null;
+        }
+        if (file == null || !file.exists()) {
+            org.telegram.messenger.w7.G(i3);
+            file = org.telegram.messenger.w7.N(ziVar.f26868k, false, true);
+        }
+        if (file == null || !file.exists()) {
+            org.telegram.messenger.w7.G(i3);
+            file = org.telegram.messenger.w7.N(ziVar.f26868k, true, true);
+        }
+        if (file == null || !file.exists()) {
+            return null;
+        }
+        return file;
+    }
+
+    public static boolean j(org.telegram.messenger.zi ziVar) {
+        String Q0 = ziVar.Q0();
+        if (!"diff".equalsIgnoreCase(Q0) && !"patch".equalsIgnoreCase(Q0)) {
+            String u12 = ziVar.u1();
+            if (u12 != null) {
+                String lowerCase = u12.toLowerCase();
+                if (!lowerCase.startsWith("text/x-diff") && !lowerCase.startsWith("text/x-patch")) {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public static TL_iv.RichText k(TL_iv.RichText richText) {
+        if (richText == null) {
+            return null;
+        }
+        if (richText instanceof TL_iv.textConcat) {
+            TL_iv.textConcat textconcat = (TL_iv.textConcat) richText;
+            for (int i3 = 0; i3 < textconcat.texts.size(); i3++) {
+                ArrayList<TL_iv.RichText> arrayList = textconcat.texts;
+                arrayList.set(i3, k(arrayList.get(i3)));
+            }
+            return textconcat;
+        } else if (richText instanceof j80) {
+            j80 j80Var = (j80) richText;
+            TL_iv.textStrike k10 = k(j80Var.text);
+            int i10 = j80Var.f34997a;
+            if ((i10 & 4) != 0) {
+                TL_iv.textFixed textfixed = new TL_iv.textFixed();
+                textfixed.text = k10;
+                k10 = textfixed;
+            }
+            if ((i10 & 32) != 0) {
+                TL_iv.textStrike textstrike = new TL_iv.textStrike();
+                textstrike.text = k10;
+                k10 = textstrike;
+            }
+            if ((i10 & 16) != 0) {
+                TL_iv.textUnderline textunderline = new TL_iv.textUnderline();
+                textunderline.text = k10;
+                k10 = textunderline;
+            }
+            if ((i10 & 64) != 0) {
+                TL_iv.textMarked textmarked = new TL_iv.textMarked();
+                textmarked.text = k10;
+                k10 = textmarked;
+            }
+            if ((i10 & 128) != 0) {
+                TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
+                textsubscript.text = k10;
+                k10 = textsubscript;
+            }
+            if ((i10 & 256) != 0) {
+                TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
+                textsuperscript.text = k10;
+                k10 = textsuperscript;
+            }
+            if ((i10 & 2) != 0) {
+                TL_iv.textItalic textitalic = new TL_iv.textItalic();
+                textitalic.text = k10;
+                k10 = textitalic;
+            }
+            if ((i10 & 1) != 0) {
+                TL_iv.textBold textbold = new TL_iv.textBold();
+                textbold.text = k10;
+                return textbold;
+            }
+            return k10;
+        } else {
+            TL_iv.RichText richText2 = richText.text;
+            if (richText2 != null) {
+                richText.text = k(richText2);
+            }
+            return richText;
+        }
+    }
+
+    public static org.telegram.tgnet.tl.TL_iv.RichText l(org.telegram.tgnet.tl.TL_iv.RichText r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k80.l(org.telegram.tgnet.tl.TL_iv$RichText):org.telegram.tgnet.tl.TL_iv$RichText");
+    }
+
+    public static String m(String str, ArrayList arrayList) {
+        String[] split;
+        TL_iv.RichText richText;
+        String substring;
+        LinkedHashMap linkedHashMap = new LinkedHashMap();
+        String[] split2 = str.split("\n", -1);
+        StringBuilder sb2 = new StringBuilder();
+        int i3 = 0;
+        while (i3 < split2.length) {
+            Matcher matcher = f35339a.matcher(split2[i3]);
+            if (matcher.matches()) {
+                String group = matcher.group(1);
+                StringBuilder sb3 = new StringBuilder(matcher.group(2));
+                i3++;
+                while (i3 < split2.length) {
+                    String str2 = split2[i3];
+                    if (!str2.startsWith("    ") && !str2.startsWith("\t")) {
+                        if (!str2.trim().isEmpty()) {
+                            break;
                         }
-                    } else {
-                        if (f15 != this.h.getHeight()) {
-                            f20 = this.h.getSpacingAdd();
+                        int i10 = i3 + 1;
+                        int i11 = i10;
+                        while (i11 < split2.length && split2[i11].trim().isEmpty()) {
+                            i11++;
                         }
-                        f15 -= f20;
-                    }
-                    int i11 = this.f27780o;
-                    if (i11 < 0) {
-                        f15 += i11;
-                    } else if (i11 > 0) {
-                        f14 += i11;
-                    }
-                    float f22 = f14;
-                    float f23 = f15;
-                    if (this.f27778m) {
-                        f(f18 - (org.telegram.messenger.i0.L(5.0f) / 2.0f), f22, f19 + (org.telegram.messenger.i0.L(5.0f) / 2.0f), f23, direction);
+                        if (i11 >= split2.length || (!split2[i11].startsWith("    ") && !split2[i11].startsWith("\t"))) {
+                            break;
+                        }
+                        sb3.append('\n');
+                        i3 = i10;
                     } else {
-                        f(f18, f22, f19, f23, direction);
+                        sb3.append('\n');
+                        if (str2.startsWith("\t")) {
+                            substring = str2.substring(1);
+                        } else {
+                            substring = str2.substring(4);
+                        }
+                        sb3.append(substring);
+                        i3++;
+                    }
+                }
+                linkedHashMap.put(group, sb3.toString().trim());
+            } else {
+                sb2.append(split2[i3]);
+                if (i3 < split2.length - 1) {
+                    sb2.append('\n');
+                }
+                i3++;
+            }
+        }
+        Matcher matcher2 = f35340b.matcher(sb2.toString());
+        StringBuffer stringBuffer = new StringBuffer();
+        while (matcher2.find()) {
+            String group2 = matcher2.group(1);
+            matcher2.appendReplacement(stringBuffer, Matcher.quoteReplacement("<sup>[\\[" + group2 + "\\]](#fn-" + group2 + ")</sup>"));
+        }
+        matcher2.appendTail(stringBuffer);
+        String stringBuffer2 = stringBuffer.toString();
+        List<ye.a> asList = Arrays.asList(new bf.g(1), new bf.g(0));
+        Pattern pattern = bd.j.f3235j;
+        ArrayList arrayList2 = new ArrayList(3);
+        ArrayList arrayList3 = new ArrayList(3);
+        arrayList2.addAll(Arrays.asList(new Object(), new Object(), new Object(), new bd.d(0), new Object(), new Object(), new Object(), new Object(), new bd.d(1)));
+        arrayList3.addAll(Arrays.asList(new ef.a(0), new ef.a(1)));
+        org.telegram.messenger.g0.L(18.0f);
+        Executors.newCachedThreadPool();
+        new Handler(Looper.getMainLooper());
+        new HashMap(3);
+        arrayList2.add(new Object());
+        arrayList2.add(new Object());
+        b8.ke keVar = new b8.ke();
+        if (asList != null) {
+            for (ye.a aVar : asList) {
+                if (aVar instanceof bf.g) {
+                    switch (((bf.g) aVar).f3295a) {
+                        case 0:
+                            ((ArrayList) keVar.f2716b).add(new cf.a(0));
+                            continue;
+                        default:
+                            ((ArrayList) keVar.f2717c).add(new Object());
+                            continue;
                     }
                 }
             }
-        } catch (Exception unused) {
+            keVar.f2719f = new p4.q(arrayList2, arrayList3);
+            ((ArrayList) keVar.f2716b).add(new cf.a(8));
+            ui.f fVar = new ui.f(keVar);
+            ArrayDeque arrayDeque = new ArrayDeque();
+            String str3 = null;
+            boolean z10 = false;
+            for (String str4 : stringBuffer2.split("\n", -1)) {
+                int i12 = 0;
+                while (i12 < str4.length() && i12 < 3 && str4.charAt(i12) == ' ') {
+                    i12++;
+                }
+                String substring2 = str4.substring(i12);
+                if (z10) {
+                    if (substring2.startsWith(str3)) {
+                        str3 = null;
+                        z10 = false;
+                    }
+                } else {
+                    String str5 = "```";
+                    if (!substring2.startsWith("```")) {
+                        str5 = "~~~";
+                        if (!substring2.startsWith("~~~")) {
+                            Matcher matcher3 = f35341c.matcher(str4);
+                            if (matcher3.find()) {
+                                arrayDeque.add(matcher3.group(1));
+                            }
+                        }
+                    }
+                    z10 = true;
+                    str3 = str5;
+                }
+            }
+            g80 g80Var = new g80(arrayList, arrayDeque);
+            g80Var.v(fVar.H(stringBuffer2));
+            g80Var.y();
+            if (!linkedHashMap.isEmpty()) {
+                TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
+                String M0 = org.telegram.messenger.bd.M0(2131749199, null);
+                TL_iv.textBold textbold = new TL_iv.textBold();
+                textbold.text = n(M0);
+                pageblockdetails.title = textbold;
+                for (Map.Entry entry : linkedHashMap.entrySet()) {
+                    String str6 = (String) entry.getKey();
+                    ArrayList arrayList4 = new ArrayList();
+                    g80 g80Var2 = new g80(arrayList4, new ArrayDeque());
+                    g80Var2.v(fVar.H((String) entry.getValue()));
+                    g80Var2.y();
+                    TL_iv.RichText textconcat = new TL_iv.textConcat();
+                    int size = arrayList4.size();
+                    int i13 = 0;
+                    while (i13 < size) {
+                        Object obj = arrayList4.get(i13);
+                        i13++;
+                        TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) obj;
+                        if (pageBlock instanceof TL_iv.pageBlockParagraph) {
+                            richText = ((TL_iv.pageBlockParagraph) pageBlock).text;
+                        } else if (pageBlock instanceof TL_iv.pageBlockHeader) {
+                            richText = ((TL_iv.pageBlockHeader) pageBlock).text;
+                        } else if (pageBlock instanceof TL_iv.pageBlockSubheader) {
+                            richText = ((TL_iv.pageBlockSubheader) pageBlock).text;
+                        } else if (pageBlock instanceof TL_iv.pageBlockTitle) {
+                            richText = ((TL_iv.pageBlockTitle) pageBlock).text;
+                        } else {
+                            richText = null;
+                        }
+                        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
+                            if (!textconcat.texts.isEmpty()) {
+                                textconcat.texts.add(n("\n\n"));
+                            }
+                            textconcat.texts.add(richText);
+                        }
+                    }
+                    if (textconcat.texts.isEmpty()) {
+                        textconcat = new TL_iv.textEmpty();
+                    } else if (textconcat.texts.size() == 1) {
+                        textconcat = textconcat.texts.get(0);
+                    }
+                    TL_iv.RichText e10 = e(textconcat);
+                    TL_iv.textAnchor textanchor = new TL_iv.textAnchor();
+                    textanchor.name = t4.c.f("fn-", str6);
+                    textanchor.text = e10;
+                    TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
+                    String q10 = t4.c.q(str6, ". ");
+                    TL_iv.textBold textbold2 = new TL_iv.textBold();
+                    textbold2.text = n(q10);
+                    TL_iv.RichText[] richTextArr = {textbold2, textanchor};
+                    TL_iv.textConcat textconcat2 = new TL_iv.textConcat();
+                    for (int i14 = 0; i14 < 2; i14++) {
+                        textconcat2.texts.add(richTextArr[i14]);
+                    }
+                    pageblockparagraph.text = textconcat2;
+                    pageblockdetails.blocks.add(pageblockparagraph);
+                }
+                arrayList.add(pageblockdetails);
+            }
+            TL_iv.RichText richText2 = g80Var.f34022b;
+            if (richText2 == null) {
+                return null;
+            }
+            return p(richText2);
+        }
+        throw new NullPointerException("extensions must not be null");
+    }
+
+    public static TL_iv.textPlain n(String str) {
+        TL_iv.textPlain textplain = new TL_iv.textPlain();
+        if (str == null) {
+            str = "";
+        }
+        textplain.text = str;
+        return textplain;
+    }
+
+    public static int o(TL_iv.RichText richText) {
+        int i3 = 0;
+        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
+            return 0;
+        }
+        if (richText instanceof TL_iv.textPlain) {
+            String str = ((TL_iv.textPlain) richText).text;
+            if (str == null) {
+                return 0;
+            }
+            return str.length();
+        } else if (richText instanceof TL_iv.textConcat) {
+            ArrayList<TL_iv.RichText> arrayList = richText.texts;
+            int size = arrayList.size();
+            int i10 = 0;
+            while (i10 < size) {
+                TL_iv.RichText richText2 = arrayList.get(i10);
+                i10++;
+                i3 += o(richText2);
+            }
+            return i3;
+        } else {
+            return o(richText.text);
         }
     }
 
-    public final void d(Layout layout, int i10, float f7) {
-        e(layout, i10, 0.0f, f7);
-    }
-
-    public final void e(Layout layout, int i10, float f7, float f10) {
-        int lineCount;
-        if (layout == null) {
-            this.h = null;
-            this.f27774i = 0;
-            this.f27775j = -1.0f;
-            this.f27776k = f7;
-            this.f27777l = f10;
-            return;
+    public static String p(TL_iv.RichText richText) {
+        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
+            if (richText instanceof TL_iv.textPlain) {
+                return ((TL_iv.textPlain) richText).text;
+            }
+            if (richText instanceof TL_iv.textConcat) {
+                StringBuilder sb2 = new StringBuilder();
+                ArrayList<TL_iv.RichText> arrayList = richText.texts;
+                int size = arrayList.size();
+                int i3 = 0;
+                while (i3 < size) {
+                    TL_iv.RichText richText2 = arrayList.get(i3);
+                    i3++;
+                    sb2.append(p(richText2));
+                }
+                return sb2.toString();
+            }
+            return p(richText.text);
         }
-        this.h = layout;
-        this.f27774i = layout.getLineForOffset(i10);
-        this.f27775j = -1.0f;
-        this.f27776k = f7;
-        this.f27777l = f10;
-        if (Build.VERSION.SDK_INT >= 28 && (lineCount = layout.getLineCount()) > 0) {
-            int i11 = lineCount - 1;
-            this.f27781p = layout.getLineBottom(i11) - layout.getLineTop(i11);
-        }
-    }
-
-    public final void f(float f7, float f10, float f11, float f12, Path.Direction direction) {
-        float f13 = this.f27783r;
-        float f14 = f7 - f13;
-        float f15 = this.f27782q;
-        float f16 = f10 - f15;
-        float f17 = f11 + f13;
-        float f18 = f12 + f15;
-        this.f27784s = Math.min(this.f27784s, Math.min(f14, f17));
-        this.f27786u = Math.min(this.f27786u, Math.min(f16, f18));
-        this.f27785t = Math.max(this.f27785t, Math.max(f14, f17));
-        this.v = Math.max(this.v, Math.max(f16, f18));
-        super.addRect(f14, f16, f17, f18, direction);
-    }
-
-    @Override
-    public final void reset() {
-        if (!this.f27779n) {
-            return;
-        }
-        super.reset();
-    }
-
-    public k80(int i10) {
-        this.f27775j = -1.0f;
-        this.f27779n = true;
-        this.f27784s = Float.MAX_VALUE;
-        this.f27786u = Float.MAX_VALUE;
-        this.f27778m = true;
-        this.f27550c = false;
+        return "";
     }
 }

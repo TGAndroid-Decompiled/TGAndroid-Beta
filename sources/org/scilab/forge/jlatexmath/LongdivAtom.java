@@ -7,24 +7,24 @@ public class LongdivAtom extends VRowAtom {
         setVtop(true);
         String[] makeResults = makeResults(j10, j11);
         RuleAtom ruleAtom = new RuleAtom(1, 0.0f, 1, 2.6f, 1, 0.5f);
-        for (int i10 = 0; i10 < makeResults.length; i10++) {
-            Atom atom = new TeXFormula(makeResults[i10]).root;
-            if (i10 % 2 == 0) {
+        for (int i3 = 0; i3 < makeResults.length; i3++) {
+            Atom atom = new TeXFormula(makeResults[i3]).root;
+            if (i3 % 2 == 0) {
                 RowAtom rowAtom = new RowAtom(atom);
                 rowAtom.add(ruleAtom);
-                if (i10 == 0) {
+                if (i3 == 0) {
                     append(rowAtom);
                 } else {
                     append(new UnderlinedAtom(rowAtom));
                 }
-            } else if (i10 == 1) {
-                String l4 = Long.toString(j10);
+            } else if (i3 == 1) {
+                String l10 = Long.toString(j10);
                 BigDelimiterAtom bigDelimiterAtom = new BigDelimiterAtom(SymbolAtom.get(TeXFormula.symbolMappings[41]), 1);
                 RowAtom rowAtom2 = new RowAtom(new PhantomAtom(bigDelimiterAtom, false, true, true));
                 rowAtom2.add(new SmashedAtom(new RaiseAtom(bigDelimiterAtom, 13, 3.5f, 13, 0.0f, 13, 0.0f)));
                 rowAtom2.add(atom);
                 OverlinedAtom overlinedAtom = new OverlinedAtom(rowAtom2);
-                RowAtom rowAtom3 = new RowAtom(new TeXFormula(l4).root);
+                RowAtom rowAtom3 = new RowAtom(new TeXFormula(l10).root);
                 rowAtom3.add(new SpaceAtom(1));
                 rowAtom3.add(overlinedAtom);
                 append(rowAtom3);
@@ -41,10 +41,10 @@ public class LongdivAtom extends VRowAtom {
         long j12 = j11 / j10;
         arrayList.add(Long.toString(j12));
         arrayList.add(Long.toString(j11));
-        String l4 = Long.toString(j12);
-        int length = l4.length();
-        for (int i10 = 0; i10 < length; i10++) {
-            long charAt = (l4.charAt(i10) - '0') * ((long) Math.pow(10.0d, (length - i10) - 1)) * j10;
+        String l10 = Long.toString(j12);
+        int length = l10.length();
+        for (int i3 = 0; i3 < length; i3++) {
+            long charAt = (l10.charAt(i3) - '0') * ((long) Math.pow(10.0d, (length - i3) - 1)) * j10;
             j11 -= charAt;
             arrayList.add(Long.toString(charAt));
             arrayList.add(Long.toString(j11));

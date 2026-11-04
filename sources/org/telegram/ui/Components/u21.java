@@ -1,54 +1,42 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-public final class u21 extends Drawable {
-    public final ci0 f30837a;
-    public int f30838b;
-    public final TextPaint f30839c;
-
-    public u21(TextPaint textPaint) {
-        bi.s0 s0Var = new bi.s0(this, 5);
-        this.f30839c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        ci0 ci0Var = new ci0(2131624000, (int) textSize, (int) (textSize * 1.25f));
-        this.f30837a = ci0Var;
-        ci0Var.setCallback(s0Var);
-        ci0Var.K(1);
-        ci0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        ci0Var.J(true);
-        ci0Var.start();
-    }
+import android.view.View;
+import android.widget.ScrollView;
+public final class u21 extends ScrollView {
+    public Drawable f38627a;
+    public u5 f38628b;
+    public boolean f38629c;
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f30839c.getColor();
-        int i10 = this.f30838b;
-        ci0 ci0Var = this.f30837a;
-        if (color != i10) {
-            ci0Var.Z = true;
-            ci0Var.Q(color, "Comp 1");
-            ci0Var.o();
-            ci0Var.J(true);
-            ci0Var.V(0L);
-            this.f30838b = color;
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        super.dispatchDraw(canvas);
+        u5 u5Var = this.f38628b;
+        if (canScrollVertically(-1)) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
         }
-        ci0Var.draw(canvas);
+        float e10 = u5Var.e(false, f10) * 0.5f;
+        if (e10 > 0.0f) {
+            if (this.f38627a == null) {
+                this.f38627a = getContext().getResources().getDrawable(2131231237);
+            }
+            this.f38627a.setBounds(0, getScrollY(), getWidth(), this.f38627a.getIntrinsicHeight() + getScrollY());
+            this.f38627a.setAlpha((int) (e10 * 255.0f));
+            this.f38627a.draw(canvas);
+        }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onNestedScroll(View view, int i3, int i10, int i11, int i12) {
+        super.onNestedScroll(view, i3, i10, i11, i12);
+        boolean canScrollVertically = canScrollVertically(-1);
+        if (this.f38629c != canScrollVertically) {
+            invalidate();
+            this.f38629c = canScrollVertically;
+        }
     }
 }

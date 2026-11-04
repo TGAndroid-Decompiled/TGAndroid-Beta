@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
-public final class lm implements Runnable {
-    public final int f28205a;
-    public final jn f28206b;
-    public final int f28207c;
+public final class lm implements org.telegram.messenger.u10 {
+    public final int f35791a;
+    public final org.telegram.messenger.u10 f35792b;
 
-    public lm(jn jnVar, int i10, int i11) {
-        this.f28205a = i11;
-        this.f28206b = jnVar;
-        this.f28207c = i10;
+    public lm(org.telegram.messenger.u10 u10Var, int i3) {
+        this.f35791a = i3;
+        this.f35792b = u10Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28205a) {
+    public final void a(Object obj) {
+        switch (this.f35791a) {
             case 0:
-                this.f28206b.h0(this.f28207c, null);
-                return;
-            case 1:
-                this.f28206b.e0(this.f28207c);
+                this.f35792b.a(new uh.e((String) obj));
                 return;
             default:
-                this.f28206b.h0(this.f28207c, null);
+                int[] iArr = (int[]) obj;
+                boolean z10 = false;
+                if (iArr.length >= 1 && iArr[0] == 0) {
+                    z10 = true;
+                }
+                this.f35792b.a(Boolean.valueOf(z10));
                 return;
         }
     }

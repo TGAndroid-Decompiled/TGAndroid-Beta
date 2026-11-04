@@ -4,13 +4,13 @@ import android.content.ContentValues;
 import android.net.Uri;
 import java.util.Arrays;
 import java.util.List;
-public class NotificationBadge$NovaHomeBadger implements ms {
+public class NotificationBadge$NovaHomeBadger implements ur {
     @Override
-    public final void a(int i10) {
+    public final void a(int i3) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put("tag", ps.d.getPackageName() + "/" + ps.d.getClassName());
-        contentValues.put("count", Integer.valueOf(i10));
-        w0.f18945b.getContentResolver().insert(Uri.parse("content://com.teslacoilsw.notifier/unread_count"), contentValues);
+        contentValues.put("tag", wr.d.getPackageName() + "/" + wr.d.getClassName());
+        contentValues.put("count", Integer.valueOf(i3));
+        t0.f25457b.getContentResolver().insert(Uri.parse("content://com.teslacoilsw.notifier/unread_count"), contentValues);
     }
 
     @Override

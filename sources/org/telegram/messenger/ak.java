@@ -1,212 +1,142 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import android.util.Pair;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class ak implements Runnable {
-    public final int f14638a;
-    public final wp f14639b;
+import org.telegram.tgnet.tl.TL_bots;
+public final class ak implements u10 {
+    public final int f21533a = 2;
+    public final hp f21534b;
+    public final Object f21535c;
+    public final int d;
+    public final Object f21536e;
+    public final Object f21537f;
+    public final Object f21538g;
 
-    public ak(wp wpVar, int i10) {
-        this.f14638a = i10;
-        this.f14639b = wpVar;
+    public ak(hp hpVar, TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers, int[] iArr, int i3, TLRPC.Chat chat, Runnable runnable) {
+        this.f21534b = hpVar;
+        this.f21536e = tL_messages_invitedUsers;
+        this.f21537f = iArr;
+        this.d = i3;
+        this.f21538g = chat;
+        this.f21535c = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f14638a) {
+    public final void a(Object obj) {
+        int i3 = this.f21533a;
+        Object obj2 = this.f21535c;
+        Object obj3 = this.f21538g;
+        int i10 = this.d;
+        Object obj4 = this.f21537f;
+        Object obj5 = this.f21536e;
+        hp hpVar = this.f21534b;
+        switch (i3) {
             case 0:
-                this.f14639b.f3();
+                sf.b bVar = (sf.b) obj5;
+                org.telegram.ui.ActionBar.s1[] s1VarArr = (org.telegram.ui.ActionBar.s1[]) obj4;
+                org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) obj3;
+                boolean[] zArr = (boolean[]) obj2;
+                Long l10 = (Long) obj;
+                try {
+                    if (bVar != null) {
+                        bVar.b();
+                    } else {
+                        s1VarArr[0].dismiss();
+                    }
+                } catch (Exception unused) {
+                }
+                s1VarArr[0] = null;
+                d2Var.setVisibleDialog(null);
+                if (!zArr[0]) {
+                    if (l10 != null) {
+                        if (l10.longValue() < 0) {
+                            hpVar.z3(null, hpVar.M0(Long.valueOf(-l10.longValue())), d2Var, 1);
+                            return;
+                        } else {
+                            hpVar.z3(hpVar.a2(l10), null, d2Var, i10);
+                            return;
+                        }
+                    } else if (d2Var.getParentActivity() != null) {
+                        try {
+                            if (d2Var instanceof org.telegram.ui.wm) {
+                                ((org.telegram.ui.wm) d2Var).Tb();
+                            }
+                            org.telegram.ui.Components.fc.a0(d2Var).t(bd.M0(2131748142, null), null).j();
+                            return;
+                        } catch (Exception e10) {
+                            a8.g(e10, true);
+                            return;
+                        }
+                    } else {
+                        return;
+                    }
+                }
                 return;
             case 1:
-                wp wpVar = this.f14639b;
-                wpVar.getNotificationCenter().k(46, new Object[0]);
-                wpVar.getNotificationCenter().k(2, 2);
-                wpVar.getUserConfig().v(true);
-                return;
-            case 2:
-                wp wpVar2 = this.f14639b;
-                wp messagesController = wpVar2.getMessagesController();
-                wpVar2.getNotificationCenter().b(messagesController, 138);
-                wpVar2.getNotificationCenter().b(messagesController, 139);
-                wpVar2.getNotificationCenter().b(messagesController, 140);
-                wpVar2.getNotificationCenter().b(messagesController, 142);
-                wpVar2.getNotificationCenter().b(messagesController, 143);
-                wpVar2.getNotificationCenter().b(messagesController, 21);
-                wpVar2.getNotificationCenter().b(messagesController, 48);
-                return;
-            case 3:
-                wp wpVar3 = this.f14639b;
-                ak akVar = wpVar3.K7;
-                i0.r(akVar);
-                long currentTime = wpVar3.f19268v4 - wpVar3.getConnectionsManager().getCurrentTime();
-                if (currentTime > 0) {
-                    i0.h3(akVar, currentTime);
-                    return;
-                }
-                return;
-            case 4:
-                this.f14639b.P2(true);
-                return;
-            case 5:
-                this.f14639b.M(false);
-                return;
-            case 6:
-                e20 userConfig = this.f14639b.getUserConfig();
-                if ((userConfig.f15522k0 != null || userConfig.f15521j0 != null) && Math.abs(SystemClock.elapsedRealtime() - userConfig.f15523l0) >= 1800000) {
-                    userConfig.u();
-                    return;
-                }
-                return;
-            case 7:
-                wp wpVar4 = this.f14639b;
-                SharedPreferences sharedPreferences = wpVar4.e7;
-                sharedPreferences.getBoolean("EnableContactJoined", true);
-                wpVar4.F2 = sharedPreferences.getInt("nextTosCheckTime", 0);
-                return;
-            case 8:
-                this.f14639b.getNotificationCenter().k(119, new Object[0]);
-                return;
-            case 9:
-                this.f14639b.getNotificationsController().m(0);
-                return;
-            case 10:
-                this.f14639b.getNotificationsController().m(1);
-                return;
-            case 11:
-                this.f14639b.getNotificationsController().m(2);
-                return;
-            case 12:
-                wp wpVar5 = this.f14639b;
-                HashSet hashSet = wpVar5.f19130f8;
-                if (!hashSet.isEmpty()) {
-                    TL_account.getRequirementsToContact getrequirementstocontact = new TL_account.getRequirementsToContact();
-                    ArrayList arrayList = new ArrayList();
-                    Iterator it = hashSet.iterator();
-                    while (it.hasNext()) {
-                        Long l4 = (Long) it.next();
-                        l4.getClass();
-                        getrequirementstocontact.f20002id.add(wpVar5.p1(wpVar5.Z1(l4)));
-                        arrayList.add(l4);
+                boolean[] zArr2 = (boolean[]) obj2;
+                TL_bots.BotInfo[] botInfoArr = (TL_bots.BotInfo[]) obj5;
+                TLRPC.User user = (TLRPC.User) obj4;
+                ml mlVar = (ml) obj3;
+                TL_bots.BotInfo botInfo = (TL_bots.BotInfo) obj;
+                if (!zArr2[0]) {
+                    botInfoArr[0] = botInfo;
+                    if (botInfo == null) {
+                        TLRPC.UserFull b22 = hpVar.b2(user.f27150id);
+                        if (b22 == null) {
+                            if (!zArr2[0]) {
+                                hpVar.W2(user, i10, true, new d3(zArr2, botInfoArr, mlVar, 5));
+                                return;
+                            }
+                            return;
+                        }
+                        botInfoArr[0] = b22.bot_info;
+                        mlVar.run();
+                        return;
                     }
-                    hashSet.clear();
-                    if (!getrequirementstocontact.f20002id.isEmpty()) {
-                        wpVar5.getConnectionsManager().sendRequest(getrequirementstocontact, new v4(6, wpVar5, arrayList));
+                    mlVar.run();
+                    return;
+                }
+                return;
+            default:
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = (TLRPC.TL_messages_invitedUsers) obj5;
+                int[] iArr = (int[]) obj4;
+                TLRPC.Chat chat = (TLRPC.Chat) obj3;
+                Runnable runnable = (Runnable) obj2;
+                TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers2 = (TLRPC.TL_messages_invitedUsers) obj;
+                hpVar.getClass();
+                if (tL_messages_invitedUsers2 != null) {
+                    tL_messages_invitedUsers.missing_invitees.addAll(tL_messages_invitedUsers2.missing_invitees);
+                }
+                int i11 = iArr[0] + 1;
+                iArr[0] = i11;
+                if (i11 >= i10) {
+                    if (!tL_messages_invitedUsers.missing_invitees.isEmpty()) {
+                        g0.h3(new fg(hpVar, chat, tL_messages_invitedUsers, 2));
+                    }
+                    if (runnable != null) {
+                        runnable.run();
                         return;
                     }
                     return;
                 }
                 return;
-            case 13:
-                wp wpVar6 = this.f14639b;
-                wpVar6.getClass();
-                a0.h hVar = new a0.h();
-                HashSet hashSet2 = wpVar6.f19225q8;
-                Iterator it2 = hashSet2.iterator();
-                while (it2.hasNext()) {
-                    Pair pair = (Pair) it2.next();
-                    Pair pair2 = (Pair) hVar.f(((rh.x5) pair.first).f47705a);
-                    if (pair2 == null) {
-                        long j10 = ((rh.x5) pair.first).f47705a;
-                        Pair pair3 = new Pair(new HashSet(), (AtomicBoolean) pair.second);
-                        hVar.k(pair3, j10);
-                        pair2 = pair3;
-                    }
-                    if (!((AtomicBoolean) pair.second).get()) {
-                        ((AtomicBoolean) pair2.second).set(false);
-                    }
-                    ((HashSet) pair2.first).add(Integer.valueOf(((rh.x5) pair.first).f47706b));
-                }
-                hashSet2.clear();
-                for (int i10 = 0; i10 < hVar.m(); i10++) {
-                    Pair pair4 = (Pair) hVar.n(i10);
-                    long j11 = hVar.j(i10);
-                    boolean z10 = ((AtomicBoolean) pair4.second).get();
-                    TLRPC.TL_reportMessagesDelivery tL_reportMessagesDelivery = new TLRPC.TL_reportMessagesDelivery();
-                    tL_reportMessagesDelivery.peer = wpVar6.i1(j11);
-                    tL_reportMessagesDelivery.f19930id.addAll((HashSet) pair4.first);
-                    tL_reportMessagesDelivery.push = z10;
-                    wpVar6.getConnectionsManager().sendRequest(tL_reportMessagesDelivery, null);
-                }
-                return;
-            case 14:
-                this.f14639b.getNotificationCenter().k(240, new Object[0]);
-                return;
-            case 15:
-                this.f14639b.getNotificationCenter().k(195, new Object[0]);
-                return;
-            case 16:
-                this.f14639b.getNotificationCenter().k(2, 4);
-                return;
-            case 17:
-                this.f14639b.getNotificationCenter().k(2, 64);
-                return;
-            case 18:
-                wp wpVar7 = this.f14639b;
-                wpVar7.f19304z2 = 0L;
-                wpVar7.D2 = null;
-                wpVar7.f19248t2 = wpVar7.getConnectionsManager().getCurrentTime() + 3600;
-                wp.d1().edit().putLong("proxy_dialog", wpVar7.f19304z2).remove("proxyDialogAddress").putInt("nextPromoInfoCheckTime", wpVar7.f19248t2).commit();
-                return;
-            case 19:
-                wp wpVar8 = this.f14639b;
-                wpVar8.getMessagesStorage().t1(false);
-                i0.g3(new ak(wpVar8, 29));
-                return;
-            case 20:
-                this.f14639b.f3();
-                return;
-            case 21:
-                wp wpVar9 = this.f14639b;
-                TLRPC.Dialog dialog = wpVar9.f19286x2;
-                if (dialog != null) {
-                    long j12 = dialog.f19798id;
-                    if (j12 < 0) {
-                        TLRPC.Chat L0 = wpVar9.L0(Long.valueOf(-j12));
-                        if (w3.r0(L0) || L0.restricted) {
-                            wpVar9.c4(wpVar9.f19286x2);
-                        }
-                    } else {
-                        wpVar9.c4(dialog);
-                    }
-                    wpVar9.f19286x2 = null;
-                    wpVar9.Q4(null);
-                    wpVar9.getNotificationCenter().k(3, new Object[0]);
-                    return;
-                }
-                return;
-            case 22:
-                this.f14639b.f3();
-                return;
-            case 23:
-                this.f14639b.getNotificationCenter().k(2, 8192);
-                return;
-            case 24:
-                this.f14639b.f19116e2 = false;
-                return;
-            case 25:
-                this.f14639b.N(true);
-                return;
-            case 26:
-                this.f14639b.I(true);
-                return;
-            case 27:
-                this.f14639b.getNotificationCenter().k(2, 8192);
-                return;
-            case 28:
-                this.f14639b.getNotificationCenter().k(2, 8192);
-                return;
-            default:
-                wp wpVar10 = this.f14639b;
-                wpVar10.getMessagesController().Q4(null);
-                wpVar10.getNotificationCenter().k(3, Boolean.TRUE);
-                return;
         }
+    }
+
+    public ak(hp hpVar, sf.b bVar, org.telegram.ui.ActionBar.s1[] s1VarArr, org.telegram.ui.ActionBar.d2 d2Var, boolean[] zArr, int i3) {
+        this.f21534b = hpVar;
+        this.f21536e = bVar;
+        this.f21537f = s1VarArr;
+        this.f21538g = d2Var;
+        this.f21535c = zArr;
+        this.d = i3;
+    }
+
+    public ak(hp hpVar, boolean[] zArr, TL_bots.BotInfo[] botInfoArr, TLRPC.User user, int i3, ml mlVar) {
+        this.f21534b = hpVar;
+        this.f21535c = zArr;
+        this.f21536e = botInfoArr;
+        this.f21537f = user;
+        this.d = i3;
+        this.f21538g = mlVar;
     }
 }

@@ -1,0 +1,18 @@
+package ri;
+public final class b {
+    public static final b f54545c = new b(Float.POSITIVE_INFINITY);
+    public final float f54546a;
+    public final float f54547b;
+
+    public b(float f10) {
+        if (!Float.isNaN(Float.POSITIVE_INFINITY)) {
+            if (!Float.isNaN(f10) && f10 >= 0.0f) {
+                this.f54546a = Float.POSITIVE_INFINITY;
+                this.f54547b = f10;
+                return;
+            }
+            throw new IllegalArgumentException("epsY must be >= 0");
+        }
+        throw new IllegalArgumentException("epsX must be >= 0");
+    }
+}

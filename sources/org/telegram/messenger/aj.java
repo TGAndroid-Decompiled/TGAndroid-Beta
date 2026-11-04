@@ -1,32 +1,29 @@
 package org.telegram.messenger;
 
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-public final class aj extends CharacterStyle {
-    public final int f14637a;
+import org.telegram.tgnet.TLRPC;
+public final class aj extends zi {
+    public final int f21531s3;
+    public final dj f21532t3;
 
-    public aj(int i10) {
-        this.f14637a = i10;
+    public aj(dj djVar, int i3, TLRPC.TL_message tL_message, int i10) {
+        super(i3, tL_message, true, false);
+        this.f21532t3 = djVar;
+        this.f21531s3 = i10;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        switch (this.f14637a) {
-            case 0:
-                textPaint.setTextSize(textPaint.getTextSize() * 0.8f);
-                textPaint.setColor(org.telegram.ui.ActionBar.t6.T2.getColor());
-                return;
-            case 1:
-                textPaint.setColor(org.telegram.ui.ActionBar.t6.f21131o2.linkColor);
-                return;
-            case 2:
-                return;
-            default:
-                textPaint.setAlpha(128);
-                return;
+    public final void n0(TLRPC.User user) {
+        super.n0(user);
+        if (this.f21531s3 == 2) {
+            this.f21532t3.b(this);
         }
     }
 
-    private final void a(TextPaint textPaint) {
+    @Override
+    public final boolean o5() {
+        if (this.f21532t3.f22205k) {
+            return false;
+        }
+        return super.o5();
     }
 }

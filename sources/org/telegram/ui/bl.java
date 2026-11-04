@@ -1,35 +1,18 @@
 package org.telegram.ui;
 
-import android.graphics.RectF;
-import android.view.ViewTreeObserver;
-public final class bl implements ViewTreeObserver.OnPreDrawListener {
-    public final int f36080a;
-    public final Object f36081b;
+import android.content.Context;
+public final class bl extends org.telegram.ui.Cells.f0 {
+    public final fl M;
 
-    public bl(Object obj, int i10) {
-        this.f36080a = i10;
-        this.f36081b = obj;
+    public bl(fl flVar, Context context, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(i3, context, e6Var);
+        this.M = flVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        org.telegram.ui.ActionBar.l lVar;
-        int i10 = this.f36080a;
-        Object obj = this.f36081b;
-        switch (i10) {
-            case 0:
-                lVar = ((org.telegram.ui.ActionBar.k2) ((cl) obj).d).actionBar;
-                lVar.invalidate();
-                return true;
-            case 1:
-                ProfileActivity profileActivity = (ProfileActivity) obj;
-                RectF rectF = ProfileActivity.S6;
-                profileActivity.y5();
-                profileActivity.z5();
-                return true;
-            default:
-                ((s61) obj).t0();
-                return true;
-        }
+    public final int getSideMenuWidth() {
+        wm wmVar = this.M.R;
+        int i3 = wm.f51227jd;
+        return wmVar.l9();
     }
 }

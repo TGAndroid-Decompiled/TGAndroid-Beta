@@ -7,134 +7,134 @@ import android.widget.TextView;
 import java.util.HashMap;
 import org.telegram.ui.LaunchActivity;
 public class AlertDialog$Builder {
-    public final x1 f20135a;
-    public final boolean[] f20136b;
+    public final s1 f27343a;
+    public final boolean[] f27344b;
 
     public AlertDialog$Builder(Context context) {
         this(0, context, null);
     }
 
-    public final x1 a() {
-        return this.f20135a;
+    public final s1 a() {
+        return this.f27343a;
     }
 
-    public x1 b(int i10, Context context, p6 p6Var) {
-        return new x1(i10, context, p6Var);
+    public s1 b(int i3, Context context, e6 e6Var) {
+        return new s1(i3, context, e6Var);
     }
 
     public final void c() {
-        int i10 = x1.l1;
-        this.f20135a.getClass();
+        int i3 = s1.m1;
+        this.f27343a.getClass();
     }
 
-    public final void d(int i10) {
-        int i11 = (-i10) - 1;
-        if (i11 >= 0) {
-            boolean[] zArr = this.f20136b;
-            if (i11 < zArr.length) {
-                zArr[i11] = true;
+    public final void d(int i3) {
+        int i10 = (-i3) - 1;
+        if (i10 >= 0) {
+            boolean[] zArr = this.f27344b;
+            if (i10 < zArr.length) {
+                zArr[i10] = true;
             }
         }
     }
 
     public final void e() {
-        this.f20135a.S0 = 0.5f;
+        this.f27343a.T0 = 0.5f;
     }
 
     public final void f(CharSequence[] charSequenceArr, DialogInterface.OnClickListener onClickListener) {
-        x1 x1Var = this.f20135a;
-        x1Var.P = charSequenceArr;
-        x1Var.M = onClickListener;
+        s1 s1Var = this.f27343a;
+        s1Var.Q = charSequenceArr;
+        s1Var.N = onClickListener;
     }
 
     public final void g(CharSequence charSequence) {
-        this.f20135a.T = charSequence;
+        this.f27343a.U = charSequence;
     }
 
-    public final void h(String str, u1 u1Var) {
-        x1 x1Var = this.f20135a;
-        x1Var.f21499p0 = str;
-        x1Var.f21500q0 = u1Var;
+    public final void h(String str, p1 p1Var) {
+        s1 s1Var = this.f27343a;
+        s1Var.f28555q0 = str;
+        s1Var.f28557r0 = p1Var;
     }
 
-    public final void i(String str, u1 u1Var) {
-        x1 x1Var = this.f20135a;
-        x1Var.f21505t0 = str;
-        x1Var.f21506u0 = u1Var;
+    public final void i(String str, p1 p1Var) {
+        s1 s1Var = this.f27343a;
+        s1Var.f28561u0 = str;
+        s1Var.f28562v0 = p1Var;
     }
 
     public final void j(DialogInterface.OnDismissListener onDismissListener) {
-        this.f20135a.setOnDismissListener(onDismissListener);
+        this.f27343a.setOnDismissListener(onDismissListener);
     }
 
-    public final void k(CharSequence charSequence, u1 u1Var) {
-        x1 x1Var = this.f20135a;
-        x1Var.f21497n0 = charSequence;
-        x1Var.f21498o0 = u1Var;
+    public final void k(CharSequence charSequence, p1 p1Var) {
+        s1 s1Var = this.f27343a;
+        s1Var.f28553o0 = charSequence;
+        s1Var.f28554p0 = p1Var;
     }
 
     public final void l(CharSequence charSequence) {
-        this.f20135a.R = charSequence;
+        this.f27343a.S = charSequence;
     }
 
-    public final void m(int i10, int i11, int i12, HashMap hashMap) {
-        x1 x1Var = this.f20135a;
-        x1Var.X = i10;
-        x1Var.Y = i11;
-        x1Var.U0 = false;
-        x1Var.f21476c0 = i12;
-        x1Var.f21478d0 = -1;
-        x1Var.Z = hashMap;
+    public final void m(int i3, int i10, int i11, HashMap hashMap) {
+        s1 s1Var = this.f27343a;
+        s1Var.Y = i3;
+        s1Var.Z = i10;
+        s1Var.V0 = false;
+        s1Var.f28532d0 = i11;
+        s1Var.f28535e0 = -1;
+        s1Var.f28524a0 = hashMap;
     }
 
-    public final void n(int i10, p6 p6Var) {
-        x1 x1Var = this.f20135a;
-        x1Var.f21478d0 = i10;
-        x1Var.f21480e0 = p6Var;
-        x1Var.f21476c0 = t6.w0(i10, p6Var);
+    public final void n(int i3, e6 e6Var) {
+        s1 s1Var = this.f27343a;
+        s1Var.f28535e0 = i3;
+        s1Var.f28538f0 = e6Var;
+        s1Var.f28532d0 = k6.w0(i3, e6Var);
     }
 
     public final void o(View view) {
-        x1 x1Var = this.f20135a;
-        x1Var.f21472b = view;
-        x1Var.e = -2;
+        s1 s1Var = this.f27343a;
+        s1Var.f28526b = view;
+        s1Var.f28534e = -2;
     }
 
-    public final x1 p() {
+    public final s1 p() {
         TextView textView;
-        x1 x1Var = this.f20135a;
-        x1Var.show();
-        int i10 = 0;
+        s1 s1Var = this.f27343a;
+        s1Var.show();
+        int i3 = 0;
         while (true) {
-            boolean[] zArr = this.f20136b;
-            if (i10 < zArr.length) {
-                if (zArr[i10] && (textView = (TextView) x1Var.d(-(i10 + 1))) != null) {
-                    a7.V(textView, t6.f21171q7, x1Var.f21494k1);
+            boolean[] zArr = this.f27344b;
+            if (i3 < zArr.length) {
+                if (zArr[i3] && (textView = (TextView) s1Var.d(-(i3 + 1))) != null) {
+                    r6.V(textView, k6.f28122q7, s1Var.f28550l1);
                 }
-                i10++;
+                i3++;
             } else {
-                return x1Var;
+                return s1Var;
             }
         }
     }
 
-    public AlertDialog$Builder setTopImage(int i10, int i11) {
-        x1 x1Var = this.f20135a;
-        x1Var.U = i10;
-        x1Var.f21476c0 = i11;
-        x1Var.f21478d0 = -1;
+    public AlertDialog$Builder setTopImage(int i3, int i10) {
+        s1 s1Var = this.f27343a;
+        s1Var.V = i3;
+        s1Var.f28532d0 = i10;
+        s1Var.f28535e0 = -1;
         return this;
     }
 
-    public AlertDialog$Builder(Context context, p6 p6Var) {
-        this(0, context, p6Var);
+    public AlertDialog$Builder(Context context, e6 e6Var) {
+        this(0, context, e6Var);
     }
 
-    public AlertDialog$Builder(int i10, Context context, p6 p6Var) {
-        this.f20136b = new boolean[3];
-        if (context == null && (context = org.telegram.messenger.i0.W(LaunchActivity.I1)) == null) {
-            context = org.telegram.messenger.w0.f18945b;
+    public AlertDialog$Builder(int i3, Context context, e6 e6Var) {
+        this.f27344b = new boolean[3];
+        if (context == null && (context = org.telegram.messenger.g0.W(LaunchActivity.K1)) == null) {
+            context = org.telegram.messenger.t0.f25457b;
         }
-        this.f20135a = b(i10, context, p6Var);
+        this.f27343a = b(i3, context, e6Var);
     }
 }

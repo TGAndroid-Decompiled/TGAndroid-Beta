@@ -1,32 +1,34 @@
 package org.telegram.ui;
-public final class dp implements Runnable {
-    public final int f36642a;
-    public final qp f36643b;
 
-    public dp(qp qpVar, int i10) {
-        this.f36642a = i10;
-        this.f36643b = qpVar;
+import android.content.DialogInterface;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.DatePicker;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class dp implements DialogInterface.OnShowListener {
+    public final int f44790a;
+    public final View f44791b;
+
+    public dp(int i3, View view) {
+        this.f44790a = i3;
+        this.f44791b = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36642a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f44790a) {
             case 0:
-                qp qpVar = this.f36643b;
-                org.telegram.ui.ActionBar.x1 x1Var = qpVar.f40874r;
-                if (x1Var != null) {
-                    x1Var.setOnCancelListener(new lg(qpVar, 2));
-                    qpVar.showDialog(qpVar.f40874r);
-                    return;
+                DatePicker datePicker = (DatePicker) this.f44791b;
+                int childCount = datePicker.getChildCount();
+                for (int i3 = 0; i3 < childCount; i3++) {
+                    View childAt = datePicker.getChildAt(i3);
+                    ViewGroup.LayoutParams layoutParams = childAt.getLayoutParams();
+                    layoutParams.width = -1;
+                    childAt.setLayoutParams(layoutParams);
                 }
                 return;
-            case 1:
-                qp qpVar2 = this.f36643b;
-                qpVar2.getMessagesController().T2(0, qpVar2.E, true);
-                return;
             default:
-                qp qpVar3 = this.f36643b;
-                qpVar3.getMessagesController().T2(0, qpVar3.E, true);
+                org.telegram.messenger.g0.h3(new og((EditTextBoldCursor) this.f44791b, 1));
                 return;
         }
     }

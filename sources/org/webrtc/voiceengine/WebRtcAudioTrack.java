@@ -7,7 +7,7 @@ import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Process;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.f8;
+import org.telegram.messenger.a8;
 import org.webrtc.ContextUtils;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
@@ -52,11 +52,11 @@ public class WebRtcAudioTrack {
             this.lastTimestamp = System.nanoTime();
         }
 
-        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i10, boolean z10) {
+        private int writeBytes(AudioTrack audioTrack, ByteBuffer byteBuffer, int i3, boolean z10) {
             if (audioTrack == null) {
                 return 0;
             }
-            return audioTrack.write(byteBuffer, i10, !z10 ? 1 : 0);
+            return audioTrack.write(byteBuffer, i3, !z10 ? 1 : 0);
         }
 
         @Override
@@ -107,8 +107,8 @@ public class WebRtcAudioTrack {
                     if (nanoTime > 0) {
                         try {
                             Thread.sleep(nanoTime / 1000000, (int) (nanoTime % 1000000));
-                        } catch (InterruptedException e) {
-                            f8.g(e, true);
+                        } catch (InterruptedException e10) {
+                            a8.g(e10, true);
                         }
                     } else {
                         this.targetTimeNs = System.nanoTime();
@@ -122,8 +122,8 @@ public class WebRtcAudioTrack {
                 try {
                     WebRtcAudioTrack.this.audioTrack.stop();
                     Logging.d("WebRtcAudioTrack", "AudioTrack.stop is done.");
-                } catch (Exception e7) {
-                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e7.getMessage());
+                } catch (Exception e11) {
+                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e11.getMessage());
                 }
             }
         }
@@ -174,28 +174,28 @@ public class WebRtcAudioTrack {
         throw new AssertionError("Expected condition to be true");
     }
 
-    private int channelCountToConfiguration(int i10) {
-        if (i10 == 1) {
+    private int channelCountToConfiguration(int i3) {
+        if (i3 == 1) {
             return 4;
         }
         return 12;
     }
 
-    private static AudioTrack createAudioTrackOnLollipopOrHigher(int i10, int i11, int i12) {
+    private static AudioTrack createAudioTrackOnLollipopOrHigher(int i3, int i10, int i11) {
         Logging.d("WebRtcAudioTrack", "createAudioTrackOnLollipopOrHigher");
         int nativeOutputSampleRate = AudioTrack.getNativeOutputSampleRate(streamType);
         Logging.d("WebRtcAudioTrack", "nativeOutputSampleRate: " + nativeOutputSampleRate);
-        if (i10 != nativeOutputSampleRate) {
+        if (i3 != nativeOutputSampleRate) {
             Logging.w("WebRtcAudioTrack", "Unable to use fast mode since requested sample rate is not native");
         }
         if (usageAttribute != DEFAULT_USAGE) {
             Logging.w("WebRtcAudioTrack", "A non default usage attribute is used: " + usageAttribute);
         }
-        return new AudioTrack(new AudioAttributes.Builder().setUsage(usageAttribute).setContentType(1).build(), new AudioFormat.Builder().setEncoding(2).setSampleRate(i10).setChannelMask(i11).build(), i12, 1, 0);
+        return new AudioTrack(new AudioAttributes.Builder().setUsage(usageAttribute).setContentType(1).build(), new AudioFormat.Builder().setEncoding(2).setSampleRate(i3).setChannelMask(i10).build(), i11, 1, 0);
     }
 
-    private static AudioTrack createAudioTrackOnLowerThanLollipop(int i10, int i11, int i12) {
-        return new AudioTrack(streamType, i10, i11, 2, i12, 1);
+    private static AudioTrack createAudioTrackOnLowerThanLollipop(int i3, int i10, int i11) {
+        return new AudioTrack(streamType, i3, i10, 2, i11, 1);
     }
 
     private int getBufferSizeInFrames() {
@@ -232,17 +232,17 @@ public class WebRtcAudioTrack {
         return this.audioManager.getStreamVolume(streamType);
     }
 
-    private int initPlayout(int i10, int i11, double d) {
+    private int initPlayout(int i3, int i10, double d) {
         this.threadChecker.checkIsOnValidThread();
-        Logging.d("WebRtcAudioTrack", "initPlayout(sampleRate=" + i10 + ", channels=" + i11 + ", bufferSizeFactor=" + d + ")");
-        this.byteBuffer = ByteBuffer.allocateDirect((i10 / 100) * i11 * 2);
+        Logging.d("WebRtcAudioTrack", "initPlayout(sampleRate=" + i3 + ", channels=" + i10 + ", bufferSizeFactor=" + d + ")");
+        this.byteBuffer = ByteBuffer.allocateDirect((i3 / 100) * i10 * 2);
         StringBuilder sb2 = new StringBuilder("byteBuffer.capacity: ");
         sb2.append(this.byteBuffer.capacity());
         Logging.d("WebRtcAudioTrack", sb2.toString());
         this.emptyBytes = new byte[this.byteBuffer.capacity()];
         nativeCacheDirectBufferAddress(this.byteBuffer, this.nativeAudioTrack);
-        int channelCountToConfiguration = channelCountToConfiguration(i11);
-        int minBufferSize = (int) (AudioTrack.getMinBufferSize(i10, channelCountToConfiguration, 2) * d);
+        int channelCountToConfiguration = channelCountToConfiguration(i10);
+        int minBufferSize = (int) (AudioTrack.getMinBufferSize(i3, channelCountToConfiguration, 2) * d);
         Logging.d("WebRtcAudioTrack", "minBufferSizeInBytes: " + minBufferSize);
         if (minBufferSize < this.byteBuffer.capacity()) {
             reportWebRtcAudioTrackInitError("AudioTrack.getMinBufferSize returns an invalid value.");
@@ -252,7 +252,7 @@ public class WebRtcAudioTrack {
             return -1;
         } else {
             try {
-                AudioTrack createAudioTrackOnLollipopOrHigher = createAudioTrackOnLollipopOrHigher(i10, channelCountToConfiguration, minBufferSize);
+                AudioTrack createAudioTrackOnLollipopOrHigher = createAudioTrackOnLollipopOrHigher(i3, channelCountToConfiguration, minBufferSize);
                 this.audioTrack = createAudioTrackOnLollipopOrHigher;
                 if (createAudioTrackOnLollipopOrHigher != null && createAudioTrackOnLollipopOrHigher.getState() == 1) {
                     logMainParameters();
@@ -262,8 +262,8 @@ public class WebRtcAudioTrack {
                 reportWebRtcAudioTrackInitError("Initialization of audio track failed.");
                 releaseAudioResources();
                 return -1;
-            } catch (IllegalArgumentException e) {
-                reportWebRtcAudioTrackInitError(e.getMessage());
+            } catch (IllegalArgumentException e10) {
+                reportWebRtcAudioTrackInitError(e10.getMessage());
                 releaseAudioResources();
                 return -1;
             }
@@ -305,7 +305,7 @@ public class WebRtcAudioTrack {
 
     private native void nativeCacheDirectBufferAddress(ByteBuffer byteBuffer, long j10);
 
-    public native void nativeGetPlayoutData(int i10, long j10);
+    public native void nativeGetPlayoutData(int i3, long j10);
 
     private void releaseAudioResources() {
         Logging.e("WebRtcAudioTrack", "releaseAudioResources", new Exception());
@@ -315,7 +315,7 @@ public class WebRtcAudioTrack {
             try {
                 audioTrack.release();
             } catch (Throwable th2) {
-                f8.g(th2, true);
+                a8.g(th2, true);
             }
         }
     }
@@ -359,16 +359,16 @@ public class WebRtcAudioTrack {
         }
     }
 
-    public static synchronized void setAudioStreamType(int i10) {
+    public static synchronized void setAudioStreamType(int i3) {
         synchronized (WebRtcAudioTrack.class) {
-            streamType = i10;
+            streamType = i3;
         }
     }
 
-    public static synchronized void setAudioTrackUsageAttribute(int i10) {
+    public static synchronized void setAudioTrackUsageAttribute(int i3) {
         synchronized (WebRtcAudioTrack.class) {
-            Logging.w("WebRtcAudioTrack", "Default usage attribute is changed from: " + DEFAULT_USAGE + " to " + i10);
-            usageAttribute = i10;
+            Logging.w("WebRtcAudioTrack", "Default usage attribute is changed from: " + DEFAULT_USAGE + " to " + i3);
+            usageAttribute = i3;
         }
     }
 
@@ -383,10 +383,10 @@ public class WebRtcAudioTrack {
         speakerMute = z10;
     }
 
-    private boolean setStreamVolume(int i10) {
+    private boolean setStreamVolume(int i3) {
         boolean z10;
         this.threadChecker.checkIsOnValidThread();
-        Logging.d("WebRtcAudioTrack", "setStreamVolume(" + i10 + ")");
+        Logging.d("WebRtcAudioTrack", "setStreamVolume(" + i3 + ")");
         if (this.audioManager != null) {
             z10 = true;
         } else {
@@ -397,7 +397,7 @@ public class WebRtcAudioTrack {
             Logging.e("WebRtcAudioTrack", "The device implements a fixed volume policy.");
             return false;
         }
-        this.audioManager.setStreamVolume(streamType, i10, 0);
+        this.audioManager.setStreamVolume(streamType, i3, 0);
         return true;
     }
 
@@ -429,8 +429,8 @@ public class WebRtcAudioTrack {
             this.audioThread = audioTrackThread;
             audioTrackThread.start();
             return true;
-        } catch (IllegalStateException e) {
-            reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e.getMessage());
+        } catch (IllegalStateException e10) {
+            reportWebRtcAudioTrackStartError(AudioTrackStartErrorCode.AUDIO_TRACK_START_EXCEPTION, "AudioTrack.play failed: " + e10.getMessage());
             releaseAudioResources();
             return false;
         }
@@ -466,7 +466,7 @@ public class WebRtcAudioTrack {
         try {
             releaseAudioResources();
         } catch (Throwable th2) {
-            f8.g(th2, true);
+            a8.g(th2, true);
         }
         return true;
     }

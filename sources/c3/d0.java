@@ -1,102 +1,81 @@
 package c3;
 
-import b2.v0;
-import e9.n0;
-import e9.x1;
-import java.util.List;
-import v7.t6;
-public final class d0 implements o {
-    public final int f3635a;
-    public final int f3636b;
-    public final String f3637c;
-    public int d;
-    public int e;
-    public q f3638f;
-    public k0 f3639g;
+import android.content.Context;
+import android.os.Build;
+import android.view.Surface;
+public final class d0 {
+    public final g f3990a;
+    public final Context f3991b;
+    public a0 f3992c;
+    public boolean d;
+    public Surface f3993e;
+    public float f3994f;
+    public float f3995g;
+    public float h;
+    public float f3996i;
+    public int f3997j;
+    public long f3998k;
+    public long f3999l;
+    public long f4000m;
+    public long f4001n;
+    public long f4002o;
+    public long f4003p;
+    public long f4004q;
+    public long f4005r;
+    public long f4006s;
 
-    public d0(int i10, int i11, String str) {
-        this.f3635a = i10;
-        this.f3636b = i11;
-        this.f3637c = str;
+    public d0(Context context) {
+        this.f3991b = context;
+        ?? obj = new Object();
+        obj.f4035a = new f();
+        obj.f4036b = new f();
+        obj.d = -9223372036854775807L;
+        this.f3990a = obj;
+        this.f3994f = -1.0f;
+        this.f3996i = 1.0f;
+        this.f3997j = 0;
     }
 
-    @Override
-    public final boolean a(p pVar) {
-        boolean z10;
-        int i10 = this.f3636b;
-        int i11 = this.f3635a;
-        if (i11 != -1 && i10 != -1) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a() {
+        Surface surface;
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f3993e) != null && this.f3997j != Integer.MIN_VALUE && this.h != 0.0f && surface.isValid()) {
+            this.h = 0.0f;
+            g0.f.v(this.f3993e, 0.0f);
         }
-        t6.p(z10);
-        e2.x xVar = new e2.x(i10);
-        ((l) pVar).j(xVar.f6207a, 0, i10, false);
-        if (xVar.H() == i11) {
-            return true;
-        }
-        return false;
     }
 
-    @Override
-    public final void c(q qVar) {
-        this.f3638f = qVar;
-        k0 I1 = qVar.I1(1024, 4);
-        this.f3639g = I1;
-        b2.w wVar = new b2.w();
-        String str = this.f3637c;
-        wVar.f2369q = v0.n(str);
-        wVar.f2370r = v0.n(str);
-        i0.a.r(wVar, I1);
-        this.f3638f.Q0();
-        this.f3638f.G1(new Object());
-        this.e = 1;
+    public final void b() {
+        this.f4000m = 0L;
+        this.f4004q = -1L;
+        this.f4001n = -1L;
+        this.f3998k = 0L;
+        this.f3999l = 0L;
     }
 
-    @Override
-    public final void d(long j10, long j11) {
-        if (j10 != 0 && this.e != 1) {
-            return;
-        }
-        this.e = 1;
-        this.d = 0;
+    public final void c() {
+        throw new UnsupportedOperationException("Method not decompiled: c3.d0.c():void");
     }
 
-    @Override
-    public final List e() {
-        e9.l0 l0Var = n0.f6390b;
-        return x1.e;
-    }
-
-    @Override
-    public final int f(p pVar, s sVar) {
-        int i10 = this.e;
-        if (i10 != 1) {
-            if (i10 == 2) {
-                return -1;
+    public final void d(boolean z10) {
+        Surface surface;
+        float f10;
+        if (Build.VERSION.SDK_INT >= 30 && (surface = this.f3993e) != null && this.f3997j != Integer.MIN_VALUE && surface.isValid()) {
+            if (this.d) {
+                float f11 = this.f3995g;
+                if (f11 != -1.0f) {
+                    f10 = f11 * this.f3996i;
+                    if (!z10 || this.h != f10) {
+                        this.h = f10;
+                        g0.f.v(this.f3993e, f10);
+                    }
+                    return;
+                }
             }
-            throw new IllegalStateException();
+            f10 = 0.0f;
+            if (!z10) {
+            }
+            this.h = f10;
+            g0.f.v(this.f3993e, f10);
         }
-        k0 k0Var = this.f3639g;
-        k0Var.getClass();
-        int a2 = k0Var.a(pVar, 1024, true);
-        if (a2 == -1) {
-            this.e = 2;
-            this.f3639g.c(0L, 1, this.d, 0, null);
-            this.d = 0;
-            return 0;
-        }
-        this.d += a2;
-        return 0;
-    }
-
-    @Override
-    public final o b() {
-        return this;
-    }
-
-    @Override
-    public final void release() {
     }
 }

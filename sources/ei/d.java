@@ -1,59 +1,32 @@
 package ei;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import c3.i0;
-public final class d implements hi.a, fi.a {
-    public final int f6628a;
-    public final e f6629b;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class d implements Runnable {
+    public final int f10184a;
+    public final r f10185b;
 
-    public d(e eVar, int i10) {
-        this.f6629b = eVar;
-        this.f6628a = i10;
+    public d(r rVar, int i3) {
+        this.f10184a = i3;
+        this.f10185b = rVar;
     }
 
     @Override
-    public final int a() {
-        boolean b10 = i0.b(this.f6628a);
-        e eVar = this.f6629b;
-        if (b10) {
-            return eVar.f6645s;
+    public final void run() {
+        switch (this.f10184a) {
+            case 0:
+                this.f10185b.p(true, false);
+                return;
+            case 1:
+                r rVar = this.f10185b;
+                gi.l3 l3Var = rVar.K;
+                if (l3Var != null) {
+                    l3Var.f(true);
+                }
+                rVar.f10832f0.presentFragment(new PremiumPreviewFragment(0, "stories"));
+                return;
+            default:
+                this.f10185b.c();
+                return;
         }
-        return eVar.f6643q;
-    }
-
-    @Override
-    public final void d(float f7, float f10, int i10, Canvas canvas, RectF rectF) {
-        e.b(this.f6629b, this.f6628a, canvas, rectF, i10, f7, f10);
-    }
-
-    @Override
-    public final void e(Canvas canvas, float f7, float f10, float f11, float f12) {
-        e.a(this.f6629b, canvas, this.f6628a, f7, f10, f11, f12);
-    }
-
-    @Override
-    public final int f() {
-        boolean b10 = i0.b(this.f6628a);
-        e eVar = this.f6629b;
-        if (b10) {
-            return eVar.f6640n;
-        }
-        return eVar.f6639m;
-    }
-
-    @Override
-    public final int g() {
-        boolean b10 = i0.b(this.f6628a);
-        e eVar = this.f6629b;
-        if (b10) {
-            return eVar.f6644r;
-        }
-        return eVar.f6642p;
-    }
-
-    @Override
-    public final boolean h() {
-        return true;
     }
 }

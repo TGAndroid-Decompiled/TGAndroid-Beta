@@ -1,30 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class b60 extends org.telegram.ui.Cells.b9 {
-    public final c60 D;
-    public final ew f24663x;
-    public boolean f24664y;
+import android.view.View;
+import android.view.ViewGroup;
+public final class b60 extends org.telegram.ui.ActionBar.f1 {
+    public final ViewGroup f32098o;
+    public final f60 f32099p;
 
-    public b60(c60 c60Var, Context context) {
-        super(context);
-        this.D = c60Var;
-        this.f24663x = new ew(this, 4);
+    public b60(f60 f60Var, View view, ViewGroup viewGroup) {
+        super(view, -2, -2);
+        this.f32099p = f60Var;
+        this.f32098o = viewGroup;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ew ewVar = this.f24663x;
-        org.telegram.messenger.i0.r(ewVar);
-        if (this.f24664y) {
-            org.telegram.messenger.i0.h3(ewVar, 500L);
+    public final void dismiss() {
+        d(true);
+        ViewGroup viewGroup = this.f32098o;
+        f60 f60Var = this.f32099p;
+        f60.a(f60Var, viewGroup);
+        Runnable runnable = f60Var.f33742p;
+        if (runnable != null) {
+            runnable.run();
+            f60Var.f33742p = null;
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        org.telegram.messenger.i0.r(this.f24663x);
     }
 }

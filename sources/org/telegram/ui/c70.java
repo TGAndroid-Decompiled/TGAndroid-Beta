@@ -1,77 +1,119 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class c70 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.ActionBar.u5 f36214a;
-    public final org.telegram.ui.Components.u8 f36215b;
-    public boolean f36216c;
-    public int d;
-    public final d70 e;
+import android.os.Bundle;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class c70 implements Runnable {
+    public final Object E;
+    public final int f44252a = 1;
+    public final LaunchActivity f44253b;
+    public final Bundle f44254c;
+    public final Long d;
+    public final ly f44255e;
+    public final boolean f44256f;
+    public final sf.b h;
+    public final Long f44257n;
+    public final Integer f44258r;
+    public final Integer f44259s;
+    public final byte[] f44260w;
+    public final org.telegram.ui.ActionBar.d2 f44261x;
+    public final int f44262y;
 
-    public c70(d70 d70Var, Context context) {
-        super(context);
-        this.e = d70Var;
-        int i10 = org.telegram.ui.ActionBar.t6.f21021i6;
-        this.d = org.telegram.ui.ActionBar.t6.x0(null, i10, false);
-        org.telegram.ui.ActionBar.u5 u5Var = new org.telegram.ui.ActionBar.u5(context);
-        this.f36214a = u5Var;
-        u5Var.setTextSize(16);
-        u5Var.setEllipsizeByGradient(true);
-        u5Var.setRightPadding(org.telegram.messenger.i0.L(68.0f));
-        org.telegram.ui.ActionBar.a7.Y(u5Var, org.telegram.ui.ActionBar.t6.f21038j5, null);
-        addView(u5Var, w7.b6.d(0, -2.0f, 19, 19.0f, 0.0f, 19.0f, 0.0f));
-        org.telegram.ui.Components.u8 u8Var = new org.telegram.ui.Components.u8(context, false);
-        this.f36215b = u8Var;
-        u8Var.f30897a.f30551a = true;
-        u8Var.setStyle(11);
-        u8Var.setAvatarsTextSize(org.telegram.messenger.i0.L(22.0f));
-        addView(u8Var, w7.b6.d(56, -1.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
-        setBackground(org.telegram.ui.ActionBar.t6.a0(org.telegram.ui.ActionBar.t6.x0(null, i10, false), 0, 4));
+    public c70(LaunchActivity launchActivity, Bundle bundle, Long l10, int[] iArr, ly lyVar, boolean z10, sf.b bVar, Long l11, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.d2 d2Var, int i3) {
+        this.f44253b = launchActivity;
+        this.f44254c = bundle;
+        this.d = l10;
+        this.E = iArr;
+        this.f44255e = lyVar;
+        this.f44256f = z10;
+        this.h = bVar;
+        this.f44257n = l11;
+        this.f44258r = num;
+        this.f44259s = num2;
+        this.f44260w = bArr;
+        this.f44261x = d2Var;
+        this.f44262y = i3;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View view = (View) getParent();
-        if (view != null && view.getWidth() > 0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
+    public final void run() {
+        int i3 = this.f44252a;
+        Object obj = this.E;
+        switch (i3) {
+            case 0:
+                ly lyVar = this.f44255e;
+                TLObject tLObject = (TLObject) obj;
+                String str = LaunchActivity.E1;
+                try {
+                    lyVar.run();
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                }
+                boolean z10 = tLObject instanceof TLRPC.TL_messages_chats;
+                LaunchActivity launchActivity = this.f44253b;
+                if (z10) {
+                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject;
+                    if (!tL_messages_chats.chats.isEmpty()) {
+                        org.telegram.messenger.hp.s1(launchActivity.P).S3(tL_messages_chats.chats, false);
+                        TLRPC.Chat chat = tL_messages_chats.chats.get(0);
+                        Long l10 = this.d;
+                        if (chat != null && this.f44256f && org.telegram.messenger.t3.R(chat)) {
+                            launchActivity.w0(Long.valueOf(-l10.longValue()), null, this.h, null);
+                        } else if (chat != null && chat.forum) {
+                            Long l11 = this.f44257n;
+                            Integer num = this.f44259s;
+                            byte[] bArr = this.f44260w;
+                            if (l11 != null) {
+                                launchActivity.l0(-l10.longValue(), this.f44258r, null, num, bArr, null, 0, -1);
+                            } else {
+                                launchActivity.l0(-l10.longValue(), null, null, num, bArr, null, 0, -1);
+                            }
+                        }
+                        org.telegram.ui.ActionBar.d2 d2Var = this.f44261x;
+                        Bundle bundle = this.f44254c;
+                        if (d2Var == null || org.telegram.messenger.hp.s1(this.f44262y).E(bundle, d2Var, null, null)) {
+                            ((ActionBarLayout) launchActivity.M()).S(new wm(bundle));
+                            return;
+                        }
+                        return;
+                    }
+                }
+                launchActivity.F0(org.telegram.ui.Components.t4.G(launchActivity, org.telegram.messenger.bd.M0(2131751455, null), org.telegram.messenger.bd.M0(2131748903, null)));
+                return;
+            default:
+                int[] iArr = (int[]) obj;
+                String str2 = LaunchActivity.E1;
+                LaunchActivity launchActivity2 = this.f44253b;
+                org.telegram.ui.ActionBar.q4 M = launchActivity2.M();
+                Bundle bundle2 = this.f44254c;
+                if (!((ActionBarLayout) M).S(new wm(bundle2))) {
+                    TLRPC.TL_channels_getChannels tL_channels_getChannels = new TLRPC.TL_channels_getChannels();
+                    TLRPC.TL_inputChannel tL_inputChannel = new TLRPC.TL_inputChannel();
+                    Long l12 = this.d;
+                    tL_inputChannel.channel_id = l12.longValue();
+                    tL_channels_getChannels.f27037id.add(tL_inputChannel);
+                    iArr[0] = ConnectionsManager.getInstance(launchActivity2.P).sendRequest(tL_channels_getChannels, new org.telegram.messenger.o4(launchActivity2, this.f44255e, this.f44256f, l12, this.h, this.f44257n, this.f44258r, this.f44259s, this.f44260w, this.f44261x, this.f44262y, bundle2));
+                    return;
+                }
+                return;
         }
-        this.f36216c = true;
-        org.telegram.ui.ActionBar.u5 u5Var = this.f36214a;
-        u5Var.setVisibility(8);
-        super.onMeasure(i10, i11);
-        u5Var.setVisibility(0);
-        u5Var.getLayoutParams().width = getMeasuredWidth();
-        this.f36216c = false;
-        this.e.g();
-        super.onMeasure(i10, i11);
     }
 
-    @Override
-    public final void requestLayout() {
-        if (this.f36216c) {
-            return;
-        }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21021i6, false);
-            if (x02 != this.d) {
-                this.d = x02;
-                org.telegram.ui.ActionBar.t6.H1(getBackground(), x02, true);
-                invalidate();
-            }
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
-        }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public c70(LaunchActivity launchActivity, ly lyVar, TLObject tLObject, boolean z10, Long l10, sf.b bVar, Long l11, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.d2 d2Var, int i3, Bundle bundle) {
+        this.f44253b = launchActivity;
+        this.f44255e = lyVar;
+        this.E = tLObject;
+        this.f44256f = z10;
+        this.d = l10;
+        this.h = bVar;
+        this.f44257n = l11;
+        this.f44258r = num;
+        this.f44259s = num2;
+        this.f44260w = bArr;
+        this.f44261x = d2Var;
+        this.f44262y = i3;
+        this.f44254c = bundle;
     }
 }

@@ -1,73 +1,69 @@
 package c3;
-public class k implements b0 {
-    public final long f3664a;
-    public final long f3665b;
-    public final int f3666c;
-    public final long d;
-    public final int e;
-    public final long f3667f;
-    public final boolean f3668g;
-    public final boolean h;
 
-    public k(long j10, long j11, int i10, int i11, boolean z10, boolean z11) {
-        this.f3664a = j10;
-        this.f3665b = j11;
-        this.f3666c = i11 == -1 ? 1 : i11;
-        this.e = i10;
-        this.f3668g = z10;
-        this.h = z11;
-        if (j10 == -1) {
-            this.d = -1L;
-            this.f3667f = -9223372036854775807L;
-            return;
-        }
-        long j12 = j10 - j11;
-        this.d = j12;
-        this.f3667f = (Math.max(0L, j12) * 8000000) / i10;
+import android.os.Handler;
+import android.os.Message;
+import android.os.SystemClock;
+import android.view.Surface;
+import d2.a2;
+import g2.n0;
+public final class k implements Handler.Callback {
+    public final Handler f4055a;
+    public final l f4056b;
+
+    public k(l lVar, t2.l lVar2) {
+        this.f4056b = lVar;
+        Handler q10 = n0.q(this);
+        this.f4055a = q10;
+        lVar2.h(this, q10);
     }
 
-    @Override
-    public final boolean d() {
-        if (this.d == -1 && !this.f3668g) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean e() {
-        return this.h;
-    }
-
-    @Override
-    public final a0 f(long j10) {
-        long j11 = this.d;
-        int i10 = (j11 > (-1L) ? 1 : (j11 == (-1L) ? 0 : -1));
-        long j12 = this.f3665b;
-        if (i10 == 0 && !this.f3668g) {
-            c0 c0Var = new c0(0L, j12);
-            return new a0(c0Var, c0Var);
-        }
-        int i11 = this.e;
-        long j13 = this.f3666c;
-        long j14 = (((i11 * j10) / 8000000) / j13) * j13;
-        if (i10 != 0) {
-            j14 = Math.min(j14, j11 - j13);
-        }
-        long max = Math.max(j14, 0L) + j12;
-        long max2 = (Math.max(0L, max - j12) * 8000000) / i11;
-        c0 c0Var2 = new c0(max2, max);
-        if (i10 != 0 && max2 < j10) {
-            long j15 = max + j13;
-            if (j15 < this.f3664a) {
-                return new a0(c0Var2, new c0((Math.max(0L, j15 - j12) * 8000000) / i11, j15));
+    public final void a(long j10) {
+        boolean z10;
+        Surface surface;
+        l lVar = this.f4056b;
+        tf.b bVar = lVar.f4060c1;
+        if (this == lVar.N1 && lVar.f54875e0 != null) {
+            if (j10 == Long.MAX_VALUE) {
+                lVar.N0 = true;
+                return;
+            }
+            try {
+                lVar.C0(j10);
+                a2 a2Var = lVar.I1;
+                if (!a2Var.equals(a2.d) && !a2Var.equals(lVar.J1)) {
+                    lVar.J1 = a2Var;
+                    bVar.E(a2Var);
+                }
+                lVar.P0.f16466e++;
+                y yVar = lVar.f4063f1;
+                if (yVar.f4124e != 3) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                yVar.f4124e = 3;
+                yVar.f4130l.getClass();
+                yVar.f4126g = n0.S(SystemClock.elapsedRealtime());
+                if (z10 && (surface = lVar.f4074s1) != null) {
+                    bVar.y(surface);
+                    lVar.f4077v1 = true;
+                }
+                lVar.h0(j10);
+            } catch (k2.l e10) {
+                lVar.O0 = e10;
             }
         }
-        return new a0(c0Var2, c0Var2);
     }
 
     @Override
-    public final long h() {
-        return this.f3667f;
+    public final boolean handleMessage(Message message) {
+        if (message.what != 0) {
+            return false;
+        }
+        int i3 = message.arg1;
+        int i10 = message.arg2;
+        String str = n0.f11873a;
+        a(((i3 & 4294967295L) << 32) | (4294967295L & i10));
+        return true;
     }
 }

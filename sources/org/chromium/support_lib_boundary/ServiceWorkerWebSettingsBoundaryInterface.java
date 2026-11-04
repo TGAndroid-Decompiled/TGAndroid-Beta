@@ -20,7 +20,7 @@ public interface ServiceWorkerWebSettingsBoundaryInterface {
 
     void setBlockNetworkLoads(boolean z10);
 
-    void setCacheMode(int i10);
+    void setCacheMode(int i3);
 
     void setIncludeCookiesOnIntercept(boolean z10);
 

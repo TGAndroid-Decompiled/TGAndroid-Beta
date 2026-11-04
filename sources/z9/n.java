@@ -1,20 +1,24 @@
 package z9;
-public final class n implements ja.d {
-    public static final n f55367a = new Object();
-    public static final ja.c f55368b = ja.c.c("type");
-    public static final ja.c f55369c = ja.c.c("reason");
-    public static final ja.c d = ja.c.c("frames");
-    public static final ja.c e = ja.c.c("causedBy");
-    public static final ja.c f55370f = ja.c.c("overflowCount");
+public final class n implements Runnable {
+    public final int f60210a;
+    public final p f60211b;
+    public final ha.c f60212c;
+
+    public n(p pVar, ha.c cVar, int i3) {
+        this.f60210a = i3;
+        this.f60211b = pVar;
+        this.f60212c = cVar;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        p0 p0Var = (p0) ((o1) obj);
-        eVar.d(f55368b, p0Var.f55383a);
-        eVar.d(f55369c, p0Var.f55384b);
-        eVar.d(d, p0Var.f55385c);
-        eVar.d(e, p0Var.d);
-        eVar.g(f55370f, p0Var.e);
+    public final void run() {
+        switch (this.f60210a) {
+            case 0:
+                this.f60211b.a(this.f60212c);
+                return;
+            default:
+                this.f60211b.a(this.f60212c);
+                return;
+        }
     }
 }

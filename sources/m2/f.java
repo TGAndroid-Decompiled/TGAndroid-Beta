@@ -1,45 +1,31 @@
 package m2;
-
-import j$.util.Objects;
 public final class f {
-    public final String f12650a;
-    public final String f12651b;
-    public final String f12652c;
+    public static final f d = new Object().a();
+    public final boolean f18855a;
+    public final boolean f18856b;
+    public final boolean f18857c;
 
-    public f(String str, String str2, String str3) {
-        this.f12650a = str;
-        this.f12651b = str2;
-        this.f12652c = str3;
+    public f(ha.a aVar) {
+        this.f18855a = aVar.f14364a;
+        this.f18856b = aVar.f14365b;
+        this.f18857c = aVar.f14366c;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && f.class == obj.getClass()) {
-            f fVar = (f) obj;
-            if (Objects.equals(this.f12650a, fVar.f12650a) && Objects.equals(this.f12651b, fVar.f12651b) && Objects.equals(this.f12652c, fVar.f12652c)) {
-                return true;
+        if (this != obj) {
+            if (obj != null && f.class == obj.getClass()) {
+                f fVar = (f) obj;
+                if (this.f18855a == fVar.f18855a && this.f18856b == fVar.f18856b && this.f18857c == fVar.f18857c) {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        int i10;
-        int hashCode = this.f12650a.hashCode() * 31;
-        int i11 = 0;
-        String str = this.f12651b;
-        if (str != null) {
-            i10 = str.hashCode();
-        } else {
-            i10 = 0;
-        }
-        int i12 = (hashCode + i10) * 31;
-        String str2 = this.f12652c;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        }
-        return i12 + i11;
+        return ((this.f18855a ? 1 : 0) << 2) + ((this.f18856b ? 1 : 0) << 1) + (this.f18857c ? 1 : 0);
     }
 }

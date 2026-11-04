@@ -1,112 +1,70 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.m20;
-import org.telegram.messenger.r20;
-import org.telegram.tgnet.TLRPC;
-public final class h9 implements m20 {
-    public final int f34693a;
-    public final r9 f34694b;
-    public final k0 f34695c;
-    public final long d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
+import android.view.MotionEvent;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.xq;
+public final class h9 extends EditTextBoldCursor {
+    public final org.telegram.ui.Components.u5 H1;
+    public final org.telegram.ui.Components.u5 I1;
+    public float J1;
+    public float K1;
+    public final l9 L1;
 
-    public h9(r9 r9Var, k0 k0Var, long j10, int i10) {
-        this.f34693a = i10;
-        this.f34694b = r9Var;
-        this.f34695c = k0Var;
-        this.d = j10;
+    public h9(l9 l9Var, Context context) {
+        super(context);
+        this.L1 = l9Var;
+        this.H1 = new org.telegram.ui.Components.u5(this, 180L, xq.h);
+        this.I1 = new org.telegram.ui.Components.u5(this, 320L, l9.T);
+        this.J1 = 1.0f;
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3) {
-        byte[] bArr;
-        byte[] bArr2;
-        switch (this.f34693a) {
-            case 0:
-                String str = (String) obj;
-                final r20 r20Var = (r20) obj3;
-                final r9 r9Var = this.f34694b;
-                TLRPC.User user = r9Var.f35135f;
-                String str2 = r9Var.h;
-                if (((Boolean) obj2).booleanValue()) {
-                    bArr = r9Var.r0();
-                } else {
-                    bArr = null;
-                }
-                byte[] bArr3 = bArr;
-                this.f34695c.d0(user, str2, this.d, str, bArr3, null, r9Var.f35143n, new r20() {
-                    @Override
-                    public final void a(Object obj4) {
-                        String str3 = (String) obj4;
-                        switch (r3) {
-                            case 0:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
-                                    r20Var.a(str3);
-                                    if (str3 == null) {
-                                        r9 r9Var2 = r9Var;
-                                        r9Var2.fragmentView.postDelayed(new c9(r9Var2, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
-                                    r20Var.a(str3);
-                                    if (str3 == null) {
-                                        r9 r9Var3 = r9Var;
-                                        r9Var3.fragmentView.postDelayed(new c9(r9Var3, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                }, new g9(r9Var, 2), null);
-                return;
-            default:
-                String str3 = (String) obj;
-                final r20 r20Var2 = (r20) obj3;
-                final r9 r9Var2 = this.f34694b;
-                TLRPC.User user2 = r9Var2.f35135f;
-                String str4 = r9Var2.h;
-                if (((Boolean) obj2).booleanValue()) {
-                    bArr2 = r9Var2.r0();
-                } else {
-                    bArr2 = null;
-                }
-                byte[] bArr4 = bArr2;
-                this.f34695c.d0(user2, str4, this.d, str3, bArr4, null, r9Var2.f35143n, new r20() {
-                    @Override
-                    public final void a(Object obj4) {
-                        String str32 = (String) obj4;
-                        switch (r3) {
-                            case 0:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
-                                    r20Var2.a(str32);
-                                    if (str32 == null) {
-                                        r9 r9Var22 = r9Var2;
-                                        r9Var22.fragmentView.postDelayed(new c9(r9Var22, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                            default:
-                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
-                                    r20Var2.a(str32);
-                                    if (str32 == null) {
-                                        r9 r9Var3 = r9Var2;
-                                        r9Var3.fragmentView.postDelayed(new c9(r9Var3, 4), 220L);
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                }, new g9(r9Var2, 3), null);
-                return;
+    public final void n(Canvas canvas, GradientDrawable gradientDrawable) {
+        gradientDrawable.setCornerRadius(org.telegram.messenger.g0.N(1.5f));
+        int lineBaseline = getLayout().getLineBaseline(0);
+        Rect bounds = gradientDrawable.getBounds();
+        float f10 = lineBaseline;
+        int round = Math.round(((bounds.top - lineBaseline) * this.J1) + f10);
+        int round2 = Math.round(((bounds.bottom - lineBaseline) * this.J1) + f10);
+        int i3 = bounds.left;
+        int width = bounds.width();
+        if (this.K1 > 0.0f) {
+            float f11 = i3;
+            i3 = Math.round((((((((getWidth() + getScrollX()) - getCompoundPaddingLeft()) - getCompoundPaddingRight()) - getPaint().measureText("0")) - width) - f11) * this.K1) + f11);
         }
+        gradientDrawable.setBounds(i3, round, width + i3, round2);
+        gradientDrawable.draw(canvas);
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.h9.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onSelectionChanged(int i3, int i10) {
+        super.onSelectionChanged(i3, i10);
+        if (i3 != i10) {
+            this.L1.b();
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        if (motionEvent.getActionMasked() == 0) {
+            this.L1.b();
+            if (length() == 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.I1.a(z10);
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

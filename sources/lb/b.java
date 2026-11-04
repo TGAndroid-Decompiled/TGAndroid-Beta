@@ -1,12 +1,8 @@
 package lb;
+public final class b {
+    public final ta.b f18171a;
 
-import androidx.lifecycle.b0;
-import androidx.lifecycle.m;
-import androidx.lifecycle.s;
-import com.google.android.gms.common.api.n;
-import java.io.Closeable;
-public interface b extends Closeable, s, n {
-    @Override
-    @b0(m.ON_DESTROY)
-    void close();
+    public b(ta.b bVar) {
+        this.f18171a = bVar;
+    }
 }

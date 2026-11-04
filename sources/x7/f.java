@@ -1,7 +1,4 @@
 package x7;
-
-import java.io.Serializable;
-public final class f extends e implements Serializable, q {
-    public transient j f53160c;
-    public transient int d;
+public interface f {
+    int zza();
 }

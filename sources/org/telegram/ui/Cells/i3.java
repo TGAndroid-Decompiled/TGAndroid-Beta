@@ -1,58 +1,91 @@
 package org.telegram.ui.Cells;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.mt;
-public final class i3 implements TextWatcher {
-    public final int f22029a;
-    public final mt f22030b;
-    public final boolean f22031c;
-    public final j3 d;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.view.ActionMode;
+import android.view.Menu;
+import org.telegram.messenger.bd;
+import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.uy0;
+import org.telegram.ui.Components.xs;
+public final class i3 extends xs {
+    public final int Z1;
+    public final org.telegram.ui.ActionBar.e6 f29372a2;
+    public final boolean f29373b2;
+    public final k3 c2;
 
-    public i3(j3 j3Var, int i10, mt mtVar, boolean z10) {
-        this.d = j3Var;
-        this.f22029a = i10;
-        this.f22030b = mtVar;
-        this.f22031c = z10;
+    public i3(k3 k3Var, Context context, org.telegram.ui.ActionBar.e6 e6Var, int i3, org.telegram.ui.ActionBar.e6 e6Var2, boolean z10) {
+        super(context, e6Var);
+        this.c2 = k3Var;
+        this.Z1 = i3;
+        this.f29372a2 = e6Var2;
+        this.f29373b2 = z10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        j3 j3Var = this.d;
-        boolean z10 = j3Var.f22065a;
-        int i10 = this.f22029a;
-        if (!z10) {
-            if (i10 > 0 && editable != null && editable.length() > i10) {
-                j3Var.f22065a = true;
-                CharSequence subSequence = editable.subSequence(0, i10);
-                mt mtVar = this.f22030b;
-                mtVar.setText(subSequence);
-                mtVar.setSelection(mtVar.length());
-                j3Var.f22065a = false;
-            }
-            j3Var.b(editable);
+    public final void dispatchDraw(Canvas canvas) {
+        int i3;
+        super.dispatchDraw(canvas);
+        k3 k3Var = this.c2;
+        org.telegram.ui.Components.g6 g6Var = k3Var.f29493y;
+        org.telegram.ui.Components.x4 x4Var = k3Var.f29491w;
+        if (k3Var.f29492x <= 0) {
+            i3 = org.telegram.ui.ActionBar.k6.f28102p7;
+        } else {
+            i3 = org.telegram.ui.ActionBar.k6.P5;
         }
-        if (this.f22031c) {
-            while (true) {
-                int indexOf = editable.toString().indexOf("\n");
-                if (indexOf < 0) {
-                    break;
-                }
-                editable.delete(indexOf, indexOf + 1);
-            }
+        g6Var.u(x4Var.a(org.telegram.ui.ActionBar.k6.w0(i3, this.f29372a2), false));
+        int min = Math.min(org.telegram.messenger.g0.L(52.0f), getHeight());
+        k3Var.f29493y.setBounds(getScrollX(), getHeight() - min, org.telegram.messenger.g0.L(42.0f) + ((getWidth() + getScrollX()) - getPaddingRight()), getHeight());
+        k3Var.f29493y.draw(canvas);
+    }
+
+    @Override
+    public final void o(ActionMode actionMode, Menu menu) {
+        if (!this.f29373b2 || menu.findItem(2131296491) != null) {
+            return;
         }
-        org.telegram.ui.Components.e6 e6Var = j3Var.f22074y;
-        if (e6Var != null && i10 > 0) {
-            e6Var.a();
-            j3Var.c();
+        menu.removeItem(16908341);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(bd.M0(2131753671, null));
+        spannableStringBuilder.setSpan(new o31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        menu.add(2131296496, 2131296491, 6, spannableStringBuilder);
+        SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(bd.M0(2131749095, null));
+        spannableStringBuilder2.setSpan(new o31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        menu.add(2131296496, 2131296497, 7, spannableStringBuilder2);
+        SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(bd.M0(2131744447, null));
+        ?? obj = new Object();
+        obj.f38578a |= 8;
+        spannableStringBuilder3.setSpan(new uy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        menu.add(2131296496, 2131296509, 8, spannableStringBuilder3);
+        menu.add(2131296496, 2131296503, 9, bd.M0(2131746345, null));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        canvas.clipRect(getPaddingLeft() + getScrollX(), getScrollY(), (getWidth() + getScrollX()) - getPaddingRight(), getHeight() + getScrollY());
+        super.onDraw(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+        super.onTextChanged(charSequence, i3, i10, i11);
+        k3 k3Var = this.c2;
+        org.telegram.ui.Components.g6 g6Var = k3Var.f29493y;
+        if (g6Var != null && this.Z1 > 0) {
+            g6Var.a();
+            k3Var.c();
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.c2.f29493y && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -9,22 +9,22 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import java.util.HashSet;
 import org.telegram.tgnet.tl.TL_iv;
-public final class y1 extends HorizontalScrollView implements org.telegram.ui.ActionBar.k6, c3 {
-    public final l60 f43526a;
-    public final FrameLayout f43527b;
-    public final ImageView f43528c;
+public final class y1 extends HorizontalScrollView implements org.telegram.ui.ActionBar.z5, d3 {
+    public final i50 f52154a;
+    public final FrameLayout f52155b;
+    public final ImageView f52156c;
     public int d;
 
-    public y1(Context context, l60 l60Var) {
+    public y1(Context context, i50 i50Var) {
         super(context);
-        this.f43526a = l60Var;
+        this.f52154a = i50Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f43527b = frameLayout;
-        addView(frameLayout, w7.b6.c(-2.0f, -2));
+        this.f52155b = frameLayout;
+        addView(frameLayout, b8.mf.c(-2.0f, -2));
         ImageView imageView = new ImageView(context);
-        this.f43528c = imageView;
+        this.f52156c = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        frameLayout.addView(imageView, w7.b6.c(-2.0f, -2));
+        frameLayout.addView(imageView, b8.mf.c(-2.0f, -2));
         updateColors();
     }
 
@@ -54,50 +54,50 @@ public final class y1 extends HorizontalScrollView implements org.telegram.ui.Ac
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14 = i12 - i10;
-        int i15 = this.d;
-        if (i15 > i14) {
-            super.onLayout(z10, i10, i11, i12, i13);
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        int i13 = i11 - i3;
+        int i14 = this.d;
+        if (i14 > i13) {
+            super.onLayout(z10, i3, i10, i11, i12);
             return;
         }
-        FrameLayout frameLayout = this.f43527b;
-        frameLayout.layout((i14 - i15) / 2, 0, (i14 + i15) / 2, frameLayout.getMeasuredHeight());
+        FrameLayout frameLayout = this.f52155b;
+        frameLayout.layout((i13 - i14) / 2, 0, (i13 + i14) / 2, frameLayout.getMeasuredHeight());
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i10);
     }
 
     public void setBlock(TL_iv.pageBlockMath pageblockmath) {
-        bi.u a2;
-        ImageView imageView = this.f43528c;
+        mi.q a10;
+        ImageView imageView = this.f52156c;
         imageView.setImageBitmap(null);
-        l60 l60Var = this.f43526a;
-        l60Var.getClass();
-        float f7 = 18;
-        int L = org.telegram.messenger.i0.L(f7);
-        l60Var.getClass();
-        imageView.setPadding(L, 0, org.telegram.messenger.i0.L(f7), 0);
+        i50 i50Var = this.f52154a;
+        i50Var.getClass();
+        float f10 = 18;
+        int L = org.telegram.messenger.g0.L(f10);
+        i50Var.getClass();
+        imageView.setPadding(L, 0, org.telegram.messenger.g0.L(f10), 0);
         imageView.setLayoutParams(new FrameLayout.LayoutParams(0, 0));
-        l60Var.getClass();
-        float f10 = 36;
-        this.d = org.telegram.messenger.i0.L(f10);
-        if (pageblockmath != null && (a2 = bi.u.a(pageblockmath.source, org.telegram.messenger.i0.L(20.0f), false)) != null) {
-            imageView.setImageBitmap(a2.f3369a);
-            int i10 = a2.f3370b;
-            l60Var.getClass();
-            int L2 = org.telegram.messenger.i0.L(f10) + i10;
+        i50Var.getClass();
+        float f11 = 36;
+        this.d = org.telegram.messenger.g0.L(f11);
+        if (pageblockmath != null && (a10 = mi.q.a(pageblockmath.source, org.telegram.messenger.g0.L(20.0f), false)) != null) {
+            imageView.setImageBitmap(a10.f19824a);
+            int i3 = a10.f19825b;
+            i50Var.getClass();
+            int L2 = org.telegram.messenger.g0.L(f11) + i3;
             this.d = L2;
-            imageView.setLayoutParams(new FrameLayout.LayoutParams(L2, a2.f3371c));
+            imageView.setLayoutParams(new FrameLayout.LayoutParams(L2, a10.f19826c));
         }
     }
 
     @Override
     public final void updateColors() {
-        ((h4) this.f43526a).getClass();
-        this.f43528c.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.t6.v0(org.telegram.ui.ActionBar.t6.G6), PorterDuff.Mode.SRC_IN));
+        ((i4) this.f52154a).getClass();
+        this.f52156c.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.v0(org.telegram.ui.ActionBar.k6.G6), PorterDuff.Mode.SRC_IN));
     }
 
     @Override

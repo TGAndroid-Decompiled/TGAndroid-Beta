@@ -22,8 +22,8 @@ public final class WebRtcAudioUtils {
         return Arrays.asList(BLACKLISTED_OPEN_SL_ES_MODELS).contains(Build.MODEL);
     }
 
-    private static String deviceTypeToString(int i10) {
-        switch (i10) {
+    private static String deviceTypeToString(int i3) {
+        switch (i3) {
             case 1:
                 return "TYPE_BUILTIN_EARPIECE";
             case 2:
@@ -82,11 +82,11 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized int getDefaultSampleRateHz() {
-        int i10;
+        int i3;
         synchronized (WebRtcAudioUtils.class) {
-            i10 = defaultSampleRateHz;
+            i3 = defaultSampleRateHz;
         }
-        return i10;
+        return i3;
     }
 
     public static String getThreadInfo() {
@@ -175,15 +175,15 @@ public final class WebRtcAudioUtils {
         boolean isVolumeFixed = isVolumeFixed(audioManager);
         Logging.d(str, "  fixed volume=" + isVolumeFixed);
         if (!isVolumeFixed) {
-            for (int i10 = 0; i10 < 6; i10++) {
-                int i11 = iArr[i10];
+            for (int i3 = 0; i3 < 6; i3++) {
+                int i10 = iArr[i3];
                 StringBuilder sb2 = new StringBuilder();
-                sb2.append("  " + streamTypeToString(i11) + ": ");
+                sb2.append("  " + streamTypeToString(i10) + ": ");
                 sb2.append("volume=");
-                sb2.append(audioManager.getStreamVolume(i11));
+                sb2.append(audioManager.getStreamVolume(i10));
                 sb2.append(", max=");
-                sb2.append(audioManager.getStreamMaxVolume(i11));
-                logIsStreamMute(str, audioManager, i11, sb2);
+                sb2.append(audioManager.getStreamMaxVolume(i10));
+                logIsStreamMute(str, audioManager, i10, sb2);
                 Logging.d(str, sb2.toString());
             }
         }
@@ -193,16 +193,16 @@ public final class WebRtcAudioUtils {
         Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
-    private static void logIsStreamMute(String str, AudioManager audioManager, int i10, StringBuilder sb2) {
+    private static void logIsStreamMute(String str, AudioManager audioManager, int i3, StringBuilder sb2) {
         sb2.append(", muted=");
-        sb2.append(audioManager.isStreamMute(i10));
+        sb2.append(audioManager.isStreamMute(i3));
     }
 
-    public static String modeToString(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
+    public static String modeToString(int i3) {
+        if (i3 != 0) {
+            if (i3 != 1) {
+                if (i3 != 2) {
+                    if (i3 != 3) {
                         return "MODE_INVALID";
                     }
                     return "MODE_IN_COMMUNICATION";
@@ -221,10 +221,10 @@ public final class WebRtcAudioUtils {
         return false;
     }
 
-    public static synchronized void setDefaultSampleRateHz(int i10) {
+    public static synchronized void setDefaultSampleRateHz(int i3) {
         synchronized (WebRtcAudioUtils.class) {
             isDefaultSampleRateOverridden = true;
-            defaultSampleRateHz = i10;
+            defaultSampleRateHz = i3;
         }
     }
 
@@ -246,13 +246,13 @@ public final class WebRtcAudioUtils {
         }
     }
 
-    private static String streamTypeToString(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 != 3) {
-                        if (i10 != 4) {
-                            if (i10 != 5) {
+    private static String streamTypeToString(int i3) {
+        if (i3 != 0) {
+            if (i3 != 1) {
+                if (i3 != 2) {
+                    if (i3 != 3) {
+                        if (i3 != 4) {
+                            if (i3 != 5) {
                                 return "STREAM_INVALID";
                             }
                             return "STREAM_NOTIFICATION";

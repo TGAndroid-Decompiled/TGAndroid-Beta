@@ -1,147 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import java.io.File;
-import org.telegram.messenger.ApplicationLoaderImpl;
-import org.telegram.ui.IUpdateLayout;
-public final class c61 extends IUpdateLayout {
-    public FrameLayout f25035a;
-    public RadialProgress2 f25036b;
-    public org.telegram.ui.Cells.a2 f25037c;
-    public final Activity d;
-    public final ViewGroup e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+public final class c61 extends AnimatorListenerAdapter {
+    public final int f32570a;
+    public final n61 f32571b;
 
-    public c61(Activity activity, ViewGroup viewGroup) {
-        super(activity, viewGroup);
-        this.d = activity;
-        this.e = viewGroup;
+    public c61(n61 n61Var, int i3) {
+        this.f32570a = i3;
+        this.f32571b = n61Var;
     }
 
     @Override
-    public final void createUpdateUI(int i10) {
-        ViewGroup viewGroup = this.e;
-        if (viewGroup != null && this.f25035a == null) {
-            Activity activity = this.d;
-            FrameLayout frameLayout = new FrameLayout(activity);
-            this.f25035a = frameLayout;
-            frameLayout.setVisibility(4);
-            this.f25035a.setTranslationY(org.telegram.messenger.i0.L(44.0f));
-            this.f25035a.setBackground(org.telegram.ui.ActionBar.t6.h0(1090519039, 2, -1));
-            viewGroup.addView(this.f25035a, w7.b6.e(-1, 44, 83));
-            this.f25035a.setOnClickListener(new bh.f(this, i10, 14));
-            org.telegram.ui.Cells.a2 a2Var = new org.telegram.ui.Cells.a2(this, activity);
-            this.f25037c = a2Var;
-            a2Var.setTextSize(org.telegram.messenger.i0.L(15.0f));
-            this.f25037c.setTypeface(org.telegram.messenger.i0.o());
-            this.f25037c.setTextColor(-1);
-            this.f25037c.setGravity(17);
-            this.f25035a.addView(this.f25037c, w7.b6.g());
-            this.f25037c.c(org.telegram.messenger.dd.L0(2131754229, null), false, true);
-            RadialProgress2 radialProgress2 = new RadialProgress2(this.f25037c, null);
-            this.f25036b = radialProgress2;
-            int i11 = org.telegram.ui.ActionBar.t6.Ci;
-            radialProgress2.setColors(-1, -1, org.telegram.ui.ActionBar.t6.x0(null, i11, false), org.telegram.ui.ActionBar.t6.x0(null, i11, false));
-            this.f25036b.r(0, 0, org.telegram.messenger.i0.L(22.0f), org.telegram.messenger.i0.L(22.0f));
-            this.f25036b.setCircleRadius(org.telegram.messenger.i0.L(11.0f));
-            this.f25036b.setAsMini();
-        }
-    }
-
-    @Override
-    public final void updateAppUpdateViews(int i10, boolean z10) {
-        org.telegram.messenger.k1 e;
-        String str;
-        int i11;
-        org.telegram.messenger.g1 g1Var;
-        boolean z11;
-        float f7;
-        float f10;
-        if (this.e != null) {
-            if (!((ApplicationLoaderImpl) org.telegram.messenger.w0.f18944a).q() || (str = (e = org.telegram.messenger.k1.e()).f16538a) == null || (i11 = e.f16539b) == 0) {
-                g1Var = null;
-            } else {
-                g1Var = new org.telegram.messenger.g1(str, i11, e.f16540c);
-            }
-            if (g1Var != null) {
-                createUpdateUI(i10);
-                File g10 = org.telegram.messenger.w0.f18944a.g();
-                if (g10 != null && g10.exists()) {
-                    this.f25036b.setIcon(15, true, z10);
-                    this.f25037c.c(org.telegram.messenger.dd.L0(2131754225, null), z10, true);
-                } else {
-                    if (!((ApplicationLoaderImpl) org.telegram.messenger.w0.f18944a).q()) {
-                        z11 = false;
-                    } else {
-                        z11 = org.telegram.messenger.k1.e().f16544j;
-                    }
-                    if (z11) {
-                        this.f25036b.setIcon(3, true, z10);
-                        RadialProgress2 radialProgress2 = this.f25036b;
-                        if (!((ApplicationLoaderImpl) org.telegram.messenger.w0.f18944a).q()) {
-                            f7 = 0.0f;
-                        } else {
-                            f7 = org.telegram.messenger.k1.e().f16545k;
-                        }
-                        radialProgress2.p(true, f7);
-                        if (!((ApplicationLoaderImpl) org.telegram.messenger.w0.f18944a).q()) {
-                            f10 = 0.0f;
-                        } else {
-                            f10 = org.telegram.messenger.k1.e().f16545k;
-                        }
-                        this.f25037c.c(org.telegram.messenger.dd.a0(null, null, 2131754226, Integer.valueOf((int) (f10 * 100.0f))), z10, true);
-                    } else {
-                        this.f25036b.setIcon(2, true, z10);
-                        this.f25037c.c(org.telegram.messenger.dd.L0(2131754229, null), z10, true);
-                    }
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32570a) {
+            case 0:
+                n61 n61Var = this.f32571b;
+                View[] viewArr = n61Var.f36386e;
+                View[] viewArr2 = n61Var.f36386e;
+                if (viewArr[1] != null) {
+                    n61Var.F();
+                    n61Var.h.put(n61Var.f36387f[1], viewArr2[1]);
+                    n61Var.removeView(viewArr2[1]);
+                    n61Var.E(viewArr2[0], 0.0f);
+                    viewArr2[1] = null;
                 }
-                if (this.f25035a.getTag() == null) {
-                    this.f25035a.setVisibility(0);
-                    this.f25035a.setTag(1);
-                    if (z10) {
-                        this.f25035a.animate().translationY(0.0f).setInterpolator(gr.f26524g).setListener(null).setDuration(180L).start();
-                        return;
-                    } else {
-                        this.f25035a.setTranslationY(0.0f);
-                        return;
-                    }
+                n61Var.T = null;
+                n61Var.v(true);
+                d61 d61Var = n61Var.N;
+                if (d61Var != null) {
+                    d61Var.f36052w.invalidate();
+                    n61Var.N.f36052w.g1();
+                    n61Var.N.invalidate();
                 }
+                n61Var.s();
+                n61Var.K.e();
                 return;
-            }
-            FrameLayout frameLayout = this.f25035a;
-            if (frameLayout != null && frameLayout.getTag() != null) {
-                this.f25035a.setTag(null);
-                if (z10) {
-                    this.f25035a.animate().translationY(org.telegram.messenger.i0.L(44.0f)).setInterpolator(gr.f26524g).setListener(new q11(this, 5)).setDuration(180L).start();
+            case 1:
+                n61 n61Var2 = this.f32571b;
+                n61Var2.f36392x = null;
+                View[] viewArr3 = n61Var2.f36386e;
+                if (viewArr3[1] != null) {
+                    if (!n61Var2.G) {
+                        n61Var2.F();
+                    }
+                    n61Var2.h.put(n61Var2.f36387f[1], viewArr3[1]);
+                    n61Var2.removeView(viewArr3[1]);
+                    viewArr3[1].setVisibility(8);
+                    viewArr3[1] = null;
+                }
+                n61Var2.f36393y = false;
+                n61Var2.J = false;
+                d61 d61Var2 = n61Var2.N;
+                if (d61Var2 != null) {
+                    d61Var2.setEnabled(true);
+                }
+                n61Var2.v(false);
+                n61Var2.s();
+                n61Var2.K.e();
+                return;
+            case 2:
+                n61 n61Var3 = this.f32571b;
+                n61Var3.f36392x = null;
+                View[] viewArr4 = n61Var3.f36386e;
+                View view = viewArr4[1];
+                if (view != null) {
+                    n61Var3.removeView(view);
+                    viewArr4[1] = null;
+                }
+                n61Var3.f36393y = false;
+                d61 d61Var3 = n61Var3.N;
+                if (d61Var3 != null) {
+                    d61Var3.setEnabled(true);
+                    d61 d61Var4 = n61Var3.N;
+                    d61Var4.K = false;
+                    d61Var4.f36026a = 1.0f;
+                    d61Var4.f36052w.g1();
+                    n61Var3.N.invalidate();
                     return;
                 }
-                this.f25035a.setTranslationY(org.telegram.messenger.i0.L(44.0f));
-                this.f25035a.setVisibility(4);
-            }
-        }
-    }
-
-    @Override
-    public final void updateFileProgress(Object[] objArr) {
-        boolean z10;
-        float f7;
-        if (this.f25035a != null && this.f25037c != null) {
-            if (!((ApplicationLoaderImpl) org.telegram.messenger.w0.f18944a).q()) {
-                z10 = false;
-            } else {
-                z10 = org.telegram.messenger.k1.e().f16544j;
-            }
-            if (z10) {
-                if (!((ApplicationLoaderImpl) org.telegram.messenger.w0.f18944a).q()) {
-                    f7 = 0.0f;
-                } else {
-                    f7 = org.telegram.messenger.k1.e().f16545k;
+                return;
+            default:
+                n61 n61Var4 = this.f32571b;
+                n61Var4.f36392x = null;
+                View[] viewArr5 = n61Var4.f36386e;
+                if (viewArr5[1] != null) {
+                    if (!n61Var4.G) {
+                        n61Var4.F();
+                    }
+                    n61Var4.h.put(n61Var4.f36387f[1], viewArr5[1]);
+                    n61Var4.removeView(viewArr5[1]);
+                    viewArr5[1].setVisibility(8);
+                    viewArr5[1] = null;
                 }
-                this.f25036b.p(true, f7);
-                this.f25037c.setText(org.telegram.messenger.dd.a0(null, null, 2131754226, Integer.valueOf((int) (f7 * 100.0f))));
-                this.f25035a.invalidate();
-            }
+                n61Var4.f36393y = false;
+                n61Var4.J = false;
+                d61 d61Var5 = n61Var4.N;
+                if (d61Var5 != null) {
+                    d61Var5.setEnabled(true);
+                }
+                n61Var4.v(false);
+                n61Var4.s();
+                n61Var4.K.e();
+                return;
         }
     }
 }

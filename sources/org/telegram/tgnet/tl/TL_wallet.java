@@ -9,17 +9,17 @@ import org.telegram.tgnet.TLMethod;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.n;
+import org.telegram.tgnet.m;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Wallet.WalletEngine2;
 public class TL_wallet {
 
     public static class InputWalletReplacement extends TLObject {
-        public static InputWalletReplacement TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static InputWalletReplacement TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TLObject inputwalletnew;
-            if (i10 != 1671708892) {
-                if (i10 != 1722182203) {
+            if (i3 != 1671708892) {
+                if (i3 != 1722182203) {
                     inputwalletnew = null;
                 } else {
                     inputwalletnew = new inputWalletImported();
@@ -27,7 +27,7 @@ public class TL_wallet {
             } else {
                 inputwalletnew = new inputWalletNew();
             }
-            return (InputWalletReplacement) TLObject.TLdeserialize(InputWalletReplacement.class, inputwalletnew, inputSerializedData, i10, z10);
+            return (InputWalletReplacement) TLObject.TLdeserialize(InputWalletReplacement.class, inputwalletnew, inputSerializedData, i3, z10);
         }
     }
 
@@ -78,10 +78,10 @@ public class TL_wallet {
     }
 
     public static class WalletState extends TLObject {
-        public static WalletState TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static WalletState TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TLObject tL_walletState;
-            if (i10 != -1782238101) {
-                if (i10 != -1665551636) {
+            if (i3 != -1782238101) {
+                if (i3 != -1665551636) {
                     tL_walletState = null;
                 } else {
                     tL_walletState = new TL_walletStateEmpty();
@@ -89,7 +89,7 @@ public class TL_wallet {
             } else {
                 tL_walletState = new TL_walletState();
             }
-            return (WalletState) TLObject.TLdeserialize(WalletState.class, tL_walletState, inputSerializedData, i10, z10);
+            return (WalletState) TLObject.TLdeserialize(WalletState.class, tL_walletState, inputSerializedData, i3, z10);
         }
     }
 
@@ -99,9 +99,9 @@ public class TL_wallet {
         public String domain;
         public long user_id;
 
-        public static WalletTransactionPeer TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static WalletTransactionPeer TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             TLObject wallettransactionpeeruser;
-            switch (i10) {
+            switch (i3) {
                 case -722833299:
                     wallettransactionpeeruser = new walletTransactionPeerUser();
                     break;
@@ -124,7 +124,7 @@ public class TL_wallet {
                     wallettransactionpeeruser = null;
                     break;
             }
-            return (WalletTransactionPeer) TLObject.TLdeserialize(WalletTransactionPeer.class, wallettransactionpeeruser, inputSerializedData, i10, z10);
+            return (WalletTransactionPeer) TLObject.TLdeserialize(WalletTransactionPeer.class, wallettransactionpeeruser, inputSerializedData, i3, z10);
         }
 
         public boolean equals(Object obj) {
@@ -177,14 +177,14 @@ public class TL_wallet {
         public nftItem bg_nft_item;
         public ArrayList<cardSticker> stickers = new ArrayList<>();
 
-        public static card TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static card TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             card cardVar;
-            if (-1898953807 != i10) {
+            if (-1898953807 != i3) {
                 cardVar = null;
             } else {
                 cardVar = new card();
             }
-            return (card) TLObject.TLdeserialize(card.class, cardVar, inputSerializedData, i10, z10);
+            return (card) TLObject.TLdeserialize(card.class, cardVar, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -233,14 +233,14 @@ public class TL_wallet {
         public TL_stories.MediaAreaCoordinates coordinates;
         public nftItem nft;
 
-        public static cardSticker TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static cardSticker TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             cardSticker cardsticker;
-            if (-218035014 != i10) {
+            if (-218035014 != i3) {
                 cardsticker = null;
             } else {
                 cardsticker = new cardSticker();
             }
-            return (cardSticker) TLObject.TLdeserialize(cardSticker.class, cardsticker, inputSerializedData, i10, z10);
+            return (cardSticker) TLObject.TLdeserialize(cardSticker.class, cardsticker, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -271,14 +271,14 @@ public class TL_wallet {
         public String title;
         public String translatedTitle;
 
-        public static currencyRate TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static currencyRate TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             currencyRate currencyrate;
-            if (819557436 != i10) {
+            if (819557436 != i3) {
                 currencyrate = null;
             } else {
                 currencyrate = new currencyRate();
             }
-            return (currencyRate) TLObject.TLdeserialize(currencyRate.class, currencyrate, inputSerializedData, i10, z10);
+            return (currencyRate) TLObject.TLdeserialize(currencyRate.class, currencyrate, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -299,14 +299,14 @@ public class TL_wallet {
         public static final int constructor = -1144199998;
         public ArrayList<currencyRate> rates = new ArrayList<>();
 
-        public static currencyRates TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static currencyRates TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             currencyRates currencyrates;
-            if (-1144199998 != i10) {
+            if (-1144199998 != i3) {
                 currencyrates = null;
             } else {
                 currencyrates = new currencyRates();
             }
-            return (currencyRates) TLObject.TLdeserialize(currencyRates.class, currencyrates, inputSerializedData, i10, z10);
+            return (currencyRates) TLObject.TLdeserialize(currencyRates.class, currencyrates, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -362,8 +362,8 @@ public class TL_wallet {
         }
 
         @Override
-        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return WalletState.TLdeserialize(inputSerializedData, i10, z10);
+        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return WalletState.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -399,8 +399,8 @@ public class TL_wallet {
         }
 
         @Override
-        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return WalletState.TLdeserialize(inputSerializedData, i10, z10);
+        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return WalletState.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -408,14 +408,14 @@ public class TL_wallet {
         public static final int constructor = 417867063;
         public byte[] data;
 
-        public static encryptedSecretPhrasePart TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static encryptedSecretPhrasePart TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             encryptedSecretPhrasePart encryptedsecretphrasepart;
-            if (417867063 != i10) {
+            if (417867063 != i3) {
                 encryptedsecretphrasepart = null;
             } else {
                 encryptedsecretphrasepart = new encryptedSecretPhrasePart();
             }
-            return (encryptedSecretPhrasePart) TLObject.TLdeserialize(encryptedSecretPhrasePart.class, encryptedsecretphrasepart, inputSerializedData, i10, z10);
+            return (encryptedSecretPhrasePart) TLObject.TLdeserialize(encryptedSecretPhrasePart.class, encryptedsecretphrasepart, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -435,14 +435,14 @@ public class TL_wallet {
         public boolean has_balance;
         public String url;
 
-        public static existingBalance TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static existingBalance TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             existingBalance existingbalance;
-            if (-1108800883 != i10) {
+            if (-1108800883 != i3) {
                 existingbalance = null;
             } else {
                 existingbalance = new existingBalance();
             }
-            return (existingBalance) TLObject.TLdeserialize(existingBalance.class, existingbalance, inputSerializedData, i10, z10);
+            return (existingBalance) TLObject.TLdeserialize(existingBalance.class, existingbalance, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -480,8 +480,8 @@ public class TL_wallet {
         }
 
         @Override
-        public secretPhraseParts deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return secretPhraseParts.TLdeserialize(inputSerializedData, i10, z10);
+        public secretPhraseParts deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return secretPhraseParts.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -498,8 +498,8 @@ public class TL_wallet {
         }
 
         @Override
-        public encryptedSecretPhrasePart deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return encryptedSecretPhrasePart.TLdeserialize(inputSerializedData, i10, z10);
+        public encryptedSecretPhrasePart deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return encryptedSecretPhrasePart.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -512,8 +512,8 @@ public class TL_wallet {
         }
 
         @Override
-        public Vector<holderDc> deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i10, z10, new d(20));
+        public Vector<holderDc> deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return Vector.TLDeserialize(inputSerializedData, i3, z10, new d(20));
         }
     }
 
@@ -526,8 +526,8 @@ public class TL_wallet {
         }
 
         @Override
-        public currencyRates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return currencyRates.TLdeserialize(inputSerializedData, i10, z10);
+        public currencyRates deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return currencyRates.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -540,8 +540,8 @@ public class TL_wallet {
         }
 
         @Override
-        public existingBalance deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return existingBalance.TLdeserialize(inputSerializedData, i10, z10);
+        public existingBalance deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return existingBalance.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -554,8 +554,8 @@ public class TL_wallet {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -572,8 +572,8 @@ public class TL_wallet {
         }
 
         @Override
-        public nftItems deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return nftItems.TLdeserialize(inputSerializedData, i10, z10);
+        public nftItems deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return nftItems.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -586,8 +586,8 @@ public class TL_wallet {
         }
 
         @Override
-        public proofChallenge deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return proofChallenge.TLdeserialize(inputSerializedData, i10, z10);
+        public proofChallenge deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return proofChallenge.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -600,8 +600,8 @@ public class TL_wallet {
         }
 
         @Override
-        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return WalletState.TLdeserialize(inputSerializedData, i10, z10);
+        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return WalletState.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -621,24 +621,24 @@ public class TL_wallet {
         }
 
         @Override
-        public walletTransactions deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return walletTransactions.TLdeserialize(inputSerializedData, i10, z10);
+        public walletTransactions deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return walletTransactions.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
     public static class getTransactionsByIDs extends TLMethod<walletTransactions> {
         public static final int constructor = -2128811338;
-        public ArrayList<String> f20053id = new ArrayList<>();
+        public ArrayList<String> f27261id = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-2128811338);
-            Vector.serializeString(outputSerializedData, this.f20053id);
+            Vector.serializeString(outputSerializedData, this.f27261id);
         }
 
         @Override
-        public walletTransactions deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return walletTransactions.TLdeserialize(inputSerializedData, i10, z10);
+        public walletTransactions deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return walletTransactions.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -653,56 +653,56 @@ public class TL_wallet {
         }
 
         @Override
-        public walletTransactions deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return walletTransactions.TLdeserialize(inputSerializedData, i10, z10);
+        public walletTransactions deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return walletTransactions.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
     public static class getUserAddresses extends TLMethod<userAddresses> {
         public static final int constructor = 1383456733;
         public boolean force;
-        public ArrayList<TLRPC.InputUser> f20054id = new ArrayList<>();
+        public ArrayList<TLRPC.InputUser> f27262id = new ArrayList<>();
         public ArrayList<String> addresses = new ArrayList<>();
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(1383456733);
             outputSerializedData.writeInt32(TLObject.setFlag(0, 1, this.force));
-            Vector.serialize(outputSerializedData, this.f20054id);
+            Vector.serialize(outputSerializedData, this.f27262id);
             Vector.serializeString(outputSerializedData, this.addresses);
         }
 
         @Override
-        public userAddresses deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return userAddresses.TLdeserialize(inputSerializedData, i10, z10);
+        public userAddresses deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return userAddresses.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
     public static class holderDc extends TLObject {
         public static final int constructor = -103410961;
-        public int f20055dc;
+        public int f27263dc;
         public byte[] public_key;
 
-        public static holderDc TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static holderDc TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             holderDc holderdc;
-            if (-103410961 != i10) {
+            if (-103410961 != i3) {
                 holderdc = null;
             } else {
                 holderdc = new holderDc();
             }
-            return (holderDc) TLObject.TLdeserialize(holderDc.class, holderdc, inputSerializedData, i10, z10);
+            return (holderDc) TLObject.TLdeserialize(holderDc.class, holderdc, inputSerializedData, i3, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.f20055dc = inputSerializedData.readInt32(z10);
+            this.f27263dc = inputSerializedData.readInt32(z10);
             this.public_key = inputSerializedData.readByteArray(z10);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-103410961);
-            outputSerializedData.writeInt32(this.f20055dc);
+            outputSerializedData.writeInt32(this.f27263dc);
             outputSerializedData.writeByteArray(this.public_key);
         }
     }
@@ -714,14 +714,14 @@ public class TL_wallet {
         public walletOwnershipProof proof;
         public long session_id;
 
-        public static inputTonConnectOauthSession TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static inputTonConnectOauthSession TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             inputTonConnectOauthSession inputtonconnectoauthsession;
-            if (1654613710 != i10) {
+            if (1654613710 != i3) {
                 inputtonconnectoauthsession = null;
             } else {
                 inputtonconnectoauthsession = new inputTonConnectOauthSession();
             }
-            return (inputTonConnectOauthSession) TLObject.TLdeserialize(inputTonConnectOauthSession.class, inputtonconnectoauthsession, inputSerializedData, i10, z10);
+            return (inputTonConnectOauthSession) TLObject.TLdeserialize(inputTonConnectOauthSession.class, inputtonconnectoauthsession, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -747,14 +747,14 @@ public class TL_wallet {
         public TL_stories.MediaAreaCoordinates coordinates;
         public String nft_address;
 
-        public static inputWalletCardSticker TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static inputWalletCardSticker TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             inputWalletCardSticker inputwalletcardsticker;
-            if (1474250151 != i10) {
+            if (1474250151 != i3) {
                 inputwalletcardsticker = null;
             } else {
                 inputwalletcardsticker = new inputWalletCardSticker();
             }
-            return (inputWalletCardSticker) TLObject.TLdeserialize(inputWalletCardSticker.class, inputwalletcardsticker, inputSerializedData, i10, z10);
+            return (inputWalletCardSticker) TLObject.TLdeserialize(inputWalletCardSticker.class, inputwalletcardsticker, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -819,14 +819,14 @@ public class TL_wallet {
         public static final int constructor = -1953440504;
         public byte[] share;
 
-        public static mnemonic_decryptedKeyPart TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static mnemonic_decryptedKeyPart TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             mnemonic_decryptedKeyPart mnemonic_decryptedkeypart;
-            if (-1953440504 != i10) {
+            if (-1953440504 != i3) {
                 mnemonic_decryptedkeypart = null;
             } else {
                 mnemonic_decryptedkeypart = new mnemonic_decryptedKeyPart();
             }
-            return (mnemonic_decryptedKeyPart) TLObject.TLdeserialize(mnemonic_decryptedKeyPart.class, mnemonic_decryptedkeypart, inputSerializedData, i10, z10);
+            return (mnemonic_decryptedKeyPart) TLObject.TLdeserialize(mnemonic_decryptedKeyPart.class, mnemonic_decryptedkeypart, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -846,14 +846,14 @@ public class TL_wallet {
         public String trait_type;
         public String value;
 
-        public static nftAttribute TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static nftAttribute TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             nftAttribute nftattribute;
-            if (1277096206 != i10) {
+            if (1277096206 != i3) {
                 nftattribute = null;
             } else {
                 nftattribute = new nftAttribute();
             }
-            return (nftAttribute) TLObject.TLdeserialize(nftAttribute.class, nftattribute, inputSerializedData, i10, z10);
+            return (nftAttribute) TLObject.TLdeserialize(nftAttribute.class, nftattribute, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -886,14 +886,14 @@ public class TL_wallet {
         public String name;
         public String owner_address;
 
-        public static nftItem TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static nftItem TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             nftItem nftitem;
-            if (389937907 != i10) {
+            if (389937907 != i3) {
                 nftitem = null;
             } else {
                 nftitem = new nftItem();
             }
-            return (nftItem) TLObject.TLdeserialize(nftItem.class, nftitem, inputSerializedData, i10, z10);
+            return (nftItem) TLObject.TLdeserialize(nftItem.class, nftitem, inputSerializedData, i3, z10);
         }
 
         public boolean isGift() {
@@ -1090,14 +1090,14 @@ public class TL_wallet {
         public ArrayList<nftItem> items = new ArrayList<>();
         public String next_offset;
 
-        public static nftItems TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static nftItems TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             nftItems nftitems;
-            if (2035107951 != i10) {
+            if (2035107951 != i3) {
                 nftitems = null;
             } else {
                 nftitems = new nftItems();
             }
-            return (nftItems) TLObject.TLdeserialize(nftItems.class, nftitems, inputSerializedData, i10, z10);
+            return (nftItems) TLObject.TLdeserialize(nftItems.class, nftitems, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1133,14 +1133,14 @@ public class TL_wallet {
         public int expires;
         public String payload;
 
-        public static proofChallenge TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static proofChallenge TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             proofChallenge proofchallenge;
-            if (-1713105145 != i10) {
+            if (-1713105145 != i3) {
                 proofchallenge = null;
             } else {
                 proofchallenge = new proofChallenge();
             }
-            return (proofChallenge) TLObject.TLdeserialize(proofChallenge.class, proofchallenge, inputSerializedData, i10, z10);
+            return (proofChallenge) TLObject.TLdeserialize(proofChallenge.class, proofchallenge, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1182,8 +1182,8 @@ public class TL_wallet {
         }
 
         @Override
-        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return WalletState.TLdeserialize(inputSerializedData, i10, z10);
+        public WalletState deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return WalletState.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1192,14 +1192,14 @@ public class TL_wallet {
         public ArrayList<Integer> dcs = new ArrayList<>();
         public String token;
 
-        public static secretPhraseParts TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static secretPhraseParts TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             secretPhraseParts secretphraseparts;
-            if (-422514943 != i10) {
+            if (-422514943 != i3) {
                 secretphraseparts = null;
             } else {
                 secretphraseparts = new secretPhraseParts();
             }
-            return (secretPhraseParts) TLObject.TLdeserialize(secretPhraseParts.class, secretphraseparts, inputSerializedData, i10, z10);
+            return (secretPhraseParts) TLObject.TLdeserialize(secretPhraseParts.class, secretphraseparts, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1245,8 +1245,8 @@ public class TL_wallet {
         }
 
         @Override
-        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Updates deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1273,8 +1273,8 @@ public class TL_wallet {
         }
 
         @Override
-        public card deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return card.TLdeserialize(inputSerializedData, i10, z10);
+        public card deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return card.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1283,14 +1283,14 @@ public class TL_wallet {
         public byte[] challenge;
         public long event_id;
 
-        public static tonConnectChallenge TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static tonConnectChallenge TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             tonConnectChallenge tonconnectchallenge;
-            if (1271436947 != i10) {
+            if (1271436947 != i3) {
                 tonconnectchallenge = null;
             } else {
                 tonconnectchallenge = new tonConnectChallenge();
             }
-            return (tonConnectChallenge) TLObject.TLdeserialize(tonConnectChallenge.class, tonconnectchallenge, inputSerializedData, i10, z10);
+            return (tonConnectChallenge) TLObject.TLdeserialize(tonConnectChallenge.class, tonconnectchallenge, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1335,8 +1335,8 @@ public class TL_wallet {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1363,8 +1363,8 @@ public class TL_wallet {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1381,8 +1381,8 @@ public class TL_wallet {
         }
 
         @Override
-        public tonConnectSession deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return tonConnectSession.TLdeserialize(inputSerializedData, i10, z10);
+        public tonConnectSession deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return tonConnectSession.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1397,8 +1397,8 @@ public class TL_wallet {
         }
 
         @Override
-        public tonConnectNextEventId deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return tonConnectNextEventId.TLdeserialize(inputSerializedData, i10, z10);
+        public tonConnectNextEventId deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return tonConnectNextEventId.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1432,8 +1432,8 @@ public class TL_wallet {
         }
 
         @Override
-        public tonConnectPending deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return tonConnectPending.TLdeserialize(inputSerializedData, i10, z10);
+        public tonConnectPending deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return tonConnectPending.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1446,8 +1446,8 @@ public class TL_wallet {
         }
 
         @Override
-        public tonConnectSessions deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return tonConnectSessions.TLdeserialize(inputSerializedData, i10, z10);
+        public tonConnectSessions deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return tonConnectSessions.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1457,14 +1457,14 @@ public class TL_wallet {
         public String name;
         public String url;
 
-        public static tonConnectManifest TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static tonConnectManifest TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             tonConnectManifest tonconnectmanifest;
-            if (304255588 != i10) {
+            if (304255588 != i3) {
                 tonconnectmanifest = null;
             } else {
                 tonconnectmanifest = new tonConnectManifest();
             }
-            return (tonConnectManifest) TLObject.TLdeserialize(tonConnectManifest.class, tonconnectmanifest, inputSerializedData, i10, z10);
+            return (tonConnectManifest) TLObject.TLdeserialize(tonConnectManifest.class, tonconnectmanifest, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1500,14 +1500,14 @@ public class TL_wallet {
         public static final int constructor = 1478780131;
         public long event_id;
 
-        public static tonConnectNextEventId TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static tonConnectNextEventId TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             tonConnectNextEventId tonconnectnexteventid;
-            if (1478780131 != i10) {
+            if (1478780131 != i3) {
                 tonconnectnexteventid = null;
             } else {
                 tonconnectnexteventid = new tonConnectNextEventId();
             }
-            return (tonConnectNextEventId) TLObject.TLdeserialize(tonConnectNextEventId.class, tonconnectnexteventid, inputSerializedData, i10, z10);
+            return (tonConnectNextEventId) TLObject.TLdeserialize(tonConnectNextEventId.class, tonconnectnexteventid, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1527,14 +1527,14 @@ public class TL_wallet {
         public ArrayList<tonConnectRequest> requests = new ArrayList<>();
         public tonConnectSession session;
 
-        public static tonConnectPending TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static tonConnectPending TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             tonConnectPending tonconnectpending;
-            if (-2050952924 != i10) {
+            if (-2050952924 != i3) {
                 tonconnectpending = null;
             } else {
                 tonconnectpending = new tonConnectPending();
             }
-            return (tonConnectPending) TLObject.TLdeserialize(tonConnectPending.class, tonconnectpending, inputSerializedData, i10, z10);
+            return (tonConnectPending) TLObject.TLdeserialize(tonConnectPending.class, tonconnectpending, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1564,8 +1564,8 @@ public class TL_wallet {
         }
 
         @Override
-        public tonConnectChallenge deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return tonConnectChallenge.TLdeserialize(inputSerializedData, i10, z10);
+        public tonConnectChallenge deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return tonConnectChallenge.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1578,14 +1578,14 @@ public class TL_wallet {
         public String topic;
         public String trace_id;
 
-        public static tonConnectRequest TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static tonConnectRequest TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             tonConnectRequest tonconnectrequest;
-            if (-1587575533 != i10) {
+            if (-1587575533 != i3) {
                 tonconnectrequest = null;
             } else {
                 tonconnectrequest = new tonConnectRequest();
             }
-            return (tonConnectRequest) TLObject.TLdeserialize(tonConnectRequest.class, tonconnectrequest, inputSerializedData, i10, z10);
+            return (tonConnectRequest) TLObject.TLdeserialize(tonConnectRequest.class, tonconnectrequest, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1639,20 +1639,20 @@ public class TL_wallet {
         public boolean closing;
         public String dapp_client_id;
         public int date;
-        public long f20056id;
+        public long f27264id;
         public tonConnectManifest manifest;
         public Integer manifest_error;
         public byte[] nonce;
         public boolean pending;
 
-        public static tonConnectSession TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static tonConnectSession TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             tonConnectSession tonconnectsession;
-            if (308631238 != i10) {
+            if (308631238 != i3) {
                 tonconnectsession = null;
             } else {
                 tonconnectsession = new tonConnectSession();
             }
-            return (tonConnectSession) TLObject.TLdeserialize(tonConnectSession.class, tonconnectsession, inputSerializedData, i10, z10);
+            return (tonConnectSession) TLObject.TLdeserialize(tonConnectSession.class, tonconnectsession, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1661,7 +1661,7 @@ public class TL_wallet {
             this.pending = TLObject.hasFlag(readInt32, 1);
             this.closing = TLObject.hasFlag(readInt32, 2);
             this.closed = TLObject.hasFlag(readInt32, 4);
-            this.f20056id = inputSerializedData.readInt64(z10);
+            this.f27264id = inputSerializedData.readInt64(z10);
             this.dapp_client_id = inputSerializedData.readString(z10);
             if (TLObject.hasFlag(readInt32, 8)) {
                 this.client_id = inputSerializedData.readString(z10);
@@ -1700,7 +1700,7 @@ public class TL_wallet {
             }
             int flag4 = TLObject.setFlag(flag3, 32, z12);
             outputSerializedData.writeInt32(flag4);
-            outputSerializedData.writeInt64(this.f20056id);
+            outputSerializedData.writeInt64(this.f27264id);
             outputSerializedData.writeString(this.dapp_client_id);
             if (TLObject.hasFlag(flag4, 8)) {
                 outputSerializedData.writeString(this.client_id);
@@ -1720,14 +1720,14 @@ public class TL_wallet {
         public static final int constructor = 236939414;
         public ArrayList<tonConnectSession> sessions = new ArrayList<>();
 
-        public static tonConnectSessions TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static tonConnectSessions TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             tonConnectSessions tonconnectsessions;
-            if (236939414 != i10) {
+            if (236939414 != i3) {
                 tonconnectsessions = null;
             } else {
                 tonconnectsessions = new tonConnectSessions();
             }
-            return (tonConnectSessions) TLObject.TLdeserialize(tonConnectSessions.class, tonconnectsessions, inputSerializedData, i10, z10);
+            return (tonConnectSessions) TLObject.TLdeserialize(tonConnectSessions.class, tonconnectsessions, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1769,8 +1769,8 @@ public class TL_wallet {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1801,8 +1801,8 @@ public class TL_wallet {
         }
 
         @Override
-        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i10, z10);
+        public TLRPC.Bool deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -1811,20 +1811,20 @@ public class TL_wallet {
         public ArrayList<walletUserAddress> addresses = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static userAddresses TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static userAddresses TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             userAddresses useraddresses;
-            if (-1836156075 != i10) {
+            if (-1836156075 != i3) {
                 useraddresses = null;
             } else {
                 useraddresses = new userAddresses();
             }
-            return (userAddresses) TLObject.TLdeserialize(userAddresses.class, useraddresses, inputSerializedData, i10, z10);
+            return (userAddresses) TLObject.TLdeserialize(userAddresses.class, useraddresses, inputSerializedData, i3, z10);
         }
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.addresses = Vector.deserialize(inputSerializedData, new d(25), z10);
-            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -1840,14 +1840,14 @@ public class TL_wallet {
         public byte[] signature;
         public int timestamp;
 
-        public static walletOwnershipProof TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static walletOwnershipProof TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             walletOwnershipProof walletownershipproof;
-            if (1622985485 != i10) {
+            if (1622985485 != i3) {
                 walletownershipproof = null;
             } else {
                 walletownershipproof = new walletOwnershipProof();
             }
-            return (walletOwnershipProof) TLObject.TLdeserialize(walletOwnershipProof.class, walletownershipproof, inputSerializedData, i10, z10);
+            return (walletOwnershipProof) TLObject.TLdeserialize(walletOwnershipProof.class, walletownershipproof, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -1876,7 +1876,7 @@ public class TL_wallet {
         public boolean feeUnknown;
         public boolean gasless;
         public String gaslessMessageBodyHash;
-        public String f20057id;
+        public String f27265id;
         public boolean incoming;
         public boolean key_change;
         public int localMessageId;
@@ -1895,14 +1895,14 @@ public class TL_wallet {
         public String tx_hash;
         public long validUntil;
 
-        public static walletTransaction TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static walletTransaction TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             walletTransaction wallettransaction;
-            if (-1792163517 != i10) {
+            if (-1792163517 != i3) {
                 wallettransaction = null;
             } else {
                 wallettransaction = new walletTransaction();
             }
-            return (walletTransaction) TLObject.TLdeserialize(walletTransaction.class, wallettransaction, inputSerializedData, i10, z10);
+            return (walletTransaction) TLObject.TLdeserialize(walletTransaction.class, wallettransaction, inputSerializedData, i3, z10);
         }
 
         private static boolean peerEquals(WalletTransactionPeer walletTransactionPeer, WalletTransactionPeer walletTransactionPeer2) {
@@ -1923,7 +1923,7 @@ public class TL_wallet {
                 return false;
             }
             walletTransaction wallettransaction = (walletTransaction) obj;
-            if (TextUtils.equals(this.f20057id, wallettransaction.f20057id) && this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && Objects.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && Objects.equals(this.operationId, wallettransaction.operationId) && Objects.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
+            if (TextUtils.equals(this.f27265id, wallettransaction.f27265id) && this.incoming == wallettransaction.incoming && this.pending == wallettransaction.pending && this.key_change == wallettransaction.key_change && this.failed == wallettransaction.failed && this.amount == wallettransaction.amount && this.fee == wallettransaction.fee && this.date == wallettransaction.date && peerEquals(this.peer, wallettransaction.peer) && this.comment_encrypted == wallettransaction.comment_encrypted && this.comment_encrypted_preparing == wallettransaction.comment_encrypted_preparing && TextUtils.equals(this.comment, wallettransaction.comment) && TextUtils.equals(this.tx_hash, wallettransaction.tx_hash) && Objects.equals(this.nft, wallettransaction.nft) && this.preview == wallettransaction.preview && this.feeUnknown == wallettransaction.feeUnknown && Objects.equals(this.traceFeesNanograms, wallettransaction.traceFeesNanograms) && this.validUntil == wallettransaction.validUntil && this.traceSucceeded == wallettransaction.traceSucceeded && this.traceIncomplete == wallettransaction.traceIncomplete && Objects.equals(this.operationId, wallettransaction.operationId) && Objects.equals(this.messageHash, wallettransaction.messageHash) && this.phase == wallettransaction.phase) {
                 return true;
             }
             return false;
@@ -1937,7 +1937,7 @@ public class TL_wallet {
             this.failed = TLObject.hasFlag(readInt32, 4);
             this.key_change = TLObject.hasFlag(readInt32, 32);
             this.comment_encrypted = TLObject.hasFlag(readInt32, 64);
-            this.f20057id = inputSerializedData.readString(z10);
+            this.f27265id = inputSerializedData.readString(z10);
             this.amount = inputSerializedData.readInt64(z10);
             this.fee = inputSerializedData.readInt64(z10);
             this.date = inputSerializedData.readInt32(z10);
@@ -1977,7 +1977,7 @@ public class TL_wallet {
             }
             int flag4 = TLObject.setFlag(flag3, 128, z12);
             outputSerializedData.writeInt32(flag4);
-            outputSerializedData.writeString(this.f20057id);
+            outputSerializedData.writeString(this.f27265id);
             outputSerializedData.writeInt64(this.amount);
             outputSerializedData.writeInt64(this.fee);
             outputSerializedData.writeInt32(this.date);
@@ -2174,14 +2174,14 @@ public class TL_wallet {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static walletTransactions TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static walletTransactions TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             walletTransactions wallettransactions;
-            if (1126356389 != i10) {
+            if (1126356389 != i3) {
                 wallettransactions = null;
             } else {
                 wallettransactions = new walletTransactions();
             }
-            return (walletTransactions) TLObject.TLdeserialize(walletTransactions.class, wallettransactions, inputSerializedData, i10, z10);
+            return (walletTransactions) TLObject.TLdeserialize(walletTransactions.class, wallettransactions, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -2192,8 +2192,8 @@ public class TL_wallet {
             if (TLObject.hasFlag(readInt32, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }
-            this.chats = Vector.deserialize(inputSerializedData, new n(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new n(4), z10);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
         @Override
@@ -2223,14 +2223,14 @@ public class TL_wallet {
         public byte[] public_key;
         public long user_id;
 
-        public static walletUserAddress TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static walletUserAddress TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             walletUserAddress walletuseraddress;
-            if (-25628980 != i10) {
+            if (-25628980 != i3) {
                 walletuseraddress = null;
             } else {
                 walletuseraddress = new walletUserAddress();
             }
-            return (walletUserAddress) TLObject.TLdeserialize(walletUserAddress.class, walletuseraddress, inputSerializedData, i10, z10);
+            return (walletUserAddress) TLObject.TLdeserialize(walletUserAddress.class, walletuseraddress, inputSerializedData, i3, z10);
         }
 
         @Override

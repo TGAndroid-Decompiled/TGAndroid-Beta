@@ -1,30 +1,33 @@
 package p7;
+public final class f extends e {
+    public final e7.x f53349a;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import w7.h0;
-public final class f extends o6.a {
-    public static final Parcelable.Creator<f> CREATOR = new m8.i(24);
-    public final String f44866a;
-    public final String f44867b;
-    public final String f44868c;
-
-    public f(String str, String str2, String str3) {
-        this.f44866a = str;
-        this.f44867b = str2;
-        this.f44868c = str3;
-    }
-
-    public final String toString() {
-        return a1.g.r(a1.g.v("DocumentId[packageName=", this.f44866a, ", corpusName=", this.f44867b, ", uri="), this.f44868c, "]");
+    public f(e7.x xVar) {
+        this.f53349a = xVar;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.l(parcel, 1, this.f44866a);
-        h0.l(parcel, 2, this.f44867b);
-        h0.l(parcel, 3, this.f44868c);
-        h0.r(parcel, q6);
+    public final Object a() {
+        return this.f53349a;
+    }
+
+    @Override
+    public final boolean b() {
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof f) {
+            return this.f53349a.equals(((f) obj).f53349a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f53349a.hashCode() + 1502476572;
+    }
+
+    public final String toString() {
+        return a1.g.q("Optional.of(", this.f53349a.toString(), ")");
     }
 }

@@ -1,102 +1,34 @@
 package org.telegram.ui;
+public final class ha1 implements org.telegram.ui.ActionBar.p1 {
+    public final int f45886a;
+    public final ra1 f45887b;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.Utilities;
-public final class ha1 extends FrameLayout {
-    public final int f37769a;
-    public float f37770b;
-    public boolean f37771c;
-    public Object d;
-
-    public ha1(Context context, int i10) {
-        super(context);
-        this.f37769a = i10;
+    public ha1(ra1 ra1Var, int i3) {
+        this.f45886a = i3;
+        this.f45887b = ra1Var;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        switch (this.f37769a) {
+    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f45886a) {
             case 0:
-                float f7 = ((1.0f - this.f37770b) * 0.2f) + 0.8f;
-                canvas.save();
-                canvas.scale(f7, f7, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
-                super.dispatchDraw(canvas);
-                canvas.restore();
-                if (isPressed()) {
-                    float f10 = this.f37770b;
-                    if (f10 != 1.0f) {
-                        this.f37770b = Utilities.i(f10 + 0.16f, 1.0f, 0.0f);
-                        invalidate();
-                        return;
-                    }
-                    return;
-                }
+                this.f45887b.finishFragment();
+                return;
+            case 1:
+                ra1 ra1Var = this.f45887b;
+                ra1Var.G0();
+                ra1Var.finishFragment();
+                return;
+            case 2:
+                ra1 ra1Var2 = this.f45887b;
+                ra1Var2.S = "";
+                ra1Var2.J0(false);
+                return;
+            case 3:
+                ra1.f0(this.f45887b);
                 return;
             default:
-                super.dispatchDraw(canvas);
-                int i10 = 1;
-                if (this.f37771c) {
-                    float f11 = this.f37770b + 0.013333334f;
-                    this.f37770b = f11;
-                    if (f11 > 1.0f) {
-                        this.f37771c = false;
-                        this.f37770b = 1.0f;
-                    }
-                } else {
-                    float f12 = this.f37770b - 0.013333334f;
-                    this.f37770b = f12;
-                    if (f12 < 0.0f) {
-                        this.f37771c = true;
-                        this.f37770b = 0.0f;
-                    }
-                }
-                TextView textView = (TextView) this.d;
-                float interpolation = org.telegram.ui.Components.gr.f26523f.getInterpolation(this.f37770b) * org.telegram.messenger.i0.L(8.0f);
-                if (org.telegram.messenger.dd.X) {
-                    i10 = -1;
-                }
-                textView.setTranslationX(interpolation * i10);
-                invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        ValueAnimator valueAnimator;
-        switch (this.f37769a) {
-            case 0:
-                super.setPressed(z10);
-                if (this.f37771c != z10) {
-                    this.f37771c = z10;
-                    invalidate();
-                    if (z10 && (valueAnimator = (ValueAnimator) this.d) != null) {
-                        valueAnimator.removeAllListeners();
-                        ((ValueAnimator) this.d).cancel();
-                    }
-                    if (!z10) {
-                        float f7 = this.f37770b;
-                        if (f7 != 0.0f) {
-                            ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, 0.0f);
-                            this.d = ofFloat;
-                            ofFloat.addUpdateListener(new u01(this, 12));
-                            ((ValueAnimator) this.d).addListener(new ms0(this, 11));
-                            org.telegram.messenger.a30.j(5.0f, (ValueAnimator) this.d);
-                            ((ValueAnimator) this.d).setDuration(350L);
-                            ((ValueAnimator) this.d).start();
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.setPressed(z10);
+                ra1.c0(this.f45887b);
                 return;
         }
     }

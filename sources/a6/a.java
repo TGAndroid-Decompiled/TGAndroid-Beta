@@ -1,29 +1,7 @@
 package a6;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import w7.h0;
-public final class a extends o6.a {
-    public static final Parcelable.Creator<a> CREATOR = new w.a(1);
-    public final int f285a;
-    public final int f286b;
-    public final Bundle f287c;
-
-    public a(int i10, int i11, Bundle bundle) {
-        this.f285a = i10;
-        this.f286b = i11;
-        this.f287c = bundle;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.s(parcel, 1, 4);
-        parcel.writeInt(this.f285a);
-        h0.s(parcel, 2, 4);
-        parcel.writeInt(this.f286b);
-        h0.b(parcel, 3, this.f287c);
-        h0.r(parcel, q6);
-    }
+import com.google.android.gms.common.api.e;
+import com.google.android.gms.common.api.j;
+public abstract class a extends j {
+    public static final e f136l = new e("SmsRetriever.API", new b(0), new Object());
 }

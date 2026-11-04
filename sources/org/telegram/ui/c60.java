@@ -1,136 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.telephony.PhoneNumberUtils;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
 import org.telegram.tgnet.TLRPC;
-public final class c60 extends org.telegram.ui.Components.tk0 {
-    public final Context f36204c;
-    public final d60 d;
+public final class c60 implements Predicate {
+    public final int f44244a;
+    public final Object f44245b;
 
-    public c60(d60 d60Var, Context context) {
-        this.d = d60Var;
-        this.f36204c = context;
+    public c60(Object obj, int i3) {
+        this.f44244a = i3;
+        this.f44245b = obj;
     }
 
-    @Override
-    public final boolean D(s4.c1 c1Var) {
-        int b10 = c1Var.b();
-        d60 d60Var = this.d;
-        if (b10 != d60Var.f36502r && b10 != d60Var.f36501n && b10 != d60Var.f36503s && b10 != 0) {
-            return false;
-        }
-        return true;
+    public Predicate and(Predicate predicate) {
+        int i3 = this.f44244a;
+        return Predicate$CC.$default$and(this, predicate);
     }
 
-    @Override
-    public final int b() {
-        d60 d60Var = this.d;
-        if (d60Var.e) {
-            return 0;
-        }
-        return d60Var.f36505x;
-    }
-
-    @Override
-    public final int d(int i10) {
-        d60 d60Var = this.d;
-        if (i10 != d60Var.f36501n && i10 != d60Var.f36503s && i10 != d60Var.f36502r) {
-            if (i10 != d60Var.f36504w && i10 != d60Var.h) {
-                if (i10 == 0) {
-                    return 2;
-                }
-                return 0;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        String str;
-        int i11 = c1Var.f47912f;
-        View view = c1Var.f47909a;
-        d60 d60Var = this.d;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 == 2) {
-                    org.telegram.ui.Cells.o8 o8Var = (org.telegram.ui.Cells.o8) view;
-                    TLRPC.TL_chatInviteExported tL_chatInviteExported = d60Var.f36500f;
-                    if (tL_chatInviteExported != null) {
-                        str = tL_chatInviteExported.link;
-                    } else {
-                        str = "error";
-                    }
-                    o8Var.f22408a.setText(str);
-                    o8Var.setWillNotDraw(true);
-                    return;
-                }
-                return;
-            }
-            org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) view;
-            if (i10 == d60Var.f36504w) {
-                b9Var.setText("");
-                return;
-            } else if (i10 == d60Var.h) {
-                TLRPC.Chat L0 = d60Var.getMessagesController().L0(Long.valueOf(d60Var.d));
-                if (org.telegram.messenger.w3.T(L0) && !L0.megagroup) {
-                    b9Var.setText(org.telegram.messenger.dd.L0(2131752386, null));
-                    return;
-                } else {
-                    b9Var.setText(org.telegram.messenger.dd.L0(2131748921, null));
-                    return;
-                }
-            } else {
-                return;
-            }
-        }
-        org.telegram.ui.Cells.x9 x9Var = (org.telegram.ui.Cells.x9) view;
-        if (i10 == d60Var.f36501n) {
-            x9Var.b(org.telegram.messenger.dd.L0(2131751762, null), true);
-        } else if (i10 == d60Var.f36503s) {
-            x9Var.b(org.telegram.messenger.dd.L0(2131745476, null), false);
-        } else if (i10 == d60Var.f36502r) {
-            x9Var.b(org.telegram.messenger.dd.L0(2131746040, null), true);
+    public Predicate negate() {
+        switch (this.f44244a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            case 2:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
         }
     }
 
+    public Predicate or(Predicate predicate) {
+        int i3 = this.f44244a;
+        return Predicate$CC.$default$or(this, predicate);
+    }
+
     @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        FrameLayout frameLayout;
-        int i11;
-        Context context = this.f36204c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                ?? frameLayout2 = new FrameLayout(context);
-                TextView textView = new TextView(context);
-                frameLayout2.f22408a = textView;
-                org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.G6, null);
-                textView.setTextSize(1, 16.0f);
-                int i12 = 3;
-                if (org.telegram.messenger.dd.X) {
-                    i11 = 5;
-                } else {
-                    i11 = 3;
+    public final boolean test(Object obj) {
+        switch (this.f44244a) {
+            case 0:
+                String str = (String) this.f44245b;
+                String str2 = (String) obj;
+                if (str2 != null && str2.equals(str)) {
+                    return true;
                 }
-                textView.setGravity(i11 | 16);
-                if (org.telegram.messenger.dd.X) {
-                    i12 = 5;
+                return false;
+            case 1:
+                return PhoneNumberUtils.compare((String) this.f44245b, (String) obj);
+            case 2:
+                String str3 = (String) this.f44245b;
+                String str4 = (String) obj;
+                if (str4 != null && str4.equals(str3)) {
+                    return true;
                 }
-                frameLayout2.addView(textView, w7.b6.d(-1, -2.0f, i12 | 48, 23.0f, 10.0f, 23.0f, 10.0f));
-                org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d6, frameLayout2, null);
-                frameLayout = frameLayout2;
-            } else {
-                frameLayout = new org.telegram.ui.Cells.b9(context);
-            }
-        } else {
-            FrameLayout x9Var = new org.telegram.ui.Cells.x9(context);
-            org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d6, x9Var, null);
-            frameLayout = x9Var;
+                return false;
+            default:
+                return wm.A1((wm) this.f44245b, (TLRPC.MessageEntity) obj);
         }
-        return new s4.c1(frameLayout);
     }
 }

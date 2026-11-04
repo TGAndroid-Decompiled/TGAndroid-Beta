@@ -1,55 +1,87 @@
 package r0;
 
+import android.graphics.Rect;
+import android.util.Log;
 import android.view.WindowInsets;
-public class w0 extends z0 {
-    public final WindowInsets.Builder f46172c;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+public final class w0 extends a1 {
+    public static Field f54057e = null;
+    public static boolean f54058f = false;
+    public static Constructor f54059g = null;
+    public static boolean h = false;
+    public WindowInsets f54060c;
+    public i0.b d;
 
     public w0() {
-        this.f46172c = android.support.v4.media.session.w.h();
+        this.f54060c = j();
     }
 
-    @Override
-    public j1 b() {
-        a();
-        j1 h = j1.h(null, this.f46172c.build());
-        h.f46143a.q(this.f46177b);
-        return h;
-    }
-
-    @Override
-    public void d(i0.c cVar) {
-        this.f46172c.setMandatorySystemGestureInsets(cVar.d());
-    }
-
-    @Override
-    public void e(i0.c cVar) {
-        this.f46172c.setStableInsets(cVar.d());
-    }
-
-    @Override
-    public void f(i0.c cVar) {
-        this.f46172c.setSystemGestureInsets(cVar.d());
-    }
-
-    @Override
-    public void g(i0.c cVar) {
-        this.f46172c.setSystemWindowInsets(cVar.d());
-    }
-
-    @Override
-    public void h(i0.c cVar) {
-        this.f46172c.setTappableElementInsets(cVar.d());
-    }
-
-    public w0(j1 j1Var) {
-        super(j1Var);
-        WindowInsets.Builder h;
-        WindowInsets g10 = j1Var.g();
-        if (g10 != null) {
-            h = android.support.v4.media.session.w.i(g10);
-        } else {
-            h = android.support.v4.media.session.w.h();
+    private static WindowInsets j() {
+        if (!f54058f) {
+            try {
+                f54057e = WindowInsets.class.getDeclaredField("CONSUMED");
+            } catch (ReflectiveOperationException e10) {
+                Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets.CONSUMED field", e10);
+            }
+            f54058f = true;
         }
-        this.f46172c = h;
+        Field field = f54057e;
+        if (field != null) {
+            try {
+                WindowInsets windowInsets = (WindowInsets) field.get(null);
+                if (windowInsets != null) {
+                    return new WindowInsets(windowInsets);
+                }
+            } catch (ReflectiveOperationException e11) {
+                Log.i("WindowInsetsCompat", "Could not get value from WindowInsets.CONSUMED field", e11);
+            }
+        }
+        if (!h) {
+            try {
+                f54059g = WindowInsets.class.getConstructor(Rect.class);
+            } catch (ReflectiveOperationException e12) {
+                Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets(Rect) constructor", e12);
+            }
+            h = true;
+        }
+        Constructor constructor = f54059g;
+        if (constructor != null) {
+            try {
+                return (WindowInsets) constructor.newInstance(new Rect());
+            } catch (ReflectiveOperationException e13) {
+                Log.i("WindowInsetsCompat", "Could not invoke WindowInsets(Rect) constructor", e13);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public k1 b() {
+        a();
+        k1 h7 = k1.h(null, this.f54060c);
+        i0.b[] bVarArr = this.f53984b;
+        h1 h1Var = h7.f54026a;
+        h1Var.q(bVarArr);
+        h1Var.s(this.d);
+        return h7;
+    }
+
+    @Override
+    public void e(i0.b bVar) {
+        this.d = bVar;
+    }
+
+    @Override
+    public void g(i0.b bVar) {
+        WindowInsets windowInsets = this.f54060c;
+        if (windowInsets != null) {
+            this.f54060c = windowInsets.replaceSystemWindowInsets(bVar.f14495a, bVar.f14496b, bVar.f14497c, bVar.d);
+        }
+    }
+
+    public w0(k1 k1Var) {
+        super(k1Var);
+        this.f54060c = k1Var.g();
     }
 }

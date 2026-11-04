@@ -1,9 +1,25 @@
 package e2;
 
-import e9.x1;
-public final class m extends Exception {
-    public m(String str, x1 x1Var) {
-        super(str);
-        e9.n0.u(x1Var);
-    }
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public interface m {
+    public static final ByteBuffer f9358a = ByteBuffer.allocateDirect(0).order(ByteOrder.nativeOrder());
+
+    boolean a();
+
+    ByteBuffer b();
+
+    void c(ByteBuffer byteBuffer);
+
+    j d(j jVar);
+
+    void e(k kVar);
+
+    void f();
+
+    long g(long j10);
+
+    boolean isActive();
+
+    void reset();
 }

@@ -1,46 +1,17 @@
 package b5;
 
-import android.os.Build;
-public class b extends c {
-    public final int d;
+import java.util.Comparator;
+public final class b implements Comparator {
+    public static final b f2392b = new b(2);
+    public static final b f2393c = new b(10);
+    public final int f2394a;
 
-    public b(int i10, String str, String str2) {
-        super(str, str2);
-        this.d = i10;
+    public b(int i3) {
+        this.f2394a = i3;
     }
 
     @Override
-    public final boolean a() {
-        switch (this.d) {
-            case 0:
-                return true;
-            case 1:
-                if (Build.VERSION.SDK_INT >= 24) {
-                    return true;
-                }
-                return false;
-            case 2:
-                return false;
-            case 3:
-                if (Build.VERSION.SDK_INT >= 26) {
-                    return true;
-                }
-                return false;
-            case 4:
-                if (Build.VERSION.SDK_INT >= 27) {
-                    return true;
-                }
-                return false;
-            case 5:
-                if (Build.VERSION.SDK_INT >= 28) {
-                    return true;
-                }
-                return false;
-            default:
-                if (Build.VERSION.SDK_INT >= 29) {
-                    return true;
-                }
-                return false;
-        }
+    public final int compare(java.lang.Object r7, java.lang.Object r8) {
+        throw new UnsupportedOperationException("Method not decompiled: b5.b.compare(java.lang.Object, java.lang.Object):int");
     }
 }

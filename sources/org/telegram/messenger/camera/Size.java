@@ -3,13 +3,13 @@ public final class Size {
     public final int mHeight;
     public final int mWidth;
 
-    public Size(int i10, int i11) {
-        this.mWidth = i10;
-        this.mHeight = i11;
+    public Size(int i3, int i10) {
+        this.mWidth = i3;
+        this.mHeight = i10;
     }
 
     private static NumberFormatException invalidSize(String str) {
-        throw new NumberFormatException(a1.g.n("Invalid Size: \"", str, "\""));
+        throw new NumberFormatException(a1.g.q("Invalid Size: \"", str, "\""));
     }
 
     public static Size parseSize(String str) {
@@ -52,9 +52,9 @@ public final class Size {
     }
 
     public int hashCode() {
-        int i10 = this.mHeight;
-        int i11 = this.mWidth;
-        return i10 ^ ((i11 >>> 16) | (i11 << 16));
+        int i3 = this.mHeight;
+        int i10 = this.mWidth;
+        return i3 ^ ((i10 >>> 16) | (i10 << 16));
     }
 
     public String toString() {

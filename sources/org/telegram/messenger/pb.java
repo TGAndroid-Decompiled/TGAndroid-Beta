@@ -1,51 +1,35 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import j$.util.concurrent.ConcurrentHashMap;
 public final class pb implements Runnable {
-    public final int f17581a = 0;
-    public final String f17582b;
-    public final int f17583c;
-    public final boolean d;
+    public final int f24720a;
+    public final qb f24721b;
+    public final long f24722c;
+    public final long d;
 
-    public pb(int i10, String str, boolean z10) {
-        this.f17583c = i10;
-        this.f17582b = str;
-        this.d = z10;
+    public pb(qb qbVar, long j10, long j11, int i3) {
+        this.f24720a = i3;
+        this.f24721b = qbVar;
+        this.f24722c = j10;
+        this.d = j11;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f17581a;
-        boolean z10 = this.d;
-        int i11 = this.f17583c;
-        String str = this.f17582b;
-        switch (i10) {
+        switch (this.f24720a) {
             case 0:
-                at.f(i11).k(139, str, Boolean.valueOf(z10));
+                qb qbVar = this.f24721b;
+                ConcurrentHashMap concurrentHashMap = qbVar.f24873i.f26775u;
+                String str = qbVar.f24867a;
+                long j10 = this.f24722c;
+                long j11 = this.d;
+                concurrentHashMap.put(str, new long[]{j10, j11});
+                g0.h3(new pb(qbVar, j10, j11, 1));
                 return;
             default:
-                org.telegram.utils.twidget.m mVar = (org.telegram.utils.twidget.m) org.telegram.utils.twidget.p.f44441a.get(str);
-                if (mVar != null && mVar.f44423u != null) {
-                    if (org.telegram.utils.twidget.p.f44445g.contains(mVar)) {
-                        mVar.F = i11;
-                        mVar.f44423u.n(i11);
-                        return;
-                    }
-                    mVar.F = i11;
-                    mVar.G = z10;
-                    ArrayList arrayList = org.telegram.utils.twidget.p.f44444f;
-                    arrayList.remove(mVar);
-                    arrayList.add(mVar);
-                    org.telegram.utils.twidget.p.o();
-                    return;
-                }
+                qb qbVar2 = this.f24721b;
+                hs.f(qbVar2.h).k(141, qbVar2.f24867a, Long.valueOf(this.f24722c), Long.valueOf(this.d));
                 return;
         }
-    }
-
-    public pb(String str, int i10, boolean z10) {
-        this.f17582b = str;
-        this.f17583c = i10;
-        this.d = z10;
     }
 }

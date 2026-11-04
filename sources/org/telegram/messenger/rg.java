@@ -1,139 +1,127 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.TwoStepVerificationActivity;
 public final class rg implements Runnable {
-    public final int f17928a;
-    public final f1 f17929b;
-    public final boolean f17930c;
-    public final long d;
-    public final Object e;
+    public final int f25129a = 1;
+    public final boolean f25130b;
+    public final Object f25131c;
+    public final c1 d;
+    public final Object f25132e;
+    public final Object f25133f;
+    public final Object h;
+    public final Object f25134n;
+    public final Object f25135r;
 
-    public rg(f1 f1Var, Object obj, boolean z10, long j10, int i10) {
-        this.f17928a = i10;
-        this.f17929b = f1Var;
-        this.e = obj;
-        this.f17930c = z10;
-        this.d = j10;
+    public rg(g5 g5Var, HashMap hashMap, HashMap hashMap2, boolean z10, HashMap hashMap3, ArrayList arrayList, HashMap hashMap4, boolean[] zArr) {
+        this.d = g5Var;
+        this.f25132e = hashMap;
+        this.f25133f = hashMap2;
+        this.f25130b = z10;
+        this.h = hashMap3;
+        this.f25131c = arrayList;
+        this.f25134n = hashMap4;
+        this.f25135r = zArr;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f17928a;
-        long j10 = this.d;
-        boolean z10 = this.f17930c;
-        Object obj = this.e;
-        f1 f1Var = this.f17929b;
-        switch (i10) {
+        boolean z10;
+        switch (this.f25129a) {
             case 0:
-                vi viVar = (vi) f1Var;
-                if (((ArrayList) obj) != null && j10 != 0) {
-                    viVar.f18666p0[z10 ? 1 : 0] = j10;
+                li liVar = (li) this.d;
+                boolean z11 = this.f25130b;
+                ArrayList arrayList = (ArrayList) this.f25133f;
+                ArrayList arrayList2 = (ArrayList) this.h;
+                a0.h hVar = (a0.h) this.f25134n;
+                a0.h hVar2 = (a0.h) this.f25135r;
+                liVar.getMessagesController().Y3((ArrayList) this.f25131c, z11);
+                liVar.getMessagesController().S3((ArrayList) this.f25132e, z11);
+                int size = arrayList.size();
+                int i3 = 0;
+                for (int i10 = 0; i10 < size; i10++) {
+                    TLRPC.Message message = (TLRPC.Message) arrayList.get(i10);
+                    if ((zi.o1(message) instanceof TLRPC.TL_messageMediaDocument) || (zi.o1(message) instanceof TLRPC.TL_messageMediaPhoto)) {
+                        i3++;
+                    }
+                    int i11 = liVar.currentAccount;
+                    if (i3 < 30) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    arrayList2.add(new zi(i11, message, hVar, hVar2, false, z10));
                 }
-                viVar.f18683w0[z10 ? 1 : 0] = false;
-                viVar.K0(z10, false);
+                g0.h3(new ah(liVar, arrayList2, 0));
                 return;
             case 1:
-                vi viVar2 = (vi) f1Var;
-                TLObject tLObject = (TLObject) obj;
-                boolean z11 = tLObject instanceof TLRPC.TL_messages_featuredStickers;
-                boolean z12 = this.f17930c;
-                if (z11) {
-                    TLRPC.TL_messages_featuredStickers tL_messages_featuredStickers = (TLRPC.TL_messages_featuredStickers) tLObject;
-                    viVar2.t1(z12, tL_messages_featuredStickers.sets, tL_messages_featuredStickers.unread, tL_messages_featuredStickers.premium, false, (int) (System.currentTimeMillis() / 1000), tL_messages_featuredStickers.hash);
+                g5 g5Var = (g5) this.d;
+                boolean z12 = this.f25130b;
+                HashMap hashMap = (HashMap) this.h;
+                ArrayList arrayList3 = (ArrayList) this.f25131c;
+                HashMap hashMap2 = (HashMap) this.f25134n;
+                boolean[] zArr = (boolean[]) this.f25135r;
+                g5Var.f22644a0 = (HashMap) this.f25132e;
+                g5Var.Z = (HashMap) this.f25133f;
+                g5Var.f22650e = false;
+                g5Var.f22662r = true;
+                if (z12) {
+                    g5Var.h = true;
+                }
+                if (!g5Var.f22665x.isEmpty() && g5Var.h) {
+                    g5Var.c(g5Var.f22665x, null, null, null);
+                    g5Var.f22665x.clear();
+                }
+                g0.h3(new v4(g5Var, hashMap, arrayList3, hashMap2, 3));
+                if (zArr[0]) {
+                    Utilities.f21387e.e(new x4(g5Var, 7), 300000L);
                     return;
                 }
-                boolean z13 = tLObject instanceof TLRPC.TL_messages_featuredStickersNotModified;
-                long j11 = this.d;
-                if (z13) {
-                    int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
-                    i0.g3(new sf(viVar2, z12, currentTimeMillis, 0));
-                    viVar2.G1(z12, null, null, currentTimeMillis, j11, false);
-                    return;
-                }
-                viVar2.t1(z12, null, null, false, false, (int) (System.currentTimeMillis() / 1000), j11);
-                return;
-            case 2:
-                wp wpVar = (wp) f1Var;
-                TLObject tLObject2 = (TLObject) obj;
-                if (tLObject2 instanceof TLRPC.messages_Chats) {
-                    ArrayList<TLRPC.Chat> arrayList = ((TLRPC.messages_Chats) tLObject2).chats;
-                    wpVar.P3(arrayList, false);
-                    xo xoVar = new xo();
-                    xoVar.f19459a = z10;
-                    xoVar.f19460b.addAll(arrayList);
-                    if (tLObject2 instanceof TLRPC.TL_messages_chatsSlice) {
-                        xoVar.f19461c = Math.max(0, ((TLRPC.TL_messages_chatsSlice) tLObject2).count - arrayList.size());
-                    } else if (!wpVar.getUserConfig().q()) {
-                        boolean z14 = v2.f18578a;
-                    }
-                    wpVar.Z7.put(Long.valueOf(j10), xoVar);
-                    wpVar.getNotificationCenter().k(201, Long.valueOf(j10));
-                    return;
-                } else if (tLObject2 instanceof TLRPC.Users) {
-                    ArrayList<TLRPC.User> arrayList2 = ((TLRPC.Users) tLObject2).users;
-                    wpVar.V3(arrayList2, false);
-                    xo xoVar2 = new xo();
-                    xoVar2.f19459a = z10;
-                    xoVar2.f19460b.addAll(arrayList2);
-                    if (tLObject2 instanceof TLRPC.TL_usersSlice) {
-                        xoVar2.f19461c = Math.max(0, ((TLRPC.TL_usersSlice) tLObject2).count - arrayList2.size());
-                    } else if (!wpVar.getUserConfig().q()) {
-                        boolean z15 = v2.f18578a;
-                    }
-                    wpVar.Z7.put(Long.valueOf(j10), xoVar2);
-                    wpVar.getNotificationCenter().k(201, Long.valueOf(j10));
-                    return;
-                } else {
-                    return;
-                }
-            case 3:
-                wp wpVar2 = (wp) f1Var;
-                wpVar2.f19285x1.k((a0.h) obj, j10);
-                if (z10) {
-                    wpVar2.f19295y1.delete(j10);
-                    wpVar2.Q2(j10, false);
-                    wpVar2.getNotificationCenter().k(109, Long.valueOf(j10));
-                    return;
-                }
-                return;
-            case 4:
-                wp wpVar3 = (wp) f1Var;
-                ArrayList arrayList3 = (ArrayList) obj;
-                if (z10) {
-                    wpVar3.getNotificationCenter().k(2, 64);
-                }
-                wpVar3.i5(0, j10, arrayList3);
-                wpVar3.getNotificationCenter().k(3, new Object[0]);
                 return;
             default:
-                ((is) f1Var).getMessagesController().w4(null, (org.telegram.ui.ActionBar.m6) obj, this.f17930c, this.d);
+                yy yyVar = (yy) this.d;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f25131c;
+                TLObject tLObject = (TLObject) this.f25132e;
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f25133f;
+                boolean z13 = this.f25130b;
+                zi ziVar = (zi) this.h;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) this.f25134n;
+                org.telegram.ui.wm wmVar = (org.telegram.ui.wm) this.f25135r;
+                if (tL_error == null) {
+                    TL_account.Password password = (TL_account.Password) tLObject;
+                    twoStepVerificationActivity.J = password;
+                    TwoStepVerificationActivity.r0(password);
+                    yyVar.n0(z13, ziVar, keyboardButtonProto, twoStepVerificationActivity.q0(), twoStepVerificationActivity, wmVar);
+                    return;
+                }
                 return;
         }
     }
 
-    public rg(vi viVar, ArrayList arrayList, long j10, boolean z10) {
-        this.f17928a = 0;
-        this.f17929b = viVar;
-        this.e = arrayList;
-        this.d = j10;
-        this.f17930c = z10;
+    public rg(li liVar, ArrayList arrayList, boolean z10, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, a0.h hVar, a0.h hVar2) {
+        this.d = liVar;
+        this.f25131c = arrayList;
+        this.f25130b = z10;
+        this.f25132e = arrayList2;
+        this.f25133f = arrayList3;
+        this.h = arrayList4;
+        this.f25134n = hVar;
+        this.f25135r = hVar2;
     }
 
-    public rg(wp wpVar, long j10, a0.h hVar, boolean z10) {
-        this.f17928a = 3;
-        this.f17929b = wpVar;
-        this.d = j10;
-        this.e = hVar;
-        this.f17930c = z10;
-    }
-
-    public rg(wp wpVar, boolean z10, long j10, ArrayList arrayList) {
-        this.f17928a = 4;
-        this.f17929b = wpVar;
-        this.f17930c = z10;
-        this.d = j10;
-        this.e = arrayList;
+    public rg(yy yyVar, TLRPC.TL_error tL_error, TLObject tLObject, TwoStepVerificationActivity twoStepVerificationActivity, boolean z10, zi ziVar, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.ui.wm wmVar) {
+        this.d = yyVar;
+        this.f25131c = tL_error;
+        this.f25132e = tLObject;
+        this.f25133f = twoStepVerificationActivity;
+        this.f25130b = z10;
+        this.h = ziVar;
+        this.f25134n = keyboardButtonProto;
+        this.f25135r = wmVar;
     }
 }

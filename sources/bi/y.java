@@ -1,37 +1,45 @@
 package bi;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.dd;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.q51;
-public final class y implements TextWatcher {
-    public final z f3453a;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.u10;
+import org.telegram.ui.ActionBar.d2;
+import org.telegram.ui.Components.fc;
+public final class y implements Runnable {
+    public final int f3915a = 1;
+    public final String f3916b;
+    public final u10 f3917c;
+    public final d2 d;
 
-    public y(z zVar) {
-        this.f3453a = zVar;
+    public y(String str, u10 u10Var, d2 d2Var) {
+        this.f3916b = str;
+        this.f3917c = u10Var;
+        this.d = d2Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        z zVar = this.f3453a;
-        TL_iv.RichMessage richMessage = zVar.a2;
-        if (richMessage != null && richMessage != null) {
-            zVar.a2 = null;
-            zVar.X1.i(dd.L0(2131754059, null), true, true);
-            q51 q51Var = zVar.R1;
-            if (q51Var != null) {
-                q51Var.O(true);
-            }
+    public final void run() {
+        int i3 = this.f3915a;
+        d2 d2Var = this.d;
+        u10 u10Var = this.f3917c;
+        String str = this.f3916b;
+        switch (i3) {
+            case 0:
+                a0.p(d2Var, 0, new y(str, u10Var, d2Var));
+                return;
+            default:
+                if (str != null) {
+                    u10Var.a(str);
+                    return;
+                } else {
+                    fc.a0(d2Var).N(bd.M0(2131745871, null), bd.M0(2131751106, null)).j();
+                    return;
+                }
         }
-        zVar.d1();
     }
 
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public y(d2 d2Var, String str, u10 u10Var) {
+        this.d = d2Var;
+        this.f3916b = str;
+        this.f3917c = u10Var;
     }
 }

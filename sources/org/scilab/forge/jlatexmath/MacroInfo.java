@@ -13,45 +13,45 @@ public class MacroInfo {
     public Object pack;
     public int posOpts;
 
-    public MacroInfo(Object obj, Method method, int i10) {
+    public MacroInfo(Object obj, Method method, int i3) {
         this.hasOptions = false;
         this.pack = obj;
         this.macro = method;
-        this.nbArgs = i10;
+        this.nbArgs = i3;
     }
 
     public Object invoke(TeXParser teXParser, String[] strArr) {
         try {
             return this.macro.invoke(this.pack, teXParser, strArr);
-        } catch (IllegalAccessException e) {
-            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n", e);
-        } catch (IllegalArgumentException e7) {
-            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n", e7);
-        } catch (InvocationTargetException e10) {
-            Throwable cause = e10.getCause();
+        } catch (IllegalAccessException e10) {
+            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n", e10);
+        } catch (IllegalArgumentException e11) {
+            throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n", e11);
+        } catch (InvocationTargetException e12) {
+            Throwable cause = e12.getCause();
             throw new ParseException("Problem with command " + strArr[0] + " at position " + teXParser.getLine() + ":" + teXParser.getCol() + "\n" + cause.getMessage());
         }
     }
 
-    public MacroInfo(Object obj, Method method, int i10, int i11) {
-        this(obj, method, i10);
+    public MacroInfo(Object obj, Method method, int i3, int i10) {
+        this(obj, method, i3);
         this.hasOptions = true;
-        this.posOpts = i11;
+        this.posOpts = i10;
     }
 
-    public MacroInfo(int i10, int i11) {
-        this((Object) null, (Method) null, i10);
+    public MacroInfo(int i3, int i10) {
+        this((Object) null, (Method) null, i3);
         this.hasOptions = true;
-        this.posOpts = i11;
+        this.posOpts = i10;
     }
 
-    public MacroInfo(int i10) {
-        this((Object) null, (Method) null, i10);
+    public MacroInfo(int i3) {
+        this((Object) null, (Method) null, i3);
     }
 
-    public MacroInfo(String str, String str2, float f7) {
+    public MacroInfo(String str, String str2, float f10) {
         this.hasOptions = false;
-        int i10 = (int) f7;
+        int i3 = (int) f10;
         Class<?>[] clsArr = {TeXParser.class, String[].class};
         try {
             Object obj = Packages.get(str);
@@ -61,17 +61,17 @@ public class MacroInfo {
             }
             this.pack = obj;
             this.macro = obj.getClass().getDeclaredMethod(str2, clsArr);
-            this.nbArgs = i10;
-        } catch (Exception e) {
+            this.nbArgs = i3;
+        } catch (Exception e10) {
             PrintStream printStream = System.err;
             printStream.println("Cannot load package " + str + ":");
-            System.err.println(e.toString());
+            System.err.println(e10.toString());
         }
     }
 
-    public MacroInfo(String str, String str2, float f7, float f10) {
+    public MacroInfo(String str, String str2, float f10, float f11) {
         this.hasOptions = false;
-        int i10 = (int) f7;
+        int i3 = (int) f10;
         Class<?>[] clsArr = {TeXParser.class, String[].class};
         try {
             Object obj = Packages.get(str);
@@ -81,13 +81,13 @@ public class MacroInfo {
             }
             this.pack = obj;
             this.macro = obj.getClass().getDeclaredMethod(str2, clsArr);
-            this.nbArgs = i10;
+            this.nbArgs = i3;
             this.hasOptions = true;
-            this.posOpts = (int) f10;
-        } catch (Exception e) {
+            this.posOpts = (int) f11;
+        } catch (Exception e10) {
             PrintStream printStream = System.err;
             printStream.println("Cannot load package " + str + ":");
-            System.err.println(e.toString());
+            System.err.println(e10.toString());
         }
     }
 }

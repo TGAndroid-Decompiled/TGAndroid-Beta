@@ -1,37 +1,55 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class y30 extends org.telegram.ui.xr0 {
-    public final ArrayList f32708a;
-    public final b40 f32709b;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.ImageReceiver;
+public abstract class y30 extends m40 {
+    public ImageReceiver f40602a;
+    public float f40603b;
+    public final k40 f40604c;
 
-    public y30(b40 b40Var, ArrayList arrayList) {
-        this.f32709b = b40Var;
-        this.f32708a = arrayList;
+    public y30(k40 k40Var, Context context) {
+        super(context);
+        this.f40604c = k40Var;
+        k40Var.setWillNotDraw(false);
     }
 
     @Override
-    public final org.telegram.ui.fs0 E(org.telegram.messenger.kj kjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        a40 a40Var = this.f32709b.f24619b;
-        if (a40Var == null) {
-            return null;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        float f10 = this.f40603b;
+        if (f10 != 1.0f) {
+            float f11 = f10 + 0.064f;
+            this.f40603b = f11;
+            if (f11 > 1.0f) {
+                this.f40603b = 1.0f;
+            }
+            invalidate();
         }
-        return a40Var.getCloseIntoObject();
+        if (this.f40602a != null) {
+            canvas.save();
+            float f12 = this.f40602a.N0;
+            int i3 = this.f40604c.X0;
+            if (f12 != i3) {
+                float f13 = i3 / f12;
+                canvas.scale(f13, f13);
+            }
+            ImageReceiver imageReceiver = this.f40602a;
+            canvas.translate(-imageReceiver.L0, -imageReceiver.M0);
+            float alpha = this.f40602a.getAlpha();
+            this.f40602a.setAlpha(this.f40603b);
+            this.f40602a.h(canvas, null);
+            this.f40602a.setAlpha(alpha);
+            canvas.restore();
+        }
     }
 
     @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final void o(int i10, org.telegram.messenger.y20 y20Var, boolean z10, int i11, int i12, boolean z11) {
-        this.f32709b.s((org.telegram.messenger.ff) this.f32708a.get(0));
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+    public void setImageReceiver(ImageReceiver imageReceiver) {
+        if (this.f40602a == null) {
+            this.f40603b = 0.0f;
+        }
+        this.f40602a = imageReceiver;
+        invalidate();
     }
 }

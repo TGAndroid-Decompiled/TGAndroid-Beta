@@ -1,35 +1,31 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class fn0 extends s4.s0 {
-    public final int f37192a;
-    public final ln0 f37193b;
+import android.graphics.drawable.Drawable;
+import android.text.style.ClickableSpan;
+import android.widget.TextView;
+public final class fn0 implements org.telegram.messenger.n10 {
+    public final int f45312a;
+    public final PhotoViewer f45313b;
 
-    public fn0(ln0 ln0Var, int i10) {
-        this.f37193b = ln0Var;
-        this.f37192a = i10;
+    public fn0(PhotoViewer photoViewer, int i3) {
+        this.f45312a = i3;
+        this.f45313b = photoViewer;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        rh.v5 v5Var;
-        ln0 ln0Var = this.f37193b;
-        rn0 rn0Var = ln0Var.f39334p0;
-        ln0Var.h();
-        if (ln0Var.K != null) {
-            if (ln0Var.J != null && ln0Var.c()) {
-                ln0Var.J.g(false);
+    public final void a(Object obj, Object obj2) {
+        int i3 = this.f45312a;
+        PhotoViewer photoViewer = this.f45313b;
+        switch (i3) {
+            case 0:
+                Drawable[] drawableArr = PhotoViewer.V8;
+                photoViewer.a2((ClickableSpan) obj, (TextView) obj2);
                 return;
-            }
-            return;
-        }
-        if (this.f37192a == 1) {
-            v5Var = rn0Var.f41114c;
-        } else {
-            v5Var = rn0Var.f41112b;
-        }
-        if (v5Var != null && ln0Var.c()) {
-            v5Var.b();
+            default:
+                Drawable[] drawableArr2 = PhotoViewer.V8;
+                photoViewer.getClass();
+                photoViewer.E0(((Boolean) obj2).booleanValue(), false, (((Float) obj).floatValue() * 2.8f) + 0.2f);
+                return;
         }
     }
 }

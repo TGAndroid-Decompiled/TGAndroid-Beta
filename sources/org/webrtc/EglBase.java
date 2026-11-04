@@ -3,6 +3,7 @@ package org.webrtc;
 import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import java.util.ArrayList;
+import k2.p1;
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;
     public static final int EGL_OPENGL_ES3_BIT = 64;
@@ -21,7 +22,7 @@ public interface EglBase {
         private boolean supportsPixelBuffer;
 
         public int[] createConfigAttributes() {
-            int i10;
+            int i3;
             ArrayList arrayList = new ArrayList();
             arrayList.add(12324);
             arrayList.add(8);
@@ -33,15 +34,15 @@ public interface EglBase {
                 arrayList.add(12321);
                 arrayList.add(8);
             }
-            int i11 = this.openGlesVersion;
-            if (i11 == 2 || i11 == 3) {
+            int i10 = this.openGlesVersion;
+            if (i10 == 2 || i10 == 3) {
                 arrayList.add(12352);
                 if (this.openGlesVersion == 3) {
-                    i10 = 64;
+                    i3 = 64;
                 } else {
-                    i10 = 4;
+                    i3 = 4;
                 }
-                arrayList.add(Integer.valueOf(i10));
+                arrayList.add(Integer.valueOf(i3));
             }
             if (this.supportsPixelBuffer) {
                 arrayList.add(12339);
@@ -53,8 +54,8 @@ public interface EglBase {
             }
             arrayList.add(12344);
             int[] iArr = new int[arrayList.size()];
-            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                iArr[i12] = ((Integer) arrayList.get(i12)).intValue();
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                iArr[i11] = ((Integer) arrayList.get(i11)).intValue();
             }
             return iArr;
         }
@@ -69,12 +70,12 @@ public interface EglBase {
             return this;
         }
 
-        public ConfigBuilder setOpenGlesVersion(int i10) {
-            if (i10 >= 1 && i10 <= 3) {
-                this.openGlesVersion = i10;
+        public ConfigBuilder setOpenGlesVersion(int i3) {
+            if (i3 >= 1 && i3 <= 3) {
+                this.openGlesVersion = i3;
                 return this;
             }
-            throw new IllegalArgumentException(i0.a.j(i10, "OpenGL ES version ", " not supported"));
+            throw new IllegalArgumentException(p1.j(i3, "OpenGL ES version ", " not supported"));
         }
 
         public ConfigBuilder setSupportsPixelBuffer(boolean z10) {
@@ -93,7 +94,7 @@ public interface EglBase {
 
     void createDummyPbufferSurface();
 
-    void createPbufferSurface(int i10, int i11);
+    void createPbufferSurface(int i3, int i10);
 
     void createSurface(SurfaceTexture surfaceTexture);
 

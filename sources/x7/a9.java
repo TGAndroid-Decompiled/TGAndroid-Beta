@@ -1,3 +1,6 @@
 package x7;
-public abstract class a9 {
+
+import b8.kg;
+public interface a9 {
+    void a(kg kgVar);
 }

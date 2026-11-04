@@ -1,102 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Color;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-public final class zp implements TextWatcher {
-    public final int f33200a = 1;
-    public final int f33201b;
-    public final View f33202c;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class zp extends LinearLayout {
+    public final k9 f41085a;
 
-    public zp(cq cqVar, int i10) {
-        this.f33202c = cqVar;
-        this.f33201b = i10;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        int i11 = this.f33200a;
-        int i12 = this.f33201b;
-        View view = this.f33202c;
-        boolean z10 = false;
-        switch (i11) {
-            case 0:
-                cq cqVar = (cq) view;
-                EditTextBoldCursor[] editTextBoldCursorArr = cqVar.E;
-                if (!cqVar.f25221r) {
-                    cqVar.f25221r = true;
-                    int i13 = 0;
-                    while (i13 < editable.length()) {
-                        char charAt = editable.charAt(i13);
-                        if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                            editable.replace(i13, i13 + 1, "");
-                            i13--;
-                        }
-                        i13++;
-                    }
-                    if (editable.length() == 0) {
-                        cqVar.f25221r = false;
-                        return;
-                    }
-                    try {
-                        i10 = Integer.parseInt(editTextBoldCursorArr[i12].getText().toString(), 16) | (-16777216);
-                    } catch (Exception unused) {
-                        i10 = -1;
-                    }
-                    cqVar.setColorInner(i10);
-                    int color = cqVar.getColor();
-                    if (editable.length() == 6) {
-                        editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
-                        editTextBoldCursorArr[i12].setSelection(editable.length());
-                    }
-                    cqVar.f25223w[cqVar.S].a(color);
-                    cqVar.f25211a.c(color, cqVar.S, true);
-                    cqVar.f25221r = false;
-                    return;
-                }
-                return;
-            default:
-                NumberTextView numberTextView = (NumberTextView) view;
-                int codePointCount = i12 - Character.codePointCount(editable, 0, editable.length());
-                if (codePointCount < 30) {
-                    if (numberTextView.getVisibility() == 0) {
-                        z10 = true;
-                    }
-                    numberTextView.a(codePointCount, z10);
-                    org.telegram.messenger.i0.W3(numberTextView, true);
-                    return;
-                }
-                org.telegram.messenger.i0.W3(numberTextView, false);
-                return;
+    public zp(Context context) {
+        super(context);
+        setOrientation(1);
+        k9 k9Var = new k9(context);
+        this.f41085a = k9Var;
+        k9Var.setImageDrawable(new y70(k9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", org.telegram.messenger.g0.L(110.0f), org.telegram.messenger.g0.L(110.0f)));
+        if (!org.telegram.messenger.g0.Q1()) {
+            addView(k9Var, b8.mf.r(110, 110, 49));
         }
+        TextView g7 = org.telegram.messenger.k5.g(context, 1, 20.0f);
+        org.telegram.ui.ActionBar.r6.V(g7, org.telegram.ui.ActionBar.k6.G6, null);
+        g7.setGravity(1);
+        g7.setText(org.telegram.messenger.bd.M0(2131748227, null));
+        g7.setTypeface(org.telegram.messenger.g0.o());
+        addView(g7, b8.mf.t(-2, -2, 49, 0, 15, 0, 7));
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27862c7, null);
+        textView.setGravity(1);
+        textView.setText(org.telegram.messenger.bd.M0(2131748226, null));
+        textView.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
+        textView.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
+        addView(textView, b8.mf.t(-2, -2, 49, 0, 0, 0, 19));
+        gi.d dVar = new gi.d(context, null, true);
+        dVar.setUseWrapContent(true);
+        dVar.f();
+        dVar.setPadding(org.telegram.messenger.g0.L(28.0f), 0, org.telegram.messenger.g0.L(28.0f), 0);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
+        spannableStringBuilder.setSpan(new wp(2131231132, 0), 0, 1, 33);
+        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) org.telegram.messenger.bd.M0(2131748291, null));
+        dVar.i(spannableStringBuilder, false, true);
+        addView(dVar, b8.mf.r(-2, 44, 49));
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f33200a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f33200a;
-    }
-
-    public zp(int i10, NumberTextView numberTextView) {
-        this.f33201b = i10;
-        this.f33202c = numberTextView;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f41085a.setImageDrawable(new ch0(2131624319, org.telegram.messenger.g0.L(110.0f), org.telegram.messenger.g0.L(110.0f)));
     }
 }

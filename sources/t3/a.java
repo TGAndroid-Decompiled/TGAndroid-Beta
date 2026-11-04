@@ -1,148 +1,26 @@
 package t3;
 
 import a1.g;
-import b2.r0;
-import b2.t0;
-import b2.x;
-import v7.c8;
-import v7.r6;
-public final class a implements t0 {
-    public final String f48539a;
-    public final String f48540b;
+import b8.zb;
+import g2.n0;
+import j$.util.Objects;
+import java.util.Locale;
+public final class a {
+    public final long f54902a;
+    public final long f54903b;
+    public final int f54904c;
 
-    public a(String str, String str2) {
-        this.f48539a = r6.d(str);
-        this.f48540b = str2;
-    }
-
-    @Override
-    public final x a() {
-        return null;
-    }
-
-    @Override
-    public final void b(r0 r0Var) {
-        String str = this.f48539a;
-        str.getClass();
-        char c10 = 65535;
-        switch (str.hashCode()) {
-            case -1935137620:
-                if (str.equals("TOTALTRACKS")) {
-                    c10 = 0;
-                    break;
-                }
-                break;
-            case -215998278:
-                if (str.equals("TOTALDISCS")) {
-                    c10 = 1;
-                    break;
-                }
-                break;
-            case -113312716:
-                if (str.equals("TRACKNUMBER")) {
-                    c10 = 2;
-                    break;
-                }
-                break;
-            case 62359119:
-                if (str.equals("ALBUM")) {
-                    c10 = 3;
-                    break;
-                }
-                break;
-            case 67703139:
-                if (str.equals("GENRE")) {
-                    c10 = 4;
-                    break;
-                }
-                break;
-            case 79833656:
-                if (str.equals("TITLE")) {
-                    c10 = 5;
-                    break;
-                }
-                break;
-            case 428414940:
-                if (str.equals("DESCRIPTION")) {
-                    c10 = 6;
-                    break;
-                }
-                break;
-            case 993300766:
-                if (str.equals("DISCNUMBER")) {
-                    c10 = 7;
-                    break;
-                }
-                break;
-            case 1746739798:
-                if (str.equals("ALBUMARTIST")) {
-                    c10 = '\b';
-                    break;
-                }
-                break;
-            case 1939198791:
-                if (str.equals("ARTIST")) {
-                    c10 = '\t';
-                    break;
-                }
-                break;
+    public a(long j10, int i3, long j11) {
+        boolean z10;
+        if (j10 < j11) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        String str2 = this.f48540b;
-        switch (c10) {
-            case 0:
-                Integer g10 = c8.g(str2);
-                if (g10 != null) {
-                    r0Var.f2211p = g10;
-                    return;
-                }
-                return;
-            case 1:
-                Integer g11 = c8.g(str2);
-                if (g11 != null) {
-                    r0Var.D = g11;
-                    return;
-                }
-                return;
-            case 2:
-                Integer g12 = c8.g(str2);
-                if (g12 != null) {
-                    r0Var.f2210o = g12;
-                    return;
-                }
-                return;
-            case 3:
-                r0Var.f2201c = str2;
-                return;
-            case 4:
-                r0Var.E = str2;
-                return;
-            case 5:
-                r0Var.f2199a = str2;
-                return;
-            case 6:
-                r0Var.f2203g = str2;
-                return;
-            case 7:
-                Integer g13 = c8.g(str2);
-                if (g13 != null) {
-                    r0Var.C = g13;
-                    return;
-                }
-                return;
-            case '\b':
-                r0Var.d = str2;
-                return;
-            case '\t':
-                r0Var.f2200b = str2;
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
+        zb.f(z10);
+        this.f54902a = j10;
+        this.f54903b = j11;
+        this.f54904c = i3;
     }
 
     public final boolean equals(Object obj) {
@@ -151,7 +29,7 @@ public final class a implements t0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f48539a.equals(aVar.f48539a) && this.f48540b.equals(aVar.f48540b)) {
+            if (this.f54902a == aVar.f54902a && this.f54903b == aVar.f54903b && this.f54904c == aVar.f54904c) {
                 return true;
             }
         }
@@ -159,10 +37,16 @@ public final class a implements t0 {
     }
 
     public final int hashCode() {
-        return this.f48540b.hashCode() + g.f(527, 31, this.f48539a);
+        return Objects.hash(Long.valueOf(this.f54902a), Long.valueOf(this.f54903b), Integer.valueOf(this.f54904c));
     }
 
     public final String toString() {
-        return "VC: " + this.f48539a + "=" + this.f48540b;
+        String str = n0.f11873a;
+        Locale locale = Locale.US;
+        StringBuilder t10 = g.t(this.f54902a, "Segment: startTimeMs=", ", endTimeMs=");
+        t10.append(this.f54903b);
+        t10.append(", speedDivisor=");
+        t10.append(this.f54904c);
+        return t10.toString();
     }
 }

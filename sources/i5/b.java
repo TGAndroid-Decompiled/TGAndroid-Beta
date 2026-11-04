@@ -1,41 +1,48 @@
 package i5;
-public final class b {
-    public final Integer f8205a;
 
-    public b(Integer num) {
-        this.f8205a = num;
-    }
+import java.nio.ByteBuffer;
+import java.nio.channels.WritableByteChannel;
+public final class b extends a {
+    public int h;
+    public int f14610n;
+    public long f14611r;
 
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof b)) {
-            return false;
-        }
-        Integer num = ((b) obj).f8205a;
-        Integer num2 = this.f8205a;
-        if (num2 == null) {
-            if (num == null) {
-                return true;
-            }
-            return false;
-        }
-        return num2.equals(num);
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        Integer num = this.f8205a;
-        if (num == null) {
-            hashCode = 0;
+    @Override
+    public final void getBox(WritableByteChannel writableByteChannel) {
+        writableByteChannel.write(d());
+        ByteBuffer allocate = ByteBuffer.allocate(28);
+        allocate.position(6);
+        g5.b.p(this.f14609f, allocate);
+        g5.b.p(0, allocate);
+        g5.b.p(0, allocate);
+        allocate.putInt((int) 0);
+        g5.b.p(this.h, allocate);
+        g5.b.p(this.f14610n, allocate);
+        g5.b.p(0, allocate);
+        g5.b.p(0, allocate);
+        if (this.f7971e.equals("mlpa")) {
+            allocate.putInt((int) this.f14611r);
         } else {
-            hashCode = num.hashCode();
+            allocate.putInt((int) (this.f14611r << 16));
         }
-        return hashCode ^ 1000003;
+        writableByteChannel.write((ByteBuffer) allocate.rewind());
+        c(writableByteChannel);
     }
 
+    @Override
+    public final long getSize() {
+        int i3;
+        long b10 = b() + 28;
+        if (8 + b10 >= 4294967296L) {
+            i3 = 16;
+        } else {
+            i3 = 8;
+        }
+        return b10 + i3;
+    }
+
+    @Override
     public final String toString() {
-        return "ProductData{productId=" + this.f8205a + "}";
+        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f14611r + ", sampleSize=" + this.f14610n + ", channelCount=" + this.h + ", boxes=" + this.f7977b + '}';
     }
 }

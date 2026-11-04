@@ -1,13 +1,10 @@
 package org.telegram.ui;
-public final class yk extends oo {
-    public boolean T0;
 
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class yk extends org.telegram.ui.Cells.t0 {
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.T0) {
-            n0();
-            this.T0 = true;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setVisibleToUser(true);
     }
 }

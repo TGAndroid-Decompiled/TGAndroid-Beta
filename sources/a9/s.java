@@ -1,30 +1,24 @@
 package a9;
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
 import android.os.Parcel;
-public abstract class s extends Binder implements IInterface {
-    public s(String str) {
-        attachInterface(this, str);
-    }
+import android.os.Parcelable;
+public final class s extends q6.a {
+    public static final Parcelable.Creator<s> CREATOR = new c(16);
+    public final int f246a;
+    public final boolean f247b;
 
-    public abstract boolean a(int i10, Parcel parcel, Parcel parcel2, int i11);
-
-    @Override
-    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        if (i10 > 16777215) {
-            if (super.onTransact(i10, parcel, parcel2, i11)) {
-                return true;
-            }
-        } else {
-            parcel.enforceInterface(getInterfaceDescriptor());
-        }
-        return a(i10, parcel, parcel2, i11);
+    public s(int i3, boolean z10) {
+        this.f246a = i3;
+        this.f247b = z10;
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this;
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(this.f246a);
+        j8.a.r(parcel, 3, 4);
+        parcel.writeInt(this.f247b ? 1 : 0);
+        j8.a.t(parcel, s6);
     }
 }

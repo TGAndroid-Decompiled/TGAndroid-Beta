@@ -1,90 +1,49 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class tn0 implements io0 {
-    public final int f41677a;
-    public final HashMap f41678b;
-    public final ArrayList f41679c;
-    public final wn0 d;
+import android.animation.AnimatorSet;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class tn0 implements Runnable {
+    public final PhotoViewer f49831a;
+    public final View f49832b;
+    public final wo0 f49833c;
+    public final float d;
+    public final float f49834e;
+    public final AnimatorSet f49835f;
 
-    public tn0(wn0 wn0Var, HashMap hashMap, ArrayList arrayList, int i10) {
-        this.f41677a = i10;
-        this.d = wn0Var;
-        this.f41678b = hashMap;
-        this.f41679c = arrayList;
+    public tn0(PhotoViewer photoViewer, View view, wo0 wo0Var, float f10, float f11, AnimatorSet animatorSet) {
+        this.f49831a = photoViewer;
+        this.f49832b = view;
+        this.f49833c = wo0Var;
+        this.d = f10;
+        this.f49834e = f11;
+        this.f49835f = animatorSet;
     }
 
     @Override
-    public final void B(Editable editable) {
-        switch (this.f41677a) {
-            case 0:
-                wn0 wn0Var = this.d;
-                org.telegram.ui.Components.wt wtVar = wn0Var.M;
-                wn0Var.f43131a = editable;
-                wtVar.setText(editable);
-                return;
-            default:
-                wn0 wn0Var2 = this.d;
-                org.telegram.ui.Components.wt wtVar2 = wn0Var2.M;
-                wn0Var2.f43131a = editable;
-                wtVar2.setText(editable);
-                return;
+    public final void run() {
+        Drawable[] drawableArr = PhotoViewer.V8;
+        View view = this.f49832b;
+        wo0 wo0Var = this.f49833c;
+        view.setOutlineProvider(wo0Var);
+        view.setClipToOutline(true);
+        PhotoViewer photoViewer = this.f49831a;
+        photoViewer.f41591y3.setOutlineProvider(wo0Var);
+        photoViewer.f41591y3.setClipToOutline(true);
+        fq0 fq0Var = photoViewer.F2;
+        if (fq0Var != null) {
+            fq0Var.setOutlineProvider(wo0Var);
+            photoViewer.F2.setClipToOutline(true);
         }
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f41677a) {
-            case 0:
-                return true;
-            default:
-                return true;
+        photoViewer.f41591y3.setTranslationY(this.d);
+        float f10 = this.f49834e;
+        view.setTranslationY(f10);
+        fq0 fq0Var2 = photoViewer.F2;
+        if (fq0Var2 != null) {
+            fq0Var2.setTranslationY(f10);
         }
-    }
-
-    @Override
-    public final void h0() {
-        int i10 = this.f41677a;
-    }
-
-    @Override
-    public final void u0(int i10, boolean z10, boolean z11) {
-        switch (this.f41677a) {
-            case 0:
-                wn0 wn0Var = this.d;
-                wn0Var.removeSelfFromStack();
-                if (!z10) {
-                    wn0Var.a0(this.f41678b, this.f41679c, z11, i10);
-                    return;
-                }
-                return;
-            default:
-                wn0 wn0Var2 = this.d;
-                wn0Var2.removeSelfFromStack();
-                if (!z10) {
-                    wn0Var2.a0(this.f41678b, this.f41679c, z11, i10);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void y() {
-        int i10 = this.f41677a;
-    }
-
-    private final void a() {
-    }
-
-    private final void b() {
-    }
-
-    private final void c() {
-    }
-
-    private final void d() {
+        photoViewer.Z5 = 0.0f;
+        photoViewer.f41420f0.invalidate();
+        this.f49835f.start();
     }
 }

@@ -1,102 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class t51 extends yy {
-    public final int X;
-    public final Object Y;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.AsyncTask;
+import java.util.ArrayList;
+public final class t51 extends AsyncTask {
+    public int f38305a = 0;
+    public final Paint f38306b = new Paint(3);
+    public final w51 f38307c;
 
-    public t51(v51 v51Var, int i10, int i11) {
-        super(i10, false);
-        this.X = i11;
-        this.Y = v51Var;
+    public t51(w51 w51Var) {
+        this.f38307c = w51Var;
     }
 
     @Override
-    public int A() {
-        switch (this.X) {
-            case 2:
-                return 0;
-            default:
-                return super.A();
-        }
-    }
-
-    @Override
-    public qu0 D1(int i10) {
-        switch (this.X) {
-            case 2:
-                qu0 qu0Var = (qu0) this.Y;
-                qu0Var.f29809b = 100.0f;
-                qu0Var.f29808a = 100.0f;
-                return qu0Var;
-            default:
-                return super.D1(i10);
-        }
-    }
-
-    @Override
-    public void U(hf.e eVar, s4.z0 z0Var, View view, s0.c cVar) {
-        a9.r rVar;
-        switch (this.X) {
-            case 2:
-                super.U(eVar, z0Var, view, cVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = cVar.f47861a;
-                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-                if (collectionItemInfo != null) {
-                    rVar = new a9.r(collectionItemInfo);
-                } else {
-                    rVar = null;
-                }
-                if (rVar != null) {
-                    Object obj = rVar.f355a;
-                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-                        return;
+    public final Object doInBackground(Object[] objArr) {
+        Bitmap frameAtTime;
+        w51 w51Var = this.f38307c;
+        this.f38305a = ((Integer[]) objArr)[0].intValue();
+        Bitmap bitmap = null;
+        if (!isCancelled()) {
+            try {
+                frameAtTime = w51Var.E.getFrameAtTime(w51Var.I * this.f38305a * 1000, 2);
+            } catch (Exception e10) {
+                e = e10;
+            }
+            try {
+                if (!isCancelled()) {
+                    if (frameAtTime != null) {
+                        Bitmap createBitmap = Bitmap.createBitmap(w51Var.J, w51Var.K, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(createBitmap);
+                        float max = Math.max(w51Var.J / frameAtTime.getWidth(), w51Var.K / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * max);
+                        int height = (int) (frameAtTime.getHeight() * max);
+                        Rect rect = new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight());
+                        int i3 = w51Var.J;
+                        int i10 = w51Var.K;
+                        canvas.drawBitmap(frameAtTime, rect, new Rect((i3 - width) / 2, (i10 - height) / 2, (i3 + width) / 2, (i10 + height) / 2), this.f38306b);
+                        frameAtTime.recycle();
+                        return createBitmap;
                     }
-                    return;
+                    return frameAtTime;
                 }
-                return;
-            default:
-                super.U(eVar, z0Var, view, cVar);
-                return;
+            } catch (Exception e11) {
+                e = e11;
+                bitmap = frameAtTime;
+                org.telegram.messenger.a8.g(e, true);
+                return bitmap;
+            }
         }
+        return null;
     }
 
     @Override
-    public int W0(s4.z0 z0Var) {
-        switch (this.X) {
-            case 0:
-                if (((v51) this.Y).f31185h3) {
-                    return org.telegram.messenger.i0.f16172q.y;
-                }
-                return super.W0(z0Var);
-            case 1:
-                if (((v51) this.Y).f31185h3) {
-                    return org.telegram.messenger.i0.f16172q.y;
-                }
-                return super.W0(z0Var);
-            default:
-                return super.W0(z0Var);
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        if (!isCancelled()) {
+            w51 w51Var = this.f38307c;
+            ArrayList arrayList = w51Var.G;
+            ?? obj2 = new Object();
+            obj2.f38654a = bitmap;
+            arrayList.add(obj2);
+            w51Var.invalidate();
+            int i3 = this.f38305a;
+            if (i3 < w51Var.L) {
+                w51Var.d(i3 + 1);
+            }
         }
-    }
-
-    @Override
-    public void z0(s4.z0 z0Var, int[] iArr) {
-        switch (this.X) {
-            case 2:
-                super.z0(z0Var, iArr);
-                iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.t7.a(1) * 2);
-                return;
-            default:
-                super.z0(z0Var, iArr);
-                return;
-        }
-    }
-
-    public t51() {
-        super(100, false);
-        this.X = 2;
-        this.Y = new Object();
     }
 }

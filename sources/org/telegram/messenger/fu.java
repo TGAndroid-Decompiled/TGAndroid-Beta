@@ -1,47 +1,51 @@
 package org.telegram.messenger;
 
-import android.text.TextUtils;
-import org.telegram.messenger.PushListenerController;
-public final class fu implements PushListenerController.IPushListenerServiceProvider {
-    public static final fu f15792b = new Object();
-    public Boolean f15793a;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+public final class fu extends xt {
+    public final Paint X;
 
-    @Override
-    public final String getLogTitle() {
-        return "Google Play Services";
+    public fu(cv cvVar, Rect rect, int i3) {
+        super(cvVar, rect, i3);
+        this.X = new Paint(1);
     }
 
     @Override
-    public final int getPushType() {
-        return 2;
+    public final int I() {
+        Rect rect = this.f26435b;
+        return g0.L(12.0f) + rect.top + rect.bottom;
     }
 
     @Override
-    public final boolean hasServices() {
-        boolean z10;
-        if (this.f15793a == null) {
-            try {
-                if (k6.d.d.d(w0.f18945b, k6.e.f10936a) == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                this.f15793a = Boolean.valueOf(z10);
-            } catch (Exception e) {
-                f8.g(e, true);
-                this.f15793a = Boolean.FALSE;
-            }
+    public final int K() {
+        return g0.L(32.0f);
+    }
+
+    @Override
+    public final void W(Canvas canvas) {
+        int i3;
+        cv cvVar = this.f26434a;
+        int i10 = cvVar.C;
+        int i11 = cvVar.S;
+        int i12 = i10 + i11 + cvVar.T;
+        Rect rect = this.f26435b;
+        int i13 = rect.left;
+        int i14 = (i12 - i13) - rect.right;
+        int i15 = i14 / 2;
+        float f10 = (((i14 - i15) / 2.0f) - i11) + i13;
+        float L = (g0.L(12.0f) - g0.L(1.0f)) / 2.0f;
+        if (cvVar.E()) {
+            i3 = org.telegram.ui.ActionBar.k6.kl;
+        } else {
+            i3 = org.telegram.ui.ActionBar.k6.jl;
         }
-        return this.f15793a.booleanValue();
-    }
-
-    @Override
-    public final void onRequestPushToken() {
-        if (!TextUtils.isEmpty(uz.f18516g)) {
-            boolean z10 = v2.f18578a;
-        } else if (v2.f18578a) {
-            f8.b("FCM Registration not found.");
-        }
-        Utilities.e.c(new ns(this, 4));
+        int w02 = org.telegram.ui.ActionBar.k6.w0(i3, cvVar.D);
+        Paint paint = this.X;
+        paint.setColor(w02);
+        RectF rectF = g0.P;
+        rectF.set(f10, L, i15 + f10, g0.L(1.0f) + L);
+        canvas.drawRoundRect(rectF, g0.L(0.5f), g0.L(0.5f), paint);
     }
 }

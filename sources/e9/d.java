@@ -1,337 +1,151 @@
 package e9;
 
-import java.util.AbstractSet;
-import java.util.Collection;
-import java.util.ConcurrentModificationException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.RandomAccess;
-import v7.t6;
-import z7.ed;
-import z7.mg;
-public class d implements Iterator {
-    public final int f6341a;
-    public final Iterator f6342b;
-    public Object f6343c;
-    public final Object d;
+import android.app.IntentService;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.NotificationCompat;
+import android.util.Log;
+import b8.kb;
+public abstract class d extends IntentService {
+    public final boolean f9912a;
+    public final long f9913b;
+    public final Intent f9914c;
+    public final Intent d;
+    public c f9915e;
+    public c f9916f;
 
-    public d(m mVar, ListIterator listIterator, byte b10) {
-        this.f6341a = 3;
-        this.d = mVar;
-        this.f6343c = mVar.f6385c;
-        this.f6342b = listIterator;
+    public d() {
+        super("SearchActionVerificationClientService");
+        this.f9914c = new Intent("com.google.android.googlequicksearchbox.SEARCH_ACTION_VERIFICATION_SERVICE").setPackage("com.google.android.googlequicksearchbox");
+        this.d = new Intent("com.google.android.apps.assistant.go.verification.VERIFICATION_SERVICE").setPackage("com.google.android.apps.assistant");
+        this.f9912a = !"user".equals(Build.TYPE);
+        this.f9913b = 1000L;
     }
 
-    public void a() {
-        m mVar = (m) this.d;
-        mVar.m();
-        if (mVar.f6385c == ((Collection) this.f6343c)) {
+    public final boolean a(String str) {
+        ApplicationInfo applicationInfo;
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo(str, 0);
+            if (packageInfo != null && (applicationInfo = packageInfo.applicationInfo) != null) {
+                if (applicationInfo.enabled) {
+                    return true;
+                }
+            }
+            return false;
+        } catch (PackageManager.NameNotFoundException e10) {
+            Log.w("SAVerificationClientS", "Couldn't find package name ".concat(str), e10);
+            return false;
+        }
+    }
+
+    public final boolean b(java.lang.String r12, android.content.Intent r13, e9.c r14) {
+        throw new UnsupportedOperationException("Method not decompiled: e9.d.b(java.lang.String, android.content.Intent, e9.c):boolean");
+    }
+
+    public final void c() {
+        b.e();
+        NotificationChannel c2 = b.c(getApplicationContext().getResources().getString(2131230720));
+        c2.enableVibration(false);
+        c2.enableLights(false);
+        c2.setShowBadge(false);
+        ((NotificationManager) getApplicationContext().getSystemService(NotificationManager.class)).createNotificationChannel(c2);
+        startForeground(10000, new NotificationCompat.Builder(getApplicationContext(), "Assistant_verifier").setGroup("Assistant_verifier").setContentTitle(getApplicationContext().getResources().getString(2131230721)).setSmallIcon(17301545).setPriority(-2).setVisibility(1).build());
+    }
+
+    @Override
+    public final void onCreate() {
+        if (this.f9912a) {
+            Log.d("SAVerificationClientS", "onCreate");
+        }
+        super.onCreate();
+        this.f9915e = new c(this);
+        if (a("com.google.android.googlequicksearchbox") && (!"user".equals(Build.TYPE) || kb.a(this, "com.google.android.googlequicksearchbox"))) {
+            bindService(this.f9914c, this.f9915e, 1);
+        }
+        this.f9916f = new c(this);
+        if (a("com.google.android.apps.assistant") && (!"user".equals(Build.TYPE) || kb.a(this, "com.google.android.apps.assistant"))) {
+            bindService(this.d, this.f9916f, 1);
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            c();
+        }
+    }
+
+    @Override
+    public final void onDestroy() {
+        if (this.f9912a) {
+            Log.d("SAVerificationClientS", "onDestroy");
+        }
+        super.onDestroy();
+        if (c.a(this.f9915e)) {
+            unbindService(this.f9915e);
+        }
+        if (c.a(this.f9916f)) {
+            unbindService(this.f9916f);
+        }
+        if (Build.VERSION.SDK_INT >= 26) {
+            stopForeground(true);
+        }
+    }
+
+    @Override
+    public final void onHandleIntent(Intent intent) {
+        boolean z10;
+        boolean z11 = this.f9912a;
+        if (intent == null) {
+            if (z11) {
+                Log.d("SAVerificationClientS", "Unable to verify null intent");
+                return;
+            }
             return;
         }
-        throw new ConcurrentModificationException();
-    }
-
-    public void b() {
-        switch (this.f6341a) {
-            case 3:
-                m mVar = (m) this.d;
-                mVar.zzb();
-                if (mVar.f6385c == ((Collection) this.f6343c)) {
-                    return;
+        long nanoTime = System.nanoTime();
+        while (true) {
+            boolean a10 = a("com.google.android.googlequicksearchbox");
+            boolean z12 = true;
+            if (a10 && !c.a(this.f9915e)) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            if (z11) {
+                Log.d("SAVerificationClientS", "GSA app com.google.android.googlequicksearchbox installed: " + a10 + " connected " + c.a(this.f9915e));
+            }
+            boolean a11 = a("com.google.android.apps.assistant");
+            if (a11 && !c.a(this.f9916f)) {
+                z12 = false;
+            }
+            if (z11) {
+                Log.d("SAVerificationClientS", "AssistantGo app com.google.android.apps.assistant installed: " + a11 + " connected " + c.a(this.f9916f));
+            }
+            if ((!z10 || !z12) && System.nanoTime() - nanoTime < this.f9913b * 1000000) {
+                try {
+                    Thread.sleep(50L);
+                } catch (InterruptedException e10) {
+                    if (z11) {
+                        String valueOf = String.valueOf(e10);
+                        StringBuilder sb2 = new StringBuilder(valueOf.length() + 33);
+                        sb2.append("Unexpected InterruptedException: ");
+                        sb2.append(valueOf);
+                        Log.d("SAVerificationClientS", sb2.toString());
+                    }
                 }
-                throw new ConcurrentModificationException();
-            default:
-                m mVar2 = (m) this.d;
-                mVar2.zzb();
-                if (mVar2.f6385c == ((Collection) this.f6343c)) {
-                    return;
-                }
-                throw new ConcurrentModificationException();
+            }
         }
-    }
-
-    @Override
-    public final boolean hasNext() {
-        switch (this.f6341a) {
-            case 0:
-                return this.f6342b.hasNext();
-            case 1:
-                return this.f6342b.hasNext();
-            case 2:
-                a();
-                return this.f6342b.hasNext();
-            case 3:
-                b();
-                return this.f6342b.hasNext();
-            case 4:
-                return this.f6342b.hasNext();
-            case 5:
-                return this.f6342b.hasNext();
-            case 6:
-                return this.f6342b.hasNext();
-            case 7:
-                return this.f6342b.hasNext();
-            default:
-                b();
-                return this.f6342b.hasNext();
+        if (b("com.google.android.googlequicksearchbox", intent, this.f9915e)) {
+            Log.i("SAVerificationClientS", "Verified the intent with GSA.");
+            return;
         }
-    }
-
-    @Override
-    public final Object next() {
-        m mVar;
-        m mVar2;
-        switch (this.f6341a) {
-            case 0:
-                Map.Entry entry = (Map.Entry) this.f6342b.next();
-                this.f6343c = (Collection) entry.getValue();
-                return ((e) this.d).a(entry);
-            case 1:
-                Map.Entry entry2 = (Map.Entry) this.f6342b.next();
-                this.f6343c = entry2;
-                return entry2.getKey();
-            case 2:
-                a();
-                return this.f6342b.next();
-            case 3:
-                b();
-                return this.f6342b.next();
-            case 4:
-                Map.Entry entry3 = (Map.Entry) this.f6342b.next();
-                this.f6343c = (Collection) entry3.getValue();
-                Object key = entry3.getKey();
-                x7.f fVar = (x7.f) ((e) this.d).e;
-                fVar.getClass();
-                List list = (List) ((Collection) entry3.getValue());
-                if (list instanceof RandomAccess) {
-                    mVar = new m(fVar, key, list, (m) null);
-                } else {
-                    mVar = new m(fVar, key, list, (m) null);
-                }
-                return new x7.l(key, mVar);
-            case 5:
-                Map.Entry entry4 = (Map.Entry) this.f6342b.next();
-                this.f6343c = entry4;
-                return entry4.getKey();
-            case 6:
-                Map.Entry entry5 = (Map.Entry) this.f6342b.next();
-                this.f6343c = (Collection) entry5.getValue();
-                Object key2 = entry5.getKey();
-                mg mgVar = (mg) ((e) this.d).e;
-                mgVar.getClass();
-                List list2 = (List) ((Collection) entry5.getValue());
-                if (list2 instanceof RandomAccess) {
-                    mVar2 = new m(mgVar, key2, list2, (m) null);
-                } else {
-                    mVar2 = new m(mgVar, key2, list2, (m) null);
-                }
-                return new z7.f(key2, mVar2);
-            case 7:
-                Map.Entry entry6 = (Map.Entry) this.f6342b.next();
-                this.f6343c = entry6;
-                return entry6.getKey();
-            default:
-                b();
-                return this.f6342b.next();
-        }
-    }
-
-    @Override
-    public final void remove() {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        boolean z14;
-        boolean z15;
-        switch (this.f6341a) {
-            case 0:
-                if (((Collection) this.f6343c) != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                t6.o("no calls to next() since the last call to remove()", z10);
-                this.f6342b.remove();
-                ((p1) ((e) this.d).e).f6401f -= ((Collection) this.f6343c).size();
-                ((Collection) this.f6343c).clear();
-                this.f6343c = null;
-                return;
-            case 1:
-                if (((Map.Entry) this.f6343c) != null) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                t6.o("no calls to next() since the last call to remove()", z11);
-                Collection collection = (Collection) ((Map.Entry) this.f6343c).getValue();
-                this.f6342b.remove();
-                ((f) this.d).f6358c.f6401f -= collection.size();
-                collection.clear();
-                this.f6343c = null;
-                return;
-            case 2:
-                this.f6342b.remove();
-                m mVar = (m) this.d;
-                p1 p1Var = (p1) mVar.f6386f;
-                p1Var.f6401f--;
-                mVar.n();
-                return;
-            case 3:
-                this.f6342b.remove();
-                m mVar2 = (m) this.d;
-                x7.f fVar = (x7.f) mVar2.f6386f;
-                fVar.d--;
-                mVar2.p();
-                return;
-            case 4:
-                if (((Collection) this.f6343c) != null) {
-                    z12 = true;
-                } else {
-                    z12 = false;
-                }
-                if (z12) {
-                    this.f6342b.remove();
-                    ((x7.f) ((e) this.d).e).d -= ((Collection) this.f6343c).size();
-                    ((Collection) this.f6343c).clear();
-                    this.f6343c = null;
-                    return;
-                }
-                throw new IllegalStateException("no calls to next() since the last call to remove()");
-            case 5:
-                Map.Entry entry = (Map.Entry) this.f6343c;
-                if (entry != null) {
-                    z13 = true;
-                } else {
-                    z13 = false;
-                }
-                if (z13) {
-                    Collection collection2 = (Collection) entry.getValue();
-                    this.f6342b.remove();
-                    ((x7.a) this.d).f53107c.d -= collection2.size();
-                    collection2.clear();
-                    this.f6343c = null;
-                    return;
-                }
-                throw new IllegalStateException("no calls to next() since the last call to remove()");
-            case 6:
-                if (((Collection) this.f6343c) != null) {
-                    z14 = true;
-                } else {
-                    z14 = false;
-                }
-                if (z14) {
-                    this.f6342b.remove();
-                    ((mg) ((e) this.d).e).getClass();
-                    ((Collection) this.f6343c).size();
-                    ((Collection) this.f6343c).clear();
-                    this.f6343c = null;
-                    return;
-                }
-                throw new IllegalStateException("no calls to next() since the last call to remove()");
-            case 7:
-                Map.Entry entry2 = (Map.Entry) this.f6343c;
-                if (entry2 != null) {
-                    z15 = true;
-                } else {
-                    z15 = false;
-                }
-                if (z15) {
-                    Collection collection3 = (Collection) entry2.getValue();
-                    this.f6342b.remove();
-                    ((ed) this.d).f54722c.getClass();
-                    collection3.size();
-                    collection3.clear();
-                    this.f6343c = null;
-                    return;
-                }
-                throw new IllegalStateException("no calls to next() since the last call to remove()");
-            default:
-                this.f6342b.remove();
-                ((m) this.d).p();
-                return;
-        }
-    }
-
-    public d(m mVar, ListIterator listIterator, char c10) {
-        this.f6341a = 8;
-        this.d = mVar;
-        this.f6343c = mVar.f6385c;
-        this.f6342b = listIterator;
-    }
-
-    public d(AbstractSet abstractSet, Iterator it, int i10) {
-        this.f6341a = i10;
-        this.f6342b = it;
-        this.d = abstractSet;
-    }
-
-    public d(e eVar, byte b10) {
-        this.f6341a = 4;
-        this.d = eVar;
-        this.f6342b = eVar.f6349b.entrySet().iterator();
-    }
-
-    public d(e eVar, char c10) {
-        this.f6341a = 6;
-        this.d = eVar;
-        this.f6342b = eVar.f6349b.entrySet().iterator();
-    }
-
-    public d(m mVar, byte b10) {
-        Iterator it;
-        this.f6341a = 3;
-        this.d = mVar;
-        Collection collection = mVar.f6385c;
-        this.f6343c = collection;
-        if (collection instanceof List) {
-            it = ((List) collection).listIterator();
+        Log.i("SAVerificationClientS", "Unable to verify the intent with GSA.");
+        if (b("com.google.android.apps.assistant", intent, this.f9916f)) {
+            Log.i("SAVerificationClientS", "Verified the intent with Assistant Go.");
         } else {
-            it = collection.iterator();
+            Log.i("SAVerificationClientS", "Unable to verify the intent with Assistant Go.");
         }
-        this.f6342b = it;
-    }
-
-    public d(m mVar, char c10) {
-        Iterator it;
-        this.f6341a = 8;
-        this.d = mVar;
-        Collection collection = mVar.f6385c;
-        this.f6343c = collection;
-        if (collection instanceof List) {
-            it = ((List) collection).listIterator();
-        } else {
-            it = collection.iterator();
-        }
-        this.f6342b = it;
-    }
-
-    public d(m mVar) {
-        Iterator it;
-        this.f6341a = 2;
-        this.d = mVar;
-        Collection collection = mVar.f6385c;
-        this.f6343c = collection;
-        if (collection instanceof List) {
-            it = ((List) collection).listIterator();
-        } else {
-            it = collection.iterator();
-        }
-        this.f6342b = it;
-    }
-
-    public d(m mVar, ListIterator listIterator) {
-        this.f6341a = 2;
-        this.d = mVar;
-        this.f6343c = mVar.f6385c;
-        this.f6342b = listIterator;
-    }
-
-    public d(e eVar) {
-        this.f6341a = 0;
-        this.d = eVar;
-        this.f6342b = eVar.f6349b.entrySet().iterator();
     }
 }

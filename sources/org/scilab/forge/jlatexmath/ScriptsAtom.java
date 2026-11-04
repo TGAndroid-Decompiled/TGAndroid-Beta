@@ -14,9 +14,9 @@ public class ScriptsAtom extends Atom {
         this.base = atom;
         this.subscript = atom2;
         this.superscript = atom3;
-        int i10 = atom instanceof ScriptsAtom ? 1 + ((ScriptsAtom) atom).wrapDepth : 1;
-        this.wrapDepth = i10;
-        if (i10 > 64) {
+        int i3 = atom instanceof ScriptsAtom ? 1 + ((ScriptsAtom) atom).wrapDepth : 1;
+        this.wrapDepth = i3;
+        if (i3 > 64) {
             throw new DepthLimitExceededException();
         }
     }

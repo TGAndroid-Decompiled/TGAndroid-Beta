@@ -1,30 +1,35 @@
 package t7;
 
-import com.google.android.gms.internal.cast.i0;
-public final class l extends i0 {
-    public static final l f48560n = new l(null, new Object[0], 0);
-    public final transient Object e;
-    public final transient Object[] f48561f;
-    public final transient int h;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.google.android.gms.location.LocationRequest;
+public final class l extends q6.a {
+    public static final Parcelable.Creator<l> CREATOR = new m(0);
+    public final LocationRequest f54969a;
 
-    public l(Object obj, Object[] objArr, int i10) {
-        super(2);
-        this.e = obj;
-        this.f48561f = objArr;
-        this.h = i10;
+    public l(com.google.android.gms.location.LocationRequest r26, java.util.ArrayList r27, boolean r28, boolean r29, java.lang.String r30, boolean r31, boolean r32, java.lang.String r33, long r34) {
+        throw new UnsupportedOperationException("Method not decompiled: t7.l.<init>(com.google.android.gms.location.LocationRequest, java.util.ArrayList, boolean, boolean, java.lang.String, boolean, boolean, java.lang.String, long):void");
     }
 
-    public static t7.l b(int r19, java.lang.Object[] r20, a5.a r21) {
-        throw new UnsupportedOperationException("Method not decompiled: t7.l.b(int, java.lang.Object[], a5.a):t7.l");
+    public final boolean equals(Object obj) {
+        if (obj instanceof l) {
+            return p6.m.k(this.f54969a, ((l) obj).f54969a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f54969a.hashCode();
+    }
+
+    public final String toString() {
+        return this.f54969a.toString();
     }
 
     @Override
-    public final java.lang.Object get(java.lang.Object r10) {
-        throw new UnsupportedOperationException("Method not decompiled: t7.l.get(java.lang.Object):java.lang.Object");
-    }
-
-    @Override
-    public final int size() {
-        return this.h;
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.l(parcel, 1, this.f54969a, i3);
+        j8.a.t(parcel, s6);
     }
 }

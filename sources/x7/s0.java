@@ -1,12 +1,17 @@
 package x7;
-public final class s0 {
-    public final r0 f53330a;
-    public final Integer f53331b;
-    public final a7 f53332c;
+public final class s0 implements ma.d {
+    public static final s0 f58407a = new Object();
 
-    public s0(q5.d dVar) {
-        this.f53330a = (r0) dVar.f45498b;
-        this.f53331b = (Integer) dVar.f45499c;
-        this.f53332c = (a7) dVar.d;
+    static {
+        t4.c.o(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, t4.c.l(t4.c.i(h.class, new e(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ma.e eVar = (ma.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

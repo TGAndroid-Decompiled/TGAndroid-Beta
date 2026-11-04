@@ -1,94 +1,108 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class yk implements RequestDelegate {
-    public final int f19593a;
-    public final wp f19594b;
-    public final int f19595c;
-    public final long d;
-    public final long e;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class yk implements Runnable {
+    public final int f26595a;
+    public final cs f26596b;
+    public final long f26597c;
+    public final int d;
+    public final int f26598e;
+    public final boolean f26599f;
 
-    public yk(int i10, long j10, long j11, wp wpVar) {
-        this.f19593a = 0;
-        this.f19594b = wpVar;
-        this.d = j10;
-        this.f19595c = i10;
-        this.e = j11;
+    public yk(hp hpVar, long j10, int i3, int i10, boolean z10, int i11) {
+        this.f26595a = i11;
+        this.f26596b = hpVar;
+        this.f26597c = j10;
+        this.d = i3;
+        this.f26598e = i10;
+        this.f26599f = z10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        TLRPC.Chat chat;
-        switch (this.f19593a) {
+    public final void run() {
+        long j10;
+        int i3;
+        int i10 = this.f26595a;
+        cs csVar = this.f26596b;
+        switch (i10) {
             case 0:
-                wp wpVar = this.f19594b;
-                long j10 = this.d;
-                long j11 = this.e;
-                if (tLObject != null) {
-                    TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) tLObject;
-                    a0.h hVar = new a0.h();
-                    int i10 = 0;
-                    for (int i11 = 0; i11 < updates_channeldifference.users.size(); i11++) {
-                        TLRPC.User user = updates_channeldifference.users.get(i11);
-                        hVar.k(user, user.f19943id);
+                hp hpVar = (hp) csVar;
+                a0.h hVar = hpVar.R;
+                long j11 = this.f26597c;
+                TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j11);
+                int i11 = this.f26598e;
+                if (dialog != null) {
+                    int i12 = dialog.unread_count;
+                    int i13 = this.d;
+                    if (i13 != 0 && i11 < dialog.top_message) {
+                        int max = Math.max(i12 - i13, 0);
+                        dialog.unread_count = max;
+                        if (i11 != Integer.MIN_VALUE && max > (i3 = dialog.top_message - i11)) {
+                            dialog.unread_count = i3;
+                        }
+                    } else {
+                        dialog.unread_count = 0;
                     }
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 < updates_channeldifference.chats.size()) {
-                            chat = updates_channeldifference.chats.get(i12);
-                            if (chat.f19794id != j10) {
-                                i12++;
+                    boolean z10 = dialog.unread_mark;
+                    if (z10) {
+                        dialog.unread_mark = false;
+                        hpVar.getMessagesStorage().F1(dialog.f27005id, false);
+                    }
+                    if ((i12 == 0 && !z10) || dialog.unread_count != 0) {
+                        j10 = j11;
+                    } else {
+                        j10 = j11;
+                        hpVar.r2(j10, 0L, null);
+                        int i14 = 0;
+                        while (true) {
+                            mo[] moVarArr = hpVar.N;
+                            if (i14 < moVarArr.length) {
+                                mo moVar = moVarArr[i14];
+                                if (moVar != null && (moVar.f24242g & 64) != 0) {
+                                    hpVar.T4(null);
+                                    hpVar.getNotificationCenter().k(3, new Object[0]);
+                                } else {
+                                    i14++;
+                                }
                             }
-                        } else {
-                            chat = null;
                         }
                     }
-                    TLRPC.Chat chat2 = chat;
-                    ArrayList arrayList = new ArrayList();
-                    if (!updates_channeldifference.other_updates.isEmpty()) {
-                        while (i10 < updates_channeldifference.other_updates.size()) {
-                            TLRPC.Update update = updates_channeldifference.other_updates.get(i10);
-                            if (update instanceof TL_update.TL_updateMessageID) {
-                                arrayList.add((TL_update.TL_updateMessageID) update);
-                                updates_channeldifference.other_updates.remove(i10);
-                                i10--;
-                            }
-                            i10++;
-                        }
-                    }
-                    wpVar.getMessagesStorage().m1(updates_channeldifference.users, updates_channeldifference.chats, true, true);
-                    i0.g3(new pi(11, wpVar, updates_channeldifference));
-                    wpVar.getMessagesStorage().f16331a.c(new al(wpVar, arrayList, j10, updates_channeldifference, chat2, hVar, this.f19595c, j11));
-                    return;
-                } else if (tL_error != null) {
-                    i0.g3(new ol(wpVar, tL_error, j10, 0));
-                    wpVar.Z0.e(j10);
-                    if (j11 != 0) {
-                        wpVar.getMessagesStorage().q1(j11);
-                        return;
-                    }
-                    return;
+                    hpVar.getNotificationCenter().k(2, 256);
                 } else {
+                    j10 = j11;
+                }
+                if (!this.f26599f) {
+                    long j12 = j10;
+                    hpVar.getNotificationsController().L(null, j12, 0, i11, false);
+                    LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
+                    longSparseIntArray.put(j12, 0);
+                    hpVar.getNotificationsController().J(longSparseIntArray);
                     return;
                 }
+                long j13 = j10;
+                hpVar.getNotificationsController().L(null, j13, 0, i11, true);
+                LongSparseIntArray longSparseIntArray2 = new LongSparseIntArray(1);
+                longSparseIntArray2.put(j13, -1);
+                hpVar.getNotificationsController().J(longSparseIntArray2);
+                return;
             case 1:
-                i0.g3(new gk(this.f19594b, this.f19595c, this.d, this.e, 2));
+                g0.h3(new yk((hp) csVar, this.f26597c, this.d, this.f26598e, this.f26599f, 0));
                 return;
             default:
-                i0.g3(new gk(this.f19594b, this.f19595c, this.d, this.e, 0));
+                int i15 = ChatActivityEnterView.f31082t5;
+                ((ChatActivityEnterView) csVar).S0(this.f26599f, this.d, this.f26598e, this.f26597c, false);
                 return;
         }
     }
 
-    public yk(wp wpVar, int i10, long j10, long j11, int i11) {
-        this.f19593a = i11;
-        this.f19594b = wpVar;
-        this.f19595c = i10;
-        this.d = j10;
-        this.e = j11;
+    public yk(ChatActivityEnterView chatActivityEnterView, boolean z10, int i3, int i10, long j10) {
+        this.f26595a = 2;
+        this.f26596b = chatActivityEnterView;
+        this.f26599f = z10;
+        this.d = i3;
+        this.f26598e = i10;
+        this.f26597c = j10;
     }
 }

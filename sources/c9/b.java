@@ -1,83 +1,45 @@
 package c9;
+public final class b extends h0 {
+    public final int h;
+    public final Object f4245n;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.util.Log;
-public final class b implements ServiceConnection {
-    public b9.c f4070a;
-    public final c f4071b;
-
-    public b(c cVar) {
-        this.f4071b = cVar;
-    }
-
-    public static boolean a(b bVar) {
-        if (bVar.f4070a != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean b(Intent intent, Bundle bundle) {
-        boolean z10;
-        b9.c cVar = this.f4070a;
-        if (cVar != null) {
-            b9.a aVar = (b9.a) cVar;
-            Parcel obtain = Parcel.obtain();
-            obtain.writeInterfaceToken("com.google.android.search.verification.api.ISearchActionVerificationService");
-            int i10 = h5.a.f7628a;
-            if (intent == null) {
-                obtain.writeInt(0);
-            } else {
-                obtain.writeInt(1);
-                intent.writeToParcel(obtain, 0);
-            }
-            obtain.writeInt(1);
-            bundle.writeToParcel(obtain, 0);
-            Parcel H0 = aVar.H0(obtain, 1);
-            if (H0.readInt() != 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            H0.recycle();
-            if (z10) {
-                return true;
-            }
-        }
-        return false;
+    public b(Object obj, int i3) {
+        this.h = i3;
+        this.f4245n = obj;
     }
 
     @Override
-    public final void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        b9.c aVar;
-        if (this.f4071b.f4072a) {
-            Log.d("SAVerificationClientS", "onServiceConnected");
-        }
-        int i10 = b9.b.f2516a;
-        if (iBinder == null) {
-            aVar = null;
-        } else {
-            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.search.verification.api.ISearchActionVerificationService");
-            if (queryLocalInterface instanceof b9.c) {
-                aVar = (b9.c) queryLocalInterface;
-            } else {
-                aVar = new b9.a(iBinder);
-            }
-        }
-        this.f4070a = aVar;
-    }
-
-    @Override
-    public final void onServiceDisconnected(ComponentName componentName) {
-        this.f4070a = null;
-        if (this.f4071b.f4072a) {
-            Log.d("SAVerificationClientS", "onServiceDisconnected");
+    public final void b() {
+        switch (this.h) {
+            case 0:
+                c cVar = (c) ((bg.a) this.f4245n).f3297b;
+                cVar.f4248b.b("unlinkToDeath", new Object[0]);
+                cVar.f4258n.asBinder().unlinkToDeath(cVar.f4255k, 0);
+                cVar.f4258n = null;
+                cVar.f4252g = false;
+                return;
+            default:
+                synchronized (((c) this.f4245n).f4251f) {
+                    try {
+                        if (((c) this.f4245n).f4256l.get() > 0 && ((c) this.f4245n).f4256l.decrementAndGet() > 0) {
+                            ((c) this.f4245n).f4248b.b("Leaving the connection open for other ongoing calls.", new Object[0]);
+                            return;
+                        }
+                        c cVar2 = (c) this.f4245n;
+                        if (cVar2.f4258n != null) {
+                            cVar2.f4248b.b("Unbind from service.", new Object[0]);
+                            c cVar3 = (c) this.f4245n;
+                            cVar3.f4247a.unbindService(cVar3.f4257m);
+                            c cVar4 = (c) this.f4245n;
+                            cVar4.f4252g = false;
+                            cVar4.f4258n = null;
+                            cVar4.f4257m = null;
+                        }
+                        ((c) this.f4245n).e();
+                        return;
+                    } finally {
+                    }
+                }
         }
     }
 }

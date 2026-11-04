@@ -1,22 +1,32 @@
 package org.telegram.messenger;
 
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
-public final class fa implements xa {
-    public LatLngBounds f15715a;
+import j$.util.Objects;
+import org.telegram.tgnet.TLRPC;
+public final class fa {
+    public final long f22472a;
+    public final int f22473b;
 
-    public final db a() {
-        LatLngBounds latLngBounds = this.f15715a;
-        LatLng latLng = latLngBounds.f5418a;
-        double d = latLng.f5416a;
-        LatLng latLng2 = latLngBounds.f5419b;
-        double d10 = (d + latLng2.f5416a) / 2.0d;
-        double d11 = latLng2.f5417b;
-        double d12 = latLng.f5417b;
-        if (d12 > d11) {
-            d11 += 360.0d;
+    public fa(TLRPC.Message message) {
+        long B0 = zi.B0(message);
+        int i3 = message.f27022id;
+        this.f22472a = B0;
+        this.f22473b = i3;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        LatLng latLng3 = new LatLng(d10, (d11 + d12) / 2.0d);
-        return new db(latLng3.f5416a, latLng3.f5417b);
+        if (obj != null && fa.class == obj.getClass()) {
+            fa faVar = (fa) obj;
+            if (this.f22472a == faVar.f22472a && this.f22473b == faVar.f22473b) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f22472a), Integer.valueOf(this.f22473b));
     }
 }

@@ -1,123 +1,67 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
-public final class vm implements ai {
-    public final org.telegram.ui.ActionBar.k2 f31344a;
-    public final org.telegram.messenger.r20 f31345b;
-    public final ag.v f31346c;
+public final class vm extends org.telegram.ui.Cells.z5 {
+    public final int G;
+    public final org.telegram.ui.n4 H;
 
-    public vm(ag.v vVar, org.telegram.messenger.r20 r20Var, org.telegram.ui.ActionBar.k2 k2Var) {
-        this.f31344a = k2Var;
-        this.f31345b = r20Var;
-        this.f31346c = vVar;
+    public vm(org.telegram.ui.n4 n4Var, Context context, int i3, org.telegram.ui.ActionBar.e6 e6Var, int i10) {
+        super(context, i3, null, e6Var);
+        this.H = n4Var;
+        this.G = i10;
     }
 
     @Override
-    public final void C(mg mgVar) {
-        org.telegram.messenger.at.f(this.f31344a.getCurrentAccount()).d(mgVar);
-    }
-
-    @Override
-    public final boolean D() {
-        return false;
-    }
-
-    @Override
-    public final void H0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ag.v vVar = this.f31346c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = vVar.a2;
-        org.telegram.messenger.r20 r20Var = this.f31345b;
-        if (i10 == 15) {
-            org.telegram.ui.ActionBar.k2 k2Var = this.f31344a;
-            s4.f0(k2Var.getContext(), k2Var.getResourceProvider(), null, null, new um(r20Var, 0), null);
-        } else if (i10 == 7 || i10 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            if (selectedPhotosOrder.size() > 0) {
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(0));
-                ?? obj2 = new Object();
-                String str = null;
-                if (obj instanceof org.telegram.messenger.ff) {
-                    org.telegram.messenger.ff ffVar = (org.telegram.messenger.ff) obj;
-                    String str2 = ffVar.h;
-                    if (str2 != null) {
-                        obj2.f17850c = str2;
-                    } else {
-                        obj2.f17850c = ffVar.I;
-                    }
-                    obj2.e = ffVar.f14604c;
-                    obj2.f17851f = ffVar.f14606g;
-                    obj2.f17855k = ffVar.f14617s;
-                    obj2.f17860p = ffVar.d();
-                    obj2.f17869z = ffVar.f14611m;
-                    obj2.f17861q = true;
-                    obj2.f17859o = ffVar.f14603b;
-                    CharSequence charSequence = ffVar.f14602a;
-                    if (charSequence != null) {
-                        str = charSequence.toString();
-                    }
-                    obj2.d = str;
-                    obj2.f17853i = ffVar.f14612n;
-                    obj2.f17854j = ffVar.f14616r;
-                    obj2.h = ffVar.f14621x;
-                    obj2.v = ffVar.S;
-                    obj2.f17868y = ffVar;
-                } else if (obj instanceof org.telegram.messenger.jf) {
-                    org.telegram.messenger.jf jfVar = (org.telegram.messenger.jf) obj;
-                    String str3 = jfVar.h;
-                    if (str3 != null) {
-                        obj2.f17850c = str3;
-                    } else {
-                        obj2.f17856l = jfVar;
-                    }
-                    obj2.e = jfVar.f14604c;
-                    obj2.f17851f = jfVar.f14606g;
-                    obj2.f17855k = jfVar.f14617s;
-                    CharSequence charSequence2 = jfVar.I;
-                    if (charSequence2 != null) {
-                        str = charSequence2.toString();
-                    }
-                    obj2.d = str;
-                    obj2.f17853i = jfVar.f14612n;
-                    obj2.f17854j = jfVar.f14616r;
-                    obj2.h = jfVar.f14621x;
-                    TLRPC.BotInlineResult botInlineResult = jfVar.N;
-                    if (botInlineResult != null && jfVar.H == 1) {
-                        obj2.f17857m = botInlineResult;
-                        obj2.f17858n = jfVar.O;
-                    }
-                    System.currentTimeMillis();
-                }
-                r20Var.a(new jh.d(obj2));
+    public final void g(ai.z zVar, ActionMode actionMode) {
+        an anVar = (an) this.H.f47865e;
+        if (!anVar.f31927n && this.G == 11 && zVar.isFocused() && zVar.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.wm.A8(menu, ((org.telegram.ui.wm) anVar.f38416b.X1).h, false, true, true, true);
             }
         }
-        vVar.a(true);
     }
 
     @Override
-    public final boolean a1() {
-        return false;
+    public final void i(boolean z10) {
+        an.Q((an) this.H.f47865e, this, z10);
     }
 
     @Override
-    public final void n0(Object obj) {
+    public final void j(org.telegram.ui.Cells.z5 z5Var) {
+        an.R((an) this.H.f47865e, z5Var);
     }
 
     @Override
-    public final void v0(TLRPC.User user) {
+    public final void k(ai.z zVar) {
+        ((an) this.H.f47865e).f38416b.h1(zVar, true);
     }
 
     @Override
-    public final void N() {
-    }
-
-    @Override
-    public final void j0() {
-    }
-
-    @Override
-    public final void b1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    public final boolean l(ArrayList arrayList) {
+        an anVar = (an) this.H.f47865e;
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        ai.z zVar = this.d;
+        zVar.getText().replace(zVar.getSelectionStart(), zVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i3 = 0;
+        while (!arrayList.isEmpty() && i3 < anVar.K) {
+            for (int length = anVar.L.length - 1; length > i3; length--) {
+                CharSequence[] charSequenceArr = anVar.L;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            anVar.L[i3] = (CharSequence) arrayList.remove(0);
+            anVar.N++;
+            i3++;
+        }
+        anVar.n0();
+        anVar.f31925l0 = (anVar.f31942u0 + i3) - 1;
+        anVar.f31939s.setItemAnimator(anVar.f31944w);
+        anVar.f31936r.f();
+        return true;
     }
 }

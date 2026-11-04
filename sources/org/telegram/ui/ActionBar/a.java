@@ -1,64 +1,64 @@
 package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.vv0;
+import org.telegram.ui.pu0;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
-    public final int f20137a;
-    public final l f20138b;
+    public final int f27345a;
+    public final k f27346b;
 
-    public a(l lVar, int i10) {
-        this.f20137a = i10;
-        this.f20138b = lVar;
+    public a(k kVar, int i3) {
+        this.f27345a = i3;
+        this.f27346b = kVar;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        y yVar;
-        switch (this.f20137a) {
+        x xVar;
+        switch (this.f27345a) {
             case 0:
-                vv0 vv0Var = this.f20138b.f20481e1;
-                if (vv0Var != null) {
-                    vv0Var.run();
+                pu0 pu0Var = this.f27346b.f27713f1;
+                if (pu0Var != null) {
+                    pu0Var.run();
                     return;
                 }
                 return;
             case 1:
-                vv0 vv0Var2 = this.f20138b.f20481e1;
-                if (vv0Var2 != null) {
-                    vv0Var2.run();
+                pu0 pu0Var2 = this.f27346b.f27713f1;
+                if (pu0Var2 != null) {
+                    pu0Var2.run();
                     return;
                 }
                 return;
             case 2:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l lVar = this.f20138b;
-                lVar.f20500o0 = floatValue;
-                if (lVar.f20469a != null && lVar.R0) {
-                    float L = org.telegram.messenger.i0.L(23.0f);
-                    float W1 = org.telegram.messenger.i0.W1(lVar.f20500o0, org.telegram.messenger.i0.L(18.33f), org.telegram.messenger.i0.L(23.0f));
-                    lVar.f20469a.r(W1, L, L, W1);
-                    lVar.invalidate();
+                k kVar = this.f27346b;
+                kVar.f27730p0 = floatValue;
+                if (kVar.f27697a != null && kVar.S0) {
+                    float L = org.telegram.messenger.g0.L(23.0f);
+                    float W1 = org.telegram.messenger.g0.W1(kVar.f27730p0, org.telegram.messenger.g0.L(18.33f), org.telegram.messenger.g0.L(23.0f));
+                    kVar.f27697a.s(W1, L, L, W1);
+                    kVar.invalidate();
                 }
-                if (lVar.P0 && (yVar = lVar.E) != null) {
-                    yVar.setTranslationX(-org.telegram.messenger.i0.T1(org.telegram.messenger.i0.L(10.0f), org.telegram.messenger.i0.L(5.0f), lVar.f20500o0));
+                if (kVar.Q0 && (xVar = kVar.F) != null) {
+                    xVar.setTranslationX(-org.telegram.messenger.g0.T1(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(5.0f), kVar.f27730p0));
                 }
-                vv0 vv0Var3 = lVar.f20481e1;
-                if (vv0Var3 != null) {
-                    vv0Var3.run();
+                pu0 pu0Var3 = kVar.f27713f1;
+                if (pu0Var3 != null) {
+                    pu0Var3.run();
                     return;
                 }
                 return;
             case 3:
-                l lVar2 = this.f20138b;
-                lVar2.getClass();
-                lVar2.D1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lVar2.f();
+                k kVar2 = this.f27346b;
+                kVar2.getClass();
+                kVar2.E1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar2.f();
                 return;
             default:
-                l lVar3 = this.f20138b;
-                lVar3.getClass();
-                lVar3.D1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lVar3.f();
+                k kVar3 = this.f27346b;
+                kVar3.getClass();
+                kVar3.E1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kVar3.f();
                 return;
         }
     }

@@ -1,87 +1,68 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class oa0 extends org.telegram.ui.Cells.l9 {
-    public final ua0 f29082w0;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+public final class oa0 {
+    public final Paint f36791a;
+    public final pa0 f36792b;
+    public final pa0 f36793c;
+    public final pa0 d;
+    public final na0 f36794e;
+    public final na0 f36795f;
+    public final float[] f36796g;
+    public int h;
+    public float f36797i;
 
-    public oa0(ua0 ua0Var) {
-        this.f29082w0 = ua0Var;
-        this.f23424g0 = ua0Var.f30915c0.F;
+    public oa0() {
+        Paint paint = new Paint();
+        this.f36791a = paint;
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        this.f36792b = new pa0(tileMode);
+        this.f36793c = new pa0(tileMode);
+        this.d = new pa0(Shader.TileMode.REPEAT);
+        this.f36794e = new na0(2131624361);
+        this.f36795f = new na0(2131624360);
+        this.f36796g = new float[4];
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
     }
 
-    @Override
-    public final void I(int i10, int i11, org.telegram.messenger.kj kjVar) {
-        org.telegram.ui.kn knVar;
-        org.telegram.messenger.kj kjVar2;
-        ua0 ua0Var = this.f29082w0;
-        oa0 oa0Var = ua0Var.e;
-        int i12 = oa0Var.v - oa0Var.f23444u;
-        ab0 ab0Var = ua0Var.f30915c0;
-        if (i12 > org.telegram.messenger.wp.r1(ab0Var.f24344x).f19214p4) {
-            ua0Var.g();
-            return;
-        }
-        org.telegram.messenger.oj ojVar = ab0Var.d;
-        ojVar.e = oa0Var.f23444u;
-        ojVar.f17454f = oa0Var.v;
-        org.telegram.messenger.kj c10 = ua0Var.c(kjVar);
-        if (c10 != null && ((knVar = ab0Var.d.d) == null || knVar.f38940m || (kjVar2 = knVar.f38931a) == null || kjVar2.f1() != c10.f1())) {
-            ab0Var.d.d = org.telegram.ui.kn.b(i10, i11, c10);
-        }
-        ab0Var.b();
-        ab0Var.a(true);
-    }
-
-    @Override
-    public final boolean b() {
-        org.telegram.messenger.kj c10;
-        TLRPC.Message message;
-        ua0 ua0Var = this.f29082w0;
-        if (ua0Var.f30910a == 0 && (c10 = ua0Var.c(null)) != null && (message = c10.f16690k) != null && message.rich_message != null) {
-            return false;
-        }
-        org.telegram.messenger.oj ojVar = ua0Var.f30915c0.d;
-        if (ojVar != null && ojVar.f17466s) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean e() {
-        org.telegram.messenger.kj c10;
-        TLRPC.Message message;
-        ua0 ua0Var = this.f29082w0;
-        int i10 = ua0Var.f30910a;
-        if (i10 == 0 && !ua0Var.f30915c0.d.f17456i) {
-            if (i10 != 0 || (c10 = ua0Var.c(null)) == null || (message = c10.f16690k) == null || message.rich_message == null || org.telegram.messenger.aw.c(ua0Var.c(null))) {
-                return true;
+    public final Paint a(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i3, int i10) {
+        pa0 pa0Var = this.f36792b;
+        boolean b10 = pa0Var.b(bitmap);
+        pa0 pa0Var2 = this.d;
+        boolean b11 = b10 | pa0Var2.b(bitmap2);
+        Paint paint = this.f36791a;
+        if (i10 >= 0) {
+            pa0 pa0Var3 = this.f36793c;
+            if ((b11 | pa0Var3.b(bitmap3)) || this.h != 1) {
+                this.h = 1;
+                na0 na0Var = this.f36794e;
+                na0Var.f36423a.setInputBuffer("shaderPattern", pa0Var2.d);
+                na0Var.f36423a.setInputBuffer("shaderGradient", pa0Var.d);
+                na0Var.f36423a.setInputBuffer("shaderGradientSoftLight", pa0Var3.d);
+                na0Var.f36423a.setFloatUniform("transformGradient", na0Var.f36424b);
+                na0Var.f36423a.setFloatUniform("transformPattern", na0Var.f36425c);
+                paint.setShader(na0Var.f36423a);
+                return paint;
             }
-            return false;
+        } else {
+            float a10 = b8.be.a((i3 * (-i10)) / 25500.0f, 0.0f, 1.0f);
+            if (b11 || this.f36797i != a10 || this.h != 2) {
+                this.h = 2;
+                this.f36797i = a10;
+                na0 na0Var2 = this.f36795f;
+                na0Var2.f36423a.setInputBuffer("shaderPattern", pa0Var2.d);
+                na0Var2.f36423a.setInputBuffer("shaderGradient", pa0Var.d);
+                na0Var2.f36423a.setFloatUniform("intensity", a10);
+                na0Var2.f36423a.setFloatUniform("transformGradient", na0Var2.f36424b);
+                na0Var2.f36423a.setFloatUniform("transformPattern", na0Var2.f36425c);
+                paint.setShader(na0Var2.f36423a);
+                return paint;
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final org.telegram.ui.ActionBar.p6 q() {
-        return this.f23424g0;
-    }
-
-    @Override
-    public final void w() {
-        super.w();
-        ag.b1 b1Var = this.f29082w0.f30916f;
-        if (b1Var != null) {
-            b1Var.invalidate();
-        }
-    }
-
-    @Override
-    public final boolean z(org.telegram.messenger.kj kjVar) {
-        ua0 ua0Var = this.f29082w0;
-        if (ua0Var.f30910a == 0 && !ua0Var.f30915c0.d.f17456i && x()) {
-            return true;
-        }
-        return false;
+        return paint;
     }
 }

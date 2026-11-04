@@ -1,28 +1,48 @@
 package z9;
-public final class i implements ja.d {
-    public static final i f55319a = new Object();
-    public static final ja.c f55320b = ja.c.c("arch");
-    public static final ja.c f55321c = ja.c.c("model");
-    public static final ja.c d = ja.c.c("cores");
-    public static final ja.c e = ja.c.c("ram");
-    public static final ja.c f55322f = ja.c.c("diskSpace");
-    public static final ja.c f55323g = ja.c.c("simulator");
-    public static final ja.c h = ja.c.c("state");
-    public static final ja.c f55324i = ja.c.c("manufacturer");
-    public static final ja.c f55325j = ja.c.c("modelClass");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        k0 k0Var = (k0) ((m1) obj);
-        eVar.g(f55320b, k0Var.f55345a);
-        eVar.d(f55321c, k0Var.f55346b);
-        eVar.g(d, k0Var.f55347c);
-        eVar.f(e, k0Var.d);
-        eVar.f(f55322f, k0Var.e);
-        eVar.a(f55323g, k0Var.f55348f);
-        eVar.g(h, k0Var.f55349g);
-        eVar.d(f55324i, k0Var.h);
-        eVar.d(f55325j, k0Var.f55350i);
+import android.util.Log;
+import j$.util.Objects;
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+public final class i {
+    public final s f60184a;
+    public final h f60185b;
+
+    public i(s sVar, fa.f fVar) {
+        this.f60184a = sVar;
+        this.f60185b = new h(fVar);
+    }
+
+    public final String a(String str) {
+        String substring;
+        h hVar = this.f60185b;
+        synchronized (hVar) {
+            if (Objects.equals(hVar.f60182b, str)) {
+                return hVar.f60183c;
+            }
+            fa.f fVar = hVar.f60181a;
+            fa.a aVar = h.d;
+            File file = new File((File) fVar.f11541e, str);
+            file.mkdirs();
+            List i3 = fa.f.i(file.listFiles(aVar));
+            if (i3.isEmpty()) {
+                substring = null;
+                Log.w("FirebaseCrashlytics", "Unable to read App Quality Sessions session id.", null);
+            } else {
+                substring = ((File) Collections.min(i3, h.f60180e)).getName().substring(4);
+            }
+            return substring;
+        }
+    }
+
+    public final void b(String str) {
+        h hVar = this.f60185b;
+        synchronized (hVar) {
+            if (!Objects.equals(hVar.f60182b, str)) {
+                h.a(hVar.f60181a, str, hVar.f60183c);
+                hVar.f60182b = str;
+            }
+        }
     }
 }

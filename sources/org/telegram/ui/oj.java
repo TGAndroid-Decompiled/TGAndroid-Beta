@@ -1,88 +1,76 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class oj implements View.OnTouchListener {
-    public View f40171a;
-    public org.telegram.ui.ActionBar.k1 f40172b;
-    public final Rect f40173c = new Rect();
-    public boolean d;
-    public boolean e;
-    public final org.telegram.ui.Components.p10 f40174f;
-    public final int[] h;
-    public View f40175n;
-    public float f40176r;
-    public float f40177s;
-    public final View f40178w;
-    public final un f40179x;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.widget.TextView;
+public final class oj extends org.telegram.ui.Components.vc {
+    public org.telegram.ui.Cells.y f48301e;
+    public int f48302f;
+    public final boolean h;
+    public final wm f48303n;
 
-    public oj(un unVar, ImageView imageView) {
-        this.f40179x = unVar;
-        this.f40178w = imageView;
-        org.telegram.ui.Components.p10 p10Var = new org.telegram.ui.Components.p10((Context) null, new e(this, 22));
-        this.f40174f = p10Var;
-        this.h = new int[2];
-        p10Var.v = true;
+    public oj(wm wmVar, Context context, boolean z10) {
+        super(context);
+        this.f48303n = wmVar;
+        this.h = z10;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        View view2;
-        this.f40171a = view;
-        if (motionEvent.getAction() == 0) {
-            this.f40176r = motionEvent.getX();
-            this.f40177s = motionEvent.getY();
-            this.e = false;
-        }
-        this.f40174f.a(motionEvent);
-        if (this.f40172b != null && !this.d && motionEvent.getAction() == 2) {
-            View view3 = this.f40171a;
-            int[] iArr = this.h;
-            view3.getLocationOnScreen(iArr);
-            float x10 = motionEvent.getX() + iArr[0];
-            float y3 = motionEvent.getY() + iArr[1];
-            this.f40172b.getContentView().getLocationOnScreen(iArr);
-            float f7 = x10 - iArr[0];
-            float f10 = y3 - iArr[1];
-            this.f40175n = null;
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f40172b.getContentView();
-            for (int i10 = 0; i10 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i10++) {
-                View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i10);
-                Rect rect = this.f40173c;
-                childAt.getHitRect(rect);
-                childAt.getTag();
-                if (childAt.getVisibility() == 0 && childAt.isClickable()) {
-                    if (!rect.contains((int) f7, (int) f10)) {
-                        childAt.setPressed(false);
-                        childAt.setSelected(false);
-                    } else {
-                        childAt.setPressed(true);
-                        childAt.setSelected(true);
-                        childAt.drawableHotspotChanged(f7, f10 - childAt.getTop());
-                        this.f40175n = childAt;
+    public final void d() {
+        int i3;
+        try {
+            int themedColor = this.f48303n.getThemedColor(org.telegram.ui.ActionBar.k6.f28015kf);
+            if (this.f48301e != null) {
+                Drawable background = getBackground();
+                Drawable drawable = this.f48301e;
+                if (background == drawable) {
+                    if (themedColor != this.f48302f) {
+                        org.telegram.ui.ActionBar.k6.H1(drawable, themedColor & 436207615, true);
+                    }
+                    if (getImageView() != null && (themedColor != this.f48302f || getImageView().getColorFilter() == null)) {
+                        getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+                    }
+                    this.f48302f = themedColor;
+                    if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
+                        getTextView().setTextColor(themedColor);
+                        return;
                     }
                 }
             }
-        }
-        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f40176r) > org.telegram.messenger.i0.e * 2.0f) || Math.abs(motionEvent.getY() - this.f40177s) > org.telegram.messenger.i0.e * 2.0f) {
-            this.e = true;
-            this.f40171a.setPressed(false);
-            this.f40171a.setSelected(false);
-        }
-        if (motionEvent.getAction() == 1 && !this.d && !this.e) {
-            View view4 = this.f40175n;
-            if (view4 != null) {
-                view4.callOnClick();
-                this.d = true;
-                return true;
-            } else if (this.f40172b == null && (view2 = this.f40171a) != null) {
-                view2.callOnClick();
+            if (this.h) {
+                i3 = org.telegram.messenger.g0.L(4.0f);
+            } else {
+                i3 = 0;
             }
+            int i10 = i3;
+            org.telegram.ui.Cells.y Y = org.telegram.ui.ActionBar.k6.Y(org.telegram.messenger.g0.L(19.0f), themedColor & 436207615, i10, org.telegram.messenger.g0.L(3.0f), 0, org.telegram.messenger.g0.L(3.0f));
+            this.f48301e = Y;
+            setBackground(Y);
+            if (getImageView() != null) {
+                getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+            }
+            this.f48302f = themedColor;
+            if (getTextView() == null) {
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
-        return true;
+    }
+
+    @Override
+    public final void setEditButton(boolean z10) {
+        int i3;
+        super.setEditButton(z10);
+        if (this.h) {
+            TextView textView = getTextView();
+            if (z10) {
+                i3 = org.telegram.messenger.g0.L(116.0f);
+            } else {
+                i3 = Integer.MAX_VALUE;
+            }
+            textView.setMaxWidth(i3);
+        }
     }
 }

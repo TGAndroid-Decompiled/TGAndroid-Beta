@@ -1,112 +1,59 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.NativeByteBuffer;
-public final class me0 {
-    public float f28463a = 0.0f;
-    public float f28464b = 25.0f;
-    public float f28465c = 50.0f;
-    public float d = 75.0f;
-    public float e = 100.0f;
-    public float[] f28466f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.os.SystemClock;
+public final class me0 extends tj0 {
+    public final cg.b0 f36142f3;
+    public long f36143g3;
+    public final se0 f36144h3;
 
-    public final float[] a() {
-        float f7 = this.f28463a;
-        float f10 = this.e;
-        int i10 = 2;
-        int i11 = 5;
-        char c10 = '\f';
-        char c11 = '\r';
-        float[] fArr = {-0.001f, f7 / 100.0f, 0.0f, f7 / 100.0f, 0.25f, this.f28464b / 100.0f, 0.5f, this.f28465c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f10 / 100.0f, 1.001f, f10 / 100.0f};
-        int i12 = 100;
-        ArrayList arrayList = new ArrayList(100);
-        ArrayList arrayList2 = new ArrayList(100);
-        arrayList2.add(Float.valueOf(fArr[0]));
-        arrayList2.add(Float.valueOf(fArr[1]));
-        int i13 = 1;
-        while (i13 < i11) {
-            int i14 = (i13 - 1) * i10;
-            float f11 = fArr[i14];
-            float f12 = fArr[i14 + 1];
-            int i15 = i13 * 2;
-            float f13 = fArr[i15];
-            float f14 = fArr[i15 + 1];
-            int i16 = i13 + 1;
-            int i17 = i16 * 2;
-            int i18 = i10;
-            float f15 = fArr[i17];
-            char c12 = c10;
-            float f16 = fArr[i17 + 1];
-            int i19 = (i13 + 2) * 2;
-            float f17 = fArr[i19];
-            float f18 = fArr[i19 + 1];
-            char c13 = c11;
-            int i20 = 1;
-            while (i20 < i12) {
-                float f19 = i20 * 0.01f;
-                float f20 = f19 * f19;
-                float f21 = f20 * f19;
-                float z10 = ((((((f13 * 3.0f) - f11) - (f15 * 3.0f)) + f17) * f21) + ((((f15 * 4.0f) + ((f11 * 2.0f) - (f13 * 5.0f))) - f17) * f20) + c3.i0.z(f15, f11, f19, f13 * 2.0f)) * 0.5f;
-                float max = Math.max(0.0f, Math.min(1.0f, ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f21) + ((((4.0f * f16) + ((2.0f * f12) - (5.0f * f14))) - f18) * f20) + c3.i0.z(f16, f12, f19, f14 * 2.0f)) * 0.5f));
-                if (z10 > f11) {
-                    arrayList2.add(Float.valueOf(z10));
-                    arrayList2.add(Float.valueOf(max));
-                }
-                if ((i20 - 1) % 2 == 0) {
-                    arrayList.add(Float.valueOf(max));
-                }
-                i20++;
-                i12 = 100;
-            }
-            arrayList2.add(Float.valueOf(f15));
-            arrayList2.add(Float.valueOf(f16));
-            i13 = i16;
-            i10 = i18;
-            c10 = c12;
-            c11 = c13;
-            i11 = 5;
-            i12 = 100;
-        }
-        arrayList2.add(Float.valueOf(fArr[c10]));
-        arrayList2.add(Float.valueOf(fArr[c11]));
-        this.f28466f = new float[arrayList.size()];
-        int i21 = 0;
-        while (true) {
-            float[] fArr2 = this.f28466f;
-            if (i21 >= fArr2.length) {
-                break;
-            }
-            fArr2[i21] = ((Float) arrayList.get(i21)).floatValue();
-            i21++;
-        }
-        int size = arrayList2.size();
-        float[] fArr3 = new float[size];
-        for (int i22 = 0; i22 < size; i22++) {
-            fArr3[i22] = ((Float) arrayList2.get(i22)).floatValue();
-        }
-        return fArr3;
+    public me0(se0 se0Var, Context context) {
+        super(context, null);
+        this.f36144h3 = se0Var;
+        this.f36142f3 = new cg.b0(8);
     }
 
-    public final boolean b() {
-        if (Math.abs(this.f28463a - 0.0f) < 1.0E-5d && Math.abs(this.f28464b - 25.0f) < 1.0E-5d && Math.abs(this.f28465c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.e - 100.0f) < 1.0E-5d) {
+    @Override
+    public final boolean E0(float f10) {
+        if (f10 >= this.f36144h3.f38000w1 + org.telegram.messenger.g0.f22602m) {
             return true;
         }
         return false;
     }
 
-    public final void c(NativeByteBuffer nativeByteBuffer) {
-        this.f28463a = nativeByteBuffer.readFloat(true);
-        this.f28464b = nativeByteBuffer.readFloat(true);
-        this.f28465c = nativeByteBuffer.readFloat(true);
-        this.d = nativeByteBuffer.readFloat(true);
-        this.e = nativeByteBuffer.readFloat(true);
-    }
-
-    public final void d(NativeByteBuffer nativeByteBuffer) {
-        nativeByteBuffer.writeFloat(this.f28463a);
-        nativeByteBuffer.writeFloat(this.f28464b);
-        nativeByteBuffer.writeFloat(this.f28465c);
-        nativeByteBuffer.writeFloat(this.d);
-        nativeByteBuffer.writeFloat(this.e);
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f10;
+        se0 se0Var = this.f36144h3;
+        if (se0Var.D1) {
+            long elapsedRealtime = SystemClock.elapsedRealtime();
+            long abs = Math.abs(this.f36143g3 - elapsedRealtime);
+            if (abs > 17) {
+                abs = 16;
+            }
+            this.f36143g3 = elapsedRealtime;
+            se0Var.B1 += (((float) abs) * se0Var.C1) / 1800.0f;
+            while (true) {
+                f10 = se0Var.B1;
+                float f11 = se0Var.C1 * 2.0f;
+                if (f10 < f11) {
+                    break;
+                }
+                se0Var.B1 = f10 - f11;
+            }
+            se0Var.A1.setTranslate(f10, 0.0f);
+            se0Var.f38003z1.setLocalMatrix(se0Var.A1);
+            g1();
+            invalidate();
+        }
+        super.dispatchDraw(canvas);
+        int measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.f22603n;
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight2 = getMeasuredHeight();
+        cg.b0 b0Var = this.f36142f3;
+        b0Var.setBounds(0, measuredHeight, measuredWidth, measuredHeight2);
+        b0Var.b(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27971i5, this.f38460o2));
+        b0Var.draw(canvas);
     }
 }

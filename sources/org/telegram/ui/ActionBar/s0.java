@@ -1,247 +1,126 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.e20;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.g9;
-import org.telegram.ui.Components.gr;
-public class s0 extends FrameLayout implements fe.e, k6 {
-    public int D;
-    public int E;
-    public eq F;
-    public int G;
-    public int H;
-    public ColorFilter I;
-    public int J;
-    public final fe.b f20754a;
-    public eq f20755b;
-    public final g9 f20756c;
-    public final ImageView d;
-    public final TextView e;
-    public zf.e0 f20757f;
-    public final lg.s h;
-    public final p6 f20758n;
-    public boolean f20759r;
-    public boolean f20760s;
-    public int f20761w;
-    public int f20762x;
-    public eq f20763y;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ValueAnimator;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import org.telegram.ui.Cells.s7;
+import org.telegram.ui.Components.m9;
+import org.telegram.ui.Components.xe0;
+import org.telegram.ui.Components.xq;
+public final class s0 extends AnimatorListenerAdapter {
+    public final int f28520a;
+    public final float f28521b;
+    public final Object f28522c;
 
-    public s0(Context context, p6 p6Var) {
-        super(context);
-        this.f20754a = new fe.b(0, this, gr.h, 380L, false);
-        this.h = new lg.s(this, 16);
-        this.f20758n = p6Var;
-        g9 g9Var = new g9(context);
-        this.f20756c = g9Var;
-        addView(g9Var, w7.b6.c(32.0f, 32));
-        ImageView imageView = new ImageView(context);
-        this.d = imageView;
-        imageView.setImageResource(2131231270);
-        addView(imageView, w7.b6.d(24, 24.0f, 16, 8.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.e = textView;
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setTextSize(1, 14.0f);
-        addView(textView, w7.b6.d(-2, -2.0f, 16, 38.0f, 0.0f, 12.0f, 0.0f));
-        this.f20762x = org.telegram.messenger.i0.L(28.0f);
-        updateColors();
+    public s0(Object obj, float f10, int i3) {
+        this.f28520a = i3;
+        this.f28522c = obj;
+        this.f28521b = f10;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float width = getWidth();
-        float height = getHeight();
-        int i10 = this.f20762x;
-        canvas.drawRoundRect(0.0f, 0.0f, width, height, i10, i10, t6.n0(this.f20761w));
-        super.dispatchDraw(canvas);
-    }
-
-    public zf.e0 getFilter() {
-        return this.f20757f;
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        if (this.f20760s) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(135.0f), Integer.MIN_VALUE), i11);
-        } else {
-            super.onMeasure(i10, i11);
-        }
-    }
-
-    public void setData(zf.e0 e0Var) {
-        this.f20757f = e0Var;
-        this.f20760s = false;
-        String str = e0Var.f55495c;
-        if (str == null) {
-            str = dd.L0(e0Var.f55494b, null);
-        }
-        this.e.setText(str);
-        eq N = t6.N(org.telegram.messenger.i0.L(32.0f), e0Var.f55493a);
-        this.f20755b = N;
-        int i10 = t6.Ci;
-        p6 p6Var = this.f20758n;
-        t6.B1(N, t6.w0(i10, p6Var), false);
-        eq eqVar = this.f20755b;
-        int i11 = t6.Gi;
-        t6.B1(eqVar, t6.w0(i11, p6Var), true);
-        int i12 = e0Var.d;
-        float f7 = 16.0f;
-        g9 g9Var = this.f20756c;
-        if (i12 == 4) {
-            TLObject tLObject = e0Var.f55496f;
-            if (tLObject instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) tLObject;
-                if (e20.i(e20.f15506s0).f().f19943id == user.f19943id) {
-                    eq N2 = t6.N(org.telegram.messenger.i0.L(32.0f), 2131231000);
-                    int L = org.telegram.messenger.i0.L(16.0f);
-                    int L2 = org.telegram.messenger.i0.L(16.0f);
-                    N2.e = L;
-                    N2.f25904f = L2;
-                    t6.B1(N2, t6.w0(i10, p6Var), false);
-                    t6.B1(N2, t6.w0(i11, p6Var), true);
-                    g9Var.setImageDrawable(N2);
+    public final void onAnimationEnd(Animator animator) {
+        int i3 = this.f28520a;
+        float f10 = this.f28521b;
+        Object obj = this.f28522c;
+        switch (i3) {
+            case 0:
+                v0 v0Var = (v0) obj;
+                v0Var.U = null;
+                v0Var.f28712a = f10;
+                v0Var.invalidate();
+                return;
+            case 1:
+                i3 i3Var = (i3) obj;
+                i3Var.f27598i = f10;
+                j3 j3Var = i3Var.f27593b;
+                if (j3Var != null) {
+                    j3Var.invalidate();
                     return;
                 }
-                g9Var.getImageReceiver().J0(org.telegram.messenger.i0.L(16.0f));
-                g9Var.getImageReceiver().i0(user, this.f20755b, null);
-            } else if (tLObject instanceof TLRPC.Chat) {
-                TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-                this.f20760s = org.telegram.messenger.w3.Y(chat);
-                ImageReceiver imageReceiver = g9Var.getImageReceiver();
-                if (this.f20760s) {
-                    f7 = 10.0f;
+                return;
+            case 2:
+                org.telegram.ui.Cells.l6 l6Var = (org.telegram.ui.Cells.l6) obj;
+                l6Var.G = f10;
+                l6Var.invalidate();
+                return;
+            case 3:
+                ColorMatrix colorMatrix = new ColorMatrix();
+                s7 s7Var = (s7) obj;
+                s7Var.f30350w = f10;
+                colorMatrix.setSaturation(f10);
+                if (k6.I.q()) {
+                    org.telegram.messenger.g0.h(colorMatrix, (1.0f - s7Var.f30350w) * (-0.3f));
                 }
-                int L3 = org.telegram.messenger.i0.L(f7);
-                this.f20762x = L3;
-                imageReceiver.J0(L3);
-                g9Var.getImageReceiver().i0(chat, this.f20755b, null);
-            }
-        } else if (i12 == 7) {
-            eq N3 = t6.N(org.telegram.messenger.i0.L(32.0f), 2131230993);
-            int L4 = org.telegram.messenger.i0.L(16.0f);
-            int L5 = org.telegram.messenger.i0.L(16.0f);
-            N3.e = L4;
-            N3.f25904f = L5;
-            t6.B1(N3, t6.w0(i10, p6Var), false);
-            t6.B1(N3, t6.w0(i11, p6Var), true);
-            g9Var.setImageDrawable(N3);
-            this.f20763y = N3;
-            this.D = t6.w0(i10, p6Var);
-            this.E = t6.w0(i11, p6Var);
-        } else {
-            g9Var.setImageDrawable(this.f20755b);
-        }
-    }
-
-    public void setExpanded(boolean z10) {
-        TextView textView = this.e;
-        if (z10) {
-            textView.setVisibility(0);
-            return;
-        }
-        textView.setVisibility(8);
-        setSelectedForDelete(false);
-    }
-
-    public void setSelectedForDelete(boolean z10) {
-        fe.b bVar = this.f20754a;
-        if (bVar.f7022f != z10) {
-            lg.s sVar = this.h;
-            org.telegram.messenger.i0.r(sVar);
-            bVar.a(z10, true);
-            if (z10) {
-                org.telegram.messenger.i0.h3(sVar, 2000L);
-            }
-        }
-    }
-
-    @Override
-    public final void updateColors() {
-        int w02;
-        float f7 = this.f20754a.e;
-        boolean z10 = this.f20759r;
-        p6 p6Var = this.f20758n;
-        if (z10) {
-            w02 = t6.r1(0.075f, t6.w0(t6.G6, p6Var));
-        } else {
-            w02 = t6.w0(t6.Qi, p6Var);
-        }
-        int i10 = t6.Ci;
-        int w03 = t6.w0(i10, p6Var);
-        int w04 = t6.w0(t6.G6, p6Var);
-        int i11 = t6.Gi;
-        int w05 = t6.w0(i11, p6Var);
-        this.f20761w = i0.b.f(f7, w02, w03);
-        this.e.setTextColor(i0.b.f(f7, w04, w05));
-        ImageView imageView = this.d;
-        if (imageView.getColorFilter() != this.I || this.J != w05) {
-            imageView.setColorFilter(w05);
-            this.I = imageView.getColorFilter();
-            this.J = w05;
-        }
-        imageView.setAlpha(f7);
-        float f10 = 0.82f * f7;
-        imageView.setScaleX(f10);
-        imageView.setScaleY(f10);
-        int w06 = t6.w0(i10, p6Var);
-        int w07 = t6.w0(i11, p6Var);
-        eq eqVar = this.f20755b;
-        if (eqVar != null && (eqVar != this.F || w06 != this.G || w07 != this.H)) {
-            t6.B1(eqVar, w06, false);
-            t6.B1(this.f20755b, w07, true);
-            this.F = this.f20755b;
-            this.G = w06;
-            this.H = w07;
-        }
-        float f11 = 1.0f - f7;
-        g9 g9Var = this.f20756c;
-        g9Var.setAlpha(f11);
-        zf.e0 e0Var = this.f20757f;
-        if (e0Var != null && e0Var.d == 7) {
-            eq eqVar2 = this.f20763y;
-            if (eqVar2 != null) {
-                if (w06 != this.D || w07 != this.E) {
-                    t6.B1(eqVar2, w06, false);
-                    t6.B1(this.f20763y, w07, true);
-                    this.D = w06;
-                    this.E = w07;
-                    g9Var.invalidate();
+                s7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
+                return;
+            case 4:
+                m9 m9Var = (m9) obj;
+                m9Var.f36097g = f10;
+                m9Var.invalidateSelf();
+                return;
+            case 5:
+                xe0 xe0Var = (xe0) obj;
+                xe0Var.I.e();
+                xe0Var.f40329b = f10;
+                if (f10 <= 0.0f) {
+                    xe0Var.H = -1;
                 }
-            } else {
-                setData(e0Var);
-            }
+                xe0Var.c(true);
+                xe0Var.f40332f = false;
+                if (xe0Var.Q != null && Math.abs(f10 - 1.0f) < 0.01f) {
+                    xe0Var.Q.run();
+                    return;
+                }
+                return;
+            case 6:
+                org.telegram.ui.Wallet.n3 n3Var = (org.telegram.ui.Wallet.n3) obj;
+                org.telegram.ui.Wallet.f6 f6Var = n3Var.f42919r;
+                f6Var.getClass();
+                f6Var.setLayerType(0, null);
+                if (f10 == 0.0f) {
+                    n3Var.b();
+                    return;
+                } else if (!n3Var.S) {
+                    ValueAnimator valueAnimator = n3Var.Q;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
+                    }
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(n3Var.R, 1.0f);
+                    n3Var.Q = ofFloat;
+                    ofFloat.setDuration(320L);
+                    n3Var.Q.setInterpolator(xq.f40453g);
+                    n3Var.Q.addUpdateListener(new org.telegram.ui.Wallet.k3(n3Var, 1));
+                    n3Var.Q.start();
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                org.telegram.ui.Wallet.w5 w5Var = (org.telegram.ui.Wallet.w5) obj;
+                if (w5Var.f43334n0 == animator) {
+                    w5Var.f43334n0 = null;
+                    w5Var.M0(f10);
+                    w5Var.f43337q0.k(false);
+                    return;
+                }
+                return;
         }
-        invalidate();
     }
 
     @Override
-    public final void v(int i10, float f7, float f10, fe.f fVar) {
-        if (i10 == 0) {
-            updateColors();
-            invalidate();
+    public void onAnimationStart(Animator animator) {
+        switch (this.f28520a) {
+            case 5:
+                xe0 xe0Var = (xe0) this.f28522c;
+                xe0Var.f40332f = true;
+                xe0Var.f40330c = this.f28521b;
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-    }
-
-    @Override
-    public final void E(float f7, int i10) {
     }
 }

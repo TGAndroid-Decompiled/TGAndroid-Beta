@@ -1,20 +1,20 @@
 package d2;
-
-import e2.l0;
 public final class g {
-    public static final String f5689c;
-    public static final String d;
-    public final String f5690a;
-    public final int f5691b;
-
-    static {
-        String str = l0.f6165a;
-        f5689c = Integer.toString(0, 36);
-        d = Integer.toString(1, 36);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && g.class == obj.getClass()) {
+                g gVar = (g) obj;
+                if (Float.compare(0.0f, 0.0f) == 0) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
     }
 
-    public g(String str, int i10) {
-        this.f5690a = str;
-        this.f5691b = i10;
+    public final int hashCode() {
+        return Float.floatToIntBits(0.0f) + 16337;
     }
 }

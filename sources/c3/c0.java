@@ -1,35 +1,53 @@
 package c3;
-public final class c0 {
-    public static final c0 f3623c = new c0(0, 0);
-    public final long f3624a;
-    public final long f3625b;
 
-    public c0(long j10, long j11) {
-        this.f3624a = j10;
-        this.f3625b = j11;
+import android.hardware.display.DisplayManager;
+import android.os.Handler;
+import android.view.Choreographer;
+import android.view.Choreographer$VsyncCallback;
+import g2.n0;
+public final class c0 extends a0 implements Choreographer$VsyncCallback {
+    public final Handler f3987e;
+
+    public c0(Choreographer choreographer, DisplayManager displayManager) {
+        super(choreographer, displayManager);
+        this.f3987e = n0.q(null);
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final void a() {
+        this.f3984b.registerDisplayListener(this, n0.q(null));
+        this.f3983a.postVsyncCallback(this);
+    }
+
+    @Override
+    public final void b() {
+        this.f3984b.unregisterDisplayListener(this);
+        this.f3987e.removeCallbacksAndMessages(null);
+        this.f3983a.removeVsyncCallback(this);
+        this.f3985c = -9223372036854775807L;
+        this.d = -9223372036854775807L;
+    }
+
+    @Override
+    public final void onDisplayChanged(int i3) {
+        if (i3 == 0) {
+            this.f3983a.postVsyncCallback(this);
         }
-        if (obj != null && c0.class == obj.getClass()) {
-            c0 c0Var = (c0) obj;
-            if (this.f3624a == c0Var.f3624a && this.f3625b == c0Var.f3625b) {
-                return true;
+    }
+
+    public final void onVsync(Choreographer.FrameData frameData) {
+        this.f3985c = frameData.getFrameTimeNanos();
+        Choreographer.FrameTimeline[] frameTimelines = frameData.getFrameTimelines();
+        long j10 = -9223372036854775807L;
+        if (frameTimelines.length >= 2) {
+            long expectedPresentationTimeNanos = frameTimelines[1].getExpectedPresentationTimeNanos() - frameTimelines[0].getExpectedPresentationTimeNanos();
+            if (expectedPresentationTimeNanos != 0) {
+                j10 = expectedPresentationTimeNanos;
             }
+            this.d = j10;
+        } else {
+            this.d = -9223372036854775807L;
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return (((int) this.f3624a) * 31) + ((int) this.f3625b);
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("[timeUs=");
-        sb2.append(this.f3624a);
-        sb2.append(", position=");
-        return a1.g.q(sb2, this.f3625b, "]");
+        this.f3987e.postDelayed(new ai.s(this, 21), 500L);
     }
 }

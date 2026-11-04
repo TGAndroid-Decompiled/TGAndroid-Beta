@@ -1,17 +1,18 @@
 package z7;
-public final class l7 implements ja.d {
-    public static final l7 f55027a = new Object();
+public enum l7 implements z {
+    TYPE_UNKNOWN(0),
+    TYPE_THIN(1),
+    TYPE_THICK(2),
+    TYPE_GMV(3);
+    
+    public final int f59941a;
 
-    static {
-        sc.e.v(sc.e.n(w.class, new s(1)));
+    l7(int i3) {
+        this.f59941a = i3;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final int zza() {
+        return this.f59941a;
     }
 }

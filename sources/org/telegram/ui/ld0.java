@@ -1,62 +1,62 @@
 package org.telegram.ui;
-public final class ld0 implements Runnable {
-    public final int f39195a;
-    public final nd0 f39196b;
 
-    public ld0(nd0 nd0Var, int i10) {
-        this.f39195a = i10;
-        this.f39196b = nd0Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.ViewGroup;
+import org.telegram.messenger.Utilities;
+public final class ld0 extends AnimatorListenerAdapter {
+    public final int f47308a;
+    public final md0 f47309b;
+
+    public ld0(md0 md0Var, int i3) {
+        this.f47308a = i3;
+        this.f47309b = md0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f39195a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f47308a) {
             case 0:
-                nd0 nd0Var = this.f39196b;
-                org.telegram.ui.Components.fi0 fi0Var = nd0Var.e;
-                fi0Var.getAnimatedDrawable().N(0, false, false);
-                fi0Var.d();
-                tc0 tc0Var = nd0Var.f39859a;
-                if (tc0Var != null) {
-                    tc0Var.f44045f[0].requestFocus();
+                if (org.telegram.messenger.g0.C1()) {
+                    this.f47309b.h.requestFocus();
                     return;
                 }
                 return;
-            case 1:
-                nd0 nd0Var2 = this.f39196b;
-                int i10 = 0;
-                nd0Var2.f39867x = false;
-                while (true) {
-                    bs[] bsVarArr = nd0Var2.f39859a.f44045f;
-                    if (i10 < bsVarArr.length) {
-                        bsVarArr[i10].z(0.0f);
-                        i10++;
-                    } else {
-                        return;
-                    }
+            default:
+                md0 md0Var = this.f47309b;
+                if (md0Var.getParent() instanceof ViewGroup) {
+                    ((ViewGroup) md0Var.getParent()).removeView(md0Var);
                 }
-            case 2:
-                nd0 nd0Var3 = this.f39196b;
-                nd0Var3.postDelayed(new ld0(nd0Var3, 3), 150L);
-                ld0 ld0Var = nd0Var3.f39868y;
-                nd0Var3.removeCallbacks(ld0Var);
-                nd0Var3.postDelayed(ld0Var, 3000L);
-                nd0Var3.f39867x = true;
+                md0Var.f47655c.setVisibility(0);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f47308a) {
+            case 0:
+                md0 md0Var = this.f47309b;
+                md0Var.f47655c.setVisibility(8);
+                int measuredWidth = (int) (md0Var.f47654b.getMeasuredWidth() / 10.0f);
+                int measuredHeight = (int) (md0Var.f47654b.getMeasuredHeight() / 10.0f);
+                Bitmap createBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(createBitmap);
+                canvas.scale(0.1f, 0.1f);
+                canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27878d6, false));
+                md0Var.f47654b.draw(canvas);
+                Utilities.stackBlurBitmap(createBitmap, Math.max(8, Math.max(measuredWidth, measuredHeight) / 150));
+                md0Var.d.setBackground(new BitmapDrawable(md0Var.getContext().getResources(), createBitmap));
+                md0Var.d.setAlpha(0.0f);
+                md0Var.d.setVisibility(0);
+                md0Var.f47654b.addView(md0Var);
                 return;
             default:
-                tc0 tc0Var2 = this.f39196b.f39859a;
-                int i11 = 0;
-                tc0Var2.e = false;
-                tc0Var2.f44045f[0].requestFocus();
-                while (true) {
-                    bs[] bsVarArr2 = tc0Var2.f44045f;
-                    if (i11 < bsVarArr2.length) {
-                        bsVarArr2[i11].z(0.0f);
-                        i11++;
-                    } else {
-                        return;
-                    }
-                }
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

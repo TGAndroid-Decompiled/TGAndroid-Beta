@@ -1,113 +1,188 @@
 package f2;
 
-import b2.r0;
-import b2.t0;
-import b2.x;
-import c3.i0;
-import e2.l0;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.TextUtils;
+import b8.zb;
+import g2.n0;
+import j$.util.Objects;
 import java.util.ArrayList;
-import java.util.Arrays;
-import v7.c8;
-import v7.t6;
-public final class b implements t0 {
-    public final String f6729a;
-    public final byte[] f6730b;
-    public final int f6731c;
-    public final int d;
+public final class b {
+    public static final String A;
+    public static final String B;
+    public static final String C;
+    public static final String D;
+    public static final String E;
+    public static final String F;
+    public static final String G;
+    public static final String H;
+    public static final String I;
+    public static final String J;
+    public static final String K;
+    public static final String L;
+    public static final String f11354s;
+    public static final String f11355t;
+    public static final String f11356u;
+    public static final String v;
+    public static final String f11357w;
+    public static final String f11358x;
+    public static final String f11359y;
+    public static final String f11360z;
+    public final CharSequence f11361a;
+    public final Layout.Alignment f11362b;
+    public final Layout.Alignment f11363c;
+    public final Bitmap d;
+    public final float f11364e;
+    public final int f11365f;
+    public final int f11366g;
+    public final float h;
+    public final int f11367i;
+    public final float f11368j;
+    public final float f11369k;
+    public final boolean f11370l;
+    public final int f11371m;
+    public final int f11372n;
+    public final float f11373o;
+    public final int f11374p;
+    public final float f11375q;
+    public final int f11376r;
 
-    public b(String str, byte[] bArr, int i10, int i11) {
-        byte b10;
-        str.getClass();
-        char c10 = 65535;
-        switch (str.hashCode()) {
-            case -1949883051:
-                if (str.equals("com.android.capture.fps")) {
-                    c10 = 0;
-                    break;
-                }
-                break;
-            case -269399509:
-                if (str.equals("auxiliary.tracks.interleaved")) {
-                    c10 = 1;
-                    break;
-                }
-                break;
-            case 1011693540:
-                if (str.equals("auxiliary.tracks.length")) {
-                    c10 = 2;
-                    break;
-                }
-                break;
-            case 1098277265:
-                if (str.equals("auxiliary.tracks.offset")) {
-                    c10 = 3;
-                    break;
-                }
-                break;
-            case 2002123038:
-                if (str.equals("auxiliary.tracks.map")) {
-                    c10 = 4;
-                    break;
-                }
-                break;
-        }
-        switch (c10) {
-            case 0:
-                if (i11 == 23 && bArr.length == 4) {
-                    r2 = true;
-                }
-                t6.f(r2);
-                break;
-            case 1:
-                if (i11 == 75 && bArr.length == 1 && ((b10 = bArr[0]) == 0 || b10 == 1)) {
-                    r2 = true;
-                }
-                t6.f(r2);
-                break;
-            case 2:
-            case 3:
-                if (i11 == 78 && bArr.length == 8) {
-                    r2 = true;
-                }
-                t6.f(r2);
-                break;
-            case 4:
-                t6.f(i11 == 0);
-                break;
-        }
-        this.f6729a = str;
-        this.f6730b = bArr;
-        this.f6731c = i10;
-        this.d = i11;
+    static {
+        new b("", null, null, null, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, -3.4028235E38f, false, -16777216, Integer.MIN_VALUE, 0.0f, 0);
+        String str = n0.f11873a;
+        f11354s = Integer.toString(0, 36);
+        f11355t = Integer.toString(17, 36);
+        f11356u = Integer.toString(1, 36);
+        v = Integer.toString(2, 36);
+        f11357w = Integer.toString(3, 36);
+        f11358x = Integer.toString(18, 36);
+        f11359y = Integer.toString(4, 36);
+        f11360z = Integer.toString(5, 36);
+        A = Integer.toString(6, 36);
+        B = Integer.toString(7, 36);
+        C = Integer.toString(8, 36);
+        D = Integer.toString(9, 36);
+        E = Integer.toString(10, 36);
+        F = Integer.toString(11, 36);
+        G = Integer.toString(12, 36);
+        H = Integer.toString(13, 36);
+        I = Integer.toString(14, 36);
+        J = Integer.toString(15, 36);
+        K = Integer.toString(16, 36);
+        L = Integer.toString(19, 36);
     }
 
-    @Override
-    public final x a() {
-        return null;
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
-    }
-
-    public final ArrayList d() {
-        t6.o("Metadata is not an auxiliary tracks map", this.f6729a.equals("auxiliary.tracks.map"));
-        byte[] bArr = this.f6730b;
-        byte b10 = bArr[1];
-        ArrayList arrayList = new ArrayList();
-        for (int i10 = 0; i10 < b10; i10 = i0.j(bArr[i10 + 2], i10, 1, arrayList)) {
+    public b(CharSequence charSequence, Layout.Alignment alignment, Layout.Alignment alignment2, Bitmap bitmap, float f10, int i3, int i10, float f11, int i11, int i12, float f12, float f13, float f14, boolean z10, int i13, int i14, float f15, int i15) {
+        boolean z11;
+        if (charSequence == null) {
+            bitmap.getClass();
+        } else {
+            if (bitmap == null) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            zb.f(z11);
         }
-        return arrayList;
+        if (charSequence instanceof Spanned) {
+            this.f11361a = SpannedString.valueOf(charSequence);
+        } else if (charSequence != null) {
+            this.f11361a = charSequence.toString();
+        } else {
+            this.f11361a = null;
+        }
+        this.f11362b = alignment;
+        this.f11363c = alignment2;
+        this.d = bitmap;
+        this.f11364e = f10;
+        this.f11365f = i3;
+        this.f11366g = i10;
+        this.h = f11;
+        this.f11367i = i11;
+        this.f11368j = f13;
+        this.f11369k = f14;
+        this.f11370l = z10;
+        this.f11371m = i13;
+        this.f11372n = i12;
+        this.f11373o = f12;
+        this.f11374p = i14;
+        this.f11375q = f15;
+        this.f11376r = i15;
+    }
+
+    public final Bundle a() {
+        f[] fVarArr;
+        g[] gVarArr;
+        h[] hVarArr;
+        Bundle bundle = new Bundle();
+        CharSequence charSequence = this.f11361a;
+        if (charSequence != null) {
+            bundle.putCharSequence(f11354s, charSequence);
+            if (charSequence instanceof Spanned) {
+                Spanned spanned = (Spanned) charSequence;
+                String str = d.f11382a;
+                ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
+                for (f fVar : (f[]) spanned.getSpans(0, spanned.length(), f.class)) {
+                    fVar.getClass();
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString(f.f11386c, fVar.f11387a);
+                    bundle2.putInt(f.d, fVar.f11388b);
+                    arrayList.add(d.a(spanned, fVar, 1, bundle2));
+                }
+                for (g gVar : (g[]) spanned.getSpans(0, spanned.length(), g.class)) {
+                    gVar.getClass();
+                    Bundle bundle3 = new Bundle();
+                    bundle3.putInt(g.d, gVar.f11391a);
+                    bundle3.putInt(g.f11389e, gVar.f11392b);
+                    bundle3.putInt(g.f11390f, gVar.f11393c);
+                    arrayList.add(d.a(spanned, gVar, 2, bundle3));
+                }
+                for (e eVar : (e[]) spanned.getSpans(0, spanned.length(), e.class)) {
+                    arrayList.add(d.a(spanned, eVar, 3, null));
+                }
+                for (h hVar : (h[]) spanned.getSpans(0, spanned.length(), h.class)) {
+                    hVar.getClass();
+                    Bundle bundle4 = new Bundle();
+                    bundle4.putString(h.f11394b, hVar.f11395a);
+                    arrayList.add(d.a(spanned, hVar, 4, bundle4));
+                }
+                if (!arrayList.isEmpty()) {
+                    bundle.putParcelableArrayList(f11355t, arrayList);
+                }
+            }
+        }
+        bundle.putSerializable(f11356u, this.f11362b);
+        bundle.putSerializable(v, this.f11363c);
+        bundle.putFloat(f11359y, this.f11364e);
+        bundle.putInt(f11360z, this.f11365f);
+        bundle.putInt(A, this.f11366g);
+        bundle.putFloat(B, this.h);
+        bundle.putInt(C, this.f11367i);
+        bundle.putInt(D, this.f11372n);
+        bundle.putFloat(E, this.f11373o);
+        bundle.putFloat(F, this.f11368j);
+        bundle.putFloat(G, this.f11369k);
+        bundle.putBoolean(I, this.f11370l);
+        bundle.putInt(H, this.f11371m);
+        bundle.putInt(J, this.f11374p);
+        bundle.putFloat(K, this.f11375q);
+        bundle.putInt(L, this.f11376r);
+        return bundle;
     }
 
     public final boolean equals(Object obj) {
+        Bitmap bitmap;
         if (this == obj) {
             return true;
         }
         if (obj != null && b.class == obj.getClass()) {
             b bVar = (b) obj;
-            if (this.f6729a.equals(bVar.f6729a) && Arrays.equals(this.f6730b, bVar.f6730b) && this.f6731c == bVar.f6731c && this.d == bVar.d) {
+            Bitmap bitmap2 = bVar.d;
+            if (TextUtils.equals(this.f11361a, bVar.f11361a) && this.f11362b == bVar.f11362b && this.f11363c == bVar.f11363c && ((bitmap = this.d) != null ? !(bitmap2 == null || !bitmap.sameAs(bitmap2)) : bitmap2 == null) && this.f11364e == bVar.f11364e && this.f11365f == bVar.f11365f && this.f11366g == bVar.f11366g && this.h == bVar.h && this.f11367i == bVar.f11367i && this.f11368j == bVar.f11368j && this.f11369k == bVar.f11369k && this.f11370l == bVar.f11370l && this.f11371m == bVar.f11371m && this.f11372n == bVar.f11372n && this.f11373o == bVar.f11373o && this.f11374p == bVar.f11374p && this.f11375q == bVar.f11375q && this.f11376r == bVar.f11376r) {
                 return true;
             }
         }
@@ -115,62 +190,6 @@ public final class b implements t0 {
     }
 
     public final int hashCode() {
-        return ((((Arrays.hashCode(this.f6730b) + a1.g.f(527, 31, this.f6729a)) * 31) + this.f6731c) * 31) + this.d;
-    }
-
-    public final String toString() {
-        String sb2;
-        boolean z10;
-        boolean z11;
-        String str = this.f6729a;
-        byte[] bArr = this.f6730b;
-        int i10 = this.d;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 23) {
-                    if (i10 != 67) {
-                        if (i10 != 75) {
-                            if (i10 == 78) {
-                                sb2 = String.valueOf(new e2.x(bArr).G());
-                            }
-                            sb2 = l0.f0(bArr);
-                        } else {
-                            sb2 = String.valueOf(bArr[0] & 255);
-                        }
-                    } else {
-                        if (bArr.length >= 4) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        t6.b(bArr.length, 4, "array too small: %s < %s", z11);
-                        sb2 = String.valueOf(c8.c(bArr[0], bArr[1], bArr[2], bArr[3]));
-                    }
-                } else {
-                    if (bArr.length >= 4) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    t6.b(bArr.length, 4, "array too small: %s < %s", z10);
-                    sb2 = String.valueOf(Float.intBitsToFloat(c8.c(bArr[0], bArr[1], bArr[2], bArr[3])));
-                }
-            } else {
-                sb2 = l0.r(bArr);
-            }
-        } else {
-            if (str.equals("auxiliary.tracks.map")) {
-                ArrayList d = d();
-                StringBuilder t10 = a1.g.t("track types = ");
-                new com.google.android.gms.internal.clearcut.e(String.valueOf(','), 1).a(t10, d.iterator());
-                sb2 = t10.toString();
-            }
-            sb2 = l0.f0(bArr);
-        }
-        return i0.n("mdta: key=", str, ", value=", sb2);
-    }
-
-    @Override
-    public final void b(r0 r0Var) {
+        return Objects.hash(this.f11361a, this.f11362b, this.f11363c, this.d, Float.valueOf(this.f11364e), Integer.valueOf(this.f11365f), Integer.valueOf(this.f11366g), Float.valueOf(this.h), Integer.valueOf(this.f11367i), Float.valueOf(this.f11368j), Float.valueOf(this.f11369k), Boolean.valueOf(this.f11370l), Integer.valueOf(this.f11371m), Integer.valueOf(this.f11372n), Float.valueOf(this.f11373o), Integer.valueOf(this.f11374p), Float.valueOf(this.f11375q), Integer.valueOf(this.f11376r));
     }
 }

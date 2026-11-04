@@ -1,22 +1,51 @@
 package org.telegram.ui;
+public final class ie implements Runnable {
+    public final int f46253a;
+    public final wm f46254b;
+    public final org.telegram.ui.Components.nk0 f46255c;
+    public final String d;
 
-import org.telegram.tgnet.tl.TL_stars;
-public final class ie {
-    public String f38010b;
-    public CharSequence f38011c;
-    public long d;
-    public long e;
-    public String f38012f;
-    public boolean f38013g;
-    public String h;
-    public long f38015j;
-    public boolean f38009a = true;
-    public TL_stars.StarsAmount f38014i = TL_stars.StarsAmount.ofStars(0);
+    public ie(wm wmVar, org.telegram.ui.Components.nk0 nk0Var, String str, int i3) {
+        this.f46253a = i3;
+        this.f46254b = wmVar;
+        this.f46255c = nk0Var;
+        this.d = str;
+    }
 
-    public static ie a(String str, String str2) {
-        ie ieVar = new ie();
-        ieVar.f38010b = str;
-        ieVar.f38011c = str2;
-        return ieVar;
+    @Override
+    public final void run() {
+        org.telegram.ui.Components.fc a02;
+        int i3;
+        int i10 = this.f46253a;
+        String str = this.d;
+        org.telegram.ui.Components.nk0 nk0Var = this.f46255c;
+        wm wmVar = this.f46254b;
+        switch (i10) {
+            case 0:
+                nk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                a02 = org.telegram.ui.Components.fc.a0(wmVar);
+                i3 = 2131746343;
+                break;
+            case 1:
+                nk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                a02 = org.telegram.ui.Components.fc.a0(wmVar);
+                i3 = 2131743211;
+                break;
+            case 2:
+                nk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                a02 = org.telegram.ui.Components.fc.a0(wmVar);
+                i3 = 2131752553;
+                break;
+            default:
+                nk0Var.dismiss();
+                org.telegram.messenger.g0.g("@" + str);
+                a02 = org.telegram.ui.Components.fc.a0(wmVar);
+                i3 = 2131743675;
+                break;
+        }
+        org.telegram.messenger.camera.q.r(null, i3, a02);
     }
 }

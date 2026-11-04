@@ -1,19 +1,39 @@
 package org.telegram.messenger;
+public final class fz {
+    public char f22575a;
+    public String f22576b;
+    public int f22577c;
+    public int d;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class fz implements RequestDelegate {
-    public final TLRPC.TL_messages_initHistoryImport f15828a;
-    public final iz f15829b;
-
-    public fz(iz izVar, TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport) {
-        this.f15829b = izVar;
-        this.f15828a = tL_messages_initHistoryImport;
+    public static void c(char c2) {
+        throw new RuntimeException("Unexpected char '" + c2 + "'.");
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        i0.g3(new vl(this, tLObject, this.f15828a, tL_error, 25));
+    public final float a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fz.a():float");
+    }
+
+    public final char b() {
+        int i3 = this.f22577c;
+        int i10 = this.d;
+        if (i3 < i10) {
+            this.f22577c = i3 + 1;
+        }
+        int i11 = this.f22577c;
+        if (i11 == i10) {
+            return (char) 0;
+        }
+        return this.f22576b.charAt(i11);
+    }
+
+    public final void d() {
+        while (true) {
+            int i3 = this.f22577c;
+            if (i3 < this.d && Character.isWhitespace(this.f22576b.charAt(i3))) {
+                this.f22575a = b();
+            } else {
+                return;
+            }
+        }
     }
 }

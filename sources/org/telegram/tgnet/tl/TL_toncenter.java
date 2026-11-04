@@ -13,14 +13,14 @@ public class TL_toncenter {
         public static final int constructor = -1399980519;
         public TLRPC.TL_dataJSON response;
 
-        public static apiResponse TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static apiResponse TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             apiResponse apiresponse;
-            if (-1399980519 != i10) {
+            if (-1399980519 != i3) {
                 apiresponse = null;
             } else {
                 apiresponse = new apiResponse();
             }
-            return (apiResponse) TLObject.TLdeserialize(apiResponse.class, apiresponse, inputSerializedData, i10, z10);
+            return (apiResponse) TLObject.TLdeserialize(apiResponse.class, apiresponse, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -144,8 +144,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public onrampSession deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return onrampSession.TLdeserialize(inputSerializedData, i10, z10);
+        public onrampSession deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return onrampSession.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -175,8 +175,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public onrampAvailability deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return onrampAvailability.TLdeserialize(inputSerializedData, i10, z10);
+        public onrampAvailability deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return onrampAvailability.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -193,8 +193,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public onrampBaseCurrencies deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return onrampBaseCurrencies.TLdeserialize(inputSerializedData, i10, z10);
+        public onrampBaseCurrencies deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return onrampBaseCurrencies.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -226,8 +226,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public onrampLimits deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return onrampLimits.TLdeserialize(inputSerializedData, i10, z10);
+        public onrampLimits deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return onrampLimits.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -253,8 +253,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public Vector<onrampProviderInfo> deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i10, z10, new d(14));
+        public Vector<onrampProviderInfo> deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return Vector.TLDeserialize(inputSerializedData, i3, z10, new d(14));
         }
     }
 
@@ -308,8 +308,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public onrampQuote deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return onrampQuote.TLdeserialize(inputSerializedData, i10, z10);
+        public onrampQuote deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return onrampQuote.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -322,8 +322,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public streamingUrl deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return streamingUrl.TLdeserialize(inputSerializedData, i10, z10);
+        public streamingUrl deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return streamingUrl.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -336,14 +336,14 @@ public class TL_toncenter {
         public ArrayList<onrampMethodAvailability> methods = new ArrayList<>();
         public String state;
 
-        public static onrampAvailability TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static onrampAvailability TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             onrampAvailability onrampavailability;
-            if (-104314509 != i10) {
+            if (-104314509 != i3) {
                 onrampavailability = null;
             } else {
                 onrampavailability = new onrampAvailability();
             }
-            return (onrampAvailability) TLObject.TLdeserialize(onrampAvailability.class, onrampavailability, inputSerializedData, i10, z10);
+            return (onrampAvailability) TLObject.TLdeserialize(onrampAvailability.class, onrampavailability, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -385,9 +385,9 @@ public class TL_toncenter {
     public static class onrampBaseCurrencies extends TLObject {
         public ArrayList<String> currencies = new ArrayList<>();
 
-        public static onrampBaseCurrencies TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            if (i10 != 481674261) {
-                return (onrampBaseCurrencies) TLObject.TLdeserialize(onrampBaseCurrencies.class, null, inputSerializedData, i10, z10);
+        public static onrampBaseCurrencies TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            if (i3 != 481674261) {
+                return (onrampBaseCurrencies) TLObject.TLdeserialize(onrampBaseCurrencies.class, null, inputSerializedData, i3, z10);
             }
             onrampBaseCurrencies onrampbasecurrencies = new onrampBaseCurrencies();
             onrampbasecurrencies.readParams(inputSerializedData, z10);
@@ -414,14 +414,14 @@ public class TL_toncenter {
         public String crypto_min_amount;
         public String payment_method;
 
-        public static onrampLimits TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static onrampLimits TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             onrampLimits onramplimits;
-            if (2078435198 != i10) {
+            if (2078435198 != i3) {
                 onramplimits = null;
             } else {
                 onramplimits = new onrampLimits();
             }
-            return (onrampLimits) TLObject.TLdeserialize(onrampLimits.class, onramplimits, inputSerializedData, i10, z10);
+            return (onrampLimits) TLObject.TLdeserialize(onrampLimits.class, onramplimits, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -452,14 +452,14 @@ public class TL_toncenter {
         public int flags;
         public String payment_method;
 
-        public static onrampMethodAvailability TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static onrampMethodAvailability TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             onrampMethodAvailability onrampmethodavailability;
-            if (-1631009112 != i10) {
+            if (-1631009112 != i3) {
                 onrampmethodavailability = null;
             } else {
                 onrampmethodavailability = new onrampMethodAvailability();
             }
-            return (onrampMethodAvailability) TLObject.TLdeserialize(onrampMethodAvailability.class, onrampmethodavailability, inputSerializedData, i10, z10);
+            return (onrampMethodAvailability) TLObject.TLdeserialize(onrampMethodAvailability.class, onrampmethodavailability, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -484,20 +484,20 @@ public class TL_toncenter {
         public static final int constructor = 230847874;
         public ArrayList<String> crypto_currencies = new ArrayList<>();
         public int flags;
-        public String f20047id;
+        public String f27255id;
         public String name;
         public boolean supports_base_currencies;
         public boolean supports_limits;
         public boolean supports_quote;
 
-        public static onrampProviderInfo TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static onrampProviderInfo TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             onrampProviderInfo onrampproviderinfo;
-            if (230847874 != i10) {
+            if (230847874 != i3) {
                 onrampproviderinfo = null;
             } else {
                 onrampproviderinfo = new onrampProviderInfo();
             }
-            return (onrampProviderInfo) TLObject.TLdeserialize(onrampProviderInfo.class, onrampproviderinfo, inputSerializedData, i10, z10);
+            return (onrampProviderInfo) TLObject.TLdeserialize(onrampProviderInfo.class, onrampproviderinfo, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -507,7 +507,7 @@ public class TL_toncenter {
             this.supports_base_currencies = TLObject.hasFlag(readInt32, 1);
             this.supports_limits = TLObject.hasFlag(this.flags, 2);
             this.supports_quote = TLObject.hasFlag(this.flags, 4);
-            this.f20047id = inputSerializedData.readString(z10);
+            this.f27255id = inputSerializedData.readString(z10);
             this.name = inputSerializedData.readString(z10);
             this.crypto_currencies = Vector.deserializeString(inputSerializedData, z10);
         }
@@ -522,7 +522,7 @@ public class TL_toncenter {
             int flag3 = TLObject.setFlag(flag2, 4, this.supports_quote);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeString(this.f20047id);
+            outputSerializedData.writeString(this.f27255id);
             outputSerializedData.writeString(this.name);
             Vector.serializeString(outputSerializedData, this.crypto_currencies);
         }
@@ -542,14 +542,14 @@ public class TL_toncenter {
         public String payment_method;
         public String total_amount;
 
-        public static onrampQuote TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static onrampQuote TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             onrampQuote onrampquote;
-            if (2055213545 != i10) {
+            if (2055213545 != i3) {
                 onrampquote = null;
             } else {
                 onrampquote = new onrampQuote();
             }
-            return (onrampQuote) TLObject.TLdeserialize(onrampQuote.class, onrampquote, inputSerializedData, i10, z10);
+            return (onrampQuote) TLObject.TLdeserialize(onrampQuote.class, onrampquote, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -591,14 +591,14 @@ public class TL_toncenter {
         public String session_id;
         public String url;
 
-        public static onrampSession TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static onrampSession TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             onrampSession onrampsession;
-            if (-773575132 != i10) {
+            if (-773575132 != i3) {
                 onrampsession = null;
             } else {
                 onrampsession = new onrampSession();
             }
-            return (onrampSession) TLObject.TLdeserialize(onrampSession.class, onrampsession, inputSerializedData, i10, z10);
+            return (onrampSession) TLObject.TLdeserialize(onrampSession.class, onrampsession, inputSerializedData, i3, z10);
         }
 
         @Override
@@ -655,8 +655,8 @@ public class TL_toncenter {
         }
 
         @Override
-        public apiResponse deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return apiResponse.TLdeserialize(inputSerializedData, i10, z10);
+        public apiResponse deserializeResponseT(InputSerializedData inputSerializedData, int i3, boolean z10) {
+            return apiResponse.TLdeserialize(inputSerializedData, i3, z10);
         }
     }
 
@@ -665,14 +665,14 @@ public class TL_toncenter {
         public int expires;
         public String url;
 
-        public static streamingUrl TLdeserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        public static streamingUrl TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
             streamingUrl streamingurl;
-            if (428373505 != i10) {
+            if (428373505 != i3) {
                 streamingurl = null;
             } else {
                 streamingurl = new streamingUrl();
             }
-            return (streamingUrl) TLObject.TLdeserialize(streamingUrl.class, streamingurl, inputSerializedData, i10, z10);
+            return (streamingUrl) TLObject.TLdeserialize(streamingUrl.class, streamingurl, inputSerializedData, i3, z10);
         }
 
         @Override

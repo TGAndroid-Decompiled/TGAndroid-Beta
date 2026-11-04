@@ -1,6 +1,5 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-public interface si {
-    void c(String str, ArrayList arrayList);
+public final class si {
+    public int[] f25351a;
+    public float[] f25352b;
 }

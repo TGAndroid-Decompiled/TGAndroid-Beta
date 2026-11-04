@@ -1,1000 +1,530 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import android.text.style.ClickableSpan;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewConfiguration;
+import android.app.Activity;
+import android.util.SparseArray;
+import android.util.SparseIntArray;
+import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.hv0;
-import org.telegram.ui.Components.iy0;
-import org.telegram.ui.Components.k80;
-import org.telegram.ui.Components.q80;
-import org.telegram.ui.Components.t80;
-import org.telegram.ui.wh0;
-import org.telegram.ui.xh0;
-public final class vv implements org.telegram.ui.Cells.u9, iy0 {
-    public static Paint T;
-    public final AtomicReference D;
-    public org.telegram.ui.Components.k5 E;
-    public final k80 F;
-    public k80 G;
-    public t80 H;
-    public ji.a I;
-    public ns J;
-    public boolean K;
-    public nh.i L;
-    public CharacterStyle M;
-    public int N;
-    public int O;
-    public org.telegram.ui.Components.o5 P;
-    public uu Q;
-    public final RectF R;
-    public View S;
-    public final wv f18903a;
-    public final StaticLayout f18904b;
-    public int f18905c;
-    public int d;
-    public int e;
-    public final int f18906f;
-    public final int h;
-    public final int f18907n;
-    public boolean f18908r;
-    public final int f18909s;
-    public boolean f18910w;
-    public final ArrayList f18911x;
-    public final Stack f18912y;
+import java.util.Collections;
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLRPC;
+public final class vv extends c1 {
+    public static volatile vv[] f26112r = new vv[4];
+    public final ArrayList f26113a;
+    public final SparseArray f26114b;
+    public final SparseArray f26115c;
+    public final SparseArray d;
+    public final SparseArray f26116e;
+    public final ArrayList f26117f;
+    public final ArrayList h;
+    public boolean f26118n;
 
-    public vv(wv wvVar, CharSequence charSequence, int i10) {
-        this(wvVar, charSequence, i10, Layout.Alignment.ALIGN_NORMAL);
+    public vv(int i3) {
+        super(i3);
+        this.f26113a = new ArrayList();
+        this.f26114b = new SparseArray();
+        this.f26115c = new SparseArray();
+        this.d = new SparseArray();
+        this.f26116e = new SparseArray();
+        this.f26117f = new ArrayList();
+        this.h = new ArrayList();
+        this.f26118n = false;
     }
 
-    public static a3.l s(Spanned spanned, int i10, int i11, TextPaint textPaint) {
-        int[] iArr;
-        uu[] uuVarArr;
-        uu uuVar;
-        int i12;
-        int i13;
-        ?? obj = new Object();
-        int i14 = i11 - i10;
-        if (i14 > 0) {
-            org.telegram.ui.Components.o5[] o5VarArr = (org.telegram.ui.Components.o5[]) spanned.getSpans(i10, i11, org.telegram.ui.Components.o5.class);
-            h6[] h6VarArr = (h6[]) spanned.getSpans(i10, i11, h6.class);
-            if (o5VarArr.length == 0 && h6VarArr.length == 0) {
-                iArr = null;
-            } else {
-                iArr = new int[i14];
-            }
-            int length = o5VarArr.length;
-            int i15 = 0;
-            while (i15 < length) {
-                int i16 = i15;
-                org.telegram.ui.Components.o5 o5Var = o5VarArr[i16];
-                int spanStart = spanned.getSpanStart(o5Var);
-                int min = Math.min(i11, spanned.getSpanEnd(o5Var));
-                if (spanStart >= i10 && spanStart < i11 && min > spanStart) {
-                    int i17 = spanStart - i10;
-                    iArr[i17] = Math.max(iArr[i17], min);
-                    i13 = i16;
-                    obj.f141c = Math.max(obj.f141c, o5Var.getSize(textPaint, spanned, spanStart, min, null) + 1);
-                } else {
-                    i13 = i16;
-                }
-                i15 = i13 + 1;
-            }
-            for (h6 h6Var : h6VarArr) {
-                int spanStart2 = spanned.getSpanStart(h6Var);
-                int min2 = Math.min(i11, spanned.getSpanEnd(h6Var));
-                if (spanStart2 >= i10 && spanStart2 < i11 && min2 > spanStart2) {
-                    int i18 = spanStart2 - i10;
-                    iArr[i18] = Math.max(iArr[i18], min2);
-                    obj.f141c = Math.max(obj.f141c, h6Var.getSize(textPaint, spanned, spanStart2, min2, null));
+    public static boolean h(org.telegram.tgnet.NativeByteBuffer r23, byte[] r24, byte[] r25, int r26, boolean r27, boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vv.h(org.telegram.tgnet.NativeByteBuffer, byte[], byte[], int, boolean, boolean):boolean");
+    }
+
+    public static vv i(int i3) {
+        vv vvVar;
+        vv vvVar2 = f26112r[i3];
+        if (vvVar2 == null) {
+            synchronized (vv.class) {
+                try {
+                    vvVar = f26112r[i3];
+                    if (vvVar == null) {
+                        vv[] vvVarArr = f26112r;
+                        vv vvVar3 = new vv(i3);
+                        vvVarArr[i3] = vvVar3;
+                        vvVar = vvVar3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
                 }
             }
-            uu[] uuVarArr2 = (uu[]) spanned.getSpans(i10, i11, uu.class);
-            if (uuVarArr2.length > 0) {
-                uuVarArr = null;
-                for (uu uuVar2 : uuVarArr2) {
-                    int spanStart3 = spanned.getSpanStart(uuVar2);
-                    if (uuVar2.f18476a.f18144a.f18909s > 0 && spanStart3 >= i10 && spanStart3 < i11) {
-                        if (uuVarArr == null) {
-                            uuVarArr = new uu[i14];
-                        }
-                        uuVarArr[spanStart3 - i10] = uuVar2;
-                    }
-                }
-            } else {
-                uuVarArr = null;
+            return vvVar;
+        }
+        return vvVar2;
+    }
+
+    public final void A(Activity activity, TLRPC.User user) {
+        if (user != null && activity != null) {
+            if (getMessagesController().v2()) {
+                org.telegram.ui.b.b(this.currentAccount);
+                return;
             }
-            if (iArr != null || uuVarArr != null) {
-                int i19 = i10;
-                while (i19 < i11) {
-                    int i20 = i19 - i10;
-                    if (uuVarArr == null) {
-                        uuVar = null;
-                    } else {
-                        uuVar = uuVarArr[i20];
-                    }
-                    if (uuVar != null) {
-                        su suVar = uuVar.f18476a;
-                        vv vvVar = suVar.f18144a;
-                        vv vvVar2 = suVar.f18144a;
-                        if (vvVar.f18904b.getText() instanceof Spanned) {
-                            Spanned spanned2 = (Spanned) vvVar2.f18904b.getText();
-                            a3.l s10 = s(spanned2, 0, spanned2.length(), vvVar2.f18904b.getPaint());
-                            obj.f139a += s10.f139a;
-                            obj.f140b += Math.max(1, s10.f140b);
-                            obj.f141c = Math.max(obj.f141c, s10.f141c);
-                            i19 = Math.min(i11, spanned.getSpanEnd(uuVar));
-                        }
-                    }
-                    if (iArr == null) {
-                        i12 = 0;
-                    } else {
-                        i12 = iArr[i20];
-                    }
-                    if (i12 > i19) {
-                        obj.f139a++;
-                        obj.f140b++;
-                        i19 = i12;
-                    } else {
-                        int codePointAt = Character.codePointAt(spanned, i19);
-                        if (!Character.isWhitespace(codePointAt)) {
-                            obj.f140b++;
-                        }
-                        i19 += Character.charCount(codePointAt);
-                    }
-                }
+            this.f26118n = true;
+            org.telegram.ui.ActionBar.s1 s1Var = new org.telegram.ui.ActionBar.s1(3, activity, null);
+            TLRPC.TL_messages_getDhConfig tL_messages_getDhConfig = new TLRPC.TL_messages_getDhConfig();
+            tL_messages_getDhConfig.random_length = 256;
+            qr messagesStorage = getMessagesStorage();
+            messagesStorage.H();
+            tL_messages_getDhConfig.version = messagesStorage.f24948x;
+            s1Var.setOnCancelListener(new wl(this, getConnectionsManager().sendRequest(tL_messages_getDhConfig, new q6(this, activity, s1Var, user, 4), 2), 2));
+            try {
+                s1Var.show();
+            } catch (Exception unused) {
             }
         }
-        return obj;
     }
 
-    @Override
-    public final Layout a() {
-        return this.f18904b;
+    public final void a(TLRPC.EncryptedChat encryptedChat, int i3) {
+        int X0 = g0.X0(encryptedChat.layer);
+        if (i3 <= X0) {
+            return;
+        }
+        if (encryptedChat.key_hash.length == 16) {
+            try {
+                byte[] bArr = encryptedChat.auth_key;
+                byte[] o10 = Utilities.o(bArr.length, bArr);
+                byte[] bArr2 = new byte[36];
+                System.arraycopy(encryptedChat.key_hash, 0, bArr2, 0, 16);
+                System.arraycopy(o10, 0, bArr2, 16, 20);
+                encryptedChat.key_hash = bArr2;
+                getMessagesStorage().V1(encryptedChat);
+            } catch (Throwable th2) {
+                a8.g(th2, true);
+            }
+        }
+        encryptedChat.layer = (i3 << 16) | (encryptedChat.layer & 65535);
+        qr messagesStorage = getMessagesStorage();
+        messagesStorage.f24934a.c(new vp(messagesStorage, encryptedChat, 2));
+        if (X0 < 151) {
+            w(encryptedChat, null);
+        }
+        g0.h3(new ov(this, encryptedChat, 0));
     }
 
-    @Override
-    public final int b() {
-        return this.f18909s;
-    }
-
-    @Override
-    public final Rect c() {
-        return null;
-    }
-
-    @Override
-    public final void d(Canvas canvas, View view) {
+    public final void b(TLRPC.EncryptedChat encryptedChat, ArrayList arrayList) {
+        uv uvVar;
+        TLRPC.TL_decryptedMessageLayer tL_decryptedMessageLayer;
+        int i3;
         int i10;
-        int i11;
-        View view2;
-        boolean z10;
-        int i12;
-        canvas.save();
-        canvas.translate(-n(), 0.0f);
-        wv wvVar = this.f18903a;
-        boolean E = wvVar.E();
-        TextPaint textPaint = wvVar.f19347w;
-        if (E) {
-            i10 = org.telegram.ui.ActionBar.t6.Tc;
-        } else {
-            i10 = org.telegram.ui.ActionBar.t6.Sc;
-        }
-        int w02 = org.telegram.ui.ActionBar.t6.w0(i10, wvVar.D);
-        textPaint.setColor(w02);
-        if (wvVar.E()) {
-            i11 = org.telegram.ui.ActionBar.t6.Vc;
-        } else {
-            i11 = org.telegram.ui.ActionBar.t6.Uc;
-        }
-        textPaint.linkColor = org.telegram.ui.ActionBar.t6.w0(i11, wvVar.D);
-        k80 k80Var = this.F;
-        if (k80Var != null) {
-            if (T == null) {
-                Paint paint = new Paint(1);
-                T = paint;
-                paint.setPathEffect(k80.c());
-            }
-            T.setColor((wvVar.f19349y.i() & 16777215) | 855638016);
-            canvas.drawPath(k80Var, T);
-        }
-        if (view != null) {
-            view2 = view;
-        } else {
-            view2 = this.S;
-        }
-        ji.a aVar = this.I;
-        if (aVar != null && aVar.h(canvas) && view2 != null) {
-            view2.invalidate();
-        }
-        StaticLayout staticLayout = this.f18904b;
-        AtomicReference atomicReference = this.D;
-        ArrayList arrayList = this.f18911x;
-        nh.i.g(view2, false, w02, 0, atomicReference, 0, staticLayout, arrayList, canvas, false);
-        StaticLayout staticLayout2 = this.f18904b;
-        hv0.a(canvas, staticLayout2);
-        if (!wvVar.F()) {
-            org.telegram.ui.Components.o5.drawAnimatedEmojis(canvas, this.f18904b, this.E, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
-        }
-        float f7 = wvVar.V;
-        if (f7 > 0.0f) {
-            kj kjVar = wvVar.f19330b;
-            if (!wvVar.O && (kjVar == null || !wp.r1(wvVar.f19329a).f19253t7.A(kjVar))) {
-                z10 = false;
-            } else {
+        int i11 = encryptedChat.f27009id;
+        SparseArray sparseArray = this.f26114b;
+        ArrayList arrayList2 = (ArrayList) sparseArray.get(i11);
+        if (arrayList2 != null) {
+            Collections.sort(arrayList2, new tq(8));
+            boolean z10 = false;
+            while (arrayList2.size() > 0 && ((i3 = (tL_decryptedMessageLayer = (uvVar = (uv) arrayList2.get(0)).f25782b).out_seq_no) == (i10 = encryptedChat.seq_in) || i10 == i3 - 2)) {
+                a(encryptedChat, tL_decryptedMessageLayer.layer);
+                TLRPC.TL_decryptedMessageLayer tL_decryptedMessageLayer2 = uvVar.f25782b;
+                encryptedChat.seq_in = tL_decryptedMessageLayer2.out_seq_no;
+                encryptedChat.in_seq_no = tL_decryptedMessageLayer2.in_seq_no;
+                arrayList2.remove(0);
+                if (uvVar.f25784e == 2) {
+                    encryptedChat.mtproto_seq = Math.min(encryptedChat.mtproto_seq, encryptedChat.seq_in);
+                }
+                TLRPC.EncryptedChat encryptedChat2 = encryptedChat;
+                TLRPC.Message l10 = l(encryptedChat2, uvVar.f25783c, uvVar.f25781a, uvVar.f25782b.message, uvVar.d);
+                if (l10 != null) {
+                    arrayList.add(l10);
+                }
                 z10 = true;
+                encryptedChat = encryptedChat2;
             }
-            if (this.H == null) {
-                t80 t80Var = new t80();
-                this.H = t80Var;
-                t80Var.D = true;
-                k80 k80Var2 = new k80(0);
-                this.G = k80Var2;
-                k80Var2.f27550c = true;
-                t80 t80Var2 = this.H;
-                t80Var2.f30593y = k80Var2;
-                t80Var2.k(5.0f);
-                this.H.f30574b = -1L;
-                this.G.reset();
-                this.G.d(staticLayout2, 0, 0.0f);
-                this.G.f27779n = false;
-                staticLayout2.getSelectionPath(0, staticLayout2.getText().length(), this.G);
-                k80 k80Var3 = this.G;
-                k80Var3.f27779n = true;
-                k80Var3.a();
-                this.H.l();
+            TLRPC.EncryptedChat encryptedChat3 = encryptedChat;
+            if (arrayList2.isEmpty()) {
+                sparseArray.remove(encryptedChat3.f27009id);
             }
-            if (z10 && (this.H.d() || this.H.c())) {
-                t80 t80Var3 = this.H;
-                t80Var3.f30574b = -1L;
-                t80Var3.f30575c = -1L;
-            } else if (!z10 && !this.H.d() && !this.H.c()) {
-                this.H.a();
-            }
-            if (wvVar.E()) {
-                i12 = org.telegram.ui.ActionBar.t6.Vc;
-            } else {
-                i12 = org.telegram.ui.ActionBar.t6.Uc;
-            }
-            int w03 = org.telegram.ui.ActionBar.t6.w0(i12, wvVar.D);
-            this.H.g(org.telegram.ui.ActionBar.t6.r1(0.05f, w03), org.telegram.ui.ActionBar.t6.r1(0.15f, w03), org.telegram.ui.ActionBar.t6.r1(0.1f, w03), org.telegram.ui.ActionBar.t6.r1(0.3f, w03));
-            this.H.setAlpha((int) (f7 * 255.0f));
-            this.H.draw(canvas);
-        }
-        canvas.restore();
-    }
-
-    public final boolean e(uu uuVar, float f7, float f10) {
-        float L = i0.L(8.0f);
-        RectF rectF = uuVar.f18478c;
-        if (f7 < rectF.left - L || f7 >= rectF.right + L || f10 < rectF.top - L || f10 >= rectF.bottom + L) {
-            StaticLayout staticLayout = this.f18904b;
-            uu uuVar2 = null;
-            if (staticLayout.getText() instanceof Spanned) {
-                Spanned spanned = (Spanned) staticLayout.getText();
-                uu[] uuVarArr = (uu[]) spanned.getSpans(0, spanned.length(), uu.class);
-                if (uuVarArr.length == 1) {
-                    int spanStart = spanned.getSpanStart(uuVarArr[0]);
-                    int spanEnd = spanned.getSpanEnd(uuVarArr[0]);
-                    int i10 = 0;
-                    while (true) {
-                        if (i10 < spanned.length()) {
-                            if ((i10 < spanStart || i10 >= spanEnd) && !Character.isWhitespace(spanned.charAt(i10))) {
-                                break;
-                            }
-                            i10++;
-                        } else {
-                            uuVar2 = uuVarArr[0];
-                            break;
-                        }
-                    }
-                }
-            }
-            if (uuVar != uuVar2 || !this.R.contains(f7, f10)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final void f(View view) {
-        View view2 = this.S;
-        if (view2 == view && view2 != null) {
-            this.S = null;
-            org.telegram.ui.Components.o5.release((View) null, this.E);
-            this.E = null;
-            ji.a aVar = this.I;
-            if (aVar != null) {
-                aVar.f10424c = null;
-            }
-            uu[] p5 = p();
-            if (p5 != null) {
-                for (uu uuVar : p5) {
-                    View view3 = this.S;
-                    uuVar.h = null;
-                    uuVar.f18476a.f18144a.f(view3);
-                }
+            if (z10) {
+                qr messagesStorage = getMessagesStorage();
+                messagesStorage.f24934a.c(new qf((Object) messagesStorage, (Object) encryptedChat3, true, 10));
             }
         }
     }
 
-    @Override
-    public final void g(int i10) {
-        this.e = i10;
-    }
-
-    @Override
-    public final CharSequence getPrefix() {
-        return null;
-    }
-
-    @Override
-    public final int getRow() {
-        return this.e;
-    }
-
-    @Override
-    public final CharSequence getText() {
-        if (a() == null) {
-            return null;
-        }
-        return a().getText();
-    }
-
-    @Override
-    public final int getX() {
-        return this.f18905c;
-    }
-
-    @Override
-    public final int getY() {
-        return this.d;
-    }
-
-    @Override
-    public final void h(int i10) {
-        this.d = i10;
-    }
-
-    @Override
-    public final void i(View view) {
-        boolean z10;
-        View view2 = this.S;
-        if (view != view2) {
-            if (view2 != null) {
-                f(view2);
-            }
-            this.S = view;
-            if (this.f18903a.v && !this.f18910w) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.E = org.telegram.ui.Components.o5.update(0, view, z10, this.E, this.f18904b);
-            ji.a aVar = this.I;
-            if (aVar != null) {
-                aVar.f10424c = this.S;
-            }
-            uu[] p5 = p();
-            if (p5 != null) {
-                for (uu uuVar : p5) {
-                    uuVar.a(this.S);
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void j(int i10) {
-        this.f18905c = i10;
-    }
-
-    public final void k() {
-        ns nsVar = this.J;
-        if (nsVar != null) {
-            i0.r(nsVar);
-            this.J = null;
-        }
-    }
-
-    public final void l(android.text.style.CharacterStyle r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vv.l(android.text.style.CharacterStyle, boolean):void");
-    }
-
-    public final void m(Canvas canvas, int i10, float f7) {
-        int i11;
-        int i12;
-        canvas.save();
-        canvas.translate(-n(), 0.0f);
-        wv wvVar = this.f18903a;
-        boolean E = wvVar.E();
-        TextPaint textPaint = wvVar.f19347w;
-        if (E) {
-            i11 = org.telegram.ui.ActionBar.t6.Tc;
+    public final TLRPC.TL_messageService c(int i3, int i10, int i11, long j10, TLRPC.EncryptedChat encryptedChat) {
+        TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
+        TLRPC.TL_messageEncryptedAction tL_messageEncryptedAction = new TLRPC.TL_messageEncryptedAction();
+        tL_messageService.action = tL_messageEncryptedAction;
+        tL_messageEncryptedAction.encryptedAction = new TLRPC.TL_decryptedMessageActionDeleteMessages();
+        tL_messageService.action.encryptedAction.random_ids.add(Long.valueOf(j10));
+        tL_messageService.f27022id = i3;
+        tL_messageService.local_id = i3;
+        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+        tL_messageService.from_id = tL_peerUser;
+        tL_peerUser.user_id = getUserConfig().e();
+        tL_messageService.unread = true;
+        tL_messageService.out = true;
+        tL_messageService.flags = 256;
+        tL_messageService.dialog_id = m5.F(encryptedChat.f27009id);
+        tL_messageService.send_state = 1;
+        tL_messageService.seq_in = i11;
+        tL_messageService.seq_out = i10;
+        tL_messageService.peer_id = new TLRPC.TL_peerUser();
+        if (encryptedChat.participant_id == getUserConfig().e()) {
+            tL_messageService.peer_id.user_id = encryptedChat.admin_id;
         } else {
-            i11 = org.telegram.ui.ActionBar.t6.Sc;
+            tL_messageService.peer_id.user_id = encryptedChat.participant_id;
         }
-        final int w02 = org.telegram.ui.ActionBar.t6.w0(i11, wvVar.D);
-        textPaint.setColor(w02);
-        if (wvVar.E()) {
-            i12 = org.telegram.ui.ActionBar.t6.Vc;
+        tL_messageService.date = 0;
+        tL_messageService.random_id = j10;
+        return tL_messageService;
+    }
+
+    public final TLRPC.TL_messageService d(TLRPC.EncryptedChat encryptedChat, TLRPC.DecryptedMessageAction decryptedMessageAction) {
+        TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
+        TLRPC.TL_messageEncryptedAction tL_messageEncryptedAction = new TLRPC.TL_messageEncryptedAction();
+        tL_messageService.action = tL_messageEncryptedAction;
+        tL_messageEncryptedAction.encryptedAction = decryptedMessageAction;
+        int j10 = getUserConfig().j();
+        tL_messageService.f27022id = j10;
+        tL_messageService.local_id = j10;
+        TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+        tL_messageService.from_id = tL_peerUser;
+        tL_peerUser.user_id = getUserConfig().e();
+        tL_messageService.unread = true;
+        tL_messageService.out = true;
+        tL_messageService.flags = 256;
+        tL_messageService.dialog_id = m5.F(encryptedChat.f27009id);
+        tL_messageService.peer_id = new TLRPC.TL_peerUser();
+        tL_messageService.send_state = 1;
+        if (encryptedChat.participant_id == getUserConfig().e()) {
+            tL_messageService.peer_id.user_id = encryptedChat.admin_id;
         } else {
-            i12 = org.telegram.ui.ActionBar.t6.Uc;
+            tL_messageService.peer_id.user_id = encryptedChat.participant_id;
         }
-        textPaint.linkColor = org.telegram.ui.ActionBar.t6.w0(i12, wvVar.D);
-        final View view = this.S;
-        xh0.b(canvas, this.f18904b, i10, f7, new wh0() {
-            @Override
-            public final void d(Canvas canvas2) {
-                vv vvVar = vv.this;
-                AtomicReference atomicReference = vvVar.D;
-                StaticLayout staticLayout = vvVar.f18904b;
-                ArrayList arrayList = vvVar.f18911x;
-                nh.i.g(view, false, w02, 0, atomicReference, 0, staticLayout, arrayList, canvas2, false);
-                hv0.a(canvas2, vvVar.f18904b);
-                org.telegram.ui.Components.o5.drawAnimatedEmojis(canvas2, vvVar.f18904b, vvVar.E, 0.0f, arrayList, 0.0f, 0.0f, 0.0f, 1.0f);
-            }
-        });
-        canvas.restore();
-    }
-
-    public final int n() {
-        if (this.f18908r) {
-            return 0;
+        if (!(decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionScreenshotMessages) && !(decryptedMessageAction instanceof TLRPC.TL_decryptedMessageActionSetMessageTTL)) {
+            tL_messageService.date = 0;
+        } else {
+            tL_messageService.date = getConnectionsManager().getCurrentTime();
         }
-        return this.f18906f;
+        getSendMessagesHelper().getClass();
+        tL_messageService.random_id = yy.E();
+        getUserConfig().v(false);
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(tL_messageService);
+        getMessagesStorage().j1(arrayList, false, true, true, 0, false, 0, 0L);
+        return tL_messageService;
     }
 
-    public final boolean o(CharacterStyle characterStyle, iu iuVar) {
-        StaticLayout staticLayout = this.f18904b;
-        if (staticLayout.getText() instanceof Spanned) {
-            Spanned spanned = (Spanned) staticLayout.getText();
-            int spanStart = spanned.getSpanStart(characterStyle);
-            int spanEnd = spanned.getSpanEnd(characterStyle);
-            if (spanStart >= 0 && spanEnd > spanStart) {
-                iuVar.f16345a = staticLayout;
-                iuVar.f16346b = spanStart;
-                iuVar.f16347c = spanEnd;
-                iuVar.d = staticLayout.getWidth();
-                return true;
+    public final void e(int i3, long j10, boolean z10) {
+        NativeByteBuffer nativeByteBuffer;
+        Exception e10;
+        if (j10 == 0) {
+            try {
+                nativeByteBuffer = new NativeByteBuffer(12);
+            } catch (Exception e11) {
+                nativeByteBuffer = null;
+                e10 = e11;
             }
-            return false;
+            try {
+                nativeByteBuffer.writeInt32(100);
+                nativeByteBuffer.writeInt32(i3);
+                nativeByteBuffer.writeBool(z10);
+            } catch (Exception e12) {
+                e10 = e12;
+                a8.g(e10, true);
+                j10 = getMessagesStorage().z(nativeByteBuffer);
+                TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption = new TLRPC.TL_messages_discardEncryption();
+                tL_messages_discardEncryption.chat_id = i3;
+                tL_messages_discardEncryption.delete_history = z10;
+                getConnectionsManager().sendRequest(tL_messages_discardEncryption, new p4(this, j10, 3));
+            }
+            j10 = getMessagesStorage().z(nativeByteBuffer);
         }
-        return false;
+        TLRPC.TL_messages_discardEncryption tL_messages_discardEncryption2 = new TLRPC.TL_messages_discardEncryption();
+        tL_messages_discardEncryption2.chat_id = i3;
+        tL_messages_discardEncryption2.delete_history = z10;
+        getConnectionsManager().sendRequest(tL_messages_discardEncryption2, new p4(this, j10, 3));
     }
 
-    public final uu[] p() {
-        StaticLayout staticLayout = this.f18904b;
-        if (!(staticLayout.getText() instanceof Spanned)) {
-            return null;
+    public final void f(int i3, boolean z10) {
+        e(i3, 0L, z10);
+    }
+
+    public final java.util.ArrayList g(org.telegram.tgnet.TLRPC.EncryptedMessage r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vv.g(org.telegram.tgnet.TLRPC$EncryptedMessage):java.util.ArrayList");
+    }
+
+    public final void j(TLRPC.DecryptedMessage decryptedMessage, TLRPC.Message message, TLRPC.EncryptedChat encryptedChat, TLRPC.InputEncryptedFile inputEncryptedFile, String str, zi ziVar) {
+        if (decryptedMessage == null || encryptedChat.auth_key == null || (encryptedChat instanceof TLRPC.TL_encryptedChatRequested) || (encryptedChat instanceof TLRPC.TL_encryptedChatWaiting)) {
+            return;
         }
-        Spanned spanned = (Spanned) staticLayout.getText();
-        return (uu[]) spanned.getSpans(0, spanned.length(), uu.class);
+        getSendMessagesHelper().f0(message, false);
+        Utilities.d.c(new wm(this, encryptedChat, decryptedMessage, message, inputEncryptedFile, ziVar, str, 3));
     }
 
-    public final int q() {
-        return Math.max(0, this.f18907n - this.f18906f);
+    public final void k(TLRPC.TL_messages_sendEncryptedMultiMedia tL_messages_sendEncryptedMultiMedia, ky kyVar) {
+        for (int i3 = 0; i3 < tL_messages_sendEncryptedMultiMedia.files.size(); i3++) {
+            j(tL_messages_sendEncryptedMultiMedia.messages.get(i3), (TLRPC.Message) kyVar.f23913z.get(i3), kyVar.f23902n, tL_messages_sendEncryptedMultiMedia.files.get(i3), (String) kyVar.B.get(i3), (zi) kyVar.f23911x.get(i3));
+        }
     }
 
-    public final int r() {
-        return Math.max(0, this.h - this.f18906f);
+    public final org.telegram.tgnet.TLRPC.Message l(org.telegram.tgnet.TLRPC.EncryptedChat r18, org.telegram.tgnet.TLRPC.EncryptedFile r19, int r20, org.telegram.tgnet.TLObject r21, boolean r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vv.l(org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$EncryptedFile, int, org.telegram.tgnet.TLObject, boolean):org.telegram.tgnet.TLRPC$Message");
     }
 
-    public final boolean t(MotionEvent motionEvent) {
-        boolean z10;
-        boolean z11;
-        sv svVar;
-        sv svVar2;
-        int spanEnd;
-        sv svVar3;
-        int spanStart;
-        int actionMasked = motionEvent.getActionMasked();
-        int n10 = n() + ((int) motionEvent.getX());
-        int y3 = (int) motionEvent.getY();
-        ArrayList arrayList = this.f18911x;
-        wv wvVar = this.f18903a;
-        StaticLayout staticLayout = this.f18904b;
-        boolean z12 = true;
-        int i10 = 0;
-        if (actionMasked == 0) {
-            this.L = null;
-            this.M = null;
-            this.P = null;
-            this.Q = null;
-            int size = arrayList.size();
-            int i11 = 0;
-            while (i11 < size) {
-                Object obj = arrayList.get(i11);
-                i11++;
-                nh.i iVar = (nh.i) obj;
-                if (iVar.getBounds().contains(n10, y3)) {
-                    this.L = iVar;
-                    return true;
-                }
+    public final void m() {
+        ArrayList arrayList = this.h;
+        if (!arrayList.isEmpty()) {
+            g0.h3(new tv(this, new ArrayList(arrayList), 1));
+            ArrayList arrayList2 = new ArrayList(arrayList);
+            qr messagesStorage = getMessagesStorage();
+            messagesStorage.getClass();
+            if (!arrayList2.isEmpty()) {
+                messagesStorage.f24934a.c(new jp(messagesStorage, arrayList2, 3));
             }
-            uu[] p5 = p();
-            if (p5 != null) {
-                for (uu uuVar : p5) {
-                    if (e(uuVar, n10, y3)) {
-                        su suVar = uuVar.f18476a;
-                        if (suVar.f18145b) {
-                            return true;
-                        }
-                        this.Q = uuVar;
-                        this.K = false;
-                        suVar.m(true);
-                        View view = this.S;
-                        if (view != null) {
-                            view.invalidate();
-                        }
-                        u();
-                        return true;
-                    }
-                }
+            arrayList.clear();
+        }
+    }
+
+    public final void n(org.telegram.tgnet.tl.TL_update.TL_updateEncryption r15, j$.util.concurrent.ConcurrentHashMap r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vv.n(org.telegram.tgnet.tl.TL_update$TL_updateEncryption, j$.util.concurrent.ConcurrentHashMap):void");
+    }
+
+    public final void o(TLRPC.EncryptedChat encryptedChat) {
+        byte[] bArr = new byte[256];
+        Utilities.f21385b.nextBytes(bArr);
+        qr messagesStorage = getMessagesStorage();
+        messagesStorage.H();
+        BigInteger valueOf = BigInteger.valueOf(messagesStorage.E);
+        BigInteger bigInteger = new BigInteger(1, bArr);
+        qr messagesStorage2 = getMessagesStorage();
+        messagesStorage2.H();
+        byte[] byteArray = valueOf.modPow(bigInteger, new BigInteger(1, messagesStorage2.f24949y)).toByteArray();
+        if (byteArray.length > 256) {
+            byte[] bArr2 = new byte[256];
+            System.arraycopy(byteArray, 1, bArr2, 0, 256);
+            byteArray = bArr2;
+        }
+        getSendMessagesHelper().getClass();
+        encryptedChat.exchange_id = yy.E();
+        encryptedChat.a_or_b = bArr;
+        encryptedChat.g_a = byteArray;
+        getMessagesStorage().V1(encryptedChat);
+        x(encryptedChat, null);
+    }
+
+    public final void p(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message, long j10) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionAbortKey tL_decryptedMessageActionAbortKey = new TLRPC.TL_decryptedMessageActionAbortKey();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionAbortKey;
+            tL_decryptedMessageActionAbortKey.exchange_id = j10;
+            message = d(encryptedChat, tL_decryptedMessageActionAbortKey);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+    }
+
+    public final void q(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionAcceptKey tL_decryptedMessageActionAcceptKey = new TLRPC.TL_decryptedMessageActionAcceptKey();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionAcceptKey;
+            tL_decryptedMessageActionAcceptKey.exchange_id = encryptedChat.exchange_id;
+            tL_decryptedMessageActionAcceptKey.key_fingerprint = encryptedChat.future_key_fingerprint;
+            tL_decryptedMessageActionAcceptKey.g_b = encryptedChat.g_a_or_b;
+            message = d(encryptedChat, tL_decryptedMessageActionAcceptKey);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+    }
+
+    public final void r(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionFlushHistory tL_decryptedMessageActionFlushHistory = new TLRPC.TL_decryptedMessageActionFlushHistory();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionFlushHistory;
+            message = d(encryptedChat, tL_decryptedMessageActionFlushHistory);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+    }
+
+    public final void s(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionCommitKey tL_decryptedMessageActionCommitKey = new TLRPC.TL_decryptedMessageActionCommitKey();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionCommitKey;
+            tL_decryptedMessageActionCommitKey.exchange_id = encryptedChat.exchange_id;
+            tL_decryptedMessageActionCommitKey.key_fingerprint = encryptedChat.future_key_fingerprint;
+            message = d(encryptedChat, tL_decryptedMessageActionCommitKey);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+    }
+
+    public final void t(TLRPC.EncryptedChat encryptedChat, ArrayList arrayList, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionDeleteMessages tL_decryptedMessageActionDeleteMessages = new TLRPC.TL_decryptedMessageActionDeleteMessages();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionDeleteMessages;
+            tL_decryptedMessageActionDeleteMessages.random_ids = arrayList;
+            message = d(encryptedChat, tL_decryptedMessageActionDeleteMessages);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+    }
+
+    public final void u(TLRPC.EncryptedChat encryptedChat, ArrayList arrayList, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionReadMessages tL_decryptedMessageActionReadMessages = new TLRPC.TL_decryptedMessageActionReadMessages();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionReadMessages;
+            tL_decryptedMessageActionReadMessages.random_ids = arrayList;
+            message = d(encryptedChat, tL_decryptedMessageActionReadMessages);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+    }
+
+    public final void v(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionNoop tL_decryptedMessageActionNoop = new TLRPC.TL_decryptedMessageActionNoop();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionNoop;
+            message = d(encryptedChat, tL_decryptedMessageActionNoop);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+    }
+
+    public final void w(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
+        if (encryptedChat instanceof TLRPC.TL_encryptedChat) {
+            Integer valueOf = Integer.valueOf(encryptedChat.f27009id);
+            ArrayList arrayList = this.f26113a;
+            if (arrayList.contains(valueOf)) {
+                return;
             }
-            if ((staticLayout.getText() instanceof Spannable) && y3 >= 0 && y3 < staticLayout.getHeight()) {
-                int lineForVertical = staticLayout.getLineForVertical(y3);
-                float lineLeft = staticLayout.getLineLeft(lineForVertical);
-                float lineWidth = staticLayout.getLineWidth(lineForVertical) + lineLeft;
-                float f7 = n10;
-                if (f7 >= lineLeft && f7 <= lineWidth) {
-                    int offsetForHorizontal = staticLayout.getOffsetForHorizontal(lineForVertical, f7);
-                    Spannable spannable = (Spannable) staticLayout.getText();
-                    ClickableSpan[] clickableSpanArr = (ClickableSpan[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
-                    if (clickableSpanArr != null && clickableSpanArr.length > 0) {
-                        ClickableSpan clickableSpan = clickableSpanArr[0];
-                        this.M = clickableSpan;
-                        this.N = spannable.getSpanStart(clickableSpan);
-                        this.O = spannable.getSpanEnd(this.M);
-                        this.K = false;
-                        q80 q80Var = new q80(this.M, wvVar.D, f7, y3, 0);
-                        k80 b10 = q80Var.b();
-                        b10.d(staticLayout, this.N, 0.0f);
-                        staticLayout.getSelectionPath(this.N, this.O, b10);
-                        if (this.I == null) {
-                            this.I = new ji.a(this.S);
-                        }
-                        this.I.b(q80Var, null);
-                        View view2 = this.S;
-                        if (view2 != null) {
-                            view2.invalidate();
-                        }
-                        u();
-                        return true;
-                    }
-                    sv[] svVarArr = (sv[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, sv.class);
-                    if (svVarArr != null) {
-                        int length = svVarArr.length;
-                        int i12 = 0;
-                        while (i12 < length) {
-                            z11 = z12;
-                            svVar = svVarArr[i12];
-                            if (TLObject.hasFlag(svVar.f18167b, 256)) {
-                                break;
-                            }
-                            i12++;
-                            z12 = z11;
-                        }
-                    }
-                    z11 = z12;
-                    svVar = null;
-                    if (svVar != null) {
-                        int spanStart2 = spannable.getSpanStart(svVar);
-                        int spanEnd2 = spannable.getSpanEnd(svVar);
-                        while (spanStart2 > 0) {
-                            int i13 = spanStart2 - 1;
-                            sv[] svVarArr2 = (sv[]) spannable.getSpans(i13, i13, sv.class);
-                            int length2 = svVarArr2.length;
-                            int i14 = i10;
-                            while (true) {
-                                if (i14 < length2) {
-                                    svVar3 = svVarArr2[i14];
-                                    if (TLObject.hasFlag(svVar3.f18167b, 256)) {
-                                        break;
-                                    }
-                                    i14++;
-                                } else {
-                                    svVar3 = null;
-                                    break;
-                                }
-                            }
-                            if (svVar3 == null || (spanStart = spannable.getSpanStart(svVar3)) >= spanStart2) {
-                                break;
-                            }
-                            spanStart2 = spanStart;
-                            i10 = 0;
-                        }
-                        while (spanEnd2 < spannable.length()) {
-                            sv[] svVarArr3 = (sv[]) spannable.getSpans(spanEnd2, spanEnd2, sv.class);
-                            int length3 = svVarArr3.length;
-                            int i15 = 0;
-                            while (true) {
-                                if (i15 < length3) {
-                                    svVar2 = svVarArr3[i15];
-                                    if (TLObject.hasFlag(svVar2.f18167b, 256)) {
-                                        break;
-                                    }
-                                    i15++;
-                                } else {
-                                    svVar2 = null;
-                                    break;
-                                }
-                            }
-                            if (svVar2 == null || (spanEnd = spannable.getSpanEnd(svVar2)) <= spanEnd2) {
-                                break;
-                            }
-                            spanEnd2 = spanEnd;
-                        }
-                        this.M = svVar;
-                        this.N = spanStart2;
-                        this.O = spanEnd2;
-                        this.K = false;
-                        q80 q80Var2 = new q80(svVar, wvVar.D, f7, y3, 0);
-                        k80 b11 = q80Var2.b();
-                        b11.d(staticLayout, spanStart2, 0.0f);
-                        staticLayout.getSelectionPath(spanStart2, spanEnd2, b11);
-                        if (this.I == null) {
-                            this.I = new ji.a(this.S);
-                        }
-                        this.I.b(q80Var2, null);
-                        View view3 = this.S;
-                        if (view3 != null) {
-                            view3.invalidate();
-                        }
-                        u();
-                        return z11;
-                    }
-                    org.telegram.ui.Components.o5[] o5VarArr = (org.telegram.ui.Components.o5[]) spannable.getSpans(offsetForHorizontal, offsetForHorizontal, org.telegram.ui.Components.o5.class);
-                    if (o5VarArr != null && o5VarArr.length > 0) {
-                        this.P = o5VarArr[0];
-                        return z11;
-                    }
-                }
-            }
-            return false;
-        } else if (actionMasked == 2) {
-            uu uuVar2 = this.Q;
-            if (uuVar2 != null) {
-                if (e(uuVar2, n10, y3)) {
-                    return true;
-                }
-                k();
-                this.Q.f18476a.m(false);
-                this.Q = null;
-                this.K = false;
-                return true;
-            }
-        } else if (actionMasked == 1) {
-            if (this.Q != null) {
-                k();
-                uu uuVar3 = this.Q;
-                this.Q = null;
-                uuVar3.f18476a.m(false);
-                if (!this.K) {
-                    View view4 = this.S;
-                    if (view4 != null) {
-                        view4.playSoundEffect(0);
-                    }
-                    org.telegram.ui.Cells.q1 q1Var = wvVar.E;
-                    org.telegram.ui.Cells.l1 l1Var = wvVar.F;
-                    TL_iv.textButton textbutton = uuVar3.f18477b;
-                    if (q1Var != null && l1Var != null) {
-                        l1Var.W0(q1Var, textbutton);
-                    }
-                    z10 = false;
-                } else {
-                    z10 = false;
-                }
-                this.K = z10;
-                return true;
-            } else if (this.L != null) {
-                float width = staticLayout.getWidth();
-                float height = staticLayout.getHeight();
-                float sqrt = (float) Math.sqrt((height * height) + (width * width));
-                View view5 = this.S;
-                this.L.f13853q = new tv(this, view5, wvVar);
-                int size2 = arrayList.size();
-                int i16 = 0;
-                while (i16 < size2) {
-                    Object obj2 = arrayList.get(i16);
-                    i16++;
-                    ((nh.i) obj2).j(n10, y3, sqrt, false);
-                }
-                if (view5 != null) {
-                    view5.playSoundEffect(0);
-                }
-                this.L = null;
-                return true;
-            } else if (this.M != null) {
-                k();
-                if (!this.K) {
-                    l(this.M, false);
-                }
-                ji.a aVar = this.I;
-                if (aVar != null) {
-                    aVar.f(true);
-                }
-                this.M = null;
-                this.K = false;
-                return true;
+            arrayList.add(Integer.valueOf(encryptedChat.f27009id));
+            TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+            if (message != null) {
+                tL_decryptedMessageService.action = message.action.encryptedAction;
             } else {
-                org.telegram.ui.Components.o5 o5Var = this.P;
-                if (o5Var == null) {
-                    return false;
-                }
-                this.P = null;
-                org.telegram.ui.Cells.q1 q1Var2 = wvVar.E;
-                org.telegram.ui.Cells.l1 l1Var2 = wvVar.F;
-                if (q1Var2 != null && l1Var2 != null) {
-                    View view6 = this.S;
-                    if (view6 != null) {
-                        view6.playSoundEffect(0);
-                    }
-                    l1Var2.m0(o5Var);
-                    return true;
-                }
-                return true;
+                TLRPC.TL_decryptedMessageActionNotifyLayer tL_decryptedMessageActionNotifyLayer = new TLRPC.TL_decryptedMessageActionNotifyLayer();
+                tL_decryptedMessageService.action = tL_decryptedMessageActionNotifyLayer;
+                tL_decryptedMessageActionNotifyLayer.layer = 151;
+                message = d(encryptedChat, tL_decryptedMessageActionNotifyLayer);
             }
-        } else if (actionMasked == 3) {
-            this.L = null;
-            this.P = null;
-            if (this.Q != null) {
-                k();
-                this.Q.f18476a.m(false);
-                this.Q = null;
-                this.K = false;
-            }
-            if (this.M != null) {
-                k();
-                ji.a aVar2 = this.I;
-                if (aVar2 != null) {
-                    aVar2.f(true);
-                }
-                this.M = null;
-                this.K = false;
-                return false;
-            }
+            TLRPC.Message message2 = message;
+            tL_decryptedMessageService.random_id = message2.random_id;
+            j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
         }
-        return false;
     }
 
-    public final void u() {
-        k();
-        ns nsVar = new ns(this, 9);
-        this.J = nsVar;
-        i0.h3(nsVar, ViewConfiguration.getLongPressTimeout());
+    public final void x(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
+        }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionRequestKey tL_decryptedMessageActionRequestKey = new TLRPC.TL_decryptedMessageActionRequestKey();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionRequestKey;
+            tL_decryptedMessageActionRequestKey.exchange_id = encryptedChat.exchange_id;
+            tL_decryptedMessageActionRequestKey.g_a = encryptedChat.g_a;
+            message = d(encryptedChat, tL_decryptedMessageActionRequestKey);
+        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
     }
 
-    public vv(wv wvVar, CharSequence charSequence, int i10, Layout.Alignment alignment) {
-        this(wvVar, charSequence, i10, alignment, 1.0f);
+    public final void y(TLRPC.EncryptedChat encryptedChat, int i3, int i10, TLRPC.Message message) {
+        if (encryptedChat instanceof TLRPC.TL_encryptedChat) {
+            int i11 = encryptedChat.f27009id;
+            SparseArray sparseArray = this.d;
+            SparseIntArray sparseIntArray = (SparseIntArray) sparseArray.get(i11);
+            if (sparseIntArray != null && sparseIntArray.indexOfKey(i3) >= 0) {
+                return;
+            }
+            if (sparseIntArray == null) {
+                sparseIntArray = new SparseIntArray();
+                sparseArray.put(encryptedChat.f27009id, sparseIntArray);
+            }
+            sparseIntArray.put(i3, i10);
+            TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+            if (message != null) {
+                tL_decryptedMessageService.action = message.action.encryptedAction;
+            } else {
+                TLRPC.TL_decryptedMessageActionResend tL_decryptedMessageActionResend = new TLRPC.TL_decryptedMessageActionResend();
+                tL_decryptedMessageService.action = tL_decryptedMessageActionResend;
+                tL_decryptedMessageActionResend.start_seq_no = i3;
+                tL_decryptedMessageActionResend.end_seq_no = i10;
+                message = d(encryptedChat, tL_decryptedMessageActionResend);
+            }
+            TLRPC.Message message2 = message;
+            tL_decryptedMessageService.random_id = message2.random_id;
+            j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
+        }
     }
 
-    public vv(wv wvVar, CharSequence charSequence, int i10, Layout.Alignment alignment, float f7) {
-        boolean z10;
-        sv[] svVarArr;
-        int i11;
-        int L;
-        int i12;
-        sv[] svVarArr2;
-        uu[] uuVarArr;
-        SpannableStringBuilder spannableStringBuilder;
-        Class<org.telegram.ui.Components.o5> cls;
-        int i13;
-        h6[] h6VarArr;
-        sv[] svVarArr3;
-        this.f18911x = new ArrayList();
-        this.f18912y = new Stack();
-        this.D = new AtomicReference();
-        this.R = new RectF();
-        this.f18903a = wvVar;
-        TextPaint textPaint = wvVar.f19347w;
-        Paint.FontMetricsInt fontMetricsInt = textPaint.getFontMetricsInt();
-        boolean z11 = true;
-        boolean z12 = false;
-        if (charSequence instanceof Spanned) {
-            for (sv svVar : (sv[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), sv.class)) {
-                int i14 = svVar.f18167b & 15;
-                if (i14 >= 1 && i14 <= 6) {
-                    TextPaint textPaint2 = new TextPaint(textPaint);
-                    svVar.a(textPaint2);
-                    fontMetricsInt = textPaint2.getFontMetricsInt();
-                    z10 = true;
-                    break;
-                }
-            }
+    public final void z(TLRPC.EncryptedChat encryptedChat, TLRPC.Message message) {
+        if (!(encryptedChat instanceof TLRPC.TL_encryptedChat)) {
+            return;
         }
-        z10 = false;
-        CharSequence n10 = k6.n(charSequence, fontMetricsInt, false, null, 0, z10 ? 0.85f : 1.0f, 0);
-        if (n10 instanceof Spanned) {
-            Spanned spanned = (Spanned) n10;
-            Class<org.telegram.ui.Components.o5> cls2 = org.telegram.ui.Components.o5.class;
-            if (((org.telegram.ui.Components.o5[]) spanned.getSpans(0, spanned.length(), cls2)).length != 0 || ((h6[]) spanned.getSpans(0, spanned.length(), h6.class)).length != 0 || ((uu[]) spanned.getSpans(0, spanned.length(), uu.class)).length != 0) {
-                SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(n10);
-                for (org.telegram.ui.Components.o5 o5Var : (org.telegram.ui.Components.o5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), cls2)) {
-                    o5Var.setPreserveFontMetrics(true);
-                }
-                for (h6 h6Var : (h6[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), h6.class)) {
-                    h6Var.e = true;
-                }
-                for (uu uuVar : (uu[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), uu.class)) {
-                    if (uuVar.f18476a.f18144a.f18909s > 0) {
-                        uuVar.e = true;
-                    }
-                }
-                int i15 = 0;
-                while (true) {
-                    if (i15 >= spannableStringBuilder2.length()) {
-                        spannableStringBuilder = spannableStringBuilder2;
-                        break;
-                    }
-                    int indexOf = TextUtils.indexOf((CharSequence) spannableStringBuilder2, '\n', i15);
-                    boolean z13 = indexOf >= 0 ? z11 : z12;
-                    indexOf = z13 ? indexOf : spannableStringBuilder2.length();
-                    a3.l s10 = s(spannableStringBuilder2, i15, indexOf, textPaint);
-                    int i16 = s10.f140b;
-                    if (i16 <= 0 || s10.f139a * 100 < i16 * 70 || (i13 = s10.f141c) <= 0) {
-                        spannableStringBuilder = spannableStringBuilder2;
-                        cls = cls2;
-                    } else {
-                        org.telegram.ui.Components.o5[] o5VarArr = (org.telegram.ui.Components.o5[]) spannableStringBuilder2.getSpans(i15, indexOf, cls2);
-                        int length = o5VarArr.length;
-                        int i17 = 0;
-                        while (i17 < length) {
-                            org.telegram.ui.Components.o5 o5Var2 = o5VarArr[i17];
-                            Class<org.telegram.ui.Components.o5> cls3 = cls2;
-                            int spanStart = spannableStringBuilder2.getSpanStart(o5Var2);
-                            if (spanStart >= i15 && spanStart < indexOf) {
-                                o5Var2.setMinimumLineHeight(i13);
-                            }
-                            i17++;
-                            cls2 = cls3;
-                        }
-                        cls = cls2;
-                        for (h6 h6Var2 : (h6[]) spannableStringBuilder2.getSpans(i15, indexOf, h6.class)) {
-                            int spanStart2 = spannableStringBuilder2.getSpanStart(h6Var2);
-                            if (spanStart2 >= i15 && spanStart2 < indexOf) {
-                                h6Var2.f16027f = i13;
-                            }
-                        }
-                        uu[] uuVarArr2 = (uu[]) spannableStringBuilder2.getSpans(i15, indexOf, uu.class);
-                        int length2 = uuVarArr2.length;
-                        int i18 = 0;
-                        while (i18 < length2) {
-                            uu uuVar2 = uuVarArr2[i18];
-                            int spanStart3 = spannableStringBuilder2.getSpanStart(uuVar2);
-                            SpannableStringBuilder spannableStringBuilder3 = spannableStringBuilder2;
-                            if (uuVar2.f18476a.f18144a.f18909s > 0 && spanStart3 >= i15 && spanStart3 < indexOf) {
-                                uuVar2.f18479f = i13;
-                            }
-                            i18++;
-                            spannableStringBuilder2 = spannableStringBuilder3;
-                        }
-                        spannableStringBuilder = spannableStringBuilder2;
-                    }
-                    if (!z13) {
-                        break;
-                    }
-                    i15 = indexOf + 1;
-                    cls2 = cls;
-                    spannableStringBuilder2 = spannableStringBuilder;
-                    z11 = true;
-                    z12 = false;
-                }
-                n10 = spannableStringBuilder;
-            }
+        TLRPC.TL_decryptedMessageService tL_decryptedMessageService = new TLRPC.TL_decryptedMessageService();
+        if (message != null) {
+            tL_decryptedMessageService.action = message.action.encryptedAction;
+        } else {
+            TLRPC.TL_decryptedMessageActionSetMessageTTL tL_decryptedMessageActionSetMessageTTL = new TLRPC.TL_decryptedMessageActionSetMessageTTL();
+            tL_decryptedMessageService.action = tL_decryptedMessageActionSetMessageTTL;
+            tL_decryptedMessageActionSetMessageTTL.ttl_seconds = encryptedChat.ttl;
+            message = d(encryptedChat, tL_decryptedMessageActionSetMessageTTL);
+            zi ziVar = new zi(this.currentAccount, message, false, false);
+            ziVar.f26868k.send_state = 1;
+            ziVar.V1 = true;
+            getMessagesController().l5(0, message.dialog_id, k5.k(ziVar));
+            getNotificationCenter().k(hs.f23298s, new Object[0]);
         }
-        int d = bi.s6.d(n10);
-        this.f18909s = d;
-        if (d == 0 && (n10 instanceof Spanned)) {
-            Spanned spanned2 = (Spanned) n10;
-            uu[] uuVarArr3 = (uu[]) spanned2.getSpans(0, n10.length(), uu.class);
-            if (uuVarArr3.length > 0) {
-                Arrays.sort(uuVarArr3, new qu(spanned2, 1));
-                SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder(n10);
-                int length3 = uuVarArr3.length;
-                int i19 = 0;
-                while (true) {
-                    if (i19 < length3) {
-                        uu uuVar3 = uuVarArr3[i19];
-                        int spanStart4 = spanned2.getSpanStart(uuVar3);
-                        int spanEnd = spanned2.getSpanEnd(uuVar3);
-                        if (spanStart4 < 0 || spanEnd <= spanStart4) {
-                            break;
-                        }
-                        vv vvVar = uuVar3.f18476a.f18144a;
-                        if (vvVar.f18909s == 0) {
-                            break;
-                        }
-                        spannableStringBuilder4.replace(spanStart4, spanEnd, vvVar.f18904b.getText());
-                        i19++;
-                    } else {
-                        this.f18909s = bi.s6.d(spannableStringBuilder4);
-                        break;
-                    }
-                }
-            }
-        }
-        if (this.f18909s > 0 && (n10 instanceof Spanned)) {
-            for (sv svVar2 : (sv[]) ((Spanned) n10).getSpans(0, n10.length(), sv.class)) {
-                if ((svVar2.f18167b & 15) == 14) {
-                    svVar2.d = true;
-                }
-            }
-        }
-        if (n10 instanceof Spanned) {
-            sv[] svVarArr4 = (sv[]) ((Spanned) n10).getSpans(0, n10.length(), sv.class);
-            int length4 = svVarArr4.length;
-            for (int i20 = 0; i20 < length4 && (svVarArr4[i20].f18167b & 15) == 0; i20++) {
-            }
-        }
-        this.f18904b = kj.g5(n10, wvVar.f19347w, i10, f7, 0.0f, false, alignment);
-        this.f18906f = i10;
-        this.h = 0;
-        for (int i21 = 0; i21 < this.f18904b.getLineCount(); i21++) {
-            this.f18906f = Math.min(this.f18906f, (int) Math.floor(this.f18904b.getLineLeft(i21)));
-            this.h = Math.max(this.h, (int) Math.ceil(this.f18904b.getLineRight(i21)));
-        }
-        this.f18907n = 0;
-        if (this.f18904b.getLineCount() > 0) {
-            StaticLayout staticLayout = this.f18904b;
-            this.f18907n = (int) Math.ceil(staticLayout.getLineRight(staticLayout.getLineCount() - 1));
-        }
-        k80 k80Var = null;
-        nh.i.c(null, this.f18904b, this.f18912y, this.f18911x);
-        if (this.f18904b.getText() instanceof Spanned) {
-            Spanned spanned3 = (Spanned) this.f18904b.getText();
-            for (sv svVar3 : (sv[]) spanned3.getSpans(0, spanned3.length(), sv.class)) {
-                int i22 = svVar3.f18167b;
-                if (TLObject.hasFlag(i22, 8192)) {
-                    int spanStart5 = spanned3.getSpanStart(svVar3);
-                    int spanEnd2 = spanned3.getSpanEnd(svVar3);
-                    if (spanStart5 >= 0 && spanEnd2 > spanStart5) {
-                        if (k80Var == null) {
-                            i11 = 0;
-                            k80Var = new k80(0);
-                            k80Var.f27779n = false;
-                        } else {
-                            i11 = 0;
-                        }
-                        k80Var.d(this.f18904b, spanStart5, 0.0f);
-                        if (TLObject.hasFlag(i22, 4096)) {
-                            L = -i0.L(6.0f);
-                        } else {
-                            L = TLObject.hasFlag(i22, 2048) ? i0.L(2.0f) : i11;
-                        }
-                        if (L != 0) {
-                            i12 = L + i0.L(L > 0 ? 5.0f : -2.0f);
-                        } else {
-                            i12 = i11;
-                        }
-                        k80Var.f27780o = i12;
-                        this.f18904b.getSelectionPath(spanStart5, spanEnd2, k80Var);
-                    }
-                }
-            }
-            if (k80Var != null) {
-                k80Var.f27779n = true;
-                this.F = k80Var;
-            }
-        }
+        TLRPC.Message message2 = message;
+        tL_decryptedMessageService.random_id = message2.random_id;
+        j(tL_decryptedMessageService, message2, encryptedChat, null, null, null);
     }
 }

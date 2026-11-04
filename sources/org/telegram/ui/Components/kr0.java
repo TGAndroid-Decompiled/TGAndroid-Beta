@@ -1,46 +1,116 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class kr0 extends s4.s0 {
-    public final br0 f27947a;
-    public final cr0 f27948b;
-    public final au0 f27949c;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class kr0 extends sj0 {
+    public final Context f35470c;
+    public final ArrayList d = new ArrayList();
+    public boolean f35471e;
+    public boolean f35472f;
+    public boolean h;
+    public final ws0 f35473n;
 
-    public kr0(au0 au0Var, br0 br0Var, cr0 cr0Var) {
-        this.f27949c = au0Var;
-        this.f27947a = br0Var;
-        this.f27948b = cr0Var;
+    public kr0(ws0 ws0Var, Context context) {
+        this.f35473n = ws0Var;
+        this.f35470c = context;
+    }
+
+    public static void E(kr0 kr0Var, long j10) {
+        ws0 ws0Var = kr0Var.f35473n;
+        if (!kr0Var.f35471e) {
+            TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
+            long j11 = ws0Var.m1;
+            org.telegram.ui.ActionBar.d2 d2Var = ws0Var.f40142y1;
+            if (org.telegram.messenger.m5.C(j11)) {
+                j11 = d2Var.getMessagesController().a1(Integer.valueOf((int) (j11 & 4294967295L))).user_id;
+            }
+            TLRPC.InputUser o12 = d2Var.getMessagesController().o1(j11);
+            tL_messages_getCommonChats.user_id = o12;
+            if (o12 instanceof TLRPC.TL_inputUserEmpty) {
+                return;
+            }
+            tL_messages_getCommonChats.limit = 100;
+            tL_messages_getCommonChats.max_id = j10;
+            kr0Var.f35471e = true;
+            kr0Var.f();
+            d2Var.getConnectionsManager().bindRequestToGuid(d2Var.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new w1(kr0Var, 11)), d2Var.getClassGuid());
+        }
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        boolean z10;
-        if (i10 != 0) {
-            z10 = true;
+    public final boolean D(u4.d1 d1Var) {
+        if (d1Var.b() != this.d.size()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty() && !this.f35471e) {
+            return 1;
+        }
+        int size = arrayList.size();
+        if (!arrayList.isEmpty() && !this.h) {
+            return size + 1;
+        }
+        return size;
+    }
+
+    @Override
+    public final int d(int i3) {
+        ArrayList arrayList = this.d;
+        if (arrayList.isEmpty() && !this.f35471e) {
+            return 15;
+        }
+        if (i3 < arrayList.size()) {
+            return 14;
+        }
+        return 16;
+    }
+
+    @Override
+    public final void t(u4.d1 d1Var, int i3) {
+        if (d1Var.f55544f == 14) {
+            View view = d1Var.f55540a;
+            if (view instanceof org.telegram.ui.Cells.f6) {
+                org.telegram.ui.Cells.f6 f6Var = (org.telegram.ui.Cells.f6) view;
+                ArrayList arrayList = this.d;
+                f6Var.x((TLRPC.Chat) arrayList.get(i3), null, null, null, false, false);
+                boolean z10 = true;
+                if (i3 == arrayList.size() - 1 && this.h) {
+                    z10 = false;
+                }
+                f6Var.N = z10;
+            }
+        }
+    }
+
+    @Override
+    public final u4.d1 x(ViewGroup viewGroup, int i3) {
+        org.telegram.ui.Cells.f6 f6Var;
+        ws0 ws0Var = this.f35473n;
+        org.telegram.ui.ActionBar.e6 e6Var = ws0Var.I1;
+        Context context = this.f35470c;
+        if (i3 != 14) {
+            if (i3 != 15) {
+                iz izVar = new iz(context, e6Var);
+                izVar.setIsSingleCell(true);
+                izVar.f34869x = false;
+                izVar.setViewType(1);
+                f6Var = izVar;
+            } else {
+                p3 X = ws0.X(6, ws0Var.m1, context, e6Var);
+                X.setLayoutParams(new u4.p0(-1, -1));
+                return new u4.d1(X);
+            }
         } else {
-            z10 = false;
+            f6Var = new org.telegram.ui.Cells.f6(context, e6Var);
         }
-        this.f27949c.f24509d1 = z10;
-    }
-
-    @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int i12;
-        int i13;
-        au0 au0Var = this.f27949c;
-        pt0[] pt0VarArr = au0Var.f24562v1;
-        cr0 cr0Var = this.f27948b;
-        br0 br0Var = this.f27947a;
-        au0Var.N(br0Var, (uk0) recyclerView, cr0Var);
-        if (i11 != 0 && ((i13 = au0Var.m0[0].E) == 0 || i13 == 5)) {
-            pt0VarArr[0].f29532a.isEmpty();
-        }
-        if (i11 != 0 && ((i12 = br0Var.E) == 0 || au0.y0(i12))) {
-            au0.p(br0Var, pt0VarArr, true);
-        }
-        br0Var.h.L0(true);
-        if (br0Var.F != null) {
-            br0Var.invalidate();
-        }
+        return k2.p1.p(f6Var, f6Var, -1, -2);
     }
 }

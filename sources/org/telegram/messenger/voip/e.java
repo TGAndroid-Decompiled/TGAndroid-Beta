@@ -1,30 +1,21 @@
 package org.telegram.messenger.voip;
+public final class e implements Runnable {
+    public final int f25994a;
+    public final GroupCallMessage f25995b;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class e implements RequestDelegate {
-    public final int f18790a;
-    public final ConferenceCall f18791b;
-    public final long f18792c;
-
-    public e(ConferenceCall conferenceCall, long j10, int i10) {
-        this.f18790a = i10;
-        this.f18791b = conferenceCall;
-        this.f18792c = j10;
+    public e(GroupCallMessage groupCallMessage, int i3) {
+        this.f25994a = i3;
+        this.f25995b = groupCallMessage;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18790a) {
+    public final void run() {
+        switch (this.f25994a) {
             case 0:
-                this.f18791b.lambda$updateParticipants$11(this.f18792c, tLObject, tL_error);
-                return;
-            case 1:
-                this.f18791b.lambda$pull_outbound$6(this.f18792c, tLObject, tL_error);
+                this.f25995b.notifyStateUpdate();
                 return;
             default:
-                this.f18791b.lambda$kick$13(this.f18792c, tLObject, tL_error);
+                GroupCallMessagesController.c(this.f25995b);
                 return;
         }
     }

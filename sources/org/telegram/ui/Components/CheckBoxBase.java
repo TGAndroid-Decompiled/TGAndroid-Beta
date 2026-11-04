@@ -15,51 +15,51 @@ public class CheckBoxBase {
     public int A;
     public float B;
     public String C;
-    public fp D;
-    public org.telegram.ui.ActionBar.c5 E;
-    public org.telegram.ui.ActionBar.p6 F;
-    public org.telegram.messenger.m9 G;
+    public xo D;
+    public org.telegram.ui.ActionBar.t4 E;
+    public org.telegram.ui.ActionBar.e6 F;
+    public org.telegram.messenger.e9 G;
     public long H;
-    public View f23907a;
+    public View f31320a;
     public final Paint d;
-    public final Paint f23910f;
-    public TextPaint f23911g;
-    public boolean f23912i;
-    public boolean f23915l;
-    public boolean f23917n;
-    public float f23918o;
-    public ObjectAnimator f23919p;
-    public boolean f23920q;
-    public int f23922s;
-    public int f23923t;
-    public int f23924u;
+    public final Paint f31324f;
+    public TextPaint f31325g;
+    public boolean f31326i;
+    public boolean f31329l;
+    public boolean f31331n;
+    public float f31332o;
+    public ObjectAnimator f31333p;
+    public boolean f31334q;
+    public int f31336s;
+    public int f31337t;
+    public int f31338u;
     public float v;
-    public float f23925w;
-    public int f23926x;
-    public boolean f23927y;
-    public boolean f23928z;
-    public final Rect f23908b = new Rect();
-    public final RectF f23909c = new RectF();
-    public float e = 1.0f;
+    public float f31339w;
+    public int f31340x;
+    public boolean f31341y;
+    public boolean f31342z;
+    public final Rect f31321b = new Rect();
+    public final RectF f31322c = new RectF();
+    public float f31323e = 1.0f;
     public float h = 1.0f;
-    public final Path f23913j = new Path();
-    public boolean f23914k = true;
-    public float f23916m = 1.0f;
-    public int f23921r = org.telegram.ui.ActionBar.t6.f21060k7;
+    public final Path f31327j = new Path();
+    public boolean f31328k = true;
+    public float f31330m = 1.0f;
+    public int f31335r = org.telegram.ui.ActionBar.k6.f28008k7;
 
-    public CheckBoxBase(int i10, View view, org.telegram.ui.ActionBar.p6 p6Var) {
-        int i11 = org.telegram.ui.ActionBar.t6.Zc;
-        this.f23922s = i11;
-        this.f23923t = i11;
-        this.f23924u = org.telegram.ui.ActionBar.t6.f21002h5;
+    public CheckBoxBase(int i3, View view, org.telegram.ui.ActionBar.e6 e6Var) {
+        int i10 = org.telegram.ui.ActionBar.k6.Zc;
+        this.f31336s = i10;
+        this.f31337t = i10;
+        this.f31338u = org.telegram.ui.ActionBar.k6.f27954h5;
         this.v = 0.0f;
-        this.f23925w = 1.0f;
-        this.f23928z = true;
-        this.G = new v1(29);
+        this.f31339w = 1.0f;
+        this.f31342z = true;
+        this.G = new a3(13);
         this.H = 200L;
-        this.F = p6Var;
-        this.f23907a = view;
-        this.B = i10;
+        this.F = e6Var;
+        this.f31320a = view;
+        this.B = i3;
         if (I == null) {
             I = new Paint(1);
         }
@@ -69,11 +69,11 @@ public class CheckBoxBase {
         Paint.Style style = Paint.Style.STROKE;
         paint.setStyle(style);
         paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.i0.L(1.9f));
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.9f));
         Paint paint2 = new Paint(1);
-        this.f23910f = paint2;
+        this.f31324f = paint2;
         paint2.setStyle(style);
-        paint2.setStrokeWidth(org.telegram.messenger.i0.L(1.2f));
+        paint2.setStrokeWidth(org.telegram.messenger.g0.L(1.2f));
     }
 
     public final void a(android.graphics.Canvas r33) {
@@ -81,98 +81,98 @@ public class CheckBoxBase {
     }
 
     public final void b() {
-        View view = this.f23907a;
+        View view = this.f31320a;
         if (view == null) {
             return;
         }
         if (view.getParent() != null) {
-            ((View) this.f23907a.getParent()).invalidate();
+            ((View) this.f31320a.getParent()).invalidate();
         }
-        this.f23907a.invalidate();
+        this.f31320a.invalidate();
     }
 
-    public final void c(float f7) {
-        if (this.f23916m == f7) {
+    public final void c(float f10) {
+        if (this.f31330m == f10) {
             return;
         }
-        this.f23916m = f7;
+        this.f31330m = f10;
         b();
     }
 
-    public final void d(int i10) {
-        if (this.A == i10) {
+    public final void d(int i3) {
+        if (this.A == i3) {
             return;
         }
-        this.A = i10;
-        Paint paint = this.f23910f;
-        if (i10 != 12 && i10 != 13) {
-            if (i10 != 4 && i10 != 5) {
-                if (i10 == 3) {
-                    paint.setStrokeWidth(org.telegram.messenger.i0.L(3.0f));
-                } else if (i10 != 0) {
-                    paint.setStrokeWidth(org.telegram.messenger.i0.L(1.5f));
+        this.A = i3;
+        Paint paint = this.f31324f;
+        if (i3 != 12 && i3 != 13) {
+            if (i3 != 4 && i3 != 5) {
+                if (i3 == 3) {
+                    paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+                } else if (i3 != 0) {
+                    paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
                 }
             } else {
-                paint.setStrokeWidth(org.telegram.messenger.i0.L(1.9f));
-                if (i10 == 5) {
-                    this.d.setStrokeWidth(org.telegram.messenger.i0.L(1.5f));
+                paint.setStrokeWidth(org.telegram.messenger.g0.L(1.9f));
+                if (i3 == 5) {
+                    this.d.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
                 }
             }
         } else {
-            paint.setStrokeWidth(org.telegram.messenger.i0.L(1.0f));
+            paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
         }
         b();
     }
 
-    public final void e(int i10, int i11, int i12, int i13) {
+    public final void e(int i3, int i10, int i11, int i12) {
+        int i13 = i11 + i3;
         int i14 = i12 + i10;
-        int i15 = i13 + i11;
-        Rect rect = this.f23908b;
-        if (rect.left == i10 && rect.top == i11 && rect.right == i14 && rect.bottom == i15) {
+        Rect rect = this.f31321b;
+        if (rect.left == i3 && rect.top == i10 && rect.right == i13 && rect.bottom == i14) {
             return;
         }
-        rect.left = i10;
-        rect.top = i11;
-        rect.right = i14;
-        rect.bottom = i15;
+        rect.left = i3;
+        rect.top = i10;
+        rect.right = i13;
+        rect.bottom = i14;
         b();
     }
 
-    public final void f(int i10, boolean z10, boolean z11) {
-        if (i10 >= 0) {
-            String str = "" + (i10 + 1);
+    public final void f(int i3, boolean z10, boolean z11) {
+        if (i3 >= 0) {
+            String str = "" + (i3 + 1);
             String str2 = this.C;
             if (str2 == null || !str2.equals(str)) {
                 this.C = str;
                 b();
             }
         }
-        if (z10 == this.f23920q) {
+        if (z10 == this.f31334q) {
             return;
         }
-        this.f23920q = z10;
-        float f7 = 0.0f;
-        if (this.f23915l && z11) {
+        this.f31334q = z10;
+        float f10 = 0.0f;
+        if (this.f31329l && z11) {
             if (z10) {
-                f7 = 1.0f;
+                f10 = 1.0f;
             }
-            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f7);
-            this.f23919p = ofFloat;
-            ofFloat.addListener(new w5(this, 19));
-            this.f23919p.setInterpolator(gr.f26524g);
-            this.f23919p.setDuration(this.H);
-            this.f23919p.start();
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
+            this.f31333p = ofFloat;
+            ofFloat.addListener(new x5(this, 19));
+            this.f31333p.setInterpolator(xq.f40453g);
+            this.f31333p.setDuration(this.H);
+            this.f31333p.start();
             return;
         }
-        ObjectAnimator objectAnimator = this.f23919p;
+        ObjectAnimator objectAnimator = this.f31333p;
         if (objectAnimator != null) {
             objectAnimator.cancel();
-            this.f23919p = null;
+            this.f31333p = null;
         }
         if (z10) {
-            f7 = 1.0f;
+            f10 = 1.0f;
         }
-        setProgress(f7);
+        setProgress(f10);
     }
 
     public final void g(boolean z10, boolean z11) {
@@ -180,33 +180,33 @@ public class CheckBoxBase {
     }
 
     public float getProgress() {
-        return this.f23918o;
+        return this.f31332o;
     }
 
-    public final void h(int i10, int i11, int i12) {
-        if (this.f23922s == i10 && this.f23923t == i11 && this.f23921r == i12) {
+    public final void h(int i3, int i10, int i11) {
+        if (this.f31336s == i3 && this.f31337t == i10 && this.f31335r == i11) {
             return;
         }
-        this.f23922s = i10;
-        this.f23923t = i11;
-        this.f23921r = i12;
+        this.f31336s = i3;
+        this.f31337t = i10;
+        this.f31335r = i11;
         b();
     }
 
-    public final void i(float f7) {
-        if (this.v == f7) {
+    public final void i(float f10) {
+        if (this.v == f10) {
             return;
         }
-        this.v = f7;
+        this.v = f10;
         b();
     }
 
     public final void j(boolean z10) {
         PorterDuffXfermode porterDuffXfermode;
-        if (this.f23912i == z10) {
+        if (this.f31326i == z10) {
             return;
         }
-        this.f23912i = z10;
+        this.f31326i = z10;
         if (z10) {
             porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
         } else {
@@ -217,28 +217,28 @@ public class CheckBoxBase {
     }
 
     public final void k(boolean z10) {
-        if (this.f23928z == z10) {
+        if (this.f31342z == z10) {
             return;
         }
-        this.f23928z = z10;
+        this.f31342z = z10;
         b();
     }
 
-    public final void l(float f7) {
-        if (this.B == f7) {
+    public final void l(float f10) {
+        if (this.B == f10) {
             return;
         }
-        this.B = f7;
+        this.B = f10;
         b();
     }
 
-    public void setProgress(float f7) {
-        if (this.f23918o != f7) {
-            this.f23918o = f7;
+    public void setProgress(float f10) {
+        if (this.f31332o != f10) {
+            this.f31332o = f10;
             b();
-            fp fpVar = this.D;
-            if (fpVar != null) {
-                fpVar.a();
+            xo xoVar = this.D;
+            if (xoVar != null) {
+                xoVar.a();
             }
         }
     }

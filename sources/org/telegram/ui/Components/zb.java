@@ -1,67 +1,73 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class zb implements org.telegram.messenger.r20 {
-    public final int f33093a = 2;
-    public final long f33094b;
-    public final int f33095c;
-    public final Object d;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.widget.LinearLayout;
+public final class zb extends ya {
+    public final x8 f40994a;
+    public final s70 f40995b;
+    public final s70 f40996c;
+    public final LinearLayout d;
 
-    public zb(int i10, long j10, TLRPC.Document document) {
-        this.f33095c = i10;
-        this.f33094b = j10;
-        this.d = document;
+    public zb(Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context, e6Var);
+        x8 x8Var = new x8(context, false);
+        this.f40994a = x8Var;
+        x8Var.setStyle(11);
+        x8Var.setAvatarsTextSize(org.telegram.messenger.g0.L(18.0f));
+        addView(x8Var, b8.mf.i(56.0f, 48.0f, 8388627, 12.0f, 0.0f, 0.0f, 0.0f));
+        if (!z10) {
+            ai.e2 e2Var = new ai.e2(4, context, null);
+            this.f40995b = e2Var;
+            org.telegram.messenger.hs.i(e2Var);
+            e2Var.setTypeface(Typeface.SANS_SERIF);
+            e2Var.setTextSize(1, 15.0f);
+            e2Var.setEllipsize(TextUtils.TruncateAt.END);
+            e2Var.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
+            e2Var.setGravity(org.telegram.messenger.bd.f21784a0 ? 5 : 3);
+            addView(e2Var, b8.mf.i(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
+        } else {
+            LinearLayout linearLayout = new LinearLayout(getContext());
+            this.d = linearLayout;
+            linearLayout.setOrientation(1);
+            addView(linearLayout, b8.mf.i(-1.0f, -2.0f, 8388627, 76.0f, 6.0f, 12.0f, 6.0f));
+            ai.e2 e2Var2 = new ai.e2(5, context, null);
+            this.f40995b = e2Var2;
+            org.telegram.messenger.hs.i(e2Var2);
+            Typeface typeface = Typeface.SANS_SERIF;
+            e2Var2.setTypeface(typeface);
+            e2Var2.setTextSize(1, 14.0f);
+            e2Var2.setTypeface(org.telegram.messenger.g0.o());
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            e2Var2.setEllipsize(truncateAt);
+            e2Var2.setMaxLines(1);
+            linearLayout.addView(e2Var2);
+            s70 s70Var = new s70(context, null);
+            this.f40996c = s70Var;
+            s70Var.setTypeface(typeface);
+            s70Var.setTextSize(1, 12.0f);
+            s70Var.setEllipsize(truncateAt);
+            s70Var.setSingleLine(false);
+            s70Var.setMaxLines(3);
+            org.telegram.ui.ActionBar.r6.H(s70Var, org.telegram.ui.ActionBar.k6.uj, e6Var);
+            linearLayout.addView(s70Var, b8.mf.t(-2, -2, 0, 0, 0, 0, 0));
+        }
+        org.telegram.ui.ActionBar.r6.H(this.f40995b, org.telegram.ui.ActionBar.k6.uj, e6Var);
+        setTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.vj));
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.k6.tj));
     }
 
     @Override
-    public final void a(Object obj) {
-        Object L0;
-        TLRPC.StickerSet stickerSet;
-        int i10 = this.f33093a;
-        Object obj2 = this.d;
-        long j10 = this.f33094b;
-        int i11 = this.f33095c;
-        switch (i10) {
-            case 0:
-                wb wbVar = (wb) obj2;
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null) {
-                    if (i11 == 1) {
-                        L0 = org.telegram.messenger.i0.W2(org.telegram.messenger.dd.a0("TopicContainsEmojiPackSingle", null, 2131744047, stickerSet.title));
-                    } else if (i11 == 2) {
-                        L0 = org.telegram.messenger.i0.W2(org.telegram.messenger.dd.a0("StoryContainsEmojiPackSingle", null, 2131744717, stickerSet.title));
-                    } else {
-                        L0 = org.telegram.messenger.i0.W2(org.telegram.messenger.dd.a0("MessageContainsEmojiPackSingle", null, 2131748611, stickerSet.title));
-                    }
-                } else {
-                    L0 = org.telegram.messenger.dd.L0(2131754435, null);
-                }
-                org.telegram.messenger.i0.h3(new org.telegram.ui.ch(27, wbVar, L0), Math.max(1L, 750 - (System.currentTimeMillis() - j10)));
-                return;
-            case 1:
-                ((au0) obj2).getStoriesController().b(i11, j10, (ArrayList) obj);
-                return;
-            default:
-                TLRPC.Document document = (TLRPC.Document) obj2;
-                if (((Boolean) obj).booleanValue()) {
-                    rh.e6.y(i11, false).P(j10);
-                    org.telegram.messenger.i0.g3(new v41(new org.telegram.ui.tl0(j10, 2), document, org.telegram.messenger.dd.L0(2131750111, null), 25));
-                    return;
-                }
-                return;
+    public CharSequence getAccessibilityText() {
+        return this.f40995b.getText();
+    }
+
+    public void setTextColor(int i3) {
+        this.f40995b.setTextColor(i3);
+        s70 s70Var = this.f40996c;
+        if (s70Var != null) {
+            s70Var.setTextColor(i3);
         }
-    }
-
-    public zb(int i10, wb wbVar, long j10) {
-        this.f33095c = i10;
-        this.d = wbVar;
-        this.f33094b = j10;
-    }
-
-    public zb(au0 au0Var, long j10, int i10) {
-        this.d = au0Var;
-        this.f33094b = j10;
-        this.f33095c = i10;
     }
 }

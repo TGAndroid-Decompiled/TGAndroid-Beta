@@ -1,57 +1,8 @@
 package org.telegram.ui.Components;
-
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ks extends AnimatorListenerAdapter {
-    public final int f27950a;
-    public final s4.c1 f27951b;
-    public final org.telegram.ui.Cells.v2 f27952c;
-    public final ps d;
-
-    public ks(ps psVar, s4.c1 c1Var, org.telegram.ui.Cells.v2 v2Var, int i10) {
-        this.f27950a = i10;
-        this.d = psVar;
-        this.f27951b = c1Var;
-        this.f27952c = v2Var;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f27950a) {
-            case 0:
-                animator.removeAllListeners();
-                org.telegram.ui.Cells.v2 v2Var = this.f27952c;
-                v2Var.setClipProgress(0.0f);
-                v2Var.setElevation(0.0f);
-                ps psVar = this.d;
-                s4.c1 c1Var = this.f27951b;
-                psVar.d(c1Var);
-                psVar.f29527x.remove(c1Var);
-                psVar.A();
-                return;
-            default:
-                animator.removeAllListeners();
-                org.telegram.ui.Cells.v2 v2Var2 = this.f27952c;
-                v2Var2.setClipProgress(0.0f);
-                v2Var2.setElevation(0.0f);
-                ps psVar2 = this.d;
-                s4.c1 c1Var2 = this.f27951b;
-                psVar2.d(c1Var2);
-                psVar2.f29527x.remove(c1Var2);
-                psVar2.A();
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f27950a) {
-            case 0:
-                this.d.y();
-                return;
-            default:
-                this.d.y();
-                return;
-        }
-    }
+public abstract class ks {
+    public static final xq f35474a = new xq(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final xq f35475b = new xq(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final xq f35476c = new xq(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final xq d = new xq(0.25d, 0.46d, 0.45d, 0.94d);
+    public static final xq f35477e = new xq(0.455d, 0.03d, 0.515d, 0.955d);
 }

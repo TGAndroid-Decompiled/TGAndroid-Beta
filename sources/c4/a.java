@@ -1,14 +1,12 @@
 package c4;
-
-import e2.x;
 public final class a {
-    public final x f3724a = new x();
-    public final int[] f3725b = new int[256];
-    public boolean f3726c;
-    public int d;
-    public int e;
-    public int f3727f;
-    public int f3728g;
-    public int h;
-    public int f3729i;
+    public final int f4137a;
+    public final boolean f4138b;
+    public int f4139c;
+
+    public a(int i3, boolean z10, int i10) {
+        this.f4137a = i3;
+        this.f4138b = z10;
+        this.f4139c = i10;
+    }
 }

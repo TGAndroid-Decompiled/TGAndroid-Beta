@@ -1,10 +1,23 @@
 package org.telegram.ui;
+public final class jp implements Runnable {
+    public final int f46663a;
+    public final nq f46664b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class jp extends FrameLayout {
+    public jp(nq nqVar, int i3) {
+        this.f46663a = i3;
+        this.f46664b = nqVar;
+    }
+
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void run() {
+        switch (this.f46663a) {
+            case 0:
+                this.f46664b.w0();
+                return;
+            default:
+                nq nqVar = this.f46664b;
+                nqVar.getMessagesController().V2(0, nqVar.N, true);
+                return;
+        }
     }
 }

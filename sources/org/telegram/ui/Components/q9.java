@@ -1,125 +1,203 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class q9 {
-    public org.telegram.messenger.s5 f29681a;
-    public final int f29682b;
-    public final View f29683c;
-    public final kg.f0 d;
-    public Bitmap[] e;
-    public Bitmap[] f29684f;
-    public Bitmap[] f29685g;
-    public Canvas[] h;
-    public Canvas[] f29686i;
-    public Canvas[] f29687j;
-    public boolean f29688k;
-    public float f29690m;
-    public boolean f29691n;
-    public boolean f29692o;
-    public int f29694q;
-    public int f29695r;
-    public int f29696s;
-    public boolean f29697t;
-    public float f29698u;
-    public final Paint f29700x;
-    public final org.telegram.ui.ActionBar.p6 f29701y;
-    public boolean f29689l = true;
-    public boolean f29693p = true;
-    public p9 v = new p9(this);
-    public final Paint f29699w = new Paint(2);
+import android.graphics.Path;
+import java.util.Random;
+public class q9 {
+    public float f37381a;
+    public float f37382b;
+    public final Path f37383c;
+    public final Paint d;
+    public final float[] f37384e;
+    public final float[] f37385f;
+    public final float[] f37386g;
+    public final float[] h;
+    public final float[] f37387i;
+    public final float[] f37388j;
+    public final float[] f37389k;
+    public final float[] f37390l;
+    public final Random f37391m;
+    public final float f37392n;
+    public final float f37393o;
+    public final float f37394p;
+    public final Matrix f37395q;
+    public final int f37396r;
+    public float f37397s;
+    public float f37398t;
+    public float f37399u;
 
-    public q9(View view, kg.f0 f0Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        Paint paint = new Paint();
-        this.f29700x = paint;
-        this.f29682b = 1;
-        this.f29683c = view;
-        this.d = f0Var;
-        this.f29701y = p6Var;
-        paint.setColor(-16777216);
+    public q9(int i3) {
+        this(i3, 512);
     }
 
-    public final void a() {
-        Bitmap[] bitmapArr = this.f29685g;
-        if (bitmapArr == null) {
-            bitmapArr = new Bitmap[2];
-            this.f29685g = bitmapArr;
-            this.h = new Canvas[2];
+    public final void a(float f10, float f11, Canvas canvas, Paint paint) {
+        int i3;
+        if (!org.telegram.messenger.lc.e(this.f37396r)) {
+            return;
         }
-        if (this.e == null) {
-            this.e = new Bitmap[2];
-            this.f29687j = new Canvas[2];
-        }
-        this.v.f29385a = true;
-        this.v = new p9(this);
-        for (int i10 = 0; i10 < 2; i10++) {
-            kg.f0 f0Var = this.d;
-            int measuredHeight = f0Var.getMeasuredHeight();
-            int measuredWidth = f0Var.getMeasuredWidth();
-            int L = org.telegram.messenger.i0.L(200.0f) + org.telegram.messenger.i0.f16166m;
-            this.f29696s = L;
-            if (i10 != 0) {
-                L = measuredHeight;
-            }
-            Bitmap bitmap = bitmapArr[i10];
-            if (bitmap == null || bitmap.getHeight() != L || bitmapArr[i10].getWidth() != f0Var.getMeasuredWidth()) {
-                org.telegram.messenger.s5 s5Var = this.f29681a;
-                if (s5Var != null) {
-                    s5Var.cleanupQueue();
+        Path path = this.f37383c;
+        path.reset();
+        int i10 = 0;
+        while (true) {
+            float f12 = this.f37392n;
+            if (i10 < f12) {
+                float[] fArr = this.f37387i;
+                float f13 = fArr[i10];
+                int i11 = i10 + 1;
+                if (i11 < f12) {
+                    i3 = i11;
+                } else {
+                    i3 = 0;
                 }
-                Bitmap[] bitmapArr2 = this.e;
-                int i11 = (int) (measuredWidth / 15.0f);
-                Bitmap.Config config = Bitmap.Config.ARGB_8888;
-                bitmapArr2[i10] = Bitmap.createBitmap(i11, (int) (L / 15.0f), config);
-                org.telegram.ui.ActionBar.p6 p6Var = this.f29701y;
-                if (i10 == 1) {
-                    this.e[i10].eraseColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d6, p6Var));
-                }
-                this.f29687j[i10] = new Canvas(this.e[i10]);
+                float f14 = fArr[i3];
+                float[] fArr2 = this.f37384e;
+                float f15 = 1.0f - f13;
+                float[] fArr3 = this.f37386g;
+                float f16 = (fArr3[i10] * f13) + (fArr2[i10] * f15);
+                float f17 = 1.0f - f14;
+                float f18 = (fArr3[i3] * f14) + (fArr2[i3] * f17);
+                float[] fArr4 = this.f37385f;
+                float f19 = fArr4[i10] * f15;
+                float[] fArr5 = this.h;
+                float f20 = (fArr5[i3] * f14) + (fArr4[i3] * f17);
+                float max = (((Math.max(f16, f18) - Math.min(f16, f18)) / 2.0f) + Math.min(f16, f18)) * this.f37393o * this.f37394p;
+                Matrix matrix = this.f37395q;
+                matrix.reset();
+                matrix.setRotate((fArr5[i10] * f13) + f19, f10, f11);
+                float[] fArr6 = this.f37389k;
+                fArr6[0] = f10;
+                float f21 = f11 - f16;
+                fArr6[1] = f21;
+                fArr6[2] = f10 + max;
+                fArr6[3] = f21;
+                matrix.mapPoints(fArr6);
+                float[] fArr7 = this.f37390l;
+                fArr7[0] = f10;
+                float f22 = f11 - f18;
+                fArr7[1] = f22;
+                fArr7[2] = f10 - max;
+                fArr7[3] = f22;
+                matrix.reset();
+                matrix.setRotate(f20, f10, f11);
+                matrix.mapPoints(fArr7);
                 if (i10 == 0) {
-                    measuredHeight = this.f29696s;
+                    path.moveTo(fArr6[0], fArr6[1]);
                 }
-                this.f29685g[i10] = Bitmap.createBitmap(i11, (int) (measuredHeight / 15.0f), config);
-                this.h[i10] = new Canvas(this.f29685g[i10]);
-                this.h[i10].scale(this.f29685g[i10].getWidth() / this.e[i10].getWidth(), this.f29685g[i10].getHeight() / this.e[i10].getHeight());
-                this.f29687j[i10].save();
-                this.f29687j[i10].scale(0.06666667f, 0.06666667f, 0.0f, 0.0f);
-                View view = this.f29683c;
-                Drawable background = view.getBackground();
-                if (background == null) {
-                    if (p6Var instanceof org.telegram.ui.sn) {
-                        background = ((org.telegram.ui.sn) p6Var).m();
-                    } else {
-                        background = org.telegram.ui.ActionBar.t6.t0();
-                    }
-                }
-                view.setTag(67108867, Integer.valueOf(i10));
-                if (i10 == 0) {
-                    this.f29687j[i10].translate(0.0f, -this.f29698u);
-                    view.draw(this.f29687j[i10]);
-                }
-                if (i10 == 1) {
-                    Rect bounds = background.getBounds();
-                    background.setBounds(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
-                    background.draw(this.f29687j[i10]);
-                    background.setBounds(bounds);
-                    view.draw(this.f29687j[i10]);
-                }
-                view.setTag(67108867, null);
-                this.f29687j[i10].restore();
-                Utilities.stackBlurBitmap(this.e[i10], 15);
-                Paint paint = this.f29699w;
-                paint.setAlpha(255);
-                if (i10 == 1) {
-                    this.f29685g[i10].eraseColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d6, p6Var));
-                }
-                this.h[i10].drawBitmap(this.e[i10], 0.0f, 0.0f, paint);
+                path.cubicTo(fArr6[2], fArr6[3], fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
+                i10 = i11;
+            } else {
+                canvas.save();
+                canvas.drawPath(path, paint);
+                canvas.restore();
+                return;
             }
         }
+    }
+
+    public final void b() {
+        for (int i3 = 0; i3 < this.f37392n; i3++) {
+            c(this.f37384e, this.f37385f, i3);
+            c(this.f37386g, this.h, i3);
+            this.f37387i[i3] = 0.0f;
+        }
+    }
+
+    public final void c(float[] fArr, float[] fArr2, int i3) {
+        float f10 = this.f37392n;
+        float f11 = this.f37382b;
+        float f12 = this.f37381a;
+        Random random = this.f37391m;
+        fArr[i3] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f11 - f12)) + f12;
+        fArr2[i3] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f10) * 0.05f) + ((360.0f / f10) * i3);
+        this.f37388j[i3] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+    }
+
+    public final void d(boolean z10, float f10) {
+        this.f37397s = f10;
+        if (!org.telegram.messenger.lc.e(this.f37396r)) {
+            return;
+        }
+        if (z10) {
+            float f11 = this.f37397s;
+            float f12 = this.f37398t;
+            if (f11 > f12) {
+                this.f37399u = (f11 - f12) / 205.0f;
+                return;
+            } else {
+                this.f37399u = (f11 - f12) / 275.0f;
+                return;
+            }
+        }
+        float f13 = this.f37397s;
+        float f14 = this.f37398t;
+        if (f13 > f14) {
+            this.f37399u = (f13 - f14) / 320.0f;
+        } else {
+            this.f37399u = (f13 - f14) / 375.0f;
+        }
+    }
+
+    public final void e(float f10, float f11) {
+        if (org.telegram.messenger.lc.e(this.f37396r)) {
+            for (int i3 = 0; i3 < this.f37392n; i3++) {
+                float[] fArr = this.f37387i;
+                float f12 = fArr[i3];
+                float f13 = this.f37388j[i3];
+                float f14 = (f13 * f10 * 8.2f * f11) + (0.8f * f13) + f12;
+                fArr[i3] = f14;
+                if (f14 >= 1.0f) {
+                    fArr[i3] = 0.0f;
+                    float[] fArr2 = this.f37386g;
+                    this.f37384e[i3] = fArr2[i3];
+                    float[] fArr3 = this.h;
+                    this.f37385f[i3] = fArr3[i3];
+                    c(fArr2, fArr3, i3);
+                }
+            }
+        }
+    }
+
+    public final void f(long j10) {
+        float f10 = this.f37397s;
+        float f11 = this.f37398t;
+        if (f10 != f11) {
+            float f12 = this.f37399u;
+            float f13 = (((float) j10) * f12) + f11;
+            this.f37398t = f13;
+            if (f12 > 0.0f) {
+                if (f13 > f10) {
+                    this.f37398t = f10;
+                }
+            } else if (f13 < f10) {
+                this.f37398t = f10;
+            }
+        }
+    }
+
+    public q9(int i3, int i10) {
+        float f10;
+        this.f37383c = new Path();
+        this.d = new Paint(1);
+        this.f37389k = new float[4];
+        this.f37390l = new float[4];
+        this.f37391m = new Random();
+        this.f37394p = 1.0f;
+        this.f37395q = new Matrix();
+        this.f37392n = i3;
+        this.f37393o = (float) (Math.tan(3.141592653589793d / (f10 * 2.0f)) * 1.3333333333333333d);
+        this.f37384e = new float[i3];
+        this.f37385f = new float[i3];
+        this.f37386g = new float[i3];
+        this.h = new float[i3];
+        this.f37387i = new float[i3];
+        this.f37388j = new float[i3];
+        for (int i11 = 0; i11 < this.f37392n; i11++) {
+            c(this.f37384e, this.f37385f, i11);
+            c(this.f37386g, this.h, i11);
+            this.f37387i[i11] = 0.0f;
+        }
+        this.f37396r = i10;
     }
 }

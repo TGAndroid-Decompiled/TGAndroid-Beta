@@ -1,41 +1,26 @@
 package o2;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class d extends LinkedHashMap {
-    public final int f13977a;
+import d2.v;
+import g9.i0;
+import java.util.ArrayList;
+public final class d {
+    public final v f20523a;
+    public final i0 f20524b;
+    public final s f20525c;
+    public final String d;
+    public final ArrayList f20526e;
+    public final ArrayList f20527f;
+    public final ArrayList f20528g;
+    public final ArrayList h;
 
-    public d(float f7, int i10, int i11, boolean z10) {
-        super(i10, f7, z10);
-        this.f13977a = i11;
-    }
-
-    public static Matcher a(String str, Pattern pattern, d dVar) {
-        Matcher matcher = (Matcher) dVar.get(pattern);
-        if (matcher == null) {
-            Matcher matcher2 = pattern.matcher(str);
-            dVar.put(pattern, matcher2);
-            return matcher2;
-        }
-        matcher.reset(str);
-        return matcher;
-    }
-
-    @Override
-    public final boolean removeEldestEntry(Map.Entry entry) {
-        switch (this.f13977a) {
-            case 0:
-                if (size() > 4) {
-                    return true;
-                }
-                return false;
-            default:
-                if (size() > 32) {
-                    return true;
-                }
-                return false;
-        }
+    public d(v vVar, ArrayList arrayList, s sVar, String str, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5) {
+        this.f20523a = vVar;
+        this.f20524b = i0.q(arrayList);
+        this.f20525c = sVar;
+        this.d = str;
+        this.f20526e = arrayList2;
+        this.f20527f = arrayList3;
+        this.f20528g = arrayList4;
+        this.h = arrayList5;
     }
 }

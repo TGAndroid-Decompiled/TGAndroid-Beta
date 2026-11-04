@@ -1,116 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.util.StateSet;
-import android.view.MotionEvent;
-public final class tp extends f6 {
-    public final Rect f30687s;
-    public Drawable f30688w;
-    public boolean f30689x;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class tp extends AnimatorListenerAdapter {
+    public final int f38533a;
+    public final vp f38534b;
 
-    public tp(Context context) {
-        super(context, false, false, false);
-        this.f30687s = new Rect();
-    }
-
-    public Rect getClickBounds() {
-        return this.f30687s;
+    public tp(vp vpVar, int i3) {
+        this.f38533a = i3;
+        this.f38534b = vpVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f30688w != null) {
-            Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f30687s;
-            rect.set(bounds);
-            int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f25744b == 3) {
-                rect.right = rect.left + ceil;
-            } else if (getDrawable().f25744b == 5) {
-                rect.left = rect.right - ceil;
-            } else if (getDrawable().f25744b == 17) {
-                int i10 = (rect.left + rect.right) / 2;
-                int i11 = ceil / 2;
-                rect.left = i10 - i11;
-                rect.right = i10 + i11;
-            }
-            rect.left -= getPaddingLeft();
-            rect.top -= getPaddingTop();
-            rect.right = getPaddingRight() + rect.right;
-            rect.bottom = getPaddingBottom() + rect.bottom;
-            this.f30688w.setBounds(rect);
-            this.f30688w.draw(canvas);
+    public final void onAnimationEnd(Animator animator) {
+        int i3 = this.f38533a;
+        vp vpVar = this.f38534b;
+        switch (i3) {
+            case 0:
+                ColorPicker$RadioButton[] colorPicker$RadioButtonArr = vpVar.f39763w;
+                if (vpVar.L == 1) {
+                    vpVar.G.setVisibility(4);
+                }
+                for (int i10 = 0; i10 < colorPicker$RadioButtonArr.length; i10++) {
+                    if (colorPicker$RadioButtonArr[i10].getTag(2131296461) == null) {
+                        colorPicker$RadioButtonArr[i10].setVisibility(4);
+                    }
+                }
+                vpVar.E = null;
+                return;
+            default:
+                if (vpVar.L == vpVar.M) {
+                    vpVar.H.setVisibility(4);
+                }
+                vpVar.E = null;
+                return;
         }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
-        if (motionEvent.getAction() == 0 && contains) {
-            this.f30689x = true;
-            Drawable drawable = this.f30688w;
-            if (drawable != null) {
-                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.f30688w.setState(new int[]{16842919, 16842910});
-            }
-            invalidate();
-            return contains;
-        }
-        if (motionEvent.getAction() == 1) {
-            if (this.f30689x && contains) {
-                callOnClick();
-            }
-            this.f30689x = false;
-            Drawable drawable2 = this.f30688w;
-            if (drawable2 != null) {
-                drawable2.setState(StateSet.NOTHING);
-                return contains;
-            }
-        } else if (motionEvent.getAction() == 3) {
-            this.f30689x = false;
-            Drawable drawable3 = this.f30688w;
-            if (drawable3 != null) {
-                drawable3.setState(StateSet.NOTHING);
-            }
-        }
-        return contains;
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
-        Drawable drawable2 = this.f30688w;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.f30688w = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        Drawable drawable2 = this.f30688w;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.f30688w = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f30688w && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

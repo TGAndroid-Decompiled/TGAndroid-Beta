@@ -1,14 +1,20 @@
 package org.telegram.messenger;
+public final class m6 {
+    public final String f24168a;
+    public final String f24169b;
 
-import java.io.IOException;
-public abstract class m6 {
-    public static final n6 f17039a;
+    public m6(String str, String str2, boolean z10) {
+        this.f24168a = str;
+        this.f24169b = str2;
+    }
 
-    static {
-        try {
-            f17039a = new n6();
-        } catch (IOException e) {
-            throw new IllegalStateException("Unable to open emoji.pack", e);
+    public m6(String str, String str2) {
+        Object[] objArr = {str, 23};
+        if (str.length() <= 23) {
+            this.f24168a = str;
+            this.f24169b = (str2 == null || str2.length() <= 0) ? null : str2;
+            return;
         }
+        throw new IllegalArgumentException(String.format("tag \"%s\" is longer than the %d character maximum", objArr));
     }
 }

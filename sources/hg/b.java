@@ -1,14 +1,24 @@
 package hg;
-public abstract class b {
-    public int f7681a;
-    public boolean f7682b;
 
-    public b(int i10, boolean z10) {
-        this.f7681a = i10;
-        this.f7682b = z10;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import java.util.ArrayList;
+import java.util.List;
+public final class b extends BitmapDrawable {
+    public final List f14401a;
+
+    public b(Bitmap bitmap, List list) {
+        super(bitmap);
+        this.f14401a = list;
     }
 
-    public boolean a(b bVar) {
-        return false;
+    public static BitmapDrawable a(Bitmap bitmap, ArrayList arrayList) {
+        if (bitmap == null) {
+            return null;
+        }
+        if (arrayList != null && !arrayList.isEmpty()) {
+            return new b(bitmap, arrayList);
+        }
+        return new BitmapDrawable(bitmap);
     }
 }

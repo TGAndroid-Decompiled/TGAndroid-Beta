@@ -1,56 +1,51 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class dr implements ir {
-    public final pr f36671a;
+public final class dr implements Runnable {
+    public final int f44801a;
+    public final lr f44802b;
+    public final TLRPC.User f44803c;
 
-    public dr(pr prVar) {
-        this.f36671a = prVar;
+    public dr(lr lrVar, TLRPC.User user, int i3) {
+        this.f44801a = i3;
+        this.f44802b = lrVar;
+        this.f44803c = user;
     }
 
     @Override
-    public final void c(long j10, TLObject tLObject) {
-        pr prVar = this.f36671a;
-        if (prVar.J.f(j10) == null) {
-            jr B0 = prVar.B0();
-            prVar.E.add(tLObject);
-            prVar.J.k(tLObject, j10);
-            prVar.E0(prVar.E);
-            prVar.F0(B0);
+    public final void run() {
+        String str;
+        switch (this.f44801a) {
+            case 0:
+                lr lrVar = this.f44802b;
+                TLRPC.User user = this.f44803c;
+                if (user != null && lrVar.N == null && lrVar.O == null) {
+                    if (user.phone == null && (str = lrVar.M) != null) {
+                        user.phone = mf.b.d(str, false);
+                    }
+                    lrVar.f47416b.setText(user.first_name);
+                    org.telegram.ui.Cells.i3 i3Var = lrVar.f47416b.d;
+                    i3Var.setSelection(i3Var.length());
+                    lrVar.f47417c.setText(user.last_name);
+                }
+                TLRPC.UserFull b22 = lrVar.getMessagesController().b2(lrVar.I);
+                if (b22 != null) {
+                    TLRPC.TL_textWithEntities tL_textWithEntities = b22.note;
+                    if (tL_textWithEntities != null) {
+                        lrVar.d.setText(tL_textWithEntities);
+                    } else {
+                        lrVar.d.setText("");
+                    }
+                }
+                if (lrVar.K) {
+                    lrVar.d.d.requestFocus();
+                    org.telegram.messenger.g0.K3(lrVar.d.d);
+                    return;
+                }
+                return;
+            default:
+                lr.a0(this.f44802b, this.f44803c);
+                return;
         }
-    }
-
-    @Override
-    public final void d(long j10) {
-        pr prVar = this.f36671a;
-        if (prVar.J.f(j10) == null) {
-            jr B0 = prVar.B0();
-            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
-            if (j10 > 0) {
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_channelParticipantBanned.peer = tL_peerUser;
-                tL_peerUser.user_id = j10;
-            } else {
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                tL_channelParticipantBanned.peer = tL_peerChannel;
-                tL_peerChannel.channel_id = -j10;
-            }
-            tL_channelParticipantBanned.date = prVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantBanned.kicked_by = org.telegram.messenger.e20.i(prVar.getAccountInstance().f15043a).f15524n;
-            prVar.f40562r.kicked_count++;
-            prVar.E.add(tL_channelParticipantBanned);
-            prVar.J.k(tL_channelParticipantBanned, j10);
-            prVar.E0(prVar.E);
-            prVar.F0(B0);
-        }
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
-    }
-
-    @Override
-    public final void b(long j10) {
     }
 }

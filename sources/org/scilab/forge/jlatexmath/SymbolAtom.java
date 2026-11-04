@@ -25,11 +25,11 @@ public class SymbolAtom extends CharSymbol {
         validSymbolTypes.set(10);
     }
 
-    public SymbolAtom(SymbolAtom symbolAtom, int i10) {
-        if (validSymbolTypes.get(i10)) {
+    public SymbolAtom(SymbolAtom symbolAtom, int i3) {
+        if (validSymbolTypes.get(i3)) {
             this.name = symbolAtom.name;
-            this.type = i10;
-            if (i10 == 1) {
+            this.type = i3;
+            if (i3 == 1) {
                 this.type_limits = 0;
             }
             this.delimiter = symbolAtom.delimiter;
@@ -41,8 +41,8 @@ public class SymbolAtom extends CharSymbol {
     public static void addSymbolAtom(String str) {
         try {
             addSymbolAtom(new FileInputStream(str), str);
-        } catch (FileNotFoundException e) {
-            throw new ResourceParseException(str, e);
+        } catch (FileNotFoundException e10) {
+            throw new ResourceParseException(str, e10);
         }
     }
 
@@ -56,12 +56,12 @@ public class SymbolAtom extends CharSymbol {
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        char c10;
+        char c2;
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char r22 = teXFont.getChar(this.name, style);
         Box charBox = new CharBox(r22);
-        if (teXEnvironment.getSmallCap() && (c10 = this.unicode) != 0 && Character.isLowerCase(c10)) {
+        if (teXEnvironment.getSmallCap() && (c2 = this.unicode) != 0 && Character.isLowerCase(c2)) {
             try {
                 charBox = new ScaleBox(new CharBox(teXFont.getChar(TeXFormula.symbolTextMappings[Character.toUpperCase(this.unicode)], style)), 0.8d, 0.8d);
             } catch (SymbolMappingNotFoundException unused) {
@@ -100,8 +100,8 @@ public class SymbolAtom extends CharSymbol {
         return this.delimiter;
     }
 
-    public SymbolAtom setUnicode(char c10) {
-        this.unicode = c10;
+    public SymbolAtom setUnicode(char c2) {
+        this.unicode = c2;
         return this;
     }
 
@@ -113,10 +113,10 @@ public class SymbolAtom extends CharSymbol {
         symbols.put(symbolAtom.name, symbolAtom);
     }
 
-    public SymbolAtom(String str, int i10, boolean z10) {
+    public SymbolAtom(String str, int i3, boolean z10) {
         this.name = str;
-        this.type = i10;
-        if (i10 == 1) {
+        this.type = i3;
+        if (i3 == 1) {
             this.type_limits = 0;
         }
         this.delimiter = z10;

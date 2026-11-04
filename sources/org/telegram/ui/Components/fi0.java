@@ -1,209 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.ImageView;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.ImageReceiver;
-public class fi0 extends ImageView {
-    public HashMap f26171a;
-    public ci0 f26172b;
-    public di0 f26173c;
-    public boolean d;
-    public boolean e;
-    public boolean f26174f;
-    public Integer h;
-    public boolean f26175n;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import androidx.recyclerview.widget.RecyclerView;
+public final class fi0 extends u4.t0 {
+    public boolean f33806a;
+    public boolean f33807b;
+    public ValueAnimator f33808c;
+    public ValueAnimator d;
+    public final li0 f33809e;
 
-    public fi0(Context context) {
-        super(context);
+    public fi0(li0 li0Var) {
+        this.f33809e = li0Var;
     }
 
-    public final void a() {
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null) {
-            ci0Var.stop();
-        }
-        di0 di0Var = this.f26173c;
-        if (di0Var != null) {
-            di0Var.R();
-            this.f26173c = null;
-        }
-        this.f26172b = null;
-        setImageDrawable(null);
-    }
-
-    public final boolean b() {
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null && ci0Var.f25144k0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null || this.f26173c != null) {
-            this.f26174f = true;
-            if (this.e) {
-                if (ci0Var != null) {
-                    ci0Var.start();
-                }
-                di0 di0Var = this.f26173c;
-                if (di0Var != null) {
-                    di0Var.P0(false);
-                }
-            }
-        }
-    }
-
-    public final void e(int i10, int i11, int i12) {
-        f(i10, i11, i12, null);
-    }
-
-    public final void f(int i10, int i11, int i12, int[] iArr) {
-        setAnimation(new ci0(i10, org.telegram.messenger.i0.L(i11), org.telegram.messenger.i0.L(i12), false, iArr));
-    }
-
-    public final void g(int r19, int r20, org.telegram.tgnet.TLRPC.Document r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.fi0.g(int, int, org.telegram.tgnet.TLRPC$Document):void");
-    }
-
-    public ci0 getAnimatedDrawable() {
-        return this.f26172b;
-    }
-
-    public ImageReceiver getImageReceiver() {
-        return this.f26173c;
-    }
-
-    public final void h(int i10, String str) {
-        if (this.f26171a == null) {
-            this.f26171a = new HashMap();
-        }
-        this.f26171a.put(str, Integer.valueOf(i10));
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null) {
-            ci0Var.Q(i10, str);
-        }
-    }
-
-    public final void i() {
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null || this.f26173c != null) {
-            this.f26174f = false;
-            if (this.e) {
-                if (ci0Var != null) {
-                    ci0Var.stop();
-                }
-                di0 di0Var = this.f26173c;
-                if (di0Var != null) {
-                    di0Var.Q0();
-                }
-            }
-        }
+    public static ValueAnimator c(float f10, float f11, q0.a aVar, Runnable runnable) {
+        ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(Math.abs(f11 - f10) * 150.0f);
+        duration.addUpdateListener(new y50(aVar, 8));
+        duration.addListener(new a60(runnable, 13));
+        duration.start();
+        return duration;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.e = true;
-        di0 di0Var = this.f26173c;
-        if (di0Var != null) {
-            di0Var.P();
-            if (this.f26174f) {
-                this.f26173c.P0(false);
+    public final void b(RecyclerView recyclerView, int i3, int i10) {
+        boolean z10;
+        float f10;
+        li0 li0Var = this.f33809e;
+        kg.f0 f0Var = li0Var.f35734a0;
+        boolean z11 = false;
+        if (f0Var.L0() != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        float f11 = 0.0f;
+        if (z10 != this.f33806a) {
+            ValueAnimator valueAnimator = this.f33808c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
             }
-        }
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null) {
-            ci0Var.setCallback(this);
-            if (this.f26174f) {
-                this.f26172b.start();
+            float f12 = li0Var.f35766r;
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
             }
-        }
-    }
+            this.f33808c = c(f12, f10, new q0.a(this) {
+                public final fi0 f33109b;
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.e = false;
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null) {
-            ci0Var.stop();
-        }
-        di0 di0Var = this.f26173c;
-        if (di0Var != null) {
-            di0Var.R();
-        }
-    }
+                {
+                    this.f33109b = this;
+                }
 
-    public void setAnimation(ci0 ci0Var) {
-        if (this.f26172b == ci0Var) {
-            return;
+                @Override
+                public final void accept(Object obj) {
+                    Float f13 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            li0 li0Var2 = this.f33109b.f33809e;
+                            Paint paint = li0Var2.h;
+                            float floatValue = f13.floatValue();
+                            li0Var2.f35766r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            li0Var2.invalidate();
+                            return;
+                        default:
+                            li0 li0Var3 = this.f33109b.f33809e;
+                            Paint paint2 = li0Var3.f35761n;
+                            float floatValue2 = f13.floatValue();
+                            li0Var3.f35768s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            li0Var3.invalidate();
+                            return;
+                    }
+                }
+            }, new Runnable(this) {
+                public final fi0 f33403b;
+
+                {
+                    this.f33403b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f33403b.f33808c = null;
+                            return;
+                        default:
+                            this.f33403b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f33806a = z10;
         }
-        di0 di0Var = this.f26173c;
-        if (di0Var != null) {
-            di0Var.R();
-            this.f26173c = null;
+        if (f0Var.N0() != li0Var.f35737b0.b() - 1) {
+            z11 = true;
         }
-        this.f26172b = ci0Var;
-        ci0Var.R(this);
-        if (this.d) {
-            this.f26172b.K(1);
-        }
-        HashMap hashMap = this.f26171a;
-        if (hashMap != null) {
-            this.f26172b.Z = true;
-            for (Map.Entry entry : hashMap.entrySet()) {
-                ci0 ci0Var2 = this.f26172b;
-                Integer num = (Integer) entry.getValue();
-                num.getClass();
-                ci0Var2.f25153s.put((String) entry.getKey(), num);
-                ci0Var2.G();
+        if (z11 != this.f33807b) {
+            ValueAnimator valueAnimator2 = this.d;
+            if (valueAnimator2 != null) {
+                valueAnimator2.cancel();
             }
-            this.f26172b.o();
+            float f13 = li0Var.f35768s;
+            if (z11) {
+                f11 = 1.0f;
+            }
+            this.d = c(f13, f11, new q0.a(this) {
+                public final fi0 f33109b;
+
+                {
+                    this.f33109b = this;
+                }
+
+                @Override
+                public final void accept(Object obj) {
+                    Float f132 = (Float) obj;
+                    switch (r2) {
+                        case 0:
+                            li0 li0Var2 = this.f33109b.f33809e;
+                            Paint paint = li0Var2.h;
+                            float floatValue = f132.floatValue();
+                            li0Var2.f35766r = floatValue;
+                            paint.setAlpha((int) (floatValue * 255.0f));
+                            li0Var2.invalidate();
+                            return;
+                        default:
+                            li0 li0Var3 = this.f33109b.f33809e;
+                            Paint paint2 = li0Var3.f35761n;
+                            float floatValue2 = f132.floatValue();
+                            li0Var3.f35768s = floatValue2;
+                            paint2.setAlpha((int) (floatValue2 * 255.0f));
+                            li0Var3.invalidate();
+                            return;
+                    }
+                }
+            }, new Runnable(this) {
+                public final fi0 f33403b;
+
+                {
+                    this.f33403b = this;
+                }
+
+                @Override
+                public final void run() {
+                    switch (r2) {
+                        case 0:
+                            this.f33403b.f33808c = null;
+                            return;
+                        default:
+                            this.f33403b.d = null;
+                            return;
+                    }
+                }
+            });
+            this.f33807b = z11;
         }
-        this.f26172b.J(true);
-        setImageDrawable(this.f26172b);
-    }
-
-    public void setAutoRepeat(boolean z10) {
-        this.d = z10;
-    }
-
-    @Override
-    public void setImageResource(int i10) {
-        super.setImageResource(i10);
-        this.f26172b = null;
-    }
-
-    public void setLayerNum(Integer num) {
-        this.h = num;
-        di0 di0Var = this.f26173c;
-        if (di0Var != null) {
-            di0Var.E0(num.intValue());
-        }
-    }
-
-    public void setOnAnimationEndListener(Runnable runnable) {
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null) {
-            ci0Var.f25155t0 = runnable;
-        }
-    }
-
-    public void setOnlyLastFrame(boolean z10) {
-        this.f26175n = z10;
-    }
-
-    public void setProgress(float f7) {
-        ci0 ci0Var = this.f26172b;
-        if (ci0Var != null) {
-            ci0Var.T(true, f7);
-        }
-    }
-
-    public void c() {
     }
 }

@@ -1,64 +1,73 @@
 package org.telegram.messenger;
+public final class jf implements Runnable {
+    public final int f23663a;
+    public final u10 f23664b;
 
-import java.util.HashMap;
-import org.telegram.tgnet.TLRPC;
-public final class jf extends af {
-    public String B;
-    public String C;
-    public String D;
-    public int E;
-    public int F;
-    public int G;
-    public int H;
-    public CharSequence I;
-    public TLRPC.Document J;
-    public TLRPC.Photo K;
-    public TLRPC.PhotoSize L;
-    public TLRPC.PhotoSize M;
-    public TLRPC.BotInlineResult N;
-    public HashMap O;
+    public jf(u10 u10Var, int i3) {
+        this.f23663a = i3;
+        this.f23664b = u10Var;
+    }
 
     @Override
-    public final String a() {
-        if (this.L != null) {
-            b8.G(e20.f15506s0);
-            return b8.K(this.L, null, true, true).getAbsolutePath();
-        } else if (this.J != null) {
-            b8.G(e20.f15506s0);
-            return b8.K(this.J, null, true, true).getAbsolutePath();
-        } else {
-            return ic.A(this.C).getAbsolutePath();
-        }
-    }
-
-    public final jf clone() {
-        ?? obj = new Object();
-        obj.B = this.B;
-        obj.C = this.C;
-        obj.D = this.D;
-        obj.E = this.E;
-        obj.F = this.F;
-        obj.G = this.G;
-        obj.H = this.H;
-        obj.I = this.I;
-        obj.J = this.J;
-        obj.K = this.K;
-        obj.L = this.L;
-        obj.M = this.M;
-        obj.N = this.N;
-        obj.O = this.O;
-        return obj;
-    }
-
-    public final String g() {
-        if (this.L != null) {
-            b8.G(e20.f15506s0);
-            return b8.K(this.L, null, true, true).getAbsolutePath();
-        } else if (this.J != null) {
-            b8.G(e20.f15506s0);
-            return b8.K(this.J, null, true, true).getAbsolutePath();
-        } else {
-            return this.C;
+    public final void run() {
+        int i3 = this.f23663a;
+        u10 u10Var = this.f23664b;
+        switch (i3) {
+            case 0:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            case 1:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            case 2:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            case 3:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            case 4:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            case 5:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            case 6:
+                u10Var.a(null);
+                return;
+            case 7:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            case 8:
+                if (u10Var != null) {
+                    u10Var.a(null);
+                    return;
+                }
+                return;
+            default:
+                int i10 = ShortcutResultReceiver.f21382a;
+                u10Var.a(Boolean.TRUE);
+                return;
         }
     }
 }

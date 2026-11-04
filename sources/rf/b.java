@@ -1,58 +1,43 @@
 package rf;
 
-import e2.l0;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Iterator;
-import org.json.JSONObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.w0;
-import org.telegram.tgnet.SerializedData;
-import org.telegram.tgnet.TLRPC;
-public abstract class b {
-    public static void a(HashMap hashMap) {
-        if (!hashMap.isEmpty()) {
-            return;
-        }
-        try {
-            InputStream open = w0.f18945b.getAssets().open("currencies.json");
-            String str = l0.f6165a;
-            JSONObject jSONObject = new JSONObject(new String(f9.f.b(open), d9.j.f5805a));
-            Iterator<String> keys = jSONObject.keys();
-            while (keys.hasNext()) {
-                String next = keys.next();
-                hashMap.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
-            }
-            open.close();
-        } catch (Exception e) {
-            f8.g(e, true);
-        }
+public final class b extends a {
+    public final long d;
+
+    public b(InputStream inputStream, long j10, long j11) {
+        super(inputStream, j10);
+        this.d = j10 + j11;
     }
 
-    public static TLRPC.InputStorePaymentPurpose b(String str) {
-        f8.b("BillingUtilities.getPurpose " + str);
-        SerializedData serializedData = new SerializedData(Utilities.v(str));
-        a a2 = a.a(serializedData.readInt32(true), serializedData);
-        serializedData.cleanup();
-        if (a2.f46501c != null) {
-            f8.b("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a2.f46501c;
+    public final long e() {
+        return this.d - this.f54501b;
+    }
+
+    @Override
+    public final int read() {
+        if (this.f54501b == this.d) {
+            return -1;
         }
-        SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a2.f46500b);
-        String f7 = Utilities.f(serializedData2.toByteArray());
-        serializedData2.cleanup();
-        f8.b("BillingUtilities.getPurpose: searching purpose under ".concat(f7));
-        String string = w0.f18945b.getSharedPreferences("purchases", 0).getString(f7, null);
-        if (string != null) {
-            f8.b("BillingUtilities.getPurpose: got {" + string + "} under " + f7);
-            SerializedData serializedData3 = new SerializedData(Utilities.v(string));
-            a a10 = a.a(serializedData3.readInt32(true), serializedData3);
-            serializedData3.cleanup();
-            return a10.f46501c;
+        return super.read();
+    }
+
+    @Override
+    public final long skip(long j10) {
+        long j11 = this.f54501b;
+        long j12 = this.d;
+        if (j11 + j10 > j12) {
+            j10 = (int) (j12 - j11);
         }
-        f8.b("BillingUtilities.getPurpose: purpose under " + f7 + " not found");
-        throw new RuntimeException(a1.g.n("no purpose under ", f7, " found :("));
+        return super.skip(j10);
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i3, int i10) {
+        long j10 = this.f54501b;
+        long j11 = this.d;
+        if (i10 + j10 <= j11 || (i10 = (int) (j11 - j10)) != 0) {
+            return super.read(bArr, i3, i10);
+        }
+        return -1;
     }
 }

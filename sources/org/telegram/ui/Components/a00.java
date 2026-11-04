@@ -1,74 +1,26 @@
 package org.telegram.ui.Components;
+public final class a00 implements Runnable {
+    public final int f31693a;
+    public final FragmentContextView f31694b;
 
-import android.os.Bundle;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public abstract class a00 extends mn0 {
-    public final boolean d;
-
-    public a00(boolean z10) {
-        this.d = z10;
+    public a00(FragmentContextView fragmentContextView, int i3) {
+        this.f31693a = i3;
+        this.f31694b = fragmentContextView;
     }
 
     @Override
-    public final boolean a() {
-        if (k() > j()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean b() {
-        if (k() < i()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        float h = h();
-        if (z10) {
-            h *= -1.0f;
-        }
-        l(Math.min(i(), Math.max(j(), k() + h)));
-    }
-
-    @Override
-    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.e(view, accessibilityNodeInfo);
-        if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f47858a);
-            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
+    public final void run() {
+        int i3 = this.f31693a;
+        FragmentContextView fragmentContextView = this.f31694b;
+        switch (i3) {
+            case 0:
+                fragmentContextView.P.f39350g = 0.0f;
+                fragmentContextView.N.invalidate();
+                return;
+            default:
+                float[] fArr = FragmentContextView.X0;
+                fragmentContextView.o(true);
+                return;
         }
     }
-
-    @Override
-    public final boolean g(View view, int i10, Bundle bundle) {
-        if (super.g(view, i10, bundle)) {
-            return true;
-        }
-        if (i10 == ((AccessibilityNodeInfo.AccessibilityAction) s0.b.h.f47858a).getId()) {
-            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
-            return true;
-        }
-        return false;
-    }
-
-    public float h() {
-        return 0.05f;
-    }
-
-    public float i() {
-        return 1.0f;
-    }
-
-    public float j() {
-        return 0.0f;
-    }
-
-    public abstract float k();
-
-    public abstract void l(float f7);
 }

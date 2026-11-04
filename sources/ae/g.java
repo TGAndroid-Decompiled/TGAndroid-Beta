@@ -1,4 +1,4 @@
 package ae;
-public final class g {
-    public static final g f421a = new Object();
+public interface g extends zd.b {
+    zd.b h(fd.h hVar, int i3, yd.a aVar);
 }

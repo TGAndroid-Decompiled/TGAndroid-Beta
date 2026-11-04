@@ -1,37 +1,32 @@
 package uh;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.zz;
-public final class f extends zz {
-    public final Paint U;
-    public final i V;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.ac;
+import org.telegram.messenger.e20;
+import org.telegram.messenger.g0;
+import org.telegram.tgnet.TLRPC;
+public final class f extends th.c {
+    public final TLRPC.MessageMedia f56364b;
 
-    public f(i iVar, Context context) {
-        super(context, null);
-        this.V = iVar;
-        this.U = new Paint();
+    public f(TLRPC.MessageMedia messageMedia) {
+        this.f56364b = messageMedia;
+        this.f55398a.J0(g0.L(7.0f));
+        ImageReceiver imageReceiver = this.f55398a;
+        TLRPC.GeoPoint geoPoint = messageMedia.geo;
+        if (geoPoint == null) {
+            imageReceiver.f();
+            return;
+        }
+        int min = Math.min(2, (int) Math.ceil(g0.f22607p));
+        int i3 = e20.f22293i;
+        imageReceiver.s0(ac.p(e20.a(geoPoint.lat, geoPoint._long, geoPoint.access_hash, 38, 38, 13, min)), null, null, null, null, null, 0);
     }
 
     @Override
-    public final int getColumnsCount() {
-        return this.V.d;
-    }
-
-    @Override
-    public final int getViewType() {
-        setIsSingleCell(false);
-        return 27;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int w02 = t6.w0(t6.f20930d6, this.V.W.f50275c);
-        Paint paint = this.U;
-        paint.setColor(w02);
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);
-        super.onDraw(canvas);
+    public final void c(Canvas canvas, int i3, int i10) {
+        ImageReceiver imageReceiver = this.f55398a;
+        imageReceiver.y0(0.0f, 0.0f, i3, i10);
+        imageReceiver.h(canvas, null);
     }
 }

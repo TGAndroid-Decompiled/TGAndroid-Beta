@@ -1,10 +1,10 @@
 package kotlin.jvm.internal;
-public final class r {
-    public static String a(f fVar) {
-        String obj = fVar.getClass().getGenericInterfaces()[0].toString();
-        if (obj.startsWith("kotlin.jvm.functions.")) {
-            return obj.substring(21);
-        }
-        return obj;
+
+import java.io.Serializable;
+public final class r implements Serializable {
+    public Object f17361a;
+
+    public final String toString() {
+        return String.valueOf(this.f17361a);
     }
 }

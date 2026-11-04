@@ -1,6 +1,20 @@
 package a;
+
+import android.net.Uri;
 public abstract class a {
-    public static boolean a(java.lang.String r4) {
-        throw new UnsupportedOperationException("Method not decompiled: a.a.a(java.lang.String):boolean");
+    public static Uri a(Uri uri) {
+        if (uri.isHierarchical() && uri.getQueryParameter("CMCD") != null) {
+            Uri.Builder buildUpon = uri.buildUpon();
+            buildUpon.clearQuery();
+            for (String str : uri.getQueryParameterNames()) {
+                if (!str.equals("CMCD")) {
+                    for (String str2 : uri.getQueryParameters(str)) {
+                        buildUpon.appendQueryParameter(str, str2);
+                    }
+                }
+            }
+            return buildUpon.build();
+        }
+        return uri;
     }
 }

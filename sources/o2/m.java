@@ -1,191 +1,45 @@
 package o2;
 
-import b2.x;
-import e2.l0;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import u2.d1;
-import v7.c8;
-import v7.t6;
-public final class m implements d1 {
-    public final int f14028a;
-    public final q f14029b;
-    public int f14030c = -1;
+import b8.zb;
+import d2.v;
+import g2.n0;
+import g9.i0;
+import j$.util.DesugarCollections;
+import java.math.RoundingMode;
+import java.util.Collections;
+import java.util.List;
+public abstract class m {
+    public final v f20553a;
+    public final i0 f20554b;
+    public final long f20555c;
+    public final List d;
+    public final List f20556e;
+    public final List f20557f;
+    public final j h;
 
-    public m(q qVar, int i10) {
-        this.f14029b = qVar;
-        this.f14028a = i10;
-    }
-
-    @Override
-    public final void a() {
-        int i10 = this.f14030c;
-        q qVar = this.f14029b;
-        if (i10 != -2) {
-            if (i10 == -1) {
-                qVar.C();
-                return;
-            } else if (i10 != -3) {
-                qVar.C();
-                qVar.L[i10].C();
-                return;
-            } else {
-                return;
-            }
-        }
-        qVar.e();
-        throw new IOException(a1.g.n("Unable to bind a sample queue to TrackGroup with MIME type ", qVar.Y.a(this.f14028a).d[0].f2423s, "."));
-    }
-
-    public final void b() {
-        boolean z10;
-        if (this.f14030c == -1) {
-            z10 = true;
+    public m(v vVar, List list, s sVar, List list2, List list3, List list4) {
+        List unmodifiableList;
+        zb.f(!list.isEmpty());
+        this.f20553a = vVar;
+        this.f20554b = i0.q(list);
+        if (list2 == null) {
+            unmodifiableList = Collections.EMPTY_LIST;
         } else {
-            z10 = false;
+            unmodifiableList = DesugarCollections.unmodifiableList(list2);
         }
-        t6.f(z10);
-        q qVar = this.f14029b;
-        qVar.e();
-        qVar.f14040a0.getClass();
-        int[] iArr = qVar.f14040a0;
-        int i10 = this.f14028a;
-        int i11 = iArr[i10];
-        if (i11 == -1) {
-            if (qVar.Z.contains(qVar.Y.a(i10))) {
-                i11 = -3;
-            }
-            i11 = -2;
-        } else {
-            boolean[] zArr = qVar.f14045d0;
-            if (!zArr[i11]) {
-                zArr[i11] = true;
-            }
-            i11 = -2;
-        }
-        this.f14030c = i11;
+        this.d = unmodifiableList;
+        this.f20556e = list3;
+        this.f20557f = list4;
+        this.h = sVar.a(this);
+        long j10 = sVar.f20571c;
+        long j11 = sVar.f20570b;
+        String str = n0.f11873a;
+        this.f20555c = n0.a0(j10, 1000000L, j11, RoundingMode.DOWN);
     }
 
-    public final boolean c() {
-        int i10 = this.f14030c;
-        if (i10 != -1 && i10 != -3 && i10 != -2) {
-            return true;
-        }
-        return false;
-    }
+    public abstract String a();
 
-    @Override
-    public final boolean e() {
-        if (this.f14030c != -3) {
-            if (c()) {
-                int i10 = this.f14030c;
-                q qVar = this.f14029b;
-                if (qVar.A() || !qVar.L[i10].A(qVar.f14052j0)) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
+    public abstract n2.i c();
 
-    @Override
-    public final int i(long j10) {
-        Object next;
-        Object obj;
-        if (c()) {
-            int i10 = this.f14030c;
-            q qVar = this.f14029b;
-            if (!qVar.A()) {
-                p pVar = qVar.L[i10];
-                int x10 = pVar.x(j10, qVar.f14052j0);
-                ArrayList arrayList = qVar.D;
-                if (arrayList != null) {
-                    if (!arrayList.isEmpty()) {
-                        obj = i0.a.g(1, arrayList);
-                    }
-                    obj = null;
-                } else {
-                    Iterator it = arrayList.iterator();
-                    if (it.hasNext()) {
-                        do {
-                            next = it.next();
-                        } while (it.hasNext());
-                        obj = next;
-                    }
-                    obj = null;
-                }
-                j jVar = (j) obj;
-                if (jVar != null && !jVar.g()) {
-                    x10 = Math.min(x10, jVar.f(i10) - pVar.v());
-                }
-                pVar.L(x10);
-                return x10;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    @Override
-    public final int r(hf.b bVar, h2.h hVar, int i10) {
-        x xVar;
-        if (this.f14030c == -3) {
-            hVar.addFlag(4);
-            return -4;
-        }
-        if (c()) {
-            int i11 = this.f14030c;
-            q qVar = this.f14029b;
-            ArrayList arrayList = qVar.D;
-            if (!qVar.A()) {
-                int i12 = 0;
-                if (!arrayList.isEmpty()) {
-                    int i13 = 0;
-                    loop0: while (i13 < arrayList.size() - 1) {
-                        int i14 = ((j) arrayList.get(i13)).f14004w;
-                        int length = qVar.L.length;
-                        for (int i15 = 0; i15 < length; i15++) {
-                            if (qVar.f14045d0[i15] && qVar.L[i15].E() == i14) {
-                                break loop0;
-                            }
-                        }
-                        i13++;
-                    }
-                    l0.X(0, i13, arrayList);
-                    j jVar = (j) arrayList.get(0);
-                    x xVar2 = jVar.d;
-                    if (!xVar2.equals(qVar.W)) {
-                        qVar.f14060w.l(qVar.f14041b, xVar2, jVar.e, jVar.f50322f, jVar.h);
-                    }
-                    qVar.W = xVar2;
-                }
-                if (arrayList.isEmpty() || ((j) arrayList.get(0)).g()) {
-                    int F = qVar.L[i11].F(bVar, hVar, i10, qVar.f14052j0);
-                    if (F == -5) {
-                        x xVar3 = (x) bVar.f7659c;
-                        xVar3.getClass();
-                        if (i11 == qVar.R) {
-                            int b10 = c8.b(qVar.L[i11].E());
-                            while (i12 < arrayList.size() && ((j) arrayList.get(i12)).f14004w != b10) {
-                                i12++;
-                            }
-                            if (i12 < arrayList.size()) {
-                                xVar = ((j) arrayList.get(i12)).d;
-                            } else {
-                                xVar = qVar.V;
-                                xVar.getClass();
-                            }
-                            xVar3 = xVar3.d(xVar);
-                        }
-                        bVar.f7659c = xVar3;
-                    }
-                    return F;
-                }
-            }
-        }
-        return -3;
-    }
+    public abstract j d();
 }

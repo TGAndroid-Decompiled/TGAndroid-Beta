@@ -1,16 +1,13 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class n30 extends AnimatorListenerAdapter {
-    public final a50 f39684a;
-
-    public n30(a50 a50Var) {
-        this.f39684a = a50Var;
-    }
-
+import android.view.View;
+public final class n30 extends org.telegram.ui.Cells.z3 {
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f39684a.O2 = null;
+    public final void onMeasure(int i3, int i10) {
+        if (org.telegram.messenger.g0.Q1()) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(org.telegram.messenger.g0.L(420.0f), View.MeasureSpec.getSize(i3)), 1073741824), i10);
+        } else {
+            super.onMeasure(i3, i10);
+        }
     }
 }

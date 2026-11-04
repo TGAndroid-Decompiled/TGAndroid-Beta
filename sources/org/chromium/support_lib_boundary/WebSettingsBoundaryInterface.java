@@ -84,17 +84,17 @@ public interface WebSettingsBoundaryInterface {
 
     void setAlgorithmicDarkeningAllowed(boolean z10);
 
-    void setAttributionBehavior(int i10);
+    void setAttributionBehavior(int i3);
 
     void setBackForwardCacheEnabled(boolean z10);
 
-    void setDisabledActionModeMenuItems(int i10);
+    void setDisabledActionModeMenuItems(int i3);
 
     void setEnterpriseAuthenticationAppLinkPolicyEnabled(boolean z10);
 
-    void setForceDark(int i10);
+    void setForceDark(int i3);
 
-    void setForceDarkBehavior(int i10);
+    void setForceDarkBehavior(int i3);
 
     void setHasEnrolledInstrumentEnabled(boolean z10);
 
@@ -108,13 +108,13 @@ public interface WebSettingsBoundaryInterface {
 
     void setSafeBrowsingEnabled(boolean z10);
 
-    void setSpeculativeLoadingStatus(int i10);
+    void setSpeculativeLoadingStatus(int i3);
 
     void setUserAgentMetadataFromMap(Map<String, Object> map);
 
-    void setWebViewMediaIntegrityApiStatus(int i10, Map<String, Integer> map);
+    void setWebViewMediaIntegrityApiStatus(int i3, Map<String, Integer> map);
 
-    void setWebauthnSupport(int i10);
+    void setWebauthnSupport(int i3);
 
     void setWillSuppressErrorPage(boolean z10);
 }

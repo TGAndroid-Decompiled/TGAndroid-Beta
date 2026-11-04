@@ -1,17 +1,15 @@
 package wd;
 
-import kotlin.jvm.internal.p;
-public final class g implements c {
-    public final c f52833a;
-    public final p f52834b;
-
-    public g(c cVar, p pVar) {
-        this.f52833a = cVar;
-        this.f52834b = pVar;
-    }
+import java.util.Iterator;
+public final class g extends hd.c {
+    public Iterator f57488a;
+    public Object f57489b;
+    public int f57490c;
 
     @Override
-    public final java.lang.Object b(java.lang.Object r5, ed.c r6) {
-        throw new UnsupportedOperationException("Method not decompiled: wd.g.b(java.lang.Object, ed.c):java.lang.Object");
+    public final Object invokeSuspend(Object obj) {
+        this.f57489b = obj;
+        this.f57490c |= Integer.MIN_VALUE;
+        return b0.o(null, this);
     }
 }

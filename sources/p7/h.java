@@ -1,47 +1,36 @@
 package p7;
 
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import w7.h0;
-public final class h extends o6.a {
-    public static final Parcelable.Creator<h> CREATOR = new m8.i(26);
-    public final int f44872a;
-    public final Bundle f44873b;
+import java.io.Serializable;
+import java.util.Comparator;
+public final class h extends x implements Serializable {
+    public final Comparator f53358a;
 
-    public h(int i10, Bundle bundle) {
-        this.f44872a = i10;
-        this.f44873b = bundle;
-    }
-
-    public final boolean equals(java.lang.Object r7) {
-        throw new UnsupportedOperationException("Method not decompiled: p7.h.equals(java.lang.Object):boolean");
-    }
-
-    public final int hashCode() {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(Integer.valueOf(this.f44872a));
-        Bundle bundle = this.f44873b;
-        if (bundle != null) {
-            for (String str : bundle.keySet()) {
-                arrayList.add(str);
-                String string = bundle.getString(str);
-                if (string != null) {
-                    arrayList.add(string);
-                }
-            }
-        }
-        return Arrays.hashCode(arrayList.toArray(new Object[0]));
+    public h(Comparator comparator) {
+        comparator.getClass();
+        this.f53358a = comparator;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.s(parcel, 1, 4);
-        parcel.writeInt(this.f44872a);
-        h0.b(parcel, 2, this.f44873b);
-        h0.r(parcel, q6);
+    public final int compare(Object obj, Object obj2) {
+        return this.f53358a.compare(obj, obj2);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof h) {
+            return this.f53358a.equals(((h) obj).f53358a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f53358a.hashCode();
+    }
+
+    public final String toString() {
+        return this.f53358a.toString();
     }
 }

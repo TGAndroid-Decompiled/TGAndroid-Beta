@@ -1,85 +1,162 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-public final class yq0 extends Drawable {
-    public final int f32889a;
-    public final ShapeDrawable f32890b;
-    public final Rect f32891c;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.util.SparseBooleanArray;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import androidx.recyclerview.widget.RecyclerView;
+public final class yq0 implements ViewTreeObserver.OnPreDrawListener {
+    public final tj0 f40805a;
+    public final SparseBooleanArray f40806b;
+    public final View f40807c;
+    public final int d;
+    public final ws0 f40808e;
 
-    public yq0(wq0 wq0Var) {
-        this.f32889a = 1;
-        this.f32890b = org.telegram.ui.ActionBar.t6.e0(org.telegram.messenger.i0.L(16.0f), org.telegram.messenger.i0.L(16.0f), 0);
-        this.f32891c = new Rect();
+    public yq0(ws0 ws0Var, tj0 tj0Var, SparseBooleanArray sparseBooleanArray, iz izVar, int i3) {
+        this.f40808e = ws0Var;
+        this.f40805a = tj0Var;
+        this.f40806b = sparseBooleanArray;
+        this.f40807c = izVar;
+        this.d = i3;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f32889a) {
-            case 0:
-                Rect bounds = getBounds();
-                Rect rect = this.f32891c;
-                rect.set(bounds);
-                rect.inset(org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(8.0f));
-                ShapeDrawable shapeDrawable = this.f32890b;
-                shapeDrawable.setBounds(rect);
-                shapeDrawable.draw(canvas);
-                return;
-            default:
-                Rect bounds2 = getBounds();
-                Rect rect2 = this.f32891c;
-                rect2.set(bounds2);
-                rect2.inset(org.telegram.messenger.i0.L(2.0f), org.telegram.messenger.i0.L(8.0f));
-                ShapeDrawable shapeDrawable2 = this.f32890b;
-                shapeDrawable2.setBounds(rect2);
-                shapeDrawable2.draw(canvas);
-                return;
+    public final boolean onPreDraw() {
+        View childAt;
+        ws0 ws0Var = this.f40808e;
+        ws0Var.getViewTreeObserver().removeOnPreDrawListener(this);
+        final tj0 tj0Var = this.f40805a;
+        u4.h0 adapter = tj0Var.getAdapter();
+        if (adapter != ws0Var.K && adapter != ws0Var.N && adapter != ws0Var.P && adapter != ws0Var.O) {
+            int childCount = tj0Var.getChildCount();
+            AnimatorSet animatorSet = new AnimatorSet();
+            for (int i3 = 0; i3 < childCount; i3++) {
+                View childAt2 = tj0Var.getChildAt(i3);
+                View view = this.f40807c;
+                if (childAt2 != view && RecyclerView.R(childAt2) >= this.d - 1) {
+                    childAt2.setAlpha(0.0f);
+                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt2, View.ALPHA, 0.0f, 1.0f);
+                    ofFloat.setStartDelay((int) ((Math.min(tj0Var.getMeasuredHeight(), Math.max(0, childAt2.getTop())) / tj0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat.setDuration(200L);
+                    ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            switch (r1) {
+                                case 0:
+                                    tj0 tj0Var2 = tj0Var;
+                                    if (tj0Var2.b1()) {
+                                        tj0Var2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    tj0 tj0Var3 = tj0Var;
+                                    if (tj0Var3.b1()) {
+                                        tj0Var3.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    tj0 tj0Var4 = tj0Var;
+                                    if (tj0Var4.b1()) {
+                                        tj0Var4.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    animatorSet.playTogether(ofFloat);
+                }
+                if (view != null && view.getParent() == null) {
+                    tj0Var.addView(view);
+                    u4.o0 layoutManager = tj0Var.getLayoutManager();
+                    if (layoutManager != null) {
+                        layoutManager.M(view);
+                        ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(view, View.ALPHA, view.getAlpha(), 0.0f);
+                        ofFloat2.addListener(new a60(this, layoutManager));
+                        ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                switch (r1) {
+                                    case 0:
+                                        tj0 tj0Var2 = tj0Var;
+                                        if (tj0Var2.b1()) {
+                                            tj0Var2.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    case 1:
+                                        tj0 tj0Var3 = tj0Var;
+                                        if (tj0Var3.b1()) {
+                                            tj0Var3.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                    default:
+                                        tj0 tj0Var4 = tj0Var;
+                                        if (tj0Var4.b1()) {
+                                            tj0Var4.invalidate();
+                                            return;
+                                        }
+                                        return;
+                                }
+                            }
+                        });
+                        ofFloat2.start();
+                    }
+                }
+            }
+            animatorSet.start();
+            return true;
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        switch (this.f32889a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
+        SparseBooleanArray sparseBooleanArray = this.f40806b;
+        if (sparseBooleanArray != null) {
+            int childCount2 = tj0Var.getChildCount();
+            for (int i10 = 0; i10 < childCount2; i10++) {
+                int o10 = ws0.o(tj0Var.getChildAt(i10));
+                if (o10 != 0 && sparseBooleanArray.get(o10, false)) {
+                    ws0Var.S1.put(o10, Float.valueOf(0.0f));
+                    ValueAnimator ofFloat3 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    ofFloat3.addUpdateListener(new gi.b4(this, o10, tj0Var));
+                    ofFloat3.addListener(new ii.m2(this, o10, 13));
+                    ofFloat3.setStartDelay((int) ((Math.min(tj0Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / tj0Var.getMeasuredHeight()) * 100.0f));
+                    ofFloat3.setDuration(250L);
+                    ofFloat3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            switch (r1) {
+                                case 0:
+                                    tj0 tj0Var2 = tj0Var;
+                                    if (tj0Var2.b1()) {
+                                        tj0Var2.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                case 1:
+                                    tj0 tj0Var3 = tj0Var;
+                                    if (tj0Var3.b1()) {
+                                        tj0Var3.invalidate();
+                                        return;
+                                    }
+                                    return;
+                                default:
+                                    tj0 tj0Var4 = tj0Var;
+                                    if (tj0Var4.b1()) {
+                                        tj0Var4.invalidate();
+                                        return;
+                                    }
+                                    return;
+                            }
+                        }
+                    });
+                    ofFloat3.start();
+                }
+                tj0Var.invalidate();
+            }
         }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        switch (this.f32889a) {
-            case 0:
-                this.f32890b.setAlpha(i10);
-                return;
-            default:
-                this.f32890b.setAlpha(i10);
-                return;
-        }
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f32889a;
-    }
-
-    public yq0(zq0 zq0Var) {
-        this.f32889a = 0;
-        int L = org.telegram.messenger.i0.L(16.0f);
-        int L2 = org.telegram.messenger.i0.L(16.0f);
-        int i10 = org.telegram.ui.ActionBar.t6.f20930d6;
-        org.telegram.ui.ActionBar.p6 p6Var = zq0Var.f33211c;
-        this.f32890b = org.telegram.ui.ActionBar.t6.e0(L, L2, org.telegram.ui.ActionBar.t6.w(org.telegram.ui.ActionBar.t6.w0(i10, p6Var), org.telegram.ui.ActionBar.t6.r1(0.04f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.G6, p6Var))));
-        this.f32891c = new Rect();
-    }
-
-    private final void a(ColorFilter colorFilter) {
-    }
-
-    private final void b(ColorFilter colorFilter) {
+        return true;
     }
 }

@@ -1,43 +1,59 @@
 package g9;
 
-import java.math.RoundingMode;
-public abstract class b {
-    public static final int[] f7466a;
+import j$.util.Objects;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+public final class b implements Iterator {
+    public final Iterator f12047a;
+    public Object f12048b = null;
+    public Collection f12049c = null;
+    public Iterator d = y0.f12170a;
+    public final k1 f12050e;
+    public final int f12051f;
 
-    static {
-        int[] iArr = new int[RoundingMode.values().length];
-        f7466a = iArr;
-        try {
-            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
+    public b(k1 k1Var, int i3) {
+        this.f12051f = i3;
+        this.f12050e = k1Var;
+        this.f12047a = k1Var.f12091e.entrySet().iterator();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (!this.f12047a.hasNext() && !this.d.hasNext()) {
+            return false;
         }
-        try {
-            f7466a[RoundingMode.FLOOR.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
+        return true;
+    }
+
+    @Override
+    public final Object next() {
+        if (!this.d.hasNext()) {
+            Map.Entry entry = (Map.Entry) this.f12047a.next();
+            this.f12048b = entry.getKey();
+            Collection collection = (Collection) entry.getValue();
+            this.f12049c = collection;
+            this.d = collection.iterator();
         }
-        try {
-            f7466a[RoundingMode.CEILING.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
+        Object obj = this.f12048b;
+        Object next = this.d.next();
+        switch (this.f12051f) {
+            case 0:
+                return next;
+            default:
+                return new e0(obj, next);
         }
-        try {
-            f7466a[RoundingMode.DOWN.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
+    }
+
+    @Override
+    public final void remove() {
+        this.d.remove();
+        Collection collection = this.f12049c;
+        Objects.requireNonNull(collection);
+        if (collection.isEmpty()) {
+            this.f12047a.remove();
         }
-        try {
-            f7466a[RoundingMode.UP.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            f7466a[RoundingMode.HALF_EVEN.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            f7466a[RoundingMode.HALF_UP.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
-        try {
-            f7466a[RoundingMode.HALF_DOWN.ordinal()] = 8;
-        } catch (NoSuchFieldError unused8) {
-        }
+        k1 k1Var = this.f12050e;
+        k1Var.f12092f--;
     }
 }

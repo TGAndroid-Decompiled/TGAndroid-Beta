@@ -1,22 +1,13 @@
 package org.telegram.ui.Components;
-public final class ul0 {
-    public static final ul0 f31036a;
-    public static final ul0 f31037b;
-    public static final ul0[] f31038c;
+public final class ul0 extends u4.k {
+    public final org.telegram.ui.cw F;
 
-    static {
-        ?? r02 = new Enum("LINE", 0);
-        f31036a = r02;
-        ?? r12 = new Enum("TAB", 1);
-        f31037b = r12;
-        f31038c = new ul0[]{r02, r12};
+    public ul0(org.telegram.ui.cw cwVar) {
+        this.F = cwVar;
     }
 
-    public static ul0 valueOf(String str) {
-        return (ul0) Enum.valueOf(ul0.class, str);
-    }
-
-    public static ul0[] values() {
-        return (ul0[]) f31038c.clone();
+    @Override
+    public final void P(u4.d1 d1Var) {
+        this.F.invalidate();
     }
 }

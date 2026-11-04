@@ -1,38 +1,45 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class fx implements Runnable {
-    public final int f15817a;
-    public final rz f15818b;
-    public final TLRPC.Message f15819c;
-    public final boolean d;
+public final class fx implements RequestDelegate {
+    public final int f22563a;
+    public final yy f22564b;
+    public final TLRPC.InputMedia f22565c;
+    public final ky d;
 
-    public fx(rz rzVar, TLRPC.Message message, boolean z10, int i10) {
-        this.f15817a = i10;
-        this.f15818b = rzVar;
-        this.f15819c = message;
-        this.d = z10;
+    public fx(yy yyVar, TLRPC.InputMedia inputMedia, ky kyVar, int i3) {
+        this.f22563a = i3;
+        this.f22564b = yyVar;
+        this.f22565c = inputMedia;
+        this.d = kyVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f15817a) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f22563a) {
             case 0:
-                rz rzVar = this.f15818b;
-                rzVar.getClass();
-                TLRPC.Message message = this.f15819c;
-                rzVar.d0(message.f19815id);
-                rzVar.i0(message.f19815id, this.d);
-                return;
-            case 1:
-                rz rzVar2 = this.f15818b;
-                rzVar2.getClass();
-                TLRPC.Message message2 = this.f15819c;
-                rzVar2.d0(message2.f19815id);
-                rzVar2.i0(message2.f19815id, this.d);
+                final yy yyVar = this.f22564b;
+                final TLRPC.InputMedia inputMedia = this.f22565c;
+                final ky kyVar = this.d;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ox.run():void");
+                    }
+                });
                 return;
             default:
-                this.f15818b.g0(this.f15819c, this.d);
+                final yy yyVar2 = this.f22564b;
+                final TLRPC.InputMedia inputMedia2 = this.f22565c;
+                final ky kyVar2 = this.d;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ox.run():void");
+                    }
+                });
                 return;
         }
     }

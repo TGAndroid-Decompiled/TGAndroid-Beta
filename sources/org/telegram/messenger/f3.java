@@ -1,36 +1,30 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class f3 implements RequestDelegate {
-    public final int f15688a;
-    public final r20 f15689b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stories;
+public final class f3 {
+    public final hp f22441a;
+    public final ConnectionsManager f22442b;
 
-    public f3(r20 r20Var, int i10) {
-        this.f15688a = i10;
-        this.f15689b = r20Var;
+    public f3(int i3) {
+        this.f22441a = hp.s1(i3);
+        this.f22442b = ConnectionsManager.getInstance(i3);
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        TLRPC.ChannelParticipant channelParticipant;
-        switch (this.f15688a) {
-            case 0:
-                i0.g3(new ng(tLObject, this.f15689b, tL_error));
-                return;
-            default:
-                r20 r20Var = this.f15689b;
-                if (r20Var != null) {
-                    if (tLObject instanceof TLRPC.TL_channels_channelParticipant) {
-                        channelParticipant = ((TLRPC.TL_channels_channelParticipant) tLObject).participant;
-                    } else {
-                        channelParticipant = null;
-                    }
-                    r20Var.a(channelParticipant);
-                    return;
-                }
-                return;
-        }
+    public final void a(long j10, u10 u10Var) {
+        TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
+        tL_premium_getBoostsStatus.peer = this.f22441a.j1(j10);
+        this.f22442b.sendRequest(tL_premium_getBoostsStatus, new c3(u10Var, 0));
+    }
+
+    public final void b(long j10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, u10 u10Var) {
+        e3 e3Var = new e3();
+        hp hpVar = this.f22441a;
+        hpVar.z1(j10);
+        e3Var.f22306j = j10;
+        e3Var.f22307k = hpVar.M0(Long.valueOf(-j10));
+        d3 d3Var = new d3(e3Var, tL_premium_boostsStatus, u10Var, 0);
+        g1 g1Var = new g1(1, e3Var, u10Var);
+        ConnectionsManager.getInstance(h10.f22829t0).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new ai.r6(g1Var, hp.s1(h10.f22829t0), d3Var, 25));
     }
 }

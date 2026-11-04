@@ -5,8 +5,8 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 public abstract class l1 {
-    public static final int[] f12456a = {16842912};
-    public static final int[] f12457b = new int[0];
+    public static final int[] f18640a = {16842912};
+    public static final int[] f18641b = new int[0];
 
     static {
         new Rect();
@@ -14,23 +14,23 @@ public abstract class l1 {
 
     public static void a(Drawable drawable) {
         String name = drawable.getClass().getName();
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 29 && i10 < 31 && "android.graphics.drawable.ColorStateListDrawable".equals(name)) {
+        int i3 = Build.VERSION.SDK_INT;
+        if (i3 >= 29 && i3 < 31 && "android.graphics.drawable.ColorStateListDrawable".equals(name)) {
             int[] state = drawable.getState();
             if (state != null && state.length != 0) {
-                drawable.setState(f12457b);
+                drawable.setState(f18641b);
             } else {
-                drawable.setState(f12456a);
+                drawable.setState(f18640a);
             }
             drawable.setState(state);
         }
     }
 
-    public static PorterDuff.Mode b(int i10, PorterDuff.Mode mode) {
-        if (i10 != 3) {
-            if (i10 != 5) {
-                if (i10 != 9) {
-                    switch (i10) {
+    public static PorterDuff.Mode b(int i3, PorterDuff.Mode mode) {
+        if (i3 != 3) {
+            if (i3 != 5) {
+                if (i3 != 9) {
+                    switch (i3) {
                         case 14:
                             return PorterDuff.Mode.MULTIPLY;
                         case 15:

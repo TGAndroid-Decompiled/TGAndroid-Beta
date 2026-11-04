@@ -1,26 +1,18 @@
 package r7;
 
-import android.os.Looper;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.tasks.Task;
-import org.telegram.messenger.ba;
-public final class c extends com.google.android.gms.common.api.j {
-    public static final com.google.android.gms.common.api.e f46351k = new com.google.android.gms.common.api.e("LocationServices.API", new a8.d(13), new Object());
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class c {
+    public static final int f54402a = 0;
 
-    public Task f(LocationRequest locationRequest, ba baVar, Looper looper) {
-        if (looper == null) {
-            looper = Looper.myLooper();
-            n6.l.h(looper, "invalid null looper");
+    static {
+        c.class.getClassLoader();
+    }
+
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        com.google.android.gms.common.api.internal.p k10 = za.c.k(looper, baVar, ba.class.getSimpleName());
-        androidx.activity.o oVar = new androidx.activity.o(this, k10);
-        m4.c cVar = new m4.c(oVar, locationRequest, false, 24);
-        ?? obj = new Object();
-        obj.f4478b = true;
-        obj.f4479c = cVar;
-        obj.d = oVar;
-        obj.e = k10;
-        obj.f4477a = 2436;
-        return b(obj.a());
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

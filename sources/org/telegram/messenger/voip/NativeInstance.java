@@ -1,11 +1,13 @@
 package org.telegram.messenger.voip;
 
+import ai.e3;
+import ai.r1;
 import android.graphics.Point;
 import java.nio.ByteBuffer;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.uz;
-import org.telegram.messenger.v2;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.az;
+import org.telegram.messenger.r2;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.VoIPService;
 import org.webrtc.ContextUtils;
@@ -33,11 +35,11 @@ public class NativeInstance {
     }
 
     public interface PayloadCallback {
-        void run(int i10, String str);
+        void run(int i3, String str);
     }
 
     public interface RequestBroadcastPartCallback {
-        void run(long j10, long j11, int i10, int i11);
+        void run(long j10, long j11, int i3, int i10);
     }
 
     public interface RequestCurrentTimeCallback {
@@ -53,11 +55,7 @@ public class NativeInstance {
         void run(long j10, int[] iArr);
     }
 
-    public static void a(NativeInstance nativeInstance, int i10, String str) {
-        nativeInstance.lambda$onEmitJoinPayload$3(i10, str);
-    }
-
-    public static native long createVideoCapturer(VideoSink videoSink, int i10);
+    public static native long createVideoCapturer(VideoSink videoSink, int i3);
 
     public static native void destroyVideoCapturer(long j10);
 
@@ -67,8 +65,8 @@ public class NativeInstance {
         this.audioLevelsCallback.run(iArr, fArr, zArr);
     }
 
-    public void lambda$onEmitJoinPayload$3(int i10, String str) {
-        this.payloadCallback.run(i10, str);
+    public void lambda$onEmitJoinPayload$3(int i3, String str) {
+        this.payloadCallback.run(i3, str);
     }
 
     public void lambda$onNetworkStateUpdated$0(boolean z10, boolean z11) {
@@ -79,20 +77,20 @@ public class NativeInstance {
         this.unknownParticipantsCallback.run(j10, iArr);
     }
 
-    public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i10, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j10, AudioLevelsCallback audioLevelsCallback) {
-        if (v2.f18578a) {
-            f8.b("create new tgvoip instance, version " + str);
+    public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i3, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j10, AudioLevelsCallback audioLevelsCallback) {
+        if (r2.f25040a) {
+            a8.b("create new tgvoip instance, version " + str);
         }
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.persistentStateFilePath = str2;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
-        Point point = org.telegram.messenger.i0.f16172q;
-        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i10, encryptionKey, videoSink, j10, Math.min(point.x, point.y) / Math.max(point.x, point.y));
+        Point point = org.telegram.messenger.g0.f22608q;
+        nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i3, encryptionKey, videoSink, j10, Math.min(point.x, point.y) / Math.max(point.x, point.y));
         return nativeInstance;
     }
 
     public static NativeInstance makeGroup(String str, long j10, boolean z10, boolean z11, PayloadCallback payloadCallback, AudioLevelsCallback audioLevelsCallback, VideoSourcesCallback videoSourcesCallback, RequestBroadcastPartCallback requestBroadcastPartCallback, RequestBroadcastPartCallback requestBroadcastPartCallback2, RequestCurrentTimeCallback requestCurrentTimeCallback, boolean z12) {
-        ContextUtils.initialize(org.telegram.messenger.w0.f18945b);
+        ContextUtils.initialize(org.telegram.messenger.t0.f25457b);
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.payloadCallback = payloadCallback;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
@@ -101,36 +99,36 @@ public class NativeInstance {
         nativeInstance.cancelRequestBroadcastPartCallback = requestBroadcastPartCallback2;
         nativeInstance.requestCurrentTimeCallback = requestCurrentTimeCallback;
         nativeInstance.isGroup = true;
-        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, uz.V, j10, z10, z11, z12);
+        nativeInstance.nativePtr = makeGroupNativeInstance(nativeInstance, str, az.V, j10, z10, z11, z12);
         return nativeInstance;
     }
 
     private static native long makeGroupNativeInstance(NativeInstance nativeInstance, String str, boolean z10, long j10, boolean z11, boolean z12, boolean z13);
 
-    private static native long makeNativeInstance(String str, NativeInstance nativeInstance, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i10, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j10, float f7);
+    private static native long makeNativeInstance(String str, NativeInstance nativeInstance, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i3, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j10, float f10);
 
     private void onAudioLevelsUpdated(int[] iArr, float[] fArr, boolean[] zArr) {
         if (this.isGroup && iArr != null && iArr.length == 0) {
             return;
         }
-        org.telegram.messenger.i0.g3(new n(this, iArr, fArr, zArr, 1));
+        org.telegram.messenger.g0.h3(new k(this, iArr, fArr, zArr, 1));
     }
 
-    private void onCancelRequestBroadcastPart(long j10, int i10, int i11) {
+    private void onCancelRequestBroadcastPart(long j10, int i3, int i10) {
         this.cancelRequestBroadcastPartCallback.run(j10, 0L, 0, 0);
     }
 
-    private void onEmitJoinPayload(String str, int i10) {
+    private void onEmitJoinPayload(String str, int i3) {
         try {
-            org.telegram.messenger.i0.g3(new ag.o0(this, i10, str, 10));
-        } catch (Exception e) {
-            f8.g(e, true);
+            org.telegram.messenger.g0.h3(new e3(this, i3, str, 24));
+        } catch (Exception e10) {
+            a8.g(e10, true);
         }
     }
 
     private void onNetworkStateUpdated(boolean z10, boolean z11) {
         if (this.onStateUpdatedListener != null) {
-            org.telegram.messenger.i0.g3(new e2.m0(this, z10, z11, 2));
+            org.telegram.messenger.g0.h3(new g2.o0(this, z10, z11, 2));
         }
     }
 
@@ -138,24 +136,24 @@ public class NativeInstance {
         if (this.unknownParticipantsCallback == null) {
             return;
         }
-        org.telegram.messenger.i0.g3(new a3.i0(this, j10, iArr, 4));
+        org.telegram.messenger.g0.h3(new r1(this, j10, iArr, 14));
     }
 
-    private void onRemoteMediaStateUpdated(int i10, int i11) {
+    private void onRemoteMediaStateUpdated(int i3, int i10) {
         Instance.OnRemoteMediaStateUpdatedListener onRemoteMediaStateUpdatedListener = this.onRemoteMediaStateUpdatedListener;
         if (onRemoteMediaStateUpdatedListener != null) {
-            onRemoteMediaStateUpdatedListener.onMediaStateUpdated(i10, i11);
+            onRemoteMediaStateUpdatedListener.onMediaStateUpdated(i3, i10);
         }
     }
 
-    private void onRequestBroadcastPart(long j10, long j11, int i10, int i11) {
-        this.requestBroadcastPartCallback.run(j10, j11, i10, i11);
+    private void onRequestBroadcastPart(long j10, long j11, int i3, int i10) {
+        this.requestBroadcastPartCallback.run(j10, j11, i3, i10);
     }
 
-    private void onSignalBarsUpdated(int i10) {
+    private void onSignalBarsUpdated(int i3) {
         Instance.OnSignalBarsUpdatedListener onSignalBarsUpdatedListener = this.onSignalBarsUpdatedListener;
         if (onSignalBarsUpdatedListener != null) {
-            onSignalBarsUpdatedListener.onSignalBarsUpdated(i10);
+            onSignalBarsUpdatedListener.onSignalBarsUpdated(i3);
         }
     }
 
@@ -166,10 +164,10 @@ public class NativeInstance {
         }
     }
 
-    private void onStateUpdated(int i10) {
+    private void onStateUpdated(int i3) {
         Instance.OnStateUpdatedListener onStateUpdatedListener = this.onStateUpdatedListener;
         if (onStateUpdatedListener != null) {
-            onStateUpdatedListener.onStateUpdated(i10, false);
+            onStateUpdatedListener.onStateUpdated(i3, false);
         }
     }
 
@@ -185,7 +183,7 @@ public class NativeInstance {
         this.requestCurrentTimeCallback.run(j10);
     }
 
-    public static native void setVideoStateCapturer(long j10, int i10);
+    public static native void setVideoStateCapturer(long j10, int i3);
 
     private native void stopGroupNative();
 
@@ -195,7 +193,7 @@ public class NativeInstance {
 
     public native void activateVideoCapturer(long j10);
 
-    public native long addIncomingVideoOutput(int i10, String str, SsrcGroup[] ssrcGroupArr, VideoSink videoSink, long j10);
+    public native long addIncomingVideoOutput(int i3, String str, SsrcGroup[] ssrcGroupArr, VideoSink videoSink, long j10);
 
     public native void clearVideoCapturer();
 
@@ -225,7 +223,7 @@ public class NativeInstance {
 
     public native void onSignalingDataReceive(byte[] bArr);
 
-    public native void onStreamPartAvailable(long j10, ByteBuffer byteBuffer, int i10, long j11, int i11, int i12);
+    public native void onStreamPartAvailable(long j10, ByteBuffer byteBuffer, int i3, long j11, int i10, int i11);
 
     public native void prepareForStream(boolean z10);
 
@@ -235,11 +233,11 @@ public class NativeInstance {
 
     public native void setAudioOutputGainControlEnabled(boolean z10);
 
-    public native void setBufferSize(int i10);
+    public native void setBufferSize(int i3);
 
     public native void setConferenceCallId(long j10);
 
-    public native void setEchoCancellationStrength(int i10);
+    public native void setEchoCancellationStrength(int i3);
 
     public native void setGlobalServerConfig(String str);
 
@@ -247,7 +245,7 @@ public class NativeInstance {
 
     public native void setMuteMicrophone(boolean z10);
 
-    public native void setNetworkType(int i10);
+    public native void setNetworkType(int i3);
 
     public native void setNoiseSuppressionEnabled(boolean z10);
 
@@ -267,13 +265,13 @@ public class NativeInstance {
         this.onStateUpdatedListener = onStateUpdatedListener;
     }
 
-    public native void setVideoEndpointQuality(String str, int i10);
+    public native void setVideoEndpointQuality(String str, int i3);
 
-    public native void setVideoState(int i10);
+    public native void setVideoState(int i3);
 
-    public native void setVolume(int i10, double d);
+    public native void setVolume(int i3, double d);
 
-    public native void setupOutgoingVideo(VideoSink videoSink, int i10);
+    public native void setupOutgoingVideo(VideoSink videoSink, int i3);
 
     public native void setupOutgoingVideoCreated(long j10);
 
@@ -282,8 +280,8 @@ public class NativeInstance {
         stopNative();
         try {
             this.stopBarrier.await();
-        } catch (Exception e) {
-            f8.g(e, true);
+        } catch (Exception e10) {
+            a8.g(e10, true);
         }
         return this.finalState;
     }

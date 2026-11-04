@@ -1,652 +1,445 @@
 package a1;
 
-import a4.k;
-import ag.c3;
-import ag.g2;
-import ag.h2;
-import ag.h3;
-import ag.i3;
-import ag.j2;
-import ag.m3;
-import ag.r0;
-import ag.z2;
-import android.app.Activity;
-import android.os.Build;
-import android.util.Log;
+import ai.b3;
+import ai.d6;
+import ai.i1;
+import ai.k0;
+import ai.s;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Region;
 import android.view.View;
-import android.view.ViewGroup;
-import b2.d1;
-import b2.u0;
-import bb.e0;
-import bb.f0;
-import bi.a6;
-import bi.c0;
-import bi.d4;
-import bi.k2;
-import bi.k3;
-import bi.l3;
-import bi.n1;
-import bi.n4;
-import bi.q0;
-import bi.q6;
-import bi.r5;
-import bi.s6;
-import bi.y0;
-import bi.z5;
-import c3.u;
+import cg.o;
+import ci.e9;
+import ci.j1;
+import ci.n6;
+import ci.tb;
+import ci.v;
+import ci.w5;
+import ci.wb;
+import ci.x0;
+import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnSuccessListener;
-import e2.l0;
-import e2.o;
-import e9.l1;
-import e9.q1;
-import e9.s;
-import ei.n;
-import ei.r;
-import h2.i;
-import h2.j;
+import com.google.android.gms.tasks.Task;
+import e5.l;
+import ei.e8;
+import ei.f8;
+import ei.g1;
+import ei.g8;
+import ei.h7;
+import ei.j5;
+import ei.k2;
+import ei.l9;
+import ei.u;
+import ei.u0;
+import ei.v0;
+import ei.w0;
+import g2.k;
+import g9.f0;
+import j2.i;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
-import n4.q;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.at;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.i0;
-import org.telegram.messenger.is;
-import org.telegram.messenger.p20;
-import org.telegram.messenger.r20;
-import org.telegram.messenger.wp;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.o10;
+import org.telegram.messenger.q1;
+import org.telegram.messenger.s10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.ActionBar.u1;
-import org.telegram.ui.ActionBar.x1;
-import org.telegram.ui.Cells.l5;
-import org.telegram.ui.Cells.p8;
-import org.telegram.ui.Cells.t8;
-import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.kt;
-import org.telegram.ui.Components.s4;
-import org.telegram.ui.Components.z60;
-import org.telegram.ui.nb1;
-import org.telegram.ui.tx;
-import org.telegram.ui.zx;
-import v7.u7;
-public final class c implements OnSuccessListener, i, p20, u1, i5.e, kt, q0, tx, a6, l1, n, fe.e, c3.g, o {
-    public final int f34a;
-    public final Object f35b;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.p1;
+import org.telegram.ui.Cells.t0;
+import org.telegram.ui.Components.gj0;
+import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.r4;
+import org.telegram.ui.Wallet.s1;
+import org.telegram.ui.cl0;
+import r0.k1;
+import r0.m;
+import u4.m0;
+import yh.j;
+public final class c implements OnSuccessListener, Continuation, o, p1, m, q1, k, i, s10, r4, qe.b, cl0, hj0, o10, gj0, h7, l9, j {
+    public final int f38a;
+    public final Object f39b;
 
-    public c(Object obj, int i10) {
-        this.f34a = i10;
-        this.f35b = obj;
+    public c(Object obj, int i3) {
+        this.f38a = i3;
+        this.f39b = obj;
     }
 
     @Override
-    public boolean H() {
-        return false;
+    public void L(int i3, int i10, boolean z10) {
+        x0 x0Var = (x0) this.f39b;
+        if (z10) {
+            long j10 = i3;
+            if (x0Var.A1 != j10) {
+                x0Var.A1 = j10;
+                x0Var.f6315q1.setText(x0.K0(j10));
+            }
+            x0Var.J0(true);
+        }
     }
 
     @Override
-    public boolean O(zx zxVar) {
-        return false;
+    public k1 R0(View view, k1 k1Var) {
+        ((i1) this.f39b).f696o1.j(k1Var);
+        return k1.f54025b;
     }
 
     @Override
-    public z60 a(n1 n1Var) {
-        return z60.H((k2) ((a6.i) this.f35b).f307b, n1Var);
+    public void Y(int i3, float f10, float f11, qe.c cVar) {
+        View view = ((n6) this.f39b).f5610b;
+        if (view instanceof t0) {
+            ((t0) view).T();
+        } else {
+            view.invalidate();
+        }
     }
 
     @Override
-    public Object apply(Object obj) {
-        ((k6.h) this.f35b).getClass();
-        String v = f0.f2556b.v((e0) obj);
-        kotlin.jvm.internal.i.d(v, "SessionEvents.SESSION_EVENT_ENCODER.encode(value)");
-        Log.d("EventGDTLogger", "Session Event: ".concat(v));
-        byte[] bytes = v.getBytes(rd.a.f46490a);
-        kotlin.jvm.internal.i.d(bytes, "this as java.lang.String).getBytes(charset)");
-        return bytes;
+    public void a(j2.j jVar) {
+        c4.i iVar = (c4.i) jVar;
+        iVar.clear();
+        ((c4.j) this.f39b).f4205b.add(iVar);
     }
 
     @Override
-    public void b(j jVar) {
-        a4.j jVar2 = (a4.j) jVar;
-        jVar2.clear();
-        ((k) this.f35b).f274b.add(jVar2);
-    }
-
-    @Override
-    public Object c(Object obj, Object obj2) {
-        return s.x((List) ((Collection) obj2), new q(((q1) this.f35b).f6405f, obj));
-    }
-
-    public void d(int i10) {
-        c0 c0Var = (c0) this.f35b;
-        c0Var.f2883c = i10;
-        c0Var.e(i10);
-    }
-
-    @Override
-    public long g(long j10) {
-        u uVar = (u) this.f35b;
-        return l0.j((j10 * uVar.e) / 1000000, 0L, uVar.f3697j - 1);
-    }
-
-    @Override
-    public void h(x1 x1Var, int i10) {
-        switch (this.f34a) {
-            case 4:
-                z2 z2Var = (z2) ((ag.e) this.f35b).f489b;
-                i3 f7 = i3.f(z2.g0(z2Var));
-                ArrayList arrayList = z2Var.f821b;
-                int i11 = f7.f566a;
-                int i12 = 0;
-                while (i12 < arrayList.size()) {
-                    if (f7.c(((Integer) arrayList.get(i12)).intValue()) == null) {
-                        arrayList.remove(i12);
-                        i12--;
-                    }
-                    i12++;
+    public void accept(Object obj) {
+        switch (this.f38a) {
+            case 6:
+                b4.h hVar = (b4.h) this.f39b;
+                b4.a aVar = (b4.a) obj;
+                b4.g gVar = new b4.g(aVar.f2353b, kb.a.q4(aVar.f2352a, aVar.f2354c));
+                hVar.f2363c.add(gVar);
+                long j10 = hVar.f2368j;
+                if (j10 == -9223372036854775807L || aVar.d >= j10) {
+                    hVar.g(gVar);
+                    return;
                 }
-                if (!arrayList.isEmpty()) {
-                    for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                        h3 c10 = f7.c(((Integer) arrayList.get(i13)).intValue());
-                        f7.f567b.remove(c10);
-                        f7.a(c10.f552b);
-                        TLRPC.TL_messages_deleteQuickReplyShortcut tL_messages_deleteQuickReplyShortcut = new TLRPC.TL_messages_deleteQuickReplyShortcut();
-                        tL_messages_deleteQuickReplyShortcut.shortcut_id = c10.f551a;
-                        ConnectionsManager.getInstance(i11).sendRequest(tL_messages_deleteQuickReplyShortcut, new c3(1));
-                        if ("hello".equals(c10.f552b)) {
-                            ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessGreetingMessage(), null);
-                            TLRPC.UserFull a2 = wp.r1(i11).a2(e20.i(i11).e());
-                            if (a2 != null) {
-                                a2.flags2 &= -5;
-                                a2.business_greeting_message = null;
-                                is.a0(i11).j2(a2, true);
-                            }
-                        } else if ("away".equals(c10.f552b)) {
-                            ConnectionsManager.getInstance(i11).sendRequest(new TL_account.updateBusinessAwayMessage(), null);
-                            TLRPC.UserFull a22 = wp.r1(i11).a2(e20.i(i11).e());
-                            if (a22 != null) {
-                                a22.flags2 &= -9;
-                                a22.business_away_message = null;
-                                is.a0(i11).j2(a22, true);
-                            }
+                return;
+            default:
+                ((f0) this.f39b).c((b4.a) obj);
+                return;
+        }
+    }
+
+    @Override
+    public void b(float f10, float f11, int i3, View view) {
+        long j10;
+        long j11;
+        int i10;
+        int i11;
+        int i12;
+        k2 k2Var = (k2) this.f39b;
+        j1 j1Var = k2Var.f11150c;
+        ArrayList arrayList = k2Var.f11160r;
+        v0 v0Var = ((ei.t0) view).f11036f;
+        int i13 = k2Var.O;
+        int currentTime = ConnectionsManager.getInstance(i13).getCurrentTime();
+        HashSet hashSet = new HashSet();
+        int i14 = 0;
+        int i15 = 0;
+        while (true) {
+            j10 = 0;
+            if (i15 >= v0Var.f11109f.size()) {
+                break;
+            }
+            u0 u0Var = (u0) v0Var.f11109f.get(i15);
+            long j12 = u0Var.f11074g;
+            if (j12 > 0 && currentTime - u0Var.d <= u.b(i13, (int) j12, 0)) {
+                hashSet.add(Integer.valueOf(u0Var.f11069a));
+            }
+            i15++;
+        }
+        g1 g1Var = k2Var.Q;
+        if (g1Var != null) {
+            j10 = g1Var.j();
+        }
+        int i16 = 0;
+        int i17 = 0;
+        while (i16 < arrayList.size()) {
+            u0 u0Var2 = (u0) arrayList.get(i16);
+            if (!u0Var2.f11070b && u0Var2.f11072e && u0Var2.f11074g < j10) {
+                j11 = j10;
+            } else {
+                if (hashSet.contains(Integer.valueOf(u0Var2.f11069a))) {
+                    j11 = j10;
+                    if (k2Var.f11163x != v0Var.f11106b || (i12 = k2Var.f11164y) == 0 || u0Var2.f11069a < i12) {
+                        i10 = u0Var2.f11069a;
+                        break;
+                    }
+                } else {
+                    j11 = j10;
+                }
+                i17++;
+            }
+            i16++;
+            j10 = j11;
+        }
+        j11 = j10;
+        i10 = -1;
+        if (i10 < 0) {
+            int i18 = 0;
+            while (true) {
+                if (i14 < arrayList.size()) {
+                    u0 u0Var3 = (u0) arrayList.get(i14);
+                    if (u0Var3.f11070b || !u0Var3.f11072e || u0Var3.f11074g >= j11) {
+                        if (hashSet.contains(Integer.valueOf(u0Var3.f11069a))) {
+                            i11 = u0Var3.f11069a;
+                            i17 = i18;
+                            break;
+                        }
+                        i18++;
+                    }
+                    i14++;
+                } else {
+                    i17 = i18;
+                    i11 = -1;
+                    break;
+                }
+            }
+        } else {
+            i11 = i10;
+        }
+        if (i11 < 0) {
+            return;
+        }
+        k2Var.f11163x = v0Var.f11106b;
+        k2Var.f11164y = i11;
+        k2Var.E = true;
+        m0 itemAnimator = j1Var.getItemAnimator();
+        j1Var.setItemAnimator(null);
+        k2Var.d.i1(i17, j1Var.getHeight() / 2, true);
+        k2Var.f11153e.g(i17);
+        j1Var.setItemAnimator(itemAnimator);
+    }
+
+    @Override
+    public boolean b1(View view) {
+        return false;
+    }
+
+    @Override
+    public void c(boolean z10) {
+        j5 j5Var = (j5) this.f39b;
+        if (j5Var != null) {
+            j5Var.c();
+        }
+    }
+
+    @Override
+    public Object d(Number number, Object obj) {
+        Long l10 = (Long) number;
+        return w0.a((w0) this.f39b, (Long) obj);
+    }
+
+    @Override
+    public void e(int i3) {
+        switch (this.f38a) {
+            case 17:
+                n10 n10Var = (n10) this.f39b;
+                if (i3 == 1) {
+                    n10Var.a(Boolean.TRUE, null);
+                    return;
+                } else if (i3 != 3) {
+                    n10Var.a(Boolean.FALSE, null);
+                    return;
+                } else {
+                    return;
+                }
+            case 18:
+                s1 s1Var = (s1) this.f39b;
+                if (i3 == 1) {
+                    s1Var.a(Boolean.TRUE, null);
+                    return;
+                } else if (i3 != 3) {
+                    s1Var.a(Boolean.FALSE, null);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                d6 d6Var = (d6) this.f39b;
+                if (i3 == 1) {
+                    d6Var.a(Boolean.TRUE, null);
+                    return;
+                } else if (i3 != 3) {
+                    d6Var.a(Boolean.FALSE, null);
+                    return;
+                } else {
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public boolean f(int r37, final android.view.View r38) {
+        throw new UnsupportedOperationException("Method not decompiled: a1.c.f(int, android.view.View):boolean");
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f38a) {
+            case 3:
+                ((k0) this.f39b).run();
+                return;
+            default:
+                ((u10) this.f39b).a(s1Var.h(i3, true, true));
+                return;
+        }
+    }
+
+    @Override
+    public void h(long j10) {
+        switch (this.f38a) {
+            case 2:
+                ((ai.i) this.f39b).a(j10, true);
+                return;
+            default:
+                ((w5) this.f39b).h();
+                return;
+        }
+    }
+
+    @Override
+    public void i(float f10, Canvas canvas, RectF rectF, boolean z10) {
+        Path path = (Path) this.f39b;
+        if (z10) {
+            return;
+        }
+        path.rewind();
+        float pow = (float) Math.pow(f10, 2.0d);
+        path.addCircle((rectF.right + g0.L(7.0f)) - (g0.L(14.0f) * pow), (rectF.bottom + g0.L(7.0f)) - (g0.L(14.0f) * pow), g0.L(11.0f), Path.Direction.CW);
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+    }
+
+    @Override
+    public void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        switch (this.f38a) {
+            case 11:
+                ci.u uVar = (ci.u) this.f39b;
+                r31 r31Var = (r31) obj;
+                View view = (View) obj2;
+                Integer num = (Integer) number;
+                Float f10 = (Float) serializable;
+                Float f11 = (Float) serializable2;
+                v vVar = uVar.f6075r;
+                if (r31Var.G instanceof TL_stars.StarsTransaction) {
+                    wb.k1(uVar.getContext(), true, vVar.f6132b, v.p0(vVar), (TL_stars.StarsTransaction) r31Var.G, v.q0(vVar));
+                    return;
+                } else if (uVar.h) {
+                    uVar.h = false;
+                    uVar.a();
+                    return;
+                } else {
+                    return;
+                }
+            case 16:
+                e9.b((e9) this.f39b, (ArrayList) obj, (Integer) obj2, (Long) number, (ArrayList) serializable, (ArrayList) serializable2);
+                return;
+            default:
+                tb tbVar = (tb) this.f39b;
+                r31 r31Var2 = (r31) obj;
+                View view2 = (View) obj2;
+                Integer num2 = (Integer) number;
+                Float f12 = (Float) serializable;
+                Float f13 = (Float) serializable2;
+                if (r31Var2.G instanceof TL_stars.StarsTransaction) {
+                    wb.k1(tbVar.getContext(), false, 0L, tbVar.f6051c, (TL_stars.StarsTransaction) r31Var2.G, tbVar.f6050b);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void k(e5.f fVar, List list) {
+        int i3;
+        b3 b3Var = (b3) this.f39b;
+        ArrayList arrayList = b3Var.f513f2;
+        Iterator it = list.iterator();
+        long j10 = 0;
+        while (true) {
+            i3 = 0;
+            if (!it.hasNext()) {
+                break;
+            }
+            l lVar = (l) it.next();
+            int size = arrayList.size();
+            while (true) {
+                if (i3 < size) {
+                    Object obj = arrayList.get(i3);
+                    i3++;
+                    vg.j jVar = (vg.j) obj;
+                    if (jVar.h() != null && jVar.h().equals(lVar.f9611c)) {
+                        jVar.h = lVar;
+                        if (jVar.f() > j10) {
+                            j10 = jVar.f();
                         }
                     }
-                    f7.l();
-                    is a02 = is.a0(i11);
-                    a02.f16331a.c(new r0(a02, arrayList, 1));
-                    at.f(i11).k(121, new Object[0]);
                 }
-                z2.c0(z2Var);
-                return;
-            default:
-                ((n4) this.f35b).run();
-                return;
+            }
         }
+        int size2 = arrayList.size();
+        while (i3 < size2) {
+            Object obj2 = arrayList.get(i3);
+            i3++;
+            ((vg.j) obj2).f56682g = j10;
+        }
+        g0.h3(new s(b3Var, 2));
     }
 
     @Override
-    public void invoke(Object obj) {
-        switch (this.f34a) {
-            case 24:
-                ((d1) obj).y((b2.f) this.f35b);
-                return;
-            case 25:
-                ((d1) obj).w((b2.u1) this.f35b);
-                return;
-            case 26:
-                ((d1) obj).A((d2.d) this.f35b);
-                return;
-            case 27:
-                ((d1) obj).m(((i2.c0) this.f35b).f7822a.Q);
-                return;
-            default:
-                ((d1) obj).F((u0) this.f35b);
-                return;
-        }
-    }
-
-    @Override
-    public void j(int i10) {
-        boolean z10;
-        int i11;
-        ei.b bVar = (ei.b) this.f35b;
-        r rVar = bVar.f6597a;
-        ei.e eVar = bVar.f6601g;
-        if (Build.VERSION.SDK_INT >= 31 && eVar != null) {
-            ArrayList arrayList = eVar.f6630a;
-            if (r.f().f6693a) {
-                if (u7.a(i10, 4) || u7.a(i10, 2)) {
-                    gi.a e = rVar.e();
-                    ViewGroup viewGroup = bVar.f6606m;
-                    if (viewGroup != null) {
-                        e.b(viewGroup.getY(), bVar.f6605l.getWidth(), bVar.f6606m.getY() + bVar.f6606m.getHeight());
-                    }
-                    eVar.f6631b = e.f7533b;
-                    while (eVar.f6631b > arrayList.size()) {
-                        arrayList.add(new ei.c(arrayList.size()));
-                    }
-                    for (int i12 = 0; i12 < eVar.f6631b; i12++) {
-                        ei.c cVar = (ei.c) arrayList.get(i12);
-                        cVar.f6608a.set(e.c(i12));
-                        cVar.b(eVar.f6639m, eVar.f6640n, eVar.f6641o);
-                        cVar.c(eVar.f6637k);
-                        int i13 = eVar.f6642p;
-                        int i14 = eVar.f6643q;
-                        int i15 = eVar.f6644r;
-                        int i16 = eVar.f6645s;
-                        cVar.f6625u = i13;
-                        cVar.v = i14;
-                        cVar.f6626w = i15;
-                        cVar.f6627x = i16;
-                    }
-                }
-                eVar.f6632c = bVar.f6607n;
-                eVar.d = bVar.f6605l;
-                int i17 = 1;
-                if (rVar.f6677j > 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                boolean z11 = !z10;
-                if (eVar.f6638l != z11) {
-                    eVar.f6638l = z11;
-                    if (!z10) {
-                        i11 = 5;
-                    } else {
-                        i11 = 1;
-                    }
-                    eVar.f6639m = i11;
-                    if (!z10) {
-                        i17 = 10;
-                    }
-                    eVar.f6640n = i17;
-                    eVar.f6641o = Math.max(i11, i17);
-                    for (int i18 = 0; i18 < eVar.f6631b; i18++) {
-                        ((ei.c) arrayList.get(i18)).b(eVar.f6639m, eVar.f6640n, eVar.f6641o);
-                    }
-                    eVar.f();
-                }
-                int i19 = rVar.f6678k;
-                int i20 = rVar.f6679l;
-                eVar.f6646t = i19;
-                eVar.f6647u = i20;
-                eVar.f();
-                eVar.e();
-                Runnable runnable = bVar.f6603j;
-                if (runnable != null) {
-                    runnable.run();
-                }
+    public void l(yh.f fVar, float f10, float f11) {
+        g8 g8Var;
+        f8 f8Var = (f8) this.f39b;
+        if (!f8Var.v.f10348y) {
+            fVar.f59521q = new e8(f8Var, 2);
+            float sqrt = (float) Math.sqrt(Math.pow(g8Var.getHeight(), 2.0d) + Math.pow(g8Var.getWidth(), 2.0d));
+            ArrayList arrayList = f8Var.f10279i;
+            int size = arrayList.size();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj = arrayList.get(i3);
+                i3++;
+                ((yh.f) obj).j(f10, f11, sqrt, false);
             }
         }
     }
 
     @Override
-    public void k(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        int i10;
-        g2 g2Var;
-        g2 g2Var2;
-        int i11;
-        int i12 = this.f34a;
-        Object obj3 = this.f35b;
-        switch (i12) {
-            case 2:
-                h2 h2Var = (h2) obj3;
-                b51 b51Var = (b51) obj;
-                View view = (View) obj2;
-                Integer num = (Integer) number;
-                float floatValue = ((Float) serializable).floatValue();
-                Float f7 = (Float) serializable2;
-                int i13 = b51Var.d;
-                if (i13 == -1) {
-                    boolean z10 = !h2Var.d;
-                    h2Var.d = z10;
-                    ((t8) view).setChecked(z10);
-                    h2Var.f546a.f31183f3.O(true);
-                    h2Var.d0(true);
-                    return;
-                } else if (i13 == -2) {
-                    ?? k2Var = new org.telegram.ui.ActionBar.k2(null);
-                    k2Var.f645n = h2Var.f550n;
-                    k2Var.f643c = new ag.e0(h2Var, view);
-                    h2Var.presentFragment((org.telegram.ui.ActionBar.k2) k2Var);
-                    return;
-                } else if (b51Var.f7681a == 5 && i13 >= 0 && i13 < h2Var.f549f.length) {
-                    if (!dd.X ? floatValue >= view.getMeasuredWidth() - i0.L(76.0f) : floatValue <= i0.L(76.0f)) {
-                        if (h2Var.f549f[b51Var.d].isEmpty()) {
-                            ((l5) view).setChecked(true);
-                            h2Var.f549f[b51Var.d].add(new g2(0, 1439));
-                            h2Var.c0(b51Var.d);
-                        } else {
-                            h2Var.f549f[b51Var.d].clear();
-                            ((l5) view).setChecked(false);
-                        }
-                        ((l5) view).setValue(h2.f0(h2Var.f549f[b51Var.d]));
-                        h2Var.d0(true);
-                        return;
-                    }
-                    int i14 = (b51Var.d + 6) % 7;
-                    int i15 = 0;
-                    for (int i16 = 0; i16 < h2Var.f549f[i14].size(); i16++) {
-                        if (((g2) h2Var.f549f[i14].get(i16)).f533b > i15) {
-                            i15 = ((g2) h2Var.f549f[i14].get(i16)).f533b;
-                        }
-                    }
-                    int max = Math.max(0, i15 - 1439);
-                    int i17 = (b51Var.d + 1) % 7;
-                    int i18 = 1440;
-                    for (int i19 = 0; i19 < h2Var.f549f[i17].size(); i19++) {
-                        if (((g2) h2Var.f549f[i17].get(i19)).f532a < i18) {
-                            i18 = ((g2) h2Var.f549f[i17].get(i19)).f532a;
-                        }
-                    }
-                    int i20 = i18 + 1439;
-                    CharSequence charSequence = b51Var.f24643l;
-                    ArrayList arrayList = h2Var.f549f[b51Var.d];
-                    int i21 = 0;
-                    for (int i22 = 0; i22 < 7; i22++) {
-                        ArrayList arrayList2 = h2Var.f549f[i22];
-                        if (arrayList2 != null) {
-                            i21 = Math.max(1, arrayList2.size()) + i21;
-                        }
-                    }
-                    j2 j2Var = new j2(charSequence, arrayList, max, i20, 28 - i21);
-                    j2Var.f589f = new a3.d(h2Var, 8);
-                    j2Var.h = new f(10, h2Var, b51Var);
-                    h2Var.presentFragment(j2Var);
-                    return;
-                } else {
-                    return;
-                }
-            case 3:
-                final j2 j2Var2 = (j2) obj3;
-                b51 b51Var2 = (b51) obj;
-                final View view2 = (View) obj2;
-                Integer num2 = (Integer) number;
-                Float f10 = (Float) serializable;
-                Float f11 = (Float) serializable2;
-                int i23 = j2Var2.f588c;
-                int i24 = j2Var2.d;
-                ArrayList arrayList3 = j2Var2.f587b;
-                int i25 = b51Var2.d;
-                if (i25 == -1) {
-                    j2Var2.f591r = !j2Var2.f591r;
-                    arrayList3.clear();
-                    if (j2Var2.f591r) {
-                        arrayList3.add(new g2(0, 1439));
-                    }
-                    t8 t8Var = (t8) view2;
-                    boolean z11 = j2Var2.f591r;
-                    b51Var2.e = z11;
-                    t8Var.setChecked(z11);
-                    boolean z12 = j2Var2.f591r;
-                    if (z12) {
-                        i11 = t6.f20967f6;
-                    } else {
-                        i11 = t6.f20949e6;
-                    }
-                    t8Var.b(t6.x0(null, i11, false), z12);
-                    j2Var2.f590n.f31183f3.O(true);
-                    a3.d dVar = j2Var2.f589f;
-                    if (dVar != null) {
-                        dVar.run();
-                        return;
-                    }
-                    return;
-                } else if (i25 == -2) {
-                    if (!arrayList3.isEmpty() && !j2Var2.Z()) {
-                        int i26 = ((g2) i0.a.g(1, arrayList3)).f533b;
-                        int j10 = Utilities.j(i26 + 30, i24 - 1, i23);
-                        arrayList3.add(new g2(j10, Utilities.j((i26 + 1560) / 2, i24, j10 + 1)));
-                    } else {
-                        if (j2Var2.Z()) {
-                            arrayList3.clear();
-                        }
-                        int j11 = Utilities.j(480, i24 - 1, i23);
-                        arrayList3.add(new g2(j11, Utilities.j(1200, i24, j11 + 1)));
-                    }
-                    a3.d dVar2 = j2Var2.f589f;
-                    if (dVar2 != null) {
-                        dVar2.run();
-                    }
-                    j2Var2.f590n.f31183f3.O(true);
-                    return;
-                } else if (b51Var2.f7681a == 3 && (i10 = i25 / 3) >= 0 && i10 < arrayList3.size()) {
-                    int i27 = i10 - 1;
-                    if (i27 >= 0) {
-                        g2Var = (g2) arrayList3.get(i27);
-                    } else {
-                        g2Var = null;
-                    }
-                    final g2 g2Var3 = (g2) arrayList3.get(i10);
-                    int i28 = i10 + 1;
-                    if (i28 < arrayList3.size()) {
-                        g2Var2 = (g2) arrayList3.get(i28);
-                    } else {
-                        g2Var2 = null;
-                    }
-                    int i29 = b51Var2.d % 3;
-                    if (i29 == 0) {
-                        Activity parentActivity = j2Var2.getParentActivity();
-                        String L0 = dd.L0(2131752750, null);
-                        int i30 = g2Var3.f532a;
-                        if (g2Var != null) {
-                            i23 = g2Var.f533b + 1;
-                        }
-                        s4.W(parentActivity, L0, i30, i23, g2Var3.f533b - 1, new r20() {
-                            @Override
-                            public final void a(Object obj4) {
-                                Integer num3 = (Integer) obj4;
-                                switch (r4) {
-                                    case 0:
-                                        j2 j2Var3 = j2Var2;
-                                        boolean a02 = j2Var3.a0();
-                                        int intValue = num3.intValue();
-                                        g2Var3.f532a = intValue;
-                                        ((p8) view2).w(g2.a(intValue), true);
-                                        if (a02 != j2Var3.a0()) {
-                                            j2Var3.f590n.f31183f3.O(true);
-                                        }
-                                        a3.d dVar3 = j2Var3.f589f;
-                                        if (dVar3 != null) {
-                                            dVar3.run();
-                                            return;
-                                        }
-                                        return;
-                                    default:
-                                        j2 j2Var4 = j2Var2;
-                                        boolean a03 = j2Var4.a0();
-                                        int intValue2 = num3.intValue();
-                                        g2Var3.f533b = intValue2;
-                                        ((p8) view2).w(g2.a(intValue2), true);
-                                        if (a03 != j2Var4.a0()) {
-                                            j2Var4.f590n.f31183f3.O(true);
-                                        }
-                                        a3.d dVar4 = j2Var4.f589f;
-                                        if (dVar4 != null) {
-                                            dVar4.run();
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    } else if (i29 == 1) {
-                        Activity parentActivity2 = j2Var2.getParentActivity();
-                        String L02 = dd.L0(2131752756, null);
-                        int i31 = g2Var3.f533b;
-                        int i32 = g2Var3.f532a + 1;
-                        if (g2Var2 != null) {
-                            i24 = g2Var2.f532a - 1;
-                        }
-                        s4.W(parentActivity2, L02, i31, i32, i24, new r20() {
-                            @Override
-                            public final void a(Object obj4) {
-                                Integer num3 = (Integer) obj4;
-                                switch (r4) {
-                                    case 0:
-                                        j2 j2Var3 = j2Var2;
-                                        boolean a02 = j2Var3.a0();
-                                        int intValue = num3.intValue();
-                                        g2Var3.f532a = intValue;
-                                        ((p8) view2).w(g2.a(intValue), true);
-                                        if (a02 != j2Var3.a0()) {
-                                            j2Var3.f590n.f31183f3.O(true);
-                                        }
-                                        a3.d dVar3 = j2Var3.f589f;
-                                        if (dVar3 != null) {
-                                            dVar3.run();
-                                            return;
-                                        }
-                                        return;
-                                    default:
-                                        j2 j2Var4 = j2Var2;
-                                        boolean a03 = j2Var4.a0();
-                                        int intValue2 = num3.intValue();
-                                        g2Var3.f533b = intValue2;
-                                        ((p8) view2).w(g2.a(intValue2), true);
-                                        if (a03 != j2Var4.a0()) {
-                                            j2Var4.f590n.f31183f3.O(true);
-                                        }
-                                        a3.d dVar4 = j2Var4.f589f;
-                                        if (dVar4 != null) {
-                                            dVar4.run();
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    } else if (i29 == 2) {
-                        arrayList3.remove(i10);
-                        if (arrayList3.isEmpty()) {
-                            arrayList3.add(new g2(0, 1439));
-                        }
-                        j2Var2.f590n.f31183f3.O(true);
-                        a3.d dVar3 = j2Var2.f589f;
-                        if (dVar3 != null) {
-                            dVar3.run();
-                            return;
-                        }
-                        return;
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            case 4:
-            default:
-                b51 b51Var3 = (b51) obj;
-                View view3 = (View) obj2;
-                Integer num3 = (Integer) number;
-                Float f12 = (Float) serializable;
-                Float f13 = (Float) serializable2;
-                if (((d4[]) obj3)[0] != null && (view3 instanceof q6)) {
-                    ((q6) view3).B();
-                    return;
-                }
-                return;
-            case 5:
-                Integer num4 = (Integer) number;
-                Float f14 = (Float) serializable;
-                Float f15 = (Float) serializable2;
-                m3.Z((m3) obj3, (b51) obj, (View) obj2);
-                return;
-        }
-    }
-
-    @Override
-    public void m() {
-        switch (this.f34a) {
-            case 8:
-                y0 y0Var = (y0) this.f35b;
-                n1 n1Var = y0Var.d;
-                bi.a aVar = y0Var.f3457f;
-                if (aVar != null) {
-                    aVar.f2832s = true;
-                    aVar.f2831r = n1Var.f3226k2;
-                }
-                if (aVar != null) {
-                    TL_iv.PageBlock pageBlock = aVar.f2818b;
-                    if (pageBlock instanceof TL_iv.pageBlockDetails) {
-                        ((TL_iv.pageBlockDetails) pageBlock).title = s6.f(n1Var.getText());
-                    }
-                }
-                l3 l3Var = y0Var.h;
-                if (l3Var != null && y0Var.f3457f != null) {
-                    d4.R1(l3Var.f3182a);
-                    return;
-                }
-                return;
-            case 13:
-                ((r5) this.f35b).g();
-                return;
-            default:
-                z5 z5Var = (z5) this.f35b;
-                bi.a aVar2 = z5Var.f2881a;
-                if (aVar2 != null) {
-                    aVar2.f2832s = true;
-                    aVar2.f2831r = z5Var.f3481r.f3226k2;
-                }
-                z5Var.w();
-                k3 k3Var = z5Var.E;
-                if (k3Var != null && z5Var.f2881a != null) {
-                    d4.R1(k3Var.f3169a);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
     public void onSuccess(Object obj) {
-        switch (this.f34a) {
+        switch (this.f38a) {
             case 0:
-                ((b) this.f35b).invoke(obj);
+                ((b) this.f39b).invoke(obj);
                 return;
-            case 16:
-                ((b1.f) this.f35b).invoke(obj);
+            case 8:
+                ((b1.e) this.f39b).invoke(obj);
                 return;
-            case 17:
-                ((b1.f) this.f35b).invoke(obj);
-                return;
-            case 18:
-                ((e1.b) this.f35b).invoke(obj);
+            case 21:
+                ((b1.e) this.f39b).invoke(obj);
                 return;
             default:
-                ((e1.b) this.f35b).invoke(obj);
+                ((e1.b) this.f39b).invoke(obj);
                 return;
         }
     }
 
     @Override
-    public void v(int i10, float f7, float f10, fe.f fVar) {
-        ((Switch) this.f35b).invalidate();
+    public Object then(Task task) {
+        return (Task) ((z9.k) this.f39b).call();
     }
 
     @Override
-    public boolean z(zx zxVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, nb1 nb1Var) {
-        bi.s4 s4Var = (bi.s4) this.f35b;
-        if (arrayList.isEmpty() || ((hs) arrayList.get(0)).f16109a <= 0) {
-            return false;
-        }
-        s4Var.run(((hs) arrayList.get(0)).f16109a);
-        zxVar.finishFragment();
-        return true;
+    public void F(float f10, int i3) {
     }
 
     @Override
-    public void E(float f7, int i10) {
+    public void r0(View view, float f10, float f11) {
     }
 }

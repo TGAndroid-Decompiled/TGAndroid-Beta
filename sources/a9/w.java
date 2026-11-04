@@ -1,36 +1,25 @@
 package a9;
-public final class w {
-    public final int f357a;
-    public final long f358b;
 
-    public w(int i10, long j10) {
-        this.f357a = i10;
-        this.f358b = j10;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.util.ArrayList;
+import java.util.List;
+public final class w extends q6.a {
+    public static final Parcelable.Creator<w> CREATOR = new c(20);
+    public final int f265a;
+    public final List f266b;
+
+    public w(int i3, ArrayList arrayList) {
+        this.f265a = i3;
+        this.f266b = arrayList;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof w) {
-                w wVar = (w) obj;
-                if (this.f357a == wVar.f357a && this.f358b == wVar.f358b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        long j10 = this.f358b;
-        return ((this.f357a ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("EventRecord{eventType=");
-        sb2.append(this.f357a);
-        sb2.append(", eventTimestamp=");
-        return a1.g.q(sb2, this.f358b, "}");
+    @Override
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(this.f265a);
+        j8.a.q(parcel, 3, this.f266b);
+        j8.a.t(parcel, s6);
     }
 }

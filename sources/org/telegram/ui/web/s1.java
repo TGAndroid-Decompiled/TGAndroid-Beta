@@ -1,90 +1,82 @@
 package org.telegram.ui.web;
 
-import android.webkit.WebResourceResponse;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.v2;
-public final class s1 extends WebViewClient {
-    public boolean f42992a = true;
-    public boolean f42993b;
-    public final InputStream f42994c;
-    public final y1 d;
+import org.telegram.messenger.az;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.d4;
+public final class s1 {
+    public final int f51007a;
+    public boolean f51008b;
+    public boolean f51009c;
+    public String d;
+    public float f51010e;
+    public boolean f51011f;
+    public boolean f51012g;
+    public TLRPC.WebPage h;
+    public boolean f51013i;
+    public TLRPC.TL_webPage f51014j;
+    public int f51015k;
+    public d4 f51016l;
+    public final ArrayList f51017m = new ArrayList();
 
-    public s1(y1 y1Var, InputStream inputStream) {
-        this.d = y1Var;
-        this.f42994c = inputStream;
+    public s1(int i3) {
+        this.f51007a = i3;
     }
 
-    @Override
-    public final WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
-        e1 e1Var;
-        String str2;
-        InputStream a2;
-        String str3;
-        e1 e1Var2;
-        if (this.f42992a) {
-            this.f42992a = false;
-            String y22 = org.telegram.messenger.i0.y2(null, 2131624067);
-            boolean z10 = v2.f18578a;
-            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a1.g.n("<script>\n", y22.replace("$DEBUG$", "true"), "\n</script>").getBytes(StandardCharsets.UTF_8)));
-        }
-        y1 y1Var = this.d;
-        if (str != null && str.endsWith("/index.html")) {
-            str3 = "application/octet-stream";
-            if (this.f42993b) {
-                xa.n nVar = y1Var.f43054b;
-                if (nVar != null) {
-                    e1Var2 = (e1) ((ArrayList) nVar.f53573b).get(0);
-                } else {
-                    e1Var2 = null;
-                }
-                if (e1Var2 == null) {
-                    return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-                }
-                try {
-                    a2 = e1Var2.a();
-                } catch (IOException e) {
-                    f8.g(e, true);
-                    return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
-                }
-            } else {
-                this.f42993b = true;
-                a2 = this.f42994c;
+    public final void a() {
+        d4 d4Var;
+        if (!this.f51009c) {
+            this.f51009c = true;
+            if (!this.f51012g) {
+                ConnectionsManager.getInstance(this.f51007a).cancelRequest(this.f51015k, true);
             }
-        } else {
-            xa.n nVar2 = y1Var.f43054b;
-            if (nVar2 != null) {
-                e1Var = (e1) ((HashMap) nVar2.f53574c).get(str);
-            } else {
-                e1Var = null;
-            }
-            if (e1Var == null) {
-                return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-            }
-            f1 f1Var = (f1) e1Var.f42826a.get("content-type");
-            if (f1Var == null) {
-                str2 = null;
-            } else {
-                str2 = f1Var.f42833a;
-            }
-            if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
-                return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-            }
-            try {
-                a2 = e1Var.a();
-                str3 = str2;
-            } catch (IOException e7) {
-                f8.g(e7, true);
-                return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
+            if (!this.f51013i && (d4Var = this.f51016l) != null) {
+                d4Var.run();
             }
         }
-        return new WebResourceResponse(str3, null, a2);
+    }
+
+    public final TLRPC.WebPage b() {
+        TLRPC.WebPage webPage;
+        if (!az.f21673w0 && (webPage = this.h) != null) {
+            return webPage;
+        }
+        TLRPC.TL_webPage tL_webPage = this.f51014j;
+        if (tL_webPage != null) {
+            return tL_webPage;
+        }
+        return null;
+    }
+
+    public final void c() {
+        ArrayList arrayList = this.f51017m;
+        int size = arrayList.size();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            ((Runnable) obj).run();
+        }
+    }
+
+    public final void d(t0 t0Var) {
+        if (this.f51009c) {
+            return;
+        }
+        TLRPC.TL_webPage tL_webPage = this.f51014j;
+        if (tL_webPage != null) {
+            u1.o(tL_webPage);
+            this.f51014j = null;
+        }
+        this.f51013i = false;
+        this.d = t0Var.getUrl();
+        this.f51010e = t0Var.getProgress();
+        this.f51011f = t0Var.f51022b;
+        d4 d4Var = this.f51016l;
+        if (d4Var != null) {
+            d4Var.run();
+        }
+        this.f51016l = u1.e(t0Var, new r1(this, 1));
     }
 }

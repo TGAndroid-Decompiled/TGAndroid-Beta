@@ -21,10 +21,10 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-        public int f44490id = -1;
+        public int f53002id = -1;
 
         public int getId() {
-            return this.f44490id;
+            return this.f53002id;
         }
 
         public int getMaxRetransmitTimeMs() {
@@ -62,8 +62,8 @@ public class DataChannel {
         CLOSING,
         CLOSED;
 
-        public static State fromNativeIndex(int i10) {
-            return values()[i10];
+        public static State fromNativeIndex(int i3) {
+            return values()[i3];
         }
     }
 

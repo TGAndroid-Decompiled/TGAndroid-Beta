@@ -1,17 +1,10 @@
 package x7;
-public final class i5 implements ja.d {
-    public static final i5 f53210a = new Object();
-
-    static {
-        sc.e.v(sc.e.m(c0.class, new z(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+public abstract class i5 {
+    public static void a(int i3, Object[] objArr) {
+        for (int i10 = 0; i10 < i3; i10++) {
+            if (objArr[i10] == null) {
+                throw new NullPointerException(k2.p1.i(i10, "at index "));
+            }
         }
-        throw new ClassCastException();
     }
 }

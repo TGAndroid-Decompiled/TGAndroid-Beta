@@ -1,54 +1,44 @@
 package ci;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import org.telegram.ui.Cells.f0;
-import org.telegram.ui.Cells.ra;
-import org.telegram.ui.un;
-public final class j implements ValueAnimator.AnimatorUpdateListener {
-    public final int f4219a;
-    public final float f4220b;
-    public final o f4221c;
-    public final View d;
+import android.app.Activity;
+import org.telegram.messenger.u10;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class j implements RequestDelegate {
+    public final int f5319a = 0;
+    public final boolean f5320b;
+    public final long f5321c;
+    public final Object d;
+    public final Object f5322e;
+    public final Object f5323f;
 
-    public j(o oVar, View view, float f7, int i10) {
-        this.f4219a = i10;
-        this.f4221c = oVar;
-        this.d = view;
-        this.f4220b = f7;
+    public j(v vVar, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z10, long j10) {
+        this.d = vVar;
+        this.f5322e = twoStepVerificationActivity;
+        this.f5323f = activity;
+        this.f5320b = z10;
+        this.f5321c = j10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float f7;
-        float f10;
-        switch (this.f4219a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f5319a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o oVar = this.f4221c;
-                un unVar = oVar.F;
-                f0 f0Var = (f0) this.d;
-                float measuredHeight = ((((oVar.G.getMeasuredHeight() - unVar.L9) - unVar.Ua) / 2.0f) - (f0Var.getMeasuredHeight() / 2.0f)) + oVar.F.L9;
-                if (f0Var.getTop() > measuredHeight) {
-                    f7 = measuredHeight - f0Var.getTop();
-                } else {
-                    f7 = 0.0f;
-                }
-                f0Var.setTranslationY((f7 * floatValue) + ((1.0f - floatValue) * this.f4220b));
+                org.telegram.messenger.g0.h3(new k((v) this.d, tL_error, (TwoStepVerificationActivity) this.f5322e, (Activity) this.f5323f, this.f5320b, this.f5321c, tLObject));
                 return;
             default:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o oVar2 = this.f4221c;
-                un unVar2 = oVar2.F;
-                ra raVar = (ra) this.d;
-                float measuredHeight2 = ((((oVar2.G.getMeasuredHeight() - unVar2.L9) - unVar2.Ua) / 2.0f) - (raVar.getMeasuredHeight() / 2.0f)) + oVar2.F.L9;
-                if (raVar.getTop() > measuredHeight2) {
-                    f10 = measuredHeight2 - raVar.getTop();
-                } else {
-                    f10 = 0.0f;
-                }
-                raVar.setTranslationY((f10 * floatValue2) + ((1.0f - floatValue2) * this.f4220b));
+                org.telegram.messenger.g0.h3(new n((ei.z6) this.d, tL_error, this.f5320b, this.f5321c, (u10) this.f5322e, (org.telegram.ui.ActionBar.e6) this.f5323f));
                 return;
         }
+    }
+
+    public j(ei.z6 z6Var, boolean z10, long j10, u10 u10Var, org.telegram.ui.ActionBar.e6 e6Var) {
+        this.d = z6Var;
+        this.f5320b = z10;
+        this.f5321c = j10;
+        this.f5322e = u10Var;
+        this.f5323f = e6Var;
     }
 }

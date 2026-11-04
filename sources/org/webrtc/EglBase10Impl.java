@@ -116,7 +116,7 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public void setFormat(int i10) {
+        public void setFormat(int i3) {
         }
 
         @Override
@@ -125,7 +125,7 @@ public class EglBase10Impl implements EglBase10 {
 
         @Override
         @Deprecated
-        public void setType(int i10) {
+        public void setType(int i3) {
         }
 
         @Override
@@ -133,7 +133,7 @@ public class EglBase10Impl implements EglBase10 {
         }
 
         @Override
-        public void setFixedSize(int i10, int i11) {
+        public void setFixedSize(int i3, int i10) {
         }
     }
 
@@ -162,12 +162,12 @@ public class EglBase10Impl implements EglBase10 {
         throw new RuntimeException("This object has been released");
     }
 
-    private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i10) {
+    private EGLContext createEglContext(EGLContext eGLContext, EGLDisplay eGLDisplay, EGLConfig eGLConfig, int i3) {
         EGLContext eglCreateContext;
         if (eGLContext != null && eGLContext == EGL10.EGL_NO_CONTEXT) {
             throw new RuntimeException("Invalid sharedContext");
         }
-        int[] iArr = {12440, i10, 12344};
+        int[] iArr = {12440, i3, 12344};
         if (eGLContext == null) {
             eGLContext = EGL10.EGL_NO_CONTEXT;
         }
@@ -248,17 +248,17 @@ public class EglBase10Impl implements EglBase10 {
     }
 
     @Override
-    public void createPbufferSurface(int i10, int i11) {
+    public void createPbufferSurface(int i3, int i10) {
         checkIsNotReleased();
         EGLSurface eGLSurface = this.eglSurface;
         EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
         if (eGLSurface == eGLSurface2) {
-            EGLSurface eglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i10, 12374, i11, 12344});
+            EGLSurface eglCreatePbufferSurface = this.egl.eglCreatePbufferSurface(this.eglDisplay, this.eglConfig, new int[]{12375, i3, 12374, i10, 12344});
             this.eglSurface = eglCreatePbufferSurface;
             if (eglCreatePbufferSurface != eGLSurface2) {
                 return;
             }
-            StringBuilder m10 = i0.a.m("Failed to create pixel buffer surface with size ", i10, "x", i11, ": 0x");
+            StringBuilder m10 = com.google.android.recaptcha.internal.a.m("Failed to create pixel buffer surface with size ", i3, "x", i10, ": 0x");
             m10.append(Integer.toHexString(this.egl.eglGetError()));
             throw new RuntimeException(m10.toString());
         }

@@ -1,3 +1,3 @@
 package z7;
-public abstract class ha {
+public final class ha extends b8.a {
 }

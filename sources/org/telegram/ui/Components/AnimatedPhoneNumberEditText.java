@@ -9,40 +9,40 @@ import android.text.TextUtils;
 import android.util.TypedValue;
 import j$.util.Objects;
 import java.util.ArrayList;
-public class AnimatedPhoneNumberEditText extends n30 {
-    public final ArrayList J1;
+public class AnimatedPhoneNumberEditText extends r20 {
     public final ArrayList K1;
-    public final TextPaint L1;
-    public ObjectAnimator M1;
-    public float N1;
-    public String O1;
-    public final o1.d P1;
-    public final ArrayList Q1;
+    public final ArrayList L1;
+    public final TextPaint M1;
+    public ObjectAnimator N1;
+    public float O1;
+    public String P1;
+    public final a6 Q1;
     public final ArrayList R1;
-    public Boolean S1;
-    public String T1;
-    public ag.j0 U1;
+    public final ArrayList S1;
+    public Boolean T1;
+    public String U1;
+    public ci.v6 V1;
 
     public AnimatedPhoneNumberEditText(Context context) {
         super(context);
-        this.J1 = new ArrayList();
         this.K1 = new ArrayList();
-        this.L1 = new TextPaint(1);
-        this.O1 = "";
-        this.P1 = new o1.d(this, 1);
-        this.Q1 = new ArrayList();
+        this.L1 = new ArrayList();
+        this.M1 = new TextPaint(1);
+        this.P1 = "";
+        this.Q1 = new a6(this, 0);
         this.R1 = new ArrayList();
+        this.S1 = new ArrayList();
     }
 
     public static void A(AnimatedPhoneNumberEditText animatedPhoneNumberEditText, boolean z10, String str) {
-        animatedPhoneNumberEditText.Q1.clear();
-        ArrayList arrayList = animatedPhoneNumberEditText.R1;
+        animatedPhoneNumberEditText.R1.clear();
+        ArrayList arrayList = animatedPhoneNumberEditText.S1;
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((o1.j) obj).d();
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            ((q1.g) obj).d();
         }
         if (!z10) {
             super.setHintText(str);
@@ -51,82 +51,82 @@ public class AnimatedPhoneNumberEditText extends n30 {
 
     @Override
     public String getHintText() {
-        return this.T1;
+        return this.U1;
     }
 
     public float getProgress() {
-        return this.N1;
+        return this.O1;
     }
 
     @Override
     public void setHintText(String str) {
         boolean isEmpty;
         String str2;
-        float f7;
+        float f10;
         boolean isEmpty2 = TextUtils.isEmpty(str);
         boolean z10 = !isEmpty2;
-        Boolean bool = this.S1;
-        ArrayList arrayList = this.Q1;
-        ArrayList arrayList2 = this.R1;
+        Boolean bool = this.T1;
+        ArrayList arrayList = this.R1;
+        ArrayList arrayList2 = this.S1;
         if (bool != null && bool.booleanValue() == z10) {
             isEmpty = false;
         } else {
             arrayList.clear();
             int size = arrayList2.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList2.get(i10);
-                i10++;
-                ((o1.j) obj).d();
+            int i3 = 0;
+            while (i3 < size) {
+                Object obj = arrayList2.get(i3);
+                i3++;
+                ((q1.g) obj).d();
             }
             arrayList2.clear();
-            this.S1 = Boolean.valueOf(z10);
+            this.T1 = Boolean.valueOf(z10);
             isEmpty = TextUtils.isEmpty(getText());
         }
         if (!isEmpty2) {
             str2 = str;
         } else {
-            str2 = this.T1;
+            str2 = this.U1;
         }
         if (str2 == null) {
             str2 = "";
         }
-        this.T1 = str;
+        this.U1 = str;
         if (!isEmpty2 || !isEmpty) {
             super.setHintText(str);
         }
         if (isEmpty) {
             int length = str2.length();
-            ag.j0 j0Var = new ag.j0(this, z10, str, 15);
-            Runnable runnable = this.U1;
+            ci.v6 v6Var = new ci.v6(this, z10, str, 18);
+            Runnable runnable = this.V1;
             if (runnable != null) {
                 removeCallbacks(runnable);
             }
-            for (int i11 = 0; i11 < length; i11++) {
-                float f10 = 0.0f;
+            for (int i10 = 0; i10 < length; i10++) {
+                float f11 = 0.0f;
                 if (!isEmpty2) {
-                    f7 = 0.0f;
+                    f10 = 0.0f;
                 } else {
-                    f7 = 1.0f;
-                }
-                if (!isEmpty2) {
                     f10 = 1.0f;
                 }
-                o1.j jVar = new o1.j(Integer.valueOf(i11), this.P1);
-                float f11 = f10 * 100.0f;
-                o1.k kVar = new o1.k(f11);
-                kVar.b(500.0f);
-                kVar.a(1.0f);
-                kVar.f13965i = f11;
-                jVar.f13958m = kVar;
-                jVar.f13950b = 100.0f * f7;
-                jVar.f13951c = true;
-                arrayList2.add(jVar);
-                arrayList.add(Float.valueOf(f7));
-                postDelayed(new tf(jVar, 8), i11 * 5);
+                if (!isEmpty2) {
+                    f11 = 1.0f;
+                }
+                q1.g gVar = new q1.g(Integer.valueOf(i10), this.Q1);
+                float f12 = f11 * 100.0f;
+                q1.h hVar = new q1.h(f12);
+                hVar.b(500.0f);
+                hVar.a(1.0f);
+                hVar.f53661i = f12;
+                gVar.f53653m = hVar;
+                gVar.f53644b = 100.0f * f10;
+                gVar.f53645c = true;
+                arrayList2.add(gVar);
+                arrayList.add(Float.valueOf(f10));
+                postDelayed(new vf(gVar, 7), i10 * 5);
             }
-            this.U1 = j0Var;
-            postDelayed(j0Var, (length * 5) + 150);
+            this.V1 = v6Var;
+            postDelayed(v6Var, (length * 5) + 150);
         }
     }
 
@@ -135,36 +135,36 @@ public class AnimatedPhoneNumberEditText extends n30 {
         boolean z10;
         String str2;
         TextPaint textPaint;
-        ArrayList arrayList2 = this.K1;
-        if (arrayList2 != null && (arrayList = this.J1) != null && !Objects.equals(this.O1, str)) {
-            ObjectAnimator objectAnimator = this.M1;
+        ArrayList arrayList2 = this.L1;
+        if (arrayList2 != null && (arrayList = this.K1) != null && !Objects.equals(this.P1, str)) {
+            ObjectAnimator objectAnimator = this.N1;
             if (objectAnimator != null) {
                 objectAnimator.cancel();
-                this.M1 = null;
+                this.N1 = null;
             }
             arrayList2.clear();
             arrayList2.addAll(arrayList);
             arrayList.clear();
-            int i10 = 0;
-            if (TextUtils.isEmpty(this.O1) && !TextUtils.isEmpty(str)) {
+            int i3 = 0;
+            if (TextUtils.isEmpty(this.P1) && !TextUtils.isEmpty(str)) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.N1 = 0.0f;
-            while (i10 < str.length()) {
-                int i11 = i10 + 1;
-                String substring = str.substring(i10, i11);
-                if (!arrayList2.isEmpty() && i10 < this.O1.length()) {
-                    str2 = this.O1.substring(i10, i11);
+            this.O1 = 0.0f;
+            while (i3 < str.length()) {
+                int i10 = i3 + 1;
+                String substring = str.substring(i3, i10);
+                if (!arrayList2.isEmpty() && i3 < this.P1.length()) {
+                    str2 = this.P1.substring(i3, i10);
                 } else {
                     str2 = null;
                 }
                 if (!z10 && str2 != null && str2.equals(substring)) {
-                    arrayList.add((StaticLayout) arrayList2.get(i10));
-                    arrayList2.set(i10, null);
+                    arrayList.add((StaticLayout) arrayList2.get(i3));
+                    arrayList2.set(i3, null);
                 } else {
-                    TextPaint textPaint2 = this.L1;
+                    TextPaint textPaint2 = this.M1;
                     if (z10 && str2 == null) {
                         textPaint = textPaint2;
                         arrayList2.add(new StaticLayout("", textPaint, 0, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
@@ -173,45 +173,45 @@ public class AnimatedPhoneNumberEditText extends n30 {
                     }
                     arrayList.add(new StaticLayout(substring, textPaint, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                 }
-                i10 = i11;
+                i3 = i10;
             }
             if (!arrayList2.isEmpty()) {
                 ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", -1.0f, 0.0f);
-                this.M1 = ofFloat;
+                this.N1 = ofFloat;
                 ofFloat.setDuration(150L);
-                this.M1.addListener(new w5(this, 1));
-                this.M1.start();
+                this.N1.addListener(new x5(this, 1));
+                this.N1.start();
             }
-            this.O1 = str;
+            this.P1 = str;
             invalidate();
         }
     }
 
-    public void setProgress(float f7) {
-        if (this.N1 == f7) {
+    public void setProgress(float f10) {
+        if (this.O1 == f10) {
             return;
         }
-        this.N1 = f7;
+        this.O1 = f10;
         invalidate();
     }
 
     @Override
-    public void setTextColor(int i10) {
-        super.setTextColor(i10);
-        this.L1.setColor(i10);
+    public void setTextColor(int i3) {
+        super.setTextColor(i3);
+        this.M1.setColor(i3);
     }
 
     @Override
-    public final void setTextSize(int i10, float f7) {
-        super.setTextSize(i10, f7);
-        this.L1.setTextSize(TypedValue.applyDimension(i10, f7, getResources().getDisplayMetrics()));
+    public final void setTextSize(int i3, float f10) {
+        super.setTextSize(i3, f10);
+        this.M1.setTextSize(TypedValue.applyDimension(i3, f10, getResources().getDisplayMetrics()));
     }
 
     @Override
-    public final void z(int i10) {
-        ArrayList arrayList = this.Q1;
-        if (i10 < arrayList.size()) {
-            this.G1.setAlpha((int) (((Float) arrayList.get(i10)).floatValue() * 255.0f));
+    public final void z(int i3) {
+        ArrayList arrayList = this.R1;
+        if (i3 < arrayList.size()) {
+            this.H1.setAlpha((int) (((Float) arrayList.get(i3)).floatValue() * 255.0f));
         }
     }
 }

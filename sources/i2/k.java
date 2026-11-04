@@ -1,10 +1,25 @@
 package i2;
 
-import android.media.RouteDiscoveryPreference;
-import e9.x1;
-public final class k {
-    static {
-        e9.l0 l0Var = e9.n0.f6390b;
-        new RouteDiscoveryPreference.Builder(x1.e, false).build();
+import java.io.IOException;
+public class k extends IOException {
+    public final int f14552a;
+
+    public k(int i3) {
+        this.f14552a = i3;
+    }
+
+    public k(Exception exc, int i3) {
+        super(exc);
+        this.f14552a = i3;
+    }
+
+    public k(String str, int i3) {
+        super(str);
+        this.f14552a = i3;
+    }
+
+    public k(String str, Exception exc, int i3) {
+        super(str, exc);
+        this.f14552a = i3;
     }
 }

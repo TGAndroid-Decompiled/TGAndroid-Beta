@@ -1,36 +1,42 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class ph implements Runnable {
-    public final int f40483a = 0;
-    public final un f40484b;
-    public final TLRPC.TL_error f40485c;
-    public final TLRPC.TL_attachMenuBot d;
-    public final TLRPC.User e;
+public final class ph extends ye0 {
+    public final wm f48577f;
 
-    public ph(un unVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.TL_error tL_error, TLRPC.User user) {
-        this.f40484b = unVar;
-        this.d = tL_attachMenuBot;
-        this.f40485c = tL_error;
-        this.e = user;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f40483a) {
-            case 0:
-                un.p0(this.f40484b, this.d, this.f40485c, this.e);
-                return;
-            default:
-                un.j0(this.f40484b, this.d, this.f40485c, this.e);
-                return;
+    public ph(wm wmVar, Context context, int i3, org.telegram.messenger.zi ziVar) {
+        super(context);
+        this.f48577f = wmVar;
+        this.f52264a = null;
+        if (!ziVar.i4()) {
+            ziVar.Q4();
         }
-    }
-
-    public ph(un unVar, TLRPC.TL_error tL_error, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user) {
-        this.f40484b = unVar;
-        this.f40485c = tL_error;
-        this.d = tL_attachMenuBot;
-        this.e = user;
+        org.telegram.ui.Components.iz izVar = new org.telegram.ui.Components.iz(context, null);
+        this.f52266c = izVar;
+        izVar.e(org.telegram.ui.ActionBar.k6.G8, org.telegram.ui.ActionBar.k6.f27972i6, -1);
+        izVar.setViewType(13);
+        izVar.setIsSingleCell(false);
+        addView(izVar, b8.mf.c(-1.0f, -2));
+        org.telegram.ui.Components.s70 s70Var = new org.telegram.ui.Components.s70(context, null);
+        this.f52265b = s70Var;
+        s70Var.setTextSize(1, 14.0f);
+        s70Var.setGravity(19);
+        org.telegram.ui.ActionBar.r6.V(s70Var, org.telegram.ui.ActionBar.k6.E8, null);
+        org.telegram.ui.ActionBar.r6.H(s70Var, org.telegram.ui.ActionBar.k6.Uc, null);
+        s70Var.setEllipsize(TextUtils.TruncateAt.END);
+        s70Var.setSingleLine();
+        s70Var.setLines(1);
+        s70Var.setMaxLines(1);
+        addView(s70Var, b8.mf.d(-1, -2.0f, 19, 12.0f, 0.0f, 12.0f, 0.0f));
+        TLRPC.TL_channels_getMessageAuthor tL_channels_getMessageAuthor = new TLRPC.TL_channels_getMessageAuthor();
+        tL_channels_getMessageAuthor.channel = org.telegram.messenger.hp.s1(i3).h1(-org.telegram.messenger.zi.B0(ziVar.f26868k));
+        tL_channels_getMessageAuthor.f27038id = ziVar.f1();
+        s70Var.setAlpha(0.0f);
+        ConnectionsManager.getInstance(i3).sendRequest(tL_channels_getMessageAuthor, new ci.a2(this, i3, 8));
+        setBackground(org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.I5, false), 6, 0));
+        setEnabled(false);
     }
 }

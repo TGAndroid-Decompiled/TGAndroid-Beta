@@ -1,175 +1,226 @@
 package oh;
 
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.i0;
-import org.telegram.messenger.kj;
-import org.telegram.tgnet.TLObject;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import android.view.MotionEvent;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import d2.l0;
+import ei.l;
+import kg.y;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.k2;
-import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.cc;
+import org.telegram.ui.Components.xq;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.un;
-import rh.e4;
-import rh.e6;
-import rh.r1;
-import rh.u5;
-public final class h implements Runnable {
-    public final int f14264a = 0;
-    public final Object f14265b;
-    public final boolean f14266c;
-    public final boolean d;
-    public final Object e;
-    public final Object f14267f;
-    public final Object h;
-    public final Object f14268n;
+public final class h extends RecyclerView {
+    public final e T0;
+    public final Paint U0;
+    public RenderNode V0;
+    public float W0;
+    public View X0;
+    public g Y0;
+    public a Z0;
+    public int f21125a1;
+    public int f21126b1;
+    public int f21127c1;
 
-    public h(q qVar, boolean z10, Runnable runnable, String str, TLRPC.TL_error tL_error, TLObject tLObject, boolean z11) {
-        this.e = qVar;
-        this.f14266c = z10;
-        this.f14267f = runnable;
-        this.f14265b = str;
-        this.h = tL_error;
-        this.f14268n = tLObject;
-        this.d = z11;
+    public h(LaunchActivity launchActivity) {
+        super(launchActivity);
+        Paint paint = new Paint(1);
+        this.U0 = paint;
+        this.f21126b1 = Integer.MIN_VALUE;
+        this.f21127c1 = Integer.MIN_VALUE;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, g0.L(16.0f), 0, -16777216, Shader.TileMode.CLAMP));
+        setLayoutManager(new y(1, true, 1));
+        i(new l(4));
+        e eVar = new e(this);
+        this.T0 = eVar;
+        setAdapter(eVar);
+        f fVar = new f(this);
+        fVar.f55567m = false;
+        fVar.C = false;
+        fVar.o(xq.h);
+        fVar.n(320L);
+        setItemAnimator(fVar);
     }
 
-    @Override
-    public final void run() {
-        u5 F;
+    private float getMinChildY() {
+        int childCount = getChildCount();
+        float f10 = 2.1474836E9f;
+        for (int i3 = 0; i3 < childCount; i3++) {
+            View childAt = getChildAt(i3);
+            if (childAt.getVisibility() == 0) {
+                f10 = Math.min(f10, childAt.getY());
+            }
+        }
+        return f10;
+    }
+
+    public final void D0(int i3, TLRPC.InputGroupCall inputGroupCall) {
         int i10;
-        int i11;
-        int i12;
-        int i13;
-        int i14 = this.f14264a;
-        Object obj = this.f14265b;
-        Object obj2 = this.h;
-        boolean z10 = this.d;
-        Object obj3 = this.f14267f;
-        boolean z11 = this.f14266c;
-        Object obj4 = this.f14268n;
-        Object obj5 = this.e;
-        switch (i14) {
-            case 0:
-                q qVar = (q) obj5;
-                Runnable runnable = (Runnable) obj3;
-                String str = (String) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                TLObject tLObject = (TLObject) obj4;
-                qVar.f14311w = false;
-                qVar.f14314z = true;
-                if (z11) {
-                    i0.r(runnable);
-                }
-                q.k(qVar.f14306q, false, false);
-                if (TextUtils.equals(str, qVar.f14309t) && tL_error == null) {
-                    qVar.f14314z = true;
-                    qVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject, str, z10, false);
-                    return;
-                }
-                return;
-            case 1:
-                un unVar = (un) obj5;
-                String str2 = (String) obj;
-                CharacterStyle characterStyle = (CharacterStyle) obj3;
-                kj kjVar = (kj) obj2;
-                q1 q1Var = (q1) obj4;
-                if (str2.startsWith("video?")) {
-                    unVar.g8(characterStyle, false, kjVar, q1Var);
-                    return;
-                } else if (z11 && !z10) {
-                    unVar.getParentActivity();
-                    gf.f.m(str2);
-                    return;
-                } else {
-                    unVar.ea(kjVar, false, false);
-                    unVar.ua(characterStyle, str2, false, q1Var, kjVar);
-                    return;
-                }
-            default:
-                e4 e4Var = (e4) obj5;
-                TLObject tLObject2 = (TLObject) obj4;
-                TLRPC.Document document = (TLRPC.Document) obj3;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                TL_stars.saveStarGift savestargift = (TL_stars.saveStarGift) obj;
-                k2 T = LaunchActivity.T();
-                if (T != null) {
-                    r1 r1Var = null;
-                    if (tLObject2 instanceof TLRPC.TL_boolTrue) {
-                        e4Var.dismiss();
-                        long x12 = e4Var.x1();
-                        if (!z11) {
-                            e6.y(e4Var.f21584a, false).P(x12);
-                        }
-                        if (x12 >= 0) {
-                            cc a02 = cc.a0(T);
-                            if (z10) {
-                                i12 = 2131750132;
-                            } else {
-                                i12 = 2131750130;
-                            }
-                            String L0 = dd.L0(i12, null);
-                            if (z10) {
-                                i13 = 2131750133;
-                            } else {
-                                i13 = 2131750131;
-                            }
-                            String L02 = dd.L0(i13, null);
-                            if (!(T instanceof ProfileActivity)) {
-                                r1Var = new r1(x12, T);
-                            }
-                            a02.s(document, L0, i0.T2(L02, r1Var)).k(true);
-                            return;
-                        }
-                        cc a03 = cc.a0(T);
-                        if (z10) {
-                            i10 = 2131750269;
-                        } else {
-                            i10 = 2131750267;
-                        }
-                        String L03 = dd.L0(i10, null);
-                        if (z10) {
-                            i11 = 2131750270;
-                        } else {
-                            i11 = 2131750268;
-                        }
-                        a03.s(document, L03, dd.L0(i11, null)).j();
-                        return;
-                    } else if (tL_error2 != null) {
-                        if (z11 && e4Var.f46852x2 != null && (F = e6.y(e4Var.f21584a, false).F(e4Var.P1, false)) != null) {
-                            F.m(e4Var.f46852x2, !savestargift.unsave);
-                        }
-                        e4Var.k().t(dd.a0(null, null, 2131743903, tL_error2.text), null).k(false);
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                return;
+        e eVar = this.T0;
+        if (eVar.d && (i10 = eVar.f21123e) != -1 && eVar.f21124f != null) {
+            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f21124f.f27018id, eVar);
+        }
+        eVar.f21123e = i3;
+        eVar.f21124f = inputGroupCall;
+        if (eVar.d) {
+            eVar.f21122c = GroupCallMessagesController.getInstance(i3).getCallMessages(eVar.f21124f.f27018id);
+            eVar.f();
+            GroupCallMessagesController.getInstance(i3).subscribeToCallMessages(eVar.f21124f.f27018id, eVar);
         }
     }
 
-    public h(un unVar, String str, CharacterStyle characterStyle, kj kjVar, q1 q1Var, boolean z10, boolean z11) {
-        this.e = unVar;
-        this.f14265b = str;
-        this.f14267f = characterStyle;
-        this.h = kjVar;
-        this.f14268n = q1Var;
-        this.f14266c = z10;
-        this.d = z11;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int measuredHeight = getMeasuredHeight() - this.f21125a1;
+        int L = g0.L(16.0f);
+        int i3 = measuredHeight + L;
+        int measuredHeight2 = getMeasuredHeight();
+        int measuredWidth = getMeasuredWidth();
+        float f10 = i3;
+        if (f10 < getMinChildY()) {
+            super.dispatchDraw(canvas);
+            return;
+        }
+        float f11 = measuredHeight;
+        float f12 = measuredWidth;
+        int saveLayer = canvas.saveLayer(0.0f, f11, f12, f10, null);
+        canvas.clipRect(0, measuredHeight, measuredWidth, i3);
+        this.f21126b1 = measuredHeight;
+        this.f21127c1 = i3;
+        super.dispatchDraw(canvas);
+        canvas.translate(0.0f, f11);
+        canvas.drawRect(0.0f, 0.0f, f12, L, this.U0);
+        canvas.restoreToCount(saveLayer);
+        canvas.save();
+        canvas.clipRect(0, i3, measuredWidth, measuredHeight2);
+        this.f21126b1 = i3;
+        this.f21127c1 = getMeasuredHeight();
+        super.dispatchDraw(canvas);
+        canvas.restore();
+        this.f21126b1 = Integer.MIN_VALUE;
+        this.f21127c1 = Integer.MIN_VALUE;
     }
 
-    public h(e4 e4Var, TLObject tLObject, boolean z10, TLRPC.Document document, boolean z11, TLRPC.TL_error tL_error, TL_stars.saveStarGift savestargift) {
-        this.e = e4Var;
-        this.f14268n = tLObject;
-        this.f14266c = z10;
-        this.f14267f = document;
-        this.d = z11;
-        this.h = tL_error;
-        this.f14265b = savestargift;
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        boolean contains;
+        if (motionEvent.getAction() == 0) {
+            int x10 = (int) motionEvent.getX();
+            int y9 = (int) motionEvent.getY();
+            if (y9 < getMeasuredHeight() - this.f21125a1) {
+                return false;
+            }
+            int childCount = getChildCount();
+            int i3 = 0;
+            while (true) {
+                if (i3 < childCount) {
+                    View childAt = getChildAt(i3);
+                    if (childAt instanceof c) {
+                        c cVar = (c) childAt;
+                        if (cVar.getVisibility() == 0) {
+                            float x11 = x10 - childAt.getX();
+                            float y10 = y9 - childAt.getY();
+                            l0 l0Var = cVar.f21120x;
+                            if (l0Var == null) {
+                                contains = false;
+                            } else {
+                                contains = ((RectF) l0Var.f8175c).contains(x11, y10);
+                            }
+                            if (contains) {
+                                z10 = true;
+                                break;
+                            }
+                        } else {
+                            continue;
+                        }
+                    }
+                    i3++;
+                } else {
+                    z10 = false;
+                    break;
+                }
+            }
+            if (!z10) {
+                return false;
+            }
+        }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if (this.f21126b1 != Integer.MIN_VALUE && view.getY() + view.getHeight() < this.f21126b1) {
+            return true;
+        }
+        if (this.f21127c1 != Integer.MIN_VALUE && view.getY() > this.f21127c1) {
+            return true;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        e eVar = this.T0;
+        eVar.d = true;
+        int i3 = eVar.f21123e;
+        if (i3 != -1 && eVar.f21124f != null) {
+            eVar.f21122c = GroupCallMessagesController.getInstance(i3).getCallMessages(eVar.f21124f.f27018id);
+            eVar.f();
+            GroupCallMessagesController.getInstance(eVar.f21123e).subscribeToCallMessages(eVar.f21124f.f27018id, eVar);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        e eVar = this.T0;
+        eVar.d = false;
+        int i3 = eVar.f21123e;
+        if (i3 != -1 && eVar.f21124f != null) {
+            GroupCallMessagesController.getInstance(i3).unsubscribeFromCallMessages(eVar.f21124f.f27018id, eVar);
+        }
+    }
+
+    public void setBlurRoot(View view) {
+        this.X0 = view;
+    }
+
+    public void setClickCellDelegate(a aVar) {
+        this.Z0 = aVar;
+    }
+
+    public void setDelegate(g gVar) {
+        this.Y0 = gVar;
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        if (getTranslationY() != f10) {
+            super.setTranslationY(f10);
+            invalidate();
+            int childCount = getChildCount();
+            for (int i3 = 0; i3 < childCount; i3++) {
+                getChildAt(i3).invalidate();
+            }
+        }
+    }
+
+    public void setVisibleHeight(int i3) {
+        if (this.f21125a1 != i3) {
+            this.f21125a1 = i3;
+            invalidate();
+        }
     }
 }

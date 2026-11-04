@@ -12,13 +12,13 @@ public class Camera1Capturer extends CameraCapturer {
     }
 
     @Override
-    public void changeCaptureFormat(int i10, int i11, int i12) {
-        super.changeCaptureFormat(i10, i11, i12);
+    public void changeCaptureFormat(int i3, int i10, int i11) {
+        super.changeCaptureFormat(i3, i10, i11);
     }
 
     @Override
-    public void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i10, int i11, int i12) {
-        Camera1Session.create(createSessionCallback, events, this.captureToTexture, context, surfaceTextureHelper, str, i10, i11, i12);
+    public void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i3, int i10, int i11) {
+        Camera1Session.create(createSessionCallback, events, this.captureToTexture, context, surfaceTextureHelper, str, i3, i10, i11);
     }
 
     @Override
@@ -42,8 +42,8 @@ public class Camera1Capturer extends CameraCapturer {
     }
 
     @Override
-    public void startCapture(int i10, int i11, int i12) {
-        super.startCapture(i10, i11, i12);
+    public void startCapture(int i3, int i10, int i11) {
+        super.startCapture(i3, i10, i11);
     }
 
     @Override

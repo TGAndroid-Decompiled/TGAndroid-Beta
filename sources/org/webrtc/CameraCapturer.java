@@ -238,15 +238,15 @@ abstract class CameraCapturer implements CameraVideoCapturer {
             if (asList.contains(this.cameraName)) {
                 return;
             }
-            throw new IllegalArgumentException(a1.g.r(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
+            throw new IllegalArgumentException(a1.g.s(new StringBuilder("Camera name "), this.cameraName, " does not match any known camera device."));
         }
         throw new RuntimeException("No cameras attached.");
     }
 
     public static int access$1710(CameraCapturer cameraCapturer) {
-        int i10 = cameraCapturer.openAttemptsRemaining;
-        cameraCapturer.openAttemptsRemaining = i10 - 1;
-        return i10;
+        int i3 = cameraCapturer.openAttemptsRemaining;
+        cameraCapturer.openAttemptsRemaining = i3 - 1;
+        return i3;
     }
 
     public void checkIsOnCameraThread() {
@@ -257,15 +257,15 @@ abstract class CameraCapturer implements CameraVideoCapturer {
         throw new RuntimeException("Not on camera thread.");
     }
 
-    public void createSessionInternal(int i10) {
-        this.uiThreadHandler.postDelayed(this.openCameraTimeoutRunnable, i10 + 10000);
+    public void createSessionInternal(int i3) {
+        this.uiThreadHandler.postDelayed(this.openCameraTimeoutRunnable, i3 + 10000);
         this.cameraThreadHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 CameraCapturer cameraCapturer = CameraCapturer.this;
                 cameraCapturer.createCameraSession(cameraCapturer.createSessionCallback, CameraCapturer.this.cameraSessionEventsHandler, CameraCapturer.this.applicationContext, CameraCapturer.this.surfaceHelper, CameraCapturer.this.cameraName, CameraCapturer.this.width, CameraCapturer.this.height, CameraCapturer.this.framerate);
             }
-        }, i10);
+        }, i3);
     }
 
     public void reportCameraSwitchError(String str, CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler) {
@@ -278,7 +278,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(sc.e.h("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(t4.c.f("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -327,17 +327,17 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     @Override
-    public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder m10 = i0.a.m("changeCaptureFormat: ", i10, "x", i11, "@");
-        m10.append(i12);
+    public void changeCaptureFormat(int i3, int i10, int i11) {
+        StringBuilder m10 = com.google.android.recaptcha.internal.a.m("changeCaptureFormat: ", i3, "x", i10, "@");
+        m10.append(i11);
         Logging.d("CameraCapturer", m10.toString());
         synchronized (this.stateLock) {
             stopCapture();
-            startCapture(i10, i11, i12);
+            startCapture(i3, i10, i11);
         }
     }
 
-    public abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i10, int i11, int i12);
+    public abstract void createCameraSession(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, SurfaceTextureHelper surfaceTextureHelper, String str, int i3, int i10, int i11);
 
     @Override
     public void dispose() {
@@ -391,17 +391,17 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     }
 
     @Override
-    public void startCapture(int i10, int i11, int i12) {
-        StringBuilder m10 = i0.a.m("startCapture: ", i10, "x", i11, "@");
-        m10.append(i12);
+    public void startCapture(int i3, int i10, int i11) {
+        StringBuilder m10 = com.google.android.recaptcha.internal.a.m("startCapture: ", i3, "x", i10, "@");
+        m10.append(i11);
         Logging.d("CameraCapturer", m10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {
                     if (!this.sessionOpening && this.currentSession == null) {
-                        this.width = i10;
-                        this.height = i11;
-                        this.framerate = i12;
+                        this.width = i3;
+                        this.height = i10;
+                        this.framerate = i11;
                         this.sessionOpening = true;
                         this.openAttemptsRemaining = 3;
                         createSessionInternal(0);

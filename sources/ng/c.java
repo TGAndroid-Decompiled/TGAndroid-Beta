@@ -1,33 +1,26 @@
 package ng;
-
-import mg.x0;
-import org.telegram.ui.Cells.f1;
-import org.telegram.ui.zx;
-public final class c implements Runnable {
-    public final int f13769a;
-    public final f f13770b;
-
-    public c(f fVar, int i10) {
-        this.f13769a = i10;
-        this.f13770b = fVar;
-    }
+public final class c extends b {
+    public float[] f20382l;
 
     @Override
-    public final void run() {
-        switch (this.f13769a) {
-            case 0:
-                this.f13770b.E();
-                return;
-            default:
-                StringBuilder sb2 = new StringBuilder("https://t.me/giftcode/");
-                f fVar = this.f13770b;
-                sb2.append(fVar.h);
-                String sb3 = sb2.toString();
-                zx zxVar = new zx(f1.j(3, "onlySelect", "dialogsType", true));
-                zxVar.C2 = new d(0, fVar, sb3);
-                fVar.e.presentFragment(zxVar);
-                ((x0) fVar).f13287r.dismiss();
-                return;
+    public final void e() {
+        super.e();
+        int size = this.d.size();
+        long j10 = 0;
+        for (int i3 = 0; i3 < size; i3++) {
+            long j11 = ((a) this.d.get(i3)).f20369e;
+            if (j11 > j10) {
+                j10 = j11;
+            }
+        }
+        this.f20382l = new float[size];
+        for (int i10 = 0; i10 < size; i10++) {
+            long j12 = ((a) this.d.get(i10)).f20369e;
+            if (j10 == j12) {
+                this.f20382l[i10] = 1.0f;
+            } else {
+                this.f20382l[i10] = (float) (j10 / j12);
+            }
         }
     }
 }

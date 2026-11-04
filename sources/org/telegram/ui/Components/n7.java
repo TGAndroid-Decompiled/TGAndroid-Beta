@@ -1,45 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.os.SystemClock;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class n7 extends FrameLayout {
-    public final g9[] f28694a;
-    public int f28695b;
-    public AnimatorSet f28696c;
-    public long d;
-    public final w7 e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class n7 extends AnimatorListenerAdapter {
+    public final int f36394a;
+    public final z7 f36395b;
 
-    public n7(w7 w7Var, Context context) {
-        super(context);
-        this.e = w7Var;
-        this.f28694a = new g9[2];
-        for (int i10 = 0; i10 < 2; i10++) {
-            this.f28694a[i10] = new g9(context);
-            this.f28694a[i10].getImageReceiver().f14383g1 = new i2.q(this, i10, 7);
-            this.f28694a[i10].setRoundRadius(org.telegram.messenger.i0.L(4.0f));
-            if (i10 == 1) {
-                this.f28694a[i10].setVisibility(8);
-            }
-            addView(this.f28694a[i10], w7.b6.c(-1.0f, -1));
+    public n7(z7 z7Var, int i3) {
+        this.f36394a = i3;
+        this.f36395b = z7Var;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f36394a) {
+            case 2:
+                this.f36395b.f40967t2 = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        w7 w7Var = this.e;
-        if (action == 0) {
-            if (this.f28694a[this.f28695b].getImageReceiver().I()) {
-                w7Var.W0(true, true);
-                this.d = SystemClock.elapsedRealtime();
-                return true;
-            }
-        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
-            w7Var.W0(false, true);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f36394a) {
+            case 0:
+                this.f36395b.f40942d2 = false;
+                return;
+            case 1:
+                z7 z7Var = this.f36395b;
+                z7Var.Z1.setVisibility(4);
+                z7Var.f40940a2.setImageBitmap(null);
+                z7Var.f40942d2 = false;
+                return;
+            default:
+                return;
         }
-        return true;
+    }
+
+    private final void a(Animator animator) {
     }
 }

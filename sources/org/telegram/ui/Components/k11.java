@@ -1,125 +1,33 @@
 package org.telegram.ui.Components;
+public final class k11 implements Runnable {
+    public final int f35244a;
+    public final org.telegram.messenger.zi f35245b;
+    public final long f35246c;
+    public final String d;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.HashSet;
-public final class k11 extends LinearLayout implements org.telegram.ui.ActionBar.k6 {
-    public final org.telegram.ui.ActionBar.p6 f27693a;
-    public final g9 f27694b;
-    public final p80 f27695c;
-    public final p80 d;
-    public int e;
-    public int f27696f;
-
-    public k11(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context);
-        this.e = 90;
-        this.f27693a = p6Var;
-        setOrientation(1);
-        g9 g9Var = new g9(context);
-        this.f27694b = g9Var;
-        g9Var.getImageReceiver().X(1);
-        g9Var.getImageReceiver().W(1);
-        g9Var.setOnClickListener(new db0(this, 19));
-        addView(g9Var, w7.b6.t(90, 90, 17, 0, 9, 0, 9));
-        p80 p80Var = new p80(context, null);
-        this.f27695c = p80Var;
-        p80Var.setTextSize(1, 20.0f);
-        p80Var.setGravity(17);
-        p80Var.setTypeface(org.telegram.messenger.i0.o());
-        p80Var.setTextAlignment(4);
-        addView(p80Var, w7.b6.t(-1, -2, 17, 48, 0, 48, 10));
-        p80 p80Var2 = new p80(context, null);
-        this.d = p80Var2;
-        p80Var2.setTextSize(1, 14.0f);
-        p80Var2.setGravity(17);
-        p80Var2.setTextAlignment(4);
-        addView(p80Var2, w7.b6.t(-1, -2, 17, 48, 0, 48, 17));
-        updateColors();
-    }
-
-    public final void a(CharSequence charSequence, CharSequence charSequence2) {
-        p80 p80Var = this.f27695c;
-        p80Var.setText(charSequence);
-        p80Var.setVisibility(0);
-        p80 p80Var2 = this.d;
-        p80Var2.setText(charSequence2);
-        p80Var2.setMaxWidth(vh.p2.a(charSequence2, p80Var2.getPaint()));
-        p80Var2.requestLayout();
-        updateColors();
+    public k11(org.telegram.messenger.zi ziVar, long j10, String str, int i3) {
+        this.f35244a = i3;
+        this.f35245b = ziVar;
+        this.f35246c = j10;
+        this.d = str;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.Uc));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.t6.B6));
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-    }
-
-    public void setEmoji(int i10) {
-        if (this.f27696f != i10) {
-            this.f27696f = i10;
-            ci0 ci0Var = new ci0(i10, org.telegram.messenger.i0.L(90.0f), org.telegram.messenger.i0.L(90.0f));
-            g9 g9Var = this.f27694b;
-            g9Var.setImageDrawable(ci0Var);
-            g9Var.getImageReceiver().W(2);
+    public final void run() {
+        int i3 = this.f35244a;
+        String str = this.d;
+        long j10 = this.f35246c;
+        org.telegram.messenger.zi ziVar = this.f35245b;
+        switch (i3) {
+            case 0:
+                m11.f(ziVar, j10, str);
+                return;
+            default:
+                org.telegram.messenger.hs f10 = org.telegram.messenger.hs.f(ziVar.I1);
+                Long valueOf = Long.valueOf(j10);
+                Boolean bool = Boolean.TRUE;
+                f10.k(115, ziVar, valueOf, str, bool, bool);
+                return;
         }
-    }
-
-    public void setEmojiSize(int i10) {
-        if (this.e != i10) {
-            this.e = i10;
-            updateColors();
-        }
-    }
-
-    public void setEmojiStatic(int i10) {
-        if (this.f27696f != i10) {
-            g9 g9Var = this.f27694b;
-            g9Var.b();
-            this.f27696f = i10;
-            g9Var.setImageResource(i10);
-        }
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f27695c.setVisibility(8);
-        p80 p80Var = this.d;
-        p80Var.setText(charSequence);
-        p80Var.setMaxWidth(vh.p2.a(charSequence, p80Var.getPaint()));
-        p80Var.requestLayout();
-        updateColors();
-    }
-
-    @Override
-    public final void updateColors() {
-        int i10;
-        int i11 = org.telegram.ui.ActionBar.t6.G6;
-        org.telegram.ui.ActionBar.p6 p6Var = this.f27693a;
-        int w02 = org.telegram.ui.ActionBar.t6.w0(i11, p6Var);
-        p80 p80Var = this.f27695c;
-        p80Var.setTextColor(w02);
-        int i12 = org.telegram.ui.ActionBar.t6.Uc;
-        p80Var.setLinkTextColor(org.telegram.ui.ActionBar.t6.w0(i12, p6Var));
-        if (p80Var.getVisibility() != 0) {
-            i11 = org.telegram.ui.ActionBar.t6.B6;
-        }
-        int w03 = org.telegram.ui.ActionBar.t6.w0(i11, p6Var);
-        p80 p80Var2 = this.d;
-        p80Var2.setTextColor(w03);
-        p80Var2.setLinkTextColor(org.telegram.ui.ActionBar.t6.w0(i12, p6Var));
-        int i13 = this.e;
-        if (p80Var.getVisibility() == 0) {
-            i10 = 0;
-        } else {
-            i10 = 9;
-        }
-        this.f27694b.setLayoutParams(w7.b6.t(i13, i13, 17, 0, i10, 0, 9));
     }
 }

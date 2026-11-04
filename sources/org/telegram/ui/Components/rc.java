@@ -1,59 +1,38 @@
 package org.telegram.ui.Components;
+public final class rc implements Runnable {
+    public final int f37703a;
+    public final sc f37704b;
+    public final boolean f37705c;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public abstract class rc extends FrameLayout {
-    public jg.l0 f29973a;
-    public pc f29974b;
-    public boolean f29975c;
-
-    public final void a(pc pcVar, FrameLayout.LayoutParams layoutParams) {
-        if (this.f29974b == null) {
-            this.f29974b = pcVar;
-            pcVar.setVisibility(8);
-            addView(pcVar, layoutParams);
-        }
+    public rc(sc scVar, boolean z10, int i3) {
+        this.f37703a = i3;
+        this.f37704b = scVar;
+        this.f37705c = z10;
     }
 
-    public final void b(jg.l0 l0Var, FrameLayout.LayoutParams layoutParams) {
-        if (this.f29973a == null) {
-            this.f29973a = l0Var;
-            addView(l0Var, layoutParams);
+    @Override
+    public final void run() {
+        switch (this.f37703a) {
+            case 0:
+                boolean z10 = this.f37705c;
+                sc scVar = this.f37704b;
+                if (!z10) {
+                    scVar.Z0.setVisibility(8);
+                    return;
+                } else {
+                    scVar.getClass();
+                    return;
+                }
+            default:
+                boolean z11 = this.f37705c;
+                sc scVar2 = this.f37704b;
+                if (!z11) {
+                    scVar2.V0.setVisibility(8);
+                    return;
+                } else {
+                    scVar2.getClass();
+                    return;
+                }
         }
-    }
-
-    public pc getEditView() {
-        return this.f29974b;
-    }
-
-    public View getReplyView() {
-        return this.f29973a;
-    }
-
-    public void setEditMode(boolean z10) {
-        int i10;
-        this.f29975c = z10;
-        jg.l0 l0Var = this.f29973a;
-        int i11 = 0;
-        if (z10) {
-            i10 = 8;
-        } else {
-            i10 = 0;
-        }
-        l0Var.setVisibility(i10);
-        pc pcVar = this.f29974b;
-        if (!z10) {
-            i11 = 8;
-        }
-        pcVar.setVisibility(i11);
-    }
-
-    public void setEditSuggestionMode(boolean z10) {
-        setEditMode(z10);
-        if (z10) {
-            this.f29973a.setVisibility(0);
-        }
-        this.f29974b.f29404a[0].setOnlyIconMode(z10);
-        this.f29974b.f29404a[1].setOnlyIconMode(z10);
     }
 }

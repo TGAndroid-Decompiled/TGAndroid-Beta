@@ -6,7 +6,7 @@ import android.hardware.display.VirtualDisplay;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.view.Surface;
-import org.telegram.messenger.f8;
+import org.telegram.messenger.a8;
 public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     private static final int DISPLAY_FLAGS = 3;
     private static final int VIRTUAL_DISPLAY_DPI = 400;
@@ -39,7 +39,7 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
         try {
             this.virtualDisplay = this.mediaProjection.createVirtualDisplay("WebRTC_ScreenCapture", this.width, this.height, 400, 3, new Surface(this.surfaceTextureHelper.getSurfaceTexture()), null, null);
         } catch (Throwable th2) {
-            f8.g(th2, true);
+            a8.g(th2, true);
         }
     }
 
@@ -65,10 +65,10 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void changeCaptureFormat(int i10, int i11, int i12) {
+    public synchronized void changeCaptureFormat(int i3, int i10, int i11) {
         checkNotDisposed();
-        this.width = i10;
-        this.height = i11;
+        this.width = i3;
+        this.height = i10;
         if (this.virtualDisplay == null) {
             return;
         }
@@ -121,11 +121,11 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void startCapture(int i10, int i11, int i12) {
+    public synchronized void startCapture(int i3, int i10, int i11) {
         if (this.mediaProjection == null && this.mediaProjectionManager != null) {
             checkNotDisposed();
-            this.width = i10;
-            this.height = i11;
+            this.width = i3;
+            this.height = i10;
             MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
             this.mediaProjection = mediaProjection;
             mediaProjection.registerCallback(this.mediaProjectionCallback, this.surfaceTextureHelper.getHandler());

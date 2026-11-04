@@ -425,8 +425,8 @@ public class TLClassStore {
         return store;
     }
 
-    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i10, boolean z10) {
-        TLObjectFactory tLObjectFactory = this.classStore.get(i10);
+    public TLObject TLdeserialize(NativeByteBuffer nativeByteBuffer, int i3, boolean z10) {
+        TLObjectFactory tLObjectFactory = this.classStore.get(i3);
         if (tLObjectFactory != null) {
             TLObject create = tLObjectFactory.create();
             create.readParams(nativeByteBuffer, z10);

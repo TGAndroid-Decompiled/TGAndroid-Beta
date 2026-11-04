@@ -1,87 +1,49 @@
 package c5;
 
-import android.content.Context;
-import android.util.Log;
-import java.io.IOException;
-import java.io.InputStream;
-public final class a {
-    public final int f3730a;
-    public String f3731b;
-    public String f3732c;
+import android.content.pm.PackageInfo;
+import android.net.Uri;
+import android.support.v4.media.c;
+import android.webkit.WebView;
+import d5.l;
+import d5.m;
+import d5.n;
+import java.util.Set;
+import java.util.WeakHashMap;
+import org.telegram.ui.ActionBar.e3;
+public abstract class a {
+    public static final boolean f4210a;
+    public static final WeakHashMap f4211b;
 
-    public p a() {
-        if (!"first_party".equals(this.f3732c)) {
-            if (this.f3731b != null) {
-                if (this.f3732c != null) {
-                    return new p(this);
-                }
-                throw new IllegalArgumentException("Product type must be provided.");
-            }
-            throw new IllegalArgumentException("Product id must be provided.");
-        }
-        throw new IllegalArgumentException("Serialized doc id must be provided for first party products.");
+    static {
+        Uri.parse("*");
+        Uri.parse("");
+        f4210a = true;
+        f4211b = new WeakHashMap();
     }
 
-    public String toString() {
-        switch (this.f3730a) {
-            case 2:
-                return this.f3731b + ", " + this.f3732c;
-            default:
-                return super.toString();
-        }
-    }
-
-    public a(int i10, String str, String str2) {
-        this.f3730a = i10;
-        this.f3731b = str;
-        this.f3732c = str2;
-    }
-
-    public a(String str, String str2) {
-        this.f3730a = 3;
-        Object[] objArr = {str, 23};
-        if (str.length() <= 23) {
-            this.f3731b = str;
-            this.f3732c = (str2 == null || str2.length() <= 0) ? null : str2;
+    public static void a(WebView webView, String str, Set set, e3 e3Var) {
+        if (l.f8580c.b()) {
+            c(webView).f8583a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new xe.a(new c(e3Var, 12)));
             return;
         }
-        throw new IllegalArgumentException(String.format("tag \"%s\" is longer than the %d character maximum", objArr));
+        throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
     }
 
-    public a(u9.b bVar) {
-        this.f3730a = 5;
-        Context context = (Context) bVar.f50208b;
-        int e = x9.h.e(context, "com.google.firebase.crashlytics.unity_version", "string");
-        if (e != 0) {
-            this.f3731b = "Unity";
-            String string = context.getResources().getString(e);
-            this.f3732c = string;
-            String h = sc.e.h("Unity Editor version is: ", string);
-            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                Log.v("FirebaseCrashlytics", h, null);
-                return;
+    public static PackageInfo b() {
+        return (PackageInfo) Class.forName("android.webkit.WebViewFactory").getMethod("getLoadedPackageInfo", null).invoke(null, null);
+    }
+
+    public static n c(WebView webView) {
+        if (l.f8581e.b() && f4210a) {
+            WeakHashMap weakHashMap = f4211b;
+            n nVar = (n) weakHashMap.get(webView);
+            if (nVar == null) {
+                n nVar2 = new n(m.f8582a.createWebView(webView));
+                weakHashMap.put(webView, nVar2);
+                return nVar2;
             }
-            return;
+            return nVar;
         }
-        if (context.getAssets() != null) {
-            try {
-                InputStream open = context.getAssets().open("flutter_assets/NOTICES.Z");
-                if (open != null) {
-                    open.close();
-                }
-                this.f3731b = "Flutter";
-                this.f3732c = null;
-                if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                    Log.v("FirebaseCrashlytics", "Development platform is: Flutter", null);
-                    return;
-                }
-                return;
-            } catch (IOException unused) {
-                this.f3731b = null;
-                this.f3732c = null;
-            }
-        }
-        this.f3731b = null;
-        this.f3732c = null;
+        return new n(m.f8582a.createWebView(webView));
     }
 }

@@ -1,41 +1,28 @@
 package z7;
-public final class s implements w {
-    public final int f55096a;
 
-    public s(int i10) {
-        this.f55096a = i10;
+import java.util.AbstractMap;
+public final class s extends n {
+    public final t f60028c;
+
+    public s(t tVar) {
+        this.f60028c = tVar;
     }
 
     @Override
-    public final Class annotationType() {
-        return w.class;
+    public final Object get(int i3) {
+        t tVar = this.f60028c;
+        x7.x6.a(i3, tVar.f60040e);
+        int i10 = i3 + i3;
+        Object[] objArr = tVar.d;
+        Object obj = objArr[i10];
+        obj.getClass();
+        Object obj2 = objArr[i10 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof w) {
-                if (this.f55096a == ((s) ((w) obj)).f55096a) {
-                    Object obj2 = v.f55125a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (this.f55096a ^ 14552422) + (v.f55125a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f55096a + "intEncoding=" + v.f55125a + ')';
+    public final int size() {
+        return this.f60028c.f60040e;
     }
 }

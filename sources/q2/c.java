@@ -1,91 +1,41 @@
 package q2;
 
-import android.content.Context;
-import android.graphics.Point;
-import b2.w0;
-import b2.x;
-import e0.f0;
-import e2.l0;
-import h2.h;
-import h2.j;
-import h2.l;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import v7.t6;
-public final class c extends l {
-    public final Context f45425o;
-    public final int f45426p;
+import b8.od;
+import d2.u;
+import d2.u0;
+import d2.v;
+import java.util.ArrayList;
+public final class c {
+    public static final int[] d = {8, 13, 11, 2, 0, 1, 7};
+    public mb.b f53671a;
+    public boolean f53672b;
+    public int f53673c;
 
-    public c(Context context) {
-        super(new h[1], new a[1]);
-        this.f45425o = context;
-        this.f45426p = -1;
-    }
-
-    @Override
-    public final h f() {
-        return new h(1, 0);
-    }
-
-    @Override
-    public final j g() {
-        return new a(this);
-    }
-
-    @Override
-    public final String getName() {
-        return "BitmapFactoryImageDecoder";
-    }
-
-    @Override
-    public final h2.f h(Throwable th2) {
-        return new Exception("Unexpected decode error", th2);
-    }
-
-    @Override
-    public final h2.f i(h hVar, j jVar, boolean z10) {
-        boolean z11;
-        a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f7587c;
-        byteBuffer.getClass();
-        t6.p(byteBuffer.hasArray());
-        if (byteBuffer.arrayOffset() == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
+    public static void a(int i3, ArrayList arrayList) {
+        if (od.d(i3, 0, 7, d) != -1 && !arrayList.contains(Integer.valueOf(i3))) {
+            arrayList.add(Integer.valueOf(i3));
         }
-        t6.f(z11);
-        try {
-            int i10 = this.f45426p;
-            if (i10 == -1) {
-                Context context = this.f45425o;
-                if (context != null) {
-                    Point y3 = l0.y(context);
-                    int i11 = y3.x;
-                    int i12 = y3.y;
-                    x xVar = hVar.f7585a;
-                    if (xVar != null) {
-                        int i13 = xVar.R;
-                        if (i13 != -1) {
-                            i11 *= i13;
-                        }
-                        int i14 = xVar.S;
-                        if (i14 != -1) {
-                            i12 *= i14;
-                        }
-                    }
-                    i10 = (Math.max(i11, i12) * 2) - 1;
-                } else {
-                    i10 = 4096;
-                }
+    }
+
+    public final v b(v vVar) {
+        String str;
+        if (this.f53672b && this.f53671a.l(vVar)) {
+            u a10 = vVar.a();
+            String str2 = vVar.f8481k;
+            a10.f8431r = u0.n("application/x-media3-cues");
+            a10.P = this.f53671a.q0(vVar);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(vVar.f8489s);
+            if (str2 != null) {
+                str = " ".concat(str2);
+            } else {
+                str = "";
             }
-            aVar.f45422a = f0.b(byteBuffer.remaining(), i10, byteBuffer.array());
-            aVar.timeUs = hVar.e;
-            return null;
-        } catch (w0 e) {
-            return new Exception("Could not decode image data with BitmapFactory.", e);
-        } catch (IOException e7) {
-            return new Exception(e7);
+            sb2.append(str);
+            a10.f8423j = sb2.toString();
+            a10.f8435w = Long.MAX_VALUE;
+            return new v(a10);
         }
+        return vVar;
     }
 }

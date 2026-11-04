@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.accessibility.AccessibilityNodeInfo;
 import androidx.core.graphics.drawable.IconCompat;
+import d2.t1;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,57 +24,57 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 public abstract class f {
-    public static volatile e f7274a;
-    public static volatile ArrayList f7275b;
+    public static volatile e f11793a;
+    public static volatile ArrayList f11794b;
 
     public static void a(Context context, ArrayList arrayList) {
-        List p5 = p(arrayList);
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 <= 29) {
-            c(context, p5);
+        List p10 = p(arrayList);
+        int i3 = Build.VERSION.SDK_INT;
+        if (i3 <= 29) {
+            c(context, p10);
         }
-        if (i10 >= 25) {
+        if (i3 >= 25) {
             ArrayList arrayList2 = new ArrayList();
-            ArrayList arrayList3 = (ArrayList) p5;
+            ArrayList arrayList3 = (ArrayList) p10;
             int size = arrayList3.size();
-            int i11 = 0;
-            while (i11 < size) {
-                Object obj = arrayList3.get(i11);
-                i11++;
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList3.get(i10);
+                i10++;
                 arrayList2.add(((c) obj).d());
             }
             if (!((ShortcutManager) context.getSystemService(ShortcutManager.class)).addDynamicShortcuts(arrayList2)) {
                 return;
             }
         }
-        j(context).a(p5);
+        j(context).a(p10);
         Iterator it = ((ArrayList) i(context)).iterator();
         if (!it.hasNext()) {
             return;
         }
-        throw g.h(it);
+        throw g.m(it);
     }
 
     public static boolean b(Context context, c cVar) {
         Bitmap decodeStream;
-        IconCompat c10;
+        IconCompat c2;
         IconCompat iconCompat = cVar.h;
         if (iconCompat != null) {
-            int i10 = iconCompat.f1219a;
-            if (i10 != 6 && i10 != 4) {
+            int i3 = iconCompat.f1549a;
+            if (i3 != 6 && i3 != 4) {
                 return true;
             }
             InputStream k10 = iconCompat.k(context);
             if (k10 == null || (decodeStream = BitmapFactory.decodeStream(k10)) == null) {
                 return false;
             }
-            if (i10 == 6) {
-                c10 = new IconCompat(5);
-                c10.f1220b = decodeStream;
+            if (i3 == 6) {
+                c2 = new IconCompat(5);
+                c2.f1550b = decodeStream;
             } else {
-                c10 = IconCompat.c(decodeStream);
+                c2 = IconCompat.c(decodeStream);
             }
-            cVar.h = c10;
+            cVar.h = c2;
             return true;
         }
         return false;
@@ -82,10 +83,10 @@ public abstract class f {
     public static void c(Context context, List list) {
         ArrayList arrayList = new ArrayList(list);
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
             c cVar = (c) obj;
             if (!b(context, cVar)) {
                 list.remove(cVar);
@@ -99,7 +100,7 @@ public abstract class f {
 
     public static List e(Context context) {
         if (Build.VERSION.SDK_INT >= 25) {
-            List<ShortcutInfo> dynamicShortcuts = d2.c.e(context.getSystemService(d2.c.g())).getDynamicShortcuts();
+            List<ShortcutInfo> dynamicShortcuts = t1.b(context.getSystemService(t1.e())).getDynamicShortcuts();
             ArrayList arrayList = new ArrayList(dynamicShortcuts.size());
             for (ShortcutInfo shortcutInfo : dynamicShortcuts) {
                 arrayList.add(new b(context, shortcutInfo).a());
@@ -113,14 +114,14 @@ public abstract class f {
         }
     }
 
-    public static void f(int i10) {
-        SdkExtensions.getExtensionVersion(i10);
+    public static void f(int i3) {
+        SdkExtensions.getExtensionVersion(i3);
     }
 
     public static int g(Context context) {
         context.getClass();
         if (Build.VERSION.SDK_INT >= 25) {
-            return d2.c.e(context.getSystemService(d2.c.g())).getMaxShortcutCountPerActivity();
+            return t1.b(context.getSystemService(t1.e())).getMaxShortcutCountPerActivity();
         }
         return 5;
     }
@@ -145,24 +146,24 @@ public abstract class f {
     }
 
     public static e j(Context context) {
-        if (f7274a == null) {
+        if (f11793a == null) {
             try {
-                f7274a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
+                f11793a = (e) Class.forName("androidx.sharetarget.ShortcutInfoCompatSaverImpl", false, f.class.getClassLoader()).getMethod("getInstance", Context.class).invoke(null, context);
             } catch (Exception unused) {
             }
-            if (f7274a == null) {
-                f7274a = new Object();
+            if (f11793a == null) {
+                f11793a = new Object();
             }
         }
-        return f7274a;
+        return f11793a;
     }
 
     public static List k(Context context) {
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 >= 30) {
+        int i3 = Build.VERSION.SDK_INT;
+        if (i3 >= 30) {
             return c.a(context, ((ShortcutManager) context.getSystemService(ShortcutManager.class)).getShortcuts(4));
         }
-        if (i10 >= 25) {
+        if (i3 >= 25) {
             ArrayList arrayList = new ArrayList();
             arrayList.addAll(((ShortcutManager) context.getSystemService(ShortcutManager.class)).getPinnedShortcuts());
             return c.a(context, arrayList);
@@ -177,28 +178,28 @@ public abstract class f {
     public static void m(Context context, c cVar) {
         context.getClass();
         cVar.getClass();
-        int i10 = Build.VERSION.SDK_INT;
-        int g10 = g(context);
-        if (g10 != 0) {
-            if (i10 <= 29) {
+        int i3 = Build.VERSION.SDK_INT;
+        int g7 = g(context);
+        if (g7 != 0) {
+            if (i3 <= 29) {
                 b(context, cVar);
             }
-            int i11 = -1;
-            if (i10 >= 30) {
+            int i10 = -1;
+            if (i3 >= 30) {
                 ((ShortcutManager) context.getSystemService(ShortcutManager.class)).pushDynamicShortcut(cVar.d());
-            } else if (i10 >= 25) {
+            } else if (i3 >= 25) {
                 ShortcutManager shortcutManager = (ShortcutManager) context.getSystemService(ShortcutManager.class);
                 if (shortcutManager.isRateLimitingActive()) {
                     return;
                 }
                 List<ShortcutInfo> dynamicShortcuts = shortcutManager.getDynamicShortcuts();
-                if (dynamicShortcuts.size() >= g10) {
-                    int i12 = -1;
+                if (dynamicShortcuts.size() >= g7) {
+                    int i11 = -1;
                     String str = null;
                     for (ShortcutInfo shortcutInfo : dynamicShortcuts) {
-                        if (shortcutInfo.getRank() > i12) {
+                        if (shortcutInfo.getRank() > i11) {
                             str = shortcutInfo.getId();
-                            i12 = shortcutInfo.getRank();
+                            i11 = shortcutInfo.getRank();
                         }
                     }
                     shortcutManager.removeDynamicShortcuts(Arrays.asList(str));
@@ -208,13 +209,13 @@ public abstract class f {
             e j10 = j(context);
             try {
                 List<c> b10 = j10.b();
-                if (b10.size() >= g10) {
+                if (b10.size() >= g7) {
                     String str2 = null;
                     for (c cVar2 : b10) {
-                        int i13 = cVar2.f7272m;
-                        if (i13 > i11) {
-                            str2 = cVar2.f7264b;
-                            i11 = i13;
+                        int i12 = cVar2.f11791m;
+                        if (i12 > i10) {
+                            str2 = cVar2.f11782b;
+                            i10 = i12;
                         }
                     }
                     j10.d(Arrays.asList(str2));
@@ -246,23 +247,23 @@ public abstract class f {
                     }
                     throw new ClassCastException();
                 }
-                q(context, cVar.f7264b);
+                q(context, cVar.f11782b);
                 throw th2;
             }
-            q(context, cVar.f7264b);
+            q(context, cVar.f11782b);
         }
     }
 
     public static void n(Context context) {
         if (Build.VERSION.SDK_INT >= 25) {
-            d2.c.e(context.getSystemService(d2.c.g())).removeAllDynamicShortcuts();
+            t1.b(context.getSystemService(t1.e())).removeAllDynamicShortcuts();
         }
         j(context).c();
         Iterator it = ((ArrayList) i(context)).iterator();
         if (!it.hasNext()) {
             return;
         }
-        throw g.h(it);
+        throw g.m(it);
     }
 
     public static void o(Context context, ArrayList arrayList) {
@@ -274,7 +275,7 @@ public abstract class f {
         if (!it.hasNext()) {
             return;
         }
-        throw g.h(it);
+        throw g.m(it);
     }
 
     public static List p(ArrayList arrayList) {
@@ -283,10 +284,10 @@ public abstract class f {
         }
         ArrayList arrayList2 = new ArrayList(arrayList);
         int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
             ((c) obj).getClass();
         }
         return arrayList2;
@@ -296,7 +297,7 @@ public abstract class f {
         context.getClass();
         str.getClass();
         if (Build.VERSION.SDK_INT >= 25) {
-            d2.c.e(context.getSystemService(d2.c.g())).reportShortcutUsed(str);
+            t1.b(context.getSystemService(t1.e())).reportShortcutUsed(str);
         }
         Iterator it = ((ArrayList) i(context)).iterator();
         if (!it.hasNext()) {
@@ -327,49 +328,49 @@ public abstract class f {
         accessibilityNodeInfo.setStateDescription(charSequence);
     }
 
-    public static void v(Surface surface, float f7) {
-        int i10;
-        if (f7 == 0.0f) {
-            i10 = 0;
+    public static void v(Surface surface, float f10) {
+        int i3;
+        if (f10 == 0.0f) {
+            i3 = 0;
         } else {
-            i10 = 1;
+            i3 = 1;
         }
         try {
-            surface.setFrameRate(f7, i10);
-        } catch (IllegalStateException e) {
-            e2.a.d("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e);
+            surface.setFrameRate(f10, i3);
+        } catch (IllegalStateException e10) {
+            g2.a.d("VideoFrameReleaseHelper", "Failed to call Surface.setFrameRate", e10);
         }
     }
 
-    public static p4.m w(android.media.MediaRoute2Info r13) {
-        throw new UnsupportedOperationException("Method not decompiled: g0.f.w(android.media.MediaRoute2Info):p4.m");
+    public static r4.m w(android.media.MediaRoute2Info r13) {
+        throw new UnsupportedOperationException("Method not decompiled: g0.f.w(android.media.MediaRoute2Info):r4.m");
     }
 
     public static void x(Context context, ArrayList arrayList) {
-        List p5 = p(arrayList);
-        int i10 = Build.VERSION.SDK_INT;
-        if (i10 <= 29) {
-            c(context, p5);
+        List p10 = p(arrayList);
+        int i3 = Build.VERSION.SDK_INT;
+        if (i3 <= 29) {
+            c(context, p10);
         }
-        if (i10 >= 25) {
+        if (i3 >= 25) {
             ArrayList arrayList2 = new ArrayList();
-            ArrayList arrayList3 = (ArrayList) p5;
+            ArrayList arrayList3 = (ArrayList) p10;
             int size = arrayList3.size();
-            int i11 = 0;
-            while (i11 < size) {
-                Object obj = arrayList3.get(i11);
-                i11++;
+            int i10 = 0;
+            while (i10 < size) {
+                Object obj = arrayList3.get(i10);
+                i10++;
                 arrayList2.add(((c) obj).d());
             }
             if (!((ShortcutManager) context.getSystemService(ShortcutManager.class)).updateShortcuts(arrayList2)) {
                 return;
             }
         }
-        j(context).a(p5);
+        j(context).a(p10);
         Iterator it = ((ArrayList) i(context)).iterator();
         if (!it.hasNext()) {
             return;
         }
-        throw g.h(it);
+        throw g.m(it);
     }
 }

@@ -1,36 +1,27 @@
 package x7;
 
-import java.util.Iterator;
-public final class v extends p {
-    public final transient x f53399c;
-    public final transient w d;
-
-    public v(x xVar, w wVar) {
-        this.f53399c = xVar;
-        this.d = wVar;
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        if (this.f53399c.get(obj) != null) {
-            return true;
+import java.io.Serializable;
+public abstract class v {
+    public static String a(byte[] bArr) {
+        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
+        for (int i3 = 0; i3 < bArr.length; i3++) {
+            sb2.append(String.format("%02x", Byte.valueOf(bArr[i3])));
         }
-        return false;
+        return sb2.toString();
     }
 
-    @Override
-    public final Iterator iterator() {
-        return this.d.listIterator(0);
-    }
-
-    @Override
-    public final int l(Object[] objArr) {
-        return this.d.l(objArr);
-    }
-
-    @Override
-    public final int size() {
-        this.f53399c.getClass();
-        return 1;
+    public static long[] b(Serializable serializable) {
+        if (serializable instanceof int[]) {
+            int[] iArr = (int[]) serializable;
+            long[] jArr = new long[iArr.length];
+            for (int i3 = 0; i3 < iArr.length; i3++) {
+                jArr[i3] = iArr[i3];
+            }
+            return jArr;
+        } else if (serializable instanceof long[]) {
+            return (long[]) serializable;
+        } else {
+            return null;
+        }
     }
 }

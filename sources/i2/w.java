@@ -1,81 +1,46 @@
 package i2;
 
-import j$.time.LocalDate;
-import j$.time.ZoneOffset;
-import org.telegram.messenger.dd;
-import org.telegram.ui.Components.ek0;
-import org.telegram.ui.Components.wb0;
-public final class w implements e2.o, d9.k, e2.j, ek0, wb0 {
-    public final int f8106a;
-    public final int f8107b;
+import b8.xb;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.SocketTimeoutException;
+public class w extends k {
+    public final int f14600b;
 
-    public w(int i10, int i11) {
-        this.f8106a = i11;
-        this.f8107b = i10;
+    public w() {
+        super(2008);
+        this.f14600b = 1;
     }
 
-    @Override
-    public void accept(Object obj) {
-        switch (this.f8106a) {
-            case 3:
-                ((m4.n1) obj).f0(this.f8107b);
-                return;
-            case 4:
-                ((m4.n1) obj).M(this.f8107b);
-                return;
-            case 5:
-                ((m4.n1) obj).k(this.f8107b);
-                return;
-            default:
-                ((m4.n1) obj).G0(this.f8107b);
-                return;
+    public static w a(IOException iOException, int i3) {
+        int i10;
+        String message = iOException.getMessage();
+        if (iOException instanceof SocketTimeoutException) {
+            i10 = 2002;
+        } else if (iOException instanceof InterruptedIOException) {
+            i10 = 1004;
+        } else if (message != null && xb.c(message).matches("cleartext.*not permitted.*")) {
+            i10 = 2007;
+        } else {
+            i10 = 2001;
         }
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        Integer num = (Integer) obj;
-        return Integer.valueOf(this.f8107b);
-    }
-
-    @Override
-    public String e(int i10) {
-        int i11 = this.f8106a;
-        int i12 = this.f8107b;
-        switch (i11) {
-            case 8:
-                if (i10 == 0) {
-                    return dd.L0(2131748546, null);
-                }
-                LocalDate plusDays = LocalDate.now().plusDays(i10);
-                int year = plusDays.getYear();
-                long epochMilli = plusDays.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
-                if (year == i12) {
-                    return dd.D0().z0().format(epochMilli) + ", " + dd.D0().v0().format(epochMilli);
-                }
-                return dd.D0().x0().format(epochMilli);
-            default:
-                if (i10 == i12) {
-                    return "—";
-                }
-                return String.format("%02d", Integer.valueOf(i10));
+        if (i10 == 2007) {
+            return new w("Cleartext HTTP traffic not permitted. See https://developer.android.com/guide/topics/media/issues/cleartext-not-permitted", iOException, 2007);
         }
+        return new w(iOException, i10, i3);
     }
 
-    @Override
-    public void invoke(Object obj) {
-        switch (this.f8106a) {
-            case 0:
-                ((b2.d1) obj).c(this.f8107b);
-                return;
-            default:
-                ((b2.d1) obj).a(this.f8107b);
-                return;
-        }
+    public w(String str, int i3) {
+        super(str, i3 == 2000 ? 2001 : i3);
+        this.f14600b = 1;
     }
 
-    @Override
-    public int run() {
-        return this.f8107b;
+    public w(java.io.IOException r2, int r3, int r4) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.w.<init>(java.io.IOException, int, int):void");
+    }
+
+    public w(String str, IOException iOException, int i3) {
+        super(str, iOException, i3 == 2000 ? 2001 : i3);
+        this.f14600b = 1;
     }
 }

@@ -1,65 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class dl implements q4, jk0, s81 {
-    public final int f25507a;
-    public final ChatAttachAlertPhotoLayout f25508b;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class dl implements Comparator {
+    public final int f33153a;
+    public final Object f33154b;
 
-    public dl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
-        this.f25507a = i10;
-        this.f25508b = chatAttachAlertPhotoLayout;
+    public dl(Object obj, int i3) {
+        this.f33153a = i3;
+        this.f33154b = obj;
     }
 
     @Override
-    public void K(int i10, int i11, boolean z10) {
-        int i12 = this.f25507a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25508b;
-        switch (i12) {
+    public final int compare(Object obj, Object obj2) {
+        int indexOf;
+        int indexOf2;
+        int i3 = this.f33153a;
+        Object obj3 = this.f33154b;
+        switch (i3) {
             case 0:
-                boolean z11 = ChatAttachAlertPhotoLayout.f23846q1;
-                bi biVar = chatAttachAlertPhotoLayout.f30964b;
-                biVar.M0();
-                biVar.T3.H0(7, false, z10, i10, 0, 0L, biVar.e1(), false, 0L);
-                return;
-            default:
-                boolean z12 = ChatAttachAlertPhotoLayout.f23846q1;
-                bi biVar2 = chatAttachAlertPhotoLayout.f30964b;
-                biVar2.M0();
-                biVar2.T3.H0(4, true, z10, i10, 0, 0L, biVar2.e1(), false, 0L);
-                return;
-        }
-    }
-
-    @Override
-    public void c(float f7) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25508b;
-        yl ylVar = chatAttachAlertPhotoLayout.P;
-        if (ylVar != null) {
-            chatAttachAlertPhotoLayout.B0 = f7;
-            ylVar.setZoom(f7);
-        }
-        chatAttachAlertPhotoLayout.u0(true);
-    }
-
-    @Override
-    public boolean f(int i10, View view) {
-        boolean z10 = ChatAttachAlertPhotoLayout.f23846q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f25508b;
-        bi biVar = chatAttachAlertPhotoLayout.f30964b;
-        if (!biVar.N2) {
-            if (i10 == 0 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
-                ai aiVar = biVar.T3;
-                if (aiVar != null) {
-                    aiVar.H0(0, false, true, 0, 0, 0L, biVar.e1(), false, 0L);
+                ArrayList arrayList = (ArrayList) obj3;
+                org.telegram.messenger.pe peVar = (org.telegram.messenger.pe) obj;
+                org.telegram.messenger.pe peVar2 = (org.telegram.messenger.pe) obj2;
+                boolean z10 = ChatAttachAlertPhotoLayout.f31258r1;
+                int i10 = peVar.f24735a;
+                if (i10 != 0 || peVar2.f24735a == 0) {
+                    if ((i10 != 0 && peVar2.f24735a == 0) || (indexOf = arrayList.indexOf(peVar)) > (indexOf2 = arrayList.indexOf(peVar2))) {
+                        return 1;
+                    }
+                    if (indexOf >= indexOf2) {
+                        return 0;
+                    }
                 }
-                return true;
-            } else if (view instanceof org.telegram.ui.Cells.v5) {
-                yk0 yk0Var = chatAttachAlertPhotoLayout.I;
-                boolean z11 = !((org.telegram.ui.Cells.v5) view).a();
-                chatAttachAlertPhotoLayout.K = z11;
-                yk0Var.d(i10, view, z11);
-            }
+                return -1;
+            default:
+                ey eyVar = ((sv) obj3).H0;
+                int indexOf3 = eyVar.f33533e1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = eyVar.f33533e1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                if (indexOf3 < 0 || indexOf4 < 0) {
+                    return 0;
+                }
+                return indexOf3 - indexOf4;
         }
-        return false;
     }
 }

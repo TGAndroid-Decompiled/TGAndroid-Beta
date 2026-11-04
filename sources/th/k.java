@@ -1,32 +1,24 @@
 package th;
 
-import android.animation.ValueAnimator;
-import org.telegram.ui.tw;
-public final class k implements Runnable {
-    public final int f49148a;
-    public final l f49149b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Components.iz;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.tj0;
+public final class k extends q31 {
+    public static final int f55427b = 0;
 
-    public k(l lVar, int i10) {
-        this.f49148a = i10;
-        this.f49149b = lVar;
+    static {
+        q31.h(new q31());
     }
 
     @Override
-    public final void run() {
-        switch (this.f49148a) {
-            case 0:
-                tw twVar = this.f49149b.f49166b0;
-                ValueAnimator valueAnimator = twVar.f49222j0;
-                if (valueAnimator != null) {
-                    valueAnimator.start();
-                }
-                twVar.f49223k0 = null;
-                return;
-            default:
-                l lVar = this.f49149b;
-                lVar.f49173x = false;
-                lVar.invalidate();
-                return;
-        }
+    public final View d(Context context, tj0 tj0Var, int i3, e6 e6Var) {
+        iz izVar = new iz(context, null);
+        izVar.setViewType(16);
+        izVar.setMinimumHeight(g0.L(48.0f));
+        return izVar;
     }
 }

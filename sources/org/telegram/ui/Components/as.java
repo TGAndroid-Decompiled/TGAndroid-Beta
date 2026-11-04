@@ -1,39 +1,79 @@
 package org.telegram.ui.Components;
-public final class as implements Runnable {
-    public final int f24481a;
-    public final org.telegram.ui.ActionBar.x1[] f24482b;
 
-    public as(org.telegram.ui.ActionBar.x1[] x1VarArr, int i10) {
-        this.f24481a = i10;
-        this.f24482b = x1VarArr;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class as extends AnimatorListenerAdapter {
+    public final int f31983a = 1;
+    public final u4.d1 f31984b;
+    public final View f31985c;
+    public final ViewPropertyAnimator d;
+    public final es f31986e;
+
+    public as(es esVar, u4.d1 d1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
+        this.f31986e = esVar;
+        this.f31984b = d1Var;
+        this.d = viewPropertyAnimator;
+        this.f31985c = view;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24481a) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f31983a) {
+            case 1:
+                this.f31985c.setAlpha(1.0f);
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f31983a) {
             case 0:
-                org.telegram.ui.ActionBar.x1 x1Var = this.f24482b[0];
-                if (x1Var != null) {
-                    x1Var.dismiss();
+                this.d.setListener(null);
+                this.f31985c.setAlpha(1.0f);
+                es esVar = this.f31986e;
+                u4.d1 d1Var = this.f31984b;
+                esVar.d(d1Var);
+                esVar.f33461x.remove(d1Var);
+                esVar.A();
+                return;
+            default:
+                this.d.setListener(null);
+                es esVar2 = this.f31986e;
+                u4.d1 d1Var2 = this.f31984b;
+                esVar2.u(d1Var2);
+                esVar2.v.remove(d1Var2);
+                esVar2.A();
+                View view = d1Var2.f55540a;
+                if (view instanceof org.telegram.ui.Cells.t2) {
+                    ((org.telegram.ui.Cells.t2) view).setMoving(false);
                     return;
                 }
                 return;
-            case 1:
-                org.telegram.ui.ActionBar.x1[] x1VarArr = this.f24482b;
-                try {
-                    x1VarArr[0].dismiss();
-                } catch (Throwable unused) {
-                }
-                x1VarArr[0] = null;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f31983a) {
+            case 0:
+                this.f31986e.y();
                 return;
             default:
-                org.telegram.ui.ActionBar.x1[] x1VarArr2 = this.f24482b;
-                try {
-                    x1VarArr2[0].dismiss();
-                } catch (Throwable unused2) {
-                }
-                x1VarArr2[0] = null;
+                this.f31986e.getClass();
                 return;
         }
+    }
+
+    public as(es esVar, u4.d1 d1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
+        this.f31986e = esVar;
+        this.f31984b = d1Var;
+        this.f31985c = view;
+        this.d = viewPropertyAnimator;
     }
 }

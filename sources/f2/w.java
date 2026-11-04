@@ -1,6 +1,0 @@
-package f2;
-
-import e2.x;
-public interface w {
-    void a(long j10, x xVar);
-}

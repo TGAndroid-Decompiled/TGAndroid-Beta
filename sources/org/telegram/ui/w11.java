@@ -1,23 +1,18 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class w11 extends c31 {
-    public final View Q;
-    public final TL_stars.TL_starGiftUnique R;
-    public final x11 S;
+import org.telegram.tgnet.TLRPC;
+public final class w11 implements View.OnClickListener {
+    public final TLRPC.TL_authorization f50666a;
+    public final b21 f50667b;
 
-    public w11(x11 x11Var, Context context, Runnable runnable, View view, q21 q21Var, org.telegram.ui.ActionBar.p6 p6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(x11Var.e, context, runnable, view, q21Var, p6Var);
-        this.S = x11Var;
-        this.Q = view2;
-        this.R = tL_starGiftUnique;
+    public w11(b21 b21Var, TLRPC.TL_authorization tL_authorization) {
+        this.f50667b = b21Var;
+        this.f50666a = tL_authorization;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.S.e.X0 = null;
+    public final void onClick(View view) {
+        b21.I0(this.f50667b, this.f50666a.ip);
     }
 }

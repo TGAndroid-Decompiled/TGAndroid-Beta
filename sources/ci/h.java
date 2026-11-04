@@ -1,78 +1,30 @@
 package ci;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.k2;
+import org.telegram.ui.TwoStepVerificationActivity;
 public final class h implements Runnable {
-    public final int f4213a;
-    public boolean f4214b;
-    public Object f4215c;
-    public final Object d;
+    public final int f5200a;
+    public final v f5201b;
+    public final TwoStepVerificationActivity f5202c;
 
-    public h(Object obj, Object obj2, boolean z10, int i10) {
-        this.f4213a = i10;
-        this.d = obj;
-        this.f4215c = obj2;
-        this.f4214b = z10;
+    public h(v vVar, TwoStepVerificationActivity twoStepVerificationActivity, int i3) {
+        this.f5200a = i3;
+        this.f5201b = vVar;
+        this.f5202c = twoStepVerificationActivity;
     }
 
     @Override
     public final void run() {
-        switch (this.f4213a) {
+        switch (this.f5200a) {
             case 0:
-                o oVar = (o) this.d;
-                ArrayList arrayList = (ArrayList) this.f4215c;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    s4.i iVar = (s4.i) obj;
-                    oVar.T(iVar.f47953a, iVar, this.f4214b);
-                }
-                arrayList.clear();
-                oVar.f47962u.remove(arrayList);
-                return;
-            case 1:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (actionBarLayout.e == this) {
-                    actionBarLayout.e = null;
-                    ((k2) this.f4215c).onTransitionAnimationStart(true, false);
-                    actionBarLayout.g0(true, true, this.f4214b);
-                    return;
-                }
+                v vVar = this.f5201b;
+                vVar.f6143i0.setLoading(false);
+                vVar.presentFragment(this.f5202c);
                 return;
             default:
-                try {
-                    ((sc.j) this.d).f48186a.bind(new InetSocketAddress(61578));
-                    this.f4214b = true;
-                    do {
-                        try {
-                            Socket accept = ((sc.j) this.d).f48186a.accept();
-                            accept.setSoTimeout(5000);
-                            InputStream inputStream = accept.getInputStream();
-                            sc.j jVar = (sc.j) this.d;
-                            jVar.f48188c.E(new sc.a(jVar, inputStream, accept));
-                        } catch (IOException e) {
-                            sc.j.d.log(Level.FINE, "Communication with the client broken", (Throwable) e);
-                        }
-                    } while (!((sc.j) this.d).f48186a.isClosed());
-                    return;
-                } catch (IOException e7) {
-                    this.f4215c = e7;
-                    return;
-                }
+                v vVar2 = this.f5201b;
+                vVar2.f6133b0.setLoading(false);
+                vVar2.presentFragment(this.f5202c);
+                return;
         }
-    }
-
-    public h(sc.j jVar) {
-        this.f4213a = 2;
-        this.d = jVar;
-        this.f4214b = false;
     }
 }

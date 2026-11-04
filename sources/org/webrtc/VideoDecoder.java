@@ -20,10 +20,10 @@ public interface VideoDecoder {
         public final int numberOfCores;
         public final int width;
 
-        public Settings(int i10, int i11, int i12) {
-            this.numberOfCores = i10;
-            this.width = i11;
-            this.height = i12;
+        public Settings(int i3, int i10, int i11) {
+            this.numberOfCores = i3;
+            this.width = i10;
+            this.height = i11;
         }
     }
 

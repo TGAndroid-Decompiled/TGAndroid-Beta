@@ -1,19 +1,28 @@
 package org.telegram.messenger;
-public final class js {
-    public int f16501a;
-    public String f16502b;
-    public String f16503c;
-    public String d;
-    public String e;
-    public int f16504f;
-    public int f16505g;
-    public int h;
-    public int f16506i;
-    public int f16507j;
-    public int f16508k;
-    public String f16509l;
-    public String f16510m;
-    public int f16511n;
-    public boolean f16512o;
-    public String f16513p;
+public final class js implements Runnable {
+    public final int f23705a;
+    public final us f23706b;
+    public final long f23707c;
+    public final long d;
+
+    public js(us usVar, long j10, long j11, int i3) {
+        this.f23705a = i3;
+        this.f23706b = usVar;
+        this.f23707c = j10;
+        this.d = j11;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f23705a) {
+            case 0:
+                us usVar = this.f23706b;
+                usVar.G = this.f23707c;
+                usVar.H = this.d;
+                return;
+            default:
+                this.f23706b.o(this.f23707c, this.d);
+                return;
+        }
+    }
 }

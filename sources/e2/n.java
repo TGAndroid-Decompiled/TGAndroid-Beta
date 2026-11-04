@@ -1,61 +1,113 @@
 package e2;
 
-import android.os.Handler;
-import android.os.Message;
-import java.util.Iterator;
-public final class n implements Handler.Callback {
-    public final int f6177a;
-    public final Object f6178b;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public abstract class n implements m {
+    public j f9359b;
+    public j f9360c;
+    public j d;
+    public j f9361e;
+    public ByteBuffer f9362f;
+    public ByteBuffer f9363g;
+    public boolean h;
 
-    public n(Object obj, int i10) {
-        this.f6177a = i10;
-        this.f6178b = obj;
+    public n() {
+        ByteBuffer byteBuffer = m.f9358a;
+        this.f9362f = byteBuffer;
+        this.f9363g = byteBuffer;
+        j jVar = j.f9352e;
+        this.d = jVar;
+        this.f9361e = jVar;
+        this.f9359b = jVar;
+        this.f9360c = jVar;
     }
 
     @Override
-    public final boolean handleMessage(Message message) {
-        switch (this.f6177a) {
-            case 0:
-                r rVar = (r) this.f6178b;
-                p pVar = rVar.f6190c;
-                pVar.getClass();
-                Iterator it = rVar.d.iterator();
-                while (it.hasNext()) {
-                    q qVar = (q) it.next();
-                    if (!qVar.d && qVar.f6187c) {
-                        b2.v d = qVar.f6186b.d();
-                        qVar.f6186b = new b2.u();
-                        qVar.f6187c = false;
-                        pVar.c(qVar.f6185a, d);
-                    }
-                    i0 i0Var = rVar.f6189b;
-                    i0Var.getClass();
-                    if (i0Var.f6151a.hasMessages(1)) {
-                        return true;
-                    }
-                }
-                return true;
-            default:
-                e0 e0Var = (e0) this.f6178b;
-                e0Var.getClass();
-                int i10 = message.what;
-                if (i10 != 1) {
-                    if (i10 != 2) {
-                        if (i10 != 3) {
-                            if (i10 != 4) {
-                                return false;
-                            }
-                            e0Var.f6134j.a();
-                            return true;
-                        }
-                        e0Var.f6133i.a();
-                        return true;
-                    }
-                    e0Var.h.a();
-                    return true;
-                }
-                e0Var.f6132g.a();
-                return true;
+    public boolean a() {
+        if (this.h && this.f9363g == m.f9358a) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public ByteBuffer b() {
+        ByteBuffer byteBuffer = this.f9363g;
+        this.f9363g = m.f9358a;
+        return byteBuffer;
+    }
+
+    @Override
+    public final j d(j jVar) {
+        this.d = jVar;
+        this.f9361e = h(jVar);
+        if (isActive()) {
+            return this.f9361e;
+        }
+        return j.f9352e;
+    }
+
+    @Override
+    public final void e(k kVar) {
+        this.f9363g = m.f9358a;
+        this.h = false;
+        this.f9359b = this.d;
+        this.f9360c = this.f9361e;
+        i();
+    }
+
+    @Override
+    public final void f() {
+        this.h = true;
+        j();
+    }
+
+    public abstract j h(j jVar);
+
+    @Override
+    public boolean isActive() {
+        if (this.f9361e != j.f9352e) {
+            return true;
+        }
+        return false;
+    }
+
+    public final ByteBuffer l(int i3) {
+        if (this.f9362f.capacity() < i3) {
+            this.f9362f = ByteBuffer.allocateDirect(i3).order(ByteOrder.nativeOrder());
+        } else {
+            this.f9362f.clear();
+        }
+        ByteBuffer byteBuffer = this.f9362f;
+        this.f9363g = byteBuffer;
+        return byteBuffer;
+    }
+
+    @Override
+    public final void reset() {
+        ByteBuffer byteBuffer = m.f9358a;
+        this.f9363g = byteBuffer;
+        this.h = false;
+        this.f9362f = byteBuffer;
+        j jVar = j.f9352e;
+        this.d = jVar;
+        this.f9361e = jVar;
+        this.f9359b = jVar;
+        this.f9360c = jVar;
+        k();
+    }
+
+    public void i() {
+    }
+
+    public void j() {
+    }
+
+    public void k() {
+    }
+
+    @Override
+    public long g(long j10) {
+        return j10;
     }
 }

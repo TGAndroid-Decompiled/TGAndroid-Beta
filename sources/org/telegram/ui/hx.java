@@ -1,12 +1,15 @@
 package org.telegram.ui;
+public final class hx extends org.telegram.ui.ActionBar.j {
+    public final int f46002a;
+    public final Object f46003b;
 
-import android.graphics.Canvas;
-public final class hx extends org.telegram.ui.Components.e5 {
+    public hx(Object obj, int i3) {
+        this.f46002a = i3;
+        this.f46003b = obj;
+    }
+
     @Override
-    public final void draw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(org.telegram.messenger.i0.L(-2.0f), org.telegram.messenger.i0.L(1.0f));
-        super.draw(canvas);
-        canvas.restore();
+    public final void b(int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hx.b(int):void");
     }
 }

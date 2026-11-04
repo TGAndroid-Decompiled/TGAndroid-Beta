@@ -1,52 +1,50 @@
 package org.telegram.ui.Wallet;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.telegram.ui.Components.d11;
-public final class y0 {
-    public final int f35407a;
-    public final long f35408b;
-    public final z0 f35409c;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class y0 implements Predicate {
+    public final int f43454a;
+    public final TL_wallet.tonConnectSession f43455b;
 
-    public y0(z0 z0Var, int i10, long j10) {
-        this.f35409c = z0Var;
-        this.f35407a = i10;
-        this.f35408b = j10;
+    public y0(TL_wallet.tonConnectSession tonconnectsession, int i3) {
+        this.f43454a = i3;
+        this.f43455b = tonconnectsession;
     }
 
-    public final void a(lc.v vVar, lc.y yVar, lc.y yVar2, boolean z10) {
-        Integer valueOf;
-        StringBuilder sb2 = new StringBuilder("websocket disconnected; closedByServer=");
-        sb2.append(z10);
-        sb2.append(", serverCloseCode=");
-        Object obj = "none";
-        if (yVar == null) {
-            valueOf = "none";
-        } else {
-            valueOf = Integer.valueOf(yVar.b());
-        }
-        sb2.append(valueOf);
-        sb2.append(", clientCloseCode=");
-        if (yVar2 != null) {
-            obj = Integer.valueOf(yVar2.b());
-        }
-        sb2.append(obj);
-        org.telegram.messenger.i0.g3(new d11(this.f35409c, vVar, this.f35407a, sb2.toString(), 13));
+    public Predicate and(Predicate predicate) {
+        int i3 = this.f43454a;
+        return Predicate$CC.$default$and(this, predicate);
     }
 
-    public final void b(lc.v vVar, String str) {
-        StringBuilder sb2 = new StringBuilder("[gram-wallet-streaming] account=");
-        sb2.append(this.f35409c.f35438a);
-        sb2.append(" generation=");
-        int i10 = this.f35407a;
-        sb2.append(i10);
-        sb2.append(" receive <- ");
-        sb2.append(str);
-        org.telegram.messenger.f8.b(sb2.toString());
-        try {
-            org.telegram.messenger.i0.g3(new d11(this, vVar, i10, new JSONObject(str), 14));
-        } catch (JSONException unused) {
-            org.telegram.messenger.i0.g3(new x0(this, vVar, i10, 0));
+    public Predicate negate() {
+        switch (this.f43454a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i3 = this.f43454a;
+        return Predicate$CC.$default$or(this, predicate);
+    }
+
+    @Override
+    public final boolean test(Object obj) {
+        TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
+        switch (this.f43454a) {
+            case 0:
+                if (tonconnectsession.f27264id == this.f43455b.f27264id) {
+                    return true;
+                }
+                return false;
+            default:
+                if (tonconnectsession.f27264id == this.f43455b.f27264id) {
+                    return true;
+                }
+                return false;
         }
     }
 }

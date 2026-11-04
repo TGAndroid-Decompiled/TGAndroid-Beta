@@ -1,32 +1,23 @@
 package z4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class f extends i1.c {
-    public static final Parcelable.Creator<f> CREATOR = new i1.b(4);
-    public int f54607c;
-    public Parcelable d;
-    public final ClassLoader e;
-
-    public f(Parcel parcel, ClassLoader classLoader) {
-        super(parcel, classLoader);
-        classLoader = classLoader == null ? f.class.getClassLoader() : classLoader;
-        this.f54607c = parcel.readInt();
-        this.d = parcel.readParcelable(classLoader);
-        this.e = classLoader;
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("FragmentPager.SavedState{");
-        sb2.append(Integer.toHexString(System.identityHashCode(this)));
-        sb2.append(" position=");
-        return a1.g.p(sb2, this.f54607c, "}");
-    }
+import android.animation.TypeEvaluator;
+public final class f implements TypeEvaluator {
+    public static final f f59711a = new Object();
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        super.writeToParcel(parcel, i10);
-        parcel.writeInt(this.f54607c);
-        parcel.writeParcelable(this.d, i10);
+    public final Object evaluate(float f10, Object obj, Object obj2) {
+        int intValue = ((Integer) obj).intValue();
+        float f11 = ((intValue >> 24) & 255) / 255.0f;
+        int intValue2 = ((Integer) obj2).intValue();
+        float pow = (float) Math.pow(((intValue >> 16) & 255) / 255.0f, 2.2d);
+        float pow2 = (float) Math.pow(((intValue >> 8) & 255) / 255.0f, 2.2d);
+        float pow3 = (float) Math.pow((intValue & 255) / 255.0f, 2.2d);
+        float pow4 = (float) Math.pow(((intValue2 >> 16) & 255) / 255.0f, 2.2d);
+        float y9 = com.google.android.recaptcha.internal.a.y(((intValue2 >> 24) & 255) / 255.0f, f11, f10, f11);
+        float y10 = com.google.android.recaptcha.internal.a.y(pow4, pow, f10, pow);
+        float y11 = com.google.android.recaptcha.internal.a.y((float) Math.pow(((intValue2 >> 8) & 255) / 255.0f, 2.2d), pow2, f10, pow2);
+        float y12 = com.google.android.recaptcha.internal.a.y((float) Math.pow((intValue2 & 255) / 255.0f, 2.2d), pow3, f10, pow3);
+        int round = Math.round(((float) Math.pow(y10, 0.45454545454545453d)) * 255.0f) << 16;
+        return Integer.valueOf(Math.round(((float) Math.pow(y12, 0.45454545454545453d)) * 255.0f) | round | (Math.round(y9 * 255.0f) << 24) | (Math.round(((float) Math.pow(y11, 0.45454545454545453d)) * 255.0f) << 8));
     }
 }

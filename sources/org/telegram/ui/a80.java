@@ -1,48 +1,56 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-public final class a80 implements Runnable {
-    public final int f35705a = 1;
-    public final LaunchActivity f35706b;
-    public final byte[] f35707c;
-    public final int d;
-    public final Integer e;
-    public final String f35708f;
-    public final int h;
-    public final long f35709n;
-    public final Object f35710r;
-    public final Object f35711s;
-    public final Object f35712w;
+import android.content.Intent;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+public final class a80 implements org.telegram.ui.Components.xb0, org.telegram.ui.ActionBar.p1 {
+    public final LaunchActivity f43683a;
 
-    public a80(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i10, Integer num, String str, int i11, long j10, k0 k0Var, org.telegram.ui.ActionBar.k2 k2Var) {
-        this.f35706b = launchActivity;
-        this.f35710r = bundle;
-        this.f35707c = bArr;
-        this.d = i10;
-        this.e = num;
-        this.f35708f = str;
-        this.h = i11;
-        this.f35709n = j10;
-        this.f35711s = k0Var;
-        this.f35712w = k2Var;
+    public a80(LaunchActivity launchActivity) {
+        this.f43683a = launchActivity;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.a80.run():void");
+    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        String str = LaunchActivity.E1;
+        org.telegram.messenger.hp.s1(this.f43683a.P).A3(2);
     }
 
-    public a80(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j10, Runnable runnable, String str, int i10, int i11) {
-        this.f35706b = launchActivity;
-        this.f35710r = tLObject;
-        this.e = num;
-        this.f35711s = num2;
-        this.f35707c = bArr;
-        this.f35709n = j10;
-        this.f35712w = runnable;
-        this.f35708f = str;
-        this.d = i10;
-        this.h = i11;
+    @Override
+    public void q(org.telegram.ui.Components.zb0 zb0Var) {
+        String str = LaunchActivity.E1;
+        org.telegram.messenger.az.C = false;
+        LaunchActivity launchActivity = this.f43683a;
+        Intent intent = launchActivity.M0;
+        if (intent != null) {
+            launchActivity.W(intent, launchActivity.N0, launchActivity.O0, true, null, false, true);
+            launchActivity.M0 = null;
+        }
+        launchActivity.f41314r0.getView().setVisibility(0);
+        launchActivity.f41314r0.X(true, true);
+        ActionBarLayout actionBarLayout = launchActivity.f41314r0;
+        org.telegram.ui.ActionBar.d2 lastFragment = actionBarLayout.getLastFragment();
+        if (lastFragment != null) {
+            lastFragment.setTitleOverlayText(actionBarLayout.N0, actionBarLayout.O0, actionBarLayout.P0);
+        }
+        if (org.telegram.messenger.g0.Q1()) {
+            ActionBarLayout actionBarLayout2 = launchActivity.f41316s0;
+            if (actionBarLayout2 != null) {
+                actionBarLayout2.X(true, true);
+                if (launchActivity.f41316s0.getView().getVisibility() == 4) {
+                    launchActivity.f41316s0.getView().setVisibility(0);
+                }
+            }
+            ActionBarLayout actionBarLayout3 = launchActivity.f41318t0;
+            if (actionBarLayout3 != null) {
+                actionBarLayout3.X(true, true);
+                launchActivity.f41318t0.getView().setVisibility(0);
+            }
+        }
+        org.telegram.messenger.hs.e().k(org.telegram.messenger.hs.f23274o0, zb0Var);
+        try {
+            org.telegram.messenger.us.t(org.telegram.messenger.h10.f22829t0).Y();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 }

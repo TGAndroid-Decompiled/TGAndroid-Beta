@@ -1,122 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class m extends org.telegram.ui.Components.tk0 {
-    public final Context f39408c;
-    public final n d;
+public final class m implements org.telegram.ui.Components.vv0 {
+    public final View f47472a;
+    public final TLRPC.StickerSetCovered f47473b;
+    public final o f47474c;
 
-    public m(n nVar, Context context) {
-        this.d = nVar;
-        this.f39408c = context;
+    public m(o oVar, View view, TLRPC.StickerSetCovered stickerSetCovered) {
+        this.f47474c = oVar;
+        this.f47472a = view;
+        this.f47473b = stickerSetCovered;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        if (c1Var.f47912f == 0) {
-            return true;
+    public final void a() {
+        org.telegram.ui.Components.dg0 dg0Var = ((org.telegram.ui.Cells.v) this.f47472a).f30700f;
+        if (dg0Var != null) {
+            dg0Var.a(true, true);
         }
-        return false;
-    }
-
-    @Override
-    public final int b() {
-        return this.d.G;
-    }
-
-    @Override
-    public final int d(int i10) {
-        n nVar = this.d;
-        if (i10 >= nVar.f39657y && i10 < nVar.D) {
-            return 0;
-        }
-        if (i10 == nVar.E) {
-            return 1;
-        }
-        if (i10 != nVar.F && i10 != nVar.f39656x) {
-            return 0;
-        }
-        return 2;
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        int i11;
-        boolean z10;
-        boolean z11;
-        View view = c1Var.f47909a;
-        n nVar = this.d;
-        a0.h hVar = nVar.f39648a;
-        ArrayList arrayList = nVar.h;
-        if (d(i10) == 0) {
-            int i12 = i10 - nVar.f39657y;
-            org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) view;
-            TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i12);
-            if (i12 != arrayList.size() - 1) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            vVar.b(stickerSetCovered, z10);
-            org.telegram.ui.Components.dh0 dh0Var = vVar.f23162f;
-            boolean B0 = org.telegram.messenger.vi.b0(n.a0(nVar)).B0(stickerSetCovered.set.f19821id, true);
-            vVar.a(B0, false, false);
-            if (B0) {
-                hVar.l(stickerSetCovered.set.f19821id);
-                if (dh0Var != null) {
-                    dh0Var.a(false, false);
-                }
-            } else {
-                if (hVar.h(stickerSetCovered.set.f19821id) >= 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                if (dh0Var != null) {
-                    dh0Var.a(z11, false);
-                }
-            }
-            vVar.setOnCheckedChangeListener(new ng.d(1, this, stickerSetCovered));
-        } else if (d(i10) == 2) {
-            org.telegram.ui.Cells.b9 b9Var = (org.telegram.ui.Cells.b9) view;
-            if (i10 == nVar.f39656x) {
-                b9Var.setTopPadding(17);
-                b9Var.setBottomPadding(10);
-                if (nVar.H == 5) {
-                    i11 = 2131754135;
-                } else {
-                    i11 = 2131754124;
-                }
-                b9Var.setText(org.telegram.messenger.dd.L0(i11, null));
-                return;
-            }
-            b9Var.setTopPadding(10);
-            b9Var.setBottomPadding(17);
-            b9Var.setText(null);
-        }
-    }
-
-    @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        Context context = this.f39408c;
-        View view = null;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 == 2) {
-                    view = new org.telegram.ui.Cells.b9(context);
-                }
-            } else {
-                view = new org.telegram.ui.Cells.v4(context);
-            }
-        } else {
-            org.telegram.ui.Cells.v vVar = new org.telegram.ui.Cells.v(context, true);
-            org.telegram.ui.ActionBar.a7.i(org.telegram.ui.ActionBar.t6.f20930d6, vVar, null);
-            view = vVar;
-        }
-        view.setLayoutParams(new s4.o0(-1, -2));
-        return new s4.c1(view);
+        a0.h hVar = this.f47474c.f48149a;
+        TLRPC.StickerSetCovered stickerSetCovered = this.f47473b;
+        hVar.k(stickerSetCovered, stickerSetCovered.set.f27028id);
     }
 }

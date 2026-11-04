@@ -1,32 +1,22 @@
 package k2;
 
-import android.media.AudioDeviceInfo;
-public final class j {
-    public final b2.x f10668a;
-    public b2.f f10669b;
-    public AudioDeviceInfo f10670c;
-    public boolean d;
-    public int e;
-    public int f10671f;
-    public boolean f10672g;
-    public int h;
+import android.content.Context;
+import ei.i4;
+public class j {
+    public final Context f16591a;
+    public final androidx.emoji2.text.n f16592b;
+    public int f16593c = 0;
 
-    public j(j jVar) {
-        this.f10668a = jVar.f10668a;
-        this.f10669b = jVar.f10669b;
-        this.f10670c = jVar.f10670c;
-        this.d = jVar.d;
-        this.e = jVar.e;
-        this.f10671f = jVar.f10671f;
-        this.f10672g = jVar.f10672g;
-        this.h = jVar.h;
+    public j(Context context) {
+        this.f16591a = context;
+        this.f16592b = new androidx.emoji2.text.n(context, (char) 0);
     }
 
-    public j(b2.x xVar) {
-        this.f10668a = xVar;
-        this.f10669b = b2.f.f2027i;
-        this.e = 0;
-        this.f10671f = -1;
-        this.h = -1;
+    public m2.s0 a(Context context) {
+        return new i4(context, 1).a();
+    }
+
+    public final k2.b[] b(android.os.Handler r23, k2.c0 r24, k2.c0 r25, k2.c0 r26, k2.c0 r27) {
+        throw new UnsupportedOperationException("Method not decompiled: k2.j.b(android.os.Handler, k2.c0, k2.c0, k2.c0, k2.c0):k2.b[]");
     }
 }

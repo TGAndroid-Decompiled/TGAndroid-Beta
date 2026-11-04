@@ -1,162 +1,90 @@
 package org.telegram.messenger;
 
-import android.os.Bundle;
-import android.util.SparseArray;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.regex.Pattern;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.h80;
-import org.telegram.ui.y60;
 public final class r4 implements RequestDelegate {
-    public final int f17893a = 0;
-    public final boolean f17894b;
-    public final int f17895c;
-    public final Object d;
-    public final Object e;
-    public final Serializable f17896f;
-    public final Object f17897g;
-    public final Serializable h;
-    public final Serializable f17898i;
-    public final Object f17899j;
-    public final Object f17900k;
-    public final Object f17901l;
-    public final Cloneable f17902m;
+    public final int f25071a;
+    public final g5 f25072b;
 
-    public r4(i5 i5Var, HashMap hashMap, SparseArray sparseArray, boolean[] zArr, HashMap hashMap2, TLRPC.TL_contacts_importContacts tL_contacts_importContacts, int i10, HashMap hashMap3, boolean z10, HashMap hashMap4, ArrayList arrayList, HashMap hashMap5) {
-        this.d = i5Var;
-        this.e = hashMap;
-        this.f17899j = sparseArray;
-        this.f17900k = zArr;
-        this.f17896f = hashMap2;
-        this.f17901l = tL_contacts_importContacts;
-        this.f17895c = i10;
-        this.f17897g = hashMap3;
-        this.f17894b = z10;
-        this.h = hashMap4;
-        this.f17902m = arrayList;
-        this.f17898i = hashMap5;
+    public r4(g5 g5Var, int i3) {
+        this.f25071a = i3;
+        this.f25072b = g5Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10;
-        boolean z10;
-        switch (this.f17893a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f25071a) {
             case 0:
-                i5 i5Var = (i5) this.d;
-                HashMap hashMap = (HashMap) this.e;
-                SparseArray sparseArray = (SparseArray) this.f17899j;
-                boolean[] zArr = (boolean[]) this.f17900k;
-                HashMap hashMap2 = (HashMap) this.f17896f;
-                TLRPC.TL_contacts_importContacts tL_contacts_importContacts = (TLRPC.TL_contacts_importContacts) this.f17901l;
-                int i11 = this.f17895c;
-                HashMap hashMap3 = (HashMap) this.f17897g;
-                boolean z11 = this.f17894b;
-                HashMap hashMap4 = (HashMap) this.h;
-                ArrayList arrayList = (ArrayList) this.f17902m;
-                HashMap hashMap5 = (HashMap) this.f17898i;
-                boolean z12 = true;
-                i5Var.m0++;
-                if (tL_error == null) {
-                    if (v2.f18578a) {
-                        f8.b("contacts imported");
+                if (tLObject != null) {
+                    TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
+                    if (tL_help_inviteText.message.length() != 0) {
+                        g0.h3(new b4(1, this.f25072b, tL_help_inviteText));
+                        return;
                     }
-                    TLRPC.TL_contacts_importedContacts tL_contacts_importedContacts = (TLRPC.TL_contacts_importedContacts) tLObject;
-                    if (!tL_contacts_importedContacts.retry_contacts.isEmpty()) {
-                        int i12 = 0;
-                        while (i12 < tL_contacts_importedContacts.retry_contacts.size()) {
-                            hashMap.remove(sparseArray.get((int) tL_contacts_importedContacts.retry_contacts.get(i12).longValue()));
-                            i12++;
-                            z12 = z12;
-                        }
-                        z10 = z12;
-                        i10 = 0;
-                        zArr[0] = z10;
-                        if (v2.f18578a) {
-                            f8.b("result has retry contacts");
-                        }
-                    } else {
-                        z10 = true;
-                        i10 = 0;
-                    }
-                    for (int i13 = i10; i13 < tL_contacts_importedContacts.popular_invites.size(); i13++) {
-                        TLRPC.TL_popularContact tL_popularContact = tL_contacts_importedContacts.popular_invites.get(i13);
-                        f5 f5Var = (f5) hashMap2.get(sparseArray.get((int) tL_popularContact.client_id));
-                        if (f5Var != null) {
-                            f5Var.f15700l = tL_popularContact.importers;
-                        }
-                    }
-                    boolean z13 = z10;
-                    i5Var.getMessagesStorage().m1(tL_contacts_importedContacts.users, null, z13, z13);
-                    ArrayList arrayList2 = new ArrayList();
-                    int i14 = i10;
-                    while (i14 < tL_contacts_importedContacts.imported.size()) {
-                        TLRPC.TL_contact tL_contact = new TLRPC.TL_contact();
-                        tL_contact.user_id = tL_contacts_importedContacts.imported.get(i14).user_id;
-                        arrayList2.add(tL_contact);
-                        i14++;
-                        i5Var = i5Var;
-                    }
-                    i0.g3(new dg(i5Var, tL_contacts_importedContacts.users, 2, arrayList2, 3));
-                } else {
-                    int i15 = 0;
-                    int i16 = 0;
-                    while (i16 < tL_contacts_importContacts.contacts.size()) {
-                        hashMap.remove(sparseArray.get((int) tL_contacts_importContacts.contacts.get(i16).client_id));
-                        i16++;
-                        i15 = i15;
-                    }
-                    i10 = i15;
-                    zArr[i10] = true;
-                    if (v2.f18578a) {
-                        a1.g.z(tL_error.text, new StringBuilder("import contacts error "));
-                    }
-                }
-                if (i5Var.m0 == i11) {
-                    if (!hashMap.isEmpty()) {
-                        boolean z14 = i10;
-                        i5Var.getMessagesStorage().Z0(hashMap, z14, z14);
-                    }
-                    Utilities.d.c(new zg(i5Var, hashMap3, hashMap2, z11, hashMap4, arrayList, hashMap5, zArr));
                     return;
                 }
                 return;
+            case 1:
+                final g5 g5Var = this.f25072b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                g5 g5Var2 = g5Var;
+                                if (tL_error == null) {
+                                    g5Var2.Y = (TLRPC.GlobalPrivacySettings) tLObject;
+                                    g5Var2.G = 2;
+                                } else {
+                                    g5Var2.G = 0;
+                                }
+                                g5Var2.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                            default:
+                                g5 g5Var3 = g5Var;
+                                if (tL_error == null) {
+                                    g5Var3.I = ((TLRPC.TL_accountDaysTTL) tLObject).days;
+                                    g5Var3.H = 2;
+                                } else {
+                                    g5Var3.H = 0;
+                                }
+                                g5Var3.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                        }
+                    }
+                });
+                return;
             default:
-                LaunchActivity launchActivity = (LaunchActivity) this.d;
-                y60 y60Var = (y60) this.e;
-                boolean z15 = this.f17894b;
-                Long l4 = (Long) this.f17896f;
-                gf.e eVar = (gf.e) this.f17897g;
-                Long l10 = (Long) this.h;
-                Integer num = (Integer) this.f17898i;
-                Integer num2 = (Integer) this.f17899j;
-                byte[] bArr = (byte[]) this.f17900k;
-                org.telegram.ui.ActionBar.k2 k2Var = (org.telegram.ui.ActionBar.k2) this.f17901l;
-                int i17 = this.f17895c;
-                Bundle bundle = (Bundle) this.f17902m;
-                Pattern pattern = LaunchActivity.D1;
-                i0.g3(new h80(launchActivity, y60Var, tLObject, z15, l4, eVar, l10, num, num2, bArr, k2Var, i17, bundle));
+                final g5 g5Var2 = this.f25072b;
+                g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r4) {
+                            case 0:
+                                g5 g5Var22 = g5Var2;
+                                if (tL_error == null) {
+                                    g5Var22.Y = (TLRPC.GlobalPrivacySettings) tLObject;
+                                    g5Var22.G = 2;
+                                } else {
+                                    g5Var22.G = 0;
+                                }
+                                g5Var22.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                            default:
+                                g5 g5Var3 = g5Var2;
+                                if (tL_error == null) {
+                                    g5Var3.I = ((TLRPC.TL_accountDaysTTL) tLObject).days;
+                                    g5Var3.H = 2;
+                                } else {
+                                    g5Var3.H = 0;
+                                }
+                                g5Var3.getNotificationCenter().k(47, new Object[0]);
+                                return;
+                        }
+                    }
+                });
                 return;
         }
-    }
-
-    public r4(LaunchActivity launchActivity, y60 y60Var, boolean z10, Long l4, gf.e eVar, Long l10, Integer num, Integer num2, byte[] bArr, org.telegram.ui.ActionBar.k2 k2Var, int i10, Bundle bundle) {
-        this.d = launchActivity;
-        this.e = y60Var;
-        this.f17894b = z10;
-        this.f17896f = l4;
-        this.f17897g = eVar;
-        this.h = l10;
-        this.f17898i = num;
-        this.f17899j = num2;
-        this.f17900k = bArr;
-        this.f17901l = k2Var;
-        this.f17895c = i10;
-        this.f17902m = bundle;
     }
 }

@@ -1,33 +1,35 @@
 package b5;
 
-import android.os.Build;
-import java.util.HashSet;
-public abstract class c implements e {
-    public static final HashSet f2485c = new HashSet();
-    public final String f2486a;
-    public final String f2487b;
+import android.view.animation.Interpolator;
+import org.telegram.messenger.camera.q;
+public final class c implements Interpolator {
+    public final int f2395a;
 
-    public c(String str, String str2) {
-        this.f2486a = str;
-        this.f2487b = str2;
-        f2485c.add(this);
+    public c(int i3) {
+        this.f2395a = i3;
     }
 
-    public abstract boolean a();
-
-    public boolean b() {
-        HashSet hashSet = a.f2484a;
-        String str = this.f2487b;
-        if (!hashSet.contains(str)) {
-            String str2 = Build.TYPE;
-            if ("eng".equals(str2) || "userdebug".equals(str2)) {
-                if (!hashSet.contains(str + ":dev")) {
-                    return false;
+    @Override
+    public final float getInterpolation(float f10) {
+        switch (this.f2395a) {
+            case 0:
+            case 4:
+            default:
+                float f11 = f10 - 1.0f;
+                return (f11 * f11 * f11 * f11 * f11) + 1.0f;
+            case 1:
+                return (float) Math.pow(f10, 2.0d);
+            case 2:
+                if (f10 < 0.33f) {
+                    return (f10 / 0.33f) * 0.1f;
                 }
-                return true;
-            }
-            return false;
+                float f12 = f10 - 0.33f;
+                if (f12 < 0.33f) {
+                    return q.v(f12, 0.34f, 0.15f, 0.1f);
+                }
+                return (((f12 - 0.34f) / 0.33f) * 0.05f) - 0.05f;
+            case 3:
+                return f10 * f10 * f10 * f10 * f10;
         }
-        return true;
     }
 }

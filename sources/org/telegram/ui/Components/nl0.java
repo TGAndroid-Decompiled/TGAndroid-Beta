@@ -1,95 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.CornerPathEffect;
-import android.graphics.Paint;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.StaticLayout;
-public final class nl0 extends Drawable {
-    public int f28912a = 255;
-    public final k80 f28913b;
-    public final int[] f28914c;
-    public final org.telegram.ui.Cells.q1 d;
-    public final int[] e;
-    public final Bitmap f28915f;
-    public final RectF f28916g;
-    public final Paint h;
-    public final Paint f28917i;
-    public final StaticLayout f28918j;
+import android.view.View;
+public final class nl0 extends EditTextBoldCursor {
+    public final x4 H1;
+    public int I1;
+    public final g6 J1;
+    public final org.telegram.ui.ActionBar.e6 K1;
 
-    public nl0(k80 k80Var, int[] iArr, org.telegram.ui.Cells.q1 q1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
-        this.f28913b = k80Var;
-        this.f28914c = iArr;
-        this.d = q1Var;
-        this.e = iArr2;
-        this.f28915f = bitmap;
-        this.f28916g = rectF;
-        this.h = paint;
-        this.f28917i = paint2;
-        this.f28918j = staticLayout;
+    public nl0(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.K1 = e6Var;
+        this.H1 = new x4(this);
+        g6 g6Var = new g6(false, true, true);
+        this.J1 = g6Var;
+        g6Var.n(0.2f, 160L, xq.h);
+        g6Var.w(org.telegram.messenger.g0.L(15.33f));
+        g6Var.setCallback(this);
+        g6Var.f33983b = 5;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        if (this.f28912a <= 0) {
-            return;
-        }
-        RectF rectF = org.telegram.messenger.i0.P;
-        rectF.set(getBounds());
-        float f7 = rectF.left;
-        CornerPathEffect cornerPathEffect = k80.f27772w;
-        rectF.left = f7 - (org.telegram.messenger.i0.L(5.0f) / 2.0f);
-        canvas.save();
-        canvas.saveLayerAlpha(rectF, this.f28912a, 31);
-        int[] iArr = this.f28914c;
-        canvas.translate(iArr[0], iArr[1]);
-        k80 k80Var = this.f28913b;
-        org.telegram.ui.Cells.q1 q1Var = this.d;
-        if (q1Var != null && q1Var.J0()) {
-            org.telegram.ui.ActionBar.c5 c5Var = q1Var.J6;
-            if (c5Var != null && c5Var.f20213c != null) {
-                canvas.save();
-                q1Var.setBackgroundTopY(true);
-                canvas.translate(0.0f, -q1Var.J6.f20225r);
-                canvas.drawPaint(q1Var.J6.f20213c);
-                canvas.restore();
-            } else {
-                canvas.translate(-iArr[0], -iArr[1]);
-                int[] iArr2 = this.e;
-                canvas.translate(iArr2[0], q1Var.getPaddingTop() + iArr2[1]);
-                q1Var.K0(canvas, true, false);
-                canvas.translate(-iArr2[0], (-iArr2[1]) - q1Var.getPaddingTop());
-                canvas.translate(iArr[0], iArr[1]);
-            }
-            Bitmap bitmap = this.f28915f;
-            if (bitmap != null) {
-                canvas.save();
-                RectF rectF2 = this.f28916g;
-                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
-                canvas.restore();
-            }
+    public final void dispatchDraw(Canvas canvas) {
+        int i3;
+        super.dispatchDraw(canvas);
+        if (this.I1 < 0) {
+            i3 = org.telegram.ui.ActionBar.k6.f28102p7;
         } else {
-            canvas.drawPath(k80Var, this.f28917i);
+            i3 = org.telegram.ui.ActionBar.k6.P5;
         }
-        canvas.clipPath(k80Var);
-        this.f28918j.draw(canvas);
-        canvas.restore();
+        int a10 = this.H1.a(org.telegram.ui.ActionBar.k6.w0(i3, this.K1), false);
+        g6 g6Var = this.J1;
+        g6Var.u(a10);
+        g6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        g6Var.draw(canvas);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(36.0f), 1073741824));
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f28912a = i10;
+    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+        super.onTextChanged(charSequence, i3, i10, i11);
+        g6 g6Var = this.J1;
+        if (g6Var != null) {
+            this.I1 = 12 - charSequence.length();
+            g6Var.a();
+            String str = "";
+            if (this.I1 <= 4) {
+                str = "" + this.I1;
+            }
+            g6Var.t(str, true, true);
+        }
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.J1 && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

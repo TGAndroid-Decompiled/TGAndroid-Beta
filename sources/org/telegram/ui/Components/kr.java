@@ -1,57 +1,200 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.TextPaint;
-import android.view.View;
-import java.util.HashSet;
-public final class kr extends View implements org.telegram.ui.ActionBar.k6 {
-    public final TextPaint f27944a;
-    public final TextPaint f27945b;
-    public final String f27946c;
-    public final String d;
-    public final Rect e;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class kr {
+    public final int f35462a;
+    public String f35463b;
+    public final ArrayList f35464c;
+    public final boolean[] d;
+    public boolean[] f35465e;
+    public boolean f35466f;
+    public final int f35467g;
+    public int h;
+    public int f35468i;
+    public final lr f35469j;
 
-    public kr(Context context, String str, String str2) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f27944a = textPaint;
-        TextPaint textPaint2 = new TextPaint(1);
-        this.f27945b = textPaint2;
-        this.e = new Rect();
-        this.f27946c = str;
-        this.d = str2;
-        textPaint.setTextSize(org.telegram.messenger.i0.L(24.0f));
-        textPaint2.setTextSize(org.telegram.messenger.i0.L(14.0f));
-        textPaint.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.G6, false));
-        textPaint2.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.H6, false));
+    public kr(lr lrVar, int i3, ArrayList arrayList) {
+        this.f35469j = lrVar;
+        this.f35462a = i3;
+        int size = arrayList.size();
+        this.f35467g = size;
+        this.f35468i = 0;
+        if (size > 0) {
+            this.f35464c = arrayList;
+            this.d = new boolean[size];
+            this.f35466f = true;
+            i();
+        }
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f27945b;
-        String str = this.d;
-        float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f27944a;
-        String str2 = this.f27946c;
-        float measureText2 = textPaint2.measureText(str2);
-        int length = str2.length();
-        Rect rect = this.e;
-        textPaint2.getTextBounds(str2, 0, length, rect);
-        textPaint.getTextBounds(str, 0, str.length(), rect);
-        canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
-        canvas.drawText(str, (getWidth() * 0.7f) - (measureText / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint);
+    public final boolean a() {
+        boolean[] zArr;
+        for (int i3 = 0; i3 < this.f35467g; i3++) {
+            if (!this.d[i3] || ((zArr = this.f35465e) != null && !zArr[i3])) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    @Override
-    public final void updateColors() {
-        this.f27944a.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.G6, false));
-        this.f27945b.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.H6, false));
-        invalidate();
+    public final void b(org.telegram.messenger.x10 x10Var) {
+        for (int i3 = 0; i3 < this.f35467g; i3++) {
+            boolean[] zArr = this.f35465e;
+            if (zArr == null || zArr[i3]) {
+                x10Var.a(i3, (TLObject) this.f35464c.get(i3));
+            }
+        }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void c(org.telegram.messenger.x10 x10Var) {
+        boolean[] zArr;
+        for (int i3 = 0; i3 < this.f35467g; i3++) {
+            if (this.d[i3] && ((zArr = this.f35465e) == null || zArr[i3])) {
+                x10Var.a(i3, (TLObject) this.f35464c.get(i3));
+            }
+        }
+    }
+
+    public final boolean d() {
+        int i3;
+        if (this.f35465e != null) {
+            i3 = this.h;
+        } else {
+            i3 = this.f35467g;
+        }
+        if (i3 > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean e() {
+        int i3;
+        if (this.f35465e != null) {
+            i3 = this.h;
+        } else {
+            i3 = this.f35467g;
+        }
+        if (i3 > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void f() {
+        boolean[] zArr;
+        boolean[] zArr2;
+        boolean z10 = false;
+        int i3 = 0;
+        while (true) {
+            int i10 = this.f35467g;
+            zArr = this.d;
+            if (i3 >= i10) {
+                break;
+            } else if (!zArr[i3] || ((zArr2 = this.f35465e) != null && !zArr2[i3])) {
+                i3++;
+            }
+        }
+        z10 = true;
+        Arrays.fill(zArr, !z10);
+        h();
+        this.f35469j.Q1.O(true);
+    }
+
+    public final void g(int i3) {
+        boolean[] zArr = this.f35465e;
+        if (zArr != null && !zArr[i3]) {
+            return;
+        }
+        boolean[] zArr2 = this.d;
+        boolean z10 = zArr2[i3];
+        zArr2[i3] = !z10;
+        if (!z10) {
+            this.f35468i++;
+        } else {
+            this.f35468i--;
+        }
+        this.f35469j.Q1.O(true);
+    }
+
+    public final void h() {
+        this.f35468i = 0;
+        this.h = 0;
+        for (int i3 = 0; i3 < this.f35467g; i3++) {
+            boolean[] zArr = this.f35465e;
+            boolean[] zArr2 = this.d;
+            if (zArr == null) {
+                if (zArr2[i3]) {
+                    this.f35468i++;
+                }
+            } else if (zArr[i3]) {
+                this.h++;
+                if (zArr2[i3]) {
+                    this.f35468i++;
+                }
+            }
+        }
+    }
+
+    public final void i() {
+        TLObject tLObject;
+        String o10;
+        String a02;
+        String a03;
+        String a04;
+        String a05;
+        int i3 = this.f35467g;
+        if (i3 != 0) {
+            for (int i10 = 0; i10 < i3; i10++) {
+                boolean[] zArr = this.f35465e;
+                if (zArr == null || zArr[i10]) {
+                    tLObject = (TLObject) this.f35464c.get(i10);
+                    break;
+                }
+            }
+            tLObject = null;
+            if (tLObject instanceof TLRPC.User) {
+                o10 = org.telegram.messenger.l10.k((TLRPC.User) tLObject);
+            } else {
+                o10 = org.telegram.messenger.g5.o(tLObject);
+            }
+            int i11 = this.f35462a;
+            if (i11 == 0) {
+                this.f35463b = org.telegram.messenger.bd.M0(2131751503, null);
+            } else if (i11 == 1) {
+                if (d()) {
+                    a05 = org.telegram.messenger.bd.M0(2131751583, null);
+                } else {
+                    a05 = org.telegram.messenger.bd.a0(null, null, 2131751588, o10);
+                }
+                this.f35463b = a05;
+            } else if (i11 == 3) {
+                if (d()) {
+                    a04 = org.telegram.messenger.bd.M0(2131751578, null);
+                } else {
+                    a04 = org.telegram.messenger.bd.a0(null, null, 2131751579, o10);
+                }
+                this.f35463b = a04;
+            } else if (i11 == 2) {
+                if (this.f35469j.Z1) {
+                    if (d()) {
+                        a03 = org.telegram.messenger.bd.M0(2131751501, null);
+                    } else {
+                        a03 = org.telegram.messenger.bd.a0(null, null, 2131751502, o10);
+                    }
+                    this.f35463b = a03;
+                    return;
+                }
+                if (d()) {
+                    a02 = org.telegram.messenger.bd.M0(2131751568, null);
+                } else {
+                    a02 = org.telegram.messenger.bd.a0(null, null, 2131751569, o10);
+                }
+                this.f35463b = a02;
+            }
+        }
     }
 }

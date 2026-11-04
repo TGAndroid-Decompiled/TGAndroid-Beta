@@ -1,28 +1,28 @@
 package org.telegram.ui.Wallet;
 
 import android.view.View;
-import org.telegram.ui.Components.ii;
-import org.telegram.ui.Components.v51;
+import b8.vf;
+import org.telegram.ui.Components.l41;
 public final class l implements Runnable {
-    public final int f34832a;
-    public final Object f34833b;
+    public final int f42764a;
+    public final Object f42765b;
 
-    public l(Object obj, int i10) {
-        this.f34832a = i10;
-        this.f34833b = obj;
+    public l(Object obj, int i3) {
+        this.f42764a = i3;
+        this.f42765b = obj;
     }
 
     private final void a() {
-        a0 a0Var = (a0) this.f34833b;
+        a0 a0Var = (a0) this.f42765b;
         synchronized (a0Var) {
-            if (a0Var.f34163a) {
+            if (a0Var.f42116a) {
                 return;
             }
-            a0Var.f34163a = true;
-            Runnable runnable = a0Var.f34164b;
+            a0Var.f42116a = true;
+            Runnable runnable = a0Var.f42117b;
             if (runnable != null) {
                 runnable.run();
-                a0Var.f34164b = null;
+                a0Var.f42117b = null;
             }
         }
     }
@@ -31,16 +31,16 @@ public final class l implements Runnable {
     public final void run() {
         View d;
         boolean z10;
-        switch (this.f34832a) {
+        switch (this.f42764a) {
             case 0:
-                y yVar = (y) this.f34833b;
+                y yVar = (y) this.f42765b;
                 synchronized (yVar) {
-                    if (!yVar.f35402a) {
-                        yVar.f35402a = true;
-                        Runnable runnable = yVar.f35403b;
+                    if (!yVar.f43448a) {
+                        yVar.f43448a = true;
+                        Runnable runnable = yVar.f43449b;
                         if (runnable != null) {
                             runnable.run();
-                            yVar.f35403b = null;
+                            yVar.f43449b = null;
                         }
                         return;
                     }
@@ -50,40 +50,40 @@ public final class l implements Runnable {
                 a();
                 return;
             case 2:
-                ((h0) this.f34833b).close();
+                ((h0) this.f42765b).close();
                 return;
             case 3:
-                ((boolean[]) this.f34833b)[0] = true;
+                ((boolean[]) this.f42765b)[0] = true;
                 return;
             case 4:
-                u0 u0Var = (u0) this.f34833b;
-                u0Var.c("AUTH_CANCELED");
-                u0Var.e();
-                if (w7.k6.f52636b == u0Var) {
-                    w7.k6.f52636b = null;
+                t0 t0Var = (t0) this.f42765b;
+                t0Var.c("AUTH_CANCELED");
+                t0Var.e();
+                if (vf.f3099b == t0Var) {
+                    vf.f3099b = null;
                     return;
                 }
                 return;
             case 5:
-                ((z2) this.f34833b).dismiss();
+                ((x2) this.f42765b).dismiss();
                 return;
             case 6:
-                ((org.telegram.ui.Cells.s0) this.f34833b).invalidate();
+                ((org.telegram.ui.Cells.t0) this.f42765b).invalidate();
                 return;
             case 7:
-                org.telegram.messenger.i0.E2((vh.p2) this.f34833b);
+                org.telegram.messenger.g0.E2((gi.l3) this.f42765b);
                 return;
             case 8:
-                x5 x5Var = (x5) this.f34833b;
-                ii iiVar = x5Var.f35390c;
-                if (iiVar != null && iiVar.getScrollState() == 0) {
-                    v51 y02 = x5Var.f35394j.y0();
-                    if ((y02 == null || y02.getScrollState() == 0) && (d = x5Var.d(x5Var.f35390c.f31182e3)) != null) {
-                        s4.a0 a0Var = x5Var.f35390c.f31182e3;
-                        a0Var.getClass();
-                        int i10 = new int[]{0, s4.n0.z(d) - a0Var.F()}[1];
-                        if (i10 != 0) {
-                            x5Var.f35390c.w0(0, i10, null);
+                s5 s5Var = (s5) this.f42765b;
+                ai.h4 h4Var = s5Var.f43155c;
+                if (h4Var != null && h4Var.getScrollState() == 0) {
+                    l41 y02 = s5Var.f43160j.y0();
+                    if ((y02 == null || y02.getScrollState() == 0) && (d = s5Var.d(s5Var.f43155c.f35593f3)) != null) {
+                        u4.b0 b0Var = s5Var.f43155c.f35593f3;
+                        b0Var.getClass();
+                        int i3 = new int[]{0, u4.o0.z(d) - b0Var.F()}[1];
+                        if (i3 != 0) {
+                            s5Var.f43155c.w0(0, i3, null);
                             return;
                         }
                         return;
@@ -92,57 +92,57 @@ public final class l implements Runnable {
                 }
                 return;
             case 9:
-                ih.c cVar = (ih.c) this.f34833b;
-                qh.g gVar = (qh.g) cVar.f8522b;
-                qh.f fVar = (qh.f) cVar.f8523c;
-                if (fVar != null) {
-                    gVar.a(fVar);
-                    gVar.D = 0.0f;
-                    cVar.f8523c = null;
-                    cVar.invalidate();
+                ei.e3 e3Var = (ei.e3) this.f42765b;
+                bi.f fVar = (bi.f) e3Var.f10221b;
+                bi.e eVar = (bi.e) e3Var.f10222c;
+                if (eVar != null) {
+                    fVar.a(eVar);
+                    fVar.D = 0.0f;
+                    e3Var.f10222c = null;
+                    e3Var.invalidate();
                     return;
                 }
                 return;
             case 10:
-                ((WalletEngine2) this.f34833b).lambda$close$53();
+                ((WalletEngine2) this.f42765b).lambda$close$53();
                 return;
             case 11:
-                u8 u8Var = (u8) this.f34833b;
+                o8 o8Var = (o8) this.f42765b;
                 boolean z11 = false;
-                if (u8Var.h != -1) {
+                if (o8Var.h != -1) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (!z10 && !u8Var.f35293s) {
-                    u8Var.f35289c = u8Var.c();
-                    u8Var.d = 0.0f;
+                if (!z10 && !o8Var.f43021s) {
+                    o8Var.f43016c = o8Var.c();
+                    o8Var.d = 0.0f;
                 }
-                if (z10 || u8Var.f35293s || u8Var.e > 1.001f) {
+                if (z10 || o8Var.f43021s || o8Var.f43017e > 1.001f) {
                     z11 = true;
                 }
-                c4 c4Var = u8Var.f35288b;
-                float f7 = u8Var.f35289c;
-                float f10 = u8Var.d;
-                c4Var.f12001r = f7;
-                c4Var.f12002s = f10;
-                c4Var.f12003w = z11;
-                c4Var.f12004x = z11;
+                a4 a4Var = o8Var.f43015b;
+                float f10 = o8Var.f43016c;
+                float f11 = o8Var.d;
+                a4Var.f57751r = f10;
+                a4Var.f57752s = f11;
+                a4Var.f57753w = z11;
+                a4Var.f57754x = z11;
                 return;
             case 12:
-                a9 a9Var = (a9) this.f34833b;
-                a9Var.removeSelfFromStack();
-                Runnable runnable2 = a9Var.f34217f;
+                u8 u8Var = (u8) this.f42765b;
+                u8Var.removeSelfFromStack();
+                Runnable runnable2 = u8Var.f43273f;
                 if (runnable2 != null) {
                     runnable2.run();
                     return;
                 }
                 return;
             case 13:
-                ((org.telegram.ui.Cells.y3) this.f34833b).requestLayout();
+                ((org.telegram.ui.Cells.w3) this.f42765b).requestLayout();
                 return;
             default:
-                ((ja) this.f34833b).Z();
+                ((ea) this.f42765b).Z();
                 return;
         }
     }

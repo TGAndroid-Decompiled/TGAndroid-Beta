@@ -1,26 +1,21 @@
 package org.telegram.messenger;
 
-import android.os.Bundle;
-public final class ca implements com.google.android.gms.common.api.k {
-    public final qa f15089a;
+import android.view.MotionEvent;
+public final class ca {
+    public final int f21952a;
+    public final ai.c0 f21953b;
 
-    public ca(qa qaVar) {
-        this.f15089a = qaVar;
+    public ca(ai.c0 c0Var, int i3) {
+        this.f21952a = i3;
+        this.f21953b = c0Var;
     }
 
-    @Override
-    public final void onConnected(Bundle bundle) {
-        od odVar = (od) this.f15089a;
-        odVar.L = true;
-        try {
-            ((li.k) w0.j()).checkLocationSettings(odVar.N, new id(odVar, 1));
-        } catch (Throwable th2) {
-            f8.g(th2, true);
+    public final Boolean a(Object obj) {
+        switch (this.f21952a) {
+            case 0:
+                return ai.c0.a(this.f21953b, (MotionEvent) obj);
+            default:
+                return ai.c0.b(this.f21953b, (MotionEvent) obj);
         }
-    }
-
-    @Override
-    public final void onConnectionSuspended(int i10) {
-        this.f15089a.getClass();
     }
 }

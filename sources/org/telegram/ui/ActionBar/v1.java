@@ -1,151 +1,118 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.uz;
-import org.telegram.ui.Components.q51;
-public final class v1 implements p6 {
-    public final int f21405a;
-    public final Object f21406b;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.res.TypedArray;
+import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
+public final class v1 extends s1 {
+    public static final int[] f28730x1 = {16842932, 16842933};
+    public int f28731n1;
+    public int f28732o1;
+    public FrameLayout f28733p1;
+    public ViewGroup f28734q1;
+    public View f28735r1;
+    public DialogInterface.OnShowListener f28736s1;
+    public DialogInterface.OnDismissListener f28737t1;
+    public boolean f28738u1;
+    public long f28739v1;
+    public final lg.n f28740w1;
 
-    public v1(Object obj, int i10) {
-        this.f21405a = i10;
-        this.f21406b = obj;
+    public v1(int i3, Context context, e6 e6Var) {
+        super(i3, context, e6Var);
+        this.f28738u1 = false;
+        this.f28739v1 = 0L;
+        this.f28740w1 = new lg.n(this, 24);
+    }
+
+    public static Activity t(Context context) {
+        if (context instanceof Activity) {
+            return (Activity) context;
+        }
+        if (context instanceof ContextThemeWrapper) {
+            return t(((ContextThemeWrapper) context).getBaseContext());
+        }
+        return null;
     }
 
     @Override
-    public final boolean a() {
-        switch (this.f21405a) {
-            case 0:
-            case 1:
-            default:
-                return t6.I.q();
+    public final void dismiss() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.v1.dismiss():void");
+    }
+
+    @Override
+    public final boolean isShowing() {
+        if (u().indexOfChild(this.f28733p1) != -1 && !this.f28738u1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void r(long j10) {
+        if (isShowing()) {
+            return;
+        }
+        this.f28739v1 = j10;
+        show();
+    }
+
+    @Override
+    public final void setOnDismissListener(DialogInterface.OnDismissListener onDismissListener) {
+        this.f28737t1 = onDismissListener;
+    }
+
+    @Override
+    public final void setOnShowListener(DialogInterface.OnShowListener onShowListener) {
+        this.f28736s1 = onShowListener;
+    }
+
+    @Override
+    public final void show() {
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(16842926, typedValue, true);
+        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(typedValue.resourceId, f28730x1);
+        this.f28731n1 = obtainStyledAttributes.getResourceId(0, -1);
+        this.f28732o1 = obtainStyledAttributes.getResourceId(1, -1);
+        obtainStyledAttributes.recycle();
+        this.f28548k0 = true;
+        ViewGroup g7 = g(false);
+        this.f28734q1 = g7;
+        g7.setClickable(true);
+        WindowManager.LayoutParams attributes = getWindow().getAttributes();
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        frameLayout.setOnClickListener(new ii.m(this, 17));
+        View view = new View(getContext());
+        this.f28735r1 = view;
+        view.setBackgroundColor(k6.r1(attributes.dimAmount, -16777216));
+        frameLayout.addView(this.f28735r1, new FrameLayout.LayoutParams(-1, -1));
+        FrameLayout frameLayout2 = new FrameLayout(getContext());
+        frameLayout2.addView(this.f28734q1, new FrameLayout.LayoutParams(-1, -2, 17));
+        frameLayout.addView(frameLayout2, new FrameLayout.LayoutParams(attributes.width, -2, 17));
+        this.f28733p1 = frameLayout;
+        u().addView(this.f28733p1);
+        FrameLayout frameLayout3 = this.f28733p1;
+        WeakHashMap weakHashMap = r0.i0.f54015a;
+        r0.y.c(frameLayout3);
+        r0.a0.i(this.f28733p1, new ci.f(3, frameLayout2));
+        this.f28733p1.setVisibility(4);
+        long j10 = this.f28739v1;
+        int i3 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+        lg.n nVar = this.f28740w1;
+        if (i3 == 0) {
+            nVar.run();
+        } else {
+            org.telegram.messenger.g0.i3(nVar, j10);
         }
     }
 
-    @Override
-    public final void b(float f7, float f10, int i10, int i11) {
-        switch (this.f21405a) {
-            case 0:
-                t6.r(f7, f10, i10, i11);
-                return;
-            case 1:
-                t6.r(f7, f10, i10, i11);
-                return;
-            default:
-                t6.r(f7, f10, i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public final ColorFilter c() {
-        switch (this.f21405a) {
-            case 0:
-                return t6.f21257v3;
-            case 1:
-                return t6.f21257v3;
-            default:
-                return t6.f21257v3;
-        }
-    }
-
-    @Override
-    public final Paint d(String str) {
-        switch (this.f21405a) {
-            case 0:
-                return t6.V0(str);
-            case 1:
-                return t6.V0(str);
-            default:
-                return t6.V0(str);
-        }
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f21405a) {
-            case 0:
-                return uz.H0;
-            case 1:
-                return uz.H0;
-            default:
-                return uz.H0;
-        }
-    }
-
-    @Override
-    public final int f(int i10) {
-        switch (this.f21405a) {
-            case 0:
-                return h(i10);
-            case 1:
-                return h(i10);
-            default:
-                return h(i10);
-        }
-    }
-
-    @Override
-    public final boolean g() {
-        switch (this.f21405a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final Drawable getDrawable(String str) {
-        switch (this.f21405a) {
-            case 0:
-                return null;
-            case 1:
-                return null;
-            default:
-                return null;
-        }
-    }
-
-    @Override
-    public final int h(int i10) {
-        switch (this.f21405a) {
-            case 0:
-                return ((x1) this.f21406b).f(i10);
-            case 1:
-                return ((k2) this.f21406b).getThemedColor(i10);
-            default:
-                return ((q51) this.f21406b).I(i10);
-        }
-    }
-
-    @Override
-    public final void i(int i10, int i11) {
-        int i12 = this.f21405a;
-    }
-
-    @Override
-    public final int j(int i10) {
-        switch (this.f21405a) {
-            case 0:
-                return h(i10);
-            case 1:
-                return h(i10);
-            default:
-                return h(i10);
-        }
-    }
-
-    private final void k(int i10, int i11) {
-    }
-
-    private final void l(int i10, int i11) {
-    }
-
-    private final void m(int i10, int i11) {
+    public final ViewGroup u() {
+        return (ViewGroup) t(getContext()).getWindow().getDecorView();
     }
 }

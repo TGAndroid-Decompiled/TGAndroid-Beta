@@ -1,104 +1,65 @@
 package org.telegram.messenger;
 
-import android.graphics.Point;
-import android.graphics.Rect;
-import java.io.File;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
+import java.util.IdentityHashMap;
 import org.telegram.tgnet.tl.TL_iv;
-public final class ev extends dv {
-    public final TL_iv.pageBlockPhoto f15647q0;
-    public final TLRPC.Photo f15648r0;
-    public final TLRPC.PhotoSize f15649s0;
-    public final TLRPC.TL_photoStrippedSize f15650t0;
+public final class ev {
+    public final cv f22400a;
+    public final ArrayList f22401b;
+    public final int f22402c;
+    public final int d;
+    public final fv f22403e;
+    public int f22404f;
+    public int f22405g;
+    public fv h;
 
-    public ev(wv wvVar, Rect rect, int i10, TL_iv.pageBlockPhoto pageblockphoto, boolean z10) {
-        super(wvVar, rect, i10, z10);
+    public ev(cv cvVar, ArrayList arrayList, int i3, int i10, fv fvVar, int i11, int i12, fv fvVar2) {
+        this.f22400a = cvVar;
+        this.f22401b = arrayList;
+        this.f22402c = i3;
+        this.d = i10;
+        this.f22403e = fvVar;
+        this.f22404f = i11;
+        this.f22405g = i12;
+        this.h = fvVar2;
+    }
+
+    public final TL_iv.RichText a(int i3) {
+        int i10;
         int i11;
-        this.f15647q0 = pageblockphoto;
-        TLRPC.Photo v = wvVar.v(pageblockphoto.photo_id);
-        this.f15648r0 = v;
-        if (v != null) {
-            this.f15649s0 = b8.w(v.sizes, i0.Z0(false), false, null, false);
-            this.f15650t0 = b8.R(v.sizes);
+        if (i3 == this.f22402c) {
+            i10 = this.d;
         } else {
-            this.f15649s0 = null;
-            this.f15650t0 = null;
+            i10 = 0;
         }
-        TLRPC.PhotoSize photoSize = this.f15649s0;
-        if (photoSize != null) {
-            i11 = photoSize.f19819w;
+        if (i3 == this.f22404f) {
+            i11 = this.f22405g;
         } else {
-            i11 = 100;
+            i11 = Integer.MAX_VALUE;
         }
-        int i12 = photoSize != null ? photoSize.h : 100;
-        int i13 = this.f17969c;
-        int max = (int) ((i13 / Math.max(1, i11)) * i12);
-        Point point = i0.f16172q;
-        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
-        if (max > max2) {
-            i13 = (int) ((max2 / Math.max(1, i12)) * i11);
-            max = max2;
+        if (i10 == 0 && i11 == Integer.MAX_VALUE) {
+            return (TL_iv.RichText) this.f22401b.get(i3);
         }
-        this.f15435b0 = i13;
-        this.f15436c0 = max;
-        l0();
+        return b(i3).b(i10, i11);
     }
 
-    @Override
-    public final void i0(boolean z10) {
-        TLRPC.PhotoSize photoSize;
-        jc jcVar;
-        TLRPC.Photo photo = this.f15648r0;
-        if (photo != null && (photoSize = this.f15649s0) != null) {
-            TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f15650t0;
-            if (tL_photoStrippedSize != null) {
-                jcVar = jc.i(tL_photoStrippedSize, photo);
-            } else {
-                jcVar = null;
+    public final fv b(int i3) {
+        if (i3 == this.f22402c) {
+            return this.f22403e;
+        }
+        int i10 = this.f22404f;
+        ArrayList arrayList = this.f22401b;
+        cv cvVar = this.f22400a;
+        if (i3 == i10) {
+            if (this.h == null) {
+                TL_iv.RichText richText = (TL_iv.RichText) arrayList.get(i3);
+                IdentityHashMap identityHashMap = new IdentityHashMap();
+                this.h = new fv(richText, identityHashMap, cvVar.o(richText, 0, identityHashMap).length(), 0);
             }
-            jc jcVar2 = jcVar;
-            wv wvVar = this.f17967a;
-            ImageReceiver imageReceiver = this.X;
-            if (z10) {
-                imageReceiver.u0(null, null, jc.i(photoSize, photo), null, jcVar2, "b1", null, photoSize.size, null, wvVar.f19330b, 1);
-            } else {
-                imageReceiver.u0(null, null, null, null, jcVar2, "b1", null, photoSize.size, null, wvVar.f19330b, 1);
-            }
+            return this.h;
         }
-    }
-
-    @Override
-    public final boolean k0() {
-        TLRPC.PhotoSize photoSize = this.f15649s0;
-        if (photoSize != null) {
-            wv wvVar = this.f17967a;
-            b8.G(wvVar.f19329a);
-            File K = b8.K(photoSize, null, true, true);
-            b8.G(wvVar.f19329a);
-            File K2 = b8.K(photoSize, null, false, true);
-            if (!K.exists() && (K2 == null || !K2.exists())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final TL_iv.PageBlock m0() {
-        return this.f15647q0;
-    }
-
-    @Override
-    public final String n0() {
-        return b8.r(null, this.f15649s0);
-    }
-
-    @Override
-    public final boolean q0() {
-        TL_iv.pageBlockPhoto pageblockphoto = this.f15647q0;
-        if (pageblockphoto != null && pageblockphoto.spoiler) {
-            return true;
-        }
-        return false;
+        TL_iv.RichText richText2 = (TL_iv.RichText) arrayList.get(i3);
+        IdentityHashMap identityHashMap2 = new IdentityHashMap();
+        return new fv(richText2, identityHashMap2, cvVar.o(richText2, 0, identityHashMap2).length(), 0);
     }
 }

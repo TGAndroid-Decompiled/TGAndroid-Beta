@@ -5,28 +5,28 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.c61;
-import org.telegram.ui.Components.rf0;
-import org.telegram.ui.Components.tf0;
-import org.telegram.ui.ya0;
-public final class a2 extends org.telegram.ui.Components.f6 {
-    public final int f21664s;
-    public Object f21665w;
+import org.telegram.ui.Components.qe0;
+import org.telegram.ui.Components.s41;
+import org.telegram.ui.Components.se0;
+import org.telegram.ui.r90;
+public final class a2 extends org.telegram.ui.Components.h6 {
+    public final int f28929s;
+    public Object f28930w;
 
     public a2(Context context, boolean z10, boolean z11, boolean z12) {
         super(context, z10, z11, z12);
-        this.f21664s = 3;
+        this.f28929s = 3;
     }
 
     @Override
     public void invalidate() {
-        switch (this.f21664s) {
+        switch (this.f28929s) {
             case 1:
                 super.invalidate();
-                rf0 rf0Var = (rf0) this.f21665w;
-                tf0 tf0Var = rf0Var.d;
-                if (rf0Var == tf0Var.f30635i1.getPinnedHeader()) {
-                    tf0Var.f30635i1.invalidate();
+                qe0 qe0Var = (qe0) this.f28930w;
+                se0 se0Var = qe0Var.d;
+                if (qe0Var == se0Var.f37989j1.getPinnedHeader()) {
+                    se0Var.f37989j1.invalidate();
                     return;
                 }
                 return;
@@ -39,10 +39,10 @@ public final class a2 extends org.telegram.ui.Components.f6 {
     @Override
     public void onDraw(Canvas canvas) {
         int r12;
-        switch (this.f21664s) {
+        switch (this.f28929s) {
             case 0:
                 super.onDraw(canvas);
-                ((c2) this.f21665w).f();
+                ((c2) this.f28930w).f();
                 return;
             case 1:
             default:
@@ -50,15 +50,15 @@ public final class a2 extends org.telegram.ui.Components.f6 {
                 return;
             case 2:
                 canvas.save();
-                canvas.translate(org.telegram.messenger.i0.L(15.0f), 0.0f);
+                canvas.translate(org.telegram.messenger.g0.L(15.0f), 0.0f);
                 super.onDraw(canvas);
-                canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - org.telegram.messenger.i0.L(30.0f), org.telegram.messenger.i0.L(11.0f));
-                ((c61) this.f21665w).f25036b.draw(canvas);
+                canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(11.0f));
+                ((s41) this.f28930w).f37904b.draw(canvas);
                 canvas.restore();
                 return;
             case 3:
-                ShapeDrawable shapeDrawable = (ShapeDrawable) this.f21665w;
-                if (shapeDrawable != null && shapeDrawable.getPaint().getColor() != (r12 = org.telegram.ui.ActionBar.t6.r1(0.15f, org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.L6, false)))) {
+                ShapeDrawable shapeDrawable = (ShapeDrawable) this.f28930w;
+                if (shapeDrawable != null && shapeDrawable.getPaint().getColor() != (r12 = org.telegram.ui.ActionBar.k6.r1(0.15f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.L6, false)))) {
                     shapeDrawable.getPaint().setColor(r12);
                 }
                 shapeDrawable.setBounds(0, 0, (int) (getDrawable().c() + getPaddingLeft() + getPaddingRight()), getMeasuredHeight());
@@ -69,29 +69,29 @@ public final class a2 extends org.telegram.ui.Components.f6 {
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f21664s) {
+    public void onMeasure(int i3, int i10) {
+        switch (this.f28929s) {
             case 4:
-                ya0 ya0Var = (ya0) this.f21665w;
-                int size = View.MeasureSpec.getSize(i10);
+                r90 r90Var = (r90) this.f28930w;
+                int size = View.MeasureSpec.getSize(i3);
                 if (size <= 0) {
-                    size = org.telegram.messenger.i0.f16172q.x - org.telegram.messenger.i0.L(20.0f);
+                    size = org.telegram.messenger.g0.f22608q.x - org.telegram.messenger.g0.L(20.0f);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - ya0Var.d.getPaint().measureText(ya0Var.d.getText().toString())) - ya0Var.f43618f.getPaint().measureText(ya0Var.f43618f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.i0.L(24.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - r90Var.d.getPaint().measureText(r90Var.d.getText().toString())) - r90Var.f49141f.getPaint().measureText(r90Var.f49141f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
                 return;
             default:
-                super.onMeasure(i10, i11);
+                super.onMeasure(i3, i10);
                 return;
         }
     }
 
     @Override
     public boolean post(Runnable runnable) {
-        switch (this.f21664s) {
+        switch (this.f28929s) {
             case 1:
-                tf0 tf0Var = ((rf0) this.f21665w).d;
-                mh.g gVar = tf0.I1;
-                return tf0Var.f21587b.post(runnable);
+                se0 se0Var = ((qe0) this.f28930w).d;
+                n8 n8Var = se0.J1;
+                return se0Var.f28586b.post(runnable);
             default:
                 return super.post(runnable);
         }
@@ -99,31 +99,31 @@ public final class a2 extends org.telegram.ui.Components.f6 {
 
     @Override
     public boolean postDelayed(Runnable runnable, long j10) {
-        switch (this.f21664s) {
+        switch (this.f28929s) {
             case 1:
-                tf0 tf0Var = ((rf0) this.f21665w).d;
-                mh.g gVar = tf0.I1;
-                return tf0Var.f21587b.postDelayed(runnable, j10);
+                se0 se0Var = ((qe0) this.f28930w).d;
+                n8 n8Var = se0.J1;
+                return se0Var.f28586b.postDelayed(runnable, j10);
             default:
                 return super.postDelayed(runnable, j10);
         }
     }
 
-    public a2(FrameLayout frameLayout, Context context, int i10) {
+    public a2(FrameLayout frameLayout, Context context, int i3) {
         super(context, false, false, false);
-        this.f21664s = i10;
-        this.f21665w = frameLayout;
+        this.f28929s = i3;
+        this.f28930w = frameLayout;
     }
 
-    public a2(c61 c61Var, Context context) {
+    public a2(s41 s41Var, Context context) {
         super(context, true, true, true);
-        this.f21664s = 2;
-        this.f21665w = c61Var;
+        this.f28929s = 2;
+        this.f28930w = s41Var;
     }
 
-    public a2(ya0 ya0Var, Context context) {
+    public a2(r90 r90Var, Context context) {
         super(context, false, true, true);
-        this.f21664s = 4;
-        this.f21665w = ya0Var;
+        this.f28929s = 4;
+        this.f28930w = r90Var;
     }
 }

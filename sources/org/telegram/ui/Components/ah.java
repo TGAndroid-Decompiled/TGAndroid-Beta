@@ -9,21 +9,21 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
 import android.widget.FrameLayout;
 public final class ah extends FrameLayout {
-    public final int f24397a;
-    public final bi f24398b;
+    public final int f31844a;
+    public final bi f31845b;
 
-    public ah(bi biVar, Context context, int i10) {
+    public ah(bi biVar, Context context, int i3) {
         super(context);
-        this.f24397a = i10;
-        this.f24398b = biVar;
+        this.f31844a = i3;
+        this.f31845b = biVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f24397a) {
+        switch (this.f31844a) {
             case 2:
                 canvas.save();
-                canvas.clipRect(0.0f, this.f24398b.P3, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(0.0f, this.f31845b.Q3, getMeasuredWidth(), getMeasuredHeight());
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 return;
@@ -35,26 +35,26 @@ public final class ah extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f24397a) {
+        switch (this.f31844a) {
             case 2:
-                bi biVar = this.f24398b;
-                ah ahVar = biVar.f24832x2;
-                if (biVar.f24828w2.getAlpha() > 0.0f) {
-                    float f7 = biVar.Q3;
-                    if (f7 != 0.0f && f7 != ahVar.getTop() + biVar.Q3) {
-                        ValueAnimator valueAnimator = biVar.R3;
+                bi biVar = this.f31845b;
+                ah ahVar = biVar.f32295y2;
+                if (biVar.f32291x2.getAlpha() > 0.0f) {
+                    float f10 = biVar.R3;
+                    if (f10 != 0.0f && f10 != ahVar.getTop() + biVar.R3) {
+                        ValueAnimator valueAnimator = biVar.S3;
                         if (valueAnimator != null) {
                             valueAnimator.cancel();
                         }
-                        float top = biVar.Q3 - (ahVar.getTop() + biVar.P3);
-                        biVar.P3 = top;
+                        float top = biVar.R3 - (ahVar.getTop() + biVar.Q3);
+                        biVar.Q3 = top;
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                        biVar.R3 = ofFloat;
-                        ofFloat.addUpdateListener(new a6(this, 10));
-                        biVar.R3.setInterpolator(gr.f26523f);
-                        biVar.R3.setDuration(200L);
-                        biVar.R3.start();
-                        biVar.Q3 = 0.0f;
+                        biVar.S3 = ofFloat;
+                        ofFloat.addUpdateListener(new c6(this, 10));
+                        biVar.S3.setInterpolator(xq.f40452f);
+                        biVar.S3.setDuration(200L);
+                        biVar.S3.start();
+                        biVar.R3 = 0.0f;
                         return;
                     }
                     return;
@@ -68,22 +68,22 @@ public final class ah extends FrameLayout {
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f24397a) {
+        switch (this.f31844a) {
             case 3:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                bi biVar = this.f24398b;
-                uh uhVar = biVar.f24812s2;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = biVar.a2;
-                if (uhVar == chatAttachAlertPhotoLayout) {
-                    accessibilityNodeInfo.setText(org.telegram.messenger.dd.G(chatAttachAlertPhotoLayout.getSelectedItemsCount(), "AccDescrSendPhotos", new Object[0]));
+                bi biVar = this.f31845b;
+                th thVar = biVar.f32275t2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = biVar.f32215b2;
+                if (thVar == chatAttachAlertPhotoLayout) {
+                    accessibilityNodeInfo.setText(org.telegram.messenger.bd.G(chatAttachAlertPhotoLayout.getSelectedItemsCount(), "AccDescrSendPhotos", new Object[0]));
                 } else {
-                    xj xjVar = biVar.f24767g2;
-                    if (uhVar == xjVar) {
-                        accessibilityNodeInfo.setText(org.telegram.messenger.dd.G(xjVar.getSelectedItemsCount(), "AccDescrSendFiles", new Object[0]));
+                    uj ujVar = biVar.f32232h2;
+                    if (thVar == ujVar) {
+                        accessibilityNodeInfo.setText(org.telegram.messenger.bd.G(ujVar.getSelectedItemsCount(), "AccDescrSendFiles", new Object[0]));
                     } else {
-                        mi miVar = biVar.f24755c2;
-                        if (uhVar == miVar) {
-                            accessibilityNodeInfo.setText(org.telegram.messenger.dd.G(miVar.getSelectedItemsCount(), "AccDescrSendAudio", new Object[0]));
+                        ni niVar = biVar.f32220d2;
+                        if (thVar == niVar) {
+                            accessibilityNodeInfo.setText(org.telegram.messenger.bd.G(niVar.getSelectedItemsCount(), "AccDescrSendAudio", new Object[0]));
                         }
                     }
                 }
@@ -99,9 +99,9 @@ public final class ah extends FrameLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f24397a) {
+        switch (this.f31844a) {
             case 0:
-                if (this.f24398b.f24756c3.getVisibility() != 0) {
+                if (this.f31845b.f32221d3.getVisibility() != 0) {
                     return false;
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -111,27 +111,27 @@ public final class ah extends FrameLayout {
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f24397a) {
+    public void onMeasure(int i3, int i10) {
+        switch (this.f31844a) {
             case 1:
-                bi biVar = this.f24398b;
-                if (biVar.f24835y1 && biVar.f24838z1 != 0) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), org.telegram.messenger.i0.L(36.0f) + (org.telegram.messenger.i0.L(80.0f) * Integer.bitCount(biVar.f24838z1))), 1073741824), i11);
+                bi biVar = this.f31845b;
+                if (biVar.f32298z1 && biVar.A1 != 0) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i3), org.telegram.messenger.g0.L(36.0f) + (org.telegram.messenger.g0.L(80.0f) * Integer.bitCount(biVar.A1))), 1073741824), i10);
                     return;
                 }
-                super.onMeasure(i10, i11);
+                super.onMeasure(i3, i10);
                 return;
             default:
-                super.onMeasure(i10, i11);
+                super.onMeasure(i3, i10);
                 return;
         }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f24397a) {
+        switch (this.f31844a) {
             case 0:
-                if (this.f24398b.f24756c3.getVisibility() != 0) {
+                if (this.f31845b.f32221d3.getVisibility() != 0) {
                     return false;
                 }
                 return super.onTouchEvent(motionEvent);
@@ -141,34 +141,34 @@ public final class ah extends FrameLayout {
     }
 
     @Override
-    public void setAlpha(float f7) {
-        switch (this.f24397a) {
+    public void setAlpha(float f10) {
+        switch (this.f31844a) {
             case 0:
-                super.setAlpha(f7);
-                bi biVar = this.f24398b;
-                biVar.O1(0);
-                biVar.f21587b.invalidate();
+                super.setAlpha(f10);
+                bi biVar = this.f31845b;
+                biVar.P1(0);
+                biVar.f28586b.invalidate();
                 return;
             case 1:
             default:
-                super.setAlpha(f7);
+                super.setAlpha(f10);
                 return;
             case 2:
-                super.setAlpha(f7);
+                super.setAlpha(f10);
                 invalidate();
                 return;
         }
     }
 
     @Override
-    public void setTranslationY(float f7) {
-        switch (this.f24397a) {
+    public void setTranslationY(float f10) {
+        switch (this.f31844a) {
             case 1:
-                super.setTranslationY(f7);
-                this.f24398b.f24812s2.k();
+                super.setTranslationY(f10);
+                this.f31845b.f32275t2.l();
                 return;
             default:
-                super.setTranslationY(f7);
+                super.setTranslationY(f10);
                 return;
         }
     }

@@ -1,27 +1,37 @@
 package org.telegram.messenger;
-public final class hn implements Runnable {
-    public final int f16094a;
-    public final f1 f16095b;
-    public final Object f16096c;
-    public final Object d;
-    public final Object e;
-    public final Object f16097f;
-    public final Object h;
-    public final Object f16098n;
 
-    public hn(f1 f1Var, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f16094a = i10;
-        this.f16095b = f1Var;
-        this.h = obj;
-        this.f16096c = obj2;
-        this.d = obj3;
-        this.e = obj4;
-        this.f16097f = obj5;
-        this.f16098n = obj6;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.ThemeActivity;
+public final class hn implements Runnable {
+    public final int f22950a;
+    public final org.telegram.ui.ActionBar.d2 f22951b;
+
+    public hn(int i3, org.telegram.ui.ActionBar.d2 d2Var) {
+        this.f22950a = i3;
+        this.f22951b = d2Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hn.run():void");
+        switch (this.f22950a) {
+            case 0:
+                org.telegram.ui.ActionBar.d2 d2Var = this.f22951b;
+                if (d2Var != null) {
+                    ThemeActivity themeActivity = new ThemeActivity(0);
+                    themeActivity.U0 = true;
+                    d2Var.presentFragment(themeActivity);
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.Components.t4.s0(7, this.f22951b, null);
+                return;
+            case 2:
+                org.telegram.ui.Components.t4.s0(8, this.f22951b, null);
+                return;
+            default:
+                this.f22951b.presentFragment(new PremiumPreviewFragment(0, "summarize_limit"));
+                return;
+        }
     }
 }

@@ -1,17 +1,55 @@
 package x7;
-public final class g5 implements ja.d {
-    public static final g5 f53177a = new Object();
 
-    static {
-        sc.e.v(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, new z(1)), 2)), 3)), 4)), 5)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+import android.os.Bundle;
+import org.json.JSONObject;
+public abstract class g5 {
+    public static v0.c a(String type, Bundle data) {
+        kotlin.jvm.internal.j.e(type, "type");
+        kotlin.jvm.internal.j.e(data, "data");
+        try {
+            int hashCode = type.hashCode();
+            if (hashCode != -1678407252) {
+                if (hashCode != -543568185) {
+                    if (hashCode == -95037569 && type.equals("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL")) {
+                        try {
+                            String string = data.getString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON");
+                            kotlin.jvm.internal.j.b(string);
+                            return new v0.f(string, data);
+                        } catch (Exception unused) {
+                            throw new Exception();
+                        }
+                    }
+                } else if (type.equals("android.credentials.TYPE_PASSWORD_CREDENTIAL")) {
+                    return new v0.c("android.credentials.TYPE_PASSWORD_CREDENTIAL", data);
+                }
+                throw new Exception();
+            }
+            if (type.equals("androidx.credentials.TYPE_DIGITAL_CREDENTIAL")) {
+                try {
+                    String string2 = data.getString("androidx.credentials.BUNDLE_KEY_RESPONSE_JSON");
+                    kotlin.jvm.internal.j.b(string2);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("androidx.credentials.BUNDLE_KEY_RESPONSE_JSON", string2);
+                    v0.c cVar = new v0.c("androidx.credentials.TYPE_DIGITAL_CREDENTIAL", bundle);
+                    if (string2.length() != 0) {
+                        try {
+                            new JSONObject(string2);
+                            return cVar;
+                        } catch (Exception unused2) {
+                        }
+                    }
+                    throw new IllegalArgumentException("responseJson must not be empty, and must be a valid JSON");
+                } catch (Exception unused3) {
+                    throw new Exception();
+                }
+            }
+            throw new Exception();
+        } catch (z0.a unused4) {
+            v0.c cVar2 = new v0.c(type, data);
+            if (type.length() > 0) {
+                return cVar2;
+            }
+            throw new IllegalArgumentException("type should not be empty");
         }
-        throw new ClassCastException();
     }
 }

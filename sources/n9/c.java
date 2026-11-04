@@ -1,3 +1,5 @@
 package n9;
-public @interface c {
+
+import l6.m;
+public class c extends m {
 }

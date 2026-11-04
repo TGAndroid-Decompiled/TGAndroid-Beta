@@ -1,77 +1,62 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.k20;
-import org.telegram.ui.Components.cc;
-public final class m8 implements k20 {
-    public final int f34913a;
-    public final t8 f34914b;
-    public final gf.e f34915c;
-    public final k0 d;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import b8.mf;
+import java.util.HashSet;
+public final class m8 extends LinearLayout implements org.telegram.ui.ActionBar.z5 {
+    public final org.telegram.ui.ActionBar.e6 f42866a;
+    public final TextView f42867b;
+    public final TextView f42868c;
+    public final ImageView d;
 
-    public m8(t8 t8Var, gf.e eVar, k0 k0Var, int i10) {
-        this.f34913a = i10;
-        this.f34914b = t8Var;
-        this.f34915c = eVar;
-        this.d = k0Var;
+    public m8(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        setOrientation(0);
+        this.f42866a = e6Var;
+        setPadding(org.telegram.messenger.g0.L(20.0f), 0, org.telegram.messenger.g0.L(13.0f), 0);
+        LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
+        f10.setPadding(0, org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f));
+        addView(f10, mf.q(0, -2, 1.0f, 19, 0, 0, 0, 0));
+        TextView textView = new TextView(context);
+        this.f42867b = textView;
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));
+        TextView f11 = org.telegram.messenger.camera.q.f(f10, textView, mf.t(-1, -2, 55, 0, 0, 0, 2), context);
+        this.f42868c = f11;
+        f11.setTextSize(1, 14.0f);
+        f10.addView(f11, mf.t(-1, -2, 55, 0, 0, 0, 0));
+        ImageView imageView = new ImageView(context);
+        this.d = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(2131230875);
+        addView(imageView, mf.t(21, 21, 21, 9, 0, 0, 0));
+        updateColors();
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f34913a) {
-            case 0:
-                h0 h0Var = (h0) obj;
-                String str = (String) obj2;
-                this.f34915c.c(false);
-                t8 t8Var = this.f34914b;
-                if (h0Var == null) {
-                    cc a02 = cc.a0(t8Var);
-                    if (str == null) {
-                        str = "NULL_ERROR";
-                    }
-                    a02.e0(str, false);
-                    return;
-                }
-                a9 a9Var = new a9();
-                a9Var.h = true;
-                ArrayList arrayList = a9Var.f34214a;
-                arrayList.clear();
-                if (!h0Var.d()) {
-                    arrayList.addAll(h0Var.f());
-                }
-                a9Var.a0();
-                a9Var.f34217f = new m2(16, t8Var, this.d);
-                t8Var.presentFragment(a9Var);
-                return;
-            default:
-                f0 f0Var = (f0) obj;
-                String str2 = (String) obj2;
-                this.f34915c.c(false);
-                t8 t8Var2 = this.f34914b;
-                if (f0Var == null) {
-                    cc a03 = cc.a0(t8Var2);
-                    if (str2 == null) {
-                        str2 = "NULL_ERROR";
-                    }
-                    a03.e0(str2, false);
-                    return;
-                } else if (t8Var2.f35253f) {
-                    f0Var.close();
-                    return;
-                } else {
-                    t8Var2.e.add(f0Var);
-                    a9 a9Var2 = new a9();
-                    h0 h0Var2 = f0Var.f34478b;
-                    ArrayList arrayList2 = a9Var2.f34214a;
-                    arrayList2.clear();
-                    if (!h0Var2.d()) {
-                        arrayList2.addAll(h0Var2.f());
-                    }
-                    a9Var2.a0();
-                    a9Var2.f34217f = new g(t8Var2, this.d, f0Var, 21);
-                    t8Var2.presentFragment(a9Var2);
-                    return;
-                }
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.G6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28290z6));
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i10);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i3 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.ActionBar.e6 e6Var = this.f42866a;
+        this.f42867b.setTextColor(org.telegram.ui.ActionBar.k6.w0(i3, e6Var));
+        int i10 = org.telegram.ui.ActionBar.k6.f28290z6;
+        this.f42868c.setTextColor(org.telegram.ui.ActionBar.k6.w0(i10, e6Var));
+        this.d.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(i10, e6Var), PorterDuff.Mode.SRC_IN));
     }
 }

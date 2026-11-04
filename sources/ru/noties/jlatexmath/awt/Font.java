@@ -11,66 +11,66 @@ public class Font {
     private int style;
     private final Typeface typeface;
 
-    public Font(String str, int i10, int i11) {
-        this(createTypeface(str, i10), i10, i11);
+    public Font(String str, int i3, int i10) {
+        this(createTypeface(str, i3), i3, i10);
     }
 
-    private static Typeface applyStyle(Typeface typeface, int i10) {
+    private static Typeface applyStyle(Typeface typeface, int i3) {
+        int i10;
         int i11;
-        int i12;
         boolean isBold = typeface.isBold();
-        int i13 = 0;
+        int i12 = 0;
         if (typeface.isItalic()) {
-            i11 = true;
+            i10 = true;
         } else {
-            i11 = false;
+            i10 = false;
         }
-        if ((isBold | i11) != i10) {
-            if ((i10 & 1) != 0) {
-                i12 = 1;
+        if ((isBold | i10) != i3) {
+            if ((i3 & 1) != 0) {
+                i11 = 1;
             } else {
-                i12 = 0;
+                i11 = 0;
             }
-            if ((i10 & 2) != 0) {
-                i13 = 2;
+            if ((i3 & 2) != 0) {
+                i12 = 2;
             }
-            return Typeface.create(typeface, i12 | i13);
+            return Typeface.create(typeface, i11 | i12);
         }
         return typeface;
     }
 
     @Deprecated
-    public static Font createFont(int i10, InputStream inputStream) {
+    public static Font createFont(int i3, InputStream inputStream) {
         return null;
     }
 
-    private static Typeface createTypeface(String str, int i10) {
-        Typeface create = Typeface.create(str.toLowerCase(Locale.US), toAndroidStyle(i10));
+    private static Typeface createTypeface(String str, int i3) {
+        Typeface create = Typeface.create(str.toLowerCase(Locale.US), toAndroidStyle(i3));
         if (create == null) {
             return Typeface.DEFAULT;
         }
         return create;
     }
 
-    private static int toAndroidStyle(int i10) {
-        int i11;
-        int i12 = 0;
-        if (i10 == 0) {
+    private static int toAndroidStyle(int i3) {
+        int i10;
+        int i11 = 0;
+        if (i3 == 0) {
             return 0;
         }
-        if ((i10 & 1) != 0) {
-            i11 = 1;
+        if ((i3 & 1) != 0) {
+            i10 = 1;
         } else {
-            i11 = 0;
+            i10 = 0;
         }
-        if ((i10 & 2) != 0) {
-            i12 = 2;
+        if ((i3 & 2) != 0) {
+            i11 = 2;
         }
-        return i11 | i12;
+        return i10 | i11;
     }
 
-    public Font deriveFont(int i10) {
-        return new Font(this.typeface, i10, this.size);
+    public Font deriveFont(int i3) {
+        return new Font(this.typeface, i3, this.size);
     }
 
     public boolean isBold() {
@@ -99,13 +99,13 @@ public class Font {
         return this.typeface;
     }
 
-    private Font(Typeface typeface, int i10, float f7) {
-        this.typeface = applyStyle(typeface, i10);
-        this.style = i10;
-        this.size = f7;
+    private Font(Typeface typeface, int i3, float f10) {
+        this.typeface = applyStyle(typeface, i3);
+        this.style = i3;
+        this.size = f10;
     }
 
-    public static Font createFont(Typeface typeface, float f7) {
-        return new Font(typeface, 0, f7);
+    public static Font createFont(Typeface typeface, float f10) {
+        return new Font(typeface, 0, f10);
     }
 }

@@ -1,78 +1,45 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import android.os.Bundle;
-public final class kf0 implements Runnable {
-    public final int f38871a;
-    public final of0 f38872b;
+import org.telegram.messenger.Utilities;
+public final class kf0 extends fx {
+    public final int[] O;
+    public final vf0 P;
 
-    public kf0(of0 of0Var, int i10) {
-        this.f38871a = i10;
-        this.f38872b = of0Var;
+    public kf0(vf0 vf0Var, jf0 jf0Var, int i3) {
+        super(i3, jf0Var);
+        this.P = vf0Var;
+        this.O = new int[2];
     }
 
     @Override
-    public final void run() {
-        hi.f fVar;
-        gh.b[] bVarArr;
-        int i10 = this.f38871a;
-        of0 of0Var = this.f38872b;
-        switch (i10) {
-            case 0:
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = of0Var.S) != null) {
-                    fVar.f7719c.d = 0L;
-                    of0Var.T.f7719c.d = 0L;
-                    of0Var.i0();
-                    return;
-                }
+    public final void g(ex exVar) {
+        vf0 vf0Var = this.P;
+        rf0 rf0Var = vf0Var.K;
+        if (exVar != null) {
+            if (vf0Var.f50488l0 != null) {
+                exVar.f45065c = true;
+                float f10 = (fx.f() * org.telegram.messenger.g0.f22607p) / 1.3f;
+                float f11 = f10 / 3.0f;
+                exVar.d = f11;
+                exVar.f45066e = f11;
+                exVar.f45063a = Utilities.i(vf0Var.f50488l0.right - (0.75f * f10), org.telegram.messenger.g0.f22608q.x - f10, 0.0f);
+                exVar.f45064b = vf0Var.f50488l0.bottom - (f10 / 2.0f);
                 return;
-            case 1:
-                of0.f0(of0Var);
-                return;
-            case 2:
-                of0Var.getClass();
-                j9.l0(of0Var);
-                return;
-            case 3:
-                of0.h0(of0Var);
-                return;
-            case 4:
-                of0.e0(of0Var);
-                return;
-            case 5:
-                of0Var.getClass();
-                new ei0(of0Var.getParentActivity(), of0Var).show();
-                return;
-            case 6:
-                of0Var.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("needFinishFragment", false);
-                of0Var.presentFragment(new j9(bundle));
-                return;
-            case 7:
-                if (of0Var.getParentActivity() != null && (bVarArr = of0Var.K) != null) {
-                    gh.b bVar = bVarArr[4];
-                    float width = ((bVar.getWidth() / 2.0f) + (of0Var.f37788b.getWidth() - ((bVar.getX() + of0Var.F.getX()) + bVar.getWidth()))) / org.telegram.messenger.i0.f16171p;
-                    vh.p2 p2Var = new vh.p2(of0Var.getParentActivity(), 3);
-                    of0Var.P = p2Var;
-                    p2Var.setTranslationY(org.telegram.messenger.i0.L(4.0f) + (-of0Var.L));
-                    of0Var.P.setPadding(org.telegram.messenger.i0.L(7.33f), 0, org.telegram.messenger.i0.L(7.33f), 0);
-                    of0Var.P.p(false);
-                    of0Var.P.i(true);
-                    of0Var.P.s(org.telegram.messenger.dd.L0(2131744327, null));
-                    of0Var.P.l(1.0f, (-width) + 7.33f);
-                    of0Var.f37788b.addView(of0Var.P, w7.b6.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
-                    vh.p2 p2Var2 = of0Var.P;
-                    p2Var2.f51755l0 = new kf0(of0Var, 8);
-                    p2Var2.d = 8000L;
-                    p2Var2.u();
-                    org.telegram.ui.Components.r30.f29870r.b();
-                    return;
-                }
-                return;
-            default:
-                org.telegram.messenger.i0.E2(of0Var.P);
-                return;
+            }
+            org.telegram.ui.Cells.q1 q1Var = vf0Var.Q;
+            if (q1Var != null && q1Var.isAttachedToWindow() && vf0Var.Q.getMessageObject() != null && vf0Var.Q.getMessageObject().f1() == vf0Var.R) {
+                org.telegram.ui.Cells.q1 q1Var2 = vf0Var.Q;
+                int[] iArr = this.O;
+                q1Var2.getLocationOnScreen(iArr);
+                exVar.f45065c = true;
+                float f12 = (fx.f() * org.telegram.messenger.g0.f22607p) / 1.3f;
+                float f13 = f12 / 3.0f;
+                exVar.d = f13;
+                exVar.f45066e = f13;
+                float f14 = f12 / 2.0f;
+                exVar.f45063a = Utilities.i(((rf0Var.getScaleX() * vf0Var.Q.getTimeX()) + iArr[0]) - f14, org.telegram.messenger.g0.f22608q.x - f12, 0.0f);
+                exVar.f45064b = ((rf0Var.getScaleY() * vf0Var.Q.getTimeY()) + iArr[1]) - f14;
+            }
         }
     }
 }

@@ -1,157 +1,130 @@
 package org.telegram.ui.Cells;
 
-import j$.util.Comparator$CC;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.is;
-import org.telegram.messenger.kj;
-import org.telegram.messenger.nq;
-import org.telegram.messenger.o00;
-import org.telegram.messenger.wp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class i6 {
-    public final int f22038a;
-    public boolean f22039b;
-    public boolean f22040c;
-    public int e;
-    public long f22041f;
-    public int f22042g;
-    public final ArrayList d = new ArrayList();
-    public final ArrayList h = new ArrayList();
+import android.content.Context;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import b8.mf;
+import org.telegram.messenger.bd;
+import org.telegram.ui.Components.RadioButton;
+public final class i6 extends FrameLayout {
+    public final TextView f29376a;
+    public final TextView f29377b;
+    public final RadioButton f29378c;
+    public int d;
 
-    public i6(int i10) {
-        this.f22038a = i10;
-    }
-
-    public static void a(i6 i6Var, TLObject tLObject, is isVar, long j10, int i10, ArrayList arrayList) {
-        ArrayList arrayList2 = i6Var.d;
-        int i11 = i6Var.f22038a;
-        if (tLObject instanceof TLRPC.messages_Messages) {
-            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-            wp.r1(i11).V3(messages_messages.users, false);
-            wp.r1(i11).P3(messages_messages.chats, false);
-            isVar.m1(messages_messages.users, messages_messages.chats, true, true);
-            isVar.h1(3, 0, 0, -j10, 0L, messages_messages, false);
-            if (i10 == i6Var.e && !messages_messages.messages.isEmpty()) {
-                arrayList2.clear();
-                Collections.sort(arrayList, Comparator$CC.comparingInt(new bi.t6(7)));
-                TLRPC.Message message = (TLRPC.Message) i0.a.g(1, messages_messages.messages);
-                long j11 = message.grouped_id;
-                if (j11 != 0) {
-                    ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
-                    int size = arrayList3.size();
-                    int i12 = 0;
-                    while (i12 < size) {
-                        TLRPC.Message message2 = arrayList3.get(i12);
-                        i12++;
-                        TLRPC.Message message3 = message2;
-                        if (message3.grouped_id == j11) {
-                            arrayList2.add(new kj(i11, message3, false, true));
-                        }
-                    }
-                } else {
-                    arrayList2.add(new kj(i11, message, false, true));
-                }
-                if (!arrayList2.isEmpty()) {
-                    i6Var.c();
-                }
-            }
-        } else if (i10 != i6Var.e) {
+    public i6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        int i3;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        this.d = 50;
+        RadioButton radioButton = new RadioButton(context);
+        this.f29378c = radioButton;
+        radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
+        org.telegram.ui.ActionBar.r6.P(radioButton, org.telegram.ui.ActionBar.k6.D5, org.telegram.ui.ActionBar.k6.E5, e6Var);
+        boolean z10 = bd.f21784a0;
+        if (z10) {
+            i3 = 5;
         } else {
-            i6Var.c();
+            i3 = 3;
         }
+        int i17 = i3 | 48;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 18;
+        }
+        addView(radioButton, mf.d(22, 22.0f, i17, i10, 14.0f, z10 ? 18 : 0, 0.0f));
+        TextView textView = new TextView(context);
+        this.f29376a = textView;
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27988j5, e6Var);
+        org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
+        textView.setSingleLine(true);
+        if (bd.f21784a0) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        textView.setGravity(i11 | 16);
+        boolean z11 = bd.f21784a0;
+        if (z11) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        int i18 = i12 | 48;
+        if (z11) {
+            i13 = 21;
+        } else {
+            i13 = 51;
+        }
+        float f10 = i13;
+        if (z11) {
+            i14 = 51;
+        } else {
+            i14 = 21;
+        }
+        addView(textView, mf.d(-2, -2.0f, i18, f10, 13.0f, i14, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f29377b = textView2;
+        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28273y6, e6Var);
+        textView2.setTextSize(1, 14.0f);
+        if (bd.f21784a0) {
+            i15 = 5;
+        } else {
+            i15 = 3;
+        }
+        textView2.setGravity(i15 | 16);
+        textView2.setVisibility(8);
+        boolean z12 = bd.f21784a0;
+        int i19 = (z12 ? 5 : 3) | 48;
+        if (z12) {
+            i16 = 21;
+        } else {
+            i16 = 51;
+        }
+        addView(textView2, mf.d(-2, -2.0f, i19, i16, 37.0f, z12 ? 51 : 21, 0.0f));
     }
 
-    public static void b(final i6 i6Var, final int i10, final ArrayList arrayList, final long j10, int i11, final is isVar) {
-        int i12 = i6Var.f22038a;
-        ArrayList arrayList2 = i6Var.d;
-        if (i10 != i6Var.e) {
-            return;
-        }
-        if (!arrayList.isEmpty()) {
-            arrayList2.clear();
-            Collections.sort(arrayList, Comparator$CC.comparingInt(new bi.t6(6)));
-            TLRPC.Message message = (TLRPC.Message) arrayList.get(arrayList.size() - 1);
-            long j11 = message.grouped_id;
-            if (j11 != 0) {
-                int size = arrayList.size();
-                int i13 = 0;
-                while (i13 < size) {
-                    Object obj = arrayList.get(i13);
-                    i13++;
-                    TLRPC.Message message2 = (TLRPC.Message) obj;
-                    if (message2.grouped_id == j11) {
-                        arrayList2.add(new kj(i12, message2, false, true));
-                    }
-                }
-            } else {
-                arrayList2.add(new kj(i12, message, false, true));
-            }
-            if (!arrayList2.isEmpty()) {
-                i6Var.c();
-                return;
-            }
-        }
-        TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
-        tL_channels_getMessages.channel = wp.r1(i12).g1(j10);
-        for (int i14 = 10; i14 >= 0; i14--) {
-            int i15 = i11 - i14;
-            if (i15 >= 0) {
-                tL_channels_getMessages.f19832id.add(Integer.valueOf(i15));
-            }
-        }
-        ConnectionsManager.getInstance(i12).sendRequest(tL_channels_getMessages, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-                org.telegram.messenger.i0.g3(new o00(i6.this, tLObject, isVar, j10, i10, arrayList, 1));
-            }
-        });
+    public final void a(int i3, int i10) {
+        this.f29378c.b(i3, i10);
     }
 
-    public final void c() {
-        int i10 = 0;
-        this.f22039b = false;
-        this.f22040c = true;
-        ArrayList arrayList = this.h;
-        int size = arrayList.size();
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((Runnable) obj).run();
-        }
-        arrayList.clear();
+    public final void b(CharSequence charSequence, boolean z10) {
+        this.f29376a.setText(charSequence);
+        this.f29377b.setVisibility(8);
+        this.f29378c.a(z10, false);
     }
 
-    public final void d(TLRPC.UserFull userFull) {
-        ArrayList arrayList = this.d;
-        if (userFull != null && (userFull.flags2 & 64) != 0) {
-            long j10 = userFull.personal_channel_id;
-            int i10 = userFull.personal_channel_message;
-            if (this.f22040c || this.f22039b) {
-                if (this.f22041f == j10 && this.f22042g == i10) {
-                    return;
-                }
-                this.f22040c = false;
-                arrayList.clear();
-            }
-            int i11 = this.e + 1;
-            this.e = i11;
-            this.f22039b = true;
-            this.f22041f = j10;
-            this.f22042g = i10;
-            int i12 = this.f22038a;
-            long e = e20.i(i12).e();
-            is a02 = is.a0(i12);
-            a02.f16331a.c(new nq(this, i10, a02, j10, e, i11));
-            return;
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
+        accessibilityNodeInfo.setCheckable(true);
+        accessibilityNodeInfo.setChecked(this.f29378c.f31589f);
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        int i11;
+        TextView textView = this.f29377b;
+        if (textView.getVisibility() == 0) {
+            textView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3) - org.telegram.messenger.g0.L(72.0f), 1073741824), i10);
         }
-        this.e++;
-        this.f22040c = true;
-        arrayList.clear();
-        c();
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824);
+        int L = org.telegram.messenger.g0.L(this.d);
+        if (textView.getVisibility() == 0) {
+            i11 = textView.getMeasuredHeight() + org.telegram.messenger.g0.L(4.0f);
+        } else {
+            i11 = 0;
+        }
+        super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(L + i11, 1073741824));
     }
 }

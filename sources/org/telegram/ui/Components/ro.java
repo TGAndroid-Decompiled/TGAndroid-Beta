@@ -1,31 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class ro implements ValueAnimator.AnimatorUpdateListener {
-    public boolean f30049a = false;
-    public final c11 f30050b;
-    public final float f30051c;
-    public final boolean d;
-    public final dp e;
+import android.widget.Toast;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.ResultCallback;
+import org.telegram.tgnet.TLRPC;
+public final class ro implements ResultCallback {
+    public final org.telegram.messenger.d4 f37761a;
+    public final vo f37762b;
 
-    public ro(dp dpVar, c11 c11Var, float f7, boolean z10) {
-        this.e = dpVar;
-        this.f30050b = c11Var;
-        this.f30051c = f7;
-        this.d = z10;
+    public ro(vo voVar, org.telegram.messenger.d4 d4Var) {
+        this.f37762b = voVar;
+        this.f37761a = d4Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        dp dpVar = this.e;
-        dpVar.I1 = floatValue;
-        if (!this.d) {
-            floatValue = 1.0f - floatValue;
-        }
-        this.f30050b.setRadius(this.f30051c * floatValue);
-        if (!this.f30049a && dpVar.I1 > 0.5f) {
-            this.f30049a = true;
-        }
+    public final void onComplete(Object obj) {
+        List list = (List) obj;
+        ArrayList e10 = this.f37761a.e(7);
+        vo voVar = this.f37762b;
+        org.telegram.messenger.hs.f(voVar.f28583a).d(new cl(3, this, e10));
+        voVar.S1 = false;
+    }
+
+    @Override
+    public final void onError(Throwable th2) {
+        org.telegram.tgnet.k.a(this, th2);
+    }
+
+    @Override
+    public final void onError(TLRPC.TL_error tL_error) {
+        Toast.makeText(this.f37762b.getContext(), tL_error.text, 0).show();
     }
 }

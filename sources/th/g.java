@@ -1,154 +1,139 @@
 package th;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.tw;
-public final class g extends uk0 {
-    public final int f48994e3;
-    public final tw f48995f3;
-
-    public g(tw twVar, Context context, int i10) {
-        super(context, null);
-        this.f48994e3 = i10;
-        this.f48995f3 = twVar;
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        boolean z10;
-        switch (this.f48994e3) {
-            case 1:
-                tw twVar = this.f48995f3;
-                ArrayList arrayList = twVar.P;
-                arrayList.clear();
-                int i10 = 0;
-                for (int i11 = 0; i11 < getChildCount(); i11++) {
-                    l lVar = (l) getChildAt(i11);
-                    int R = RecyclerView.R(lVar);
-                    lVar.f49165b = R;
-                    boolean z11 = true;
-                    lVar.f49163a = true;
-                    if (R == 0) {
-                        z10 = true;
+import k2.p1;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.hp;
+import org.telegram.messenger.m5;
+import org.telegram.messenger.n0;
+import org.telegram.messenger.zi;
+import org.telegram.tgnet.TLRPC;
+import x7.u;
+public abstract class g {
+    public static int a(zi ziVar) {
+        TLRPC.MessageMedia messageMedia;
+        long B0;
+        int i3;
+        int i10 = 0;
+        if (ziVar.D == 17) {
+            TLRPC.Message message = ziVar.f26868k;
+            int i11 = ziVar.I1;
+            TLRPC.MessageMedia o12 = zi.o1(message);
+            if (TLRPC.TL_messageMediaPoll.class.isInstance(o12)) {
+                messageMedia = (TLRPC.MessageMedia) TLRPC.TL_messageMediaPoll.class.cast(o12);
+            } else {
+                messageMedia = null;
+            }
+            TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia;
+            if (tL_messageMediaPoll != null) {
+                TLRPC.Poll poll = tL_messageMediaPoll.poll;
+                if (poll.closed) {
+                    i10 = 8;
+                }
+                if (poll.subscribers_only) {
+                    TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+                    if (messageFwdHeader != null) {
+                        B0 = m5.o(messageFwdHeader.from_id);
                     } else {
-                        z10 = false;
+                        B0 = zi.B0(ziVar.f26868k);
                     }
-                    lVar.d = z10;
-                    if (R != twVar.D.size() - 1) {
-                        z11 = false;
+                    TLRPC.Chat M0 = hp.s1(i11).M0(Long.valueOf(-B0));
+                    if (M0 != null) {
+                        if (M0.left || M0.kicked) {
+                            i10 |= 1;
+                        }
+                        TLRPC.MessageFwdHeader messageFwdHeader2 = message.fwd_from;
+                        if (messageFwdHeader2 != null) {
+                            i3 = messageFwdHeader2.date;
+                        } else {
+                            i3 = message.date;
+                        }
+                        if (i3 - M0.date < 86400) {
+                            i10 |= 2;
+                        }
                     }
-                    lVar.f49167c = z11;
-                    arrayList.add(lVar);
                 }
-                Collections.sort(arrayList, twVar.f49238w0);
-                while (i10 < arrayList.size()) {
-                    l lVar2 = (l) arrayList.get(i10);
-                    int save = canvas.save();
-                    canvas.translate(lVar2.getX(), lVar2.getY());
-                    if (lVar2.getAlpha() != 1.0f) {
-                        canvas2 = canvas;
-                        canvas2.saveLayerAlpha(-org.telegram.messenger.i0.L(4.0f), -org.telegram.messenger.i0.L(4.0f), org.telegram.messenger.i0.L(50.0f), org.telegram.messenger.i0.L(50.0f), (int) (lVar2.getAlpha() * 255.0f), 31);
+                ArrayList<String> arrayList = tL_messageMediaPoll.poll.countries_iso2;
+                if (arrayList != null && !arrayList.isEmpty()) {
+                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) hp.s1(i11).f23167x7.O.f13798b).f24297c)) {
+                        return i10 | 4;
+                    }
+                }
+                return i10;
+            }
+        }
+        return 0;
+    }
+
+    public static SpannableStringBuilder b(int i3, zi ziVar) {
+        TLRPC.MessageMedia messageMedia;
+        long B0;
+        int i10;
+        int i11;
+        if (ziVar.D == 17) {
+            TLRPC.Message message = ziVar.f26868k;
+            int i12 = ziVar.I1;
+            TLRPC.MessageMedia o12 = zi.o1(message);
+            if (TLRPC.TL_messageMediaPoll.class.isInstance(o12)) {
+                messageMedia = (TLRPC.MessageMedia) TLRPC.TL_messageMediaPoll.class.cast(o12);
+            } else {
+                messageMedia = null;
+            }
+            TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia;
+            if (tL_messageMediaPoll != null) {
+                if (u.a(i3, 4)) {
+                    ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
+                    ArrayList<String> arrayList2 = tL_messageMediaPoll.poll.countries_iso2;
+                    int size = arrayList2.size();
+                    int i13 = 0;
+                    while (i13 < size) {
+                        String str = arrayList2.get(i13);
+                        i13++;
+                        String str2 = str;
+                        String i02 = bd.i0(2131750529, str2);
+                        if (!TextUtils.isEmpty(i02)) {
+                            str2 = i02;
+                        }
+                        arrayList.add(str2);
+                    }
+                    boolean z10 = tL_messageMediaPoll.poll.subscribers_only;
+                    if (arrayList.size() == 1) {
+                        if (z10) {
+                            i11 = 2131747125;
+                        } else {
+                            i11 = 2131747122;
+                        }
+                        return g0.X2(bd.a0(null, null, i11, arrayList.get(0)));
+                    }
+                    StringBuffer stringBuffer = new StringBuffer();
+                    for (int i14 = 0; i14 < arrayList.size() - 1; i14++) {
+                        if (stringBuffer.length() > 0) {
+                            stringBuffer.append(", ");
+                        }
+                        stringBuffer.append((String) arrayList.get(i14));
+                    }
+                    if (z10) {
+                        i10 = 2131747124;
                     } else {
-                        canvas2 = canvas;
+                        i10 = 2131747121;
                     }
-                    canvas2.scale(lVar2.getScaleX(), lVar2.getScaleY(), org.telegram.messenger.i0.L(14.0f), lVar2.getCy());
-                    lVar2.draw(canvas2);
-                    canvas2.restoreToCount(save);
-                    i10++;
-                    canvas = canvas2;
-                }
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f48994e3) {
-            case 0:
-                if (motionEvent.getAction() == 0) {
-                    tw twVar = this.f48995f3;
-                    if (twVar.f49214c0 > 0.2f || twVar.getAlpha() == 0.0f) {
-                        return false;
+                    return g0.X2(bd.a0(null, null, i10, stringBuffer, p1.h(1, arrayList)));
+                } else if (u.a(i3, 1)) {
+                    TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
+                    if (messageFwdHeader != null) {
+                        B0 = m5.o(messageFwdHeader.from_id);
+                    } else {
+                        B0 = zi.B0(ziVar.f26868k);
                     }
+                    return g0.X2(bd.a0(null, null, 2131747126, m5.u(hp.s1(i12).M0(Long.valueOf(-B0)))));
+                } else if (u.a(i3, 2)) {
+                    return g0.X2(bd.M0(2131747123, null));
                 }
-                return super.dispatchTouchEvent(motionEvent);
-            default:
-                return false;
+            }
         }
-    }
-
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f48994e3) {
-            case 0:
-                if (this.f48995f3.P.contains(view)) {
-                    return true;
-                }
-                return super.drawChild(canvas, view, j10);
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void l0(int i10) {
-        switch (this.f48994e3) {
-            case 1:
-                vh.p2 p2Var = this.f48995f3.J;
-                if (p2Var != null) {
-                    p2Var.e(true);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f48994e3) {
-            case 1:
-                return false;
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f48994e3) {
-            case 0:
-                ArrayList arrayList = this.f48995f3.f49212b0;
-                super.onLayout(z10, i10, i11, i12, i13);
-                for (int i14 = 0; i14 < arrayList.size(); i14++) {
-                    ((Runnable) arrayList.get(i14)).run();
-                }
-                arrayList.clear();
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f48994e3) {
-            case 1:
-                return false;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
+        return null;
     }
 }

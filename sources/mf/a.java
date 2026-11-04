@@ -1,37 +1,72 @@
 package mf;
 
-import android.content.SharedPreferences;
-import android.os.SystemClock;
-import org.telegram.messenger.w0;
-import w7.u;
+import a1.g;
+import java.util.ArrayList;
 public final class a {
-    public final SharedPreferences f13057a;
-    public long f13058b;
-    public long f13059c;
-    public int d;
+    public String f19280a;
+    public ArrayList f19281b;
+    public ArrayList f19282c;
+    public ArrayList d;
 
-    public a(String str) {
-        SharedPreferences sharedPreferences = w0.f18945b.getSharedPreferences("pip_duration_".concat(str), 0);
-        this.f13057a = sharedPreferences;
-        this.f13058b = sharedPreferences.getLong("estimated", 400L);
-        this.d = sharedPreferences.getInt("count", 0);
-    }
-
-    public final void a() {
-        int b10;
-        if (this.f13059c == 0) {
-            return;
+    public final String a(String str) {
+        String str2;
+        String str3;
+        String str4;
+        String str5 = null;
+        if (str.startsWith(this.f19280a)) {
+            str4 = this.f19280a;
+            str3 = str.substring(str4.length());
+        } else {
+            ArrayList arrayList = this.f19281b;
+            int size = arrayList.size();
+            int i3 = 0;
+            while (true) {
+                if (i3 < size) {
+                    Object obj = arrayList.get(i3);
+                    i3++;
+                    str2 = (String) obj;
+                    if (str.startsWith(str2)) {
+                        break;
+                    }
+                } else {
+                    str2 = null;
+                    break;
+                }
+            }
+            if (str2 != null) {
+                str3 = str.substring(str2.length());
+                str4 = null;
+                str5 = str2;
+            } else {
+                str3 = str;
+                str4 = null;
+            }
         }
-        this.f13058b = (((SystemClock.uptimeMillis() - this.f13059c) * (10 - b10)) / 10) + ((this.f13058b * u.b(this.d, 0, 9)) / 10);
-        this.f13059c = 0L;
-        this.d++;
-        this.f13057a.edit().putLong("estimated", this.f13058b).putInt("count", this.d).apply();
-    }
-
-    public final float b() {
-        if (this.f13058b > 0) {
-            return u.a(((float) (SystemClock.uptimeMillis() - this.f13059c)) / ((float) this.f13058b), 0.0f, 1.0f);
+        ArrayList arrayList2 = this.d;
+        int size2 = arrayList2.size();
+        int i10 = 0;
+        while (i10 < size2) {
+            Object obj2 = arrayList2.get(i10);
+            i10++;
+            String a10 = ((d) obj2).a(str3, str4, str5, true);
+            if (a10 != null) {
+                return a10;
+            }
         }
-        return 0.5f;
+        ArrayList arrayList3 = this.d;
+        int size3 = arrayList3.size();
+        int i11 = 0;
+        while (i11 < size3) {
+            Object obj3 = arrayList3.get(i11);
+            i11++;
+            String a11 = ((d) obj3).a(str3, str4, str5, false);
+            if (a11 != null) {
+                return a11;
+            }
+        }
+        if (str4 != null && str3.length() != 0) {
+            return g.C(str4, " ", str3);
+        }
+        return str;
     }
 }

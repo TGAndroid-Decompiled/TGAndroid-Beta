@@ -1,35 +1,29 @@
 package org.telegram.ui;
-public final class jc1 implements org.telegram.ui.ActionBar.u1 {
-    public final int f38362a;
-    public final rc1 f38363b;
 
-    public jc1(rc1 rc1Var, int i10) {
-        this.f38362a = i10;
-        this.f38363b = rc1Var;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+public final class jc1 extends View {
+    public int f46599a;
+    public final WallpapersListActivity f46600b;
+
+    public jc1(WallpapersListActivity wallpapersListActivity, Context context) {
+        super(context);
+        this.f46600b = wallpapersListActivity;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f38362a) {
-            case 0:
-                this.f38363b.finishFragment();
-                return;
-            case 1:
-                rc1 rc1Var = this.f38363b;
-                rc1Var.G0();
-                rc1Var.finishFragment();
-                return;
-            case 2:
-                rc1 rc1Var2 = this.f38363b;
-                rc1Var2.R = "";
-                rc1Var2.J0(false);
-                return;
-            case 3:
-                rc1.f0(this.f38363b);
-                return;
-            default:
-                rc1.c0(this.f38363b);
-                return;
+    public final void onDraw(Canvas canvas) {
+        WallpapersListActivity wallpapersListActivity = this.f46600b;
+        wallpapersListActivity.f43538s.setColor(this.f46599a);
+        canvas.drawCircle(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(31.0f), org.telegram.messenger.g0.L(18.0f), wallpapersListActivity.f43538s);
+        if (this.f46599a == org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27878d6, false)) {
+            canvas.drawCircle(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(31.0f), org.telegram.messenger.g0.L(18.0f), wallpapersListActivity.f43539w);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        setMeasuredDimension(org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(62.0f));
     }
 }

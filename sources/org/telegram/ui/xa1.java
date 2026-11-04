@@ -1,23 +1,57 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class xa1 extends org.telegram.ui.Components.m60 {
-    public final long f43297r2;
-    public final za1 f43298s2;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class xa1 extends org.telegram.ui.Components.q31 {
+    public static final int f51902b = 0;
 
-    public xa1(za1 za1Var, Context context, int i10, a0.h hVar, long j10, org.telegram.ui.ActionBar.k2 k2Var, long j11) {
-        super(context, i10, hVar, j10, k2Var, null);
-        this.f43298s2 = za1Var;
-        this.f43297r2 = j11;
+    static {
+        org.telegram.ui.Components.q31.h(new org.telegram.ui.Components.q31());
     }
 
     @Override
-    public final boolean R0() {
-        TLRPC.Chat L0 = this.f43298s2.f43873b.getMessagesController().L0(Long.valueOf(this.f43297r2));
-        if (L0 != null && org.telegram.messenger.w3.y(3, L0)) {
-            return true;
+    public final void b(View view, org.telegram.ui.Components.r31 r31Var, boolean z10, org.telegram.ui.Components.f41 f41Var, org.telegram.ui.Components.l41 l41Var) {
+        float f10;
+        ya1 ya1Var = (ya1) view;
+        int i3 = r31Var.f37626k;
+        CharSequence charSequence = r31Var.f37627l;
+        CharSequence charSequence2 = r31Var.f37628m;
+        boolean z11 = r31Var.f37632q;
+        boolean z12 = r31Var.f37633r;
+        int i10 = r31Var.f37640z;
+        TextView textView = ya1Var.f52242e;
+        ImageView imageView = ya1Var.f52243f;
+        ya1Var.h = z11;
+        ya1Var.f52244n = z12;
+        ya1Var.f52240b.setImageResource(i3);
+        int i11 = 8;
+        if (i10 != 0) {
+            imageView.setVisibility(0);
+            imageView.setImageResource(i10);
+        } else {
+            imageView.setVisibility(8);
         }
-        return false;
+        ya1Var.d.setText(charSequence);
+        textView.setText(charSequence2);
+        if (!TextUtils.isEmpty(charSequence2)) {
+            i11 = 0;
+        }
+        textView.setVisibility(i11);
+        if (TextUtils.isEmpty(charSequence2)) {
+            f10 = 15.0f;
+        } else {
+            f10 = 10.0f;
+        }
+        int L = org.telegram.messenger.g0.L(f10);
+        ya1Var.f52241c.setPadding(0, L, 0, L);
+        ya1Var.updateColors();
+    }
+
+    @Override
+    public final View d(Context context, org.telegram.ui.Components.tj0 tj0Var, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
+        return new ya1(context, e6Var);
     }
 }

@@ -1,41 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-public final class wq0 extends ph.j2 {
-    public final au0 V;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wq0 extends AnimatorListenerAdapter {
+    public final int f40056a;
+    public final ws0 f40057b;
 
-    public wq0(au0 au0Var, org.telegram.ui.ActionBar.k2 k2Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.p6 p6Var, tg.b bVar) {
-        super(k2Var, context, i10, j10, p6Var, bVar);
-        this.V = au0Var;
+    public wq0(ws0 ws0Var, int i3) {
+        this.f40056a = i3;
+        this.f40057b = ws0Var;
     }
 
     @Override
-    public final void q(boolean z10) {
-        float f7;
-        float f10;
-        au0 au0Var = this.V;
-        TextView textView = au0Var.f24555s0;
-        textView.setVisibility(0);
-        ViewPropertyAnimator animate = textView.animate();
-        float f11 = 1.0f;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40056a) {
+            case 0:
+                this.f40057b.O0 = null;
+                return;
+            default:
+                ws0 ws0Var = this.f40057b;
+                org.telegram.ui.ActionBar.q0 q0Var = ws0Var.f40117q0;
+                rr0[] rr0VarArr = ws0Var.f40108n0;
+                ws0Var.f40096i1 = null;
+                int i3 = 4;
+                if (ws0Var.f40104l1) {
+                    rr0VarArr[1].setVisibility(8);
+                    if (q0Var != null && !ws0Var.I()) {
+                        if (ws0Var.H0()) {
+                            i3 = 8;
+                        }
+                        ws0Var.setSearchItemVisibility(i3);
+                        ws0Var.f40121r0 = 0.0f;
+                    } else {
+                        ws0Var.f40121r0 = ws0Var.l0(0.0f);
+                        ws0Var.K1(0.0f);
+                    }
+                    ws0Var.G1(false);
+                    ws0Var.A0 = 0;
+                } else {
+                    rr0 rr0Var = rr0VarArr[0];
+                    rr0VarArr[0] = rr0VarArr[1];
+                    rr0VarArr[1] = rr0Var;
+                    rr0Var.setVisibility(8);
+                    if (q0Var != null && ws0Var.A0 == 2) {
+                        if (ws0Var.H0()) {
+                            i3 = 8;
+                        }
+                        ws0Var.setSearchItemVisibility(i3);
+                    }
+                    ws0Var.A0 = 0;
+                    ws0Var.j1(1.0f, rr0VarArr[0].F);
+                    ws0Var.W0();
+                    ws0Var.s1();
+                }
+                ws0Var.f40099j1 = false;
+                ws0Var.B1 = false;
+                ws0Var.A1 = false;
+                ws0Var.setHeaderEnabled(true);
+                ws0Var.L0.setEnabled(true);
+                return;
         }
-        ViewPropertyAnimator alpha = animate.alpha(f7);
-        if (z10) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.4f;
-        }
-        ViewPropertyAnimator scaleX = alpha.scaleX(f10);
-        if (!z10) {
-            f11 = 0.4f;
-        }
-        scaleX.scaleY(f11).withEndAction(new k2.v(20, this, z10)).start();
-        au0Var.E1(true);
     }
 }

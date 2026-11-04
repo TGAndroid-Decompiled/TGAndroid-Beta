@@ -1,70 +1,56 @@
 package yd;
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import td.e0;
-public class k {
-    public static final AtomicReferenceFieldUpdater f54428a = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_next$volatile");
-    public static final AtomicReferenceFieldUpdater f54429b = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_prev$volatile");
-    public static final AtomicReferenceFieldUpdater f54430c = AtomicReferenceFieldUpdater.newUpdater(k.class, Object.class, "_removedRef$volatile");
-    private volatile Object _next$volatile = this;
-    private volatile Object _prev$volatile = this;
-    private volatile Object _removedRef$volatile;
+import java.util.concurrent.atomic.AtomicReferenceArray;
+public final class k extends be.r {
+    public final c f59411e;
+    public final AtomicReferenceArray f59412f;
 
-    public final yd.k d() {
-        throw new UnsupportedOperationException("Method not decompiled: yd.k.d():yd.k");
+    public k(long j10, k kVar, c cVar, int i3) {
+        super(j10, kVar, i3);
+        this.f59411e = cVar;
+        this.f59412f = new AtomicReferenceArray(e.f59390b * 2);
     }
 
-    public final void e(k kVar) {
-        while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f54429b;
-            k kVar2 = (k) atomicReferenceFieldUpdater.get(kVar);
-            if (f() == kVar) {
-                while (!atomicReferenceFieldUpdater.compareAndSet(kVar, kVar2, this)) {
-                    if (atomicReferenceFieldUpdater.get(kVar) != kVar2) {
-                        break;
-                    }
-                }
-                if (h()) {
-                    kVar.d();
-                    return;
-                }
-                return;
+    @Override
+    public final int g() {
+        return e.f59390b;
+    }
+
+    @Override
+    public final void h(int r5, fd.h r6) {
+        throw new UnsupportedOperationException("Method not decompiled: yd.k.h(int, fd.h):void");
+    }
+
+    public final boolean k(int i3, Object obj, Object obj2) {
+        AtomicReferenceArray atomicReferenceArray;
+        int i10 = (i3 * 2) + 1;
+        do {
+            atomicReferenceArray = this.f59412f;
+            if (atomicReferenceArray.compareAndSet(i10, obj, obj2)) {
+                return true;
             }
-            return;
-        }
+        } while (atomicReferenceArray.get(i10) == obj);
+        return false;
     }
 
-    public final Object f() {
-        while (true) {
-            Object obj = f54428a.get(this);
-            if (!(obj instanceof p)) {
-                return obj;
-            }
-            ((p) obj).a(this);
-        }
+    public final Object l(int i3) {
+        return this.f59412f.get((i3 * 2) + 1);
     }
 
-    public final k g() {
-        q qVar;
-        k kVar;
-        Object f7 = f();
-        if (f7 instanceof q) {
-            qVar = (q) f7;
-        } else {
-            qVar = null;
+    public final void m(int i3, boolean z10) {
+        if (z10) {
+            c cVar = this.f59411e;
+            kotlin.jvm.internal.j.b(cVar);
+            cVar.B((this.f3282c * e.f59390b) + i3);
         }
-        if (qVar != null && (kVar = qVar.f54439a) != null) {
-            return kVar;
-        }
-        kotlin.jvm.internal.i.c(f7, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode{ kotlinx.coroutines.internal.LockFreeLinkedListKt.Node }");
-        return (k) f7;
+        i();
     }
 
-    public boolean h() {
-        return f() instanceof q;
+    public final void n(int i3, Object obj) {
+        this.f59412f.set(i3 * 2, obj);
     }
 
-    public String toString() {
-        return new kotlin.jvm.internal.m(this, e0.class, "classSimpleName", "getClassSimpleName(Ljava/lang/Object;)Ljava/lang/String;", 1) + '@' + e0.k(this);
+    public final void o(int i3, Object obj) {
+        this.f59412f.set((i3 * 2) + 1, obj);
     }
 }

@@ -1,124 +1,76 @@
 package b8;
 
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.text.TextUtils;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.u0;
-import com.google.android.gms.common.api.m;
-import com.google.android.gms.common.api.q;
-import y8.f0;
-import y8.g0;
-import y8.w0;
-public final class e extends com.google.android.gms.common.api.internal.e {
-    public final int f2508q = 1;
-    public final String f2509r;
-    public final byte[] f2510s;
-    public final Object f2511t;
+import java.util.Map;
+public final class e extends bh {
+    public final Object f2555b;
+    public int f2556c;
+    public final g d;
 
-    public e(m mVar, byte[] bArr, String str) {
-        super(m8.c.f13025a, mVar);
-        this.f2510s = bArr;
-        this.f2509r = str;
-        this.f2511t = new g(this);
+    public e(g gVar, int i3) {
+        super(0, false);
+        this.d = gVar;
+        Object[] objArr = gVar.f2614c;
+        objArr.getClass();
+        this.f2555b = objArr[i3];
+        this.f2556c = i3;
     }
 
-    @Override
-    public final void a(q qVar) {
-        switch (this.f2508q) {
-            case 0:
-                a(qVar);
+    public final void a() {
+        int i3 = this.f2556c;
+        Object obj = this.f2555b;
+        g gVar = this.d;
+        if (i3 != -1 && i3 < gVar.size()) {
+            int i10 = this.f2556c;
+            Object[] objArr = gVar.f2614c;
+            objArr.getClass();
+            if (m1.a(obj, objArr[i10])) {
                 return;
-            default:
-                a(qVar);
-                return;
+            }
         }
+        Object obj2 = g.f2611s;
+        this.f2556c = gVar.f(obj);
     }
 
     @Override
-    public final q d(Status status) {
-        switch (this.f2508q) {
-            case 0:
-                return new f(status, null);
-            default:
-                return new g0(status, -1);
-        }
+    public final Object getKey() {
+        return this.f2555b;
     }
 
     @Override
-    public final void n(com.google.android.gms.common.api.c cVar) {
-        Parcel obtain;
-        Parcel obtain2;
-        ApplicationInfo applicationInfo;
-        Bundle bundle;
-        int i10 = this.f2508q;
-        byte[] bArr = this.f2510s;
-        Object obj = this.f2511t;
-        String str = this.f2509r;
-        switch (i10) {
-            case 0:
-                a aVar = (a) cVar;
-                g gVar = (g) obj;
-                if (TextUtils.isEmpty(str)) {
-                    Context context = aVar.U;
-                    try {
-                        PackageManager packageManager = context.getPackageManager();
-                        if (packageManager != null && (applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 128)) != null && (bundle = applicationInfo.metaData) != null) {
-                            String str2 = (String) bundle.get("com.google.android.safetynet.ATTEST_API_KEY");
-                            if (str2 != null) {
-                                str = str2;
-                            }
-                        }
-                    } catch (PackageManager.NameNotFoundException unused) {
-                    }
-                    str = "";
-                }
-                d dVar = (d) aVar.v();
-                obtain = Parcel.obtain();
-                obtain.writeInterfaceToken("com.google.android.gms.safetynet.internal.ISafetyNetService");
-                int i11 = c.f2506a;
-                if (gVar == null) {
-                    obtain.writeStrongBinder(null);
-                } else {
-                    obtain.writeStrongBinder(gVar);
-                }
-                obtain.writeByteArray(bArr);
-                obtain.writeString(str);
-                obtain2 = Parcel.obtain();
-                try {
-                    dVar.f2507a.transact(7, obtain, obtain2, 0);
-                    obtain2.readException();
-                    return;
-                } finally {
-                }
-            default:
-                f0 f0Var = (f0) ((w0) cVar).v();
-                ?? aVar2 = new y8.a();
-                aVar2.f54310b = this;
-                obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(f0Var.f318c);
-                int i12 = f8.a.f6962a;
-                obtain.writeStrongBinder(aVar2);
-                obtain.writeString(str);
-                obtain.writeString((String) obj);
-                obtain.writeByteArray(bArr);
-                obtain2 = Parcel.obtain();
-                try {
-                    f0Var.f317b.transact(12, obtain, obtain2, 0);
-                    obtain2.readException();
-                    return;
-                } finally {
-                }
+    public final Object getValue() {
+        g gVar = this.d;
+        Map b10 = gVar.b();
+        if (b10 != null) {
+            return b10.get(this.f2555b);
         }
+        a();
+        int i3 = this.f2556c;
+        if (i3 == -1) {
+            return null;
+        }
+        Object[] objArr = gVar.d;
+        objArr.getClass();
+        return objArr[i3];
     }
 
-    public e(u0 u0Var, String str, String str2, byte[] bArr) {
-        super(x8.c.f53444a, u0Var);
-        this.f2509r = str;
-        this.f2511t = str2;
-        this.f2510s = bArr;
+    @Override
+    public final Object setValue(Object obj) {
+        g gVar = this.d;
+        Map b10 = gVar.b();
+        Object obj2 = this.f2555b;
+        if (b10 != null) {
+            return b10.put(obj2, obj);
+        }
+        a();
+        int i3 = this.f2556c;
+        if (i3 == -1) {
+            gVar.put(obj2, obj);
+            return null;
+        }
+        Object[] objArr = gVar.d;
+        objArr.getClass();
+        Object obj3 = objArr[i3];
+        objArr[i3] = obj;
+        return obj3;
     }
 }

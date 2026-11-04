@@ -1,70 +1,51 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
-public final class f90 implements org.telegram.messenger.r20 {
-    public final int f37087a;
-    public final int f37088b;
-    public final String f37089c;
-    public final Object d;
-    public final Object e;
-    public final Object f37090f;
+import org.telegram.tgnet.tl.TL_account;
+public final class f90 implements org.telegram.messenger.n10 {
+    public final int f45220a;
+    public final m90 f45221b;
+    public final String f45222c;
 
-    public f90(Object obj, Object obj2, Object obj3, int i10, String str, int i11) {
-        this.f37087a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f37090f = obj3;
-        this.f37088b = i10;
-        this.f37089c = str;
+    public f90(m90 m90Var, String str, int i3) {
+        this.f45220a = i3;
+        this.f45221b = m90Var;
+        this.f45222c = str;
     }
 
     @Override
-    public final void a(Object obj) {
-        TLRPC.User user;
-        int i10 = this.f37087a;
-        Object obj2 = this.f37090f;
-        Object obj3 = this.e;
-        Object obj4 = this.d;
-        switch (i10) {
+    public final void a(Object obj, Object obj2) {
+        int i3 = this.f45220a;
+        String str = this.f45222c;
+        m90 m90Var = this.f45221b;
+        switch (i3) {
             case 0:
-                LaunchActivity launchActivity = (LaunchActivity) obj4;
-                org.telegram.messenger.wp wpVar = (org.telegram.messenger.wp) obj3;
-                gf.e eVar = (gf.e) obj2;
-                Long l4 = (Long) obj;
-                Pattern pattern = LaunchActivity.D1;
-                if (l4 != null && l4.longValue() > 0 && l4.longValue() != Long.MAX_VALUE) {
-                    user = wpVar.Z1(l4);
-                } else {
-                    user = null;
-                }
-                int i11 = this.f37088b;
-                if (user != null && !org.telegram.messenger.i20.B(user)) {
-                    launchActivity.Y(i11, user, this.f37089c, eVar);
-                    return;
-                }
-                if (eVar != null) {
-                    eVar.b();
-                }
-                if (user != null) {
-                    launchActivity.m0(i11, user.f19943id, null);
-                    return;
-                }
-                org.telegram.ui.ActionBar.k2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    org.telegram.messenger.m5.o(null, 2131748150, org.telegram.ui.Components.cc.a0(Q), null);
+                TL_account.Passkeys passkeys = (TL_account.Passkeys) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                m90Var.c();
+                if (passkeys != null) {
+                    m90Var.u(new PasskeysActivity(passkeys.passkeys), false);
+                    if ("create".equalsIgnoreCase(str)) {
+                        m90Var.x("addPasskeyRow");
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                Context context = (Context) obj3;
-                org.telegram.ui.ActionBar.p6 p6Var = (org.telegram.ui.ActionBar.p6) obj2;
-                ArrayList arrayList = (ArrayList) obj;
-                ((boolean[]) obj4)[0] = false;
-                if (arrayList != null) {
-                    new rh.t0(context, p6Var, this.f37088b, this.f37089c, arrayList, false).show();
+                org.telegram.ui.Wallet.x1 x1Var = (org.telegram.ui.Wallet.x1) obj;
+                String str2 = (String) obj2;
+                m90Var.c();
+                if (x1Var == null) {
+                    if (str2 == null) {
+                        str2 = org.telegram.messenger.bd.M0(2131743001, null);
+                    }
+                    org.telegram.ui.Components.fc.b0(str2);
+                    return;
+                }
+                org.telegram.ui.ActionBar.d2 T = LaunchActivity.T();
+                if (T != null && T.getContext() != null) {
+                    org.telegram.ui.Wallet.c2.D(T.getContext(), m90Var.f47567b, x1Var, null, T.getResourceProvider(), null, new i90(m90Var, str, 1));
                     return;
                 }
                 return;

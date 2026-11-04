@@ -1,99 +1,43 @@
 package org.telegram.ui.ActionBar;
 
-import org.telegram.ui.Components.ua;
-import org.telegram.ui.Components.wb;
-public final class e2 implements ua {
-    public final int f20283a;
-    public final k2 f20284b;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.h10;
+import org.telegram.messenger.hs;
+import org.telegram.ui.hb1;
+public final class e2 implements Runnable {
+    public final int f27471a;
+    public final t2 f27472b;
 
-    public e2(int i10, k2 k2Var) {
-        this.f20283a = i10;
-        this.f20284b = k2Var;
+    public e2(t2 t2Var, int i3) {
+        this.f27471a = i3;
+        this.f27472b = t2Var;
     }
 
     @Override
-    public final boolean a() {
-        switch (this.f20283a) {
+    public final void run() {
+        switch (this.f27471a) {
             case 0:
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public final void b(wb wbVar) {
-        int i10 = this.f20283a;
-    }
-
-    @Override
-    public final void c(float f7) {
-        int i10 = this.f20283a;
-    }
-
-    @Override
-    public final void d(wb wbVar) {
-        int i10 = this.f20283a;
-    }
-
-    @Override
-    public final boolean e() {
-        switch (this.f20283a) {
-            case 0:
-                return true;
-            default:
-                return true;
-        }
-    }
-
-    @Override
-    public final int f(int i10) {
-        switch (this.f20283a) {
-            case 0:
-                if (this.f20284b.isSupportEdgeToEdge()) {
-                    return org.telegram.messenger.i0.f16167n;
+                t2 t2Var = this.f27472b;
+                j2 j2Var = t2Var.f28589c;
+                org.telegram.messenger.g0.E2(j2Var);
+                t2Var.f28601g1.getLayoutContainer().addView(j2Var);
+                return;
+            case 1:
+                this.f27472b.dismiss();
+                return;
+            case 2:
+                try {
+                    this.f27472b.K();
+                    return;
+                } catch (Exception e10) {
+                    a8.g(e10, true);
+                    return;
                 }
-                return 0;
             default:
-                return this.f20284b.getBottomInset();
+                this.f27472b.dismiss();
+                hs.f(h10.f22829t0).k(189, new Object[0]);
+                org.telegram.messenger.g0.i3(new hb1(19), 220L);
+                return;
         }
-    }
-
-    @Override
-    public final boolean g(int i10) {
-        switch (this.f20283a) {
-            case 0:
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    @Override
-    public final int h(int i10) {
-        switch (this.f20283a) {
-            case 0:
-                return 0;
-            default:
-                return 0;
-        }
-    }
-
-    private final void i(float f7) {
-    }
-
-    private final void j(float f7) {
-    }
-
-    private final void k(wb wbVar) {
-    }
-
-    private final void l(wb wbVar) {
-    }
-
-    private final void m(wb wbVar) {
-    }
-
-    private final void n(wb wbVar) {
     }
 }

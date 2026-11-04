@@ -1,3 +1,5 @@
 package ad;
-public interface c {
+
+import java.util.ArrayList;
+public final class c extends ArrayList {
 }

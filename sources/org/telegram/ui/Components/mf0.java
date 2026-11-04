@@ -1,35 +1,15 @@
 package org.telegram.ui.Components;
+public final class mf0 implements Runnable {
+    public final int f36146a;
+    public final nf0 f36147b;
 
-import java.util.Arrays;
-import java.util.Comparator;
-public final class mf0 implements Comparator {
-    public final tf0 f28470a;
-
-    public mf0(tf0 tf0Var) {
-        this.f28470a = tf0Var;
-    }
-
-    public final int a(sf0 sf0Var) {
-        tf0 tf0Var = this.f28470a;
-        int size = tf0Var.f30641p1.answers.size();
-        for (int i10 = 0; i10 < size; i10++) {
-            if (Arrays.equals(tf0Var.f30641p1.answers.get(i10).option, sf0Var.d)) {
-                return i10;
-            }
-        }
-        return 0;
+    public mf0(nf0 nf0Var, int i3) {
+        this.f36146a = i3;
+        this.f36147b = nf0Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int a2 = a((sf0) obj);
-        int a10 = a((sf0) obj2);
-        if (a2 > a10) {
-            return 1;
-        }
-        if (a2 < a10) {
-            return -1;
-        }
-        return 0;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mf0.run():void");
     }
 }

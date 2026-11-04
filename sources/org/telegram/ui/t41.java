@@ -1,16 +1,23 @@
 package org.telegram.ui;
+public final class t41 implements Runnable {
+    public final int f49697a;
+    public final StickersActivity f49698b;
 
-import android.content.Context;
-public final class t41 extends gy0 {
-    public final c51 G;
-
-    public t41(c51 c51Var, c51 c51Var2, Context context) {
-        super(context, c51Var2);
-        this.G = c51Var;
+    public t41(StickersActivity stickersActivity, int i3) {
+        this.f49697a = i3;
+        this.f49698b = stickersActivity;
     }
 
     @Override
-    public final void f() {
-        this.G.f36189c.f31183f3.O(true);
+    public final void run() {
+        switch (this.f49697a) {
+            case 0:
+                this.f49698b.r0();
+                return;
+            default:
+                StickersActivity stickersActivity = this.f49698b;
+                stickersActivity.f42002n--;
+                return;
+        }
     }
 }

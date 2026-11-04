@@ -1,18 +1,18 @@
 package c3;
 
-import java.util.List;
-public interface o {
-    boolean a(p pVar);
+import android.content.Context;
+public final class o {
+    public final Context f4090a;
+    public final y f4091b;
+    public s f4092c;
+    public boolean d;
+    public boolean f4094f;
+    public long f4095g = 15000;
+    public final z h = new z();
+    public g2.h0 f4093e = g2.h0.f11849a;
 
-    o b();
-
-    void c(q qVar);
-
-    void d(long j10, long j11);
-
-    List e();
-
-    int f(p pVar, s sVar);
-
-    void release();
+    public o(Context context, y yVar) {
+        this.f4090a = context.getApplicationContext();
+        this.f4091b = yVar;
+    }
 }

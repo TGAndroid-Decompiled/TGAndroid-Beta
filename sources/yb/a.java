@@ -1,73 +1,10 @@
 package yb;
-public final class a {
-    public static final a h;
-    public final int[] f54386a;
-    public final int[] f54387b;
-    public final b f54388c;
-    public final b d;
-    public final int e;
-    public final int f54389f;
-    public final int f54390g;
+public final class a extends h {
+    public static final a f59349c;
 
     static {
-        new a(4201, 4096, 1);
-        new a(1033, 1024, 1);
-        new a(67, 64, 1);
-        new a(19, 16, 1);
-        h = new a(285, 256, 0);
-        new a(301, 256, 1);
-    }
-
-    public a(int i10, int i11, int i12) {
-        this.f54389f = i10;
-        this.e = i11;
-        this.f54390g = i12;
-        this.f54386a = new int[i11];
-        this.f54387b = new int[i11];
-        int i13 = 1;
-        for (int i14 = 0; i14 < i11; i14++) {
-            this.f54386a[i14] = i13;
-            i13 *= 2;
-            if (i13 >= i11) {
-                i13 = (i13 ^ i10) & (i11 - 1);
-            }
-        }
-        for (int i15 = 0; i15 < i11 - 1; i15++) {
-            this.f54387b[this.f54386a[i15]] = i15;
-        }
-        this.f54388c = new b(this, new int[]{0});
-        this.d = new b(this, new int[]{1});
-    }
-
-    public final b a(int i10, int i11) {
-        if (i10 >= 0) {
-            if (i11 == 0) {
-                return this.f54388c;
-            }
-            int[] iArr = new int[i10 + 1];
-            iArr[0] = i11;
-            return new b(this, iArr);
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public final int b(int i10) {
-        if (i10 != 0) {
-            int i11 = this.f54387b[i10];
-            return this.f54386a[(this.e - i11) - 1];
-        }
-        throw new ArithmeticException();
-    }
-
-    public final int c(int i10, int i11) {
-        if (i10 != 0 && i11 != 0) {
-            int[] iArr = this.f54387b;
-            return this.f54386a[(iArr[i10] + iArr[i11]) % (this.e - 1)];
-        }
-        return 0;
-    }
-
-    public final String toString() {
-        return "GF(0x" + Integer.toHexString(this.f54389f) + ',' + this.e + ')';
+        ?? exc = new Exception();
+        f59349c = exc;
+        exc.setStackTrace(h.f59366b);
     }
 }

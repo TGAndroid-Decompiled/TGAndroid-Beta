@@ -1,4 +1,3 @@
 package f6;
-public abstract class d extends b8.b implements e {
-    public static final int f6918b = 0;
+public final class d extends Exception {
 }

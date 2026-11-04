@@ -1,65 +1,22 @@
 package i7;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import m.p3;
-public final class c extends n6.g {
-    public final Bundle U;
+import android.os.Parcel;
+import android.os.Parcelable;
+import f6.c0;
+public final class c extends q6.a {
+    public static final Parcelable.Creator<c> CREATOR = new c0(17);
+    public final boolean f14670a;
 
-    public c(Context context, Looper looper, k kVar, l lVar, p3 p3Var) {
-        super(context, looper, 212, p3Var, kVar, lVar, 0);
-        this.U = new Bundle();
+    public c(boolean z10) {
+        this.f14670a = z10;
     }
 
     @Override
-    public final boolean D() {
-        return true;
-    }
-
-    @Override
-    public final int m() {
-        return 17895000;
-    }
-
-    @Override
-    public final IInterface r(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.auth.api.identity.internal.ISignInService");
-        if (queryLocalInterface instanceof i) {
-            return (i) queryLocalInterface;
-        }
-        return new a9.a(iBinder, "com.google.android.gms.auth.api.identity.internal.ISignInService", 5);
-    }
-
-    @Override
-    public final k6.c[] s() {
-        return d.f8230b;
-    }
-
-    @Override
-    public final Bundle u() {
-        return this.U;
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.auth.api.identity.internal.ISignInService";
-    }
-
-    @Override
-    public final String x() {
-        return "com.google.android.gms.auth.api.identity.service.signin.START";
-    }
-
-    @Override
-    public final boolean z() {
-        return true;
+    public final void writeToParcel(Parcel dest, int i3) {
+        kotlin.jvm.internal.j.e(dest, "dest");
+        int s6 = j8.a.s(dest, 20293);
+        j8.a.r(dest, 1, 4);
+        dest.writeInt(this.f14670a ? 1 : 0);
+        j8.a.t(dest, s6);
     }
 }

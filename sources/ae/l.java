@@ -1,39 +1,9 @@
 package ae;
+public final class l extends kotlin.jvm.internal.i implements od.q {
+    public static final l f407a = new kotlin.jvm.internal.i(3, zd.c.class, "emit", "emit(Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;", 0);
 
-import java.util.concurrent.TimeUnit;
-import yd.v;
-public abstract class l {
-    public static final String f427a;
-    public static final long f428b;
-    public static final int f429c;
-    public static final int d;
-    public static final long e;
-    public static final g f430f;
-    public static final j f431g;
-    public static final j h;
-
-    static {
-        String str;
-        int i10 = v.f54442a;
-        try {
-            str = System.getProperty("kotlinx.coroutines.scheduler.default.name");
-        } catch (SecurityException unused) {
-            str = null;
-        }
-        if (str == null) {
-            str = "DefaultDispatcher";
-        }
-        f427a = str;
-        f428b = yd.a.i("kotlinx.coroutines.scheduler.resolution.ns", 100000L, 1L, Long.MAX_VALUE);
-        int i11 = v.f54442a;
-        if (i11 < 2) {
-            i11 = 2;
-        }
-        f429c = yd.a.j(i11, 8, "kotlinx.coroutines.scheduler.core.pool.size");
-        d = yd.a.j(2097150, 4, "kotlinx.coroutines.scheduler.max.pool.size");
-        e = TimeUnit.SECONDS.toNanos(yd.a.i("kotlinx.coroutines.scheduler.keep.alive.sec", 60L, 1L, Long.MAX_VALUE));
-        f430f = g.f421a;
-        f431g = new j(0);
-        h = new j(1);
+    @Override
+    public final Object a(Object obj, Object obj2, Object obj3) {
+        return ((zd.c) obj).b(obj2, (fd.c) obj3);
     }
 }

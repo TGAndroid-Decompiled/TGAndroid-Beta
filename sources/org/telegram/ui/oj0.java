@@ -1,59 +1,25 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class oj0 implements TextWatcher {
-    public final int f40180a;
-    public final PasscodeActivity f40181b;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class oj0 extends ClickableSpan {
+    public final yj0 f48304a;
 
-    public oj0(PasscodeActivity passcodeActivity, int i10) {
-        this.f40180a = i10;
-        this.f40181b = passcodeActivity;
+    public oj0(yj0 yj0Var) {
+        this.f48304a = yj0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f40180a;
+    public final void onClick(View view) {
+        yj0 yj0Var = this.f48304a;
+        sf.c.t(yj0Var.getParentActivity(), yj0Var.E.privacy_policy_url);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f40180a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f40181b;
-                jj0 jj0Var = passcodeActivity.S;
-                if (passcodeActivity.R) {
-                    passcodeActivity.f33428n.removeCallbacks(jj0Var);
-                    jj0Var.run();
-                    return;
-                }
-                return;
-            default:
-                PasscodeActivity passcodeActivity2 = this.f40181b;
-                jj0 jj0Var2 = passcodeActivity2.S;
-                if (passcodeActivity2.R) {
-                    passcodeActivity2.f33428n.removeCallbacks(jj0Var2);
-                    jj0Var2.run();
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f40180a;
-    }
-
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        textPaint.setUnderlineText(true);
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
     }
 }

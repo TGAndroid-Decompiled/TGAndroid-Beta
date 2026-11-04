@@ -1,70 +1,90 @@
 package fe;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.voip.c1;
-public final class d extends AnimatorListenerAdapter {
-    public final int f7026a;
-    public final float f7027b;
-    public final float f7028c;
-    public final Object d;
+import b8.jc;
+import be.t;
+import dd.k;
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
+import wd.b0;
+import wd.m;
+public final class d extends h implements a {
+    public static final AtomicReferenceFieldUpdater f11572g = AtomicReferenceFieldUpdater.newUpdater(d.class, Object.class, "owner$volatile");
+    private volatile Object owner$volatile = e.f11573a;
 
-    public d(Object obj, float f7, float f10, int i10) {
-        this.f7026a = i10;
-        this.d = obj;
-        this.f7027b = f7;
-        this.f7028c = f10;
+    public final boolean c() {
+        if (Math.max(h.f11579f.get(this), 0) != 0) {
+            return false;
+        }
+        return true;
     }
 
-    public void a() {
-        f fVar = (f) this.d;
-        if (fVar.h) {
-            fVar.d(this.f7027b + this.f7028c, 1.0f);
-            if (fVar.h) {
-                fVar.h = false;
+    public final Object d(hd.c cVar) {
+        boolean e10 = e();
+        k kVar = k.f8801a;
+        if (!e10) {
+            m l10 = b0.l(jc.b(cVar));
+            try {
+                a(new c(this, l10));
+                Object r5 = l10.r();
+                gd.a aVar = gd.a.f12241a;
+                if (r5 != aVar) {
+                    r5 = kVar;
+                }
+                if (r5 == aVar) {
+                    return r5;
+                }
+            } catch (Throwable th2) {
+                l10.A();
+                throw th2;
             }
-            fVar.f7030b.E(fVar.f7032f, fVar.f7029a);
+        }
+        return kVar;
+    }
+
+    public final boolean e() {
+        int i3;
+        while (true) {
+            AtomicIntegerFieldUpdater atomicIntegerFieldUpdater = h.f11579f;
+            int i10 = atomicIntegerFieldUpdater.get(this);
+            if (i10 > 1) {
+                do {
+                    i3 = atomicIntegerFieldUpdater.get(this);
+                    if (i3 > 1) {
+                    }
+                } while (!atomicIntegerFieldUpdater.compareAndSet(this, i3, 1));
+            } else if (i10 <= 0) {
+                return false;
+            } else {
+                if (atomicIntegerFieldUpdater.compareAndSet(this, i10, i10 - 1)) {
+                    f11572g.set(this, null);
+                    return true;
+                }
+            }
         }
     }
 
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f7026a) {
-            case 0:
-                a();
+    public final void f(Object obj) {
+        while (c()) {
+            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f11572g;
+            Object obj2 = atomicReferenceFieldUpdater.get(this);
+            t tVar = e.f11573a;
+            if (obj2 != tVar) {
+                if (obj2 != obj && obj != null) {
+                    throw new IllegalStateException(("This mutex is locked by " + obj2 + ", but " + obj + " is expected").toString());
+                }
+                while (!atomicReferenceFieldUpdater.compareAndSet(this, obj2, tVar)) {
+                    if (atomicReferenceFieldUpdater.get(this) != obj2) {
+                        break;
+                    }
+                }
+                b();
                 return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+            }
         }
+        throw new IllegalStateException("This mutex is not locked");
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f7026a) {
-            case 0:
-                a();
-                return;
-            default:
-                c1 c1Var = (c1) this.d;
-                c1Var.O = false;
-                c1Var.M = true;
-                c1Var.W = this.f7027b;
-                c1Var.f31403a0 = this.f7028c;
-                c1Var.requestLayout();
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f7026a) {
-            case 0:
-                ((f) this.d).getClass();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final String toString() {
+        return "Mutex@" + b0.j(this) + "[isLocked=" + c() + ",owner=" + f11572g.get(this) + ']';
     }
 }

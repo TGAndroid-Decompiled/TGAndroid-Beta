@@ -1,52 +1,34 @@
 package org.telegram.ui;
+public final class gk implements Runnable {
+    public final int f45674a;
+    public final hk f45675b;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class gk extends FragmentContextView {
-    public final int X0;
-    public final un Y0;
-
-    public gk(un unVar, Context context, un unVar2, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
-        super(context, unVar2, null, true, p6Var);
-        this.X0 = i10;
-        switch (i10) {
-            case 1:
-                this.Y0 = unVar;
-                super(context, unVar2, null, false, p6Var);
-                return;
-            default:
-                this.Y0 = unVar;
-                return;
-        }
+    public gk(hk hkVar, int i3) {
+        this.f45674a = i3;
+        this.f45675b = hkVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.X0) {
+    public final void run() {
+        switch (this.f45674a) {
             case 0:
-                un unVar = this.Y0;
-                org.telegram.ui.Components.hg hgVar = unVar.f41990a1;
-                FrameLayout frameLayout = unVar.f42167o2;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                mj mjVar = this.f45675b.I.f51237a0;
+                if (mjVar != null) {
+                    mjVar.G0();
+                    return;
                 }
-                hgVar.i(frameLayout, z10, true);
                 return;
             default:
-                un unVar2 = this.Y0;
-                org.telegram.ui.Components.hg hgVar2 = unVar2.f41990a1;
-                FrameLayout frameLayout2 = unVar2.f42140m2;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
+                mj mjVar2 = this.f45675b.I.f51237a0;
+                if (mjVar2 != null) {
+                    mjVar2.U0 = false;
+                    org.telegram.ui.Components.kf kfVar = mjVar2.V0;
+                    if (kfVar != null) {
+                        kfVar.u(false);
+                        return;
+                    }
+                    return;
                 }
-                hgVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

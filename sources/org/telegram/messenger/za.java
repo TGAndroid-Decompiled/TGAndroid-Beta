@@ -1,3 +1,3 @@
 package org.telegram.messenger;
-public interface za {
+public final class za extends ab {
 }

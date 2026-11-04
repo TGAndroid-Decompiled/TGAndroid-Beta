@@ -1,111 +1,12 @@
 package f9;
-
-import j$.util.Objects;
-import v7.t6;
-public class d {
-    public static final b d;
-    public final a f6969a;
-    public final Character f6970b;
-    public volatile d f6971c;
-
-    static {
-        new c("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
-        new c("base64Url()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
-        new d("base32()", "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
-        new d("base32Hex()", "0123456789ABCDEFGHIJKLMNOPQRSTUV");
-        d = new b(new a("base16()", "0123456789ABCDEF".toCharArray()));
+public abstract class d extends i {
+    @Override
+    public final boolean apply(Object obj) {
+        return c(((Character) obj).charValue());
     }
 
-    public d(a aVar, Character ch2) {
-        boolean z10;
-        this.f6969a = aVar;
-        if (ch2 != null) {
-            char charValue = ch2.charValue();
-            byte[] bArr = aVar.f6968g;
-            if (charValue < bArr.length && bArr[charValue] != -1) {
-                z10 = false;
-                t6.h(z10, "Padding character %s was already in alphabet", ch2);
-                this.f6970b = ch2;
-            }
-        }
-        z10 = true;
-        t6.h(z10, "Padding character %s was already in alphabet", ch2);
-        this.f6970b = ch2;
-    }
-
-    public final void a(StringBuilder sb2, byte[] bArr, int i10, int i11) {
-        boolean z10;
-        t6.n(i10, i10 + i11, bArr.length);
-        a aVar = this.f6969a;
-        int i12 = aVar.f6967f;
-        int i13 = aVar.d;
-        int i14 = 0;
-        if (i11 <= i12) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        t6.f(z10);
-        long j10 = 0;
-        for (int i15 = 0; i15 < i11; i15++) {
-            j10 = (j10 | (bArr[i10 + i15] & 255)) << 8;
-        }
-        int i16 = ((i11 + 1) * 8) - i13;
-        while (i14 < i11 * 8) {
-            sb2.append(aVar.f6965b[((int) (j10 >>> (i16 - i14))) & aVar.f6966c]);
-            i14 += i13;
-        }
-        Character ch2 = this.f6970b;
-        if (ch2 != null) {
-            while (i14 < aVar.f6967f * 8) {
-                sb2.append(ch2.charValue());
-                i14 += i13;
-            }
-        }
-    }
-
-    public void b(StringBuilder sb2, byte[] bArr, int i10) {
-        int i11 = 0;
-        t6.n(0, i10, bArr.length);
-        while (i11 < i10) {
-            a aVar = this.f6969a;
-            a(sb2, bArr, i11, Math.min(aVar.f6967f, i10 - i11));
-            i11 += aVar.f6967f;
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof d) {
-            d dVar = (d) obj;
-            if (this.f6969a.equals(dVar.f6969a) && Objects.equals(this.f6970b, dVar.f6970b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f6969a.hashCode() ^ Objects.hashCode(this.f6970b);
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("BaseEncoding.");
-        a aVar = this.f6969a;
-        sb2.append(aVar);
-        if (8 % aVar.d != 0) {
-            Character ch2 = this.f6970b;
-            if (ch2 == null) {
-                sb2.append(".omitPadding()");
-            } else {
-                sb2.append(".withPadChar('");
-                sb2.append(ch2);
-                sb2.append("')");
-            }
-        }
-        return sb2.toString();
-    }
-
-    public d(String str, String str2) {
-        this(new a(str, str2.toCharArray()), (Character) '=');
+    @Override
+    public i d() {
+        return new c(this);
     }
 }

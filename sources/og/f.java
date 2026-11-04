@@ -1,91 +1,92 @@
 package og;
 
-import org.telegram.messenger.dd;
-import org.telegram.messenger.i0;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.a7;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.g9;
-import org.telegram.ui.Components.r8;
-import w7.b6;
-public final class f extends e {
-    @Override
-    public final void d() {
-        int i10;
-        int i11;
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        int i12 = 3;
-        if (dd.X) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+import android.animation.ValueAnimator;
+import android.graphics.Paint;
+import android.graphics.Path;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.k6;
+public class f {
+    public final ng.a f21085a;
+    public final Paint f21086b;
+    public final Paint f21087c;
+    public final Paint d;
+    public final Path f21088e;
+    public final Path f21089f;
+    public final Path f21090g;
+    public ValueAnimator h;
+    public ValueAnimator f21091i;
+    public int f21092j;
+    public final float[] f21093k;
+    public final float[] f21094l;
+    public int f21095m;
+    public boolean f21096n;
+    public float f21097o;
+    public final e6 f21098p;
+
+    public f(ng.a aVar, boolean z10, e6 e6Var) {
+        int length;
+        int length2;
+        Paint paint = new Paint(1);
+        this.f21086b = paint;
+        Paint paint2 = new Paint(1);
+        this.f21087c = paint2;
+        Paint paint3 = new Paint(1);
+        this.d = paint3;
+        this.f21088e = new Path();
+        this.f21089f = new Path();
+        this.f21090g = new Path();
+        this.f21096n = true;
+        this.f21097o = 1.0f;
+        this.f21098p = e6Var;
+        this.f21085a = aVar;
+        paint2.setStrokeWidth(g0.N(2.0f));
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        if (!mg.g.B1) {
+            paint2.setStrokeJoin(Paint.Join.ROUND);
         }
-        this.f14179c.setLayoutParams(b6.d(40, 40.0f, i10 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        boolean z10 = dd.X;
+        paint2.setColor(aVar.h);
+        paint.setStrokeWidth(g0.N(1.0f));
+        paint.setStyle(style);
+        paint.setColor(aVar.h);
+        paint3.setStrokeWidth(g0.N(10.0f));
+        paint3.setStyle(style);
+        paint3.setStrokeCap(Paint.Cap.ROUND);
+        paint3.setColor(aVar.h);
+        long[] jArr = aVar.f20366a;
         if (z10) {
-            i11 = 5;
+            length = jArr.length * 8;
         } else {
-            i11 = 3;
+            length = jArr.length << 2;
         }
-        int i13 = i11 | 16;
+        this.f21093k = new float[length];
+        long[] jArr2 = aVar.f20366a;
         if (z10) {
-            f7 = 20.0f;
+            length2 = jArr2.length * 8;
         } else {
-            f7 = 69.0f;
+            length2 = jArr2.length << 2;
         }
-        if (z10) {
-            f10 = 69.0f;
-        } else {
-            f10 = 20.0f;
-        }
-        this.d.setLayoutParams(b6.d(-1, -2.0f, i13, f7, 0.0f, f10, 0.0f));
-        boolean z11 = dd.X;
-        if (z11) {
-            i12 = 5;
-        }
-        int i14 = i12 | 16;
-        if (z11) {
-            f11 = 20.0f;
-        } else {
-            f11 = 69.0f;
-        }
-        if (z11) {
-            f12 = 69.0f;
-        } else {
-            f12 = 20.0f;
-        }
-        this.e.setLayoutParams(b6.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
+        this.f21094l = new float[length2];
     }
 
-    public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        a7.Y(this.e, t6.f21186r5, this.f14177a);
-        boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        c cVar = this.d;
-        r8 r8Var = this.f14178b;
-        if (z10) {
-            TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
-            r8Var.g(26);
-            cVar.k(dd.H(',', "BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
-            setSubtitle(dd.G(tL_prepaidStarsGiveaway.quantity, "AmongWinners", new Object[0]));
-        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            cVar.k(dd.L0(2131753328, null));
-            r8Var.g(16);
-            TL_stories.TL_prepaidGiveaway tL_prepaidGiveaway = (TL_stories.TL_prepaidGiveaway) prepaidGiveaway;
-            int i10 = tL_prepaidGiveaway.months;
-            if (i10 == 12) {
-                r8Var.i(-31392, -2796986);
-            } else if (i10 == 6) {
-                r8Var.i(-10703110, -12481584);
+    public void a() {
+        int i3;
+        ng.a aVar = this.f21085a;
+        int i10 = aVar.f20371g;
+        e6 e6Var = this.f21098p;
+        if (i10 >= 0 && k6.f1(i10)) {
+            this.f21095m = k6.w0(aVar.f20371g, e6Var);
+        } else {
+            if (i0.a.h(k6.w0(k6.f27878d6, e6Var)) < 0.5d) {
+                i3 = aVar.f20372i;
             } else {
-                r8Var.i(-6631068, -11945404);
+                i3 = aVar.h;
             }
-            setSubtitle(dd.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", dd.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
+            this.f21095m = i3;
         }
-        g9 g9Var = this.f14179c;
-        g9Var.setImageDrawable(r8Var);
-        g9Var.setRoundRadius(i0.L(20.0f));
+        this.f21087c.setColor(this.f21095m);
+        this.f21086b.setColor(this.f21095m);
+        this.d.setColor(this.f21095m);
     }
 }

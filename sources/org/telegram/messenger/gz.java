@@ -1,19 +1,12 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class gz implements RequestDelegate {
-    public final String f15986a;
-    public final iz f15987b;
+import android.graphics.RectF;
+public final class gz {
+    public final RectF f22807a;
+    public final float f22808b;
 
-    public gz(iz izVar, String str) {
-        this.f15987b = izVar;
-        this.f15986a = str;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        i0.g3(new ir(18, this, this.f15986a));
+    public gz(RectF rectF, float f10) {
+        this.f22807a = rectF;
+        this.f22808b = f10;
     }
 }

@@ -1,22 +1,31 @@
 package org.telegram.ui.Components;
-public final class xw extends w7.d6 {
-    public final vy f32645a;
 
-    public xw(vy vyVar) {
-        this.f32645a = vyVar;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class xw {
+    public final TLRPC.StickerSetCovered f40534a;
+    public final TLRPC.TL_messages_stickerSet f40535b;
+    public final TLRPC.StickerSet f40536c;
+    public final ArrayList d;
+    public final TLRPC.Document f40537e;
+
+    public xw(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, ArrayList arrayList) {
+        TLRPC.Document document = null;
+        this.f40534a = null;
+        this.f40535b = tL_messages_stickerSet;
+        this.f40536c = tL_messages_stickerSet.set;
+        this.d = arrayList;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            document = (TLRPC.Document) arrayList.get(0);
+        }
+        this.f40537e = document;
     }
 
-    @Override
-    public final void a() {
-        vy vyVar = this.f32645a;
-        vyVar.f31952f0 = false;
-        vyVar.P.B1();
-    }
-
-    @Override
-    public final void b() {
-        vy vyVar = this.f32645a;
-        vyVar.P.B1();
-        vyVar.f31952f0 = true;
+    public xw(TLRPC.StickerSetCovered stickerSetCovered, ArrayList arrayList) {
+        this.f40534a = stickerSetCovered;
+        this.f40535b = null;
+        this.f40536c = stickerSetCovered.set;
+        this.d = arrayList;
+        this.f40537e = arrayList.isEmpty() ? null : (TLRPC.Document) arrayList.get(0);
     }
 }

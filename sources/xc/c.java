@@ -1,7 +1,19 @@
 package xc;
-public final class c extends d {
-    @Override
-    public final String toString() {
-        return a1.g.r(new StringBuilder("<![CDATA["), this.f53651c, "]]>");
+
+import java.util.Map;
+public abstract class c {
+    public final String f58608a;
+    public final int f58609b;
+    public final Map f58610c;
+    public int d = -1;
+
+    public c(int i3, String str, Map map) {
+        this.f58608a = str;
+        this.f58609b = i3;
+        this.f58610c = map;
+    }
+
+    public Map a() {
+        return this.f58610c;
     }
 }

@@ -1,54 +1,26 @@
 package vb;
-public final class f extends d {
-    public final int f50771c;
-    public final int d;
-    public final int e;
-    public final int f50772f;
 
-    public f(int i10, int i11, int i12, int i13, int i14, int i15) {
-        super(i14, i15);
-        if (i14 + i12 <= i10 && i15 + i13 <= i11) {
-            this.f50771c = i10;
-            this.d = i11;
-            this.e = i12;
-            this.f50772f = i13;
-            return;
-        }
-        throw new IllegalArgumentException("Crop rectangle does not fit within image data.");
+import b8.ke;
+import mb.g;
+public final class f implements t9.d {
+    public static final f f56513b = new f(0);
+    public static final f f56514c = new f(1);
+    public static final f d = new f(2);
+    public final int f56515a;
+
+    public f(int i3) {
+        this.f56515a = i3;
     }
 
     @Override
-    public final byte[] a() {
-        int i10 = this.f50768a;
-        int i11 = this.f50769b;
-        int i12 = this.f50771c;
-        if (i10 == i12 && i11 == this.d) {
-            return null;
+    public final Object q1(ke keVar) {
+        switch (this.f56515a) {
+            case 0:
+                return new d((g) keVar.a(g.class));
+            case 1:
+                return new c((d) keVar.a(d.class), (mb.d) keVar.a(mb.d.class));
+            default:
+                return new sb.b(keVar.f(c.class));
         }
-        int i13 = i10 * i11;
-        byte[] bArr = new byte[i13];
-        int i14 = (this.f50772f * i12) + this.e;
-        if (i10 == i12) {
-            System.arraycopy(null, i14, bArr, 0, i13);
-            return bArr;
-        }
-        for (int i15 = 0; i15 < i11; i15++) {
-            System.arraycopy(null, i14, bArr, i15 * i10, i10);
-            i14 += i12;
-        }
-        return bArr;
-    }
-
-    @Override
-    public final byte[] b(int i10, byte[] bArr) {
-        if (i10 >= 0 && i10 < this.f50769b) {
-            int i11 = this.f50768a;
-            if (bArr == null || bArr.length < i11) {
-                bArr = new byte[i11];
-            }
-            System.arraycopy(null, ((i10 + this.f50772f) * this.f50771c) + this.e, bArr, 0, i11);
-            return bArr;
-        }
-        throw new IllegalArgumentException(i0.a.i(i10, "Requested row is outside the image: "));
     }
 }

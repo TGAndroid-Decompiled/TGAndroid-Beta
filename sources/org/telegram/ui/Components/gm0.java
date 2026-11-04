@@ -1,25 +1,24 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class gm0 implements View.OnClickListener {
-    public final kg.f f26498a;
+import androidx.recyclerview.widget.RecyclerView;
+public final class gm0 extends u4.t0 {
+    public final int f34152a;
+    public final ci.o4 f34153b;
 
-    public gm0(kg.f fVar) {
-        this.f26498a = fVar;
+    public gm0(ci.o4 o4Var, int i3) {
+        this.f34152a = i3;
+        this.f34153b = o4Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        hm0 hm0Var = (hm0) this.f26498a.d;
-        for (int i10 = 0; i10 < hm0Var.e.size(); i10++) {
-            org.telegram.messenger.kj kjVar = (org.telegram.messenger.kj) hm0Var.e.get(i10);
-            if (hm0Var.H) {
-                org.telegram.messenger.b8.G(org.telegram.messenger.c.a(org.telegram.messenger.e20.f15506s0).f15043a).f(kjVar.F0());
-            } else {
-                org.telegram.messenger.b8.G(org.telegram.messenger.c.a(org.telegram.messenger.e20.f15506s0).f15043a).X(kjVar.F0(), kjVar, 0, 0);
-                org.telegram.messenger.b6.q(hm0Var.d).y();
-            }
+    public final void b(RecyclerView recyclerView, int i3, int i10) {
+        switch (this.f34152a) {
+            case 0:
+                ((org.telegram.ui.cw) this.f34153b.f5683c).T();
+                return;
+            default:
+                ((org.telegram.ui.cw) this.f34153b.f5683c).T();
+                return;
         }
-        hm0Var.d(true);
     }
 }

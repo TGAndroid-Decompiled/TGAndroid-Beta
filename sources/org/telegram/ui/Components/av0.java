@@ -1,51 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import android.widget.LinearLayout;
-public abstract class av0 extends LinearLayout {
-    public boolean a() {
-        return this instanceof org.telegram.ui.vc0;
+import android.content.Context;
+public final class av0 extends k9 implements org.telegram.messenger.cs {
+    public final int H;
+    public int I;
+    public String J;
+
+    public av0(Context context, int i3) {
+        super(context);
+        this.J = "tg_placeholders_android";
+        this.H = i3;
     }
 
-    public boolean b() {
-        return this instanceof org.telegram.ui.vc0;
+    @Override
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        if (i3 == org.telegram.messenger.hs.f23340y0) {
+            if (this.J.equals((String) objArr[0])) {
+                v();
+            }
+        }
     }
 
-    public boolean c(boolean z10) {
-        return true;
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        v();
+        org.telegram.messenger.hs.f(this.H).c(this, org.telegram.messenger.hs.f23340y0);
     }
 
-    public String getHeaderName() {
-        return "";
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.hs.f(this.H).n(this, org.telegram.messenger.hs.f23340y0);
     }
 
-    public void h(String str) {
+    public void setStickerNum(int i3) {
+        if (this.I != i3) {
+            this.I = i3;
+            v();
+        }
     }
 
-    public void k(Bundle bundle) {
+    public void setStickerPackName(String str) {
+        this.J = str;
     }
 
-    public void l(Bundle bundle) {
-    }
-
-    public void d() {
-    }
-
-    public void f() {
-    }
-
-    public void g() {
-    }
-
-    public void i() {
-    }
-
-    public void j() {
-    }
-
-    public void updateColors() {
-    }
-
-    public void m(Bundle bundle, boolean z10) {
+    public final void v() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.av0.v():void");
     }
 }

@@ -1,36 +1,46 @@
 package org.telegram.ui.Components;
+public final class nw implements Runnable {
+    public final int f36628a;
+    public final float f36629b;
+    public final int f36630c;
+    public final Object d;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class nw extends cv {
-    public final TLRPC.StickerSet N1;
-    public final vy O1;
-
-    public nw(vy vyVar, org.telegram.ui.ActionBar.k2 k2Var, Context context, org.telegram.ui.ActionBar.p6 p6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
-        super(k2Var, context, p6Var, arrayList);
-        this.O1 = vyVar;
-        this.N1 = stickerSet;
+    public nw(Object obj, float f10, int i3, int i10) {
+        this.f36628a = i10;
+        this.d = obj;
+        this.f36629b = f10;
+        this.f36630c = i3;
     }
 
     @Override
-    public final void K0(boolean z10) {
-        vy vyVar = this.O1;
-        ArrayList arrayList = vyVar.f31982p1;
-        TLRPC.StickerSet stickerSet = this.N1;
-        if (z10) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f19821id))) {
-                arrayList.add(Long.valueOf(stickerSet.f19821id));
-            }
-        } else {
-            arrayList.remove(Long.valueOf(stickerSet.f19821id));
+    public final void run() {
+        switch (this.f36628a) {
+            case 0:
+                float f10 = this.f36629b;
+                int i3 = this.f36630c;
+                ey eyVar = ((ow) this.d).G;
+                try {
+                    ni.m mVar = new ni.m(eyVar.Q.getContext(), 0, f10);
+                    mVar.f55704a = i3;
+                    eyVar.R.w0(mVar);
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return;
+                }
+            default:
+                org.telegram.ui.g11 g11Var = (org.telegram.ui.g11) this.d;
+                float f11 = this.f36629b;
+                int i10 = this.f36630c;
+                try {
+                    ni.m mVar2 = new ni.m(g11Var.f45456i0.getContext(), 0, f11);
+                    mVar2.f55704a = i10;
+                    g11Var.f45476s0.w0(mVar2);
+                    return;
+                } catch (Exception e11) {
+                    org.telegram.messenger.a8.g(e11, true);
+                    return;
+                }
         }
-        vyVar.U();
-    }
-
-    @Override
-    public final void dismiss() {
-        this.O1.f32007w2 = false;
-        super.dismiss();
     }
 }

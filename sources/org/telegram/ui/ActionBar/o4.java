@@ -1,103 +1,22 @@
 package org.telegram.ui.ActionBar;
+public final class o4 {
+    public final d2 f28395a;
+    public boolean f28396b;
+    public boolean f28397c;
+    public boolean d = true;
+    public boolean f28398e;
+    public ActionBarPopupWindow$ActionBarPopupWindowLayout f28399f;
+    public boolean f28400g;
 
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.PathInterpolator;
-import android.widget.ListView;
-public final class o4 extends ListView {
-    public final q4 f20623a;
-    public final LinearGradient f20624b;
-    public final Paint f20625c;
-    public final Paint d;
-    public final Matrix e;
-
-    public o4(q4 q4Var) {
-        super(q4Var.f20682a);
-        int[] iArr = new int[8];
-        PathInterpolator pathInterpolator = rf.w.f46580i;
-        rf.w.a(pathInterpolator, -16777216, iArr);
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        LinearGradient linearGradient = new LinearGradient(0.0f, org.telegram.messenger.i0.L(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);
-        int[] iArr2 = new int[8];
-        rf.w.a(pathInterpolator, -16777216, iArr2);
-        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.i0.L(16.0f), iArr2, (float[]) null, tileMode);
-        this.f20624b = linearGradient2;
-        Paint paint = new Paint(1);
-        this.f20625c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.e = new Matrix();
-        paint.setShader(linearGradient);
-        PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
-        paint.setXfermode(new PorterDuffXfermode(mode));
-        paint2.setShader(linearGradient2);
-        paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f20623a = q4Var;
-        setVerticalScrollBarEnabled(false);
+    public o4(d2 d2Var) {
+        this.f28395a = d2Var;
     }
 
-    @Override
-    public final boolean awakenScrollBars() {
-        return super.awakenScrollBars();
+    public final void a() {
+        this.f28397c = true;
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (q4.b(this.f20623a)) {
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        boolean z10;
-        boolean z11;
-        float y3 = view.getY();
-        float height = y3 + view.getHeight();
-        if (y3 < org.telegram.messenger.i0.L(16.0f)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (height > getHeight() - org.telegram.messenger.i0.L(16.0f)) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (!z10 && !z11) {
-            return super.drawChild(canvas, view, j10);
-        }
-        canvas.saveLayer(0.0f, y3, getWidth(), height, null);
-        boolean drawChild = super.drawChild(canvas, view, j10);
-        if (z10) {
-            canvas.drawRect(0.0f, 0.0f, getWidth(), org.telegram.messenger.i0.L(16.0f), this.f20625c);
-        }
-        if (z11) {
-            canvas.drawRect(0.0f, getHeight() - org.telegram.messenger.i0.L(16.0f), getWidth(), getHeight(), this.d);
-        }
-        canvas.restore();
-        return drawChild;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        q4 q4Var = this.f20623a;
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(q4Var.I.getHeight() - q4Var.H.getHeight(), 1073741824));
-    }
-
-    @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        Matrix matrix = this.e;
-        matrix.reset();
-        matrix.postTranslate(0.0f, i11 - org.telegram.messenger.i0.L(16.0f));
-        this.f20624b.setLocalMatrix(matrix);
+    public final void b(boolean z10) {
+        this.f28396b = z10;
     }
 }

@@ -1,142 +1,144 @@
 package jh;
 
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.view.View;
-import java.io.File;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.b8;
-import org.telegram.messenger.i0;
-import org.telegram.messenger.kj;
-import org.telegram.messenger.w0;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.RadialProgress2;
-public final class c extends ih.f {
-    public final String f10400b;
-    public final Uri f10401c;
-    public final String d;
-    public final long e;
-    public final String f10402f;
-    public final Drawable h;
-    public final StaticLayout f10403n;
+import cg.r;
+import k2.p1;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.t0;
+import org.telegram.ui.ActionBar.k6;
+public final class c extends Drawable {
+    public final int f16253a;
+    public final Drawable f16254b;
+    public int f16255c;
+    public int d;
 
-    public c(String str) {
-        long j10;
-        this.f10400b = str;
-        this.f10401c = null;
-        File file = new File(str);
-        try {
-            j10 = file.length();
-        } catch (Throwable unused) {
-            j10 = 0;
-        }
-        this.e = j10;
-        String name = file.getName();
-        this.d = name;
-        String[] split = name.split("\\.");
-        String str2 = split.length > 1 ? split[split.length - 1] : "?";
-        this.f10402f = str2;
-        int m12 = i0.m1(name, false);
-        if (m12 != 0) {
-            this.h = w0.f18945b.getResources().getDrawable(m12);
-        } else {
-            this.h = null;
-        }
-        if (!TextUtils.isEmpty(str2)) {
-            TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(i0.L(13.0f));
-            textPaint.setTypeface(i0.o());
-            textPaint.setColor(t6.x0(null, t6.pj, false));
-            this.f10403n = new StaticLayout(TextUtils.ellipsize(str2, textPaint, i0.L(34.0f), TextUtils.TruncateAt.END), textPaint, i0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            return;
-        }
-        this.f10403n = null;
-    }
-
-    public static b d(View view, String str, String str2, TLRPC.Document document, kj kjVar) {
-        b bVar = new b();
-        bVar.f10390a.setColor(t6.x0(null, t6.G6, false));
-        bVar.f10391b.setColor(t6.x0(null, t6.f21312y6, false));
-        bVar.d = true;
-        RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
-        bVar.f10392c = radialProgress2;
-        radialProgress2.setCircleRadius(i0.L(21.0f));
-        bVar.f10392c.g(t6.We, t6.Xe, t6.f21027id, t6.f21046jd);
-        if (kj.J3(document)) {
-            if (kj.W2(document)) {
-                TLRPC.PhotoSize w9 = b8.w(document.thumbs, i0.L(22.0f), true, null, false);
-                bVar.f10392c.j(b8.w(document.thumbs, i0.L(44.0f), true, w9, true), w9, document, kjVar);
-            } else {
-                String t02 = kj.t0(document, true);
-                if (!TextUtils.isEmpty(t02)) {
-                    bVar.f10392c.h(t02);
-                } else {
-                    bVar.f10392c.i(null, null, null);
-                }
-            }
-            bVar.f10392c.setIcon(0, false, false);
-        } else {
-            bVar.f10392c.setIcon(5, false, false);
-        }
-        if (str == null) {
-            str = "";
-        }
-        bVar.e = str;
-        if (str2 == null) {
-            str2 = "";
-        }
-        bVar.f10393f = str2;
-        bVar.f10399m = -1;
-        bVar.f10394g = null;
-        bVar.h = null;
-        bVar.invalidateSelf();
-        view.addOnAttachStateChangeListener(new a(bVar));
-        return bVar;
+    public c() {
+        this.f16253a = 1;
+        this.d = 255;
+        this.f16254b = p1.g(t0.f25457b, 2131232695);
     }
 
     @Override
-    public final void c(Canvas canvas, int i10, int i11) {
-        Drawable drawable = this.h;
-        if (drawable != null) {
-            drawable.setBounds(0, 0, i10, i11);
-            drawable.draw(canvas);
-            canvas.save();
-            canvas.translate((i10 - i0.L(34.0f)) / 2.0f, i0.L(15.0f));
-            this.f10403n.draw(canvas);
-            canvas.restore();
+    public final void draw(Canvas canvas) {
+        switch (this.f16253a) {
+            case 0:
+                this.f16254b.draw(canvas);
+                return;
+            default:
+                float exactCenterX = getBounds().exactCenterX();
+                float exactCenterY = getBounds().exactCenterY();
+                int x02 = k6.x0(null, k6.G6, false);
+                int x03 = k6.x0(null, k6.f27878d6, false);
+                int i3 = this.f16255c;
+                Drawable drawable = this.f16254b;
+                if (i3 != x03) {
+                    this.f16255c = x03;
+                    drawable.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.SRC_IN));
+                }
+                canvas.drawCircle(exactCenterX, exactCenterY, g0.L(7.6666665f), k6.n0(i0.a.o(x03, this.d)));
+                canvas.drawCircle(exactCenterX, exactCenterY, g0.L(6.6666665f), k6.n0(i0.a.o(x02, this.d)));
+                r.d(drawable, exactCenterX, exactCenterY, 17);
+                canvas.translate(0.0f, g0.L(0.66f));
+                canvas.save();
+                canvas.rotate(90.0f, exactCenterX, exactCenterY);
+                r.b(canvas, drawable, 0.8f);
+                canvas.restore();
+                return;
         }
     }
 
-    public c(Uri uri) {
-        this.f10400b = null;
-        this.f10401c = uri;
-        String A = MediaController.A(uri);
-        A = A == null ? "?" : A;
-        this.d = A;
-        String[] split = A.split("\\.");
-        String str = split.length > 1 ? split[split.length - 1] : "?";
-        this.f10402f = str;
-        this.e = 0L;
-        int m12 = i0.m1(A, false);
-        if (m12 != 0) {
-            this.h = w0.f18945b.getResources().getDrawable(m12);
-        } else {
-            this.h = null;
+    @Override
+    public final int getAlpha() {
+        switch (this.f16253a) {
+            case 0:
+                return this.f16254b.getAlpha();
+            default:
+                return this.d;
         }
-        if (!TextUtils.isEmpty(str)) {
-            TextPaint textPaint = new TextPaint(1);
-            textPaint.setTextSize(i0.L(13.0f));
-            textPaint.setTypeface(i0.o());
-            textPaint.setColor(t6.x0(null, t6.pj, false));
-            this.f10403n = new StaticLayout(TextUtils.ellipsize(str, textPaint, i0.L(34.0f), TextUtils.TruncateAt.END), textPaint, i0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
-            return;
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f16253a) {
+            case 1:
+                return g0.L(13.333333f);
+            default:
+                return super.getIntrinsicHeight();
         }
-        this.f10403n = null;
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f16253a) {
+            case 1:
+                return g0.L(13.333333f);
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f16253a) {
+            case 0:
+                return this.f16254b.getOpacity();
+            default:
+                return -3;
+        }
+    }
+
+    @Override
+    public void onBoundsChange(Rect rect) {
+        switch (this.f16253a) {
+            case 0:
+                super.onBoundsChange(rect);
+                int width = rect.width();
+                int i3 = this.f16255c;
+                int i10 = (width - i3) / 2;
+                int height = rect.height();
+                int i11 = this.d;
+                int i12 = (height - i11) / 2;
+                this.f16254b.setBounds(i10, i12, i3 + i10, i11 + i12);
+                return;
+            default:
+                super.onBoundsChange(rect);
+                return;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i3) {
+        switch (this.f16253a) {
+            case 0:
+                this.f16254b.setAlpha(i3);
+                return;
+            default:
+                this.d = i3;
+                this.f16254b.setAlpha(i3);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        int i3 = this.f16253a;
+    }
+
+    public c(int i3, int i10, Drawable drawable) {
+        this.f16253a = 0;
+        this.f16255c = i3;
+        this.d = i10;
+        this.f16254b = drawable;
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
     }
 }

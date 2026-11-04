@@ -1,45 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.view.View;
-import java.util.ArrayList;
-public final class h01 {
-    public final View f26619a;
-    public final ArrayList f26620b;
-    public final Runnable f26621c;
-    public Runnable d;
-    public final Bitmap e;
-    public final Matrix f26622f;
-    public float f26623g;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class h01 extends Drawable {
+    public final Paint f34253a = new Paint(1);
+    public final RectF f34254b = new RectF();
+    public final int f34255c;
+    public final n01 d;
 
-    public h01(View view, Runnable runnable) {
-        this.f26623g = 1.0f;
-        this.f26619a = view;
-        this.f26620b = null;
-        this.f26621c = null;
-        this.d = runnable;
-        this.e = null;
-        this.f26622f = null;
+    public h01(n01 n01Var, int i3) {
+        this.d = n01Var;
+        this.f34255c = i3;
     }
 
-    public h01(ArrayList arrayList, a3.l0 l0Var) {
-        this.f26623g = 1.0f;
-        this.f26619a = null;
-        this.f26620b = arrayList;
-        this.f26621c = null;
-        this.d = l0Var;
-        this.e = null;
-        this.f26622f = null;
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f34254b;
+        rectF.set(bounds);
+        int i3 = this.f34255c;
+        rectF.inset(i3, i3);
+        float height = rectF.height() / 2.0f;
+        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27878d6, this.d.f36315e);
+        Paint paint = this.f34253a;
+        paint.setColor(w02);
+        paint.setShadowLayer(org.telegram.messenger.g0.L(1.5f), 0.0f, org.telegram.messenger.g0.L(0.5f), 436207616);
+        canvas.drawRoundRect(rectF, height, height, paint);
+        paint.setShadowLayer(org.telegram.messenger.g0.L(0.5f), 0.0f, 0.0f, 520093696);
+        canvas.drawRoundRect(rectF, height, height, paint);
     }
 
-    public h01(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.f26623g = 1.0f;
-        this.f26619a = null;
-        this.f26620b = null;
-        this.f26621c = runnable;
-        this.d = runnable2;
-        this.f26622f = matrix;
-        this.e = bitmap;
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void setAlpha(int i3) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

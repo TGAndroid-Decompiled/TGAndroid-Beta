@@ -1,22 +1,36 @@
 package org.telegram.ui;
+public final class ta1 implements Runnable {
+    public final int f49760a;
+    public final UserInfoActivity f49761b;
 
-import android.view.View;
-public final class ta1 implements View.OnClickListener {
-    public final nb1 f41604a;
-
-    public ta1(nb1 nb1Var) {
-        this.f41604a = nb1Var;
+    public ta1(UserInfoActivity userInfoActivity, int i3) {
+        this.f49760a = i3;
+        this.f49761b = userInfoActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        nb1 nb1Var = this.f41604a;
-        if (nb1Var.M == 1) {
-            org.telegram.ui.Components.s4.i0(nb1Var, -nb1Var.f39797a, null, nb1Var.g(), null, false, nb1Var.J, new ra(this, 5), nb1Var.getResourceProvider());
-            return;
+    public final void run() {
+        switch (this.f49760a) {
+            case 0:
+                this.f49761b.presentFragment(new PrivacyControlActivity(9, true));
+                return;
+            case 1:
+                ai.h4 h4Var = this.f49761b.f42104y;
+                if (h4Var != null) {
+                    h4Var.f35594g3.O(true);
+                    return;
+                }
+                return;
+            case 2:
+                UserInfoActivity userInfoActivity = this.f49761b;
+                userInfoActivity.getClass();
+                userInfoActivity.presentFragment(new PrivacyControlActivity(11, false));
+                return;
+            default:
+                UserInfoActivity userInfoActivity2 = this.f49761b;
+                userInfoActivity2.getClass();
+                userInfoActivity2.presentFragment(new PremiumPreviewFragment(0, "add_account"));
+                return;
         }
-        nb1Var.getMessagesController().m(nb1Var.f39797a, nb1Var.getUserConfig().f(), 0, null, nb1Var, false, new la1(nb1Var, 2), new ma1(nb1Var), null);
-        org.telegram.messenger.at.e().k(org.telegram.messenger.at.I4, new Object[0]);
-        nb1Var.S0(false);
     }
 }

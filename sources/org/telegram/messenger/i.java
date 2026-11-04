@@ -1,56 +1,62 @@
 package org.telegram.messenger;
 
-import android.view.KeyEvent;
-import android.view.View;
-public final class i implements o1.f {
-    public final int f16142a = 0;
-    public final float f16143b;
-    public final Runnable f16144c;
-    public final KeyEvent.Callback d;
+import com.android.billingclient.api.Purchase;
+import java.lang.reflect.Field;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.cj0;
+import org.telegram.ui.Components.tj0;
+public final class i implements cj0, e5.g {
+    public final Object f23410a;
+    public final Object f23411b;
+    public final Object f23412c;
 
-    public i(float f7, View view, Runnable runnable) {
-        this.f16144c = runnable;
-        this.d = view;
-        this.f16143b = f7;
+    public i(Object obj, Object obj2, Object obj3) {
+        this.f23410a = obj;
+        this.f23411b = obj2;
+        this.f23412c = obj3;
     }
 
     @Override
-    public final void a(o1.j jVar, boolean z10, float f7, float f10) {
-        int i10 = this.f16142a;
-        Runnable runnable = this.f16144c;
-        float f11 = this.f16143b;
-        KeyEvent.Callback callback = this.d;
-        switch (i10) {
-            case 0:
-                View view = (View) callback;
-                if (runnable != null) {
-                    runnable.run();
-                }
-                view.setTranslationX(f11);
-                view.setTag(2131296663, null);
-                view.setTag(2131296664, null);
-                return;
-            default:
-                vh.n2 n2Var = (vh.n2) callback;
-                vh.m2 m2Var = n2Var.f51516i1;
-                if (!z10) {
-                    m2Var.setTranslationY(f11);
-                    m2Var.K = false;
-                    n2Var.f51518k1 = null;
-                    n2Var.l1 = null;
-                    if (runnable != null) {
-                        runnable.run();
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public void a(e5.f fVar) {
+        Object valueOf;
+        Purchase purchase = (Purchase) this.f23411b;
+        Runnable runnable = (Runnable) this.f23412c;
+        StringBuilder sb2 = new StringBuilder("BillingController consumeGiftPurchase ");
+        sb2.append((TLRPC.InputStorePaymentPurpose) this.f23410a);
+        sb2.append(" ");
+        sb2.append(purchase.a());
+        sb2.append(" ");
+        sb2.append(purchase.c());
+        sb2.append(" done: ");
+        int i3 = fVar.f9593a;
+        if (i3 == 0) {
+            valueOf = "OK";
+        } else {
+            valueOf = Integer.valueOf(i3);
+        }
+        sb2.append(valueOf);
+        sb2.append(" ");
+        k2.p1.w(fVar.f9595c, sb2);
+        if (runnable != null) {
+            runnable.run();
         }
     }
 
-    public i(vh.n2 n2Var, float f7, Runnable runnable) {
-        this.d = n2Var;
-        this.f16143b = f7;
-        this.f16144c = runnable;
+    @Override
+    public int run() {
+        org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) this.f23410a;
+        String str = (String) this.f23411b;
+        tj0 tj0Var = (tj0) this.f23412c;
+        int i3 = -1;
+        try {
+            Field declaredField = d2Var.getClass().getDeclaredField(str);
+            declaredField.setAccessible(true);
+            i3 = declaredField.getInt(d2Var);
+            ((u4.b0) tj0Var.getLayoutManager()).h1(i3, g0.L(60.0f));
+            declaredField.setAccessible(false);
+            return i3;
+        } catch (Throwable unused) {
+            return i3;
+        }
     }
 }

@@ -1,110 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.Rect;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public final class v80 extends Drawable {
-    public final Bitmap f31225a;
-    public final Paint f31226b = new Paint(2);
-    public long f31227c;
-    public LinearGradient d;
-    public final Matrix e;
-    public float f31228f;
-    public float f31229g;
-    public final g9 h;
-    public int f31230i;
-    public int f31231j;
+import org.telegram.tgnet.TLRPC;
+public final class v80 extends hy {
+    public final lt0 X;
+    public final c90 Y;
 
-    public v80(g9 g9Var, String str, int i10, int i11) {
-        Bitmap bitmap;
-        try {
-            Path b10 = org.telegram.messenger.e00.b(str);
-            bitmap = Bitmap.createBitmap(i10, i11, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            float f7 = 512;
-            canvas.scale(i10 / f7, i11 / f7);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawPath(b10, paint);
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
-            bitmap = null;
-        }
-        this.f31225a = bitmap;
-        this.h = g9Var;
-        this.e = new Matrix();
+    public v80(c90 c90Var) {
+        super(100, false);
+        this.Y = c90Var;
+        this.X = new Object();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f31225a;
-        if (bitmap == null) {
-            return;
+    public final int A() {
+        c90 c90Var = this.Y;
+        if (c90Var.f32614f.I() == null && c90Var.f32614f.V == null) {
+            return B();
         }
-        int i10 = org.telegram.ui.ActionBar.t6.f21002h5;
-        int i11 = org.telegram.ui.ActionBar.t6.f21020i5;
-        int x02 = org.telegram.ui.ActionBar.t6.x0(null, i10, false);
-        int x03 = org.telegram.ui.ActionBar.t6.x0(null, i11, false);
-        int i12 = this.f31230i;
-        Paint paint = this.f31226b;
-        Matrix matrix = this.e;
-        if (i12 != x02 || this.f31231j != x03) {
-            this.f31230i = x02;
-            this.f31231j = x03;
-            int w02 = org.telegram.messenger.i0.w0(x03, x02);
-            paint.setColor(x03);
-            float L = org.telegram.messenger.i0.L(500.0f);
-            this.f31229g = L;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{x03, w02, x03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
+        return B() - 1;
+    }
+
+    @Override
+    public final lt0 D1(int i3) {
+        TLRPC.PhotoSize w10;
+        float f10;
+        lt0 lt0Var = this.X;
+        int i10 = 0;
+        lt0Var.f35879c = false;
+        c90 c90Var = this.Y;
+        if (i3 == 0) {
+            lt0Var.f35877a = this.f55639m;
+            lt0Var.f35878b = c90Var.f32613e.h;
+            lt0Var.f35879c = true;
+            return lt0Var;
         }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f31227c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
+        int i11 = i3 - 1;
+        if (c90Var.f32614f.I() == null && c90Var.f32614f.V == null) {
+            i3 = i11;
         }
-        this.f31227c = elapsedRealtime;
-        this.f31228f = a1.g.A((float) abs, this.f31229g, 1800.0f, this.f31228f);
-        while (true) {
-            float f7 = this.f31228f;
-            float f10 = this.f31229g * 2.0f;
-            if (f7 >= f10) {
-                this.f31228f = f7 - f10;
+        lt0Var.f35877a = 0.0f;
+        lt0Var.f35878b = 0.0f;
+        Object J = c90Var.f32614f.J(i3);
+        if (J instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
+            TLRPC.Document document = botInlineResult.document;
+            if (document != null) {
+                TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
+                float f11 = 100.0f;
+                if (w11 != null) {
+                    f10 = w11.f27026w;
+                } else {
+                    f10 = 100.0f;
+                }
+                lt0Var.f35877a = f10;
+                if (w11 != null) {
+                    f11 = w11.h;
+                }
+                lt0Var.f35878b = f11;
+                while (i10 < botInlineResult.document.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i10);
+                    if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        lt0Var.f35877a = documentAttribute.f27008w;
+                        lt0Var.f35878b = documentAttribute.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.content != null) {
+                while (i10 < botInlineResult.content.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i10);
+                    if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        lt0Var.f35877a = documentAttribute2.f27008w;
+                        lt0Var.f35878b = documentAttribute2.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.thumb != null) {
+                while (i10 < botInlineResult.thumb.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i10);
+                    if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        lt0Var.f35877a = documentAttribute3.f27008w;
+                        lt0Var.f35878b = documentAttribute3.h;
+                        break;
+                    }
+                }
             } else {
-                matrix.setTranslate(f7, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
+                TLRPC.Photo photo = botInlineResult.photo;
+                if (photo != null && (w10 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
+                    lt0Var.f35877a = w10.f27026w;
+                    lt0Var.f35878b = w10.h;
+                }
             }
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        return lt0Var;
     }
 }

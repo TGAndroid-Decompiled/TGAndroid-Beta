@@ -1,117 +1,200 @@
 package bc;
-
-import java.util.ArrayList;
 public final class b {
-    public final wb.b f2637a;
-    public final int f2639c;
-    public final int d;
-    public final int e;
-    public final int f2640f;
-    public final float f2641g;
-    public final ArrayList f2638b = new ArrayList(5);
-    public final int[] h = new int[3];
+    public final a f3218a;
+    public final int[] f3219b;
 
-    public b(wb.b bVar, int i10, int i11, int i12, int i13, float f7) {
-        this.f2637a = bVar;
-        this.f2639c = i10;
-        this.d = i11;
-        this.e = i12;
-        this.f2640f = i13;
-        this.f2641g = f7;
+    public b(a aVar, int[] iArr) {
+        if (iArr.length != 0) {
+            this.f3218a = aVar;
+            int length = iArr.length;
+            int i3 = 1;
+            if (length > 1 && iArr[0] == 0) {
+                while (i3 < length && iArr[i3] == 0) {
+                    i3++;
+                }
+                if (i3 == length) {
+                    this.f3219b = new int[]{0};
+                    return;
+                }
+                int i10 = length - i3;
+                int[] iArr2 = new int[i10];
+                this.f3219b = iArr2;
+                System.arraycopy(iArr, i3, iArr2, 0, i10);
+                return;
+            }
+            this.f3219b = iArr;
+            return;
+        }
+        throw new IllegalArgumentException();
     }
 
-    public final boolean a(int[] iArr) {
-        float f7 = this.f2641g;
-        float f10 = f7 / 2.0f;
-        for (int i10 = 0; i10 < 3; i10++) {
-            if (Math.abs(f7 - iArr[i10]) >= f10) {
-                return false;
+    public final b a(b bVar) {
+        a aVar = bVar.f3218a;
+        a aVar2 = this.f3218a;
+        if (aVar2.equals(aVar)) {
+            if (e()) {
+                return bVar;
             }
+            if (bVar.e()) {
+                return this;
+            }
+            int[] iArr = bVar.f3219b;
+            int[] iArr2 = this.f3219b;
+            if (iArr2.length > iArr.length) {
+                iArr2 = iArr;
+                iArr = iArr2;
+            }
+            int[] iArr3 = new int[iArr.length];
+            int length = iArr.length - iArr2.length;
+            System.arraycopy(iArr, 0, iArr3, 0, length);
+            for (int i3 = length; i3 < iArr.length; i3++) {
+                iArr3[i3] = iArr2[i3 - length] ^ iArr[i3];
+            }
+            return new b(aVar2, iArr3);
+        }
+        throw new IllegalArgumentException("GenericGFPolys do not have same GenericGF field");
+    }
+
+    public final int b(int i3) {
+        if (i3 == 0) {
+            return c(0);
+        }
+        int[] iArr = this.f3219b;
+        if (i3 == 1) {
+            int i10 = 0;
+            for (int i11 : iArr) {
+                a aVar = a.h;
+                i10 ^= i11;
+            }
+            return i10;
+        }
+        int i12 = iArr[0];
+        int length = iArr.length;
+        for (int i13 = 1; i13 < length; i13++) {
+            i12 = this.f3218a.c(i3, i12) ^ iArr[i13];
+        }
+        return i12;
+    }
+
+    public final int c(int i3) {
+        int[] iArr = this.f3219b;
+        return iArr[(iArr.length - 1) - i3];
+    }
+
+    public final int d() {
+        return this.f3219b.length - 1;
+    }
+
+    public final boolean e() {
+        if (this.f3219b[0] != 0) {
+            return false;
         }
         return true;
     }
 
-    public final a b(int i10, int i11, int[] iArr) {
-        int i12;
-        int i13 = 0;
-        int i14 = iArr[0];
-        int i15 = iArr[1];
-        int i16 = i14 + i15 + iArr[2];
-        float f7 = (i11 - i12) - (i15 / 2.0f);
-        int i17 = (int) f7;
-        int i18 = i15 * 2;
-        wb.b bVar = this.f2637a;
-        int i19 = bVar.f52794b;
-        int[] iArr2 = this.h;
-        iArr2[0] = 0;
-        iArr2[1] = 0;
-        iArr2[2] = 0;
-        int i20 = i10;
-        while (i20 >= 0 && bVar.b(i17, i20)) {
-            int i21 = iArr2[1];
-            if (i21 > i18) {
-                break;
-            }
-            iArr2[1] = i21 + 1;
-            i20--;
+    public final b f(int i3) {
+        a aVar = this.f3218a;
+        if (i3 == 0) {
+            return aVar.f3214c;
         }
-        float f10 = Float.NaN;
-        if (i20 >= 0 && iArr2[1] <= i18) {
-            while (i20 >= 0 && !bVar.b(i17, i20)) {
-                int i22 = iArr2[0];
-                if (i22 > i18) {
-                    break;
-                }
-                iArr2[0] = i22 + 1;
-                i20--;
-            }
-            if (iArr2[0] <= i18) {
-                int i23 = i10 + 1;
-                while (i23 < i19 && bVar.b(i17, i23)) {
-                    int i24 = iArr2[1];
-                    if (i24 > i18) {
-                        break;
+        if (i3 == 1) {
+            return this;
+        }
+        int[] iArr = this.f3219b;
+        int length = iArr.length;
+        int[] iArr2 = new int[length];
+        for (int i10 = 0; i10 < length; i10++) {
+            iArr2[i10] = aVar.c(iArr[i10], i3);
+        }
+        return new b(aVar, iArr2);
+    }
+
+    public final b g(b bVar) {
+        a aVar = bVar.f3218a;
+        a aVar2 = this.f3218a;
+        if (aVar2.equals(aVar)) {
+            if (!e() && !bVar.e()) {
+                int[] iArr = this.f3219b;
+                int length = iArr.length;
+                int[] iArr2 = bVar.f3219b;
+                int length2 = iArr2.length;
+                int[] iArr3 = new int[(length + length2) - 1];
+                for (int i3 = 0; i3 < length; i3++) {
+                    int i10 = iArr[i3];
+                    for (int i11 = 0; i11 < length2; i11++) {
+                        int i12 = i3 + i11;
+                        iArr3[i12] = iArr3[i12] ^ aVar2.c(i10, iArr2[i11]);
                     }
-                    iArr2[1] = i24 + 1;
-                    i23++;
                 }
-                if (i23 != i19 && iArr2[1] <= i18) {
-                    while (i23 < i19 && !bVar.b(i17, i23)) {
-                        int i25 = iArr2[2];
-                        if (i25 > i18) {
-                            break;
+                return new b(aVar2, iArr3);
+            }
+            return aVar2.f3214c;
+        }
+        throw new IllegalArgumentException("GenericGFPolys do not have same GenericGF field");
+    }
+
+    public final b h(int i3, int i10) {
+        if (i3 >= 0) {
+            a aVar = this.f3218a;
+            if (i10 == 0) {
+                return aVar.f3214c;
+            }
+            int[] iArr = this.f3219b;
+            int length = iArr.length;
+            int[] iArr2 = new int[i3 + length];
+            for (int i11 = 0; i11 < length; i11++) {
+                iArr2[i11] = aVar.c(iArr[i11], i10);
+            }
+            return new b(aVar, iArr2);
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public final String toString() {
+        if (e()) {
+            return "0";
+        }
+        StringBuilder sb2 = new StringBuilder(d() * 8);
+        for (int d = d(); d >= 0; d--) {
+            int c2 = c(d);
+            if (c2 != 0) {
+                if (c2 < 0) {
+                    if (d == d()) {
+                        sb2.append("-");
+                    } else {
+                        sb2.append(" - ");
+                    }
+                    c2 = -c2;
+                } else if (sb2.length() > 0) {
+                    sb2.append(" + ");
+                }
+                if (d == 0 || c2 != 1) {
+                    a aVar = this.f3218a;
+                    if (c2 != 0) {
+                        int i3 = aVar.f3213b[c2];
+                        if (i3 == 0) {
+                            sb2.append('1');
+                        } else if (i3 == 1) {
+                            sb2.append('a');
+                        } else {
+                            sb2.append("a^");
+                            sb2.append(i3);
                         }
-                        iArr2[2] = i25 + 1;
-                        i23++;
+                    } else {
+                        aVar.getClass();
+                        throw new IllegalArgumentException();
                     }
-                    int i26 = iArr2[2];
-                    if (i26 <= i18 && Math.abs(((iArr2[0] + iArr2[1]) + i26) - i16) * 5 < i16 * 2 && a(iArr2)) {
-                        f10 = (i23 - iArr2[2]) - (iArr2[1] / 2.0f);
+                }
+                if (d != 0) {
+                    if (d == 1) {
+                        sb2.append('x');
+                    } else {
+                        sb2.append("x^");
+                        sb2.append(d);
                     }
                 }
             }
         }
-        if (!Float.isNaN(f10)) {
-            float f11 = ((iArr[0] + iArr[1]) + iArr[2]) / 3.0f;
-            ArrayList arrayList = this.f2638b;
-            int size = arrayList.size();
-            while (i13 < size) {
-                Object obj = arrayList.get(i13);
-                i13++;
-                a aVar = (a) obj;
-                float f12 = aVar.f2636c;
-                float f13 = aVar.f50780a;
-                float f14 = aVar.f50781b;
-                if (Math.abs(f10 - f14) <= f11 && Math.abs(f7 - f13) <= f11) {
-                    float abs = Math.abs(f11 - f12);
-                    if (abs <= 1.0f || abs <= f12) {
-                        return new a((f13 + f7) / 2.0f, (f14 + f10) / 2.0f, (aVar.f2636c + f11) / 2.0f);
-                    }
-                }
-            }
-            arrayList.add(new a(f7, f10, f11));
-            return null;
-        }
-        return null;
+        return sb2.toString();
     }
 }

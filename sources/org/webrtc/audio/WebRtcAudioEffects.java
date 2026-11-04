@@ -68,14 +68,14 @@ class WebRtcAudioEffects {
         return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_NS, AOSP_NOISE_SUPPRESSOR);
     }
 
-    public void enable(int i10) {
+    public void enable(int i3) {
         boolean z10;
         boolean z11;
         String str;
         boolean z12;
         String str2;
         String str3;
-        Logging.d("WebRtcAudioEffectsExternal", "enable(audioSession=" + i10 + ")");
+        Logging.d("WebRtcAudioEffectsExternal", "enable(audioSession=" + i3 + ")");
         boolean z13 = false;
         if (this.aec == null) {
             z10 = true;
@@ -91,7 +91,7 @@ class WebRtcAudioEffects {
         assertTrue(z11);
         String str4 = "disabled";
         if (isAcousticEchoCancelerSupported()) {
-            AcousticEchoCanceler create = AcousticEchoCanceler.create(i10);
+            AcousticEchoCanceler create = AcousticEchoCanceler.create(i3);
             this.aec = create;
             if (create != null) {
                 boolean enabled = create.getEnabled();
@@ -125,7 +125,7 @@ class WebRtcAudioEffects {
             }
         }
         if (isNoiseSuppressorSupported()) {
-            NoiseSuppressor create2 = NoiseSuppressor.create(i10);
+            NoiseSuppressor create2 = NoiseSuppressor.create(i3);
             this.ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();

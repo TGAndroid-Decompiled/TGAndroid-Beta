@@ -1,205 +1,78 @@
 package o2;
+public final class j {
+    public final long f20547a;
+    public final long f20548b;
+    public final String f20549c;
+    public int d;
 
-import android.net.Uri;
-import e2.k0;
-import e2.x;
-import e9.l0;
-import e9.n0;
-import e9.x1;
-import j4.e0;
-import java.io.EOFException;
-import java.math.BigInteger;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import v7.l7;
-import v7.r6;
-import v7.t6;
-public final class j extends v2.l {
-    public static final AtomicInteger f14001c0 = new AtomicInteger();
-    public final boolean D;
-    public final int E;
-    public final g2.h F;
-    public final g2.n G;
-    public final b H;
-    public final boolean I;
-    public final boolean J;
-    public final k0 K;
-    public final c L;
-    public final List M;
-    public final b2.t N;
-    public final q3.i O;
-    public final x P;
-    public final boolean Q;
-    public final boolean R;
-    public b S;
-    public q T;
-    public int U;
-    public boolean V;
-    public volatile boolean W;
-    public boolean X;
-    public n0 Y;
-    public boolean Z;
-    public long f14002a0;
-    public boolean f14003b0;
-    public final int f14004w;
-    public final int f14005x;
-    public final Uri f14006y;
-
-    public j(c cVar, g2.h hVar, g2.n nVar, b2.x xVar, boolean z10, g2.h hVar2, g2.n nVar2, boolean z11, Uri uri, List list, int i10, Object obj, long j10, long j11, long j12, int i11, boolean z12, int i12, boolean z13, boolean z14, k0 k0Var, b2.t tVar, b bVar, q3.i iVar, x xVar2, boolean z15, boolean z16, j2.l lVar) {
-        super(hVar, nVar, xVar, i10, obj, j10, j11, j12);
-        long j13;
-        boolean z17;
-        this.Q = z10;
-        this.E = i11;
-        if (z12) {
-            j13 = j11 - j10;
-        } else {
-            j13 = -9223372036854775807L;
-        }
-        this.f14002a0 = j13;
-        this.f14005x = i12;
-        this.G = nVar2;
-        this.F = hVar2;
-        if (nVar2 != null) {
-            z17 = true;
-        } else {
-            z17 = false;
-        }
-        this.V = z17;
-        this.R = z11;
-        this.f14006y = uri;
-        this.I = z14;
-        this.K = k0Var;
-        this.J = z13;
-        this.L = cVar;
-        this.M = list;
-        this.N = tVar;
-        this.H = bVar;
-        this.O = iVar;
-        this.P = xVar2;
-        this.f14003b0 = z15;
-        this.D = z16;
-        l0 l0Var = n0.f6390b;
-        this.Y = x1.e;
-        this.f14004w = f14001c0.getAndIncrement();
+    public j(long j10, String str, long j11) {
+        this.f20549c = str == null ? "" : str;
+        this.f20547a = j10;
+        this.f20548b = j11;
     }
 
-    public static byte[] e(String str) {
-        int i10;
-        if (r6.c(str).startsWith("0x")) {
-            str = str.substring(2);
-        }
-        byte[] byteArray = new BigInteger(str, 16).toByteArray();
-        byte[] bArr = new byte[16];
-        if (byteArray.length > 16) {
-            i10 = byteArray.length - 16;
-        } else {
-            i10 = 0;
-        }
-        System.arraycopy(byteArray, i10, bArr, (16 - byteArray.length) + i10, byteArray.length - i10);
-        return bArr;
-    }
-
-    @Override
-    public final void R1() {
-        this.W = true;
-    }
-
-    @Override
-    public final void b() {
-        b bVar;
-        this.T.getClass();
-        if (this.S == null && (bVar = this.H) != null) {
-            c3.o b10 = bVar.f13971a.b();
-            if ((b10 instanceof e0) || (b10 instanceof w3.h)) {
-                this.S = this.H;
-                this.V = false;
-            }
-        }
-        g2.n nVar = this.G;
-        g2.h hVar = this.F;
-        if (this.V) {
-            hVar.getClass();
-            nVar.getClass();
-            d(hVar, nVar, this.R);
-            this.U = 0;
-            this.V = false;
-        }
-        if (!this.W) {
-            if (!this.J) {
-                d(this.f50324r, this.f50320b, this.Q);
-            }
-            this.X = !this.W;
-        }
-    }
-
-    @Override
-    public final boolean c() {
-        throw null;
-    }
-
-    public final void d(g2.h hVar, g2.n nVar, boolean z10) {
-        g2.n b10;
-        boolean z11;
-        long j10;
-        boolean z12;
-        if (z10) {
-            if (this.U != 0) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            z11 = z12;
-            b10 = nVar;
-        } else {
-            b10 = nVar.b(this.U);
-            z11 = false;
-        }
-        try {
-            c3.l h = h(hVar, b10);
-            if (z11) {
-                h.i(this.U, false);
-            }
-            do {
-                try {
-                    if (this.W) {
-                        break;
+    public final j a(j jVar, String str) {
+        j jVar2;
+        String f10 = g2.f.f(str, this.f20549c);
+        if (jVar != null) {
+            long j10 = jVar.f20548b;
+            if (f10.equals(g2.f.f(str, jVar.f20549c))) {
+                long j11 = this.f20548b;
+                long j12 = -1;
+                if (j11 != -1) {
+                    long j13 = this.f20547a;
+                    jVar2 = null;
+                    if (j13 + j11 == jVar.f20547a) {
+                        if (j10 != -1) {
+                            j12 = j11 + j10;
+                        }
+                        return new j(j13, f10, j12);
                     }
-                } catch (EOFException e) {
-                    if ((this.d.f2411f & 16384) != 0) {
-                        this.S.f13971a.d(0L, 0L);
-                        j10 = h.d;
-                    } else {
-                        throw e;
-                    }
+                } else {
+                    jVar2 = null;
                 }
-            } while (this.S.f13971a.f(h, b.f13970f) == 0);
-            j10 = h.d;
-            this.U = (int) (j10 - nVar.e);
-        } catch (Exception unused) {
-        } catch (Throwable th2) {
-            l7.a(hVar);
-            throw th2;
+                if (j10 != -1) {
+                    long j14 = jVar.f20547a;
+                    if (j14 + j10 == this.f20547a) {
+                        if (j11 != -1) {
+                            j12 = j10 + j11;
+                        }
+                        return new j(j14, f10, j12);
+                    }
+                    return jVar2;
+                }
+                return jVar2;
+            }
         }
-        l7.a(hVar);
+        return null;
     }
 
-    public final int f(int i10) {
-        t6.p(!this.f14003b0);
-        if (i10 >= this.Y.size()) {
-            return 0;
-        }
-        return ((Integer) this.Y.get(i10)).intValue();
-    }
-
-    public final boolean g() {
-        if (this.f14002a0 != -9223372036854775807L) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
             return true;
+        }
+        if (obj != null && j.class == obj.getClass()) {
+            j jVar = (j) obj;
+            if (this.f20547a == jVar.f20547a && this.f20548b == jVar.f20548b && this.f20549c.equals(jVar.f20549c)) {
+                return true;
+            }
         }
         return false;
     }
 
-    public final c3.l h(g2.h r34, g2.n r35) {
-        throw new UnsupportedOperationException("Method not decompiled: o2.j.h(g2.h, g2.n):c3.l");
+    public final int hashCode() {
+        if (this.d == 0) {
+            this.d = this.f20549c.hashCode() + ((((527 + ((int) this.f20547a)) * 31) + ((int) this.f20548b)) * 31);
+        }
+        return this.d;
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("RangedUri(referenceUri=");
+        sb2.append(this.f20549c);
+        sb2.append(", start=");
+        sb2.append(this.f20547a);
+        sb2.append(", length=");
+        return a1.g.r(sb2, this.f20548b, ")");
     }
 }

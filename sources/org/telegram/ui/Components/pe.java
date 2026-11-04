@@ -1,28 +1,22 @@
 package org.telegram.ui.Components;
+public final class pe implements q1.d {
+    public boolean f37141a = false;
+    public final float f37142b;
+    public final ht0 f37143c;
 
-import android.content.Context;
-public final class pe extends org.telegram.ui.ih0 {
-    public final Object A0;
-    public final int f29409z0;
-
-    public pe(Object obj, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
-        super(context, p6Var);
-        this.f29409z0 = i10;
-        this.A0 = obj;
+    public pe(float f10, ht0 ht0Var) {
+        this.f37142b = f10;
+        this.f37143c = ht0Var;
     }
 
     @Override
-    public final void l(long j10) {
-        switch (this.f29409z0) {
-            case 0:
-                ((ChatActivityEnterView) this.A0).setEffectId(j10);
-                return;
-            default:
-                bi biVar = (bi) this.A0;
-                ih ihVar = biVar.C2;
-                biVar.H2 = j10;
-                ihVar.setEffect(j10);
-                return;
+    public final void a(q1.g gVar, float f10, float f11) {
+        if (!this.f37141a && f10 >= this.f37142b) {
+            this.f37141a = true;
+            try {
+                this.f37143c.performHapticFeedback(3, 2);
+            } catch (Exception unused) {
+            }
         }
     }
 }

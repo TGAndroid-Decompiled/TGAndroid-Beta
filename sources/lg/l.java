@@ -1,76 +1,61 @@
 package lg;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import java.security.SecureRandom;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.i0;
-public final class l implements GestureDetector.OnGestureListener {
-    public final int f11907a;
-    public final q f11908b;
+import ai.h4;
+import android.content.Context;
+import android.text.Editable;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.Cells.k3;
+public final class l extends k3 {
+    public final int F;
+    public final m G;
 
-    public l(q qVar, int i10) {
-        this.f11908b = qVar;
-        this.f11907a = i10;
-    }
-
-    @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        q qVar = this.f11908b;
-        ValueAnimator valueAnimator = qVar.f11923c0;
-        if (valueAnimator != null) {
-            valueAnimator.removeAllListeners();
-            qVar.f11923c0.cancel();
-            qVar.f11923c0 = null;
+    public l(m mVar, Context context, String str, int i3, e6 e6Var, int i10) {
+        super(context, str, false, false, i3, e6Var);
+        this.F = i10;
+        switch (i10) {
+            case 1:
+                this.G = mVar;
+                super(context, str, true, false, i3, e6Var);
+                return;
+            default:
+                this.G = mVar;
+                return;
         }
-        AnimatorSet animatorSet = qVar.f11924d0;
-        if (animatorSet != null) {
-            animatorSet.removeAllListeners();
-            qVar.f11924d0.cancel();
-            qVar.f11924d0 = null;
+    }
+
+    @Override
+    public final void a(boolean z10) {
+        h4 h4Var;
+        h4 h4Var2;
+        switch (this.F) {
+            case 0:
+                if (z10 && (h4Var = this.G.f34298a) != null) {
+                    h4Var.y0(2);
+                    return;
+                }
+                return;
+            default:
+                if (z10 && (h4Var2 = this.G.f34298a) != null) {
+                    h4Var2.y0(3);
+                    return;
+                }
+                return;
         }
-        i0.r(qVar.f11925e0);
-        qVar.f11918a = true;
-        return true;
     }
 
     @Override
-    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        return false;
-    }
-
-    @Override
-    public final void onLongPress(MotionEvent motionEvent) {
-        this.f11908b.h();
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
-        int i10 = this.f11907a;
-        q qVar = this.f11908b;
-        if (i10 == 4) {
-            h hVar = qVar.f11920b;
-            hVar.d -= f7 * 0.5f;
-            hVar.f11882i -= f10 * 0.05f;
-            return true;
+    public final void b(Editable editable) {
+        switch (this.F) {
+            case 0:
+                m mVar = this.G;
+                mVar.f18359n.d(mVar.f18361s.getText().toString(), mVar.f18362w.getText().toString());
+                mVar.j0(true);
+                return;
+            default:
+                m mVar2 = this.G;
+                mVar2.f18359n.d(mVar2.f18361s.getText().toString(), mVar2.f18362w.getText().toString());
+                mVar2.j0(true);
+                return;
         }
-        h hVar2 = qVar.f11920b;
-        hVar2.d = (f7 * 0.5f) + hVar2.d;
-        hVar2.f11882i = (f10 * 0.05f) + hVar2.f11882i;
-        return true;
-    }
-
-    @Override
-    public final boolean onSingleTapUp(MotionEvent motionEvent) {
-        float measuredWidth = this.f11908b.getMeasuredWidth() / 2.0f;
-        SecureRandom secureRandom = Utilities.f14520b;
-        i0.h3(new k(this, ((measuredWidth - motionEvent.getX()) * (secureRandom.nextInt(30) + 40)) / measuredWidth, ((measuredWidth - motionEvent.getY()) * (secureRandom.nextInt(30) + 40)) / measuredWidth, 0), 16L);
-        return true;
-    }
-
-    @Override
-    public final void onShowPress(MotionEvent motionEvent) {
     }
 }

@@ -1,24 +1,66 @@
 package org.telegram.ui.ActionBar;
-public enum l6 {
-    DEFAULT(t6.f21145og, t6.f21162pg, t6.f21178qg, t6.Dg, t6.Eg, t6.Fg),
-    PRIMARY(t6.f21196rg, t6.f21215sg, t6.f21234tg, t6.Gg, t6.Hg, t6.Ig),
-    DANGER(t6.f21252ug, t6.f21269vg, t6.f21287wg, t6.Jg, t6.Kg, t6.Lg),
-    SUCCESS(t6.f21304xg, t6.f21322yg, t6.f21339zg, t6.Mg, t6.Ng, t6.Og),
-    DEFAULT_IN_TEXT(t6.Ag, t6.Bg, t6.Cg, t6.Pg, t6.Qg, t6.Rg);
-    
-    public final int f20554a;
-    public final int f20555b;
-    public final int f20556c;
-    public final int d;
-    public final int e;
-    public final int f20557f;
 
-    l6(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f20554a = i10;
-        this.f20555b = i11;
-        this.f20556c = i12;
-        this.d = i13;
-        this.e = i14;
-        this.f20557f = i15;
+import android.graphics.PorterDuff;
+import java.lang.ref.WeakReference;
+public final class l6 {
+    public int f28314a;
+    public int f28315b = -1;
+    public int f28316c;
+    public float d;
+    public WeakReference f28317e;
+    public e6 f28318f;
+    public int f28319g;
+    public PorterDuff.Mode h;
+    public Object f28320i;
+    public WeakReference f28321j;
+    public boolean f28322k;
+    public int f28323l;
+    public boolean f28324m;
+    public o6 f28325n;
+    public p6 f28326o;
+
+    public final boolean a() {
+        WeakReference weakReference = this.f28317e;
+        if (weakReference != null && weakReference.get() == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int b() {
+        int i3 = this.f28314a;
+        int i10 = this.f28315b;
+        int i11 = this.f28316c;
+        float f10 = this.d;
+        e6 e6Var = this.f28318f;
+        if (e6Var == null) {
+            WeakReference weakReference = this.f28317e;
+            if (weakReference != null) {
+                e6Var = (e6) weakReference.get();
+            } else {
+                e6Var = null;
+            }
+        }
+        return r6.Q(i3, i10, i11, f10, e6Var);
+    }
+
+    public final void c(int i3, int i10, int i11, float f10, e6 e6Var) {
+        this.f28314a = i3;
+        this.f28315b = i10;
+        this.f28316c = i11;
+        this.d = f10;
+        if (e6Var == null) {
+            this.f28317e = null;
+            this.f28318f = null;
+            return;
+        }
+        Class<?> cls = e6Var.getClass();
+        if (!cls.isSynthetic() && !cls.getName().contains("$$Lambda") && !cls.getName().contains("$$ExternalSynthetic")) {
+            this.f28317e = new WeakReference(e6Var);
+            this.f28318f = null;
+            return;
+        }
+        this.f28317e = null;
+        this.f28318f = e6Var;
     }
 }

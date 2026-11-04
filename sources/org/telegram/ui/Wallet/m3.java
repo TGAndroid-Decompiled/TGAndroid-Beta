@@ -1,31 +1,30 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-public final class m3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34896a;
-    public final p3 f34897b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.View;
+public final class m3 extends View {
+    public final n3 f42830a;
 
-    public m3(p3 p3Var, int i10) {
-        this.f34896a = i10;
-        this.f34897b = p3Var;
+    public m3(n3 n3Var, Context context) {
+        super(context);
+        this.f42830a = n3Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34896a) {
-            case 0:
-                p3 p3Var = this.f34897b;
-                p3Var.getClass();
-                p3Var.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p3Var.e();
-                return;
-            default:
-                p3 p3Var2 = this.f34897b;
-                p3Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p3Var2.Q = floatValue;
-                p3Var2.f35021r.setUseGyroscope(floatValue);
-                return;
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        n3 n3Var = this.f42830a;
+        Bitmap bitmap = n3Var.H;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            n3Var.E.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.drawBitmap(n3Var.H, (Rect) null, n3Var.E, n3Var.f42923y);
         }
     }
 }

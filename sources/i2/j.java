@@ -1,21 +1,41 @@
 package i2;
 
 import android.content.Context;
-public class j {
-    public final Context f7939a;
-    public final k0.b f7940b;
-    public int f7941c = 0;
+import android.net.Uri;
+import b8.bc;
+import cg.v0;
+import d2.q0;
+public final class j implements g2.e {
+    public static final f9.t f14548e = bc.a(new c3.q(2));
+    public final l9.z f14549a;
+    public final tf.b f14550b;
+    public final int f14551c;
+    public final boolean d;
 
-    public j(Context context) {
-        this.f7939a = context;
-        this.f7940b = new k0.b(context, false);
+    public j(v0 v0Var) {
+        this.f14550b = new tf.b((Context) v0Var.f4759c);
+        l9.z zVar = (l9.z) f14548e.get();
+        zVar.getClass();
+        this.f14549a = zVar;
+        this.f14551c = v0Var.f4758b;
+        this.d = v0Var.f4757a;
     }
 
-    public k2.w0 a(Context context) {
-        return new k2.t0(context, 0).a();
+    @Override
+    public final l9.y L(q0 q0Var) {
+        byte[] bArr = q0Var.f8315k;
+        if (bArr != null) {
+            return u(bArr);
+        }
+        Uri uri = q0Var.f8318n;
+        if (uri != null) {
+            return ((l9.a0) this.f14549a).a(new i(1, this, uri));
+        }
+        return null;
     }
 
-    public final i2.b[] b(android.os.Handler r23, i2.c0 r24, i2.c0 r25, i2.c0 r26, i2.c0 r27) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.j.b(android.os.Handler, i2.c0, i2.c0, i2.c0, i2.c0):i2.b[]");
+    @Override
+    public final l9.y u(byte[] bArr) {
+        return ((l9.a0) this.f14549a).a(new i(0, this, bArr));
     }
 }

@@ -1,44 +1,81 @@
 package ue;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import oa.d;
-public abstract class a {
-    public static final Pattern f50237a = Pattern.compile("[\\\\&]");
-    public static final Pattern f50238b = Pattern.compile("\\\\[!\"#$%&'()*+,./:;<=>?@\\[\\\\\\]^_`{|}~-]|&(?:#x[a-f0-9]{1,6}|#[0-9]{1,7}|[a-z][a-z0-9]{1,31});", 2);
-    public static final Pattern f50239c;
-    public static final d d;
+import java.lang.ref.Reference;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.concurrent.Semaphore;
+public final class a implements Iterator {
+    public int f55813a;
+    public Object f55814b;
+    public final b f55815c;
 
-    static {
-        Pattern.compile("(%[a-fA-F0-9]{0,2}|[^:/?#@!$&'()*+,;=a-zA-Z0-9\\-._~])");
-        f50239c = Pattern.compile("[ \t\r\n]+");
-        d = new d(22);
+    public a(b bVar) {
+        this.f55815c = bVar;
+        this.f55813a = bVar.f55817b.size();
     }
 
-    public static String a(String str) {
-        if (f50237a.matcher(str).find()) {
-            Matcher matcher = f50238b.matcher(str);
-            if (matcher.find()) {
-                StringBuilder sb2 = new StringBuilder(str.length() + 16);
-                int i10 = 0;
-                do {
-                    sb2.append((CharSequence) str, i10, matcher.start());
-                    String group = matcher.group();
-                    d.getClass();
-                    if (group.charAt(0) == '\\') {
-                        sb2.append((CharSequence) group, 1, group.length());
-                    } else {
-                        sb2.append(b.a(group));
+    @Override
+    public final boolean hasNext() {
+        int i3;
+        synchronized (this.f55815c.f55817b) {
+            try {
+                this.f55814b = null;
+                while (true) {
+                    if (this.f55814b != null || (i3 = this.f55813a) <= 0) {
+                        break;
                     }
-                    i10 = matcher.end();
-                } while (matcher.find());
-                if (i10 != str.length()) {
-                    sb2.append((CharSequence) str, i10, str.length());
+                    ArrayList arrayList = this.f55815c.f55817b;
+                    int i10 = i3 - 1;
+                    this.f55813a = i10;
+                    Reference reference = (Reference) arrayList.get(i10);
+                    Object obj = reference.get();
+                    if (obj != null && !this.f55815c.f55818c.contains(reference)) {
+                        this.f55814b = obj;
+                        break;
+                    }
                 }
-                return sb2.toString();
+                if (this.f55814b == null) {
+                    b bVar = this.f55815c;
+                    if (bVar.f55816a) {
+                        ArrayList arrayList2 = bVar.f55817b;
+                        ArrayList arrayList3 = bVar.d;
+                        ArrayList arrayList4 = bVar.f55818c;
+                        if (bVar.f55819e) {
+                            bVar.f55819e = false;
+                            if (!arrayList4.isEmpty()) {
+                                arrayList2.removeAll(arrayList4);
+                                arrayList4.clear();
+                            }
+                            if (!arrayList3.isEmpty()) {
+                                arrayList2.addAll(arrayList3);
+                                arrayList3.clear();
+                            }
+                        } else {
+                            throw new IllegalStateException();
+                        }
+                    }
+                }
+            } catch (Throwable th2) {
+                throw th2;
             }
-            return str;
         }
-        return str;
+        if (this.f55814b == null) {
+            Semaphore semaphore = this.f55815c.f55820f;
+            if (semaphore != null) {
+                semaphore.release();
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final Object next() {
+        Object obj = this.f55814b;
+        if (obj != null) {
+            return obj;
+        }
+        throw new NoSuchElementException();
     }
 }

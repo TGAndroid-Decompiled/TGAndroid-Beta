@@ -1,81 +1,57 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-public final class pk extends FrameLayout {
-    public final int f40494a;
-    public final un f40495b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextPaint;
+import android.view.animation.OvershootInterpolator;
+public final class pk extends org.telegram.ui.Components.sy0 {
+    public final wm L;
 
-    public pk(un unVar, Context context, int i10) {
-        super(context);
-        this.f40494a = i10;
-        this.f40495b = unVar;
+    public pk(Activity activity, org.telegram.ui.ActionBar.e6 e6Var, wm wmVar) {
+        super(activity);
+        this.L = wmVar;
+        TextPaint textPaint = new TextPaint(1);
+        this.f38194b = textPaint;
+        Paint paint = new Paint(1);
+        this.f38195c = paint;
+        this.d = org.telegram.messenger.g0.L(24.0f);
+        this.f38196e = new OvershootInterpolator();
+        this.I = new org.telegram.ui.Components.sp0(this, 14);
+        this.K = new Path();
+        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.vj, e6Var);
+        int alpha = Color.alpha(w02);
+        textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
+        textPaint.setColor(w02);
+        paint.setColor(w02);
+        paint.setAlpha((int) (alpha * 0.14d));
+        int L = org.telegram.messenger.g0.L(6.0f);
+        int i3 = org.telegram.ui.ActionBar.k6.tj;
+        ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(L, org.telegram.ui.ActionBar.k6.w0(i3, e6Var));
+        org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i3);
+        setBackground(d02);
+        org.telegram.ui.ActionBar.r6.k(this, d02, N, null, e6Var);
+    }
+
+    public final void d() {
+        int i3 = -(org.telegram.messenger.g0.L(16.0f) + getMeasuredHeight());
+        wm wmVar = this.L;
+        int top = wmVar.f51237a0.getTop() - wmVar.m1.getMeasuredHeight();
+        setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i3)));
     }
 
     @Override
-    public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        int i14;
-        switch (this.f40494a) {
-            case 1:
-                un unVar = this.f40495b;
-                if (view == unVar.f42093i3) {
-                    ImageView imageView = unVar.f42070g3;
-                    if (imageView != null && imageView.getVisibility() != 8) {
-                        i14 = 66;
-                    } else {
-                        i14 = 18;
-                    }
-                    ImageView imageView2 = unVar.f42081h3;
-                    if (imageView2 != null && imageView2.getVisibility() != 8) {
-                        i14 += 48;
-                    }
-                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = org.telegram.messenger.i0.L(i14);
-                }
-                super.measureChildWithMargins(view, i10, i11, i12, i13);
-                return;
-            default:
-                super.measureChildWithMargins(view, i10, i11, i12, i13);
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        d();
     }
 
     @Override
-    public void setTranslationY(float f7) {
-        switch (this.f40494a) {
-            case 2:
-                super.setTranslationY(f7);
-                this.f40495b.l1.invalidate();
-                return;
-            default:
-                super.setTranslationY(f7);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        boolean z10;
-        switch (this.f40494a) {
-            case 0:
-                super.setVisibility(i10);
-                j6.m mVar = this.f40495b.Yc;
-                boolean z11 = false;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (getMeasuredWidth() > 0) {
-                    z11 = true;
-                }
-                mVar.h(2, z10, z11);
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
-        }
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(i3, i10);
+        d();
     }
 }

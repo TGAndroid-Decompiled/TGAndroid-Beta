@@ -1,19 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.util.SparseArray;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class f31 extends n31 {
-    public final org.telegram.ui.ng Q1;
+public final class f31 extends g.p {
+    public final n31 f33692c;
 
-    public f31(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i10, TL_iv.RichMessage richMessage, org.telegram.ui.ng ngVar) {
-        super(activity, str, str2, null, inputPeer, i10, false, richMessage);
-        this.Q1 = ngVar;
+    public f31(n31 n31Var) {
+        this.f33692c = n31Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.Q1.run();
+    public final int i(int i3) {
+        n31 n31Var = this.f33692c;
+        u4.h0 adapter = n31Var.f36359n.getAdapter();
+        m31 m31Var = n31Var.f36361s;
+        if (adapter == m31Var) {
+            if ((m31Var.d.get(i3) instanceof Integer) || i3 >= m31Var.f35996x) {
+                return m31Var.f35995w;
+            }
+            return 1;
+        }
+        kg.y1 y1Var = n31Var.f36362w;
+        SparseArray sparseArray = y1Var.f17239s;
+        if (i3 != y1Var.E && (sparseArray.get(i3) == null || (sparseArray.get(i3) instanceof TLRPC.Document))) {
+            return 1;
+        }
+        return y1Var.f17235e.a();
     }
 }

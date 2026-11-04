@@ -1,34 +1,35 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class ck extends org.telegram.ui.Components.l11 {
-    public final un e;
+import android.animation.LayoutTransition;
+import android.view.View;
+import android.view.ViewGroup;
+public final class ck implements LayoutTransition.TransitionListener {
+    public bk f44378a;
+    public int f44379b;
+    public final org.telegram.ui.ActionBar.x f44380c;
+    public final wm d;
 
-    public ck(un unVar, Context context, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(i10, context, p6Var);
-        this.e = unVar;
+    public ck(wm wmVar, org.telegram.ui.ActionBar.x xVar) {
+        this.d = wmVar;
+        this.f44380c = xVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.ActionBar.l lVar;
-        if (getAlpha() != 0.0f) {
-            un unVar = this.e;
-            lVar = ((org.telegram.ui.ActionBar.k2) unVar).actionBar;
-            if (!lVar.u() && !unVar.R9()) {
-                return super.onTouchEvent(motionEvent);
-            }
-            return false;
+    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i3) {
+        int i10 = this.f44379b - 1;
+        this.f44379b = i10;
+        if (i10 == 0 && this.f44378a != null) {
+            this.f44380c.getViewTreeObserver().removeOnPreDrawListener(this.f44378a);
+            this.f44378a = null;
         }
-        return false;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            invalidate();
+    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i3) {
+        if (this.f44379b == 0 && this.f44378a == null) {
+            this.f44378a = new bk(this, 0);
+            this.f44380c.getViewTreeObserver().addOnPreDrawListener(this.f44378a);
         }
-        super.setTranslationY(f7);
+        this.f44379b++;
     }
 }

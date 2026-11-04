@@ -1,65 +1,79 @@
 package v7;
 
-import android.hardware.biometrics.BiometricPrompt;
-import android.os.Build;
-import android.security.identity.IdentityCredential;
-import android.security.keystore.KeyGenParameterSpec;
-import android.util.Log;
-import java.io.IOException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
-import java.security.KeyStore;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.Signature;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
-import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
-import javax.crypto.Mac;
-import javax.crypto.NoSuchPaddingException;
-import javax.crypto.SecretKey;
-public abstract class m {
-    public static androidx.biometric.u a() {
-        try {
-            KeyStore keyStore = KeyStore.getInstance("AndroidKeyStore");
-            keyStore.load(null);
-            KeyGenParameterSpec.Builder b10 = androidx.biometric.a0.b("androidxBiometric", 3);
-            androidx.biometric.a0.d(b10);
-            androidx.biometric.a0.e(b10);
-            KeyGenerator keyGenerator = KeyGenerator.getInstance("AES", "AndroidKeyStore");
-            androidx.biometric.a0.c(keyGenerator, androidx.biometric.a0.a(b10));
-            keyGenerator.generateKey();
-            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
-            cipher.init(1, (SecretKey) keyStore.getKey("androidxBiometric", null));
-            return new androidx.biometric.u(cipher);
-        } catch (IOException | InvalidAlgorithmParameterException | InvalidKeyException | KeyStoreException | NoSuchAlgorithmException | NoSuchProviderException | UnrecoverableKeyException | CertificateException | NoSuchPaddingException e) {
-            Log.w("CryptoObjectUtils", "Failed to create fake crypto object.", e);
-            return null;
-        }
+import com.google.android.gms.internal.cast.g4;
+import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+public abstract class m implements ExecutorService, AutoCloseable {
+    @Override
+    public final boolean awaitTermination(long j10, TimeUnit timeUnit) {
+        return ((mb.h) this).f19234a.awaitTermination(j10, timeUnit);
     }
 
-    public static BiometricPrompt.CryptoObject b(androidx.biometric.u uVar) {
-        IdentityCredential identityCredential;
-        if (uVar == null) {
-            return null;
-        }
-        Cipher cipher = uVar.f1120b;
-        if (cipher != null) {
-            return androidx.biometric.b0.b(cipher);
-        }
-        Signature signature = uVar.f1119a;
-        if (signature != null) {
-            return androidx.biometric.b0.a(signature);
-        }
-        Mac mac = uVar.f1121c;
-        if (mac != null) {
-            return androidx.biometric.b0.c(mac);
-        }
-        if (Build.VERSION.SDK_INT < 30 || (identityCredential = uVar.d) == null) {
-            return null;
-        }
-        return androidx.biometric.c0.a(identityCredential);
+    @Override
+    public final void close() {
+        g4.j(this);
+    }
+
+    @Override
+    public final List invokeAll(Collection collection) {
+        return ((mb.h) this).f19234a.invokeAll(collection);
+    }
+
+    @Override
+    public final Object invokeAny(Collection collection) {
+        return ((mb.h) this).f19234a.invokeAny(collection);
+    }
+
+    @Override
+    public final boolean isShutdown() {
+        return ((mb.h) this).f19234a.isShutdown();
+    }
+
+    @Override
+    public final boolean isTerminated() {
+        return ((mb.h) this).f19234a.isTerminated();
+    }
+
+    @Override
+    public final void shutdown() {
+        ((mb.h) this).f19234a.shutdown();
+    }
+
+    @Override
+    public final List shutdownNow() {
+        return ((mb.h) this).f19234a.shutdownNow();
+    }
+
+    @Override
+    public final Future submit(Runnable runnable) {
+        return ((mb.h) this).f19234a.submit(runnable);
+    }
+
+    public final String toString() {
+        return ((mb.h) this).f19234a.toString();
+    }
+
+    @Override
+    public final List invokeAll(Collection collection, long j10, TimeUnit timeUnit) {
+        return ((mb.h) this).f19234a.invokeAll(collection, j10, timeUnit);
+    }
+
+    @Override
+    public final Object invokeAny(Collection collection, long j10, TimeUnit timeUnit) {
+        return ((mb.h) this).f19234a.invokeAny(collection, j10, timeUnit);
+    }
+
+    @Override
+    public final Future submit(Runnable runnable, Object obj) {
+        return ((mb.h) this).f19234a.submit(runnable, obj);
+    }
+
+    @Override
+    public final Future submit(Callable callable) {
+        return ((mb.h) this).f19234a.submit(callable);
     }
 }

@@ -1,41 +1,54 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class uf0 implements org.telegram.ui.Components.jk0, org.telegram.ui.ActionBar.u1 {
-    public final ig0 f41935a;
+import android.content.Context;
+public final class uf0 extends org.telegram.ui.Cells.q1 {
+    public int f50076kd;
+    public int f50077ld;
+    public int f50078md;
+    public final vf0 f50079nd;
 
-    public uf0(ig0 ig0Var) {
-        this.f41935a = ig0Var;
+    public uf0(vf0 vf0Var, Context context, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, i3, true, null, e6Var);
+        this.f50079nd = vf0Var;
+        this.f50076kd = Integer.MAX_VALUE;
+        this.f50077ld = Integer.MAX_VALUE;
+        this.f50078md = -1;
     }
 
     @Override
-    public boolean f(int i10, View view) {
-        ig0 ig0Var = this.f41935a;
-        if ((i10 < ig0Var.D || i10 >= ig0Var.E) && (i10 < ig0Var.H || i10 >= ig0Var.I)) {
-            return false;
-        }
-        ((fg0) view).f37146y.callOnClick();
-        try {
-            view.performHapticFeedback(0, 2);
-            return true;
-        } catch (Exception unused) {
-            return true;
-        }
+    public final yh.e U2() {
+        return yh.e.d(1, this, this.f50079nd.F);
     }
 
     @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        TLRPC.TL_messages_deleteRevokedExportedChatInvites tL_messages_deleteRevokedExportedChatInvites = new TLRPC.TL_messages_deleteRevokedExportedChatInvites();
-        ig0 ig0Var = this.f41935a;
-        tL_messages_deleteRevokedExportedChatInvites.peer = ig0Var.getMessagesController().i1(-ig0Var.f38042n);
-        long j10 = ig0Var.f38034f;
-        if (j10 == ig0Var.getUserConfig().e()) {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = ig0Var.getMessagesController().p1(ig0Var.getUserConfig().f());
-        } else {
-            tL_messages_deleteRevokedExportedChatInvites.admin_id = ig0Var.getMessagesController().n1(j10);
+    public final boolean isPressed() {
+        return false;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        int f12;
+        super.onLayout(z10, i3, i10, i11, i12);
+        if (this.hb.f30936x0 && i10 != 0 && this.f50076kd != Integer.MAX_VALUE && i12 != 0 && this.f50077ld != Integer.MAX_VALUE) {
+            int i13 = this.f50078md;
+            int i14 = 0;
+            if (getMessageObject() == null) {
+                f12 = 0;
+            } else {
+                f12 = getMessageObject().f1();
+            }
+            if (i13 == f12) {
+                if (!this.f50079nd.f50502w0) {
+                    setTranslationY(-(i10 - this.f50076kd));
+                    animate().translationY(0.0f).setDuration(320L).setInterpolator(org.telegram.ui.Components.xq.h).start();
+                }
+                this.f50076kd = getTop();
+                this.f50077ld = getBottom();
+                if (getMessageObject() != null) {
+                    i14 = getMessageObject().f1();
+                }
+                this.f50078md = i14;
+            }
         }
-        ig0Var.f38031c0 = true;
-        ig0Var.getConnectionsManager().sendRequest(tL_messages_deleteRevokedExportedChatInvites, new rf0(ig0Var, 1));
     }
 }

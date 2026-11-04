@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
+public class qr0 extends tj0 implements ei.g7 {
+    public int f37515f3;
+    public int f37516g3;
+    public int f37517h3;
+    public int i3;
+    public boolean f37518j3;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class qr0 extends FragmentContextView {
-    public final au0 X0;
-
-    public qr0(au0 au0Var, Context context, org.telegram.ui.ActionBar.k2 k2Var, au0 au0Var2, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, k2Var, au0Var2, false, p6Var);
-        this.X0 = au0Var;
+    @Override
+    public final void a(int[] iArr) {
+        if (this.f37518j3) {
+            iArr[0] = getPaddingTop() - org.telegram.messenger.g0.L(2.0f);
+            iArr[1] = getMeasuredHeight() - getPaddingBottom();
+            return;
+        }
+        iArr[0] = (getPaddingTop() - org.telegram.messenger.g0.L(2.0f)) - this.f37517h3;
+        iArr[1] = (getMeasuredHeight() - getPaddingBottom()) - this.i3;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        au0 au0Var = this.X0;
-        zr zrVar = au0Var.R0;
-        FrameLayout frameLayout = au0Var.S0;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        zrVar.i(frameLayout, z10, true);
+    public final void setPadding(int i3, int i10, int i11, int i12) {
+        this.f37515f3 = i10;
+        this.f37516g3 = i12;
+        super.setPadding(i3, i10, i11, i12);
     }
 }

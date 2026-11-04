@@ -2,52 +2,52 @@ package g;
 
 import android.view.ViewGroup;
 import java.util.WeakHashMap;
-import r0.h0;
-import r0.k0;
+import r0.i0;
+import r0.l0;
 public final class h implements Runnable {
-    public final int f7197a;
-    public final r f7198b;
+    public final int f11709a;
+    public final s f11710b;
 
-    public h(r rVar, int i10) {
-        this.f7197a = i10;
-        this.f7198b = rVar;
+    public h(s sVar, int i3) {
+        this.f11709a = i3;
+        this.f11710b = sVar;
     }
 
     @Override
     public final void run() {
         ViewGroup viewGroup;
-        int i10 = this.f7197a;
-        r rVar = this.f7198b;
-        switch (i10) {
+        int i3 = this.f11709a;
+        s sVar = this.f11710b;
+        switch (i3) {
             case 0:
-                if ((rVar.f7233i0 & 1) != 0) {
-                    rVar.j(0);
+                if ((sVar.f11751j0 & 1) != 0) {
+                    sVar.k(0);
                 }
-                if ((rVar.f7233i0 & 4096) != 0) {
-                    rVar.j(108);
+                if ((sVar.f11751j0 & 4096) != 0) {
+                    sVar.k(108);
                 }
-                rVar.f7232h0 = false;
-                rVar.f7233i0 = 0;
+                sVar.f11750i0 = false;
+                sVar.f11751j0 = 0;
                 return;
             default:
-                rVar.E.showAtLocation(rVar.D, 55, 0, 0);
-                k0 k0Var = rVar.G;
-                if (k0Var != null) {
-                    k0Var.b();
+                sVar.F.showAtLocation(sVar.E, 55, 0, 0);
+                l0 l0Var = sVar.H;
+                if (l0Var != null) {
+                    l0Var.b();
                 }
-                if (rVar.I && (viewGroup = rVar.J) != null) {
-                    WeakHashMap weakHashMap = h0.f46134a;
+                if (sVar.J && (viewGroup = sVar.K) != null) {
+                    WeakHashMap weakHashMap = i0.f54015a;
                     if (viewGroup.isLaidOut()) {
-                        rVar.D.setAlpha(0.0f);
-                        k0 a2 = h0.a(rVar.D);
-                        a2.a(1.0f);
-                        rVar.G = a2;
-                        a2.d(new i(this, 0));
+                        sVar.E.setAlpha(0.0f);
+                        l0 a10 = i0.a(sVar.E);
+                        a10.a(1.0f);
+                        sVar.H = a10;
+                        a10.d(new j(this, 0));
                         return;
                     }
                 }
-                rVar.D.setAlpha(1.0f);
-                rVar.D.setVisibility(0);
+                sVar.E.setAlpha(1.0f);
+                sVar.E.setVisibility(0);
                 return;
         }
     }

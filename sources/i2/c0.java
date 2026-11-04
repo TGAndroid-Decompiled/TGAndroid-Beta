@@ -1,105 +1,64 @@
 package i2;
 
-import android.graphics.SurfaceTexture;
-import android.view.Surface;
-import android.view.SurfaceHolder;
-import android.view.TextureView;
-import b2.a2;
-import java.util.ArrayList;
-import org.telegram.ui.Components.o61;
-import org.telegram.ui.Components.v61;
-public final class c0 implements a3.m0, k2.w, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
-    public final i0 f7822a;
+import android.net.Uri;
+import java.util.Collections;
+import java.util.Map;
+public final class c0 implements h {
+    public final h f14527a;
+    public long f14528b;
+    public Uri f14529c;
+    public Map d;
 
-    public c0(i0 i0Var) {
-        this.f7822a = i0Var;
+    public c0(h hVar) {
+        hVar.getClass();
+        this.f14527a = hVar;
+        this.f14529c = Uri.EMPTY;
+        this.d = Collections.EMPTY_MAP;
     }
 
     @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        i0 i0Var = this.f7822a;
-        o61 o61Var = i0Var.f7929s0;
-        if (o61Var != null) {
-            o61Var.execute(new a0(this, surfaceTexture, i10, i11, 0));
-            return;
-        }
-        Surface surface = new Surface(surfaceTexture);
-        i0Var.x1(surface);
-        i0Var.U = surface;
-        i0Var.q1(i10, i11);
+    public final void addTransferListener(d0 d0Var) {
+        d0Var.getClass();
+        this.f14527a.addTransferListener(d0Var);
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        i0 i0Var = this.f7822a;
-        ArrayList arrayList = i0Var.f7931t0;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            if (((v61) ((a2) obj)).J.onSurfaceDestroyed(surfaceTexture)) {
-                return false;
+    public final void close() {
+        this.f14527a.close();
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.f14527a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f14527a.getUri();
+    }
+
+    @Override
+    public final long open(n nVar) {
+        h hVar = this.f14527a;
+        this.f14529c = nVar.f14564a;
+        this.d = Collections.EMPTY_MAP;
+        try {
+            return hVar.open(nVar);
+        } finally {
+            Uri uri = hVar.getUri();
+            if (uri != null) {
+                this.f14529c = uri;
             }
-        }
-        o61 o61Var = i0Var.f7929s0;
-        if (o61Var != null) {
-            o61Var.execute(new gg.c(this, surfaceTexture));
-            return true;
-        }
-        i0Var.x1(null);
-        i0Var.q1(0, 0);
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        i0 i0Var = this.f7822a;
-        o61 o61Var = i0Var.f7929s0;
-        if (o61Var != null) {
-            o61Var.execute(new u(this, surfaceTexture, i10, i11));
-        } else {
-            i0Var.q1(i10, i11);
+            this.d = hVar.getResponseHeaders();
         }
     }
 
     @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        i0 i0Var = this.f7822a;
-        o61 o61Var = i0Var.f7929s0;
-        if (o61Var != null) {
-            o61Var.execute(new d1.e(16, this, surfaceTexture));
-            return;
+    public final int read(byte[] bArr, int i3, int i10) {
+        int read = this.f14527a.read(bArr, i3, i10);
+        if (read != -1) {
+            this.f14528b += read;
         }
-        ArrayList arrayList = i0Var.f7931t0;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((v61) ((a2) obj)).J.onSurfaceTextureUpdated(surfaceTexture);
-        }
-    }
-
-    @Override
-    public final void surfaceChanged(SurfaceHolder surfaceHolder, int i10, int i11, int i12) {
-        this.f7822a.q1(i11, i12);
-    }
-
-    @Override
-    public final void surfaceCreated(SurfaceHolder surfaceHolder) {
-        i0 i0Var = this.f7822a;
-        if (i0Var.W) {
-            i0Var.x1(surfaceHolder.getSurface());
-        }
-    }
-
-    @Override
-    public final void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        i0 i0Var = this.f7822a;
-        if (i0Var.W) {
-            i0Var.x1(null);
-        }
-        i0Var.q1(0, 0);
+        return read;
     }
 }

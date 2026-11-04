@@ -1,41 +1,48 @@
 package org.telegram.ui.Components;
+public final class c7 implements q1.d {
+    public final int f32572a;
+    public final Object f32573b;
 
-import android.view.View;
-public final class c7 implements hk0 {
-    public final int f25038a;
-
-    public c7(int i10) {
-        this.f25038a = i10;
+    public c7(Object obj, int i3) {
+        this.f32572a = i3;
+        this.f32573b = obj;
     }
 
     @Override
-    public final void f(int i10, View view) {
-        switch (this.f25038a) {
+    public final void a(q1.g gVar, float f10, float f11) {
+        switch (this.f32572a) {
             case 0:
-                if (view instanceof org.telegram.ui.Cells.w) {
-                    ((org.telegram.ui.Cells.w) view).a();
-                    return;
-                }
+                ((z7) this.f32573b).K1.setBufferedProgress(f10 / 1000.0f);
                 return;
             case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f23846q1;
-                if (view instanceof org.telegram.ui.Cells.v5) {
-                    org.telegram.ui.Cells.v5 v5Var = (org.telegram.ui.Cells.v5) view;
-                    v5Var.f23316x.d(v5Var);
+                ac acVar = (ac) this.f32573b;
+                acVar.f31797o = (int) f10;
+                acVar.l();
+                return;
+            case 2:
+                if (Math.abs(f10) > ((fb) this.f32573b).getWidth()) {
+                    gVar.d();
                     return;
                 }
                 return;
-            case 2:
-                return;
             case 3:
-                int i11 = ph.c.S1;
+                bi biVar = (bi) ((ci.h4) this.f32573b).d;
+                th thVar = biVar.f32279u2;
+                if (thVar == biVar.f32223e2 || thVar == biVar.f32226f2 || (biVar.f32290x1 && biVar.f32256o3 != null)) {
+                    biVar.P1(1);
+                }
+                biVar.f32279u2.m(biVar.f32231g4);
+                biVar.Y0.g();
+                biVar.f28586b.invalidate();
+                return;
+            case 4:
+                hk hkVar = (hk) this.f32573b;
+                hkVar.f34417n0 = f10;
+                hkVar.m0();
                 return;
             default:
-                int i12 = ph.m.f45224s2;
+                ((la0) this.f32573b).y();
                 return;
         }
-    }
-
-    private final void a(int i10, View view) {
     }
 }

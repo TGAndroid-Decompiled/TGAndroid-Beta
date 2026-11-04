@@ -1,34 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.ProfileActivity;
-public final class lv0 implements Runnable {
-    public final int f28293a;
-    public final ov0 f28294b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class lv0 extends AnimatorListenerAdapter {
+    public final int f35892a;
+    public final boolean f35893b;
+    public final xv0 f35894c;
 
-    public lv0(ov0 ov0Var, int i10) {
-        this.f28293a = i10;
-        this.f28294b = ov0Var;
+    public lv0(xv0 xv0Var, int i3, boolean z10) {
+        this.f35894c = xv0Var;
+        this.f35892a = i3;
+        this.f35893b = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f28293a) {
-            case 0:
-                ov0 ov0Var = this.f28294b;
-                ov0Var.invalidate();
-                org.telegram.messenger.i0.g3(new lv0(ov0Var, 1));
-                return;
-            default:
-                ov0 ov0Var2 = this.f28294b;
-                nv0 nv0Var = ov0Var2.e;
-                if (nv0Var != null) {
-                    ov0Var2.getVisibilityFactor();
-                    ProfileActivity profileActivity = ((org.telegram.ui.av0) nv0Var).f35843b;
-                    profileActivity.f33897r.setTranslationX(profileActivity.m4(profileActivity.f33926u6, profileActivity.f33941w6));
-                    profileActivity.f33897r.setTranslationY(profileActivity.n4(profileActivity.f33949x6));
-                    return;
-                }
-                return;
+    public final void onAnimationCancel(Animator animator) {
+        AnimatorSet[] animatorSetArr = this.f35894c.A1;
+        int i3 = this.f35892a;
+        AnimatorSet animatorSet = animatorSetArr[i3];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            animatorSetArr[i3] = null;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        xv0 xv0Var = this.f35894c;
+        AnimatorSet[] animatorSetArr = xv0Var.A1;
+        int i3 = this.f35892a;
+        AnimatorSet animatorSet = animatorSetArr[i3];
+        if (animatorSet != null && animatorSet.equals(animator)) {
+            if (!this.f35893b) {
+                xv0Var.B1[i3].setVisibility(4);
+            }
+            animatorSetArr[i3] = null;
         }
     }
 }

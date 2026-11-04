@@ -1,24 +1,45 @@
 package s3;
 
-import a1.g;
-import j$.util.DesugarCollections;
-import java.util.List;
-public final class d extends b {
-    public final long f47872a;
-    public final long f47873b;
-    public final List f47874c;
+import j$.util.Objects;
+import java.util.Arrays;
+public final class d extends i {
+    public final String f54613b;
+    public final boolean f54614c;
+    public final boolean d;
+    public final String[] f54615e;
+    public final i[] f54616f;
 
-    public d(long j10, long j11, List list) {
-        this.f47872a = j10;
-        this.f47873b = j11;
-        this.f47874c = DesugarCollections.unmodifiableList(list);
+    public d(String str, boolean z10, boolean z11, String[] strArr, i[] iVarArr) {
+        super("CTOC");
+        this.f54613b = str;
+        this.f54614c = z10;
+        this.d = z11;
+        this.f54615e = strArr;
+        this.f54616f = iVarArr;
     }
 
-    @Override
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("SCTE-35 SpliceInsertCommand { programSplicePts=");
-        sb2.append(this.f47872a);
-        sb2.append(", programSplicePlaybackPositionUs= ");
-        return g.q(sb2, this.f47873b, " }");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && d.class == obj.getClass()) {
+            d dVar = (d) obj;
+            if (this.f54614c == dVar.f54614c && this.d == dVar.d && Objects.equals(this.f54613b, dVar.f54613b) && Arrays.equals(this.f54615e, dVar.f54615e) && Arrays.equals(this.f54616f, dVar.f54616f)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int i3;
+        int i10 = (((527 + (this.f54614c ? 1 : 0)) * 31) + (this.d ? 1 : 0)) * 31;
+        String str = this.f54613b;
+        if (str != null) {
+            i3 = str.hashCode();
+        } else {
+            i3 = 0;
+        }
+        return i10 + i3;
     }
 }

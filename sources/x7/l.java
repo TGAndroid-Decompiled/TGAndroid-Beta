@@ -1,28 +1,36 @@
 package x7;
-
-import java.io.Serializable;
-public final class l extends d implements Serializable {
-    public final Object f53243b;
-    public final e9.m f53244c;
-
-    public l(Object obj, e9.m mVar) {
-        super(0, false);
-        this.f53243b = obj;
-        this.f53244c = mVar;
-    }
-
-    @Override
-    public final Object getKey() {
-        return this.f53243b;
-    }
-
-    @Override
-    public final Object getValue() {
-        return this.f53244c;
-    }
-
-    @Override
-    public final Object setValue(Object obj) {
-        throw new UnsupportedOperationException();
+public abstract class l {
+    public static int a(int i3) {
+        if (i3 != 1) {
+            if (i3 == 2) {
+                return 1;
+            }
+            if (i3 == 4) {
+                return 2;
+            }
+            if (i3 != 8) {
+                if (i3 == 16) {
+                    return 4;
+                }
+                if (i3 != 32) {
+                    if (i3 != 64) {
+                        if (i3 != 128) {
+                            if (i3 == 256) {
+                                return 8;
+                            }
+                            if (i3 == 512) {
+                                return 9;
+                            }
+                            throw new IllegalArgumentException(k2.p1.i(i3, "type needs to be >= FIRST and <= LAST, type="));
+                        }
+                        return 7;
+                    }
+                    return 6;
+                }
+                return 5;
+            }
+            return 3;
+        }
+        return 0;
     }
 }

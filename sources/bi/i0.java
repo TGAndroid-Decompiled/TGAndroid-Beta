@@ -1,38 +1,32 @@
 package bi;
 
-import android.content.Context;
+import android.graphics.Outline;
 import android.view.View;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.Components.v51;
-public final class i0 extends a51 {
-    public static final int f3067b = 0;
+import android.view.ViewOutlineProvider;
+public final class i0 extends ViewOutlineProvider {
+    public final int f3746a;
+    public final j0 f3747b;
 
-    static {
-        a51.h(new a51());
+    public i0(j0 j0Var, int i3) {
+        this.f3746a = i3;
+        this.f3747b = j0Var;
     }
 
     @Override
-    public final void b(View view, b51 b51Var, boolean z10, q51 q51Var, v51 v51Var) {
-        j0 j0Var = (j0) view;
-        a aVar = (a) b51Var.G;
-        j0Var.f2881a = aVar;
-        j0Var.E = (h0) b51Var.H;
-        j0Var.c(aVar);
-        j0Var.j();
-    }
-
-    @Override
-    public final View d(Context context, uk0 uk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
-        j0 j0Var = new j0(i10, context, p6Var);
-        j0Var.setBackground(new h2(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.f20930d6, p6Var)));
-        return j0Var;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f3746a) {
+            case 0:
+                float translationY = view.getTranslationY() + view.getTop();
+                float translationX = view.getTranslationX() + view.getLeft();
+                j0 j0Var = this.f3747b;
+                outline.setRoundRect(Math.round(j0Var.f3765n - translationX), Math.round(j0Var.f3770r - translationY), Math.round(j0Var.f3772s - translationX), Math.round(j0Var.f3774w - translationY), j0Var.f3775x);
+                return;
+            default:
+                int height = view.getHeight();
+                j0 j0Var2 = this.f3747b;
+                int i3 = j0Var2.f3753c0;
+                outline.setRoundRect(j0Var2.f3751b0, i3, view.getWidth() - j0Var2.f3751b0, view.getHeight() - j0Var2.f3754d0, ((height - i3) - j0Var2.f3754d0) / 2.0f);
+                return;
+        }
     }
 }

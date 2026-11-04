@@ -1,32 +1,24 @@
 package a9;
 
-import java.util.Iterator;
-public abstract class o implements Iterator {
-    public final int f351a;
+import android.os.Parcel;
+import android.os.ParcelFileDescriptor;
+import android.os.Parcelable;
+public final class o extends q6.a {
+    public static final Parcelable.Creator<o> CREATOR = new c(12);
+    public final int f229a;
+    public final ParcelFileDescriptor f230b;
+
+    public o(int i3, ParcelFileDescriptor parcelFileDescriptor) {
+        this.f229a = i3;
+        this.f230b = parcelFileDescriptor;
+    }
 
     @Override
-    public final void remove() {
-        switch (this.f351a) {
-            case 0:
-                throw new UnsupportedOperationException();
-            case 1:
-                throw new UnsupportedOperationException();
-            case 2:
-                throw new UnsupportedOperationException();
-            case 3:
-                throw new UnsupportedOperationException();
-            case 4:
-                throw new UnsupportedOperationException();
-            case 5:
-                throw new UnsupportedOperationException();
-            case 6:
-                throw new UnsupportedOperationException();
-            case 7:
-                throw new UnsupportedOperationException();
-            case 8:
-                throw new UnsupportedOperationException();
-            default:
-                throw new UnsupportedOperationException();
-        }
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.r(parcel, 2, 4);
+        parcel.writeInt(this.f229a);
+        j8.a.l(parcel, 3, this.f230b, i3);
+        j8.a.t(parcel, s6);
     }
 }

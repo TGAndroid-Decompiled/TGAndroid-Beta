@@ -1,24 +1,22 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class ny extends org.telegram.ui.Components.a51 {
-    public static final int f39983b = 0;
-
-    static {
-        org.telegram.ui.Components.a51.h(new org.telegram.ui.Components.a51());
-    }
-
-    @Override
-    public final void b(View view, org.telegram.ui.Components.b51 b51Var, boolean z10, org.telegram.ui.Components.q51 q51Var, org.telegram.ui.Components.v51 v51Var) {
-        oy oyVar = (oy) view;
-        oyVar.f40290n = (org.telegram.messenger.r20) b51Var.G;
-        oyVar.f40291r = b51Var;
-        oyVar.b(b51Var.f24656z, false);
-    }
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.style.ImageSpan;
+public final class ny extends ImageSpan {
+    public int f48142a;
 
     @Override
-    public final View d(Context context, org.telegram.ui.Components.uk0 uk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
-        return new oy(context, p6Var);
+    public final void draw(Canvas canvas, CharSequence charSequence, int i3, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        if (paint.getColor() != this.f48142a && getDrawable() != null) {
+            Drawable drawable = getDrawable();
+            int color = paint.getColor();
+            this.f48142a = color;
+            drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+        }
+        super.draw(canvas, charSequence, i3, i10, f10, i11, i12, i13, paint);
     }
 }

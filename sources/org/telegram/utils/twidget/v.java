@@ -1,171 +1,147 @@
 package org.telegram.utils.twidget;
 
-import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.TextUtils;
-import bi.v6;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import org.telegram.messenger.at;
-import org.telegram.messenger.e20;
-import org.telegram.messenger.f8;
-import org.telegram.messenger.r20;
-import org.telegram.messenger.vi;
-import org.telegram.messenger.wp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.ActionBar.z4;
-import org.telegram.ui.ProfileActivity;
-import rh.e6;
-import th.e5;
-import vh.n5;
-import vh.o8;
-import vh.u1;
-public final class v implements Runnable {
-    public final int f44459a;
-    public final int f44460b;
-    public final Object f44461c;
-
-    public v(int i10, Object obj, int i11) {
-        this.f44459a = i11;
-        this.f44460b = i10;
-        this.f44461c = obj;
-    }
-
-    @Override
-    public final void run() {
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        boolean z10;
-        int i10;
-        int i11 = this.f44459a;
-        boolean z11 = false;
-        int i12 = this.f44460b;
-        Object obj = this.f44461c;
-        switch (i11) {
-            case 0:
-                try {
-                    ((k0) obj).e(i12);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            case 1:
-                Bundle bundle = new Bundle();
-                bundle.putLong("user_id", e20.i(i12).f15524n);
-                ((z4) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
-                return;
-            case 2:
-                ConnectionsManager.getInstance(((e6) obj).f46863a).cancelRequest(i12, true);
-                return;
-            case 3:
-                sg.f fVar = (sg.f) obj;
-                if (fVar.f48336b) {
-                    r20 r20Var = fVar.d;
-                    if (r20Var != null) {
-                        if (i12 < 300) {
-                            z11 = true;
-                        }
-                        r20Var.a(Boolean.valueOf(z11));
-                        try {
-                            fVar.f48335a.performHapticFeedback(3);
-                        } catch (Exception unused2) {
-                        }
-                    }
-                    fVar.f48337c = true;
-                    int max = Math.max(50, i12 - 100);
-                    org.telegram.messenger.i0.h3(new v(fVar, max, 3), max);
-                    return;
-                }
-                return;
-            case 4:
-                e5 e5Var = (e5) obj;
-                ArrayList arrayList3 = e5Var.f48922g;
-                e5Var.v(arrayList3);
-                v6 v6Var = e5Var.J;
-                Collections.sort(arrayList3, v6Var);
-                ArrayList arrayList4 = e5Var.h;
-                e5Var.v(arrayList4);
-                Collections.sort(arrayList4, v6Var);
-                at.f(i12).k(324, new Object[0]);
-                return;
-            case 5:
-                ((vh.m) obj).a(Integer.valueOf(i12));
-                return;
-            case 6:
-                ((r20) obj).a(Integer.valueOf(i12));
-                return;
-            case 7:
-                ((u1) obj).M0(i12);
-                return;
-            case 8:
-                wp.r1(i12).V3((ArrayList) obj, true);
-                return;
-            case 9:
-                o8 o8Var = (o8) obj;
-                int i13 = o8Var.f51626c;
-                o8Var.l();
-                o8Var.X1 = false;
-                File file = o8Var.K1.O0;
-                if (file != null) {
-                    file.delete();
-                    o8Var.K1.O0 = null;
-                }
-                o8Var.V(o8Var.K1, true);
-                CharSequence[] charSequenceArr = {o8Var.f51628c1.getText()};
-                if (wp.r1(i13).U4()) {
-                    arrayList = vi.b0(i13).W(charSequenceArr, true, true);
-                } else {
-                    arrayList = new ArrayList();
-                }
-                CharSequence[] charSequenceArr2 = {o8Var.K1.C0};
-                if (wp.r1(i13).U4()) {
-                    arrayList2 = vi.b0(i13).W(charSequenceArr2, true, true);
-                } else {
-                    arrayList2 = new ArrayList();
-                }
-                n5 n5Var = o8Var.K1;
-                if (TextUtils.equals(n5Var.C0, charSequenceArr[0]) && vi.K(arrayList, arrayList2)) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                n5Var.f51551k = z10;
-                o8Var.K1.C0 = new SpannableString(o8Var.f51628c1.getText());
-                o8Var.y();
-                o8Var.x();
-                n5 n5Var2 = o8Var.K1;
-                if (n5Var2 != null && n5Var2.K) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                o8Var.O1 = i10;
-                o8Var.K1 = (n5) o8Var.H1.get(i12);
-                o8Var.N(0, 1);
-                o8Var.M(0, 1);
-                o8Var.f51631d1.f52207b.f31183f3.O(false);
-                o8Var.f51628c1.setText(o8Var.K1.C0);
-                return;
-            case 10:
-                ((zf.z) obj).g(i12);
-                return;
-            default:
-                s4.f0 f0Var = (s4.f0) obj;
-                f0Var.getClass();
-                try {
-                    f0Var.f47937a.scrollBy(0, i12);
-                    return;
-                } catch (Throwable th2) {
-                    f8.g(th2, true);
-                    return;
-                }
+import android.graphics.BlendMode;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Matrix;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RecordingCanvas;
+import android.graphics.RectF;
+import android.graphics.RenderEffect;
+import android.graphics.RenderNode;
+import android.graphics.Shader;
+import o4.v0;
+import org.json.JSONArray;
+import org.json.JSONObject;
+public abstract class v {
+    public static void a(y yVar, e0.e0 e0Var, JSONArray jSONArray, int i3, JSONObject jSONObject, x xVar, float f10) {
+        RenderEffect c2;
+        JSONArray optJSONArray = jSONObject.optJSONArray("fl");
+        if (optJSONArray == null) {
+            c2 = null;
+        } else {
+            c2 = c(optJSONArray, f10, Shader.TileMode.CLAMP);
+        }
+        RenderEffect renderEffect = c2;
+        Matrix matrix = new Matrix();
+        if (renderEffect != null && ((Matrix) e0Var.d).invert(matrix)) {
+            RectF j10 = y.j(jSONObject, "r", new RectF());
+            if (!j10.isEmpty()) {
+                RenderNode renderNode = new RenderNode("widget-backdrop");
+                int floor = (int) Math.floor(j10.left * f10);
+                int floor2 = (int) Math.floor(j10.top * f10);
+                renderNode.setPosition(floor, floor2, (int) Math.ceil(j10.right * f10), (int) Math.ceil(j10.bottom * f10));
+                RecordingCanvas beginRecording = renderNode.beginRecording();
+                beginRecording.translate(-floor, -floor2);
+                beginRecording.scale(f10, f10);
+                beginRecording.concat(matrix);
+                yVar.e(beginRecording, jSONArray, i3, xVar, f10, false);
+                renderNode.endRecording();
+                renderNode.setRenderEffect(renderEffect);
+                Canvas canvas = (Canvas) e0Var.f9226c;
+                canvas.save();
+                Path path = yVar.f52990f;
+                yVar.k(jSONObject, "r", path);
+                canvas.clipPath(path);
+                canvas.drawColor(0, PorterDuff.Mode.CLEAR);
+                float f11 = 1.0f / f10;
+                canvas.scale(f11, f11);
+                canvas.drawRenderNode(renderNode);
+                canvas.restore();
+            }
         }
     }
 
-    public v(Object obj, int i10, int i11) {
-        this.f44459a = i11;
-        this.f44461c = obj;
-        this.f44460b = i10;
+    public static Canvas b(w wVar, RectF rectF, JSONArray jSONArray, float f10) {
+        Shader.TileMode tileMode;
+        tileMode = Shader.TileMode.DECAL;
+        RenderEffect c2 = c(jSONArray, f10, tileMode);
+        if (c2 == null) {
+            return null;
+        }
+        RenderNode renderNode = new RenderNode("widget-filter");
+        wVar.d = ((int) Math.floor(rectF.left * f10)) - 1;
+        int floor = ((int) Math.floor(rectF.top * f10)) - 1;
+        wVar.f52982e = floor;
+        renderNode.setPosition(wVar.d, floor, ((int) Math.ceil(rectF.right * f10)) + 1, ((int) Math.ceil(rectF.bottom * f10)) + 1);
+        renderNode.setRenderEffect(c2);
+        wVar.f52981c = renderNode;
+        RecordingCanvas beginRecording = renderNode.beginRecording();
+        beginRecording.translate(-wVar.d, -wVar.f52982e);
+        beginRecording.scale(f10, f10);
+        return beginRecording;
+    }
+
+    public static RenderEffect c(JSONArray jSONArray, float f10, Shader.TileMode tileMode) {
+        float f11;
+        float f12;
+        BlendMode blendMode;
+        Shader.TileMode tileMode2;
+        RenderEffect renderEffect = null;
+        for (int i3 = 0; i3 < jSONArray.length(); i3++) {
+            JSONArray optJSONArray = jSONArray.optJSONArray(i3);
+            if (optJSONArray != null) {
+                float optDouble = (float) optJSONArray.optDouble(1);
+                int optInt = optJSONArray.optInt(0);
+                if (optInt != 0) {
+                    if (optInt != 1) {
+                        if (optInt == 9) {
+                            if (renderEffect == null) {
+                                renderEffect = RenderEffect.createOffsetEffect(0.0f, 0.0f);
+                            }
+                            RenderEffect createOffsetEffect = RenderEffect.createOffsetEffect(((float) optJSONArray.optDouble(2)) * f10, ((float) optJSONArray.optDouble(3)) * f10, RenderEffect.createColorFilterEffect(new PorterDuffColorFilter((int) optJSONArray.optLong(4), PorterDuff.Mode.SRC_IN), renderEffect));
+                            float f13 = (optDouble / 2.0f) * f10;
+                            if (f13 > 0.5f) {
+                                f12 = (f13 - 0.5f) / 0.57735f;
+                            } else {
+                                f12 = 0.0f;
+                            }
+                            if (f12 > 0.0f) {
+                                tileMode2 = Shader.TileMode.DECAL;
+                                createOffsetEffect = RenderEffect.createBlurEffect(f12, f12, createOffsetEffect, tileMode2);
+                            }
+                            blendMode = BlendMode.SRC_OVER;
+                            renderEffect = RenderEffect.createBlendModeEffect(createOffsetEffect, renderEffect, blendMode);
+                        }
+                    } else if (renderEffect == null) {
+                        ColorMatrix colorMatrix = new ColorMatrix();
+                        colorMatrix.setScale(optDouble, optDouble, optDouble, 1.0f);
+                        renderEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix));
+                    } else {
+                        ColorMatrix colorMatrix2 = new ColorMatrix();
+                        colorMatrix2.setScale(optDouble, optDouble, optDouble, 1.0f);
+                        renderEffect = RenderEffect.createColorFilterEffect(new ColorMatrixColorFilter(colorMatrix2), renderEffect);
+                    }
+                } else {
+                    float f14 = optDouble * f10;
+                    if (f14 > 0.5f) {
+                        f11 = (f14 - 0.5f) / 0.57735f;
+                    } else {
+                        f11 = 0.0f;
+                    }
+                    if (f11 > 0.0f) {
+                        if (renderEffect == null) {
+                            renderEffect = RenderEffect.createBlurEffect(f11, f11, tileMode);
+                        } else {
+                            renderEffect = RenderEffect.createBlurEffect(f11, f11, renderEffect, tileMode);
+                        }
+                    }
+                }
+            }
+        }
+        return renderEffect;
+    }
+
+    public static void d(w wVar, float f10) {
+        RenderNode d = v0.d(wVar.f52981c);
+        d.endRecording();
+        wVar.f52979a.save();
+        float f11 = 1.0f / f10;
+        wVar.f52979a.scale(f11, f11);
+        wVar.f52979a.drawRenderNode(d);
+        wVar.f52979a.restore();
     }
 }

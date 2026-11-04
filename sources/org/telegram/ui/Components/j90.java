@@ -1,37 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
-public final class j90 implements Runnable {
-    public final int f27321a;
-    public final n90 f27322b;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.view.View;
+public final class j90 extends n61 {
+    public final da0 W;
 
-    public j90(n90 n90Var, int i10) {
-        this.f27321a = i10;
-        this.f27322b = n90Var;
+    public j90(da0 da0Var, Context context, z90 z90Var) {
+        super(context, z90Var);
+        this.W = da0Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f27321a;
-        n90 n90Var = this.f27322b;
-        switch (i10) {
-            case 0:
-                n90Var.b0();
-                return;
-            default:
-                Activity parentActivity = n90Var.getParentActivity();
-                Activity parentActivity2 = n90Var.getParentActivity();
-                org.telegram.messenger.s5 s5Var = ig.k1.f8344m;
-                boolean z10 = parentActivity2.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
-                SharedPreferences.Editor edit = parentActivity.getSharedPreferences("shapedetector_conf", 0).edit();
-                if (z10) {
-                    edit.clear();
-                } else {
-                    edit.putBoolean("learning", true);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        int i3 = 0;
+        while (true) {
+            View[] viewArr = this.W.f33037f.f36386e;
+            if (i3 < viewArr.length) {
+                View view = viewArr[i3];
+                if (view != null) {
+                    x90 x90Var = (x90) view;
+                    if (x90Var.f40285a == 0) {
+                        z10 = x90Var.f40292e.f30673i;
+                        break;
+                    }
                 }
-                edit.apply();
-                return;
+                i3++;
+            } else {
+                z10 = false;
+                break;
+            }
+        }
+        if (z10) {
+            return false;
+        }
+        return A(motionEvent);
+    }
+
+    @Override
+    public final void s() {
+        View view = this.f36386e[0];
+        if (view instanceof x90) {
+            ((x90) view).f40292e.V();
+        }
+    }
+
+    @Override
+    public final void u(boolean z10) {
+        da0 da0Var = this.W;
+        da0Var.f33036e.setSelectedTab(da0Var.f33037f.getPositionAnimated());
+        View[] viewArr = this.f36386e;
+        View view = viewArr[0];
+        if (view instanceof x90) {
+            ((x90) view).f40292e.G();
+        }
+        View view2 = viewArr[1];
+        if (view2 instanceof x90) {
+            ((x90) view2).f40292e.G();
         }
     }
 }

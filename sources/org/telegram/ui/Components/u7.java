@@ -1,120 +1,303 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class u7 implements Runnable {
-    public final int f30880a = 0;
-    public final v7 f30881b;
-    public final ArrayList f30882c;
-    public final String d;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.text.TextUtils;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+public abstract class u7 extends FrameLayout {
+    public final TextView[] f38663a;
+    public final float[] f38664b;
+    public final int f38665c;
+    public final Matrix d;
+    public final Paint f38666e;
+    public final Paint f38667f;
+    public int h;
+    public AnimatorSet f38668n;
+    public LinearGradient f38669r;
+    public int f38670s;
+    public final RectF f38671w;
+    public int f38672x;
+    public boolean f38673y;
 
-    public u7(v7 v7Var, String str, ArrayList arrayList) {
-        this.f30881b = v7Var;
-        this.d = str;
-        this.f30882c = arrayList;
+    public u7(Context context) {
+        super(context);
+        this.f38663a = new TextView[2];
+        this.f38664b = new float[]{0.0f, 0.75f};
+        this.f38665c = org.telegram.messenger.g0.L(24.0f);
+        this.f38670s = -1;
+        this.f38671w = new RectF();
+        for (int i3 = 0; i3 < 2; i3++) {
+            this.f38663a[i3] = a();
+            if (i3 == 1) {
+                this.f38663a[i3].setAlpha(0.0f);
+                this.f38663a[i3].setVisibility(8);
+            }
+            addView(this.f38663a[i3], b8.mf.c(-1.0f, -2));
+        }
+        this.d = new Matrix();
+        Paint paint = new Paint(1);
+        this.f38666e = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        Paint paint2 = new Paint(1);
+        this.f38667f = paint2;
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    }
+
+    public abstract TextView a();
+
+    public final void b(CharSequence charSequence, boolean z10) {
+        final int i3;
+        int i10 = this.h;
+        TextView[] textViewArr = this.f38663a;
+        CharSequence text = textViewArr[i10].getText();
+        if (!TextUtils.isEmpty(text) && z10) {
+            if (TextUtils.equals(charSequence, text)) {
+                return;
+            }
+            this.f38670s = 0;
+            int min = Math.min(charSequence.length(), text.length());
+            for (int i11 = 0; i11 < min && charSequence.charAt(i11) == text.charAt(i11); i11++) {
+                this.f38670s++;
+            }
+            if (this.f38670s <= 3) {
+                this.f38670s = -1;
+            }
+            final int i12 = this.h;
+            if (i12 == 0) {
+                i3 = 1;
+            } else {
+                i3 = 0;
+            }
+            this.h = i3;
+            AnimatorSet animatorSet = this.f38668n;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.f38668n = animatorSet2;
+            animatorSet2.addListener(new ii.m2(this, i12, 8));
+            textViewArr[i3].setText(charSequence);
+            textViewArr[i3].bringToFront();
+            textViewArr[i3].setVisibility(0);
+            float[] fArr = this.f38664b;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr[i12], 0.75f);
+            ofFloat.setDuration(200L);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final u7 f38319b;
+
+                {
+                    this.f38319b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r3) {
+                        case 0:
+                            u7 u7Var = this.f38319b;
+                            u7Var.f38664b[i12] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            u7Var.invalidate();
+                            return;
+                        default:
+                            u7 u7Var2 = this.f38319b;
+                            u7Var2.f38664b[i12] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            u7Var2.invalidate();
+                            return;
+                    }
+                }
+            });
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr[i3], 0.0f);
+            ofFloat2.setStartDelay(100L);
+            ofFloat2.setDuration(200L);
+            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final u7 f38319b;
+
+                {
+                    this.f38319b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r3) {
+                        case 0:
+                            u7 u7Var = this.f38319b;
+                            u7Var.f38664b[i3] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            u7Var.invalidate();
+                            return;
+                        default:
+                            u7 u7Var2 = this.f38319b;
+                            u7Var2.f38664b[i3] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            u7Var2.invalidate();
+                            return;
+                    }
+                }
+            });
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textViewArr[i12], property, 0.0f);
+            ofFloat3.setStartDelay(75L);
+            ofFloat3.setDuration(150L);
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textViewArr[i3], property, 1.0f);
+            ofFloat4.setStartDelay(75L);
+            ofFloat4.setDuration(150L);
+            this.f38668n.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+            this.f38668n.start();
+            return;
+        }
+        textViewArr[this.h].setText(charSequence);
     }
 
     @Override
-    public final void run() {
-        int i10;
-        TLRPC.Document document;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        int i3;
         boolean z10;
-        String str;
-        int i11 = this.f30880a;
-        String str2 = null;
-        String str3 = this.d;
-        ArrayList arrayList = this.f30882c;
-        v7 v7Var = this.f30881b;
-        switch (i11) {
-            case 0:
-                v7Var.getClass();
-                String lowerCase = str3.trim().toLowerCase();
-                if (lowerCase.length() == 0) {
-                    org.telegram.messenger.i0.g3(new u7(v7Var, new ArrayList(), str3));
-                    return;
+        Canvas canvas2;
+        TextView[] textViewArr = this.f38663a;
+        boolean z11 = true;
+        if (view == textViewArr[0]) {
+            i3 = 0;
+        } else {
+            i3 = 1;
+        }
+        if (this.f38673y) {
+            this.f38670s = -1;
+        }
+        if (this.f38670s > 0) {
+            int length = textViewArr.length;
+            int i10 = 0;
+            while (true) {
+                if (i10 >= length) {
+                    break;
                 }
-                String R0 = org.telegram.messenger.dd.D0().R0(lowerCase, true, false);
-                if (!lowerCase.equals(R0) && R0.length() != 0) {
-                    str2 = R0;
+                TextView textView = textViewArr[i10];
+                if ((textView instanceof l80) && ((l80) textView).d) {
+                    this.f38670s = -1;
+                    break;
                 }
-                if (str2 != null) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
-                }
-                int i12 = i10 + 1;
-                String[] strArr = new String[i12];
-                strArr[0] = lowerCase;
-                if (str2 != null) {
-                    strArr[1] = str2;
-                }
-                ArrayList arrayList2 = new ArrayList();
-                for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    org.telegram.messenger.kj kjVar = (org.telegram.messenger.kj) arrayList.get(i13);
-                    int i14 = 0;
-                    while (true) {
-                        if (i14 < i12) {
-                            String str4 = strArr[i14];
-                            String I0 = kjVar.I0();
-                            if (I0 != null && I0.length() != 0) {
-                                if (I0.toLowerCase().contains(str4)) {
-                                    arrayList2.add(kjVar);
-                                } else {
-                                    if (kjVar.D == 0) {
-                                        document = kjVar.f16690k.media.webpage.document;
-                                    } else {
-                                        document = kjVar.f16690k.media.document;
-                                    }
-                                    int i15 = 0;
-                                    while (true) {
-                                        if (i15 < document.attributes.size()) {
-                                            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i15);
-                                            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                                                String str5 = documentAttribute.performer;
-                                                if (str5 != null) {
-                                                    z10 = str5.toLowerCase().contains(str4);
-                                                } else {
-                                                    z10 = false;
-                                                }
-                                                if (!z10 && (str = documentAttribute.title) != null) {
-                                                    z10 = str.toLowerCase().contains(str4);
-                                                }
-                                            } else {
-                                                i15++;
-                                            }
-                                        } else {
-                                            z10 = false;
-                                        }
-                                    }
-                                    if (z10) {
-                                        arrayList2.add(kjVar);
-                                    }
-                                }
-                            }
-                            i14++;
-                        }
+                i10++;
+            }
+        }
+        int i11 = this.f38670s;
+        RectF rectF = this.f38671w;
+        if (i11 > 0 && textViewArr[this.h].getAlpha() != 1.0f && textViewArr[this.h].getLayout() != null) {
+            float primaryHorizontal = textViewArr[this.h].getLayout().getPrimaryHorizontal(0);
+            float primaryHorizontal2 = textViewArr[this.h].getLayout().getPrimaryHorizontal(this.f38670s);
+            if (primaryHorizontal == primaryHorizontal2) {
+                z11 = false;
+            } else if (primaryHorizontal2 > primaryHorizontal) {
+                rectF.set(primaryHorizontal, 0.0f, primaryHorizontal2, getMeasuredHeight());
+            } else {
+                rectF.set(primaryHorizontal2, 0.0f, primaryHorizontal, getMeasuredHeight());
+            }
+            if (z11 && i3 == this.h) {
+                canvas.save();
+                canvas.clipRect(rectF);
+                textViewArr[0].draw(canvas);
+                canvas.restore();
+            }
+            z10 = z11;
+        } else {
+            z10 = false;
+        }
+        float[] fArr = this.f38664b;
+        if (fArr[i3] <= 0.0f && !z10) {
+            return super.drawChild(canvas, view, j10);
+        }
+        float min = Math.min(view.getWidth(), getWidth());
+        float min2 = Math.min(view.getHeight(), getHeight());
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, min, min2, null, 31);
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        float f10 = (1.0f - fArr[i3]) * min;
+        float f11 = f10 + this.f38665c;
+        Matrix matrix = this.d;
+        matrix.setTranslate(f10, 0.0f);
+        this.f38669r.setLocalMatrix(matrix);
+        canvas.drawRect(f10, 0.0f, f11, min2, this.f38666e);
+        int i12 = (min > f11 ? 1 : (min == f11 ? 0 : -1));
+        Paint paint = this.f38667f;
+        if (i12 > 0) {
+            canvas2 = canvas;
+            canvas2.drawRect(f11, 0.0f, min, min2, paint);
+        } else {
+            canvas2 = canvas;
+        }
+        if (z10) {
+            canvas2.drawRect(rectF, paint);
+        }
+        canvas2.restoreToCount(saveLayer);
+        return drawChild;
+    }
+
+    public int getCustomPaddingRight() {
+        return this.f38672x;
+    }
+
+    public TextView getNextTextView() {
+        char c2;
+        if (this.h == 0) {
+            c2 = 1;
+        } else {
+            c2 = 0;
+        }
+        return this.f38663a[c2];
+    }
+
+    public TextView getTextView() {
+        return this.f38663a[this.h];
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        super.onLayout(z10, i3, i10, i11, i12);
+        if (this.f38673y) {
+            int i13 = 0;
+            while (true) {
+                TextView[] textViewArr = this.f38663a;
+                if (i13 < textViewArr.length) {
+                    TextView textView = textViewArr[i13];
+                    if (textView != null && textView.getMeasuredWidth() < getMeasuredWidth()) {
+                        int measuredWidth = (getMeasuredWidth() - textView.getMeasuredWidth()) / 2;
+                        textView.layout(measuredWidth, 0, textView.getMeasuredWidth() + measuredWidth, textView.getMeasuredHeight());
                     }
-                }
-                org.telegram.messenger.i0.g3(new u7(v7Var, arrayList2, str3));
-                return;
-            default:
-                w7 w7Var = v7Var.f31219n;
-                if (w7Var.f32108n1) {
-                    w7Var.f32106m1 = true;
-                    v7Var.d = arrayList;
-                    v7Var.e = str3;
-                    v7Var.f();
-                    w7Var.f32112p1.n0(0);
-                    org.telegram.messenger.m5.q(null, null, 2131748257, new Object[]{str3}, w7Var.f32120t1);
+                    i13++;
+                } else {
                     return;
                 }
-                return;
+            }
         }
     }
 
-    public u7(v7 v7Var, ArrayList arrayList, String str) {
-        this.f30881b = v7Var;
-        this.f30882c = arrayList;
-        this.d = str;
+    @Override
+    public final void onSizeChanged(int i3, int i10, int i11, int i12) {
+        super.onSizeChanged(i3, i10, i11, i12);
+        LinearGradient linearGradient = new LinearGradient(this.f38665c, 0.0f, 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP);
+        this.f38669r = linearGradient;
+        this.f38666e.setShader(linearGradient);
+    }
+
+    public void setCustomPaddingRight(int i3) {
+        TextView[] textViewArr;
+        this.f38672x = i3;
+        for (TextView textView : this.f38663a) {
+            if (textView instanceof l80) {
+                ((l80) textView).setCustomPaddingRight(i3);
+            }
+        }
+        invalidate();
+    }
+
+    public void setText(CharSequence charSequence) {
+        b(charSequence, true);
     }
 }

@@ -1,45 +1,51 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewPropertyAnimator;
-import android.widget.FrameLayout;
-public final class ar0 extends AnimatorListenerAdapter {
-    public final int f35828a;
-    public final int f35829b;
-    public final PhotoViewer f35830c;
+import android.content.Context;
+import android.view.ActionMode;
+import java.util.ArrayList;
+public final class ar0 extends org.telegram.ui.Cells.z5 {
+    public final dr0 G;
 
-    public ar0(PhotoViewer photoViewer, int i10, int i11) {
-        this.f35828a = i11;
-        this.f35830c = photoViewer;
-        this.f35829b = i10;
+    public ar0(dr0 dr0Var, Context context, int i3) {
+        super(context, i3, null, null);
+        this.G = dr0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f35828a) {
-            case 0:
-                PhotoViewer photoViewer = this.f35830c;
-                br0 br0Var = photoViewer.N1;
-                br0Var.e.setVisibility(0);
-                FrameLayout frameLayout = br0Var.f9883r;
-                frameLayout.setVisibility(0);
-                frameLayout.setTranslationY(org.telegram.messenger.i0.L(18.0f));
-                ViewPropertyAnimator translationY = frameLayout.animate().alpha(1.0f).translationY(0.0f);
-                org.telegram.ui.Components.gr grVar = org.telegram.ui.Components.gr.h;
-                org.telegram.messenger.a30.m(translationY, grVar, 320L);
-                br0Var.f9886x.animate().alpha(1.0f).translationX(0.0f).setInterpolator(grVar).setDuration(320L).start();
-                photoViewer.f33622u4 = this.f35829b;
-                photoViewer.q6 = null;
-                photoViewer.f33570o6 = -1;
-                return;
-            default:
-                int i10 = this.f35829b;
-                PhotoViewer photoViewer2 = this.f35830c;
-                photoViewer2.f33622u4 = i10;
-                photoViewer2.q6 = null;
-                photoViewer2.f33570o6 = -1;
-                return;
+    public final void i(boolean z10) {
+        fr0.i0(this.G.d, this, z10);
+    }
+
+    @Override
+    public final void j(org.telegram.ui.Cells.z5 z5Var) {
+        fr0.j0(this.G.d, z5Var);
+    }
+
+    @Override
+    public final boolean l(ArrayList arrayList) {
+        fr0 fr0Var = this.G.d;
+        if (arrayList.isEmpty()) {
+            return false;
         }
+        ai.z zVar = this.d;
+        zVar.getText().replace(zVar.getSelectionStart(), zVar.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i3 = 0;
+        while (!arrayList.isEmpty() && i3 < fr0Var.f45344n) {
+            for (int length = fr0Var.f45356w.length - 1; length > i3; length--) {
+                CharSequence[] charSequenceArr = fr0Var.f45356w;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            fr0Var.f45356w[i3] = (CharSequence) arrayList.remove(0);
+            fr0Var.E++;
+            i3++;
+        }
+        fr0Var.w0();
+        fr0Var.f45339h0 = (fr0Var.f45346o0 + i3) - 1;
+        fr0Var.f45329b.f();
+        return true;
+    }
+
+    @Override
+    public final void g(ai.z zVar, ActionMode actionMode) {
     }
 }

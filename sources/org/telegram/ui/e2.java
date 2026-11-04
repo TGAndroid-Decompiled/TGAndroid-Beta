@@ -9,89 +9,89 @@ import android.view.View;
 import java.util.HashSet;
 import org.telegram.tgnet.tl.TL_iv;
 public final class e2 extends View {
-    public final l60 f36716a;
-    public final f4 f36717b;
-    public final f2 f36718c;
+    public final i50 f44854a;
+    public final g4 f44855b;
+    public final f2 f44856c;
 
-    public e2(f2 f2Var, Context context, l60 l60Var, f4 f4Var) {
+    public e2(f2 f2Var, Context context, i50 i50Var, g4 g4Var) {
         super(context);
-        this.f36718c = f2Var;
-        this.f36716a = l60Var;
-        this.f36717b = f4Var;
+        this.f44856c = f2Var;
+        this.f44854a = i50Var;
+        this.f44855b = g4Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        f2 f2Var = this.f36718c;
-        if (f2Var.f36974c != null) {
+        f2 f2Var = this.f44856c;
+        if (f2Var.f45121c != null) {
             canvas.save();
-            h4.t(this.f36716a, canvas, f2Var, 0);
-            f2Var.f36974c.d(canvas, this);
+            i4.t(this.f44854a, canvas, f2Var, 0);
+            f2Var.f45121c.d(canvas, this);
             canvas.restore();
-            f2Var.f36974c.f43793s = (int) getX();
-            f2Var.f36974c.f43794w = (int) getY();
+            f2Var.f45121c.f43579s = (int) getX();
+            f2Var.f45121c.f43580w = (int) getY();
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
+    public final void onMeasure(int i3, int i10) {
+        int i11;
         StaticLayout staticLayout;
         StaticLayout staticLayout2;
-        f2 f2Var = this.f36718c;
-        TL_iv.pageBlockPreformatted pageblockpreformatted = f2Var.f36975f;
-        int i13 = 1;
+        f2 f2Var = this.f44856c;
+        TL_iv.pageBlockPreformatted pageblockpreformatted = f2Var.f45123f;
+        int i12 = 1;
         if (pageblockpreformatted != null) {
             CharSequence charSequence = f2Var.h;
-            f4 f4Var = this.f36717b;
-            l60 l60Var = this.f36716a;
+            g4 g4Var = this.f44855b;
+            i50 i50Var = this.f44854a;
             if (charSequence == null) {
                 TL_iv.RichText richText = pageblockpreformatted.text;
-                int L = org.telegram.messenger.i0.L(5000.0f);
-                HashSet hashSet = h4.f37647c1;
-                CharSequence A = h4.A(l60Var, f4Var.E, this, richText, richText, pageblockpreformatted, L);
+                int L = org.telegram.messenger.g0.L(5000.0f);
+                HashSet hashSet = i4.f46056d1;
+                CharSequence A = i4.A(i50Var, g4Var.F, this, richText, richText, pageblockpreformatted, L);
                 f2Var.h = A;
-                TL_iv.pageBlockPreformatted pageblockpreformatted2 = f2Var.f36975f;
+                TL_iv.pageBlockPreformatted pageblockpreformatted2 = f2Var.f45123f;
                 if (pageblockpreformatted2.diff) {
                     f2Var.h = f2.b(f2Var, A, pageblockpreformatted2.language);
                 } else if (!TextUtils.isEmpty(pageblockpreformatted2.language)) {
-                    f2Var.h = di.l.b(f2Var.h, f2Var.f36975f.language);
+                    f2Var.h = oi.k.b(f2Var.h, f2Var.f45123f.language);
                 }
             }
-            z2 o10 = h4.o(l60Var, this, f2Var.h, null, org.telegram.messenger.i0.L(5000.0f), 0, f2Var.f36975f, f4Var);
-            f2Var.f36974c = o10;
+            a3 o10 = i4.o(i50Var, this, f2Var.h, null, org.telegram.messenger.g0.L(5000.0f), 0, f2Var.f45123f, g4Var);
+            f2Var.f45121c = o10;
             if (o10 != null) {
-                i12 = o10.d.getHeight();
-                int lineCount = f2Var.f36974c.d.getLineCount();
-                int i14 = 1;
-                for (int i15 = 0; i15 < lineCount; i15++) {
-                    i14 = Math.max((int) Math.ceil(f2Var.f36974c.d.getLineWidth(i15)), i14);
+                i11 = o10.d.getHeight();
+                int lineCount = f2Var.f45121c.d.getLineCount();
+                int i13 = 1;
+                for (int i14 = 0; i14 < lineCount; i14++) {
+                    i13 = Math.max((int) Math.ceil(f2Var.f45121c.d.getLineWidth(i14)), i13);
                 }
-                if (f2Var.f36975f.diff && (staticLayout2 = f2Var.f36974c.d) != null) {
-                    i14 = Math.max((int) Math.ceil(staticLayout2.getPaint().measureText("m") * f2Var.f36975f.diffColumns), i14);
+                if (f2Var.f45123f.diff && (staticLayout2 = f2Var.f45121c.d) != null) {
+                    i13 = Math.max((int) Math.ceil(staticLayout2.getPaint().measureText("m") * f2Var.f45123f.diffColumns), i13);
                 }
-                f2Var.f36977r = 0;
-                if (f2Var.f36975f.continuesNext && (staticLayout = f2Var.f36974c.d) != null && staticLayout.getLineCount() > 1) {
-                    StaticLayout staticLayout3 = f2Var.f36974c.d;
+                f2Var.f45125r = 0;
+                if (f2Var.f45123f.continuesNext && (staticLayout = f2Var.f45121c.d) != null && staticLayout.getLineCount() > 1) {
+                    StaticLayout staticLayout3 = f2Var.f45121c.d;
                     int lineCount2 = staticLayout3.getLineCount() - 1;
                     int max = Math.max(0, (staticLayout3.getLineBottom(0) - staticLayout3.getLineTop(0)) - (staticLayout3.getLineBottom(lineCount2) - staticLayout3.getLineTop(lineCount2)));
-                    f2Var.f36977r = max;
-                    i12 += max;
+                    f2Var.f45125r = max;
+                    i11 += max;
                 }
-                i13 = i14;
+                i12 = i13;
             } else {
-                i12 = 0;
+                i11 = 0;
             }
         } else {
-            i12 = 1;
+            i11 = 1;
         }
-        setMeasuredDimension(org.telegram.messenger.i0.L(32.0f) + i13, i12);
+        setMeasuredDimension(org.telegram.messenger.g0.L(32.0f) + i12, i11);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        f2 f2Var = this.f36718c;
-        if (!h4.j(this.f36716a, this.f36717b, motionEvent, f2Var, f2Var.f36974c, 0, 0) && !super.onTouchEvent(motionEvent)) {
+        f2 f2Var = this.f44856c;
+        if (!i4.j(this.f44854a, this.f44855b, motionEvent, f2Var, f2Var.f45121c, 0, 0) && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

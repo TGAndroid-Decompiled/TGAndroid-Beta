@@ -1,24 +1,26 @@
 package org.telegram.messenger;
+public final class kt implements Runnable {
+    public final int f23869a;
+    public final String f23870b;
+    public final String f23871c;
+    public final long d;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.PostProcessor;
-public final class kt implements PostProcessor {
+    public kt(int i3, long j10, String str, String str2) {
+        this.f23869a = i3;
+        this.f23870b = str;
+        this.f23871c = str2;
+        this.d = j10;
+    }
+
     @Override
-    public final int onPostProcess(Canvas canvas) {
-        Path path = new Path();
-        path.setFillType(Path.FillType.INVERSE_EVEN_ODD);
-        int width = canvas.getWidth();
-        float f7 = width / 2;
-        path.addRoundRect(0.0f, 0.0f, width, canvas.getHeight(), f7, f7, Path.Direction.CW);
-        Paint paint = new Paint();
-        paint.setAntiAlias(true);
-        paint.setColor(0);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-        canvas.drawPath(path, paint);
-        return -3;
+    public final void run() {
+        switch (this.f23869a) {
+            case 0:
+                PushListenerController.c(this.d, this.f23870b, this.f23871c);
+                return;
+            default:
+                PushListenerController.h(this.d, this.f23870b, this.f23871c);
+                return;
+        }
     }
 }

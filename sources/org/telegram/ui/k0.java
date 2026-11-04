@@ -1,25 +1,25 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class k0 extends gf.e {
+public final class k0 extends sf.b {
     public final int d = 1;
-    public final Object e;
-    public final Object f38610f;
-    public final Object f38611g;
+    public final Object f46721e;
+    public final Object f46722f;
+    public final Object f46723g;
 
-    public k0(h4 h4Var, z2 z2Var, org.telegram.ui.Components.q80 q80Var) {
-        this.e = h4Var;
-        this.f38610f = z2Var;
-        this.f38611g = q80Var;
+    public k0(i4 i4Var, a3 a3Var, org.telegram.ui.Components.t70 t70Var) {
+        this.f46721e = i4Var;
+        this.f46722f = a3Var;
+        this.f46723g = t70Var;
     }
 
     @Override
     public void b() {
         switch (this.d) {
             case 0:
-                h4 h4Var = (h4) this.e;
-                h4Var.f39097c.n(h4Var.f39102w, true);
-                View view = h4Var.f39101s;
+                i4 i4Var = (i4) this.f46721e;
+                i4Var.f46112c.n(i4Var.f46118w, true);
+                View view = i4Var.f46117s;
                 if (view != null) {
                     view.invalidate();
                 }
@@ -36,7 +36,7 @@ public final class k0 extends gf.e {
         switch (this.d) {
             case 1:
                 if (!z10) {
-                    org.telegram.messenger.i0.h3(new zj(((fn) this.f38611g).f37191a, 9), 250L);
+                    org.telegram.messenger.g0.i3(new aj(((hm) this.f46723g).f45934a, 10), 250L);
                     return;
                 }
                 return;
@@ -51,45 +51,45 @@ public final class k0 extends gf.e {
         View view;
         switch (this.d) {
             case 0:
-                org.telegram.ui.Components.q80 q80Var = (org.telegram.ui.Components.q80) this.f38611g;
-                h4 h4Var = (h4) this.e;
-                ji.a aVar = h4Var.f39097c;
-                z2 z2Var = (z2) this.f38610f;
-                if (z2Var != null) {
-                    view = z2Var.f43788b;
+                org.telegram.ui.Components.t70 t70Var = (org.telegram.ui.Components.t70) this.f46723g;
+                i4 i4Var = (i4) this.f46721e;
+                m2.p0 p0Var = i4Var.f46112c;
+                a3 a3Var = (a3) this.f46722f;
+                if (a3Var != null) {
+                    view = a3Var.f43573b;
                 } else {
                     view = null;
                 }
-                h4Var.f39101s = view;
-                org.telegram.ui.Components.vz0 vz0Var = (org.telegram.ui.Components.vz0) q80Var.f29671i;
-                aVar.n(h4Var.f39102w, true);
-                if (z2Var != null) {
-                    h4Var.f39102w = ji.a.k(z2Var.d, q80Var.f29671i, 0.0f);
-                    int x02 = org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.f21337ze, false);
-                    h4Var.f39102w.g(org.telegram.ui.ActionBar.t6.r1(0.8f, x02), org.telegram.ui.ActionBar.t6.r1(1.3f, x02), org.telegram.ui.ActionBar.t6.r1(1.0f, x02), org.telegram.ui.ActionBar.t6.r1(4.0f, x02));
-                    h4Var.f39102w.f30592x.setStrokeWidth(org.telegram.messenger.i0.N(1.25f));
-                    aVar.c(h4Var.f39102w, z2Var);
+                i4Var.f46117s = view;
+                org.telegram.ui.Components.py0 py0Var = (org.telegram.ui.Components.py0) t70Var.f38328i;
+                p0Var.n(i4Var.f46118w, true);
+                if (a3Var != null) {
+                    i4Var.f46118w = m2.p0.k(a3Var.d, t70Var.f38328i, 0.0f);
+                    int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28298ze, false);
+                    i4Var.f46118w.g(org.telegram.ui.ActionBar.k6.r1(0.8f, x02), org.telegram.ui.ActionBar.k6.r1(1.3f, x02), org.telegram.ui.ActionBar.k6.r1(1.0f, x02), org.telegram.ui.ActionBar.k6.r1(4.0f, x02));
+                    i4Var.f46118w.f39944x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
+                    p0Var.c(i4Var.f46118w, a3Var);
                 }
-                View view2 = h4Var.f39101s;
+                View view2 = i4Var.f46117s;
                 if (view2 != null) {
                     view2.invalidate();
                 }
                 super.d();
                 return;
             default:
-                fn fnVar = (fn) this.f38611g;
-                fnVar.f37191a.Sb = ((org.telegram.messenger.kj) this.e).f1();
-                un unVar = fnVar.f37191a;
-                unVar.Tb = 0;
-                unVar.Ub = null;
-                ((org.telegram.ui.Cells.q1) this.f38610f).invalidate();
+                hm hmVar = (hm) this.f46723g;
+                hmVar.f45934a.Xb = ((org.telegram.messenger.zi) this.f46721e).f1();
+                wm wmVar = hmVar.f45934a;
+                wmVar.Yb = 0;
+                wmVar.Zb = null;
+                ((org.telegram.ui.Cells.q1) this.f46722f).invalidate();
                 return;
         }
     }
 
-    public k0(fn fnVar, org.telegram.messenger.kj kjVar, org.telegram.ui.Cells.q1 q1Var) {
-        this.f38611g = fnVar;
-        this.e = kjVar;
-        this.f38610f = q1Var;
+    public k0(hm hmVar, org.telegram.messenger.zi ziVar, org.telegram.ui.Cells.q1 q1Var) {
+        this.f46723g = hmVar;
+        this.f46721e = ziVar;
+        this.f46722f = q1Var;
     }
 }

@@ -1,6 +1,5 @@
 package o8;
 
-import android.os.IInterface;
-public interface d extends IInterface {
-    void C(h hVar);
+import ci.u0;
+public final class d extends u0 {
 }

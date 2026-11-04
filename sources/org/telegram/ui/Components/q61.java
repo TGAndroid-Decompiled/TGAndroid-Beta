@@ -1,53 +1,60 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.nio.ByteBuffer;
-public final class q61 extends i2.j {
-    public final v61 d;
+import android.hardware.Sensor;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.view.WindowManager;
+public final class q61 implements SensorEventListener {
+    public final float[] f37359a = new float[3];
+    public final float[] f37360b = new float[3];
+    public int f37361c;
+    public final WindowManager d;
+    public final SensorManager f37362e;
+    public final Sensor f37363f;
+    public boolean h;
+    public p61 f37364n;
 
-    public q61(Context context, v61 v61Var) {
-        super(context);
-        this.d = v61Var;
+    public q61(Context context) {
+        this.d = (WindowManager) context.getSystemService("window");
+        SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
+        this.f37362e = sensorManager;
+        this.f37363f = sensorManager.getDefaultSensor(1);
+    }
+
+    public static float a(int i3, int i10) {
+        float f10 = i3;
+        float L = org.telegram.messenger.g0.L(16.0f) * 2;
+        float f11 = (f10 + L) / f10;
+        float f12 = i10;
+        return Math.max(f11, (L + f12) / f12);
+    }
+
+    public final void b(org.telegram.ui.a61 a61Var) {
+        this.f37364n = a61Var;
+    }
+
+    public final void c(boolean z10) {
+        if (this.h != z10) {
+            this.h = z10;
+            Sensor sensor = this.f37363f;
+            if (sensor != null) {
+                SensorManager sensorManager = this.f37362e;
+                if (z10) {
+                    sensorManager.registerListener(this, sensor, 1);
+                } else {
+                    sensorManager.unregisterListener(this);
+                }
+            }
+        }
     }
 
     @Override
-    public final k2.w0 a(Context context) {
-        k2.t0 t0Var = new k2.t0(context, 0);
-        ?? obj = new Object();
-        obj.f3333f = this.d;
-        ?? obj2 = new Object();
-        obj2.e = new float[0];
-        obj2.f16916a = 3;
-        obj2.d = new float[513];
-        obj2.f16917b = new float[1024];
-        obj2.f16918c = new float[1024];
-        int[] iArr = new int[1024];
-        obj2.h = iArr;
-        iArr[0] = 0;
-        int i10 = 512;
-        int i11 = 1;
-        while (i11 < 1024) {
-            for (int i12 = 0; i12 < i11; i12++) {
-                int[] iArr2 = (int[]) obj2.h;
-                iArr2[i12 + i11] = iArr2[i12] + i10;
-            }
-            i11 <<= 1;
-            i10 >>= 1;
-        }
-        obj2.f16919f = new float[1024];
-        obj2.f16920g = new float[1024];
-        for (int i13 = 0; i13 < 1024; i13++) {
-            double d = (-3.1415927f) / i13;
-            ((float[]) obj2.f16919f)[i13] = (float) Math.sin(d);
-            ((float[]) obj2.f16920g)[i13] = (float) Math.cos(d);
-        }
-        obj.f3332c = obj2;
-        obj.d = new float[1024];
-        obj.f3330a = 0;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-        obj.e = allocateDirect;
-        allocateDirect.position(0);
-        t0Var.d = new android.support.v4.media.session.a0(new c2.m[]{new k2.d1(obj)});
-        return t0Var.a();
+    public final void onSensorChanged(android.hardware.SensorEvent r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q61.onSensorChanged(android.hardware.SensorEvent):void");
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i3) {
     }
 }

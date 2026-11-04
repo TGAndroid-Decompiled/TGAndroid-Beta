@@ -7,14 +7,14 @@ public class JavaFontRenderingAtom extends Atom {
     private String str;
     private int type;
 
-    public JavaFontRenderingAtom(String str, int i10) {
+    public JavaFontRenderingAtom(String str, int i3) {
         this.str = str;
-        this.type = i10;
+        this.type = i3;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        int i10;
+        int i3;
         Font font;
         Font font2;
         Font font3;
@@ -23,11 +23,11 @@ public class JavaFontRenderingAtom extends Atom {
         }
         DefaultTeXFont defaultTeXFont = (DefaultTeXFont) teXEnvironment.getTeXFont();
         if (defaultTeXFont.isIt) {
-            i10 = 2;
+            i3 = 2;
         } else {
-            i10 = 0;
+            i3 = 0;
         }
-        int i11 = i10 | (defaultTeXFont.isBold ? 1 : 0);
+        int i10 = i3 | (defaultTeXFont.isBold ? 1 : 0);
         boolean z10 = defaultTeXFont.isRoman;
         if (defaultTeXFont.isSs) {
             TeXFormula.FontInfos fontInfos = this.fontInfos;
@@ -50,7 +50,7 @@ public class JavaFontRenderingAtom extends Atom {
                 font3 = font;
             }
         }
-        return new JavaFontRenderingBox(this.str, i11, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()), font3, z10);
+        return new JavaFontRenderingBox(this.str, i10, DefaultTeXFont.getSizeFactor(teXEnvironment.getStyle()), font3, z10);
     }
 
     public JavaFontRenderingAtom(String str, TeXFormula.FontInfos fontInfos) {

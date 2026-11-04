@@ -1,14 +1,19 @@
 package vg;
 
-import android.graphics.NinePatch;
-public final class i {
-    public final NinePatch f50873a;
-    public final int f50874b;
-    public final int f50875c;
+import android.graphics.Bitmap;
+import ci.r4;
+import java.util.ArrayList;
+public final class i extends a {
+    public final ArrayList d;
+    public final Bitmap f56649e;
+    public final int f56650f;
 
-    public i(NinePatch ninePatch, int i10, int i11) {
-        this.f50873a = ninePatch;
-        this.f50874b = i10;
-        this.f50875c = i11;
+    public i(int r22, android.content.Context r23, org.telegram.ui.ActionBar.e6 r24) {
+        throw new UnsupportedOperationException("Method not decompiled: vg.i.<init>(int, android.content.Context, org.telegram.ui.ActionBar.e6):void");
+    }
+
+    @Override
+    public final u4.h0 a() {
+        return new r4(this, 9);
     }
 }

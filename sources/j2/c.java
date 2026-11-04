@@ -1,115 +1,17 @@
 package j2;
 
-import e2.o;
-public final class c implements o {
-    public final int f9343a;
+import android.media.MediaCodec;
+import com.google.android.gms.internal.cast.g4;
+public final class c {
+    public final MediaCodec.CryptoInfo f16145a;
+    public final MediaCodec.CryptoInfo.Pattern f16146b = g4.a();
 
-    public c(a aVar) {
-        this.f9343a = 19;
+    public c(MediaCodec.CryptoInfo cryptoInfo) {
+        this.f16145a = cryptoInfo;
     }
 
-    @Override
-    public final void invoke(Object obj) {
-        b bVar = (b) obj;
-        switch (this.f9343a) {
-            case 0:
-                bVar.getClass();
-                return;
-            case 1:
-                bVar.getClass();
-                return;
-            case 2:
-                bVar.getClass();
-                return;
-            case 3:
-                bVar.getClass();
-                return;
-            case 4:
-                bVar.getClass();
-                return;
-            case 5:
-                bVar.getClass();
-                return;
-            case 6:
-                bVar.getClass();
-                return;
-            case 7:
-                bVar.getClass();
-                return;
-            case 8:
-                bVar.getClass();
-                return;
-            case 9:
-                bVar.getClass();
-                return;
-            case 10:
-                bVar.getClass();
-                return;
-            case 11:
-                bVar.getClass();
-                return;
-            case 12:
-                bVar.getClass();
-                return;
-            case 13:
-                bVar.getClass();
-                return;
-            case 14:
-                bVar.getClass();
-                return;
-            case 15:
-                bVar.getClass();
-                return;
-            case 16:
-                bVar.getClass();
-                return;
-            case 17:
-                bVar.getClass();
-                return;
-            case 18:
-                bVar.getClass();
-                return;
-            case 19:
-                bVar.getClass();
-                return;
-            case 20:
-                bVar.getClass();
-                return;
-            case 21:
-                bVar.getClass();
-                return;
-            case 22:
-                bVar.getClass();
-                return;
-            case 23:
-                bVar.getClass();
-                return;
-            case 24:
-                bVar.getClass();
-                return;
-            case 25:
-                bVar.getClass();
-                return;
-            case 26:
-                bVar.getClass();
-                return;
-            case 27:
-                bVar.getClass();
-                return;
-            case 28:
-                bVar.getClass();
-                return;
-            default:
-                bVar.getClass();
-                return;
-        }
-    }
-
-    public c(a aVar, int i10, int i11, char c10) {
-        this.f9343a = i11;
-    }
-
-    public c(a aVar, Object obj, Object obj2, int i10) {
-        this.f9343a = i10;
+    public static void a(c cVar, int i3, int i10) {
+        cVar.f16146b.set(i3, i10);
+        cVar.f16145a.setPattern(cVar.f16146b);
     }
 }

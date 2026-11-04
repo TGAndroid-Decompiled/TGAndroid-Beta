@@ -1,19 +1,24 @@
 package org.telegram.ui;
-public final class qq implements Runnable {
-    public final int f40881a;
-    public final Object f40882b;
-    public final Object f40883c;
-    public final Object d;
 
-    public qq(Object obj, Object obj2, Object obj3, int i10) {
-        this.f40881a = i10;
-        this.f40882b = obj;
-        this.f40883c = obj2;
-        this.d = obj3;
+import android.view.View;
+public final class qq implements View.OnClickListener {
+    public final int f48943a;
+    public final org.telegram.ui.Components.xe0 f48944b;
+
+    public qq(org.telegram.ui.Components.xe0 xe0Var, int i3) {
+        this.f48943a = i3;
+        this.f48944b = xe0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qq.run():void");
+    public final void onClick(View view) {
+        switch (this.f48943a) {
+            case 0:
+                this.f48944b.b(true);
+                return;
+            default:
+                this.f48944b.b(true);
+                return;
+        }
     }
 }

@@ -1,328 +1,248 @@
 package org.telegram.messenger;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.os.RemoteException;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.LatLng;
-import java.util.HashMap;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
 public final class ha {
-    public n4.q f16038a;
-    public HashMap f16039b;
-    public HashMap f16040c;
+    public static volatile ha[] f22905g = new ha[4];
+    public static final Object[] h = new Object[4];
+    public final int f22906a;
+    public final ga f22907b;
+    public final ga f22908c;
+    public final ga d;
+    public final SharedPreferences f22909e;
+    public final ArrayList f22910f;
 
-    public final ga a(l2.f fVar) {
-        s7.a aVar;
-        n4.q qVar = this.f16038a;
-        j8.f fVar2 = (j8.f) fVar.f11588b;
-        qVar.getClass();
-        try {
-            n6.l.h(fVar2, "MarkerOptions must not be null.");
-            i8.f fVar3 = (i8.f) qVar.f13527a;
-            Parcel P0 = fVar3.P0();
-            s7.b.b(P0, fVar2);
-            Parcel O0 = fVar3.O0(P0, 11);
-            IBinder readStrongBinder = O0.readStrongBinder();
-            int i10 = s7.j.f48102b;
-            j8.e eVar = null;
-            if (readStrongBinder == null) {
-                aVar = 0;
-            } else {
-                IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.model.internal.IMarkerDelegate");
-                if (queryLocalInterface instanceof s7.a) {
-                    aVar = (s7.a) queryLocalInterface;
-                } else {
-                    aVar = new a9.a(readStrongBinder, "com.google.android.gms.maps.model.internal.IMarkerDelegate", 9);
-                }
+    static {
+        for (int i3 = 0; i3 < 4; i3++) {
+            h[i3] = new Object();
+        }
+    }
+
+    public ha(int i3) {
+        ArrayList arrayList = new ArrayList();
+        this.f22910f = arrayList;
+        this.f22906a = i3;
+        this.f22907b = new ga(i3);
+        this.f22908c = new ga(i3);
+        this.d = new ga(i3);
+        SharedPreferences sharedPreferences = t0.f25457b.getSharedPreferences("hashtag_search_history" + i3, 0);
+        this.f22909e = sharedPreferences;
+        int i10 = sharedPreferences.getInt("count", 0);
+        arrayList.clear();
+        arrayList.ensureCapacity(i10);
+        for (int i11 = 0; i11 < i10; i11++) {
+            String string = sharedPreferences.getString("e_" + i11, "");
+            if (!string.startsWith("#") && !string.startsWith("$")) {
+                string = "#".concat(string);
             }
-            O0.recycle();
-            if (aVar != 0) {
-                eVar = new j8.e(aVar);
-            }
-            ga gaVar = new ga(this, eVar);
-            this.f16039b.put(eVar, gaVar);
-            return gaVar;
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            arrayList.add(string);
         }
     }
 
-    public final void b(va vaVar) {
-        n4.q qVar = this.f16038a;
-        za.c cVar = ((ea) vaVar).f15547a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel P0 = fVar.P0();
-            s7.b.c(P0, (x6.a) cVar.f55450b);
-            fVar.T0(P0, 5);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final void c(va vaVar, int i10) {
-        n4.q qVar = this.f16038a;
-        za.c cVar = ((ea) vaVar).f15547a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel P0 = fVar.P0();
-            s7.b.c(P0, (x6.a) cVar.f55450b);
-            P0.writeInt(i10);
-            s7.b.c(P0, null);
-            fVar.T0(P0, 7);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final jg.c0 d() {
-        CameraPosition createFromParcel;
-        n4.q qVar = this.f16038a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel O0 = fVar.O0(fVar.P0(), 1);
-            Parcelable.Creator<CameraPosition> creator = CameraPosition.CREATOR;
-            int i10 = s7.b.f48099a;
-            if (O0.readInt() == 0) {
-                createFromParcel = null;
-            } else {
-                createFromParcel = creator.createFromParcel(O0);
-            }
-            CameraPosition cameraPosition = createFromParcel;
-            O0.recycle();
-            LatLng latLng = cameraPosition.f5413a;
-            return new jg.c0(new db(latLng.f5416a, latLng.f5417b), cameraPosition.f5414b, 2);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final float e() {
-        n4.q qVar = this.f16038a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel O0 = fVar.O0(fVar.P0(), 2);
-            float readFloat = O0.readFloat();
-            O0.recycle();
-            return readFloat;
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final float f() {
-        n4.q qVar = this.f16038a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel O0 = fVar.O0(fVar.P0(), 3);
-            float readFloat = O0.readFloat();
-            O0.recycle();
-            return readFloat;
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final n2.u g() {
-        a9.a aVar;
-        n4.q qVar = this.f16038a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel O0 = fVar.O0(fVar.P0(), 26);
-            IBinder readStrongBinder = O0.readStrongBinder();
-            if (readStrongBinder == null) {
-                aVar = null;
-            } else {
-                IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.internal.IProjectionDelegate");
-                if (queryLocalInterface instanceof i8.b) {
-                    aVar = (i8.b) queryLocalInterface;
-                } else {
-                    aVar = new a9.a(readStrongBinder, "com.google.android.gms.maps.internal.IProjectionDelegate", 9);
-                }
-            }
-            O0.recycle();
-            a6.i iVar = new a6.i(aVar, 25);
-            n2.u uVar = new n2.u(5);
-            uVar.f13481b = iVar;
-            return uVar;
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final k2.m0 h() {
-        a9.a aVar;
-        n4.q qVar = this.f16038a;
-        qVar.getClass();
-        try {
-            if (((a4.l) qVar.f13528b) == null) {
-                i8.f fVar = (i8.f) qVar.f13527a;
-                Parcel O0 = fVar.O0(fVar.P0(), 25);
-                IBinder readStrongBinder = O0.readStrongBinder();
-                if (readStrongBinder == null) {
-                    aVar = null;
-                } else {
-                    IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.maps.internal.IUiSettingsDelegate");
-                    if (queryLocalInterface instanceof i8.c) {
-                        aVar = (i8.c) queryLocalInterface;
-                    } else {
-                        aVar = new a9.a(readStrongBinder, "com.google.android.gms.maps.internal.IUiSettingsDelegate", 9);
+    public static ha a(int i3) {
+        ha haVar;
+        ha haVar2 = f22905g[i3];
+        if (haVar2 == null) {
+            synchronized (h[i3]) {
+                try {
+                    haVar = f22905g[i3];
+                    if (haVar == null) {
+                        ha[] haVarArr = f22905g;
+                        ha haVar3 = new ha(i3);
+                        haVarArr[i3] = haVar3;
+                        haVar = haVar3;
                     }
+                } catch (Throwable th2) {
+                    throw th2;
                 }
-                O0.recycle();
-                qVar.f13528b = new a4.l(aVar, 19);
             }
-            a4.l lVar = (a4.l) qVar.f13528b;
-            ?? obj = new Object();
-            obj.f10701a = lVar;
-            return obj;
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            return haVar;
         }
+        return haVar2;
     }
 
-    public final void i(va vaVar) {
-        n4.q qVar = this.f16038a;
-        za.c cVar = ((ea) vaVar).f15547a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel P0 = fVar.P0();
-            s7.b.c(P0, (x6.a) cVar.f55450b);
-            fVar.T0(P0, 4);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+    public final ga b(int i3) {
+        if (i3 == 1) {
+            return this.f22907b;
         }
+        if (i3 == 2) {
+            return this.f22908c;
+        }
+        if (i3 == 3) {
+            return this.d;
+        }
+        throw new RuntimeException("Unknown search type");
     }
 
-    public final void j(za zaVar) {
-        j8.d dVar;
-        n4.q qVar = this.f16038a;
-        if (zaVar == null) {
-            dVar = null;
-        } else {
-            dVar = ((ia) zaVar).f16245a;
-        }
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel P0 = fVar.P0();
-            s7.b.b(P0, dVar);
-            Parcel O0 = fVar.O0(P0, 91);
-            O0.readInt();
-            O0.recycle();
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final void k(int i10) {
-        n4.q qVar = this.f16038a;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
+    public final void c(String str) {
+        if (str.startsWith("#") || str.startsWith("$")) {
+            ArrayList arrayList = this.f22910f;
+            int indexOf = arrayList.indexOf(str);
+            if (indexOf != -1) {
+                if (indexOf == 0) {
                     return;
                 }
-                qVar.G(4);
-                return;
+                arrayList.remove(indexOf);
             }
-            qVar.G(2);
-            return;
-        }
-        qVar.G(1);
-    }
-
-    public final void l(boolean z10) {
-        n4.q qVar = this.f16038a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel P0 = fVar.P0();
-            int i10 = s7.b.f48099a;
-            P0.writeInt(z10 ? 1 : 0);
-            fVar.T0(P0, 22);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+            arrayList.add(0, str);
+            if (arrayList.size() >= 100) {
+                arrayList.subList(99, arrayList.size()).clear();
+            }
+            d();
         }
     }
 
-    public final void m(Runnable runnable) {
-        n4.q qVar = this.f16038a;
-        s1 s1Var = new s1(runnable, 5);
-        i8.f fVar = (i8.f) qVar.f13527a;
-        try {
-            h8.b bVar = new h8.b(s1Var, (char) 0);
-            Parcel P0 = fVar.P0();
-            s7.b.c(P0, bVar);
-            fVar.T0(P0, 97);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+    public final void d() {
+        SharedPreferences.Editor edit = this.f22909e.edit();
+        edit.clear();
+        ArrayList arrayList = this.f22910f;
+        edit.putInt("count", arrayList.size());
+        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+            edit.putString(k2.p1.i(i3, "e_"), (String) arrayList.get(i3));
         }
+        edit.apply();
     }
 
-    public final void n(eb ebVar) {
-        n4.q qVar = this.f16038a;
-        s1 s1Var = new s1(ebVar, 7);
-        i8.f fVar = (i8.f) qVar.f13527a;
-        try {
-            h8.b bVar = new h8.b(s1Var, (byte) 0);
-            Parcel P0 = fVar.P0();
-            s7.b.c(P0, bVar);
-            fVar.T0(P0, 96);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final void o(fb fbVar) {
-        n4.q qVar = this.f16038a;
-        p pVar = new p(3, this, fbVar);
-        i8.f fVar = (i8.f) qVar.f13527a;
-        try {
-            h8.b bVar = new h8.b(pVar);
-            Parcel P0 = fVar.P0();
-            s7.b.c(P0, bVar);
-            fVar.T0(P0, 30);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final void p(q0.a aVar) {
-        n4.q qVar = this.f16038a;
-        aa aaVar = new aa(aVar, 2);
-        i8.f fVar = (i8.f) qVar.f13527a;
-        try {
-            h8.b bVar = new h8.b(aaVar);
-            Parcel P0 = fVar.P0();
-            s7.b.c(P0, bVar);
-            fVar.T0(P0, 36);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public final void q(int i10, int i11, int i12, int i13) {
-        n4.q qVar = this.f16038a;
-        qVar.getClass();
-        try {
-            i8.f fVar = (i8.f) qVar.f13527a;
-            Parcel P0 = fVar.P0();
-            P0.writeInt(i10);
-            P0.writeInt(i11);
-            P0.writeInt(i12);
-            P0.writeInt(i13);
-            fVar.T0(P0, 39);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
+    public final void e(final int i3, final int i10, final int i11, String str) {
+        String str2;
+        final String str3;
+        TLRPC.TL_channels_searchPosts tL_channels_searchPosts;
+        final ga b10 = b(i10);
+        if (b10.f22687k != null || str != null) {
+            if (str == null || !str.isEmpty()) {
+                if (str == null) {
+                    str = b10.f22687k;
+                } else if (!TextUtils.equals(str, b10.f22687k)) {
+                    b10.a();
+                } else if (b10.f22683f) {
+                    return;
+                }
+                final String str4 = str;
+                b10.f22687k = str4;
+                int indexOf = str4.indexOf(64);
+                TLObject tLObject = null;
+                if (indexOf >= 0) {
+                    String substring = str4.substring(indexOf + 1);
+                    str2 = str4.substring(0, indexOf);
+                    str3 = substring;
+                } else {
+                    str2 = str4;
+                    str3 = null;
+                }
+                b10.f22683f = true;
+                boolean isEmpty = TextUtils.isEmpty(str3);
+                int i12 = this.f22906a;
+                if (!isEmpty) {
+                    TLObject f22 = hp.s1(i12).f2(str3);
+                    if (f22 == null) {
+                        k7 a10 = hp.s1(i12).d2().a(str3, null, new u10() {
+                            @Override
+                            public final void a(Object obj) {
+                                Long l10 = (Long) obj;
+                                ha haVar = ha.this;
+                                int i13 = haVar.f22906a;
+                                ga gaVar = b10;
+                                String str5 = gaVar.f22687k;
+                                String str6 = str4;
+                                if (TextUtils.equals(str5, str6)) {
+                                    TLObject f23 = hp.s1(i13).f2(str3);
+                                    int i14 = i3;
+                                    if (f23 == null) {
+                                        if (r5[0] == gaVar.f22682e) {
+                                            gaVar.f22682e = null;
+                                            gaVar.f22683f = false;
+                                            gaVar.f22690n = true;
+                                            gaVar.f22689m = 0;
+                                            hs.f(i13).k(hs.I0, Integer.valueOf(i14), Integer.valueOf(gaVar.f22689m), Boolean.valueOf(gaVar.f22690n), Integer.valueOf(gaVar.b()), Integer.valueOf(gaVar.f22688l), 0);
+                                            return;
+                                        }
+                                        return;
+                                    }
+                                    haVar.e(i14, i10, i11, str6);
+                                }
+                            }
+                        });
+                        b10.f22682e = a10;
+                        final Runnable[] runnableArr = {a10};
+                        return;
+                    }
+                    tLObject = f22;
+                }
+                if (i10 == 1) {
+                    TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
+                    tL_messages_searchGlobal.limit = 21;
+                    tL_messages_searchGlobal.f27114q = str4;
+                    tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
+                    tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                    tL_channels_searchPosts = tL_messages_searchGlobal;
+                    if (b10.f22685i != null) {
+                        tL_messages_searchGlobal.offset_rate = b10.f22684g;
+                        tL_messages_searchGlobal.offset_id = b10.h;
+                        tL_messages_searchGlobal.offset_peer = hp.s1(i12).m1(b10.f22685i);
+                        tL_channels_searchPosts = tL_messages_searchGlobal;
+                    }
+                } else if (tLObject != null) {
+                    TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
+                    tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
+                    tL_messages_search.peer = hp.k1(tLObject);
+                    tL_messages_search.f27112q = str2;
+                    tL_messages_search.limit = 21;
+                    int i13 = b10.h;
+                    tL_channels_searchPosts = tL_messages_search;
+                    if (i13 != 0) {
+                        tL_messages_search.offset_id = i13;
+                        tL_channels_searchPosts = tL_messages_search;
+                    }
+                } else {
+                    TLRPC.TL_channels_searchPosts tL_channels_searchPosts2 = new TLRPC.TL_channels_searchPosts();
+                    tL_channels_searchPosts2.flags |= 1;
+                    tL_channels_searchPosts2.hashtag = str4;
+                    tL_channels_searchPosts2.limit = 21;
+                    tL_channels_searchPosts2.offset_peer = new TLRPC.TL_inputPeerEmpty();
+                    tL_channels_searchPosts = tL_channels_searchPosts2;
+                    if (b10.f22685i != null) {
+                        tL_channels_searchPosts2.offset_rate = b10.f22684g;
+                        tL_channels_searchPosts2.offset_id = b10.h;
+                        tL_channels_searchPosts2.offset_peer = hp.s1(i12).m1(b10.f22685i);
+                        tL_channels_searchPosts = tL_channels_searchPosts2;
+                    }
+                }
+                int sendRequest = ConnectionsManager.getInstance(i12).sendRequest(tL_channels_searchPosts, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject2, TLRPC.TL_error tL_error) {
+                        if (tLObject2 instanceof TLRPC.messages_Messages) {
+                            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject2;
+                            ArrayList arrayList = new ArrayList();
+                            ArrayList<TLRPC.Message> arrayList2 = messages_messages.messages;
+                            int size = arrayList2.size();
+                            int i14 = 0;
+                            while (true) {
+                                ha haVar = ha.this;
+                                if (i14 < size) {
+                                    TLRPC.Message message = arrayList2.get(i14);
+                                    i14++;
+                                    zi ziVar = new zi(haVar.f22906a, message, null, null, null, null, null, true, true, 0L, false, false, false, i10);
+                                    if (ziVar.A2()) {
+                                        ziVar.Q2 = true;
+                                    }
+                                    ziVar.L5(str4, false);
+                                    arrayList.add(ziVar);
+                                } else {
+                                    g0.h3(new o4.w0(haVar, r4, b10, messages_messages, arrayList, i3, i11));
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                });
+                b10.d = sendRequest;
+                final int[] iArr = {sendRequest};
+            }
         }
     }
 }

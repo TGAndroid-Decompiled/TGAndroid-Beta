@@ -1,74 +1,37 @@
 package x5;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import n6.l;
-import v8.s;
-import w7.h0;
-public final class a extends o6.a {
-    public static final Parcelable.Creator<a> CREATOR = new s(24);
-    public final boolean f53081a;
-    public final String f53082b;
-    public final String f53083c;
-    public final boolean d;
-    public final String e;
-    public final ArrayList f53084f;
-    public final boolean h;
+import android.util.SparseArray;
+import java.util.HashMap;
+import k2.p1;
+import k5.d;
+public abstract class a {
+    public static final SparseArray f58223a = new SparseArray();
+    public static final HashMap f58224b;
 
-    public a(boolean z10, String str, String str2, boolean z11, String str3, ArrayList arrayList, boolean z12) {
-        boolean z13 = true;
-        if (z11 && z12) {
-            z13 = false;
+    static {
+        HashMap hashMap = new HashMap();
+        f58224b = hashMap;
+        hashMap.put(d.f16877a, 0);
+        hashMap.put(d.f16878b, 1);
+        hashMap.put(d.f16879c, 2);
+        for (d dVar : hashMap.keySet()) {
+            f58223a.append(((Integer) f58224b.get(dVar)).intValue(), dVar);
         }
-        l.a("filterByAuthorizedAccounts and requestVerifiedPhoneNumber must not both be true; the Verified Phone Number feature only works in sign-ups.", z13);
-        this.f53081a = z10;
-        if (z10) {
-            l.h(str, "serverClientId must be provided if Google ID tokens are requested");
-        }
-        this.f53082b = str;
-        this.f53083c = str2;
-        this.d = z11;
-        ArrayList arrayList2 = null;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            arrayList2 = new ArrayList(arrayList);
-            Collections.sort(arrayList2);
-        }
-        this.f53084f = arrayList2;
-        this.e = str3;
-        this.h = z12;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            if (this.f53081a == aVar.f53081a && l.k(this.f53082b, aVar.f53082b) && l.k(this.f53083c, aVar.f53083c) && this.d == aVar.d && l.k(this.e, aVar.e) && l.k(this.f53084f, aVar.f53084f) && this.h == aVar.h) {
-                return true;
-            }
-            return false;
+    public static int a(d dVar) {
+        Integer num = (Integer) f58224b.get(dVar);
+        if (num != null) {
+            return num.intValue();
         }
-        return false;
+        throw new IllegalStateException("PriorityMapping is missing known Priority value " + dVar);
     }
 
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f53081a), this.f53082b, this.f53083c, Boolean.valueOf(this.d), this.e, this.f53084f, Boolean.valueOf(this.h)});
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.s(parcel, 1, 4);
-        parcel.writeInt(this.f53081a ? 1 : 0);
-        h0.l(parcel, 2, this.f53082b);
-        h0.l(parcel, 3, this.f53083c);
-        h0.s(parcel, 4, 4);
-        parcel.writeInt(this.d ? 1 : 0);
-        h0.l(parcel, 5, this.e);
-        h0.n(parcel, 6, this.f53084f);
-        h0.s(parcel, 7, 4);
-        parcel.writeInt(this.h ? 1 : 0);
-        h0.r(parcel, q6);
+    public static d b(int i3) {
+        d dVar = (d) f58223a.get(i3);
+        if (dVar != null) {
+            return dVar;
+        }
+        throw new IllegalArgumentException(p1.i(i3, "Unknown Priority for value "));
     }
 }

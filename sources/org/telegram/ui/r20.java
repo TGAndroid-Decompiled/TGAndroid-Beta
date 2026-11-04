@@ -1,24 +1,32 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.TextView;
-public final class r20 extends TextView {
-    public final RectF f40959a;
-    public final a50 f40960b;
+import android.view.ViewTreeObserver;
+public final class r20 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f49007a;
+    public final x30 f49008b;
 
-    public r20(a50 a50Var, Context context) {
-        super(context);
-        this.f40960b = a50Var;
-        this.f40959a = new RectF();
+    public r20(x30 x30Var, int i3) {
+        this.f49007a = i3;
+        this.f49008b = x30Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        RectF rectF = this.f40959a;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.i0.L(12.0f), org.telegram.messenger.i0.L(12.0f), this.f40960b.X2);
-        super.onDraw(canvas);
+    public final boolean onPreDraw() {
+        switch (this.f49007a) {
+            case 0:
+                x30 x30Var = this.f49008b;
+                x30Var.I1.getViewTreeObserver().removeOnPreDrawListener(this);
+                x30Var.S3.j(null);
+                org.telegram.messenger.g0.b4(x30Var.f51733e4);
+                x30Var.f28586b.requestLayout();
+                return false;
+            default:
+                x30 x30Var2 = this.f49008b;
+                x30Var2.I1.getViewTreeObserver().removeOnPreDrawListener(this);
+                x30Var2.S3.j(null);
+                org.telegram.messenger.g0.b4(x30Var2.f51733e4);
+                x30Var2.f28586b.requestLayout();
+                return false;
+        }
     }
 }

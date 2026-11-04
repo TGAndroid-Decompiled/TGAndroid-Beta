@@ -1,8 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface in {
-    void e(TLRPC.MessageMedia messageMedia, Editable editable, ih.g gVar, ArrayList arrayList, boolean z10, int i10, long j10);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class in extends AnimatorListenerAdapter {
+    public final int f34772a;
+    public final jn f34773b;
+
+    public in(jn jnVar, int i3) {
+        this.f34772a = i3;
+        this.f34773b = jnVar;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f34772a) {
+            case 0:
+                this.f34773b.R = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f34772a) {
+            case 0:
+                jn jnVar = this.f34773b;
+                if (jnVar.R == animator) {
+                    jnVar.getSubtitleTextView().setVisibility(4);
+                    jnVar.R = null;
+                    return;
+                }
+                return;
+            default:
+                this.f34773b.R = null;
+                return;
+        }
+    }
 }

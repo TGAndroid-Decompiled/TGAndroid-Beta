@@ -1,10 +1,15 @@
 package b4;
-public final class g {
-    public final int f2469a;
-    public final int f2470b;
+public final class g implements Comparable {
+    public final long f2359a;
+    public final byte[] f2360b;
 
-    public g(int i10, int i11) {
-        this.f2469a = i10;
-        this.f2470b = i11;
+    public g(long j10, byte[] bArr) {
+        this.f2359a = j10;
+        this.f2360b = bArr;
+    }
+
+    @Override
+    public final int compareTo(Object obj) {
+        return Long.compare(this.f2359a, ((g) obj).f2359a);
     }
 }

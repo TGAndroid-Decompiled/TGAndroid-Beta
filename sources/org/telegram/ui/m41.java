@@ -1,56 +1,94 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class m41 implements t9 {
-    public TLObject f39430a = null;
-    public TLRPC.TL_error f39431b = null;
-    public final SessionsActivity f39432c;
+import java.util.Locale;
+import org.telegram.tgnet.tl.TL_stats;
+public final class m41 {
+    public String A;
+    public boolean B;
+    public boolean C;
+    public String D;
+    public String E;
+    public String F;
+    public boolean G;
+    public boolean H;
+    public String f47500a;
+    public String f47501b;
+    public String f47502c;
+    public boolean d;
+    public String f47503e;
+    public String f47504f;
+    public String f47505g;
+    public boolean h;
+    public String f47506i;
+    public String f47507j;
+    public String f47508k;
+    public boolean f47509l;
+    public String f47510m;
+    public String f47511n;
+    public String f47512o;
+    public String f47513p;
+    public String f47514q;
+    public boolean f47515r;
+    public boolean f47516s;
+    public String f47517t;
+    public String f47518u;
+    public String v;
+    public boolean f47519w;
+    public boolean f47520x;
+    public String f47521y;
+    public String f47522z;
 
-    public m41(SessionsActivity sessionsActivity) {
-        this.f39432c = sessionsActivity;
-    }
-
-    @Override
-    public final void L(String str) {
-        TLObject tLObject = this.f39430a;
-        if (tLObject instanceof TLRPC.TL_authorization) {
-            TLRPC.TL_authorization tL_authorization = (TLRPC.TL_authorization) tLObject;
-            boolean z10 = tL_authorization.password_pending;
-            SessionsActivity sessionsActivity = this.f39432c;
-            if (z10) {
-                sessionsActivity.e.add(0, tL_authorization);
-                sessionsActivity.U = 4;
-                sessionsActivity.p0(false);
-            } else {
-                sessionsActivity.d.add(0, tL_authorization);
-            }
-            sessionsActivity.r0();
-            sessionsActivity.f34041a.f();
-            sessionsActivity.f34046r.m(0L, this.f39430a, 11);
-        } else if (this.f39431b != null) {
-            org.telegram.messenger.i0.g3(new l41(this, 0));
+    public static za.p a(TL_stats.TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev) {
+        float abs;
+        boolean z10;
+        double d = tL_statsAbsValueAndPrev.current;
+        double d10 = tL_statsAbsValueAndPrev.previous;
+        int i3 = (int) (d - d10);
+        if (d10 == 0.0d) {
+            abs = 0.0f;
+        } else {
+            abs = Math.abs((i3 / ((float) d10)) * 100.0f);
         }
-    }
-
-    @Override
-    public final String P0() {
-        return null;
-    }
-
-    @Override
-    public final boolean i1(String str, k9 k9Var) {
-        this.f39430a = null;
-        this.f39431b = null;
-        org.telegram.messenger.i0.h3(new i41(this, str, k9Var, 2), 750L);
-        return true;
-    }
-
-    @Override
-    public final void X0(org.telegram.messenger.js jsVar) {
-    }
-
-    @Override
-    public final void onDismiss() {
+        boolean z11 = false;
+        String o02 = org.telegram.messenger.g0.o0((int) tL_statsAbsValueAndPrev.current, 0);
+        String str = "";
+        if (i3 != 0 && abs != 0.0f) {
+            int i10 = (int) abs;
+            if (abs == i10) {
+                Locale locale = Locale.ENGLISH;
+                StringBuilder sb2 = new StringBuilder();
+                if (i3 > 0) {
+                    str = "+";
+                }
+                sb2.append(str);
+                sb2.append(org.telegram.messenger.g0.o0(i3, 0));
+                str = sb2.toString() + " (" + i10 + "%)";
+            } else {
+                Locale locale2 = Locale.ENGLISH;
+                StringBuilder sb3 = new StringBuilder();
+                if (i3 > 0) {
+                    str = "+";
+                }
+                sb3.append(str);
+                sb3.append(org.telegram.messenger.g0.o0(i3, 0));
+                str = String.format(locale2, "%s (%.1f%s)", sb3.toString(), Float.valueOf(abs), "%");
+            }
+        }
+        if (i3 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i3 != 0 || tL_statsAbsValueAndPrev.current != 0.0d) {
+            z11 = true;
+        }
+        Boolean valueOf = Boolean.valueOf(z10);
+        Boolean valueOf2 = Boolean.valueOf(z11);
+        ?? obj = new Object();
+        obj.f60311a = o02;
+        obj.d = str;
+        obj.f60312b = valueOf;
+        obj.f60313c = valueOf2;
+        return obj;
     }
 }

@@ -1,108 +1,34 @@
 package u9;
 
-import android.app.ActivityManager;
-import android.app.Application;
-import android.content.Context;
-import android.os.Build;
-import android.os.Process;
-import bd.k;
-import bd.q;
-import java.util.ArrayList;
-import java.util.List;
-import kotlin.jvm.internal.i;
-import z9.t0;
-import z9.t1;
-public final class d {
-    public static final d f50211a = new Object();
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import org.telegram.ui.Components.i9;
+public final class d implements h {
+    public final int f55753a;
+    public final g f55754b;
+    public final Runnable f55755c;
+    public final long d;
+    public final long f55756e;
+    public final TimeUnit f55757f;
 
-    public static ArrayList a(Context context) {
-        ActivityManager activityManager;
-        i.e(context, "context");
-        int i10 = context.getApplicationInfo().uid;
-        String str = context.getApplicationInfo().processName;
-        Object systemService = context.getSystemService("activity");
-        List<ActivityManager.RunningAppProcessInfo> list = null;
-        if (systemService instanceof ActivityManager) {
-            activityManager = (ActivityManager) systemService;
-        } else {
-            activityManager = null;
-        }
-        if (activityManager != null) {
-            list = activityManager.getRunningAppProcesses();
-        }
-        if (list == null) {
-            list = q.f2660a;
-        }
-        ArrayList f7 = bd.i.f(list);
-        ArrayList arrayList = new ArrayList();
-        int size = f7.size();
-        int i11 = 0;
-        int i12 = 0;
-        while (i12 < size) {
-            Object obj = f7.get(i12);
-            i12++;
-            if (((ActivityManager.RunningAppProcessInfo) obj).uid == i10) {
-                arrayList.add(obj);
-            }
-        }
-        ArrayList arrayList2 = new ArrayList(k.d(arrayList));
-        int size2 = arrayList.size();
-        while (i11 < size2) {
-            Object obj2 = arrayList.get(i11);
-            i11++;
-            ActivityManager.RunningAppProcessInfo runningAppProcessInfo = (ActivityManager.RunningAppProcessInfo) obj2;
-            ?? obj3 = new Object();
-            String str2 = runningAppProcessInfo.processName;
-            if (str2 != null) {
-                obj3.f53572a = str2;
-                obj3.f53574c = Integer.valueOf(runningAppProcessInfo.pid);
-                obj3.d = Integer.valueOf(runningAppProcessInfo.importance);
-                obj3.f53573b = Boolean.valueOf(i.a(runningAppProcessInfo.processName, str));
-                arrayList2.add(obj3.m());
-            } else {
-                throw new NullPointerException("Null processName");
-            }
-        }
-        return arrayList2;
+    public d(g gVar, Runnable runnable, long j10, long j11, TimeUnit timeUnit, int i3) {
+        this.f55753a = i3;
+        this.f55754b = gVar;
+        this.f55755c = runnable;
+        this.d = j10;
+        this.f55756e = j11;
+        this.f55757f = timeUnit;
     }
 
-    public final t1 b(Context context) {
-        Object obj;
-        String processName;
-        i.e(context, "context");
-        int myPid = Process.myPid();
-        ArrayList a2 = a(context);
-        int size = a2.size();
-        int i10 = 0;
-        while (true) {
-            if (i10 < size) {
-                obj = a2.get(i10);
-                i10++;
-                if (((t0) ((t1) obj)).f55413b == myPid) {
-                    break;
-                }
-            } else {
-                obj = null;
-                break;
-            }
+    @Override
+    public final ScheduledFuture a(i9 i9Var) {
+        switch (this.f55753a) {
+            case 0:
+                g gVar = this.f55754b;
+                return gVar.f55765b.scheduleAtFixedRate(new e(gVar, this.f55755c, i9Var, 0), this.d, this.f55756e, this.f55757f);
+            default:
+                g gVar2 = this.f55754b;
+                return gVar2.f55765b.scheduleWithFixedDelay(new e(gVar2, this.f55755c, i9Var, 2), this.d, this.f55756e, this.f55757f);
         }
-        t1 t1Var = (t1) obj;
-        if (t1Var == null) {
-            int i11 = Build.VERSION.SDK_INT;
-            if (i11 >= 33) {
-                processName = Process.myProcessName();
-                i.d(processName, "{\n      Process.myProcessName()\n    }");
-            } else if (i11 < 28 || (processName = Application.getProcessName()) == null) {
-                processName = "";
-            }
-            i.e(processName, "processName");
-            ?? obj2 = new Object();
-            obj2.f53572a = processName;
-            obj2.f53574c = Integer.valueOf(myPid);
-            obj2.d = 0;
-            obj2.f53573b = false;
-            return obj2.m();
-        }
-        return t1Var;
     }
 }

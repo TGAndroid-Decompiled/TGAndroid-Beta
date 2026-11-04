@@ -1,17 +1,19 @@
 package t7;
-public final class e {
-    public final Object f48551a;
-    public final Object f48552b;
-    public final Object f48553c;
 
-    public e(Object obj, Object obj2, Object obj3) {
-        this.f48551a = obj;
-        this.f48552b = obj2;
-        this.f48553c = obj3;
+import b8.y9;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class e extends com.google.android.gms.common.api.internal.h {
+    public final Object f54954b;
+    public final TaskCompletionSource f54955c;
+
+    public e(Boolean bool, TaskCompletionSource taskCompletionSource) {
+        this.f54954b = bool;
+        this.f54955c = taskCompletionSource;
     }
 
-    public final IllegalArgumentException a() {
-        Object obj = this.f48551a;
-        return new IllegalArgumentException(a1.g.o(String.valueOf(obj), "=", String.valueOf(this.f48553c), a1.g.v("Multiple entries with same key: ", String.valueOf(obj), "=", String.valueOf(this.f48552b), " and ")));
+    @Override
+    public final void G(Status status) {
+        y9.a(status, this.f54954b, this.f54955c);
     }
 }

@@ -1,42 +1,63 @@
 package org.telegram.ui;
-public final class yi implements Runnable {
-    public final boolean f43670a;
-    public final boolean f43671b;
-    public final int f43672c;
-    public final boolean d;
-    public final org.telegram.ui.Components.nj0 e;
-    public final float f43673f;
-    public final float h;
-    public final sg.o0 f43674n;
-    public final org.telegram.messenger.kj f43675r;
-    public final un f43676s;
+public final class yi extends ni.l {
+    public Runnable W;
+    public final wm X;
 
-    public yi(un unVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.nj0 nj0Var, float f7, float f10, sg.o0 o0Var, org.telegram.messenger.kj kjVar) {
-        this.f43676s = unVar;
-        this.f43670a = z10;
-        this.f43671b = z11;
-        this.f43672c = i10;
-        this.d = z12;
-        this.e = nj0Var;
-        this.f43673f = f7;
-        this.h = f10;
-        this.f43674n = o0Var;
-        this.f43675r = kjVar;
+    public yi(wm wmVar, wm wmVar2, wi wiVar, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(wmVar2, wiVar, e6Var);
+        this.X = wmVar;
     }
 
     @Override
-    public final void run() {
-        if (!this.f43670a) {
-            un unVar = this.f43676s;
-            if (unVar.f42302yc != null) {
-                unVar.f42302yc = null;
-                if (this.f43671b) {
-                    unVar.t8(new xi(this, this.f43672c, this.d, this.e, this.f43673f, this.h, this.f43674n, 0));
-                } else {
-                    unVar.t8(new ch(9, this, this.f43675r));
-                }
-                unVar.M7(true);
-            }
+    public final void F() {
+        wm wmVar = this.X;
+        if (wmVar.f51261ba == -1) {
+            wmVar.f51261ba = wmVar.getNotificationCenter().q(wm.f51233pd, wmVar.f51261ba, false);
         }
+    }
+
+    @Override
+    public final void N() {
+        super.N();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
+        }
+        xi xiVar = new xi(this, 1);
+        this.W = xiVar;
+        org.telegram.messenger.g0.h3(xiVar);
+    }
+
+    @Override
+    public final void W() {
+        wm wmVar = this.X;
+        wmVar.f51261ba = wmVar.getNotificationCenter().q(wm.f51233pd, wmVar.f51261ba, false);
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+            this.W = null;
+        }
+        if (org.telegram.messenger.r2.f25040a) {
+            org.telegram.messenger.a8.b("chatItemAnimator disable notifications");
+        }
+        mi.b0 b0Var = wmVar.f51237a0.getAdjustPanLayoutHelper().h;
+        org.telegram.messenger.g0.r(b0Var);
+        b0Var.run();
+        org.telegram.ui.Components.he heVar = wmVar.f51237a0.Z3;
+        org.telegram.messenger.g0.r(heVar);
+        heVar.run();
+    }
+
+    @Override
+    public final void g() {
+        super.g();
+        Runnable runnable = this.W;
+        if (runnable != null) {
+            org.telegram.messenger.g0.r(runnable);
+        }
+        xi xiVar = new xi(this, 0);
+        this.W = xiVar;
+        org.telegram.messenger.g0.h3(xiVar);
     }
 }

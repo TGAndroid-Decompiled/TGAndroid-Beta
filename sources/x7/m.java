@@ -1,81 +1,30 @@
 package x7;
 
-import java.util.ListIterator;
-import java.util.NoSuchElementException;
-public final class m extends a9.o implements ListIterator {
-    public final int f53249b;
-    public int f53250c;
-    public final o d;
-
-    public m(o oVar, int i10) {
-        super(8);
-        int size = oVar.size();
-        if (i10 >= 0 && i10 <= size) {
-            this.f53249b = size;
-            this.f53250c = i10;
-            this.d = oVar;
-            return;
+import android.os.Build;
+import android.util.Log;
+public abstract class m {
+    public static void a(Object obj, String str, String str2) {
+        String c2 = c(str);
+        if (Log.isLoggable(c2, 3)) {
+            Log.d(c2, String.format(str2, obj));
         }
-        throw new IndexOutOfBoundsException(w7.v8.c(i10, size, "index"));
     }
 
-    public final Object a(int i10) {
-        return this.d.get(i10);
-    }
-
-    @Override
-    public final void add(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final boolean hasNext() {
-        if (this.f53250c < this.f53249b) {
-            return true;
+    public static void b(String str, String str2, Exception exc) {
+        String c2 = c(str);
+        if (Log.isLoggable(c2, 6)) {
+            Log.e(c2, str2, exc);
         }
-        return false;
     }
 
-    @Override
-    public final boolean hasPrevious() {
-        if (this.f53250c > 0) {
-            return true;
+    public static String c(String str) {
+        if (Build.VERSION.SDK_INT < 26) {
+            String concat = "TRuntime.".concat(str);
+            if (concat.length() > 23) {
+                return concat.substring(0, 23);
+            }
+            return concat;
         }
-        return false;
-    }
-
-    @Override
-    public final Object next() {
-        if (hasNext()) {
-            int i10 = this.f53250c;
-            this.f53250c = i10 + 1;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int nextIndex() {
-        return this.f53250c;
-    }
-
-    @Override
-    public final Object previous() {
-        if (hasPrevious()) {
-            int i10 = this.f53250c - 1;
-            this.f53250c = i10;
-            return a(i10);
-        }
-        throw new NoSuchElementException();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return this.f53250c - 1;
-    }
-
-    @Override
-    public final void set(Object obj) {
-        throw new UnsupportedOperationException();
+        return "TRuntime.".concat(str);
     }
 }

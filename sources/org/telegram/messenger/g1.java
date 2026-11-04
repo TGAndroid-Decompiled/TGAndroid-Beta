@@ -1,54 +1,42 @@
 package org.telegram.messenger;
 
-import android.util.Log;
-import java.util.Locale;
-public final class g1 {
-    public final String f15837a;
-    public final String f15838b;
-    public final int f15839c;
+import org.telegram.tgnet.TLRPC;
+public final class g1 implements u10 {
+    public final int f22620a;
+    public final Object f22621b;
+    public final Object f22622c;
 
-    public g1(String str, String... strArr) {
-        String sb2;
-        if (strArr.length == 0) {
-            sb2 = "";
-        } else {
-            StringBuilder sb3 = new StringBuilder();
-            sb3.append('[');
-            for (String str2 : strArr) {
-                if (sb3.length() > 1) {
-                    sb3.append(",");
+    public g1(int i3, Object obj, Object obj2) {
+        this.f22620a = i3;
+        this.f22621b = obj;
+        this.f22622c = obj2;
+    }
+
+    @Override
+    public final void a(Object obj) {
+        switch (this.f22620a) {
+            case 0:
+                g0.h3(new fg((h1) this.f22621b, (String) obj, (Runnable) this.f22622c, 7));
+                return;
+            case 1:
+                e3 e3Var = (e3) this.f22621b;
+                u10 u10Var = (u10) this.f22622c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
+                if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    e3Var.f22303f = Utilities.z(tL_error.text).intValue();
+                } else if (tL_error.text.startsWith("BOOSTS_EMPTY")) {
+                    e3Var.f22300b = true;
                 }
-                sb3.append(str2);
-            }
-            sb3.append("] ");
-            sb2 = sb3.toString();
+                e3Var.f22299a = false;
+                u10Var.a(e3Var);
+                return;
+            default:
+                yy yyVar = (yy) this.f22621b;
+                wy wyVar = (wy) this.f22622c;
+                yyVar.getClass();
+                wyVar.Q = ((Long) obj).longValue();
+                yyVar.r0(wyVar);
+                return;
         }
-        this.f15838b = sb2;
-        this.f15837a = str;
-        int i10 = 2;
-        Object[] objArr = {str, 23};
-        if (str.length() <= 23) {
-            while (i10 <= 7 && !Log.isLoggable(this.f15837a, i10)) {
-                i10++;
-            }
-            this.f15839c = i10;
-            return;
-        }
-        throw new IllegalArgumentException(String.format("tag \"%s\" is longer than the %d character maximum", objArr));
-    }
-
-    public void a(String str, Object... objArr) {
-        if (this.f15839c <= 3) {
-            if (objArr.length > 0) {
-                str = String.format(Locale.US, str, objArr);
-            }
-            Log.d(this.f15837a, this.f15838b.concat(str));
-        }
-    }
-
-    public g1(String str, int i10, String str2) {
-        this.f15837a = str;
-        this.f15839c = i10;
-        this.f15838b = str2;
     }
 }

@@ -1,3 +1,5 @@
 package org.telegram.ui.ActionBar;
-public interface t5 {
+
+import android.graphics.drawable.StateListDrawable;
+public final class t5 extends StateListDrawable {
 }

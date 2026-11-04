@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public interface d0 {
-    xh.s0 A();
+    ii.w0 A();
 
     void a();
 
@@ -28,31 +28,31 @@ public interface d0 {
 
     void k(boolean z10);
 
-    void l(boolean z10, boolean z11, String str, long j10, int i10, int i11, boolean z12, boolean z13, String str2);
+    void l(boolean z10, boolean z11, String str, long j10, int i3, int i10, boolean z12, boolean z13, String str2);
 
-    void m(int i10);
+    void m(int i3);
 
     void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
 
-    void o(int i10, boolean z10);
+    void o(int i3, boolean z10);
 
     void p(boolean z10);
 
-    void q(boolean z10, boolean z11, String str, long j10, int i10, int i11, boolean z12, boolean z13);
+    void q(boolean z10, boolean z11, String str, long j10, int i3, int i10, boolean z12, boolean z13);
 
-    void r(int i10);
+    void r(int i3);
 
     void s();
 
     void t(boolean z10);
 
-    void u(int i10, int i11, boolean z10);
+    void u(int i3, int i10, boolean z10);
 
     void v(TLRPC.User user, String str, ArrayList arrayList);
 
     void w(boolean z10);
 
-    void x(int i10);
+    void x(int i3);
 
     void y(boolean z10);
 

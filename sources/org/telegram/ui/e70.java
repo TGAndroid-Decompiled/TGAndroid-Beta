@@ -1,24 +1,30 @@
 package org.telegram.ui;
-public final class e70 implements Runnable {
-    public final int f36762a;
-    public final LanguageSelectActivity f36763b;
 
-    public e70(LanguageSelectActivity languageSelectActivity, int i10) {
-        this.f36762a = i10;
-        this.f36763b = languageSelectActivity;
+import android.content.DialogInterface;
+public final class e70 implements DialogInterface.OnDismissListener {
+    public final int f44914a;
+    public final LaunchActivity f44915b;
+
+    public e70(LaunchActivity launchActivity, int i3) {
+        this.f44914a = i3;
+        this.f44915b = launchActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36762a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i3 = this.f44914a;
+        LaunchActivity launchActivity = this.f44915b;
+        switch (i3) {
             case 0:
-                LanguageSelectActivity.d0(this.f36763b);
+                launchActivity.f41329y1 = false;
                 return;
             case 1:
-                LanguageSelectActivity.b0(this.f36763b);
+                String str = LaunchActivity.E1;
+                org.telegram.messenger.g0.i3(new m60(launchActivity, 7), 30000L);
                 return;
             default:
-                this.f36763b.f33348a.f();
+                String str2 = LaunchActivity.E1;
+                org.telegram.messenger.g0.i3(new m60(launchActivity, 10), 30000L);
                 return;
         }
     }

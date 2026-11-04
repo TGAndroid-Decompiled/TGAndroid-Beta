@@ -1,34 +1,34 @@
 package org.telegram.utils.recorder.audio;
 
-import a3.l0;
 import android.os.SystemClock;
 import java.nio.ByteBuffer;
-import ki.g;
-import ki.j;
-import ki.k;
+import org.telegram.ui.Components.iv0;
+import vi.f;
+import vi.i;
+import vi.j;
 public final class c implements Runnable {
-    public final int f44277a;
-    public final Object f44278b;
-    public final Object f44279c;
+    public final int f52780a;
+    public final Object f52781b;
+    public final Object f52782c;
 
-    public c(int i10, Object obj, Object obj2) {
-        this.f44277a = i10;
-        this.f44278b = obj;
-        this.f44279c = obj2;
+    public c(int i3, Object obj, Object obj2) {
+        this.f52780a = i3;
+        this.f52781b = obj;
+        this.f52782c = obj2;
     }
 
     @Override
     public final void run() {
         byte[] bArr;
-        switch (this.f44277a) {
+        switch (this.f52780a) {
             case 0:
-                d dVar = (d) this.f44278b;
-                ByteBuffer byteBuffer = (ByteBuffer) this.f44279c;
-                int andDecrement = dVar.f44289m.getAndDecrement();
+                d dVar = (d) this.f52781b;
+                ByteBuffer byteBuffer = (ByteBuffer) this.f52782c;
+                int andDecrement = dVar.f52793m.getAndDecrement();
                 try {
-                    if (dVar.v == null && !dVar.f44298w) {
-                        dVar.f44300y = Math.max(dVar.f44300y, andDecrement);
-                        ByteBuffer byteBuffer2 = dVar.f44295s;
+                    if (dVar.v == null && !dVar.f52802w) {
+                        dVar.f52804y = Math.max(dVar.f52804y, andDecrement);
+                        ByteBuffer byteBuffer2 = dVar.f52799s;
                         byteBuffer.position(0);
                         while (byteBuffer.hasRemaining()) {
                             int min = Math.min(byteBuffer.remaining(), byteBuffer2.remaining());
@@ -42,21 +42,21 @@ public final class c implements Runnable {
                             }
                         }
                         long elapsedRealtime = SystemClock.elapsedRealtime();
-                        if (elapsedRealtime - dVar.f44299x >= 100) {
-                            long d = dVar.f44296t.d();
-                            dVar.f44299x = elapsedRealtime;
+                        if (elapsedRealtime - dVar.f52803x >= 100) {
+                            long d = dVar.f52800t.d();
+                            dVar.f52803x = elapsedRealtime;
                             if (d >= 0) {
-                                g gVar = dVar.f44284g;
-                                ((k) gVar.f11406c).a((j) gVar.f11405b, d);
+                                f fVar = dVar.f52788g;
+                                ((j) fVar.f56973c).a((i) fVar.f56972b, d);
                             }
                         }
                     }
                 } catch (Throwable th2) {
                     try {
                         if (dVar.v == null) {
-                            dVar.f44283f.a("encoding failed", th2);
+                            dVar.f52787f.a("encoding failed", th2);
                             dVar.v = d.a(th2);
-                            dVar.f44290n = true;
+                            dVar.f52794n = true;
                         }
                     } finally {
                         dVar.c(byteBuffer);
@@ -64,15 +64,15 @@ public final class c implements Runnable {
                 }
                 return;
             default:
-                k kVar = (k) this.f44278b;
-                j jVar = (j) this.f44279c;
+                j jVar = (j) this.f52781b;
+                i iVar = (i) this.f52782c;
                 try {
-                    bArr = AudioRecorderNative.e(jVar.f11411b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(iVar.f56978b.getAbsolutePath());
                 } catch (Throwable th3) {
-                    kVar.h.a("waveform extraction failed", th3);
+                    jVar.h.a("waveform extraction failed", th3);
                     bArr = null;
                 }
-                kVar.f11418i.post(new l0(kVar, jVar, bArr, 28));
+                jVar.f56987i.post(new iv0(jVar, iVar, bArr, 20));
                 return;
         }
     }

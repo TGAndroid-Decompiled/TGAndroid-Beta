@@ -1,42 +1,31 @@
 package org.telegram.messenger;
 
-import android.accounts.AbstractAccountAuthenticator;
-import android.accounts.Account;
-import android.accounts.AccountAuthenticatorResponse;
-import android.os.Bundle;
-public final class z0 extends AbstractAccountAuthenticator {
-    @Override
-    public final Bundle addAccount(AccountAuthenticatorResponse accountAuthenticatorResponse, String str, String str2, String[] strArr, Bundle bundle) {
-        return null;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Set;
+public abstract class z0 {
+    public static final Set f26694a = Collections.newSetFromMap(new ConcurrentHashMap());
+
+    public static void a(File file, ArrayList arrayList) {
+        File[] listFiles;
+        if (file != null && (listFiles = file.listFiles()) != null) {
+            for (File file2 : listFiles) {
+                if (file2.isDirectory()) {
+                    a(file2, arrayList);
+                } else if (!file2.getName().equals(".nomedia") && !f26694a.contains(file2.getAbsolutePath())) {
+                    arrayList.add(new y0(file2));
+                }
+            }
+        }
     }
 
-    @Override
-    public final Bundle confirmCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, Bundle bundle) {
-        return null;
-    }
-
-    @Override
-    public final Bundle editProperties(AccountAuthenticatorResponse accountAuthenticatorResponse, String str) {
-        return null;
-    }
-
-    @Override
-    public final Bundle getAuthToken(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) {
-        return null;
-    }
-
-    @Override
-    public final String getAuthTokenLabel(String str) {
-        return null;
-    }
-
-    @Override
-    public final Bundle hasFeatures(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String[] strArr) {
-        return null;
-    }
-
-    @Override
-    public final Bundle updateCredentials(AccountAuthenticatorResponse accountAuthenticatorResponse, Account account, String str, Bundle bundle) {
-        return null;
+    public static void b(File file) {
+        String absolutePath;
+        if (file == null || (absolutePath = file.getAbsolutePath()) == null) {
+            return;
+        }
+        f26694a.remove(absolutePath);
     }
 }

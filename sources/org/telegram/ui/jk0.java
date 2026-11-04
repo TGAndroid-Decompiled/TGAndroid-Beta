@@ -1,93 +1,77 @@
 package org.telegram.ui;
 
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC;
-public final class jk0 extends xr0 {
-    public final jl0 f38405a;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class jk0 extends LinearLayout {
+    public boolean f46635a;
+    public final int f46636b;
+    public final int[] f46637c;
+    public final int[] d;
 
-    public jk0(jl0 jl0Var) {
-        this.f38405a = jl0Var;
+    public jk0(Context context, int i3, int[] iArr, int[] iArr2) {
+        super(context);
+        this.f46636b = i3;
+        this.f46637c = iArr;
+        this.d = iArr2;
     }
 
     @Override
-    public final void B(int i10) {
-        org.telegram.messenger.qw qwVar;
-        jl0 jl0Var = this.f38405a;
-        int i11 = jl0Var.S0;
-        if (i11 == 1) {
-            qwVar = jl0Var.f38432j1;
-        } else if (i11 == 4) {
-            qwVar = (org.telegram.messenger.qw) jl0Var.f38434k1.get(i10);
-        } else if (i11 == 2) {
-            qwVar = jl0Var.l1;
-        } else if (i11 == 3) {
-            qwVar = jl0Var.f38436m1;
+    public final void onMeasure(int i3, int i10) {
+        View childAt;
+        int size = View.MeasureSpec.getSize(i3);
+        this.f46635a = true;
+        int L = org.telegram.messenger.g0.L(9.0f);
+        int i11 = this.f46636b;
+        int i12 = (i11 - 1) * L;
+        int[] iArr = this.f46637c;
+        float f10 = 1.0f;
+        if ((iArr[0] * i11) + i12 <= size) {
+            setWeightSum(1.0f);
+            int childCount = getChildCount();
+            for (int i13 = 0; i13 < childCount; i13++) {
+                getChildAt(i13).getLayoutParams().width = 0;
+                ((LinearLayout.LayoutParams) getChildAt(i13).getLayoutParams()).weight = 1.0f / childCount;
+            }
+        } else if (this.d[0] + i12 <= size) {
+            setWeightSum(1.0f);
+            int i14 = size - i12;
+            int childCount2 = getChildCount();
+            for (int i15 = 0; i15 < childCount2; i15++) {
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i15).getLayoutParams();
+                layoutParams.width = 0;
+                float intValue = ((Integer) childAt.getTag(2131296739)).intValue() / i14;
+                layoutParams.weight = intValue;
+                f10 -= intValue;
+            }
+            float f11 = f10 / (i11 - 1);
+            if (f11 > 0.0f) {
+                int childCount3 = getChildCount();
+                for (int i16 = 0; i16 < childCount3; i16++) {
+                    View childAt2 = getChildAt(i16);
+                    LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
+                    if (((Integer) childAt2.getTag(2131296739)).intValue() != iArr[0]) {
+                        layoutParams2.weight += f11;
+                    }
+                }
+            }
         } else {
-            qwVar = (org.telegram.messenger.qw) jl0Var.f38430i1.get(i10);
+            setWeightSum(0.0f);
+            int childCount4 = getChildCount();
+            for (int i17 = 0; i17 < childCount4; i17++) {
+                getChildAt(i17).getLayoutParams().width = -2;
+                ((LinearLayout.LayoutParams) getChildAt(i17).getLayoutParams()).weight = 0.0f;
+            }
         }
-        hl0 hl0Var = (hl0) jl0Var.f38439n1.remove(qwVar);
-        if (hl0Var == null) {
+        this.f46635a = false;
+        super.onMeasure(i3, i10);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f46635a) {
             return;
         }
-        String r12 = jl0.r1(qwVar);
-        int i12 = jl0Var.S0;
-        String str = null;
-        if (i12 == 1) {
-            jl0Var.f38432j1 = null;
-            str = sc.e.h("selfie", r12);
-        } else if (i12 == 4) {
-            str = sc.e.h("translation", r12);
-        } else if (i12 == 2) {
-            jl0Var.l1 = null;
-            str = sc.e.h("front", r12);
-        } else if (i12 == 3) {
-            jl0Var.f38436m1 = null;
-            str = sc.e.h("reverse", r12);
-        } else if (i12 == 0) {
-            str = sc.e.h("files", r12);
-        }
-        if (str != null) {
-            HashMap hashMap = jl0Var.f38463x1;
-            if (hashMap != null) {
-                hashMap.remove(str);
-            }
-            HashMap hashMap2 = jl0Var.f38466y1;
-            if (hashMap2 != null) {
-                hashMap2.remove(str);
-            }
-        }
-        jl0Var.X1(jl0Var.S0);
-        jl0Var.f38429i0.removeView(hl0Var);
-    }
-
-    @Override
-    public final fs0 E(org.telegram.messenger.kj kjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        if (i10 >= 0) {
-            jl0 jl0Var = this.f38405a;
-            if (i10 < jl0Var.f38429i0.getChildCount()) {
-                hl0 hl0Var = (hl0) jl0Var.f38429i0.getChildAt(i10);
-                int[] iArr = new int[2];
-                hl0Var.f37831c.getLocationInWindow(iArr);
-                fs0 fs0Var = new fs0();
-                fs0Var.f37216b = iArr[0];
-                fs0Var.f37217c = iArr[1];
-                fs0Var.d = jl0Var.f38429i0;
-                ImageReceiver imageReceiver = hl0Var.f37831c.getImageReceiver();
-                fs0Var.f37215a = imageReceiver;
-                fs0Var.e = imageReceiver.p();
-                return fs0Var;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    @Override
-    public final String b0() {
-        if (this.f38405a.S0 == 1) {
-            return org.telegram.messenger.dd.a0("PassportDeleteSelfieAlert", null, 2131747597, new Object[0]);
-        }
-        return org.telegram.messenger.dd.a0("PassportDeleteScanAlert", null, 2131747599, new Object[0]);
+        super.requestLayout();
     }
 }

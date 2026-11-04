@@ -1,3 +1,6 @@
 package t9;
-public final class d {
+
+import b8.ke;
+public interface d {
+    Object q1(ke keVar);
 }

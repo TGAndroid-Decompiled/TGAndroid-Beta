@@ -1,52 +1,70 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class cd implements View.OnClickListener {
-    public final int f36291a;
-    public final kd f36292b;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class cd implements Runnable {
+    public final int f44318a;
+    public final xd f44319b;
 
-    public cd(kd kdVar, int i10) {
-        this.f36291a = i10;
-        this.f36292b = kdVar;
+    public cd(xd xdVar, int i3) {
+        this.f44318a = i3;
+        this.f44319b = xdVar;
     }
 
     @Override
-    public final void onClick(View view) {
+    public final void run() {
         boolean z10;
-        switch (this.f36291a) {
+        int i3 = this.f44318a;
+        boolean z11 = false;
+        xd xdVar = this.f44319b;
+        switch (i3) {
             case 0:
-                kd.c0(this.f36292b, view);
+                sf.c.t(xdVar.getContext(), org.telegram.messenger.bd.M0(2131748412, null));
                 return;
             case 1:
-                kd kdVar = this.f36292b;
-                org.telegram.ui.Components.b40 b40Var = kdVar.f38836x;
-                if (kdVar.D != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                b40Var.n(z10, new ad(kdVar, 2), new q5(kdVar, 2), 0);
-                kdVar.K.M(0);
-                kdVar.K.P(43);
-                kdVar.f38822n.d();
+                sf.c.t(xdVar.getContext(), org.telegram.messenger.bd.M0(2131748378, null));
                 return;
             case 2:
-                kd kdVar2 = this.f36292b;
-                if (!kdVar2.f38820k0) {
-                    kdVar2.l0();
-                    return;
-                } else if (kdVar2.f38809b0) {
-                    kdVar2.f38809b0 = false;
-                    kdVar2.n0();
-                    return;
-                } else {
+                org.telegram.ui.Components.l41 l41Var = xdVar.Y0;
+                if (l41Var != null) {
+                    boolean z12 = xdVar.f34196f0;
+                    if (xdVar.S0 != -1) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    org.telegram.ui.Components.f41 f41Var = l41Var.f35594g3;
+                    if (z10 == xdVar.f51915b1.a()) {
+                        z11 = true;
+                    }
+                    f41Var.O(z11);
+                    if (z12 && xdVar.S0 != -1) {
+                        xdVar.a();
+                        return;
+                    }
                     return;
                 }
+                return;
+            case 3:
+                xdVar.f51924l1 = xdVar.k1;
+                return;
+            case 4:
+                xdVar.K0.setLoading(false);
+                return;
+            case 5:
+                xdVar.Z0.setVisibility(8);
+                return;
+            case 6:
+                xdVar.Z0.setVisibility(8);
+                return;
             default:
-                kd kdVar3 = this.f36292b;
-                if (!kdVar3.f38809b0) {
-                    kdVar3.f38809b0 = true;
-                    kdVar3.n0();
+                int i10 = xdVar.f51929p0;
+                org.telegram.messenger.g0.r(xdVar.f51938t1);
+                if (xdVar.k1 != xdVar.f51924l1) {
+                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
+                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.hp.s1(i10).h1(-xdVar.f51931q0);
+                    tL_channels_restrictSponsoredMessages.restricted = xdVar.k1;
+                    ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new jd(xdVar, 0));
                     return;
                 }
                 return;

@@ -1,31 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class m21 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28360a;
-    public final o21 f28361b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+public final class m21 extends yh.l {
+    public final k4.j V;
+    public final p21 W;
 
-    public m21(o21 o21Var, int i10) {
-        this.f28360a = i10;
-        this.f28361b = o21Var;
+    public m21(p21 p21Var, Context context) {
+        super(context);
+        this.W = p21Var;
+        this.V = new k4.j(24);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28360a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o21 o21Var = this.f28361b;
-                o21Var.U = floatValue;
-                o21Var.h();
-                o21Var.g();
-                return;
-            default:
-                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                o21 o21Var2 = this.f28361b;
-                o21Var2.L = max;
-                o21Var2.h.invalidate();
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        int L = org.telegram.messenger.g0.L(8.0f) + this.W.d.getWidth();
+        canvas.saveLayerAlpha(getScrollX(), 0.0f, (getWidth() + getScrollX()) - L, getHeight(), 255, 31);
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        du0.a(canvas, getLayout());
+        canvas.restore();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set((getWidth() - L) - org.telegram.messenger.g0.L(24.0f), 0.0f, getWidth() - L, getHeight());
+        this.V.w(canvas, rectF, 2, 1.0f);
+        canvas.restore();
     }
 }

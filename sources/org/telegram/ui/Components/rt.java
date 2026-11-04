@@ -1,132 +1,108 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MotionEvent;
-public final class rt extends mt {
-    public Drawable Y1;
-    public final int Z1;
-    public final wt a2;
+import android.net.Uri;
+import java.util.HashMap;
+import java.util.Locale;
+import org.telegram.messenger.Utilities;
+public final class rt extends org.telegram.ui.ActionBar.u4 {
+    public final boolean f37795r;
+    public final ut f37796s;
 
-    public rt(wt wtVar, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
-        super(context, p6Var);
-        this.a2 = wtVar;
-        this.Z1 = i10;
-        this.Y1 = null;
+    public rt(ut utVar, boolean z10) {
+        this.f37796s = utVar;
+        this.f37795r = z10;
     }
 
     @Override
-    public final void F(int i10, int i11) {
-        this.a2.q(i10, i11);
-    }
-
-    @Override
-    public final int e() {
-        return this.a2.h();
-    }
-
-    @Override
-    public final int getActionModeStyle() {
-        int i10 = this.Z1;
-        if (i10 == 2 || i10 == 3) {
-            return 2;
-        }
-        return super.getActionModeStyle();
-    }
-
-    @Override
-    public final void o(ActionMode actionMode, Menu menu) {
-        boolean z10;
-        wt wtVar = this.a2;
-        if (wtVar.a()) {
-            if (wtVar.L == 3) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            org.telegram.ui.un.x8(menu, null, z10, true, true, true);
+    public final void v() {
+        String str;
+        int intValue;
+        ut utVar = this.f37796s;
+        int i3 = utVar.I1;
+        RadialProgressView radialProgressView = utVar.f38866p1;
+        pt ptVar = utVar.f38862j1;
+        d71 d71Var = utVar.k1;
+        if (this.f37795r && utVar.k1.g(utVar.C1, null, null, utVar.A1, true)) {
+            radialProgressView.setVisibility(4);
+            ptVar.setVisibility(4);
+            d71Var.setVisibility(0);
             return;
         }
-        wtVar.i(actionMode, menu);
-    }
-
-    @Override
-    public final void onSelectionChanged(int i10, int i11) {
-        boolean z10;
-        super.onSelectionChanged(i10, i11);
-        wt wtVar = this.a2;
-        cl0 cl0Var = wtVar.f32310c;
-        if (cl0Var != null) {
-            boolean z11 = false;
-            if (i11 != i10) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (wtVar.a() && z10) {
-                org.telegram.messenger.d6.i();
-                z11 = true;
-            }
-            if (wtVar.f32312n != z11) {
-                wtVar.f32312n = z11;
-                if (z11) {
-                    this.Y1 = cl0Var.d;
-                    cl0Var.a(2131232115, true);
-                    return;
-                }
-                cl0Var.b(this.Y1, true);
-                this.Y1 = null;
-            }
+        radialProgressView.setVisibility(0);
+        ptVar.setVisibility(0);
+        utVar.f38868r1.setVisibility(0);
+        utVar.f38869s1.setVisibility(4);
+        ptVar.setKeepScreenOn(true);
+        d71Var.setVisibility(4);
+        d71Var.getControlsView().setVisibility(4);
+        d71Var.getTextureView().setVisibility(4);
+        if (d71Var.getTextureImageView() != null) {
+            d71Var.getTextureImageView().setVisibility(4);
         }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10;
-        st stVar;
-        wt wtVar = this.a2;
-        if (wtVar.e && motionEvent.getAction() == 0) {
-            wtVar.u();
-            if (wtVar.f32317y && (stVar = wtVar.d) != null) {
-                stVar.t(false);
-                wtVar.f32317y = false;
-                wtVar.k(true);
-                org.telegram.messenger.i0.J3(this);
-            } else {
-                if (org.telegram.messenger.i0.D) {
-                    i10 = 0;
-                } else {
-                    i10 = 2;
-                }
-                wtVar.x(i10);
-            }
-            wtVar.v();
-        }
-        if (motionEvent.getAction() == 0) {
-            boolean isFocused = isFocused();
-            requestFocus();
-            if (!org.telegram.messenger.i0.J3(this)) {
-                clearFocus();
-                requestFocus();
-            }
-            if (!isFocused) {
-                setSelection(getText().length());
-            }
-        }
+        utVar.k1.g(null, null, null, null, false);
+        HashMap hashMap = new HashMap();
+        hashMap.put("Referer", "messenger.telegram.org");
         try {
-            return super.onTouchEvent(motionEvent);
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+            String youtubeId = d71Var.getYoutubeId();
+            if (youtubeId != null) {
+                utVar.f38865o1.setVisibility(0);
+                utVar.f38872v1 = true;
+                ptVar.addJavascriptInterface(new tt(utVar), "YoutubeProxy");
+                String str2 = utVar.A1;
+                if (str2 != null) {
+                    try {
+                        Uri parse = Uri.parse(str2);
+                        if (i3 > 0) {
+                            str = "" + i3;
+                        } else {
+                            str = null;
+                        }
+                        if (str == null && (str = parse.getQueryParameter("t")) == null) {
+                            str = parse.getQueryParameter("time_continue");
+                        }
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                    }
+                    if (str != null) {
+                        if (str.contains("m")) {
+                            String[] split = str.split("m");
+                            intValue = (Utilities.z(split[0]).intValue() * 60) + Utilities.z(split[1]).intValue();
+                        } else {
+                            intValue = Utilities.z(str).intValue();
+                        }
+                        utVar.f38862j1.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youtubeId, Integer.valueOf(intValue)), "text/html", "UTF-8", "https://youtube.com");
+                        return;
+                    }
+                }
+                intValue = 0;
+                utVar.f38862j1.loadDataWithBaseURL("https://messenger.telegram.org/", String.format(Locale.US, "<!DOCTYPE html><html><head><style>body { margin: 0; width:100%%; height:100%%;  background-color:#000; }html { width:100%%; height:100%%; background-color:#000; }.embed-container iframe,.embed-container object,   .embed-container embed {       position: absolute;       top: 0;       left: 0;       width: 100%% !important;       height: 100%% !important;   }   </style></head><body>   <div class=\"embed-container\">       <div id=\"player\"></div>   </div>   <script src=\"https://www.youtube.com/iframe_api\"></script>   <script>   var player;   var observer;   var videoEl;   var playing;   var posted = false;   YT.ready(function() {       player = new YT.Player(\"player\", {                              \"width\" : \"100%%\",                              \"events\" : {                              \"onReady\" : \"onReady\",                              \"onError\" : \"onError\",                              \"onStateChange\" : \"onStateChange\",                              },                              \"videoId\" : \"%1$s\",                              \"height\" : \"100%%\",                              \"playerVars\" : {                              \"start\" : %2$d,                              \"rel\" : 1,                              \"showinfo\" : 0,                              \"modestbranding\" : 0,                              \"iv_load_policy\" : 3,                              \"autohide\" : 1,                              \"autoplay\" : 1,                              \"cc_load_policy\" : 1,                              \"playsinline\" : 1,                              \"controls\" : 1                              }                            });        player.setSize(window.innerWidth, window.innerHeight);    });    function hideControls() {        playing = !videoEl.paused;       videoEl.controls = 0;       observer.observe(videoEl, {attributes: true});    }    function showControls() {        playing = !videoEl.paused;       observer.disconnect();       videoEl.controls = 1;    }    function onError(event) {       if (!posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onStateChange(event) {       if (event.data == YT.PlayerState.PLAYING && !posted) {            if (window.YoutubeProxy !== undefined) {                   YoutubeProxy.postEvent(\"loaded\", null);             }            posted = true;       }    }    function onReady(event) {       player.playVideo();    }    window.onresize = function() {       player.setSize(window.innerWidth, window.innerHeight);       player.playVideo();    }    </script></body></html>", youtubeId, Integer.valueOf(intValue)), "text/html", "UTF-8", "https://youtube.com");
+                return;
+            }
+            ptVar.loadUrl(utVar.C1, hashMap);
+        } catch (Exception e11) {
+            org.telegram.messenger.a8.g(e11, true);
+        }
+    }
+
+    @Override
+    public final boolean x() {
+        ut utVar = this.f37796s;
+        d71 d71Var = utVar.k1;
+        boolean z10 = d71Var.U;
+        if (z10) {
+            if (z10) {
+                d71Var.U = false;
+                d71Var.m();
+                d71Var.l(false);
+            }
             return false;
         }
-    }
-
-    @Override
-    public final void scrollTo(int i10, int i11) {
-        if (this.a2.t(i11)) {
-            super.scrollTo(i10, i11);
+        try {
+            utVar.f38867q1.getWindow().clearFlags(128);
+            return true;
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            return true;
         }
     }
 }

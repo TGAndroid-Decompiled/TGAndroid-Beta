@@ -1,19 +1,51 @@
 package e0;
 
-import android.os.Handler;
-import android.os.Looper;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-public abstract class e {
-    public static final Class f6003a;
-    public static final Field f6004b;
-    public static final Field f6005c;
-    public static final Method d;
-    public static final Method e;
-    public static final Method f6006f;
-    public static final Handler f6007g = new Handler(Looper.getMainLooper());
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
+    public final androidx.lifecycle.v f9223a = new androidx.lifecycle.v(this);
 
-    static {
-        throw new UnsupportedOperationException("Method not decompiled: e0.e.<clinit>():void");
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+        kotlin.jvm.internal.j.e(event, "event");
+        View decorView = getWindow().getDecorView();
+        kotlin.jvm.internal.j.d(decorView, "window.decorView");
+        if (x7.k.a(decorView, event)) {
+            return true;
+        }
+        return x7.k.b(this, decorView, this, event);
+    }
+
+    @Override
+    public final boolean dispatchKeyShortcutEvent(KeyEvent event) {
+        kotlin.jvm.internal.j.e(event, "event");
+        View decorView = getWindow().getDecorView();
+        kotlin.jvm.internal.j.d(decorView, "window.decorView");
+        if (x7.k.a(decorView, event)) {
+            return true;
+        }
+        return super.dispatchKeyShortcutEvent(event);
+    }
+
+    @Override
+    public final boolean i(KeyEvent event) {
+        kotlin.jvm.internal.j.e(event, "event");
+        return super.dispatchKeyEvent(event);
+    }
+
+    @Override
+    public void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        int i3 = androidx.lifecycle.h0.f1985b;
+        androidx.lifecycle.f0.b(this);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        kotlin.jvm.internal.j.e(outState, "outState");
+        this.f9223a.g();
+        super.onSaveInstanceState(outState);
     }
 }

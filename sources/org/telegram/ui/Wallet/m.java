@@ -2,42 +2,42 @@ package org.telegram.ui.Wallet;
 
 import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.dd;
-import org.telegram.messenger.k20;
-import org.telegram.messenger.r20;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.n10;
+import org.telegram.messenger.u10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.cc;
-public final class m implements r20 {
-    public final int f34878a;
-    public final Object f34879b;
-    public final Object f34880c;
+import org.telegram.ui.Components.fc;
+public final class m implements u10 {
+    public final int f42805a;
+    public final Object f42806b;
+    public final Object f42807c;
     public final Object d;
 
-    public m(Object obj, Object obj2, Object obj3, int i10) {
-        this.f34878a = i10;
-        this.f34879b = obj;
-        this.f34880c = obj2;
+    public m(Object obj, Object obj2, Object obj3, int i3) {
+        this.f42805a = i3;
+        this.f42806b = obj;
+        this.f42807c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(Object obj) {
         String str;
-        int i10 = this.f34878a;
+        int i3 = this.f42805a;
         boolean z10 = true;
         Object obj2 = this.d;
-        Object obj3 = this.f34880c;
-        Object obj4 = this.f34879b;
-        switch (i10) {
+        Object obj3 = this.f42807c;
+        Object obj4 = this.f42806b;
+        switch (i3) {
             case 0:
                 k0 k0Var = (k0) obj4;
-                k20 k20Var = (k20) obj3;
+                n10 n10Var = (n10) obj3;
                 String str2 = (String) obj2;
                 byte[] bArr = (byte[]) obj;
                 k0Var.getClass();
                 if (bArr == null) {
-                    k20Var.a(null, null);
+                    n10Var.a(null, null);
                     return;
                 }
                 TL_wallet.walletUserAddress walletuseraddress = new TL_wallet.walletUserAddress();
@@ -45,82 +45,82 @@ public final class m implements r20 {
                 walletuseraddress.address = str2;
                 walletuseraddress.public_key = bArr;
                 k0Var.M.put(str2, walletuseraddress);
-                k20Var.a(walletuseraddress, null);
+                n10Var.a(walletuseraddress, null);
                 return;
             case 1:
-                e2 e2Var = (e2) obj4;
-                a2 a2Var = (a2) obj3;
-                bi.d dVar = (bi.d) obj2;
+                c2 c2Var = (c2) obj4;
+                y1 y1Var = (y1) obj3;
+                mi.c cVar = (mi.c) obj2;
                 String str3 = (String) obj;
-                e2Var.getClass();
-                if (a2Var.f34179n || e2Var.j(a2Var) || !e2Var.A(a2Var) || str3 != null) {
+                c2Var.getClass();
+                if (y1Var.f43467n || c2Var.j(y1Var) || !c2Var.A(y1Var) || str3 != null) {
                     z10 = false;
                 }
-                a2Var.f34181p = z10;
-                dVar.a(null, str3);
+                y1Var.f43469p = z10;
+                cVar.a(null, str3);
                 return;
             case 2:
-                e2 e2Var2 = (e2) obj4;
-                a2 a2Var2 = (a2) obj3;
-                r20 r20Var = (r20) obj2;
+                c2 c2Var2 = (c2) obj4;
+                y1 y1Var2 = (y1) obj3;
+                u10 u10Var = (u10) obj2;
                 String str4 = (String) obj;
-                e2Var2.getClass();
-                a2Var2.f34178m = false;
-                if (a2Var2.f34183r == null && e2Var2.f34454g == a2Var2) {
-                    e2Var2.f34454g = null;
+                c2Var2.getClass();
+                y1Var2.f43466m = false;
+                if (y1Var2.f43471r == null && c2Var2.f42382g == y1Var2) {
+                    c2Var2.f42382g = null;
                 }
-                r20Var.a(str4);
+                u10Var.a(str4);
                 return;
             case 3:
-                e2 e2Var3 = (e2) obj4;
-                e2Var3.getClass();
-                org.telegram.messenger.i0.g3(new k7((Object) e2Var3, (Object) ((TL_wallet.tonConnectSession) obj3), (String) obj, (Object) ((k) obj2), 6));
+                c2 c2Var3 = (c2) obj4;
+                c2Var3.getClass();
+                org.telegram.messenger.g0.h3(new e7((Object) c2Var3, (Object) ((TL_wallet.tonConnectSession) obj3), (String) obj, (Object) ((k) obj2), 6));
                 return;
             case 4:
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj4;
-                q4 q4Var = (q4) obj3;
+                ei.s sVar = (ei.s) obj3;
                 TL_wallet.walletTransaction[] wallettransactionArr = (TL_wallet.walletTransaction[]) obj2;
                 TL_wallet.walletTransaction wallettransaction2 = (TL_wallet.walletTransaction) obj;
                 if (wallettransaction2 != null) {
                     wallettransaction2.incoming = wallettransaction.incoming;
                     wallettransaction2.peer = wallettransaction.peer;
                     wallettransactionArr[0] = wallettransaction2;
-                    q4Var.a(wallettransaction2);
+                    sVar.a(wallettransaction2);
                     return;
                 }
                 return;
             case 5:
-                a3[] a3VarArr = (a3[]) obj3;
-                org.telegram.ui.ActionBar.p6 p6Var = (org.telegram.ui.ActionBar.p6) obj2;
+                y2[] y2VarArr = (y2[]) obj3;
+                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) obj2;
                 String str5 = (String) obj;
-                ((vh.d) obj4).setLoading(false);
+                ((gi.d) obj4).setLoading(false);
                 if (!TextUtils.isEmpty(str5)) {
-                    new cc(a3VarArr[0].E, p6Var).e0(str5, false);
+                    new fc(y2VarArr[0].F, e6Var).e0(str5, false);
                     return;
                 } else {
-                    a3VarArr[0].dismiss();
+                    y2VarArr[0].dismiss();
                     return;
                 }
             case 6:
-                t8.d0((t8) obj4, (r20) obj3, (p0) obj2, (h0) obj);
+                n8.d0((n8) obj4, (u10) obj3, (o0) obj2, (h0) obj);
                 return;
             case 7:
-                ba baVar = (ba) obj3;
+                w9 w9Var = (w9) obj3;
                 k0 k0Var2 = (k0) obj4;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str6 = (String) obj;
-                if (!baVar.f34287r) {
-                    if (!TextUtils.isEmpty(str6) && k0.b(baVar.f34285f, k0Var2.t())) {
-                        a0 a0Var = new a0(k0Var2, str6, baVar.e, null, new q(baVar, k0Var2, user, str6));
+                if (!w9Var.f43365r) {
+                    if (!TextUtils.isEmpty(str6) && k0.b(w9Var.f43363f, k0Var2.t())) {
+                        a0 a0Var = new a0(k0Var2, str6, w9Var.f43361e, null, new q(w9Var, k0Var2, user, str6));
                         k0Var2.m0(a0Var);
-                        baVar.f34286n = new l(a0Var, 1);
+                        w9Var.f43364n = new l(a0Var, 1);
                         return;
                     }
-                    baVar.h = false;
-                    baVar.Z.setLoading(false);
-                    cc a02 = cc.a0(baVar);
+                    w9Var.h = false;
+                    w9Var.f43357a0.setLoading(false);
+                    fc a02 = fc.a0(w9Var);
                     if (TextUtils.isEmpty(str6)) {
-                        str = dd.L0(2131743065, null);
+                        str = bd.M0(2131743049, null);
                     } else {
                         str = "WALLET_CHANGED";
                     }
@@ -129,34 +129,34 @@ public final class m implements r20 {
                 }
                 return;
             case 8:
-                ((org.telegram.ui.Cells.k6) ((View) obj)).z((TLRPC.User) obj4, null, (CharSequence) obj3, (CharSequence) obj2, false, false);
+                ((org.telegram.ui.Cells.f6) ((View) obj)).x((TLRPC.User) obj4, null, (CharSequence) obj3, (CharSequence) obj2, false, false);
                 return;
             default:
-                a3 a3Var = (a3) obj3;
-                org.telegram.ui.ActionBar.p6 p6Var2 = (org.telegram.ui.ActionBar.p6) obj2;
+                y2 y2Var = (y2) obj3;
+                org.telegram.ui.ActionBar.e6 e6Var2 = (org.telegram.ui.ActionBar.e6) obj2;
                 String str7 = (String) obj;
-                ((vh.d) obj4).setLoading(false);
+                ((gi.d) obj4).setLoading(false);
                 if (str7 == null) {
-                    a3Var.dismiss();
+                    y2Var.dismiss();
                     return;
                 } else {
-                    cc.c0(str7, a3Var.E, p6Var2);
+                    fc.c0(str7, y2Var.F, e6Var2);
                     return;
                 }
         }
     }
 
-    public m(r20 r20Var, k0 k0Var, p0 p0Var, t8 t8Var) {
-        this.f34878a = 6;
-        this.f34879b = t8Var;
-        this.f34880c = r20Var;
-        this.d = p0Var;
+    public m(u10 u10Var, k0 k0Var, o0 o0Var, n8 n8Var) {
+        this.f42805a = 6;
+        this.f42806b = n8Var;
+        this.f42807c = u10Var;
+        this.d = o0Var;
     }
 
-    public m(ba baVar, k0 k0Var, TLRPC.User user) {
-        this.f34878a = 7;
-        this.f34880c = baVar;
-        this.f34879b = k0Var;
+    public m(w9 w9Var, k0 k0Var, TLRPC.User user) {
+        this.f42805a = 7;
+        this.f42807c = w9Var;
+        this.f42806b = k0Var;
         this.d = user;
     }
 }

@@ -1,18 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-public final class pp extends LinearLayout {
-    public final sp f29467a;
+import android.text.InputFilter;
+import android.text.Spanned;
+public abstract class pp implements InputFilter {
+    public final int f37215a;
 
-    public pp(sp spVar, Context context) {
-        super(context);
-        this.f29467a = spVar;
+    public pp(int i3) {
+        this.f37215a = i3;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        sp.I0(this.f29467a);
+    public CharSequence filter(CharSequence charSequence, int i3, int i10, Spanned spanned, int i11, int i12) {
+        int codePointCount = this.f37215a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i11, i12));
+        if (codePointCount <= 0) {
+            return "";
+        }
+        if (codePointCount >= Character.codePointCount(charSequence, i3, i10)) {
+            return null;
+        }
+        int i13 = codePointCount + i3;
+        if (Character.isHighSurrogate(charSequence.charAt(i13 - 1)) && i13 - 1 == i3) {
+            return "";
+        }
+        return charSequence.subSequence(i3, i13);
     }
 }

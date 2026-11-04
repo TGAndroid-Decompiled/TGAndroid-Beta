@@ -1,73 +1,114 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class wf implements org.telegram.ui.Components.vi0, org.telegram.ui.ActionBar.u1 {
-    public final int f43096a;
-    public final un f43097b;
-    public final org.telegram.messenger.kj f43098c;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class wf implements org.telegram.messenger.n10 {
+    public final int f51137a;
+    public final int f51138b;
+    public final Object f51139c;
+    public final Object d;
 
-    public wf(un unVar, org.telegram.messenger.kj kjVar, int i10) {
-        this.f43096a = i10;
-        this.f43097b = unVar;
-        this.f43098c = kjVar;
+    public wf(Object obj, int i3, TLObject tLObject, int i10) {
+        this.f51137a = i10;
+        this.f51139c = obj;
+        this.f51138b = i3;
+        this.d = tLObject;
     }
 
     @Override
-    public void c(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f43096a) {
+    public final void a(Object obj, Object obj2) {
+        TLRPC.Updates updates;
+        int i3 = this.f51137a;
+        int i10 = this.f51138b;
+        Object obj3 = this.d;
+        Object obj4 = this.f51139c;
+        switch (i3) {
             case 0:
-                Bundle bundle = new Bundle();
-                if (j10 > 0) {
-                    bundle.putLong("user_id", j10);
-                } else {
-                    bundle.putLong("chat_id", -j10);
-                }
-                un unVar = this.f43097b;
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle.putInt("report_reaction_message_id", this.f43098c.f1());
-                    bundle.putLong("report_reaction_from_dialog_id", unVar.f42108j6);
-                }
-                unVar.presentFragment(new ProfileActivity(bundle, null));
-                unVar.M7(true);
+                org.telegram.messenger.g0.h3(new ai.p1((wm) obj4, this.f51138b, (Boolean) obj, (TLRPC.WebPage) obj2, (TL_account.getWebPagePreview) obj3, 12));
                 return;
-            default:
-                un unVar2 = this.f43097b;
-                unVar2.getClass();
-                Bundle bundle2 = new Bundle();
-                if (j10 > 0) {
-                    bundle2.putLong("user_id", j10);
+            case 1:
+                LaunchActivity launchActivity = (LaunchActivity) obj4;
+                ly lyVar = (ly) obj3;
+                TLRPC.ChatInviteJoinResult chatInviteJoinResult = (TLRPC.ChatInviteJoinResult) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                String str = LaunchActivity.E1;
+                if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
+                    TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
+                    org.telegram.messenger.hp.s1(launchActivity.P).O3(updates2, false);
+                    updates = updates2;
                 } else {
-                    bundle2.putLong("chat_id", -j10);
+                    if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
+                        org.telegram.messenger.g0.h3(new ly(15, launchActivity, (TLRPC.TL_chatInviteJoinResultWebView) chatInviteJoinResult));
+                    }
+                    updates = null;
                 }
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    bundle2.putInt("report_reaction_message_id", this.f43098c.f1());
-                    bundle2.putLong("report_reaction_from_dialog_id", unVar2.f42108j6);
+                org.telegram.messenger.g0.h3(new ai.p1(launchActivity, lyVar, tL_error, updates, this.f51138b, 21));
+                return;
+            case 2:
+                PasskeysActivity passkeysActivity = (PasskeysActivity) obj4;
+                TL_account.Passkey passkey = (TL_account.Passkey) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                ArrayList arrayList = passkeysActivity.f41366b;
+                if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolFalse) {
+                    org.telegram.ui.Components.fc.a0(passkeysActivity).e0("FALSE", false);
+                    arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
+                    passkeysActivity.f41365a.f35594g3.O(true);
+                    return;
+                } else if (tL_error2 != null) {
+                    org.telegram.ui.Components.fc.a0(passkeysActivity).f0(tL_error2, false);
+                    arrayList.add(Utilities.j(i10, arrayList.size(), 0), passkey);
+                    passkeysActivity.f41365a.f35594g3.O(true);
+                    return;
+                } else {
+                    return;
                 }
-                unVar2.presentFragment(new ProfileActivity(bundle2, null));
-                unVar2.M7(true);
+            default:
+                org.telegram.ui.Wallet.b8 b8Var = (org.telegram.ui.Wallet.b8) obj4;
+                TL_wallet.card cardVar = (TL_wallet.card) obj3;
+                TL_wallet.card cardVar2 = (TL_wallet.card) obj;
+                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
+                b8Var.f42306g1 = 0;
+                if (cardVar2 != null) {
+                    org.telegram.ui.Wallet.b8.e0(i10, cardVar2);
+                    if (!b8Var.f42293b1) {
+                        if (b8Var.f42301e1) {
+                            b8Var.f42296c1 = cardVar2;
+                            b8Var.f42298d1 = org.telegram.ui.Wallet.b8.T(cardVar2);
+                            b8Var.Q();
+                            return;
+                        }
+                        b8Var.d(cardVar2);
+                        return;
+                    }
+                    return;
+                }
+                if (cardVar != null) {
+                    org.telegram.ui.Wallet.b8.e0(i10, cardVar);
+                }
+                if (!b8Var.f42293b1) {
+                    if (tL_error3 != null) {
+                        org.telegram.ui.Components.fc.a0(b8Var.f42288a).f0(tL_error3, false);
+                    }
+                    b8Var.f42301e1 = false;
+                    TL_wallet.card cardVar3 = b8Var.f42296c1;
+                    if (cardVar3 != null) {
+                        b8Var.d(cardVar3);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }
 
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        un unVar = this.f43097b;
-        org.telegram.ui.ActionBar.x1[] x1VarArr = {new org.telegram.ui.ActionBar.x1(3, unVar.getParentActivity(), unVar.f42288xa)};
-        TLRPC.TL_messages_editMessage tL_messages_editMessage = new TLRPC.TL_messages_editMessage();
-        org.telegram.messenger.kj kjVar = this.f43098c;
-        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
-        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
-        tL_inputMediaPoll.poll = tL_poll;
-        TLRPC.Poll poll = ((TLRPC.TL_messageMediaPoll) kjVar.f16690k.media).poll;
-        tL_poll.f19820id = poll.f19820id;
-        tL_poll.question = poll.question;
-        tL_poll.answers = poll.answers;
-        tL_poll.closed = true;
-        tL_messages_editMessage.media = tL_inputMediaPoll;
-        tL_messages_editMessage.peer = unVar.getMessagesController().i1(unVar.f42108j6);
-        tL_messages_editMessage.f19878id = kjVar.f1();
-        tL_messages_editMessage.flags |= 16384;
-        org.telegram.messenger.i0.h3(new pg(unVar, x1VarArr, unVar.getConnectionsManager().sendRequest(tL_messages_editMessage, new aa(unVar, x1VarArr, tL_messages_editMessage, 5)), 2), 500L);
+    public wf(LaunchActivity launchActivity, ly lyVar, int i3) {
+        this.f51137a = 1;
+        this.f51139c = launchActivity;
+        this.d = lyVar;
+        this.f51138b = i3;
     }
 }

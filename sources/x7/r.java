@@ -1,7 +1,16 @@
 package x7;
 
-import java.util.Collection;
-import java.util.Set;
-public interface r extends Collection {
-    Set zza();
+import android.util.Log;
+public abstract class r {
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
+        }
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
+        }
+    }
 }

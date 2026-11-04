@@ -1,38 +1,55 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class y8 {
-    public static void a(org.telegram.ui.un unVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j10, int i11, int i12) {
-        org.telegram.ui.ActionBar.z4 parentLayout;
-        TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat != null || user != null) && (parentLayout = unVar.getParentLayout()) != null) {
-            if (parentLayout.getPulledDialogs() == null) {
-                parentLayout.setPulledDialogs(new ArrayList());
-            }
-            for (x8 x8Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || x8Var.f32505f != j10) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = x8Var.e) != null && tL_forumTopic2.f19846id == tL_forumTopic.f19846id) {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-            ?? obj = new Object();
-            obj.f32502a = org.telegram.ui.un.class;
-            obj.f32503b = i10;
-            obj.f32505f = j10;
-            obj.h = i12;
-            obj.f32506g = i11;
-            obj.f32504c = chat;
-            obj.d = user;
-            obj.e = tL_forumTopic;
-            parentLayout.getPulledDialogs().add(obj);
-        }
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class y8 implements qe.f, te.a {
+    public final ImageReceiver f40651a;
+    public final u8 f40652b;
+    public long f40653c;
+    public boolean d;
+    public final z8 f40654e;
+
+    public y8(z8 z8Var, View view) {
+        this.f40654e = z8Var;
+        ImageReceiver imageReceiver = new ImageReceiver(view);
+        this.f40651a = imageReceiver;
+        imageReceiver.J0(z8Var.f40987e / 2);
+        u8 u8Var = new u8((org.telegram.ui.ActionBar.e6) null);
+        this.f40652b = u8Var;
+        u8Var.u(org.telegram.messenger.g0.L(22.0f));
     }
 
-    public static org.telegram.ui.ActionBar.k1 b(org.telegram.ui.ActionBar.k2 r38, android.view.View r39, long r40, long r42, org.telegram.ui.ActionBar.p6 r44) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y8.b(org.telegram.ui.ActionBar.k2, android.view.View, long, long, org.telegram.ui.ActionBar.p6):org.telegram.ui.ActionBar.k1");
+    @Override
+    public final void a() {
+        if (this.d) {
+            this.d = false;
+            this.f40651a.R();
+        }
+        this.f40653c = 0L;
+    }
+
+    @Override
+    public final int b(boolean z10) {
+        if (z10) {
+            return 0;
+        }
+        return -this.f40654e.f40988f;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof y8) || this.f40653c != ((y8) obj).f40653c) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int getHeight() {
+        return this.f40654e.f40987e;
+    }
+
+    @Override
+    public final int getWidth() {
+        return this.f40654e.f40987e;
     }
 }

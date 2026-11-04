@@ -1,63 +1,35 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-public final class ql0 implements OnCompleteListener, org.telegram.ui.ActionBar.u1, pt {
-    public final int f40805a;
-    public final qm0 f40806b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class ql0 extends u4.t0 {
+    public final int f48911a;
+    public final wl0 f48912b;
 
-    public ql0(qm0 qm0Var, int i10) {
-        this.f40805a = i10;
-        this.f40806b = qm0Var;
+    public ql0(wl0 wl0Var, int i3) {
+        this.f48912b = wl0Var;
+        this.f48911a = i3;
     }
 
     @Override
-    public void c(mt mtVar) {
-        switch (this.f40805a) {
-            case 2:
-                qm0 qm0Var = this.f40806b;
-                qm0Var.A0 = mtVar;
-                qm0Var.f40825f[4].setText(mtVar.f39611a);
-                return;
-            default:
-                qm0 qm0Var2 = this.f40806b;
-                qm0Var2.A0 = mtVar;
-                qm0Var2.f40825f[4].setText(mtVar.f39611a);
-                qm0Var2.B0 = mtVar.d;
-                return;
-        }
-    }
-
-    @Override
-    public void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        switch (this.f40805a) {
-            case 1:
-                qm0 qm0Var = this.f40806b;
-                qm0Var.O0(qm0Var.R0[0]);
-                return;
-            case 2:
-            default:
-                qm0 qm0Var2 = this.f40806b;
-                qm0Var2.J0(true);
-                qm0Var2.F0();
-                return;
-            case 3:
-                this.f40806b.G0(true);
-                return;
-        }
-    }
-
-    @Override
-    public void onComplete(Task task) {
-        if (task.isSuccessful()) {
-            FrameLayout frameLayout = this.f40806b.O;
-            if (frameLayout != null) {
-                frameLayout.setVisibility(0);
+    public final void b(RecyclerView recyclerView, int i3, int i10) {
+        ci.v8 v8Var;
+        wl0 wl0Var = this.f48912b;
+        cm0 cm0Var = wl0Var.f51221q0;
+        wl0Var.h();
+        if (wl0Var.L != null) {
+            if (wl0Var.K != null && wl0Var.c()) {
+                wl0Var.K.g(false);
                 return;
             }
             return;
         }
-        org.telegram.messenger.f8.e("isReadyToPay failed", task.getException());
+        if (this.f48911a == 1) {
+            v8Var = cm0Var.f44392c;
+        } else {
+            v8Var = cm0Var.f44390b;
+        }
+        if (v8Var != null && wl0Var.c()) {
+            v8Var.a();
+        }
     }
 }

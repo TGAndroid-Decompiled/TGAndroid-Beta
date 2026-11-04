@@ -1,107 +1,41 @@
 package bd;
 
-import c3.i0;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import v7.g0;
-public abstract class h extends g0 {
-    public static boolean a(Object[] objArr, Object obj) {
-        int i10;
-        kotlin.jvm.internal.i.e(objArr, "<this>");
-        if (obj == null) {
-            int length = objArr.length;
-            i10 = 0;
-            while (i10 < length) {
-                if (objArr[i10] == null) {
-                    break;
-                }
-                i10++;
-            }
-            i10 = -1;
-        } else {
-            int length2 = objArr.length;
-            for (int i11 = 0; i11 < length2; i11++) {
-                if (obj.equals(objArr[i11])) {
-                    i10 = i11;
-                    break;
-                }
-            }
-            i10 = -1;
-        }
-        if (i10 < 0) {
-            return false;
-        }
-        return true;
+import gf.p;
+import gf.s;
+import java.util.regex.Pattern;
+public abstract class h {
+    public j f3229a;
+    public p f3230b;
+    public String f3231c;
+    public int d;
+
+    public final String a(Pattern pattern) {
+        j jVar = this.f3229a;
+        jVar.f3245g = this.d;
+        String c2 = jVar.c(pattern);
+        this.d = this.f3229a.f3245g;
+        return c2;
     }
 
-    public static void b(int i10, int i11, int i12, int[] iArr, int[] destination) {
-        kotlin.jvm.internal.i.e(iArr, "<this>");
-        kotlin.jvm.internal.i.e(destination, "destination");
-        System.arraycopy(iArr, i11, destination, i10, i12 - i11);
+    public abstract p b();
+
+    public final char c() {
+        j jVar = this.f3229a;
+        jVar.f3245g = this.d;
+        return jVar.d();
     }
 
-    public static void c(int i10, int i11, int i12, Object[] objArr, Object[] destination) {
-        kotlin.jvm.internal.i.e(objArr, "<this>");
-        kotlin.jvm.internal.i.e(destination, "destination");
-        System.arraycopy(objArr, i11, destination, i10, i12 - i11);
+    public abstract char d();
+
+    public final void e() {
+        j jVar = this.f3229a;
+        jVar.f3245g = this.d;
+        jVar.c(j.f3236k);
+        this.d = this.f3229a.f3245g;
     }
 
-    public static void d(int i10, int i11, int i12, Object[] objArr, Object[] objArr2) {
-        if ((i12 & 4) != 0) {
-            i10 = 0;
-        }
-        c(0, i10, i11, objArr, objArr2);
-    }
-
-    public static final void e(int i10, int i11, Object[] objArr) {
-        kotlin.jvm.internal.i.e(objArr, "<this>");
-        Arrays.fill(objArr, i10, i11, (Object) null);
-    }
-
-    public static String f(Object[] objArr) {
-        kotlin.jvm.internal.i.e(objArr, "<this>");
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append((CharSequence) "[");
-        int i10 = 0;
-        for (Object obj : objArr) {
-            i10++;
-            if (i10 > 1) {
-                sb2.append((CharSequence) ",");
-            }
-            rd.d.a(sb2, obj, null);
-        }
-        sb2.append((CharSequence) "]");
-        return sb2.toString();
-    }
-
-    public static List g(long[] jArr) {
-        kotlin.jvm.internal.i.e(jArr, "<this>");
-        int length = jArr.length;
-        if (length != 0) {
-            int i10 = 0;
-            if (length != 1) {
-                ArrayList arrayList = new ArrayList(jArr.length);
-                int length2 = jArr.length;
-                while (i10 < length2) {
-                    i10 = i0.k(i10, 1, jArr[i10], arrayList);
-                }
-                return arrayList;
-            }
-            return j.b(Long.valueOf(jArr[0]));
-        }
-        return q.f2660a;
-    }
-
-    public static List h(Object[] objArr) {
-        kotlin.jvm.internal.i.e(objArr, "<this>");
-        int length = objArr.length;
-        if (length != 0) {
-            if (length != 1) {
-                return new ArrayList(new f(objArr, false));
-            }
-            return j.b(objArr[0]);
-        }
-        return q.f2660a;
+    public final s f(String str) {
+        this.f3229a.getClass();
+        return new s(str);
     }
 }

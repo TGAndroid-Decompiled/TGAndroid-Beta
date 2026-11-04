@@ -1,30 +1,35 @@
 package org.telegram.ui.Wallet;
+public final class o3 implements q1.d {
+    public final int f43003a;
+    public final Object f43004b;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.view.View;
-public final class o3 extends View {
-    public final p3 f34983a;
-
-    public o3(p3 p3Var, Context context) {
-        super(context);
-        this.f34983a = p3Var;
+    public o3(Object obj, int i3) {
+        this.f43003a = i3;
+        this.f43004b = obj;
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        p3 p3Var = this.f34983a;
-        Bitmap bitmap = p3Var.G;
-        if (bitmap != null && !bitmap.isRecycled()) {
-            p3Var.D.set(0.0f, 0.0f, getWidth(), getHeight());
-            canvas.drawBitmap(p3Var.G, (Rect) null, p3Var.D, p3Var.f35025y);
+    public final void a(q1.g gVar, float f10, float f11) {
+        switch (this.f43003a) {
+            case 0:
+                u3 u3Var = (u3) this.f43004b;
+                u3Var.H = f10;
+                u3Var.c();
+                return;
+            case 1:
+                o8 o8Var = (o8) this.f43004b;
+                o8Var.f43017e = f10;
+                o8Var.setScaleX(f10);
+                o8Var.setScaleY(f10);
+                return;
+            case 2:
+                m9 m9Var = (m9) this.f43004b;
+                m9Var.f42871c0 = f10;
+                m9Var.G0();
+                return;
+            default:
+                ((l9) this.f43004b).d.setConversionWobble(f10);
+                return;
         }
     }
 }

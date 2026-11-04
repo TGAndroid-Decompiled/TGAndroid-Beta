@@ -1,11 +1,16 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import android.graphics.drawable.Drawable;
 public final class gc {
-    public TLRPC.Document f15876a;
-    public String f15877b;
-    public ArrayList f15878c;
-    public ArrayList d;
-    public boolean e;
+    public ac f22695a;
+    public String f22696b;
+    public ac f22697c;
+    public String d;
+    public ac f22698e;
+    public String f22699f;
+    public Drawable f22700g;
+    public long h;
+    public int f22701i;
+    public Object f22702j;
+    public String f22703k;
 }

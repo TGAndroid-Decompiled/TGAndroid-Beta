@@ -1,29 +1,23 @@
 package org.telegram.ui.Components;
-public final class ud implements q4 {
-    public final int f30940a;
-    public final ChatActivityEnterView f30941b;
 
-    public ud(ChatActivityEnterView chatActivityEnterView, int i10) {
-        this.f30940a = i10;
-        this.f30941b = chatActivityEnterView;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+public final class ud extends hg {
+    public final ChatActivityEnterView G;
+
+    public ud(ChatActivityEnterView chatActivityEnterView, Activity activity) {
+        super(activity);
+        this.G = chatActivityEnterView;
     }
 
     @Override
-    public final void K(int i10, int i11, boolean z10) {
-        switch (this.f30940a) {
-            case 0:
-                this.f30941b.R0(z10, i10, i11, 0L, true);
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView = this.f30941b;
-                chatActivityEnterView.R0(z10, i10, i11, 0L, true);
-                pe peVar = chatActivityEnterView.L0;
-                if (peVar != null) {
-                    peVar.h();
-                    chatActivityEnterView.L0 = null;
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        ChatActivityEnterView chatActivityEnterView = this.G;
+        Paint paint = chatActivityEnterView.R1;
+        super.onDraw(canvas);
+        if (getTag() != null && chatActivityEnterView.f31180q1 != null && !chatActivityEnterView.X0 && !this.f34384x && !org.telegram.messenger.li.b0(chatActivityEnterView.R).f24055v0[0].isEmpty() && paint != null) {
+            canvas.drawCircle(org.telegram.messenger.g0.L(9.0f) + (getWidth() / 2), (getHeight() / 2) - org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f), paint);
         }
     }
 }

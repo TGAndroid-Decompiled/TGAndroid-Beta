@@ -1,72 +1,50 @@
 package af;
 
-import a1.g;
-import java.util.ArrayList;
-public final class a {
-    public String f436a;
-    public ArrayList f437b;
-    public ArrayList f438c;
-    public ArrayList d;
+import df.e;
+import gf.p;
+import gf.s;
+public final class a implements kf.a {
+    @Override
+    public final int a(e eVar, e eVar2) {
+        if (eVar.f8857g >= 2 && eVar2.f8857g >= 2) {
+            return 2;
+        }
+        return 0;
+    }
 
-    public final String a(String str) {
-        String str2;
-        String str3;
-        String str4;
-        String str5 = null;
-        if (str.startsWith(this.f436a)) {
-            str4 = this.f436a;
-            str3 = str.substring(str4.length());
-        } else {
-            ArrayList arrayList = this.f437b;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (true) {
-                if (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    str2 = (String) obj;
-                    if (str.startsWith(str2)) {
-                        break;
-                    }
-                } else {
-                    str2 = null;
-                    break;
-                }
-            }
-            if (str2 != null) {
-                str3 = str.substring(str2.length());
-                str4 = null;
-                str5 = str2;
-            } else {
-                str3 = str;
-                str4 = null;
-            }
+    @Override
+    public final char b() {
+        return '~';
+    }
+
+    @Override
+    public final void c(s sVar, s sVar2, int i3) {
+        p pVar = new p();
+        for (p pVar2 = (p) sVar.f12269f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f12269f) {
+            pVar.b(pVar2);
         }
-        ArrayList arrayList2 = this.d;
-        int size2 = arrayList2.size();
-        int i11 = 0;
-        while (i11 < size2) {
-            Object obj2 = arrayList2.get(i11);
-            i11++;
-            String a2 = ((d) obj2).a(str3, str4, str5, true);
-            if (a2 != null) {
-                return a2;
-            }
+        pVar.g();
+        p pVar3 = (p) sVar.f12269f;
+        pVar.f12269f = pVar3;
+        if (pVar3 != null) {
+            pVar3.f12268e = pVar;
         }
-        ArrayList arrayList3 = this.d;
-        int size3 = arrayList3.size();
-        int i12 = 0;
-        while (i12 < size3) {
-            Object obj3 = arrayList3.get(i12);
-            i12++;
-            String a10 = ((d) obj3).a(str3, str4, str5, false);
-            if (a10 != null) {
-                return a10;
-            }
+        pVar.f12268e = sVar;
+        sVar.f12269f = pVar;
+        p pVar4 = (p) sVar.f12266b;
+        pVar.f12266b = pVar4;
+        if (((p) pVar.f12269f) == null) {
+            pVar4.d = pVar;
         }
-        if (str4 != null && str3.length() != 0) {
-            return g.C(str4, " ", str3);
-        }
-        return str;
+    }
+
+    @Override
+    public final int d() {
+        return 2;
+    }
+
+    @Override
+    public final char e() {
+        return '~';
     }
 }

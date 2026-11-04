@@ -2,24 +2,24 @@ package org.webrtc;
 
 import org.webrtc.Camera1Session;
 public final class b implements Runnable {
-    public final int f44497a;
-    public final Camera1Session.AnonymousClass2 f44498b;
-    public final byte[] f44499c;
+    public final int f53010a;
+    public final Camera1Session.AnonymousClass2 f53011b;
+    public final byte[] f53012c;
 
-    public b(Camera1Session.AnonymousClass2 anonymousClass2, byte[] bArr, int i10) {
-        this.f44497a = i10;
-        this.f44498b = anonymousClass2;
-        this.f44499c = bArr;
+    public b(Camera1Session.AnonymousClass2 anonymousClass2, byte[] bArr, int i3) {
+        this.f53010a = i3;
+        this.f53011b = anonymousClass2;
+        this.f53012c = bArr;
     }
 
     @Override
     public final void run() {
-        switch (this.f44497a) {
+        switch (this.f53010a) {
             case 0:
-                Camera1Session.AnonymousClass2.a(this.f44498b, this.f44499c);
+                Camera1Session.AnonymousClass2.a(this.f53011b, this.f53012c);
                 return;
             default:
-                Camera1Session.AnonymousClass2.b(this.f44498b, this.f44499c);
+                Camera1Session.AnonymousClass2.b(this.f53011b, this.f53012c);
                 return;
         }
     }

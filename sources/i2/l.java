@@ -1,42 +1,56 @@
 package i2;
 
-import android.os.Bundle;
-import v7.t6;
-public final class l extends b2.y0 {
-    public final int D;
-    public final u2.g0 E;
-    public final boolean F;
-    public final int f7953s;
-    public final String f7954w;
-    public final int f7955x;
-    public final b2.x f7956y;
+import b8.zb;
+import java.io.InputStream;
+public final class l extends InputStream {
+    public final h f14553a;
+    public final n f14554b;
+    public boolean d = false;
+    public boolean f14556e = false;
+    public final byte[] f14555c = new byte[1];
 
-    public l(int i10, Exception exc, int i11) {
-        this(i10, exc, i11, null, -1, null, 4, null, false);
+    public l(h hVar, n nVar) {
+        this.f14553a = hVar;
+        this.f14554b = nVar;
     }
 
-    public final l a(u2.g0 g0Var) {
-        String message = getMessage();
-        String str = e2.l0.f6165a;
-        return new l(message, getCause(), this.f2437a, this.f7953s, this.f7954w, this.f7955x, this.f7956y, this.D, g0Var, this.f2438b, this.F);
+    public final void a() {
+        if (!this.d) {
+            this.f14553a.open(this.f14554b);
+            this.d = true;
+        }
     }
 
-    public l(String str, Throwable th2, int i10, int i11, String str2, int i12, b2.x xVar, int i13, u2.g0 g0Var, long j10, boolean z10) {
-        super(str, th2, i10, j10);
-        Bundle bundle = Bundle.EMPTY;
-        boolean z11 = false;
-        t6.f(!z10 || i11 == 1);
-        t6.f((th2 != null || i11 == 3) ? true : z11);
-        this.f7953s = i11;
-        this.f7954w = str2;
-        this.f7955x = i12;
-        this.f7956y = xVar;
-        this.D = i13;
-        this.E = g0Var;
-        this.F = z10;
+    @Override
+    public final void close() {
+        if (!this.f14556e) {
+            this.f14553a.close();
+            this.f14556e = true;
+        }
     }
 
-    public l(int r14, java.lang.Throwable r15, int r16, java.lang.String r17, int r18, b2.x r19, int r20, u2.g0 r21, boolean r22) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.l.<init>(int, java.lang.Throwable, int, java.lang.String, int, b2.x, int, u2.g0, boolean):void");
+    @Override
+    public final int read() {
+        byte[] bArr = this.f14555c;
+        if (read(bArr, 0, bArr.length) == -1) {
+            return -1;
+        }
+        return bArr[0] & 255;
+    }
+
+    @Override
+    public final int read(byte[] bArr) {
+        return read(bArr, 0, bArr.length);
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i3, int i10) {
+        zb.p(!this.f14556e);
+        a();
+        int read = this.f14553a.read(bArr, i3, i10);
+        if (read == -1) {
+            return -1;
+        }
+        return read;
     }
 }

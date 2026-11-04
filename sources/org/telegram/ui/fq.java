@@ -1,8 +1,13 @@
 package org.telegram.ui;
 
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public interface fq {
     void a(TLRPC.User user);
 
-    void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str);
+    void b(long j10);
+
+    void c(long j10, TLObject tLObject);
+
+    void d(long j10);
 }

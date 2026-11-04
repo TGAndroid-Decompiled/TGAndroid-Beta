@@ -1,66 +1,68 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
+import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class xj0 implements View.OnTouchListener {
-    public final int f43396a;
-    public final jl0 f43397b;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class xj0 extends FrameLayout {
+    public TextView f52033a;
+    public TextView f52034b;
+    public ImageView f52035c;
+    public boolean d;
 
-    public xj0(jl0 jl0Var, int i10) {
-        this.f43396a = i10;
-        this.f43397b = jl0Var;
+    public final void a(String str, boolean z10) {
+        this.f52033a.setText(str);
+        this.f52034b.setText("");
+        this.d = z10;
+        setWillNotDraw(!z10);
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f43396a;
-        jl0 jl0Var = this.f43397b;
-        switch (i10) {
-            case 0:
-                if (jl0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    qt qtVar = new qt(null, false);
-                    qtVar.f40897r = new qv(27, jl0Var, view);
-                    jl0Var.presentFragment(qtVar);
-                }
-                return true;
-            case 1:
-                if (jl0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(jl0Var.getParentActivity());
-                    String L0 = org.telegram.messenger.dd.L0(2131747482, null);
-                    org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
-                    x1Var.R = L0;
-                    alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.dd.L0(2131747524, null), org.telegram.messenger.dd.L0(2131747585, null)}, new l4(jl0Var, 3));
-                    alertDialog$Builder.k(org.telegram.messenger.dd.L0(2131752589, null), null);
-                    jl0Var.showDialog(x1Var);
-                }
-                return true;
-            case 2:
-                if (jl0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    qt qtVar2 = new qt(null, false);
-                    qtVar2.f40897r = new yj0(jl0Var, 2);
-                    jl0Var.presentFragment(qtVar2);
-                }
-                return true;
-            default:
-                if (jl0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    qt qtVar3 = new qt(null, false);
-                    qtVar3.f40897r = new yj0(jl0Var, 3);
-                    jl0Var.presentFragment(qtVar3);
-                }
-                return true;
+    public final void onDraw(Canvas canvas) {
+        float L;
+        int i3;
+        if (this.d) {
+            if (org.telegram.messenger.bd.f21784a0) {
+                L = 0.0f;
+            } else {
+                L = org.telegram.messenger.g0.L(20.0f);
+            }
+            float f10 = L;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (org.telegram.messenger.bd.f21784a0) {
+                i3 = org.telegram.messenger.g0.L(20.0f);
+            } else {
+                i3 = 0;
+            }
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i3, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f28002k0);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(64.0f) + (this.d ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        int i3;
+        ImageView imageView = this.f52035c;
+        if (z10) {
+            i3 = 0;
+        } else {
+            i3 = 4;
+        }
+        imageView.setVisibility(i3);
+    }
+
+    public void setNeedDivider(boolean z10) {
+        this.d = z10;
+        setWillNotDraw(!z10);
+        invalidate();
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f52034b.setText(charSequence);
     }
 }

@@ -1,58 +1,120 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.os.Build;
-import android.view.View;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.ku0;
-import org.telegram.ui.Components.uk0;
-public final class y1 implements r0.m, ku0 {
-    public final int f21554a;
-    public final FrameLayout f21555b;
+import android.app.Activity;
+import android.content.Context;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.ui.LaunchActivity;
+public final class y1 extends t2 {
+    public final b2 f28823j1;
+    public final q4[] k1;
+    public final d2 f28824l1;
+    public final t2[] m1;
 
-    public y1(int i10, FrameLayout frameLayout) {
-        this.f21554a = i10;
-        this.f21555b = frameLayout;
-    }
-
-    @Override
-    public r0.j1 R0(View view, r0.j1 j1Var) {
-        r0.g1 g1Var = j1Var.f46143a;
-        Rect rect = new Rect();
-        if (Build.VERSION.SDK_INT >= 30) {
-            i0.c f7 = g1Var.f(527);
-            rect.set(f7.f7766a, f7.f7767b, f7.f7768c, f7.d);
+    public y1(Activity activity, e6 e6Var, b2 b2Var, q4[] q4VarArr, d2 d2Var, t2[] t2VarArr) {
+        super(1, (Context) activity, e6Var, true);
+        boolean z10;
+        this.f28823j1 = b2Var;
+        this.k1 = q4VarArr;
+        this.f28824l1 = d2Var;
+        this.m1 = t2VarArr;
+        if (b2Var != null && b2Var.f27398e) {
+            z10 = true;
         } else {
-            rect.set(g1Var.i().f7766a, g1Var.i().f7767b, g1Var.i().f7768c, g1Var.i().d);
+            z10 = false;
         }
-        int i10 = rect.left;
-        int i11 = rect.top;
-        int i12 = rect.right;
-        int i13 = rect.bottom + org.telegram.messenger.i0.f16167n;
-        FrameLayout frameLayout = this.f21555b;
-        frameLayout.setPadding(i10, i11, i12, i13);
-        frameLayout.requestLayout();
-        return j1Var;
+        this.f28622x = z10;
+        this.f28608n = !z10;
+        q4VarArr[0].setFragmentStack(new ArrayList());
+        ((ActionBarLayout) q4VarArr[0]).c(-1, d2Var);
+        ((ActionBarLayout) q4VarArr[0]).f0();
+        ViewGroup view = q4VarArr[0].getView();
+        int i3 = this.f28618u0;
+        view.setPadding(i3, 0, i3, 0);
+        this.f28586b = q4VarArr[0].getView();
+        this.f28621w0 = false;
+        setOnDismissListener(new ci.h3(6, d2Var, b2Var));
     }
 
     @Override
-    public void a(Canvas canvas, RectF rectF, RecyclerView recyclerView) {
-        switch (this.f21554a) {
-            case 1:
-                uk0 uk0Var = (uk0) recyclerView;
-                yg.d.a(uk0Var, canvas, rectF, uk0Var, this.f21555b);
-                return;
-            case 2:
-                uk0 uk0Var2 = (uk0) recyclerView;
-                yg.d.a(uk0Var2, canvas, rectF, uk0Var2, this.f21555b);
-                return;
-            default:
-                uk0 uk0Var3 = (uk0) recyclerView;
-                yg.d.a(uk0Var3, canvas, rectF, uk0Var3, this.f21555b);
-                return;
+    public final boolean G() {
+        return false;
+    }
+
+    @Override
+    public final boolean I(MotionEvent motionEvent) {
+        q4[] q4VarArr;
+        q4 q4Var;
+        b2 b2Var = this.f28823j1;
+        if (b2Var == null || !b2Var.f27395a || (q4Var = (q4VarArr = this.k1)[0]) == null || q4Var.getFragmentStack().size() > 1 || (q4VarArr[0].getFragmentStack().size() == 1 && !((d2) q4VarArr[0].getFragmentStack().get(0)).isSwipeBackEnabled(motionEvent))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final void dismiss() {
+        b2 b2Var;
+        Runnable runnable;
+        if (!this.J && (b2Var = this.f28823j1) != null && (runnable = b2Var.d) != null) {
+            runnable.run();
+        }
+        super.dismiss();
+        ArrayList arrayList = LaunchActivity.K1.Q;
+        q4[] q4VarArr = this.k1;
+        arrayList.remove(q4VarArr[0]);
+        q4VarArr[0] = null;
+    }
+
+    @Override
+    public final void onBackPressed() {
+        q4[] q4VarArr = this.k1;
+        q4 q4Var = q4VarArr[0];
+        if (q4Var != null && q4Var.getFragmentStack().size() > 1) {
+            ((ActionBarLayout) q4VarArr[0]).I();
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        q4 q4Var = this.k1[0];
+        t2[] t2VarArr = this.m1;
+        q4Var.setWindow(t2VarArr[0].getWindow());
+        b2 b2Var = this.f28823j1;
+        if (b2Var != null && b2Var.f27398e) {
+            org.telegram.messenger.g0.n3(t2VarArr[0], true);
+        } else {
+            P(k6.f27971i5);
+        }
+        d2 d2Var = this.f28824l1;
+        org.telegram.messenger.g0.q3(this, d2Var.isLightStatusBar());
+        d2Var.onBottomSheetCreated();
+    }
+
+    @Override
+    public final void p0() {
+        q4 q4Var = this.k1[0];
+        if (q4Var != null) {
+            for (d2 d2Var : q4Var.getFragmentStack()) {
+                if (d2Var.getFragmentView() != null) {
+                    d2Var.getFragmentView().requestLayout();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void v() {
+        Runnable runnable;
+        this.f28824l1.onTransitionAnimationEnd(true, false);
+        b2 b2Var = this.f28823j1;
+        if (b2Var != null && (runnable = b2Var.f27397c) != null) {
+            runnable.run();
         }
     }
 }

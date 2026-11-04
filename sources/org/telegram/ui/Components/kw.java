@@ -1,8 +1,7 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class kw implements View.OnClickListener {
-    @Override
-    public final void onClick(View view) {
-    }
+import org.telegram.tgnet.TLRPC;
+public final class kw {
+    public TLRPC.TL_messages_stickerSet f35497a;
+    public long f35498b;
 }

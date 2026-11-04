@@ -1,21 +1,15 @@
 package lb;
 
-import java.util.Arrays;
-import n6.l;
-public final class a {
-    public static final a f11735a = new Object();
-
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if ((obj instanceof a) && l.k(null, null) && l.k(null, null)) {
-                return true;
-            }
-            return false;
+import android.os.StrictMode;
+import java.util.concurrent.Callable;
+public abstract class a {
+    public static Object a(Callable callable) {
+        StrictMode.ThreadPolicy threadPolicy = StrictMode.getThreadPolicy();
+        try {
+            StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.LAX);
+            return callable.call();
+        } finally {
+            StrictMode.setThreadPolicy(threadPolicy);
         }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Arrays.hashCode(new Object[]{null, null});
     }
 }

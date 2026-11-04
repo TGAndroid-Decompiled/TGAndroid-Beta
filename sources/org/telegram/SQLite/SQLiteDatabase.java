@@ -1,21 +1,21 @@
 package org.telegram.SQLite;
 
-import org.telegram.messenger.f8;
-import org.telegram.messenger.v2;
-import org.telegram.messenger.w0;
-import sc.e;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.r2;
+import org.telegram.messenger.t0;
+import t4.c;
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
     private final long sqliteHandle;
 
     public SQLiteDatabase(String str) {
-        this.sqliteHandle = opendb(str, w0.h().getPath());
+        this.sqliteHandle = opendb(str, t0.h().getPath());
     }
 
     public void beginTransaction() {
         if (this.inTransaction) {
-            boolean z10 = v2.f18578a;
+            boolean z10 = r2.f25040a;
             commitTransaction();
         }
         this.inTransaction = true;
@@ -36,9 +36,9 @@ public class SQLiteDatabase {
             try {
                 commitTransaction();
                 closedb(this.sqliteHandle);
-            } catch (SQLiteException e) {
-                if (v2.f18578a) {
-                    f8.e(e.getMessage(), e);
+            } catch (SQLiteException e10) {
+                if (r2.f25040a) {
+                    a8.e(e10.getMessage(), e10);
                 }
             }
             this.isOpen = false;
@@ -76,15 +76,15 @@ public class SQLiteDatabase {
 
     public void explainQuery(String str, Object... objArr) {
         checkOpened();
-        SQLiteCursor query = new SQLitePreparedStatement(this, e.h("EXPLAIN QUERY PLAN ", str)).query(objArr);
+        SQLiteCursor query = new SQLitePreparedStatement(this, c.f("EXPLAIN QUERY PLAN ", str)).query(objArr);
         while (query.next()) {
             int columnCount = query.getColumnCount();
             StringBuilder sb2 = new StringBuilder();
-            for (int i10 = 0; i10 < columnCount; i10++) {
-                sb2.append(query.stringValue(i10));
+            for (int i3 = 0; i3 < columnCount; i3++) {
+                sb2.append(query.stringValue(i3));
                 sb2.append(", ");
             }
-            f8.b("EXPLAIN QUERY PLAN " + sb2.toString());
+            a8.b("EXPLAIN QUERY PLAN " + sb2.toString());
         }
         query.dispose();
     }

@@ -3,19 +3,19 @@ package n;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import b5.d;
+import b8.qe;
+import d1.f;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import w7.b0;
-public final class c extends b0 {
-    public final Object f13397a = new Object();
-    public final ExecutorService f13398b = Executors.newFixedThreadPool(4, new b());
-    public volatile Handler f13399c;
+public final class c extends qe {
+    public final Object f20103a = new Object();
+    public final ExecutorService f20104b = Executors.newFixedThreadPool(4, new b());
+    public volatile Handler f20105c;
 
     public static Handler a(Looper looper) {
         if (Build.VERSION.SDK_INT >= 28) {
-            return d.c(looper);
+            return f.c(looper);
         }
         try {
             return (Handler) Handler.class.getDeclaredConstructor(Looper.class, Handler.Callback.class, Boolean.TYPE).newInstance(looper, null, Boolean.TRUE);

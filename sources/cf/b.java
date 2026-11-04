@@ -1,184 +1,132 @@
 package cf;
 
-import android.media.MediaCodec;
-import android.os.Build;
-import com.google.android.gms.internal.cast.k4;
-import com.google.android.gms.internal.cast.o4;
-import j9.a0;
-import j9.d0;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
-import s9.f;
-import t7.m;
-public abstract class b {
-    public static MediaCodec.CryptoInfo.Pattern a() {
-        return new MediaCodec.CryptoInfo.Pattern(0, 0);
+import bf.c;
+import df.g;
+import gf.p;
+import java.util.ArrayList;
+public final class b extends jf.a {
+    public final ArrayList f4603c;
+    public final ArrayList d;
+    public final bf.a f4601a = new p();
+    public final ArrayList f4602b = new ArrayList();
+    public boolean f4604e = true;
+
+    public b(ArrayList arrayList, ArrayList arrayList2) {
+        this.f4603c = arrayList;
+        this.d = arrayList2;
     }
 
-    public static void b() {
-        if (Build.VERSION.SDK_INT > 23 && ForkJoinPool.commonPool() == null) {
-            return;
+    public static ArrayList i(CharSequence charSequence) {
+        String trim = charSequence.toString().trim();
+        if (trim.startsWith("|")) {
+            trim = trim.substring(1);
         }
-        throw null;
-    }
-
-    public static void c(k4 k4Var) {
-        boolean isTerminated;
-        ExecutorService executorService = k4Var.f4691a;
-        if ((Build.VERSION.SDK_INT <= 23 || k4Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            k4Var.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        k4Var.shutdownNow();
-                        z10 = true;
-                    }
+        ArrayList arrayList = new ArrayList();
+        StringBuilder sb2 = new StringBuilder();
+        int i3 = 0;
+        while (i3 < trim.length()) {
+            char charAt = trim.charAt(i3);
+            if (charAt != '\\') {
+                if (charAt != '|') {
+                    sb2.append(charAt);
+                } else {
+                    arrayList.add(sb2.toString());
+                    sb2.setLength(0);
+                }
+            } else {
+                int i10 = i3 + 1;
+                if (i10 < trim.length() && trim.charAt(i10) == '|') {
+                    sb2.append('|');
+                    i3 = i10;
+                } else {
+                    sb2.append('\\');
                 }
             }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
+            i3++;
+        }
+        if (sb2.length() > 0) {
+            arrayList.add(sb2.toString());
+        }
+        return arrayList;
+    }
+
+    @Override
+    public final void a(CharSequence charSequence) {
+        if (this.f4604e) {
+            this.f4604e = false;
+        } else {
+            this.f4602b.add(charSequence);
         }
     }
 
-    public static void d(o4 o4Var) {
-        boolean isTerminated;
-        ExecutorService executorService = o4Var.f4691a;
-        if ((Build.VERSION.SDK_INT <= 23 || o4Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            o4Var.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        o4Var.shutdownNow();
-                        z10 = true;
-                    }
+    @Override
+    public final gf.a e() {
+        return this.f4601a;
+    }
+
+    @Override
+    public final void g(hf.a aVar) {
+        ArrayList arrayList;
+        String str;
+        ArrayList arrayList2 = this.d;
+        int size = arrayList2.size();
+        ?? pVar = new p();
+        ?? r32 = this.f4601a;
+        r32.b(pVar);
+        ?? pVar2 = new p();
+        pVar.b(pVar2);
+        int i3 = 0;
+        while (true) {
+            arrayList = this.f4603c;
+            if (i3 >= size) {
+                break;
+            }
+            String str2 = (String) arrayList2.get(i3);
+            ?? pVar3 = new p();
+            if (i3 < arrayList.size()) {
+                pVar3.h = (c) arrayList.get(i3);
+            }
+            aVar.a(str2.trim(), pVar3);
+            pVar3.f3294g = true;
+            pVar2.b(pVar3);
+            i3++;
+        }
+        ArrayList arrayList3 = this.f4602b;
+        int size2 = arrayList3.size();
+        ?? r5 = 0;
+        int i10 = 0;
+        while (i10 < size2) {
+            Object obj = arrayList3.get(i10);
+            i10++;
+            ArrayList i11 = i((CharSequence) obj);
+            ?? pVar4 = new p();
+            for (int i12 = 0; i12 < size; i12++) {
+                if (i12 < i11.size()) {
+                    str = (String) i11.get(i12);
+                } else {
+                    str = "";
                 }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public static void e(a0 a0Var) {
-        boolean isTerminated;
-        ExecutorService executorService = a0Var.f9732a;
-        if ((Build.VERSION.SDK_INT <= 23 || a0Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            a0Var.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        a0Var.shutdownNow();
-                        z10 = true;
-                    }
+                ?? pVar5 = new p();
+                if (i12 < arrayList.size()) {
+                    pVar5.h = (c) arrayList.get(i12);
                 }
+                aVar.a(str.trim(), pVar5);
+                pVar4.b(pVar5);
             }
-            if (z10) {
-                Thread.currentThread().interrupt();
+            if (r5 == 0) {
+                r5 = new p();
+                r32.b(r5);
             }
+            r5.b(pVar4);
+            r5 = r5;
         }
     }
 
-    public static void f(d0 d0Var) {
-        boolean isTerminated;
-        ExecutorService executorService = d0Var.f9732a;
-        if ((Build.VERSION.SDK_INT <= 23 || d0Var != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            d0Var.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        d0Var.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
+    @Override
+    public final df.a h(g gVar) {
+        if (gVar.f8862a.toString().contains("|")) {
+            return df.a.a(gVar.f8863b);
         }
-    }
-
-    public static void g(ExecutorService executorService) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || executorService != ForkJoinPool.commonPool()) && !(isTerminated = executorService.isTerminated())) {
-            executorService.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = executorService.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        executorService.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public static void h(f fVar) {
-        if ((Build.VERSION.SDK_INT > 23 && fVar == ForkJoinPool.commonPool()) || fVar.f48122a.isTerminated()) {
-            return;
-        }
-        fVar.shutdown();
-        throw null;
-    }
-
-    public static void i(m mVar) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || mVar != ForkJoinPool.commonPool()) && !(isTerminated = mVar.isTerminated())) {
-            mVar.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = mVar.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        mVar.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
-    }
-
-    public static void j(ze.a aVar) {
-        boolean isTerminated;
-        if ((Build.VERSION.SDK_INT <= 23 || aVar != ForkJoinPool.commonPool()) && !(isTerminated = aVar.isTerminated())) {
-            aVar.shutdown();
-            boolean z10 = false;
-            while (!isTerminated) {
-                try {
-                    isTerminated = aVar.awaitTermination(1L, TimeUnit.DAYS);
-                } catch (InterruptedException unused) {
-                    if (!z10) {
-                        aVar.shutdownNow();
-                        z10 = true;
-                    }
-                }
-            }
-            if (z10) {
-                Thread.currentThread().interrupt();
-            }
-        }
+        return null;
     }
 }

@@ -1,52 +1,105 @@
 package org.telegram.messenger.voip;
+public final class q implements Runnable {
+    public final int f26047a;
+    public final VoIPService f26048b;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.wp;
-import org.telegram.messenger.xd;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.x5;
-import org.telegram.ui.LaunchActivity;
-public final class q implements RequestDelegate {
-    public final int f18854a;
-    public final int f18855b;
-
-    public q(int i10, int i11) {
-        this.f18854a = i11;
-        this.f18855b = i10;
+    public q(VoIPService voIPService, int i3) {
+        this.f26047a = i3;
+        this.f26048b = voIPService;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f18854a;
-        int i11 = this.f18855b;
-        switch (i10) {
+    public final void run() {
+        switch (this.f26047a) {
             case 0:
-                VoIPGroupNotification.a(i11, tLObject, tL_error);
+                VoIPService.J0(this.f26048b);
                 return;
             case 1:
-                VoIPPreNotificationService.lambda$decline$4(i11, tLObject, tL_error);
+                VoIPService.X0(this.f26048b);
                 return;
             case 2:
-                org.telegram.messenger.i0.g3(new x5(i11, tLObject));
+                VoIPService.v0(this.f26048b);
                 return;
             case 3:
-                if (tLObject instanceof TLRPC.TL_updates) {
-                    wp.r1(i11).L3((TLRPC.TL_updates) tLObject, false);
-                    return;
-                }
+                VoIPService.J(this.f26048b);
                 return;
             case 4:
-                Pattern pattern = LaunchActivity.D1;
-                org.telegram.messenger.i0.g3(new x5(i11, 2, tLObject));
+                VoIPService.T(this.f26048b);
                 return;
             case 5:
-                Pattern pattern2 = LaunchActivity.D1;
-                org.telegram.messenger.i0.g3(new x5(i11, 1, tLObject));
+                VoIPService.B0(this.f26048b);
+                return;
+            case 6:
+                VoIPService.z(this.f26048b);
+                return;
+            case 7:
+                VoIPService.H0(this.f26048b);
+                return;
+            case 8:
+                VoIPService.v1(this.f26048b);
+                return;
+            case 9:
+                VoIPService.B(this.f26048b);
+                return;
+            case 10:
+                VoIPService.e(this.f26048b);
+                return;
+            case 11:
+                VoIPService.w1(this.f26048b);
+                return;
+            case 12:
+                VoIPService.I(this.f26048b);
+                return;
+            case 13:
+                VoIPService.j1(this.f26048b);
+                return;
+            case 14:
+                VoIPService.E(this.f26048b);
+                return;
+            case 15:
+                VoIPService.Q0(this.f26048b);
+                return;
+            case 16:
+                VoIPService.b0(this.f26048b);
+                return;
+            case 17:
+                VoIPService.z0(this.f26048b);
+                return;
+            case 18:
+                VoIPService.t(this.f26048b);
+                return;
+            case 19:
+                VoIPService.u(this.f26048b);
+                return;
+            case 20:
+                VoIPService.c1(this.f26048b);
+                return;
+            case 21:
+                VoIPService.e1(this.f26048b);
+                return;
+            case 22:
+                VoIPService.O0(this.f26048b);
+                return;
+            case 23:
+                VoIPService.n1(this.f26048b);
+                return;
+            case 24:
+                VoIPService.w(this.f26048b);
+                return;
+            case 25:
+                VoIPService.r(this.f26048b);
+                return;
+            case 26:
+                VoIPService.P0(this.f26048b);
+                return;
+            case 27:
+                VoIPService.i1(this.f26048b);
+                return;
+            case 28:
+                VoIPService.c(this.f26048b);
                 return;
             default:
-                org.telegram.messenger.i0.g3(new xd(i11, 13));
+                VoIPService.b1(this.f26048b);
                 return;
         }
     }

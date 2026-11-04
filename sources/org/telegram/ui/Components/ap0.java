@@ -1,71 +1,75 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import android.widget.FrameLayout;
-public final class ap0 extends AnimatorListenerAdapter {
-    public final int f24468a;
-    public final boolean f24469b;
-    public final pp0 f24470c;
+import java.util.Collections;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ap0 implements Runnable {
+    public final int f31966a;
+    public final ws0 f31967b;
+    public final TLRPC.TL_error f31968c;
+    public final int d;
+    public final int f31969e;
+    public final TLObject f31970f;
 
-    public ap0(pp0 pp0Var, boolean z10, int i10) {
-        this.f24468a = i10;
-        this.f24470c = pp0Var;
-        this.f24469b = z10;
+    public ap0(ws0 ws0Var, TLRPC.TL_error tL_error, int i3, int i10, TLObject tLObject, int i11) {
+        this.f31966a = i11;
+        this.f31967b = ws0Var;
+        this.f31968c = tL_error;
+        this.d = i3;
+        this.f31969e = i10;
+        this.f31970f = tLObject;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f24468a) {
+    public final void run() {
+        switch (this.f31966a) {
             case 0:
-                AnimatorSet[] animatorSetArr = this.f24470c.L1;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
-                }
+                ws0 ws0Var = this.f31967b;
+                org.telegram.messenger.hs.f(ws0Var.f40142y1.getCurrentAccount()).d(new ap0(ws0Var, this.f31968c, this.d, this.f31969e, this.f31970f, 1));
                 return;
             default:
-                pp0 pp0Var = this.f24470c;
-                if (animator.equals(pp0Var.f29500v1)) {
-                    pp0Var.f29500v1 = null;
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24468a) {
-            case 0:
-                pp0 pp0Var = this.f24470c;
-                AnimatorSet[] animatorSetArr = pp0Var.L1;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f24469b) {
-                        pp0Var.K1[0].setVisibility(4);
-                    }
-                    animatorSetArr[0] = null;
-                    return;
-                }
-                return;
-            default:
-                pp0 pp0Var2 = this.f24470c;
-                FrameLayout frameLayout = pp0Var2.f29484n1;
-                if (animator.equals(pp0Var2.f29500v1)) {
-                    if (!this.f24469b) {
-                        pp0Var2.f29477j1.setVisibility(4);
-                        FrameLayout frameLayout2 = pp0Var2.U1;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
+                ws0 ws0Var2 = this.f31967b;
+                ls0[] ls0VarArr = ws0Var2.f40136w1;
+                if (this.f31968c == null) {
+                    int i3 = this.f31969e;
+                    ls0 ls0Var = ls0VarArr[i3];
+                    if (this.d == ls0Var.f35867p) {
+                        TLRPC.TL_messages_searchResultsPositions tL_messages_searchResultsPositions = (TLRPC.TL_messages_searchResultsPositions) this.f31970f;
+                        ls0Var.f35857e.clear();
+                        int size = tL_messages_searchResultsPositions.positions.size();
+                        int i10 = 0;
+                        for (int i11 = 0; i11 < size; i11++) {
+                            TLRPC.TL_searchResultPosition tL_searchResultPosition = tL_messages_searchResultsPositions.positions.get(i11);
+                            int i12 = tL_searchResultPosition.date;
+                            if (i12 != 0) {
+                                ?? obj = new Object();
+                                obj.f40062c = i12;
+                                obj.d = tL_searchResultPosition.msg_id;
+                                obj.f40061b = tL_searchResultPosition.offset;
+                                obj.f40060a = org.telegram.messenger.bd.e0(i12, true);
+                                ls0VarArr[i3].f35857e.add(obj);
+                            }
                         }
-                        pp0Var2.f29482m1.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
+                        Collections.sort(ls0VarArr[i3].f35857e, new d80(7));
+                        ls0 ls0Var2 = ls0VarArr[i3];
+                        ls0Var2.f35858f[0] = tL_messages_searchResultsPositions.count;
+                        ls0Var2.h = true;
+                        if (!ls0Var2.f35857e.isEmpty()) {
+                            while (true) {
+                                rr0[] rr0VarArr = ws0Var2.f40108n0;
+                                if (i10 < rr0VarArr.length) {
+                                    rr0 rr0Var = rr0VarArr[i10];
+                                    if (rr0Var.F == i3) {
+                                        rr0Var.f37783b = true;
+                                        ws0Var2.D1(rr0Var, true);
+                                    }
+                                    i10++;
+                                }
+                            }
+                        }
+                        ws0Var2.K.f();
+                        return;
                     }
-                    pp0Var2.f29500v1 = null;
                     return;
                 }
                 return;

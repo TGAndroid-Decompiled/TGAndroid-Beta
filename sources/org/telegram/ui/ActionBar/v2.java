@@ -1,50 +1,55 @@
 package org.telegram.ui.ActionBar;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-import org.telegram.messenger.at;
-public final class v2 extends AnimatorListenerAdapter {
-    public final int f21407a;
-    public final w2 f21408b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import java.util.HashSet;
+import org.telegram.messenger.a8;
+public final class v2 extends View implements z5 {
+    public final x2 f28741a;
 
-    public v2(w2 w2Var, int i10) {
-        this.f21407a = i10;
-        this.f21408b = w2Var;
+    public v2(x2 x2Var, Context context) {
+        super(context);
+        this.f28741a = x2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f21407a;
-        w2 w2Var = this.f21408b;
-        switch (i10) {
-            case 0:
-                AnimatorSet animatorSet = w2Var.h;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    w2Var.h = null;
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f28741a.d);
+    }
+
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i3), org.telegram.messenger.g0.f22603n);
+        setTranslationY(org.telegram.messenger.g0.f22603n);
+    }
+
+    @Override
+    public final void updateColors() {
+        x2 x2Var = this.f28741a;
+        Paint paint = x2Var.d;
+        try {
+            g3 g3Var = x2Var.f28796a;
+            if (g3Var != null) {
+                boolean z10 = false;
+                int e10 = g3Var.e(k6.x0(null, k6.f27824a7, false));
+                if (paint.getColor() != e10) {
+                    paint.setColor(e10);
+                    invalidate();
+                    org.telegram.messenger.g0.u3(x2Var, e10, true, null);
+                    if (org.telegram.messenger.g0.B(e10) >= 0.721f) {
+                        z10 = true;
+                    }
+                    org.telegram.messenger.g0.n3(x2Var, z10);
                 }
-                at.e().k(99, 512);
-                return;
-            case 1:
-                w2Var.D = 0.0f;
-                z2 z2Var = w2Var.G;
-                z2Var.f21587b.setTranslationX(0.0f);
-                z2Var.f21590c.invalidate();
-                return;
-            case 2:
-                z2 z2Var2 = w2Var.G;
-                z2Var2.N0 = true;
-                z2Var2.f21587b.setTranslationX(w2Var.getMeasuredWidth());
-                z2Var2.dismiss();
-                z2Var2.f21590c.invalidate();
-                return;
-            default:
-                w2Var.G.f21587b.setTranslationY(0.0f);
-                w2Var.G.h0();
-                z2 z2Var3 = w2Var.G;
-                z2Var3.q0(z2Var3.f21587b.getTranslationY());
-                w2Var.invalidate();
-                return;
+            }
+        } catch (Exception e11) {
+            a8.g(e11, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

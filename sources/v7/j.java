@@ -1,211 +1,35 @@
 package v7;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.charset.Charset;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-public final class j implements ja.e {
-    public static final Charset f50490f = Charset.forName("UTF-8");
-    public static final ja.c f50491g = new ja.c("key", i0.a.o(sc.e.k(h.class, new e(1))));
-    public static final ja.c h = new ja.c("value", i0.a.o(sc.e.k(h.class, new e(2))));
-    public static final i f50492i = i.f50481b;
-    public OutputStream f50493a;
-    public final HashMap f50494b;
-    public final HashMap f50495c;
-    public final ja.d d;
-    public final ma.h e = new ma.h(this, 1);
+import java.util.Iterator;
+public final class j extends f {
+    public final transient l f56462c;
+    public final transient k d;
 
-    public j(ByteArrayOutputStream byteArrayOutputStream, HashMap hashMap, HashMap hashMap2, ja.d dVar) {
-        this.f50493a = byteArrayOutputStream;
-        this.f50494b = hashMap;
-        this.f50495c = hashMap2;
-        this.d = dVar;
-    }
-
-    public static int i(ja.c cVar) {
-        h hVar = (h) cVar.b(h.class);
-        if (hVar != null) {
-            return ((e) hVar).f50441a;
-        }
-        throw new RuntimeException("Field has no @Protobuf config");
+    public j(l lVar, k kVar) {
+        this.f56462c = lVar;
+        this.d = kVar;
     }
 
     @Override
-    public final ja.e a(ja.c cVar, boolean z10) {
-        h(cVar, z10 ? 1 : 0, true);
-        return this;
-    }
-
-    public final void b(ja.c cVar, double d, boolean z10) {
-        if (z10 && d == 0.0d) {
-            return;
+    public final boolean contains(Object obj) {
+        if (this.f56462c.get(obj) != null) {
+            return true;
         }
-        k((i(cVar) << 3) | 1);
-        this.f50493a.write(ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putDouble(d).array());
-    }
-
-    public final void c(ja.c cVar, Object obj, boolean z10) {
-        if (obj != null) {
-            if (obj instanceof CharSequence) {
-                CharSequence charSequence = (CharSequence) obj;
-                if (!z10 || charSequence.length() != 0) {
-                    k((i(cVar) << 3) | 2);
-                    byte[] bytes = charSequence.toString().getBytes(f50490f);
-                    k(bytes.length);
-                    this.f50493a.write(bytes);
-                }
-            } else if (obj instanceof Collection) {
-                for (Object obj2 : (Collection) obj) {
-                    c(cVar, obj2, false);
-                }
-            } else if (obj instanceof Map) {
-                for (Map.Entry entry : ((Map) obj).entrySet()) {
-                    j(f50492i, cVar, entry, false);
-                }
-            } else if (obj instanceof Double) {
-                b(cVar, ((Double) obj).doubleValue(), z10);
-            } else if (obj instanceof Float) {
-                float floatValue = ((Float) obj).floatValue();
-                if (!z10 || floatValue != 0.0f) {
-                    k((i(cVar) << 3) | 5);
-                    this.f50493a.write(ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putFloat(floatValue).array());
-                }
-            } else if (obj instanceof Number) {
-                long longValue = ((Number) obj).longValue();
-                if (!z10 || longValue != 0) {
-                    h hVar = (h) cVar.b(h.class);
-                    if (hVar != null) {
-                        k(((e) hVar).f50441a << 3);
-                        l(longValue);
-                        return;
-                    }
-                    throw new RuntimeException("Field has no @Protobuf config");
-                }
-            } else if (obj instanceof Boolean) {
-                h(cVar, ((Boolean) obj).booleanValue() ? 1 : 0, z10);
-            } else if (obj instanceof byte[]) {
-                byte[] bArr = (byte[]) obj;
-                if (z10 && bArr.length == 0) {
-                    return;
-                }
-                k((i(cVar) << 3) | 2);
-                k(bArr.length);
-                this.f50493a.write(bArr);
-            } else {
-                ja.d dVar = (ja.d) this.f50494b.get(obj.getClass());
-                if (dVar != null) {
-                    j(dVar, cVar, obj, z10);
-                    return;
-                }
-                ja.f fVar = (ja.f) this.f50495c.get(obj.getClass());
-                if (fVar != null) {
-                    ma.h hVar2 = this.e;
-                    hVar2.f13047b = false;
-                    hVar2.d = cVar;
-                    hVar2.f13048c = z10;
-                    fVar.a(obj, hVar2);
-                } else if (obj instanceof f) {
-                    h(cVar, ((f) obj).zza(), true);
-                } else if (obj instanceof Enum) {
-                    h(cVar, ((Enum) obj).ordinal(), true);
-                } else {
-                    j(this.d, cVar, obj, z10);
-                }
-            }
-        }
+        return false;
     }
 
     @Override
-    public final ja.e d(ja.c cVar, Object obj) {
-        c(cVar, obj, true);
-        return this;
+    public final int h(Object[] objArr) {
+        return this.d.h(objArr);
     }
 
     @Override
-    public final ja.e e(ja.c cVar, double d) {
-        b(cVar, d, true);
-        return this;
+    public final Iterator iterator() {
+        return this.d.listIterator(0);
     }
 
     @Override
-    public final ja.e f(ja.c cVar, long j10) {
-        if (j10 != 0) {
-            h hVar = (h) cVar.b(h.class);
-            if (hVar != null) {
-                k(((e) hVar).f50441a << 3);
-                l(j10);
-                return this;
-            }
-            throw new RuntimeException("Field has no @Protobuf config");
-        }
-        return this;
-    }
-
-    @Override
-    public final ja.e g(ja.c cVar, int i10) {
-        h(cVar, i10, true);
-        return this;
-    }
-
-    public final void h(ja.c cVar, int i10, boolean z10) {
-        if (z10 && i10 == 0) {
-            return;
-        }
-        h hVar = (h) cVar.b(h.class);
-        if (hVar != null) {
-            k(((e) hVar).f50441a << 3);
-            k(i10);
-            return;
-        }
-        throw new RuntimeException("Field has no @Protobuf config");
-    }
-
-    public final void j(ja.d dVar, ja.c cVar, Object obj, boolean z10) {
-        ma.b bVar = new ma.b(1);
-        bVar.f13036b = 0L;
-        try {
-            OutputStream outputStream = this.f50493a;
-            this.f50493a = bVar;
-            dVar.a(obj, this);
-            this.f50493a = outputStream;
-            long j10 = bVar.f13036b;
-            bVar.close();
-            if (z10 && j10 == 0) {
-                return;
-            }
-            k((i(cVar) << 3) | 2);
-            l(j10);
-            dVar.a(obj, this);
-        } catch (Throwable th2) {
-            try {
-                bVar.close();
-            } catch (Throwable th3) {
-                try {
-                    Throwable.class.getDeclaredMethod("addSuppressed", Throwable.class).invoke(th2, th3);
-                } catch (Exception unused) {
-                }
-            }
-            throw th2;
-        }
-    }
-
-    public final void k(int i10) {
-        while ((i10 & (-128)) != 0) {
-            this.f50493a.write((i10 & 127) | 128);
-            i10 >>>= 7;
-        }
-        this.f50493a.write(i10 & 127);
-    }
-
-    public final void l(long j10) {
-        while (((-128) & j10) != 0) {
-            this.f50493a.write((((int) j10) & 127) | 128);
-            j10 >>>= 7;
-        }
-        this.f50493a.write(((int) j10) & 127);
+    public final int size() {
+        return this.f56462c.h;
     }
 }

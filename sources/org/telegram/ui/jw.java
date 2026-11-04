@@ -1,27 +1,19 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-public final class jw extends org.telegram.ui.Components.nh0 {
-    public final int f38567f0 = 0;
-    public final Object f38568g0;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class jw extends org.telegram.ui.Components.bz {
+    public final uw C0;
 
-    public jw(nb1 nb1Var, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
-        super(spannableStringBuilder, spannableStringBuilder2);
-        this.f38568g0 = nb1Var;
+    public jw(uw uwVar, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context, e6Var);
+        this.C0 = uwVar;
     }
 
     @Override
-    public final float d() {
-        switch (this.f38567f0) {
-            case 0:
-                return ((yx) this.f38568g0).f43733a.getViewOffset();
-            default:
-                return ((nb1) this.f38568g0).N.f39185l3;
-        }
-    }
-
-    public jw(String str, String str2, yx yxVar) {
-        super(str, str2);
-        this.f38568g0 = yxVar;
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        getParent().requestDisallowInterceptTouchEvent(true);
+        this.C0.f50274o3 = false;
+        return super.onInterceptTouchEvent(motionEvent);
     }
 }

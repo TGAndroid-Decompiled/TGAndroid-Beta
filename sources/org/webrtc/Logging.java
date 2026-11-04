@@ -39,8 +39,8 @@ public class Logging {
         
         public final int level;
 
-        TraceLevel(int i10) {
-            this.level = i10;
+        TraceLevel(int i3) {
+            this.level = i3;
         }
     }
 
@@ -136,9 +136,9 @@ public class Logging {
 
     private static native void nativeEnableLogTimeStamps();
 
-    private static native void nativeEnableLogToDebugOutput(int i10);
+    private static native void nativeEnableLogToDebugOutput(int i3);
 
-    private static native void nativeLog(int i10, String str, String str2);
+    private static native void nativeLog(int i3, String str, String str2);
 
     public static void v(String str, String str2) {
         log(Severity.LS_VERBOSE, str, str2);

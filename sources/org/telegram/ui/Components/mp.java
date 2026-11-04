@@ -1,17 +1,116 @@
 package org.telegram.ui.Components;
-public abstract class mp extends z4.a {
-    public abstract int j();
 
-    public final int k(int i10) {
-        int size = ((ug0) this).f30960c.size();
-        int j10 = j();
-        if (i10 < j10) {
-            return ((size - (j10 * 2)) - ((j10 - i10) - 1)) - 1;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.util.StateSet;
+import android.view.MotionEvent;
+public final class mp extends h6 {
+    public final Rect f36224s;
+    public Drawable f36225w;
+    public boolean f36226x;
+
+    public mp(Context context) {
+        super(context, false, false, false);
+        this.f36224s = new Rect();
+    }
+
+    public Rect getClickBounds() {
+        return this.f36224s;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f36225w != null) {
+            Rect bounds = getDrawable().getBounds();
+            Rect rect = this.f36224s;
+            rect.set(bounds);
+            int ceil = (int) Math.ceil(getDrawable().c());
+            if (getDrawable().f33983b == 3) {
+                rect.right = rect.left + ceil;
+            } else if (getDrawable().f33983b == 5) {
+                rect.left = rect.right - ceil;
+            } else if (getDrawable().f33983b == 17) {
+                int i3 = (rect.left + rect.right) / 2;
+                int i10 = ceil / 2;
+                rect.left = i3 - i10;
+                rect.right = i3 + i10;
+            }
+            rect.left -= getPaddingLeft();
+            rect.top -= getPaddingTop();
+            rect.right = getPaddingRight() + rect.right;
+            rect.bottom = getPaddingBottom() + rect.bottom;
+            this.f36225w.setBounds(rect);
+            this.f36225w.draw(canvas);
         }
-        int i11 = size - j10;
-        if (i10 >= i11) {
-            return i10 - i11;
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (motionEvent.getAction() == 0 && contains) {
+            this.f36226x = true;
+            Drawable drawable = this.f36225w;
+            if (drawable != null) {
+                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.f36225w.setState(new int[]{16842919, 16842910});
+            }
+            invalidate();
+            return contains;
         }
-        return i10 - j10;
+        if (motionEvent.getAction() == 1) {
+            if (this.f36226x && contains) {
+                callOnClick();
+            }
+            this.f36226x = false;
+            Drawable drawable2 = this.f36225w;
+            if (drawable2 != null) {
+                drawable2.setState(StateSet.NOTHING);
+                return contains;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            this.f36226x = false;
+            Drawable drawable3 = this.f36225w;
+            if (drawable3 != null) {
+                drawable3.setState(StateSet.NOTHING);
+            }
+        }
+        return contains;
+    }
+
+    @Override
+    public void setBackground(Drawable drawable) {
+        Drawable drawable2 = this.f36225w;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f36225w = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        Drawable drawable2 = this.f36225w;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.f36225w = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.f36225w && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

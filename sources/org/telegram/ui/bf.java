@@ -1,53 +1,36 @@
 package org.telegram.ui;
-public final class bf implements org.telegram.messenger.j20 {
-    public final int f36042a;
-    public final org.telegram.ui.ActionBar.k2 f36043b;
 
-    public bf(int i10, org.telegram.ui.ActionBar.k2 k2Var) {
-        this.f36042a = i10;
-        this.f36043b = k2Var;
+import android.text.style.URLSpan;
+import android.view.View;
+public final class bf implements org.telegram.messenger.v10 {
+    public final int f44031a;
+    public final Object f44032b;
+    public final Object f44033c;
+
+    public bf(int i3, Object obj, Object obj2) {
+        this.f44031a = i3;
+        this.f44032b = obj;
+        this.f44033c = obj2;
     }
 
     @Override
-    public final Object run() {
-        org.telegram.ui.ActionBar.k2 k2Var;
-        boolean z10;
-        switch (this.f36042a) {
+    public final Object a(Object obj) {
+        org.telegram.ui.Cells.q1 q1Var;
+        switch (this.f44031a) {
             case 0:
-                k2Var = (un) this.f36043b;
-                break;
-            case 1:
-                un unVar = (un) this.f36043b;
-                if (org.telegram.messenger.tc.e(65536) && org.telegram.ui.Components.i01.c()) {
-                    org.telegram.ui.Components.i01 i01Var = unVar.f42278x0;
-                    if (i01Var == null || i01Var.e) {
-                        if (unVar.getParentActivity() != null && org.telegram.ui.Components.i01.c() && unVar.f42303z0 != null && unVar.l1 != null) {
-                            org.telegram.ui.Components.i01 i01Var2 = unVar.f42278x0;
-                            if (i01Var2 != null) {
-                                org.telegram.messenger.i0.E2(i01Var2);
-                            }
-                            org.telegram.ui.Components.i01 i01Var3 = new org.telegram.ui.Components.i01(unVar.getParentActivity(), new h0(23, unVar, r2));
-                            unVar.f42278x0 = i01Var3;
-                            org.telegram.ui.Components.i01[] i01VarArr = {i01Var3};
-                            km kmVar = unVar.l1;
-                            kmVar.addView(i01Var3, kmVar.indexOfChild(unVar.f42303z0) + 1, w7.b6.c(-1.0f, -1));
-                        }
-                    }
-                    return unVar.f42278x0;
-                }
-                return null;
-            case 2:
-                ((un) this.f36043b).getClass();
-                if (org.telegram.ui.Components.i01.c() && org.telegram.messenger.tc.e(65536)) {
-                    z10 = true;
+                wm wmVar = (wm) this.f44032b;
+                View view = (View) this.f44033c;
+                URLSpan uRLSpan = (URLSpan) obj;
+                org.telegram.messenger.zi ziVar = wmVar.f51500u5;
+                if (view instanceof org.telegram.ui.Cells.q1) {
+                    q1Var = (org.telegram.ui.Cells.q1) view;
                 } else {
-                    z10 = false;
+                    q1Var = null;
                 }
-                return Boolean.valueOf(z10);
+                wmVar.j8(uRLSpan, false, ziVar, q1Var);
+                return Boolean.TRUE;
             default:
-                k2Var = (ProfileActivity) this.f36043b;
-                break;
+                return uh.c.d((View) obj, (String) this.f44032b, (String) this.f44033c, null, null);
         }
-        return k2Var.getSimpleMenuOverlay();
     }
 }

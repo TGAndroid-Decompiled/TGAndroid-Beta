@@ -1,62 +1,160 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-import java.util.Collections;
-import org.telegram.tgnet.TLRPC;
-public final class vv implements Runnable {
-    public final int f42611a;
-    public final zx f42612b;
-    public final long f42613c;
-    public final boolean d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.app.Activity;
+import android.view.View;
+public final class vv extends AnimatorListenerAdapter {
+    public final int f50617a;
+    public final boolean f50618b;
+    public final uw f50619c;
 
-    public vv(zx zxVar, long j10, boolean z10, int i10) {
-        this.f42611a = i10;
-        this.f42612b = zxVar;
-        this.f42613c = j10;
-        this.d = z10;
+    public vv(uw uwVar, boolean z10, int i3) {
+        this.f50617a = i3;
+        this.f50619c = uwVar;
+        this.f50618b = z10;
     }
 
     @Override
-    public final void run() {
-        String str;
-        TLRPC.Chat chat;
-        SpannableStringBuilder W2;
-        int i10 = this.f42611a;
-        boolean z10 = this.d;
-        long j10 = this.f42613c;
-        zx zxVar = this.f42612b;
-        switch (i10) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f50617a) {
             case 0:
-                zx zxVar2 = this.f42612b;
-                th.e5 O1 = zxVar2.getMessagesController().O1();
-                long j11 = this.f42613c;
-                boolean z11 = this.d;
-                O1.l0(j11, z11, false);
-                m4.c cVar = new m4.c((char) 0, 15);
-                cVar.f12706b = new vv(zxVar2, j11, z11, 1);
-                cVar.f12707c = new vv(zxVar2, j11, z11, 2);
-                if (j11 >= 0) {
-                    TLRPC.User Z1 = zxVar2.getMessagesController().Z1(Long.valueOf(j11));
-                    str = org.telegram.messenger.i5.m(15, Z1.first_name, null);
-                    chat = Z1;
-                } else {
-                    TLRPC.Chat L0 = zxVar2.getMessagesController().L0(Long.valueOf(-j11));
-                    str = L0.title;
-                    chat = L0;
+                uw uwVar = this.f50619c;
+                uwVar.f50284q3.e();
+                if (uwVar.f50321x1 == animator) {
+                    if (this.f50618b) {
+                        uwVar.f50230f0[0].f49897a.c1();
+                    } else {
+                        pw pwVar = uwVar.f50230f0[0].f49897a;
+                        if (pwVar.f38447h1) {
+                            pwVar.f38447h1 = false;
+                            pwVar.K0(false);
+                        }
+                    }
+                    uwVar.f50321x1 = null;
+                    return;
                 }
-                if (zxVar2.q4()) {
-                    W2 = org.telegram.messenger.i0.W2(org.telegram.messenger.dd.a0("StoriesMovedToDialogs", null, 2131744776, str));
-                } else {
-                    W2 = org.telegram.messenger.i0.W2(org.telegram.messenger.dd.a0("StoriesMovedToContacts", null, 2131744777, org.telegram.messenger.i5.m(15, str, null)));
-                }
-                zxVar2.S = org.telegram.ui.Components.cc.X().V(Collections.singletonList(chat), W2, null, cVar).j();
-                return;
-            case 1:
-                zxVar.getMessagesController().O1().l0(j10, !z10, false);
                 return;
             default:
-                zxVar.getMessagesController().O1().l0(j10, z10, true);
+                super.onAnimationCancel(animator);
                 return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        int i3;
+        org.telegram.ui.ActionBar.q0 q0Var;
+        switch (this.f50617a) {
+            case 0:
+                uw uwVar = this.f50619c;
+                uwVar.f50284q3.e();
+                if (uwVar.f50321x1 == animator) {
+                    uwVar.M4(false, true);
+                    boolean z10 = this.f50618b;
+                    if (z10) {
+                        uwVar.f50230f0[0].f49897a.c1();
+                        mv mvVar = uwVar.F0;
+                        if (mvVar != null) {
+                            mvVar.setVisibility(8);
+                        }
+                        uwVar.f50296s3 = true;
+                        Activity parentActivity = uwVar.getParentActivity();
+                        i3 = ((org.telegram.ui.ActionBar.d2) uwVar).classGuid;
+                        org.telegram.messenger.g0.a3(parentActivity, i3);
+                        uwVar.f50254k0.setVisibility(8);
+                        pv pvVar = uwVar.G3;
+                        if (pvVar != null) {
+                            pvVar.setVisibility(8);
+                        }
+                    } else {
+                        uwVar.f50301t3 = false;
+                        cw cwVar = uwVar.D0;
+                        if (cwVar != null) {
+                            cwVar.setVisibility(8);
+                        }
+                        iw iwVar = uwVar.Y;
+                        if (iwVar != null) {
+                            iwVar.c();
+                        }
+                        cw cwVar2 = uwVar.D0;
+                        if (cwVar2 != null) {
+                            cwVar2.D0.clear();
+                            cwVar2.L();
+                        }
+                        pw pwVar = uwVar.f50230f0[0].f49897a;
+                        if (pwVar.f38447h1) {
+                            pwVar.f38447h1 = false;
+                            pwVar.K0(false);
+                        }
+                        uwVar.f50296s3 = false;
+                        pv pvVar2 = uwVar.G3;
+                        if (pvVar2 != null) {
+                            pvVar2.setVisibility(0);
+                        }
+                    }
+                    View view = uwVar.fragmentView;
+                    if (view != null) {
+                        view.requestLayout();
+                    }
+                    if (z10) {
+                        f10 = 1.0f;
+                    } else {
+                        f10 = 0.0f;
+                    }
+                    uwVar.P4(f10);
+                    uwVar.f50230f0[0].f49897a.setVerticalScrollBarEnabled(true);
+                    cw cwVar3 = uwVar.D0;
+                    if (cwVar3 != null) {
+                        cwVar3.setBackground(null);
+                    }
+                    uwVar.f50321x1 = null;
+                    return;
+                }
+                return;
+            case 1:
+                uw uwVar2 = this.f50619c;
+                uwVar2.P3 = null;
+                if (!this.f50618b && (q0Var = uwVar2.f50267n0) != null) {
+                    q0Var.setVisibility(8);
+                    return;
+                }
+                return;
+            default:
+                uw uwVar3 = this.f50619c;
+                uwVar3.J = null;
+                boolean z11 = this.f50618b;
+                uwVar3.L = z11;
+                if (!z11 && !uwVar3.M) {
+                    uwVar3.F0.setVisibility(8);
+                }
+                if (!z11) {
+                    uwVar3.O4(0.0f);
+                    uwVar3.f50333z3 = org.telegram.messenger.g0.L(81.0f);
+                } else {
+                    uwVar3.f50333z3 = -org.telegram.messenger.g0.L(81.0f);
+                    uwVar3.O4(-uwVar3.g4());
+                }
+                int i10 = 0;
+                while (true) {
+                    tw[] twVarArr = uwVar3.f50230f0;
+                    if (i10 < twVarArr.length) {
+                        tw twVar = twVarArr[i10];
+                        if (twVar != null) {
+                            twVar.f49897a.requestLayout();
+                        }
+                        i10++;
+                    } else {
+                        View view2 = uwVar3.fragmentView;
+                        if (view2 != null) {
+                            view2.requestLayout();
+                            return;
+                        }
+                        return;
+                    }
+                }
+                break;
         }
     }
 }

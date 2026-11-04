@@ -1,25 +1,39 @@
 package n1;
 
-import kotlin.jvm.internal.i;
+import android.content.Context;
+import b8.hb;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import kotlin.jvm.internal.j;
+import o1.i;
 public final class d {
-    public final String f13415a;
+    public final ja.b f20120a;
+    public final i f20121b;
+    public final Context f20122c;
+    public final String d;
+    public final dd.i f20123e;
+    public final LinkedHashSet f20124f;
 
-    public d(String str) {
-        this.f13415a = str;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof d) {
-            return i.a(this.f13415a, ((d) obj).f13415a);
+    public d(Context context, String sharedPreferencesName, Set keysToMigrate, ja.b bVar, i iVar) {
+        LinkedHashSet linkedHashSet;
+        j.e(context, "context");
+        j.e(sharedPreferencesName, "sharedPreferencesName");
+        j.e(keysToMigrate, "keysToMigrate");
+        a aVar = new a(0, context, sharedPreferencesName);
+        this.f20120a = bVar;
+        this.f20121b = iVar;
+        this.f20122c = context;
+        this.d = sharedPreferencesName;
+        this.f20123e = hb.b(aVar);
+        if (keysToMigrate == e.f20125a) {
+            linkedHashSet = null;
+        } else {
+            linkedHashSet = new LinkedHashSet(keysToMigrate);
         }
-        return false;
+        this.f20124f = linkedHashSet;
     }
 
-    public final int hashCode() {
-        return this.f13415a.hashCode();
-    }
-
-    public final String toString() {
-        return this.f13415a;
+    public final java.lang.Object a(java.lang.Object r5, hd.c r6) {
+        throw new UnsupportedOperationException("Method not decompiled: n1.d.a(java.lang.Object, hd.c):java.lang.Object");
     }
 }

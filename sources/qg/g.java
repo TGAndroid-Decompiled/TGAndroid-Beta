@@ -1,204 +1,66 @@
 package qg;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
+import android.graphics.Canvas;
+import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ScrollView;
-import java.util.ArrayList;
-import org.telegram.ui.Components.s20;
-import vh.s6;
-import vh.t6;
-public final class g extends ViewGroup {
-    public final int f45548a = 0;
-    public AnimatorSet f45549b;
-    public boolean f45550c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final ArrayList f45551f;
-    public final ArrayList h;
-    public final ScrollView f45552n;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.util.Locale;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.j6;
+import org.telegram.ui.Components.pm0;
+public final class g extends FrameLayout {
+    public pm0 f53924a;
+    public float f53925b;
+    public float f53926c;
+    public float d;
+    public j6 f53927e;
+    public String f53928f;
+    public TextPaint h;
+    public int f53929n;
 
-    public g(h hVar, Context context) {
-        super(context);
-        this.f45552n = hVar;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.f45551f = new ArrayList();
-        this.h = new ArrayList();
+    @Override
+    public final void invalidate() {
+        super.invalidate();
+        this.f53924a.invalidate();
     }
 
-    public void a() {
-        t6 t6Var = (t6) this.f45552n;
-        t6Var.H = true;
-        ArrayList arrayList = t6Var.e;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        ArrayList arrayList3 = this.h;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList);
-        arrayList.clear();
-        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((s20) arrayList2.get(i10)).setOnClickListener(null);
-        }
-        c();
-        this.f45550c = false;
-        AnimatorSet animatorSet = new AnimatorSet();
-        this.f45549b = animatorSet;
-        animatorSet.addListener(new s6(this, arrayList2, 1));
-        ArrayList arrayList4 = this.f45551f;
-        arrayList4.clear();
-        ArrayList arrayList5 = this.d;
-        arrayList5.clear();
-        this.e.clear();
-        for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-            s20 s20Var = (s20) arrayList2.get(i11);
-            arrayList5.add(s20Var);
-            arrayList4.add(ObjectAnimator.ofFloat(s20Var, View.SCALE_X, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(s20Var, View.SCALE_Y, 1.0f, 0.01f));
-            arrayList4.add(ObjectAnimator.ofFloat(s20Var, View.ALPHA, 1.0f, 0.0f));
-        }
-        requestLayout();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        TextPaint textPaint = this.h;
+        textPaint.setColor(k6.x0(null, k6.G6, false));
+        canvas.drawText(this.f53928f, g0.L(24.0f), g0.L(24.0f), textPaint);
+        textPaint.setColor(k6.x0(null, k6.I6, false));
+        String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.d));
+        canvas.drawText(format, (getMeasuredWidth() - g0.L(8.0f)) - textPaint.measureText(format), this.f53924a.getY() + g0.L(23.0f), textPaint);
     }
 
-    public void b(boolean z10) {
-        h hVar = (h) this.f45552n;
-        hVar.H = true;
-        ArrayList arrayList = hVar.e;
-        ArrayList arrayList2 = new ArrayList(arrayList);
-        ArrayList arrayList3 = this.h;
-        arrayList3.clear();
-        arrayList3.addAll(arrayList);
-        arrayList.clear();
-        for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-            ((s20) arrayList2.get(i10)).setOnClickListener(null);
-        }
-        c();
-        if (z10) {
-            this.f45550c = false;
-            AnimatorSet animatorSet = new AnimatorSet();
-            this.f45549b = animatorSet;
-            animatorSet.addListener(new f(this, arrayList2, 1));
-            ArrayList arrayList4 = this.f45551f;
-            arrayList4.clear();
-            ArrayList arrayList5 = this.d;
-            arrayList5.clear();
-            this.e.clear();
-            for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                s20 s20Var = (s20) arrayList2.get(i11);
-                arrayList5.add(s20Var);
-                arrayList4.add(ObjectAnimator.ofFloat(s20Var, View.SCALE_X, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(s20Var, View.SCALE_Y, 1.0f, 0.01f));
-                arrayList4.add(ObjectAnimator.ofFloat(s20Var, View.ALPHA, 1.0f, 0.0f));
-            }
-        } else {
-            for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                removeView((View) arrayList2.get(i12));
-            }
-            arrayList3.clear();
-            this.f45549b = null;
-            this.f45550c = false;
-            hVar.f45554b.setAllowDrawCursor(true);
-        }
-        requestLayout();
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        this.f53924a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
     }
 
-    public final void c() {
-        switch (this.f45548a) {
-            case 0:
-                AnimatorSet animatorSet = this.f45549b;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                }
-                int i10 = 0;
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList = this.d;
-                    if (i11 < arrayList.size()) {
-                        ((View) arrayList.get(i11)).setScaleX(1.0f);
-                        ((View) arrayList.get(i11)).setScaleY(1.0f);
-                        ((View) arrayList.get(i11)).setAlpha(1.0f);
-                        i11++;
-                    } else {
-                        while (true) {
-                            ArrayList arrayList2 = this.e;
-                            if (i10 < arrayList2.size()) {
-                                ((View) arrayList2.get(i10)).setScaleX(0.0f);
-                                ((View) arrayList2.get(i10)).setScaleY(0.0f);
-                                ((View) arrayList2.get(i10)).setAlpha(0.0f);
-                                i10++;
-                            } else {
-                                arrayList.clear();
-                                arrayList2.clear();
-                                return;
-                            }
-                        }
-                    }
-                }
-            default:
-                AnimatorSet animatorSet2 = this.f45549b;
-                if (animatorSet2 != null) {
-                    animatorSet2.cancel();
-                }
-                int i12 = 0;
-                int i13 = 0;
-                while (true) {
-                    ArrayList arrayList3 = this.d;
-                    if (i13 < arrayList3.size()) {
-                        ((View) arrayList3.get(i13)).setScaleX(1.0f);
-                        ((View) arrayList3.get(i13)).setScaleY(1.0f);
-                        ((View) arrayList3.get(i13)).setAlpha(1.0f);
-                        i13++;
-                    } else {
-                        while (true) {
-                            ArrayList arrayList4 = this.e;
-                            if (i12 < arrayList4.size()) {
-                                ((View) arrayList4.get(i12)).setScaleX(0.0f);
-                                ((View) arrayList4.get(i12)).setScaleY(0.0f);
-                                ((View) arrayList4.get(i12)).setAlpha(0.0f);
-                                i12++;
-                            } else {
-                                arrayList3.clear();
-                                arrayList4.clear();
-                                return;
-                            }
-                        }
-                    }
-                }
+    @Override
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(i3, i10);
+        int size = View.MeasureSpec.getSize(i3);
+        if (this.f53929n != size) {
+            pm0 pm0Var = this.f53924a;
+            float floatValue = ((Float) this.f53927e.get(null)).floatValue();
+            float f10 = this.f53925b;
+            pm0Var.setProgress((floatValue - f10) / (this.f53926c - f10));
+            this.f53929n = size;
         }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f45548a) {
-            case 0:
-                int childCount = getChildCount();
-                for (int i14 = 0; i14 < childCount; i14++) {
-                    View childAt = getChildAt(i14);
-                    childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
-                }
-                return;
-            default:
-                int childCount2 = getChildCount();
-                for (int i15 = 0; i15 < childCount2; i15++) {
-                    View childAt2 = getChildAt(i15);
-                    childAt2.layout(0, 0, childAt2.getMeasuredWidth(), childAt2.getMeasuredHeight());
-                }
-                return;
+    public final boolean performAccessibilityAction(int i3, Bundle bundle) {
+        if (!super.performAccessibilityAction(i3, bundle) && !this.f53924a.getSeekBarAccessibilityDelegate().g(this, i3, bundle)) {
+            return false;
         }
-    }
-
-    @Override
-    public final void onMeasure(int r30, int r31) {
-        throw new UnsupportedOperationException("Method not decompiled: qg.g.onMeasure(int, int):void");
-    }
-
-    public g(t6 t6Var, Context context) {
-        super(context);
-        this.f45552n = t6Var;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.f45551f = new ArrayList();
-        this.h = new ArrayList();
+        return true;
     }
 }

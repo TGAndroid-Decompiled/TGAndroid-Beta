@@ -1,68 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class s6 implements Runnable {
-    public final int f30220a;
-    public final w7 f30221b;
-    public final org.telegram.messenger.kj f30222c;
+public final class s6 implements org.telegram.messenger.n10 {
+    public final int f37932a;
+    public final z7 f37933b;
 
-    public s6(w7 w7Var, org.telegram.messenger.kj kjVar, int i10) {
-        this.f30220a = i10;
-        this.f30221b = w7Var;
-        this.f30222c = kjVar;
+    public s6(z7 z7Var, int i3) {
+        this.f37932a = i3;
+        this.f37933b = z7Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f30220a;
-        org.telegram.messenger.kj kjVar = this.f30222c;
-        w7 w7Var = this.f30221b;
-        switch (i10) {
+    public final void a(Object obj, Object obj2) {
+        switch (this.f37932a) {
             case 0:
-                org.telegram.messenger.qp qpVar = w7Var.f32107m2;
-                if (qpVar != null) {
-                    TLRPC.Document a2 = qpVar.a();
-                    qpVar.f17804c.remove(kjVar);
-                    if (qpVar.a() != a2) {
-                        qpVar.e();
-                    }
-                    if (w7Var.f32107m2.f17804c.isEmpty()) {
-                        MediaController.B().o();
-                        w7Var.dismiss();
-                        return;
-                    }
-                    org.telegram.messenger.at.f(w7Var.f21584a).k(244, w7Var.f32107m2);
-                    return;
-                }
+                z7 z7Var = this.f37933b;
+                z7Var.P1 = !((Boolean) obj2).booleanValue();
+                MediaController B = MediaController.B();
+                org.telegram.ui.ActionBar.u0 u0Var = z7Var.O1;
+                float floatValue = ((Float) obj).floatValue();
+                u0Var.getClass();
+                B.m0(true, (floatValue * 2.8f) + 0.2f);
                 return;
             default:
-                LaunchActivity launchActivity = w7Var.f32127w2;
-                int i11 = org.telegram.messenger.e20.f15506s0;
-                int i12 = w7Var.f21584a;
-                if (i11 != i12) {
-                    launchActivity.O0(i12);
-                }
-                Bundle bundle = new Bundle();
-                long B0 = org.telegram.messenger.kj.B0(kjVar.f16690k);
-                if (org.telegram.messenger.o5.C(B0)) {
-                    bundle.putInt("enc_id", (int) (B0 & 4294967295L));
-                } else if (org.telegram.messenger.o5.E(B0)) {
-                    bundle.putLong("user_id", B0);
-                } else {
-                    TLRPC.Chat L0 = org.telegram.messenger.wp.r1(w7Var.f21584a).L0(Long.valueOf(-B0));
-                    if (L0 != null && L0.migrated_to != null) {
-                        bundle.putLong("migrated_to", B0);
-                        B0 = -L0.migrated_to.channel_id;
-                    }
-                    bundle.putLong("chat_id", -B0);
-                }
-                bundle.putInt("message_id", kjVar.f1());
-                org.telegram.messenger.at.f(w7Var.f21584a).k(4, new Object[0]);
-                launchActivity.u0(new org.telegram.ui.un(bundle), false, false);
-                w7Var.dismiss();
+                Bitmap bitmap = (Bitmap) obj2;
+                this.f37933b.Z1.setBackground(new BitmapDrawable((Bitmap) obj));
                 return;
         }
     }

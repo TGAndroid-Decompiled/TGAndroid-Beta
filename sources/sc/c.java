@@ -1,34 +1,87 @@
 package sc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-public final class c implements Iterable {
-    public final HashMap f48160a = new HashMap();
-    public final ArrayList f48161b = new ArrayList();
+import java.net.InetAddress;
+import java.net.Socket;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.HashSet;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
+public final class c extends SSLSocketFactory {
+    public final SSLSocketFactory f54703a = HttpsURLConnection.getDefaultSSLSocketFactory();
+    public final boolean f54704b;
+    public final boolean f54705c;
 
-    public c(HashMap hashMap) {
-        String str = (String) hashMap.get("cookie");
-        if (str != null) {
-            for (String str2 : str.split(";")) {
-                String[] split = str2.trim().split("=");
-                if (split.length == 2) {
-                    this.f48160a.put(split[0], split[1]);
-                }
+    public c() {
+        String[] strArr;
+        try {
+            strArr = SSLContext.getDefault().getSupportedSSLParameters().getProtocols();
+        } catch (NoSuchAlgorithmException unused) {
+            strArr = new String[0];
+        }
+        boolean z10 = false;
+        boolean z11 = false;
+        for (String str : strArr) {
+            if (str.equals("TLSv1.1")) {
+                z10 = true;
+            } else if (str.equals("TLSv1.2")) {
+                z11 = true;
             }
         }
+        this.f54704b = z10;
+        this.f54705c = z11;
+    }
+
+    public final Socket a(Socket socket) {
+        if (!(socket instanceof SSLSocket)) {
+            return socket;
+        }
+        SSLSocket sSLSocket = (SSLSocket) socket;
+        HashSet hashSet = new HashSet(Arrays.asList(sSLSocket.getEnabledProtocols()));
+        if (this.f54704b) {
+            hashSet.add("TLSv1.1");
+        }
+        if (this.f54705c) {
+            hashSet.add("TLSv1.2");
+        }
+        sSLSocket.setEnabledProtocols((String[]) hashSet.toArray(new String[0]));
+        return sSLSocket;
     }
 
     @Override
-    public final Iterator iterator() {
-        return this.f48160a.keySet().iterator();
+    public final Socket createSocket(Socket socket, String str, int i3, boolean z10) {
+        return a(this.f54703a.createSocket(socket, str, i3, z10));
     }
 
-    public final void l() {
-        Iterator it = this.f48161b.iterator();
-        if (!it.hasNext()) {
-            return;
-        }
-        throw a1.g.h(it);
+    @Override
+    public final String[] getDefaultCipherSuites() {
+        return this.f54703a.getDefaultCipherSuites();
+    }
+
+    @Override
+    public final String[] getSupportedCipherSuites() {
+        return this.f54703a.getSupportedCipherSuites();
+    }
+
+    @Override
+    public final Socket createSocket(String str, int i3) {
+        return a(this.f54703a.createSocket(str, i3));
+    }
+
+    @Override
+    public final Socket createSocket(String str, int i3, InetAddress inetAddress, int i10) {
+        return a(this.f54703a.createSocket(str, i3, inetAddress, i10));
+    }
+
+    @Override
+    public final Socket createSocket(InetAddress inetAddress, int i3) {
+        return a(this.f54703a.createSocket(inetAddress, i3));
+    }
+
+    @Override
+    public final Socket createSocket(InetAddress inetAddress, int i3, InetAddress inetAddress2, int i10) {
+        return a(this.f54703a.createSocket(inetAddress, i3, inetAddress2, i10));
     }
 }

@@ -1,3 +1,9 @@
 package org.telegram.ui.Components;
-public interface gg0 {
+
+import android.widget.FrameLayout;
+public final class gg0 extends FrameLayout {
+    @Override
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
 }

@@ -1,27 +1,16 @@
 package fg;
 
-import org.telegram.ui.Components.h6;
-public final class a {
-    public final CharSequence f7058a;
-    public final int f7059b = 2;
-    public final Runnable f7060c;
-    public final float d;
-    public final float e;
-    public final h6 f7061f;
+import java.nio.ShortBuffer;
+import mb.b;
+import ra.e;
+import v7.s;
+public interface a {
+    public static final e f11592m = new e(7);
+    public static final b f11593o = new b(8);
+    public static final s f11594p = new s(7);
+    public static final kb.a f11595q = new kb.a(8);
 
-    public a(String str, Runnable runnable) {
-        this.f7058a = str;
-        this.f7060c = runnable;
-    }
+    void H0(ShortBuffer shortBuffer, int i3, ShortBuffer shortBuffer2, int i10);
 
-    public a(String str) {
-        this.f7058a = str;
-    }
-
-    public a(String str, float f7, float f10, h6 h6Var) {
-        this.f7058a = str;
-        this.d = f7;
-        this.e = f10;
-        this.f7061f = h6Var;
-    }
+    int v1(int i3, int i10, int i11);
 }

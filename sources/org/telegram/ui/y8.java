@@ -1,49 +1,36 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.ui.Components.FragmentContextView;
-public final class y8 extends FragmentContextView {
-    public final int X0 = 0;
-    public final org.telegram.ui.ActionBar.k2 Y0;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.widget.TextView;
+public final class y8 extends TextView {
+    public final Paint f52223a;
+    public final org.telegram.ui.ActionBar.e6 f52224b;
 
-    public y8(j9 j9Var, Context context, j9 j9Var2, w8 w8Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, j9Var2, w8Var, false, p6Var);
-        this.Y0 = j9Var;
+    public y8(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.f52224b = e6Var;
+        this.f52223a = new Paint(1);
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        boolean z11;
-        switch (this.X0) {
-            case 0:
-                j9 j9Var = (j9) this.Y0;
-                org.telegram.ui.Components.zr zrVar = j9Var.I;
-                FrameLayout frameLayout = j9Var.J;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                zrVar.i(frameLayout, z10, true);
-                return;
-            default:
-                nb1 nb1Var = (nb1) this.Y0;
-                org.telegram.ui.Components.zr zrVar2 = nb1Var.U0;
-                FrameLayout frameLayout2 = nb1Var.F0;
-                if (i10 == 0) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                zrVar2.i(frameLayout2, z11, true);
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int r12 = org.telegram.ui.ActionBar.k6.r1(0.8f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28290z6, this.f52224b));
+        Paint paint = this.f52223a;
+        paint.setColor(r12);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(1.0f);
+        float height = getHeight() / 2.0f;
+        Layout layout = getLayout();
+        int i3 = 0;
+        for (int i10 = 0; i10 < layout.getLineCount(); i10++) {
+            i3 = Math.max(i3, (int) layout.getLineWidth(i10));
         }
-    }
-
-    public y8(nb1 nb1Var, Context context, nb1 nb1Var2) {
-        super(context, nb1Var2, null, false, null);
-        this.Y0 = nb1Var;
+        float f10 = i3 / 2.0f;
+        canvas.drawLine(0.0f, height, ((getWidth() / 2.0f) - f10) - org.telegram.messenger.g0.L(8.0f), height, paint);
+        canvas.drawLine((getWidth() / 2.0f) + f10 + org.telegram.messenger.g0.L(8.0f), height, getWidth(), height, paint);
+        super.dispatchDraw(canvas);
     }
 }

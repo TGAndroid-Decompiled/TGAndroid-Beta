@@ -1,31 +1,47 @@
 package org.telegram.ui.Components;
+public final class xw0 {
+    public final int f40538a;
 
-import android.graphics.drawable.ShapeDrawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class xw0 extends FrameLayout implements org.telegram.ui.ActionBar.k6 {
-    public org.telegram.ui.ActionBar.p6 f32646a;
-    public ShapeDrawable f32647b;
-    public View f32648c;
+    public xw0(int i3) {
+        this.f40538a = i3;
+    }
 
-    @Override
-    public final void updateColors() {
-        try {
-            ShapeDrawable shapeDrawable = this.f32647b;
-            if (shapeDrawable != null) {
-                org.telegram.ui.ActionBar.t6.C1(org.telegram.ui.ActionBar.t6.r1(0.12f, org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.Bf, this.f32646a)), shapeDrawable);
-                View view = this.f32648c;
-                if (view != null) {
-                    view.invalidate();
-                }
-            }
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+    public final int a(ex0 ex0Var, int i3) {
+        switch (this.f40538a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i3;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int b(ex0 ex0Var, int i3) {
+        switch (this.f40538a) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i3;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    public int c(int i3, int i10) {
+        switch (this.f40538a) {
+            case 4:
+                return i10;
+            default:
+                return i3;
+        }
     }
 }

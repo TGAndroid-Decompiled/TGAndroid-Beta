@@ -11,87 +11,87 @@ import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityNodeProvider;
 import android.widget.Button;
-import org.telegram.ui.xd1;
+import org.telegram.ui.xb1;
 public abstract class c extends AccessibilityNodeProvider {
-    public final e f31395a;
+    public final e f39241a;
     public final AccessibilityManager d;
-    public final Rect f31397c = new Rect();
-    public int e = -1;
-    public final int f31396b = 2;
+    public final Rect f39243c = new Rect();
+    public int f39244e = -1;
+    public final int f39242b = 2;
 
     public c(e eVar) {
-        this.f31395a = eVar;
+        this.f39241a = eVar;
         this.d = (AccessibilityManager) eVar.getContext().getSystemService(AccessibilityManager.class);
     }
 
-    public final void a(int i10) {
+    public final void a(int i3) {
         View view;
         ViewParent parent;
-        if (this.d.isTouchExplorationEnabled() && (parent = (view = this.f31395a).getParent()) != null) {
+        if (this.d.isTouchExplorationEnabled() && (parent = (view = this.f39241a).getParent()) != null) {
             AccessibilityEvent obtain = AccessibilityEvent.obtain(32768);
             obtain.setPackageName(view.getContext().getPackageName());
-            obtain.setSource(view, i10);
+            obtain.setSource(view, i3);
             parent.requestSendAccessibilityEvent(view, obtain);
         }
     }
 
     @Override
-    public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i10) {
+    public final AccessibilityNodeInfo createAccessibilityNodeInfo(int i3) {
         StaticLayout staticLayout;
         CharSequence text;
-        e eVar = this.f31395a;
-        if (i10 == -1) {
+        e eVar = this.f39241a;
+        if (i3 == -1) {
             AccessibilityNodeInfo obtain = AccessibilityNodeInfo.obtain(eVar);
             obtain.setPackageName(eVar.getContext().getPackageName());
-            for (int i11 = 0; i11 < this.f31396b; i11++) {
-                obtain.addChild(eVar, i11);
+            for (int i10 = 0; i10 < this.f39242b; i10++) {
+                obtain.addChild(eVar, i10);
             }
             return obtain;
         }
-        AccessibilityNodeInfo obtain2 = AccessibilityNodeInfo.obtain(eVar, i10);
+        AccessibilityNodeInfo obtain2 = AccessibilityNodeInfo.obtain(eVar, i3);
         obtain2.setPackageName(eVar.getContext().getPackageName());
-        int i12 = Build.VERSION.SDK_INT;
+        int i11 = Build.VERSION.SDK_INT;
         obtain2.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_CLICK);
         b bVar = (b) this;
-        e eVar2 = bVar.f31384g;
-        if (i10 == 0) {
-            if (eVar2.R) {
+        e eVar2 = bVar.f39229g;
+        if (i3 == 0) {
+            if (eVar2.S) {
                 StaticLayout staticLayout2 = eVar2.h;
                 if (staticLayout2 != null) {
                     text = staticLayout2.getText();
                 }
                 text = null;
             } else {
-                StaticLayout staticLayout3 = eVar2.e;
+                StaticLayout staticLayout3 = eVar2.f39301e;
                 if (staticLayout3 != null) {
                     text = staticLayout3.getText();
                 }
                 text = null;
             }
         } else {
-            if (i10 == 1 && (staticLayout = eVar2.f31456f) != null) {
+            if (i3 == 1 && (staticLayout = eVar2.f39302f) != null) {
                 text = staticLayout.getText();
             }
             text = null;
         }
         obtain2.setText(text);
         obtain2.setClassName(Button.class.getName());
-        if (i12 >= 24) {
+        if (i11 >= 24) {
             obtain2.setImportantForAccessibility(true);
         }
         obtain2.setVisibleToUser(true);
         obtain2.setClickable(true);
         obtain2.setEnabled(true);
         obtain2.setParent(eVar);
-        Rect rect = this.f31397c;
-        if (i10 == 0) {
-            rect.set(eVar2.M);
-        } else if (i10 == 1) {
+        Rect rect = this.f39243c;
+        if (i3 == 0) {
             rect.set(eVar2.N);
+        } else if (i3 == 1) {
+            rect.set(eVar2.O);
         } else {
             rect.setEmpty();
         }
-        int[] iArr = bVar.f31383f;
+        int[] iArr = bVar.f39228f;
         eVar2.getLocationOnScreen(iArr);
         rect.offset(iArr[0], iArr[1]);
         obtain2.setBoundsInScreen(rect);
@@ -99,21 +99,21 @@ public abstract class c extends AccessibilityNodeProvider {
     }
 
     @Override
-    public final boolean performAction(int i10, int i11, Bundle bundle) {
-        if (i10 == -1) {
-            return this.f31395a.performAccessibilityAction(i11, bundle);
+    public final boolean performAction(int i3, int i10, Bundle bundle) {
+        if (i3 == -1) {
+            return this.f39241a.performAccessibilityAction(i10, bundle);
         }
-        if (i11 == 64) {
-            a(i10);
+        if (i10 == 64) {
+            a(i3);
             return false;
-        } else if (i11 == 16) {
-            d dVar = ((b) this).f31384g.Q;
+        } else if (i10 == 16) {
+            d dVar = ((b) this).f39229g.R;
             if (dVar != null) {
-                if (i10 == 0) {
-                    ((xd1) dVar).a();
+                if (i3 == 0) {
+                    ((xb1) dVar).a();
                     return true;
-                } else if (i10 == 1) {
-                    ((xd1) dVar).b();
+                } else if (i3 == 1) {
+                    ((xb1) dVar).b();
                 }
             }
             return true;

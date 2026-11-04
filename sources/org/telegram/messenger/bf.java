@@ -1,54 +1,64 @@
 package org.telegram.messenger;
-public final class bf implements Runnable {
-    public final int f14959a;
-    public final df f14960b;
-    public final int f14961c;
 
-    public bf(df dfVar, int i10, int i11) {
-        this.f14959a = i11;
-        this.f14960b = dfVar;
-        this.f14961c = i10;
-    }
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
+public final class bf extends se {
+    public String B;
+    public String C;
+    public String D;
+    public int E;
+    public int F;
+    public int G;
+    public int H;
+    public CharSequence I;
+    public TLRPC.Document J;
+    public TLRPC.Photo K;
+    public TLRPC.PhotoSize L;
+    public TLRPC.PhotoSize M;
+    public TLRPC.BotInlineResult N;
+    public HashMap O;
 
     @Override
-    public final void run() {
-        switch (this.f14959a) {
-            case 0:
-                df dfVar = this.f14960b;
-                try {
-                    dfVar.f15374b.o(this.f14961c);
-                    return;
-                } catch (Exception e) {
-                    f8.g(e, true);
-                    return;
-                }
-            case 1:
-                df dfVar2 = this.f14960b;
-                try {
-                    dfVar2.f15374b.o(this.f14961c);
-                    return;
-                } catch (Exception e7) {
-                    f8.g(e7, true);
-                    return;
-                }
-            case 2:
-                df dfVar3 = this.f14960b;
-                try {
-                    dfVar3.f15374b.o(this.f14961c);
-                    return;
-                } catch (Exception e10) {
-                    f8.g(e10, true);
-                    return;
-                }
-            default:
-                df dfVar4 = this.f14960b;
-                try {
-                    dfVar4.f15374b.o(this.f14961c);
-                    return;
-                } catch (Exception e11) {
-                    f8.g(e11, true);
-                    return;
-                }
+    public final String a() {
+        if (this.L != null) {
+            w7.G(h10.f22829t0);
+            return w7.K(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            w7.G(h10.f22829t0);
+            return w7.K(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return zb.A(this.C).getAbsolutePath();
+        }
+    }
+
+    public final bf clone() {
+        ?? obj = new Object();
+        obj.B = this.B;
+        obj.C = this.C;
+        obj.D = this.D;
+        obj.E = this.E;
+        obj.F = this.F;
+        obj.G = this.G;
+        obj.H = this.H;
+        obj.I = this.I;
+        obj.J = this.J;
+        obj.K = this.K;
+        obj.L = this.L;
+        obj.M = this.M;
+        obj.N = this.N;
+        obj.O = this.O;
+        return obj;
+    }
+
+    public final String g() {
+        if (this.L != null) {
+            w7.G(h10.f22829t0);
+            return w7.K(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            w7.G(h10.f22829t0);
+            return w7.K(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return this.C;
         }
     }
 }

@@ -1,35 +1,58 @@
 package org.telegram.ui.Components;
-public final class pa0 implements Runnable {
-    public final int f29393a;
-    public final qa0 f29394b;
 
-    public pa0(qa0 qa0Var, int i10) {
-        this.f29393a = i10;
-        this.f29394b = qa0Var;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Matrix;
+import android.graphics.Shader;
+import android.os.Build;
+import java.lang.ref.WeakReference;
+public final class pa0 {
+    public final Shader.TileMode f37106a;
+    public final Matrix f37107b = new Matrix();
+    public boolean f37108c;
+    public BitmapShader d;
+    public WeakReference f37109e;
+
+    public pa0(Shader.TileMode tileMode) {
+        this.f37106a = tileMode;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f29393a) {
-            case 0:
-                qa0 qa0Var = this.f29394b;
-                if (qa0Var.W != -1) {
-                    org.telegram.messenger.at.f(qa0Var.Y.f30915c0.f24344x).j(qa0Var.W);
-                    qa0Var.W = -1;
-                    return;
+    public final void a(boolean z10) {
+        BitmapShader bitmapShader;
+        int i3;
+        if (this.f37108c != z10) {
+            this.f37108c = z10;
+            if (Build.VERSION.SDK_INT >= 33 && (bitmapShader = this.d) != null) {
+                if (z10) {
+                    i3 = 1;
+                } else {
+                    i3 = 2;
                 }
-                return;
-            case 1:
-                this.f29394b.Y.i();
-                return;
-            default:
-                qa0 qa0Var2 = this.f29394b;
-                if (qa0Var2.W != -1) {
-                    org.telegram.messenger.at.f(qa0Var2.Y.f30915c0.f24344x).j(qa0Var2.W);
-                    qa0Var2.W = -1;
-                    return;
-                }
-                return;
+                bitmapShader.setFilterMode(i3);
+            }
         }
+    }
+
+    public final boolean b(Bitmap bitmap) {
+        int i3;
+        WeakReference weakReference = this.f37109e;
+        if (weakReference != null && weakReference.get() == bitmap) {
+            return false;
+        }
+        this.f37109e = new WeakReference(bitmap);
+        Shader.TileMode tileMode = this.f37106a;
+        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+        this.d = bitmapShader;
+        bitmapShader.setLocalMatrix(this.f37107b);
+        if (Build.VERSION.SDK_INT >= 33) {
+            BitmapShader bitmapShader2 = this.d;
+            if (this.f37108c) {
+                i3 = 1;
+            } else {
+                i3 = 2;
+            }
+            bitmapShader2.setFilterMode(i3);
+        }
+        return true;
     }
 }

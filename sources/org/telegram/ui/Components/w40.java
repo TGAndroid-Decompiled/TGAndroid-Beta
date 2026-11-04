@@ -1,15 +1,23 @@
 package org.telegram.ui.Components;
-public final class w40 implements Runnable {
-    public final int f32073a;
-    public final Object f32074b;
 
-    public w40(Object obj, int i10) {
-        this.f32073a = i10;
-        this.f32074b = obj;
+import androidx.recyclerview.widget.RecyclerView;
+public final class w40 extends u4.t0 {
+    public final u4.b0 f39883a;
+    public final i50 f39884b;
+
+    public w40(i50 i50Var, u4.b0 b0Var) {
+        this.f39884b = i50Var;
+        this.f39883a = b0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w40.run():void");
+    public final void b(RecyclerView recyclerView, int i3, int i10) {
+        i50 i50Var = this.f39884b;
+        i50.I0(i50Var);
+        if (i50Var.J1 && !i50Var.I1) {
+            if (i50Var.K1 - this.f39883a.N0() < 10) {
+                i50Var.K0();
+            }
+        }
     }
 }

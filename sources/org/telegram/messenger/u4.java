@@ -1,90 +1,112 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.text.Collator;
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-public final class u4 implements RequestDelegate {
-    public final int f18382a;
-    public final i5 f18383b;
+public final class u4 implements Comparator {
+    public final int f25648a;
+    public final Collator f25649b;
 
-    public u4(i5 i5Var, int i10) {
-        this.f18382a = i10;
-        this.f18383b = i5Var;
+    public u4(Collator collator, int i3) {
+        this.f25648a = i3;
+        this.f25649b = collator;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f18382a) {
+    public final int compare(Object obj, Object obj2) {
+        String str;
+        String m10;
+        switch (this.f25648a) {
             case 0:
-                if (tLObject != null) {
-                    TLRPC.TL_help_inviteText tL_help_inviteText = (TLRPC.TL_help_inviteText) tLObject;
-                    if (tL_help_inviteText.message.length() != 0) {
-                        i0.g3(new e4(1, this.f18383b, tL_help_inviteText));
-                        return;
-                    }
-                    return;
+                String str2 = (String) obj;
+                String str3 = (String) obj2;
+                char charAt = str2.charAt(0);
+                char charAt2 = str3.charAt(0);
+                if (charAt == '#') {
+                    return 1;
                 }
-                return;
+                if (charAt2 == '#') {
+                    return -1;
+                }
+                return this.f25649b.compare(str2, str3);
             case 1:
-                final i5 i5Var = this.f18383b;
-                i0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                i5 i5Var2 = i5Var;
-                                if (tL_error == null) {
-                                    i5Var2.X = (TLRPC.GlobalPrivacySettings) tLObject;
-                                    i5Var2.F = 2;
-                                } else {
-                                    i5Var2.F = 0;
-                                }
-                                i5Var2.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                            default:
-                                i5 i5Var3 = i5Var;
-                                if (tL_error == null) {
-                                    i5Var3.H = ((TLRPC.TL_accountDaysTTL) tLObject).days;
-                                    i5Var3.G = 2;
-                                } else {
-                                    i5Var3.G = 0;
-                                }
-                                i5Var3.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                        }
+                d5 d5Var = (d5) obj;
+                d5 d5Var2 = (d5) obj2;
+                String str4 = d5Var.f22153i;
+                if (str4.length() == 0) {
+                    str4 = d5Var.f22154j;
+                }
+                String str5 = d5Var2.f22153i;
+                if (str5.length() == 0) {
+                    str5 = d5Var2.f22154j;
+                }
+                return this.f25649b.compare(str4, str5);
+            case 2:
+                String str6 = "";
+                if (obj instanceof TLRPC.User) {
+                    TLRPC.User user = (TLRPC.User) obj;
+                    str = g5.m(0, user.first_name, user.last_name);
+                } else if (!(obj instanceof d5)) {
+                    str = "";
+                } else {
+                    d5 d5Var3 = (d5) obj;
+                    TLRPC.User user2 = d5Var3.f22157m;
+                    if (user2 != null) {
+                        str = g5.m(0, user2.first_name, user2.last_name);
+                    } else {
+                        str = g5.m(0, d5Var3.f22153i, d5Var3.f22154j);
                     }
-                });
-                return;
+                }
+                if (obj2 instanceof TLRPC.User) {
+                    TLRPC.User user3 = (TLRPC.User) obj2;
+                    str6 = g5.m(0, user3.first_name, user3.last_name);
+                } else if (obj2 instanceof d5) {
+                    d5 d5Var4 = (d5) obj2;
+                    TLRPC.User user4 = d5Var4.f22157m;
+                    if (user4 != null) {
+                        m10 = g5.m(0, user4.first_name, user4.last_name);
+                    } else {
+                        m10 = g5.m(0, d5Var4.f22153i, d5Var4.f22154j);
+                    }
+                    str6 = m10;
+                }
+                return this.f25649b.compare(str, str6);
+            case 3:
+                String str7 = (String) obj;
+                String str8 = (String) obj2;
+                char charAt3 = str7.charAt(0);
+                char charAt4 = str8.charAt(0);
+                if (charAt3 == '#') {
+                    return 1;
+                }
+                if (charAt4 == '#') {
+                    return -1;
+                }
+                return this.f25649b.compare(str7, str8);
+            case 4:
+                String str9 = (String) obj;
+                String str10 = (String) obj2;
+                char charAt5 = str9.charAt(0);
+                char charAt6 = str10.charAt(0);
+                if (charAt5 == '#') {
+                    return 1;
+                }
+                if (charAt6 == '#') {
+                    return -1;
+                }
+                return this.f25649b.compare(str9, str10);
             default:
-                final i5 i5Var2 = this.f18383b;
-                i0.g3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                i5 i5Var22 = i5Var2;
-                                if (tL_error == null) {
-                                    i5Var22.X = (TLRPC.GlobalPrivacySettings) tLObject;
-                                    i5Var22.F = 2;
-                                } else {
-                                    i5Var22.F = 0;
-                                }
-                                i5Var22.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                            default:
-                                i5 i5Var3 = i5Var2;
-                                if (tL_error == null) {
-                                    i5Var3.H = ((TLRPC.TL_accountDaysTTL) tLObject).days;
-                                    i5Var3.G = 2;
-                                } else {
-                                    i5Var3.G = 0;
-                                }
-                                i5Var3.getNotificationCenter().k(47, new Object[0]);
-                                return;
-                        }
-                    }
-                });
-                return;
+                String str11 = (String) obj;
+                String str12 = (String) obj2;
+                char charAt7 = str11.charAt(0);
+                char charAt8 = str12.charAt(0);
+                if (charAt7 == '#') {
+                    return 1;
+                }
+                if (charAt8 == '#') {
+                    return -1;
+                }
+                return this.f25649b.compare(str11, str12);
         }
     }
 }

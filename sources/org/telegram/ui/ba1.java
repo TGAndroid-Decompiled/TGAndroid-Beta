@@ -1,46 +1,96 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class ba1 extends org.telegram.ui.Components.tk0 {
-    public final ArrayList f36017c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public aa1 e;
-    public int f36018f;
-    public final ca1 h;
+public final class ba1 extends org.telegram.ui.Components.sj0 {
+    public final Context f44009c;
+    public final TwoStepVerificationActivity d;
 
-    public ba1(ca1 ca1Var) {
-        this.h = ca1Var;
+    public ba1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
+        this.d = twoStepVerificationActivity;
+        this.f44009c = context;
     }
 
     @Override
-    public final boolean D(s4.c1 c1Var) {
-        return true;
+    public final boolean D(u4.d1 d1Var) {
+        if (d1Var.f55544f == 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final int b() {
-        return this.f36017c.size();
-    }
-
-    @Override
-    public final void t(s4.c1 c1Var, int i10) {
-        ArrayList arrayList = this.f36017c;
-        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
-        String str = (String) this.d.get(i10);
-        org.telegram.ui.Cells.j4 j4Var = (org.telegram.ui.Cells.j4) c1Var.f47909a;
-        String str2 = chat.title;
-        boolean z10 = true;
-        if (i10 == arrayList.size() - 1) {
-            z10 = false;
+        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+        if (!twoStepVerificationActivity.H && twoStepVerificationActivity.J != null) {
+            return twoStepVerificationActivity.U;
         }
-        j4Var.e(chat, str2, str, z10);
-        j4Var.c(this.h.f36278x.contains(Long.valueOf(chat.f19794id)), false);
+        return 0;
     }
 
     @Override
-    public final s4.c1 w(ViewGroup viewGroup, int i10) {
-        return new s4.c1(new org.telegram.ui.Cells.j4(viewGroup.getContext(), 1, 0, false));
+    public final int d(int i3) {
+        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+        if (i3 != twoStepVerificationActivity.Q && i3 != twoStepVerificationActivity.T) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void t(u4.d1 d1Var, int i3) {
+        int i10;
+        int i11;
+        int i12 = d1Var.f55544f;
+        View view = d1Var.f55540a;
+        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+        if (i12 != 0) {
+            if (i12 == 1) {
+                org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
+                if (i3 == twoStepVerificationActivity.Q) {
+                    y8Var.setText(org.telegram.messenger.bd.M0(2131745558, null));
+                    return;
+                } else if (i3 == twoStepVerificationActivity.T) {
+                    y8Var.setText(org.telegram.messenger.bd.M0(2131751143, null));
+                    return;
+                } else {
+                    return;
+                }
+            }
+            return;
+        }
+        org.telegram.ui.Cells.v9 v9Var = (org.telegram.ui.Cells.v9) view;
+        int i13 = org.telegram.ui.ActionBar.k6.G6;
+        v9Var.setTag(Integer.valueOf(i13));
+        org.telegram.ui.ActionBar.r6.V(v9Var.getTextView(), i13, null);
+        i10 = twoStepVerificationActivity.changePasswordRow;
+        if (i3 == i10) {
+            v9Var.b(org.telegram.messenger.bd.M0(2131752541, null), true);
+        } else if (i3 != twoStepVerificationActivity.P) {
+            i11 = twoStepVerificationActivity.turnPasswordOffRow;
+            if (i3 == i11) {
+                v9Var.b(org.telegram.messenger.bd.M0(2131743952, null), true);
+            } else if (i3 == twoStepVerificationActivity.S) {
+                v9Var.b(org.telegram.messenger.bd.M0(2131752531, null), false);
+            } else if (i3 == twoStepVerificationActivity.R) {
+                v9Var.b(org.telegram.messenger.bd.M0(2131745525, null), false);
+            }
+        } else {
+            v9Var.b(org.telegram.messenger.bd.M0(2131745559, null), true);
+        }
+    }
+
+    @Override
+    public final u4.d1 x(ViewGroup viewGroup, int i3) {
+        View v9Var;
+        Context context = this.f44009c;
+        if (i3 != 0) {
+            v9Var = new org.telegram.ui.Cells.y8(context);
+        } else {
+            v9Var = new org.telegram.ui.Cells.v9(context);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27878d6, v9Var, null);
+        }
+        return new u4.d1(v9Var);
     }
 }

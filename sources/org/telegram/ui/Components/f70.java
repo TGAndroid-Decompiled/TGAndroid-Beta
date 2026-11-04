@@ -1,83 +1,91 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-public final class f70 extends FrameLayout {
-    public final k70 f26105a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class f70 implements View.OnClickListener {
+    public final int f33757a;
+    public final m70 f33758b;
 
-    public f70(k70 k70Var, Context context) {
-        super(context);
-        this.f26105a = k70Var;
+    public f70(m70 m70Var, int i3) {
+        this.f33757a = i3;
+        this.f33758b = m70Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        k70 k70Var = this.f26105a;
-        k70Var.f27742i1.setBounds(0, k70Var.f27750r1 - k70Var.f21615s0, getMeasuredWidth(), getMeasuredHeight());
-        k70Var.f27742i1.draw(canvas);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            k70 k70Var = this.f26105a;
-            if (k70Var.f27750r1 != 0 && motionEvent.getY() < k70Var.f27750r1) {
-                k70Var.dismiss();
-                return true;
-            }
+    public final void onClick(View view) {
+        boolean z10;
+        int i3;
+        int i10 = this.f33757a;
+        m70 m70Var = this.f33758b;
+        switch (i10) {
+            case 0:
+                m70Var.f36061r.h();
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.f1 f1Var = m70Var.f36062s;
+                if (f1Var != null) {
+                    f1Var.d(true);
+                }
+                m70Var.f36061r.b();
+                return;
+            case 2:
+                m70 m70Var2 = this.f33758b;
+                String str = m70Var2.f36056b;
+                if (str != null && str.endsWith("?direct")) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                Context context = m70Var2.getContext();
+                String M0 = org.telegram.messenger.bd.M0(2131749178, null);
+                String str2 = m70Var2.f36056b;
+                String str3 = m70Var2.K;
+                if (str3 == null) {
+                    if (m70Var2.I) {
+                        if (z10) {
+                            i3 = 2131746515;
+                        } else {
+                            i3 = 2131746516;
+                        }
+                    } else {
+                        i3 = 2131746513;
+                    }
+                    str3 = org.telegram.messenger.bd.M0(i3, null);
+                }
+                j70 j70Var = new j70(m70Var2, context, M0, str2, str3);
+                m70Var2.F = j70Var;
+                j70Var.I0();
+                m70Var2.F.show();
+                org.telegram.ui.ActionBar.f1 f1Var2 = m70Var2.f36062s;
+                if (f1Var2 != null) {
+                    f1Var2.d(true);
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.ActionBar.f1 f1Var3 = m70Var.f36062s;
+                if (f1Var3 != null) {
+                    f1Var3.d(true);
+                }
+                org.telegram.ui.ActionBar.d2 d2Var = m70Var.f36057c;
+                if (d2Var.getParentActivity() != null) {
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(d2Var.getParentActivity());
+                    String M02 = org.telegram.messenger.bd.M0(2131746033, null);
+                    org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
+                    s1Var.S = M02;
+                    s1Var.U = org.telegram.messenger.bd.M0(2131746036, null);
+                    alertDialog$Builder.k(org.telegram.messenger.bd.M0(2131746034, null), new e70(m70Var, 1));
+                    alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), null);
+                    TextView textView = (TextView) s1Var.d(-1);
+                    if (textView != null) {
+                        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28122q7, null);
+                    }
+                    alertDialog$Builder.p();
+                    return;
+                }
+                return;
         }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        k70.I0(this.f26105a);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int i12;
-        int size = View.MeasureSpec.getSize(i11) - org.telegram.messenger.i0.f16166m;
-        k70 k70Var = this.f26105a;
-        TextView textView = k70Var.f27747o1;
-        measureChildWithMargins(textView, i10, 0, i11, 0);
-        int measuredHeight = textView.getMeasuredHeight();
-        g70 g70Var = k70Var.f27745m1;
-        ((FrameLayout.LayoutParams) g70Var.getLayoutParams()).topMargin = org.telegram.messenger.i0.L(65.0f) + measuredHeight;
-        getMeasuredWidth();
-        int C = org.telegram.messenger.m5.C(55.0f, org.telegram.messenger.m5.D(58.0f, k70Var.f27748p1.size(), org.telegram.messenger.i0.L(80.0f)) + k70Var.f21615s0, measuredHeight);
-        int i13 = size / 5;
-        if (C < i13 * 3) {
-            i12 = size - C;
-        } else {
-            i12 = i13 * 2;
-        }
-        if (g70Var.getPaddingTop() != i12) {
-            k70Var.f27749q1 = true;
-            g70Var.setPadding(0, i12, 0, 0);
-            k70Var.f27749q1 = false;
-        }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f26105a.I && super.onTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f26105a.f27749q1) {
-            return;
-        }
-        super.requestLayout();
     }
 }

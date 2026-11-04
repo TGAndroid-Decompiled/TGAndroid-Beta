@@ -1,63 +1,99 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class ul extends xr0 {
-    public final org.telegram.messenger.kj f41966a;
-    public final org.telegram.messenger.ff f41967b;
-    public final un f41968c;
+import android.app.Activity;
+import java.io.IOException;
+import java.util.Locale;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ul implements org.telegram.ui.ActionBar.p1, g2.k {
+    public final int f50112a = 2;
+    public final boolean f50113b;
+    public final Object f50114c;
+    public final Object d;
+    public final Object f50115e;
+    public final Object f50116f;
 
-    public ul(un unVar, org.telegram.messenger.kj kjVar, org.telegram.messenger.ff ffVar) {
-        this.f41968c = unVar;
-        this.f41966a = kjVar;
-        this.f41967b = ffVar;
+    public ul(b8.kg kgVar, w2.u uVar, w2.c0 c0Var, IOException iOException, boolean z10) {
+        this.f50114c = kgVar;
+        this.d = uVar;
+        this.f50115e = c0Var;
+        this.f50116f = iOException;
+        this.f50113b = z10;
     }
 
     @Override
-    public final fs0 E(org.telegram.messenger.kj kjVar, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return un.O1(this.f41968c, this.f41966a, null, i10, z10, true);
+    public void accept(Object obj) {
+        b8.kg kgVar = (b8.kg) this.f50114c;
+        ((w2.k0) obj).j(kgVar.f2722b, (w2.g0) kgVar.f2723c, (w2.u) this.d, (w2.c0) this.f50115e, (IOException) this.f50116f, this.f50113b);
     }
 
     @Override
-    public final boolean P() {
-        un unVar = this.f41968c;
-        if (unVar.Z != null && unVar.O9()) {
-            unVar.Z.K();
-            return true;
+    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        int i10;
+        int i11 = this.f50112a;
+        Object obj = this.f50116f;
+        Object obj2 = this.f50115e;
+        Object obj3 = this.d;
+        Object obj4 = this.f50114c;
+        boolean z10 = this.f50113b;
+        switch (i11) {
+            case 0:
+                hm hmVar = (hm) obj4;
+                TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
+                wm wmVar = hmVar.f45934a;
+                mi.f fVar = new mi.f(22, hmVar, (org.telegram.ui.Cells.q1) obj3);
+                if (((boolean[]) obj2)[0]) {
+                    if (!z10 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
+                        fVar.a(Boolean.TRUE);
+                        return;
+                    }
+                    Activity parentActivity = wmVar.getParentActivity();
+                    i10 = ((org.telegram.ui.ActionBar.d2) wmVar).currentAccount;
+                    ThemeActivity.H0(i10, parentActivity, new mi.f(23, hmVar, fVar), wmVar.getResourceProvider());
+                    return;
+                }
+                fVar.a(Boolean.FALSE);
+                return;
+            default:
+                org.telegram.ui.Components.cb0 cb0Var = (org.telegram.ui.Components.cb0) obj4;
+                org.telegram.ui.Components.cb0 cb0Var2 = (org.telegram.ui.Components.cb0) obj3;
+                org.telegram.ui.Components.cb0 cb0Var3 = (org.telegram.ui.Components.cb0) obj2;
+                k2.y yVar = (k2.y) obj;
+                if (z10) {
+                    org.telegram.ui.Components.t4.d(cb0Var, cb0Var2, cb0Var3);
+                }
+                int value = cb0Var3.getValue();
+                int value2 = cb0Var2.getValue();
+                int value3 = cb0Var.getValue();
+                yj0 yj0Var = (yj0) yVar.f16776c;
+                int i12 = yVar.f16775b;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) yVar.d;
+                if (i12 == 8) {
+                    int[] iArr = yj0Var.f52339y;
+                    iArr[0] = value;
+                    iArr[1] = value2 + 1;
+                    iArr[2] = value3;
+                } else {
+                    yj0Var.getClass();
+                }
+                editTextBoldCursor.setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(value3), Integer.valueOf(value2 + 1), Integer.valueOf(value)));
+                return;
         }
-        return false;
     }
 
-    @Override
-    public final org.telegram.messenger.kj V() {
-        org.telegram.messenger.kj kjVar = this.f41968c.F5;
-        org.telegram.messenger.kj kjVar2 = this.f41966a;
-        if (kjVar == kjVar2) {
-            return kjVar2;
-        }
-        return null;
+    public ul(hm hmVar, org.telegram.ui.Cells.q1 q1Var, boolean[] zArr, boolean z10, TL_account.contentSettings contentsettings) {
+        this.f50114c = hmVar;
+        this.d = q1Var;
+        this.f50115e = zArr;
+        this.f50113b = z10;
+        this.f50116f = contentsettings;
     }
 
-    @Override
-    public final void e(CharSequence charSequence) {
-        this.f41968c.Z.d1(charSequence, false);
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final void o(int i10, org.telegram.messenger.y20 y20Var, boolean z10, int i11, int i12, boolean z11) {
-        un unVar = this.f41968c;
-        if (unVar.F5 != this.f41966a) {
-            return;
-        }
-        org.telegram.messenger.ff ffVar = this.f41967b;
-        if (!ffVar.f14620w && !ffVar.v && !ffVar.f14619u && y20Var == null) {
-            unVar.Z.Z();
-        } else {
-            unVar.u(ffVar, y20Var, z10, i11, 0, z11, 0L);
-        }
+    public ul(boolean z10, org.telegram.ui.Components.cb0 cb0Var, org.telegram.ui.Components.cb0 cb0Var2, org.telegram.ui.Components.cb0 cb0Var3, k2.y yVar) {
+        this.f50113b = z10;
+        this.f50114c = cb0Var;
+        this.d = cb0Var2;
+        this.f50115e = cb0Var3;
+        this.f50116f = yVar;
     }
 }

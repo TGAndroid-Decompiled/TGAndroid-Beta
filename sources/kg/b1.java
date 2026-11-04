@@ -1,14 +1,10 @@
 package kg;
-public final class b1 extends z1 {
-    @Override
-    public final void setOffset(float f7) {
-        boolean z10;
-        if (f7 == 0.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        setAutoPlayEnabled(z10);
-        super.setOffset(f7);
+public final class b1 {
+    public final String f16930a;
+    public final long f16931b;
+
+    public b1(String str, long j10) {
+        this.f16930a = str;
+        this.f16931b = j10;
     }
 }

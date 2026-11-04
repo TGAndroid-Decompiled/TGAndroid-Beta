@@ -1,26 +1,43 @@
 package r6;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import p7.n;
-import w7.h0;
-public final class a extends o6.a {
-    public static final Parcelable.Creator<a> CREATOR = new n(3);
-    public final boolean f46342a;
-    public final int f46343b;
-
-    public a(int i10, boolean z10) {
-        this.f46342a = z10;
-        this.f46343b = i10;
+import android.os.IBinder;
+import android.os.IInterface;
+import p6.h;
+public final class a extends h {
+    @Override
+    public final int d() {
+        return 253600000;
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.s(parcel, 1, 4);
-        parcel.writeInt(this.f46342a ? 1 : 0);
-        h0.s(parcel, 2, 4);
-        parcel.writeInt(this.f46343b);
-        h0.r(parcel, q6);
+    public final IInterface g(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.common.internal.service.IClientNotificationTelemetryService");
+        if (queryLocalInterface instanceof b) {
+            return (b) queryLocalInterface;
+        }
+        return new b8.a(iBinder, "com.google.android.gms.common.internal.service.IClientNotificationTelemetryService", 7);
+    }
+
+    @Override
+    public final m6.c[] i() {
+        return m7.b.f19211c;
+    }
+
+    @Override
+    public final String n() {
+        return "com.google.android.gms.common.internal.service.IClientNotificationTelemetryService";
+    }
+
+    @Override
+    public final String o() {
+        return "com.google.android.gms.common.telemetry.notification.service.START";
+    }
+
+    @Override
+    public final boolean q() {
+        return true;
     }
 }

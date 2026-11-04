@@ -1,55 +1,57 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class ba implements DialogInterface.OnCancelListener {
-    public final int f36012a;
-    public final int f36013b;
-    public final Object f36014c;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class ba implements org.telegram.ui.Components.fj0 {
+    public final ka f44006a;
 
-    public ba(Object obj, int i10, int i11) {
-        this.f36012a = i11;
-        this.f36014c = obj;
-        this.f36013b = i10;
+    public ba(ka kaVar) {
+        this.f44006a = kaVar;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f36012a) {
-            case 0:
-                ConnectionsManager.getInstance(((oa) this.f36014c).currentAccount).cancelRequest(this.f36013b, true);
-                return;
-            case 1:
-                ((fn) this.f36014c).f37191a.getConnectionsManager().cancelRequest(this.f36013b, true);
-                return;
-            case 2:
-                oo ooVar = (oo) this.f36014c;
-                ooVar.N0 = false;
-                ooVar.f40205b = null;
-                ooVar.getConnectionsManager().cancelRequest(this.f36013b, true);
-                return;
-            case 3:
-                ((ChatActivityEnterView) this.f36014c).P2.getConnectionsManager().cancelRequest(this.f36013b, true);
-                return;
-            case 4:
-                ConnectionsManager.getInstance(((org.telegram.ui.Components.ux) ((org.telegram.ui.Components.rx) this.f36014c).f30097c.f1886b).F.f31943c1).cancelRequest(this.f36013b, true);
-                return;
-            case 5:
-                ConnectionsManager.getInstance(((a50) this.f36014c).f35620k1.f15043a).cancelRequest(this.f36013b, true);
-                return;
-            case 6:
-                ConnectionsManager.getInstance(((LanguageSelectActivity) this.f36014c).currentAccount).cancelRequest(this.f36013b, true);
-                return;
-            case 7:
-                ((xb0) this.f36014c).getConnectionsManager().cancelRequest(this.f36013b, true);
-                return;
-            case 8:
-                ConnectionsManager.getInstance(((n91) this.f36014c).currentAccount).cancelRequest(this.f36013b, true);
-                return;
-            default:
-                ConnectionsManager.getInstance(((rh.r) this.f36014c).f47396a).cancelRequest(this.f36013b, true);
-                return;
+    public final void f(int i3, View view) {
+        int i10;
+        int i11;
+        int i12;
+        boolean z10 = view instanceof ha;
+        ka kaVar = this.f44006a;
+        if (z10) {
+            ha haVar = (ha) view;
+            TLRPC.TL_username tL_username = haVar.f45877w;
+            if (tL_username != null && !haVar.f45875r) {
+                if (tL_username.editable && kaVar.f46848y == 0) {
+                    kaVar.f46839b.y0(0);
+                    kaVar.j0(true);
+                    return;
+                }
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, kaVar.getParentActivity(), kaVar.getResourceProvider());
+                if (tL_username.active) {
+                    i10 = 2131743674;
+                } else {
+                    i10 = 2131743681;
+                }
+                String M0 = org.telegram.messenger.bd.M0(i10, null);
+                org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
+                s1Var.S = M0;
+                if (tL_username.active) {
+                    i11 = 2131743672;
+                } else {
+                    i11 = 2131743679;
+                }
+                s1Var.U = org.telegram.messenger.bd.M0(i11, null);
+                if (tL_username.active) {
+                    i12 = 2131749333;
+                } else {
+                    i12 = 2131745363;
+                }
+                alertDialog$Builder.k(org.telegram.messenger.bd.M0(i12, null), new cg.e0(this, tL_username, i3, view, 1));
+                alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), new org.telegram.messenger.go(15));
+                alertDialog$Builder.p();
+            }
+        } else if (view instanceof fa) {
+            kaVar.j0(true);
         }
     }
 }

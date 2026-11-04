@@ -1,39 +1,50 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import j$.util.Objects;
-public final class yw extends uy {
-    public final vy d;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class yw extends b5.a {
+    public final ey f40840c;
 
-    public yw(vy vyVar) {
-        super(vyVar, 1);
-        this.d = vyVar;
+    public yw(ey eyVar) {
+        this.f40840c = eyVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        if (i10 == 0) {
-            this.d.f31952f0 = false;
-        }
-        super.a(recyclerView, i10);
+    public final void a(b5.l lVar, Object obj) {
+        lVar.removeView((View) obj);
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        vy vyVar = this.d;
-        vw vwVar = vyVar.Q;
-        vyVar.V(vwVar.I0());
-        super.b(recyclerView, i10, i11);
-        ux uxVar = vyVar.S;
-        if (uxVar != null && vyVar.P.getAdapter() == uxVar) {
-            ux uxVar2 = uxVar.f31107y.f30727a;
-            if (!uxVar2.F.V.F && !uxVar2.E) {
-                if (vwVar.N0() + 20 > uxVar.b()) {
-                    tx txVar = uxVar.f31107y;
-                    Objects.requireNonNull(txVar);
-                    org.telegram.messenger.i0.g3(new aw(txVar, 1));
+    public final int b() {
+        return this.f40840c.f33531e.size();
+    }
+
+    @Override
+    public final CharSequence d(int i3) {
+        if (i3 != 0) {
+            if (i3 != 1) {
+                if (i3 != 2) {
+                    return null;
                 }
+                return org.telegram.messenger.bd.M0(2131754756, null);
             }
+            return org.telegram.messenger.bd.M0(2131754879, null);
         }
+        return org.telegram.messenger.bd.M0(2131751197, null);
+    }
+
+    @Override
+    public final Object e(b5.l lVar, int i3) {
+        FrameLayout frameLayout = ((zx) this.f40840c.f33531e.get(i3)).f41145b;
+        lVar.addView(frameLayout);
+        return frameLayout;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
+        }
+        return false;
     }
 }

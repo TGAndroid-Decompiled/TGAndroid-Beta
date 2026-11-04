@@ -1,19 +1,17 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.content.Context;
-public final class tt extends Dialog {
-    public final kg.q1 f30725a;
+import android.webkit.JavascriptInterface;
+public final class tt {
+    public final ut f38554a;
 
-    public tt(kg.q1 q1Var, Context context) {
-        super(context);
-        this.f30725a = q1Var;
+    public tt(ut utVar) {
+        this.f38554a = utVar;
     }
 
-    @Override
-    public final void dismiss() {
-        ut utVar = (ut) this.f30725a.f11252b;
-        utVar.f31083a.k(false);
-        utVar.f31083a.e();
+    @JavascriptInterface
+    public void postEvent(String str, String str2) {
+        if ("loaded".equals(str)) {
+            org.telegram.messenger.g0.h3(new gp(this, 10));
+        }
     }
 }

@@ -1,148 +1,120 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.KeyEvent;
+import android.content.SharedPreferences;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
-public final class s91 extends FrameLayout {
-    public final int f41293a;
-    public final v91 f41294b;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class s91 extends org.telegram.ui.ActionBar.d2 {
+    public q91 f49451a;
+    public org.telegram.ui.Components.tj0 f49452b;
+    public long f49453c;
+    public ArrayList d;
+    public HashSet f49454e;
 
-    public s91(v91 v91Var, Context context, int i10) {
-        super(context);
-        this.f41293a = i10;
-        this.f41294b = v91Var;
+    public static void Z(s91 s91Var, int i3) {
+        org.telegram.messenger.ws wsVar = s91Var.getNotificationsController().f25767h0;
+        wsVar.getClass();
+        String v = org.telegram.messenger.us.v(s91Var.f49453c, i3, true);
+        SharedPreferences.Editor edit = wsVar.b().edit();
+        SharedPreferences.Editor remove = edit.remove("notify2_" + v);
+        SharedPreferences.Editor remove2 = remove.remove("custom_" + v);
+        SharedPreferences.Editor remove3 = remove2.remove("notifyuntil_" + v);
+        SharedPreferences.Editor remove4 = remove3.remove("content_preview_" + v);
+        SharedPreferences.Editor remove5 = remove4.remove("silent_" + v);
+        remove5.remove("stories_" + v).apply();
+        TL_account.updateNotifySettings updatenotifysettings = new TL_account.updateNotifySettings();
+        updatenotifysettings.settings = new TLRPC.TL_inputPeerNotifySettings();
+        TLRPC.TL_inputNotifyForumTopic tL_inputNotifyForumTopic = new TLRPC.TL_inputNotifyForumTopic();
+        tL_inputNotifyForumTopic.peer = s91Var.getMessagesController().j1(s91Var.f49453c);
+        tL_inputNotifyForumTopic.top_msg_id = i3;
+        updatenotifysettings.peer = tL_inputNotifyForumTopic;
+        s91Var.getConnectionsManager().sendRequest(updatenotifysettings, new ei.u5(9));
     }
 
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        org.telegram.ui.Cells.q1 q1Var;
-        switch (this.f41293a) {
-            case 0:
-                v91 v91Var = this.f41294b;
-                if (v91Var.f42462y > 0.0f && v91Var.f42460w != null) {
-                    v91Var.f42461x.reset();
-                    float width = getWidth() / v91Var.f42458r.getWidth();
-                    v91Var.f42461x.postScale(width, width);
-                    v91Var.f42459s.setLocalMatrix(v91Var.f42461x);
-                    v91Var.f42460w.setAlpha((int) (v91Var.f42462y * 255.0f));
-                    canvas2 = canvas;
-                    canvas2.drawRect(0.0f, 0.0f, getWidth(), getHeight(), v91Var.f42460w);
-                } else {
-                    canvas2 = canvas;
+    public final void a0() {
+        ArrayList arrayList;
+        ArrayList arrayList2 = this.d;
+        if (!this.isPaused && this.f49451a != null) {
+            arrayList = new ArrayList();
+            arrayList.addAll(arrayList2);
+        } else {
+            arrayList = null;
+        }
+        arrayList2.clear();
+        arrayList2.add(new r91(1, null));
+        ArrayList l10 = getMessagesController().f23102q7.l(-this.f49453c);
+        int i3 = 0;
+        if (l10 != null) {
+            int i10 = 0;
+            while (i3 < l10.size()) {
+                if (this.f49454e.contains(Integer.valueOf(((TLRPC.TL_forumTopic) l10.get(i3)).f27053id))) {
+                    arrayList2.add(new r91(2, (TLRPC.TL_forumTopic) l10.get(i3)));
+                    i10 = 1;
                 }
-                if (v91Var.N && (q1Var = v91Var.K) != null) {
-                    q1Var.f22491a6 = v91Var.O;
-                    q1Var.invalidate();
-                    v91Var.N = false;
-                }
-                super.dispatchDraw(canvas2);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
+                i3++;
+            }
+            i3 = i10;
+        }
+        if (i3 != 0) {
+            arrayList2.add(new r91(3, null));
+            arrayList2.add(new r91(4, null));
+        }
+        arrayList2.add(new r91(3, null));
+        q91 q91Var = this.f49451a;
+        if (q91Var != null) {
+            q91Var.E(arrayList, arrayList2);
         }
     }
 
     @Override
-    public boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
-        switch (this.f41293a) {
-            case 0:
-                if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
-                    this.f41294b.c(true);
-                    return true;
-                }
-                return super.dispatchKeyEventPreIme(keyEvent);
-            default:
-                return super.dispatchKeyEventPreIme(keyEvent);
-        }
+    public final View createView(Context context) {
+        setHasOwnBackground(true);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        this.simpleActionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.w1(false));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new vs0(this, 17));
+        this.simpleActionBar.setTitle(org.telegram.messenger.bd.M0(2131747920, null));
+        org.telegram.ui.Components.tj0 tj0Var = new org.telegram.ui.Components.tj0(context, null);
+        this.f49452b = tj0Var;
+        tj0Var.r1();
+        this.f49452b.setSectionsDrawBackground(true);
+        u4.k kVar = new u4.k();
+        kVar.C = false;
+        kVar.f55567m = false;
+        this.f49452b.setItemAnimator(kVar);
+        this.f49452b.setLayoutManager(new u4.b0());
+        org.telegram.ui.Components.tj0 tj0Var2 = this.f49452b;
+        q91 q91Var = new q91(this);
+        this.f49451a = q91Var;
+        tj0Var2.setAdapter(q91Var);
+        this.f49452b.setOnItemClickListener(new p91(this));
+        frameLayout.addView(this.f49452b);
+        return this.fragmentView;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        switch (this.f41293a) {
-            case 1:
-                v91 v91Var = this.f41294b;
-                if (view != v91Var.J && view != v91Var.I) {
-                    return super.drawChild(canvas, view, j10);
-                }
-                canvas.save();
-                canvas.clipRect(0.0f, org.telegram.messenger.i0.T1(v91Var.L, 0.0f, v91Var.f42462y), getWidth(), org.telegram.messenger.i0.T1(v91Var.M, getHeight(), v91Var.f42462y));
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                canvas.restore();
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
+    public final org.telegram.ui.Components.tj0 getListViewForSimpleGlass() {
+        return this.f49452b;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.f41293a) {
-            case 0:
-                super.onLayout(z10, i10, i11, i12, i13);
-                this.f41294b.d();
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
+    public final boolean isSupportEdgeToEdge() {
+        return true;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f41293a) {
-            case 2:
-                int size = View.MeasureSpec.getSize(i10);
-                int size2 = View.MeasureSpec.getSize(i11);
-                v91 v91Var = this.f41294b;
-                v91Var.e();
-                for (int i12 = 0; i12 < getChildCount(); i12++) {
-                    View childAt = getChildAt(i12);
-                    ViewGroup viewGroup = v91Var.S;
-                    if (childAt == viewGroup) {
-                        float f7 = v91Var.T;
-                        if (f7 > 0.0f) {
-                            viewGroup.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f7), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    ViewGroup viewGroup2 = v91Var.Q;
-                    if (childAt == viewGroup2) {
-                        float f10 = v91Var.R;
-                        if (f10 > 0.0f) {
-                            viewGroup2.measure(View.MeasureSpec.makeMeasureSpec(Math.min(size, (int) f10), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                        }
-                    }
-                    org.telegram.ui.Components.nj0 nj0Var = v91Var.P;
-                    if (childAt == nj0Var) {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(nj0Var.getTotalWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    } else {
-                        childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-                    }
-                }
-                setMeasuredDimension(size, size2);
-                return;
-            default:
-                super.onMeasure(i10, i11);
-                return;
-        }
+    public final boolean onFragmentCreate() {
+        this.f49453c = this.arguments.getLong("dialog_id");
+        a0();
+        return super.onFragmentCreate();
     }
 
     @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f41293a) {
-            case 0:
-                super.onSizeChanged(i10, i11, i12, i13);
-                v91 v91Var = this.f41294b;
-                yg.d.c(v91Var.E, v91Var.f42450b);
-                v91Var.F.d();
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

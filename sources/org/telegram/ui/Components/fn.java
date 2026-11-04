@@ -1,60 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.style.ImageSpan;
-public final class fn implements TextWatcher {
-    public final en f26192a;
-    public final int f26193b;
-    public final fg.j f26194c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.ui.m91;
+public final class fn extends k9 {
+    public final org.telegram.ui.Cells.j6 H;
+    public final org.telegram.ui.ActionBar.d2 I;
+    public final boolean J;
+    public final org.telegram.ui.ActionBar.e6 K;
+    public final jn L;
 
-    public fn(fg.j jVar, en enVar, int i10) {
-        this.f26194c = jVar;
-        this.f26192a = enVar;
-        this.f26193b = i10;
+    public fn(jn jnVar, Context context, org.telegram.ui.ActionBar.d2 d2Var, boolean z10, org.telegram.ui.ActionBar.e6 e6Var) {
+        super(context);
+        this.L = jnVar;
+        this.I = d2Var;
+        this.J = z10;
+        this.K = e6Var;
+        this.H = new org.telegram.ui.Cells.j6(this);
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        jn jnVar = (jn) this.f26194c.e;
-        en enVar = this.f26192a;
-        if (enVar.getTag() != null) {
+    public final void onDraw(Canvas canvas) {
+        long j10;
+        jn jnVar = this.L;
+        if (jnVar.f35122b && this.f35345e == null) {
+            org.telegram.ui.Cells.j6 j6Var = this.H;
+            j6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+            j6Var.f10696a = true;
+            j6Var.v = true;
+            j6Var.J = this.K;
+            Integer num = jnVar.f35124c;
+            if (num != null) {
+                j6Var.f10718z = num.intValue();
+            }
+            org.telegram.ui.wm wmVar = jnVar.H;
+            if (wmVar != null) {
+                j10 = wmVar.a();
+            } else {
+                org.telegram.ui.ActionBar.d2 d2Var = this.I;
+                if (d2Var instanceof m91) {
+                    j10 = -((m91) d2Var).f47575a;
+                } else {
+                    j10 = 0;
+                }
+            }
+            ei.s7.h(j10, canvas, this.f35342a, j6Var);
             return;
         }
-        int i11 = this.f26193b;
-        if (i11 == 11) {
-            i10 = jnVar.f27501n0;
-        } else {
-            i10 = jnVar.m0;
-        }
-        s4.c1 K = jnVar.f27511s.K(i10);
-        if (K != null && jnVar.f27520y != null) {
-            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
-                editable.removeSpan(imageSpan);
-            }
-            org.telegram.messenger.k6.l(editable, enVar.getEditField().getPaint().getFontMetricsInt(), false);
-            jnVar.f27520y.setDirection(1);
-            jnVar.f27520y.setDelegate(enVar);
-            jnVar.f27520y.setTranslationY(K.f47909a.getY());
-            jnVar.f27520y.e();
-        }
-        if (i11 == 11) {
-            jnVar.O = editable;
-        } else {
-            jnVar.N = editable;
-        }
-        if (K != null) {
-            jn.O(jnVar, K.f47909a, i10);
-        }
-        jnVar.W();
+        super.onDraw(canvas);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (this.J && getImageReceiver().L()) {
+            accessibilityNodeInfo.setText(org.telegram.messenger.bd.M0(2131754798, null));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.bd.M0(2131747825, null)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.L.f35122b && this.H.a(this, motionEvent)) {
+            return true;
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

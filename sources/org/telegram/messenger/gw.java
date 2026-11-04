@@ -1,76 +1,46 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class gw {
-    public long f15965a;
-    public boolean f15966b;
-    public int f15967c;
-    public kj d;
-    public int e;
-    public long f15968f;
-    public long f15969g;
-    public long h;
-    public boolean f15970i;
-    public int f15971j;
-    public int f15972k;
+import java.util.HashMap;
+import org.telegram.tgnet.TLObject;
+public final class gw implements Runnable {
+    public final int f22781a;
+    public final yy f22782b;
+    public final TLObject f22783c;
+    public final zi d;
+    public final String f22784e;
+    public final ky f22785f;
+    public final boolean h;
+    public final ky f22786n;
+    public final Object f22787r;
+    public final HashMap f22788s;
+    public final boolean f22789w;
 
-    public static gw a(int i10, TLRPC.Message message) {
-        ?? obj = new Object();
-        obj.f15965a = kj.R1(e20.i(i10).e(), message);
-        obj.f15966b = false;
-        obj.f15967c = message.f19815id;
-        obj.d = new kj(i10, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);
-        return obj;
+    public gw(yy yyVar, TLObject tLObject, zi ziVar, String str, ky kyVar, boolean z10, ky kyVar2, Object obj, HashMap hashMap, boolean z11, int i3) {
+        this.f22781a = i3;
+        this.f22782b = yyVar;
+        this.f22783c = tLObject;
+        this.d = ziVar;
+        this.f22784e = str;
+        this.f22785f = kyVar;
+        this.h = z10;
+        this.f22786n = kyVar2;
+        this.f22787r = obj;
+        this.f22788s = hashMap;
+        this.f22789w = z11;
     }
 
-    public static gw b(int i10, TLRPC.savedDialog saveddialog, ArrayList arrayList) {
-        TLRPC.Message message;
-        ?? obj = new Object();
-        obj.f15965a = o5.o(saveddialog.peer);
-        obj.f15966b = saveddialog.pinned;
-        obj.f15967c = saveddialog.top_message;
-        obj.f15968f = saveddialog.unread_count;
-        obj.f15969g = saveddialog.read_inbox_max_id;
-        obj.h = saveddialog.read_outbox_max_id;
-        int i11 = 0;
-        while (true) {
-            if (i11 < arrayList.size()) {
-                message = (TLRPC.Message) arrayList.get(i11);
-                if (obj.f15967c == message.f19815id) {
-                    break;
-                }
-                i11++;
-            } else {
-                message = null;
-                break;
-            }
+    @Override
+    public final void run() {
+        switch (this.f22781a) {
+            case 0:
+                this.f22782b.O(this.f22783c, this.d, this.f22784e, this.f22785f, this.h, this.f22786n, this.f22787r, this.f22788s, this.f22789w);
+                return;
+            case 1:
+                this.f22782b.O(this.f22783c, this.d, this.f22784e, this.f22785f, this.h, this.f22786n, this.f22787r, this.f22788s, this.f22789w);
+                return;
+            default:
+                this.f22782b.O(this.f22783c, this.d, this.f22784e, this.f22785f, this.h, this.f22786n, this.f22787r, this.f22788s, this.f22789w);
+                return;
         }
-        TLRPC.Message message2 = message;
-        if (message2 != null) {
-            obj.d = new kj(i10, message2, null, null, null, null, null, false, false, 0L, false, false, true, 0);
-        }
-        return obj;
-    }
-
-    public final int c() {
-        TLRPC.Message message;
-        kj kjVar = this.d;
-        if (kjVar != null && (message = kjVar.f16690k) != null) {
-            if ((message.flags & 32768) != 0) {
-                return message.edit_date;
-            }
-            return message.date;
-        }
-        return this.f15971j;
-    }
-
-    public final boolean d() {
-        TLRPC.Message message;
-        kj kjVar = this.d;
-        if (kjVar != null && (message = kjVar.f16690k) != null && (message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
-            return true;
-        }
-        return false;
     }
 }

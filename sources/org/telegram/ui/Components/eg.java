@@ -1,40 +1,50 @@
 package org.telegram.ui.Components;
-public final class eg {
-    public static final eg d;
-    public static final eg e;
-    public static final eg[] f25808f;
-    public final dg f25809a;
-    public final dg f25810b;
-    public final int f25811c;
 
-    static {
-        dg dgVar = dg.f25480a;
-        dg dgVar2 = dg.f25481b;
-        eg egVar = new eg("VOICE_TO_VIDEO", 0, dgVar, dgVar2, 2131624328);
-        d = egVar;
-        dg dgVar3 = dg.f25482c;
-        dg dgVar4 = dg.d;
-        eg egVar2 = new eg("STICKER_TO_KEYBOARD", 1, dgVar3, dgVar4, 2131624227);
-        dg dgVar5 = dg.e;
-        eg egVar3 = new eg("SMILE_TO_KEYBOARD", 2, dgVar5, dgVar4, 2131624194);
-        eg egVar4 = new eg("VIDEO_TO_VOICE", 3, dgVar2, dgVar, 2131624328);
-        e = egVar4;
-        eg egVar5 = new eg("KEYBOARD_TO_STICKER", 4, dgVar4, dgVar3, 2131624074);
-        dg dgVar6 = dg.f25483f;
-        f25808f = new eg[]{egVar, egVar2, egVar3, egVar4, egVar5, new eg("KEYBOARD_TO_GIF", 5, dgVar4, dgVar6, 2131624072), new eg("KEYBOARD_TO_SMILE", 6, dgVar4, dgVar5, 2131624073), new eg("GIF_TO_KEYBOARD", 7, dgVar6, dgVar4, 2131624030), new eg("GIF_TO_SMILE", 8, dgVar6, dgVar5, 2131624031), new eg("SMILE_TO_GIF", 9, dgVar5, dgVar6, 2131624193), new eg("SMILE_TO_STICKER", 10, dgVar5, dgVar3, 2131624195), new eg("STICKER_TO_SMILE", 11, dgVar3, dgVar5, 2131624228)};
+import java.util.HashMap;
+public final class eg extends HashMap {
+    public final int f33386a;
+    public final Object f33387b;
+
+    public eg(Object obj, int i3) {
+        this.f33386a = i3;
+        this.f33387b = obj;
     }
 
-    public eg(String str, int i10, dg dgVar, dg dgVar2, int i11) {
-        this.f25809a = dgVar;
-        this.f25810b = dgVar2;
-        this.f25811c = i11;
+    @Override
+    public Object get(Object obj) {
+        switch (this.f33386a) {
+            case 0:
+                int i3 = ((hg) this.f33387b).f34383w;
+                ch0 ch0Var = (ch0) super.get(obj);
+                if (ch0Var == null) {
+                    gg ggVar = (gg) obj;
+                    ch0 ch0Var2 = new ch0(ggVar.f34091c, org.telegram.messenger.g0.L(i3), org.telegram.messenger.g0.L(i3));
+                    put(ggVar, ch0Var2);
+                    return ch0Var2;
+                }
+                return ch0Var;
+            default:
+                return super.get(obj);
+        }
     }
 
-    public static eg valueOf(String str) {
-        return (eg) Enum.valueOf(eg.class, str);
-    }
-
-    public static eg[] values() {
-        return (eg[]) f25808f.clone();
+    @Override
+    public Object put(Object obj, Object obj2) {
+        String lowerCase;
+        switch (this.f33386a) {
+            case 1:
+                String str = (String) obj;
+                String str2 = (String) obj2;
+                HashMap hashMap = ((vc.g) this.f33387b).f56548f;
+                if (str == null) {
+                    lowerCase = str;
+                } else {
+                    lowerCase = str.toLowerCase();
+                }
+                hashMap.put(lowerCase, str2);
+                return (String) super.put(str, str2);
+            default:
+                return super.put(obj, obj2);
+        }
     }
 }

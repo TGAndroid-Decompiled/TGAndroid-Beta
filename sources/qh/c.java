@@ -1,155 +1,75 @@
 package qh;
 
-import android.app.Activity;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.TextPaint;
-import android.view.MotionEvent;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-import org.telegram.messenger.l9;
-public final class c extends View {
-    public static final long f45583f0 = System.currentTimeMillis();
-    public static final String[] f45584g0 = new String[100];
-    public float D;
-    public long E;
-    public final RectF F;
-    public float G;
-    public float H;
-    public final l9 I;
-    public final Path J;
-    public float K;
-    public final RectF L;
-    public final RectF M;
-    public final WeakHashMap N;
-    public final Path O;
-    public final int[] P;
-    public LinearGradient Q;
-    public final Paint R;
-    public final Paint.FontMetrics S;
-    public m T;
-    public float U;
-    public float V;
-    public float W;
-    public final k2.m0 f45585a;
-    public long f45586a0;
-    public g0 f45587b;
-    public long f45588b0;
-    public final Paint f45589c;
-    public boolean f45590c0;
-    public final Paint d;
-    public final int[] f45591d0;
-    public final TextPaint e;
-    public final RectF f45592e0;
-    public final int[] f45593f;
-    public final int[] h;
-    public final HashMap f45594n;
-    public final ArrayList f45595r;
-    public final ArrayList f45596s;
-    public final ArrayList f45597w;
-    public float f45598x;
-    public float f45599y;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import b8.mf;
+import java.util.HashSet;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.z5;
+public final class c extends FrameLayout implements z5 {
+    public final e6 f53947a;
+    public final ImageView f53948b;
+    public final TextView f53949c;
+    public int d;
+    public boolean f53950e;
 
-    public c(Activity activity, k2.m0 m0Var) {
-        super(activity);
-        this.f45589c = new Paint(1);
-        Paint paint = new Paint(1);
-        this.d = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.e = textPaint;
-        new RectF();
-        this.f45593f = new int[2];
-        this.h = new int[2];
-        this.f45594n = new HashMap();
-        this.f45595r = new ArrayList();
-        this.f45596s = new ArrayList();
-        this.f45597w = new ArrayList();
-        this.F = new RectF();
-        this.G = Float.NaN;
-        this.H = -1.0f;
-        this.I = new l9(3);
-        this.J = new Path();
-        this.K = Float.NaN;
-        this.L = new RectF();
-        this.M = new RectF();
-        this.N = new WeakHashMap();
-        this.O = new Path();
-        this.P = new int[2];
-        this.R = new Paint(1);
-        this.S = new Paint.FontMetrics();
-        this.U = Float.NaN;
-        this.W = 0.45f;
-        this.f45591d0 = new int[2];
-        this.f45592e0 = new RectF();
-        this.f45585a = m0Var;
-        textPaint.setTypeface(org.telegram.messenger.i0.o());
-        textPaint.setTextSize(org.telegram.messenger.i0.L(10.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        paint.setStyle(Paint.Style.STROKE);
+    public c(Context context, e6 e6Var) {
+        super(context);
+        this.f53947a = e6Var;
+        ImageView imageView = new ImageView(context);
+        this.f53948b = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(2131232057);
+        addView(imageView, mf.d(48, 48.0f, 8388627, 6.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f53949c = textView;
+        textView.setText(bd.M0(2131751167, null));
+        textView.setTextSize(1, 15.0f);
+        textView.setTypeface(g0.o());
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, mf.d(-2, -2.0f, 8388627, 50.0f, 0.0f, 16.0f, 0.0f));
+        updateColors();
     }
 
-    public static long b() {
-        return System.currentTimeMillis() - f45583f0;
-    }
-
-    public static float c(float[] fArr, long j10) {
-        float min = Math.min(1.0f, ((float) (j10 - fArr[2])) / 180.0f);
-        float f7 = fArr[1];
-        float max = 1.0f - Math.max(0.0f, Math.min(1.0f, min));
-        return ((1.0f - ((max * max) * max)) * (fArr[0] - f7)) + f7;
-    }
-
-    public final boolean a(android.graphics.Canvas r37, android.view.ViewGroup r38, java.util.List r39, long r40) {
-        throw new UnsupportedOperationException("Method not decompiled: qh.c.a(android.graphics.Canvas, android.view.ViewGroup, java.util.List, long):boolean");
+    public final int a(float f10) {
+        return i0.a.o(k6.w0(k6.Kl, this.f53947a), (int) (f10 * 255.0f));
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(k6.Kl));
+    }
+
+    public void setOnBackClickListener(View.OnClickListener onClickListener) {
+        this.f53948b.setOnClickListener(onClickListener);
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r30) {
-        throw new UnsupportedOperationException("Method not decompiled: qh.c.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i10 = 0;
-        if (this.f45599y >= 0.5f) {
-            if (this.F.contains(motionEvent.getX(), motionEvent.getY())) {
-                if (motionEvent.getActionMasked() == 1) {
-                    int i11 = 0;
-                    while (true) {
-                        ArrayList arrayList = this.f45595r;
-                        if (i10 >= arrayList.size()) {
-                            break;
-                        }
-                        b bVar = (b) arrayList.get(i10);
-                        if (!bVar.d) {
-                            if (Math.abs(motionEvent.getX() - bVar.f45579b) < org.telegram.messenger.i0.L(34.0f) / 2.0f) {
-                                x0 x0Var = ((i0) this.f45585a.f10701a).d;
-                                ArrayList arrayList2 = x0Var.I;
-                                if (i11 >= 0 && i11 < arrayList2.size()) {
-                                    arrayList2.remove(i11);
-                                    x0Var.c();
-                                    x0Var.i0();
-                                }
-                                invalidate();
-                                return true;
-                            }
-                            i11++;
-                        }
-                        i10++;
-                    }
-                }
-                return true;
-            }
+    public final void updateColors() {
+        this.f53949c.setTextColor(a(0.6f));
+        int a10 = a(1.0f);
+        if (this.f53950e && a10 == this.d) {
+            return;
         }
-        return false;
+        this.f53950e = true;
+        this.d = a10;
+        PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(a(0.6f), PorterDuff.Mode.MULTIPLY);
+        ImageView imageView = this.f53948b;
+        imageView.setColorFilter(porterDuffColorFilter);
+        if (imageView.getBackground() != null) {
+            k6.H1(imageView.getBackground(), a(0.1f), true);
+        } else {
+            imageView.setBackground(k6.h0(a(0.1f), 1, -1));
+        }
     }
 }

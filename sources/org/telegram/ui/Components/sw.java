@@ -1,26 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class sw extends s4.b0 {
-    public final int f30457r;
-
-    public sw(Context context, int i10) {
-        super(context);
-        this.f30457r = i10;
-    }
-
-    @Override
-    public final int i(int i10, int i11, int i12, int i13, int i14) {
-        return super.i(i10, i11, i12, i13, i14) + this.f30457r;
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 16;
-    }
-
-    @Override
-    public final int p() {
-        return -1;
-    }
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class sw {
+    public Long f38124a;
+    public TLRPC.StickerSet f38125b;
+    public ArrayList f38126c = new ArrayList();
+    public TLRPC.TL_inputStickerSetID d;
+    public boolean f38127e;
+    public boolean f38128f;
+    public boolean f38129g;
+    public boolean h;
+    public boolean f38130i;
+    public int f38131j;
 }

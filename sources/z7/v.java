@@ -1,15 +1,24 @@
 package z7;
-public final class v {
-    public static final v f55125a;
-    public static final v[] f55126b;
+public final class v extends n {
+    public final transient Object[] f60101c;
+    public final transient int d;
+    public final transient int f60102e = 1;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f55125a = r02;
-        f55126b = new v[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+    public v(int i3, Object[] objArr) {
+        this.f60101c = objArr;
+        this.d = i3;
     }
 
-    public static v[] values() {
-        return (v[]) f55126b.clone();
+    @Override
+    public final Object get(int i3) {
+        x7.x6.a(i3, this.f60102e);
+        Object obj = this.f60101c[i3 + i3 + this.d];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int size() {
+        return this.f60102e;
     }
 }

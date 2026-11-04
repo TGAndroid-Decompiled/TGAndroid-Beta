@@ -1,44 +1,40 @@
 package org.telegram.ui.Wallet;
-public final class f8 {
-    public float f34506a;
-    public float f34507b;
-    public float f34508c;
-    public float d;
-    public float e;
 
-    public f8(float f7, float f10, float f11) {
-        this.f34507b = f7;
-        this.f34506a = f7;
-        this.d = f10;
-        this.e = f11;
+import org.telegram.messenger.bd;
+import org.telegram.messenger.u10;
+import org.telegram.ui.Components.ac;
+import org.telegram.ui.Components.fc;
+public final class f8 implements u10 {
+    public final int f42549a;
+    public final n8 f42550b;
+
+    public f8(n8 n8Var, int i3) {
+        this.f42549a = i3;
+        this.f42550b = n8Var;
     }
 
-    public final void a(float f7) {
-        this.f34507b = f7;
-        this.f34506a = f7;
-        this.f34508c = 0.0f;
-    }
-
-    public final boolean b(float f7) {
-        boolean z10;
-        float sqrt = this.e * 2.0f * ((float) Math.sqrt(this.d));
-        while (f7 > 0.0f) {
-            float min = Math.min(f7, 0.0020833334f);
-            float f10 = this.f34508c;
-            float f11 = this.f34506a;
-            float f12 = ((((f11 - this.f34507b) * (-this.d)) - (sqrt * f10)) * min) + f10;
-            this.f34508c = f12;
-            this.f34506a = (f12 * min) + f11;
-            f7 -= min;
+    @Override
+    public final void a(Object obj) {
+        int i3 = this.f42549a;
+        n8 n8Var = this.f42550b;
+        switch (i3) {
+            case 0:
+                n8.h0(n8Var, (u10) obj);
+                return;
+            case 1:
+                String str = (String) obj;
+                if (str != null) {
+                    fc.a0(n8Var).e0(str, false);
+                    return;
+                }
+                ac I = fc.a0(n8Var).I(2131623989, bd.M0(2131743198, null), bd.M0(2131743196, null));
+                I.f31792j = 5000;
+                I.j();
+                n8Var.f34298a.f35594g3.O(true);
+                return;
+            default:
+                n8.f0(n8Var, (Boolean) obj);
+                return;
         }
-        if (Math.abs(this.f34506a - this.f34507b) <= 0.002f && Math.abs(this.f34508c) <= 0.02f) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (!z10) {
-            a(this.f34507b);
-        }
-        return z10;
     }
 }

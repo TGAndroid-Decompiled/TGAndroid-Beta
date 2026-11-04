@@ -1,32 +1,15 @@
 package m5;
+public final class d implements ma.d {
+    public static final d f19103a = new Object();
+    public static final ma.c f19104b = ma.c.c("clientType");
+    public static final ma.c f19105c = ma.c.c("androidClientInfo");
 
-import android.content.Context;
-import com.google.android.datatransport.cct.CctBackendFactory;
-import java.util.HashMap;
-import li.k;
-public final class d {
-    public final m4.c f13010a;
-    public final k f13011b;
-    public final HashMap f13012c;
-
-    public d(Context context, k kVar) {
-        m4.c cVar = new m4.c(context);
-        this.f13012c = new HashMap();
-        this.f13010a = cVar;
-        this.f13011b = kVar;
-    }
-
-    public final synchronized f a(String str) {
-        if (this.f13012c.containsKey(str)) {
-            return (f) this.f13012c.get(str);
-        }
-        CctBackendFactory E = this.f13010a.E(str);
-        if (E == null) {
-            return null;
-        }
-        k kVar = this.f13011b;
-        f create = E.create(new b((Context) kVar.f12101b, (u5.a) kVar.f12102c, (u5.a) kVar.d, str));
-        this.f13012c.put(str, create);
-        return create;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ma.e eVar = (ma.e) obj2;
+        n nVar = (n) ((y) obj);
+        nVar.getClass();
+        eVar.a(f19104b, x.f19171a);
+        eVar.a(f19105c, nVar.f19150a);
     }
 }

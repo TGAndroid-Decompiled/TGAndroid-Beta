@@ -1,47 +1,33 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.voip.Instance;
-import org.telegram.messenger.voip.NativeInstance;
-public final class r0 implements NativeInstance.AudioLevelsCallback, NativeInstance.VideoSourcesCallback, NativeInstance.RequestBroadcastPartCallback, NativeInstance.RequestCurrentTimeCallback, Instance.OnStateUpdatedListener {
-    public final int f18858a;
-    public final VoIPService f18859b;
-    public final int f18860c;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.webrtc.VideoSink;
+public final class r0 implements Runnable {
+    public final int f26053a;
+    public final boolean f26054b;
+    public final Object f26055c;
+    public final Object d;
+    public final Object f26056e;
 
-    public r0(VoIPService voIPService, int i10, int i11) {
-        this.f18858a = i11;
-        this.f18859b = voIPService;
-        this.f18860c = i10;
+    public r0(Object obj, Object obj2, Object obj3, boolean z10, int i3) {
+        this.f26053a = i3;
+        this.f26055c = obj;
+        this.d = obj2;
+        this.f26056e = obj3;
+        this.f26054b = z10;
     }
 
     @Override
-    public void onStateUpdated(int i10, boolean z10) {
-        this.f18859b.lambda$createGroupInstance$80(this.f18860c, i10, z10);
-    }
-
-    @Override
-    public void run(long j10) {
-        this.f18859b.lambda$createGroupInstance$79(this.f18860c, j10);
-    }
-
-    @Override
-    public void run(long j10, long j11, int i10, int i11) {
-        switch (this.f18858a) {
-            case 2:
-                this.f18859b.lambda$createGroupInstance$75(this.f18860c, j10, j11, i10, i11);
+    public final void run() {
+        switch (this.f26053a) {
+            case 0:
+                ((VoIPService.AnonymousClass5) this.f26055c).lambda$onFrame$0((String) this.d, (VideoSink) this.f26056e, this.f26054b);
                 return;
             default:
-                this.f18859b.lambda$createGroupInstance$77(this.f18860c, j10, j11, i10, i11);
+                ((VoIPService) this.f26055c).lambda$acknowledgeCall$12((TLObject) this.d, (TLRPC.TL_error) this.f26056e, this.f26054b);
                 return;
         }
-    }
-
-    @Override
-    public void run(long j10, int[] iArr) {
-        this.f18859b.lambda$createGroupInstance$70(this.f18860c, j10, iArr);
-    }
-
-    @Override
-    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-        this.f18859b.lambda$createGroupInstance$68(this.f18860c, iArr, fArr, zArr);
     }
 }

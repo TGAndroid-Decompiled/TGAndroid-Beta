@@ -1,20 +1,34 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.Bundle;
-public final class gs0 extends org.telegram.ui.wn {
-    public final au0 f26543f;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class gs0 extends org.telegram.ui.Cells.t2 {
+    public final hs0 f34184b5;
 
-    public gs0(au0 au0Var, Context context, org.telegram.ui.ActionBar.z4 z4Var, Bundle bundle) {
-        super(context, z4Var, bundle);
-        this.f26543f = au0Var;
+    public gs0(hs0 hs0Var, Context context) {
+        super(context, true);
+        this.f34184b5 = hs0Var;
     }
 
     @Override
-    public final void b(boolean z10) {
-        org.telegram.ui.ActionBar.t0 t0Var = this.f26543f.f24544p0;
-        if (t0Var != null) {
-            t0Var.setShowSearchProgress(z10);
+    public final boolean W() {
+        return false;
+    }
+
+    @Override
+    public final boolean getIsPinned() {
+        hs0 hs0Var = this.f34184b5;
+        ArrayList arrayList = hs0Var.f34493f;
+        qr0 qr0Var = hs0Var.f34496s;
+        if (qr0Var != null && qr0Var.getAdapter() == hs0Var) {
+            hs0Var.f34496s.getClass();
+            int R = RecyclerView.R(this);
+            if (R >= 0 && R < arrayList.size()) {
+                return ((org.telegram.messenger.mv) arrayList.get(R)).f24265b;
+            }
+            return false;
         }
+        return false;
     }
 }

@@ -1,3 +1,6 @@
 package a3;
-public abstract class v {
+public final class v {
+    public int f116a;
+    public int f117b;
+    public float f118c;
 }

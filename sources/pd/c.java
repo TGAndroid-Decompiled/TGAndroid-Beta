@@ -1,3 +1,5 @@
 package pd;
-public interface c extends d, a {
+
+import java.io.Serializable;
+public final class c extends d implements Serializable {
 }

@@ -1,145 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import org.telegram.messenger.ImageReceiver;
-public final class kj0 extends g9 {
-    public final int G;
-    public final lj0 H;
+import android.view.View;
+public final class kj0 implements Runnable {
+    public final View f35420a;
+    public final int f35421b;
+    public final float f35422c;
+    public final float d;
+    public final lj0 f35423e;
 
-    public kj0(lj0 lj0Var, Context context, int i10) {
-        super(context);
-        this.G = i10;
-        this.H = lj0Var;
+    public kj0(lj0 lj0Var, View view, int i3, float f10, float f11) {
+        this.f35423e = lj0Var;
+        this.f35420a = view;
+        this.f35421b = i3;
+        this.f35422c = f10;
+        this.d = f11;
     }
 
     @Override
-    public ImageReceiver c() {
-        switch (this.G) {
-            case 0:
-                return new jj0(0, this);
-            case 1:
-                return new jj0(1, this);
-            default:
-                return super.c();
+    public final void run() {
+        mj0 mj0Var = this.f35423e.f35781b;
+        tj0 tj0Var = (tj0) mj0Var.f36172b;
+        if (this == tj0Var.R1) {
+            tj0Var.R1 = null;
         }
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.G) {
-            case 0:
-                lj0 lj0Var = this.H;
-                kj0 kj0Var = lj0Var.f28183b;
-                super.dispatchDraw(canvas);
-                if (this.f26357a.B() != null && !lj0Var.E) {
-                    this.f26357a.B().start();
+        View view = this.f35420a;
+        if (view != null) {
+            tj0Var.j1(view, 0.0f, 0.0f, false);
+            if (!((tj0) mj0Var.f36172b).Q1) {
+                try {
+                    view.playSoundEffect(0);
+                } catch (Exception unused) {
                 }
-                if (lj0Var.f28188s && !lj0Var.f28189w && this.f26357a.B() != null && this.f26357a.B().A() && kj0Var.f26357a.B() != null && kj0Var.f26357a.B().u()) {
-                    lj0Var.f28189w = true;
-                    kj0Var.f26357a.B().N(0, false, true);
-                    kj0Var.setVisibility(0);
-                    Runnable runnable = lj0Var.P.P0;
-                    if (runnable != null) {
-                        runnable.run();
+                view.sendAccessibilityEvent(1);
+                int i3 = this.f35421b;
+                if (i3 != -1) {
+                    tj0 tj0Var2 = (tj0) mj0Var.f36172b;
+                    fj0 fj0Var = tj0Var2.U0;
+                    if (fj0Var != null) {
+                        fj0Var.f(i3, view);
+                        return;
                     }
-                    org.telegram.messenger.i0.g3(new eb0(this, 17));
+                    gj0 gj0Var = tj0Var2.V0;
+                    if (gj0Var != null) {
+                        gj0Var.b(this.f35422c - view.getX(), this.d - view.getY(), i3, view);
+                    }
                 }
-                invalidate();
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(Rect rect) {
-        switch (this.G) {
-            case 0:
-                lj0 lj0Var = this.H;
-                if (sg.e0.c(this, lj0Var.P)) {
-                    return;
-                }
-                super.invalidate(rect);
-                lj0Var.P.invalidate();
-                return;
-            default:
-                super.invalidate(rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        switch (this.G) {
-            case 1:
-                this.H.b();
-                super.onDraw(canvas);
-                return;
-            case 2:
-                f5 f5Var = this.e;
-                if (f5Var != null) {
-                    imageReceiver = f5Var.f26070k;
-                } else {
-                    imageReceiver = this.f26357a;
-                }
-                if (imageReceiver != null && imageReceiver.B() != null) {
-                    imageReceiver.B().start();
-                }
-                super.onDraw(canvas);
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void invalidate(int i10, int i11, int i12, int i13) {
-        switch (this.G) {
-            case 0:
-                if (sg.e0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            case 1:
-                if (sg.e0.c(this)) {
-                    return;
-                }
-                super.invalidate(i10, i11, i12, i13);
-                return;
-            default:
-                super.invalidate(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        int i10 = this.G;
-        lj0 lj0Var = this.H;
-        switch (i10) {
-            case 0:
-                if (sg.e0.c(this, lj0Var.P)) {
-                    return;
-                }
-                super.invalidate();
-                lj0Var.P.invalidate();
-                return;
-            case 1:
-                if (sg.e0.c(this)) {
-                    return;
-                }
-                super.invalidate();
-                return;
-            default:
-                super.invalidate();
-                lj0Var.P.invalidate();
-                return;
+            }
         }
     }
 }

@@ -1,77 +1,131 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class wo0 implements TextWatcher {
-    public final int f32290a;
-    public final pp0 f32291b;
+import android.os.Bundle;
+import android.util.SparseArray;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.m91;
+public final class wo0 implements i00, org.telegram.messenger.or, org.telegram.ui.nw {
+    public final ws0 f40038a;
 
-    public wo0(pp0 pp0Var, int i10) {
-        this.f32290a = i10;
-        this.f32291b = pp0Var;
+    public wo0(ws0 ws0Var) {
+        this.f40038a = ws0Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f32290a) {
-            case 0:
-                org.telegram.messenger.i0.g3(new vo0(this, 0));
-                return;
-            default:
-                pp0 pp0Var = this.f32291b;
-                ip0 ip0Var = pp0Var.C1;
-                ew0 ew0Var = pp0Var.I1;
-                h10 h10Var = pp0Var.f29491q2;
-                if (!TextUtils.isEmpty(h10Var.f26635r.getText())) {
-                    pp0Var.K0(false);
-                }
-                if (pp0Var.f29495s2) {
-                    String obj = h10Var.f26635r.getText().toString();
-                    if (obj.length() != 0) {
-                        if (ew0Var != null) {
-                            ew0Var.d.setText(org.telegram.messenger.dd.L0(2131748183, null));
-                        }
-                    } else if (pp0Var.f29504x1.getAdapter() != ip0Var) {
-                        int J0 = pp0.J0(pp0Var);
-                        ew0Var.d.setText(org.telegram.messenger.dd.L0(2131748183, null));
-                        ew0Var.e(false, true);
-                        pp0Var.K0(false);
-                        ip0Var.f();
-                        if (J0 > 0) {
-                            pp0Var.f29508z1.h1(0, -J0);
-                        }
-                    }
-                    mp0 mp0Var = pp0Var.E1;
-                    if (mp0Var != null) {
-                        mp0Var.E(obj);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public boolean G() {
+        return false;
+    }
+
+    @Override
+    public boolean N(org.telegram.ui.uw uwVar) {
+        return false;
+    }
+
+    @Override
+    public void a(String str) {
+        r0.getStoriesController().r(r0.m1, str, new to0(this.f40038a, 0));
+    }
+
+    public void b(boolean z10) {
+        ws0 ws0Var = this.f40038a;
+        if (!z10) {
+            ws0Var.requestLayout();
         }
+        ws0Var.setVisibleHeight(ws0Var.Q1);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f32290a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f32290a;
-    }
-
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    public boolean y(org.telegram.ui.uw uwVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i3, int i10, m91 m91Var) {
+        int i11;
+        UndoView undoView;
+        ws0 ws0Var = this.f40038a;
+        SparseArray[] sparseArrayArr = ws0Var.f40077c1;
+        org.telegram.ui.ActionBar.d2 d2Var = ws0Var.f40142y1;
+        ArrayList arrayList2 = new ArrayList();
+        boolean z12 = true;
+        int i12 = 1;
+        while (true) {
+            i11 = 0;
+            if (i12 < 0) {
+                break;
+            }
+            ArrayList arrayList3 = new ArrayList();
+            for (int i13 = 0; i13 < sparseArrayArr[i12].size(); i13++) {
+                arrayList3.add(Integer.valueOf(sparseArrayArr[i12].keyAt(i13)));
+            }
+            Collections.sort(arrayList3);
+            int size = arrayList3.size();
+            while (i11 < size) {
+                Object obj = arrayList3.get(i11);
+                i11++;
+                Integer num = (Integer) obj;
+                if (num.intValue() > 0) {
+                    arrayList2.add((org.telegram.messenger.zi) sparseArrayArr[i12].get(num.intValue()));
+                }
+            }
+            sparseArrayArr[i12].clear();
+            i12--;
+        }
+        ws0Var.f40079d1 = 0;
+        ws0Var.o1(false);
+        hs0 hs0Var = ws0Var.U;
+        if (hs0Var != null) {
+            hs0Var.f34498x.clear();
+        }
+        UndoView undoView2 = null;
+        if (arrayList.size() <= 1 && ((org.telegram.messenger.pr) arrayList.get(0)).f24797a != d2Var.getUserConfig().e() && charSequence == null) {
+            long j10 = ((org.telegram.messenger.pr) arrayList.get(0)).f24797a;
+            Bundle k10 = a1.g.k("scrollToTopOnResume", true);
+            if (org.telegram.messenger.m5.C(j10)) {
+                k10.putInt("enc_id", (int) (j10 & 4294967295L));
+            } else {
+                if (org.telegram.messenger.m5.E(j10)) {
+                    k10.putLong("user_id", j10);
+                } else {
+                    k10.putLong("chat_id", -j10);
+                }
+                if (!d2Var.getMessagesController().E(k10, uwVar, null, null)) {
+                    return true;
+                }
+            }
+            d2Var.getNotificationCenter().k(org.telegram.messenger.hs.f23305t, new Object[0]);
+            org.telegram.ui.wm wmVar = new org.telegram.ui.wm(k10);
+            rg.c.a(wmVar, (org.telegram.messenger.pr) arrayList.get(0));
+            uwVar.presentFragment(wmVar, true);
+            wmVar.dc(arrayList2);
+            return true;
+        }
+        ws0Var.J1(true);
+        int i14 = 0;
+        while (i14 < arrayList.size()) {
+            long j11 = ((org.telegram.messenger.pr) arrayList.get(i14)).f24797a;
+            if (charSequence != null) {
+                d2Var.getSendMessagesHelper().r0(org.telegram.messenger.wy.b(charSequence.toString(), j11, null, null, null, true, null, null, null, true, 0, 0, null, false));
+            }
+            d2Var.getSendMessagesHelper().q0(arrayList2, j11, false, false, true, 0, 0, null, -1, 0L, 0L, null);
+            i14++;
+            z12 = z12;
+            undoView2 = undoView2;
+            i11 = 0;
+        }
+        boolean z13 = z12;
+        UndoView undoView3 = undoView2;
+        uwVar.finishFragment();
+        if (d2Var instanceof ProfileActivity) {
+            undoView = ((ProfileActivity) d2Var).M;
+        } else {
+            undoView = undoView3;
+        }
+        if (undoView != null) {
+            if (arrayList.size() == z13) {
+                undoView.m(((org.telegram.messenger.pr) arrayList.get(0)).f24797a, Integer.valueOf(arrayList2.size()), 53);
+                return z13;
+            }
+            undoView.k(0L, 53, Integer.valueOf(arrayList2.size()), Integer.valueOf(arrayList.size()), null, null);
+            return z13;
+        }
+        return z13;
     }
 }

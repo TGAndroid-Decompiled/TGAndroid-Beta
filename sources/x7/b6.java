@@ -1,17 +1,12 @@
 package x7;
-public final class b6 implements ja.d {
-    public static final b6 f53123a = new Object();
+public final class b6 {
+    public final Long f58241a;
+    public final j6 f58242b;
+    public final Boolean f58243c;
 
-    static {
-        sc.e.v(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, new z(1)), 2)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public b6(p7.d dVar) {
+        this.f58241a = (Long) dVar.f53345b;
+        this.f58242b = (j6) dVar.d;
+        this.f58243c = (Boolean) dVar.f53346c;
     }
 }

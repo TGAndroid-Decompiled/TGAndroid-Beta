@@ -1,27 +1,9 @@
 package x4;
 
-import android.animation.AnimatorSet;
-import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
-import java.util.ArrayList;
-public final class b extends Drawable.ConstantState {
-    public o f53026a;
-    public AnimatorSet f53027b;
-    public ArrayList f53028c;
-    public a0.f d;
+import android.content.Context;
+import java.util.List;
+public interface b {
+    List a();
 
-    @Override
-    public final int getChangingConfigurations() {
-        return 0;
-    }
-
-    @Override
-    public final Drawable newDrawable() {
-        throw new IllegalStateException("No constant state support for SDK < 24.");
-    }
-
-    @Override
-    public final Drawable newDrawable(Resources resources) {
-        throw new IllegalStateException("No constant state support for SDK < 24.");
-    }
+    Object b(Context context);
 }

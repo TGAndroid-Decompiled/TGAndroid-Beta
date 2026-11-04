@@ -1,41 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-public final class ir extends ImageView {
-    public final int f27156a = 0;
-    public Object f27157b;
-    public final ViewGroup f27158c;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class ir implements Predicate {
+    public final int f34800a;
+    public final TLObject f34801b;
 
-    public ir(lr lrVar, Context context, m2.t tVar) {
-        super(context);
-        this.f27158c = lrVar;
-        this.f27157b = tVar;
+    public ir(int i3, TLObject tLObject) {
+        this.f34800a = i3;
+        this.f34801b = tLObject;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f27156a) {
+    public Predicate and(Predicate predicate) {
+        int i3 = this.f34800a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f34800a) {
             case 0:
-                lr lrVar = (lr) this.f27158c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (lrVar.f28249n || lrVar.f28248f)) {
-                    lrVar.f28249n = false;
-                    lrVar.f28248f = false;
-                    removeCallbacks(lrVar.f28250r);
-                    removeCallbacks(lrVar.h);
-                }
-                super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((m2.t) this.f27157b).f12685b).onTouchEvent(motionEvent);
+                return Predicate$CC.$default$negate(this);
             default:
-                return super.onTouchEvent(motionEvent);
+                return Predicate$CC.$default$negate(this);
         }
     }
 
-    public ir(nj0 nj0Var, Context context) {
-        super(context);
-        this.f27158c = nj0Var;
+    public Predicate or(Predicate predicate) {
+        int i3 = this.f34800a;
+        return Predicate$CC.$default$or(this, predicate);
+    }
+
+    @Override
+    public final boolean test(Object obj) {
+        switch (this.f34800a) {
+            case 0:
+                TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.f34801b;
+                TLRPC.Peer peer = ((org.telegram.messenger.zi) obj).f26868k.from_id;
+                if ((inputPeer == null && peer == null) || (inputPeer != null && peer != null && (!(inputPeer instanceof TLRPC.TL_inputPeerChat) || !(peer instanceof TLRPC.TL_peerChat) ? !(!(inputPeer instanceof TLRPC.TL_inputPeerChannel) || !(peer instanceof TLRPC.TL_peerChannel) ? !(inputPeer instanceof TLRPC.TL_inputPeerUser) || !(peer instanceof TLRPC.TL_peerUser) || inputPeer.user_id != peer.user_id : inputPeer.channel_id != peer.channel_id) : inputPeer.chat_id == peer.chat_id))) {
+                    return true;
+                }
+                return false;
+            default:
+                org.telegram.messenger.zi ziVar = (org.telegram.messenger.zi) obj;
+                TLObject tLObject = this.f34801b;
+                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || ziVar.f26868k.from_id.user_id != ((TLRPC.Chat) tLObject).f27001id) : ziVar.f26868k.from_id.user_id == ((TLRPC.User) tLObject).f27150id) {
+                    return true;
+                }
+                return false;
+        }
     }
 }

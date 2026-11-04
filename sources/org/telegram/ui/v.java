@@ -1,34 +1,23 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-public final class v implements Runnable {
-    public final int f42369a;
-    public final h4 f42370b;
-    public final String f42371c;
+import android.content.DialogInterface;
+public final class v implements DialogInterface.OnDismissListener {
+    public final int f50354a;
+    public final i4 f50355b;
 
-    public v(h4 h4Var, String str, int i10) {
-        this.f42369a = i10;
-        this.f42370b = h4Var;
-        this.f42371c = str;
+    public v(i4 i4Var, int i3) {
+        this.f50354a = i3;
+        this.f50355b = i4Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42369a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f50354a) {
             case 0:
-                h4 h4Var = this.f42370b;
-                zd zdVar = h4Var.f37679h0.f42897b0;
-                String str = this.f42371c;
-                if (TextUtils.isEmpty(str)) {
-                    str = "about:blank";
-                }
-                zdVar.setText(str);
-                zd zdVar2 = h4Var.f37679h0.f42897b0;
-                zdVar2.setSelection(zdVar2.getText().length());
-                org.telegram.messenger.i0.J3(h4Var.f37679h0.f42897b0);
+                this.f50355b.f46112c.f(true);
                 return;
             default:
-                gf.f.l(this.f42370b.L, this.f42371c, false, null);
+                this.f50355b.f46091l0 = null;
                 return;
         }
     }

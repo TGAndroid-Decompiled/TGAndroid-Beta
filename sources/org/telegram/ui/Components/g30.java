@@ -1,48 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.util.SparseArray;
-public final class g30 extends au0 {
-    public final j30 f26315w2;
-
-    public g30(j30 j30Var, Context context, st0 st0Var, j30 j30Var2, f30 f30Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context, 0L, st0Var, 0, null, null, null, 8, 0, j30Var2, f30Var, 0, p6Var, null);
-        this.f26315w2 = j30Var;
-    }
-
-    @Override
-    public final boolean D0() {
-        return true;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class g30 extends FrameLayout {
+    public View f33948a;
+    public TextView f33949b;
+    public fh0 f33950c;
+    public LinearLayout d;
 
     @Override
-    public final int getInitialTab() {
-        return 8;
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
     }
 
-    @Override
-    public final String getStoriesHashtag() {
-        return this.f26315w2.f27256b;
+    public void setGravity(int i3) {
+        this.f33949b.setGravity(i3);
     }
 
-    @Override
-    public final String getStoriesHashtagUsername() {
-        return this.f26315w2.f27257c;
+    public void setText(CharSequence charSequence) {
+        this.f33949b.setText(charSequence);
     }
 
-    @Override
-    public final void M0(SparseArray sparseArray) {
-    }
-
-    @Override
-    public final void T0(boolean z10) {
-    }
-
-    @Override
-    public final void V0(float f7) {
-    }
-
-    @Override
-    public final void m1(boolean z10) {
+    public void setTextColor(int i3) {
+        TextView textView = this.f33949b;
+        org.telegram.ui.ActionBar.r6.r(textView);
+        textView.setTextColor(i3);
     }
 }

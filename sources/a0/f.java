@@ -11,8 +11,8 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 public final class f extends l implements Map, j$.util.Map {
     public a d;
-    public c e;
-    public e f10f;
+    public c f12e;
+    public e f13f;
 
     @Override
     public Object compute(Object obj, BiFunction biFunction) {
@@ -45,7 +45,7 @@ public final class f extends l implements Map, j$.util.Map {
         Map.CC.$default$forEach(this, biConsumer);
     }
 
-    public final boolean i(Collection collection) {
+    public final boolean j(Collection collection) {
         for (Object obj : collection) {
             if (!super.containsKey(obj)) {
                 return false;
@@ -54,12 +54,12 @@ public final class f extends l implements Map, j$.util.Map {
         return true;
     }
 
-    public final boolean j(Collection collection) {
-        int i10 = this.f27c;
+    public final boolean k(Collection collection) {
+        int i3 = this.f31c;
         for (Object obj : collection) {
             super.remove(obj);
         }
-        if (i10 != this.f27c) {
+        if (i3 != this.f31c) {
             return true;
         }
         return false;
@@ -67,10 +67,10 @@ public final class f extends l implements Map, j$.util.Map {
 
     @Override
     public final Set keySet() {
-        c cVar = this.e;
+        c cVar = this.f12e;
         if (cVar == null) {
             c cVar2 = new c(this);
-            this.e = cVar2;
+            this.f12e = cVar2;
             return cVar2;
         }
         return cVar;
@@ -83,18 +83,18 @@ public final class f extends l implements Map, j$.util.Map {
 
     @Override
     public final void putAll(java.util.Map map) {
-        int size = map.size() + this.f27c;
-        int i10 = this.f27c;
-        int[] iArr = this.f25a;
+        int size = map.size() + this.f31c;
+        int i3 = this.f31c;
+        int[] iArr = this.f29a;
         if (iArr.length < size) {
             int[] copyOf = Arrays.copyOf(iArr, size);
-            kotlin.jvm.internal.i.d(copyOf, "copyOf(this, newSize)");
-            this.f25a = copyOf;
-            Object[] copyOf2 = Arrays.copyOf(this.f26b, size * 2);
-            kotlin.jvm.internal.i.d(copyOf2, "copyOf(this, newSize)");
-            this.f26b = copyOf2;
+            kotlin.jvm.internal.j.d(copyOf, "copyOf(this, newSize)");
+            this.f29a = copyOf;
+            Object[] copyOf2 = Arrays.copyOf(this.f30b, size * 2);
+            kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
+            this.f30b = copyOf2;
         }
-        if (this.f27c == i10) {
+        if (this.f31c == i3) {
             for (Map.Entry entry : map.entrySet()) {
                 put(entry.getKey(), entry.getValue());
             }
@@ -110,10 +110,10 @@ public final class f extends l implements Map, j$.util.Map {
 
     @Override
     public final Collection values() {
-        e eVar = this.f10f;
+        e eVar = this.f13f;
         if (eVar == null) {
             e eVar2 = new e(this);
-            this.f10f = eVar2;
+            this.f13f = eVar2;
             return eVar2;
         }
         return eVar;

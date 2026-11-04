@@ -2,7 +2,7 @@ package org.webrtc;
 
 import java.util.Map;
 public class RTCStats {
-    private final String f44491id;
+    private final String f53003id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
@@ -10,7 +10,7 @@ public class RTCStats {
     public RTCStats(long j10, String str, String str2, Map<String, Object> map) {
         this.timestampUs = j10;
         this.type = str;
-        this.f44491id = str2;
+        this.f53003id = str2;
         this.members = map;
     }
 
@@ -18,11 +18,11 @@ public class RTCStats {
         if (obj instanceof Object[]) {
             Object[] objArr = (Object[]) obj;
             sb2.append('[');
-            for (int i10 = 0; i10 < objArr.length; i10++) {
-                if (i10 != 0) {
+            for (int i3 = 0; i3 < objArr.length; i3++) {
+                if (i3 != 0) {
                     sb2.append(", ");
                 }
-                appendValue(sb2, objArr[i10]);
+                appendValue(sb2, objArr[i3]);
             }
             sb2.append(']');
         } else if (obj instanceof String) {
@@ -39,7 +39,7 @@ public class RTCStats {
     }
 
     public String getId() {
-        return this.f44491id;
+        return this.f53003id;
     }
 
     public Map<String, Object> getMembers() {
@@ -55,19 +55,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder t10 = a1.g.t("{ timestampUs: ");
-        t10.append(this.timestampUs);
-        t10.append(", type: ");
-        t10.append(this.type);
-        t10.append(", id: ");
-        t10.append(this.f44491id);
+        StringBuilder l10 = com.google.android.recaptcha.internal.a.l("{ timestampUs: ");
+        l10.append(this.timestampUs);
+        l10.append(", type: ");
+        l10.append(this.type);
+        l10.append(", id: ");
+        l10.append(this.f53003id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            t10.append(", ");
-            t10.append(entry.getKey());
-            t10.append(": ");
-            appendValue(t10, entry.getValue());
+            l10.append(", ");
+            l10.append(entry.getKey());
+            l10.append(": ");
+            appendValue(l10, entry.getValue());
         }
-        t10.append(" }");
-        return t10.toString();
+        l10.append(" }");
+        return l10.toString();
     }
 }

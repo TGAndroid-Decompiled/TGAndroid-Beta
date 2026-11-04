@@ -1,139 +1,97 @@
 package org.telegram.messenger;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.util.SparseArray;
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.RemoteViews;
+import android.widget.RemoteViewsService;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.tu0;
-public final class e4 implements Runnable {
-    public final int f15538a;
-    public final Object f15539b;
-    public final Object f15540c;
+public final class e4 implements RemoteViewsService.RemoteViewsFactory {
+    public ArrayList f22310a;
+    public Context f22311b;
+    public int f22312c;
+    public c d;
+    public Paint f22313e;
+    public RectF f22314f;
+    public a0.h f22315g;
+    public a0.h h;
+    public boolean f22316i;
 
-    public e4(int i10, Object obj, Object obj2) {
-        this.f15538a = i10;
-        this.f15539b = obj;
-        this.f15540c = obj2;
-    }
-
-    private final void a() {
-        Account[] accountArr;
-        i5 i5Var = (i5) this.f15539b;
-        tu0 tu0Var = (tu0) this.f15540c;
-        AccountManager accountManager = AccountManager.get(w0.f18945b);
-        try {
-            Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
-            i5Var.f16211a = null;
-            int i10 = 0;
-            while (i10 < accountsByType.length) {
-                Account account = accountsByType[i10];
-                int i11 = 0;
-                while (true) {
-                    if (i11 < 4) {
-                        TLRPC.User f7 = e20.i(i11).f();
-                        if (f7 != null) {
-                            String str = account.name;
-                            StringBuilder sb2 = new StringBuilder();
-                            sb2.append("");
-                            accountArr = accountsByType;
-                            sb2.append(f7.f19943id);
-                            if (str.equals(sb2.toString())) {
-                                accountManager.removeAccount(account, null, null);
-                                break;
-                            }
-                        } else {
-                            accountArr = accountsByType;
-                        }
-                        i11++;
-                        accountsByType = accountArr;
-                    } else {
-                        accountArr = accountsByType;
-                        break;
-                    }
-                }
-                i10++;
-                accountsByType = accountArr;
-            }
-        } catch (Throwable unused) {
+    @Override
+    public final int getCount() {
+        if (this.f22316i) {
+            return 1;
         }
-        try {
-            Account account2 = new Account("" + i5Var.getUserConfig().e(), "org.telegram.messenger");
-            i5Var.f16211a = account2;
-            accountManager.addAccountExplicitly(account2, "", null);
-        } catch (Exception unused2) {
-        }
-        i5Var.getMessagesStorage().Z0(new HashMap(), false, true);
-        i5Var.getMessagesStorage().c1(new ArrayList(), true);
-        i5Var.f16212a0.clear();
-        i5Var.f16218e0.clear();
-        i5Var.f16220f0.clear();
-        i5Var.f16221g0.clear();
-        i5Var.f16223i0.clear();
-        i5Var.f16222h0.clear();
-        i5Var.f16214b0.clear();
-        i5Var.f16216c0.clear();
-        i5Var.f16217d0.clear();
-        i5Var.f16231x.clear();
-        i5Var.f16224j0.clear();
-        i5Var.f16225k0.clear();
-        i5Var.f16226l0.clear();
-        i5Var.getNotificationCenter().k(at.O, new Object[0]);
-        i5Var.A(0L, false);
-        tu0Var.run();
-    }
-
-    private final void b() {
-        ((i5) this.f15539b).a((TLRPC.User) this.f15540c);
-    }
-
-    private final void c() {
-        i5 i5Var = (i5) this.f15539b;
-        SparseArray sparseArray = (SparseArray) this.f15540c;
-        if (i5Var.f16229s) {
-            return;
-        }
-        i5Var.f16229s = true;
-        HashMap hashMap = new HashMap();
-        HashMap H = i5Var.H();
-        HashMap hashMap2 = new HashMap();
-        Iterator it = H.entrySet().iterator();
-        while (true) {
-            if (!it.hasNext()) {
-                break;
-            }
-            f5 f5Var = (f5) ((Map.Entry) it.next()).getValue();
-            for (int i10 = 0; i10 < f5Var.f15696g.size(); i10++) {
-                hashMap2.put((String) f5Var.f15696g.get(i10), f5Var.f15693b);
-            }
-        }
-        for (int i11 = 0; i11 < sparseArray.size(); i11++) {
-            f5 f5Var2 = (f5) sparseArray.valueAt(i11);
-            int i12 = 0;
-            while (true) {
-                if (i12 >= f5Var2.f15696g.size()) {
-                    break;
-                }
-                String str = (String) hashMap2.get((String) f5Var2.f15696g.get(i12));
-                if (str != null) {
-                    f5Var2.f15693b = str;
-                    hashMap.put(str, f5Var2);
-                    break;
-                }
-                i12++;
-            }
-        }
-        if (v2.f18578a) {
-            f8.b("migrated contacts " + hashMap.size() + " of " + sparseArray.size());
-        }
-        i5Var.getMessagesStorage().Z0(hashMap, true, false);
+        return this.f22310a.size() + 1;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.e4.run():void");
+    public final long getItemId(int i3) {
+        return i3;
+    }
+
+    @Override
+    public final RemoteViews getLoadingView() {
+        return null;
+    }
+
+    @Override
+    public final android.widget.RemoteViews getViewAt(int r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.e4.getViewAt(int):android.widget.RemoteViews");
+    }
+
+    @Override
+    public final int getViewTypeCount() {
+        return 2;
+    }
+
+    @Override
+    public final boolean hasStableIds() {
+        return true;
+    }
+
+    @Override
+    public final void onCreate() {
+        t0.w();
+    }
+
+    @Override
+    public final void onDataSetChanged() {
+        ArrayList arrayList = this.f22310a;
+        arrayList.clear();
+        a0.h hVar = this.h;
+        hVar.b();
+        c cVar = this.d;
+        if (cVar != null) {
+            int i3 = cVar.f21919a;
+            if (h10.i(i3).p()) {
+                ArrayList arrayList2 = new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
+                a0.h hVar2 = new a0.h();
+                qr a02 = qr.a0(i3);
+                int i10 = this.f22312c;
+                a0.h hVar3 = this.f22315g;
+                CountDownLatch countDownLatch = new CountDownLatch(1);
+                a02.f24934a.c(new cg.c(a02, i10, arrayList, 0, hVar3, hVar2, arrayList3, arrayList2, countDownLatch));
+                try {
+                    countDownLatch.await();
+                } catch (Exception e10) {
+                    a02.o(e10, true);
+                }
+                hp.s1(i3).Y3(arrayList2, true);
+                hp.s1(i3).S3(arrayList3, true);
+                hVar.b();
+                int m10 = hVar2.m();
+                for (int i11 = 0; i11 < m10; i11++) {
+                    hVar.k(new zi(cVar.f21919a, (TLRPC.Message) hVar2.n(i11), (a0.h) null, (a0.h) null, false, true), hVar2.j(i11));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void onDestroy() {
     }
 }

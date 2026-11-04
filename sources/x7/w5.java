@@ -1,17 +1,45 @@
 package x7;
-public final class w5 implements ja.d {
-    public static final w5 f53421a = new Object();
-
-    static {
-        sc.e.v(sc.e.m(c0.class, sc.e.r(sc.e.m(c0.class, new z(1)), 2)));
+public abstract class w5 {
+    public static void a(int i3, int i10) {
+        String a10;
+        if (i3 >= 0 && i3 < i10) {
+            return;
+        }
+        if (i3 >= 0) {
+            if (i10 < 0) {
+                throw new IllegalArgumentException(k2.p1.i(i10, "negative size: "));
+            }
+            a10 = x5.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i3), Integer.valueOf(i10));
+        } else {
+            a10 = x5.a("%s (%s) must not be negative", "index", Integer.valueOf(i3));
+        }
+        throw new IndexOutOfBoundsException(a10);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+    public static void b(int i3, int i10, int i11) {
+        String c2;
+        if (i3 >= 0 && i10 >= i3 && i10 <= i11) {
+            return;
         }
-        throw new ClassCastException();
+        if (i3 >= 0 && i3 <= i11) {
+            if (i10 >= 0 && i10 <= i11) {
+                c2 = x5.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i10), Integer.valueOf(i3));
+            } else {
+                c2 = c(i10, i11, "end index");
+            }
+        } else {
+            c2 = c(i3, i11, "start index");
+        }
+        throw new IndexOutOfBoundsException(c2);
+    }
+
+    public static String c(int i3, int i10, String str) {
+        if (i3 < 0) {
+            return x5.a("%s (%s) must not be negative", str, Integer.valueOf(i3));
+        }
+        if (i10 >= 0) {
+            return x5.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i3), Integer.valueOf(i10));
+        }
+        throw new IllegalArgumentException(k2.p1.i(i10, "negative size: "));
     }
 }

@@ -1,222 +1,92 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.MotionEvent;
-import android.view.View;
-public final class hk extends org.telegram.ui.Components.x71 {
-    public final int V;
-    public final Object W;
+import android.os.Bundle;
+import org.telegram.tgnet.TLRPC;
+public final class hk extends org.telegram.ui.Components.da0 {
+    public final wm I;
 
-    public hk(Object obj, Context context, int i10) {
-        super(context, null);
-        this.V = i10;
-        this.W = obj;
+    public hk(wm wmVar, Context context, wm wmVar2, eh.c cVar, org.telegram.messenger.dj djVar, TLRPC.User user, TLRPC.Chat chat, int i3, org.telegram.ui.Components.z90 z90Var, int i10, boolean z10) {
+        super(context, wmVar2, cVar, djVar, user, chat, i3, z90Var, i10, z10);
+        this.I = wmVar;
     }
 
     @Override
-    public void A(int i10) {
-        switch (this.V) {
-            case 0:
-                if (i10 == 0) {
-                    un unVar = (un) this.W;
-                    if (unVar.G1) {
-                        unVar.G1 = false;
-                        unVar.E1.h.clear();
-                        return;
+    public final void b() {
+        org.telegram.messenger.zi ziVar;
+        mm mmVar;
+        wm wmVar = this.I;
+        mm mmVar2 = wmVar.C5;
+        if (mmVar2 != null && (ziVar = mmVar2.f47700a) != null && ((mmVar = wmVar.f51526w5.d) == null || mmVar.f47700a == null || ziVar.f1() == wmVar.f51526w5.d.f47700a.f1())) {
+            return;
+        }
+        wmVar.C5 = wmVar.f51526w5.d;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        int i3;
+        boolean z11;
+        boolean z12;
+        long o10;
+        int i10;
+        org.telegram.messenger.bj bjVar;
+        int i11 = 0;
+        a(false);
+        wm wmVar = this.I;
+        org.telegram.messenger.dj djVar = wmVar.f51526w5;
+        if (djVar != null) {
+            if (!z10) {
+                wmVar.D5 = true;
+            }
+            org.telegram.messenger.bj bjVar2 = djVar.f22198b;
+            if (bjVar2 != null) {
+                int size = bjVar2.f21841e.size();
+                i3 = 0;
+                z11 = false;
+                for (int i12 = 0; i12 < size; i12++) {
+                    org.telegram.messenger.zi ziVar = (org.telegram.messenger.zi) wmVar.f51526w5.f22198b.f21841e.get(i12);
+                    if (ziVar.E4()) {
+                        i3 = 3;
+                    } else if (ziVar.U3()) {
+                        if (i3 != 2) {
+                            if (ziVar.a4()) {
+                                i3 = 2;
+                            } else {
+                                i3 = 1;
+                            }
+                        }
+                    } else if (ziVar.A3()) {
+                        z11 = true;
                     }
-                    return;
+                    wmVar.f51412n6[0].put(ziVar.f1(), ziVar);
                 }
-                return;
-            default:
-                return;
+            } else {
+                i3 = 0;
+                z11 = false;
+            }
+            Bundle l10 = org.telegram.ui.Cells.f1.l(3, "onlySelect", "dialogsType", true);
+            l10.putBoolean("quote", !z10);
+            if (!z10 && (bjVar = wmVar.f51526w5.f22197a) != null && !bjVar.f21841e.isEmpty() && wmVar.f51526w5.d == null) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            l10.putBoolean("reply_to", z12);
+            if (z12 && (org.telegram.messenger.m5.o(((org.telegram.messenger.zi) wmVar.f51526w5.f22197a.f21841e.get(0)).b1())) != 0 && o10 != wmVar.a() && o10 != wmVar.getUserConfig().e() && i10 > 0) {
+                l10.putLong("reply_to_author", o10);
+            }
+            l10.putInt("hasPoll", i3);
+            l10.putBoolean("hasInvoice", z11);
+            org.telegram.messenger.bj bjVar3 = wmVar.f51526w5.f22198b;
+            if (bjVar3 != null) {
+                i11 = bjVar3.f21841e.size();
+            }
+            l10.putInt("messagesCount", i11);
+            l10.putBoolean("canSelectTopics", true);
+            uw uwVar = new uw(l10);
+            uwVar.D2 = wmVar;
+            wmVar.presentFragment(uwVar);
         }
-    }
-
-    @Override
-    public int H() {
-        switch (this.V) {
-            case 6:
-                return 12;
-            default:
-                return super.H();
-        }
-    }
-
-    @Override
-    public boolean i(android.view.MotionEvent r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hk.i(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public boolean j(MotionEvent motionEvent) {
-        switch (this.V) {
-            case 9:
-                if (getCurrentPosition() != 2) {
-                    return true;
-                }
-                return false;
-            default:
-                return super.j(motionEvent);
-        }
-    }
-
-    @Override
-    public boolean k(MotionEvent motionEvent) {
-        switch (this.V) {
-            case 3:
-                return false;
-            case 9:
-                return false;
-            default:
-                return super.k(motionEvent);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.V) {
-            case 0:
-                return false;
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void t(View view, View view2, int i10, int i11) {
-        switch (this.V) {
-            case 8:
-                vh.w6 w6Var = (vh.w6) this.W;
-                if (w6Var.d) {
-                    w6Var.M0();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void u() {
-        switch (this.V) {
-            case 9:
-                if (getCurrentPosition() == 1) {
-                    ((yh.z) this.W).f54551r1.d.f31183f3.O(false);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void v() {
-        yz0 yz0Var;
-        switch (this.V) {
-            case 3:
-                if ((getCurrentView() instanceof a01) && (yz0Var = ((a01) getCurrentView()).f35508n) != null) {
-                    org.telegram.messenger.i0.v1(yz0Var);
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final void w(boolean z10) {
-        switch (this.V) {
-            case 0:
-                un unVar = (un) this.W;
-                unVar.l1.getClass();
-                unVar.l1.getClass();
-                unVar.x7();
-                return;
-            case 1:
-                rn0 rn0Var = (rn0) this.W;
-                float positionAnimated = rn0Var.I.getPositionAnimated();
-                rn0Var.M.setSelected(positionAnimated);
-                rn0Var.e.setProgressToGradient(1.0f - w7.u.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
-                rn0Var.K0();
-                ln0 H0 = rn0Var.H0();
-                vh.d dVar = rn0Var.Q;
-                if (dVar != null && H0 != null && H0 != rn0Var.R) {
-                    rn0Var.R = H0;
-                    m5.e eVar = H0.e;
-                    dVar.i((CharSequence) eVar.f13014b, true, true);
-                    rn0Var.Q.g((SpannableStringBuilder) eVar.f13015c, true);
-                    return;
-                }
-                return;
-            case 2:
-                ((jt0) this.W).e();
-                return;
-            case 3:
-                ((b01) this.W).f21587b.invalidate();
-                return;
-            case 4:
-                ((v91) this.W).e();
-                return;
-            case 5:
-                ((org.telegram.ui.Wallet.z2) this.W).f21587b.invalidate();
-                return;
-            case 6:
-                org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.W;
-                b6Var.Z0();
-                org.telegram.ui.Wallet.h8 h8Var = b6Var.f34253j0;
-                if (h8Var != null && h8Var.f34652h1) {
-                    h8Var.f0();
-                    return;
-                }
-                return;
-            case 7:
-                vh.u1 u1Var = (vh.u1) this.W;
-                hk hkVar = u1Var.f52004m1;
-                vh.t1 t1Var = u1Var.f52005n1;
-                if (t1Var != null) {
-                    t1Var.F = hkVar.getPositionAnimated();
-                    t1Var.invalidate();
-                }
-                u1Var.f21587b.invalidate();
-                invalidate();
-                vh.u1.f52000y1 = hkVar.getCurrentPosition();
-                return;
-            case 8:
-                ((vh.w6) this.W).f21587b.invalidate();
-                return;
-            default:
-                ((yh.z) this.W).f21587b.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void y(int i10) {
-        org.telegram.ui.Wallet.y8 y8Var;
-        switch (this.V) {
-            case 6:
-                org.telegram.ui.Wallet.b6 b6Var = (org.telegram.ui.Wallet.b6) this.W;
-                b6Var.f34247e0 = i10;
-                if (i10 != 1 && (y8Var = b6Var.f34252i0) != null) {
-                    y8Var.b(false);
-                }
-                if (i10 == 1) {
-                    b6Var.f34259p0.post(new org.telegram.ui.Wallet.f4(b6Var, 13));
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
-    }
-
-    public hk(org.telegram.ui.ActionBar.k2 k2Var, Context context, org.telegram.ui.ActionBar.p6 p6Var, int i10) {
-        super(context, p6Var);
-        this.V = i10;
-        this.W = k2Var;
     }
 }

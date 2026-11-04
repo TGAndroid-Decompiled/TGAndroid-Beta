@@ -1,24 +1,28 @@
 package s3;
 
-import b2.r0;
-import b2.t0;
-import b2.x;
-public abstract class b implements t0 {
-    @Override
-    public final x a() {
-        return null;
+import java.util.Arrays;
+public final class b extends i {
+    public final byte[] f54607b;
+
+    public b(String str, byte[] bArr) {
+        super(str);
+        this.f54607b = bArr;
     }
 
-    @Override
-    public final byte[] c() {
-        return null;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && b.class == obj.getClass()) {
+            b bVar = (b) obj;
+            if (this.f54624a.equals(bVar.f54624a) && Arrays.equals(this.f54607b, bVar.f54607b)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    public String toString() {
-        return "SCTE-35 splice command: type=".concat(getClass().getSimpleName());
-    }
-
-    @Override
-    public final void b(r0 r0Var) {
+    public final int hashCode() {
+        return Arrays.hashCode(this.f54607b) + com.google.android.recaptcha.internal.a.g(527, 31, this.f54624a);
     }
 }

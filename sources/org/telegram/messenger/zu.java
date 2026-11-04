@@ -1,51 +1,62 @@
 package org.telegram.messenger;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-public final class zu extends ru {
-    public final Paint W;
+import android.view.View;
+import java.util.ArrayList;
+public final class zu implements Runnable {
+    public final int f26976a = 0;
+    public final bv f26977b;
+    public final cv f26978c;
+    public final View d;
 
-    public zu(wv wvVar, Rect rect, int i10) {
-        super(wvVar, rect, i10);
-        this.W = new Paint(1);
+    public zu(bv bvVar, View view, cv cvVar) {
+        this.f26977b = bvVar;
+        this.d = view;
+        this.f26978c = cvVar;
     }
 
     @Override
-    public final int H() {
-        Rect rect = this.f17968b;
-        return i0.L(12.0f) + rect.top + rect.bottom;
-    }
-
-    @Override
-    public final int J() {
-        return i0.L(32.0f);
-    }
-
-    @Override
-    public final void V(Canvas canvas) {
-        int i10;
-        wv wvVar = this.f17967a;
-        int i11 = wvVar.C;
-        int i12 = wvVar.S;
-        int i13 = i11 + i12 + wvVar.T;
-        Rect rect = this.f17968b;
-        int i14 = rect.left;
-        int i15 = (i13 - i14) - rect.right;
-        int i16 = i15 / 2;
-        float f7 = (((i15 - i16) / 2.0f) - i12) + i14;
-        float L = (i0.L(12.0f) - i0.L(1.0f)) / 2.0f;
-        if (wvVar.E()) {
-            i10 = org.telegram.ui.ActionBar.t6.kl;
-        } else {
-            i10 = org.telegram.ui.ActionBar.t6.jl;
+    public final void run() {
+        switch (this.f26976a) {
+            case 0:
+                bv bvVar = this.f26977b;
+                bvVar.getClass();
+                View view = this.d;
+                if (view != null) {
+                    view.post(new zu(bvVar, this.f26978c, view));
+                    return;
+                }
+                return;
+            default:
+                bv bvVar2 = this.f26977b;
+                cv cvVar = this.f26978c;
+                if (cvVar != null) {
+                    bvVar2.getClass();
+                    zi ziVar = cvVar.f22066b;
+                    if (ziVar != null) {
+                        ziVar.L0 = true;
+                    }
+                    ArrayList arrayList = cvVar.f22076n;
+                    int size = arrayList.size();
+                    int i3 = 0;
+                    while (i3 < size) {
+                        Object obj = arrayList.get(i3);
+                        i3++;
+                        org.telegram.ui.Cells.s9 s9Var = (org.telegram.ui.Cells.s9) obj;
+                        if (s9Var instanceof bv) {
+                            ((bv) s9Var).f21896x.clear();
+                        }
+                    }
+                } else {
+                    bvVar2.f21896x.clear();
+                }
+                this.d.invalidate();
+                return;
         }
-        int w02 = org.telegram.ui.ActionBar.t6.w0(i10, wvVar.D);
-        Paint paint = this.W;
-        paint.setColor(w02);
-        RectF rectF = i0.P;
-        rectF.set(f7, L, i16 + f7, i0.L(1.0f) + L);
-        canvas.drawRoundRect(rectF, i0.L(0.5f), i0.L(0.5f), paint);
+    }
+
+    public zu(bv bvVar, cv cvVar, View view) {
+        this.f26977b = bvVar;
+        this.f26978c = cvVar;
+        this.d = view;
     }
 }

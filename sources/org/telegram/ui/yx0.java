@@ -1,43 +1,33 @@
 package org.telegram.ui;
-public final class yx0 implements z4.e {
-    public int f43743a;
-    public final zx0 f43744b;
 
-    public yx0(zx0 zx0Var) {
-        this.f43744b = zx0Var;
+import android.content.Context;
+public final class yx0 implements zx0 {
+    public final org.telegram.messenger.video.a f52436a;
+    public final org.telegram.ui.Components.fc f52437b;
+    public final Context f52438c;
+    public final ei.k0 d;
+    public final org.telegram.messenger.video.d f52439e;
+
+    public yx0(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.fc fcVar, Context context, ei.k0 k0Var, org.telegram.messenger.video.d dVar) {
+        this.f52436a = aVar;
+        this.f52437b = fcVar;
+        this.f52438c = context;
+        this.d = k0Var;
+        this.f52439e = dVar;
     }
 
     @Override
-    public final void a(int i10) {
-        boolean z10;
-        zx0 zx0Var = this.f43744b;
-        ProfileActivity profileActivity = zx0Var.f44251n;
-        int k10 = profileActivity.f33871n0.D0.k(i10);
-        if (this.f43743a != k10) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        zx0Var.a(z10);
-        this.f43743a = k10;
-        if (profileActivity.f33891q0 == null) {
-            return;
-        }
-        if (profileActivity.S0.x()) {
-            org.telegram.messenger.i0.h3(new vv0(zx0Var, 6), 500L);
-        } else {
-            zx0Var.c();
-        }
+    public final void f() {
+        org.telegram.messenger.g0.i3(new wx0(this.f52436a, this.f52437b, this.f52438c, this.d, 2), 200L);
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        ei.r rVar;
-        rVar = ((org.telegram.ui.ActionBar.k2) this.f43744b.f44251n).glassEngine;
-        rVar.g();
+    public final void g() {
+        org.telegram.messenger.g0.i3(new qv0(8, this.f52436a, this.f52437b), 200L);
     }
 
     @Override
-    public final void c(int i10) {
+    public final void i() {
+        this.f52439e.run();
     }
 }

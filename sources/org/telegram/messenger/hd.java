@@ -2,51 +2,41 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class hd implements Runnable {
-    public final int f16044a;
-    public final od f16045b;
-    public final nd f16046c;
+    public final int f22915a;
+    public final ld f22916b;
+    public final ArrayList f22917c;
 
-    public hd(od odVar, nd ndVar, int i10) {
-        this.f16044a = i10;
-        this.f16045b = odVar;
-        this.f16046c = ndVar;
+    public hd(ld ldVar, ArrayList arrayList, int i3) {
+        this.f22915a = i3;
+        this.f22916b = ldVar;
+        this.f22917c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f16044a) {
+        switch (this.f22915a) {
             case 0:
-                od odVar = this.f16045b;
-                ArrayList arrayList = odVar.I;
-                nd ndVar = this.f16046c;
-                arrayList.remove(ndVar);
-                odVar.J.l(ndVar.f17282a);
-                if (arrayList.isEmpty()) {
-                    od.s();
+                ld ldVar = this.f22916b;
+                ArrayList arrayList = ldVar.f23975b;
+                ArrayList arrayList2 = this.f22917c;
+                arrayList.addAll(arrayList2);
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    kd kdVar = (kd) arrayList.get(i3);
+                    ldVar.f23974a.k(kdVar, kdVar.f23810a);
                 }
-                at.e().k(280, new Object[0]);
-                return;
-            case 1:
-                od odVar2 = this.f16045b;
-                ArrayList arrayList2 = odVar2.I;
-                nd ndVar2 = this.f16046c;
-                arrayList2.remove(ndVar2);
-                odVar2.J.l(ndVar2.f17282a);
-                if (arrayList2.isEmpty()) {
-                    od.s();
-                }
-                at.e().k(280, new Object[0]);
+                g0.h3(new hd(ldVar, arrayList2, 1));
                 return;
             default:
-                od odVar3 = this.f16045b;
-                ArrayList arrayList3 = odVar3.I;
-                nd ndVar3 = this.f16046c;
-                arrayList3.remove(ndVar3);
-                odVar3.J.l(ndVar3.f17282a);
-                if (arrayList3.isEmpty()) {
-                    od.s();
+                ld ldVar2 = this.f22916b;
+                ArrayList arrayList3 = ldVar2.J;
+                ArrayList arrayList4 = this.f22917c;
+                arrayList3.addAll(arrayList4);
+                for (int i10 = 0; i10 < arrayList4.size(); i10++) {
+                    kd kdVar2 = (kd) arrayList4.get(i10);
+                    ldVar2.K.k(kdVar2, kdVar2.f23810a);
                 }
-                at.e().k(280, new Object[0]);
+                ld.q();
+                hs.e().k(280, new Object[0]);
                 return;
         }
     }

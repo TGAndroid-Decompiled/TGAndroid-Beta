@@ -1,84 +1,107 @@
 package org.telegram.messenger;
 
-import java.util.HashSet;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import org.telegram.tgnet.TLRPC;
-public final class b4 implements RequestDelegate {
-    public final int f14919a;
-    public final boolean f14920b;
-    public final long f14921c;
-    public final f1 d;
-    public final Object e;
-    public final Object f14922f;
+import org.telegram.ui.ct0;
+public final class b4 implements Runnable {
+    public final int f21736a;
+    public final Object f21737b;
+    public final Object f21738c;
 
-    public b4(f1 f1Var, Object obj, boolean z10, long j10, Object obj2, int i10) {
-        this.f14919a = i10;
-        this.d = f1Var;
-        this.e = obj;
-        this.f14920b = z10;
-        this.f14921c = j10;
-        this.f14922f = obj2;
+    public b4(int i3, Object obj, Object obj2) {
+        this.f21736a = i3;
+        this.f21737b = obj;
+        this.f21738c = obj2;
+    }
+
+    private final void a() {
+        g5 g5Var = (g5) this.f21737b;
+        for (Map.Entry entry : ((HashMap) this.f21738c).entrySet()) {
+            TLRPC.User user = (TLRPC.User) entry.getKey();
+            TLRPC.TL_contact tL_contact = (TLRPC.TL_contact) entry.getValue();
+            user.contact = true;
+            g5Var.f22653f0.add(tL_contact);
+            g5Var.f22654g0.put(Long.valueOf(user.f27150id), tL_contact);
+        }
+        g5Var.d(true);
+        hs notificationCenter = g5Var.getNotificationCenter();
+        int i3 = hp.C8;
+        notificationCenter.k(hs.f23292r, 1);
+        g5Var.getNotificationCenter().k(hs.O, new Object[0]);
+    }
+
+    private final void b() {
+        Account[] accountArr;
+        g5 g5Var = (g5) this.f21737b;
+        ct0 ct0Var = (ct0) this.f21738c;
+        AccountManager accountManager = AccountManager.get(t0.f25457b);
+        try {
+            Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
+            g5Var.f22643a = null;
+            int i3 = 0;
+            while (i3 < accountsByType.length) {
+                Account account = accountsByType[i3];
+                int i10 = 0;
+                while (true) {
+                    if (i10 < 4) {
+                        TLRPC.User f10 = h10.i(i10).f();
+                        if (f10 != null) {
+                            String str = account.name;
+                            StringBuilder sb2 = new StringBuilder();
+                            sb2.append("");
+                            accountArr = accountsByType;
+                            sb2.append(f10.f27150id);
+                            if (str.equals(sb2.toString())) {
+                                accountManager.removeAccount(account, null, null);
+                                break;
+                            }
+                        } else {
+                            accountArr = accountsByType;
+                        }
+                        i10++;
+                        accountsByType = accountArr;
+                    } else {
+                        accountArr = accountsByType;
+                        break;
+                    }
+                }
+                i3++;
+                accountsByType = accountArr;
+            }
+        } catch (Throwable unused) {
+        }
+        try {
+            Account account2 = new Account("" + g5Var.getUserConfig().e(), "org.telegram.messenger");
+            g5Var.f22643a = account2;
+            accountManager.addAccountExplicitly(account2, "", null);
+        } catch (Exception unused2) {
+        }
+        g5Var.getMessagesStorage().Z0(new HashMap(), false, true);
+        g5Var.getMessagesStorage().c1(new ArrayList(), true);
+        g5Var.f22646b0.clear();
+        g5Var.f22653f0.clear();
+        g5Var.f22654g0.clear();
+        g5Var.f22655h0.clear();
+        g5Var.f22657j0.clear();
+        g5Var.f22656i0.clear();
+        g5Var.f22648c0.clear();
+        g5Var.f22649d0.clear();
+        g5Var.f22651e0.clear();
+        g5Var.f22665x.clear();
+        g5Var.f22658k0.clear();
+        g5Var.f22659l0.clear();
+        g5Var.m0.clear();
+        g5Var.getNotificationCenter().k(hs.O, new Object[0]);
+        g5Var.A(0L, false);
+        ct0Var.run();
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f14919a) {
-            case 0:
-                i0.g3(new c4((g4) this.d, tLObject, this.f14921c, this.f14920b, (String) this.e, (Runnable) this.f14922f));
-                return;
-            case 1:
-                wi wiVar = (wi) this.d;
-                wiVar.getClass();
-                i0.g3(new ch(wiVar, tL_error, tLObject, (TLRPC.TL_chatInviteImporter) this.e, this.f14920b, this.f14921c, (oh.g) this.f14922f, 1));
-                return;
-            case 2:
-                wp wpVar = (wp) this.d;
-                a0.h hVar = (a0.h) this.e;
-                rp rpVar = (rp) this.f14922f;
-                TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers = null;
-                if (tLObject != null) {
-                    TLRPC.TL_channels_sendAsPeers tL_channels_sendAsPeers2 = (TLRPC.TL_channels_sendAsPeers) tLObject;
-                    if (!tL_channels_sendAsPeers2.peers.isEmpty()) {
-                        i0.g3(new pi(12, wpVar, tL_channels_sendAsPeers2));
-                        tL_channels_sendAsPeers = tL_channels_sendAsPeers2;
-                    }
-                }
-                i0.g3(new c4(wpVar, tL_channels_sendAsPeers, hVar, this.f14921c, rpVar, this.f14920b));
-                return;
-            case 3:
-                i0.g3(new c4((y00) this.d, tLObject, this.f14920b, this.f14921c, (HashSet) this.e, (Runnable) this.f14922f));
-                return;
-            default:
-                i0.g3(new ch((u10) this.d, (q10) this.e, tLObject, this.f14920b, tL_error, this.f14921c, (HashSet) this.f14922f));
-                return;
-        }
-    }
-
-    public b4(g4 g4Var, long j10, boolean z10, String str, Runnable runnable) {
-        this.f14919a = 0;
-        this.d = g4Var;
-        this.f14921c = j10;
-        this.f14920b = z10;
-        this.e = str;
-        this.f14922f = runnable;
-    }
-
-    public b4(wp wpVar, a0.h hVar, long j10, rp rpVar, boolean z10) {
-        this.f14919a = 2;
-        this.d = wpVar;
-        this.e = hVar;
-        this.f14921c = j10;
-        this.f14922f = rpVar;
-        this.f14920b = z10;
-    }
-
-    public b4(y00 y00Var, boolean z10, long j10, HashSet hashSet, Runnable runnable) {
-        this.f14919a = 3;
-        this.d = y00Var;
-        this.f14920b = z10;
-        this.f14921c = j10;
-        this.e = hashSet;
-        this.f14922f = runnable;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.b4.run():void");
     }
 }

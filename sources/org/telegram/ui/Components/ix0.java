@@ -1,119 +1,47 @@
 package org.telegram.ui.Components;
+public final class ix0 {
+    public static final ix0 f34854e = new ix0(false, new fx0(Integer.MIN_VALUE, -2147483647), lx0.S, 0.0f);
+    public final boolean f34855a;
+    public final fx0 f34856b;
+    public final xw0 f34857c;
+    public final float d;
 
-import android.content.Context;
-import android.text.InputFilter;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public abstract class ix0 {
-    public static void a(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, org.telegram.ui.ActionBar.k2 k2Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        int i10 = org.telegram.messenger.e20.f15506s0;
-        Context context = k2Var.getContext();
-        vh.u1 u1Var = new vh.u1(context, p6Var, true, false);
-        u1Var.f52013v1 = new ag.b0(i10, context, tL_messages_stickerSet, 9);
-        if (k2Var.visibleDialog != null) {
-            u1Var.show();
-        } else {
-            k2Var.showDialog(u1Var);
-        }
+    public ix0(boolean z10, fx0 fx0Var, xw0 xw0Var, float f10) {
+        this.f34855a = z10;
+        this.f34856b = fx0Var;
+        this.f34857c = xw0Var;
+        this.d = f10;
     }
 
-    public static void b(TLRPC.StickerSet stickerSet, org.telegram.ui.ActionBar.p6 p6Var, Context context, Runnable runnable) {
-        if (stickerSet != null) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, p6Var);
-            String L0 = org.telegram.messenger.dd.L0(2131744877, null);
-            org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
-            x1Var.R = L0;
-            x1Var.T = org.telegram.messenger.dd.L0(2131744878, null);
-            alertDialog$Builder.k(org.telegram.messenger.dd.L0(2131751599, null), new f2(19, runnable, stickerSet));
-            alertDialog$Builder.h(org.telegram.messenger.dd.L0(2131752589, null), null);
-            x1Var.show();
-            TextView textView = (TextView) x1Var.d(-1);
-            if (textView != null) {
-                org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21171q7, p6Var);
+    public static xw0 a(ix0 ix0Var, boolean z10) {
+        xw0 xw0Var = ix0Var.f34857c;
+        if (xw0Var != lx0.S) {
+            return xw0Var;
+        }
+        if (ix0Var.d == 0.0f) {
+            if (z10) {
+                return lx0.T;
             }
+            return lx0.U;
         }
+        return lx0.V;
     }
 
-    public static void c(TLRPC.StickerSet stickerSet, org.telegram.ui.ActionBar.p6 p6Var, Context context, org.telegram.messenger.k20 k20Var) {
-        boolean z10;
-        int i10;
-        float f7;
-        int i11;
-        int i12;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, p6Var);
-        if (stickerSet != null) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        if (z10) {
-            i10 = 2131751223;
-        } else {
-            i10 = 2131748279;
+        if (obj == null || ix0.class != obj.getClass()) {
+            return false;
         }
-        String L0 = org.telegram.messenger.dd.L0(i10, null);
-        org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
-        x1Var.R = L0;
-        x1Var.T = org.telegram.messenger.dd.L0(2131744882, null);
-        FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setPadding(org.telegram.messenger.i0.L(24.0f), 0, org.telegram.messenger.i0.L(20.0f), 0);
-        ?? editTextBoldCursor = new EditTextBoldCursor(context);
-        int i13 = org.telegram.ui.ActionBar.t6.f21038j5;
-        org.telegram.ui.ActionBar.a7.V(editTextBoldCursor, i13, p6Var);
-        editTextBoldCursor.setInputType(16385);
-        editTextBoldCursor.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.a7.V(editTextBoldCursor, i13, p6Var);
-        org.telegram.ui.ActionBar.a7.m(editTextBoldCursor, 36, org.telegram.ui.ActionBar.t6.f21049jg, p6Var);
-        org.telegram.ui.ActionBar.a7.m(editTextBoldCursor, 35, org.telegram.ui.ActionBar.t6.L6, p6Var);
-        editTextBoldCursor.setSingleLine(true);
-        editTextBoldCursor.setFocusable(true);
-        editTextBoldCursor.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50), new ak(1, editTextBoldCursor)});
-        org.telegram.ui.ActionBar.a7.G(editTextBoldCursor, org.telegram.ui.ActionBar.t6.f21059k6, org.telegram.ui.ActionBar.t6.f21077l6, org.telegram.ui.ActionBar.t6.f21154p7, p6Var);
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setBackground(null);
-        editTextBoldCursor.requestFocus();
-        float f10 = 0.0f;
-        if (org.telegram.messenger.dd.X) {
-            f7 = 28.0f;
-        } else {
-            f7 = 0.0f;
+        ix0 ix0Var = (ix0) obj;
+        if (this.f34857c.equals(ix0Var.f34857c) && this.f34856b.equals(ix0Var.f34856b)) {
+            return true;
         }
-        int L = org.telegram.messenger.i0.L(f7);
-        if (!org.telegram.messenger.dd.X) {
-            f10 = 28.0f;
-        }
-        editTextBoldCursor.setPadding(L, 0, org.telegram.messenger.i0.L(f10), 0);
-        frameLayout.addView(editTextBoldCursor);
-        NumberTextView numberTextView = new NumberTextView(context);
-        numberTextView.setCenterAlign(true);
-        numberTextView.setTextSize(15);
-        numberTextView.a(50, false);
-        numberTextView.setTextColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.B6, false));
-        numberTextView.setImportantForAccessibility(2);
-        if (org.telegram.messenger.dd.X) {
-            i11 = 3;
-        } else {
-            i11 = 5;
-        }
-        frameLayout.addView(numberTextView, w7.b6.d(26, 20.0f, i11 | 16, 0.0f, 2.0f, 4.0f, 0.0f));
-        editTextBoldCursor.addTextChangedListener(new hx0(numberTextView, editTextBoldCursor));
-        if (z10) {
-            editTextBoldCursor.setText(stickerSet.title);
-            editTextBoldCursor.setSelection(stickerSet.title.length());
-        }
-        alertDialog$Builder.o(frameLayout);
-        x1Var.G = 4;
-        if (z10) {
-            i12 = 2131751355;
-        } else {
-            i12 = 2131751753;
-        }
-        alertDialog$Builder.k(org.telegram.messenger.dd.L0(i12, null), new bi.o4((Object) editTextBoldCursor, k20Var, context, z10, 4));
-        alertDialog$Builder.h(org.telegram.messenger.dd.L0(2131752589, null), new px(editTextBoldCursor, 23));
-        org.telegram.ui.ActionBar.x1 p5 = alertDialog$Builder.p();
-        p5.f21491j0 = false;
-        editTextBoldCursor.setOnEditorActionListener(new t0(p5, 9));
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f34857c.hashCode() + (this.f34856b.hashCode() * 31);
     }
 }

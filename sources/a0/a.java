@@ -1,7 +1,7 @@
 package a0;
 
 import androidx.datastore.preferences.protobuf.d1;
-import androidx.datastore.preferences.protobuf.h1;
+import androidx.datastore.preferences.protobuf.f1;
 import java.util.AbstractSet;
 import java.util.Iterator;
 import java.util.Map;
@@ -9,8 +9,8 @@ public class a extends AbstractSet {
     public final int f0a;
     public final Map f1b;
 
-    public a(int i10, Map map) {
-        this.f0a = i10;
+    public a(int i3, Map map) {
+        this.f0a = i3;
         this.f1b = map;
     }
 
@@ -20,7 +20,7 @@ public class a extends AbstractSet {
             case 1:
                 Map.Entry entry = (Map.Entry) obj;
                 if (!contains(entry)) {
-                    ((d1) this.f1b).f((Comparable) entry.getKey(), entry.getValue());
+                    ((d1) this.f1b).put((Comparable) entry.getKey(), entry.getValue());
                     return true;
                 }
                 return false;
@@ -63,7 +63,7 @@ public class a extends AbstractSet {
             case 0:
                 return new d((f) this.f1b);
             default:
-                return new h1((d1) this.f1b);
+                return new f1((d1) this.f1b);
         }
     }
 
@@ -86,7 +86,7 @@ public class a extends AbstractSet {
     public final int size() {
         switch (this.f0a) {
             case 0:
-                return ((f) this.f1b).f27c;
+                return ((f) this.f1b).f31c;
             default:
                 return ((d1) this.f1b).size();
         }

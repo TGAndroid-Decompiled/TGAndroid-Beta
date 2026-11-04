@@ -1,46 +1,58 @@
 package c3;
 
-import java.io.EOFException;
-public final class n implements k0 {
-    public final byte[] f3685a = new byte[4096];
+import android.content.Context;
+import android.graphics.SurfaceTexture;
+import android.view.Surface;
+public final class n extends Surface {
+    public static int d;
+    public static boolean f4086e;
+    public final boolean f4087a;
+    public final m f4088b;
+    public boolean f4089c;
 
-    @Override
-    public final int a(b2.p pVar, int i10, boolean z10) {
-        return f(pVar, i10, z10);
+    public n(m mVar, SurfaceTexture surfaceTexture, boolean z10) {
+        super(surfaceTexture);
+        this.f4088b = mVar;
+        this.f4087a = z10;
     }
 
-    @Override
-    public final void d(int i10, e2.x xVar) {
-        i0.a(this, xVar, i10);
+    public static int a(android.content.Context r5) {
+        throw new UnsupportedOperationException("Method not decompiled: c3.n.a(android.content.Context):int");
     }
 
-    @Override
-    public final int f(b2.p pVar, int i10, boolean z10) {
-        byte[] bArr = this.f3685a;
-        int read = pVar.read(bArr, 0, Math.min(bArr.length, i10));
-        if (read == -1) {
-            if (z10) {
-                return -1;
+    public static synchronized boolean b(Context context) {
+        boolean z10;
+        synchronized (n.class) {
+            try {
+                z10 = true;
+                if (!f4086e) {
+                    d = a(context);
+                    f4086e = true;
+                }
+                if (d == 0) {
+                    z10 = false;
+                }
+            } catch (Throwable th2) {
+                throw th2;
             }
-            throw new EOFException();
         }
-        return read;
+        return z10;
     }
 
     @Override
-    public final void g(e2.x xVar, int i10, int i11) {
-        xVar.O(i10);
-    }
-
-    @Override
-    public final void b(b2.x xVar) {
-    }
-
-    @Override
-    public final void e(long j10) {
-    }
-
-    @Override
-    public final void c(long j10, int i10, int i11, int i12, j0 j0Var) {
+    public final void release() {
+        super.release();
+        synchronized (this.f4088b) {
+            try {
+                if (!this.f4089c) {
+                    m mVar = this.f4088b;
+                    mVar.f4083b.getClass();
+                    mVar.f4083b.sendEmptyMessage(2);
+                    this.f4089c = true;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
     }
 }

@@ -3,18 +3,18 @@ package org.telegram.utils.twidget;
 import android.graphics.Canvas;
 import android.graphics.Picture;
 public final class f extends g {
-    public final Picture e;
-    public boolean f44350f;
+    public final Picture f52846e;
+    public boolean f52847f;
 
-    public f(int i10, int i11, int i12, int i13) {
-        super(i10, i11, i12, i13);
-        this.e = new Picture();
+    public f(int i3, int i10, int i11, int i12) {
+        super(i3, i10, i11, i12);
+        this.f52846e = new Picture();
     }
 
     @Override
     public final Canvas a() {
-        this.f44350f = true;
-        return this.e.beginRecording(Math.max(1, this.f44354c - this.f44352a), Math.max(1, this.d - this.f44353b));
+        this.f52847f = true;
+        return this.f52846e.beginRecording(Math.max(1, this.f52856c - this.f52854a), Math.max(1, this.d - this.f52855b));
     }
 
     @Override
@@ -24,36 +24,36 @@ public final class f extends g {
 
     @Override
     public final void c() {
-        if (this.f44350f) {
+        if (this.f52847f) {
             e();
         }
     }
 
     @Override
-    public final void d(Canvas canvas, float f7) {
+    public final void d(Canvas canvas, float f10) {
         Canvas canvas2;
         int save;
-        if (!this.f44350f && f7 > 0.0f) {
-            int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-            int i11 = this.f44353b;
-            int i12 = this.f44352a;
-            if (i10 < 0) {
+        if (!this.f52847f && f10 > 0.0f) {
+            int i3 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
+            int i10 = this.f52855b;
+            int i11 = this.f52854a;
+            if (i3 < 0) {
                 canvas2 = canvas;
-                save = canvas2.saveLayerAlpha(i12, i11, this.f44354c, this.d, Math.round(f7 * 255.0f));
+                save = canvas2.saveLayerAlpha(i11, i10, this.f52856c, this.d, Math.round(f10 * 255.0f));
             } else {
                 canvas2 = canvas;
                 save = canvas2.save();
             }
-            canvas2.translate(i12, i11);
-            canvas2.drawPicture(this.e);
+            canvas2.translate(i11, i10);
+            canvas2.drawPicture(this.f52846e);
             canvas2.restoreToCount(save);
         }
     }
 
     @Override
     public final void e() {
-        this.e.endRecording();
-        this.f44350f = false;
+        this.f52846e.endRecording();
+        this.f52847f = false;
     }
 
     @Override

@@ -1,33 +1,46 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.view.View;
-import java.util.HashSet;
-public final class gl0 extends View implements org.telegram.ui.ActionBar.k6 {
-    public Paint f37524a;
-    public Paint f37525b;
-    public float f37526c;
+import android.widget.FrameLayout;
+public final class gl0 implements r0.m, org.telegram.ui.ActionBar.p1 {
+    public final int f45679a;
+    public final cm0 f45680b;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = (int) (getMeasuredWidth() * this.f37526c);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f37525b);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f37524a);
+    public gl0(cm0 cm0Var, int i3) {
+        this.f45679a = i3;
+        this.f45680b = cm0Var;
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            this.f37524a.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Ui, false));
-            this.f37525b.setColor(org.telegram.ui.ActionBar.t6.x0(null, org.telegram.ui.ActionBar.t6.Vi, false));
-            invalidate();
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+    public r0.k1 R0(View view, r0.k1 k1Var) {
+        i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
+        cm0 cm0Var = this.f45680b;
+        cm0Var.f44393c0 = I0;
+        nl0 nl0Var = cm0Var.h.f51202b;
+        int i3 = I0.f14495a;
+        int paddingTop = nl0Var.getPaddingTop();
+        i0.b bVar = cm0Var.f44393c0;
+        nl0Var.setPadding(i3, paddingTop, bVar.f14497c, org.telegram.messenger.g0.L(72.0f) + bVar.d);
+        nl0 nl0Var2 = cm0Var.f44398n.f51202b;
+        int i10 = cm0Var.f44393c0.f14495a;
+        int paddingTop2 = nl0Var2.getPaddingTop();
+        i0.b bVar2 = cm0Var.f44393c0;
+        nl0Var2.setPadding(i10, paddingTop2, bVar2.f14497c, org.telegram.messenger.g0.L(72.0f) + bVar2.d);
+        FrameLayout frameLayout = cm0Var.Q;
+        i0.b bVar3 = cm0Var.f44393c0;
+        frameLayout.setPadding(bVar3.f14495a, 0, bVar3.f14497c, bVar3.d);
+        return r0.k1.f54025b;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f45679a) {
+            case 1:
+                this.f45680b.finishFragment();
+                return;
+            default:
+                this.f45680b.D0();
+                return;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

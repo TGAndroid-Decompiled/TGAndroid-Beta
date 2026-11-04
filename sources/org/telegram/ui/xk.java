@@ -1,11 +1,20 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class xk extends org.telegram.ui.Components.e41 {
-    public final un D;
+import org.telegram.tgnet.TLRPC;
+public final class xk extends eq0 {
+    public final wm f52036a;
 
-    public xk(un unVar, Activity activity, un unVar2, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(activity, p6Var, unVar2);
-        this.D = unVar;
+    public xk(wm wmVar) {
+        this.f52036a = wmVar;
+    }
+
+    @Override
+    public final mq0 E(org.telegram.messenger.zi ziVar, TLRPC.FileLocation fileLocation, int i3, boolean z10, boolean z11) {
+        return wm.O1(this.f52036a, ziVar, fileLocation, i3, z10, false);
+    }
+
+    @Override
+    public final boolean L() {
+        return true;
     }
 }

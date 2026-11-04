@@ -1,58 +1,57 @@
 package org.telegram.ui;
 
+import android.view.ViewPropertyAnimator;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class nr implements org.telegram.ui.Cells.d5, zf.l1 {
-    public final or f39960a;
+public final class nr implements Runnable {
+    public final int f48114a;
+    public final ContactsActivity f48115b;
 
-    public nr(or orVar) {
-        this.f39960a = orVar;
+    public nr(ContactsActivity contactsActivity, int i3) {
+        this.f48114a = i3;
+        this.f48115b = contactsActivity;
     }
 
     @Override
-    public a0.h M() {
-        return null;
-    }
-
-    @Override
-    public boolean Y(int i10) {
-        return true;
-    }
-
-    @Override
-    public boolean c(org.telegram.ui.Cells.e5 e5Var, boolean z10) {
-        int intValue = ((Integer) e5Var.getTag()).intValue();
-        or orVar = this.f39960a;
-        TLObject E = orVar.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            return orVar.D.m0((TLRPC.ChannelParticipant) E, !z10, e5Var);
+    public final void run() {
+        float f10;
+        int i3;
+        switch (this.f48114a) {
+            case 0:
+                ContactsActivity contactsActivity = this.f48115b;
+                qe.c cVar = contactsActivity.f41207a;
+                if (contactsActivity.f41227r) {
+                    f10 = 0.0f;
+                } else {
+                    f10 = 1.0f;
+                }
+                cVar.c(f10);
+                qr qrVar = contactsActivity.f41209b;
+                float f11 = cVar.f53846f;
+                ArrayList arrayList = qrVar.O;
+                qrVar.M = f11;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    ((org.telegram.ui.Cells.s4) arrayList.get(i10)).setLetterProgress(f11);
+                }
+                qr qrVar2 = contactsActivity.f41209b;
+                if (contactsActivity.f41227r) {
+                    i3 = 1;
+                } else {
+                    i3 = 2;
+                }
+                qrVar2.Y(i3, false);
+                contactsActivity.d.v0(0);
+                ViewPropertyAnimator withEndAction = contactsActivity.d.animate().alpha(1.0f).setDuration(220L).setInterpolator(org.telegram.ui.Components.xq.h).withEndAction(new nr(contactsActivity, 1));
+                contactsActivity.f41217f0 = withEndAction;
+                withEndAction.start();
+                if (contactsActivity.f41227r) {
+                    cVar.f53845e = 80L;
+                    cVar.a(1.0f);
+                    return;
+                }
+                return;
+            default:
+                this.f48115b.f41217f0 = null;
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public void i(int i10) {
-        or orVar = this.f39960a;
-        pr prVar = orVar.D;
-        if (!orVar.h.e()) {
-            int i11 = orVar.f40254r;
-            orVar.f();
-            if (orVar.f40254r > i11) {
-                prVar.D0(i11);
-            }
-            if (!orVar.f40255s && orVar.f40254r == 0 && i10 != 0) {
-                prVar.f40528b.e(false, true);
-            }
-        }
-    }
-
-    @Override
-    public a0.h x() {
-        return null;
-    }
-
-    @Override
-    public void c0(ArrayList arrayList) {
     }
 }

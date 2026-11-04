@@ -1,21 +1,21 @@
 package org.webrtc;
 public final class n implements Runnable {
-    public final int f44515a;
-    public final RenderSynchronizer f44516b;
+    public final int f53030a;
+    public final RenderSynchronizer f53031b;
 
-    public n(RenderSynchronizer renderSynchronizer, int i10) {
-        this.f44515a = i10;
-        this.f44516b = renderSynchronizer;
+    public n(RenderSynchronizer renderSynchronizer, int i3) {
+        this.f53030a = i3;
+        this.f53031b = renderSynchronizer;
     }
 
     @Override
     public final void run() {
-        switch (this.f44515a) {
+        switch (this.f53030a) {
             case 0:
-                RenderSynchronizer.b(this.f44516b);
+                RenderSynchronizer.b(this.f53031b);
                 return;
             default:
-                RenderSynchronizer.c(this.f44516b);
+                RenderSynchronizer.c(this.f53031b);
                 return;
         }
     }

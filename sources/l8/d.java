@@ -1,25 +1,17 @@
 package l8;
+public final class d {
+    public final int f18105a;
+    public double f18106b;
+    public double f18107c;
+    public double d;
+    public double f18108e;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import g8.g;
-import w7.h0;
-public final class d extends o6.a {
-    public static final Parcelable.Creator<d> CREATOR = new g(23);
-
-    public final boolean equals(Object obj) {
-        if (this == obj || (obj instanceof d)) {
-            return true;
+    public String toString() {
+        switch (this.f18105a) {
+            case 1:
+                return "RectD{left=" + this.f18106b + ", top=" + this.f18107c + ", right=" + this.d + ", bottom=" + this.f18108e + '}';
+            default:
+                return super.toString();
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        return 0;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        h0.r(parcel, h0.q(parcel, 20293));
     }
 }

@@ -1,42 +1,65 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class n2 extends View {
-    public final o2 f39676a;
+import org.telegram.tgnet.tl.TL_iv;
+public final class n2 extends b5.a {
+    public final p2 f47853c;
 
-    public n2(o2 o2Var, Context context) {
-        super(context);
-        this.f39676a = o2Var;
+    public n2(p2 p2Var) {
+        this.f47853c = p2Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        o2 o2Var = this.f39676a;
-        if (o2Var.e == null) {
-            return;
+    public final void a(b5.l lVar, Object obj) {
+        lVar.removeView(((m2) obj).f47485b);
+    }
+
+    @Override
+    public final int b() {
+        TL_iv.pageBlockSlideshow pageblockslideshow = this.f47853c.f48414e;
+        if (pageblockslideshow == null) {
+            return 0;
         }
-        int b10 = o2Var.f40020c.b();
-        int L2 = org.telegram.messenger.i0.L(4.0f) + org.telegram.messenger.m5.D(6.0f, b10 - 1, org.telegram.messenger.i0.L(7.0f) * b10);
-        float f7 = o2Var.f40026x + o2Var.f40025w;
-        if (L2 < getMeasuredWidth()) {
-            L = (getMeasuredWidth() - L2) / 2.0f;
+        return pageblockslideshow.items.size();
+    }
+
+    @Override
+    public final int c(Object obj) {
+        if (this.f47853c.f48414e.items.contains(((m2) obj).f47484a)) {
+            return -1;
+        }
+        return -2;
+    }
+
+    @Override
+    public final Object e(b5.l lVar, int i3) {
+        w2 w2Var;
+        p2 p2Var = this.f47853c;
+        g4 g4Var = p2Var.f48421y;
+        i4 i4Var = p2Var.E;
+        TL_iv.PageBlock pageBlock = p2Var.f48414e.items.get(i3);
+        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+            b2 b2Var = new b2(p2Var.getContext(), i4Var, g4Var, 1);
+            b2Var.a((TL_iv.pageBlockPhoto) pageBlock, g4Var.F.cached_page, false, true);
+            w2Var = b2Var;
         } else {
-            int L3 = org.telegram.messenger.i0.L(13.0f);
-            int measuredWidth = ((getMeasuredWidth() - org.telegram.messenger.i0.L(8.0f)) / 2) / L3;
-            L = org.telegram.messenger.i0.L(4.0f) - (Utilities.i(f7 - measuredWidth, Math.max(0, (b10 - (measuredWidth * 2)) - 1), 0.0f) * L3);
+            w2 w2Var2 = new w2(p2Var.getContext(), i4Var, g4Var, 1);
+            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
+            w2Var2.b(pageblockvideo, (x2) i4Var.E.f(pageblockvideo.video_id), false, true);
+            w2Var = w2Var2;
         }
-        canvas.save();
-        canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        for (int i10 = 0; i10 < o2Var.e.items.size(); i10++) {
-            float max = Math.max(0.0f, 1.0f - Math.abs(i10 - f7));
-            float L4 = (org.telegram.messenger.i0.L(1.0f) * max) + org.telegram.messenger.i0.L(2.0f);
-            h4.C1.setAlpha((int) ((max * 95.0f) + 160.0f));
-            canvas.drawCircle(org.telegram.messenger.i0.L(4.0f) + L + (org.telegram.messenger.i0.L(13.0f) * i10), getMeasuredHeight() / 2.0f, L4, h4.C1);
+        lVar.addView(w2Var);
+        ?? obj = new Object();
+        obj.f47485b = w2Var;
+        obj.f47484a = pageBlock;
+        return obj;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (((m2) obj).f47485b == view) {
+            return true;
         }
-        canvas.restore();
+        return false;
     }
 }

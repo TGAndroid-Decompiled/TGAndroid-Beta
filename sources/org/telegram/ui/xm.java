@@ -1,9 +1,20 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class xm extends org.telegram.messenger.kj {
+import android.os.Bundle;
+public final class xm extends wm {
+    public final ym f52050sd;
+
+    public xm(ym ymVar, Bundle bundle) {
+        super(bundle);
+        this.f52050sd = ymVar;
+    }
+
     @Override
-    public final boolean s(TLRPC.Chat chat, boolean z10) {
-        return false;
+    public final void va(boolean z10) {
+        this.f52050sd.b(z10);
+    }
+
+    @Override
+    public final void setNavigationBarColor(int i3) {
     }
 }

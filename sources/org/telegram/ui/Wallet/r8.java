@@ -1,69 +1,93 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.view.View;
-import android.widget.ImageView;
+import android.view.KeyEvent;
+import android.widget.EditText;
 import android.widget.TextView;
-import org.telegram.messenger.dd;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.q51;
-import org.telegram.ui.Components.u80;
-import org.telegram.ui.Components.uk0;
-import org.telegram.ui.Components.v51;
-public final class r8 extends a51 {
-    public static final int f35129b = 0;
+public final class r8 implements TextView.OnEditorActionListener {
+    public final int f43132a;
+    public final Object f43133b;
 
-    static {
-        a51.h(new a51());
+    public r8(Object obj, int i3) {
+        this.f43132a = i3;
+        this.f43133b = obj;
     }
 
     @Override
-    public final void b(View view, b51 b51Var, boolean z10, q51 q51Var, v51 v51Var) {
-        float f7;
-        float f10;
-        s8 s8Var = (s8) view;
-        String charSequence = b51Var.f24643l.toString();
-        long j10 = b51Var.B;
-        int i10 = b51Var.f24656z;
-        boolean z11 = b51Var.f24648q;
-        TextView textView = s8Var.f35211c;
-        TextView textView2 = s8Var.f35210b;
-        textView2.setText(k8.c0(charSequence));
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-        if (j10 < 0) {
-            spannableStringBuilder.append((CharSequence) dd.L0(2131748789, null));
-            spannableStringBuilder.setSpan(new u80(org.telegram.messenger.i0.L(35.0f), textView), 0, spannableStringBuilder.length(), 33);
-        } else {
-            spannableStringBuilder.append((CharSequence) k0.s(j10, false));
+    public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
+        boolean z10;
+        switch (this.f43132a) {
+            case 0:
+                s8 s8Var = (s8) this.f43133b;
+                if (i3 != 3) {
+                    s8Var.getClass();
+                    return false;
+                }
+                org.telegram.messenger.g0.v1(s8Var.f43166b);
+                return true;
+            case 1:
+                m9 m9Var = (m9) this.f43133b;
+                if (i3 == 6) {
+                    gi.d dVar = m9Var.f42874e0;
+                    if (dVar.f12517d0) {
+                        dVar.performClick();
+                        return true;
+                    }
+                } else {
+                    m9Var.getClass();
+                }
+                return false;
+            default:
+                na naVar = (na) this.f43133b;
+                EditText editText = naVar.f42960a;
+                if (keyEvent != null && (keyEvent.getKeyCode() == 66 || keyEvent.getKeyCode() == 160)) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (i3 != 5 && !z10) {
+                    return false;
+                }
+                if (keyEvent == null || (keyEvent.getAction() == 1 && !keyEvent.isCanceled())) {
+                    String lowerCase = editText.getText().toString().trim().toLowerCase();
+                    if (!lowerCase.isEmpty() && naVar.b()) {
+                        naVar.setError(false);
+                        naVar.a();
+                        Runnable runnable = naVar.f42966r;
+                        if (runnable != null) {
+                            editText.post(runnable);
+                        }
+                    } else {
+                        String str = null;
+                        if (!lowerCase.isEmpty()) {
+                            String[] mnemonicWordlist = WalletEngine2.getMnemonicWordlist();
+                            int length = mnemonicWordlist.length;
+                            int i10 = 0;
+                            while (true) {
+                                if (i10 < length) {
+                                    String str2 = mnemonicWordlist[i10];
+                                    if (str2.startsWith(lowerCase)) {
+                                        str = str2;
+                                    } else {
+                                        i10++;
+                                    }
+                                }
+                            }
+                        }
+                        if (str != null) {
+                            editText.setText(str);
+                            editText.setSelection(str.length());
+                            naVar.setError(false);
+                            naVar.a();
+                            Runnable runnable2 = naVar.f42966r;
+                            if (runnable2 != null) {
+                                editText.post(runnable2);
+                            }
+                        } else {
+                            naVar.setError(true);
+                        }
+                    }
+                }
+                return true;
         }
-        if (i10 > 0) {
-            spannableStringBuilder = new SpannableStringBuilder(dd.V(null, null, 2131743076, spannableStringBuilder, dd.Q(i10)));
-        }
-        textView.setText(spannableStringBuilder);
-        float f11 = 1.0f;
-        if (z11) {
-            f7 = 0.5f;
-        } else {
-            f7 = 1.0f;
-        }
-        textView2.setAlpha(f7);
-        if (z11) {
-            f10 = 0.5f;
-        } else {
-            f10 = 1.0f;
-        }
-        textView.setAlpha(f10);
-        ImageView imageView = s8Var.d;
-        if (z11) {
-            f11 = 0.5f;
-        }
-        imageView.setAlpha(f11);
-    }
-
-    @Override
-    public final View d(Context context, uk0 uk0Var, int i10, org.telegram.ui.ActionBar.p6 p6Var) {
-        return new s8(context, p6Var);
     }
 }

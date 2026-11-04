@@ -1,8 +1,9 @@
 package org.telegram.ui;
-public interface gm {
-    void T0(int i10);
 
-    void X(boolean z10, boolean z11);
-
-    void v0(String str);
+import org.telegram.tgnet.TLRPC;
+public final class gm extends org.telegram.messenger.zi {
+    @Override
+    public final boolean s(TLRPC.Chat chat, boolean z10) {
+        return false;
+    }
 }

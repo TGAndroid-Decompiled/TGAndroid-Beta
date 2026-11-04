@@ -1,11 +1,24 @@
 package x3;
 
-import c3.b0;
-import c3.p;
-public interface g {
-    b0 E();
+import e3.t;
+public final class g extends t implements h {
+    @Override
+    public final long a() {
+        return -1L;
+    }
 
-    void b0(long j10);
+    @Override
+    public final long b(long j10) {
+        return 0L;
+    }
 
-    long w(p pVar);
+    @Override
+    public final long c() {
+        return 0L;
+    }
+
+    @Override
+    public final int g() {
+        return -2147483647;
+    }
 }

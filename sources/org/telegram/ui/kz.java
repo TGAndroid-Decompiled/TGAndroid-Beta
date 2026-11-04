@@ -1,28 +1,23 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_chatlists;
-public final class kz implements org.telegram.messenger.r20 {
-    public final int f39033a;
-    public final h00 f39034b;
+import android.content.Context;
+public final class kz extends org.telegram.ui.Components.iz {
+    public final int V;
+    public final Object W;
 
-    public kz(h00 h00Var, int i10) {
-        this.f39033a = i10;
-        this.f39034b = h00Var;
+    public kz(int i3, Context context, Object obj) {
+        super(context, null);
+        this.V = i3;
+        this.W = obj;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f39033a) {
+    public final int getColumnsCount() {
+        switch (this.V) {
             case 0:
-                Boolean bool = (Boolean) obj;
-                this.f39034b.finishFragment();
-                return;
-            case 1:
-                this.f39034b.s0((TL_chatlists.TL_exportedChatlistInvite) obj);
-                return;
+                return ((wz) this.W).f51660s;
             default:
-                this.f39034b.r0((TL_chatlists.TL_exportedChatlistInvite) obj);
-                return;
+                return ((uz) this.W).d.f51660s;
         }
     }
 }

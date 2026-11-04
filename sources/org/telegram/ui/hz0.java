@@ -1,31 +1,68 @@
 package org.telegram.ui;
 
-import android.transition.Transition;
-public final class hz0 implements Transition.TransitionListener {
-    public final Runnable f37906a;
+import android.graphics.SurfaceTexture;
+public final class hz0 implements org.telegram.ui.Components.k51, org.telegram.ui.Components.g51 {
+    public final iz0 f46018a;
 
-    public hz0(Runnable runnable) {
-        this.f37906a = runnable;
+    public hz0(iz0 iz0Var) {
+        this.f46018a = iz0Var;
     }
 
     @Override
-    public final void onTransitionEnd(Transition transition) {
-        this.f37906a.run();
+    public boolean b() {
+        if (this.f46018a.W.f31756i != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void onTransitionCancel(Transition transition) {
+    public void onRenderedFirstFrame(l2.a aVar) {
     }
 
     @Override
-    public final void onTransitionPause(Transition transition) {
+    public void onStateChanged(boolean z10, int i3) {
+        iz0 iz0Var = this.f46018a;
+        if (i3 == 4) {
+            iz0Var.dismiss();
+            return;
+        }
+        org.telegram.messenger.g0.r(iz0Var.f46457a0);
+        org.telegram.messenger.g0.i3(iz0Var.f46457a0, 16L);
     }
 
     @Override
-    public final void onTransitionResume(Transition transition) {
+    public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+        return false;
     }
 
     @Override
-    public final void onTransitionStart(Transition transition) {
+    public void r(boolean z10, float[] fArr) {
+        this.f46018a.W.e(z10, fArr);
+    }
+
+    @Override
+    public void onRenderedFirstFrame() {
+        org.telegram.messenger.g0.h3(new pu0(this, 13));
+    }
+
+    @Override
+    public void onSeekFinished(l2.a aVar) {
+    }
+
+    @Override
+    public void onSeekStarted(l2.a aVar) {
+    }
+
+    @Override
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    }
+
+    @Override
+    public void onError(org.telegram.ui.Components.m51 m51Var, Exception exc) {
+    }
+
+    @Override
+    public void onVideoSizeChanged(int i3, int i10, int i11, float f10) {
     }
 }

@@ -1,84 +1,163 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import java.nio.charset.StandardCharsets;
-import org.telegram.ui.Components.s51;
-import org.telegram.ui.d01;
-import org.telegram.ui.jo;
-import org.telegram.ui.z90;
-import org.telegram.ui.zh;
-public final class o8 implements org.telegram.ui.ActionBar.u1 {
-    public final int f34993a;
-    public final s51 f34994b;
-    public final Object f34995c;
-    public final Object d;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.os.SystemClock;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import b8.mf;
+import org.telegram.ui.Components.xq;
+import org.telegram.ui.of;
+public final class o8 extends FrameLayout {
+    public final ImageView f43014a;
+    public final a4 f43015b;
+    public float f43016c;
+    public float d;
+    public float f43017e;
+    public float f43018f;
+    public int h;
+    public float f43019n;
+    public float f43020r;
+    public boolean f43021s;
+    public ValueAnimator f43022w;
+    public q1.g f43023x;
 
-    public o8(s51 s51Var, Object obj, Object obj2, int i10) {
-        this.f34993a = i10;
-        this.f34994b = s51Var;
-        this.d = obj;
-        this.f34995c = obj2;
+    public o8(Context context) {
+        super(context);
+        this.f43017e = 1.0f;
+        this.h = -1;
+        setClipChildren(false);
+        ImageView imageView = new ImageView(context);
+        this.f43014a = imageView;
+        imageView.setImageResource(2131231957);
+        imageView.setScaleX(0.7407407f);
+        imageView.setScaleY(0.7407407f);
+        addView(imageView, mf.c(-1.0f, -1));
+        a4 a4Var = new a4(this, context, new l(this, 11));
+        this.f43015b = a4Var;
+        addView(a4Var, mf.c(-1.0f, -1));
+    }
+
+    public final void a(float f10) {
+        if (this.f43023x == null) {
+            q1.g gVar = new q1.g(new q1.f(this.f43017e));
+            this.f43023x = gVar;
+            q1.h hVar = new q1.h(f10);
+            hVar.a(0.55f);
+            hVar.b(280.0f);
+            gVar.f53653m = hVar;
+            this.f43023x.f(0.001f);
+            this.f43023x.b(new o3(this, 1));
+        }
+        this.f43023x.c(f10);
+    }
+
+    public final void b() {
+        this.h = -1;
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(false);
+        }
+        this.f43018f = (float) Math.IEEEremainder((this.f43018f + this.f43016c) - c(), 6.283185307179586d);
+        this.f43021s = true;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f43022w = ofFloat;
+        ofFloat.setDuration(350L);
+        this.f43022w.setInterpolator(xq.h);
+        this.f43022w.addUpdateListener(new of(this, (float) Math.IEEEremainder(this.d, 6.283185307179586d), 6));
+        this.f43022w.start();
+        a(1.0f);
+    }
+
+    public final float c() {
+        return ((float) (((SystemClock.uptimeMillis() / 1000.0d) * 0.5961171984672546d) % 6.283185307179586d)) + this.f43018f;
     }
 
     @Override
-    public final void h(org.telegram.ui.ActionBar.x1 x1Var, int i10) {
-        org.telegram.ui.ActionBar.k2 k2Var;
-        switch (this.f34993a) {
-            case 0:
-                t8 t8Var = (t8) this.f34994b;
-                k0 k0Var = (k0) this.f34995c;
-                if (!((Boolean) this.d).booleanValue()) {
-                    k0Var.f34783c.B();
-                }
-                if (t8Var.getParentLayout() != null && t8Var.getParentLayout().getFragmentStack().size() > 1) {
-                    k2Var = (org.telegram.ui.ActionBar.k2) t8Var.getParentLayout().getFragmentStack().get(t8Var.getParentLayout().getFragmentStack().size() - 2);
-                } else {
-                    k2Var = null;
-                }
-                i3.a(k0Var.f34781a, new zh(7), null, null, null, new jo(2, k0Var, new d01(17, t8Var, k2Var)), false, true, new z90((Object) null, 1));
-                return;
-            case 1:
-                k0 k0Var2 = (k0) this.f34995c;
-                gf.e h = x1Var.h(i10, true, true);
-                h.d();
-                p8 p8Var = new p8((t8) this.f34994b, h, 2);
-                k0.H("disable backup: getting phrase...");
-                k0Var2.z(new j((Object) k0Var2, (Object) p8Var, (Object) ((f0) this.d), 1), false, true);
-                return;
-            default:
-                r9 r9Var = (r9) this.f34994b;
-                ag.a2 a2Var = (ag.a2) this.d;
-                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f34995c;
-                String str = null;
-                if (a2Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i11 = -r9Var.f35145o0;
-                    r9Var.f35145o0 = i11;
-                    org.telegram.messenger.i0.F3(i11, a2Var, null);
-                    return;
-                }
-                String trim = a2Var.getText().toString().trim();
-                if (!TextUtils.isEmpty(trim)) {
-                    str = trim;
-                }
-                r9Var.f35137g0 = str;
-                r9Var.f35138h0 = !c2Var.b();
-                if (TextUtils.isEmpty(r9Var.f35137g0)) {
-                    r9Var.P.setVisibility(8);
-                } else {
-                    r9Var.P.setText(r9Var.f35137g0);
-                    r9Var.P.setVisibility(0);
-                }
-                r9Var.E0();
-                x1Var.dismiss();
-                r9Var.t0();
-                return;
-        }
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f43015b.setPaused(false);
     }
 
-    public o8(t8 t8Var, k0 k0Var, f0 f0Var) {
-        this.f34993a = 1;
-        this.f34994b = t8Var;
-        this.f34995c = k0Var;
-        this.d = f0Var;
+    @Override
+    public final void onDetachedFromWindow() {
+        this.f43015b.setPaused(true);
+        ValueAnimator valueAnimator = this.f43022w;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        q1.g gVar = this.f43023x;
+        if (gVar != null) {
+            gVar.d();
+        }
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        a4 a4Var = this.f43015b;
+        int i3 = 0;
+        if (a4Var.f57750n && a4Var.getVisibility() == 0) {
+            int actionMasked = motionEvent.getActionMasked();
+            if (actionMasked != 0) {
+                if (actionMasked != 1) {
+                    if (actionMasked != 2) {
+                        if (actionMasked != 3) {
+                            if (actionMasked != 6) {
+                                if (this.h != -1) {
+                                }
+                            } else if (motionEvent.getPointerId(motionEvent.getActionIndex()) == this.h) {
+                                if (motionEvent.getActionIndex() == 0) {
+                                    i3 = 1;
+                                }
+                                this.h = motionEvent.getPointerId(i3);
+                                this.f43019n = motionEvent.getX(i3);
+                                this.f43020r = motionEvent.getY(i3);
+                                return true;
+                            }
+                            return true;
+                        }
+                    } else {
+                        int i10 = this.h;
+                        if (i10 != -1) {
+                            int findPointerIndex = motionEvent.findPointerIndex(i10);
+                            if (findPointerIndex < 0) {
+                                b();
+                                return true;
+                            }
+                            float radians = ((float) Math.toRadians(0.800000011920929d)) / org.telegram.messenger.g0.f22607p;
+                            this.f43016c = com.google.android.recaptcha.internal.a.y(motionEvent.getX(findPointerIndex), this.f43019n, radians, this.f43016c);
+                            this.d = com.google.android.recaptcha.internal.a.y(motionEvent.getY(findPointerIndex), this.f43020r, radians, this.d);
+                            this.f43019n = motionEvent.getX(findPointerIndex);
+                            this.f43020r = motionEvent.getY(findPointerIndex);
+                            return true;
+                        }
+                    }
+                }
+                if (this.h != -1) {
+                    b();
+                }
+                return true;
+            }
+            if (!this.f43021s && this.f43017e <= 1.001f) {
+                this.f43016c = c();
+                this.d = 0.0f;
+            }
+            ValueAnimator valueAnimator = this.f43022w;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f43022w = null;
+            }
+            this.f43021s = false;
+            this.h = motionEvent.getPointerId(0);
+            this.f43019n = motionEvent.getX();
+            this.f43020r = motionEvent.getY();
+            if (getParent() != null) {
+                getParent().requestDisallowInterceptTouchEvent(true);
+            }
+            a(3.0f);
+            return true;
+        }
+        return false;
     }
 }

@@ -1,84 +1,18 @@
 package m2;
+public final class k {
+    public final boolean f18905a;
+    public final boolean f18906b;
+    public final boolean f18907c;
+    public final int d;
 
-import b2.x;
-import e9.n0;
-import java.util.ArrayList;
-import java.util.List;
-public final class k extends m implements l2.i {
-    public final n f12665n;
-
-    public k(x xVar, n0 n0Var, n nVar, ArrayList arrayList, List list, List list2) {
-        super(xVar, n0Var, nVar, arrayList, list, list2);
-        this.f12665n = nVar;
+    static {
+        new j().a();
     }
 
-    @Override
-    public final long A(long j10, long j11) {
-        return this.f12665n.b(j10, j11);
-    }
-
-    @Override
-    public final long a(long j10) {
-        return this.f12665n.g(j10);
-    }
-
-    @Override
-    public final String b() {
-        return null;
-    }
-
-    @Override
-    public final long c(long j10, long j11) {
-        return this.f12665n.e(j10, j11);
-    }
-
-    @Override
-    public final long e(long j10, long j11) {
-        return this.f12665n.c(j10, j11);
-    }
-
-    @Override
-    public final long f(long j10, long j11) {
-        n nVar = this.f12665n;
-        if (nVar.f12672f != null) {
-            return -9223372036854775807L;
-        }
-        long b10 = nVar.b(j10, j11) + nVar.c(j10, j11);
-        return (nVar.e(b10, j10) + nVar.g(b10)) - nVar.f12674i;
-    }
-
-    @Override
-    public final j g(long j10) {
-        return this.f12665n.h(this, j10);
-    }
-
-    @Override
-    public final j h() {
-        return null;
-    }
-
-    @Override
-    public final long o(long j10, long j11) {
-        return this.f12665n.f(j10, j11);
-    }
-
-    @Override
-    public final boolean t() {
-        return this.f12665n.i();
-    }
-
-    @Override
-    public final long u() {
-        return this.f12665n.d;
-    }
-
-    @Override
-    public final long z(long j10) {
-        return this.f12665n.d(j10);
-    }
-
-    @Override
-    public final l2.i d() {
-        return this;
+    public k(j jVar) {
+        this.f18905a = jVar.f18894b;
+        this.f18906b = jVar.f18895c;
+        this.f18907c = jVar.d;
+        this.d = jVar.f18893a;
     }
 }

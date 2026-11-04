@@ -1,45 +1,10 @@
 package x7;
-public final class n extends o {
-    public final transient int f53262c;
-    public final transient int d;
-    public final o e;
-
-    public n(o oVar, int i10, int i11) {
-        this.e = oVar;
-        this.f53262c = i10;
-        this.d = i11;
-    }
-
-    @Override
-    public final Object get(int i10) {
-        w7.v8.a(i10, this.d);
-        return this.e.get(i10 + this.f53262c);
-    }
-
-    @Override
-    public final int m() {
-        return this.e.n() + this.f53262c + this.d;
-    }
-
-    @Override
-    public final int n() {
-        return this.e.n() + this.f53262c;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.e.o();
-    }
-
-    @Override
-    public final o subList(int i10, int i11) {
-        w7.v8.b(i10, i11, this.d);
-        int i12 = this.f53262c;
-        return this.e.subList(i10 + i12, i11 + i12);
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+public abstract class n {
+    public static rd.e a(int i3, int i10) {
+        if (i10 <= Integer.MIN_VALUE) {
+            rd.e eVar = rd.e.d;
+            return rd.e.d;
+        }
+        return new rd.d(i3, i10 - 1, 1);
     }
 }

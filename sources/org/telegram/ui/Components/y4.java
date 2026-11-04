@@ -1,19 +1,28 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class y4 implements Runnable {
-    public final int f32715a;
-    public final b5 f32716b;
-    public final ArrayList f32717c;
+import org.telegram.tgnet.TLRPC;
+public final class y4 implements d5 {
+    public final int f40607a;
+    public final g5 f40608b;
 
-    public y4(b5 b5Var, ArrayList arrayList, int i10) {
-        this.f32715a = i10;
-        this.f32716b = b5Var;
-        this.f32717c = arrayList;
+    public y4(g5 g5Var, int i3) {
+        this.f40607a = i3;
+        this.f40608b = g5Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.y4.run():void");
+    public final void a(TLRPC.Document document) {
+        switch (this.f40607a) {
+            case 0:
+                g5 g5Var = this.f40608b;
+                g5Var.f33966e = document;
+                g5Var.i(false);
+                return;
+            default:
+                g5 g5Var2 = this.f40608b;
+                g5Var2.f33966e = document;
+                g5Var2.i(false);
+                return;
+        }
     }
 }

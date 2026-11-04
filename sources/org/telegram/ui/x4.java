@@ -1,22 +1,22 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-public abstract class x4 {
-    public final w4 f43222a = new w4(this, 0);
-    public final org.telegram.messenger.at f43223b = org.telegram.messenger.at.f(org.telegram.messenger.e20.f15506s0);
-    public final Object f43224c;
-    public final int d;
-    public final int e;
-    public mg.f0 f43225f;
-    public boolean f43226g;
-
-    public x4(int i10, int i11, TLObject tLObject) {
-        this.f43224c = tLObject;
-        this.d = i10;
-        this.e = i11;
+import org.telegram.tgnet.TLRPC;
+public final class x4 extends a5 {
+    @Override
+    public final void a() {
+        org.telegram.messenger.hp.s1(org.telegram.messenger.h10.f22829t0).V2(this.d, ((TLRPC.Chat) this.f43598c).f27001id, false);
     }
 
-    public abstract void a();
-
-    public abstract void b(Object... objArr);
+    @Override
+    public final void b(Object... objArr) {
+        boolean z10;
+        TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
+        if (chatFull != null && chatFull.f27002id == ((TLRPC.Chat) this.f43598c).f27001id && (z10 = this.f43601g)) {
+            if (z10) {
+                this.f43601g = false;
+                this.f43597b.n(this.f43596a, this.f43599e);
+            }
+            this.f43600f.accept(chatFull);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package fe;
-public interface e {
-    void E(float f7, int i10);
 
-    void v(int i10, float f7, float f10, f fVar);
+import be.t;
+public abstract class e {
+    public static final t f11573a = new t("NO_OWNER", 0);
 }

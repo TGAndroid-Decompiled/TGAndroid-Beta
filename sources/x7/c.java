@@ -1,59 +1,24 @@
 package x7;
+public final class c extends i9 {
+    public final transient Object[] f58253c;
+    public final transient int d;
+    public final transient int f58254e = 1;
 
-import java.util.List;
-import java.util.ListIterator;
-public final class c extends e9.d implements ListIterator {
-    public final e9.m e;
-
-    public c(e9.m mVar) {
-        super(mVar, (byte) 0);
-        this.e = mVar;
+    public c(int i3, Object[] objArr) {
+        this.f58253c = objArr;
+        this.d = i3;
     }
 
     @Override
-    public final void add(Object obj) {
-        e9.m mVar = this.e;
-        boolean isEmpty = mVar.isEmpty();
-        b();
-        ((ListIterator) this.f6342b).add(obj);
-        ((f) mVar.h).d++;
-        if (isEmpty) {
-            mVar.o();
-        }
+    public final Object get(int i3) {
+        w5.a(i3, this.f58254e);
+        Object obj = this.f58253c[i3 + i3 + this.d];
+        obj.getClass();
+        return obj;
     }
 
     @Override
-    public final boolean hasPrevious() {
-        b();
-        return ((ListIterator) this.f6342b).hasPrevious();
-    }
-
-    @Override
-    public final int nextIndex() {
-        b();
-        return ((ListIterator) this.f6342b).nextIndex();
-    }
-
-    @Override
-    public final Object previous() {
-        b();
-        return ((ListIterator) this.f6342b).previous();
-    }
-
-    @Override
-    public final int previousIndex() {
-        b();
-        return ((ListIterator) this.f6342b).previousIndex();
-    }
-
-    @Override
-    public final void set(Object obj) {
-        b();
-        ((ListIterator) this.f6342b).set(obj);
-    }
-
-    public c(e9.m mVar, int i10) {
-        super(mVar, ((List) mVar.f6385c).listIterator(i10), (byte) 0);
-        this.e = mVar;
+    public final int size() {
+        return this.f58254e;
     }
 }

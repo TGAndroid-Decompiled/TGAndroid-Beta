@@ -1,37 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.PremiumPreviewFragment;
-public final class b8 implements Runnable {
-    public final int f24679a;
-    public final o8 f24680b;
+import android.view.View;
+public final class b8 implements View.OnClickListener {
+    public final int f32116a;
+    public final xe0 f32117b;
 
-    public b8(o8 o8Var, int i10) {
-        this.f24679a = i10;
-        this.f24680b = o8Var;
+    public b8(xe0 xe0Var, int i3) {
+        this.f32116a = i3;
+        this.f32117b = xe0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f24679a) {
+    public final void onClick(View view) {
+        switch (this.f32116a) {
             case 0:
-                o8 o8Var = this.f24680b;
-                if (!o8Var.U) {
-                    if (o8Var.N > 0.0f) {
-                        if (o8Var.M != null) {
-                            o8Var.E = 1.0f;
-                            o8Var.F = true;
-                        }
-                        org.telegram.messenger.i0.v1(o8Var.fragmentView);
-                        return;
-                    }
-                    o8Var.l0(!o8Var.f29044a.f28708w, true, false);
-                    return;
-                }
+                this.f32117b.b(true);
                 return;
             default:
-                o8 o8Var2 = this.f24680b;
-                o8Var2.getClass();
-                o8Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
+                this.f32117b.b(true);
                 return;
         }
     }

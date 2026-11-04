@@ -1,38 +1,27 @@
 package org.telegram.ui;
 
-import android.view.View;
-import java.util.ArrayList;
-public final class uf implements View.OnClickListener {
-    public final int f41932a;
-    public final un f41933b;
-    public final ArrayList f41934c;
+import org.telegram.tgnet.TLRPC;
+public final class uf implements Runnable {
+    public final int f50073a;
+    public final wm f50074b;
+    public final TLRPC.User f50075c;
 
-    public uf(un unVar, ArrayList arrayList, int i10) {
-        this.f41932a = i10;
-        this.f41933b = unVar;
-        this.f41934c = arrayList;
+    public uf(wm wmVar, TLRPC.User user, int i3) {
+        this.f50073a = i3;
+        this.f50074b = wmVar;
+        this.f50075c = user;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f41932a) {
+    public final void run() {
+        switch (this.f50073a) {
             case 0:
-                un unVar = this.f41933b;
-                si siVar = new si(unVar, unVar, unVar.getParentActivity(), unVar.f42288xa, this.f41934c);
-                boolean O9 = unVar.O9();
-                siVar.f21602h0 = O9;
-                siVar.f21607n = O9;
-                siVar.f21609o0 = false;
-                unVar.M7(false);
-                unVar.showDialog(siVar);
+                wm wmVar = this.f50074b;
+                wmVar.getClass();
+                wmVar.presentFragment(wm.ra(this.f50075c.f27150id));
                 return;
             default:
-                un unVar2 = this.f41933b;
-                if (unVar2.getParentActivity() != null && unVar2.getParentActivity() != null) {
-                    new org.telegram.ui.Components.cv(unVar2, unVar2.getParentActivity(), unVar2.f42288xa, this.f41934c).show();
-                    unVar2.M7(true);
-                    return;
-                }
+                this.f50074b.Ma(this.f50075c);
                 return;
         }
     }

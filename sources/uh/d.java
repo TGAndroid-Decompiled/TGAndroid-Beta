@@ -1,99 +1,21 @@
 package uh;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Cells.s7;
-import s4.m0;
-import s4.z0;
-public final class d extends m0 {
-    public final int f50250a;
-    public final i f50251b;
+import android.graphics.Canvas;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.xy;
+import org.telegram.messenger.ye;
+public final class d extends th.c {
+    public final ye f56355b;
+    public final xy f56356c;
 
-    public d(i iVar, int i10) {
-        this.f50250a = i10;
-        this.f50251b = iVar;
+    public d(org.telegram.messenger.xy r10) {
+        throw new UnsupportedOperationException("Method not decompiled: uh.d.<init>(org.telegram.messenger.xy):void");
     }
 
     @Override
-    public final void c(Rect rect, View view, RecyclerView recyclerView, z0 z0Var) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        switch (this.f50250a) {
-            case 0:
-                if (view instanceof s7) {
-                    s7 s7Var = (s7) view;
-                    i iVar = this.f50251b;
-                    iVar.f50262f.getClass();
-                    int R = RecyclerView.R(s7Var);
-                    int i10 = iVar.h.J;
-                    boolean z14 = true;
-                    if (R < i10) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    s7Var.f23019a0 = z10;
-                    int i11 = R % i10;
-                    if (i11 == 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    s7Var.V = z11;
-                    if (i11 != i10 - 1) {
-                        z14 = false;
-                    }
-                    s7Var.W = z14;
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
-                    return;
-                }
-                rect.left = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                rect.right = 0;
-                return;
-            default:
-                if (view instanceof s7) {
-                    s7 s7Var2 = (s7) view;
-                    i iVar2 = this.f50251b;
-                    iVar2.f50264r.getClass();
-                    int R2 = RecyclerView.R(s7Var2);
-                    int i12 = iVar2.f50265s.J;
-                    boolean z15 = true;
-                    if (R2 < i12) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
-                    }
-                    s7Var2.f23019a0 = z12;
-                    int i13 = R2 % i12;
-                    if (i13 == 0) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    s7Var2.V = z13;
-                    if (i13 != i12 - 1) {
-                        z15 = false;
-                    }
-                    s7Var2.W = z15;
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
-                    return;
-                }
-                rect.left = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                rect.right = 0;
-                return;
-        }
+    public final void c(Canvas canvas, int i3, int i10) {
+        ImageReceiver imageReceiver = this.f55398a;
+        imageReceiver.y0(0.0f, 0.0f, i3, i10);
+        imageReceiver.h(canvas, null);
     }
 }

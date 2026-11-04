@@ -1,21 +1,17 @@
 package v7;
-
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class o {
-    public static Object a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() != 0) {
-            return creator.createFromParcel(parcel);
+public final class o {
+    public final boolean equals(Object obj) {
+        if (obj == this || (obj instanceof o)) {
+            return true;
         }
-        return null;
+        return false;
     }
 
-    public static void b(Parcel parcel, Parcelable parcelable, int i10) {
-        if (parcelable != null) {
-            parcel.writeInt(1);
-            parcelable.writeToParcel(parcel, i10);
-            return;
-        }
-        parcel.writeInt(0);
+    public final int hashCode() {
+        return -228219804;
+    }
+
+    public final String toString() {
+        return "MLKitLoggingOptions{libraryName=common, enableFirelog=true, firelogEventType=1}";
     }
 }

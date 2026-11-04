@@ -1,58 +1,73 @@
 package org.telegram.messenger;
 
-import java.util.Timer;
-import java.util.TimerTask;
-import org.telegram.ui.t60;
-import org.telegram.ui.u60;
-public final class we extends TimerTask {
-    public final int f19037a;
-    public final Object f19038b;
-    public final Object f19039c;
+import android.util.Pair;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class we {
+    public final int f26191a;
+    public TLRPC.TL_inputDocument f26192b;
+    public long f26193c = -9223372036854775807L;
+    public final ArrayList d = new ArrayList();
+    public final a f26194e = new a(this, 18);
 
-    public we(int i10, Object obj, Object obj2) {
-        this.f19037a = i10;
-        this.f19039c = obj;
-        this.f19038b = obj2;
+    public we(int i3) {
+        this.f26191a = i3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f19037a) {
-            case 0:
-                synchronized (((MediaController) this.f19039c).f14486v1) {
-                    i0.g3(new t6(23, this, (kj) this.f19038b));
-                }
-                return;
-            case 1:
-                try {
-                    ((Timer) ((org.telegram.ui.Components.pj) this.f19039c).h).cancel();
-                    ((org.telegram.ui.Components.pj) this.f19039c).h = null;
-                } catch (Exception e) {
-                    f8.g(e, true);
-                }
-                Utilities.f14523g.c(new org.telegram.ui.Components.voip.u(2, (org.telegram.ui.Components.pj) this.f19039c, (String) this.f19038b));
-                return;
-            case 2:
-                u60 u60Var = (u60) this.f19039c;
-                try {
-                    u60Var.f41836f.cancel();
-                    u60Var.f41836f = null;
-                } catch (Exception e7) {
-                    f8.g(e7, true);
-                }
-                i0.g3(new t60(this, (String) this.f19038b, 0));
-                return;
-            default:
-                zf.f1 f1Var = (zf.f1) this.f19039c;
-                try {
-                    f1Var.f55504n.cancel();
-                    f1Var.f55504n = null;
-                } catch (Exception e10) {
-                    f8.g(e10, true);
-                }
-                f1Var.getClass();
-                i0.g3(new xh.e3(7, f1Var, (String) this.f19038b));
-                return;
+    public static void a(we weVar, long j10, long j11) {
+        ArrayList arrayList = weVar.d;
+        int i3 = 0;
+        while (i3 < arrayList.size() && ((Long) ((Pair) arrayList.get(i3)).first).longValue() <= j10) {
+            i3++;
         }
+        arrayList.add(i3, new Pair(Long.valueOf(j10), Long.valueOf(j11)));
+        int max = Math.max(0, i3 - 1);
+        while (max < arrayList.size() - 1) {
+            Pair pair = (Pair) arrayList.get(max);
+            int i10 = max + 1;
+            Pair pair2 = (Pair) arrayList.get(i10);
+            if (((Long) pair.second).longValue() >= ((Long) pair2.first).longValue()) {
+                arrayList.set(max, new Pair((Long) pair.first, Long.valueOf(Math.max(((Long) pair.second).longValue(), ((Long) pair2.second).longValue()))));
+                arrayList.remove(i10);
+            } else {
+                max = i10;
+            }
+        }
+    }
+
+    public final void b() {
+        if (this.f26192b == null) {
+            return;
+        }
+        d();
+        this.f26192b = null;
+    }
+
+    public final long c() {
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
+        long j10 = 0;
+        int i3 = 0;
+        while (i3 < size) {
+            Object obj = arrayList.get(i3);
+            i3++;
+            Pair pair = (Pair) obj;
+            j10 += ((Long) pair.second).longValue() - ((Long) pair.first).longValue();
+        }
+        return j10;
+    }
+
+    public final void d() {
+        g0.r(this.f26194e);
+        if (this.f26192b == null || c() < 3000) {
+            return;
+        }
+        TLRPC.TL_messages_reportMusicListen tL_messages_reportMusicListen = new TLRPC.TL_messages_reportMusicListen();
+        tL_messages_reportMusicListen.f27108id = this.f26192b;
+        tL_messages_reportMusicListen.listened_duration = (int) Math.round(c() / 1000.0d);
+        ConnectionsManager.getInstance(this.f26191a).sendRequest(tL_messages_reportMusicListen, null);
+        this.f26193c = -9223372036854775807L;
+        this.d.clear();
     }
 }

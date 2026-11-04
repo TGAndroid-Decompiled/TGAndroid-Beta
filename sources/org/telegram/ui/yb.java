@@ -1,56 +1,44 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-import org.telegram.tgnet.tl.TL_stories;
-public final class yb extends hg.b {
-    public final String f43628c;
-    public final TL_stories.Boost d;
-    public TL_stories.PrepaidGiveaway e;
-    public boolean f43629f;
-    public final int f43630g;
+import android.app.Activity;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class yb extends g11 {
+    public final tb f52246f2;
+    public final x01[] f52247g2;
+    public final pc f52248h2;
 
-    public yb(int i10, String str) {
-        super(i10, false);
-        this.f43628c = str;
+    public yb(pc pcVar, pc pcVar2, Activity activity, Integer num, int i3, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11, tb tbVar, x01[] x01VarArr) {
+        super(pcVar2, activity, true, num, i3, true, e6Var, i10, i11);
+        this.f52248h2 = pcVar;
+        this.f52246f2 = tbVar;
+        this.f52247g2 = x01VarArr;
     }
 
-    public final boolean equals(Object obj) {
-        TL_stories.PrepaidGiveaway prepaidGiveaway;
-        boolean z10 = this.f43629f;
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || yb.class != obj.getClass()) {
-            return false;
-        }
-        yb ybVar = (yb) obj;
-        TL_stories.Boost boost = ybVar.d;
-        boolean z11 = ybVar.f43629f;
-        TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.e;
-        if (prepaidGiveaway2 != null && (prepaidGiveaway = ybVar.e) != null) {
-            if (prepaidGiveaway2.f20031id == prepaidGiveaway.f20031id && z10 == z11) {
-                return true;
-            }
-            return false;
-        }
-        TL_stories.Boost boost2 = this.d;
-        if (boost2 == null || boost == null) {
-            return true;
-        }
-        if (boost2.f20027id.hashCode() == boost.f20027id.hashCode() && z10 == z11 && this.f43630g == ybVar.f43630g) {
-            return true;
-        }
-        return false;
+    @Override
+    public final long getDialogId() {
+        return this.f52248h2.f48510a;
     }
 
-    public final int hashCode() {
-        return Objects.hash(this.f43628c, this.d, this.e, Boolean.valueOf(this.f43629f), Integer.valueOf(this.f43630g));
+    @Override
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
     }
 
-    public yb(TL_stories.Boost boost, boolean z10, int i10) {
-        super(5, true);
-        this.d = boost;
-        this.f43629f = z10;
-        this.f43630g = i10;
+    @Override
+    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        long longValue;
+        if (l10 == null) {
+            longValue = 0;
+        } else {
+            longValue = l10.longValue();
+        }
+        this.f52246f2.a(Long.valueOf(longValue), num, tL_starGiftUnique);
+        x01 x01Var = this.f52247g2[0];
+        if (x01Var != null) {
+            this.f52248h2.R = null;
+            x01Var.dismiss();
+        }
     }
 }

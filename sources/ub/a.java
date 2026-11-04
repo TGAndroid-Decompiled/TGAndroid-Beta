@@ -1,22 +1,19 @@
 package ub;
 
-import jb.g;
-public final class a implements r9.d {
-    public static final a f50212b = new a(0);
-    public static final a f50213c = new a(1);
-    public final int f50214a;
+import p6.m;
+import tb.c;
+public final class a extends c {
+    public static final a f55806b;
 
-    public a(int i10) {
-        this.f50214a = i10;
-    }
-
-    @Override
-    public final Object K(bh.d dVar) {
-        switch (this.f50214a) {
-            case 0:
-                return new c((g) dVar.b(g.class));
-            default:
-                return new b((c) dVar.b(c.class), (jb.d) dVar.b(jb.d.class));
+    static {
+        ?? obj = new Object();
+        obj.f53635a = -1.0f;
+        boolean z10 = false;
+        if (Float.compare(0.5f, 0.0f) >= 0 && Float.compare(0.5f, 1.0f) <= 0) {
+            z10 = true;
         }
+        m.a("Confidence Threshold should be in range [0.0f, 1.0f].", z10);
+        obj.f53635a = 0.5f;
+        f55806b = new c(obj);
     }
 }

@@ -1,4 +1,6 @@
 package n6;
-public abstract class a extends b8.b implements h {
-    public static final int f13554b = 0;
+
+import java.io.Closeable;
+public abstract class a implements Iterable, Closeable {
+    public abstract void h();
 }

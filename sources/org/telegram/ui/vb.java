@@ -1,43 +1,23 @@
 package org.telegram.ui;
-
-import java.util.concurrent.CountDownLatch;
 public final class vb implements Runnable {
-    public final int f42469a;
-    public final zb f42470b;
+    public final int f50439a;
+    public final pc f50440b;
 
-    public vb(zb zbVar, int i10) {
-        this.f42469a = i10;
-        this.f42470b = zbVar;
+    public vb(pc pcVar, int i3) {
+        this.f50439a = i3;
+        this.f50440b = pcVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f42469a) {
+        int i3 = this.f50439a;
+        pc pcVar = this.f50440b;
+        switch (i3) {
             case 0:
-                CountDownLatch countDownLatch = new CountDownLatch(2);
-                zb zbVar = this.f42470b;
-                zbVar.a(countDownLatch, null);
-                zbVar.b(countDownLatch, null);
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException unused) {
-                }
-                org.telegram.messenger.i0.g3(new vb(zbVar, 3));
-                return;
-            case 1:
-                zb zbVar2 = this.f42470b;
-                zbVar2.G = false;
-                zbVar2.d(true);
-                return;
-            case 2:
-                zb zbVar3 = this.f42470b;
-                zbVar3.G = false;
-                zbVar3.d(true);
+                pc.Z(pcVar);
                 return;
             default:
-                zb zbVar4 = this.f42470b;
-                zbVar4.G = false;
-                zbVar4.d(true);
+                org.telegram.messenger.k5.o(null, 2131752260, org.telegram.ui.Components.fc.a0(pcVar), 2131623999, 36);
                 return;
         }
     }

@@ -1,40 +1,38 @@
 package ra;
-public final class a {
-    public final String f46466a;
-    public final long f46467b;
-    public final long f46468c;
 
-    public a(long j10, String str, long j11) {
-        this.f46466a = str;
-        this.f46467b = j10;
-        this.f46468c = j11;
+import java.util.ArrayList;
+public final class a {
+    public final String f54451a;
+    public final ArrayList f54452b;
+
+    public a(String str, ArrayList arrayList) {
+        if (str != null) {
+            this.f54451a = str;
+            this.f54452b = arrayList;
+            return;
+        }
+        throw new NullPointerException("Null userAgent");
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            if (this.f46466a.equals(aVar.f46466a) && this.f46467b == aVar.f46467b && this.f46468c == aVar.f46468c) {
-                return true;
+        if (obj != this) {
+            if (obj instanceof a) {
+                a aVar = (a) obj;
+                if (this.f54451a.equals(aVar.f54451a) && this.f54452b.equals(aVar.f54452b)) {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        long j10 = this.f46467b;
-        long j11 = this.f46468c;
-        return ((((this.f46466a.hashCode() ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)));
+        return ((this.f54451a.hashCode() ^ 1000003) * 1000003) ^ this.f54452b.hashCode();
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("InstallationTokenResult{token=");
-        sb2.append(this.f46466a);
-        sb2.append(", tokenExpirationTimestamp=");
-        sb2.append(this.f46467b);
-        sb2.append(", tokenCreationTimestamp=");
-        return a1.g.q(sb2, this.f46468c, "}");
+        return "HeartBeatResult{userAgent=" + this.f54451a + ", usedDates=" + this.f54452b + "}";
     }
 }

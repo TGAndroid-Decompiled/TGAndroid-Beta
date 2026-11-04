@@ -1,27 +1,75 @@
 package org.telegram.ui;
-public final class se implements Runnable {
-    public final int f41350a;
-    public final org.telegram.ui.Components.ol0 f41351b;
 
-    public se(org.telegram.ui.Components.ol0 ol0Var, int i10) {
-        this.f41350a = i10;
-        this.f41351b = ol0Var;
+import org.telegram.tgnet.TLRPC;
+public final class se implements org.telegram.ui.ActionBar.p1, org.telegram.messenger.so, cl0 {
+    public final int f49484a;
+    public final Runnable f49485b;
+
+    public se(int i3, Runnable runnable) {
+        this.f49484a = i3;
+        this.f49485b = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f41350a) {
-            case 0:
-                org.telegram.ui.Components.ol0 ol0Var = this.f41351b;
-                if (!ol0Var.M) {
-                    ol0Var.M = true;
-                    ol0Var.c(new org.telegram.ui.Components.ml0(ol0Var, 0), false);
-                    ol0Var.f29169s.invalidate();
+    public boolean a(TLRPC.TL_error tL_error) {
+        switch (this.f49484a) {
+            case 3:
+                this.f49485b.run();
+                return true;
+            case 4:
+                this.f49485b.run();
+                return true;
+            case 5:
+                this.f49485b.run();
+                return true;
+            case 6:
+                this.f49485b.run();
+                return true;
+            case 7:
+                this.f49485b.run();
+                return true;
+            default:
+                this.f49485b.run();
+                return true;
+        }
+    }
+
+    @Override
+    public void e(int i3) {
+        int i10 = this.f49484a;
+        Runnable runnable = this.f49485b;
+        switch (i10) {
+            case 9:
+                String str = LaunchActivity.E1;
+                if (i3 == 1) {
+                    runnable.run();
                     return;
                 }
                 return;
             default:
-                this.f41351b.dismiss();
+                if (i3 == 1) {
+                    runnable.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
+        switch (this.f49484a) {
+            case 0:
+                this.f49485b.run();
+                return;
+            case 1:
+                this.f49485b.run();
+                return;
+            default:
+                Runnable runnable = this.f49485b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
         }
     }

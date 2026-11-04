@@ -1,5 +1,5 @@
 package s0;
 
-import w7.p7;
-public abstract class i extends p7 {
+import x7.o;
+public abstract class i extends o {
 }

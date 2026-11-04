@@ -1,3 +1,5 @@
 package p4;
-public abstract class d {
+
+import android.os.IInterface;
+public interface d extends IInterface {
 }

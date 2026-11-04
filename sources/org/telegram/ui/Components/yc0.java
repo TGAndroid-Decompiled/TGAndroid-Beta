@@ -1,66 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class yc0 extends Drawable implements Drawable.Callback {
-    public final vg.f f32808a;
-    public final RectF f32809b = new RectF();
-    public int f32810c = 255;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class yc0 extends AnimatorListenerAdapter {
+    public final int f40682a;
+    public final ad0 f40683b;
 
-    public yc0(vg.f fVar) {
-        this.f32808a = fVar;
-        fVar.setCallback(this);
+    public yc0(ad0 ad0Var, int i3) {
+        this.f40682a = i3;
+        this.f40683b = ad0Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        this.f32808a.draw(canvas);
-        Rect bounds = getBounds();
-        RectF rectF = this.f32809b;
-        rectF.set(bounds);
-        float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
-        float f7 = this.f32810c / 255.0f;
-        qh.t.c(canvas, rectF, min, f7);
-        qh.t.a(min, f7, 0, canvas, rectF);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        invalidateSelf();
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f32808a.setBounds(rect);
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-        scheduleSelf(runnable, j10);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f32810c = i10;
-        this.f32808a.setAlpha(i10);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f32808a.getClass();
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-        unscheduleSelf(runnable);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40682a) {
+            case 0:
+                this.f40683b.f31814s = null;
+                return;
+            default:
+                this.f40683b.f31815w = null;
+                return;
+        }
     }
 }

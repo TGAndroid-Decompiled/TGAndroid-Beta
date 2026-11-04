@@ -1,88 +1,116 @@
 package m3;
 
-import a4.g;
-import b2.u0;
-import e2.x;
-import java.nio.ByteBuffer;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
-import w7.l;
-public final class b extends l {
-    public final int f12688a;
+import b8.ig;
+import e3.l;
+import e3.o;
+import e3.p;
+import e3.q;
+import e3.t;
+import g2.y;
+import g9.g0;
+import g9.i0;
+import g9.s1;
+import j$.util.Objects;
+import java.util.List;
+import y3.m;
+public final class b implements o {
+    public q f19053b;
+    public int f19054c;
+    public int d;
+    public int f19055e;
+    public n3.b f19057g;
+    public p h;
+    public ig f19058i;
+    public m f19059j;
+    public final y f19052a = new y(2);
+    public long f19056f = -1;
 
-    public static n3.a c(x xVar) {
-        String v = xVar.v();
-        v.getClass();
-        String v10 = xVar.v();
-        v10.getClass();
-        return new n3.a(v, v10, xVar.u(), xVar.u(), Arrays.copyOfRange(xVar.f6207a, xVar.f6208b, xVar.f6209c));
+    @Override
+    public final boolean b(p pVar) {
+        String v;
+        l lVar = (l) pVar;
+        y yVar = this.f19052a;
+        yVar.K(2);
+        lVar.h(yVar.f11923a, 0, 2, false);
+        if (yVar.H() == 65496) {
+            while (true) {
+                yVar.K(2);
+                lVar.h(yVar.f11923a, 0, 2, false);
+                int H = yVar.H();
+                this.d = H;
+                if (H == 65498) {
+                    break;
+                }
+                yVar.K(2);
+                lVar.c(0, 2, yVar.f11923a);
+                int H2 = yVar.H() - 2;
+                if (H2 < 0) {
+                    break;
+                } else if (this.d != 65505) {
+                    lVar.w(H2, false);
+                } else {
+                    yVar.K(H2);
+                    lVar.h(yVar.f11923a, 0, H2, false);
+                    if (Objects.equals(yVar.v(), "http://ns.adobe.com/xap/1.0/") && (v = yVar.v()) != null) {
+                        for (int i3 = 0; i3 < 4; i3++) {
+                            if (v.contains(d.f19063a[i3] + "=\"1\"")) {
+                                return true;
+                            }
+                        }
+                        continue;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
-    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
-        switch (this.f12688a) {
-            case 0:
-                if (byteBuffer.get() != 116) {
-                    return null;
-                }
-                g gVar = new g(byteBuffer.array(), byteBuffer.limit());
-                int i10 = 12;
-                gVar.f0(12);
-                int d = (gVar.d() + gVar.i(12)) - 4;
-                gVar.f0(44);
-                gVar.g0(gVar.i(12));
-                gVar.f0(16);
-                ArrayList arrayList = new ArrayList();
-                while (gVar.d() < d) {
-                    gVar.f0(48);
-                    int i11 = gVar.i(8);
-                    gVar.f0(4);
-                    int d10 = gVar.d() + gVar.i(i10);
-                    String str = null;
-                    String str2 = null;
-                    while (gVar.d() < d10) {
-                        int i12 = gVar.i(8);
-                        int i13 = gVar.i(8);
-                        int d11 = gVar.d() + i13;
-                        if (i12 == 2) {
-                            int i14 = gVar.i(16);
-                            gVar.f0(8);
-                            if (i14 == 3) {
-                                while (gVar.d() < d11) {
-                                    int i15 = gVar.i(8);
-                                    Charset charset = StandardCharsets.US_ASCII;
-                                    byte[] bArr = new byte[i15];
-                                    gVar.o(i15, bArr);
-                                    String str3 = new String(bArr, charset);
-                                    int i16 = gVar.i(8);
-                                    for (int i17 = 0; i17 < i16; i17++) {
-                                        gVar.g0(gVar.i(8));
-                                    }
-                                    str = str3;
-                                }
-                            }
-                        } else if (i12 == 21) {
-                            Charset charset2 = StandardCharsets.US_ASCII;
-                            byte[] bArr2 = new byte[i13];
-                            gVar.o(i13, bArr2);
-                            str2 = new String(bArr2, charset2);
-                        }
-                        gVar.d0(d11 * 8);
-                    }
-                    gVar.d0(d10 * 8);
-                    if (str != null && str2 != null) {
-                        arrayList.add(new a(i11, str.concat(str2)));
-                    }
-                    i10 = 12;
-                }
-                if (arrayList.isEmpty()) {
-                    return null;
-                }
-                return new u0(arrayList);
-            default:
-                return new u0(c(new x(byteBuffer.array(), byteBuffer.limit())));
+    public final void c(q qVar) {
+        this.f19053b = qVar;
+    }
+
+    @Override
+    public final void d(long j10, long j11) {
+        if (j10 == 0) {
+            this.f19054c = 0;
+            this.f19059j = null;
+        } else if (this.f19054c == 5) {
+            m mVar = this.f19059j;
+            mVar.getClass();
+            mVar.d(j10, j11);
         }
+    }
+
+    @Override
+    public final List e() {
+        g0 g0Var = i0.f12083b;
+        return s1.f12146e;
+    }
+
+    @Override
+    public final int f(e3.p r26, e3.s r27) {
+        throw new UnsupportedOperationException("Method not decompiled: m3.b.f(e3.p, e3.s):int");
+    }
+
+    public final void g() {
+        q qVar = this.f19053b;
+        qVar.getClass();
+        qVar.L();
+        this.f19053b.f(new t(-9223372036854775807L));
+        this.f19054c = 6;
+    }
+
+    @Override
+    public final void release() {
+        m mVar = this.f19059j;
+        if (mVar != null) {
+            mVar.getClass();
+        }
+    }
+
+    @Override
+    public final o a() {
+        return this;
     }
 }

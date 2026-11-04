@@ -1,111 +1,122 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-public final class vj implements ViewTreeObserver.OnPreDrawListener {
-    public final int f31307a;
-    public final org.telegram.messenger.kj f31308b;
-    public final boolean f31309c;
-    public final ViewGroup d;
-    public final tk0 e;
+import android.content.Context;
+import android.view.View;
+import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+public final class vj extends th {
+    public final ey f39134n;
+    public final tj0 f39135r;
+    public final u4.b0 f39136s;
+    public final HorizontalScrollView f39137w;
+    public final boolean f39138x;
 
-    public vj(tk0 tk0Var, ViewGroup viewGroup, org.telegram.messenger.kj kjVar, boolean z10, int i10) {
-        this.f31307a = i10;
-        this.e = tk0Var;
-        this.d = viewGroup;
-        this.f31308b = kjVar;
-        this.f31309c = z10;
+    public vj(bi biVar, Context context, org.telegram.ui.ActionBar.e6 e6Var, boolean z10) {
+        super(context, e6Var, biVar);
+        this.f39138x = z10;
+        this.f38419f = true;
+        org.telegram.ui.ActionBar.d2 d2Var = biVar.X1;
+        boolean z11 = !z10 ? 1 : 0;
+        ey eyVar = new ey(d2Var, z11, z10, false, getContext(), true, null, null, false, e6Var, false, true);
+        this.f39134n = eyVar;
+        eyVar.f33592x0 = false;
+        eyVar.I(z11, z10, false, false);
+        eyVar.f33566p2 = true;
+        vv vvVar = eyVar.f33595y;
+        if (vvVar != null) {
+            vvVar.setVisibility(8);
+        }
+        eyVar.f33569q2 = true;
+        ImageView imageView = eyVar.E;
+        if (imageView != null) {
+            imageView.setVisibility(8);
+        }
+        eyVar.T2 = true;
+        addView(eyVar, b8.mf.c(-1.0f, -1));
+        HorizontalScrollView y9 = eyVar.y(z11 ? 1 : 0);
+        this.f39137w = y9;
+        tj0 x10 = eyVar.x(z11 ? 1 : 0);
+        this.f39135r = x10;
+        x10.j(new ji(this, 4));
+        this.f39136s = (u4.b0) x10.getLayoutManager();
+        y9.setTranslationY(Math.max(0, getCurrentItemTop()));
     }
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f31307a) {
-            case 0:
-                org.telegram.ui.Cells.l7 l7Var = (org.telegram.ui.Cells.l7) this.d;
-                l7Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                wj wjVar = (wj) this.e;
-                org.telegram.ui.r00 r00Var = wjVar.H;
-                xj xjVar = wjVar.X;
-                boolean u10 = xjVar.f30964b.R2.u();
-                boolean z10 = this.f31309c;
-                if (u10) {
-                    org.telegram.messenger.kj kjVar = this.f31308b;
-                    int f12 = kjVar.f1();
-                    r00Var.f40933a = org.telegram.messenger.kj.B0(kjVar.f16690k);
-                    r00Var.f40934b = f12;
-                    l7Var.b(xjVar.T.containsKey(r00Var), z10);
-                    return true;
-                }
-                l7Var.b(false, z10);
-                return true;
-            case 1:
-                org.telegram.ui.Cells.v2 v2Var = (org.telegram.ui.Cells.v2) this.d;
-                v2Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.y00 y00Var = ((org.telegram.ui.s00) this.e).f41182c;
-                boolean f7 = y00Var.f43514o0.f();
-                boolean z11 = this.f31309c;
-                if (f7) {
-                    org.telegram.ui.r00 r00Var2 = y00Var.S;
-                    org.telegram.messenger.kj kjVar2 = this.f31308b;
-                    int f13 = kjVar2.f1();
-                    r00Var2.f40933a = org.telegram.messenger.kj.B0(kjVar2.f16690k);
-                    r00Var2.f40934b = f13;
-                    v2Var.c0(y00Var.f43514o0.b(y00Var.S), z11);
-                    return true;
-                }
-                v2Var.c0(false, z11);
-                return true;
-            case 2:
-                org.telegram.ui.Cells.l7 l7Var2 = (org.telegram.ui.Cells.l7) this.d;
-                l7Var2.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.y00 y00Var2 = ((org.telegram.ui.t00) this.e).f41502w;
-                boolean f10 = y00Var2.f43514o0.f();
-                boolean z12 = this.f31309c;
-                if (f10) {
-                    org.telegram.ui.r00 r00Var3 = y00Var2.S;
-                    org.telegram.messenger.kj kjVar3 = this.f31308b;
-                    int f14 = kjVar3.f1();
-                    r00Var3.f40933a = org.telegram.messenger.kj.B0(kjVar3.f16690k);
-                    r00Var3.f40934b = f14;
-                    l7Var2.b(y00Var2.f43514o0.b(y00Var2.S), z12);
-                    return true;
-                }
-                l7Var2.b(false, z12);
-                return true;
-            case 3:
-                org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) this.d;
-                k7Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.y00 y00Var3 = ((org.telegram.ui.t00) this.e).f41502w;
-                boolean f11 = y00Var3.f43514o0.f();
-                boolean z13 = this.f31309c;
-                if (f11) {
-                    org.telegram.ui.r00 r00Var4 = y00Var3.S;
-                    org.telegram.messenger.kj kjVar4 = this.f31308b;
-                    int f15 = kjVar4.f1();
-                    r00Var4.f40933a = org.telegram.messenger.kj.B0(kjVar4.f16690k);
-                    r00Var4.f40934b = f15;
-                    k7Var.e(y00Var3.f43514o0.b(y00Var3.S), z13);
-                    return true;
-                }
-                k7Var.e(false, z13);
-                return true;
-            default:
-                org.telegram.ui.Cells.o7 o7Var = (org.telegram.ui.Cells.o7) this.d;
-                o7Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.y00 y00Var4 = ((org.telegram.ui.v00) this.e).f42375w;
-                boolean f16 = y00Var4.f43514o0.f();
-                boolean z14 = this.f31309c;
-                if (f16) {
-                    org.telegram.ui.r00 r00Var5 = y00Var4.S;
-                    org.telegram.messenger.kj kjVar5 = this.f31308b;
-                    int f17 = kjVar5.f1();
-                    r00Var5.f40933a = org.telegram.messenger.kj.B0(kjVar5.f16690k);
-                    r00Var5.f40934b = f17;
-                    o7Var.f(y00Var4.f43514o0.b(y00Var4.S), z14);
-                    return true;
-                }
-                o7Var.f(false, z14);
-                return true;
+    public final void B(int r4, int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.vj.B(int, int):void");
+    }
+
+    @Override
+    public final void H(th thVar) {
+        int i3;
+        bi biVar = this.f38416b;
+        try {
+            biVar.S2.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
         }
+        p7 p7Var = biVar.S2;
+        if (this.f39138x) {
+            i3 = 2131745662;
+        } else {
+            i3 = 2131745668;
+        }
+        p7Var.setTitle(org.telegram.messenger.bd.M0(i3, null));
+        this.f39136s.h1(0, 0);
+    }
+
+    @Override
+    public final void J() {
+        this.f39135r.y0(0);
+    }
+
+    @Override
+    public int getCurrentItemTop() {
+        tj0 tj0Var = this.f39135r;
+        if (tj0Var.getChildCount() <= 0) {
+            tj0Var.setTopGlowOffset(tj0Var.getPaddingTop());
+            return Integer.MAX_VALUE;
+        }
+        View childAt = tj0Var.getChildAt(0);
+        bj0 bj0Var = (bj0) tj0Var.G(childAt);
+        int top = childAt.getTop() - org.telegram.messenger.g0.L(36.0f);
+        int L = org.telegram.messenger.g0.L(7.0f);
+        if (top < org.telegram.messenger.g0.L(7.0f) || bj0Var == null || bj0Var.b() != 0) {
+            top = L;
+        }
+        tj0Var.setTopGlowOffset(top);
+        return top;
+    }
+
+    @Override
+    public int getFirstOffset() {
+        return org.telegram.messenger.g0.L(56.0f) + getListTopPadding();
+    }
+
+    @Override
+    public int getListTopPadding() {
+        return this.f39135r.getPaddingTop();
+    }
+
+    @Override
+    public final int j() {
+        return 1;
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        super.onLayout(z10, i3, i10, i11, i12);
+        this.f39137w.setTranslationY(Math.max(0, getCurrentItemTop()));
+    }
+
+    public void setDelegate(fx fxVar) {
+        this.f39134n.setDelegate(fxVar);
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        this.f38416b.f28586b.invalidate();
+        invalidate();
     }
 }

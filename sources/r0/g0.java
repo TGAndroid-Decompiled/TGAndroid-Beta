@@ -1,37 +1,23 @@
 package r0;
 
-import android.util.SparseArray;
+import android.view.ContentInfo;
 import android.view.View;
-import android.view.ViewGroup;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.WeakHashMap;
-public final class g0 {
-    public static final ArrayList d = new ArrayList();
-    public WeakHashMap f46128a;
-    public SparseArray f46129b;
-    public WeakReference f46130c;
+import j$.util.Objects;
+public abstract class g0 {
+    public static String[] a(View view) {
+        return view.getReceiveContentMimeTypes();
+    }
 
-    public final View a(View view) {
-        int size;
-        WeakHashMap weakHashMap = this.f46128a;
-        if (weakHashMap != null && weakHashMap.containsKey(view)) {
-            if (view instanceof ViewGroup) {
-                ViewGroup viewGroup = (ViewGroup) view;
-                for (int childCount = viewGroup.getChildCount() - 1; childCount >= 0; childCount--) {
-                    View a2 = a(viewGroup.getChildAt(childCount));
-                    if (a2 != null) {
-                        return a2;
-                    }
-                }
-            }
-            ArrayList arrayList = (ArrayList) view.getTag(2131296695);
-            if (arrayList != null && arrayList.size() - 1 >= 0) {
-                arrayList.get(size).getClass();
-                throw new ClassCastException();
-            }
+    public static g b(View view, g gVar) {
+        ContentInfo d = gVar.f54007a.d();
+        Objects.requireNonNull(d);
+        ContentInfo performReceiveContent = view.performReceiveContent(d);
+        if (performReceiveContent == null) {
             return null;
         }
-        return null;
+        if (performReceiveContent == d) {
+            return gVar;
+        }
+        return new g(new l2.j(performReceiveContent));
     }
 }

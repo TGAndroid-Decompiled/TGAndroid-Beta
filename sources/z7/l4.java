@@ -1,10 +1,17 @@
 package z7;
-
-import java.util.logging.Logger;
-public abstract class l4 {
-    public static final int f55024a = 0;
+public final class l4 implements ma.d {
+    public static final l4 f59937a = new Object();
 
     static {
-        Logger.getLogger(l4.class.getName());
+        t4.c.o(t4.c.k(b0.class, t4.c.n(t4.c.k(b0.class, new y(1)), 2)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ma.e eVar = (ma.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

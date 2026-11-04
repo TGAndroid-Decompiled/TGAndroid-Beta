@@ -1,40 +1,51 @@
 package e2;
 
-import java.util.Locale;
-import java.util.regex.Pattern;
-public abstract class g {
-    public static final byte[] f6140a = {0, 0, 0, 1};
-    public static final String[] f6141b = {"", "A", "B", "C"};
-    public static final Pattern f6142c = Pattern.compile("^\\D?(\\d+)$");
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
+import android.os.Build;
+import android.os.Handler;
+import j$.util.Objects;
+public final class g {
+    public final int f9343a;
+    public final AudioManager.OnAudioFocusChangeListener f9344b;
+    public final Handler f9345c;
+    public final d2.f d;
+    public final boolean f9346e;
+    public final Object f9347f;
 
-    public static String a(int i10, int i11, int i12, int i13, boolean z10, int[] iArr) {
-        char c10;
-        String str = f6141b[i10];
-        Integer valueOf = Integer.valueOf(i11);
-        Integer valueOf2 = Integer.valueOf(i12);
-        if (z10) {
-            c10 = 'H';
+    public g(int i3, AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener, Handler handler, d2.f fVar, boolean z10, boolean z11) {
+        this.f9343a = i3;
+        this.f9345c = handler;
+        this.d = fVar;
+        this.f9346e = z10;
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 < 26) {
+            this.f9344b = new f(onAudioFocusChangeListener, handler);
         } else {
-            c10 = 'L';
+            this.f9344b = onAudioFocusChangeListener;
         }
-        Object[] objArr = {str, valueOf, valueOf2, Character.valueOf(c10), Integer.valueOf(i13)};
-        String str2 = l0.f6165a;
-        StringBuilder sb2 = new StringBuilder(String.format(Locale.US, "hvc1.%s%d.%X.%c%d", objArr));
-        int length = iArr.length;
-        while (length > 0 && iArr[length - 1] == 0) {
-            length--;
+        if (i10 >= 26) {
+            this.f9347f = new AudioFocusRequest.Builder(i3).setAudioAttributes(fVar.b()).setWillPauseWhenDucked(z10).setOnAudioFocusChangeListener(onAudioFocusChangeListener, handler).setAcceptsDelayedFocusGain(z11).build();
+        } else {
+            this.f9347f = null;
         }
-        for (int i14 = 0; i14 < length; i14++) {
-            sb2.append(String.format(".%02X", Integer.valueOf(iArr[i14])));
-        }
-        return sb2.toString();
     }
 
-    public static android.util.Pair b(b2.x r33) {
-        throw new UnsupportedOperationException("Method not decompiled: e2.g.b(b2.x):android.util.Pair");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof g)) {
+            return false;
+        }
+        g gVar = (g) obj;
+        if (this.f9343a == gVar.f9343a && this.f9346e == gVar.f9346e && Objects.equals(this.f9344b, gVar.f9344b) && Objects.equals(this.f9345c, gVar.f9345c) && Objects.equals(this.d, gVar.d)) {
+            return true;
+        }
+        return false;
     }
 
-    public static android.util.Pair c(java.lang.String r11, java.lang.String[] r12, b2.o r13) {
-        throw new UnsupportedOperationException("Method not decompiled: e2.g.c(java.lang.String, java.lang.String[], b2.o):android.util.Pair");
+    public final int hashCode() {
+        return Objects.hash(Integer.valueOf(this.f9343a), this.f9344b, this.f9345c, this.d, Boolean.valueOf(this.f9346e));
     }
 }

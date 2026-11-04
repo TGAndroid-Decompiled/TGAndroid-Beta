@@ -1,51 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class um0 extends ew0 {
-    public final int K;
-    public final org.telegram.ui.jx L;
-
-    public um0(org.telegram.ui.jx jxVar, Context context, zz zzVar, int i10) {
-        super(context, zzVar, 1, null);
-        this.K = i10;
-        this.L = jxVar;
-    }
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+public final class um0 extends mb {
+    public int f38822c;
 
     @Override
-    public final void setVisibility(int i10) {
-        switch (this.K) {
-            case 0:
-                if (this.L.O0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 1:
-                if (this.L.O0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 2:
-                if (this.L.O0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            default:
-                if (this.L.O0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
+    public final void updateColors() {
+        super.updateColors();
+        try {
+            int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.vj);
+            k9 k9Var = this.f36116a;
+            if (k9Var != null && themedColor != this.f38822c) {
+                this.f38822c = themedColor;
+                k9Var.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.SRC_IN));
+            }
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 }

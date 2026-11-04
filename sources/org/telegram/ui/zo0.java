@@ -1,58 +1,41 @@
 package org.telegram.ui;
+public final class zo0 extends org.telegram.ui.Components.jz {
+    public final io0 f52722e;
+    public final PhotoViewer f52723f;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-public final class zo0 implements Runnable {
-    public final int f44031a;
-    public final PhotoViewer f44032b;
-    public final Bitmap f44033c;
-
-    public zo0(PhotoViewer photoViewer, Bitmap bitmap, int i10) {
-        this.f44031a = i10;
-        this.f44032b = photoViewer;
-        this.f44033c = bitmap;
+    public zo0(PhotoViewer photoViewer, io0 io0Var) {
+        super(false);
+        this.f52723f = photoViewer;
+        this.f52722e = io0Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f44031a;
-        Bitmap bitmap = this.f44033c;
-        PhotoViewer photoViewer = this.f44032b;
-        switch (i10) {
-            case 0:
-                Drawable[] drawableArr = PhotoViewer.U8;
-                photoViewer.o0(bitmap);
-                org.telegram.messenger.i0.g3(new zo0(photoViewer, bitmap, 6));
-                return;
-            case 1:
-                Drawable[] drawableArr2 = PhotoViewer.U8;
-                photoViewer.o0(bitmap);
-                org.telegram.messenger.i0.g3(new zo0(photoViewer, bitmap, 5));
-                return;
-            case 2:
-                Drawable[] drawableArr3 = PhotoViewer.U8;
-                photoViewer.o0(bitmap);
-                org.telegram.messenger.i0.g3(new zo0(photoViewer, bitmap, 4));
-                return;
-            case 3:
-                Drawable[] drawableArr4 = PhotoViewer.U8;
-                photoViewer.o0(bitmap);
-                return;
-            case 4:
-                photoViewer.C4.v0(bitmap);
-                photoViewer.f33614t5.setUndoCutState(true);
-                photoViewer.d3(true, true);
-                return;
-            case 5:
-                photoViewer.C4.v0(bitmap);
-                photoViewer.f33614t5.setUndoCutState(true);
-                photoViewer.d3(true, true);
-                return;
-            default:
-                photoViewer.C4.v0(bitmap);
-                photoViewer.f33614t5.setUndoCutState(true);
-                photoViewer.d3(true, true);
-                return;
-        }
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        PhotoViewer photoViewer = this.f52723f;
+        int[] iArr = photoViewer.f41490n3;
+        sb2.append(org.telegram.messenger.bd.G(iArr[0], "Minutes", new Object[0]));
+        sb2.append(' ');
+        sb2.append(org.telegram.messenger.bd.G(iArr[1], "Seconds", new Object[0]));
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        int[] iArr2 = photoViewer.f41498o3;
+        sb4.append(org.telegram.messenger.bd.G(iArr2[0], "Minutes", new Object[0]));
+        sb4.append(' ');
+        sb4.append(org.telegram.messenger.bd.G(iArr2[1], "Seconds", new Object[0]));
+        return org.telegram.messenger.bd.a0("AccDescrPlayerDuration", null, 2131754806, sb3, sb4.toString());
+    }
+
+    @Override
+    public final float k() {
+        return this.f52723f.f41526r3.c();
+    }
+
+    @Override
+    public final void l(float f10) {
+        this.f52722e.c(f10);
+        PhotoViewer photoViewer = this.f52723f;
+        photoViewer.f41526r3.h(false, f10);
+        photoViewer.f41535s3.invalidate();
     }
 }

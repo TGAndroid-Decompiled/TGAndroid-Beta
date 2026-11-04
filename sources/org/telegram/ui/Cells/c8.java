@@ -1,36 +1,51 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
-import org.telegram.messenger.ImageReceiver;
-public final class c8 extends ImageReceiver {
-    public final org.telegram.ui.ActionBar.p6 J1;
-    public final d8 K1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c8 extends AnimatorListenerAdapter {
+    public final int f29063a;
+    public final boolean f29064b;
+    public final f8 f29065c;
 
-    public c8(d8 d8Var, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(null);
-        this.K1 = d8Var;
-        this.J1 = p6Var;
+    public c8(f8 f8Var, boolean z10, int i3) {
+        this.f29063a = i3;
+        this.f29065c = f8Var;
+        this.f29064b = z10;
     }
 
     @Override
-    public final boolean x0(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        d8 d8Var = this.K1;
-        ImageView imageView = d8Var.J;
-        if ((drawable instanceof BitmapDrawable) && d8Var.K == 0) {
-            int J0 = org.telegram.messenger.i0.J0(((BitmapDrawable) drawable).getBitmap());
-            d8Var.K = J0;
-            if (J0 != -1 && J0 != 0) {
-                imageView.setBackground(org.telegram.ui.ActionBar.t6.d0(org.telegram.messenger.i0.L(12.0f), d8Var.K));
-            } else {
-                int i12 = org.telegram.ui.ActionBar.t6.f21170q5;
-                org.telegram.ui.ActionBar.p6 p6Var = this.J1;
-                d8Var.K = org.telegram.ui.ActionBar.t6.w0(i12, p6Var);
-                org.telegram.ui.ActionBar.a7.C(imageView, org.telegram.ui.ActionBar.t6.d0(org.telegram.messenger.i0.L(12.0f), d8Var.K), org.telegram.ui.ActionBar.a7.N(i12), p6Var);
-            }
-            invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29063a) {
+            case 0:
+                if (!this.f29064b) {
+                    this.f29065c.h.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f29064b) {
+                    this.f29065c.f29245y.setVisibility(4);
+                    return;
+                }
+                return;
         }
-        return super.x0(drawable, str, i10, z10, i11);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f29063a) {
+            case 0:
+                if (this.f29064b) {
+                    this.f29065c.h.setVisibility(0);
+                    return;
+                }
+                return;
+            default:
+                if (this.f29064b) {
+                    this.f29065c.f29245y.setVisibility(0);
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,75 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.text.style.LineHeightSpan;
-import android.text.style.MetricAffectingSpan;
-public final class wh0 extends MetricAffectingSpan implements LineHeightSpan {
-    public xh0 f32248a;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class wh0 implements org.telegram.messenger.u10 {
+    public final int f40009a;
+    public final li0 f40010b;
 
-    @Override
-    public final void chooseHeight(CharSequence charSequence, int i10, int i11, int i12, int i13, Paint.FontMetricsInt fontMetricsInt) {
-        int i14;
-        int i15;
-        xh0 xh0Var = this.f32248a;
-        if (xh0Var.f32560b) {
-            int i16 = 2;
-            if (xh0Var.f32562f) {
-                i14 = 7;
-            } else {
-                i14 = 2;
-            }
-            if (i10 <= xh0Var.f32561c) {
-                int i17 = fontMetricsInt.ascent;
-                if (xh0Var.f32563n) {
-                    i15 = 2;
-                } else {
-                    i15 = 0;
-                }
-                fontMetricsInt.ascent = i17 - org.telegram.messenger.i0.L(i15 + i14);
-                int i18 = fontMetricsInt.top;
-                if (!this.f32248a.f32563n) {
-                    i16 = 0;
-                }
-                fontMetricsInt.top = i18 - org.telegram.messenger.i0.L(i16 + i14);
-            }
-            if (i11 >= this.f32248a.d) {
-                float f7 = i14;
-                fontMetricsInt.descent = org.telegram.messenger.i0.L(f7) + fontMetricsInt.descent;
-                fontMetricsInt.bottom = org.telegram.messenger.i0.L(f7) + fontMetricsInt.bottom;
-            }
-        }
+    public wh0(li0 li0Var, int i3) {
+        this.f40009a = i3;
+        this.f40010b = li0Var;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        float f7;
-        if (textPaint == null) {
-            return;
-        }
-        if (this.f32248a.f32559a) {
-            f7 = 16.0f;
-        } else {
-            f7 = org.telegram.messenger.uz.W0 - 2;
-        }
-        textPaint.setTextSize(org.telegram.messenger.i0.L(f7));
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        float f7;
+    public final void a(Object obj) {
         float f10;
-        if (this.f32248a.f32559a) {
-            f7 = 16.0f;
-        } else {
-            f7 = org.telegram.messenger.uz.W0 - 2;
+        View view = (View) obj;
+        switch (this.f40009a) {
+            case 0:
+                li0 li0Var = this.f40010b;
+                ArrayList arrayList = li0Var.d;
+                li0Var.f35736b.getClass();
+                int R = RecyclerView.R(view);
+                if (R >= 0 && R < arrayList.size() && (view instanceof ji0)) {
+                    ((ji0) view).f(((ci0) arrayList.get(R)).f32756c, true);
+                    return;
+                }
+                return;
+            default:
+                if (view instanceof ji0) {
+                    ji0 ji0Var = (ji0) view;
+                    ii0 ii0Var = ji0Var.f35078b;
+                    ji0Var.O = false;
+                    float f11 = 1.0f;
+                    ii0Var.setAlpha(1.0f);
+                    if (this.f40010b.O0) {
+                        float f12 = ji0Var.J;
+                        if (ji0Var.f35086x) {
+                            f10 = 0.76f;
+                        } else {
+                            f10 = 1.0f;
+                        }
+                        ii0Var.setScaleX(f12 * f10);
+                        float f13 = ji0Var.J;
+                        if (ji0Var.f35086x) {
+                            f11 = 0.76f;
+                        }
+                        ii0Var.setScaleY(f13 * f11);
+                        return;
+                    }
+                    ji0Var.d();
+                    return;
+                }
+                return;
         }
-        textPaint.setTextSize(org.telegram.messenger.i0.L(f7));
-        if (this.f32248a.f32559a) {
-            f10 = 1.1f;
-        } else {
-            f10 = 1.0f;
-        }
-        textPaint.setTextScaleX(f10);
     }
 }

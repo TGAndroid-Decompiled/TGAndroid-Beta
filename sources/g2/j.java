@@ -1,40 +1,78 @@
 package g2;
 
-import android.content.Context;
-import android.net.Uri;
-import b2.s0;
-import v7.v6;
-public final class j implements e2.d {
-    public static final d9.t e = v6.a(new a3.s(2));
-    public final j9.z f7302a;
-    public final hf.b f7303b;
-    public final int f7304c;
-    public final boolean d;
+import android.os.SystemClock;
+public final class j {
+    public final h0 f11854a;
+    public boolean f11855b;
 
-    public j(c5.e eVar) {
-        this.f7303b = new hf.b((Context) eVar.f3777c);
-        j9.z zVar = (j9.z) e.get();
-        zVar.getClass();
-        this.f7302a = zVar;
-        this.f7304c = eVar.f3775a;
-        this.d = eVar.f3776b;
+    public j() {
+        this(h0.f11849a);
     }
 
-    @Override
-    public final j9.y a(s0 s0Var) {
-        byte[] bArr = s0Var.f2254k;
-        if (bArr != null) {
-            return w(bArr);
+    public final synchronized void a() {
+        while (!this.f11855b) {
+            this.f11854a.getClass();
+            wait();
         }
-        Uri uri = s0Var.f2257n;
-        if (uri != null) {
-            return ((j9.a0) this.f7302a).a(new i(1, this, uri));
-        }
-        return null;
     }
 
-    @Override
-    public final j9.y w(byte[] bArr) {
-        return ((j9.a0) this.f7302a).a(new i(0, this, bArr));
+    public final synchronized void b() {
+        boolean z10 = false;
+        while (!this.f11855b) {
+            try {
+                this.f11854a.getClass();
+                wait();
+            } catch (InterruptedException unused) {
+                z10 = true;
+            }
+        }
+        if (z10) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public final synchronized boolean c(long j10) {
+        if (j10 <= 0) {
+            return this.f11855b;
+        }
+        this.f11854a.getClass();
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j11 = j10 + elapsedRealtime;
+        if (j11 < elapsedRealtime) {
+            b();
+        } else {
+            boolean z10 = false;
+            while (!this.f11855b && elapsedRealtime < j11) {
+                try {
+                    this.f11854a.getClass();
+                    wait(j11 - elapsedRealtime);
+                } catch (InterruptedException unused) {
+                    z10 = true;
+                }
+                this.f11854a.getClass();
+                elapsedRealtime = SystemClock.elapsedRealtime();
+            }
+            if (z10) {
+                Thread.currentThread().interrupt();
+            }
+        }
+        return this.f11855b;
+    }
+
+    public final synchronized void d() {
+        this.f11855b = false;
+    }
+
+    public final synchronized boolean e() {
+        if (this.f11855b) {
+            return false;
+        }
+        this.f11855b = true;
+        notifyAll();
+        return true;
+    }
+
+    public j(h0 h0Var) {
+        this.f11854a = h0Var;
     }
 }

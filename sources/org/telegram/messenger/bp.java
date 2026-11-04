@@ -1,145 +1,127 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class bp {
-    public static int f14999q = 10;
-    public int f15000a;
-    public String f15001b;
+    public final int f21864a;
+    public final long f21865b;
+    public final ArrayList f21866c = new ArrayList();
     public int d;
-    public volatile int e;
-    public int f15003f;
-    public int f15004g;
-    public int f15009m;
-    public boolean f15010n;
-    public final int f15011o;
-    public boolean f15012p;
-    public ArrayList f15002c = new ArrayList();
-    public ArrayList h = new ArrayList();
-    public ArrayList f15005i = new ArrayList();
-    public final LongSparseIntArray f15006j = new LongSparseIntArray();
-    public final ArrayList f15007k = new ArrayList();
-    public final ArrayList f15008l = new ArrayList();
+    public boolean f21867e;
+    public boolean f21868f;
 
-    public bp() {
-        int i10 = f14999q;
-        f14999q = i10 + 1;
-        this.f15011o = i10;
+    public bp(int i3, long j10) {
+        this.f21864a = i3;
+        this.f21865b = j10;
     }
 
-    public final boolean a(int i10, TLRPC.Dialog dialog) {
-        TLRPC.EncryptedChat Z0;
-        if (dialog == null) {
-            return false;
+    public final TLRPC.Document a() {
+        zi ziVar;
+        ArrayList arrayList = this.f21866c;
+        if (arrayList.isEmpty() || (ziVar = (zi) arrayList.get(0)) == null) {
+            return null;
         }
-        long j10 = dialog.f19798id;
-        if (o5.C(j10) && (Z0 = wp.r1(i10).Z0(Integer.valueOf((int) (4294967295L & j10)))) != null) {
-            j10 = Z0.user_id;
-        }
-        return this.h.contains(Long.valueOf(j10));
+        return ziVar.F0();
     }
 
-    public final boolean b(c cVar, long j10) {
-        TLRPC.Dialog dialog = (TLRPC.Dialog) wp.r1(cVar.f15043a).Q.f(j10);
-        if (dialog == null) {
-            return false;
+    public final void b() {
+        if (!this.f21868f && !this.f21867e) {
+            this.f21868f = true;
+            TLRPC.TL_getSavedMusic tL_getSavedMusic = new TLRPC.TL_getSavedMusic();
+            int i3 = this.f21864a;
+            tL_getSavedMusic.f27055id = hp.s1(i3).o1(this.f21865b);
+            tL_getSavedMusic.offset = this.f21866c.size();
+            tL_getSavedMusic.limit = 30;
+            ConnectionsManager.getInstance(i3).sendRequest(tL_getSavedMusic, new s1(this, 6));
         }
-        return c(cVar, j10, dialog);
     }
 
-    public final boolean c(c cVar, long j10, TLRPC.Dialog dialog) {
-        TLRPC.Chat L0;
-        if (!this.f15005i.contains(Long.valueOf(j10))) {
-            if (!this.h.contains(Long.valueOf(j10))) {
-                if (dialog.folder_id != 0) {
-                    int i10 = this.f15004g;
-                    int i11 = wp.D8;
-                    if ((i10 & 128) != 0) {
-                        return false;
-                    }
-                }
-                int i12 = cVar.f15043a;
-                wp r12 = wp.r1(i12);
-                i5 r10 = i5.r(i12);
-                if ((this.f15004g & 32) == 0 || !r12.q2(dialog.f19798id, 0L, null) || dialog.unread_mentions_count != 0) {
-                    if ((this.f15004g & 64) == 0 || r12.U0(dialog) != 0 || dialog.unread_mark || dialog.unread_mentions_count != 0) {
-                        int i13 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-                        if (i13 > 0) {
-                            TLRPC.User Z1 = r12.Z1(Long.valueOf(j10));
-                            if (Z1 != null) {
-                                if (!Z1.bot) {
-                                    if (!Z1.self && !Z1.contact && !r10.x(j10)) {
-                                        if ((this.f15004g & 2) == 0) {
-                                            return false;
-                                        }
-                                    } else if ((this.f15004g & 1) == 0) {
-                                        return false;
-                                    }
-                                } else if ((this.f15004g & 16) == 0) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        } else if (i13 < 0 && (L0 = r12.L0(Long.valueOf(-j10))) != null) {
-                            if (w3.Y(L0)) {
-                                int i14 = this.f15004g;
-                                int i15 = wp.E8;
-                                if ((i14 & i15) != i15) {
-                                    return false;
-                                }
-                            } else if (!w3.X(i12, L0)) {
-                                if (w3.T(L0) && !L0.megagroup) {
-                                    if ((this.f15004g & 8) == 0) {
-                                        return false;
-                                    }
-                                } else if ((this.f15004g & 4) == 0) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        } else {
-                            return false;
-                        }
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return false;
-                }
+    public final void c(int i3, int i10) {
+        zi ziVar;
+        TLRPC.Document F0;
+        TLRPC.Document a10 = a();
+        ArrayList arrayList = this.f21866c;
+        zi ziVar2 = (zi) arrayList.get(i3);
+        arrayList.set(i3, (zi) arrayList.get(i10));
+        arrayList.set(i10, ziVar2);
+        if (a() != a10) {
+            e();
+        }
+        if (i10 == 0) {
+            ziVar = null;
+        } else {
+            ziVar = (zi) arrayList.get(i10 - 1);
+        }
+        TLRPC.Document F02 = ziVar2.F0();
+        if (ziVar == null) {
+            F0 = null;
+        } else {
+            F0 = ziVar.F0();
+        }
+        TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
+        if (F02 == null) {
+            return;
+        }
+        TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+        tL_account_saveMusic.f27029id = tL_inputDocument;
+        tL_inputDocument.f27013id = F02.f27007id;
+        tL_inputDocument.access_hash = F02.access_hash;
+        byte[] bArr = F02.file_reference;
+        tL_inputDocument.file_reference = bArr;
+        if (bArr == null) {
+            tL_inputDocument.file_reference = new byte[0];
+        }
+        if (F0 != null) {
+            tL_account_saveMusic.flags |= 2;
+            TLRPC.TL_inputDocument tL_inputDocument2 = new TLRPC.TL_inputDocument();
+            tL_account_saveMusic.after_id = tL_inputDocument2;
+            tL_inputDocument2.f27013id = F0.f27007id;
+            tL_inputDocument2.access_hash = F0.access_hash;
+            byte[] bArr2 = F0.file_reference;
+            tL_inputDocument2.file_reference = bArr2;
+            if (bArr2 == null) {
+                tL_inputDocument2.file_reference = new byte[0];
             }
-            return true;
         }
-        return false;
+        tL_account_saveMusic.unsave = false;
+        ConnectionsManager.getInstance(this.f21864a).sendRequest(tL_account_saveMusic, null);
     }
 
-    public final boolean d() {
-        int i10 = this.f15004g;
-        int i11 = wp.D8;
-        if ((i10 & 512) > 0) {
-            return true;
-        }
-        return false;
+    public final zi d(TLRPC.Document document) {
+        TLRPC.TL_message tL_message = new TLRPC.TL_message();
+        tL_message.f27022id = az.p();
+        int i3 = this.f21864a;
+        hp s12 = hp.s1(i3);
+        long j10 = this.f21865b;
+        tL_message.peer_id = s12.z1(j10);
+        tL_message.from_id = hp.s1(i3).z1(j10);
+        TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+        tL_message.media = tL_messageMediaDocument;
+        tL_messageMediaDocument.document = document;
+        zi ziVar = new zi(i3, tL_message, false, false);
+        ziVar.K(true);
+        return ziVar;
     }
 
-    public final boolean e() {
-        if (this.f15000a == 0) {
-            return true;
+    public final void e() {
+        TLRPC.Document a10 = a();
+        int i3 = this.f21864a;
+        hp s12 = hp.s1(i3);
+        long j10 = this.f21865b;
+        TLRPC.UserFull b22 = s12.b2(j10);
+        if (b22 == null) {
+            return;
         }
-        return false;
-    }
-
-    public final boolean f() {
-        if (d()) {
-            int i10 = this.f15004g;
-            int i11 = wp.D8;
-            if ((i10 & 1024) > 0) {
-                return true;
-            }
-            return false;
+        if (a10 == null) {
+            b22.flags2 &= -2097153;
+            b22.saved_music = null;
+        } else {
+            b22.flags2 |= 2097152;
+            b22.saved_music = a10;
         }
-        return false;
+        qr.a0(i3).j2(b22, false);
+        h10.i(i3).v(true);
+        hs.f(i3).k(hs.V3, Long.valueOf(j10));
     }
 }

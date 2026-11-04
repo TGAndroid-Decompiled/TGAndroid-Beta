@@ -1,25 +1,26 @@
 package org.telegram.ui.web;
 
 import android.os.Bundle;
+import ei.p7;
 import org.json.JSONObject;
-import org.telegram.ui.zx;
-public final class c0 extends zx {
-    public final boolean[] B4;
-    public final x0 C4;
-    public final z0 D4;
+import org.telegram.ui.uw;
+public final class c0 extends uw {
+    public final boolean[] C4;
+    public final p7 D4;
+    public final w0 E4;
 
-    public c0(z0 z0Var, Bundle bundle, boolean[] zArr, x0 x0Var) {
+    public c0(w0 w0Var, Bundle bundle, boolean[] zArr, p7 p7Var) {
         super(bundle);
-        this.D4 = z0Var;
-        this.B4 = zArr;
-        this.C4 = x0Var;
+        this.E4 = w0Var;
+        this.C4 = zArr;
+        this.D4 = p7Var;
     }
 
     @Override
     public final void onFragmentDestroy() {
         JSONObject jSONObject;
         super.onFragmentDestroy();
-        boolean[] zArr = this.B4;
+        boolean[] zArr = this.C4;
         if (!zArr[0]) {
             zArr[0] = true;
             try {
@@ -27,7 +28,7 @@ public final class c0 extends zx {
             } catch (Exception unused) {
                 jSONObject = null;
             }
-            this.D4.y(this.C4, "requested_chat_failed", jSONObject);
+            this.E4.x(this.D4, "requested_chat_failed", jSONObject);
         }
     }
 }

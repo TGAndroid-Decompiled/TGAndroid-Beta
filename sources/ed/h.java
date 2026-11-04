@@ -1,14 +1,20 @@
 package ed;
-public abstract class h extends a {
-    public h(cd.c cVar) {
-        super(cVar);
-        if (cVar != null && cVar.getContext() != cd.i.f4123a) {
-            throw new IllegalArgumentException("Coroutines with restricted suspension must have EmptyCoroutineContext");
-        }
+
+import b8.tb;
+import java.util.Arrays;
+import java.util.List;
+public abstract class h extends tb {
+    public static int b(List list) {
+        kotlin.jvm.internal.j.e(list, "<this>");
+        return list.size() - 1;
     }
 
-    @Override
-    public final cd.h getContext() {
-        return cd.i.f4123a;
+    public static List c(Object... objArr) {
+        if (objArr.length > 0) {
+            List asList = Arrays.asList(objArr);
+            kotlin.jvm.internal.j.d(asList, "asList(...)");
+            return asList;
+        }
+        return o.f9953a;
     }
 }

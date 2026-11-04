@@ -1,50 +1,28 @@
 package w1;
 
-import a0.m;
-import a6.d;
-import androidx.lifecycle.p0;
-import b2.u;
-public class b extends p0 {
-    public static final jb.b f52348f = new jb.b(25);
-    public final m d = new m();
-    public boolean e = false;
+import android.view.animation.Interpolator;
+public abstract class b implements Interpolator {
+    public final float[] f57015a;
+    public final float f57016b;
+
+    public b(float[] fArr) {
+        this.f57015a = fArr;
+        this.f57016b = 1.0f / (fArr.length - 1);
+    }
 
     @Override
-    public final void b() {
-        m mVar = this.d;
-        int i10 = mVar.f30c;
-        for (int i11 = 0; i11 < i10; i11++) {
-            a aVar = (a) mVar.f29b[i11];
-            d dVar = aVar.f52345l;
-            dVar.a();
-            dVar.f296c = true;
-            u uVar = aVar.f52347n;
-            if (uVar != null) {
-                aVar.i(uVar);
-            }
-            a aVar2 = dVar.f294a;
-            if (aVar2 != null) {
-                if (aVar2 == aVar) {
-                    dVar.f294a = null;
-                    if (uVar != null) {
-                        boolean z10 = uVar.f2300b;
-                    }
-                    dVar.d = true;
-                    dVar.f295b = false;
-                    dVar.f296c = false;
-                    dVar.e = false;
-                } else {
-                    throw new IllegalArgumentException("Attempting to unregister the wrong listener");
-                }
-            } else {
-                throw new IllegalStateException("No listener register");
-            }
+    public final float getInterpolation(float f10) {
+        if (f10 >= 1.0f) {
+            return 1.0f;
         }
-        int i12 = mVar.f30c;
-        Object[] objArr = mVar.f29b;
-        for (int i13 = 0; i13 < i12; i13++) {
-            objArr[i13] = null;
+        if (f10 <= 0.0f) {
+            return 0.0f;
         }
-        mVar.f30c = 0;
+        float[] fArr = this.f57015a;
+        int min = Math.min((int) ((fArr.length - 1) * f10), fArr.length - 2);
+        float f11 = this.f57016b;
+        float c2 = com.google.android.recaptcha.internal.a.c(min, f11, f10, f11);
+        float f12 = fArr[min];
+        return com.google.android.recaptcha.internal.a.y(fArr[min + 1], f12, c2, f12);
     }
 }

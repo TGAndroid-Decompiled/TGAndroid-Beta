@@ -1,45 +1,27 @@
 package org.telegram.ui;
-public final class fg implements org.telegram.messenger.k20 {
-    public final int f37134a;
-    public final un f37135b;
-    public final String f37136c;
 
-    public fg(un unVar, String str, int i10) {
-        this.f37134a = i10;
-        this.f37135b = unVar;
-        this.f37136c = str;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class fg implements View.OnClickListener {
+    public final int f45273a;
+    public final org.telegram.ui.Components.f60 f45274b;
+
+    public fg(org.telegram.ui.Components.f60 f60Var, int i3) {
+        this.f45273a = i3;
+        this.f45274b = f60Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f37134a) {
+    public final void onClick(View view) {
+        int i3 = this.f45273a;
+        org.telegram.ui.Components.f60 f60Var = this.f45274b;
+        switch (i3) {
             case 0:
-                if (bool.booleanValue()) {
-                    boolean booleanValue = bool2.booleanValue();
-                    un unVar = this.f37135b;
-                    String str = this.f37136c;
-                    if (booleanValue) {
-                        unVar.getMessagesController().p(str, false);
-                    }
-                    unVar.getParentActivity();
-                    gf.f.m(str);
-                    return;
-                }
+                f60Var.s();
                 return;
             default:
-                un unVar2 = this.f37135b;
-                unVar2.getClass();
-                if (bool.booleanValue()) {
-                    boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f37136c;
-                    if (booleanValue2) {
-                        unVar2.getMessagesController().p(str2, true);
-                    }
-                    gf.f.l(unVar2.getParentActivity(), str2, false, null);
-                    return;
-                }
+                Drawable[] drawableArr = PhotoViewer.V8;
+                f60Var.s();
                 return;
         }
     }

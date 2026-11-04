@@ -1,76 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class le0 implements TextureView.SurfaceTextureListener {
-    public final boolean f28141a;
-    public final s9 f28142b;
-    public final oe0 f28143c;
+import java.util.Arrays;
+import java.util.Comparator;
+public final class le0 implements Comparator {
+    public final se0 f35712a;
 
-    public le0(oe0 oe0Var, boolean z10, s9 s9Var) {
-        this.f28143c = oe0Var;
-        this.f28141a = z10;
-        this.f28142b = s9Var;
+    public le0(se0 se0Var) {
+        this.f35712a = se0Var;
     }
 
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        oe0 oe0Var = this.f28143c;
-        TextureView textureView = oe0Var.f29109i0;
-        if (oe0Var.f29112l0 == null && surfaceTexture != null) {
-            gz gzVar = new gz(surfaceTexture, oe0Var.C0, oe0Var.H0, oe0Var.f29126w0, this.f28141a, this.f28142b, i10, i11);
-            oe0Var.f29112l0 = gzVar;
-            if (!this.f28141a) {
-                gzVar.h(oe0Var.J0, oe0Var.K0);
-                gz gzVar2 = oe0Var.f29112l0;
-                Matrix transform = textureView.getTransform(null);
-                int width = textureView.getWidth();
-                int height = textureView.getHeight();
-                x9 x9Var = gzVar2.I;
-                if (x9Var != null) {
-                    Matrix matrix = x9Var.v;
-                    transform.invert(matrix);
-                    float f7 = width;
-                    float f10 = height;
-                    matrix.preScale(f7, f10);
-                    matrix.postScale(1.0f / f7, 1.0f / f10);
-                    x9Var.c(matrix);
-                    gzVar2.c(false, false, false);
-                }
+    public final int a(re0 re0Var) {
+        se0 se0Var = this.f35712a;
+        int size = se0Var.f37994q1.answers.size();
+        for (int i3 = 0; i3 < size; i3++) {
+            if (Arrays.equals(se0Var.f37994q1.answers.get(i3).option, re0Var.d)) {
+                return i3;
             }
-            oe0Var.f29112l0.d(oe0Var);
-            gz gzVar3 = oe0Var.f29112l0;
-            gzVar3.getClass();
-            gzVar3.postRunnable(new cz(gzVar3, i10, i11, 1));
-            oe0Var.f29112l0.c(true, true, false);
         }
+        return 0;
     }
 
     @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        oe0 oe0Var = this.f28143c;
-        gz gzVar = oe0Var.f29112l0;
-        if (gzVar != null) {
-            gzVar.postRunnable(new dz(gzVar, 0));
-            oe0Var.f29112l0 = null;
-            return true;
+    public final int compare(Object obj, Object obj2) {
+        int a10 = a((re0) obj);
+        int a11 = a((re0) obj2);
+        if (a10 > a11) {
+            return 1;
         }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        oe0 oe0Var = this.f28143c;
-        gz gzVar = oe0Var.f29112l0;
-        if (gzVar != null) {
-            gzVar.postRunnable(new cz(gzVar, i10, i11, 1));
-            oe0Var.f29112l0.c(false, true, false);
-            oe0Var.f29112l0.postRunnable(new eb0(this, 6));
+        if (a10 < a11) {
+            return -1;
         }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        return 0;
     }
 }

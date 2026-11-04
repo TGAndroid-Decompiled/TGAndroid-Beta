@@ -1,42 +1,58 @@
 package org.telegram.ui.web;
 
 import android.content.Context;
-import android.text.TextUtils;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.view.View;
-import org.telegram.ui.ActionBar.p6;
-import org.telegram.ui.Components.a51;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.uk0;
-public final class f extends a51 {
-    public static final int f42829b = 0;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import b8.mf;
+public final class f extends FrameLayout {
+    public final ImageView f50837a;
+    public final TextView f50838b;
+    public final ImageView f50839c;
+    public final Paint d;
+    public boolean f50840e;
 
-    static {
-        a51.h(new a51());
+    public f(Context context) {
+        super(context);
+        this.d = new Paint(1);
+        ImageView imageView = new ImageView(context);
+        this.f50837a = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(2131231777);
+        addView(imageView, mf.d(32, 32.0f, 19, 10.0f, 8.0f, 8.0f, 8.0f));
+        TextView textView = new TextView(context);
+        this.f50838b = textView;
+        textView.setTextSize(1, 16.0f);
+        addView(textView, mf.d(-1, -2.0f, 19, 64.0f, 8.0f, 64.0f, 8.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f50839c = imageView2;
+        imageView2.setScaleType(scaleType);
+        imageView2.setImageResource(2131231768);
+        addView(imageView2, mf.d(32, 32.0f, 21, 8.0f, 8.0f, 10.0f, 8.0f));
     }
 
     @Override
-    public final void b(android.view.View r27, org.telegram.ui.Components.b51 r28, boolean r29, org.telegram.ui.Components.q51 r30, org.telegram.ui.Components.v51 r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f.b(android.view.View, org.telegram.ui.Components.b51, boolean, org.telegram.ui.Components.q51, org.telegram.ui.Components.v51):void");
-    }
-
-    @Override
-    public final boolean c(b51 b51Var, b51 b51Var2) {
-        if (b51Var.H == b51Var2.H && TextUtils.equals(b51Var.f24644m, b51Var2.f24644m)) {
-            return true;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f50840e) {
+            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - Math.max(org.telegram.messenger.g0.L(0.66f), 1), getWidth(), getHeight(), this.d);
         }
-        return false;
     }
 
     @Override
-    public final View d(Context context, uk0 uk0Var, int i10, p6 p6Var) {
-        return new g(context, p6Var);
+    public final void onMeasure(int i3, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i10);
     }
 
-    @Override
-    public final boolean e(b51 b51Var, b51 b51Var2) {
-        if (b51Var.H == b51Var2.H && TextUtils.isEmpty(b51Var.f24644m) == TextUtils.isEmpty(b51Var2.f24644m)) {
-            return true;
-        }
-        return false;
+    public void setAsShowMore(l lVar) {
+        ImageView imageView = this.f50837a;
+        imageView.setImageResource(2131230871);
+        imageView.setColorFilter(new PorterDuffColorFilter(lVar.I, PorterDuff.Mode.SRC_IN));
     }
 }

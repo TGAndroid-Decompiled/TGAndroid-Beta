@@ -1,111 +1,31 @@
 package yd;
+public final class h extends i {
+    public final Throwable f59408a;
 
-import c3.i0;
-import java.util.concurrent.CancellationException;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import td.a0;
-import td.d2;
-import td.e0;
-import td.l0;
-import td.w0;
-public final class h extends l0 implements ed.d, cd.c {
-    public static final AtomicReferenceFieldUpdater f54423n = AtomicReferenceFieldUpdater.newUpdater(h.class, Object.class, "_reusableCancellableContinuation$volatile");
-    private volatile Object _reusableCancellableContinuation$volatile;
-    public final a0 d;
-    public final ed.c e;
-    public Object f54424f;
-    public final Object h;
-
-    public h(a0 a0Var, ed.c cVar) {
-        super(-1);
-        this.d = a0Var;
-        this.e = cVar;
-        this.f54424f = a.f54414c;
-        Object fold = cVar.getContext().fold(0, w.f54443c);
-        kotlin.jvm.internal.i.b(fold);
-        this.h = fold;
+    public h(Throwable th2) {
+        this.f59408a = th2;
     }
 
-    @Override
-    public final void b(Object obj, CancellationException cancellationException) {
-        if (!(obj instanceof td.w)) {
-            return;
-        }
-        throw null;
-    }
-
-    @Override
-    public final ed.d getCallerFrame() {
-        ed.c cVar = this.e;
-        if (i0.t(cVar)) {
-            return cVar;
-        }
-        return null;
-    }
-
-    @Override
-    public final cd.h getContext() {
-        return this.e.getContext();
-    }
-
-    @Override
-    public final Object j() {
-        Object obj = this.f54424f;
-        this.f54424f = a.f54414c;
-        return obj;
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        Object vVar;
-        ed.c cVar = this.e;
-        cd.h context = cVar.getContext();
-        Throwable a2 = ad.g.a(obj);
-        if (a2 == null) {
-            vVar = obj;
-        } else {
-            vVar = new td.v(a2, false);
-        }
-        a0 a0Var = this.d;
-        if (a0Var.d()) {
-            this.f54424f = vVar;
-            this.f48648c = 0;
-            a0Var.c(context, this);
-            return;
-        }
-        w0 a10 = d2.a();
-        if (a10.f48686c >= 4294967296L) {
-            this.f54424f = vVar;
-            this.f48648c = 0;
-            bd.g gVar = a10.e;
-            if (gVar == null) {
-                gVar = new bd.g();
-                a10.e = gVar;
+    public final boolean equals(Object obj) {
+        if (obj instanceof h) {
+            if (kotlin.jvm.internal.j.a(this.f59408a, ((h) obj).f59408a)) {
+                return true;
             }
-            gVar.addLast(this);
-            return;
+            return false;
         }
-        a10.h(true);
-        try {
-            cd.h context2 = cVar.getContext();
-            Object k10 = a.k(context2, this.h);
-            cVar.resumeWith(obj);
-            a.f(context2, k10);
-            do {
-            } while (a10.j());
-        } finally {
-            try {
-            } finally {
-            }
-        }
+        return false;
     }
 
+    public final int hashCode() {
+        Throwable th2 = this.f59408a;
+        if (th2 != null) {
+            return th2.hashCode();
+        }
+        return 0;
+    }
+
+    @Override
     public final String toString() {
-        return "DispatchedContinuation[" + this.d + ", " + e0.t(this.e) + ']';
-    }
-
-    @Override
-    public final cd.c c() {
-        return this;
+        return "Closed(" + this.f59408a + ')';
     }
 }

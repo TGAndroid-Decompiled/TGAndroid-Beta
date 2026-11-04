@@ -1,46 +1,35 @@
 package org.telegram.ui;
+public final class us implements Runnable {
+    public final int f50179a;
+    public final DataSettingsActivity f50180b;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class us implements TextWatcher {
-    public final EditTextBoldCursor f42336a;
-
-    public us(EditTextBoldCursor editTextBoldCursor) {
-        this.f42336a = editTextBoldCursor;
+    public us(DataSettingsActivity dataSettingsActivity, int i3) {
+        this.f50179a = i3;
+        this.f50180b = dataSettingsActivity;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        try {
-            String obj = editable.toString();
-            if (!obj.isEmpty()) {
-                int intValue = Utilities.z(obj).intValue();
-                EditTextBoldCursor editTextBoldCursor = this.f42336a;
-                if (intValue < 0) {
-                    editTextBoldCursor.setText("0");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else if (intValue > 300) {
-                    editTextBoldCursor.setText("300");
-                    editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                } else {
-                    if (!obj.equals("" + intValue)) {
-                        editTextBoldCursor.setText("" + intValue);
-                        editTextBoldCursor.setSelection(editTextBoldCursor.length());
-                    }
+    public final void run() {
+        int i3;
+        switch (this.f50179a) {
+            case 0:
+                this.f50180b.getMediaDataController().E(true);
+                return;
+            case 1:
+                DataSettingsActivity dataSettingsActivity = this.f50180b;
+                dataSettingsActivity.X = true;
+                if (dataSettingsActivity.f41243a != null && (i3 = dataSettingsActivity.f41250s) >= 0) {
+                    dataSettingsActivity.s0(i3);
+                    return;
                 }
-            }
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+                return;
+            default:
+                z6.f52543k0 = null;
+                DataSettingsActivity dataSettingsActivity2 = this.f50180b;
+                us usVar = new us(dataSettingsActivity2, 1);
+                org.telegram.messenger.g0.i3(usVar, 100L);
+                z6.m0(new ci.u1(dataSettingsActivity2, usVar, System.currentTimeMillis(), 1));
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

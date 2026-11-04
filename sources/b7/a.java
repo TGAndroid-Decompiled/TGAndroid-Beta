@@ -1,8 +1,7 @@
 package b7;
 
-import a8.d;
-import com.google.android.gms.common.api.e;
-import com.google.android.gms.common.api.j;
-public final class a extends j {
-    public static final e f2502k = new e("Fido.FIDO2_API", new d(8), new Object());
+import m6.c;
+public abstract class a {
+    public static final c f2453a = new c("is_user_verifying_platform_authenticator_available_for_credential", 1);
+    public static final c f2454b = new c("is_user_verifying_platform_authenticator_available", 1);
 }

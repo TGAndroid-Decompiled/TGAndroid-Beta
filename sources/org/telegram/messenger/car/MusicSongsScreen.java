@@ -1,21 +1,21 @@
 package org.telegram.messenger.car;
 
-import androidx.car.app.l;
+import androidx.car.app.m;
 import androidx.lifecycle.e;
 import androidx.lifecycle.t;
-import org.telegram.messenger.at;
-import org.telegram.messenger.vs;
-public class MusicSongsScreen extends l implements e, vs {
+import org.telegram.messenger.cs;
+import org.telegram.messenger.hs;
+public class MusicSongsScreen extends m implements e, cs {
     @Override
     public final void a(t tVar) {
-        at.e().c(this, at.f14718h2);
-        at.e().c(this, at.f14712g2);
-        at.e().c(this, at.f14690c4);
+        hs.e().c(this, hs.f23239h2);
+        hs.e().c(this, hs.f23233g2);
+        hs.e().c(this, hs.f23211c4);
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == at.f14690c4) {
+    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
+        if (i3 == hs.f23211c4) {
             throw null;
         }
         throw null;
@@ -23,9 +23,9 @@ public class MusicSongsScreen extends l implements e, vs {
 
     @Override
     public final void e(t tVar) {
-        at.e().n(this, at.f14718h2);
-        at.e().n(this, at.f14712g2);
-        at.e().n(this, at.f14690c4);
+        hs.e().n(this, hs.f23239h2);
+        hs.e().n(this, hs.f23233g2);
+        hs.e().n(this, hs.f23211c4);
     }
 
     @Override

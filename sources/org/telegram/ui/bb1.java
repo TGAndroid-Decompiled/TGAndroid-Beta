@@ -1,34 +1,21 @@
 package org.telegram.ui;
 public final class bb1 implements Runnable {
-    public final int f36022a;
-    public final cb1 f36023b;
+    public final int f44013a;
+    public final cb1 f44014b;
+    public final String f44015c;
+    public final boolean d;
+    public final boolean f44016e;
 
-    public bb1(cb1 cb1Var, int i10) {
-        this.f36022a = i10;
-        this.f36023b = cb1Var;
+    public bb1(cb1 cb1Var, String str, boolean z10, boolean z11, int i3) {
+        this.f44013a = i3;
+        this.f44014b = cb1Var;
+        this.f44015c = str;
+        this.d = z10;
+        this.f44016e = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f36022a) {
-            case 0:
-                cb1 cb1Var = this.f36023b;
-                cb1Var.F = null;
-                if (cb1Var.G != -1) {
-                    cb1Var.H.getNotificationCenter().j(cb1Var.G);
-                    cb1Var.G = -1;
-                    return;
-                }
-                return;
-            default:
-                cb1 cb1Var2 = this.f36023b;
-                cb1Var2.F = null;
-                if (cb1Var2.G != -1) {
-                    cb1Var2.H.getNotificationCenter().j(cb1Var2.G);
-                    cb1Var2.G = -1;
-                    return;
-                }
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bb1.run():void");
     }
 }

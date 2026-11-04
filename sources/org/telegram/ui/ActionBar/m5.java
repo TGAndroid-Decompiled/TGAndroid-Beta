@@ -1,45 +1,25 @@
 package org.telegram.ui.ActionBar;
-public final class m5 implements fe.g, o0 {
-    public final o5 f20588a;
 
-    public m5(o5 o5Var) {
-        this.f20588a = o5Var;
+import org.telegram.tgnet.TLObject;
+public final class m5 implements Runnable {
+    public final int f28343a;
+    public final TLObject f28344b;
+    public final int f28345c;
+
+    public m5(int i3, int i10, TLObject tLObject) {
+        this.f28343a = i10;
+        this.f28344b = tLObject;
+        this.f28345c = i3;
     }
 
     @Override
-    public void k(int i10) {
-        k kVar = this.f20588a.f20626a.V;
-        if (kVar != null) {
-            kVar.b(i10);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.m5.run():void");
     }
 
-    @Override
-    public boolean l() {
-        return false;
-    }
-
-    @Override
-    public boolean m(float f7) {
-        return false;
-    }
-
-    @Override
-    public void z() {
-        o5 o5Var = this.f20588a;
-        o5Var.e();
-        o5Var.f20626a.invalidate();
-    }
-
-    @Override
-    public void g(boolean z10) {
-    }
-
-    @Override
-    public void a() {
-    }
-
-    @Override
-    public void n() {
+    public m5(int i3, TLObject tLObject) {
+        this.f28343a = 0;
+        this.f28345c = i3;
+        this.f28344b = tLObject;
     }
 }

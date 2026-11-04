@@ -1,20 +1,13 @@
 package qd;
 
-import java.util.Iterator;
-import java.util.concurrent.atomic.AtomicReference;
-public final class a implements b {
-    public final AtomicReference f45521a;
-
-    public a(e eVar) {
-        this.f45521a = new AtomicReference(eVar);
-    }
-
+import j$.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
+import kotlin.jvm.internal.j;
+public final class a extends pd.a {
     @Override
-    public final Iterator iterator() {
-        b bVar = (b) this.f45521a.getAndSet(null);
-        if (bVar != null) {
-            return bVar.iterator();
-        }
-        throw new IllegalStateException("This sequence can be consumed only once.");
+    public final Random a() {
+        ThreadLocalRandom current = ThreadLocalRandom.current();
+        j.d(current, "current(...)");
+        return current;
     }
 }

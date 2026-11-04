@@ -1,48 +1,87 @@
 package a5;
 
-import android.content.pm.PackageInfo;
-import android.net.Uri;
-import android.webkit.WebView;
-import b5.m;
-import b5.n;
-import b5.o;
-import java.util.Set;
-import java.util.WeakHashMap;
-import k6.h;
-public abstract class c {
-    public static final boolean f283a;
-    public static final WeakHashMap f284b;
+import a0.f;
+import a0.l;
+import a1.g;
+import android.os.Parcel;
+import android.util.SparseIntArray;
+public final class c extends b {
+    public final SparseIntArray d;
+    public final Parcel f130e;
+    public final int f131f;
+    public final int f132g;
+    public final String h;
+    public int f133i;
+    public int f134j;
+    public int f135k;
 
-    static {
-        Uri.parse("*");
-        Uri.parse("");
-        f283a = true;
-        f284b = new WeakHashMap();
+    public c(Parcel parcel) {
+        this(parcel, parcel.dataPosition(), parcel.dataSize(), "", new l(0), new l(0), new l(0));
     }
 
-    public static void a(WebView webView, String str, Set set, b bVar) {
-        if (m.f2499c.b()) {
-            c(webView).f2501a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new me.a(new h(bVar, 8)));
-            return;
+    @Override
+    public final c a() {
+        Parcel parcel = this.f130e;
+        int dataPosition = parcel.dataPosition();
+        int i3 = this.f134j;
+        if (i3 == this.f131f) {
+            i3 = this.f132g;
         }
-        throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
+        return new c(parcel, dataPosition, i3, g.s(new StringBuilder(), this.h, "  "), this.f127a, this.f128b, this.f129c);
     }
 
-    public static PackageInfo b() {
-        return (PackageInfo) Class.forName("android.webkit.WebViewFactory").getMethod("getLoadedPackageInfo", null).invoke(null, null);
-    }
-
-    public static o c(WebView webView) {
-        if (m.e.b() && f283a) {
-            WeakHashMap weakHashMap = f284b;
-            o oVar = (o) weakHashMap.get(webView);
-            if (oVar == null) {
-                o oVar2 = new o(n.f2500a.createWebView(webView));
-                weakHashMap.put(webView, oVar2);
-                return oVar2;
+    @Override
+    public final boolean e(int i3) {
+        while (this.f134j < this.f132g) {
+            int i10 = this.f135k;
+            if (i10 != i3) {
+                if (String.valueOf(i10).compareTo(String.valueOf(i3)) <= 0) {
+                    int i11 = this.f134j;
+                    Parcel parcel = this.f130e;
+                    parcel.setDataPosition(i11);
+                    int readInt = parcel.readInt();
+                    this.f135k = parcel.readInt();
+                    this.f134j += readInt;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
             }
-            return oVar;
         }
-        return new o(n.f2500a.createWebView(webView));
+        if (this.f135k == i3) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void i(int i3) {
+        int i10 = this.f133i;
+        SparseIntArray sparseIntArray = this.d;
+        Parcel parcel = this.f130e;
+        if (i10 >= 0) {
+            int i11 = sparseIntArray.get(i10);
+            int dataPosition = parcel.dataPosition();
+            parcel.setDataPosition(i11);
+            parcel.writeInt(dataPosition - i11);
+            parcel.setDataPosition(dataPosition);
+        }
+        this.f133i = i3;
+        sparseIntArray.put(i3, parcel.dataPosition());
+        parcel.writeInt(0);
+        parcel.writeInt(i3);
+    }
+
+    public c(Parcel parcel, int i3, int i10, String str, f fVar, f fVar2, f fVar3) {
+        super(fVar, fVar2, fVar3);
+        this.d = new SparseIntArray();
+        this.f133i = -1;
+        this.f135k = -1;
+        this.f130e = parcel;
+        this.f131f = i3;
+        this.f132g = i10;
+        this.f134j = i3;
+        this.h = str;
     }
 }

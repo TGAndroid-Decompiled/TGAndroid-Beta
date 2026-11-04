@@ -1,383 +1,44 @@
 package org.telegram.messenger;
+public final class e00 implements Runnable {
+    public final int f22280a;
+    public final x00 f22281b;
+    public final String f22282c;
+    public final zi d;
+    public final long f22283e;
+    public final int f22284f;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilterInputStream;
-import java.io.InputStream;
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.regex.Pattern;
-import javax.xml.parsers.SAXParserFactory;
-import org.xml.sax.Attributes;
-import org.xml.sax.InputSource;
-import org.xml.sax.XMLReader;
-public abstract class e00 {
-    public static final double[] f15491a = new double[128];
-    public static final Pattern f15492b;
+    public e00(x00 x00Var, String str, zi ziVar, long j10, int i3, int i10) {
+        this.f22280a = i10;
+        this.f22281b = x00Var;
+        this.f22282c = str;
+        this.d = ziVar;
+        this.f22283e = j10;
+        this.f22284f = i3;
+    }
 
-    static {
-        int i10 = 0;
-        while (true) {
-            double[] dArr = f15491a;
-            if (i10 < dArr.length) {
-                dArr[i10] = Math.pow(10.0d, i10);
-                i10++;
-            } else {
-                f15492b = Pattern.compile("(?<=\\))\\s*(?=[A-Za-z])");
+    @Override
+    public final void run() {
+        switch (this.f22280a) {
+            case 0:
+                x00 x00Var = this.f22281b;
+                zi ziVar = this.d;
+                long j10 = this.f22283e;
+                int i3 = this.f22284f;
+                b6.d(this.f22282c, new h00(x00Var, ziVar, j10, i3), new h00(x00Var, ziVar, j10, i3), false);
                 return;
-            }
-        }
-    }
-
-    public static String a(byte[] bArr) {
-        try {
-            StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-            sb2.append('M');
-            for (byte b10 : bArr) {
-                int i10 = b10 & 255;
-                if (i10 >= 192) {
-                    sb2.append("AACAAAAHAAALMAAAQASTAVAAAZaacaaaahaaalmaaaqastava.az0123456789-,".charAt(i10 - 192));
-                } else {
-                    if (i10 >= 128) {
-                        sb2.append(',');
-                    } else if (i10 >= 64) {
-                        sb2.append('-');
-                    }
-                    sb2.append(b10 & 63);
+            default:
+                x00 x00Var2 = this.f22281b;
+                x00Var2.getClass();
+                String str = this.f22282c;
+                if (str == null) {
+                    str = "und";
                 }
-            }
-            sb2.append('z');
-            return sb2.toString();
-        } catch (Exception e) {
-            f8.g(e, true);
-            return "";
+                zi ziVar2 = this.d;
+                ziVar2.f26868k.originalLanguage = str;
+                x00Var2.getMessagesStorage().X1(this.f22283e, ziVar2.f26868k);
+                x00Var2.f26330w.remove(Integer.valueOf(this.f22284f));
+                x00Var2.f(ziVar2);
+                return;
         }
-    }
-
-    public static android.graphics.Path b(java.lang.String r50) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.e00.b(java.lang.String):android.graphics.Path");
-    }
-
-    public static Bitmap c(float f7, int i10, int i11, int i12, int i13, int i14) {
-        try {
-            InputStream openRawResource = w0.f18945b.getResources().openRawResource(i10);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            b00 b00Var = new b00(i11, i12, Integer.valueOf(i13), false, f7, i14);
-            xMLReader.setContentHandler(b00Var);
-            xMLReader.parse(new InputSource(openRawResource));
-            Bitmap bitmap = b00Var.f14892b;
-            if (openRawResource != null) {
-                openRawResource.close();
-            }
-            return bitmap;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static Bitmap d(int i10, int i11, int i12, int i13) {
-        return c(1.0f, i10, i11, i12, i13, 1);
-    }
-
-    public static Bitmap e(int i10, int i11, String str) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            b00 b00Var = new b00(i10, i11, null, false);
-            xMLReader.setContentHandler(b00Var);
-            xMLReader.parse(new InputSource(new StringReader(str)));
-            return b00Var.f14892b;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static Bitmap f(File file, int i10, int i11, int i12) {
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            b00 b00Var = new b00(i10, i11, null, false, 1.0f, i12);
-            b00Var.E = true;
-            xMLReader.setContentHandler(b00Var);
-            xMLReader.parse(new InputSource(fileInputStream));
-            Bitmap bitmap = b00Var.f14892b;
-            fileInputStream.close();
-            return bitmap;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static Bitmap g(FilterInputStream filterInputStream, int i10, int i11) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            b00 b00Var = new b00(i10, i11, null, false);
-            xMLReader.setContentHandler(b00Var);
-            xMLReader.parse(new InputSource(filterInputStream));
-            return b00Var.f14892b;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static d00 h(int i10, Integer num) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            b00 b00Var = new b00(0, 0, num, true);
-            xMLReader.setContentHandler(b00Var);
-            xMLReader.parse(new InputSource(w0.f18945b.getResources().openRawResource(i10)));
-            return b00Var.f14893c;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static d00 i(String str) {
-        try {
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            b00 b00Var = new b00(0, 0, null, true);
-            xMLReader.setContentHandler(b00Var);
-            xMLReader.parse(new InputSource(new StringReader(str)));
-            return b00Var.f14893c;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static d00 j(int i10, int i11, Path path) {
-        try {
-            d00 d00Var = new d00();
-            d00Var.f15261a.add(path);
-            d00Var.f15262b.put(path, new Paint(1));
-            d00Var.e = i10;
-            d00Var.f15264f = i11;
-            return d00Var;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static Float k(String str, Attributes attributes) {
-        String l4 = l(str, attributes);
-        if (l4 == null) {
-            return null;
-        }
-        if (l4.endsWith("px")) {
-            l4 = c3.i0.m(2, 0, l4);
-        } else if (l4.endsWith("mm")) {
-            return null;
-        }
-        return Float.valueOf(Float.parseFloat(l4));
-    }
-
-    public static String l(String str, Attributes attributes) {
-        int length = attributes.getLength();
-        for (int i10 = 0; i10 < length; i10++) {
-            if (attributes.getLocalName(i10).equals(str)) {
-                return attributes.getValue(i10);
-            }
-        }
-        return null;
-    }
-
-    public static b00 m(File file, int i10, int i11, boolean z10) {
-        Integer num;
-        try {
-            FileInputStream fileInputStream = new FileInputStream(file);
-            XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
-            if (z10) {
-                num = -1;
-            } else {
-                num = null;
-            }
-            b00 b00Var = new b00(i10, i11, num, false);
-            if (!z10) {
-                b00Var.E = true;
-            }
-            xMLReader.setContentHandler(b00Var);
-            xMLReader.parse(new InputSource(fileInputStream));
-            fileInputStream.close();
-            return b00Var;
-        } catch (Exception e) {
-            f8.g(e, true);
-            return null;
-        }
-    }
-
-    public static c5.k n(String str) {
-        int length = str.length();
-        ArrayList arrayList = new ArrayList();
-        int i10 = 0;
-        boolean z10 = false;
-        for (int i11 = 1; i11 < length; i11++) {
-            if (z10) {
-                z10 = false;
-            } else {
-                char charAt = str.charAt(i11);
-                switch (charAt) {
-                    case '\t':
-                    case '\n':
-                    case ' ':
-                    case ',':
-                    case '-':
-                        if (charAt == '-' && str.charAt(i11 - 1) == 'e') {
-                            break;
-                        } else {
-                            String substring = str.substring(i10, i11);
-                            if (substring.trim().length() > 0) {
-                                arrayList.add(Float.valueOf(Float.parseFloat(substring)));
-                                if (charAt == '-') {
-                                    i10 = i11;
-                                    break;
-                                } else {
-                                    i10 = i11 + 1;
-                                    z10 = true;
-                                    break;
-                                }
-                            } else {
-                                i10++;
-                                continue;
-                            }
-                        }
-                    case ')':
-                    case 'A':
-                    case 'C':
-                    case 'H':
-                    case 'L':
-                    case 'M':
-                    case 'Q':
-                    case 'S':
-                    case 'T':
-                    case 'V':
-                    case 'Z':
-                    case 'a':
-                    case 'c':
-                    case 'h':
-                    case 'l':
-                    case 'm':
-                    case 'q':
-                    case 's':
-                    case 't':
-                    case 'v':
-                    case 'z':
-                        String substring2 = str.substring(i10, i11);
-                        if (substring2.trim().length() > 0) {
-                            arrayList.add(Float.valueOf(Float.parseFloat(substring2)));
-                        }
-                        return new c5.k(arrayList);
-                }
-            }
-        }
-        String substring3 = str.substring(i10);
-        if (substring3.length() > 0) {
-            try {
-                arrayList.add(Float.valueOf(Float.parseFloat(substring3)));
-            } catch (NumberFormatException unused) {
-            }
-        }
-        return new c5.k(arrayList);
-    }
-
-    public static Matrix o(String str) {
-        List<String> list;
-        Matrix matrix;
-        Matrix matrix2;
-        Matrix matrix3 = new Matrix();
-        if (str == null) {
-            list = Collections.EMPTY_LIST;
-        } else {
-            String trim = str.trim();
-            if (trim.isEmpty()) {
-                list = Collections.EMPTY_LIST;
-            } else {
-                String[] split = f15492b.split(trim);
-                ArrayList arrayList = new ArrayList(split.length);
-                for (String str2 : split) {
-                    String trim2 = str2.trim();
-                    if (!trim2.isEmpty()) {
-                        arrayList.add(trim2);
-                    }
-                }
-                list = arrayList;
-            }
-        }
-        for (String str3 : list) {
-            float f7 = 0.0f;
-            if (str3.startsWith("matrix(")) {
-                ArrayList arrayList2 = n(str3.substring(7)).f3796a;
-                if (arrayList2.size() == 6) {
-                    matrix = new Matrix();
-                    matrix.setValues(new float[]{((Float) arrayList2.get(0)).floatValue(), ((Float) arrayList2.get(2)).floatValue(), ((Float) arrayList2.get(4)).floatValue(), ((Float) arrayList2.get(1)).floatValue(), ((Float) arrayList2.get(3)).floatValue(), ((Float) arrayList2.get(5)).floatValue(), 0.0f, 0.0f, 1.0f});
-                }
-                matrix = null;
-            } else if (str3.startsWith("translate(")) {
-                ArrayList arrayList3 = n(str3.substring(10)).f3796a;
-                if (arrayList3.size() > 0) {
-                    float floatValue = ((Float) arrayList3.get(0)).floatValue();
-                    if (arrayList3.size() > 1) {
-                        f7 = ((Float) arrayList3.get(1)).floatValue();
-                    }
-                    matrix2 = new Matrix();
-                    matrix2.postTranslate(floatValue, f7);
-                    matrix = matrix2;
-                }
-                matrix = null;
-            } else {
-                if (str3.startsWith("scale(")) {
-                    ArrayList arrayList4 = n(str3.substring(6)).f3796a;
-                    if (arrayList4.size() > 0) {
-                        float floatValue2 = ((Float) arrayList4.get(0)).floatValue();
-                        if (arrayList4.size() > 1) {
-                            f7 = ((Float) arrayList4.get(1)).floatValue();
-                        }
-                        matrix2 = new Matrix();
-                        matrix2.postScale(floatValue2, f7);
-                        matrix = matrix2;
-                    }
-                } else if (str3.startsWith("skewX(")) {
-                    ArrayList arrayList5 = n(str3.substring(6)).f3796a;
-                    if (arrayList5.size() > 0) {
-                        float floatValue3 = ((Float) arrayList5.get(0)).floatValue();
-                        matrix = new Matrix();
-                        matrix.postSkew((float) Math.tan(floatValue3), 0.0f);
-                    }
-                } else if (str3.startsWith("skewY(")) {
-                    ArrayList arrayList6 = n(str3.substring(6)).f3796a;
-                    if (arrayList6.size() > 0) {
-                        float floatValue4 = ((Float) arrayList6.get(0)).floatValue();
-                        matrix = new Matrix();
-                        matrix.postSkew(0.0f, (float) Math.tan(floatValue4));
-                    }
-                } else if (str3.startsWith("rotate(")) {
-                    ArrayList arrayList7 = n(str3.substring(7)).f3796a;
-                    if (arrayList7.size() > 0) {
-                        matrix = new Matrix();
-                        float floatValue5 = ((Float) arrayList7.get(0)).floatValue();
-                        if (arrayList7.size() > 2) {
-                            matrix.postRotate(floatValue5, ((Float) arrayList7.get(1)).floatValue(), ((Float) arrayList7.get(2)).floatValue());
-                        } else {
-                            matrix.postRotate(floatValue5);
-                        }
-                    }
-                }
-                matrix = null;
-            }
-            if (matrix != null) {
-                matrix3.preConcat(matrix);
-            }
-        }
-        return matrix3;
     }
 }

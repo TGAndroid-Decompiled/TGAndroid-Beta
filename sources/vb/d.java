@@ -1,40 +1,29 @@
 package vb;
-public abstract class d {
-    public final int f50768a;
-    public final int f50769b;
 
-    public d(int i10, int i11) {
-        this.f50768a = i10;
-        this.f50769b = i11;
+import android.content.Context;
+import ci.u0;
+import g2.q0;
+import mb.g;
+import z7.fa;
+public final class d extends u0 {
+    public final g f56509b;
+
+    public d(g gVar) {
+        super(4);
+        this.f56509b = gVar;
     }
 
-    public abstract byte[] a();
-
-    public abstract byte[] b(int i10, byte[] bArr);
-
-    public final String toString() {
-        char c10;
-        int i10 = this.f50768a;
-        byte[] bArr = new byte[i10];
-        int i11 = this.f50769b;
-        StringBuilder sb2 = new StringBuilder((i10 + 1) * i11);
-        for (int i12 = 0; i12 < i11; i12++) {
-            bArr = b(i12, bArr);
-            for (int i13 = 0; i13 < i10; i13++) {
-                int i14 = bArr[i13] & 255;
-                if (i14 < 64) {
-                    c10 = '#';
-                } else if (i14 < 128) {
-                    c10 = '+';
-                } else if (i14 < 192) {
-                    c10 = '.';
-                } else {
-                    c10 = ' ';
-                }
-                sb2.append(c10);
-            }
-            sb2.append('\n');
+    @Override
+    public final Object Q0(Object obj) {
+        a bVar;
+        ub.a aVar = (ub.a) obj;
+        Context b10 = this.f56509b.b();
+        m6.e.f19189b.getClass();
+        if (m6.e.a(b10) >= 204700000) {
+            bVar = new q0(b10, aVar);
+        } else {
+            bVar = new b(b10, aVar);
         }
-        return sb2.toString();
+        return new e(aVar, bVar, fa.b());
     }
 }

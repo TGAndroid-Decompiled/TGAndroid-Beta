@@ -7,6 +7,6 @@ public final class e0 implements RendererCommon.RendererEvents {
     }
 
     @Override
-    public final void onFrameResolutionChanged(int i10, int i11, int i12) {
+    public final void onFrameResolutionChanged(int i3, int i10, int i11) {
     }
 }

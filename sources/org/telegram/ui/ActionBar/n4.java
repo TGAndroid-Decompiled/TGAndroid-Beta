@@ -1,11 +1,16 @@
 package org.telegram.ui.ActionBar;
+public interface n4 {
+    void a(float f10);
 
-import android.view.animation.Interpolator;
-public final class n4 implements Interpolator {
-    public final float f20612a = 1.0f / ((float) (1.0d - Math.pow(100, -1.0f)));
+    void b(ActionBarLayout actionBarLayout, boolean z10);
 
-    @Override
-    public final float getInterpolation(float f7) {
-        return 1.0f - (((float) (1.0d - Math.pow(100, -(1.0f - f7)))) * this.f20612a);
-    }
+    void e(int[] iArr);
+
+    boolean h(d2 d2Var, ActionBarLayout actionBarLayout);
+
+    boolean j();
+
+    boolean k(ActionBarLayout actionBarLayout);
+
+    boolean l(ActionBarLayout actionBarLayout, o4 o4Var);
 }

@@ -1,69 +1,64 @@
 package org.telegram.ui.web;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.rz0;
-public final class e extends Drawable {
-    public final int f42822a;
-    public final rz0 f42823b;
-    public final g f42824c;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.tj0;
+public final class e extends q31 {
+    public static final int f50832b = 0;
 
-    public e(g gVar, String str, int i10) {
-        this.f42822a = i10;
-        switch (i10) {
-            case 1:
-                this.f42824c = gVar;
-                this.f42823b = new rz0(str, 14.0f, org.telegram.messenger.i0.o());
-                return;
-            default:
-                this.f42824c = gVar;
-                this.f42823b = new rz0(str, 14.0f, org.telegram.messenger.i0.o());
-                return;
+    static {
+        q31.h(new q31());
+    }
+
+    @Override
+    public final void b(View view, r31 r31Var, boolean z10, f41 f41Var, l41 l41Var) {
+        int i3;
+        f fVar = (f) view;
+        if (r31Var.G == null) {
+            fVar.setAsShowMore((l) r31Var.H);
+            return;
         }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        switch (this.f42822a) {
-            case 0:
-                this.f42823b.c(getBounds().centerX() - (this.f42823b.f30126c / 2.0f), getBounds().centerY(), 1.0f, this.f42824c.f42841s, canvas);
-                return;
-            default:
-                this.f42823b.c(getBounds().centerX() - (this.f42823b.f30126c / 2.0f), getBounds().centerY(), 1.0f, this.f42824c.f42841s, canvas);
-                return;
+        int i10 = r31Var.f37640z;
+        String charSequence = r31Var.f37627l.toString();
+        View.OnClickListener onClickListener = r31Var.D;
+        l lVar = (l) r31Var.H;
+        ImageView imageView = fVar.f50837a;
+        imageView.setVisibility(0);
+        int i11 = lVar.G;
+        int i12 = lVar.I;
+        TextView textView = fVar.f50838b;
+        textView.setTextColor(i12);
+        int r12 = k6.r1(0.6f, i12);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(r12, mode));
+        ImageView imageView2 = fVar.f50839c;
+        imageView2.setColorFilter(new PorterDuffColorFilter(k6.r1(0.6f, i12), mode));
+        imageView2.setBackground(k6.b0(0, k6.r1(0.15f, i12), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f)));
+        if (i10 == 0) {
+            i3 = 2131232094;
+        } else {
+            i3 = 2131232354;
         }
+        imageView.setImageResource(i3);
+        textView.setText(charSequence);
+        imageView2.setOnClickListener(onClickListener);
+        fVar.d.setColor(k6.r1(0.1f, lVar.I));
+        fVar.f50840e = z10;
+        fVar.setWillNotDraw(!z10);
     }
 
     @Override
-    public final int getOpacity() {
-        switch (this.f42822a) {
-            case 0:
-                return -2;
-            default:
-                return -2;
-        }
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        int i11 = this.f42822a;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        int i10 = this.f42822a;
-    }
-
-    private final void a(int i10) {
-    }
-
-    private final void b(int i10) {
-    }
-
-    private final void c(ColorFilter colorFilter) {
-    }
-
-    private final void d(ColorFilter colorFilter) {
+    public final View d(Context context, tj0 tj0Var, int i3, e6 e6Var) {
+        return new f(context);
     }
 }

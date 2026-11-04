@@ -1,91 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class c80 implements View.OnClickListener {
-    public final int f25061a;
-    public final j80 f25062b;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
+import android.view.Choreographer;
+import android.view.PixelCopy;
+import android.view.Surface;
+import android.view.SurfaceView;
+public final class c80 {
+    public final org.telegram.ui.u90 f32593a;
+    public SurfaceView d;
+    public Bitmap f32596e;
+    public Bitmap f32597f;
+    public boolean f32598g;
+    public boolean h;
+    public boolean f32599i;
+    public boolean f32600j;
+    public boolean f32601k;
+    public long f32602l;
+    public final Handler f32594b = new Handler(Looper.getMainLooper());
+    public final Paint f32595c = new Paint(2);
+    public final a80 f32603m = new Choreographer.FrameCallback() {
+        @Override
+        public final void doFrame(long j10) {
+            c80 c80Var = c80.this;
+            c80Var.f32600j = false;
+            c80Var.c();
+        }
+    };
+    public final gp f32604n = new gp(this, 23);
 
-    public c80(j80 j80Var, int i10) {
-        this.f25061a = i10;
-        this.f25062b = j80Var;
+    public c80(org.telegram.ui.u90 u90Var) {
+        this.f32593a = u90Var;
     }
 
-    @Override
-    public final void onClick(View view) {
-        boolean z10;
-        int i10;
-        int i11 = this.f25061a;
-        j80 j80Var = this.f25062b;
-        switch (i11) {
-            case 0:
-                j80Var.f27306r.g();
+    public final void a() {
+        this.f32602l = SystemClock.uptimeMillis() + 1500;
+        if (this.f32601k) {
+            this.f32594b.removeCallbacks(this.f32604n);
+            this.f32601k = false;
+        }
+        b();
+    }
+
+    public final void b() {
+        if (this.f32598g && !this.f32599i && this.d != null && !this.f32600j && !this.f32601k) {
+            if (SystemClock.uptimeMillis() < this.f32602l) {
+                this.f32600j = true;
+                Choreographer.getInstance().postFrameCallback(this.f32603m);
                 return;
-            case 1:
-                org.telegram.ui.ActionBar.k1 k1Var = j80Var.f27307s;
-                if (k1Var != null) {
-                    k1Var.d(true);
-                }
-                j80Var.f27306r.b();
-                return;
-            case 2:
-                j80 j80Var2 = this.f25062b;
-                String str = j80Var2.f27302b;
-                if (str != null && str.endsWith("?direct")) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                Context context = j80Var2.getContext();
-                String L0 = org.telegram.messenger.dd.L0(2131749180, null);
-                String str2 = j80Var2.f27302b;
-                String str3 = j80Var2.J;
-                if (str3 == null) {
-                    if (j80Var2.H) {
-                        if (z10) {
-                            i10 = 2131746522;
-                        } else {
-                            i10 = 2131746523;
-                        }
-                    } else {
-                        i10 = 2131746520;
+            }
+            this.f32601k = true;
+            this.f32594b.postDelayed(this.f32604n, 400L);
+        }
+    }
+
+    public final void c() {
+        Surface surface;
+        if (this.f32598g && !this.f32599i) {
+            if (!this.h) {
+                SurfaceView surfaceView = this.d;
+                if (Build.VERSION.SDK_INT >= 24 && surfaceView != null && surfaceView.isAttachedToWindow() && surfaceView.getWidth() > 0 && surfaceView.getHeight() > 0 && (surface = surfaceView.getHolder().getSurface()) != null && surface.isValid()) {
+                    int max = Math.max(1, surfaceView.getWidth() / 4);
+                    int max2 = Math.max(1, surfaceView.getHeight() / 4);
+                    Bitmap bitmap = this.f32597f;
+                    if (bitmap == null || bitmap.getWidth() != max || this.f32597f.getHeight() != max2) {
+                        this.f32597f = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
                     }
-                    str3 = org.telegram.messenger.dd.L0(i10, null);
-                }
-                g80 g80Var = new g80(j80Var2, context, L0, str2, str3);
-                j80Var2.E = g80Var;
-                g80Var.I0();
-                j80Var2.E.show();
-                org.telegram.ui.ActionBar.k1 k1Var2 = j80Var2.f27307s;
-                if (k1Var2 != null) {
-                    k1Var2.d(true);
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.ActionBar.k1 k1Var3 = j80Var.f27307s;
-                if (k1Var3 != null) {
-                    k1Var3.d(true);
-                }
-                org.telegram.ui.ActionBar.k2 k2Var = j80Var.f27303c;
-                if (k2Var.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(k2Var.getParentActivity());
-                    String L02 = org.telegram.messenger.dd.L0(2131746040, null);
-                    org.telegram.ui.ActionBar.x1 x1Var = alertDialog$Builder.f20135a;
-                    x1Var.R = L02;
-                    x1Var.T = org.telegram.messenger.dd.L0(2131746043, null);
-                    alertDialog$Builder.k(org.telegram.messenger.dd.L0(2131746041, null), new b80(j80Var, 1));
-                    alertDialog$Builder.h(org.telegram.messenger.dd.L0(2131752589, null), null);
-                    TextView textView = (TextView) x1Var.d(-1);
-                    if (textView != null) {
-                        org.telegram.ui.ActionBar.a7.V(textView, org.telegram.ui.ActionBar.t6.f21171q7, null);
+                    final Bitmap bitmap2 = this.f32597f;
+                    this.h = true;
+                    try {
+                        PixelCopy.request(surfaceView, bitmap2, new PixelCopy.OnPixelCopyFinishedListener() {
+                            @Override
+                            public final void onPixelCopyFinished(int i3) {
+                                c80 c80Var = c80.this;
+                                Bitmap bitmap3 = bitmap2;
+                                c80Var.h = false;
+                                if (!c80Var.f32599i && i3 == 0) {
+                                    c80Var.f32597f = c80Var.f32596e;
+                                    c80Var.f32596e = bitmap3;
+                                    c80Var.f32593a.run();
+                                }
+                            }
+                        }, this.f32594b);
+                    } catch (Exception e10) {
+                        this.h = false;
+                        org.telegram.messenger.a8.g(e10, true);
                     }
-                    alertDialog$Builder.p();
-                    return;
                 }
-                return;
+            }
+            b();
+        }
+    }
+
+    public final void d() {
+        if (this.f32600j) {
+            Choreographer.getInstance().removeFrameCallback(this.f32603m);
+            this.f32600j = false;
+        }
+        if (this.f32601k) {
+            this.f32594b.removeCallbacks(this.f32604n);
+            this.f32601k = false;
         }
     }
 }

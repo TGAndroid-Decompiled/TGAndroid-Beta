@@ -1,40 +1,804 @@
 package o2;
 
-import java.util.Arrays;
-import v7.l7;
-public final class e extends v2.f {
-    public byte[] f13978s;
-    public volatile boolean f13979w;
-    public byte[] f13980x;
+import android.net.Uri;
+import android.text.TextUtils;
+import b8.xb;
+import d2.v0;
+import g2.n0;
+import java.io.IOException;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+public final class e extends DefaultHandler implements a3.s {
+    public static final Pattern f20529b = Pattern.compile("(\\d+)(?:/(\\d+))?");
+    public static final Pattern f20530c = Pattern.compile("CC([1-4])=.*");
+    public static final Pattern d = Pattern.compile("([1-9]|[1-5][0-9]|6[0-3])=.*");
+    public static final int[] f20531e = {2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2};
+    public static final int[] f20532f = {-1, 1, 2, 3, 4, 5, 6, 8, 2, 3, 4, 7, 8, 24, 8, 12, 10, 12, 14, 12, 14};
+    public final XmlPullParserFactory f20533a;
 
-    @Override
-    public final void R1() {
-        this.f13979w = true;
+    public e() {
+        try {
+            this.f20533a = XmlPullParserFactory.newInstance();
+        } catch (XmlPullParserException e10) {
+            throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e10);
+        }
+    }
+
+    public static long a(ArrayList arrayList, long j10, long j11, int i3, long j12) {
+        int i10;
+        if (i3 >= 0) {
+            i10 = i3 + 1;
+        } else {
+            String str = n0.f11873a;
+            i10 = (int) ((((j12 - j10) + j11) - 1) / j11);
+        }
+        for (int i11 = 0; i11 < i10; i11++) {
+            arrayList.add(new q(j10, j11));
+            j10 += j11;
+        }
+        return j10;
+    }
+
+    public static void b(XmlPullParser xmlPullParser) {
+        if (xmlPullParser.getEventType() == 2) {
+            int i3 = 1;
+            while (i3 != 0) {
+                xmlPullParser.next();
+                if (xmlPullParser.getEventType() == 2) {
+                    i3++;
+                } else if (xmlPullParser.getEventType() == 3) {
+                    i3--;
+                }
+            }
+        }
+    }
+
+    public static int c(org.xmlpull.v1.XmlPullParser r12, java.lang.String r13) {
+        throw new UnsupportedOperationException("Method not decompiled: o2.e.c(org.xmlpull.v1.XmlPullParser, java.lang.String):int");
+    }
+
+    public static long d(XmlPullParser xmlPullParser, long j10) {
+        String attributeValue = xmlPullParser.getAttributeValue(null, "availabilityTimeOffset");
+        if (attributeValue == null) {
+            return j10;
+        }
+        if ("INF".equals(attributeValue)) {
+            return Long.MAX_VALUE;
+        }
+        return Float.parseFloat(attributeValue) * 1000000.0f;
+    }
+
+    public static ArrayList e(XmlPullParser xmlPullParser, ArrayList arrayList, boolean z10) {
+        int i3;
+        int i10;
+        String str;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "dvb:priority");
+        if (attributeValue != null) {
+            i3 = Integer.parseInt(attributeValue);
+        } else if (z10) {
+            i3 = 1;
+        } else {
+            i3 = Integer.MIN_VALUE;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "dvb:weight");
+        if (attributeValue2 != null) {
+            i10 = Integer.parseInt(attributeValue2);
+        } else {
+            i10 = 1;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "serviceLocation");
+        String str2 = "";
+        do {
+            xmlPullParser.next();
+            if (xmlPullParser.getEventType() == 4) {
+                str2 = xmlPullParser.getText();
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!g2.a.h(xmlPullParser, "BaseURL"));
+        if (str2 != null && g2.f.c(str2)[0] != -1) {
+            if (attributeValue3 == null) {
+                attributeValue3 = str2;
+            }
+            return g9.o.r(new b(i3, i10, str2, attributeValue3));
+        }
+        ArrayList arrayList2 = new ArrayList();
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            b bVar = (b) arrayList.get(i11);
+            String f10 = g2.f.f(bVar.f20509a, str2);
+            if (attributeValue3 == null) {
+                str = f10;
+            } else {
+                str = attributeValue3;
+            }
+            if (z10) {
+                i3 = bVar.f20511c;
+                i10 = bVar.d;
+                str = bVar.f20510b;
+            }
+            arrayList2.add(new b(i3, i10, f10, str));
+        }
+        return arrayList2;
+    }
+
+    public static android.util.Pair f(org.xmlpull.v1.XmlPullParser r14) {
+        throw new UnsupportedOperationException("Method not decompiled: o2.e.f(org.xmlpull.v1.XmlPullParser):android.util.Pair");
+    }
+
+    public static int g(XmlPullParser xmlPullParser) {
+        String attributeValue = xmlPullParser.getAttributeValue(null, "contentType");
+        if (!TextUtils.isEmpty(attributeValue)) {
+            if ("audio".equals(attributeValue)) {
+                return 1;
+            }
+            if ("video".equals(attributeValue)) {
+                return 2;
+            }
+            if ("text".equals(attributeValue)) {
+                return 3;
+            }
+            if ("image".equals(attributeValue)) {
+                return 4;
+            }
+            return -1;
+        }
+        return -1;
+    }
+
+    public static f h(XmlPullParser xmlPullParser, String str) {
+        String str2 = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "schemeIdUri");
+        if (attributeValue == null) {
+            attributeValue = "";
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "value");
+        if (attributeValue2 == null) {
+            attributeValue2 = null;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "id");
+        if (attributeValue3 != null) {
+            str2 = attributeValue3;
+        }
+        do {
+            xmlPullParser.next();
+        } while (!g2.a.h(xmlPullParser, str));
+        return new f(attributeValue, attributeValue2, str2);
+    }
+
+    public static long i(XmlPullParser xmlPullParser, String str, long j10) {
+        double d10;
+        double d11;
+        double d12;
+        double d13;
+        double d14;
+        String attributeValue = xmlPullParser.getAttributeValue(null, str);
+        if (attributeValue == null) {
+            return j10;
+        }
+        Matcher matcher = n0.f11876e.matcher(attributeValue);
+        if (matcher.matches()) {
+            boolean isEmpty = TextUtils.isEmpty(matcher.group(1));
+            String group = matcher.group(3);
+            double d15 = 0.0d;
+            if (group != null) {
+                d10 = Double.parseDouble(group) * 3.1556908E7d;
+            } else {
+                d10 = 0.0d;
+            }
+            String group2 = matcher.group(5);
+            if (group2 != null) {
+                d11 = Double.parseDouble(group2) * 2629739.0d;
+            } else {
+                d11 = 0.0d;
+            }
+            double d16 = d10 + d11;
+            String group3 = matcher.group(7);
+            if (group3 != null) {
+                d12 = Double.parseDouble(group3) * 86400.0d;
+            } else {
+                d12 = 0.0d;
+            }
+            double d17 = d16 + d12;
+            String group4 = matcher.group(10);
+            if (group4 != null) {
+                d13 = Double.parseDouble(group4) * 3600.0d;
+            } else {
+                d13 = 0.0d;
+            }
+            double d18 = d17 + d13;
+            String group5 = matcher.group(12);
+            if (group5 != null) {
+                d14 = Double.parseDouble(group5) * 60.0d;
+            } else {
+                d14 = 0.0d;
+            }
+            double d19 = d18 + d14;
+            String group6 = matcher.group(14);
+            if (group6 != null) {
+                d15 = Double.parseDouble(group6);
+            }
+            long j11 = (long) ((d19 + d15) * 1000.0d);
+            if (!isEmpty) {
+                return -j11;
+            }
+            return j11;
+        }
+        return (long) (Double.parseDouble(attributeValue) * 3600.0d * 1000.0d);
+    }
+
+    public static float j(XmlPullParser xmlPullParser, float f10) {
+        String attributeValue = xmlPullParser.getAttributeValue(null, "frameRate");
+        if (attributeValue != null) {
+            Matcher matcher = f20529b.matcher(attributeValue);
+            if (matcher.matches()) {
+                int parseInt = Integer.parseInt(matcher.group(1));
+                String group = matcher.group(2);
+                if (!TextUtils.isEmpty(group)) {
+                    return parseInt / Integer.parseInt(group);
+                }
+                return parseInt;
+            }
+        }
+        return f10;
+    }
+
+    public static o2.c k(org.xmlpull.v1.XmlPullParser r154, android.net.Uri r155) {
+        throw new UnsupportedOperationException("Method not decompiled: o2.e.k(org.xmlpull.v1.XmlPullParser, android.net.Uri):o2.c");
+    }
+
+    public static j l(XmlPullParser xmlPullParser, String str, String str2) {
+        long j10;
+        long j11;
+        String attributeValue = xmlPullParser.getAttributeValue(null, str);
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, str2);
+        if (attributeValue2 != null) {
+            String[] split = attributeValue2.split("-");
+            j10 = Long.parseLong(split[0]);
+            if (split.length == 2) {
+                j11 = (Long.parseLong(split[1]) - j10) + 1;
+                return new j(j10, attributeValue, j11);
+            }
+        } else {
+            j10 = 0;
+        }
+        j11 = -1;
+        return new j(j10, attributeValue, j11);
+    }
+
+    public static int m(String str) {
+        if (str != null) {
+            char c2 = 65535;
+            switch (str.hashCode()) {
+                case -2060497896:
+                    if (str.equals("subtitle")) {
+                        c2 = 0;
+                        break;
+                    }
+                    break;
+                case -1724546052:
+                    if (str.equals("description")) {
+                        c2 = 1;
+                        break;
+                    }
+                    break;
+                case -1580883024:
+                    if (str.equals("enhanced-audio-intelligibility")) {
+                        c2 = 2;
+                        break;
+                    }
+                    break;
+                case -1574842690:
+                    if (str.equals("forced_subtitle")) {
+                        c2 = 3;
+                        break;
+                    }
+                    break;
+                case -1408024454:
+                    if (str.equals("alternate")) {
+                        c2 = 4;
+                        break;
+                    }
+                    break;
+                case -1396432756:
+                    if (str.equals("forced-subtitle")) {
+                        c2 = 5;
+                        break;
+                    }
+                    break;
+                case 99825:
+                    if (str.equals("dub")) {
+                        c2 = 6;
+                        break;
+                    }
+                    break;
+                case 3343801:
+                    if (str.equals("main")) {
+                        c2 = 7;
+                        break;
+                    }
+                    break;
+                case 3530173:
+                    if (str.equals("sign")) {
+                        c2 = '\b';
+                        break;
+                    }
+                    break;
+                case 552573414:
+                    if (str.equals("caption")) {
+                        c2 = '\t';
+                        break;
+                    }
+                    break;
+                case 899152809:
+                    if (str.equals("commentary")) {
+                        c2 = '\n';
+                        break;
+                    }
+                    break;
+                case 1629013393:
+                    if (str.equals("emergency")) {
+                        c2 = 11;
+                        break;
+                    }
+                    break;
+                case 1855372047:
+                    if (str.equals("supplementary")) {
+                        c2 = '\f';
+                        break;
+                    }
+                    break;
+            }
+            switch (c2) {
+                case 0:
+                case 3:
+                case 5:
+                    return 128;
+                case 1:
+                    return 512;
+                case 2:
+                    return 2048;
+                case 4:
+                    return 2;
+                case 6:
+                    return 16;
+                case 7:
+                    return 1;
+                case '\b':
+                    return 256;
+                case '\t':
+                    return 64;
+                case '\n':
+                    return 8;
+                case 11:
+                    return 32;
+                case '\f':
+                    return 4;
+            }
+        }
+        return 0;
+    }
+
+    public static int n(ArrayList arrayList) {
+        int i3 = 0;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (xb.a("http://dashif.org/guidelines/trickmode", ((f) arrayList.get(i10)).f20534a)) {
+                i3 = 16384;
+            }
+        }
+        return i3;
+    }
+
+    public static r o(XmlPullParser xmlPullParser, r rVar) {
+        long j10;
+        long j11;
+        long j12;
+        if (rVar != null) {
+            j10 = rVar.f20570b;
+        } else {
+            j10 = 1;
+        }
+        j jVar = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "timescale");
+        if (attributeValue != null) {
+            j10 = Long.parseLong(attributeValue);
+        }
+        long j13 = j10;
+        long j14 = 0;
+        if (rVar != null) {
+            j11 = rVar.f20571c;
+        } else {
+            j11 = 0;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "presentationTimeOffset");
+        if (attributeValue2 != null) {
+            j11 = Long.parseLong(attributeValue2);
+        }
+        long j15 = j11;
+        if (rVar != null) {
+            j12 = rVar.d;
+        } else {
+            j12 = 0;
+        }
+        if (rVar != null) {
+            j14 = rVar.f20568e;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "indexRange");
+        if (attributeValue3 != null) {
+            String[] split = attributeValue3.split("-");
+            j12 = Long.parseLong(split[0]);
+            j14 = (Long.parseLong(split[1]) - j12) + 1;
+        }
+        long j16 = j14;
+        long j17 = j12;
+        if (rVar != null) {
+            jVar = rVar.f20569a;
+        }
+        while (true) {
+            xmlPullParser.next();
+            if (g2.a.i(xmlPullParser, "Initialization")) {
+                jVar = l(xmlPullParser, "sourceURL", "range");
+            } else {
+                b(xmlPullParser);
+            }
+            j jVar2 = jVar;
+            if (g2.a.h(xmlPullParser, "SegmentBase")) {
+                return new r(jVar2, j13, j15, j17, j16);
+            }
+            jVar = jVar2;
+        }
+    }
+
+    public static o p(XmlPullParser xmlPullParser, o oVar, long j10, long j11, long j12, long j13, long j14) {
+        long j15;
+        long j16;
+        long j17;
+        long j18;
+        long j19;
+        long j20 = 1;
+        if (oVar != null) {
+            j15 = oVar.f20570b;
+        } else {
+            j15 = 1;
+        }
+        List list = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "timescale");
+        if (attributeValue != null) {
+            j15 = Long.parseLong(attributeValue);
+        }
+        long j21 = j15;
+        if (oVar != null) {
+            j16 = oVar.f20571c;
+        } else {
+            j16 = 0;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "presentationTimeOffset");
+        if (attributeValue2 != null) {
+            j16 = Long.parseLong(attributeValue2);
+        }
+        long j22 = j16;
+        if (oVar != null) {
+            j17 = oVar.f20558e;
+        } else {
+            j17 = -9223372036854775807L;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "duration");
+        if (attributeValue3 != null) {
+            j17 = Long.parseLong(attributeValue3);
+        }
+        long j23 = j17;
+        if (oVar != null) {
+            j20 = oVar.d;
+        }
+        String attributeValue4 = xmlPullParser.getAttributeValue(null, "startNumber");
+        if (attributeValue4 != null) {
+            j20 = Long.parseLong(attributeValue4);
+        }
+        long j24 = j20;
+        if (j13 == -9223372036854775807L) {
+            j18 = j12;
+        } else {
+            j18 = j13;
+        }
+        if (j18 == Long.MAX_VALUE) {
+            j19 = -9223372036854775807L;
+        } else {
+            j19 = j18;
+        }
+        j jVar = null;
+        List list2 = null;
+        do {
+            xmlPullParser.next();
+            if (g2.a.i(xmlPullParser, "Initialization")) {
+                jVar = l(xmlPullParser, "sourceURL", "range");
+            } else if (g2.a.i(xmlPullParser, "SegmentTimeline")) {
+                list2 = r(xmlPullParser, j21, j11);
+            } else if (g2.a.i(xmlPullParser, "SegmentURL")) {
+                if (list == null) {
+                    list = new ArrayList();
+                }
+                list.add(l(xmlPullParser, "media", "mediaRange"));
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!g2.a.h(xmlPullParser, "SegmentList"));
+        if (oVar != null) {
+            if (jVar == null) {
+                jVar = oVar.f20569a;
+            }
+            if (list2 == null) {
+                list2 = oVar.f20559f;
+            }
+            if (list == null) {
+                list = oVar.f20562j;
+            }
+        }
+        return new o(jVar, j21, j22, j24, j23, list2, j19, list, n0.S(j14), n0.S(j10));
+    }
+
+    public static p q(XmlPullParser xmlPullParser, p pVar, List list, long j10, long j11, long j12, long j13, long j14) {
+        long j15;
+        long j16;
+        long j17;
+        long j18;
+        long j19;
+        long j20;
+        k4.j jVar;
+        k4.j jVar2;
+        long j21 = 1;
+        if (pVar != null) {
+            j15 = pVar.f20570b;
+        } else {
+            j15 = 1;
+        }
+        j jVar3 = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "timescale");
+        if (attributeValue != null) {
+            j15 = Long.parseLong(attributeValue);
+        }
+        long j22 = j15;
+        if (pVar != null) {
+            j16 = pVar.f20571c;
+        } else {
+            j16 = 0;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "presentationTimeOffset");
+        if (attributeValue2 != null) {
+            j16 = Long.parseLong(attributeValue2);
+        }
+        long j23 = j16;
+        if (pVar != null) {
+            j17 = pVar.f20558e;
+        } else {
+            j17 = -9223372036854775807L;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "duration");
+        if (attributeValue3 != null) {
+            j17 = Long.parseLong(attributeValue3);
+        }
+        long j24 = j17;
+        if (pVar != null) {
+            j21 = pVar.d;
+        }
+        String attributeValue4 = xmlPullParser.getAttributeValue(null, "startNumber");
+        if (attributeValue4 != null) {
+            j21 = Long.parseLong(attributeValue4);
+        }
+        long j25 = j21;
+        int i3 = 0;
+        while (true) {
+            if (i3 < list.size()) {
+                f fVar = (f) list.get(i3);
+                if (xb.a("http://dashif.org/guidelines/last-segment-number", fVar.f20534a)) {
+                    j18 = Long.parseLong(fVar.f20535b);
+                    break;
+                }
+                i3++;
+            } else {
+                j18 = -1;
+                break;
+            }
+        }
+        long j26 = j18;
+        if (j13 == -9223372036854775807L) {
+            j19 = j12;
+        } else {
+            j19 = j13;
+        }
+        if (j19 == Long.MAX_VALUE) {
+            j20 = -9223372036854775807L;
+        } else {
+            j20 = j19;
+        }
+        if (pVar != null) {
+            jVar = pVar.f20564k;
+        } else {
+            jVar = null;
+        }
+        k4.j s6 = s(xmlPullParser, "media", jVar);
+        if (pVar != null) {
+            jVar2 = pVar.f20563j;
+        } else {
+            jVar2 = null;
+        }
+        k4.j s10 = s(xmlPullParser, "initialization", jVar2);
+        List list2 = null;
+        do {
+            xmlPullParser.next();
+            if (g2.a.i(xmlPullParser, "Initialization")) {
+                jVar3 = l(xmlPullParser, "sourceURL", "range");
+            } else if (g2.a.i(xmlPullParser, "SegmentTimeline")) {
+                list2 = r(xmlPullParser, j22, j11);
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!g2.a.h(xmlPullParser, "SegmentTemplate"));
+        if (pVar != null) {
+            if (jVar3 == null) {
+                jVar3 = pVar.f20569a;
+            }
+            if (list2 == null) {
+                list2 = pVar.f20559f;
+            }
+        }
+        return new p(jVar3, j22, j23, j25, j26, j24, list2, j20, s10, s6, n0.S(j14), n0.S(j10));
+    }
+
+    public static ArrayList r(XmlPullParser xmlPullParser, long j10, long j11) {
+        long parseLong;
+        long j12;
+        ArrayList arrayList = new ArrayList();
+        long j13 = 0;
+        long j14 = -9223372036854775807L;
+        boolean z10 = false;
+        int i3 = 0;
+        do {
+            xmlPullParser.next();
+            if (g2.a.i(xmlPullParser, "S")) {
+                String attributeValue = xmlPullParser.getAttributeValue(null, "t");
+                if (attributeValue == null) {
+                    parseLong = -9223372036854775807L;
+                } else {
+                    parseLong = Long.parseLong(attributeValue);
+                }
+                if (z10) {
+                    int i10 = i3;
+                    j12 = parseLong;
+                    j13 = a(arrayList, j13, j14, i10, j12);
+                } else {
+                    j12 = parseLong;
+                }
+                if (j12 != -9223372036854775807L) {
+                    j13 = j12;
+                }
+                String attributeValue2 = xmlPullParser.getAttributeValue(null, "d");
+                if (attributeValue2 == null) {
+                    j14 = -9223372036854775807L;
+                } else {
+                    j14 = Long.parseLong(attributeValue2);
+                }
+                String attributeValue3 = xmlPullParser.getAttributeValue(null, "r");
+                if (attributeValue3 == null) {
+                    i3 = 0;
+                } else {
+                    i3 = Integer.parseInt(attributeValue3);
+                }
+                z10 = true;
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!g2.a.h(xmlPullParser, "SegmentTimeline"));
+        if (z10) {
+            String str = n0.f11873a;
+            a(arrayList, j13, j14, i3, n0.a0(j11, j10, 1000L, RoundingMode.DOWN));
+        }
+        return arrayList;
+    }
+
+    public static k4.j s(XmlPullParser xmlPullParser, String str, k4.j jVar) {
+        String str2;
+        String attributeValue = xmlPullParser.getAttributeValue(null, str);
+        if (attributeValue != null) {
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = new ArrayList();
+            arrayList.add("");
+            int i3 = 0;
+            while (i3 < attributeValue.length()) {
+                int indexOf = attributeValue.indexOf("$", i3);
+                char c2 = 65535;
+                if (indexOf == -1) {
+                    arrayList.set(arrayList2.size(), ((String) arrayList.get(arrayList2.size())) + attributeValue.substring(i3));
+                    i3 = attributeValue.length();
+                } else if (indexOf != i3) {
+                    arrayList.set(arrayList2.size(), ((String) arrayList.get(arrayList2.size())) + attributeValue.substring(i3, indexOf));
+                    i3 = indexOf;
+                } else if (attributeValue.startsWith("$$", i3)) {
+                    arrayList.set(arrayList2.size(), ((String) arrayList.get(arrayList2.size())) + "$");
+                    i3 += 2;
+                } else {
+                    arrayList3.add("");
+                    int i10 = i3 + 1;
+                    int indexOf2 = attributeValue.indexOf("$", i10);
+                    String substring = attributeValue.substring(i10, indexOf2);
+                    if (substring.equals("RepresentationID")) {
+                        arrayList2.add(1);
+                    } else {
+                        int indexOf3 = substring.indexOf("%0");
+                        if (indexOf3 != -1) {
+                            str2 = substring.substring(indexOf3);
+                            if (!str2.endsWith("d") && !str2.endsWith("x") && !str2.endsWith("X")) {
+                                str2 = str2.concat("d");
+                            }
+                            substring = substring.substring(0, indexOf3);
+                        } else {
+                            str2 = "%01d";
+                        }
+                        substring.getClass();
+                        switch (substring.hashCode()) {
+                            case -1950496919:
+                                if (substring.equals("Number")) {
+                                    c2 = 0;
+                                    break;
+                                }
+                                break;
+                            case 2606829:
+                                if (substring.equals("Time")) {
+                                    c2 = 1;
+                                    break;
+                                }
+                                break;
+                            case 38199441:
+                                if (substring.equals("Bandwidth")) {
+                                    c2 = 2;
+                                    break;
+                                }
+                                break;
+                        }
+                        switch (c2) {
+                            case 0:
+                                arrayList2.add(2);
+                                break;
+                            case 1:
+                                arrayList2.add(4);
+                                break;
+                            case 2:
+                                arrayList2.add(3);
+                                break;
+                            default:
+                                throw new IllegalArgumentException("Invalid template: ".concat(attributeValue));
+                        }
+                        arrayList3.set(arrayList2.size() - 1, str2);
+                    }
+                    arrayList.add("");
+                    i3 = indexOf2 + 1;
+                }
+            }
+            return new k4.j(arrayList, arrayList2, arrayList3);
+        }
+        return jVar;
     }
 
     @Override
-    public final void b() {
+    public final Object L(Uri uri, i2.l lVar) {
         try {
-            this.f50324r.open(this.f50320b);
-            int i10 = 0;
-            int i11 = 0;
-            while (i10 != -1 && !this.f13979w) {
-                byte[] bArr = this.f13978s;
-                if (bArr.length < i11 + 16384) {
-                    this.f13978s = Arrays.copyOf(bArr, bArr.length + 16384);
-                }
-                i10 = this.f50324r.read(this.f13978s, i11, 16384);
-                if (i10 != -1) {
-                    i11 += i10;
-                }
+            XmlPullParser newPullParser = this.f20533a.newPullParser();
+            newPullParser.setInput(lVar, null);
+            if (newPullParser.next() == 2 && "MPD".equals(newPullParser.getName())) {
+                return k(newPullParser, uri);
             }
-            if (!this.f13979w) {
-                this.f13980x = Arrays.copyOf(this.f13978s, i11);
+            throw v0.b("inputStream does not contain a valid media presentation description", null);
+        } catch (XmlPullParserException e10) {
+            if (e10.getDetail() instanceof IOException) {
+                throw ((IOException) e10.getDetail());
             }
-            l7.a(this.f50324r);
-        } catch (Throwable th2) {
-            l7.a(this.f50324r);
-            throw th2;
+            throw v0.b(null, e10);
         }
     }
 }

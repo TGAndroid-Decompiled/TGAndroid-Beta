@@ -1,15 +1,35 @@
 package org.telegram.messenger;
-public final class z6 {
-    public final int f19669a;
-    public final long f19670b;
+public final class z6 implements Runnable {
+    public final int f26749a;
+    public final i7 f26750b;
+    public final int f26751c;
 
-    public z6(long j10, int i10, long j11) {
-        this.f19669a = i10;
-        this.f19670b = j11;
+    public z6(i7 i7Var, int i3, int i10) {
+        this.f26749a = i10;
+        this.f26750b = i7Var;
+        this.f26751c = i3;
     }
 
-    public final int hashCode() {
-        long j10 = this.f19670b;
-        return (int) (j10 ^ (j10 >>> 32));
+    @Override
+    public final void run() {
+        switch (this.f26749a) {
+            case 0:
+                this.f26750b.F0.add(Integer.valueOf(this.f26751c));
+                return;
+            case 1:
+                this.f26750b.F0.remove(Integer.valueOf(this.f26751c));
+                return;
+            case 2:
+                this.f26750b.F0.remove(Integer.valueOf(this.f26751c));
+                return;
+            default:
+                i7 i7Var = this.f26750b;
+                u7 u7Var = i7Var.f23478g0;
+                if (u7Var != null) {
+                    u7Var.b(i7Var, this.f26751c);
+                }
+                i7Var.i();
+                return;
+        }
     }
 }

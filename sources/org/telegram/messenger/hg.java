@@ -1,36 +1,39 @@
 package org.telegram.messenger;
-public final class hg implements Runnable {
-    public final int f16053a;
-    public final vi f16054b;
-    public final long f16055c;
-    public final long d;
-    public final int[] e;
 
-    public hg(vi viVar, long j10, long j11, int[] iArr, int i10) {
-        this.f16053a = i10;
-        this.f16054b = viVar;
-        this.f16055c = j10;
-        this.d = j11;
-        this.e = iArr;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class hg implements Runnable {
+    public final int f22922a = 0;
+    public final ArrayList f22923b;
+    public final long f22924c;
+    public final int d;
+    public final int f22925e;
+    public final boolean f22926f;
+    public final c1 h;
+    public final Object f22927n;
+
+    public hg(li liVar, boolean z10, ArrayList arrayList, int i3, long j10, int i10, Runnable runnable) {
+        this.h = liVar;
+        this.f22926f = z10;
+        this.f22923b = arrayList;
+        this.d = i3;
+        this.f22924c = j10;
+        this.f22925e = i10;
+        this.f22927n = runnable;
     }
 
     @Override
     public final void run() {
-        int i10 = this.f16053a;
-        int[] iArr = this.e;
-        long j10 = this.d;
-        long j11 = this.f16055c;
-        vi viVar = this.f16054b;
-        switch (i10) {
-            case 0:
-                viVar.getNotificationCenter().k(34, Long.valueOf(j11), Long.valueOf(j10), iArr);
-                return;
-            case 1:
-                viVar.getNotificationCenter().k(34, Long.valueOf(j11), Long.valueOf(j10), iArr);
-                return;
-            default:
-                viVar.getNotificationCenter().k(34, Long.valueOf(j11), Long.valueOf(j10), iArr);
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hg.run():void");
+    }
+
+    public hg(us usVar, LongSparseIntArray longSparseIntArray, ArrayList arrayList, long j10, int i3, int i10, boolean z10) {
+        this.h = usVar;
+        this.f22927n = longSparseIntArray;
+        this.f22923b = arrayList;
+        this.f22924c = j10;
+        this.d = i3;
+        this.f22925e = i10;
+        this.f22926f = z10;
     }
 }

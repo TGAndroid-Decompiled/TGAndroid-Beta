@@ -1,46 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-public final class xm implements nj {
-    public final org.telegram.messenger.r20 f32602a;
-    public final ag.v f32603b;
-    public final org.telegram.ui.ActionBar.k2 f32604c;
+import android.content.Context;
+import android.view.ActionMode;
+import android.view.Menu;
+public final class xm extends org.telegram.ui.Cells.z5 {
+    public final org.telegram.ui.n4 G;
 
-    public xm(ag.v vVar, org.telegram.messenger.r20 r20Var, org.telegram.ui.ActionBar.k2 k2Var) {
-        this.f32602a = r20Var;
-        this.f32603b = vVar;
-        this.f32604c = k2Var;
+    public xm(org.telegram.ui.n4 n4Var, Context context, int i3) {
+        super(context, i3, null, null);
+        this.G = n4Var;
     }
 
     @Override
-    public final void B() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f32604c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e) {
-            org.telegram.messenger.f8.g(e, true);
+    public final void g(ai.z zVar, ActionMode actionMode) {
+        if (zVar.isFocused() && zVar.hasSelection()) {
+            Menu menu = actionMode.getMenu();
+            if (menu.findItem(16908321) != null) {
+                org.telegram.ui.wm.A8(menu, ((org.telegram.ui.wm) ((an) this.G.f47865e).f38416b.X1).h, false, true, true, true);
+            }
         }
     }
 
     @Override
-    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
-        if (!arrayList.isEmpty()) {
-            this.f32602a.a(new jh.c((String) arrayList.get(0)));
-        }
-        this.f32603b.a(true);
+    public final void i(boolean z10) {
+        an.Q((an) this.G.f47865e, this, z10);
     }
 
     @Override
-    public final void p(ArrayList arrayList, boolean z10, int i10, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f32602a.a(new jh.d((org.telegram.messenger.qz) arrayList.get(0)));
-        }
-        this.f32603b.a(true);
+    public final void j(org.telegram.ui.Cells.z5 z5Var) {
+        an.R((an) this.G.f47865e, z5Var);
     }
 
     @Override
-    public final void T() {
+    public final void k(ai.z zVar) {
+        ((an) this.G.f47865e).f38416b.h1(zVar, true);
     }
 }

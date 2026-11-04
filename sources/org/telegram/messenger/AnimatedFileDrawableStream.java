@@ -4,45 +4,45 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
-public class AnimatedFileDrawableStream implements n7 {
-    public final int D;
-    public int E;
-    public boolean F;
-    public m7 f14345a;
-    public CountDownLatch f14346b;
-    public final TLRPC.Document f14347c;
-    public final jc d;
-    public final Object e;
-    public final int f14348f;
+public class AnimatedFileDrawableStream implements j7 {
+    public final int E;
+    public int F;
+    public boolean G;
+    public i7 f21204a;
+    public CountDownLatch f21205b;
+    public final TLRPC.Document f21206c;
+    public final ac d;
+    public final Object f21207e;
+    public final int f21208f;
     public volatile boolean h;
-    public final Object f14349n = new Object();
-    public long f14350r;
-    public boolean f14351s;
-    public final boolean f14352w;
-    public boolean f14353x;
-    public String f14354y;
+    public final Object f21209n = new Object();
+    public long f21210r;
+    public boolean f21211s;
+    public final boolean f21212w;
+    public boolean f21213x;
+    public String f21214y;
 
-    public AnimatedFileDrawableStream(TLRPC.Document document, jc jcVar, Object obj, int i10, boolean z10, int i11, int i12) {
-        this.f14347c = document;
-        this.d = jcVar;
-        this.e = obj;
-        this.f14348f = i10;
-        this.f14352w = z10;
-        this.D = i11;
-        b8 G = b8.G(i10);
+    public AnimatedFileDrawableStream(TLRPC.Document document, ac acVar, Object obj, int i3, boolean z10, int i10, int i11) {
+        this.f21206c = document;
+        this.d = acVar;
+        this.f21207e = obj;
+        this.f21208f = i3;
+        this.f21212w = z10;
+        this.E = i10;
+        w7 G = w7.G(i3);
         CountDownLatch countDownLatch = new CountDownLatch(1);
-        m7[] m7VarArr = new m7[1];
-        b8.J.c(new t7(G, m7VarArr, document, jcVar, obj, i11, this, 0L, z10, i12, countDownLatch));
-        b8.a(countDownLatch, true);
-        this.f14345a = m7VarArr[0];
+        i7[] i7VarArr = new i7[1];
+        w7.K.c(new o7(G, i7VarArr, document, acVar, obj, i10, this, 0L, z10, i11, countDownLatch));
+        w7.a(countDownLatch, true);
+        this.f21204a = i7VarArr[0];
     }
 
     @Override
     public final void a() {
-        CountDownLatch countDownLatch = this.f14346b;
+        CountDownLatch countDownLatch = this.f21205b;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            this.f14346b = null;
+            this.f21205b = null;
         }
     }
 
@@ -51,30 +51,30 @@ public class AnimatedFileDrawableStream implements n7 {
         if (this.h) {
             return;
         }
-        synchronized (this.f14349n) {
+        synchronized (this.f21209n) {
             try {
-                CountDownLatch countDownLatch = this.f14346b;
+                CountDownLatch countDownLatch = this.f21205b;
                 if (countDownLatch != null) {
                     countDownLatch.countDown();
-                    this.f14346b = null;
-                    if (z10 && !this.h && !this.f14352w) {
-                        b8.G(this.f14348f).a0(this.f14347c, false, true);
+                    this.f21205b = null;
+                    if (z10 && !this.h && !this.f21212w) {
+                        w7.G(this.f21208f).a0(this.f21206c, false, true);
                     }
                 }
-                Object obj = this.e;
-                if (obj instanceof kj) {
-                    kj kjVar = (kj) obj;
-                    b6 q6 = b6.q(kjVar.I1);
-                    int f12 = kjVar.f1();
-                    ArrayList arrayList = q6.G;
-                    int i10 = 0;
+                Object obj = this.f21207e;
+                if (obj instanceof zi) {
+                    zi ziVar = (zi) obj;
+                    z5 q10 = z5.q(ziVar.I1);
+                    int f12 = ziVar.f1();
+                    ArrayList arrayList = q10.H;
+                    int i3 = 0;
                     while (true) {
-                        if (i10 < arrayList.size()) {
-                            if (((kj) arrayList.get(i10)).f16690k.f19815id == f12) {
+                        if (i3 < arrayList.size()) {
+                            if (((zi) arrayList.get(i3)).f26868k.f27022id == f12) {
                                 z11 = true;
                                 break;
                             }
-                            i10++;
+                            i3++;
                         } else {
                             z11 = false;
                             break;
@@ -95,11 +95,11 @@ public class AnimatedFileDrawableStream implements n7 {
     }
 
     public final void c() {
-        int i10 = this.f14348f;
-        b8.G(i10).f(this.f14347c);
-        jc jcVar = this.d;
-        if (jcVar != null) {
-            b8.G(i10).e(null, null, null, jcVar.f16435f, "mp4", null);
+        int i3 = this.f21208f;
+        w7.G(i3).f(this.f21206c);
+        ac acVar = this.d;
+        if (acVar != null) {
+            w7.G(i3).e(null, null, null, acVar.f21488f, "mp4", null);
         }
     }
 
@@ -108,13 +108,13 @@ public class AnimatedFileDrawableStream implements n7 {
     }
 
     public final void d() {
-        synchronized (this.f14349n) {
+        synchronized (this.f21209n) {
             this.h = false;
         }
     }
 
     public String getFinishedFilePath() {
-        return this.f14354y;
+        return this.f21214y;
     }
 
     public boolean isCanceled() {
@@ -122,121 +122,121 @@ public class AnimatedFileDrawableStream implements n7 {
     }
 
     public boolean isFinishedLoadingFile() {
-        return this.f14353x;
+        return this.f21213x;
     }
 
-    public int read(int i10, int i11) {
+    public int read(int i3, int i10) {
         boolean z10;
         boolean z11;
+        int i11;
         int i12;
-        int i13;
-        int i14 = i11;
-        synchronized (this.f14349n) {
+        int i13 = i10;
+        synchronized (this.f21209n) {
             try {
-                int i15 = 0;
+                int i14 = 0;
                 ?? r22 = 1;
                 if (this.h) {
-                    int i16 = this.E + 1;
-                    this.E = i16;
-                    if (!this.F && i16 > 200) {
-                        this.F = true;
-                        f8.g(new RuntimeException("infinity stream reading!!!"), true);
+                    int i15 = this.F + 1;
+                    this.F = i15;
+                    if (!this.G && i15 > 200) {
+                        this.G = true;
+                        a8.g(new RuntimeException("infinity stream reading!!!"), true);
                     }
                     return 0;
-                } else if (i14 == 0) {
+                } else if (i13 == 0) {
                     return 0;
                 } else {
                     long j10 = 0;
                     while (j10 == 0) {
                         try {
-                            m7 m7Var = this.f14345a;
-                            long j11 = i10;
-                            m7Var.getClass();
+                            i7 i7Var = this.f21204a;
+                            long j11 = i3;
+                            i7Var.getClass();
                             CountDownLatch countDownLatch = new CountDownLatch(r22);
                             ?? r10 = new long[2];
-                            Utilities.d.c(new n9(m7Var, (Serializable) r10, j11, i14, countDownLatch, 2));
+                            Utilities.d.c(new f9(i7Var, (Serializable) r10, j11, i13, countDownLatch, 2));
                             try {
                                 countDownLatch.await();
                             } catch (Exception unused) {
                             }
-                            long j12 = r10[i15];
+                            long j12 = r10[i14];
                             try {
-                                if (!this.f14353x) {
+                                if (!this.f21213x) {
                                     try {
                                         if (r10[r22] != 0) {
-                                            this.f14353x = r22;
-                                            this.f14354y = this.f14345a.L0.getAbsolutePath();
+                                            this.f21213x = r22;
+                                            this.f21214y = this.f21204a.L0.getAbsolutePath();
                                         }
-                                    } catch (Exception e) {
-                                        e = e;
-                                        z10 = i15;
+                                    } catch (Exception e10) {
+                                        e = e10;
+                                        z10 = i14;
                                         j10 = j12;
-                                        f8.g(e, z10);
+                                        a8.g(e, z10);
                                         return (int) j10;
                                     }
                                 }
                                 if (j12 == 0) {
-                                    synchronized (this.f14349n) {
+                                    synchronized (this.f21209n) {
                                         if (this.h) {
                                             c();
-                                            return i15;
+                                            return i14;
                                         }
-                                        this.f14346b = new CountDownLatch(r22);
-                                        if (!this.f14345a.Z && this.f14350r == j11 && !this.f14352w) {
+                                        this.f21205b = new CountDownLatch(r22);
+                                        if (!this.f21204a.Z && this.f21210r == j11 && !this.f21212w) {
                                             z11 = r22;
-                                            i13 = i15;
+                                            i12 = i14;
                                         } else {
-                                            b8 G = b8.G(this.f14348f);
-                                            TLRPC.Document document = this.f14347c;
-                                            jc jcVar = this.d;
-                                            Object obj = this.e;
-                                            boolean z12 = this.f14352w;
-                                            int i17 = this.D;
+                                            w7 G = w7.G(this.f21208f);
+                                            TLRPC.Document document = this.f21206c;
+                                            ac acVar = this.d;
+                                            Object obj = this.f21207e;
+                                            boolean z12 = this.f21212w;
+                                            int i16 = this.E;
                                             if (document == null) {
-                                                i12 = r22;
+                                                i11 = r22;
                                             } else {
-                                                i12 = i15;
+                                                i11 = i14;
                                             }
                                             CountDownLatch countDownLatch2 = new CountDownLatch(r22);
-                                            int i18 = r22;
-                                            m7[] m7VarArr = new m7[i18];
-                                            boolean z13 = i18;
-                                            i13 = i15;
-                                            b8.J.c(new t7(G, m7VarArr, document, jcVar, obj, i17, this, j11, z12, i12, countDownLatch2));
-                                            b8.a(countDownLatch2, z13);
-                                            m7 m7Var2 = m7VarArr[i13];
-                                            m7 m7Var3 = this.f14345a;
-                                            if (m7Var3 != m7Var2) {
+                                            int i17 = r22;
+                                            i7[] i7VarArr = new i7[i17];
+                                            boolean z13 = i17;
+                                            i12 = i14;
+                                            w7.K.c(new o7(G, i7VarArr, document, acVar, obj, i16, this, j11, z12, i11, countDownLatch2));
+                                            w7.a(countDownLatch2, z13);
+                                            i7 i7Var2 = i7VarArr[i12];
+                                            i7 i7Var3 = this.f21204a;
+                                            if (i7Var3 != i7Var2) {
                                                 try {
-                                                    m7Var3.getClass();
-                                                    Utilities.d.c(new i7(m7Var3, this, 0));
-                                                    this.f14345a = m7Var2;
-                                                } catch (Exception e7) {
-                                                    e = e7;
+                                                    i7Var3.getClass();
+                                                    Utilities.d.c(new e7(i7Var3, this, 0));
+                                                    this.f21204a = i7Var2;
+                                                } catch (Exception e11) {
+                                                    e = e11;
                                                     j10 = j12;
-                                                    z10 = i13;
-                                                    f8.g(e, z10);
+                                                    z10 = i12;
+                                                    a8.g(e, z10);
                                                     return (int) j10;
                                                 }
                                             }
-                                            this.f14350r = j11 + j12;
+                                            this.f21210r = j11 + j12;
                                             z11 = z13;
                                         }
-                                        synchronized (this.f14349n) {
+                                        synchronized (this.f21209n) {
                                             if (this.h) {
-                                                this.f14346b = null;
+                                                this.f21205b = null;
                                                 c();
-                                                return i13;
+                                                return i12;
                                             }
                                         }
-                                        if (!this.f14352w) {
-                                            b8.G(this.f14348f).c0(this.f14347c, i13, z11);
+                                        if (!this.f21212w) {
+                                            w7.G(this.f21208f).c0(this.f21206c, i12, z11);
                                         }
-                                        CountDownLatch countDownLatch3 = this.f14346b;
+                                        CountDownLatch countDownLatch3 = this.f21205b;
                                         if (countDownLatch3 != null) {
-                                            this.f14351s = z11;
+                                            this.f21211s = z11;
                                             countDownLatch3.await();
-                                            this.f14351s = false;
+                                            this.f21211s = false;
                                         }
                                     }
                                 } else {
@@ -244,20 +244,20 @@ public class AnimatedFileDrawableStream implements n7 {
                                 }
                                 r22 = z11;
                                 j10 = j12;
-                                i15 = 0;
-                                i14 = i11;
-                            } catch (Exception e10) {
-                                e = e10;
+                                i14 = 0;
+                                i13 = i10;
+                            } catch (Exception e12) {
+                                e = e12;
                                 j10 = j12;
                                 z10 = 0;
-                                f8.g(e, z10);
+                                a8.g(e, z10);
                                 return (int) j10;
                             }
-                        } catch (Exception e11) {
-                            e = e11;
+                        } catch (Exception e13) {
+                            e = e13;
                         }
                     }
-                    this.f14350r = i10 + j10;
+                    this.f21210r = i3 + j10;
                     return (int) j10;
                 }
             } finally {

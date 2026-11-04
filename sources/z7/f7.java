@@ -1,17 +1,18 @@
 package z7;
-public final class f7 implements ja.d {
-    public static final f7 f54733a = new Object();
 
-    static {
-        sc.e.v(sc.e.n(w.class, sc.e.s(sc.e.n(w.class, new s(1)), 2)));
-    }
+import b8.ke;
+public final class f7 {
+    public final Long f59869a;
+    public final m7 f59870b;
+    public final Boolean f59871c;
+    public final Boolean d;
+    public final Boolean f59872e;
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public f7(ke keVar) {
+        this.f59869a = (Long) keVar.f2716b;
+        this.f59870b = (m7) keVar.f2717c;
+        this.f59871c = (Boolean) keVar.d;
+        this.d = (Boolean) keVar.f2718e;
+        this.f59872e = (Boolean) keVar.f2719f;
     }
 }

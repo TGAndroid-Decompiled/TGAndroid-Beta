@@ -1,56 +1,53 @@
 package db;
 
-import android.support.v4.media.session.a0;
-import java.io.Serializable;
-import java.util.Map;
-import ld.p;
-import org.json.JSONObject;
-import td.c0;
-public final class b extends ed.j implements p {
-    public final int f5833a = 1;
-    public int f5834b;
-    public Object f5835c;
-    public Object d;
-    public Serializable e;
-    public final Object f5836f;
+import android.os.Build;
+public final class b {
+    public final String f8604a;
+    public final a f8605b;
 
-    public b(a0 a0Var, Map map, b bVar, c cVar, cd.c cVar2) {
-        super(2, cVar2);
-        this.d = a0Var;
-        this.f5835c = map;
-        this.e = bVar;
-        this.f5836f = cVar;
+    public b(String appId, a aVar) {
+        String deviceModel = Build.MODEL;
+        String osVersion = Build.VERSION.RELEASE;
+        x xVar = x.f8752b;
+        kotlin.jvm.internal.j.e(appId, "appId");
+        kotlin.jvm.internal.j.e(deviceModel, "deviceModel");
+        kotlin.jvm.internal.j.e(osVersion, "osVersion");
+        this.f8604a = appId;
+        this.f8605b = aVar;
     }
 
-    @Override
-    public final cd.c create(Object obj, cd.c cVar) {
-        switch (this.f5833a) {
-            case 0:
-                b bVar = new b((d) this.f5836f, cVar);
-                bVar.f5835c = obj;
-                return bVar;
-            default:
-                return new b((a0) this.d, this.f5835c, (b) this.e, (c) this.f5836f, cVar);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                if (kotlin.jvm.internal.j.a(this.f8604a, bVar.f8604a)) {
+                    String str = Build.MODEL;
+                    if (kotlin.jvm.internal.j.a(str, str)) {
+                        String str2 = Build.VERSION.RELEASE;
+                        if (kotlin.jvm.internal.j.a(str2, str2)) {
+                            x xVar = x.f8752b;
+                            if (!this.f8605b.equals(bVar.f8605b)) {
+                                return false;
+                            }
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        switch (this.f5833a) {
-            case 0:
-                return ((b) create((JSONObject) obj, (cd.c) obj2)).invokeSuspend(ad.j.f401a);
-            default:
-                return ((b) create((c0) obj, (cd.c) obj2)).invokeSuspend(ad.j.f401a);
-        }
+    public final int hashCode() {
+        int g7 = com.google.android.recaptcha.internal.a.g((((Build.MODEL.hashCode() + (this.f8604a.hashCode() * 31)) * 31) + 48517567) * 31, 31, Build.VERSION.RELEASE);
+        return this.f8605b.hashCode() + ((x.f8752b.hashCode() + g7) * 31);
     }
 
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r18) {
-        throw new UnsupportedOperationException("Method not decompiled: db.b.invokeSuspend(java.lang.Object):java.lang.Object");
-    }
-
-    public b(d dVar, cd.c cVar) {
-        super(2, cVar);
-        this.f5836f = dVar;
+    public final String toString() {
+        return "ApplicationInfo(appId=" + this.f8604a + ", deviceModel=" + Build.MODEL + ", sessionSdkVersion=3.0.8, osVersion=" + Build.VERSION.RELEASE + ", logEnvironment=" + x.f8752b + ", androidAppInfo=" + this.f8605b + ')';
     }
 }

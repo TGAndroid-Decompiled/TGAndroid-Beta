@@ -1,26 +1,25 @@
 package org.telegram.ui.Wallet;
+public final class p6 implements q1.c {
+    public final int f43046a;
+    public final Object f43047b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-public final class p6 extends FrameLayout {
-    public final s6 f35037a;
-
-    public p6(s6 s6Var, Context context) {
-        super(context);
-        this.f35037a = s6Var;
+    public p6(Object obj, int i3) {
+        this.f43046a = i3;
+        this.f43047b = obj;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(-getLeft(), -getTop());
-        s6 s6Var = this.f35037a;
-        s6Var.f35194j.c(canvas);
-        canvas.restore();
-        super.dispatchDraw(canvas);
-        if (s6Var.f35194j.d()) {
-            postInvalidateOnAnimation();
+    public final void a(q1.g gVar, boolean z10, float f10, float f11) {
+        switch (this.f43046a) {
+            case 0:
+                u6.b((u6) this.f43047b, z10, f10);
+                return;
+            default:
+                m9 m9Var = (m9) this.f43047b;
+                m9Var.f42870b0 = null;
+                m9Var.f42871c0 = 1.0f;
+                m9Var.G0();
+                return;
         }
     }
 }

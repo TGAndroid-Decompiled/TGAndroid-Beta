@@ -1,90 +1,120 @@
 package lg;
 
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.OvershootInterpolator;
-import org.telegram.messenger.i0;
-import org.telegram.ui.Components.gr;
-import org.telegram.ui.Components.nk0;
-import org.telegram.ui.Components.uk0;
-public final class k implements Runnable {
-    public final int f11904a;
-    public final float f11905b;
-    public final float f11906c;
-    public final Object d;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.Components.jt;
+public final class k extends ImageView {
+    public final int f18344a;
 
-    public k(Object obj, float f7, float f10, int i10) {
-        this.f11904a = i10;
-        this.d = obj;
-        this.f11905b = f7;
-        this.f11906c = f10;
+    public k(Context context, int i3) {
+        super(context);
+        this.f18344a = i3;
     }
 
     @Override
-    public final void run() {
-        View view;
-        int i10 = this.f11904a;
-        float f7 = this.f11906c;
-        float f10 = this.f11905b;
-        Object obj = this.d;
-        switch (i10) {
-            case 0:
-                l lVar = (l) obj;
-                q qVar = lVar.f11908b;
-                ValueAnimator valueAnimator = qVar.f11923c0;
-                i iVar = qVar.f11929h0;
-                i iVar2 = qVar.f11928g0;
-                if (valueAnimator != null) {
-                    valueAnimator.removeAllListeners();
-                    qVar.f11923c0.cancel();
-                    qVar.f11923c0 = null;
-                }
-                AnimatorSet animatorSet = qVar.f11924d0;
-                if (animatorSet != null) {
-                    animatorSet.removeAllListeners();
-                    qVar.f11924d0.cancel();
-                    qVar.f11924d0 = null;
-                }
-                if (Math.abs(qVar.f11920b.d) > 10.0f) {
-                    qVar.l();
-                    return;
-                }
-                i0.r(qVar.f11925e0);
-                qVar.f11924d0 = new AnimatorSet();
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(qVar.f11920b.d, f10);
-                ofFloat.addUpdateListener(iVar2);
-                long j10 = 220;
-                ofFloat.setDuration(j10);
-                gr grVar = gr.h;
-                ofFloat.setInterpolator(grVar);
-                ValueAnimator ofFloat2 = ValueAnimator.ofFloat(f10, 0.0f);
-                ofFloat2.addUpdateListener(iVar2);
-                ofFloat2.setStartDelay(j10);
-                ofFloat2.setDuration(600L);
-                OvershootInterpolator overshootInterpolator = i0.H;
-                ofFloat2.setInterpolator(overshootInterpolator);
-                ValueAnimator ofFloat3 = ValueAnimator.ofFloat(qVar.f11920b.f11882i, f7);
-                ofFloat3.addUpdateListener(iVar);
-                ofFloat3.setDuration(j10);
-                ofFloat3.setInterpolator(grVar);
-                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(f7, 0.0f);
-                ofFloat4.addUpdateListener(iVar);
-                ofFloat4.setStartDelay(j10);
-                ofFloat4.setDuration(600L);
-                ofFloat4.setInterpolator(overshootInterpolator);
-                qVar.f11924d0.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
-                qVar.f11924d0.addListener(new bg.e(lVar, 11));
-                qVar.f11924d0.start();
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f18344a) {
+            case 2:
+                super.dispatchDraw(canvas);
                 return;
             default:
-                uk0 uk0Var = (uk0) ((nk0) obj).f28908b;
-                if (uk0Var.f30986c1 != null && (view = uk0Var.L1) != null) {
-                    uk0Var.j1(view, f10, f7, true);
-                    uk0Var.f30986c1 = null;
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f18344a) {
+            case 1:
+                if (getAlpha() < 0.5f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f18344a) {
+            case 5:
+                super.onDraw(canvas);
+                invalidate();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f18344a) {
+            case 6:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
+                accessibilityNodeInfo.setCheckable(true);
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    accessibilityNodeInfo.setChecked(sharedInstance.isSpeakerphoneOn());
                     return;
                 }
                 return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
         }
+    }
+
+    @Override
+    public void onMeasure(int i3, int i10) {
+        float f10;
+        float f11;
+        switch (this.f18344a) {
+            case 0:
+                super.onMeasure(i3, i10);
+                Matrix imageMatrix = getImageMatrix();
+                int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+                int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+                int intrinsicWidth = getDrawable().getIntrinsicWidth();
+                int intrinsicHeight = getDrawable().getIntrinsicHeight();
+                if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
+                    f10 = measuredHeight;
+                    f11 = intrinsicHeight;
+                } else {
+                    f10 = measuredWidth;
+                    f11 = intrinsicWidth;
+                }
+                float f12 = f10 / f11;
+                imageMatrix.setScale(f12, f12);
+                setImageMatrix(imageMatrix);
+                return;
+            case 1:
+            case 2:
+            default:
+                super.onMeasure(i3, i10);
+                return;
+            case 3:
+                int size = View.MeasureSpec.getSize(i3);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+            case 4:
+                super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 1073741824));
+                return;
+        }
+    }
+
+    public k(jt jtVar, Context context) {
+        super(context);
+        this.f18344a = 2;
     }
 }

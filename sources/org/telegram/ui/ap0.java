@@ -1,17 +1,25 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class ap0 implements View.OnClickListener {
-    public final int f35821a;
-    public final PhotoViewer f35822b;
+import android.content.Context;
+public final class ap0 extends org.telegram.ui.Components.s51 {
+    public final PhotoViewer f43822i0;
 
-    public ap0(PhotoViewer photoViewer, int i10) {
-        this.f35821a = i10;
-        this.f35822b = photoViewer;
+    public ap0(PhotoViewer photoViewer, Context context, gn0 gn0Var) {
+        super(context, gn0Var);
+        this.f43822i0 = photoViewer;
     }
 
     @Override
-    public final void onClick(android.view.View r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ap0.onClick(android.view.View):void");
+    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+        super.onLayout(z10, i3, i10, i11, i12);
+        PhotoViewer.X(this.f43822i0);
+    }
+
+    @Override
+    public final void setVisibility(int i3) {
+        super.setVisibility(i3);
+        if (i3 == 0) {
+            PhotoViewer.X(this.f43822i0);
+        }
     }
 }

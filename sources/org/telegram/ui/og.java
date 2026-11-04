@@ -1,55 +1,42 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class og implements View.OnKeyListener {
-    public final int f40154a;
-    public final Object f40155b;
+public final class og implements Runnable {
+    public final int f48284a;
+    public final EditTextBoldCursor f48285b;
 
-    public og(Object obj, int i10) {
-        this.f40154a = i10;
-        this.f40155b = obj;
+    public og(EditTextBoldCursor editTextBoldCursor, int i3) {
+        this.f48284a = i3;
+        this.f48285b = editTextBoldCursor;
     }
 
     @Override
-    public final boolean onKey(View view, int i10, KeyEvent keyEvent) {
-        switch (this.f40154a) {
+    public final void run() {
+        switch (this.f48284a) {
             case 0:
-                un unVar = (un) this.f40155b;
-                unVar.getClass();
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    unVar.Na();
-                    return true;
-                }
-                return false;
+                org.telegram.messenger.g0.K3(this.f48285b);
+                return;
             case 1:
-                jl0 jl0Var = (jl0) this.f40155b;
-                if (i10 == 67) {
-                    if (jl0Var.Y[2].length() == 0) {
-                        jl0Var.Y[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = jl0Var.Y[1];
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        jl0Var.Y[1].dispatchKeyEvent(keyEvent);
-                        return true;
-                    }
-                } else {
-                    jl0Var.getClass();
-                }
-                return false;
+                EditTextBoldCursor editTextBoldCursor = this.f48285b;
+                editTextBoldCursor.requestFocus();
+                org.telegram.messenger.g0.K3(editTextBoldCursor);
+                return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f48285b;
+                editTextBoldCursor2.requestFocus();
+                org.telegram.messenger.g0.K3(editTextBoldCursor2);
+                return;
+            case 3:
+                org.telegram.messenger.g0.K3(this.f48285b);
+                return;
+            case 4:
+                org.telegram.messenger.g0.K3(this.f48285b);
+                return;
             default:
-                ws0 ws0Var = (ws0) this.f40155b;
-                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
-                if (i10 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = ws0Var.f21862f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
+                EditTextBoldCursor editTextBoldCursor3 = this.f48285b;
+                editTextBoldCursor3.requestFocus();
+                org.telegram.messenger.g0.K3(editTextBoldCursor3);
+                return;
         }
     }
 }

@@ -1,16 +1,9 @@
 package c3;
-public interface k0 {
-    int a(b2.p pVar, int i10, boolean z10);
+public final class k0 extends Exception {
+    public final d2.v f4057a;
 
-    void b(b2.x xVar);
-
-    void c(long j10, int i10, int i11, int i12, j0 j0Var);
-
-    void d(int i10, e2.x xVar);
-
-    void e(long j10);
-
-    int f(b2.p pVar, int i10, boolean z10);
-
-    void g(e2.x xVar, int i10, int i11);
+    public k0(Exception exc, d2.v vVar) {
+        super(exc);
+        this.f4057a = vVar;
+    }
 }

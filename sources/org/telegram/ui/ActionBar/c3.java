@@ -1,28 +1,35 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-public final class c3 extends FrameLayout implements o3 {
-    public final o3 f20205a;
+import android.animation.ValueAnimator;
+public final class c3 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f27447a;
+    public final j3 f27448b;
 
-    public c3(o3 o3Var) {
-        super(o3Var.getContext());
-        this.f20205a = o3Var;
+    public c3(j3 j3Var, int i3) {
+        this.f27447a = i3;
+        this.f27448b = j3Var;
     }
 
     @Override
-    public RectF getRect() {
-        return this.f20205a.getRect();
-    }
-
-    @Override
-    public void setDrawingFromOverlay(boolean z10) {
-        this.f20205a.setDrawingFromOverlay(z10);
-    }
-
-    @Override
-    public final float x(Canvas canvas, RectF rectF, float f7, RectF rectF2, float f10) {
-        return this.f20205a.x(canvas, rectF, f7, rectF2, f10);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f27447a) {
+            case 0:
+                j3 j3Var = this.f27448b;
+                j3Var.getClass();
+                j3Var.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j3Var.invalidate();
+                return;
+            case 1:
+                j3 j3Var2 = this.f27448b;
+                j3Var2.getClass();
+                j3Var2.M = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                return;
+            default:
+                j3 j3Var3 = this.f27448b;
+                j3Var3.getClass();
+                j3Var3.f27660e = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                j3Var3.invalidate();
+                return;
+        }
     }
 }

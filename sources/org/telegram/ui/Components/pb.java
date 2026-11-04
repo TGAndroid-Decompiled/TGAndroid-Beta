@@ -1,118 +1,121 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.view.View;
-public class pb extends View {
-    public final Paint f29395a;
-    public long f29396b;
-    public int f29397c;
-    public String d;
-    public int e;
-    public StaticLayout f29398f;
-    public StaticLayout h;
-    public int f29399n;
-    public float f29400r;
-    public final TextPaint f29401s;
-    public long f29402w;
-    public final RectF f29403x;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import org.telegram.messenger.Utilities;
+public final class pb extends GestureDetector.SimpleOnGestureListener {
+    public final fb f37110a;
+    public final ta f37111b;
 
-    public pb(Context context, org.telegram.ui.ActionBar.p6 p6Var) {
-        super(context);
-        this.f29400r = 1.0f;
-        this.f29403x = new RectF();
-        TextPaint textPaint = new TextPaint(1);
-        this.f29401s = textPaint;
-        textPaint.setTextSize(org.telegram.messenger.i0.L(12.0f));
-        textPaint.setTypeface(org.telegram.messenger.i0.o1("fonts/num.otf"));
-        Paint paint = new Paint(1);
-        this.f29395a = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(org.telegram.messenger.i0.L(2.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        setColor(org.telegram.ui.ActionBar.t6.w0(org.telegram.ui.ActionBar.t6.vj, p6Var));
+    public pb(ta taVar, fb fbVar) {
+        this.f37111b = taVar;
+        this.f37110a = fbVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        long j10;
-        int i10;
-        String valueOf;
-        super.onDraw(canvas);
-        if (this.f29396b > 0) {
-            i10 = (int) Math.ceil(((float) j10) / 1000.0f);
-        } else {
-            i10 = 0;
+    public final boolean onDown(MotionEvent motionEvent) {
+        ta taVar = this.f37111b;
+        if (taVar.f38371s) {
+            return false;
         }
-        RectF rectF = this.f29403x;
-        rectF.set(org.telegram.messenger.i0.L(1.0f), org.telegram.messenger.i0.L(1.0f), getMeasuredWidth() - org.telegram.messenger.i0.L(1.0f), getMeasuredHeight() - org.telegram.messenger.i0.L(1.0f));
-        int i11 = this.f29397c;
-        TextPaint textPaint = this.f29401s;
-        if (i11 != i10) {
-            this.f29397c = i10;
-            this.d = String.valueOf(Math.max(0, i10));
-            StaticLayout staticLayout = this.f29398f;
-            if (staticLayout != null) {
-                this.h = staticLayout;
-                this.f29400r = 0.0f;
-                this.f29399n = this.e;
-            }
-            this.e = (int) Math.ceil(textPaint.measureText(valueOf));
-            this.f29398f = new StaticLayout(this.d, textPaint, Integer.MAX_VALUE, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        }
-        float f7 = this.f29400r;
-        if (f7 < 1.0f) {
-            float f10 = f7 + 0.10666667f;
-            this.f29400r = f10;
-            if (f10 > 1.0f) {
-                this.f29400r = 1.0f;
-            } else {
-                invalidate();
-            }
-        }
-        int alpha = textPaint.getAlpha();
-        if (this.h != null) {
-            float f11 = this.f29400r;
-            if (f11 < 1.0f) {
-                textPaint.setAlpha((int) ((1.0f - f11) * alpha));
-                canvas.save();
-                canvas.translate(rectF.centerX() - (this.f29399n / 2.0f), ((org.telegram.messenger.i0.L(10.0f) * this.f29400r) + (rectF.centerY() - (this.h.getHeight() / 2.0f))) - org.telegram.messenger.i0.L(0.5f));
-                this.h.draw(canvas);
-                textPaint.setAlpha(alpha);
-                canvas.restore();
-            }
-        }
-        if (this.f29398f != null) {
-            float f12 = this.f29400r;
-            if (f12 != 1.0f) {
-                textPaint.setAlpha((int) (alpha * f12));
-            }
-            canvas.save();
-            canvas.translate(rectF.centerX() - (this.e / 2.0f), sc.e.z(1.0f, this.f29400r, org.telegram.messenger.i0.L(10.0f), rectF.centerY() - (this.f29398f.getHeight() / 2.0f)) - org.telegram.messenger.i0.L(0.5f));
-            this.f29398f.draw(canvas);
-            if (this.f29400r != 1.0f) {
-                textPaint.setAlpha(alpha);
-            }
-            canvas.restore();
-        }
-        canvas.drawArc(rectF, -90.0f, (((float) Math.max(0L, this.f29396b)) / 5000.0f) * (-360.0f), false, this.f29395a);
-        if (this.f29402w != 0) {
-            long currentTimeMillis = System.currentTimeMillis();
-            this.f29396b -= currentTimeMillis - this.f29402w;
-            this.f29402w = currentTimeMillis;
-        } else {
-            this.f29402w = System.currentTimeMillis();
-        }
-        invalidate();
+        fb fbVar = this.f37110a;
+        taVar.f38372w = fb.access$1400(fbVar, true);
+        taVar.f38373x = fb.access$1400(fbVar, false);
+        return true;
     }
 
-    public void setColor(int i10) {
-        this.f29401s.setColor(i10);
-        this.f29395a.setColor(i10);
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        boolean z10 = false;
+        if (Math.abs(f10) <= 2000.0f) {
+            return false;
+        }
+        int i3 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
+        ta taVar = this.f37111b;
+        if ((i3 < 0 && taVar.f38372w) || (f10 > 0.0f && taVar.f38373x)) {
+            z10 = true;
+        }
+        float signum = Math.signum(f10);
+        fb fbVar = this.f37110a;
+        q1.g gVar = new q1.g(fbVar, q1.g.f53636o, signum * fbVar.getWidth() * 2.0f);
+        if (!z10) {
+            gVar.a(new q1.c(this) {
+                public final pb f36427b;
+
+                {
+                    this.f36427b = this;
+                }
+
+                @Override
+                public final void a(q1.g gVar2, boolean z11, float f12, float f13) {
+                    switch (r2) {
+                        case 0:
+                            this.f36427b.f37111b.E.b();
+                            return;
+                        default:
+                            this.f36427b.f37111b.E.b();
+                            return;
+                    }
+                }
+            });
+            gVar.b(new c7(fbVar, 2));
+        }
+        gVar.f53653m.a(1.0f);
+        gVar.f53653m.b(100.0f);
+        gVar.f53643a = f10;
+        gVar.h();
+        if (z10) {
+            q1.g gVar2 = new q1.g((Object) fbVar, (q1.e) q1.g.v, 0.0f);
+            gVar2.a(new q1.c(this) {
+                public final pb f36427b;
+
+                {
+                    this.f36427b = this;
+                }
+
+                @Override
+                public final void a(q1.g gVar22, boolean z11, float f12, float f13) {
+                    switch (r2) {
+                        case 0:
+                            this.f36427b.f37111b.E.b();
+                            return;
+                        default:
+                            this.f36427b.f37111b.E.b();
+                            return;
+                    }
+                }
+            });
+            gVar2.b(new Object());
+            gVar.f53653m.a(1.0f);
+            gVar.f53653m.b(10.0f);
+            gVar.f53643a = f10;
+            gVar2.h();
+        }
+        taVar.f38371s = true;
+        return true;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        ta taVar = this.f37111b;
+        float f12 = taVar.h + f10;
+        taVar.h = f12;
+        float f13 = taVar.f38369n + f11;
+        taVar.f38369n = f13;
+        if (Utilities.t(0.0f, 0.0f, f12, f13) > org.telegram.messenger.g0.f22587e) {
+            taVar.f38370r = true;
+        }
+        if (!taVar.d) {
+            return false;
+        }
+        float f14 = taVar.f38368f - f10;
+        taVar.f38368f = f14;
+        fb fbVar = this.f37110a;
+        fbVar.setTranslationX(f14);
+        float f15 = taVar.f38368f;
+        if (f15 == 0.0f || ((f15 < 0.0f && taVar.f38372w) || (f15 > 0.0f && taVar.f38373x))) {
+            fbVar.setAlpha(1.0f - (Math.abs(f15) / fbVar.getWidth()));
+        }
+        return true;
     }
 }

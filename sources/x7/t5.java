@@ -1,17 +1,13 @@
 package x7;
-public final class t5 implements ja.d {
-    public static final t5 f53347a = new Object();
 
-    static {
-        sc.e.v(sc.e.m(c0.class, new z(1)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+import java.io.DataInputStream;
+public abstract class t5 {
+    public static float[] a(DataInputStream dataInputStream) {
+        int readInt = dataInputStream.readInt();
+        float[] fArr = new float[readInt];
+        for (int i3 = 0; i3 < readInt; i3++) {
+            fArr[i3] = dataInputStream.readFloat();
         }
-        throw new ClassCastException();
+        return fArr;
     }
 }

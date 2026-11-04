@@ -1,6 +1,6 @@
 package t4;
-
-import android.os.Bundle;
 public interface d {
-    Bundle c();
+    void r();
+
+    void u(int i3, Object obj);
 }

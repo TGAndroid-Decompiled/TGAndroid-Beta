@@ -1,19 +1,24 @@
 package w8;
 
+import android.graphics.PointF;
 import android.os.Parcel;
 import android.os.Parcelable;
-import v8.s;
-import w7.h0;
-public final class a extends o6.a {
-    public static final Parcelable.Creator<a> CREATOR = new s(14);
-    public String f52766a;
-    public String f52767b;
+public final class a extends q6.a {
+    public static final Parcelable.Creator<a> CREATOR = new b(0);
+    public final PointF[] f57411a;
+    public final int f57412b;
+
+    public a(PointF[] pointFArr, int i3) {
+        this.f57411a = pointFArr;
+        this.f57412b = i3;
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = h0.q(parcel, 20293);
-        h0.l(parcel, 2, this.f52766a);
-        h0.l(parcel, 3, this.f52767b);
-        h0.r(parcel, q6);
+    public final void writeToParcel(Parcel parcel, int i3) {
+        int s6 = j8.a.s(parcel, 20293);
+        j8.a.p(parcel, 2, this.f57411a, i3);
+        j8.a.r(parcel, 3, 4);
+        parcel.writeInt(this.f57412b);
+        j8.a.t(parcel, s6);
     }
 }

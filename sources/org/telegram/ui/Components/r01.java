@@ -1,21 +1,33 @@
 package org.telegram.ui.Components;
+public final class r01 implements Runnable {
+    public final int f37591a;
+    public final g11 f37592b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class r01 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f29852a;
-
-    public r01(ThemeEditorView.EditorAlert editorAlert) {
-        this.f29852a = editorAlert;
+    public r01(g11 g11Var, int i3) {
+        this.f37591a = i3;
+        this.f37592b = g11Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f29852a;
-        editorAlert.f24222j1.setVisibility(4);
-        editorAlert.f24224m1.setVisibility(4);
-        editorAlert.f24228q1.setVisibility(4);
-        editorAlert.f24236y1 = false;
+    public final void run() {
+        switch (this.f37591a) {
+            case 0:
+                g11 g11Var = this.f37592b;
+                if (g11Var.l()) {
+                    g11Var.m();
+                    return;
+                }
+                return;
+            default:
+                g11 g11Var2 = this.f37592b;
+                w01 w01Var = g11Var2.K;
+                w01Var.z1(true);
+                u01 u01Var = g11Var2.f33940y;
+                u01Var.z1(true);
+                g11Var2.N.a(true, true);
+                org.telegram.messenger.g0.b4(u01Var);
+                org.telegram.messenger.g0.b4(w01Var);
+                return;
+        }
     }
 }
