@@ -86,7 +86,7 @@ public final class k1 implements Runnable {
                     }
                 }
                 k7Var2.M2 = -1;
-                org.telegram.ui.Components.cc ccVar = org.telegram.ui.Components.cc.f32519w;
+                org.telegram.ui.Components.cc ccVar = org.telegram.ui.Components.cc.f32506w;
                 if (ccVar != null) {
                     ccVar.c(0L, false);
                     return;
@@ -211,7 +211,7 @@ public final class k1 implements Runnable {
                     r0Var.performHapticFeedback(0);
                 }
                 r0Var.U(null, null);
-                r0Var.f28439q0 = true;
+                r0Var.f28440q0 = true;
                 return;
             case 19:
                 Context context = (Context) obj;
@@ -223,7 +223,7 @@ public final class k1 implements Runnable {
                 vf.c.t(context, org.telegram.messenger.hd.M0(i10, null));
                 return;
             case 20:
-                ow0 ow0Var = ((ll) obj).f47558b.f43937r1;
+                ow0 ow0Var = ((ll) obj).f47557b.f43936r1;
                 if (ow0Var != null && z10) {
                     ow0Var.setVisibility(8);
                     return;
@@ -231,8 +231,8 @@ public final class k1 implements Runnable {
                 return;
             case 21:
                 pn pnVar = (pn) obj;
-                pnVar.f48887w0.autotranslation = z10;
-                pnVar.getMessagesController().Q3(pnVar.f48887w0, false);
+                pnVar.f48886w0.autotranslation = z10;
+                pnVar.getMessagesController().Q3(pnVar.f48886w0, false);
                 return;
             case 22:
                 vo voVar = (vo) obj;
@@ -242,18 +242,18 @@ public final class k1 implements Runnable {
                     if (voVar.C1 != null) {
                         voVar.F1 = true;
                         if (!voVar.P0()) {
-                            wallPaper = voVar.f39000o1.f52273g;
+                            wallPaper = voVar.f39021o1.f52271g;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        org.telegram.ui.ActionBar.r3 r3Var2 = voVar.C1.f38688a;
-                        if (r3Var2.f28455a) {
-                            voVar.f39000o1.r(null, wallPaper2, false, Boolean.valueOf(z10), false);
+                        org.telegram.ui.ActionBar.r3 r3Var2 = voVar.C1.f38684a;
+                        if (r3Var2.f28456a) {
+                            voVar.f39021o1.r(null, wallPaper2, false, Boolean.valueOf(z10), false);
                         } else {
-                            voVar.f39000o1.r(r3Var2, wallPaper2, false, Boolean.valueOf(z10), false);
+                            voVar.f39021o1.r(r3Var2, wallPaper2, false, Boolean.valueOf(z10), false);
                         }
                     }
                     if (org.telegram.messenger.g0.Q1() && (J0 = vo.J0(z10)) != null && J0 != org.telegram.ui.ActionBar.k6.I) {
-                        if (z10 == voVar.f39002q1) {
+                        if (z10 == voVar.f39023q1) {
                             z9 = false;
                         }
                         voVar.Z1 = z9;
@@ -261,7 +261,7 @@ public final class k1 implements Runnable {
                     }
                     if (toVar.d != null) {
                         for (int i13 = 0; i13 < toVar.d.size(); i13++) {
-                            ((uo) toVar.d.get(i13)).f38690c = z10 ? 1 : 0;
+                            ((uo) toVar.d.get(i13)).f38686c = z10 ? 1 : 0;
                         }
                         toVar.f();
                         return;
@@ -278,12 +278,12 @@ public final class k1 implements Runnable {
                 return;
             case 24:
                 vz vzVar = (vz) obj;
-                vzVar.e1(vzVar.f39780q2, z10);
+                vzVar.e1(vzVar.f39801q2, z10);
                 return;
             case 25:
                 r20 r20Var = (r20) obj;
                 if (!z10) {
-                    r20Var.f37512r.setVisibility(8);
+                    r20Var.f37473r.setVisibility(8);
                     return;
                 } else {
                     r20Var.getClass();
@@ -291,21 +291,21 @@ public final class k1 implements Runnable {
                 }
             case 26:
                 o40 o40Var = ((g40) obj).H0;
-                if (!o40Var.f36494k0) {
+                if (!o40Var.f36536k0) {
                     try {
                         o40Var.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                     org.telegram.messenger.g0.f2(o40Var.h.getParentActivity());
                     if (z10) {
-                        j3 = o40Var.f36492j0;
+                        j3 = o40Var.f36534j0;
                     }
-                    o40Var.f36488h0 = j3;
-                    o40Var.f36486g0 = System.currentTimeMillis();
-                    o40Var.f36490i0 = true;
+                    o40Var.f36530h0 = j3;
+                    o40Var.f36528g0 = System.currentTimeMillis();
+                    o40Var.f36532i0 = true;
                     o40Var.v();
                     o40Var.invalidate();
-                    qs.f(o40Var.f36480e).k(155, Integer.valueOf(o40Var.U), Boolean.FALSE);
+                    qs.f(o40Var.f36522e).k(155, Integer.valueOf(o40Var.U), Boolean.FALSE);
                     return;
                 }
                 return;
@@ -331,7 +331,7 @@ public final class k1 implements Runnable {
             default:
                 xs0 xs0Var = (xs0) obj;
                 if (!z10) {
-                    xs0Var.f40397o0.setVisibility(8);
+                    xs0Var.f40413o0.setVisibility(8);
                     return;
                 } else {
                     xs0Var.getClass();

@@ -104,7 +104,7 @@ public final class r8 implements RequestDelegate {
                         i10++;
                         org.telegram.messenger.g0.h3(new mc0(ld0Var, tL_inputStorePaymentAuthCode, (TL_update.TL_updateSentPhoneCode) obj6, 5));
                     }
-                    ld0Var.f47526w.getMessagesController().O3(updates, false);
+                    ld0Var.f47525w.getMessagesController().O3(updates, false);
                     org.telegram.messenger.r1.i().e(purchase, tL_payments_canPurchaseStore.purpose, null);
                     org.telegram.messenger.g0.h3(new hd0(ld0Var, 4));
                     return;

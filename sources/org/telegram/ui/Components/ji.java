@@ -15,7 +15,7 @@ public final class ji extends FragmentContextView {
     @Override
     public final void setVisibility(int i7) {
         boolean z9;
-        pr prVar = this.Y0.f36312y;
+        pr prVar = this.Y0.f36351y;
         if (i7 == 0) {
             z9 = true;
         } else {

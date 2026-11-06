@@ -41,7 +41,7 @@ public final class i9 implements Runnable {
                 boolean z9 = this.f12186c;
                 long j3 = this.f12185b;
                 if (!z9) {
-                    di.g1.W = new di.g1(vaVar.f12938b, vaVar.f12942c, storyItem, j3, storyItem.f27191id, z9, inputGroupCall, true, this.d);
+                    di.g1.W = new di.g1(vaVar.f12938b, vaVar.f12942c, storyItem, j3, storyItem.f27192id, z9, inputGroupCall, true, this.d);
                 }
                 qa qaVar = vaVar.F;
                 if (qaVar != null) {
@@ -50,7 +50,7 @@ public final class i9 implements Runnable {
                 vaVar.F = null;
                 vaVar.J = 0;
                 RectF rectF = vaVar.H;
-                Point point = org.telegram.messenger.g0.f22537q;
+                Point point = org.telegram.messenger.g0.f22544q;
                 rectF.set(0.0f, 0.0f, point.x, point.y);
                 vaVar.G = org.telegram.messenger.g0.L(8.0f);
                 vaVar.p(true);
@@ -58,7 +58,7 @@ public final class i9 implements Runnable {
                 storyItem.dialogId = j3;
                 storyItem.justUploaded = true;
                 T.getOrCreateStoryViewer().L(vaVar.f12938b, storyItem, null);
-                qs.f(vaVar.f12942c).k(176, Long.valueOf(inputGroupCall.f26969id));
+                qs.f(vaVar.f12942c).k(176, Long.valueOf(inputGroupCall.f26970id));
                 return;
             default:
                 ww wwVar = (ww) lsVar;
@@ -75,7 +75,7 @@ public final class i9 implements Runnable {
                 } else {
                     wwVar.getMessagesController().X(0, j10, z10);
                     if (user != null && user.bot && this.d) {
-                        wwVar.getMessagesController().w(user.f27101id);
+                        wwVar.getMessagesController().w(user.f27102id);
                     }
                 }
                 wwVar.getMessagesController().J(wwVar.W2);

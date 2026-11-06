@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class gd implements View.OnLongClickListener {
-    public final int f33895a;
-    public final ChatActivityEnterView f33896b;
+    public final int f33903a;
+    public final ChatActivityEnterView f33904b;
 
     public gd(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f33895a = i7;
-        this.f33896b = chatActivityEnterView;
+        this.f33903a = i7;
+        this.f33904b = chatActivityEnterView;
     }
 
     @Override
     public final boolean onLongClick(View view) {
-        int i7 = this.f33895a;
-        ChatActivityEnterView chatActivityEnterView = this.f33896b;
+        int i7 = this.f33903a;
+        ChatActivityEnterView chatActivityEnterView = this.f33904b;
         switch (i7) {
             case 0:
                 int i10 = ChatActivityEnterView.s5;

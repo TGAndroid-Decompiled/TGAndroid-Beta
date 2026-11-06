@@ -5,11 +5,11 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class vw0 extends TextView implements org.telegram.ui.ActionBar.a6 {
-    public final ProfileActivity f50850a;
+    public final ProfileActivity f50849a;
 
     public vw0(ProfileActivity profileActivity, Context context) {
         super(context);
-        this.f50850a = profileActivity;
+        this.f50849a = profileActivity;
         updateColors();
     }
 
@@ -25,6 +25,6 @@ public final class vw0 extends TextView implements org.telegram.ui.ActionBar.a6 
 
     @Override
     public final void updateColors() {
-        setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, this.f50850a.f41866z0));
+        setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, this.f50849a.f41865z0));
     }
 }

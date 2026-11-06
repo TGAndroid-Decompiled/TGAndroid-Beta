@@ -25,7 +25,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.ca0;
 import org.telegram.ui.Components.qn;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.Components.xn;
 import org.telegram.ui.an;
 import org.webrtc.SurfaceTextureHelper;
@@ -46,13 +46,13 @@ public final class r implements Runnable {
 
     @Override
     public final void run() {
-        s51 s51Var;
+        t51 t51Var;
         switch (this.f16896a) {
             case 0:
                 int i7 = this.f16897b;
                 f0 f0Var = (f0) this.d;
                 try {
-                    SQLiteCursor queryFinalized = yr.a0(i7).f26690b.queryFinalized("SELECT did, date FROM search_recent WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = yr.a0(i7).f26698b.queryFinalized("SELECT did, date FROM search_recent WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     ArrayList arrayList2 = new ArrayList();
                     ArrayList arrayList3 = new ArrayList();
@@ -102,7 +102,7 @@ public final class r implements Runnable {
                         ArrayList arrayList6 = new ArrayList();
                         yr.a0(i7).V(TextUtils.join(",", arrayList3), arrayList6, arrayList);
                         for (int i12 = 0; i12 < arrayList6.size(); i12++) {
-                            g0 g0Var = (g0) hVar.f(m5.F(((TLRPC.EncryptedChat) arrayList6.get(i12)).f26960id));
+                            g0 g0Var = (g0) hVar.f(m5.F(((TLRPC.EncryptedChat) arrayList6.get(i12)).f26961id));
                             if (g0Var != null) {
                                 g0Var.f16724a = (TLObject) arrayList6.get(i12);
                             }
@@ -113,7 +113,7 @@ public final class r implements Runnable {
                         yr.a0(i7).Q(TextUtils.join(",", arrayList2), arrayList7);
                         for (int i13 = 0; i13 < arrayList7.size(); i13++) {
                             TLRPC.Chat chat = (TLRPC.Chat) arrayList7.get(i13);
-                            long j10 = -chat.f26952id;
+                            long j10 = -chat.f26953id;
                             if (chat.migrated_to != null) {
                                 g0 g0Var2 = (g0) hVar.f(j10);
                                 hVar.l(j10);
@@ -132,7 +132,7 @@ public final class r implements Runnable {
                         yr.a0(i7).n0(arrayList, arrayList5, false);
                         for (int i14 = 0; i14 < arrayList5.size(); i14++) {
                             TLRPC.User user = (TLRPC.User) arrayList5.get(i14);
-                            g0 g0Var4 = (g0) hVar.f(user.f27101id);
+                            g0 g0Var4 = (g0) hVar.f(user.f27102id);
                             if (g0Var4 != null) {
                                 g0Var4.f16724a = user;
                             }
@@ -158,9 +158,9 @@ public final class r implements Runnable {
                 return;
             case 3:
                 MediaController mediaController = (MediaController) ((f5.u) this.d).f11191c;
-                if (this.f16897b == mediaController.f21272k0 && this.f16898c == 4 && (s51Var = mediaController.f21270j0) != null) {
+                if (this.f16897b == mediaController.f21272k0 && this.f16898c == 4 && (t51Var = mediaController.f21270j0) != null) {
                     try {
-                        s51Var.m0();
+                        t51Var.m0();
                         mediaController.f21270j0 = null;
                         return;
                     } catch (Exception e11) {
@@ -200,7 +200,7 @@ public final class r implements Runnable {
                 xn xnVar = (xn) this.d;
                 int i18 = this.f16897b;
                 if (i18 != 0) {
-                    SharedPreferences sharedPreferences = qp.s1(this.f16898c).f24749d7;
+                    SharedPreferences sharedPreferences = qp.s1(this.f16898c).f24757d7;
                     sharedPreferences.edit().putInt("last_selected_mute_until_time", i18).putInt("last_selected_mute_until_time2", sharedPreferences.getInt("last_selected_mute_until_time", 0)).apply();
                 }
                 xnVar.R(i18);
@@ -209,7 +209,7 @@ public final class r implements Runnable {
                 qn qnVar = (qn) this.d;
                 int i19 = this.f16897b;
                 if (i19 != 0) {
-                    SharedPreferences sharedPreferences2 = qp.s1(this.f16898c).f24749d7;
+                    SharedPreferences sharedPreferences2 = qp.s1(this.f16898c).f24757d7;
                     sharedPreferences2.edit().putInt("last_selected_mute_until_time", i19).putInt("last_selected_mute_until_time2", sharedPreferences2.getInt("last_selected_mute_until_time", 0)).apply();
                 }
                 qnVar.a(Integer.valueOf(i19));
@@ -217,7 +217,7 @@ public final class r implements Runnable {
             case 13:
                 ca0 ca0Var = (ca0) ((bi.q1) this.d).f4554f3;
                 View d = ca0Var.d();
-                bi.q1 q1Var = ca0Var.f32509f;
+                bi.q1 q1Var = ca0Var.f32496f;
                 if (d != null) {
                     int top = d.getTop() + this.f16897b;
                     int top2 = d.getTop() + this.f16898c;

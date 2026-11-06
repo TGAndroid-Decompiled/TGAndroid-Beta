@@ -1,24 +1,24 @@
 package org.telegram.ui;
 public final class gm implements org.telegram.messenger.ep {
-    public final hi f46026a;
-    public final an f46027b;
-    public final lm f46028c;
+    public final hi f46025a;
+    public final an f46026b;
+    public final lm f46027c;
 
     public gm(lm lmVar, hi hiVar, an anVar) {
-        this.f46028c = lmVar;
-        this.f46026a = hiVar;
-        this.f46027b = anVar;
+        this.f46027c = lmVar;
+        this.f46025a = hiVar;
+        this.f46026b = anVar;
     }
 
     @Override
     public final void a() {
-        this.f46026a.c(false);
-        this.f46028c.f47561a.presentFragment(this.f46027b);
+        this.f46025a.c(false);
+        this.f46027c.f47560a.presentFragment(this.f46026b);
     }
 
     @Override
     public final void f(boolean z9) {
-        this.f46026a.c(false);
-        this.f46028c.f47561a.presentFragment(this.f46027b);
+        this.f46025a.c(false);
+        this.f46027c.f47560a.presentFragment(this.f46026b);
     }
 }

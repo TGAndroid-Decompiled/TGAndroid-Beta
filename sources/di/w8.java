@@ -42,21 +42,21 @@ public final class w8 extends r8 {
         f0Var.e(d);
         ixVar.getClass();
         String str = d.f6356f;
-        str = str == null ? ij.U(org.telegram.ui.Components.i5.e(ixVar.f46761b, d.f6357g)) : str;
-        if (str != null && (arrayList = (ArrayList) ixVar.f46763e.get(str)) != null && !arrayList.isEmpty()) {
+        str = str == null ? ij.U(org.telegram.ui.Components.i5.e(ixVar.f46760b, d.f6357g)) : str;
+        if (str != null && (arrayList = (ArrayList) ixVar.f46762e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i7 = 0; i7 < min; i7++) {
                 ixVar.l((TLRPC.Document) arrayList.get(i7));
             }
         }
-        if (this.I.f6356f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24459s0).f25825r.get(this.I.f6356f)) != null) {
+        if (this.I.f6356f != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24467s0).f25833r.get(this.I.f6356f)) != null) {
             this.L.q0(hc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.i6 i6Var = this.N;
-        i6Var.f34477b = 17;
+        i6Var.f34508b = 17;
         i6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
         this.N.w(org.telegram.messenger.g0.L(18.0f));
-        this.N.M = org.telegram.messenger.g0.f22537q.x;
+        this.N.M = org.telegram.messenger.g0.f22544q.x;
         if (tL_mediaAreaSuggestedReaction.dark) {
             this.J.a();
             this.N.u(-1);

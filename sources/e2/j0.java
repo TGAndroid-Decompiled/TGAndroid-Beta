@@ -1,6 +1,6 @@
 package e2;
 
-import c8.sc;
+import c8.tc;
 import java.util.HashSet;
 public final class j0 {
     public int f10288a;
@@ -20,13 +20,13 @@ public final class j0 {
         this.f10293g = new HashSet();
         hashSet.add(u9.q.a(cls));
         for (Class cls2 : clsArr) {
-            sc.a(cls2, "Null interface");
+            tc.a(cls2, "Null interface");
             ((HashSet) this.f10290c).add(u9.q.a(cls2));
         }
     }
 
     public void a(u9.i iVar) {
-        if (!((HashSet) this.f10290c).contains(iVar.f56382a)) {
+        if (!((HashSet) this.f10290c).contains(iVar.f56381a)) {
             ((HashSet) this.f10291e).add(iVar);
             return;
         }

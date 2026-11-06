@@ -26,7 +26,7 @@ public final class l1 extends View {
 
     public l1(Context context, m1 m1Var) {
         super(context);
-        this.f12304c = p10.f24459s0;
+        this.f12304c = p10.f24467s0;
         this.f12307n = new ic[2];
         this.f12309s = new org.telegram.ui.Components.ic(this);
         setPadding(org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
@@ -40,7 +40,7 @@ public final class l1 extends View {
         if (document == null) {
             j3 = 0;
         } else {
-            j3 = document.f26958id;
+            j3 = document.f26959id;
         }
         if (j10 != j3) {
             org.telegram.ui.Components.i5 i5Var = this.d;
@@ -50,7 +50,7 @@ public final class l1 extends View {
             if (document != null) {
                 int i10 = 1;
                 this.f12303b = true;
-                this.h = document.f26958id;
+                this.h = document.f26959id;
                 int i11 = k2.f12251y1;
                 if (!z9) {
                     i10 = 16388;
@@ -165,7 +165,7 @@ public final class l1 extends View {
         this.f12303b = false;
         if (document != null) {
             long j3 = this.h;
-            long j10 = document.f26958id;
+            long j10 = document.f26959id;
             if (j3 != j10) {
                 this.h = j10;
                 if (this.f12306f == null) {

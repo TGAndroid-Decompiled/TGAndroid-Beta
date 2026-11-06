@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f34930a;
-    public final kg0 f34931b;
+    public final int f34956a;
+    public final kg0 f34957b;
 
     public jg0(kg0 kg0Var, int i7) {
-        this.f34930a = i7;
-        this.f34931b = kg0Var;
+        this.f34956a = i7;
+        this.f34957b = kg0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f34930a) {
+        switch (this.f34956a) {
             case 0:
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kg0 kg0Var = this.f34931b;
+                kg0 kg0Var = this.f34957b;
                 kg0Var.v = floatValue;
                 org.telegram.ui.Cells.t2 t2Var = kg0Var.H;
                 if (t2Var != null) {
@@ -29,8 +29,8 @@ public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kg0 kg0Var2 = this.f34931b;
-                kg0Var2.f35312w = floatValue2;
+                kg0 kg0Var2 = this.f34957b;
+                kg0Var2.f35303w = floatValue2;
                 org.telegram.ui.Cells.t2 t2Var2 = kg0Var2.H;
                 if (t2Var2 != null) {
                     t2Var2.invalidate();
@@ -43,8 +43,8 @@ public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 2:
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kg0 kg0Var3 = this.f34931b;
-                kg0Var3.f35306p = floatValue3;
+                kg0 kg0Var3 = this.f34957b;
+                kg0Var3.f35297p = floatValue3;
                 org.telegram.ui.Cells.t2 t2Var3 = kg0Var3.H;
                 if (t2Var3 != null) {
                     t2Var3.invalidate();
@@ -53,8 +53,8 @@ public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kg0 kg0Var4 = this.f34931b;
-                kg0Var4.f35305o = floatValue4;
+                kg0 kg0Var4 = this.f34957b;
+                kg0Var4.f35296o = floatValue4;
                 org.telegram.ui.Cells.t2 t2Var4 = kg0Var4.H;
                 if (t2Var4 != null) {
                     t2Var4.invalidate();
@@ -63,8 +63,8 @@ public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                kg0 kg0Var5 = this.f34931b;
-                kg0Var5.f35313x = floatValue5;
+                kg0 kg0Var5 = this.f34957b;
+                kg0Var5.f35304x = floatValue5;
                 org.telegram.ui.Cells.t2 t2Var5 = kg0Var5.H;
                 if (t2Var5 != null) {
                     t2Var5.invalidate();
@@ -72,7 +72,7 @@ public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 5:
-                kg0 kg0Var6 = this.f34931b;
+                kg0 kg0Var6 = this.f34957b;
                 kg0Var6.getClass();
                 kg0Var6.e(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 org.telegram.ui.Cells.t2 t2Var6 = kg0Var6.H;
@@ -82,7 +82,7 @@ public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 6:
-                kg0 kg0Var7 = this.f34931b;
+                kg0 kg0Var7 = this.f34957b;
                 kg0Var7.getClass();
                 kg0Var7.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 kg0Var7.F = true;
@@ -93,7 +93,7 @@ public final class jg0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             default:
-                kg0 kg0Var8 = this.f34931b;
+                kg0 kg0Var8 = this.f34957b;
                 kg0Var8.getClass();
                 kg0Var8.D = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 kg0Var8.F = false;

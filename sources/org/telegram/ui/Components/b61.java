@@ -1,3 +1,7 @@
 package org.telegram.ui.Components;
-public interface b61 {
+
+import android.graphics.Bitmap;
+public final class b61 {
+    public Bitmap f32042a;
+    public float f32043b;
 }

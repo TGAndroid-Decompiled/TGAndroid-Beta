@@ -34,7 +34,7 @@ public final class b6 extends FrameLayout {
         zh.w0 w0Var = new zh.w0(frameLayout2, null, false);
         this.f3511a = w0Var;
         frameLayout2.setBackground(w0Var);
-        w0Var.f60483s = org.telegram.messenger.g0.L(18.0f);
+        w0Var.f60482s = org.telegram.messenger.g0.L(18.0f);
         w0Var.v = false;
         frameLayout.addView(frameLayout2, c8.ha.e(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);

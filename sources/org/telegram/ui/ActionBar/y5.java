@@ -6,15 +6,15 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class y5 extends Drawable {
-    public static Paint f28805c;
-    public Paint f28806a;
-    public float f28807b;
+    public static Paint f28806c;
+    public Paint f28807a;
+    public float f28808b;
 
     @Override
     public final void draw(Canvas canvas) {
         int L;
         Rect bounds = getBounds();
-        float f10 = this.f28807b;
+        float f10 = this.f28808b;
         if (Math.abs(f10 - (-1.0f)) < 0.01f) {
             L = Math.max(bounds.width(), bounds.height()) / 2;
         } else if (Math.abs(f10 - (-2.0f)) < 0.01f) {
@@ -22,7 +22,7 @@ public final class y5 extends Drawable {
         } else {
             L = org.telegram.messenger.g0.L(f10);
         }
-        canvas.drawCircle(bounds.centerX(), bounds.centerY(), L, this.f28806a);
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), L, this.f28807a);
     }
 
     @Override

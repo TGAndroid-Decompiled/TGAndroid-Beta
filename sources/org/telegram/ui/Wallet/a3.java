@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.ViewGroup;
 import java.util.HashSet;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui.ActionBar.a6 {
-    public k41 P1;
+    public l41 P1;
     public final ViewGroup Q1;
     public final Paint R1;
     public float S1;
@@ -17,10 +17,10 @@ public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui
     public a3(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null, true, false, f6Var);
         this.R1 = new Paint();
-        this.f36227r1 = 0.1f;
+        this.f36266r1 = 0.1f;
         this.Q1 = viewGroup;
-        pj0 pj0Var = this.f36222k1;
-        int i7 = this.f28645t0;
+        pj0 pj0Var = this.f36261k1;
+        int i7 = this.f28646t0;
         pj0Var.setPadding(i7, 0, i7, 0);
         updateColors();
         this.P1.O(false);
@@ -34,9 +34,9 @@ public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 5), this.I0);
-        this.P1 = k41Var;
-        return k41Var;
+        l41 l41Var = new l41(pj0Var, getContext(), this.f28613a, 0, true, new d(this, 5), this.I0);
+        this.P1 = l41Var;
+        return l41Var;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui
     public void T0(float f10) {
         this.S1 = f10;
         if (this.E != null) {
-            this.E.setTranslationY(Math.max((this.f28615b.getY() + f10) + this.f28644s0, this.E.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f22531m)) - this.E.getBottom());
+            this.E.setTranslationY(Math.max((this.f28616b.getY() + f10) + this.f28645s0, this.E.getHeight() + (org.telegram.messenger.g0.L(56.0f) + org.telegram.messenger.g0.f22538m)) - this.E.getBottom());
         }
     }
 
@@ -57,25 +57,25 @@ public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui
         boolean z9;
         float f10;
         float width;
-        org.telegram.ui.ActionBar.l2 l2Var = this.f28618c;
+        org.telegram.ui.ActionBar.l2 l2Var = this.f28619c;
         float height = l2Var.getHeight();
-        float max = Math.max(height - org.telegram.messenger.g0.f22532n, this.f28615b.getY() + this.S1 + this.f28644s0);
+        float max = Math.max(height - org.telegram.messenger.g0.f22539n, this.f28616b.getY() + this.S1 + this.f28645s0);
         if (max >= height) {
             return;
         }
-        if (this.f28615b.getWidth() < l2Var.getWidth()) {
+        if (this.f28616b.getWidth() < l2Var.getWidth()) {
             z9 = true;
         } else {
             z9 = false;
         }
         if (z9) {
-            f10 = this.f28615b.getX() + this.f28645t0;
+            f10 = this.f28616b.getX() + this.f28646t0;
         } else {
             f10 = 0.0f;
         }
         float f11 = f10;
         if (z9) {
-            width = (this.f28615b.getX() + this.f28615b.getWidth()) - this.f28645t0;
+            width = (this.f28616b.getX() + this.f28616b.getWidth()) - this.f28646t0;
         } else {
             width = l2Var.getWidth();
         }
@@ -84,11 +84,11 @@ public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27792a7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27793a7));
     }
 
     public int d1() {
-        return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27792a7, this.I0);
+        return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27793a7, this.I0);
     }
 
     @Override

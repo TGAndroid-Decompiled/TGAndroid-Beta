@@ -11,8 +11,8 @@ import bg.s;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.u31;
-import org.telegram.ui.Components.u61;
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.v61;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Wallet.a5;
 public final class h extends View {
@@ -27,11 +27,11 @@ public final class h extends View {
         this.f17049c = new te.a(this, xq.h, 380L);
         this.f17048b = new Paint(1);
         this.d = f6Var;
-        u31 u31Var = new u31(true);
-        this.f17050e = u31Var;
-        u31Var.setCallback(this);
-        u31Var.b(-1);
-        u31Var.f38494i = true;
+        v31 v31Var = new v31(true);
+        this.f17050e = v31Var;
+        v31Var.setCallback(this);
+        v31Var.b(-1);
+        v31Var.f38811i = true;
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class h extends View {
         switch (this.f17047a) {
             case 0:
                 super.onAttachedToWindow();
-                ((u31) this.f17050e).d();
+                ((v31) this.f17050e).d();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -52,7 +52,7 @@ public final class h extends View {
         switch (this.f17047a) {
             case 0:
                 super.onDetachedFromWindow();
-                ((u31) this.f17050e).e();
+                ((v31) this.f17050e).e();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -74,10 +74,10 @@ public final class h extends View {
                 Paint paint = this.f17048b;
                 paint.setColor(w02);
                 canvas.drawCircle(width, height, g0.L(19.0f), paint);
-                float f10 = ((te.a) this.f17049c).f55395e;
+                float f10 = ((te.a) this.f17049c).f55394e;
                 float f11 = 1.0f - f10;
                 if (f11 > 0.0f) {
-                    s.b(canvas, (u31) this.f17050e, f11 * 1.35f);
+                    s.b(canvas, (v31) this.f17050e, f11 * 1.35f);
                     invalidate();
                 }
                 if (f10 > 0.0f) {
@@ -98,7 +98,7 @@ public final class h extends View {
                 int[] iArr2 = (int[]) this.d;
                 getLocationInWindow(iArr2);
                 float f12 = iArr[0] - iArr2[0];
-                View view = ((u61) a5Var.T1).getViewPages()[0];
+                View view = ((v61) a5Var.T1).getViewPages()[0];
                 if (view != null) {
                     i7 = view.getPaddingLeft();
                 } else {
@@ -111,7 +111,7 @@ public final class h extends View {
                 }
                 canvas.save();
                 canvas.clipRect(i7 + f12, 0.0f, (f12 + a5Var.T1.getWidth()) - i10, getHeight());
-                for (View view2 : ((u61) a5Var.T1).getViewPages()) {
+                for (View view2 : ((v61) a5Var.T1).getViewPages()) {
                     if (view2 != null && view2.getVisibility() == 0) {
                         canvas.save();
                         canvas.translate(view2.getLeft() + (iArr[0] - iArr2[0]), view2.getTop() + (iArr[1] - iArr2[1]));
@@ -130,7 +130,7 @@ public final class h extends View {
         switch (this.f17047a) {
             case 0:
                 super.onSizeChanged(i7, i10, i11, i12);
-                s.d((u31) this.f17050e, i7 / 2.0f, i10 / 2.0f, 17);
+                s.d((v31) this.f17050e, i7 / 2.0f, i10 / 2.0f, 17);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);
@@ -142,7 +142,7 @@ public final class h extends View {
     public boolean verifyDrawable(Drawable drawable) {
         switch (this.f17047a) {
             case 0:
-                if (!super.verifyDrawable(drawable) && (drawable != ((u31) this.f17050e) || ((te.a) this.f17049c).f55396f)) {
+                if (!super.verifyDrawable(drawable) && (drawable != ((v31) this.f17050e) || ((te.a) this.f17049c).f55395f)) {
                     return false;
                 }
                 return true;

@@ -52,7 +52,7 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
         boolean z9;
         String str = (String) this.f4020c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i7 = ((r5.c) this.d).f54321a;
+        int i7 = ((r5.c) this.d).f54320a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i7)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -94,8 +94,8 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
         long j3 = this.f4019b;
         File file = (File) this.d;
         org.telegram.messenger.jc p10 = imageReceiver.p();
-        if (z9 && p10 != null && !p10.f23509c.isRecycled()) {
-            Bitmap bitmap = p10.f23509c;
+        if (z9 && p10 != null && !p10.f23516c.isRecycled()) {
+            Bitmap bitmap = p10.f23516c;
             if (bitmap == null) {
                 Drawable drawable = p10.d;
                 if (drawable instanceof BitmapDrawable) {
@@ -127,7 +127,7 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
                 h.d();
                 TL_stars.deleteStarGift deletestargift = new TL_stars.deleteStarGift();
                 deletestargift.stargift = (TL_stars.InputSavedStarGift) this.d;
-                ConnectionsManager.getInstance(k7Var.f28612a).sendRequest(deletestargift, new h3(k7Var, h, this.f4019b, 0));
+                ConnectionsManager.getInstance(k7Var.f28613a).sendRequest(deletestargift, new h3(k7Var, h, this.f4019b, 0));
                 return;
             case 2:
                 fi.n8 n8Var = (fi.n8) this.f4020c;
@@ -150,7 +150,7 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
             case 4:
             default:
                 c40 c40Var = (c40) this.f4020c;
-                qp.s1(c40Var.f44586k1.f21723a).n(c40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.f2) c40Var.Z1.M().getFragmentStack().get(c40Var.Z1.M().getFragmentStack().size() - 1), new r3(c40Var, this.f4019b, 26));
+                qp.s1(c40Var.f44585k1.f21729a).n(c40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.f2) c40Var.Z1.M().getFragmentStack().get(c40Var.Z1.M().getFragmentStack().size() - 1), new r3(c40Var, this.f4019b, 26));
                 return;
             case 5:
                 tq tqVar = (tq) this.f4020c;
@@ -158,9 +158,9 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
                 if (!dVar.Q) {
                     dVar.setLoading(true);
                     TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();
-                    getgroupcallstreamrtmpurl.peer = qp.s1(tqVar.f28612a).j1(this.f4019b);
+                    getgroupcallstreamrtmpurl.peer = qp.s1(tqVar.f28613a).j1(this.f4019b);
                     getgroupcallstreamrtmpurl.revoke = true;
-                    ConnectionsManager.getInstance(tqVar.f28612a).sendRequest(getgroupcallstreamrtmpurl, new pq(tqVar, dVar, 0));
+                    ConnectionsManager.getInstance(tqVar.f28613a).sendRequest(getgroupcallstreamrtmpurl, new pq(tqVar, dVar, 0));
                     return;
                 }
                 return;

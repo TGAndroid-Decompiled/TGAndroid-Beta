@@ -5,8 +5,8 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.b70;
-import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w60;
+import org.telegram.ui.Components.x31;
 public final class mc implements v10 {
     public final int f4376a;
     public final long f4377b;
@@ -25,7 +25,7 @@ public final class mc implements v10 {
         TLRPC.Updates updates;
         switch (this.f4376a) {
             case 0:
-                oc.d1((oc) this.f4378c, (w31) this.d, this.f4377b, (Boolean) obj, (String) obj2);
+                oc.d1((oc) this.f4378c, (x31) this.d, this.f4377b, (Boolean) obj, (String) obj2);
                 return;
             case 1:
                 b70 b70Var = (b70) this.f4378c;
@@ -34,7 +34,7 @@ public final class mc implements v10 {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultOk) {
                     TLRPC.Updates updates2 = ((TLRPC.TL_chatInviteJoinResultOk) chatInviteJoinResult).updates;
-                    qp.s1(b70Var.f28612a).O3(updates2, false);
+                    qp.s1(b70Var.f28613a).O3(updates2, false);
                     updates = updates2;
                 } else {
                     if (chatInviteJoinResult instanceof TLRPC.TL_chatInviteJoinResultWebView) {
@@ -50,7 +50,7 @@ public final class mc implements v10 {
                 h6 h6Var = (h6) obj;
                 vf.b bVar = (vf.b) obj2;
                 bVar.d();
-                ea.x(l3Var.f28612a, h6Var.f3997a).h(h6Var.f3998b, tL_starGiftUnique, this.f4377b, null, true, new t0(l3Var, bVar, tL_starGiftUnique, 8));
+                ea.x(l3Var.f28613a, h6Var.f3997a).h(h6Var.f3998b, tL_starGiftUnique, this.f4377b, null, true, new t0(l3Var, bVar, tL_starGiftUnique, 8));
                 return;
         }
     }

@@ -6,8 +6,8 @@ import bi.u6;
 import ch.m0;
 import li.r0;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.q11;
 import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.r11;
 public final class b implements Drawable.Callback {
     public final int f209a;
     public Object f210b;
@@ -45,16 +45,16 @@ public final class b implements Drawable.Callback {
                 ((np) this.f210b).invalidateSelf();
                 return;
             case 7:
-                ((qm0) this.f210b).f37344b.run();
+                ((qm0) this.f210b).f37339b.run();
                 return;
             case 8:
-                ((q11) this.f210b).invalidateSelf();
+                ((r11) this.f210b).invalidateSelf();
                 return;
             case 9:
-                ((zg.a) this.f210b).f60054c.invalidate();
+                ((zg.a) this.f210b).f60053c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60080c.invalidate();
+                ((zg.c) this.f210b).f60079c.invalidate();
                 return;
         }
     }
@@ -93,10 +93,10 @@ public final class b implements Drawable.Callback {
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f60054c.invalidate();
+                ((zg.a) this.f210b).f60053c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60080c.invalidate();
+                ((zg.c) this.f210b).f60079c.invalidate();
                 return;
         }
     }
@@ -135,10 +135,10 @@ public final class b implements Drawable.Callback {
             case 8:
                 return;
             case 9:
-                ((zg.a) this.f210b).f60054c.invalidate();
+                ((zg.a) this.f210b).f60053c.invalidate();
                 return;
             default:
-                ((zg.c) this.f210b).f60080c.invalidate();
+                ((zg.c) this.f210b).f60079c.invalidate();
                 return;
         }
     }

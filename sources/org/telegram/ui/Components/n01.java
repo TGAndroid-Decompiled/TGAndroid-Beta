@@ -1,8 +1,35 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class n01 {
-    public String f36123a;
-    public TLRPC.TL_forumTopic f36124b;
-    public int f36125c;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public final class n01 extends oj0 {
+    public final ArrayList f36161c = new ArrayList();
+    public String d;
+    public final s01 f36162e;
+
+    public n01(s01 s01Var) {
+        this.f36162e = s01Var;
+    }
+
+    @Override
+    public final boolean D(v4.d1 d1Var) {
+        return true;
+    }
+
+    @Override
+    public final int b() {
+        return this.f36161c.size();
+    }
+
+    @Override
+    public final void t(v4.d1 r35, int r36) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n01.t(v4.d1, int):void");
+    }
+
+    @Override
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        r01 r01Var = new r01(this.f36162e, viewGroup.getContext());
+        r01Var.setLayoutParams(new v4.o0(-1, -2));
+        return new v4.d1(r01Var);
+    }
 }

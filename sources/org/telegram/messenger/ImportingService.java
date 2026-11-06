@@ -8,8 +8,8 @@ public class ImportingService extends Service implements ls {
 
     public ImportingService() {
         for (int i7 = 0; i7 < 4; i7++) {
-            qs.f(i7).b(this, qs.f25074v1);
-            qs.f(i7).b(this, qs.f25081w1);
+            qs.f(i7).b(this, qs.f25082v1);
+            qs.f(i7).b(this, qs.f25089w1);
         }
     }
 
@@ -24,7 +24,7 @@ public class ImportingService extends Service implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if ((i7 == qs.f25074v1 || i7 == qs.f25081w1) && !a() && !a()) {
+        if ((i7 == qs.f25082v1 || i7 == qs.f25089w1) && !a() && !a()) {
             stopSelf();
         }
     }
@@ -41,12 +41,12 @@ public class ImportingService extends Service implements ls {
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.i0(t0.f25555b).b(5, null);
+        new e0.i0(t0.f25563b).b(5, null);
         for (int i7 = 0; i7 < 4; i7++) {
-            qs.f(i7).n(this, qs.f25074v1);
-            qs.f(i7).n(this, qs.f25081w1);
+            qs.f(i7).n(this, qs.f25082v1);
+            qs.f(i7).n(this, qs.f25089w1);
         }
-        if (r2.f25191a) {
+        if (r2.f25199a) {
             a8.b("destroy import service");
         }
     }
@@ -61,17 +61,17 @@ public class ImportingService extends Service implements ls {
             stopSelf();
             return 2;
         }
-        if (r2.f25191a) {
+        if (r2.f25199a) {
             a8.b("start import service");
         }
         if (this.f21234a == null) {
             dt.i();
-            e0.q qVar = new e0.q(t0.f25555b, null);
+            e0.q qVar = new e0.q(t0.f25563b, null);
             this.f21234a = qVar;
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
             e0.q qVar2 = this.f21234a;
-            qVar2.f10115y = dt.f22050j0;
+            qVar2.f10115y = dt.f22057j0;
             qVar2.g(hd.M0(2131689472, null));
             int i12 = 0;
             while (true) {
@@ -98,7 +98,7 @@ public class ImportingService extends Service implements ls {
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        new e0.i0(t0.f25555b).e(null, 5, this.f21234a.b());
+        new e0.i0(t0.f25563b).e(null, 5, this.f21234a.b());
         return 2;
     }
 

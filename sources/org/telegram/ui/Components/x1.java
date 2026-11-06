@@ -4,23 +4,23 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class x1 implements RequestDelegate {
-    public final int f40132a;
-    public final Object f40133b;
+    public final int f40138a;
+    public final Object f40139b;
 
     public x1(Object obj, int i7) {
-        this.f40132a = i7;
-        this.f40133b = obj;
+        this.f40138a = i7;
+        this.f40139b = obj;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f40132a;
-        Object obj = this.f40133b;
+        int i7 = this.f40138a;
+        Object obj = this.f40139b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
                 if (tLObject instanceof TLRPC.Updates) {
-                    org.telegram.messenger.qp.s1(cVar.f21723a).O3((TLRPC.Updates) tLObject, false);
+                    org.telegram.messenger.qp.s1(cVar.f21729a).O3((TLRPC.Updates) tLObject, false);
                     return;
                 }
                 return;
@@ -77,27 +77,27 @@ public final class x1 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new bi.j9(tLObject, (org.telegram.messenger.c20) obj, 1));
                 return;
             case 14:
-                l11 l11Var = (l11) obj;
+                m11 m11Var = (m11) obj;
                 if (tLObject != null) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    org.telegram.messenger.qp.s1(l11Var.f35485e).O3(updates, false);
+                    org.telegram.messenger.qp.s1(m11Var.f35822e).O3(updates, false);
                     if (!updates.chats.isEmpty()) {
-                        org.telegram.messenger.g0.i3(new v80(23, l11Var, updates), 1000L);
+                        org.telegram.messenger.g0.i3(new v80(23, m11Var, updates), 1000L);
                         return;
                     }
                     return;
                 }
                 return;
             case 15:
-                org.telegram.messenger.g0.h3(new v80(25, (j21) obj, tLObject));
+                org.telegram.messenger.g0.h3(new v80(25, (k21) obj, tLObject));
                 return;
             case 16:
-                r31 r31Var = (r31) obj;
-                r31Var.getClass();
-                org.telegram.messenger.g0.h3(new q31(r31Var, tL_error, tLObject, 0));
+                s31 s31Var = (s31) obj;
+                s31Var.getClass();
+                org.telegram.messenger.g0.h3(new r31(s31Var, tL_error, tLObject, 0));
                 return;
             default:
-                int i11 = UndoView.f31591i0;
+                int i11 = UndoView.f31592i0;
                 org.telegram.messenger.g0.h3(new v80(28, (UndoView) obj, tLObject));
                 return;
         }

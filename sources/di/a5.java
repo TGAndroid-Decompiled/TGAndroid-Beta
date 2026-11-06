@@ -38,7 +38,7 @@ public final class a5 extends FrameLayout {
         this.f8807e = new RectF();
         this.f8809n = new RectF();
         this.f8810r = 1.0f;
-        int i7 = org.telegram.ui.ActionBar.k6.f27940i6;
+        int i7 = org.telegram.ui.ActionBar.k6.f27941i6;
         b bVar = k5Var.f9306s;
         paint.setColor(org.telegram.ui.ActionBar.k6.w0(i7, bVar));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -46,7 +46,7 @@ public final class a5 extends FrameLayout {
         TextView textView = new TextView(context);
         this.f8806c = textView;
         textView.setText(hd.M0(2131754286, null));
-        int i10 = org.telegram.ui.ActionBar.k6.f27956j5;
+        int i10 = org.telegram.ui.ActionBar.k6.f27957j5;
         org.telegram.ui.ActionBar.r6.V(textView, i10, bVar);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
@@ -71,7 +71,7 @@ public final class a5 extends FrameLayout {
         linearLayout2.setOrientation(0);
         xj0 xj0Var = new xj0(getContext());
         this.f8812w = xj0Var;
-        xj0Var.f40292r = true;
+        xj0Var.f40308r = true;
         xj0Var.a(2131231918, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);

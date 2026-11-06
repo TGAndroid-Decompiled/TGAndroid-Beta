@@ -1,46 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class j01 extends Drawable {
-    public final Paint f34808a = new Paint(1);
-    public final RectF f34809b = new RectF();
-    public final int f34810c;
-    public final r01 d;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class j01 extends AnimatorListenerAdapter {
+    public final int f34837a;
+    public final s01 f34838b;
 
-    public j01(r01 r01Var, int i7) {
-        this.d = r01Var;
-        this.f34810c = i7;
+    public j01(s01 s01Var, int i7) {
+        this.f34837a = i7;
+        this.f34838b = s01Var;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f34809b;
-        rectF.set(bounds);
-        int i7 = this.f34810c;
-        rectF.inset(i7, i7);
-        float height = rectF.height() / 2.0f;
-        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, this.d.f37460e);
-        Paint paint = this.f34808a;
-        paint.setColor(w02);
-        canvas.drawRoundRect(rectF, height, height, paint);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f34837a) {
+            case 0:
+                s01 s01Var = this.f34838b;
+                if (s01Var.T == animator) {
+                    s01Var.T = null;
+                    return;
+                }
+                return;
+            case 1:
+                s01 s01Var2 = this.f34838b;
+                if (s01Var2.f37823f0 == animator) {
+                    s01Var2.f37823f0 = null;
+                }
+                s01Var2.b(1.0f);
+                return;
+            default:
+                s01 s01Var3 = this.f34838b;
+                if (s01Var3.J == animator) {
+                    s01Var3.J = null;
+                    return;
+                }
+                return;
+        }
     }
 }

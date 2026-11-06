@@ -12,8 +12,10 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONObject;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.hd;
-import org.telegram.ui.Components.n71;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.qp;
 import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.p71;
 public final class h0 {
     public boolean A;
     public boolean B;
@@ -33,40 +35,40 @@ public final class h0 {
     public final c0 P;
     public long Q;
     public final d0 R;
-    public final Context f52801c;
+    public final Context f52799c;
     public final String d;
-    public final int f52802e;
-    public final String f52803f;
-    public final String f52804g;
-    public volatile String f52805i;
-    public final float f52806j;
-    public volatile int f52814r;
-    public volatile boolean f52815s;
-    public volatile long f52816t;
-    public volatile boolean f52817u;
+    public final int f52800e;
+    public final String f52801f;
+    public final String f52802g;
+    public volatile String f52803i;
+    public final float f52804j;
+    public volatile int f52812r;
+    public volatile boolean f52813s;
+    public volatile long f52814t;
+    public volatile boolean f52815u;
     public volatile boolean v;
-    public volatile boolean f52818w;
-    public volatile boolean f52819x;
-    public volatile boolean f52820y;
-    public String f52821z;
-    public final Handler f52799a = new Handler(Looper.getMainLooper());
-    public final WidgetSandboxBackend f52800b = new WidgetSandboxBackend(this);
+    public volatile boolean f52816w;
+    public volatile boolean f52817x;
+    public volatile boolean f52818y;
+    public String f52819z;
+    public final Handler f52797a = new Handler(Looper.getMainLooper());
+    public final WidgetSandboxBackend f52798b = new WidgetSandboxBackend(this);
     public volatile String h = "{}";
-    public final long f52807k = System.nanoTime();
-    public final AtomicBoolean f52808l = new AtomicBoolean();
-    public final AtomicBoolean f52809m = new AtomicBoolean();
-    public final AtomicBoolean f52810n = new AtomicBoolean();
-    public final AtomicBoolean f52811o = new AtomicBoolean();
-    public final AtomicBoolean f52812p = new AtomicBoolean();
-    public final Object f52813q = new Object();
+    public final long f52805k = System.nanoTime();
+    public final AtomicBoolean f52806l = new AtomicBoolean();
+    public final AtomicBoolean f52807m = new AtomicBoolean();
+    public final AtomicBoolean f52808n = new AtomicBoolean();
+    public final AtomicBoolean f52809o = new AtomicBoolean();
+    public final AtomicBoolean f52810p = new AtomicBoolean();
+    public final Object f52811q = new Object();
 
     public h0(Context context, String str, String str2, int i7, String str3, String str4) {
         new JSONObject();
         this.M = new Runnable(this) {
-            public final h0 f52776b;
+            public final h0 f52774b;
 
             {
-                this.f52776b = this;
+                this.f52774b = this;
             }
 
             @Override
@@ -74,42 +76,42 @@ public final class h0 {
                 f0 f0Var;
                 JSONObject jSONObject;
                 u uVar;
-                o71 o71Var;
+                p71 p71Var;
                 h0 h0Var;
                 m h;
                 int i10;
                 switch (r2) {
                     case 0:
-                        h0 h0Var2 = this.f52776b;
-                        long j3 = h0Var2.f52816t;
+                        h0 h0Var2 = this.f52774b;
+                        long j3 = h0Var2.f52814t;
                         long nanoTime = System.nanoTime();
-                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22538r));
-                        if (!h0Var2.f52817u && j3 != 0 && h0Var2.D && h0Var2.f52810n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52809m.compareAndSet(false, true)) {
-                            h0Var2.f52810n.set(false);
+                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22545r));
+                        if (!h0Var2.f52815u && j3 != 0 && h0Var2.D && h0Var2.f52808n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52807m.compareAndSet(false, true)) {
+                            h0Var2.f52808n.set(false);
                             h0Var2.Q = nanoTime;
-                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52807k)) / 1000000.0f, true, false, false);
+                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52805k)) / 1000000.0f, true, false, false);
                             return;
                         }
-                        h0Var2.b();
+                        h0Var2.c();
                         return;
                     case 1:
-                        h0 h0Var3 = this.f52776b;
-                        synchronized (h0Var3.f52813q) {
+                        h0 h0Var3 = this.f52774b;
+                        synchronized (h0Var3.f52811q) {
                             f0Var = h0Var3.G;
                             h0Var3.G = null;
                             jSONObject = h0Var3.H;
                             h0Var3.H = null;
                             h0Var3.I = false;
                         }
-                        if (h0Var3.f52817u) {
+                        if (h0Var3.f52815u) {
                             if (f0Var != null) {
-                                f0Var.f52783a.c();
+                                f0Var.f52781a.c();
                                 return;
                             }
                             return;
                         }
                         if (f0Var != null && (i10 = h0Var3.E) != 0 && Math.abs(f0Var.d - i10) > 1) {
-                            f0Var.f52783a.c();
+                            f0Var.f52781a.c();
                             h0Var3.C = false;
                             f0Var = null;
                         }
@@ -122,28 +124,28 @@ public final class h0 {
                             }
                         }
                         if (jSONObject != null && (uVar = h0Var3.J) != null) {
-                            if (uVar.f52894e != null) {
+                            if (uVar.f52892e != null) {
                                 String optString = jSONObject.optString("dead");
                                 if (!TextUtils.isEmpty(optString) && (h = p.h(uVar)) != null) {
                                     int i11 = h.C;
-                                    int i12 = uVar.f52905q;
+                                    int i12 = uVar.f52903q;
                                     if (i11 != i12) {
                                         h.C = i12;
                                         h.B++;
                                         h.D = true;
-                                        a8.b("widget " + uVar.f52891a + " stopped (" + h.B + "): " + optString);
+                                        a8.b("widget " + uVar.f52889a + " stopped (" + h.B + "): " + optString);
                                         p.a(h);
                                         p.b();
                                     }
                                 }
                             }
-                            if (jSONObject.optBoolean("loaded") && uVar.f52896g != null && (h0Var = uVar.f52895f) != null) {
+                            if (jSONObject.optBoolean("loaded") && uVar.f52894g != null && (h0Var = uVar.f52893f) != null) {
                                 uVar.g(h0Var);
                                 return;
-                            } else if (uVar.e() && (o71Var = uVar.h) != null) {
-                                n71 n71Var = o71Var.f36524a;
-                                n71Var.j();
-                                n71Var.h();
+                            } else if (uVar.e() && (p71Var = uVar.h) != null) {
+                                o71 o71Var = p71Var.f36788a;
+                                o71Var.j();
+                                o71Var.h();
                                 return;
                             } else {
                                 return;
@@ -151,21 +153,21 @@ public final class h0 {
                         }
                         return;
                     case 2:
-                        this.f52776b.b();
+                        this.f52774b.c();
                         return;
                     default:
-                        h0 h0Var4 = this.f52776b;
-                        h0Var4.f52812p.set(true);
-                        h0Var4.b();
+                        h0 h0Var4 = this.f52774b;
+                        h0Var4.f52810p.set(true);
+                        h0Var4.c();
                         return;
                 }
             }
         };
         this.N = new Runnable(this) {
-            public final h0 f52776b;
+            public final h0 f52774b;
 
             {
-                this.f52776b = this;
+                this.f52774b = this;
             }
 
             @Override
@@ -173,42 +175,42 @@ public final class h0 {
                 f0 f0Var;
                 JSONObject jSONObject;
                 u uVar;
-                o71 o71Var;
+                p71 p71Var;
                 h0 h0Var;
                 m h;
                 int i10;
                 switch (r2) {
                     case 0:
-                        h0 h0Var2 = this.f52776b;
-                        long j3 = h0Var2.f52816t;
+                        h0 h0Var2 = this.f52774b;
+                        long j3 = h0Var2.f52814t;
                         long nanoTime = System.nanoTime();
-                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22538r));
-                        if (!h0Var2.f52817u && j3 != 0 && h0Var2.D && h0Var2.f52810n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52809m.compareAndSet(false, true)) {
-                            h0Var2.f52810n.set(false);
+                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22545r));
+                        if (!h0Var2.f52815u && j3 != 0 && h0Var2.D && h0Var2.f52808n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52807m.compareAndSet(false, true)) {
+                            h0Var2.f52808n.set(false);
                             h0Var2.Q = nanoTime;
-                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52807k)) / 1000000.0f, true, false, false);
+                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52805k)) / 1000000.0f, true, false, false);
                             return;
                         }
-                        h0Var2.b();
+                        h0Var2.c();
                         return;
                     case 1:
-                        h0 h0Var3 = this.f52776b;
-                        synchronized (h0Var3.f52813q) {
+                        h0 h0Var3 = this.f52774b;
+                        synchronized (h0Var3.f52811q) {
                             f0Var = h0Var3.G;
                             h0Var3.G = null;
                             jSONObject = h0Var3.H;
                             h0Var3.H = null;
                             h0Var3.I = false;
                         }
-                        if (h0Var3.f52817u) {
+                        if (h0Var3.f52815u) {
                             if (f0Var != null) {
-                                f0Var.f52783a.c();
+                                f0Var.f52781a.c();
                                 return;
                             }
                             return;
                         }
                         if (f0Var != null && (i10 = h0Var3.E) != 0 && Math.abs(f0Var.d - i10) > 1) {
-                            f0Var.f52783a.c();
+                            f0Var.f52781a.c();
                             h0Var3.C = false;
                             f0Var = null;
                         }
@@ -221,28 +223,28 @@ public final class h0 {
                             }
                         }
                         if (jSONObject != null && (uVar = h0Var3.J) != null) {
-                            if (uVar.f52894e != null) {
+                            if (uVar.f52892e != null) {
                                 String optString = jSONObject.optString("dead");
                                 if (!TextUtils.isEmpty(optString) && (h = p.h(uVar)) != null) {
                                     int i11 = h.C;
-                                    int i12 = uVar.f52905q;
+                                    int i12 = uVar.f52903q;
                                     if (i11 != i12) {
                                         h.C = i12;
                                         h.B++;
                                         h.D = true;
-                                        a8.b("widget " + uVar.f52891a + " stopped (" + h.B + "): " + optString);
+                                        a8.b("widget " + uVar.f52889a + " stopped (" + h.B + "): " + optString);
                                         p.a(h);
                                         p.b();
                                     }
                                 }
                             }
-                            if (jSONObject.optBoolean("loaded") && uVar.f52896g != null && (h0Var = uVar.f52895f) != null) {
+                            if (jSONObject.optBoolean("loaded") && uVar.f52894g != null && (h0Var = uVar.f52893f) != null) {
                                 uVar.g(h0Var);
                                 return;
-                            } else if (uVar.e() && (o71Var = uVar.h) != null) {
-                                n71 n71Var = o71Var.f36524a;
-                                n71Var.j();
-                                n71Var.h();
+                            } else if (uVar.e() && (p71Var = uVar.h) != null) {
+                                o71 o71Var = p71Var.f36788a;
+                                o71Var.j();
+                                o71Var.h();
                                 return;
                             } else {
                                 return;
@@ -250,21 +252,21 @@ public final class h0 {
                         }
                         return;
                     case 2:
-                        this.f52776b.b();
+                        this.f52774b.c();
                         return;
                     default:
-                        h0 h0Var4 = this.f52776b;
-                        h0Var4.f52812p.set(true);
-                        h0Var4.b();
+                        h0 h0Var4 = this.f52774b;
+                        h0Var4.f52810p.set(true);
+                        h0Var4.c();
                         return;
                 }
             }
         };
         this.O = new Runnable(this) {
-            public final h0 f52776b;
+            public final h0 f52774b;
 
             {
-                this.f52776b = this;
+                this.f52774b = this;
             }
 
             @Override
@@ -272,42 +274,42 @@ public final class h0 {
                 f0 f0Var;
                 JSONObject jSONObject;
                 u uVar;
-                o71 o71Var;
+                p71 p71Var;
                 h0 h0Var;
                 m h;
                 int i10;
                 switch (r2) {
                     case 0:
-                        h0 h0Var2 = this.f52776b;
-                        long j3 = h0Var2.f52816t;
+                        h0 h0Var2 = this.f52774b;
+                        long j3 = h0Var2.f52814t;
                         long nanoTime = System.nanoTime();
-                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22538r));
-                        if (!h0Var2.f52817u && j3 != 0 && h0Var2.D && h0Var2.f52810n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52809m.compareAndSet(false, true)) {
-                            h0Var2.f52810n.set(false);
+                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22545r));
+                        if (!h0Var2.f52815u && j3 != 0 && h0Var2.D && h0Var2.f52808n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52807m.compareAndSet(false, true)) {
+                            h0Var2.f52808n.set(false);
                             h0Var2.Q = nanoTime;
-                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52807k)) / 1000000.0f, true, false, false);
+                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52805k)) / 1000000.0f, true, false, false);
                             return;
                         }
-                        h0Var2.b();
+                        h0Var2.c();
                         return;
                     case 1:
-                        h0 h0Var3 = this.f52776b;
-                        synchronized (h0Var3.f52813q) {
+                        h0 h0Var3 = this.f52774b;
+                        synchronized (h0Var3.f52811q) {
                             f0Var = h0Var3.G;
                             h0Var3.G = null;
                             jSONObject = h0Var3.H;
                             h0Var3.H = null;
                             h0Var3.I = false;
                         }
-                        if (h0Var3.f52817u) {
+                        if (h0Var3.f52815u) {
                             if (f0Var != null) {
-                                f0Var.f52783a.c();
+                                f0Var.f52781a.c();
                                 return;
                             }
                             return;
                         }
                         if (f0Var != null && (i10 = h0Var3.E) != 0 && Math.abs(f0Var.d - i10) > 1) {
-                            f0Var.f52783a.c();
+                            f0Var.f52781a.c();
                             h0Var3.C = false;
                             f0Var = null;
                         }
@@ -320,28 +322,28 @@ public final class h0 {
                             }
                         }
                         if (jSONObject != null && (uVar = h0Var3.J) != null) {
-                            if (uVar.f52894e != null) {
+                            if (uVar.f52892e != null) {
                                 String optString = jSONObject.optString("dead");
                                 if (!TextUtils.isEmpty(optString) && (h = p.h(uVar)) != null) {
                                     int i11 = h.C;
-                                    int i12 = uVar.f52905q;
+                                    int i12 = uVar.f52903q;
                                     if (i11 != i12) {
                                         h.C = i12;
                                         h.B++;
                                         h.D = true;
-                                        a8.b("widget " + uVar.f52891a + " stopped (" + h.B + "): " + optString);
+                                        a8.b("widget " + uVar.f52889a + " stopped (" + h.B + "): " + optString);
                                         p.a(h);
                                         p.b();
                                     }
                                 }
                             }
-                            if (jSONObject.optBoolean("loaded") && uVar.f52896g != null && (h0Var = uVar.f52895f) != null) {
+                            if (jSONObject.optBoolean("loaded") && uVar.f52894g != null && (h0Var = uVar.f52893f) != null) {
                                 uVar.g(h0Var);
                                 return;
-                            } else if (uVar.e() && (o71Var = uVar.h) != null) {
-                                n71 n71Var = o71Var.f36524a;
-                                n71Var.j();
-                                n71Var.h();
+                            } else if (uVar.e() && (p71Var = uVar.h) != null) {
+                                o71 o71Var = p71Var.f36788a;
+                                o71Var.j();
+                                o71Var.h();
                                 return;
                             } else {
                                 return;
@@ -349,12 +351,12 @@ public final class h0 {
                         }
                         return;
                     case 2:
-                        this.f52776b.b();
+                        this.f52774b.c();
                         return;
                     default:
-                        h0 h0Var4 = this.f52776b;
-                        h0Var4.f52812p.set(true);
-                        h0Var4.b();
+                        h0 h0Var4 = this.f52774b;
+                        h0Var4.f52810p.set(true);
+                        h0Var4.c();
                         return;
                 }
             }
@@ -365,31 +367,31 @@ public final class h0 {
                 boolean z9;
                 h0 h0Var = h0.this;
                 h0Var.B = false;
-                long j10 = h0Var.f52816t;
-                if (!h0Var.f52817u && j10 != 0) {
+                long j10 = h0Var.f52814t;
+                if (!h0Var.f52815u && j10 != 0) {
                     boolean z10 = true;
-                    if (h0Var.f52809m.compareAndSet(false, true)) {
-                        if (h0Var.D && (h0Var.f52812p.getAndSet(false) | h0Var.f52811o.get())) {
+                    if (h0Var.f52807m.compareAndSet(false, true)) {
+                        if (h0Var.D && (h0Var.f52810p.getAndSet(false) | h0Var.f52809o.get())) {
                             z9 = true;
                         } else {
                             z9 = false;
                         }
-                        if (!h0Var.D || !h0Var.f52810n.getAndSet(false)) {
+                        if (!h0Var.D || !h0Var.f52808n.getAndSet(false)) {
                             z10 = false;
                         }
                         if (z10) {
                             h0Var.Q = j3;
                         }
-                        WidgetSandboxNative.tick(j10, ((float) (j3 - h0Var.f52807k)) / 1000000.0f, z10, z9, h0Var.f52808l.getAndSet(false));
+                        WidgetSandboxNative.tick(j10, ((float) (j3 - h0Var.f52805k)) / 1000000.0f, z10, z9, h0Var.f52806l.getAndSet(false));
                     }
                 }
             }
         };
         this.R = new Runnable(this) {
-            public final h0 f52776b;
+            public final h0 f52774b;
 
             {
-                this.f52776b = this;
+                this.f52774b = this;
             }
 
             @Override
@@ -397,42 +399,42 @@ public final class h0 {
                 f0 f0Var;
                 JSONObject jSONObject;
                 u uVar;
-                o71 o71Var;
+                p71 p71Var;
                 h0 h0Var;
                 m h;
                 int i10;
                 switch (r2) {
                     case 0:
-                        h0 h0Var2 = this.f52776b;
-                        long j3 = h0Var2.f52816t;
+                        h0 h0Var2 = this.f52774b;
+                        long j3 = h0Var2.f52814t;
                         long nanoTime = System.nanoTime();
-                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22538r));
-                        if (!h0Var2.f52817u && j3 != 0 && h0Var2.D && h0Var2.f52810n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52809m.compareAndSet(false, true)) {
-                            h0Var2.f52810n.set(false);
+                        long max = (long) (1.0E9d / Math.max(30.0f, org.telegram.messenger.g0.f22545r));
+                        if (!h0Var2.f52815u && j3 != 0 && h0Var2.D && h0Var2.f52808n.get() && nanoTime - h0Var2.Q >= (max * 9) / 10 && h0Var2.f52807m.compareAndSet(false, true)) {
+                            h0Var2.f52808n.set(false);
                             h0Var2.Q = nanoTime;
-                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52807k)) / 1000000.0f, true, false, false);
+                            WidgetSandboxNative.tick(j3, ((float) (nanoTime - h0Var2.f52805k)) / 1000000.0f, true, false, false);
                             return;
                         }
-                        h0Var2.b();
+                        h0Var2.c();
                         return;
                     case 1:
-                        h0 h0Var3 = this.f52776b;
-                        synchronized (h0Var3.f52813q) {
+                        h0 h0Var3 = this.f52774b;
+                        synchronized (h0Var3.f52811q) {
                             f0Var = h0Var3.G;
                             h0Var3.G = null;
                             jSONObject = h0Var3.H;
                             h0Var3.H = null;
                             h0Var3.I = false;
                         }
-                        if (h0Var3.f52817u) {
+                        if (h0Var3.f52815u) {
                             if (f0Var != null) {
-                                f0Var.f52783a.c();
+                                f0Var.f52781a.c();
                                 return;
                             }
                             return;
                         }
                         if (f0Var != null && (i10 = h0Var3.E) != 0 && Math.abs(f0Var.d - i10) > 1) {
-                            f0Var.f52783a.c();
+                            f0Var.f52781a.c();
                             h0Var3.C = false;
                             f0Var = null;
                         }
@@ -445,28 +447,28 @@ public final class h0 {
                             }
                         }
                         if (jSONObject != null && (uVar = h0Var3.J) != null) {
-                            if (uVar.f52894e != null) {
+                            if (uVar.f52892e != null) {
                                 String optString = jSONObject.optString("dead");
                                 if (!TextUtils.isEmpty(optString) && (h = p.h(uVar)) != null) {
                                     int i11 = h.C;
-                                    int i12 = uVar.f52905q;
+                                    int i12 = uVar.f52903q;
                                     if (i11 != i12) {
                                         h.C = i12;
                                         h.B++;
                                         h.D = true;
-                                        a8.b("widget " + uVar.f52891a + " stopped (" + h.B + "): " + optString);
+                                        a8.b("widget " + uVar.f52889a + " stopped (" + h.B + "): " + optString);
                                         p.a(h);
                                         p.b();
                                     }
                                 }
                             }
-                            if (jSONObject.optBoolean("loaded") && uVar.f52896g != null && (h0Var = uVar.f52895f) != null) {
+                            if (jSONObject.optBoolean("loaded") && uVar.f52894g != null && (h0Var = uVar.f52893f) != null) {
                                 uVar.g(h0Var);
                                 return;
-                            } else if (uVar.e() && (o71Var = uVar.h) != null) {
-                                n71 n71Var = o71Var.f36524a;
-                                n71Var.j();
-                                n71Var.h();
+                            } else if (uVar.e() && (p71Var = uVar.h) != null) {
+                                o71 o71Var = p71Var.f36788a;
+                                o71Var.j();
+                                o71Var.h();
                                 return;
                             } else {
                                 return;
@@ -474,53 +476,62 @@ public final class h0 {
                         }
                         return;
                     case 2:
-                        this.f52776b.b();
+                        this.f52774b.c();
                         return;
                     default:
-                        h0 h0Var4 = this.f52776b;
-                        h0Var4.f52812p.set(true);
-                        h0Var4.b();
+                        h0 h0Var4 = this.f52774b;
+                        h0Var4.f52810p.set(true);
+                        h0Var4.c();
                         return;
                 }
             }
         };
         if (i7 >= 1 && i7 <= 4) {
-            this.f52801c = context.getApplicationContext();
+            this.f52799c = context.getApplicationContext();
             this.d = str;
-            this.f52821z = str2;
+            this.f52819z = str2;
             str2.contains("\"dark\"");
-            this.f52802e = i7;
-            this.f52803f = str3 == null ? "en-US" : str3;
-            this.f52804g = str4 == null ? "{}" : str4;
-            this.f52806j = context.getResources().getDisplayMetrics().density;
+            this.f52800e = i7;
+            this.f52801f = str3 == null ? "en-US" : str3;
+            this.f52802g = str4 == null ? "{}" : str4;
+            this.f52804j = context.getResources().getDisplayMetrics().density;
             return;
         }
         throw new IllegalArgumentException("CPU multiplier must be 1..4");
     }
 
-    public final void a(g gVar, g0[] g0VarArr, double d, int i7, int i10, float f10, float f11, int i11, int i12, int i13, m0 m0Var) {
+    public static boolean a() {
+        for (int i7 = 0; i7 < 4; i7++) {
+            if (p10.i(i7).p() && ((org.telegram.messenger.h0) qp.s1(i7).f24935x7.f24451o0.f13889b).f22774c) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final void b(g gVar, g0[] g0VarArr, double d, int i7, int i10, float f10, float f11, int i11, int i12, int i13, m0 m0Var) {
         Object obj;
-        boolean z9 = this.f52818w;
-        Object obj2 = this.f52813q;
+        boolean z9 = this.f52816w;
+        Object obj2 = this.f52811q;
         synchronized (obj2) {
             try {
                 try {
-                    if (this.f52817u) {
+                    if (this.f52815u) {
                         gVar.c();
                         return;
                     }
                     f0 f0Var = this.G;
                     if (f0Var != null) {
-                        f0Var.f52783a.c();
+                        f0Var.f52781a.c();
                     }
                     try {
-                        this.G = new f0(gVar, g0VarArr, d, i7, i10, f10, f11, i11, i12, i13, m0Var, z9, this.f52820y);
+                        this.G = new f0(gVar, g0VarArr, d, i7, i10, f10, f11, i11, i12, i13, m0Var, z9, this.f52818y);
                         if (!this.I) {
                             this.I = true;
-                            this.f52799a.post(this.M);
+                            this.f52797a.post(this.M);
                         }
-                        this.f52814r = i10;
-                        this.f52815s = true;
+                        this.f52812r = i10;
+                        this.f52813s = true;
                     } catch (Throwable th2) {
                         th = th2;
                         obj = obj2;
@@ -536,11 +547,11 @@ public final class h0 {
         }
     }
 
-    public final void b() {
-        if (!this.f52817u && this.f52816t != 0 && !this.B && !this.f52809m.get()) {
-            if (!this.f52808l.get()) {
+    public final void c() {
+        if (!this.f52815u && this.f52814t != 0 && !this.B && !this.f52807m.get()) {
+            if (!this.f52806l.get()) {
                 if (this.D) {
-                    if (!this.f52810n.get() && !this.f52811o.get() && !this.f52812p.get()) {
+                    if (!this.f52808n.get() && !this.f52809o.get() && !this.f52810p.get()) {
                         return;
                     }
                 } else {
@@ -552,100 +563,104 @@ public final class h0 {
         }
     }
 
-    public final void c(String str) {
-        if (!this.f52817u && str != null && !str.equals(this.f52805i)) {
-            this.f52805i = str;
-            long j3 = this.f52816t;
+    public final void d(String str) {
+        if (!this.f52815u && str != null && !str.equals(this.f52803i)) {
+            this.f52803i = str;
+            long j3 = this.f52814t;
             if (j3 != 0) {
                 WidgetSandboxNative.safeArea(j3, str.getBytes(StandardCharsets.UTF_8));
             }
         }
     }
 
-    public final void d(boolean z9) {
-        if (!this.f52817u && this.D != z9) {
+    public final void e(boolean z9) {
+        if (!this.f52815u && this.D != z9) {
             this.D = z9;
-            long j3 = this.f52816t;
+            long j3 = this.f52814t;
             if (j3 != 0) {
                 WidgetSandboxNative.visible(j3, z9);
             }
             if (z9) {
-                b();
+                c();
             }
         }
     }
 
-    public final void e(final int i7) {
+    public final void f(final int i7) {
         final long j3;
         if (Looper.myLooper() != Looper.getMainLooper()) {
-            if (this.E == 0) {
-                this.E = i7;
-            }
-            Trace.beginSection("WidgetSandbox:Create");
-            try {
-                try {
-                    String absolutePath = z.a(this.f52801c).getAbsolutePath();
-                    if (this.f52817u) {
-                        Trace.endSection();
-                        return;
-                    }
-                    final String str = this.f52805i;
-                    String str2 = this.h;
-                    if (str != null) {
-                        str2 = new JSONObject(str2).put("contentSafeArea", new JSONObject(str)).toString();
-                    }
-                    Charset charset = StandardCharsets.UTF_8;
-                    byte[] bytes = absolutePath.getBytes(charset);
-                    byte[] bytes2 = this.d.getBytes(charset);
-                    byte[] bytes3 = this.f52821z.getBytes(charset);
-                    float f10 = this.f52806j;
-                    j3 = WidgetSandboxNative.create(bytes, bytes2, bytes3, i7 / f10, f10, this.f52802e, this.f52803f.getBytes(charset), this.f52804g.getBytes(charset), str2.getBytes(charset), hd.M0(2131742868, null).getBytes(charset), this.D, this.f52800b);
-                    try {
-                        final String str3 = this.f52821z;
-                        this.f52799a.post(new Runnable() {
-                            @Override
-                            public final void run() {
-                                h0 h0Var = h0.this;
-                                long j10 = j3;
-                                int i10 = i7;
-                                String str4 = str3;
-                                String str5 = str;
-                                if (h0Var.f52817u) {
-                                    z.f52935a.execute(new a0(j10));
-                                    return;
-                                }
-                                h0Var.f52816t = j10;
-                                int i11 = h0Var.E;
-                                if (i11 != i10 && i11 > 0) {
-                                    WidgetSandboxNative.width(j10, i11 / h0Var.f52806j);
-                                }
-                                if (!h0Var.f52821z.equals(str4)) {
-                                    WidgetSandboxNative.theme(j10, h0Var.f52821z.getBytes(StandardCharsets.UTF_8));
-                                }
-                                if (h0Var.f52805i != null && !h0Var.f52805i.equals(str5)) {
-                                    WidgetSandboxNative.safeArea(j10, h0Var.f52805i.getBytes(StandardCharsets.UTF_8));
-                                }
-                                h0Var.A = true;
-                                WidgetSandboxNative.visible(j10, h0Var.D);
-                                h0Var.b();
-                            }
-                        });
-                        Trace.endSection();
-                    } catch (Exception e10) {
-                        e = e10;
-                        if (j3 != 0) {
-                            z.f52935a.execute(new a0(j3));
-                        }
-                        this.f52799a.post(new org.telegram.ui.web.w(12, this, e));
-                        throw e;
-                    }
-                } catch (Exception e11) {
-                    e = e11;
-                    j3 = 0;
+            if (!a()) {
+                if (this.E == 0) {
+                    this.E = i7;
                 }
-            } catch (Throwable th2) {
-                Trace.endSection();
-                throw th2;
+                Trace.beginSection("WidgetSandbox:Create");
+                try {
+                    try {
+                        String absolutePath = z.a(this.f52799c).getAbsolutePath();
+                        if (this.f52815u) {
+                            Trace.endSection();
+                            return;
+                        }
+                        final String str = this.f52803i;
+                        String str2 = this.h;
+                        if (str != null) {
+                            str2 = new JSONObject(str2).put("contentSafeArea", new JSONObject(str)).toString();
+                        }
+                        Charset charset = StandardCharsets.UTF_8;
+                        byte[] bytes = absolutePath.getBytes(charset);
+                        byte[] bytes2 = this.d.getBytes(charset);
+                        byte[] bytes3 = this.f52819z.getBytes(charset);
+                        float f10 = this.f52804j;
+                        j3 = WidgetSandboxNative.create(bytes, bytes2, bytes3, i7 / f10, f10, this.f52800e, this.f52801f.getBytes(charset), this.f52802g.getBytes(charset), str2.getBytes(charset), hd.M0(2131742868, null).getBytes(charset), this.D, this.f52798b);
+                        try {
+                            final String str3 = this.f52819z;
+                            this.f52797a.post(new Runnable() {
+                                @Override
+                                public final void run() {
+                                    h0 h0Var = h0.this;
+                                    long j10 = j3;
+                                    int i10 = i7;
+                                    String str4 = str3;
+                                    String str5 = str;
+                                    if (h0Var.f52815u) {
+                                        z.f52933a.execute(new a0(j10));
+                                        return;
+                                    }
+                                    h0Var.f52814t = j10;
+                                    int i11 = h0Var.E;
+                                    if (i11 != i10 && i11 > 0) {
+                                        WidgetSandboxNative.width(j10, i11 / h0Var.f52804j);
+                                    }
+                                    if (!h0Var.f52819z.equals(str4)) {
+                                        WidgetSandboxNative.theme(j10, h0Var.f52819z.getBytes(StandardCharsets.UTF_8));
+                                    }
+                                    if (h0Var.f52803i != null && !h0Var.f52803i.equals(str5)) {
+                                        WidgetSandboxNative.safeArea(j10, h0Var.f52803i.getBytes(StandardCharsets.UTF_8));
+                                    }
+                                    h0Var.A = true;
+                                    WidgetSandboxNative.visible(j10, h0Var.D);
+                                    h0Var.c();
+                                }
+                            });
+                            Trace.endSection();
+                        } catch (Exception e10) {
+                            e = e10;
+                            if (j3 != 0) {
+                                z.f52933a.execute(new a0(j3));
+                            }
+                            this.f52797a.post(new org.telegram.ui.web.w(12, this, e));
+                            throw e;
+                        }
+                    } catch (Exception e11) {
+                        e = e11;
+                        j3 = 0;
+                    }
+                } catch (Throwable th2) {
+                    Trace.endSection();
+                    throw th2;
+                }
+            } else {
+                throw new IllegalStateException("Widgets are disabled by the app config");
             }
         } else {
             throw new IllegalStateException("Start WidgetSandboxSession off UI");

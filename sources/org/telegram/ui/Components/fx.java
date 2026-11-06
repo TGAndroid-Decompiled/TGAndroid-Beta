@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 public final class fx implements ux {
-    public final gx f33652a;
+    public final gx f33662a;
 
     public fx(gx gxVar) {
-        this.f33652a = gxVar;
+        this.f33662a = gxVar;
     }
 
     @Override
     public final void e() {
-        gx gxVar = this.f33652a;
+        gx gxVar = this.f33662a;
         if (gxVar.F.V.F) {
             return;
         }
@@ -23,10 +23,10 @@ public final class fx implements ux {
     @Override
     public final void run() {
         LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f33652a.f34009w;
+        String str = this.f33662a.f34017w;
         fq fqVar = new fq(12, this, str);
         if (org.telegram.messenger.i6.d(str)) {
-            yu0.F3.c(org.telegram.messenger.p10.f24459s0, str, new org.telegram.messenger.voip.k(28, linkedHashSet, fqVar));
+            yu0.F3.c(org.telegram.messenger.p10.f24467s0, str, new org.telegram.messenger.voip.k(28, linkedHashSet, fqVar));
         } else {
             fqVar.run();
         }

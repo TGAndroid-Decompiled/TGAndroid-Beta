@@ -14,17 +14,17 @@ public final class jo0 extends oj0 {
     public io0 H;
     public int J;
     public final mo0 K;
-    public final Context f35004c;
-    public final ho0 f35005e;
-    public go0 f35006f;
+    public final Context f35030c;
+    public final ho0 f35031e;
+    public go0 f35032f;
     public go0 h;
-    public String f35007n;
-    public int f35008r;
-    public int f35009s;
-    public int f35010w;
+    public String f35033n;
+    public int f35034r;
+    public int f35035s;
+    public int f35036w;
     public ArrayList d = new ArrayList();
-    public int f35011x = -1;
-    public int f35012y = -1;
+    public int f35037x = -1;
+    public int f35038y = -1;
     public int D = -1;
     public int E = -1;
     public int F = -1;
@@ -32,15 +32,15 @@ public final class jo0 extends oj0 {
 
     public jo0(mo0 mo0Var, Context context) {
         this.K = mo0Var;
-        this.f35004c = context;
+        this.f35030c = context;
         ?? z1Var = new jg.z1(false);
-        this.f35005e = z1Var;
+        this.f35031e = z1Var;
         z1Var.f16989a = new n(this);
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56956f;
+        int i7 = d1Var.f56955f;
         if (i7 != 1 && i7 != 4) {
             return true;
         }
@@ -48,13 +48,13 @@ public final class jo0 extends oj0 {
     }
 
     public final void E(String str) {
-        if (str != null && str.equals(this.f35007n)) {
+        if (str != null && str.equals(this.f35033n)) {
             return;
         }
-        this.f35007n = str;
-        if (this.f35006f != null) {
-            Utilities.f21335g.a(this.f35006f);
-            this.f35006f = null;
+        this.f35033n = str;
+        if (this.f35032f != null) {
+            Utilities.f21335g.a(this.f35032f);
+            this.f35032f = null;
         }
         go0 go0Var = this.h;
         if (go0Var != null) {
@@ -62,22 +62,22 @@ public final class jo0 extends oj0 {
             this.h = null;
         }
         this.d.clear();
-        this.f35005e.f(null, null);
-        this.f35005e.g(null, true, true, true, true, 0L, false, 0, 0);
+        this.f35031e.f(null, null);
+        this.f35031e.g(null, true, true, true, true, 0L, false, 0, 0);
         f();
         this.K.K0(true);
         if (TextUtils.isEmpty(str)) {
             mo0.J0(this.K);
-            this.f35008r = -1;
+            this.f35034r = -1;
             this.I = false;
         } else {
             this.I = true;
-            int i7 = this.f35008r + 1;
-            this.f35008r = i7;
+            int i7 = this.f35034r + 1;
+            this.f35034r = i7;
             this.K.I1.e(true, true);
             org.telegram.messenger.p5 p5Var = Utilities.f21335g;
             go0 go0Var2 = new go0(this, str, i7, 0);
-            this.f35006f = go0Var2;
+            this.f35032f = go0Var2;
             p5Var.d(go0Var2, 300L);
         }
         this.K.K0(false);
@@ -86,23 +86,23 @@ public final class jo0 extends oj0 {
     @Override
     public final int b() {
         this.G = 0;
-        this.f35011x = -1;
-        this.f35012y = -1;
+        this.f35037x = -1;
+        this.f35038y = -1;
         this.E = -1;
         this.F = -1;
-        if (TextUtils.isEmpty(this.f35007n)) {
+        if (TextUtils.isEmpty(this.f35033n)) {
             int i7 = this.G;
             this.D = i7;
             this.G = i7 + 2;
-            this.f35011x = i7 + 1;
+            this.f35037x = i7 + 1;
             mo0 mo0Var = this.K;
-            if (mo0Var.f36026w2.size() > 0) {
+            if (mo0Var.f36042w2.size() > 0) {
                 int i10 = this.G;
                 int i11 = i10 + 1;
                 this.G = i11;
-                this.f35012y = i10;
+                this.f35038y = i10;
                 this.E = i11;
-                this.G = mo0Var.f36026w2.size() + i11;
+                this.G = mo0Var.f36042w2.size() + i11;
             }
             int i12 = this.G;
             int i13 = i12 + 1;
@@ -115,7 +115,7 @@ public final class jo0 extends oj0 {
         int i15 = i14 + 1;
         this.G = i15;
         this.D = i14;
-        int size = this.f35005e.d.size() + this.d.size() + i15;
+        int size = this.f35031e.d.size() + this.d.size() + i15;
         this.G = size;
         if (size == 1) {
             this.D = -1;
@@ -138,13 +138,13 @@ public final class jo0 extends oj0 {
         if (i7 == this.D) {
             return 1;
         }
-        if (i7 == this.f35011x) {
+        if (i7 == this.f35037x) {
             return 2;
         }
-        if (i7 == this.f35012y) {
+        if (i7 == this.f35038y) {
             return 3;
         }
-        if (TextUtils.isEmpty(this.f35007n)) {
+        if (TextUtils.isEmpty(this.f35033n)) {
             return 0;
         }
         return 5;
@@ -168,8 +168,8 @@ public final class jo0 extends oj0 {
         int A12;
         mo0 mo0Var = this.K;
         a0.h hVar = mo0Var.M1;
-        int i10 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i10 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         if (i10 != 0 && i10 != 5) {
             if (i10 == 2) {
                 ((pj0) view).getAdapter().f();
@@ -177,29 +177,29 @@ public final class jo0 extends oj0 {
             }
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f35007n);
+        boolean isEmpty = TextUtils.isEmpty(this.f35033n);
         TLObject tLObject2 = null;
         String m10 = null;
-        ho0 ho0Var = this.f35005e;
+        ho0 ho0Var = this.f35031e;
         TLRPC.TL_encryptedChat tL_encryptedChat2 = null;
         if (isEmpty) {
             int i11 = this.E;
             if (i11 >= 0 && i7 >= i11) {
-                TLObject tLObject3 = ((jg.g0) mo0Var.f36026w2.get(i7 - i11)).f16724a;
+                TLObject tLObject3 = ((jg.g0) mo0Var.f36042w2.get(i7 - i11)).f16724a;
                 if (tLObject3 instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject3;
-                    j11 = user.f27101id;
+                    j11 = user.f27102id;
                     m10 = org.telegram.messenger.g5.m(0, user.first_name, user.last_name);
                 } else if (tLObject3 instanceof TLRPC.Chat) {
                     TLRPC.Chat chat = (TLRPC.Chat) tLObject3;
-                    j11 = -chat.f26952id;
+                    j11 = -chat.f26953id;
                     m10 = chat.title;
                 } else {
                     if (tLObject3 instanceof TLRPC.TL_encryptedChat) {
                         tL_encryptedChat2 = (TLRPC.TL_encryptedChat) tLObject3;
-                        TLRPC.User a22 = org.telegram.messenger.qp.s1(mo0Var.f28612a).a2(Long.valueOf(tL_encryptedChat2.user_id));
+                        TLRPC.User a22 = org.telegram.messenger.qp.s1(mo0Var.f28613a).a2(Long.valueOf(tL_encryptedChat2.user_id));
                         if (a22 != null) {
-                            j11 = a22.f27101id;
+                            j11 = a22.f27102id;
                             m10 = org.telegram.messenger.g5.m(0, a22.first_name, a22.last_name);
                         }
                     }
@@ -208,7 +208,7 @@ public final class jo0 extends oj0 {
                 String str4 = ho0Var.f16991c;
                 if (!TextUtils.isEmpty(str4) && m10 != null && (A12 = org.telegram.messenger.g0.A1(m10.toString(), str4)) != -1) {
                     ?? spannableStringBuilder = new SpannableStringBuilder(m10);
-                    spannableStringBuilder.setSpan(new xz(org.telegram.ui.ActionBar.k6.f28088q6, mo0Var.I0), A12, str4.length() + A12, 33);
+                    spannableStringBuilder.setSpan(new xz(org.telegram.ui.ActionBar.k6.f28089q6, mo0Var.I0), A12, str4.length() + A12, 33);
                     tLObject = tLObject3;
                     str3 = spannableStringBuilder;
                 } else {
@@ -249,24 +249,24 @@ public final class jo0 extends oj0 {
         int i12 = i7 - 1;
         if (i12 < this.d.size()) {
             bo0 bo0Var = (bo0) this.d.get(i12);
-            j10 = bo0Var.f32235a.f26956id;
+            j10 = bo0Var.f32269a.f26957id;
             str2 = bo0Var.d;
         } else {
             i12 -= this.d.size();
             tLObject2 = (TLObject) ho0Var.d.get(i12);
             if (tLObject2 instanceof TLRPC.User) {
                 TLRPC.User user2 = (TLRPC.User) tLObject2;
-                j3 = user2.f27101id;
+                j3 = user2.f27102id;
                 str = org.telegram.messenger.g5.m(0, user2.first_name, user2.last_name);
             } else {
                 TLRPC.Chat chat2 = (TLRPC.Chat) tLObject2;
-                j3 = -chat2.f26952id;
+                j3 = -chat2.f26953id;
                 str = chat2.title;
             }
             String str6 = ho0Var.f16991c;
             if (!TextUtils.isEmpty(str6) && str != null && (A1 = org.telegram.messenger.g0.A1(str.toString(), str6)) != -1) {
                 ?? spannableStringBuilder2 = new SpannableStringBuilder(str);
-                spannableStringBuilder2.setSpan(new xz(org.telegram.ui.ActionBar.k6.f28088q6, mo0Var.I0), A1, str6.length() + A1, 33);
+                spannableStringBuilder2.setSpan(new xz(org.telegram.ui.ActionBar.k6.f28089q6, mo0Var.I0), A1, str6.length() + A1, 33);
                 str2 = spannableStringBuilder2;
             } else {
                 str2 = str;
@@ -302,14 +302,14 @@ public final class jo0 extends oj0 {
         org.telegram.ui.Cells.x3 x3Var;
         float f10;
         mo0 mo0Var = this.K;
-        Context context = this.f35004c;
+        Context context = this.f35030c;
         if (i7 != 0) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
                         if (i7 != 5) {
                             View view = new View(context);
-                            if (mo0Var.Z1 && mo0Var.f35997g2[1] != null) {
+                            if (mo0Var.Z1 && mo0Var.f36013g2[1] != null) {
                                 f10 = 109.0f;
                             } else {
                                 f10 = 56.0f;
@@ -326,8 +326,8 @@ public final class jo0 extends oj0 {
                     }
                 } else {
                     org.telegram.ui.Cells.x3 x3Var2 = new org.telegram.ui.Cells.x3(context, mo0Var.I0);
-                    x3Var2.setTextColor(org.telegram.ui.ActionBar.k6.f27887f7);
-                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27868e7, x3Var2, mo0Var.I0);
+                    x3Var2.setTextColor(org.telegram.ui.ActionBar.k6.f27888f7);
+                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27869e7, x3Var2, mo0Var.I0);
                     x3Var2.setText(org.telegram.messenger.hd.M0(2131746369, null));
                     x3Var = x3Var2;
                 }
@@ -338,7 +338,7 @@ public final class jo0 extends oj0 {
                 jg.b0 b0Var = new jg.b0(11);
                 b0Var.j1(0);
                 e61Var.setLayoutManager(b0Var);
-                io0 io0Var = new io0(this, context, mo0Var.f28612a, mo0Var.I0);
+                io0 io0Var = new io0(this, context, mo0Var.f28613a, mo0Var.I0);
                 this.H = io0Var;
                 e61Var.setAdapter(io0Var);
                 e61Var.setOnItemClickListener(new k(this, 12));
@@ -347,7 +347,7 @@ public final class jo0 extends oj0 {
         } else {
             org.telegram.ui.Cells.g6 g6Var = new org.telegram.ui.Cells.g6(context, mo0Var.I0);
             g6Var.E0 = true;
-            g6Var.f29155l0 = true;
+            g6Var.f29156l0 = true;
             x3Var = g6Var;
         }
         return new v4.d1(x3Var);

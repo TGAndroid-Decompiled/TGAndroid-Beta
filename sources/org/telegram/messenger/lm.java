@@ -5,30 +5,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class lm implements Runnable {
-    public final int f23898a;
-    public final c1 f23899b;
-    public final long f23900c;
+    public final int f23905a;
+    public final c1 f23906b;
+    public final long f23907c;
     public final Object d;
-    public final Object f23901e;
-    public final Object f23902f;
+    public final Object f23908e;
+    public final Object f23909f;
 
     public lm(c1 c1Var, Object obj, long j3, Object obj2, Object obj3, int i7) {
-        this.f23898a = i7;
-        this.f23899b = c1Var;
+        this.f23905a = i7;
+        this.f23906b = c1Var;
         this.d = obj;
-        this.f23900c = j3;
-        this.f23901e = obj2;
-        this.f23902f = obj3;
+        this.f23907c = j3;
+        this.f23908e = obj2;
+        this.f23909f = obj3;
     }
 
     private final void a() {
         ArrayList arrayList;
         ArrayList arrayList2;
-        f10 f10Var = (f10) this.f23899b;
+        f10 f10Var = (f10) this.f23906b;
         a10 a10Var = (a10) this.d;
-        TLObject tLObject = (TLObject) this.f23901e;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f23902f;
-        long j3 = this.f23900c;
+        TLObject tLObject = (TLObject) this.f23908e;
+        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f23909f;
+        long j3 = this.f23907c;
         synchronized (f10Var) {
             arrayList = a10Var.f21365b;
             arrayList2 = a10Var.f21366c;
@@ -53,7 +53,7 @@ public final class lm implements Runnable {
         synchronized (f10Var) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 try {
-                    f10Var.f22325x.remove(arrayList.get(i11));
+                    f10Var.f22332x.remove(arrayList.get(i11));
                 } catch (Throwable th2) {
                     throw th2;
                 }
@@ -67,11 +67,11 @@ public final class lm implements Runnable {
     }
 
     public lm(c1 c1Var, Object obj, Object obj2, TLObject tLObject, long j3, int i7) {
-        this.f23898a = i7;
-        this.f23899b = c1Var;
+        this.f23905a = i7;
+        this.f23906b = c1Var;
         this.d = obj;
-        this.f23901e = obj2;
-        this.f23902f = tLObject;
-        this.f23900c = j3;
+        this.f23908e = obj2;
+        this.f23909f = tLObject;
+        this.f23907c = j3;
     }
 }

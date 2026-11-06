@@ -32,7 +32,7 @@ public final class u extends org.telegram.ui.Components.z8 {
         int e10;
         switch (this.f9808e) {
             case 1:
-                int i11 = this.f40886a.f40575n;
+                int i11 = this.f40906a.f40587n;
                 if (i11 == 0) {
                     e10 = 0;
                 } else {

@@ -9,7 +9,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.CheckedTextView;
 import c8.h9;
-import c8.lc;
+import c8.mc;
 public final class p extends CheckedTextView implements u0.k {
     public final q f19192a;
     public final h2.c f19193b;
@@ -46,7 +46,7 @@ public final class p extends CheckedTextView implements u0.k {
 
     @Override
     public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return lc.d(super.getCustomSelectionActionModeCallback());
+        return mc.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
@@ -154,7 +154,7 @@ public final class p extends CheckedTextView implements u0.k {
 
     @Override
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(lc.e(callback, this));
+        super.setCustomSelectionActionModeCallback(mc.e(callback, this));
     }
 
     public void setEmojiCompatEnabled(boolean z9) {

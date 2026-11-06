@@ -1,9 +1,9 @@
 package org.telegram.messenger;
 public final class fd {
-    public final int f22370a;
+    public final int f22377a;
 
     public final int a(int i7) {
-        switch (this.f22370a) {
+        switch (this.f22377a) {
             case 0:
                 int i10 = i7 % 100;
                 if (i7 == 0) {

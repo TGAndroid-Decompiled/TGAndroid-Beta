@@ -54,13 +54,13 @@ public final class y extends View implements a6 {
         this.f15038n = hd.M0(2131752891, null);
         this.E = true;
         updateColors();
-        vVar.f28472n = true;
+        vVar.f28473n = true;
         vVar.h = false;
         vVar.a(false, 0.0f);
         vVar.setCallback(this);
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        vVar.f28461a.setStrokeCap(Paint.Cap.ROUND);
-        vVar.f28470l = true;
+        vVar.f28462a.setStrokeCap(Paint.Cap.ROUND);
+        vVar.f28471l = true;
         int L = org.telegram.messenger.g0.L(16.0f);
         int x02 = k6.x0(null, k6.Ei, false);
         this.F = x02;
@@ -106,7 +106,7 @@ public final class y extends View implements a6 {
             textPaint.setTextSize(org.telegram.messenger.g0.L(15.0f));
             this.I = size;
             CharSequence m10 = i6.m(this.f15038n, textPaint.getFontMetricsInt(), false, null, 0);
-            int i11 = (int) (org.telegram.messenger.g0.f22537q.x * 0.6f);
+            int i11 = (int) (org.telegram.messenger.g0.f22544q.x * 0.6f);
             StaticLayout c10 = mu0.c(m10, textPaint, i11, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i11, 1, true);
             this.f15039r = c10;
             if (c10.getLineCount() > 0) {
@@ -141,7 +141,7 @@ public final class y extends View implements a6 {
                 zg0Var.stop();
                 zg0Var.h = true;
                 if (z9) {
-                    i7 = zg0Var.f40956e[0];
+                    i7 = zg0Var.f40976e[0];
                 }
                 zg0Var.P(i7);
                 zg0Var.start();
@@ -170,8 +170,8 @@ public final class y extends View implements a6 {
             this.f15034b.setColor(k6.x0(null, k6.Rf, false));
             int x02 = k6.x0(null, k6.Tf, false);
             v vVar = this.d;
-            vVar.f28469k = x02;
-            vVar.f28468j = x02;
+            vVar.f28470k = x02;
+            vVar.f28469j = x02;
             zg0 zg0Var = this.f15036e;
             if (zg0Var != null) {
                 if (zg0Var == this.G) {

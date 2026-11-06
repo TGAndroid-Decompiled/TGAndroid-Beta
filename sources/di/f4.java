@@ -80,13 +80,13 @@ public final class f4 {
             }
             zg0Var.P(i10);
         } else if (z9) {
-            if (zg0Var.f40950a0 > 20) {
+            if (zg0Var.f40970a0 > 20) {
                 zg0Var.N(0, false, false);
             }
             zg0Var.P(20);
             zg0Var.start();
         } else {
-            int i11 = zg0Var.f40950a0;
+            int i11 = zg0Var.f40970a0;
             if (i11 != 0 && i11 < 43) {
                 zg0Var.P(43);
                 zg0Var.start();

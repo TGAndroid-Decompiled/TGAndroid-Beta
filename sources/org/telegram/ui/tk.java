@@ -8,18 +8,18 @@ import android.graphics.Path;
 import android.graphics.drawable.ShapeDrawable;
 import android.text.TextPaint;
 import android.view.animation.OvershootInterpolator;
-public final class tk extends org.telegram.ui.Components.sy0 {
+public final class tk extends org.telegram.ui.Components.ty0 {
     public final an K;
 
     public tk(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, an anVar) {
         super(activity);
         this.K = anVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f38154b = textPaint;
+        this.f38427b = textPaint;
         Paint paint = new Paint(1);
-        this.f38155c = paint;
+        this.f38428c = paint;
         this.d = org.telegram.messenger.g0.L(24.0f);
-        this.f38156e = new OvershootInterpolator();
+        this.f38429e = new OvershootInterpolator();
         this.H = new org.telegram.ui.Components.ir0(this, 12);
         this.J = new Path();
         int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.vj, f6Var);

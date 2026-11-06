@@ -6,22 +6,22 @@ import android.os.SystemClock;
 import android.view.TextureView;
 import android.view.View;
 public final class k40 extends TextureView {
-    public final int f35127a;
-    public final Object f35128b;
+    public final int f35160a;
+    public final Object f35161b;
 
     public k40(int i7, Context context, Object obj) {
         super(context);
-        this.f35127a = i7;
-        this.f35128b = obj;
+        this.f35160a = i7;
+        this.f35161b = obj;
     }
 
     @Override
     public void invalidate() {
         wi.s0 s0Var;
-        switch (this.f35127a) {
+        switch (this.f35160a) {
             case 0:
-                n40 n40Var = (n40) this.f35128b;
-                if (!n40Var.H0 && (s0Var = n40Var.Q) != null && s0Var.f58046a == 3) {
+                n40 n40Var = (n40) this.f35161b;
+                if (!n40Var.H0 && (s0Var = n40Var.Q) != null && s0Var.f58045a == 3) {
                     n40Var.H0 = true;
                     try {
                         n40Var.F0 = SystemClock.elapsedRealtimeNanos();
@@ -40,14 +40,14 @@ public final class k40 extends TextureView {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f35127a) {
+        switch (this.f35160a) {
             case 1:
                 View.MeasureSpec.getSize(i7);
                 super.onMeasure(i7, i10);
                 return;
             case 2:
-                xh.e eVar = (xh.e) this.f35128b;
-                setMeasuredDimension(eVar.f58689g, eVar.h);
+                xh.e eVar = (xh.e) this.f35161b;
+                setMeasuredDimension(eVar.f58688g, eVar.h);
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -57,10 +57,10 @@ public final class k40 extends TextureView {
 
     @Override
     public void setTransform(Matrix matrix) {
-        switch (this.f35127a) {
+        switch (this.f35160a) {
             case 1:
                 super.setTransform(matrix);
-                ry ryVar = ((sd0) this.f35128b).f38001l0;
+                ry ryVar = ((sd0) this.f35161b).f38005l0;
                 if (ryVar != null) {
                     int width = getWidth();
                     int height = getHeight();

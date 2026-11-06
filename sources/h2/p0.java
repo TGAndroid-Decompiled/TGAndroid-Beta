@@ -15,8 +15,8 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
-import c8.wb;
-import c8.wc;
+import c8.xb;
+import c8.xc;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class p0 implements yb.a {
@@ -48,17 +48,17 @@ public final class p0 implements yb.a {
                 throw new lb.a("Failed to init thin image labeler.", e10);
             }
         }
-        int i7 = aVar.f56401e;
-        int i10 = aVar.f56399b;
-        int i11 = aVar.f56400c;
-        int a10 = wc.a(aVar.d);
+        int i7 = aVar.f56400e;
+        int i10 = aVar.f56398b;
+        int i11 = aVar.f56399c;
+        int a10 = xc.a(aVar.d);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        int i12 = aVar.f56401e;
+        int i12 = aVar.f56400e;
         if (i12 != -1) {
             if (i12 != 17) {
                 if (i12 != 35) {
                     if (i12 != 842094169) {
-                        throw new lb.a(jg.g.j(aVar.f56401e, "Unsupported image format: "), 3);
+                        throw new lb.a(jg.g.j(aVar.f56400e, "Unsupported image format: "), 3);
                     }
                 } else {
                     bVar = new a7.b(null);
@@ -67,7 +67,7 @@ public final class p0 implements yb.a {
             q6.m.g(null);
             throw null;
         }
-        Bitmap bitmap = aVar.f56398a;
+        Bitmap bitmap = aVar.f56397a;
         q6.m.g(bitmap);
         bVar = new a7.b(bitmap);
         try {
@@ -75,18 +75,18 @@ public final class p0 implements yb.a {
             int i13 = a8.g0.f404a;
             P0.writeStrongBinder(bVar);
             P0.writeInt(1);
-            int r10 = wb.r(P0, 20293);
-            wb.q(P0, 1, 4);
+            int r10 = xb.r(P0, 20293);
+            xb.q(P0, 1, 4);
             P0.writeInt(i7);
-            wb.q(P0, 2, 4);
+            xb.q(P0, 2, 4);
             P0.writeInt(i10);
-            wb.q(P0, 3, 4);
+            xb.q(P0, 3, 4);
             P0.writeInt(i11);
-            wb.q(P0, 4, 4);
+            xb.q(P0, 4, 4);
             P0.writeInt(a10);
-            wb.q(P0, 5, 8);
+            xb.q(P0, 5, 8);
             P0.writeLong(elapsedRealtime);
-            wb.s(P0, r10);
+            xb.s(P0, r10);
             Parcel R0 = cbVar.R0(P0, 3);
             ArrayList createTypedArrayList = R0.createTypedArrayList(gb.CREATOR);
             R0.recycle();
@@ -154,7 +154,7 @@ public final class p0 implements yb.a {
                     aVar = new a8.a(b10, "com.google.mlkit.vision.label.aidls.IImageLabelerCreator", 0);
                 }
             }
-            this.f14135f = ((db) aVar).X0(new a7.b(context), new hb(((xb.a) this.f14134e).f57549a, -1));
+            this.f14135f = ((db) aVar).X0(new a7.b(context), new hb(((xb.a) this.f14134e).f57548a, -1));
         } catch (RemoteException e10) {
             throw new lb.a("Failed to create thin image labeler.", e10);
         } catch (b7.b unused) {
@@ -181,7 +181,7 @@ public final class p0 implements yb.a {
     }
 
     public p0() {
-        pe.a aVar = pe.a.f53483a;
+        pe.a aVar = pe.a.f53481a;
         this.f14132b = true;
         this.d = "    ";
         this.f14134e = "type";

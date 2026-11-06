@@ -14,19 +14,19 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
     public ValueAnimator H;
     public float I;
     public boolean J;
-    public final org.telegram.ui.c61 f31926a;
-    public final l9 f31927b;
-    public final RadialProgressView f31928c;
+    public final org.telegram.ui.c61 f31922a;
+    public final l9 f31923b;
+    public final RadialProgressView f31924c;
     public final xh.l d;
-    public final w70 f31929e;
-    public final fi.d f31930f;
+    public final w70 f31925e;
+    public final fi.d f31926f;
     public boolean h;
-    public final org.telegram.ui.ActionBar.f6 f31931n;
-    public int f31932r;
-    public final View f31933s;
-    public int f31934w;
-    public final int f31935x;
-    public boolean f31936y;
+    public final org.telegram.ui.ActionBar.f6 f31927n;
+    public int f31928r;
+    public final View f31929s;
+    public int f31930w;
+    public final int f31931x;
+    public boolean f31932y;
 
     public av0(Context context) {
         this(context, null, 1, null);
@@ -37,22 +37,22 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
     }
 
     public final void b(int i7, boolean z9) {
-        if (this.f31934w != i7) {
+        if (this.f31930w != i7) {
             int i10 = 0;
             if (getVisibility() != 0) {
                 z9 = false;
             }
-            this.f31934w = i7;
+            this.f31930w = i7;
             int i11 = -(i7 >> 1);
             if (i7 > 0) {
                 i10 = org.telegram.messenger.g0.L(20.0f);
             }
             float f10 = i11 + i10;
-            RadialProgressView radialProgressView = this.f31928c;
-            org.telegram.ui.c61 c61Var = this.f31926a;
+            RadialProgressView radialProgressView = this.f31924c;
+            org.telegram.ui.c61 c61Var = this.f31922a;
             if (z9) {
                 ViewPropertyAnimator translationY = c61Var.animate().translationY(f10);
-                xq xqVar = xq.f40329f;
+                xq xqVar = xq.f40345f;
                 translationY.setInterpolator(xqVar).setDuration(250L);
                 if (radialProgressView != null) {
                     radialProgressView.animate().translationY(f10).setInterpolator(xqVar).setDuration(250L);
@@ -71,8 +71,8 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
         Object obj;
         TLRPC.Document document;
         int i7;
-        int i10 = this.f31932r;
-        l9 l9Var = this.f31927b;
+        int i10 = this.f31928r;
+        l9 l9Var = this.f31923b;
         if (i10 != 0) {
             boolean z9 = true;
             if (i10 != 1) {
@@ -80,7 +80,7 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
                 String str = null;
                 document2 = null;
                 document2 = null;
-                int i11 = this.f31935x;
+                int i11 = this.f31931x;
                 if (i10 == 16) {
                     document = org.telegram.messenger.ui.b0(i11).T("👍");
                     obj = null;
@@ -89,8 +89,8 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
                     if (p02 == null) {
                         p02 = org.telegram.messenger.ui.b0(i11).n0("tg_placeholders_android");
                     }
-                    if (p02 != null && (i7 = this.f31932r) >= 0 && i7 < p02.documents.size()) {
-                        document2 = p02.documents.get(this.f31932r);
+                    if (p02 != null && (i7 = this.f31928r) >= 0 && i7 < p02.documents.size()) {
+                        document2 = p02.documents.get(this.f31928r);
                     }
                     obj = p02;
                     document = document2;
@@ -102,11 +102,11 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
                 if (document != null) {
                     org.telegram.messenger.rz d = org.telegram.messenger.t5.d(document.thumbs, this.G, 0.2f, false);
                     if (d != null) {
-                        d.f25378e = 512;
-                        d.f25379f = 512;
+                        d.f25386e = 512;
+                        d.f25387f = 512;
                     }
                     l9Var.k(org.telegram.messenger.hc.b(document), str, "tgs", d, obj);
-                    int i12 = this.f31932r;
+                    int i12 = this.f31928r;
                     if (i12 != 9 && i12 != 0) {
                         l9Var.getImageReceiver().W(2);
                         return;
@@ -168,10 +168,10 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
             }
         }
         int visibility = getVisibility();
-        l9 l9Var = this.f31927b;
-        RadialProgressView radialProgressView = this.f31928c;
-        org.telegram.ui.c61 c61Var = this.f31926a;
-        View view = this.f31933s;
+        l9 l9Var = this.f31923b;
+        RadialProgressView radialProgressView = this.f31924c;
+        org.telegram.ui.c61 c61Var = this.f31922a;
+        View view = this.f31929s;
         if (visibility != i7 && i7 == 0) {
             if (this.h) {
                 c61Var.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
@@ -212,7 +212,7 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25094y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
+        if (i7 == org.telegram.messenger.qs.f25102y0 && "tg_placeholders_android".equals((String) objArr[0]) && getVisibility() == 0) {
             c();
         }
     }
@@ -221,9 +221,9 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
         if (this.h != z9) {
             this.h = z9;
             if (getVisibility() == 0) {
-                RadialProgressView radialProgressView = this.f31928c;
-                View view = this.f31933s;
-                org.telegram.ui.c61 c61Var = this.f31926a;
+                RadialProgressView radialProgressView = this.f31924c;
+                View view = this.f31929s;
+                org.telegram.ui.c61 c61Var = this.f31922a;
                 if (z10) {
                     if (z9) {
                         c61Var.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
@@ -237,7 +237,7 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
                     } else {
                         radialProgressView.animate().alpha(0.0f).scaleY(0.5f).scaleX(0.5f).setDuration(150L).start();
                     }
-                    this.f31927b.getImageReceiver().P0(false);
+                    this.f31923b.getImageReceiver().P0(false);
                 } else if (z9) {
                     c61Var.animate().cancel();
                     c61Var.setAlpha(0.0f);
@@ -280,31 +280,31 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
         if (getVisibility() == 0) {
             c();
         }
-        org.telegram.messenger.qs.f(this.f31935x).c(this, org.telegram.messenger.qs.f25094y0);
+        org.telegram.messenger.qs.f(this.f31931x).c(this, org.telegram.messenger.qs.f25102y0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.qs.f(this.f31935x).n(this, org.telegram.messenger.qs.f25094y0);
+        org.telegram.messenger.qs.f(this.f31931x).n(this, org.telegram.messenger.qs.f25102y0);
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         int i13;
         super.onLayout(z9, i7, i10, i11, i12);
-        if ((this.E || this.f31936y) && (i13 = this.F) > 0 && i13 != getMeasuredHeight()) {
+        if ((this.E || this.f31932y) && (i13 = this.F) > 0 && i13 != getMeasuredHeight()) {
             float measuredHeight = (this.F - getMeasuredHeight()) / 2.0f;
-            org.telegram.ui.c61 c61Var = this.f31926a;
+            org.telegram.ui.c61 c61Var = this.f31922a;
             c61Var.setTranslationY(c61Var.getTranslationY() + measuredHeight);
-            if (!this.f31936y) {
-                c61Var.animate().translationY(0.0f).setInterpolator(xq.f40329f).setDuration(250L);
+            if (!this.f31932y) {
+                c61Var.animate().translationY(0.0f).setInterpolator(xq.f40345f).setDuration(250L);
             }
-            RadialProgressView radialProgressView = this.f31928c;
+            RadialProgressView radialProgressView = this.f31924c;
             if (radialProgressView != null) {
                 radialProgressView.setTranslationY(radialProgressView.getTranslationY() + measuredHeight);
-                if (!this.f31936y) {
-                    radialProgressView.animate().translationY(0.0f).setInterpolator(xq.f40329f).setDuration(250L);
+                if (!this.f31932y) {
+                    radialProgressView.animate().translationY(0.0f).setInterpolator(xq.f40345f).setDuration(250L);
                 }
             }
         }
@@ -316,10 +316,10 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
     }
 
     public void setPreventMoving(boolean z9) {
-        this.f31936y = z9;
+        this.f31932y = z9;
         if (!z9) {
-            this.f31926a.setTranslationY(0.0f);
-            RadialProgressView radialProgressView = this.f31928c;
+            this.f31922a.setTranslationY(0.0f);
+            RadialProgressView radialProgressView = this.f31924c;
             if (radialProgressView != null) {
                 radialProgressView.setTranslationY(0.0f);
             }
@@ -327,8 +327,8 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
     }
 
     public void setStickerType(int i7) {
-        if (this.f31932r != i7) {
-            this.f31932r = i7;
+        if (this.f31928r != i7) {
+            this.f31928r = i7;
             c();
         }
     }
@@ -357,7 +357,7 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
                 charSequence = ((Object) charSequence.subSequence(0, i12)) + "\n" + ((Object) charSequence.subSequence(i12 + 1, charSequence.length()));
             }
         }
-        this.f31929e.setText(charSequence);
+        this.f31925e.setText(charSequence);
     }
 
     @Override
@@ -367,17 +367,17 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
 
     public av0(Context context, View view, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f31935x = org.telegram.messenger.p10.f24459s0;
+        this.f31931x = org.telegram.messenger.p10.f24467s0;
         this.D = new dt(this, 15);
-        this.G = org.telegram.ui.ActionBar.k6.f27831c7;
-        this.f31931n = f6Var;
-        this.f31933s = view;
-        this.f31932r = i7;
+        this.G = org.telegram.ui.ActionBar.k6.f27832c7;
+        this.f31927n = f6Var;
+        this.f31929s = view;
+        this.f31928r = i7;
         org.telegram.ui.c61 c61Var = new org.telegram.ui.c61(15, context, this);
-        this.f31926a = c61Var;
+        this.f31922a = c61Var;
         c61Var.setOrientation(1);
         l9 l9Var = new l9(context);
-        this.f31927b = l9Var;
+        this.f31923b = l9Var;
         l9Var.setOnClickListener(new la0(this, 14));
         xh.l lVar = new xh.l(context);
         this.d = lVar;
@@ -388,15 +388,15 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
         lVar.setTextSize(1, 20.0f);
         lVar.setGravity(17);
         w70 w70Var = new w70(context, null);
-        this.f31929e = w70Var;
-        int i11 = org.telegram.ui.ActionBar.k6.f28240y6;
+        this.f31925e = w70Var;
+        int i11 = org.telegram.ui.ActionBar.k6.f28241y6;
         w70Var.setTag(Integer.valueOf(i11));
         org.telegram.ui.ActionBar.r6.V(w70Var, i11, f6Var);
         org.telegram.ui.ActionBar.r6.H(w70Var, org.telegram.ui.ActionBar.k6.J6, f6Var);
         w70Var.setTextSize(1, 14.0f);
         w70Var.setGravity(17);
         fi.d h = org.telegram.messenger.k5.h(24, context, f6Var, true);
-        this.f31930f = h;
+        this.f31926f = h;
         h.setVisibility(8);
         c61Var.addView(l9Var, c8.ha.r(117, 117, 1));
         c61Var.addView(lVar, c8.ha.t(-2, -2, 1, 0, 12, 0, 0));
@@ -405,7 +405,7 @@ public class av0 extends FrameLayout implements org.telegram.messenger.ls {
         addView(c61Var, c8.ha.d(-2, -2.0f, 17, 46.0f, 0.0f, 46.0f, 30.0f));
         if (view == null) {
             RadialProgressView radialProgressView = new RadialProgressView(context, f6Var);
-            this.f31928c = radialProgressView;
+            this.f31924c = radialProgressView;
             radialProgressView.setAlpha(0.0f);
             radialProgressView.setScaleY(0.5f);
             radialProgressView.setScaleX(0.5f);

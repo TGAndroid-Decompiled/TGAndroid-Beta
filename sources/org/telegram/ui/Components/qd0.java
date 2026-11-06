@@ -3,21 +3,21 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.NativeByteBuffer;
 public final class qd0 {
-    public float f37266a = 0.0f;
-    public float f37267b = 25.0f;
-    public float f37268c = 50.0f;
+    public float f37261a = 0.0f;
+    public float f37262b = 25.0f;
+    public float f37263c = 50.0f;
     public float d = 75.0f;
-    public float f37269e = 100.0f;
-    public float[] f37270f;
+    public float f37264e = 100.0f;
+    public float[] f37265f;
 
     public final float[] a() {
-        float f10 = this.f37266a;
-        float f11 = this.f37269e;
+        float f10 = this.f37261a;
+        float f11 = this.f37264e;
         int i7 = 2;
         int i10 = 5;
         char c10 = '\f';
         char c11 = '\r';
-        float[] fArr = {-0.001f, f10 / 100.0f, 0.0f, f10 / 100.0f, 0.25f, this.f37267b / 100.0f, 0.5f, this.f37268c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f11 / 100.0f, 1.001f, f11 / 100.0f};
+        float[] fArr = {-0.001f, f10 / 100.0f, 0.0f, f10 / 100.0f, 0.25f, this.f37262b / 100.0f, 0.5f, this.f37263c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f11 / 100.0f, 1.001f, f11 / 100.0f};
         int i11 = 100;
         ArrayList arrayList = new ArrayList(100);
         ArrayList arrayList2 = new ArrayList(100);
@@ -69,10 +69,10 @@ public final class qd0 {
         }
         arrayList2.add(Float.valueOf(fArr[c10]));
         arrayList2.add(Float.valueOf(fArr[c11]));
-        this.f37270f = new float[arrayList.size()];
+        this.f37265f = new float[arrayList.size()];
         int i20 = 0;
         while (true) {
-            float[] fArr2 = this.f37270f;
+            float[] fArr2 = this.f37265f;
             if (i20 >= fArr2.length) {
                 break;
             }
@@ -88,25 +88,25 @@ public final class qd0 {
     }
 
     public final boolean b() {
-        if (Math.abs(this.f37266a - 0.0f) < 1.0E-5d && Math.abs(this.f37267b - 25.0f) < 1.0E-5d && Math.abs(this.f37268c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.f37269e - 100.0f) < 1.0E-5d) {
+        if (Math.abs(this.f37261a - 0.0f) < 1.0E-5d && Math.abs(this.f37262b - 25.0f) < 1.0E-5d && Math.abs(this.f37263c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.f37264e - 100.0f) < 1.0E-5d) {
             return true;
         }
         return false;
     }
 
     public final void c(NativeByteBuffer nativeByteBuffer) {
-        this.f37266a = nativeByteBuffer.readFloat(true);
-        this.f37267b = nativeByteBuffer.readFloat(true);
-        this.f37268c = nativeByteBuffer.readFloat(true);
+        this.f37261a = nativeByteBuffer.readFloat(true);
+        this.f37262b = nativeByteBuffer.readFloat(true);
+        this.f37263c = nativeByteBuffer.readFloat(true);
         this.d = nativeByteBuffer.readFloat(true);
-        this.f37269e = nativeByteBuffer.readFloat(true);
+        this.f37264e = nativeByteBuffer.readFloat(true);
     }
 
     public final void d(NativeByteBuffer nativeByteBuffer) {
-        nativeByteBuffer.writeFloat(this.f37266a);
-        nativeByteBuffer.writeFloat(this.f37267b);
-        nativeByteBuffer.writeFloat(this.f37268c);
+        nativeByteBuffer.writeFloat(this.f37261a);
+        nativeByteBuffer.writeFloat(this.f37262b);
+        nativeByteBuffer.writeFloat(this.f37263c);
         nativeByteBuffer.writeFloat(this.d);
-        nativeByteBuffer.writeFloat(this.f37269e);
+        nativeByteBuffer.writeFloat(this.f37264e);
     }
 }

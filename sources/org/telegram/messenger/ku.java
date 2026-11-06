@@ -9,12 +9,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ku extends fu {
-    public static Paint f23754b0;
+    public static Paint f23761b0;
     public final boolean W;
     public final ArrayList X;
     public final int[] Y;
     public final int Z;
-    public yt f23755a0;
+    public yt f23762a0;
 
     public ku(kv kvVar, Rect rect, int i7, TL_iv.pageBlockCollage pageblockcollage, boolean z9) {
         super(kvVar, rect, i7);
@@ -42,7 +42,7 @@ public final class ku extends fu {
                 this.X.add(ytVar);
             }
         }
-        int i14 = this.f22445c;
+        int i14 = this.f22452c;
         ArrayList arrayList = this.X;
         this.Y = new int[arrayList.size()];
         if (arrayList.isEmpty()) {
@@ -55,7 +55,7 @@ public final class ku extends fu {
             float f13 = ytVar2.E;
             f13 = f13 <= 0.0f ? 1.0f : f13;
             int i16 = (int) (i14 / f13);
-            Point point = g0.f22537q;
+            Point point = g0.f22544q;
             int max = (int) (Math.max(point.x, point.y) * 0.55f);
             if (i16 > max) {
                 i14 = (int) (max * f13);
@@ -115,7 +115,7 @@ public final class ku extends fu {
             i20++;
             i15 = i11;
         }
-        Point point2 = g0.f22537q;
+        Point point2 = g0.f22544q;
         float max2 = Math.max(point2.x, point2.y) * 0.5f;
         int[] iArr = new int[i18 + 2];
         float f15 = 0.0f;
@@ -124,7 +124,7 @@ public final class ku extends fu {
             f15 += fArr2[i25];
         }
         iArr[i19] = Math.round(f15 * max2);
-        if (this.f22443a.D()) {
+        if (this.f22450a.D()) {
             f10 = 3.0f;
         } else {
             f10 = 2.0f;
@@ -182,7 +182,7 @@ public final class ku extends fu {
             ArrayList arrayList = this.X;
             if (i7 < arrayList.size()) {
                 yt ytVar = (yt) arrayList.get(i7);
-                Rect rect2 = this.f22444b;
+                Rect rect2 = this.f22451b;
                 int i10 = rect2.left + ytVar.F;
                 int i11 = ((int) this.M) + rect2.top + ytVar.G;
                 rect.set(i10, i11, ytVar.H + i10, ytVar.I + i11);
@@ -219,8 +219,8 @@ public final class ku extends fu {
 
     @Override
     public final int K() {
-        Rect rect = this.f22444b;
-        return rect.left + this.f22445c + rect.right;
+        Rect rect = this.f22451b;
+        return rect.left + this.f22452c + rect.right;
     }
 
     @Override
@@ -234,7 +234,7 @@ public final class ku extends fu {
             yt ytVar = (yt) obj;
             View view = this.V;
             ytVar.S = view;
-            ImageReceiver imageReceiver = ytVar.f26706c;
+            ImageReceiver imageReceiver = ytVar.f26714c;
             imageReceiver.H0(view);
             imageReceiver.P();
             ImageReceiver imageReceiver2 = ytVar.d;
@@ -266,10 +266,10 @@ public final class ku extends fu {
             Object obj = arrayList.get(i7);
             i7++;
             yt ytVar = (yt) obj;
-            ytVar.f26706c.R();
+            ytVar.f26714c.R();
             ytVar.d.R();
-            ytVar.f26707e = null;
-            z5.q(ytVar.f26704a.f23756a).v(ytVar);
+            ytVar.f26715e = null;
+            z5.q(ytVar.f26712a.f23763a).v(ytVar);
         }
     }
 
@@ -294,14 +294,14 @@ public final class ku extends fu {
         int i18;
         ku kuVar = this;
         boolean z13 = true;
-        if (f23754b0 == null) {
+        if (f23761b0 == null) {
             Paint paint = new Paint(1);
-            f23754b0 = paint;
+            f23761b0 = paint;
             paint.setColor(251658240);
         }
         boolean R = kuVar.R();
         int L2 = g0.L(2.0f);
-        kv kvVar = kuVar.f22443a;
+        kv kvVar = kuVar.f22450a;
         if (!R && !kvVar.D()) {
             i7 = kvVar.S - L2;
         } else {
@@ -312,7 +312,7 @@ public final class ku extends fu {
         } else {
             i10 = 0;
         }
-        int i19 = kuVar.f22445c;
+        int i19 = kuVar.f22452c;
         if (i19 > 0 && (i7 > 0 || i10 > 0)) {
             f10 = ((i19 + i7) + i10) / i19;
         } else {
@@ -324,7 +324,7 @@ public final class ku extends fu {
             if (i20 < arrayList.size()) {
                 yt ytVar = (yt) arrayList.get(i20);
                 int i21 = ytVar.F;
-                ImageReceiver imageReceiver = ytVar.f26706c;
+                ImageReceiver imageReceiver = ytVar.f26714c;
                 int round = Math.round(i21 * f10) - i7;
                 int round2 = Math.round(ytVar.H * f10);
                 int[] iArr = kuVar.Y;
@@ -417,7 +417,7 @@ public final class ku extends fu {
                 float f12 = round;
                 imageReceiver.y0(f12, ytVar.G, round2, ytVar.I);
                 if (!imageReceiver.I() || imageReceiver.f21194h1 != f11) {
-                    canvas.drawRect(f12, ytVar.G, round + round2, i14 + ytVar.I, f23754b0);
+                    canvas.drawRect(f12, ytVar.G, round + round2, i14 + ytVar.I, f23761b0);
                 }
                 ytVar.c(canvas);
                 i20++;
@@ -433,24 +433,24 @@ public final class ku extends fu {
     public final boolean Y(MotionEvent motionEvent) {
         ArrayList arrayList = this.X;
         int actionMasked = motionEvent.getActionMasked();
-        Rect rect = this.f22444b;
+        Rect rect = this.f22451b;
         motionEvent.offsetLocation(-rect.left, -rect.top);
         try {
             if (actionMasked == 0) {
-                this.f23755a0 = null;
+                this.f23762a0 = null;
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     yt ytVar = (yt) arrayList.get(i7);
                     if (ytVar.g(motionEvent.getX(), motionEvent.getY()) && ytVar.k(this.V, motionEvent)) {
-                        this.f23755a0 = ytVar;
+                        this.f23762a0 = ytVar;
                         return true;
                     }
                 }
             } else {
-                yt ytVar2 = this.f23755a0;
+                yt ytVar2 = this.f23762a0;
                 if (ytVar2 != null) {
                     boolean k10 = ytVar2.k(this.V, motionEvent);
                     if (actionMasked == 1 || actionMasked == 3) {
-                        this.f23755a0 = null;
+                        this.f23762a0 = null;
                     }
                     return k10;
                 }

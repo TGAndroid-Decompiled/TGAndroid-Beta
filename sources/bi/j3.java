@@ -21,8 +21,8 @@ public final class j3 implements Runnable {
                 TLRPC.Chat chat = this.f4081b;
                 if (chat != null) {
                     ?? obj = new Object();
-                    obj.f27420a = true;
-                    LaunchActivity.Q().showAsSheet(new org.telegram.ui.t5(-chat.f26952id), obj);
+                    obj.f27421a = true;
+                    LaunchActivity.Q().showAsSheet(new org.telegram.ui.t5(-chat.f26953id), obj);
                     return;
                 }
                 return;

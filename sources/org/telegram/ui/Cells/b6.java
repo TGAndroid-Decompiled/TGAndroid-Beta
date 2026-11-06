@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.aw0;
 public final class b6 implements p2 {
-    public final org.telegram.ui.ActionBar.f2 f28932a;
-    public final Context f28933b;
-    public final aw0 f28934c;
+    public final org.telegram.ui.ActionBar.f2 f28933a;
+    public final Context f28934b;
+    public final aw0 f28935c;
 
     public b6(aw0 aw0Var, org.telegram.ui.ActionBar.f2 f2Var, Context context) {
-        this.f28934c = aw0Var;
-        this.f28932a = f2Var;
-        this.f28933b = context;
+        this.f28935c = aw0Var;
+        this.f28933a = f2Var;
+        this.f28934b = context;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class b6 implements p2 {
     @Override
     public final void q() {
         boolean z9;
-        org.telegram.ui.ActionBar.f2 f2Var = this.f28932a;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f28933a;
         di.y6 P1 = f2Var.getMessagesController().P1();
         ArrayList arrayList = P1.h;
         if (arrayList.isEmpty()) {
@@ -41,15 +41,15 @@ public final class b6 implements p2 {
                 arrayList2.add(Long.valueOf(o4));
             }
         }
-        f2Var.getOrCreateStoryViewer().M(this.f28933b, null, arrayList2, 0, null, null, new di.h7(this.f28934c), false);
+        f2Var.getOrCreateStoryViewer().M(this.f28934b, null, arrayList2, 0, null, null, new di.h7(this.f28935c), false);
     }
 
     @Override
     public final void u(t2 t2Var) {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f28932a;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f28933a;
         if (f2Var.getMessagesController().P1().K(t2Var.getDialogId())) {
             f2Var.getOrCreateStoryViewer().getClass();
-            f2Var.getOrCreateStoryViewer().J(f2Var.getContext(), t2Var.getDialogId(), new di.h7(this.f28934c));
+            f2Var.getOrCreateStoryViewer().J(f2Var.getContext(), t2Var.getDialogId(), new di.h7(this.f28935c));
         }
     }
 

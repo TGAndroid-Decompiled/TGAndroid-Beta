@@ -12,24 +12,24 @@ import android.view.ViewGroup;
 import java.util.HashSet;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public abstract class t91 extends org.telegram.ui.Components.x9 {
-    public static final int f49995n3 = 0;
+    public static final int f49994n3 = 0;
     public boolean j3;
-    public boolean f49996k3;
-    public float f49997l3;
-    public final v91 f49998m3;
+    public boolean f49995k3;
+    public float f49996l3;
+    public final v91 f49997m3;
 
     public t91(v91 v91Var, Context context) {
         super(context, null);
-        this.f49998m3 = v91Var;
+        this.f49997m3 = v91Var;
         this.j3 = true;
         new Paint();
         new RectF();
-        this.f36924f1 = true;
-        this.f40234h3 = org.telegram.messenger.g0.L(200.0f);
+        this.f36940f1 = true;
+        this.f40250h3 = org.telegram.messenger.g0.L(200.0f);
     }
 
     public final void B1(boolean z9, org.telegram.ui.Cells.t2 t2Var) {
-        v91 v91Var = this.f49998m3;
+        v91 v91Var = this.f49997m3;
         v91Var.E = z9;
         int i7 = 2;
         boolean z10 = true;
@@ -40,7 +40,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
                     i7 = 0;
                 }
                 v91Var.D = i7;
-                fv fvVar = v91Var.f50674x;
+                fv fvVar = v91Var.f50673x;
                 if (fvVar != null) {
                     if (i7 == 0) {
                         z10 = false;
@@ -54,7 +54,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
                 i7 = 0;
             }
             v91Var.D = i7;
-            fv fvVar2 = v91Var.f50674x;
+            fv fvVar2 = v91Var.f50673x;
             if (fvVar2 != null) {
                 if (i7 == 0) {
                     z10 = false;
@@ -83,18 +83,18 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
     @Override
     public final void addView(View view, int i7, ViewGroup.LayoutParams layoutParams) {
         super.addView(view, i7, layoutParams);
-        view.setTranslationY(this.f49997l3);
+        view.setTranslationY(this.f49996l3);
         view.setTranslationX(0.0f);
         view.setAlpha(1.0f);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        v91 v91Var = this.f49998m3;
-        if (v91Var.f50637c1 != null) {
+        v91 v91Var = this.f49997m3;
+        if (v91Var.f50636c1 != null) {
             canvas.save();
-            canvas.translate(v91Var.f50637c1.getLeft(), v91Var.f50637c1.getY());
-            v91Var.f50637c1.draw(canvas);
+            canvas.translate(v91Var.f50636c1.getLeft(), v91Var.f50636c1.getY());
+            v91Var.f50636c1.draw(canvas);
             canvas.restore();
         }
         super.dispatchDraw(canvas);
@@ -108,7 +108,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
         if (getItemAnimator() != null) {
             getItemAnimator().k();
         }
-        if (this.f49998m3.f50637c1 == view) {
+        if (this.f49997m3.f50636c1 == view) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -116,14 +116,14 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        v91 v91Var = this.f49998m3;
-        if (v91Var.f50674x != null && this.f49997l3 != 0.0f) {
+        v91 v91Var = this.f49997m3;
+        if (v91Var.f50673x != null && this.f49996l3 != 0.0f) {
             int paddingTop = getPaddingTop();
             if (paddingTop != 0) {
                 canvas.save();
                 canvas.translate(0.0f, paddingTop);
             }
-            v91Var.f50674x.c(canvas, true);
+            v91Var.f50673x.c(canvas, true);
             if (paddingTop != 0) {
                 canvas.restore();
             }
@@ -135,17 +135,17 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (!this.V1) {
-            HashSet hashSet = v91.f50628q1;
-            v91 v91Var = this.f49998m3;
+            HashSet hashSet = v91.f50627q1;
+            v91 v91Var = this.f49997m3;
             if (v91Var.getParentLayout() == null || !((ActionBarLayout) v91Var.getParentLayout()).y()) {
                 if (motionEvent.getAction() == 0) {
                     kVar = ((org.telegram.ui.ActionBar.f2) v91Var).actionBar;
                     kVar.getClass();
                     v4.g0 adapter = getAdapter();
-                    if (v91Var.f50635c != adapter.b()) {
-                        this.f49996k3 = true;
+                    if (v91Var.f50634c != adapter.b()) {
+                        this.f49995k3 = true;
                         adapter.f();
-                        this.f49996k3 = false;
+                        this.f49995k3 = false;
                     }
                 }
                 return super.onInterceptTouchEvent(motionEvent);
@@ -157,7 +157,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
     @Override
     public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        v91 v91Var = this.f49998m3;
+        v91 v91Var = this.f49997m3;
         v91Var.getClass();
         v91Var.getClass();
         v91Var.getClass();
@@ -167,13 +167,13 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
     public final void onMeasure(int i7, int i10) {
         org.telegram.ui.ActionBar.k kVar;
         if (this.j3) {
-            v91 v91Var = this.f49998m3;
+            v91 v91Var = this.f49997m3;
             if (v91Var.getMessagesController().Y1) {
-                if (v91Var.f50676y > 0) {
-                    this.f49996k3 = true;
+                if (v91Var.f50675y > 0) {
+                    this.f49995k3 = true;
                     kVar = ((org.telegram.ui.ActionBar.f2) v91Var).actionBar;
                     ((v4.b0) getLayoutManager()).h1(1, (int) kVar.getTranslationY());
-                    this.f49996k3 = false;
+                    this.f49995k3 = false;
                 }
                 this.j3 = false;
             }
@@ -187,8 +187,8 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
         int L0;
         float f10;
         if (!this.V1) {
-            HashSet hashSet = v91.f50628q1;
-            v91 v91Var = this.f49998m3;
+            HashSet hashSet = v91.f50627q1;
+            v91 v91Var = this.f49997m3;
             if (v91Var.getParentLayout() == null || !((ActionBarLayout) v91Var.getParentLayout()).y()) {
                 int action = motionEvent.getAction();
                 if (action == 0) {
@@ -201,10 +201,10 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
                     }
                 }
                 boolean onTouchEvent = super.onTouchEvent(motionEvent);
-                if ((action == 1 || action == 3) && v91Var.D == 2 && v91Var.f50676y > 0 && (L0 = (b0Var = (v4.b0) getLayoutManager()).L0()) == 0) {
+                if ((action == 1 || action == 3) && v91Var.D == 2 && v91Var.f50675y > 0 && (L0 = (b0Var = (v4.b0) getLayoutManager()).L0()) == 0) {
                     int paddingTop = getPaddingTop();
                     View m10 = b0Var.m(L0);
-                    if (org.telegram.messenger.iz.f23399p1) {
+                    if (org.telegram.messenger.iz.f23406p1) {
                         f10 = 78.0f;
                     } else {
                         f10 = 72.0f;
@@ -214,7 +214,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
                     long currentTimeMillis = System.currentTimeMillis() - v91Var.Y;
                     if (measuredHeight >= L && currentTimeMillis >= 200) {
                         if (v91Var.D != 1) {
-                            if (this.f49997l3 == 0.0f) {
+                            if (this.f49996l3 == 0.0f) {
                                 w0(0, m10.getTop() - paddingTop, org.telegram.ui.Components.xq.h);
                             }
                             if (!v91Var.Z) {
@@ -223,7 +223,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
                                     performHapticFeedback(3, 2);
                                 } catch (Exception unused) {
                                 }
-                                fv fvVar = v91Var.f50674x;
+                                fv fvVar = v91Var.f50673x;
                                 if (fvVar != null) {
                                     fvVar.a(true);
                                 }
@@ -235,11 +235,11 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
                         w0(0, measuredHeight, org.telegram.ui.Components.xq.h);
                         v91Var.D = 2;
                     }
-                    float f11 = this.f49997l3;
+                    float f11 = this.f49996l3;
                     if (f11 != 0.0f) {
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, 0.0f);
                         ofFloat.addUpdateListener(new gz0(this, 15));
-                        ofFloat.setDuration(Math.max(100L, org.telegram.messenger.camera.q.v(this.f49997l3, org.telegram.messenger.g0.L(72.0f), 120.0f, 350.0f)));
+                        ofFloat.setDuration(Math.max(100L, org.telegram.messenger.camera.q.v(this.f49996l3, org.telegram.messenger.g0.L(72.0f), 120.0f, 350.0f)));
                         ofFloat.setInterpolator(org.telegram.ui.Components.xq.h);
                         setScrollEnabled(false);
                         ofFloat.addListener(new r81(this, 1));
@@ -262,7 +262,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
 
     @Override
     public final void requestLayout() {
-        if (this.f49996k3) {
+        if (this.f49995k3) {
             return;
         }
         super.requestLayout();
@@ -276,7 +276,7 @@ public abstract class t91 extends org.telegram.ui.Components.x9 {
 
     public final void setViewsOffset(float f10) {
         View m10;
-        this.f49997l3 = f10;
+        this.f49996l3 = f10;
         int childCount = getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
             getChildAt(i7).setTranslationY(f10);

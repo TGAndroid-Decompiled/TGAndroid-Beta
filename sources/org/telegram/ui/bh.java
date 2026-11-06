@@ -10,12 +10,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class bh implements Runnable {
-    public final int f44351a;
-    public final Object f44352b;
+    public final int f44350a;
+    public final Object f44351b;
 
     public bh(Object obj, int i7) {
-        this.f44351a = i7;
-        this.f44352b = obj;
+        this.f44350a = i7;
+        this.f44351b = obj;
     }
 
     @Override
@@ -24,9 +24,9 @@ public final class bh implements Runnable {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f44351a;
+        int i13 = this.f44350a;
         int i14 = 0;
-        Object obj = this.f44352b;
+        Object obj = this.f44351b;
         switch (i13) {
             case 0:
                 ((n6) obj).a(Boolean.FALSE, null);
@@ -38,8 +38,8 @@ public final class bh implements Runnable {
                 return;
             case 2:
                 ji jiVar = (ji) obj;
-                i10 = ((org.telegram.ui.ActionBar.f2) ((an) jiVar.f46986e)).currentAccount;
-                org.telegram.messenger.qs.f(i10).j(jiVar.f46985c);
+                i10 = ((org.telegram.ui.ActionBar.f2) ((an) jiVar.f46985e)).currentAccount;
+                org.telegram.messenger.qs.f(i10).j(jiVar.f46984c);
                 return;
             case 3:
                 an.e2(((aj) obj).F3);
@@ -48,29 +48,29 @@ public final class bh implements Runnable {
                 ((dj) obj).T.C0.O(false);
                 return;
             case 5:
-                ((org.telegram.messenger.ij) obj).f23258q = false;
+                ((org.telegram.messenger.ij) obj).f23265q = false;
                 return;
             case 6:
                 Bundle bundle = new Bundle();
-                jl jlVar = ((dl) obj).f45091c.f45373a;
+                jl jlVar = ((dl) obj).f45090c.f45372a;
                 i11 = ((org.telegram.ui.ActionBar.f2) jlVar.Q).currentAccount;
-                bundle.putLong("user_id", org.telegram.messenger.p10.i(i11).f24478n);
+                bundle.putLong("user_id", org.telegram.messenger.p10.i(i11).f24486n);
                 jlVar.Q.presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 7:
-                ((ll) obj).f47558b.B9(true);
+                ((ll) obj).f47557b.B9(true);
                 return;
             case 8:
                 ((hi) obj).c(false);
                 return;
             case 9:
                 an anVar = ((mm) obj).h;
-                anVar.getNotificationCenter().j(anVar.f43742ba);
+                anVar.getNotificationCenter().j(anVar.f43741ba);
                 return;
             case 10:
-                an anVar2 = ((sm) obj).f49791b;
-                anVar2.f43838j0.getSearchField().requestFocus();
-                org.telegram.messenger.g0.K3(anVar2.f43838j0.getSearchField());
+                an anVar2 = ((sm) obj).f49790b;
+                anVar2.f43837j0.getSearchField().requestFocus();
+                org.telegram.messenger.g0.K3(anVar2.f43837j0.getSearchField());
                 if (anVar2.Ia > 0) {
                     af afVar = new af(anVar2, 9);
                     anVar2.Ja = afVar;
@@ -79,9 +79,9 @@ public final class bh implements Runnable {
                 }
                 return;
             case 11:
-                pn pnVar = ((nn) obj).f48092a;
-                pnVar.f48864e.setImageDrawable(pnVar.f48879r);
-                pnVar.f48860b0.o(2131232047, org.telegram.messenger.hd.M0(2131752212, "ChatSetPhotoOrVideo"), true);
+                pn pnVar = ((nn) obj).f48091a;
+                pnVar.f48863e.setImageDrawable(pnVar.f48878r);
+                pnVar.f48859b0.o(2131232047, org.telegram.messenger.hd.M0(2131752212, "ChatSetPhotoOrVideo"), true);
                 TLRPC.User user = pnVar.C0;
                 if (user != null) {
                     user.photo = null;
@@ -91,8 +91,8 @@ public final class bh implements Runnable {
                 if (pnVar.R0 == null) {
                     pnVar.R0 = new org.telegram.ui.Components.zg0(2131623965, org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f), false, null);
                 }
-                pnVar.f48860b0.f29566e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
-                pnVar.f48860b0.f29566e.setAnimation(pnVar.R0);
+                pnVar.f48859b0.f29567e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
+                pnVar.f48859b0.f29567e.setAnimation(pnVar.R0);
                 return;
             case 12:
                 ((tp) obj).a(0);
@@ -102,7 +102,7 @@ public final class bh implements Runnable {
                 return;
             case 14:
                 cr crVar = (cr) obj;
-                ArrayList arrayList = crVar.f44874c;
+                ArrayList arrayList = crVar.f44873c;
                 int size = arrayList.size();
                 while (i14 < size) {
                     Object obj2 = arrayList.get(i14);
@@ -115,7 +115,7 @@ public final class bh implements Runnable {
                 ((ActionBarPopupWindow$ActionBarPopupWindowLayout) obj).getSwipeBack().b(true);
                 return;
             case 16:
-                ((gs) obj).f46088a.o();
+                ((gs) obj).f46087a.o();
                 return;
             case 17:
                 org.telegram.ui.ActionBar.v2[] v2VarArr = (org.telegram.ui.ActionBar.v2[]) obj;
@@ -127,8 +127,8 @@ public final class bh implements Runnable {
                 }
                 return;
             case 18:
-                org.telegram.messenger.z5 q10 = org.telegram.messenger.z5.q(((org.telegram.messenger.c) obj).f21723a);
-                q10.getMessagesStorage().f26688a.c(new org.telegram.messenger.w5(q10, 0));
+                org.telegram.messenger.z5 q10 = org.telegram.messenger.z5.q(((org.telegram.messenger.c) obj).f21729a);
+                q10.getMessagesStorage().f26696a.c(new org.telegram.messenger.w5(q10, 0));
                 return;
             case 19:
                 ((org.telegram.ui.Cells.b3) obj).updateColors();
@@ -140,11 +140,11 @@ public final class bh implements Runnable {
                 ((org.telegram.ui.Cells.m) obj).updateColors();
                 return;
             case 22:
-                ((ww) ((w9) obj).f51029b).f51557f0.setAlpha(1.0f);
+                ((ww) ((w9) obj).f51028b).f51555f0.setAlpha(1.0f);
                 return;
             case 23:
                 Bundle bundle2 = new Bundle();
-                ww wwVar = ((jw) obj).f47048a;
+                ww wwVar = ((jw) obj).f47047a;
                 i12 = ((org.telegram.ui.ActionBar.f2) wwVar).currentAccount;
                 bundle2.putLong("user_id", org.telegram.messenger.p10.i(i12).e());
                 bundle2.putBoolean("my_profile", true);
@@ -153,12 +153,12 @@ public final class bh implements Runnable {
             case 24:
                 ww wwVar2 = ((mw) obj).B0;
                 wwVar2.showDialog(new ug.w0((org.telegram.ui.ActionBar.f2) wwVar2, 9, true));
-                wwVar2.f51656z0.setIsEditing(false);
+                wwVar2.f51654z0.setIsEditing(false);
                 wwVar2.U4(false);
                 return;
             case 25:
-                ww wwVar3 = ((nw) obj).f48151b;
-                wwVar3.f51656z0.setIsEditing(true);
+                ww wwVar3 = ((nw) obj).f48150b;
+                wwVar3.f51654z0.setIsEditing(true);
                 wwVar3.U4(true);
                 return;
             case 26:
@@ -166,12 +166,12 @@ public final class bh implements Runnable {
                 return;
             case 27:
                 ix ixVar = (ix) obj;
-                ArrayList arrayList2 = ixVar.f46770y;
-                ArrayList arrayList3 = ixVar.f46769x;
-                if (ixVar.f46766r != 0) {
+                ArrayList arrayList2 = ixVar.f46769y;
+                ArrayList arrayList3 = ixVar.f46768x;
+                if (ixVar.f46765r != 0) {
                     TLRPC.TL_sendMessageEmojiInteraction tL_sendMessageEmojiInteraction = new TLRPC.TL_sendMessageEmojiInteraction();
-                    tL_sendMessageEmojiInteraction.msg_id = ixVar.f46766r;
-                    tL_sendMessageEmojiInteraction.emoticon = ixVar.f46768w;
+                    tL_sendMessageEmojiInteraction.msg_id = ixVar.f46765r;
+                    tL_sendMessageEmojiInteraction.emoticon = ixVar.f46767w;
                     tL_sendMessageEmojiInteraction.interaction = new TLRPC.TL_dataJSON();
                     JSONObject jSONObject = new JSONObject();
                     try {
@@ -185,9 +185,9 @@ public final class bh implements Runnable {
                                 jSONArray.put(i15, jSONObject2);
                             } catch (JSONException e10) {
                                 e = e10;
-                                ixVar.f46766r = 0;
-                                ixVar.f46768w = null;
-                                ixVar.f46767s = 0L;
+                                ixVar.f46765r = 0;
+                                ixVar.f46767w = null;
+                                ixVar.f46766s = 0L;
                                 arrayList3.clear();
                                 arrayList2.clear();
                                 org.telegram.messenger.a8.g(e, true);
@@ -204,11 +204,11 @@ public final class bh implements Runnable {
                             tL_messages_setTyping.flags = 1 | tL_messages_setTyping.flags;
                         }
                         tL_messages_setTyping.action = tL_sendMessageEmojiInteraction;
-                        tL_messages_setTyping.peer = org.telegram.messenger.qp.s1(ixVar.f46761b).j1(ixVar.I);
-                        ConnectionsManager.getInstance(ixVar.f46761b).sendRequest(tL_messages_setTyping, null);
-                        ixVar.f46766r = 0;
-                        ixVar.f46768w = null;
-                        ixVar.f46767s = 0L;
+                        tL_messages_setTyping.peer = org.telegram.messenger.qp.s1(ixVar.f46760b).j1(ixVar.I);
+                        ConnectionsManager.getInstance(ixVar.f46760b).sendRequest(tL_messages_setTyping, null);
+                        ixVar.f46765r = 0;
+                        ixVar.f46767w = null;
+                        ixVar.f46766s = 0L;
                         arrayList3.clear();
                         arrayList2.clear();
                     } catch (JSONException e11) {
@@ -221,7 +221,7 @@ public final class bh implements Runnable {
                 ((gy) obj).j0(true);
                 return;
             default:
-                ((ey) obj).f52357a.getBackground().setState(new int[0]);
+                ((ey) obj).f52355a.getBackground().setState(new int[0]);
                 return;
         }
     }

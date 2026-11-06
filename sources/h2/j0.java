@@ -24,7 +24,7 @@ public class j0 {
     public Object d;
 
     public j0(int[] iArr) {
-        SecureRandom secureRandom = rc.k.f54368a;
+        SecureRandom secureRandom = rc.k.f54367a;
         int i7 = Integer.MAX_VALUE;
         for (int i10 : iArr) {
             if (i10 < i7) {
@@ -165,7 +165,7 @@ public class j0 {
             x0Var.f19288l = typeface;
             TextView textView = (TextView) weakReference.get();
             if (textView != null) {
-                WeakHashMap weakHashMap = r0.i0.f54098a;
+                WeakHashMap weakHashMap = r0.i0.f54097a;
                 if (textView.isAttachedToWindow()) {
                     textView.post(new androidx.activity.g(textView, typeface, x0Var.f19286j, 4));
                 } else {

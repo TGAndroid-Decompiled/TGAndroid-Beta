@@ -2,28 +2,28 @@ package y8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.ArrayList;
 public final class c extends r6.a {
     public static final Parcelable.Creator<c> CREATOR = new u8.o(29);
-    public ArrayList f59167a;
-    public boolean f59168b;
-    public boolean f59169c;
+    public ArrayList f59166a;
+    public boolean f59167b;
+    public boolean f59168c;
     public int d;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.h(parcel, 1, this.f59167a);
-        boolean z9 = this.f59168b;
-        wb.q(parcel, 2, 4);
+        int r10 = xb.r(parcel, 20293);
+        xb.h(parcel, 1, this.f59166a);
+        boolean z9 = this.f59167b;
+        xb.q(parcel, 2, 4);
         parcel.writeInt(z9 ? 1 : 0);
-        boolean z10 = this.f59169c;
-        wb.q(parcel, 3, 4);
+        boolean z10 = this.f59168c;
+        xb.q(parcel, 3, 4);
         parcel.writeInt(z10 ? 1 : 0);
         int i10 = this.d;
-        wb.q(parcel, 4, 4);
+        xb.q(parcel, 4, 4);
         parcel.writeInt(i10);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Trace;
-import c8.ge;
+import c8.he;
 import h9.f1;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,7 +23,7 @@ public abstract class c {
     public static final x f20674b = new x(9);
 
     public static m4.f a(Context context, List list) {
-        ge.a("FontProvider.getFontFamilyResult");
+        he.a("FontProvider.getFontFamilyResult");
         try {
             ArrayList arrayList = new ArrayList();
             for (int i7 = 0; i7 < list.size(); i7++) {
@@ -43,7 +43,7 @@ public abstract class c {
     public static ProviderInfo b(PackageManager packageManager, d dVar, Resources resources) {
         x xVar = f20674b;
         a0.j jVar = f20673a;
-        ge.a("FontProvider.getProvider");
+        he.a("FontProvider.getProvider");
         try {
             List list = dVar.d;
             String str = dVar.f20675a;
@@ -99,7 +99,7 @@ public abstract class c {
         Uri withAppendedId;
         int i11;
         boolean z9;
-        ge.a("FontProvider.query");
+        he.a("FontProvider.query");
         try {
             ArrayList arrayList = new ArrayList();
             Uri build = new Uri.Builder().scheme("content").authority(str).build();
@@ -110,7 +110,7 @@ public abstract class c {
                 f1Var = new f1(context, build);
             }
             String[] strArr = {"_id", "file_id", "font_ttc_index", "font_variation_settings", "font_weight", "font_italic", "result_code"};
-            ge.a("ContentQueryWrapper.query");
+            he.a("ContentQueryWrapper.query");
             Cursor C0 = f1Var.C0(build, strArr, new String[]{dVar.f20677c});
             Trace.endSection();
             if (C0 != null && C0.getCount() > 0) {

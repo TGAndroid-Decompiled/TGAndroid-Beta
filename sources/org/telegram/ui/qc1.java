@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class qc1 extends org.telegram.ui.Components.oj0 {
-    public final Context f49201c;
+    public final Context f49200c;
     public final WallpapersListActivity d;
 
     public qc1(WallpapersListActivity wallpapersListActivity, Context context) {
         this.d = wallpapersListActivity;
-        this.f49201c = context;
+        this.f49200c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56956f == 0) {
+        if (d1Var.f56955f == 0) {
             return true;
         }
         return false;
@@ -22,7 +22,7 @@ public final class qc1 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final int b() {
-        return this.d.f43482a;
+        return this.d.f43481a;
     }
 
     @Override
@@ -30,8 +30,8 @@ public final class qc1 extends org.telegram.ui.Components.oj0 {
         int i10;
         WallpapersListActivity wallpapersListActivity = this.d;
         i10 = wallpapersListActivity.uploadImageRow;
-        if (i7 != i10 && i7 != wallpapersListActivity.h && i7 != wallpapersListActivity.f43484b && i7 != wallpapersListActivity.f43489e) {
-            if (i7 != wallpapersListActivity.f43491f && i7 != wallpapersListActivity.f43493n) {
+        if (i7 != i10 && i7 != wallpapersListActivity.h && i7 != wallpapersListActivity.f43483b && i7 != wallpapersListActivity.f43488e) {
+            if (i7 != wallpapersListActivity.f43490f && i7 != wallpapersListActivity.f43492n) {
                 return 2;
             }
             return 3;
@@ -47,7 +47,7 @@ public final class qc1 extends org.telegram.ui.Components.oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View m8Var;
-        Context context = this.f49201c;
+        Context context = this.f49200c;
         if (i7 != 0) {
             if (i7 != 3) {
                 m8Var = new org.telegram.ui.Components.pi(this, context, 1);

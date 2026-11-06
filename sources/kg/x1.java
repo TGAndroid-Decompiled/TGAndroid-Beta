@@ -109,7 +109,7 @@ public final class x1 {
                 return null;
             }
             TLRPC.TL_timezone tL_timezone = (TLRPC.TL_timezone) arrayList.get(i7);
-            if (TextUtils.equals(tL_timezone.f27092id, str)) {
+            if (TextUtils.equals(tL_timezone.f27093id, str)) {
                 return tL_timezone;
             }
             i7++;
@@ -132,7 +132,7 @@ public final class x1 {
             return "";
         }
         if (z9) {
-            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, hd.E0().f22899y);
+            String displayName = of2.getRules().getOffset(Instant.now()).getDisplayName(TextStyle.FULL, hd.E0().f22906y);
             str2 = "GMT";
             if (displayName.length() != 1 || displayName.charAt(0) != 'Z') {
                 str2 = "GMT".concat(displayName);
@@ -153,7 +153,7 @@ public final class x1 {
         if (!this.f17578b && !this.f17579c) {
             this.f17578b = true;
             int i7 = this.f17577a;
-            SharedPreferences sharedPreferences = qp.s1(i7).f24759e7;
+            SharedPreferences sharedPreferences = qp.s1(i7).f24767e7;
             TLRPC.help_timezonesList help_timezoneslist = null;
             String string = sharedPreferences.getString("timezones", null);
             int i10 = 0;
@@ -166,7 +166,7 @@ public final class x1 {
             if (help_timezoneslist != null) {
                 arrayList.addAll(help_timezoneslist.timezones);
             }
-            qs.f(i7).k(qs.f25050r3, new Object[0]);
+            qs.f(i7).k(qs.f25058r3, new Object[0]);
             TLRPC.TL_help_getTimezonesList tL_help_getTimezonesList = new TLRPC.TL_help_getTimezonesList();
             if (help_timezoneslist != null) {
                 i10 = help_timezoneslist.hash;

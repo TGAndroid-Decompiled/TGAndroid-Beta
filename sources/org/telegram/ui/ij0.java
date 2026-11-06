@@ -3,10 +3,10 @@ package org.telegram.ui;
 import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
 public final class ij0 implements Comparator {
-    public final bk0 f46680a;
+    public final bk0 f46679a;
 
     public ij0(bk0 bk0Var) {
-        this.f46680a = bk0Var;
+        this.f46679a = bk0Var;
     }
 
     public final int a(TLRPC.SecureValueError secureValueError) {
@@ -35,7 +35,7 @@ public final class ij0 implements Comparator {
             return 7;
         }
         if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
-            return bk0.G0(this.f46680a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
+            return bk0.G0(this.f46679a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
         }
         return 100;
     }

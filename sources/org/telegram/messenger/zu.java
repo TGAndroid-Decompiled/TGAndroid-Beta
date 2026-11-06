@@ -20,7 +20,7 @@ public class zu extends fu {
         this.f26923b0 = -1;
         Layout.Alignment alignment2 = Layout.Alignment.ALIGN_CENTER;
         this.Y = false;
-        jv jvVar = new jv(kvVar, spannableStringBuilder, this.f22445c, alignment);
+        jv jvVar = new jv(kvVar, spannableStringBuilder, this.f22452c, alignment);
         this.W = jvVar;
         this.X = r3;
         jv[] jvVarArr = {jvVar};
@@ -33,19 +33,19 @@ public class zu extends fu {
 
     @Override
     public int I() {
-        Rect rect = this.f22444b;
-        return this.W.f23586b.getHeight() + rect.top + this.Z + this.f26922a0 + rect.bottom;
+        Rect rect = this.f22451b;
+        return this.W.f23593b.getHeight() + rect.top + this.Z + this.f26922a0 + rect.bottom;
     }
 
     @Override
     public final int J() {
-        Rect rect = this.f22444b;
+        Rect rect = this.f22451b;
         return this.W.q() + rect.left + rect.right;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f22444b;
+        Rect rect = this.f22451b;
         return this.W.r() + rect.left + rect.right;
     }
 
@@ -71,7 +71,7 @@ public class zu extends fu {
         int i02 = i0();
         jv jvVar = this.W;
         if (i02 != 0) {
-            jvVar.f23587c = (this.f22444b.left + i02) - jvVar.f23589f;
+            jvVar.f23594c = (this.f22451b.left + i02) - jvVar.f23596f;
             canvas.save();
             canvas.translate(i02, 0.0f);
             jvVar.d(canvas, jvVar.S);
@@ -89,7 +89,7 @@ public class zu extends fu {
         int i02 = i0();
         jv jvVar = this.W;
         if (i02 != 0) {
-            jvVar.f23587c = (this.f22444b.left + i02) - jvVar.f23589f;
+            jvVar.f23594c = (this.f22451b.left + i02) - jvVar.f23596f;
             canvas.save();
             canvas.translate(i02, 0.0f);
             jvVar.m(canvas, i7, f10);
@@ -116,22 +116,22 @@ public class zu extends fu {
         if (i02 != 0) {
             int i12 = i7 + i02;
             jv jvVar = this.W;
-            jvVar.f23587c = i12 - jvVar.f23589f;
+            jvVar.f23594c = i12 - jvVar.f23596f;
         }
     }
 
     @Override
     public final Layout a() {
-        return this.W.f23586b;
+        return this.W.f23593b;
     }
 
     public final int i0() {
         int L;
         int r10;
         boolean z9 = this.Y;
-        Rect rect = this.f22444b;
+        Rect rect = this.f22451b;
         jv jvVar = this.W;
-        kv kvVar = this.f22443a;
+        kv kvVar = this.f22450a;
         if (z9) {
             L = (((kvVar.C + kvVar.T) - kvVar.S) - jvVar.r()) / 2;
             r10 = rect.left;
@@ -159,9 +159,9 @@ public class zu extends fu {
     public final boolean u(CharacterStyle characterStyle, int i7, wt wtVar) {
         jv jvVar = this.W;
         if (jvVar.o(characterStyle, wtVar)) {
-            Rect rect = this.f22444b;
-            wtVar.f26360e = (i0() + rect.left) - jvVar.f23589f;
-            wtVar.f26361f = i7 + rect.top + this.Z;
+            Rect rect = this.f22451b;
+            wtVar.f26368e = (i0() + rect.left) - jvVar.f23596f;
+            wtVar.f26369f = i7 + rect.top + this.Z;
             return true;
         }
         return false;

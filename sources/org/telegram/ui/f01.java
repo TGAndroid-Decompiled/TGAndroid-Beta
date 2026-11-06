@@ -17,7 +17,7 @@ public final class f01 extends v4.s {
             case 0:
                 try {
                     fi.j1 j1Var = new fi.j1(3, recyclerView.getContext(), this);
-                    j1Var.f57121a = i7;
+                    j1Var.f57120a = i7;
                     w0(j1Var);
                     return;
                 } catch (Exception e10) {
@@ -27,7 +27,7 @@ public final class f01 extends v4.s {
             default:
                 try {
                     fi.j1 j1Var2 = new fi.j1(5, recyclerView.getContext(), this);
-                    j1Var2.f57121a = i7;
+                    j1Var2.f57120a = i7;
                     w0(j1Var2);
                     return;
                 } catch (Exception e11) {

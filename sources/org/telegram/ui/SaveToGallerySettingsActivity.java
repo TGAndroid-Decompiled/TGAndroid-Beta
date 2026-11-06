@@ -9,25 +9,25 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 {
-    public int f41884a;
+    public int f41883a;
     public int addExceptionRow;
-    public long f41885b;
-    public org.telegram.messenger.qv f41886c;
+    public long f41884b;
+    public org.telegram.messenger.qv f41885c;
     public boolean d;
     public int deleteAllExceptionsRow;
-    public int f41887e;
-    public int f41888f;
+    public int f41886e;
+    public int f41887f;
     public int h;
     public int maxVideoSizeRow;
-    public zy0 f41889n;
-    public org.telegram.ui.Components.pj0 f41890r;
-    public final ArrayList f41891s;
-    public LongSparseArray f41892w;
+    public zy0 f41888n;
+    public org.telegram.ui.Components.pj0 f41889r;
+    public final ArrayList f41890s;
+    public LongSparseArray f41891w;
 
     public SaveToGallerySettingsActivity(Bundle bundle) {
         super(bundle);
-        this.f41891s = new ArrayList();
-        this.f41892w = new LongSparseArray();
+        this.f41890s = new ArrayList();
+        this.f41891w = new LongSparseArray();
     }
 
     public static void b0(SaveToGallerySettingsActivity saveToGallerySettingsActivity, org.telegram.ui.Cells.r8 r8Var, int i7) {
@@ -45,11 +45,11 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
     }
 
     public final org.telegram.messenger.rv c0() {
-        org.telegram.messenger.qv qvVar = this.f41886c;
+        org.telegram.messenger.qv qvVar = this.f41885c;
         if (qvVar != null) {
             return qvVar;
         }
-        return org.telegram.messenger.b6.f(this.f41884a);
+        return org.telegram.messenger.b6.f(this.f41883a);
     }
 
     @Override
@@ -60,14 +60,14 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
         this.fragmentView = frameLayout;
         this.simpleActionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
         this.simpleActionBar.setActionBarMenuOnItemClick(new nt0(this, 8));
-        if (this.f41886c != null) {
+        if (this.f41885c != null) {
             if (this.d) {
                 this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131747894, null));
             } else {
                 this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131745928, null));
             }
         } else {
-            int i10 = this.f41884a;
+            int i10 = this.f41883a;
             if (i10 == 1) {
                 this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131745920, null));
             } else if (i10 == 2) {
@@ -77,24 +77,24 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
             }
         }
         org.telegram.ui.Components.pj0 pj0Var = new org.telegram.ui.Components.pj0(context, null);
-        this.f41890r = pj0Var;
+        this.f41889r = pj0Var;
         pj0Var.r1();
-        this.f41890r.setSectionsDrawBackground(true);
+        this.f41889r.setSectionsDrawBackground(true);
         v4.k kVar = new v4.k();
         kVar.n(400L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f56979m = false;
-        this.f41890r.setItemAnimator(kVar);
-        this.f41890r.setLayoutManager(new v4.b0());
-        org.telegram.ui.Components.pj0 pj0Var2 = this.f41890r;
+        kVar.f56978m = false;
+        this.f41889r.setItemAnimator(kVar);
+        this.f41889r.setLayoutManager(new v4.b0());
+        org.telegram.ui.Components.pj0 pj0Var2 = this.f41889r;
         zy0 zy0Var = new zy0(this);
-        this.f41889n = zy0Var;
+        this.f41888n = zy0Var;
         pj0Var2.setAdapter(zy0Var);
-        this.f41890r.setOnItemClickListener(new yy0(this));
-        this.f41890r.setOnItemLongClickListener(new yy0(this));
-        frameLayout.addView(this.f41890r);
-        if (this.f41886c != null) {
+        this.f41889r.setOnItemClickListener(new yy0(this));
+        this.f41889r.setOnItemLongClickListener(new yy0(this));
+        frameLayout.addView(this.f41889r);
+        if (this.f41885c != null) {
             FrameLayout frameLayout2 = new FrameLayout(getParentActivity());
             frameLayout2.setBackground(org.telegram.ui.ActionBar.z5.f(org.telegram.ui.ActionBar.k6.Ci, 8.0f));
             TextView textView = new TextView(getParentActivity());
@@ -120,14 +120,14 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
         if (this.d) {
             return;
         }
-        if (this.f41886c != null) {
-            LongSparseArray m10 = getUserConfig().m(this.f41884a);
-            org.telegram.messenger.qv qvVar = this.f41886c;
+        if (this.f41885c != null) {
+            LongSparseArray m10 = getUserConfig().m(this.f41883a);
+            org.telegram.messenger.qv qvVar = this.f41885c;
             m10.put(qvVar.d, qvVar);
-            getUserConfig().A(this.f41884a, m10);
+            getUserConfig().A(this.f41883a, m10);
             return;
         }
-        org.telegram.messenger.b6.m(this.f41884a);
+        org.telegram.messenger.b6.m(this.f41883a);
     }
 
     public final void e0() {
@@ -137,27 +137,27 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
         this.addExceptionRow = -1;
         this.deleteAllExceptionsRow = -1;
         boolean z9 = this.isPaused;
-        ArrayList arrayList2 = this.f41891s;
-        if (!z9 && this.f41889n != null) {
+        ArrayList arrayList2 = this.f41890s;
+        if (!z9 && this.f41888n != null) {
             arrayList = new ArrayList();
             arrayList.addAll(arrayList2);
         } else {
             arrayList = null;
         }
         arrayList2.clear();
-        if (this.f41886c != null) {
+        if (this.f41885c != null) {
             arrayList2.add(new az0(9));
             arrayList2.add(new az0(3));
         }
         arrayList2.add(new az0(5, org.telegram.messenger.hd.M0(2131745930, null)));
-        this.f41887e = arrayList2.size();
+        this.f41886e = arrayList2.size();
         arrayList2.add(new az0(6));
-        this.f41888f = arrayList2.size();
+        this.f41887f = arrayList2.size();
         arrayList2.add(new az0(6));
-        if (this.f41886c != null) {
+        if (this.f41885c != null) {
             str = org.telegram.messenger.hd.M0(2131745925, null);
         } else {
-            int i7 = this.f41884a;
+            int i7 = this.f41883a;
             if (i7 == 1) {
                 str = org.telegram.messenger.hd.M0(2131745923, null);
             } else if (i7 == 4) {
@@ -169,7 +169,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
             }
         }
         arrayList2.add(new az0(7, str));
-        if (c0().f25343b) {
+        if (c0().f25351b) {
             arrayList2.add(new az0(5, org.telegram.messenger.hd.M0(2131748667, null)));
             this.maxVideoSizeRow = arrayList2.size();
             arrayList2.add(new az0(8));
@@ -178,14 +178,14 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
         } else {
             this.h = -1;
         }
-        if (this.f41886c == null) {
-            this.f41892w = getUserConfig().m(this.f41884a);
+        if (this.f41885c == null) {
+            this.f41891w = getUserConfig().m(this.f41883a);
             this.addExceptionRow = arrayList2.size();
             arrayList2.add(new az0(1));
             int i10 = 0;
             boolean z10 = false;
-            while (i10 < this.f41892w.size()) {
-                arrayList2.add(new az0((org.telegram.messenger.qv) this.f41892w.valueAt(i10)));
+            while (i10 < this.f41891w.size()) {
+                arrayList2.add(new az0((org.telegram.messenger.qv) this.f41891w.valueAt(i10)));
                 i10++;
                 z10 = true;
             }
@@ -196,7 +196,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
             }
             arrayList2.add(new az0(10));
         }
-        zy0 zy0Var = this.f41889n;
+        zy0 zy0Var = this.f41888n;
         if (zy0Var != null) {
             if (arrayList != null) {
                 zy0Var.E(arrayList, arrayList2);
@@ -208,7 +208,7 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
 
     @Override
     public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
-        return this.f41890r;
+        return this.f41889r;
     }
 
     @Override
@@ -218,22 +218,22 @@ public class SaveToGallerySettingsActivity extends org.telegram.ui.ActionBar.f2 
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f41884a = getArguments().getInt("type");
-        this.f41892w = getUserConfig().m(this.f41884a);
+        this.f41883a = getArguments().getInt("type");
+        this.f41891w = getUserConfig().m(this.f41883a);
         long j3 = getArguments().getLong("dialog_id");
-        this.f41885b = j3;
+        this.f41884b = j3;
         if (j3 != 0) {
-            org.telegram.messenger.qv qvVar = (org.telegram.messenger.qv) org.telegram.messenger.p10.i(this.currentAccount).m(this.f41884a).get(this.f41885b);
-            this.f41886c = qvVar;
+            org.telegram.messenger.qv qvVar = (org.telegram.messenger.qv) org.telegram.messenger.p10.i(this.currentAccount).m(this.f41883a).get(this.f41884b);
+            this.f41885c = qvVar;
             if (qvVar == null) {
                 this.d = true;
-                this.f41886c = new org.telegram.messenger.rv();
-                org.telegram.messenger.sv f10 = org.telegram.messenger.b6.f(this.f41884a);
-                org.telegram.messenger.qv qvVar2 = this.f41886c;
-                qvVar2.f25342a = f10.f25342a;
-                qvVar2.f25343b = f10.f25343b;
-                qvVar2.f25344c = f10.f25344c;
-                qvVar2.d = this.f41885b;
+                this.f41885c = new org.telegram.messenger.rv();
+                org.telegram.messenger.sv f10 = org.telegram.messenger.b6.f(this.f41883a);
+                org.telegram.messenger.qv qvVar2 = this.f41885c;
+                qvVar2.f25350a = f10.f25350a;
+                qvVar2.f25351b = f10.f25351b;
+                qvVar2.f25352c = f10.f25352c;
+                qvVar2.d = this.f41884b;
             }
         }
         return super.onFragmentCreate();

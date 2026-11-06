@@ -20,13 +20,13 @@ public enum cf0 {
     EDIT_INFO(2131746738, 2131231152, 2131232492),
     SETTINGS(2131745496, 2131231158, 2131232497);
     
-    public final int f32557a;
-    public final int f32558b;
-    public final int f32559c;
+    public final int f32544a;
+    public final int f32545b;
+    public final int f32546c;
 
     cf0(int i7, int i10, int i11) {
-        this.f32557a = i7;
-        this.f32558b = i10;
-        this.f32559c = i11;
+        this.f32544a = i7;
+        this.f32545b = i10;
+        this.f32546c = i11;
     }
 }

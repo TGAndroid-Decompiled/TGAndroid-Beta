@@ -18,7 +18,7 @@ public abstract class e0 {
     public static boolean f6236g = false;
 
     public static void a() {
-        com.google.android.gms.internal.cast.b0 b0Var = gc.D().f22622p;
+        com.google.android.gms.internal.cast.b0 b0Var = gc.D().f22629p;
         CountDownLatch countDownLatch = (CountDownLatch) b0Var.f6815c;
         if (countDownLatch != null) {
             countDownLatch.countDown();

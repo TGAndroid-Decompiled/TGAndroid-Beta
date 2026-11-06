@@ -67,20 +67,20 @@ public final class y4 extends AnimatorListenerAdapter {
                 return;
             case 1:
                 di diVar = (di) this.d;
-                diVar.f32955s2.setAlpha(0.0f);
-                diVar.f32955s2.setTranslationY(org.telegram.messenger.g0.L(78.0f) + this.f5072b);
+                diVar.f32984s2.setAlpha(0.0f);
+                diVar.f32984s2.setTranslationY(org.telegram.messenger.g0.L(78.0f) + this.f5072b);
                 oh ohVar = diVar.V1;
-                vh vhVar = diVar.f32955s2;
+                vh vhVar = diVar.f32984s2;
                 Float valueOf = Float.valueOf(1.0f);
                 ohVar.getClass();
                 ohVar.a(vhVar, valueOf);
                 diVar.R2.setAlpha(0.0f);
-                r1.g gVar = new r1.g((Object) diVar.f32959t2, (r1.e) r1.g.f54159p, 0.0f);
-                gVar.f54175m.a(0.75f);
-                gVar.f54175m.b(500.0f);
+                r1.g gVar = new r1.g((Object) diVar.f32988t2, (r1.e) r1.g.f54158p, 0.0f);
+                gVar.f54174m.a(0.75f);
+                gVar.f54174m.b(500.0f);
                 gVar.b(new org.telegram.ui.Components.e7(this, 3));
                 gVar.a(new hi.y3(3, this, (qg) this.f5073c));
-                diVar.f32937n3 = gVar;
+                diVar.f32966n3 = gVar;
                 gVar.h();
                 return;
             default:

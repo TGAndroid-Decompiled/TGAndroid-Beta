@@ -24,7 +24,7 @@ public final class aw implements Runnable {
         dw dwVar = this.f21538b;
         switch (i7) {
             case 0:
-                dwVar.f22103n = false;
+                dwVar.f22110n = false;
                 if (!((Activity) context).isFinishing()) {
                     try {
                         u1Var.dismiss();
@@ -37,7 +37,7 @@ public final class aw implements Runnable {
                 return;
             default:
                 if (!((Activity) context).isFinishing()) {
-                    dwVar.f22103n = false;
+                    dwVar.f22110n = false;
                     try {
                         u1Var.dismiss();
                     } catch (Exception e11) {
@@ -45,7 +45,7 @@ public final class aw implements Runnable {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
                     String M0 = hd.M0(2131689472, null);
-                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27292a;
+                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27293a;
                     u1Var2.R = M0;
                     u1Var2.T = hd.M0(2131751750, null);
                     alertDialog$Builder.k(hd.M0(2131747830, null), null);

@@ -21,14 +21,14 @@ import org.telegram.ui.up0;
 import y7.d6;
 import z7.qa;
 public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.api.internal.p, b3.q {
-    public final int f54975a;
-    public final Object f54976b;
-    public Object f54977c;
+    public final int f54974a;
+    public final Object f54975b;
+    public Object f54976c;
 
     public i0(int i7, Object obj, Object obj2) {
-        this.f54975a = i7;
-        this.f54976b = obj;
-        this.f54977c = obj2;
+        this.f54974a = i7;
+        this.f54975b = obj;
+        this.f54976c = obj2;
     }
 
     @Override
@@ -43,8 +43,8 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
 
     @Override
     public Object L1(Uri uri, j2.k kVar) {
-        w2.a aVar = (w2.a) ((b3.q) this.f54976b).L1(uri, kVar);
-        List list = (List) this.f54977c;
+        w2.a aVar = (w2.a) ((b3.q) this.f54975b).L1(uri, kVar);
+        List list = (List) this.f54976c;
         if (list != null && !list.isEmpty()) {
             return (w2.a) aVar.a(list);
         }
@@ -53,36 +53,36 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
 
     @Override
     public void Y() {
-        up0 up0Var = (up0) this.f54977c;
-        up0Var.f55590o0.f55055a.f();
+        up0 up0Var = (up0) this.f54976c;
+        up0Var.f55589o0.f55054a.f();
         up0Var.U0.setViewHidden(false);
     }
 
     @Override
     public void Y0() {
-        ((te.i) this.f54976b).f((te.j) this.f54977c);
+        ((te.i) this.f54975b).f((te.j) this.f54976c);
     }
 
     @Override
     public void a() {
-        ((te.i) this.f54976b).a();
+        ((te.i) this.f54975b).a();
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        v6.d dVar = new v6.d((v6.f) this.f54976b, (TaskCompletionSource) obj2, 0);
+        v6.d dVar = new v6.d((v6.f) this.f54975b, (TaskCompletionSource) obj2, 0);
         v6.c cVar = (v6.c) ((v6.g) obj).n();
         Parcel J0 = cVar.J0();
         n7.a.c(J0, dVar);
-        n7.a.b(J0, (v6.a) this.f54977c);
+        n7.a.b(J0, (v6.a) this.f54976c);
         cVar.K0(J0, 1);
     }
 
     public ArrayList b() {
         ?? arrayList;
         ArrayList arrayList2 = new ArrayList();
-        Context context = (Context) this.f54976b;
-        Class cls = (Class) ((qt) this.f54977c).f37394b;
+        Context context = (Context) this.f54975b;
+        Class cls = (Class) ((qt) this.f54976c).f37389b;
         Bundle bundle = null;
         try {
             PackageManager packageManager = context.getPackageManager();
@@ -118,7 +118,7 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
 
     public void c(String str, PrintWriter printWriter) {
         boolean z9;
-        z1.b bVar = (z1.b) this.f54977c;
+        z1.b bVar = (z1.b) this.f54976c;
         if (bVar.d.f34c > 0) {
             printWriter.print(str);
             printWriter.println("Loaders:");
@@ -141,8 +141,8 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
                     printWriter.println((Object) null);
                     printWriter.print(str2);
                     printWriter.print("mLoader=");
-                    printWriter.println(aVar.f59468l);
-                    d6.d dVar = aVar.f59468l;
+                    printWriter.println(aVar.f59467l);
+                    d6.d dVar = aVar.f59467l;
                     String str3 = str2 + "  ";
                     dVar.getClass();
                     printWriter.print(str3);
@@ -182,11 +182,11 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
                         dVar.h.getClass();
                         printWriter.println(false);
                     }
-                    if (aVar.f59470n != null) {
+                    if (aVar.f59469n != null) {
                         printWriter.print(str2);
                         printWriter.print("mCallbacks=");
-                        printWriter.println(aVar.f59470n);
-                        ca.i iVar = aVar.f59470n;
+                        printWriter.println(aVar.f59469n);
+                        ca.i iVar = aVar.f59469n;
                         iVar.getClass();
                         printWriter.print(str2 + "  ");
                         printWriter.print("mDeliveredData=");
@@ -194,7 +194,7 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
                     }
                     printWriter.print(str2);
                     printWriter.print("mData=");
-                    d6.d dVar2 = aVar.f59468l;
+                    d6.d dVar2 = aVar.f59467l;
                     Object obj2 = aVar.f2611e;
                     if (obj2 != androidx.lifecycle.z.f2607k) {
                         obj = obj2;
@@ -229,8 +229,8 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
 
     public View d(int i7, int i10, int i11, int i12) {
         int i13;
-        v4.h1 h1Var = (v4.h1) this.f54977c;
-        v4.i1 i1Var = (v4.i1) this.f54976b;
+        v4.h1 h1Var = (v4.h1) this.f54976c;
+        v4.i1 i1Var = (v4.i1) this.f54975b;
         int A = i1Var.A();
         int N = i1Var.N();
         if (i10 > i7) {
@@ -243,18 +243,18 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
             View W = i1Var.W(i7);
             int k10 = i1Var.k(W);
             int a02 = i1Var.a0(W);
-            h1Var.f56993b = A;
-            h1Var.f56994c = N;
+            h1Var.f56992b = A;
+            h1Var.f56993c = N;
             h1Var.d = k10;
-            h1Var.f56995e = a02;
+            h1Var.f56994e = a02;
             if (i11 != 0) {
-                h1Var.f56992a = i11;
+                h1Var.f56991a = i11;
                 if (h1Var.a()) {
                     return W;
                 }
             }
             if (i12 != 0) {
-                h1Var.f56992a = i12;
+                h1Var.f56991a = i12;
                 if (h1Var.a()) {
                     view = W;
                 }
@@ -266,7 +266,7 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
 
     @Override
     public void d0() {
-        up0 up0Var = (up0) this.f54977c;
+        up0 up0Var = (up0) this.f54976c;
         if (up0Var.B0 != null) {
             up0Var.r0(null, true);
         }
@@ -274,27 +274,27 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
     }
 
     public boolean e(View view) {
-        v4.h1 h1Var = (v4.h1) this.f54977c;
-        v4.i1 i1Var = (v4.i1) this.f54976b;
+        v4.h1 h1Var = (v4.h1) this.f54976c;
+        v4.i1 i1Var = (v4.i1) this.f54975b;
         int A = i1Var.A();
         int N = i1Var.N();
         int k10 = i1Var.k(view);
         int a02 = i1Var.a0(view);
-        h1Var.f56993b = A;
-        h1Var.f56994c = N;
+        h1Var.f56992b = A;
+        h1Var.f56993c = N;
         h1Var.d = k10;
-        h1Var.f56995e = a02;
-        h1Var.f56992a = 24579;
+        h1Var.f56994e = a02;
+        h1Var.f56991a = 24579;
         return h1Var.a();
     }
 
     public f3.j0 f(int i7) {
         int i10 = 0;
         while (true) {
-            int[] iArr = (int[]) this.f54976b;
+            int[] iArr = (int[]) this.f54975b;
             if (i10 < iArr.length) {
                 if (i7 == iArr[i10]) {
-                    return ((x2.b1[]) this.f54977c)[i10];
+                    return ((x2.b1[]) this.f54976c)[i10];
                 }
                 i10++;
             } else {
@@ -308,19 +308,19 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
     public Object mo24get() {
         nb.a aVar = new nb.a(28);
         w7.s sVar = new w7.s(27, false);
-        Object mo24get = ((fd.a) this.f54976b).mo24get();
-        fd.a aVar2 = (fd.a) this.f54977c;
-        return new v5.g(aVar, sVar, v5.a.f57127f, (v5.i) mo24get, aVar2);
+        Object mo24get = ((fd.a) this.f54975b).mo24get();
+        fd.a aVar2 = (fd.a) this.f54976c;
+        return new v5.g(aVar, sVar, v5.a.f57126f, (v5.i) mo24get, aVar2);
     }
 
     @Override
     public void n() {
-        ((cn0) this.f54976b).run();
+        ((cn0) this.f54975b).run();
     }
 
     @Override
     public void o() {
-        l00 l00Var = ((up0) this.f54977c).G0;
+        l00 l00Var = ((up0) this.f54976c).G0;
         if (l00Var != null) {
             l00Var.invalidate();
         }
@@ -328,23 +328,23 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
 
     @Override
     public void p() {
-        up0 up0Var = (up0) this.f54977c;
+        up0 up0Var = (up0) this.f54976c;
         if (up0Var.T0) {
             up0Var.T0 = false;
             return;
         }
-        up0Var.f55576c1.b(1);
-        up0Var.w((h) h.f54968a.get(0));
+        up0Var.f55575c1.b(1);
+        up0Var.w((h) h.f54967a.get(0));
     }
 
     public String toString() {
-        switch (this.f54975a) {
+        switch (this.f54974a) {
             case 12:
                 StringBuilder sb2 = new StringBuilder(128);
                 sb2.append("LoaderManager{");
                 sb2.append(Integer.toHexString(System.identityHashCode(this)));
                 sb2.append(" in ");
-                Class<?> cls = ((androidx.lifecycle.t) this.f54976b).getClass();
+                Class<?> cls = ((androidx.lifecycle.t) this.f54975b).getClass();
                 sb2.append(cls.getSimpleName());
                 sb2.append("{");
                 sb2.append(Integer.toHexString(System.identityHashCode(cls)));
@@ -358,7 +358,7 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
     @Override
     public boolean z() {
         boolean z9;
-        up0 up0Var = (up0) this.f54977c;
+        up0 up0Var = (up0) this.f54976c;
         if (up0Var.B0 == null) {
             z9 = true;
         } else {
@@ -371,36 +371,36 @@ public final class i0 implements te.d, v0, q5.b, com.google.android.gms.common.a
     }
 
     public i0(Object obj, Object obj2, boolean z9, int i7) {
-        this.f54975a = i7;
-        this.f54977c = obj;
-        this.f54976b = obj2;
+        this.f54974a = i7;
+        this.f54976c = obj;
+        this.f54975b = obj2;
     }
 
     public i0(d6 d6Var) {
-        this.f54975a = 13;
-        this.f54977c = new Object();
-        this.f54976b = d6Var;
+        this.f54974a = 13;
+        this.f54976c = new Object();
+        this.f54975b = d6Var;
         qa.b();
     }
 
     public i0(Context context) {
-        this.f54975a = 10;
-        this.f54976b = context;
-        this.f54977c = null;
+        this.f54974a = 10;
+        this.f54975b = context;
+        this.f54976c = null;
     }
 
     public i0(androidx.lifecycle.t tVar, androidx.lifecycle.t0 t0Var) {
-        this.f54975a = 12;
-        this.f54976b = tVar;
-        this.f54977c = (z1.b) new android.support.v4.media.session.a0(t0Var, z1.b.f59471f).i(z1.b.class);
+        this.f54974a = 12;
+        this.f54975b = tVar;
+        this.f54976c = (z1.b) new android.support.v4.media.session.a0(t0Var, z1.b.f59470f).i(z1.b.class);
     }
 
     public i0(v4.i1 i1Var) {
-        this.f54975a = 5;
-        this.f54976b = i1Var;
+        this.f54974a = 5;
+        this.f54975b = i1Var;
         ?? obj = new Object();
-        obj.f56992a = 0;
-        this.f54977c = obj;
+        obj.f56991a = 0;
+        this.f54976c = obj;
     }
 
     @Override

@@ -10,24 +10,24 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dp0 implements is {
-    public final String f45122a;
-    public final org.telegram.messenger.j20 f45123b;
-    public final org.telegram.messenger.gf f45124c;
+    public final String f45121a;
+    public final org.telegram.messenger.j20 f45122b;
+    public final org.telegram.messenger.gf f45123c;
     public final boolean d;
-    public final int f45125e;
-    public final int f45126f;
-    public final boolean f45127g;
+    public final int f45124e;
+    public final int f45125f;
+    public final boolean f45126g;
     public final PhotoViewer h;
 
     public dp0(PhotoViewer photoViewer, String str, org.telegram.messenger.j20 j20Var, org.telegram.messenger.gf gfVar, boolean z9, int i7, int i10, boolean z10) {
         this.h = photoViewer;
-        this.f45122a = str;
-        this.f45123b = j20Var;
-        this.f45124c = gfVar;
+        this.f45121a = str;
+        this.f45122b = j20Var;
+        this.f45123c = gfVar;
         this.d = z9;
-        this.f45125e = i7;
-        this.f45126f = i10;
-        this.f45127g = z10;
+        this.f45124e = i7;
+        this.f45125f = i10;
+        this.f45126g = z10;
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class dp0 implements is {
 
     @Override
     public final boolean B() {
-        if (this.h.f41546w7 != null) {
+        if (this.h.f41545w7 != null) {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public final class dp0 implements is {
 
     @Override
     public final boolean J() {
-        if (this.h.f41510s7 != null) {
+        if (this.h.f41509s7 != null) {
             return true;
         }
         return false;
@@ -79,9 +79,9 @@ public final class dp0 implements is {
     @Override
     public final void O(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f41536v7 = true;
+        photoViewer.f41535v7 = true;
         R();
-        photoViewer.f41471o5.p(this.f45122a, this.f45123b, str, null, true, 0L, null, null, photoViewer.r1(), this.f45124c.f26825c, null, null);
+        photoViewer.f41470o5.p(this.f45121a, this.f45122b, str, null, true, 0L, null, null, photoViewer.r1(), this.f45123c.f26825c, null, null);
     }
 
     @Override
@@ -97,7 +97,7 @@ public final class dp0 implements is {
     public final void R() {
         ks p10 = ks.p();
         ImageReceiver imageReceiver = p10.A;
-        org.telegram.messenger.gf gfVar = this.f45124c;
+        org.telegram.messenger.gf gfVar = this.f45123c;
         if (gfVar.f26825c != null) {
             try {
                 new File(gfVar.f26825c).delete();
@@ -130,7 +130,7 @@ public final class dp0 implements is {
         PhotoViewer photoViewer = this.h;
         TLRPC.PhotoSize a02 = org.telegram.messenger.gc.a0(createBitmap, photoViewer.b1(), 512.0f, 512.0f, 83);
         org.telegram.messenger.w7.G(photoViewer.T);
-        gfVar.f26825c = org.telegram.messenger.w7.K(a02, null, true, true).toString();
+        gfVar.f26825c = org.telegram.messenger.w7.J(a02, null, true, true).toString();
     }
 
     @Override
@@ -191,9 +191,9 @@ public final class dp0 implements is {
     @Override
     public final void n(String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f41536v7 = true;
+        photoViewer.f41535v7 = true;
         R();
-        photoViewer.f41471o5.p(this.f45122a, this.f45123b, str, null, false, 0L, null, null, photoViewer.r1(), this.f45124c.f26825c, null, photoViewer.f41546w7);
+        photoViewer.f41470o5.p(this.f45121a, this.f45122b, str, null, false, 0L, null, null, photoViewer.r1(), this.f45123c.f26825c, null, photoViewer.f41545w7);
     }
 
     @Override
@@ -204,17 +204,17 @@ public final class dp0 implements is {
     @Override
     public final void u(CharSequence charSequence, String str, org.telegram.ui.Components.ex exVar) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f41536v7 = true;
+        photoViewer.f41535v7 = true;
         R();
-        photoViewer.f41471o5.p(this.f45122a, this.f45123b, str, charSequence, false, 0L, null, null, photoViewer.r1(), this.f45124c.f26825c, exVar, null);
+        photoViewer.f41470o5.p(this.f45121a, this.f45122b, str, charSequence, false, 0L, null, null, photoViewer.r1(), this.f45123c.f26825c, exVar, null);
     }
 
     @Override
     public final void w(TLRPC.StickerSet stickerSet, String str) {
         PhotoViewer photoViewer = this.h;
-        photoViewer.f41536v7 = true;
+        photoViewer.f41535v7 = true;
         R();
-        photoViewer.f41471o5.p(this.f45122a, this.f45123b, str, null, false, 0L, stickerSet, photoViewer.f41510s7, photoViewer.r1(), this.f45124c.f26825c, null, null);
+        photoViewer.f41470o5.p(this.f45121a, this.f45122b, str, null, false, 0L, stickerSet, photoViewer.f41509s7, photoViewer.r1(), this.f45123c.f26825c, null, null);
     }
 
     @Override
@@ -222,9 +222,9 @@ public final class dp0 implements is {
         uq0 uq0Var;
         TLRPC.Chat chat;
         PhotoViewer photoViewer = this.h;
-        an anVar = photoViewer.f41437k4;
-        if ((anVar == null || (chat = anVar.f43772e) == null || org.telegram.messenger.t3.t(chat)) && (uq0Var = photoViewer.d) != null) {
-            if (!uq0Var.Q() || photoViewer.f41437k4 != null) {
+        an anVar = photoViewer.f41436k4;
+        if ((anVar == null || (chat = anVar.f43771e) == null || org.telegram.messenger.t3.t(chat)) && (uq0Var = photoViewer.d) != null) {
+            if (!uq0Var.Q() || photoViewer.f41436k4 != null) {
                 return true;
             }
             return false;
@@ -238,21 +238,21 @@ public final class dp0 implements is {
         uq0 uq0Var = photoViewer.d;
         if (uq0Var != null) {
             boolean Q = uq0Var.Q();
-            org.telegram.messenger.gf gfVar = this.f45124c;
+            org.telegram.messenger.gf gfVar = this.f45123c;
             if (Q) {
-                if (photoViewer.f41437k4 == null) {
+                if (photoViewer.f41436k4 == null) {
                     return;
                 }
-                photoViewer.f41536v7 = true;
+                photoViewer.f41535v7 = true;
                 R();
-                photoViewer.f41471o5.p(this.f45122a, this.f45123b, str, null, false, photoViewer.f41437k4.a(), null, null, photoViewer.r1(), gfVar.f26825c, null, null);
+                photoViewer.f41470o5.p(this.f45121a, this.f45122b, str, null, false, photoViewer.f41436k4.a(), null, null, photoViewer.r1(), gfVar.f26825c, null, null);
                 return;
             }
-            photoViewer.f41536v7 = true;
+            photoViewer.f41535v7 = true;
             R();
-            gfVar.h = this.f45122a;
-            photoViewer.d.o(photoViewer.O4, this.f45123b, this.d, this.f45125e, this.f45126f, this.f45127g);
-            org.telegram.messenger.qs.f(org.telegram.messenger.p10.f24459s0).m(org.telegram.messenger.qs.f25057s3, Boolean.TRUE);
+            gfVar.h = this.f45121a;
+            photoViewer.d.o(photoViewer.O4, this.f45122b, this.d, this.f45124e, this.f45125f, this.f45126g);
+            org.telegram.messenger.qs.f(org.telegram.messenger.p10.f24467s0).m(org.telegram.messenger.qs.f25065s3, Boolean.TRUE);
         }
     }
 

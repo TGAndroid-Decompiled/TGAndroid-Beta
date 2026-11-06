@@ -1,28 +1,28 @@
 package org.telegram.ui;
 public final class ba0 implements Runnable {
-    public final int f44234a;
-    public final pa0 f44235b;
-    public final org.telegram.messenger.za f44236c;
+    public final int f44233a;
+    public final pa0 f44234b;
+    public final org.telegram.messenger.za f44235c;
 
     public ba0(pa0 pa0Var, org.telegram.messenger.za zaVar, int i7) {
-        this.f44234a = i7;
-        this.f44235b = pa0Var;
-        this.f44236c = zaVar;
+        this.f44233a = i7;
+        this.f44234b = pa0Var;
+        this.f44235c = zaVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f44234a) {
+        switch (this.f44233a) {
             case 0:
-                pa0 pa0Var = this.f44235b;
-                org.telegram.messenger.za zaVar = this.f44236c;
+                pa0 pa0Var = this.f44234b;
+                org.telegram.messenger.za zaVar = this.f44235c;
                 if (pa0Var.G != null && pa0Var.getParentActivity() != null) {
                     try {
                         ((a8.r7) zaVar).u();
-                        ((nb.a) org.telegram.messenger.t0.k()).initializeMaps(org.telegram.messenger.t0.f25555b);
+                        ((nb.a) org.telegram.messenger.t0.k()).initializeMaps(org.telegram.messenger.t0.f25563b);
                         ((a8.r7) pa0Var.G).p(new da0(pa0Var, 0));
-                        pa0Var.f48759w0 = true;
-                        if (pa0Var.f48761x0) {
+                        pa0Var.f48758w0 = true;
+                        if (pa0Var.f48760x0) {
                             ((a8.r7) pa0Var.G).z();
                             return;
                         }
@@ -34,8 +34,8 @@ public final class ba0 implements Runnable {
                 }
                 return;
             default:
-                pa0 pa0Var2 = this.f44235b;
-                org.telegram.messenger.za zaVar2 = this.f44236c;
+                pa0 pa0Var2 = this.f44234b;
+                org.telegram.messenger.za zaVar2 = this.f44235c;
                 try {
                     ((a8.r7) zaVar2).u();
                 } catch (Exception unused) {

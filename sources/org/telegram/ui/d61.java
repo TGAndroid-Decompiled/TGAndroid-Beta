@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class d61 extends org.telegram.ui.Cells.ga {
-    public final int f44969q3 = 1;
-    public final Object f44970r3;
+    public final int f44968q3 = 1;
+    public final Object f44969r3;
 
     public d61(Context context, org.telegram.ui.ActionBar.f2 f2Var, ArrayList arrayList, ArrayList arrayList2, h9.f1 f1Var) {
         super(context, f2Var, 2, arrayList, arrayList2);
-        this.f44970r3 = f1Var;
+        this.f44969r3 = f1Var;
     }
 
     @Override
@@ -23,14 +23,14 @@ public final class d61 extends org.telegram.ui.Cells.ga {
         int[] iArr;
         boolean z10;
         CharSequence[] charSequenceArr;
-        switch (this.f44969q3) {
+        switch (this.f44968q3) {
             case 0:
-                f61 f61Var = ((f61) this.f44970r3).f45508e.f42008a;
-                ThemeActivity themeActivity = f61Var.f45508e;
+                f61 f61Var = ((f61) this.f44969r3).f45507e.f42007a;
+                ThemeActivity themeActivity = f61Var.f45507e;
                 if (themeActivity.getParentActivity() != null) {
-                    if ((j6Var.F == null || j6Var.U) && themeActivity.f42017f != 1) {
+                    if ((j6Var.F == null || j6Var.U) && themeActivity.f42016f != 1) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(themeActivity.getParentActivity());
-                        if (j6Var.f27627b == null) {
+                        if (j6Var.f27628b == null) {
                             charSequenceArr = new CharSequence[]{null, org.telegram.messenger.hd.M0(2131750859, "ExportTheme")};
                             iArr = new int[]{0, 2131232365};
                             z10 = false;
@@ -79,13 +79,13 @@ public final class d61 extends org.telegram.ui.Cells.ga {
                             charSequenceArr = charSequenceArr2;
                         }
                         og.j jVar = new og.j(13, f61Var, j6Var);
-                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                         u1Var.P = charSequenceArr;
                         u1Var.Q = iArr;
                         u1Var.M = jVar;
                         themeActivity.showDialog(u1Var);
                         if (z10) {
-                            u1Var.m(u1Var.N0.size() - 1, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28089q7, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28069p7, false));
+                            u1Var.m(u1Var.N0.size() - 1, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28090q7, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28070p7, false));
                             return;
                         }
                         return;
@@ -100,18 +100,18 @@ public final class d61 extends org.telegram.ui.Cells.ga {
 
     @Override
     public final void D1() {
-        switch (this.f44969q3) {
+        switch (this.f44968q3) {
             case 0:
-                ((f61) this.f44970r3).f45508e.F0(false);
+                ((f61) this.f44969r3).f45507e.F0(false);
                 return;
             default:
-                ((org.telegram.ui.ActionBar.v2) ((h9.f1) this.f44970r3).f14323b).f28651x0.run();
+                ((org.telegram.ui.ActionBar.v2) ((h9.f1) this.f44969r3).f14323b).f28652x0.run();
                 return;
         }
     }
 
     public d61(f61 f61Var, Context context, org.telegram.ui.ActionBar.f2 f2Var, int i7, ArrayList arrayList, ArrayList arrayList2) {
         super(context, f2Var, i7, arrayList, arrayList2);
-        this.f44970r3 = f61Var;
+        this.f44969r3 = f61Var;
     }
 }

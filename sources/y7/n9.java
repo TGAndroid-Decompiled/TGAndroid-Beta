@@ -1,19 +1,19 @@
 package y7;
 
-import c8.xd;
+import c8.yd;
 public final class n9 extends l9 {
-    public static final n9 f59021e = new n9(0, new Object[0]);
-    public final transient Object[] f59022c;
+    public static final n9 f59020e = new n9(0, new Object[0]);
+    public final transient Object[] f59021c;
     public final transient int d;
 
     public n9(int i7, Object[] objArr) {
-        this.f59022c = objArr;
+        this.f59021c = objArr;
         this.d = i7;
     }
 
     @Override
     public final int f(Object[] objArr) {
-        Object[] objArr2 = this.f59022c;
+        Object[] objArr2 = this.f59021c;
         int i7 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i7);
         return i7;
@@ -21,8 +21,8 @@ public final class n9 extends l9 {
 
     @Override
     public final Object get(int i7) {
-        xd.a(i7, this.d);
-        Object obj = this.f59022c[i7];
+        yd.a(i7, this.d);
+        Object obj = this.f59021c[i7];
         obj.getClass();
         return obj;
     }
@@ -39,7 +39,7 @@ public final class n9 extends l9 {
 
     @Override
     public final Object[] k() {
-        return this.f59022c;
+        return this.f59021c;
     }
 
     @Override

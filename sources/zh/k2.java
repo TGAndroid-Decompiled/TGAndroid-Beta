@@ -1,48 +1,48 @@
 package zh;
 public final class k2 implements Runnable {
-    public final int f60321a;
-    public final m3 f60322b;
+    public final int f60320a;
+    public final m3 f60321b;
 
     public k2(m3 m3Var, int i7) {
-        this.f60321a = i7;
-        this.f60322b = m3Var;
+        this.f60320a = i7;
+        this.f60321b = m3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f60321a) {
+        switch (this.f60320a) {
             case 0:
-                d3 d3Var = this.f60322b.d;
-                if (!d3Var.f60182l.isEmpty()) {
-                    d3Var.f60182l.clear();
+                d3 d3Var = this.f60321b.d;
+                if (!d3Var.f60181l.isEmpty()) {
+                    d3Var.f60181l.clear();
                     d3Var.h();
                     return;
                 }
                 return;
             case 1:
-                d3 d3Var2 = this.f60322b.d;
-                if (!d3Var2.f60181k.isEmpty()) {
-                    d3Var2.f60181k.clear();
+                d3 d3Var2 = this.f60321b.d;
+                if (!d3Var2.f60180k.isEmpty()) {
+                    d3Var2.f60180k.clear();
                     d3Var2.h();
                     return;
                 }
                 return;
             case 2:
-                d3 d3Var3 = this.f60322b.d;
-                if (!d3Var3.f60180j.isEmpty()) {
-                    d3Var3.f60180j.clear();
+                d3 d3Var3 = this.f60321b.d;
+                if (!d3Var3.f60179j.isEmpty()) {
+                    d3Var3.f60179j.clear();
                     d3Var3.h();
                     return;
                 }
                 return;
             case 3:
-                this.f60322b.d.i(c3.f60155a);
+                this.f60321b.d.i(c3.f60154a);
                 return;
             case 4:
-                this.f60322b.d.i(c3.f60156b);
+                this.f60321b.d.i(c3.f60155b);
                 return;
             default:
-                this.f60322b.d.i(c3.f60157c);
+                this.f60321b.d.i(c3.f60156c);
                 return;
         }
     }

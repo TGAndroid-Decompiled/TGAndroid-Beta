@@ -65,7 +65,7 @@ import org.telegram.ui.Cells.t0;
 import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.dj0;
 import org.telegram.ui.Components.t4;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.Wallet.v1;
 import org.telegram.ui.gl0;
 import v4.l0;
@@ -300,14 +300,14 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         switch (this.f37a) {
             case 10:
                 y yVar = (y) this.f38b;
-                w31 w31Var = (w31) obj;
+                x31 x31Var = (x31) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
                 z zVar = yVar.f5061r;
-                if (w31Var.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(yVar.getContext(), true, zVar.f5110b, z.p0(zVar), (TL_stars.StarsTransaction) w31Var.G, z.q0(zVar));
+                if (x31Var.G instanceof TL_stars.StarsTransaction) {
+                    dd.k1(yVar.getContext(), true, zVar.f5110b, z.p0(zVar), (TL_stars.StarsTransaction) x31Var.G, z.q0(zVar));
                     return;
                 } else if (yVar.h) {
                     yVar.h = false;
@@ -321,13 +321,13 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 return;
             default:
                 ad adVar = (ad) this.f38b;
-                w31 w31Var2 = (w31) obj;
+                x31 x31Var2 = (x31) obj;
                 View view2 = (View) obj2;
                 Integer num2 = (Integer) number;
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
-                if (w31Var2.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(adVar.getContext(), false, 0L, adVar.f3470c, (TL_stars.StarsTransaction) w31Var2.G, adVar.f3469b);
+                if (x31Var2.G instanceof TL_stars.StarsTransaction) {
+                    dd.k1(adVar.getContext(), false, 0L, adVar.f3470c, (TL_stars.StarsTransaction) x31Var2.G, adVar.f3469b);
                     return;
                 }
                 return;
@@ -384,7 +384,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f57199c.b().delete();
+                    ((va.c) ((va.d) r7Var.d)).f57198c.b().delete();
                     return r7Var.C();
                 }
                 return task;
@@ -421,7 +421,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                     kotlin.jvm.internal.j.d(forResult, "{\n      logger.d(\"Succes…ccess(task.result))\n    }");
                     return forResult;
                 }
-                Log.e(d1Var.f21939a, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
+                Log.e(d1Var.f21946a, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
                 Exception exception2 = task.getException();
                 if (exception2 != null && (message = exception2.getMessage()) != null && xd.d.e(message, "test_number_token is invalid")) {
                     d1Var.a("Backend rejected the test number token.", new Object[0]);

@@ -61,17 +61,17 @@ public final class ya implements c20 {
             case 1:
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj4;
                 TLRPC.Chat chat = (TLRPC.Chat) obj3;
-                long j3 = ((TLRPC.Chat) obj2).f26952id;
+                long j3 = ((TLRPC.Chat) obj2).f26953id;
                 boolean booleanValue = ((Boolean) obj).booleanValue();
                 boolean T = org.telegram.messenger.t3.T(chat);
                 int i11 = this.f5090b;
                 if (!T) {
                     org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, f2Var.getContext(), null);
                     u1Var.r(250L);
-                    qp.s1(i11).T(f2Var.getParentActivity(), chat.f26952id, f2Var, new ii.f0(u1Var, f2Var, i11, j3, booleanValue), null);
+                    qp.s1(i11).T(f2Var.getParentActivity(), chat.f26953id, f2Var, new ii.f0(u1Var, f2Var, i11, j3, booleanValue), null);
                     return;
                 }
-                long j10 = chat.f26952id;
+                long j10 = chat.f26953id;
                 qp.s1(i11).Q2(-j10, j3, false, booleanValue, new ii.g0(f2Var, j10, 0));
                 return;
             case 2:
@@ -104,7 +104,7 @@ public final class ya implements c20 {
                 qu quVar = (qu) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.f2 f2Var2 = quVar.f37396j1;
+                org.telegram.ui.ActionBar.f2 f2Var2 = quVar.f37391j1;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
@@ -154,19 +154,19 @@ public final class ya implements c20 {
                 ij ijVar = (ij) obj2;
                 String str3 = (String) obj;
                 if (i10 == photoViewer.P4) {
-                    photoViewer.f41463n5 = str3;
-                    if (f10Var.s() && f10Var.b(ijVar, photoViewer.f41463n5)) {
-                        if (photoViewer.f41454m5) {
-                            photoViewer.f41467o0.S(20);
-                            photoViewer.f41467o0.t(19);
+                    photoViewer.f41462n5 = str3;
+                    if (f10Var.s() && f10Var.b(ijVar, photoViewer.f41462n5)) {
+                        if (photoViewer.f41453m5) {
+                            photoViewer.f41466o0.S(20);
+                            photoViewer.f41466o0.t(19);
                             return;
                         }
-                        photoViewer.f41467o0.S(19);
-                        photoViewer.f41467o0.t(20);
+                        photoViewer.f41466o0.S(19);
+                        photoViewer.f41466o0.t(20);
                         return;
                     }
-                    photoViewer.f41467o0.t(19);
-                    photoViewer.f41467o0.t(20);
+                    photoViewer.f41466o0.t(19);
+                    photoViewer.f41466o0.t(20);
                     return;
                 }
                 return;

@@ -31,22 +31,22 @@ public final class g0 implements DialogInterface.OnCancelListener {
                 org.telegram.ui.la.a0((org.telegram.ui.la) this.f3912c, this.f3911b);
                 return;
             case 2:
-                ((lm) this.f3912c).f47561a.getConnectionsManager().cancelRequest(this.f3911b, true);
+                ((lm) this.f3912c).f47560a.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 3:
                 pn pnVar = (pn) this.f3912c;
                 pnVar.N0 = false;
-                pnVar.f48859b = null;
+                pnVar.f48858b = null;
                 pnVar.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 4:
                 ((ChatActivityEnterView) this.f3912c).P2.getConnectionsManager().cancelRequest(this.f3911b, true);
                 return;
             case 5:
-                ConnectionsManager.getInstance(((gx) ((cx) this.f3912c).f32693c.f2833b).F.f34024c1).cancelRequest(this.f3911b, true);
+                ConnectionsManager.getInstance(((gx) ((cx) this.f3912c).f32680c.f2833b).F.f34032c1).cancelRequest(this.f3911b, true);
                 return;
             case 6:
-                ConnectionsManager.getInstance(((c40) this.f3912c).f44586k1.f21723a).cancelRequest(this.f3911b, true);
+                ConnectionsManager.getInstance(((c40) this.f3912c).f44585k1.f21729a).cancelRequest(this.f3911b, true);
                 return;
             case 7:
                 ((pa0) this.f3912c).getConnectionsManager().cancelRequest(this.f3911b, true);

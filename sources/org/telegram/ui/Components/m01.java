@@ -1,35 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class m01 extends oj0 {
-    public final ArrayList f35812c = new ArrayList();
-    public String d;
-    public final r01 f35813e;
+public final class m01 extends v4.o {
+    public final int f35808b = 1;
+    public ArrayList f35809c;
+    public ArrayList d;
 
-    public m01(r01 r01Var) {
-        this.f35813e = r01Var;
+    public m01() {
     }
 
     @Override
-    public final boolean D(v4.d1 d1Var) {
-        return true;
+    public final boolean a(int i7, int i10) {
+        switch (this.f35808b) {
+            case 0:
+                o01 o01Var = (o01) this.f35809c.get(i7);
+                throw null;
+            default:
+                rg.a aVar = (rg.a) this.f35809c.get(i7);
+                rg.a aVar2 = (rg.a) this.d.get(i10);
+                if (aVar.f54439a != aVar2.f54439a) {
+                    return false;
+                }
+                return aVar.a(aVar2);
+        }
     }
 
     @Override
-    public final int b() {
-        return this.f35812c.size();
+    public final boolean b(int i7, int i10) {
+        switch (this.f35808b) {
+            case 0:
+                o01 o01Var = (o01) this.f35809c.get(i7);
+                throw null;
+            default:
+                rg.a aVar = (rg.a) this.f35809c.get(i7);
+                rg.a aVar2 = (rg.a) this.d.get(i10);
+                if (aVar.f54439a != aVar2.f54439a) {
+                    return false;
+                }
+                return aVar.equals(aVar2);
+        }
     }
 
     @Override
-    public final void t(v4.d1 r35, int r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m01.t(v4.d1, int):void");
+    public final int d() {
+        switch (this.f35808b) {
+            case 0:
+                return this.d.size();
+            default:
+                return this.d.size();
+        }
     }
 
     @Override
-    public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        q01 q01Var = new q01(this.f35813e, viewGroup.getContext());
-        q01Var.setLayoutParams(new v4.o0(-1, -2));
-        return new v4.d1(q01Var);
+    public final int e() {
+        switch (this.f35808b) {
+            case 0:
+                return this.f35809c.size();
+            default:
+                return this.f35809c.size();
+        }
+    }
+
+    public m01(ArrayList arrayList, ArrayList arrayList2) {
+        this.f35809c = arrayList;
+        this.d = arrayList2;
     }
 }

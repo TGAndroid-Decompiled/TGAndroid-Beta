@@ -49,7 +49,7 @@ public final class h2 implements x10 {
                     tL_inputSavedStarGiftSlug.slug = ((TL_stars.StarGift) obj4).slug;
                     craftstargift.stargift.add(tL_inputSavedStarGiftSlug);
                 }
-                ConnectionsManager.getInstance(k7Var.f28612a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
+                ConnectionsManager.getInstance(k7Var.f28613a).sendRequestTyped(craftstargift, new d3.b(1), new q2(k7Var, v10Var, arrayList, runnable, 0));
                 return;
             default:
                 fi.va vaVar = (fi.va) this.f3987b;

@@ -69,7 +69,7 @@ public final class h3 implements View.OnClickListener {
                 }
                 arrayList.add(0, p10.i(i10).f());
                 org.telegram.ui.ActionBar.v2 v2Var = this.f14695c;
-                ViewGroup viewGroup = v2Var.f28615b;
+                ViewGroup viewGroup = v2Var.f28616b;
                 f6 f6Var = this.d;
                 k60 k60Var = new k60(viewGroup, f6Var, linearLayout, false, false, true);
                 int size = arrayList.size();
@@ -79,11 +79,11 @@ public final class h3 implements View.OnClickListener {
                     i11++;
                     TLObject tLObject = (TLObject) obj;
                     if (tLObject instanceof TLRPC.User) {
-                        j3 = ((TLRPC.User) tLObject).f27101id;
+                        j3 = ((TLRPC.User) tLObject).f27102id;
                     } else if (tLObject instanceof TLRPC.Chat) {
                         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                         if (org.telegram.messenger.t3.V(chat)) {
-                            j3 = -chat.f26952id;
+                            j3 = -chat.f26953id;
                         }
                     }
                     long j10 = j3;
@@ -99,8 +99,8 @@ public final class h3 implements View.OnClickListener {
                     i10 = i12;
                     f6Var = f6Var2;
                 }
-                k60Var.f35181t = false;
-                k60Var.f35180s = 0;
+                k60Var.f35206t = false;
+                k60Var.f35205s = 0;
                 k60Var.V(5);
                 k60Var.a0(org.telegram.messenger.g0.L(24.0f), 0.0f);
                 k60Var.Z();

@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import android.graphics.drawable.Drawable;
 public final class xt implements lc {
-    public final yt f26510a;
+    public final yt f26518a;
 
     public xt(yt ytVar) {
-        this.f26510a = ytVar;
+        this.f26518a = ytVar;
     }
 
     @Override
     public final void O(ImageReceiver imageReceiver) {
-        yt ytVar = this.f26510a;
+        yt ytVar = this.f26518a;
         ytVar.m(ytVar.S, true);
     }
 

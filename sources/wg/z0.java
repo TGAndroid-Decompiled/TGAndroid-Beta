@@ -33,23 +33,23 @@ import zh.m3;
 import zh.n3;
 import zh.o3;
 public final class z0 implements View.OnClickListener {
-    public final int f57752a;
-    public final Object f57753b;
-    public final Object f57754c;
+    public final int f57751a;
+    public final Object f57752b;
+    public final Object f57753c;
 
     public z0(int i7, Object obj, Object obj2) {
-        this.f57752a = i7;
-        this.f57753b = obj;
-        this.f57754c = obj2;
+        this.f57751a = i7;
+        this.f57752b = obj;
+        this.f57753c = obj2;
     }
 
     @Override
     public final void onClick(View view) {
         TL_stars.SavedStarGift savedStarGift;
-        int i7 = this.f57752a;
+        int i7 = this.f57751a;
         int i10 = 0;
-        Object obj = this.f57754c;
-        Object obj2 = this.f57753b;
+        Object obj = this.f57753c;
+        Object obj2 = this.f57752b;
         switch (i7) {
             case 0:
                 f1 f1Var = (f1) obj2;
@@ -62,7 +62,7 @@ public final class z0 implements View.OnClickListener {
                     Long l10 = (Long) obj3;
                     l10.getClass();
                     hashSet.remove(l10);
-                    f1Var.f57640f2.remove(l10);
+                    f1Var.f57639f2.remove(l10);
                 }
                 f1Var.e1();
                 f1Var.R1.b(true, hashSet, new x0(f1Var, 5), null);
@@ -72,7 +72,7 @@ public final class z0 implements View.OnClickListener {
             case 1:
                 final f1 f1Var2 = (f1) obj2;
                 final TLRPC.User user = (TLRPC.User) obj;
-                k60 F = k60.F(f1Var2.f28618c, f1Var2.I0, (View) view.getParent());
+                k60 F = k60.F(f1Var2.f28619c, f1Var2.I0, (View) view.getParent());
                 F.c(2131232582, hd.M0(2131745602, null), new Runnable() {
                     @Override
                     public final void run() {
@@ -80,21 +80,21 @@ public final class z0 implements View.OnClickListener {
                             case 0:
                                 TLRPC.User user2 = user;
                                 if (user2 != null) {
-                                    f2 f2Var = f1Var2.f36224o1;
+                                    f2 f2Var = f1Var2.f36263o1;
                                     if (f2Var == null) {
                                         f2 T = LaunchActivity.T();
                                         ?? obj4 = new Object();
-                                        obj4.f27420a = true;
+                                        obj4.f27421a = true;
                                         if (T != 0) {
                                             Bundle bundle = new Bundle();
-                                            bundle.putLong("user_id", user2.f27101id);
+                                            bundle.putLong("user_id", user2.f27102id);
                                             T.showAsSheet(new an(bundle), obj4);
                                             return;
                                         }
                                         return;
                                     }
                                     Bundle bundle2 = new Bundle();
-                                    bundle2.putLong("user_id", user2.f27101id);
+                                    bundle2.putLong("user_id", user2.f27102id);
                                     f2Var.presentFragment(new an(bundle2));
                                     return;
                                 }
@@ -102,21 +102,21 @@ public final class z0 implements View.OnClickListener {
                             default:
                                 TLRPC.User user3 = user;
                                 if (user3 != null) {
-                                    f2 f2Var2 = f1Var2.f36224o1;
+                                    f2 f2Var2 = f1Var2.f36263o1;
                                     if (f2Var2 == null) {
                                         f2 T2 = LaunchActivity.T();
                                         if (T2 != 0) {
                                             ?? obj5 = new Object();
-                                            obj5.f27420a = true;
+                                            obj5.f27421a = true;
                                             Bundle bundle3 = new Bundle();
-                                            bundle3.putLong("user_id", user3.f27101id);
+                                            bundle3.putLong("user_id", user3.f27102id);
                                             T2.showAsSheet(new ProfileActivity(bundle3, null), obj5);
                                             return;
                                         }
                                         return;
                                     }
                                     Bundle bundle4 = new Bundle();
-                                    bundle4.putLong("user_id", user3.f27101id);
+                                    bundle4.putLong("user_id", user3.f27102id);
                                     f2Var2.presentFragment(new ProfileActivity(bundle4, null));
                                     return;
                                 }
@@ -131,21 +131,21 @@ public final class z0 implements View.OnClickListener {
                             case 0:
                                 TLRPC.User user2 = user;
                                 if (user2 != null) {
-                                    f2 f2Var = f1Var2.f36224o1;
+                                    f2 f2Var = f1Var2.f36263o1;
                                     if (f2Var == null) {
                                         f2 T = LaunchActivity.T();
                                         ?? obj4 = new Object();
-                                        obj4.f27420a = true;
+                                        obj4.f27421a = true;
                                         if (T != 0) {
                                             Bundle bundle = new Bundle();
-                                            bundle.putLong("user_id", user2.f27101id);
+                                            bundle.putLong("user_id", user2.f27102id);
                                             T.showAsSheet(new an(bundle), obj4);
                                             return;
                                         }
                                         return;
                                     }
                                     Bundle bundle2 = new Bundle();
-                                    bundle2.putLong("user_id", user2.f27101id);
+                                    bundle2.putLong("user_id", user2.f27102id);
                                     f2Var.presentFragment(new an(bundle2));
                                     return;
                                 }
@@ -153,21 +153,21 @@ public final class z0 implements View.OnClickListener {
                             default:
                                 TLRPC.User user3 = user;
                                 if (user3 != null) {
-                                    f2 f2Var2 = f1Var2.f36224o1;
+                                    f2 f2Var2 = f1Var2.f36263o1;
                                     if (f2Var2 == null) {
                                         f2 T2 = LaunchActivity.T();
                                         if (T2 != 0) {
                                             ?? obj5 = new Object();
-                                            obj5.f27420a = true;
+                                            obj5.f27421a = true;
                                             Bundle bundle3 = new Bundle();
-                                            bundle3.putLong("user_id", user3.f27101id);
+                                            bundle3.putLong("user_id", user3.f27102id);
                                             T2.showAsSheet(new ProfileActivity(bundle3, null), obj5);
                                             return;
                                         }
                                         return;
                                     }
                                     Bundle bundle4 = new Bundle();
-                                    bundle4.putLong("user_id", user3.f27101id);
+                                    bundle4.putLong("user_id", user3.f27102id);
                                     f2Var2.presentFragment(new ProfileActivity(bundle4, null));
                                     return;
                                 }
@@ -181,7 +181,7 @@ public final class z0 implements View.OnClickListener {
                 final xg.f fVar = (xg.f) obj2;
                 final yg.a aVar = (yg.a) obj;
                 if (fVar.d) {
-                    if (!aVar.f59323a.Q) {
+                    if (!aVar.f59322a.Q) {
                         aVar.b(true);
                         String str = fVar.h;
                         c20 c20Var = new c20() {
@@ -193,12 +193,12 @@ public final class z0 implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) fVar;
                                         g0.i3(new p(b0Var, 2), 200L);
-                                        b0Var.f57609r.dismiss();
+                                        b0Var.f57608r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         f fVar2 = fVar;
-                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58634n, fVar2.f58631c, new d(fVar2, 1));
+                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58633n, fVar2.f58630c, new d(fVar2, 1));
                                         return;
                                 }
                             }
@@ -212,17 +212,17 @@ public final class z0 implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) fVar;
                                         g0.i3(new p(b0Var, 2), 200L);
-                                        b0Var.f57609r.dismiss();
+                                        b0Var.f57608r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         f fVar2 = fVar;
-                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58634n, fVar2.f58631c, new d(fVar2, 1));
+                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58633n, fVar2.f58630c, new d(fVar2, 1));
                                         return;
                                 }
                             }
                         };
-                        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24459s0);
+                        ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24467s0);
                         TLRPC.TL_payments_applyGiftCode tL_payments_applyGiftCode = new TLRPC.TL_payments_applyGiftCode();
                         tL_payments_applyGiftCode.slug = str;
                         connectionsManager.sendRequest(tL_payments_applyGiftCode, new n(c20Var2, c20Var, 0), 2);
@@ -230,13 +230,13 @@ public final class z0 implements View.OnClickListener {
                     }
                     return;
                 }
-                ((b0) fVar).f57609r.dismiss();
+                ((b0) fVar).f57608r.dismiss();
                 return;
             case 3:
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                yg.f fVar2 = ((yg.g) obj2).f59357w;
+                yg.f fVar2 = ((yg.g) obj2).f59356w;
                 if (fVar2 != null) {
-                    a0 a0Var = ((u) fVar2).f57721a;
+                    a0 a0Var = ((u) fVar2).f57720a;
                     a0Var.U1.remove(chat);
                     a0Var.k1(true, true);
                     return;
@@ -258,7 +258,7 @@ public final class z0 implements View.OnClickListener {
                     Bundle bundle = new Bundle();
                     if (o4 > 0) {
                         bundle.putLong("user_id", o4);
-                        if (o4 == p10.i(dVar.f28612a).e()) {
+                        if (o4 == p10.i(dVar.f28613a).e()) {
                             bundle.putBoolean("my_profile", true);
                         }
                     } else {
@@ -280,11 +280,11 @@ public final class z0 implements View.OnClickListener {
             case 8:
                 l3 l3Var = (l3) obj2;
                 k3 k3Var = (k3) obj;
-                k60 F2 = k60.F(l3Var.f28618c, l3Var.I0, l3Var.S1);
+                k60 F2 = k60.F(l3Var.f28619c, l3Var.I0, l3Var.S1);
                 F2.c(2131231890, hd.M0(2131746140, null), new g3(k3Var, 3), false);
                 F2.c(2131231888, hd.M0(2131746144, null), new g3(k3Var, 4), false);
                 F2.c(2131231889, hd.M0(2131746142, null), new g3(k3Var, 5), false);
-                F2.f35181t = false;
+                F2.f35206t = false;
                 F2.Y = true;
                 F2.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                 F2.Z();
@@ -327,7 +327,7 @@ public final class z0 implements View.OnClickListener {
                 }
                 return;
             default:
-                v9 v9Var = ((n3) obj2).f60386c.Q1;
+                v9 v9Var = ((n3) obj2).f60385c.Q1;
                 v9Var.f4909e = !v9Var.f4909e;
                 ((gp0) obj).run();
                 v9Var.j(true);

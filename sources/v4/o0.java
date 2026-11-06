@@ -5,20 +5,20 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 public class o0 extends ViewGroup.MarginLayoutParams {
-    public d1 f57052a;
-    public final Rect f57053b;
-    public boolean f57054c;
+    public d1 f57051a;
+    public final Rect f57052b;
+    public boolean f57053c;
     public boolean d;
 
     public o0(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
-        this.f57053b = new Rect();
-        this.f57054c = true;
+        this.f57052b = new Rect();
+        this.f57053c = true;
         this.d = false;
     }
 
     public final int a() {
-        d1 d1Var = this.f57052a;
+        d1 d1Var = this.f57051a;
         if (d1Var == null) {
             return -1;
         }
@@ -26,7 +26,7 @@ public class o0 extends ViewGroup.MarginLayoutParams {
     }
 
     public final int b() {
-        d1 d1Var = this.f57052a;
+        d1 d1Var = this.f57051a;
         if (d1Var == null) {
             return -1;
         }
@@ -35,29 +35,29 @@ public class o0 extends ViewGroup.MarginLayoutParams {
 
     public o0(int i7, int i10) {
         super(i7, i10);
-        this.f57053b = new Rect();
-        this.f57054c = true;
+        this.f57052b = new Rect();
+        this.f57053c = true;
         this.d = false;
     }
 
     public o0(ViewGroup.MarginLayoutParams marginLayoutParams) {
         super(marginLayoutParams);
-        this.f57053b = new Rect();
-        this.f57054c = true;
+        this.f57052b = new Rect();
+        this.f57053c = true;
         this.d = false;
     }
 
     public o0(ViewGroup.LayoutParams layoutParams) {
         super(layoutParams);
-        this.f57053b = new Rect();
-        this.f57054c = true;
+        this.f57052b = new Rect();
+        this.f57053c = true;
         this.d = false;
     }
 
     public o0(o0 o0Var) {
         super((ViewGroup.LayoutParams) o0Var);
-        this.f57053b = new Rect();
-        this.f57054c = true;
+        this.f57052b = new Rect();
+        this.f57053c = true;
         this.d = false;
     }
 }

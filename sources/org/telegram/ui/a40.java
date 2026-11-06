@@ -6,18 +6,18 @@ import android.graphics.Shader;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class a40 extends LinearLayout {
-    public final org.telegram.ui.Components.j6 f43561a;
-    public float f43562b;
-    public final c40 f43563c;
+    public final org.telegram.ui.Components.j6 f43560a;
+    public float f43561b;
+    public final c40 f43562c;
 
     public a40(c40 c40Var, Context context) {
         super(context);
-        this.f43563c = c40Var;
-        this.f43562b = 0.0f;
+        this.f43562c = c40Var;
+        this.f43561b = 0.0f;
         setOrientation(1);
         setGravity(17);
         org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(context, true, false, false);
-        this.f43561a = j6Var;
+        this.f43560a = j6Var;
         j6Var.setTextColor(-1);
         j6Var.setTextSize(org.telegram.messenger.g0.L(46.0f));
         j6Var.setTypeface(org.telegram.messenger.g0.o());
@@ -33,13 +33,13 @@ public final class a40 extends LinearLayout {
 
     public void setWatchersCount(int i7) {
         String E = org.telegram.messenger.hd.E(i7, ',');
-        org.telegram.ui.Components.j6 j6Var = this.f43561a;
+        org.telegram.ui.Components.j6 j6Var = this.f43560a;
         float measureText = j6Var.getPaint().measureText((CharSequence) E, 0, E.length());
-        if (this.f43562b != measureText) {
+        if (this.f43561b != measureText) {
             int i10 = org.telegram.ui.ActionBar.k6.zk;
-            c40 c40Var = this.f43563c;
+            c40 c40Var = this.f43562c;
             j6Var.getPaint().setShader(new LinearGradient(0.0f, 0.0f, measureText, 0.0f, new int[]{org.telegram.ui.ActionBar.k6.w0(i10, c40Var.I0), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Bk, c40Var.I0)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
-            this.f43562b = measureText;
+            this.f43561b = measureText;
         }
         j6Var.setText(E);
     }

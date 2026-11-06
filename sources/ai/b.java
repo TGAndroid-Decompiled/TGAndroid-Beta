@@ -102,13 +102,13 @@ public final class b extends v4.s0 {
                 return;
             case 26:
                 b8 b8Var = (b8) this.f1126b;
-                n7 n7Var = b8Var.f32045o1;
+                n7 n7Var = b8Var.f32079o1;
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
-                    int i11 = b8Var.f32050q2;
-                    int i12 = b8Var.f28644s0;
-                    if (((i11 - i12) - L) + i12 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && n7Var.canScrollVertically(1) && (xi0Var = (xi0) n7Var.K(b8Var.f32041l2 ? 1 : 0)) != null) {
-                        View view = xi0Var.f56952a;
+                    int i11 = b8Var.f32084q2;
+                    int i12 = b8Var.f28645s0;
+                    if (((i11 - i12) - L) + i12 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && n7Var.canScrollVertically(1) && (xi0Var = (xi0) n7Var.K(b8Var.f32075l2 ? 1 : 0)) != null) {
+                        View view = xi0Var.f56951a;
                         if (view.getTop() > org.telegram.messenger.g0.L(7.0f)) {
                             n7Var.w0(0, view.getTop() - org.telegram.messenger.g0.L(7.0f), null);
                             return;
@@ -124,8 +124,8 @@ public final class b extends v4.s0 {
                 }
             case 29:
                 qi qiVar = (qi) this.f1126b;
-                q1 q1Var = qiVar.f37307n;
-                di diVar = qiVar.f38948b;
+                q1 q1Var = qiVar.f37302n;
+                di diVar = qiVar.f38969b;
                 if (i7 == 0) {
                     int L2 = org.telegram.messenger.g0.L(13.0f);
                     org.telegram.ui.ActionBar.r0 r0Var = diVar.U2;
@@ -135,9 +135,9 @@ public final class b extends v4.s0 {
                         i10 = 0;
                     }
                     int i13 = L2 + i10;
-                    int i14 = diVar.f28644s0;
+                    int i14 = diVar.f28645s0;
                     if (((diVar.V3[0] - i14) - i13) + i14 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var2 = (xi0) q1Var.K(0)) != null) {
-                        View view2 = xi0Var2.f56952a;
+                        View view2 = xi0Var2.f56951a;
                         if (view2.getTop() > org.telegram.messenger.g0.L(7.0f)) {
                             q1Var.w0(0, view2.getTop() - org.telegram.messenger.g0.L(7.0f), null);
                             return;

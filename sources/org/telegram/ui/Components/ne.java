@@ -17,17 +17,17 @@ public final class ne extends bn0 {
         super(context);
         int width;
         this.H = chatActivityEnterView;
-        this.f27479b = true;
-        this.f27480c = 150;
-        this.f27482f = -1L;
-        this.f27485j = new h2.f((int[]) null);
+        this.f27480b = true;
+        this.f27481c = 150;
+        this.f27483f = -1L;
+        this.f27486j = new h2.f((int[]) null);
         e();
-        this.f32227z = new ArrayList();
+        this.f32261z = new ArrayList();
         this.G = new ArrayList();
-        this.f32220r = peer;
-        this.f32221s = tL_channels_sendAsPeers;
+        this.f32254r = peer;
+        this.f32255s = tL_channels_sendAsPeers;
         bi.e5 e5Var = new bi.e5(24, context, this);
-        this.f32222t = e5Var;
+        this.f32256t = e5Var;
         e5Var.setLayoutParams(c8.ha.c(-2.0f, -2));
         setContentView(e5Var);
         setWidth(-2);
@@ -41,17 +41,17 @@ public final class ne extends bn0 {
         e5Var.setPadding(rect.left, rect.top, rect.right, rect.bottom);
         int L = org.telegram.messenger.g0.L(450.0f);
         if (anVar == null) {
-            width = org.telegram.messenger.g0.f22537q.x;
+            width = org.telegram.messenger.g0.f22544q.x;
         } else {
             width = anVar.l1.getWidth();
         }
         int i7 = (int) (width * 0.75f);
         vm0 vm0Var = new vm0(context, i7, L);
-        this.f32217o = vm0Var;
+        this.f32251o = vm0Var;
         vm0Var.setOrientation(1);
         TextView textView = new TextView(context);
-        this.f32218p = textView;
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28012m5, f6Var);
+        this.f32252p = textView;
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28013m5, f6Var);
         textView.setTextSize(1, 16.0f);
         textView.setText(org.telegram.messenger.hd.M0(2131745601, null));
         textView.setTypeface(org.telegram.messenger.g0.o(), 1);
@@ -63,29 +63,29 @@ public final class ne extends bn0 {
         pj0 pj0Var = new pj0(context, null);
         this.v = pj0Var;
         v4.b0 b0Var = new v4.b0();
-        this.f32224w = b0Var;
+        this.f32258w = b0Var;
         pj0Var.setLayoutManager(b0Var);
         pj0Var.setAdapter(new wm0(f6Var, arrayList, qpVar, i7, peer));
         pj0Var.j(new xm0(this));
         pj0Var.setOnItemClickListener(new bj0(arrayList, context, anVar, z9, hVar) {
-            public final List f38681b;
-            public final Context f38682c;
+            public final List f38677b;
+            public final Context f38678c;
             public final org.telegram.ui.an d;
-            public final a3.h f38683e;
+            public final a3.h f38679e;
 
             {
-                this.f38683e = hVar;
+                this.f38679e = hVar;
             }
 
             @Override
             public final void c(int i10, View view) {
-                bn0.k(ne.this, this.f38681b, this.f38682c, this.d, this.f38683e, view, i10);
+                bn0.k(ne.this, this.f38677b, this.f38678c, this.d, this.f38679e, view, i10);
             }
         });
         pj0Var.setOverScrollMode(2);
         frameLayout.addView(pj0Var);
         View view = new View(context);
-        this.f32223u = view;
+        this.f32257u = view;
         Drawable drawable = context.getDrawable(2131231237);
         drawable.setAlpha(153);
         view.setBackground(drawable);
@@ -97,17 +97,17 @@ public final class ne extends bn0 {
 
     @Override
     public final void dismiss() {
-        ArrayList arrayList = this.f32227z;
+        ArrayList arrayList = this.f32261z;
         ChatActivityEnterView chatActivityEnterView = this.H;
-        if (chatActivityEnterView.f31104q0 != this) {
+        if (chatActivityEnterView.f31105q0 != this) {
             super.dismiss();
             return;
         }
-        chatActivityEnterView.f31104q0 = null;
+        chatActivityEnterView.f31105q0 = null;
         int i7 = 0;
-        if (!this.f32219q) {
+        if (!this.f32253q) {
             l(new r1.g[0]);
-            chatActivityEnterView.f31098p0.a(true, true, 0.0f);
+            chatActivityEnterView.f31099p0.a(true, true, 0.0f);
             return;
         }
         int size = arrayList.size();

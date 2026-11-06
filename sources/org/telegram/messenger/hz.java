@@ -3,14 +3,14 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import org.telegram.tgnet.SerializedData;
 public final class hz {
-    public ui.a f22996a;
-    public long f22997b;
-    public boolean f22998c;
+    public ui.a f23003a;
+    public long f23004b;
+    public boolean f23005c;
     public boolean d;
-    public long f22999e;
+    public long f23006e;
 
     public hz(ui.a aVar) {
-        this.f22996a = aVar;
+        this.f23003a = aVar;
     }
 
     public static hz a(int i7, SerializedData serializedData) {
@@ -57,8 +57,8 @@ public final class hz {
             a10.p(i10);
         }
         hz hzVar = new hz(a10.d());
-        hzVar.f22999e = j10;
-        hzVar.f22997b = j3;
+        hzVar.f23006e = j10;
+        hzVar.f23004b = j3;
         if (j3 > 0) {
             z9 = true;
         }

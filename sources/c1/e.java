@@ -77,14 +77,14 @@ public final class e extends b1.d {
         long j3 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
         a6.b bVar2 = bVar;
         boolean z10 = false;
-        for (h hVar : request.f56882a) {
+        for (h hVar : request.f56881a) {
             if ((hVar instanceof q) && !z10) {
                 if (j3 >= 231815000) {
                     LinkedHashMap linkedHashMap = d1.g.f7948a;
-                    bVar2 = new a6.b(((q) hVar).f56886e, true);
+                    bVar2 = new a6.b(((q) hVar).f56885e, true);
                 } else {
                     LinkedHashMap linkedHashMap2 = d1.g.f7948a;
-                    JSONObject jSONObject = new JSONObject(((q) hVar).f56886e);
+                    JSONObject jSONObject = new JSONObject(((q) hVar).f56885e);
                     String optString = jSONObject.optString("rpId", "");
                     j.b(optString);
                     if (optString.length() != 0) {
@@ -97,7 +97,7 @@ public final class e extends b1.d {
             }
         }
         if (j3 > 241217000) {
-            z9 = request.f56883b;
+            z9 = request.f56882b;
         } else {
             z9 = false;
         }

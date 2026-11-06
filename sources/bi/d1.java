@@ -167,14 +167,14 @@ public final class d1 implements View.OnClickListener {
                                 Object obj = arrayList2.get(i14);
                                 i14++;
                                 xr xrVar = (xr) obj;
-                                long j11 = xrVar.f26505a;
-                                long j12 = xrVar.f26506b;
+                                long j11 = xrVar.f26513a;
+                                long j12 = xrVar.f26514b;
                                 if (!m5.C(j11)) {
                                     int i15 = (j12 > 0L ? 1 : (j12 == 0L ? 0 : -1));
                                     int i16 = i11;
-                                    if (i15 != 0 && (f10 = qp.s1(i16).f24862q7.f(-j11, j12)) != null && (message = f10.topicStartMessage) != null) {
+                                    if (i15 != 0 && (f10 = qp.s1(i16).f24870q7.f(-j11, j12)) != null && (message = f10.topicStartMessage) != null) {
                                         ijVar = new ij(i16, message, false, false);
-                                        ijVar.f23254p = true;
+                                        ijVar.f23261p = true;
                                     }
                                     ij ijVar2 = ijVar;
                                     HashMap hashMap = new HashMap();
@@ -182,7 +182,7 @@ public final class d1 implements View.OnClickListener {
                                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
                                     sb2.append(tL_messages_preparedInlineMessage4.query_id);
                                     hashMap.put("query_id", sb2.toString());
-                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f26950id);
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f26951id);
                                     hashMap.put("bot", "" + j10);
                                     gz.S(i12, j11, 0L, 0L, hashMap, org.telegram.messenger.c.a(i16), ijVar2, ijVar2, null, tL_messages_preparedInlineMessage4.result, null, T, null, z11);
                                     if (charSequence != null) {
@@ -219,7 +219,7 @@ public final class d1 implements View.OnClickListener {
                 String str = (String) this.f3640e;
                 String str2 = (String) this.f3641f;
                 String str3 = (String) this.h;
-                fi.d dVar = ld0Var.f47519b;
+                fi.d dVar = ld0Var.f47518b;
                 if (!dVar.Q) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
@@ -242,7 +242,7 @@ public final class d1 implements View.OnClickListener {
                         tL_dataJSON.data = u10.toString();
                         tL_payments_getPaymentForm.flags |= 1;
                     }
-                    ld0Var.f47526w.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.z9(ld0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    ld0Var.f47525w.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.z9(ld0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
                     return;
                 }
                 return;

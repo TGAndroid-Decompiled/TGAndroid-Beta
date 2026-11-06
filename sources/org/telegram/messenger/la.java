@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class la implements Runnable {
-    public final int f23860a = 0;
-    public final int f23861b;
-    public final int f23862c;
+    public final int f23867a = 0;
+    public final int f23868b;
+    public final int f23869c;
     public final Object d;
-    public final Object f23863e;
-    public final Object f23864f;
+    public final Object f23870e;
+    public final Object f23871f;
     public final Object h;
-    public final Object f23865n;
+    public final Object f23872n;
 
     public la(oa oaVar, int[] iArr, na naVar, TLRPC.messages_Messages messages_messages, ArrayList arrayList, int i7, int i10) {
         this.d = oaVar;
-        this.f23863e = iArr;
-        this.f23864f = naVar;
+        this.f23870e = iArr;
+        this.f23871f = naVar;
         this.h = messages_messages;
-        this.f23865n = arrayList;
-        this.f23861b = i7;
-        this.f23862c = i10;
+        this.f23872n = arrayList;
+        this.f23868b = i7;
+        this.f23869c = i10;
     }
 
     @Override
     public final void run() {
         boolean z9;
-        int i7 = this.f23860a;
-        int i10 = this.f23861b;
-        Object obj = this.f23865n;
-        int i11 = this.f23862c;
+        int i7 = this.f23867a;
+        int i10 = this.f23868b;
+        Object obj = this.f23872n;
+        int i11 = this.f23869c;
         Object obj2 = this.h;
-        Object obj3 = this.f23864f;
-        Object obj4 = this.f23863e;
+        Object obj3 = this.f23871f;
+        Object obj4 = this.f23870e;
         Object obj5 = this.d;
         int i12 = 2;
         switch (i7) {
@@ -40,14 +40,14 @@ public final class la implements Runnable {
                 na naVar = (na) obj3;
                 TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) obj2;
                 ArrayList arrayList = (ArrayList) obj;
-                int i13 = ((oa) obj5).f24301a;
+                int i13 = ((oa) obj5).f24308a;
                 int i14 = ((int[]) obj4)[0];
                 int i15 = naVar.d;
-                HashMap hashMap = naVar.f24147b;
+                HashMap hashMap = naVar.f24154b;
                 if (i14 == i15) {
                     naVar.d = -1;
-                    naVar.f24150f = false;
-                    naVar.f24151g = messages_messages.next_rate;
+                    naVar.f24157f = false;
+                    naVar.f24158g = messages_messages.next_rate;
                     int size = arrayList.size();
                     int i16 = 0;
                     while (i16 < size) {
@@ -55,25 +55,25 @@ public final class la implements Runnable {
                         i16++;
                         ij ijVar = (ij) obj6;
                         int i17 = i12;
-                        ma maVar = new ma(ijVar.f23237k);
+                        ma maVar = new ma(ijVar.f23244k);
                         Integer num = (Integer) hashMap.get(maVar);
                         if (num == null) {
-                            int i18 = naVar.f24153j;
-                            naVar.f24153j = i18 - 1;
+                            int i18 = naVar.f24160j;
+                            naVar.f24160j = i18 - 1;
                             num = Integer.valueOf(i18);
                             hashMap.put(maVar, num);
-                            naVar.f24146a.add(ijVar);
+                            naVar.f24153a.add(ijVar);
                         }
-                        TLRPC.Message message = ijVar.f23237k;
-                        message.realId = message.f26973id;
-                        message.f26973id = num.intValue();
+                        TLRPC.Message message = ijVar.f23244k;
+                        message.realId = message.f26974id;
+                        message.f26974id = num.intValue();
                         i12 = i17;
                     }
                     int i19 = i12;
                     if (!messages_messages.messages.isEmpty()) {
                         TLRPC.Message message2 = (TLRPC.Message) jg.g.i(1, messages_messages.messages);
                         naVar.h = message2.realId;
-                        naVar.f24152i = message2.peer_id;
+                        naVar.f24159i = message2.peer_id;
                     }
                     yr.a0(i13).m1(messages_messages.users, messages_messages.chats, true, true);
                     qp.s1(i13).Y3(messages_messages.users, false);
@@ -83,8 +83,8 @@ public final class la implements Runnable {
                     } else {
                         z9 = false;
                     }
-                    naVar.f24157n = z9;
-                    naVar.f24156m = Math.max(messages_messages.count, messages_messages.messages.size());
+                    naVar.f24164n = z9;
+                    naVar.f24163m = Math.max(messages_messages.count, messages_messages.messages.size());
                     qs f10 = qs.f(i13);
                     Integer valueOf = Integer.valueOf(arrayList.size());
                     Integer valueOf2 = Integer.valueOf(i19);
@@ -109,10 +109,10 @@ public final class la implements Runnable {
                     f10.k(14, objArr);
                     qs f11 = qs.f(i13);
                     Integer valueOf5 = Integer.valueOf(i10);
-                    Integer valueOf6 = Integer.valueOf(naVar.f24156m);
-                    Boolean valueOf7 = Boolean.valueOf(naVar.f24157n);
+                    Integer valueOf6 = Integer.valueOf(naVar.f24163m);
+                    Boolean valueOf7 = Boolean.valueOf(naVar.f24164n);
                     Integer valueOf8 = Integer.valueOf(naVar.b());
-                    Integer valueOf9 = Integer.valueOf(naVar.f24155l);
+                    Integer valueOf9 = Integer.valueOf(naVar.f24162l);
                     Object[] objArr2 = new Object[6];
                     objArr2[0] = valueOf5;
                     objArr2[1] = valueOf6;
@@ -134,17 +134,17 @@ public final class la implements Runnable {
                 ArrayList[] arrayListArr = uiVar.G;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    uiVar.g1(stickerSet.f26979id, false);
+                    uiVar.g1(stickerSet.f26980id, false);
                     stickerSet.archived = false;
-                    int i20 = this.f23861b;
+                    int i20 = this.f23868b;
                     arrayListArr[i20].add(i11, tL_messages_stickerSet);
-                    uiVar.I.k(tL_messages_stickerSet, stickerSet.f26979id);
-                    uiVar.J.k(tL_messages_stickerSet, stickerSet.f26979id);
+                    uiVar.I.k(tL_messages_stickerSet, stickerSet.f26980id);
+                    uiVar.J.k(tL_messages_stickerSet, stickerSet.f26980id);
                     String str = stickerSet.short_name;
                     if (str != null) {
                         uiVar.N.put(str.toLowerCase(), tL_messages_stickerSet);
                     }
-                    uiVar.T.l(stickerSet.f26979id);
+                    uiVar.T.l(stickerSet.f26980id);
                     long q10 = ui.q(arrayListArr[i20]);
                     jArr[i20] = q10;
                     uiVar.J1(i20, uiVar.Y[i20], q10, arrayListArr[i20]);
@@ -160,7 +160,7 @@ public final class la implements Runnable {
                 p4.i1 i1Var = (p4.i1) obj3;
                 p4.d0 d0Var = (p4.d0) obj2;
                 p4.a1 a1Var = (p4.a1) obj;
-                ui.e eVar = ((p4.c1) obj5).f53092b;
+                ui.e eVar = ((p4.c1) obj5).f53090b;
                 if (eVar.D(vVar)) {
                     if (i1Var != null) {
                         if (!eVar.I(vVar, i1Var)) {
@@ -180,21 +180,21 @@ public final class la implements Runnable {
 
     public la(ui uiVar, boolean[] zArr, TLRPC.StickerSet stickerSet, int i7, int i10, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, Runnable runnable) {
         this.d = uiVar;
-        this.f23863e = zArr;
-        this.f23864f = stickerSet;
-        this.f23861b = i7;
-        this.f23862c = i10;
+        this.f23870e = zArr;
+        this.f23871f = stickerSet;
+        this.f23868b = i7;
+        this.f23869c = i10;
         this.h = tL_messages_stickerSet;
-        this.f23865n = runnable;
+        this.f23872n = runnable;
     }
 
     public la(p4.c1 c1Var, p4.v vVar, p4.i1 i1Var, p4.d0 d0Var, int i7, int i10, p4.a1 a1Var) {
         this.d = c1Var;
-        this.f23863e = vVar;
-        this.f23864f = i1Var;
+        this.f23870e = vVar;
+        this.f23871f = i1Var;
         this.h = d0Var;
-        this.f23861b = i7;
-        this.f23862c = i10;
-        this.f23865n = a1Var;
+        this.f23868b = i7;
+        this.f23869c = i10;
+        this.f23872n = a1Var;
     }
 }

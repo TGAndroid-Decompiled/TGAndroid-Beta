@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class ia0 implements org.telegram.ui.Components.mr0 {
-    public final pa0 f46628a;
+    public final pa0 f46627a;
 
     public ia0(pa0 pa0Var) {
-        this.f46628a = pa0Var;
+        this.f46627a = pa0Var;
     }
 
     @Override
     public final void V() {
         int m0;
         boolean z9;
-        pa0 pa0Var = this.f46628a;
+        pa0 pa0Var = this.f46627a;
         ja0 ja0Var = pa0Var.L0;
         if (ja0Var == null) {
             m0 = 0;
@@ -41,7 +41,7 @@ public final class ia0 implements org.telegram.ui.Components.mr0 {
 
     @Override
     public final org.telegram.ui.Components.pj0 f() {
-        return this.f46628a.Q;
+        return this.f46627a.Q;
     }
 
     @Override

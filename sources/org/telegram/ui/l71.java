@@ -13,35 +13,35 @@ import android.util.StateSet;
 import android.view.MotionEvent;
 import android.view.View;
 public final class l71 extends View {
-    public org.telegram.ui.Components.ly0 f47461a;
-    public org.telegram.ui.Components.ly0 f47462b;
-    public boolean f47463c;
+    public org.telegram.ui.Components.my0 f47460a;
+    public org.telegram.ui.Components.my0 f47461b;
+    public boolean f47462c;
     public final org.telegram.ui.Components.w5 d;
-    public final org.telegram.ui.Cells.y f47464e;
-    public final ColorMatrixColorFilter f47465f;
+    public final org.telegram.ui.Cells.y f47463e;
+    public final ColorMatrixColorFilter f47464f;
     public final Paint h;
-    public final Paint f47466n;
-    public final u71 f47467r;
+    public final Paint f47465n;
+    public final u71 f47466r;
 
     public l71(Context context, u71 u71Var) {
         super(context);
-        this.f47467r = u71Var;
+        this.f47466r = u71Var;
         this.d = new org.telegram.ui.Components.w5(this, 0L, 350L, org.telegram.ui.Components.xq.h);
         org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.k6.a0(285212671, 8, 8);
-        this.f47464e = a02;
+        this.f47463e = a02;
         this.h = new Paint(1);
-        this.f47466n = new Paint(1);
+        this.f47465n = new Paint(1);
         a02.setCallback(this);
         ColorMatrix colorMatrix = new ColorMatrix();
         org.telegram.messenger.g0.i(colorMatrix, 0.35f);
         org.telegram.messenger.g0.n2(colorMatrix, 0.9f);
-        this.f47465f = new ColorMatrixColorFilter(colorMatrix);
+        this.f47464f = new ColorMatrixColorFilter(colorMatrix);
     }
 
     public final CharSequence b() {
-        org.telegram.ui.Components.ly0 ly0Var = this.f47461a;
-        if (ly0Var != null) {
-            return ly0Var.j();
+        org.telegram.ui.Components.my0 my0Var = this.f47460a;
+        if (my0Var != null) {
+            return my0Var.j();
         }
         return null;
     }
@@ -49,14 +49,14 @@ public final class l71 extends View {
     public final void c(SpannableStringBuilder spannableStringBuilder, boolean z9) {
         boolean z10;
         if (spannableStringBuilder != null) {
-            this.f47462b = new org.telegram.ui.Components.ly0(spannableStringBuilder, 12.0f, null);
+            this.f47461b = new org.telegram.ui.Components.my0(spannableStringBuilder, 12.0f, null);
         }
         if (spannableStringBuilder != null) {
             z10 = true;
         } else {
             z10 = false;
         }
-        this.f47463c = z10;
+        this.f47462c = z10;
         if (!z9) {
             this.d.f(z10, true);
         }
@@ -64,7 +64,7 @@ public final class l71 extends View {
     }
 
     public final void d(CharSequence charSequence) {
-        this.f47461a = new org.telegram.ui.Components.ly0(charSequence, 14.0f, org.telegram.messenger.g0.o());
+        this.f47460a = new org.telegram.ui.Components.my0(charSequence, 14.0f, org.telegram.messenger.g0.o());
     }
 
     @Override
@@ -72,20 +72,20 @@ public final class l71 extends View {
         float height = getHeight() / 2.0f;
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        u71 u71Var = this.f47467r;
-        k71 k71Var = u71Var.f50332y0;
-        v61 v61Var = u71Var.f50266a;
+        u71 u71Var = this.f47466r;
+        k71 k71Var = u71Var.f50331y0;
+        v61 v61Var = u71Var.f50265a;
         org.telegram.ui.ActionBar.k6.t(this, k71Var, v61Var);
         Paint d = v61Var.d("paintChatActionBackground");
         ColorFilter colorFilter = d.getColorFilter();
-        d.setColorFilter(this.f47465f);
+        d.setColorFilter(this.f47464f);
         canvas.drawRoundRect(rectF, height, height, d);
         d.setColorFilter(colorFilter);
         if (u71Var.N1) {
-            float f10 = u71Var.f50308o1;
+            float f10 = u71Var.f50307o1;
             if (f10 > 0.0f) {
-                int o4 = i0.a.o(-16777216, (int) (f10 * 255.0f * u71Var.f50310p1));
-                Paint paint = this.f47466n;
+                int o4 = i0.a.o(-16777216, (int) (f10 * 255.0f * u71Var.f50309p1));
+                Paint paint = this.f47465n;
                 paint.setColor(o4);
                 canvas.drawRoundRect(rectF, height, height, paint);
             }
@@ -93,24 +93,24 @@ public final class l71 extends View {
         Paint paint2 = this.h;
         paint2.setColor(520093695);
         canvas.drawRoundRect(rectF, height, height, paint2);
-        float d2 = this.d.d(this.f47463c);
-        org.telegram.ui.Components.ly0 ly0Var = this.f47461a;
-        if (ly0Var != null) {
-            ly0Var.f35793p = getWidth() - org.telegram.messenger.g0.L(14.0f);
-            ly0Var.c((getWidth() - this.f47461a.k()) / 2.0f, ((org.telegram.messenger.g0.L(24.0f) * 0.0f) + (getHeight() / 2.0f)) - (org.telegram.messenger.g0.L(7.0f) * d2), 1.0f, -1, canvas);
+        float d2 = this.d.d(this.f47462c);
+        org.telegram.ui.Components.my0 my0Var = this.f47460a;
+        if (my0Var != null) {
+            my0Var.f36136p = getWidth() - org.telegram.messenger.g0.L(14.0f);
+            my0Var.c((getWidth() - this.f47460a.k()) / 2.0f, ((org.telegram.messenger.g0.L(24.0f) * 0.0f) + (getHeight() / 2.0f)) - (org.telegram.messenger.g0.L(7.0f) * d2), 1.0f, -1, canvas);
         }
-        if (this.f47462b != null) {
+        if (this.f47461b != null) {
             canvas.save();
             canvas.scale(d2, d2, getWidth() / 2.0f, (getHeight() / 2.0f) + org.telegram.messenger.g0.L(11.0f));
-            org.telegram.ui.Components.ly0 ly0Var2 = this.f47462b;
-            ly0Var2.f35793p = getWidth() - org.telegram.messenger.g0.L(14.0f);
+            org.telegram.ui.Components.my0 my0Var2 = this.f47461b;
+            my0Var2.f36136p = getWidth() - org.telegram.messenger.g0.L(14.0f);
             float L = 0.0f * org.telegram.messenger.g0.L(24.0f);
-            ly0Var2.c((getWidth() - this.f47462b.k()) / 2.0f, org.telegram.messenger.g0.L(11.0f) + L + (getHeight() / 2.0f), 1.0f, org.telegram.ui.ActionBar.k6.r1(0.75f, -1), canvas);
+            my0Var2.c((getWidth() - this.f47461b.k()) / 2.0f, org.telegram.messenger.g0.L(11.0f) + L + (getHeight() / 2.0f), 1.0f, org.telegram.ui.ActionBar.k6.r1(0.75f, -1), canvas);
             canvas.restore();
         }
         int width = getWidth();
         int height2 = getHeight();
-        org.telegram.ui.Cells.y yVar = this.f47464e;
+        org.telegram.ui.Cells.y yVar = this.f47463e;
         yVar.setBounds(0, 0, width, height2);
         yVar.draw(canvas);
     }
@@ -119,7 +119,7 @@ public final class l71 extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z9;
         int action = motionEvent.getAction();
-        org.telegram.ui.Cells.y yVar = this.f47464e;
+        org.telegram.ui.Cells.y yVar = this.f47463e;
         if (action == 0) {
             yVar.setHotspot(motionEvent.getX(), motionEvent.getY());
             yVar.setState(new int[]{16842910, 16842919});
@@ -138,7 +138,7 @@ public final class l71 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f47464e && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f47463e && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

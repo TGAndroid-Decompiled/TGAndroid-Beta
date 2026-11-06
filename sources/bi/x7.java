@@ -92,13 +92,13 @@ public final class x7 implements RequestDelegate {
                                 X.I(2131624225, org.telegram.messenger.hd.M0(2131744995, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G((int) j11, "StarsSubscriptionCompletedText", str4))).j();
                             }
                             LaunchActivity launchActivity = LaunchActivity.G1;
-                            if (launchActivity != null && (r80Var = launchActivity.f41290v0) != null) {
+                            if (launchActivity != null && (r80Var = launchActivity.f41289v0) != null) {
                                 r80Var.c(true);
                             }
                             eaVar2.S(true);
                             eaVar2.R();
                         } else if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                            if (qp.s1(eaVar2.f3807a).f24802j7) {
+                            if (qp.s1(eaVar2.f3807a).f24810j7) {
                                 v10Var2.a(0L, Boolean.FALSE);
                                 ea.c0(context2, f6Var2);
                                 return;

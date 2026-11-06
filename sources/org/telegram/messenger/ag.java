@@ -38,13 +38,13 @@ public final class ag implements RequestDelegate {
                         uiVar.getMessagesStorage().m1(messages_messages.users, messages_messages.chats, true, true);
                         ArrayList<TLRPC.Message> arrayList = messages_messages.messages;
                         if (!arrayList.isEmpty()) {
-                            uiVar.getMessagesStorage().f26688a.c(new a4(uiVar, arrayList, j3, 14));
+                            uiVar.getMessagesStorage().f26696a.c(new a4(uiVar, arrayList, j3, 14));
                             return;
                         }
                         return;
                     }
                 }
-                uiVar.getMessagesStorage().c2(j3, tL_channels_getMessages.f26990id, false, -1, 0, false, null);
+                uiVar.getMessagesStorage().c2(j3, tL_channels_getMessages.f26991id, false, -1, 0, false, null);
                 return;
             case 1:
                 ui uiVar2 = (ui) this.f21432b;

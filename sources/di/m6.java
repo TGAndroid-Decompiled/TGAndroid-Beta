@@ -34,7 +34,7 @@ public final class m6 {
     }
 
     public final boolean a() {
-        if ((this.f9356c || this.f9361j.i(this.f9355b)) && this.f9358f && this.h.size() < ((org.telegram.messenger.j0) qp.s1(this.f9354a).f24927x7.f24449u.f13555b).f23432c) {
+        if ((this.f9356c || this.f9361j.i(this.f9355b)) && this.f9358f && this.h.size() < ((org.telegram.messenger.j0) qp.s1(this.f9354a).f24935x7.f24457u.f13555b).f23439c) {
             return true;
         }
         return false;
@@ -79,7 +79,7 @@ public final class m6 {
             int i7 = this.f9354a;
             if (!z9) {
                 yr a02 = yr.a0(i7);
-                a02.f26688a.c(new org.telegram.messenger.a4(a02, j3, new l6(this), 23));
+                a02.f26696a.c(new org.telegram.messenger.a4(a02, j3, new l6(this), 23));
                 return;
             }
             TL_stories.TL_getAlbums tL_getAlbums = new TL_stories.TL_getAlbums();
@@ -107,7 +107,7 @@ public final class m6 {
     public final void f(boolean z9) {
         int i7 = this.f9354a;
         yr a02 = yr.a0(i7);
-        org.telegram.messenger.p5 p5Var = a02.f26688a;
+        org.telegram.messenger.p5 p5Var = a02.f26696a;
         long j3 = this.f9355b;
         p5Var.c(new org.telegram.messenger.a4(a02, j3, this.h, 26));
         if (z9) {

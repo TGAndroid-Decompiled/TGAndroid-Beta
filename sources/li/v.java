@@ -23,7 +23,7 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
@@ -31,7 +31,7 @@ import org.telegram.ui.Components.xq;
 public final class v extends na {
     public final int P1;
     public final c20 Q1;
-    public k41 R1;
+    public l41 R1;
     public final FrameLayout S1;
     public final FrameLayout T1;
     public final au U1;
@@ -46,7 +46,7 @@ public final class v extends na {
         super(context, null, true, false, f6Var);
         this.P1 = i7;
         this.Q1 = c20Var;
-        int i10 = k6.f27792a7;
+        int i10 = k6.f27793a7;
         w0(i10);
         P(i10);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -59,7 +59,7 @@ public final class v extends na {
         r6.V(textView, i11, f6Var);
         textView.setGravity(19);
         frameLayout.addView(textView, ha.d(-1, 56.0f, 51, 22.0f, 6.0f, 56.0f, 0.0f));
-        this.f36235z1 = org.telegram.messenger.g0.L(-8.0f);
+        this.f36274z1 = org.telegram.messenger.g0.L(-8.0f);
         ImageView e10 = org.telegram.messenger.camera.q.e(context, 2131231269);
         e10.setScaleType(ImageView.ScaleType.CENTER);
         r6.t(e10, i11, f6Var, PorterDuff.Mode.SRC_IN);
@@ -115,7 +115,7 @@ public final class v extends na {
         this.U1 = auVar;
         auVar.setPadding(org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(12.0f));
         int L = org.telegram.messenger.g0.L(12.0f);
-        int i12 = k6.f27848d6;
+        int i12 = k6.f27849d6;
         ShapeDrawable d02 = k6.d0(L, k6.w0(i12, f6Var));
         n6 N = r6.N(i12);
         auVar.setBackground(d02);
@@ -124,7 +124,7 @@ public final class v extends na {
         frameLayout2.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), 0);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.V1 = frameLayout3;
-        org.telegram.ui.Cells.k3 k3Var = new org.telegram.ui.Cells.k3(context, hd.M0(2131754058, null), true, false, ((org.telegram.messenger.j0) qp.s1(i7).f24927x7.R.f13555b).f23432c, f6Var);
+        org.telegram.ui.Cells.k3 k3Var = new org.telegram.ui.Cells.k3(context, hd.M0(2131754058, null), true, false, ((org.telegram.messenger.j0) qp.s1(i7).f24935x7.R.f13555b).f23439c, f6Var);
         this.W1 = k3Var;
         org.telegram.ui.Cells.i3 i3Var = k3Var.d;
         i3Var.setImeOptions(6);
@@ -183,28 +183,28 @@ public final class v extends na {
                 }
             }
         });
-        this.f28615b.addView(h, ha.d(-1, 48.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
-        ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).leftMargin += this.f28645t0;
-        ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).rightMargin += this.f28645t0;
+        this.f28616b.addView(h, ha.d(-1, 48.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
+        ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).leftMargin += this.f28646t0;
+        ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).rightMargin += this.f28646t0;
         v4.k kVar = new v4.k();
-        kVar.f56979m = false;
+        kVar.f56978m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36222k1.setItemAnimator(kVar);
-        pj0 pj0Var = this.f36222k1;
-        int i13 = this.f28645t0;
+        this.f36261k1.setItemAnimator(kVar);
+        pj0 pj0Var = this.f36261k1;
+        int i13 = this.f28646t0;
         pj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(72.0f));
-        this.f36222k1.setClipToPadding(false);
+        this.f36261k1.setClipToPadding(false);
         this.R1.O(false);
         d1();
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(pj0Var, getContext(), this.P1, 0, true, new hi.u1(this, 17), this.I0);
-        this.R1 = k41Var;
-        return k41Var;
+        l41 l41Var = new l41(pj0Var, getContext(), this.P1, 0, true, new hi.u1(this, 17), this.I0);
+        this.R1 = l41Var;
+        return l41Var;
     }
 
     @Override

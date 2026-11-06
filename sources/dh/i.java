@@ -37,16 +37,16 @@ public final class i {
         ca.i iVar = this.f8769b;
         boolean z10 = iVar.f6015b;
         je0 je0Var = (je0) iVar.f6016c;
-        int themedColor = je0Var.getThemedColor(k6.f27848d6);
+        int themedColor = je0Var.getThemedColor(k6.f27849d6);
         RectF rectF = je0Var.U;
         aVar.a(themedColor);
         aVar.b(iz.f());
-        SparseArray sparseArray = je0Var.f48013a;
+        SparseArray sparseArray = je0Var.f48012a;
         int size = sparseArray.size();
         for (int i7 = 0; i7 < size; i7++) {
-            f2 f2Var = ((lb1) sparseArray.valueAt(i7)).f47505a;
+            f2 f2Var = ((lb1) sparseArray.valueAt(i7)).f47504a;
             View view = f2Var.fragmentView;
-            if (view != null && jh.k.c(view, je0Var.f48014b, rectF) && rectF.right > 0.0f && rectF.left < je0Var.fragmentView.getMeasuredWidth() && (f2Var instanceof ie0)) {
+            if (view != null && jh.k.c(view, je0Var.f48013b, rectF) && rectF.right > 0.0f && rectF.left < je0Var.fragmentView.getMeasuredWidth() && (f2Var instanceof ie0)) {
                 ie0 ie0Var = (ie0) f2Var;
                 if (z10) {
                     B2 = ie0Var.k();
@@ -76,16 +76,16 @@ public final class i {
         if (z9) {
             RecordingCanvas beginRecording = this.f8768a.beginRecording();
             View view2 = je0Var.fragmentView;
-            SparseArray sparseArray2 = je0Var.f48013a;
+            SparseArray sparseArray2 = je0Var.f48012a;
             RectF rectF2 = je0Var.U;
             int measuredWidth = view2.getMeasuredWidth();
             int measuredHeight = je0Var.fragmentView.getMeasuredHeight();
-            beginRecording.drawColor(je0Var.getThemedColor(k6.f27848d6));
+            beginRecording.drawColor(je0Var.getThemedColor(k6.f27849d6));
             int size2 = sparseArray2.size();
             for (int i10 = 0; i10 < size2; i10++) {
-                f2 f2Var2 = ((lb1) sparseArray2.valueAt(i10)).f47505a;
+                f2 f2Var2 = ((lb1) sparseArray2.valueAt(i10)).f47504a;
                 View view3 = f2Var2.fragmentView;
-                if (view3 != null && jh.k.c(view3, je0Var.f48014b, rectF2) && rectF2.right > 0.0f && rectF2.left < je0Var.fragmentView.getMeasuredWidth() && (f2Var2 instanceof ie0)) {
+                if (view3 != null && jh.k.c(view3, je0Var.f48013b, rectF2) && rectF2.right > 0.0f && rectF2.left < je0Var.fragmentView.getMeasuredWidth() && (f2Var2 instanceof ie0)) {
                     ie0 ie0Var2 = (ie0) f2Var2;
                     if (z10) {
                         B = ie0Var2.k();

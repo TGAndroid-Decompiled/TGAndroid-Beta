@@ -105,8 +105,8 @@ public final class b3 extends FrameLayout {
         a3Var.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
         CheckBoxBase checkBoxBase = a3Var.getCheckBoxBase();
         int i7 = org.telegram.ui.ActionBar.k6.G6;
-        if (checkBoxBase.f31262u != i7) {
-            checkBoxBase.f31262u = i7;
+        if (checkBoxBase.f31263u != i7) {
+            checkBoxBase.f31263u = i7;
             checkBoxBase.b();
         }
         FrameLayout frameLayout = new FrameLayout(context);
@@ -304,7 +304,7 @@ public final class b3 extends FrameLayout {
                 if (getMeasuredWidth() > 0) {
                     i10 = getMeasuredWidth();
                 } else {
-                    i10 = org.telegram.messenger.g0.f22537q.x;
+                    i10 = org.telegram.messenger.g0.f22544q.x;
                 }
                 StaticLayout staticLayout = new StaticLayout(N0, this.f11662s, i10, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.F = staticLayout;
@@ -391,7 +391,7 @@ public final class b3 extends FrameLayout {
             if (getMeasuredWidth() > 0) {
                 i7 = getMeasuredWidth();
             } else {
-                i7 = org.telegram.messenger.g0.f22537q.x;
+                i7 = org.telegram.messenger.g0.f22544q.x;
             }
             StaticLayout staticLayout = new StaticLayout(str, this.f11661r, i7, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.f11665y = staticLayout;
@@ -462,7 +462,7 @@ public final class b3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             a3 a3Var = this.J;
-            if (a3Var != null && a3Var.f40050a.f31258q) {
+            if (a3Var != null && a3Var.f40058a.f31259q) {
                 z9 = true;
             } else {
                 z9 = false;

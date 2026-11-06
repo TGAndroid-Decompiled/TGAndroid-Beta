@@ -4,30 +4,30 @@ import android.view.KeyEvent;
 import android.widget.EditText;
 import android.widget.TextView;
 public final class s8 implements TextView.OnEditorActionListener {
-    public final int f43140a;
-    public final Object f43141b;
+    public final int f43139a;
+    public final Object f43140b;
 
     public s8(Object obj, int i7) {
-        this.f43140a = i7;
-        this.f43141b = obj;
+        this.f43139a = i7;
+        this.f43140b = obj;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
         boolean z9;
-        switch (this.f43140a) {
+        switch (this.f43139a) {
             case 0:
-                t8 t8Var = (t8) this.f43141b;
+                t8 t8Var = (t8) this.f43140b;
                 if (i7 != 3) {
                     t8Var.getClass();
                     return false;
                 }
-                org.telegram.messenger.g0.v1(t8Var.f43173b);
+                org.telegram.messenger.g0.v1(t8Var.f43172b);
                 return true;
             case 1:
-                n9 n9Var = (n9) this.f43141b;
+                n9 n9Var = (n9) this.f43140b;
                 if (i7 == 6) {
-                    fi.d dVar = n9Var.f42848d0;
+                    fi.d dVar = n9Var.f42847d0;
                     if (dVar.f11752c0) {
                         dVar.performClick();
                         return true;
@@ -37,8 +37,8 @@ public final class s8 implements TextView.OnEditorActionListener {
                 }
                 return false;
             default:
-                oa oaVar = (oa) this.f43141b;
-                EditText editText = oaVar.f42942a;
+                oa oaVar = (oa) this.f43140b;
+                EditText editText = oaVar.f42941a;
                 if (keyEvent != null && (keyEvent.getKeyCode() == 66 || keyEvent.getKeyCode() == 160)) {
                     z9 = true;
                 } else {
@@ -52,7 +52,7 @@ public final class s8 implements TextView.OnEditorActionListener {
                     if (!lowerCase.isEmpty() && oaVar.b()) {
                         oaVar.setError(false);
                         oaVar.a();
-                        Runnable runnable = oaVar.f42948r;
+                        Runnable runnable = oaVar.f42947r;
                         if (runnable != null) {
                             editText.post(runnable);
                         }
@@ -78,7 +78,7 @@ public final class s8 implements TextView.OnEditorActionListener {
                             editText.setSelection(str.length());
                             oaVar.setError(false);
                             oaVar.a();
-                            Runnable runnable2 = oaVar.f42948r;
+                            Runnable runnable2 = oaVar.f42947r;
                             if (runnable2 != null) {
                                 editText.post(runnable2);
                             }

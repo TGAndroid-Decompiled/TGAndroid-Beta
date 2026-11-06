@@ -6,49 +6,49 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 public final class ev extends v4.s0 {
-    public boolean f45416a;
-    public final vw f45417b;
-    public final pw f45418c;
+    public boolean f45415a;
+    public final vw f45416b;
+    public final pw f45417c;
     public final ww d;
 
     public ev(ww wwVar, vw vwVar, pw pwVar) {
         this.d = wwVar;
-        this.f45417b = vwVar;
-        this.f45418c = pwVar;
+        this.f45416b = vwVar;
+        this.f45417c = pwVar;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         ww wwVar = this.d;
         if (i7 == 1) {
-            this.f45416a = true;
-            wwVar.f51554e3 = true;
-            a8.wa waVar = wwVar.f51551e0[0].f50840b;
+            this.f45415a = true;
+            wwVar.f51552e3 = true;
+            a8.wa waVar = wwVar.f51549e0[0].f50839b;
             ValueAnimator valueAnimator = (ValueAnimator) waVar.f701c;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
                 ((ValueAnimator) waVar.f701c).cancel();
                 waVar.f701c = null;
             }
-            if (wwVar.X.f37447r.getText().length() == 0 && wwVar.X.f37447r.hasFocus()) {
-                org.telegram.messenger.g0.v1(wwVar.X.f37447r);
-                wwVar.X.f37447r.clearFocus();
+            if (wwVar.X.f37441r.getText().length() == 0 && wwVar.X.f37441r.hasFocus()) {
+                org.telegram.messenger.g0.v1(wwVar.X.f37441r);
+                wwVar.X.f37441r.clearFocus();
             }
         } else {
-            wwVar.f51554e3 = false;
+            wwVar.f51552e3 = false;
         }
         if (i7 == 0) {
-            this.f45416a = false;
-            wwVar.f51553e2 = false;
-            boolean z9 = wwVar.f51536b1;
-            vw vwVar = this.f45417b;
+            this.f45415a = false;
+            wwVar.f51551e2 = false;
+            boolean z9 = wwVar.f51534b1;
+            vw vwVar = this.f45416b;
             if (z9) {
-                wwVar.f51536b1 = false;
-                if (wwVar.f51547d1) {
-                    sw swVar = vwVar.f50839a;
+                wwVar.f51534b1 = false;
+                if (wwVar.f51545d1) {
+                    sw swVar = vwVar.f50838a;
                     int i10 = sw.B3;
                     swVar.D1();
-                    wwVar.f51547d1 = false;
+                    wwVar.f51545d1 = false;
                 }
                 vwVar.d.f();
             }
@@ -67,24 +67,24 @@ public final class ev extends v4.s0 {
         int i12;
         boolean z9;
         Object[] objArr;
-        this.f45418c.V();
-        vw vwVar = this.f45417b;
-        av avVar = vwVar.f50849y;
+        this.f45417c.V();
+        vw vwVar = this.f45416b;
+        av avVar = vwVar.f50848y;
         int i13 = -i10;
-        ArrayList arrayList = avVar.f33324x;
-        ArrayList arrayList2 = avVar.f33316o;
+        ArrayList arrayList = avVar.f33343x;
+        ArrayList arrayList2 = avVar.f33335o;
         boolean z10 = false;
         if (!arrayList2.isEmpty()) {
             int size = arrayList2.size();
             for (int i14 = 0; i14 < size; i14++) {
-                View view = ((v4.d1) arrayList2.get(i14)).f56952a;
+                View view = ((v4.d1) arrayList2.get(i14)).f56951a;
                 view.setTranslationY(view.getTranslationY() + i13);
             }
         }
         if (!arrayList.isEmpty()) {
             int size2 = arrayList.size();
             for (int i15 = 0; i15 < size2; i15++) {
-                View view2 = ((v4.d1) arrayList.get(i15)).f56952a;
+                View view2 = ((v4.d1) arrayList.get(i15)).f56951a;
                 view2.setTranslationY(view2.getTranslationY() + i13);
             }
         }
@@ -108,11 +108,11 @@ public final class ev extends v4.s0 {
         if (view3 != null) {
             view3.invalidate();
         }
-        if (wwVar.R0 != 10 && this.f45416a && recyclerView.getChildCount() > 0 && i17 != -1) {
+        if (wwVar.R0 != 10 && this.f45415a && recyclerView.getChildCount() > 0 && i17 != -1) {
             v4.d1 K = recyclerView.K(i17);
             if (!wwVar.l4() || (K != null && K.b() >= 0)) {
                 if (K != null) {
-                    i12 = K.f56952a.getTop();
+                    i12 = K.f56951a.getTop();
                 } else {
                     i12 = 0;
                 }
@@ -127,12 +127,12 @@ public final class ev extends v4.s0 {
                     }
                     if (Math.abs(i21) <= 1) {
                         objArr = null;
-                        if (objArr != null && wwVar.f51531a2 && (z9 || wwVar.f51554e3)) {
+                        if (objArr != null && wwVar.f51529a2 && (z9 || wwVar.f51552e3)) {
                             wwVar.o4(z9);
                         }
                         wwVar.Y1 = i17;
                         wwVar.Z1 = i12;
-                        wwVar.f51531a2 = true;
+                        wwVar.f51529a2 = true;
                     }
                 } else if (i17 > i19) {
                     z9 = true;
@@ -145,15 +145,15 @@ public final class ev extends v4.s0 {
                 }
                 wwVar.Y1 = i17;
                 wwVar.Z1 = i12;
-                wwVar.f51531a2 = true;
+                wwVar.f51529a2 = true;
             }
         }
-        if (!wwVar.K && recyclerView == wwVar.f51551e0[0].f50839a && !wwVar.f51579j2) {
+        if (!wwVar.K && recyclerView == wwVar.f51549e0[0].f50838a && !wwVar.f51577j2) {
             kVar = ((org.telegram.ui.ActionBar.f2) wwVar).actionBar;
             if (kVar != null) {
                 kVar2 = ((org.telegram.ui.ActionBar.f2) wwVar).actionBar;
-                if (!kVar2.v() && !wwVar.f51553e2 && !wwVar.F3.c()) {
-                    if (i10 > 0 && wwVar.l4() && wwVar.f51551e0[0].f50846s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
+                if (!kVar2.v() && !wwVar.f51551e2 && !wwVar.F3.c()) {
+                    if (i10 > 0 && wwVar.l4() && wwVar.f51549e0[0].f50845s == 0 && (childAt = recyclerView.getChildAt(0)) != null && recyclerView.T(childAt).b() == 0) {
                         int top = (childAt.getTop() - recyclerView.getPaddingTop()) + childAt.getMeasuredHeight();
                         if (top + i10 > 0) {
                             if (top < 0) {
@@ -172,7 +172,7 @@ public final class ev extends v4.s0 {
             }
         }
         sv svVar = wwVar.F3;
-        if (svVar != null && svVar.c() && (swVar = vwVar.f50839a) != null) {
+        if (svVar != null && svVar.c() && (swVar = vwVar.f50838a) != null) {
             swVar.invalidate();
         }
         pv pvVar = wwVar.E0;
@@ -180,14 +180,14 @@ public final class ev extends v4.s0 {
             wwVar.E0.getPremiumHint().f(true);
         }
         ?? l42 = wwVar.l4();
-        View childAt2 = vwVar.f50839a.getChildAt(l42 == true ? 1 : 0);
+        View childAt2 = vwVar.f50838a.getChildAt(l42 == true ? 1 : 0);
         if (childAt2 != null) {
             i11 = childAt2.getTop();
         } else {
             i11 = 0;
         }
-        wwVar.f51550e.a((i17 > l42 || (i11 - wwVar.N) + org.telegram.messenger.g0.L(5.0f) < vwVar.f50839a.getPaddingTop()) ? true : true, true);
-        if (i10 != 0 && (gVar = wwVar.f51580j4) != null && Build.VERSION.SDK_INT >= 31) {
+        wwVar.f51548e.a((i17 > l42 || (i11 - wwVar.N) + org.telegram.messenger.g0.L(5.0f) < vwVar.f50838a.getPaddingTop()) ? true : true, true);
+        if (i10 != 0 && (gVar = wwVar.f51578j4) != null && Build.VERSION.SDK_INT >= 31) {
             gVar.f(i7, i10);
         }
     }

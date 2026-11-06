@@ -66,7 +66,7 @@ public final class u1 extends LinearLayout implements a6 {
         } else {
             if (i7 == 5) {
                 imageView.setImageResource(2131231614);
-                s1 c10 = t1.f(p10.f24459s0).c(j3);
+                s1 c10 = t1.f(p10.f24467s0).c(j3);
                 String str2 = c10 == null ? str : c10.f17530b;
                 textView.setText(hd.M0(2131752667, null));
                 mdVar.setMaxWidth(org.telegram.messenger.g0.L(208.0f));

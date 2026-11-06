@@ -1,7 +1,7 @@
 package i5;
 
 import a8.p0;
-import c8.jb;
+import c8.kb;
 import java.nio.ByteBuffer;
 import java.util.Date;
 import y7.i6;
@@ -41,13 +41,13 @@ public final class k extends com.googlecode.mp4parser.c {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         if (e() == 1) {
-            this.f15303e = jb.b(h5.b.j(byteBuffer));
-            this.f15304f = jb.b(h5.b.j(byteBuffer));
+            this.f15303e = kb.b(h5.b.j(byteBuffer));
+            this.f15304f = kb.b(h5.b.j(byteBuffer));
             this.h = h5.b.i(byteBuffer);
             this.f15305n = h5.b.j(byteBuffer);
         } else {
-            this.f15303e = jb.b(h5.b.i(byteBuffer));
-            this.f15304f = jb.b(h5.b.i(byteBuffer));
+            this.f15303e = kb.b(h5.b.i(byteBuffer));
+            this.f15304f = kb.b(h5.b.i(byteBuffer));
             this.h = h5.b.i(byteBuffer);
             this.f15305n = h5.b.i(byteBuffer);
         }
@@ -64,13 +64,13 @@ public final class k extends com.googlecode.mp4parser.c {
     public final void getContent(ByteBuffer byteBuffer) {
         i(byteBuffer);
         if (e() == 1) {
-            byteBuffer.putLong(jb.a(this.f15303e));
-            byteBuffer.putLong(jb.a(this.f15304f));
+            byteBuffer.putLong(kb.a(this.f15303e));
+            byteBuffer.putLong(kb.a(this.f15304f));
             byteBuffer.putInt((int) this.h);
             byteBuffer.putLong(this.f15305n);
         } else {
-            byteBuffer.putInt((int) jb.a(this.f15303e));
-            byteBuffer.putInt((int) jb.a(this.f15304f));
+            byteBuffer.putInt((int) kb.a(this.f15303e));
+            byteBuffer.putInt((int) kb.a(this.f15304f));
             byteBuffer.putInt((int) this.h);
             byteBuffer.putInt((int) this.f15305n);
         }

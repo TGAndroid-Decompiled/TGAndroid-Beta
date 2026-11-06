@@ -3,24 +3,24 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.c20;
 import org.telegram.tgnet.TLRPC;
 public final class r9 implements c20 {
-    public final int f43112a;
-    public final x9 f43113b;
+    public final int f43111a;
+    public final x9 f43112b;
 
     public r9(x9 x9Var, int i7) {
-        this.f43112a = i7;
-        this.f43113b = x9Var;
+        this.f43111a = i7;
+        this.f43112b = x9Var;
     }
 
     @Override
     public final void a(Object obj) {
         ah.i iVar;
-        switch (this.f43112a) {
+        switch (this.f43111a) {
             case 0:
-                x9.e0(this.f43113b, (String) obj);
+                x9.e0(this.f43112b, (String) obj);
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) obj;
-                x9 x9Var = this.f43113b;
+                x9 x9Var = this.f43112b;
                 if (!x9Var.isFinished && (iVar = x9Var.N) != null) {
                     if (user == null) {
                         org.telegram.messenger.g0.h3(new s9(x9Var, 1));

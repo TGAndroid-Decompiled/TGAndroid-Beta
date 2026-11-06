@@ -83,7 +83,7 @@ public final class a0 implements t9 {
                 return 0;
             default:
                 ck0 ck0Var = (ck0) this.f18408c;
-                return (ck0Var.S - ck0Var.f32601j0) + ((org.telegram.utils.twidget.k0) this.f18407b).f52837b;
+                return (ck0Var.S - ck0Var.f32588j0) + ((org.telegram.utils.twidget.k0) this.f18407b).f52835b;
         }
     }
 
@@ -93,7 +93,7 @@ public final class a0 implements t9 {
             case 0:
                 return 0;
             default:
-                return ((ck0) this.f18408c).T + ((org.telegram.utils.twidget.k0) this.f18407b).f52838c;
+                return ((ck0) this.f18408c).T + ((org.telegram.utils.twidget.k0) this.f18407b).f52836c;
         }
     }
 

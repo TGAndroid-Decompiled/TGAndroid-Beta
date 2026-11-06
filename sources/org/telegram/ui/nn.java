@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class nn extends nq0 {
-    public final pn f48092a;
+    public final pn f48091a;
 
     public nn(pn pnVar) {
-        this.f48092a = pnVar;
+        this.f48091a = pnVar;
     }
 
     @Override
@@ -15,12 +15,12 @@ public final class nn extends nq0 {
 
     @Override
     public final void G() {
-        this.f48092a.f48864e.getImageReceiver().O0(true, true);
+        this.f48091a.f48863e.getImageReceiver().O0(true, true);
     }
 
     @Override
     public final boolean N() {
-        pn pnVar = this.f48092a;
+        pn pnVar = this.f48091a;
         long j3 = pnVar.B0;
         if (j3 == 0) {
             return true;
@@ -28,14 +28,14 @@ public final class nn extends nq0 {
         TLRPC.TL_photos_updateProfilePhoto tL_photos_updateProfilePhoto = new TLRPC.TL_photos_updateProfilePhoto();
         tL_photos_updateProfilePhoto.bot = pnVar.getMessagesController().o1(j3);
         tL_photos_updateProfilePhoto.flags |= 2;
-        tL_photos_updateProfilePhoto.f27086id = new TLRPC.TL_inputPhotoEmpty();
+        tL_photos_updateProfilePhoto.f27087id = new TLRPC.TL_inputPhotoEmpty();
         pnVar.getConnectionsManager().sendRequest(tL_photos_updateProfilePhoto, new l(this, 2));
         return false;
     }
 
     @Override
     public final void f(String str, String str2, boolean z9) {
-        this.f48092a.f48881s.p(str, str2, z9);
+        this.f48091a.f48880s.p(str, str2, z9);
     }
 
     @Override

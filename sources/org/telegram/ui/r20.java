@@ -14,11 +14,11 @@ public final class r20 extends fr0 {
     @Override
     public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
         c40 c40Var = this.T;
-        b20 b20Var = c40Var.f44577i1;
-        c20 c20Var = c40Var.f44630t4;
+        b20 b20Var = c40Var.f44576i1;
+        c20 c20Var = c40Var.f44629t4;
         if (f10 > 0.0f) {
-            float x10 = c40Var.f28615b.getX() + c20Var.getX();
-            float y10 = c40Var.f28615b.getY() + c20Var.getY();
+            float x10 = c40Var.f28616b.getX() + c20Var.getX();
+            float y10 = c40Var.f28616b.getY() + c20Var.getY();
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(x10, y10, b20Var.getMeasuredWidth() + x10, b20Var.getMeasuredHeight() + y10);
             canvas.saveLayerAlpha(rectF, (int) (f10 * 255.0f), 31);
@@ -30,7 +30,7 @@ public final class r20 extends fr0 {
 
     @Override
     public final void e() {
-        b20 b20Var = this.T.f44577i1;
+        b20 b20Var = this.T.f44576i1;
         super.e();
         for (int i7 = 0; i7 < b20Var.getChildCount(); i7++) {
             b20Var.getChildAt(i7).invalidate();

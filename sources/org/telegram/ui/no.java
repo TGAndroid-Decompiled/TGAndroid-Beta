@@ -1,21 +1,21 @@
 package org.telegram.ui;
 public final class no implements Runnable {
-    public final int f48097a;
-    public final oo f48098b;
+    public final int f48096a;
+    public final oo f48097b;
 
     public no(oo ooVar, int i7) {
-        this.f48097a = i7;
-        this.f48098b = ooVar;
+        this.f48096a = i7;
+        this.f48097b = ooVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f48097a) {
+        switch (this.f48096a) {
             case 0:
-                this.f48098b.f48463y.d.P = false;
+                this.f48097b.f48462y.d.P = false;
                 return;
             default:
-                this.f48098b.f48463y.d.P = false;
+                this.f48097b.f48462y.d.P = false;
                 return;
         }
     }

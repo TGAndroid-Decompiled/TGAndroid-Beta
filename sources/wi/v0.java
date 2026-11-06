@@ -13,45 +13,45 @@ import android.view.Surface;
 import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 public final class v0 {
-    public static final float[] f58129n = {-1.0f, -1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-    public final int f58130a;
+    public static final float[] f58128n = {-1.0f, -1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 1.0f, 0.0f, -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
+    public final int f58129a;
     public final FloatBuffer d;
-    public final HandlerThread f58133e;
-    public int f58136i;
-    public int f58137j;
-    public SurfaceTexture f58138k;
-    public Surface f58139l;
-    public boolean f58140m;
-    public final Object f58131b = new Object();
-    public final float[] f58132c = new float[16];
-    public EGLDisplay f58134f = EGL14.EGL_NO_DISPLAY;
-    public EGLContext f58135g = EGL14.EGL_NO_CONTEXT;
+    public final HandlerThread f58132e;
+    public int f58135i;
+    public int f58136j;
+    public SurfaceTexture f58137k;
+    public Surface f58138l;
+    public boolean f58139m;
+    public final Object f58130b = new Object();
+    public final float[] f58131c = new float[16];
+    public EGLDisplay f58133f = EGL14.EGL_NO_DISPLAY;
+    public EGLContext f58134g = EGL14.EGL_NO_CONTEXT;
     public EGLSurface h = EGL14.EGL_NO_SURFACE;
 
     public v0(Surface surface, int i7) {
-        this.f58130a = i7;
+        this.f58129a = i7;
         FloatBuffer g10 = org.telegram.messenger.camera.q.g(ByteBuffer.allocateDirect(64));
         this.d = g10;
-        g10.put(f58129n).position(0);
+        g10.put(f58128n).position(0);
         HandlerThread handlerThread = new HandlerThread("RoundVideoTranscoderFrames");
-        this.f58133e = handlerThread;
+        this.f58132e = handlerThread;
         handlerThread.start();
         try {
             c(surface);
-            this.f58136i = b();
+            this.f58135i = b();
             int[] iArr = new int[1];
             GLES20.glGenTextures(1, iArr, 0);
             int i10 = iArr[0];
-            this.f58137j = i10;
+            this.f58136j = i10;
             GLES20.glBindTexture(36197, i10);
             GLES20.glTexParameteri(36197, 10241, 9729);
             GLES20.glTexParameteri(36197, 10240, 9729);
             GLES20.glTexParameteri(36197, 10242, 33071);
             GLES20.glTexParameteri(36197, 10243, 33071);
-            SurfaceTexture surfaceTexture = new SurfaceTexture(this.f58137j);
-            this.f58138k = surfaceTexture;
+            SurfaceTexture surfaceTexture = new SurfaceTexture(this.f58136j);
+            this.f58137k = surfaceTexture;
             surfaceTexture.setOnFrameAvailableListener(new r(this, 2), new Handler(handlerThread.getLooper()));
-            this.f58139l = new Surface(this.f58138k);
+            this.f58138l = new Surface(this.f58137k);
         } catch (RuntimeException e10) {
             d();
             throw e10;
@@ -93,19 +93,19 @@ public final class v0 {
 
     public final void c(Surface surface) {
         EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-        this.f58134f = eglGetDisplay;
+        this.f58133f = eglGetDisplay;
         int[] iArr = new int[2];
         if (eglGetDisplay != EGL14.EGL_NO_DISPLAY && EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
             EGLConfig[] eGLConfigArr = new EGLConfig[1];
             int[] iArr2 = new int[1];
-            if (EGL14.eglChooseConfig(this.f58134f, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
-                EGLContext eglCreateContext = EGL14.eglCreateContext(this.f58134f, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
-                this.f58135g = eglCreateContext;
+            if (EGL14.eglChooseConfig(this.f58133f, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, iArr2, 0) && iArr2[0] != 0) {
+                EGLContext eglCreateContext = EGL14.eglCreateContext(this.f58133f, eGLConfigArr[0], EGL14.EGL_NO_CONTEXT, new int[]{12440, 2, 12344}, 0);
+                this.f58134g = eglCreateContext;
                 if (eglCreateContext != EGL14.EGL_NO_CONTEXT) {
-                    EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.f58134f, eGLConfigArr[0], surface, new int[]{12344}, 0);
+                    EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(this.f58133f, eGLConfigArr[0], surface, new int[]{12344}, 0);
                     this.h = eglCreateWindowSurface;
                     if (eglCreateWindowSurface != EGL14.EGL_NO_SURFACE) {
-                        if (EGL14.eglMakeCurrent(this.f58134f, eglCreateWindowSurface, eglCreateWindowSurface, this.f58135g)) {
+                        if (EGL14.eglMakeCurrent(this.f58133f, eglCreateWindowSurface, eglCreateWindowSurface, this.f58134g)) {
                             return;
                         }
                         throw new IllegalStateException("Unable to make EGL context current");
@@ -120,46 +120,46 @@ public final class v0 {
     }
 
     public final void d() {
-        EGLDisplay eGLDisplay = this.f58134f;
+        EGLDisplay eGLDisplay = this.f58133f;
         if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface = this.h;
-            EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f58135g);
-            int i7 = this.f58136i;
+            EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.f58134g);
+            int i7 = this.f58135i;
             if (i7 != 0) {
                 GLES20.glDeleteProgram(i7);
             }
-            int i10 = this.f58137j;
+            int i10 = this.f58136j;
             if (i10 != 0) {
                 GLES20.glDeleteTextures(1, new int[]{i10}, 0);
             }
-            EGLDisplay eGLDisplay2 = this.f58134f;
+            EGLDisplay eGLDisplay2 = this.f58133f;
             EGLSurface eGLSurface2 = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL14.EGL_NO_CONTEXT);
             EGLSurface eGLSurface3 = this.h;
             if (eGLSurface3 != EGL14.EGL_NO_SURFACE) {
-                EGL14.eglDestroySurface(this.f58134f, eGLSurface3);
+                EGL14.eglDestroySurface(this.f58133f, eGLSurface3);
             }
-            EGLContext eGLContext = this.f58135g;
+            EGLContext eGLContext = this.f58134g;
             if (eGLContext != EGL14.EGL_NO_CONTEXT) {
-                EGL14.eglDestroyContext(this.f58134f, eGLContext);
+                EGL14.eglDestroyContext(this.f58133f, eGLContext);
             }
             EGL14.eglReleaseThread();
         }
-        this.f58134f = EGL14.EGL_NO_DISPLAY;
-        this.f58135g = EGL14.EGL_NO_CONTEXT;
+        this.f58133f = EGL14.EGL_NO_DISPLAY;
+        this.f58134g = EGL14.EGL_NO_CONTEXT;
         this.h = EGL14.EGL_NO_SURFACE;
-        this.f58136i = 0;
-        this.f58137j = 0;
-        Surface surface = this.f58139l;
+        this.f58135i = 0;
+        this.f58136j = 0;
+        Surface surface = this.f58138l;
         if (surface != null) {
             surface.release();
-            this.f58139l = null;
+            this.f58138l = null;
         }
-        SurfaceTexture surfaceTexture = this.f58138k;
+        SurfaceTexture surfaceTexture = this.f58137k;
         if (surfaceTexture != null) {
             surfaceTexture.release();
-            this.f58138k = null;
+            this.f58137k = null;
         }
-        this.f58133e.quitSafely();
+        this.f58132e.quitSafely();
     }
 }

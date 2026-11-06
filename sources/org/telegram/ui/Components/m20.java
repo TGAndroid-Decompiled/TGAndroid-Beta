@@ -18,7 +18,7 @@ import org.telegram.tgnet.TLRPC;
 public final class m20 extends na {
     public final int P1 = 0;
     public final LinearLayout Q1;
-    public k41 R1;
+    public l41 R1;
 
     public m20(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.User user, TLObject tLObject, org.telegram.ui.bp bpVar) {
         super(activity, null, false, false, 1, f6Var);
@@ -33,7 +33,7 @@ public final class m20 extends na {
         org.telegram.ui.wv0 d13 = d1(activity, org.telegram.messenger.g0.L(60.0f), tLObject);
         ImageView imageView = new ImageView(activity);
         imageView.setImageResource(2131232056);
-        org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.f28258z6, f6Var, PorterDuff.Mode.SRC_ATOP);
+        org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.f28259z6, f6Var, PorterDuff.Mode.SRC_ATOP);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         LinearLayout linearLayout2 = new LinearLayout(activity);
         linearLayout2.setOrientation(0);
@@ -72,8 +72,8 @@ public final class m20 extends na {
         dVar2.i(org.telegram.messenger.hd.a0(null, null, 2131749370, u10), false, true);
         dVar2.setOnClickListener(new h0(this, 23));
         linearLayout.addView(dVar2, c8.ha.k(14.0f, 0.0f, 14.0f, 14.0f, -1, 48));
-        pj0 pj0Var = this.f36222k1;
-        int i10 = this.f28645t0;
+        pj0 pj0Var = this.f36261k1;
+        int i10 = this.f28646t0;
         pj0Var.setPadding(i10, 0, i10, 0);
         this.R1.O(false);
     }
@@ -92,16 +92,16 @@ public final class m20 extends na {
     public final oj0 L0(pj0 pj0Var) {
         switch (this.P1) {
             case 0:
-                k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new d(this, 14), this.I0);
-                this.R1 = k41Var;
-                k41Var.f35132r = false;
-                return k41Var;
+                l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new d(this, 14), this.I0);
+                this.R1 = l41Var;
+                l41Var.f35510r = false;
+                return l41Var;
             case 1:
-                k41 k41Var2 = new k41(pj0Var, getContext(), this.f28612a, 0, true, new org.telegram.ui.a5(this, 22), this.I0);
-                this.R1 = k41Var2;
-                return k41Var2;
+                l41 l41Var2 = new l41(pj0Var, getContext(), this.f28613a, 0, true, new org.telegram.ui.a5(this, 22), this.I0);
+                this.R1 = l41Var2;
+                return l41Var2;
             default:
-                bi.o0 o0Var = new bi.o0(pj0Var, getContext(), this.f28612a, 0, true, new ai.e(this, 3), this.I0, 0);
+                bi.o0 o0Var = new bi.o0(pj0Var, getContext(), this.f28613a, 0, true, new ai.e(this, 3), this.I0, 0);
                 this.R1 = o0Var;
                 return o0Var;
         }
@@ -121,10 +121,10 @@ public final class m20 extends na {
 
     public m20(Context context) {
         super(context, null, false, false, null);
-        this.f36227r1 = 0.1f;
+        this.f36266r1 = 0.1f;
         N();
-        pj0 pj0Var = this.f36222k1;
-        int i7 = this.f28645t0;
+        pj0 pj0Var = this.f36261k1;
+        int i7 = this.f28646t0;
         pj0Var.setPadding(i7, 0, i7, 0);
         LinearLayout linearLayout = new LinearLayout(context);
         this.Q1 = linearLayout;
@@ -135,8 +135,8 @@ public final class m20 extends na {
         bi.gc gcVar = new bi.gc(context, 70, 0, 0);
         frameLayout.addView(gcVar, c8.ha.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
-        vg.f fVar = mVar.f57320b;
-        fVar.f57304z = org.telegram.ui.ActionBar.k6.Tk;
+        vg.f fVar = mVar.f57319b;
+        fVar.f57303z = org.telegram.ui.ActionBar.k6.Tk;
         fVar.A = org.telegram.ui.ActionBar.k6.Uk;
         fVar.b();
         mVar.setStarParticlesView(gcVar);
@@ -145,7 +145,7 @@ public final class m20 extends na {
         linearLayout.addView(frameLayout, c8.ha.c(150.0f, -1));
         TextView textView = new TextView(context);
         com.google.android.recaptcha.internal.a.q(textView, 1, 20.0f);
-        int i10 = org.telegram.ui.ActionBar.k6.f27956j5;
+        int i10 = org.telegram.ui.ActionBar.k6.f27957j5;
         org.telegram.ui.ActionBar.r6.V(textView, i10, this.I0);
         org.telegram.messenger.k5.m(textView, 17, null, 2131750861);
         TextView f10 = org.telegram.messenger.camera.q.f(linearLayout, textView, c8.ha.t(-2, -2, 1, 0, 2, 0, 0), context);
@@ -158,24 +158,24 @@ public final class m20 extends na {
         dVar.i(org.telegram.messenger.hd.M0(2131750870, null), false, true);
         dVar.setOnClickListener(new ah.d(this, 3));
         frameLayout2.addView(dVar, c8.ha.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        int i11 = this.f28645t0;
+        int i11 = this.f28646t0;
         frameLayout2.setPadding(i11, 0, i11, 0);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27921h5, frameLayout2, null);
-        this.f28615b.addView(frameLayout2, c8.ha.e(-1, -2, 87));
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27922h5, frameLayout2, null);
+        this.f28616b.addView(frameLayout2, c8.ha.e(-1, -2, 87));
         ((bi.o0) this.R1).O(false);
     }
 
     public m20(Context context, org.telegram.ui.ActionBar.f6 f6Var, v80 v80Var) {
         super(context, null, false, false, f6Var);
         N();
-        this.f36227r1 = 0.2f;
+        this.f36266r1 = 0.2f;
         Paint paint = new Paint(1);
         paint.setStyle(Paint.Style.FILL);
         int i7 = org.telegram.ui.ActionBar.k6.Ci;
         paint.setColor(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
         LinearLayout linearLayout = new LinearLayout(context);
         this.Q1 = linearLayout;
-        linearLayout.setPadding(org.telegram.messenger.g0.L(6.0f) + this.f28645t0, 0, org.telegram.messenger.g0.L(6.0f) + this.f28645t0, 0);
+        linearLayout.setPadding(org.telegram.messenger.g0.L(6.0f) + this.f28646t0, 0, org.telegram.messenger.g0.L(6.0f) + this.f28646t0, 0);
         linearLayout.setOrientation(1);
         FrameLayout frameLayout = new FrameLayout(context);
         ImageView imageView = new ImageView(getContext());
@@ -202,10 +202,10 @@ public final class m20 extends na {
         f10.setGravity(1);
         linearLayout.addView(f10, c8.ha.t(-2, -2, 1, 22, 8, 22, 0));
         linearLayout.addView(new org.telegram.ui.sq0(this, context, 2131231860, org.telegram.messenger.hd.M0(2131745834, null), org.telegram.messenger.hd.M0(2131745835, null)), c8.ha.q(-1, -2, 0.0f, 0, 0, 20, 0, 0));
-        boolean q10 = org.telegram.messenger.p10.i(this.f28612a).q();
+        boolean q10 = org.telegram.messenger.p10.i(this.f28613a).q();
         linearLayout.addView(new org.telegram.ui.sq0(this, context, 2131231807, org.telegram.messenger.hd.M0(2131745831, null), org.telegram.messenger.g0.H2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(q10 ? 2131745832 : 2131745833, null), new org.telegram.ui.g60(this, q10, v80Var, 10)), true)), c8.ha.q(-1, -2, 0.0f, 0, 0, 16, 0, 0));
         View view = new View(getContext());
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27849d7, view, f6Var);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27850d7, view, f6Var);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(-1, 1);
         layoutParams.setMargins(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(20.0f));
         linearLayout.addView(view, layoutParams);

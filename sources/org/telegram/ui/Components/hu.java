@@ -32,7 +32,7 @@ public final class hu extends is {
         if (!z9) {
             for (int i11 = 0; i11 < this.N.size(); i11++) {
                 ju juVar = (ju) this.N.get(i11);
-                if (juVar.f35047e != 0.0f || juVar.d != null || juVar.getTranslationX() != 0.0f || juVar.getTranslationY() != 0.0f || juVar.getAlpha() != 1.0f) {
+                if (juVar.f35073e != 0.0f || juVar.d != null || juVar.getTranslationX() != 0.0f || juVar.getTranslationY() != 0.0f || juVar.getAlpha() != 1.0f) {
                     break;
                 }
             }
@@ -54,7 +54,7 @@ public final class hu extends is {
             ArrayList arrayList = this.O;
             if (i7 < arrayList.size()) {
                 ju juVar = (ju) arrayList.get(i7);
-                juVar.f35045b.h(canvas, juVar.f35044a[this.K]);
+                juVar.f35071b.h(canvas, juVar.f35070a[this.K]);
                 i7++;
             } else {
                 return;
@@ -68,14 +68,14 @@ public final class hu extends is {
         if (this.N != null) {
             for (int i7 = 0; i7 < this.N.size(); i7++) {
                 ju juVar = (ju) this.N.get(i7);
-                r5 r5Var = juVar.f35046c;
-                if (r5Var != null && (i5Var = (i5) this.P.D.f37395i1.get(r5Var.getDocumentId())) != null && i5Var.f34450k != null && juVar.f35045b != null) {
+                r5 r5Var = juVar.f35072c;
+                if (r5Var != null && (i5Var = (i5) this.P.D.f37390i1.get(r5Var.getDocumentId())) != null && i5Var.f34497k != null && juVar.f35071b != null) {
                     i5Var.setAlpha((int) (juVar.getAlpha() * 255.0f * f10));
                     float width = ((juVar.getWidth() - juVar.getPaddingLeft()) - juVar.getPaddingRight()) / 2.0f;
                     float height = ((juVar.getHeight() - juVar.getPaddingTop()) - juVar.getPaddingBottom()) / 2.0f;
                     float right = (juVar.getRight() + juVar.getLeft()) / 2.0f;
                     float paddingTop = juVar.getPaddingTop() + height;
-                    float f11 = juVar.f35047e;
+                    float f11 = juVar.f35073e;
                     float f12 = 1.0f;
                     if (f11 != 0.0f) {
                         f12 = 1.0f * (((1.0f - f11) * 0.2f) + 0.8f);
@@ -93,12 +93,12 @@ public final class hu extends is {
         while (true) {
             ArrayList arrayList = this.O;
             if (i7 < arrayList.size()) {
-                ((ju) arrayList.get(i7)).f35044a[this.K].a();
+                ((ju) arrayList.get(i7)).f35070a[this.K].a();
                 i7++;
             } else {
                 qu quVar = this.P.D;
                 Pattern pattern = qu.M1;
-                quVar.f28615b.invalidate();
+                quVar.f28616b.invalidate();
                 return;
             }
         }
@@ -112,15 +112,15 @@ public final class hu extends is {
         arrayList.clear();
         for (int i7 = 0; i7 < this.N.size(); i7++) {
             ju juVar = (ju) this.N.get(i7);
-            r5 r5Var = juVar.f35046c;
-            org.telegram.messenger.ic[] icVarArr = juVar.f35044a;
-            if (r5Var != null && (i5Var = (i5) quVar.f37395i1.get(r5Var.getDocumentId())) != null && i5Var.f34450k != null) {
+            r5 r5Var = juVar.f35072c;
+            org.telegram.messenger.ic[] icVarArr = juVar.f35070a;
+            if (r5Var != null && (i5Var = (i5) quVar.f37390i1.get(r5Var.getDocumentId())) != null && i5Var.f34497k != null) {
                 i5Var.s(j3);
-                di.z2 z2Var = i5Var.f34450k;
+                di.z2 z2Var = i5Var.f34497k;
                 int i10 = this.K;
                 org.telegram.messenger.ic e02 = z2Var.e0(icVarArr[i10], i10);
                 icVarArr[i10] = e02;
-                e02.f23139c = j3;
+                e02.f23146c = j3;
                 i5Var.setAlpha(255);
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set(juVar.getPaddingLeft() + juVar.getLeft(), juVar.getPaddingTop(), juVar.getRight() - juVar.getPaddingRight(), juVar.getMeasuredHeight() - juVar.getPaddingBottom());
@@ -131,7 +131,7 @@ public final class hu extends is {
                     quVar.K1 = new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN);
                 }
                 i5Var.setColorFilter(quVar.K1);
-                juVar.f35045b = i5Var.f34450k;
+                juVar.f35071b = i5Var.f34497k;
                 arrayList.add(juVar);
             }
         }

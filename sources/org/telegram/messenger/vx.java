@@ -9,23 +9,23 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 public final class vx implements Runnable {
-    public final int f26219a = 0;
-    public final gz f26220b;
-    public final TLRPC.TL_error f26221c;
+    public final int f26227a = 0;
+    public final gz f26228b;
+    public final TLRPC.TL_error f26229c;
     public final TLObject d;
-    public final boolean f26222e;
-    public final TLObject f26223f;
+    public final boolean f26230e;
+    public final TLObject f26231f;
     public final Object h;
-    public final Object f26224n;
+    public final Object f26232n;
 
     public vx(gz gzVar, TLRPC.TL_error tL_error, TLObject tLObject, boolean z9, ArrayList arrayList, ArrayList arrayList2, TLObject tLObject2) {
-        this.f26220b = gzVar;
-        this.f26221c = tL_error;
+        this.f26228b = gzVar;
+        this.f26229c = tL_error;
         this.d = tLObject;
-        this.f26222e = z9;
+        this.f26230e = z9;
         this.h = arrayList;
-        this.f26224n = arrayList2;
-        this.f26223f = tLObject2;
+        this.f26232n = arrayList2;
+        this.f26231f = tLObject2;
     }
 
     @Override
@@ -67,15 +67,15 @@ public final class vx implements Runnable {
         a0.h hVar4;
         a0.h hVar5 = null;
         int i17 = 1;
-        switch (this.f26219a) {
+        switch (this.f26227a) {
             case 0:
-                gz gzVar2 = this.f26220b;
-                TLRPC.TL_error tL_error3 = this.f26221c;
+                gz gzVar2 = this.f26228b;
+                TLRPC.TL_error tL_error3 = this.f26229c;
                 TLObject tLObject = this.d;
-                boolean z13 = this.f26222e;
+                boolean z13 = this.f26230e;
                 ArrayList arrayList5 = (ArrayList) this.h;
-                ArrayList arrayList6 = (ArrayList) this.f26224n;
-                TLObject tLObject2 = this.f26223f;
+                ArrayList arrayList6 = (ArrayList) this.f26232n;
+                TLObject tLObject2 = this.f26231f;
                 if (tL_error3 == null) {
                     SparseArray sparseArray2 = new SparseArray();
                     a0.h hVar6 = new a0.h();
@@ -88,7 +88,7 @@ public final class vx implements Runnable {
                         TLRPC.Update update = arrayList7.get(i18);
                         if (update instanceof TL_update.TL_updateMessageID) {
                             TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) update;
-                            hVar6.k(Integer.valueOf(tL_updateMessageID.f27210id), tL_updateMessageID.random_id);
+                            hVar6.k(Integer.valueOf(tL_updateMessageID.f27211id), tL_updateMessageID.random_id);
                             arrayList7.remove(i18);
                             i18--;
                             tL_error2 = tL_error3;
@@ -97,7 +97,7 @@ public final class vx implements Runnable {
                             if (update instanceof TL_update.TL_updateNewMessage) {
                                 TL_update.TL_updateNewMessage tL_updateNewMessage = (TL_update.TL_updateNewMessage) update;
                                 TLRPC.Message message3 = tL_updateNewMessage.message;
-                                sparseArray2.put(message3.f26973id, message3);
+                                sparseArray2.put(message3.f26974id, message3);
                                 tL_error2 = tL_error4;
                                 Utilities.d.c(new hy(gzVar2, tL_updateNewMessage, 1));
                                 arrayList7.remove(i18);
@@ -113,7 +113,7 @@ public final class vx implements Runnable {
                                 if (update instanceof TL_update.TL_updateNewEphemeralMessage) {
                                     TL_update.TL_updateNewEphemeralMessage tL_updateNewEphemeralMessage = (TL_update.TL_updateNewEphemeralMessage) update;
                                     TLRPC.TL_message b10 = bg.w.b(tL_updateNewEphemeralMessage.message);
-                                    sparseArray2.put(b10.f26973id, b10);
+                                    sparseArray2.put(b10.f26974id, b10);
                                     arrayList8.add(tL_updateNewEphemeralMessage.message);
                                     arrayList7.remove(i18);
                                     i18--;
@@ -156,7 +156,7 @@ public final class vx implements Runnable {
                                             hVar5 = hVar3;
                                         }
                                         TLRPC.Message message4 = tL_updateNewChannelMessage.message;
-                                        sparseArray2.put(message4.f26973id, message4);
+                                        sparseArray2.put(message4.f26974id, message4);
                                         Utilities.d.c(new iw(gzVar2, tL_updateNewChannelMessage, i15));
                                         arrayList7.remove(i18);
                                         int i20 = i18 - 1;
@@ -188,7 +188,7 @@ public final class vx implements Runnable {
                                         arrayList4 = arrayList8;
                                         if (update instanceof TL_update.TL_updateNewScheduledMessage) {
                                             TLRPC.Message message5 = ((TL_update.TL_updateNewScheduledMessage) update).message;
-                                            sparseArray.put(message5.f26973id, message5);
+                                            sparseArray.put(message5.f26974id, message5);
                                             arrayList3.remove(i18);
                                             i18--;
                                             i14 = 1;
@@ -208,16 +208,16 @@ public final class vx implements Runnable {
                                                 K1 = null;
                                             } else {
                                                 i13 = 0;
-                                                K1 = ij.K1(((ij) arrayList5.get(0)).f23237k);
+                                                K1 = ij.K1(((ij) arrayList5.get(0)).f23244k);
                                             }
                                             if (arrayList5.isEmpty()) {
                                                 valueOf = null;
                                             } else {
-                                                valueOf = Integer.valueOf(ij.J1(((ij) arrayList5.get(i13)).f23237k));
+                                                valueOf = Integer.valueOf(ij.J1(((ij) arrayList5.get(i13)).f23244k));
                                             }
                                             f10.j(update, K1, valueOf.intValue());
                                             TLRPC.Message message6 = ((TL_update.TL_updateQuickReplyMessage) update).message;
-                                            sparseArray.put(message6.f26973id, message6);
+                                            sparseArray.put(message6.f26974id, message6);
                                             arrayList3.remove(i18);
                                             i18--;
                                             i14 = 1;
@@ -291,9 +291,9 @@ public final class vx implements Runnable {
                     while (i23 < arrayList5.size()) {
                         ij ijVar2 = (ij) arrayList5.get(i23);
                         String str2 = (String) arrayList6.get(i23);
-                        TLRPC.Message message7 = ijVar2.f23237k;
+                        TLRPC.Message message7 = ijVar2.f23244k;
                         char c12 = c11;
-                        int i24 = message7.f26973id;
+                        int i24 = message7.f26974id;
                         i7 = i22;
                         final ArrayList arrayList11 = new ArrayList();
                         int i25 = i23;
@@ -302,7 +302,7 @@ public final class vx implements Runnable {
                             ij.B0(message);
                             arrayList11.add(message);
                             if ((message.flags & 33554432) != 0) {
-                                TLRPC.Message message8 = ijVar2.f23237k;
+                                TLRPC.Message message8 = ijVar2.f23244k;
                                 i11 = i24;
                                 message8.ttl_period = message.ttl_period;
                                 message8.flags |= 33554432;
@@ -317,7 +317,7 @@ public final class vx implements Runnable {
                                 hVar = hVar7;
                                 arrayList2 = arrayList10;
                                 message2 = message7;
-                                gzVar2.z0((ij) arrayList5.get(0), message, message.f26973id, arrayList12, false, -1, message.params);
+                                gzVar2.z0((ij) arrayList5.get(0), message, message.f26974id, arrayList12, false, -1, message.params);
                                 arrayList = arrayList12;
                             } else {
                                 hVar = hVar7;
@@ -327,10 +327,10 @@ public final class vx implements Runnable {
                                 i12 = i25;
                                 arrayList2 = arrayList10;
                                 c10 = 4;
-                                gzVar2.z0(ijVar, message, message.f26973id, Collections.singletonList(str2), false, -1, message.params);
+                                gzVar2.z0(ijVar, message, message.f26974id, Collections.singletonList(str2), false, -1, message.params);
                             }
                             final int p12 = ijVar.p1();
-                            message2.f26973id = message.f26973id;
+                            message2.f26974id = message.f26974id;
                             int i26 = message.quick_reply_shortcut_id;
                             message2.quick_reply_shortcut_id = i26;
                             if (i26 != 0) {
@@ -348,7 +348,7 @@ public final class vx implements Runnable {
                                 } else {
                                     gzVar = gzVar2;
                                 }
-                                if (num2.intValue() < message.f26973id) {
+                                if (num2.intValue() < message.f26974id) {
                                     z11 = true;
                                 } else {
                                     z11 = false;
@@ -367,7 +367,7 @@ public final class vx implements Runnable {
                             message2.errorNewPriceStars = 0L;
                             qs notificationCenter2 = gzVar.getNotificationCenter();
                             Integer valueOf2 = Integer.valueOf(i11);
-                            Integer valueOf3 = Integer.valueOf(message2.f26973id);
+                            Integer valueOf3 = Integer.valueOf(message2.f26974id);
                             Long valueOf4 = Long.valueOf(message2.dialog_id);
                             Long valueOf5 = Long.valueOf(j3);
                             Integer valueOf6 = Integer.valueOf(p12);
@@ -384,7 +384,7 @@ public final class vx implements Runnable {
                             notificationCenter2.k(21, objArr2);
                             qs notificationCenter3 = gzVar.getNotificationCenter();
                             Integer valueOf8 = Integer.valueOf(i11);
-                            Integer valueOf9 = Integer.valueOf(message2.f26973id);
+                            Integer valueOf9 = Integer.valueOf(message2.f26974id);
                             Long valueOf10 = Long.valueOf(message2.dialog_id);
                             Long valueOf11 = Long.valueOf(j3);
                             Integer valueOf12 = Integer.valueOf(p12);
@@ -405,7 +405,7 @@ public final class vx implements Runnable {
                             final boolean z17 = z15;
                             arrayList10 = arrayList13;
                             gzVar2 = gzVar4;
-                            gzVar.getMessagesStorage().f26688a.c(new Runnable() {
+                            gzVar.getMessagesStorage().f26696a.c(new Runnable() {
                                 @Override
                                 public final void run() {
                                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ky.run():void");
@@ -446,7 +446,7 @@ public final class vx implements Runnable {
                     int i29 = 0;
                     while (i29 < arrayList5.size()) {
                         ij ijVar3 = (ij) arrayList5.get(i29);
-                        TLRPC.Message message10 = ijVar3.f23237k;
+                        TLRPC.Message message10 = ijVar3.f23244k;
                         gzVar2.getMessagesStorage().N0(r12, message10);
                         int i30 = i7;
                         message10.send_state = i30;
@@ -457,9 +457,9 @@ public final class vx implements Runnable {
                             bi.ea.y(gzVar2.currentAccount, false).d0(Arrays.asList(ijVar3));
                             gzVar2.getMessagesStorage().X1(ij.B0(message10), message10);
                         }
-                        gzVar2.getNotificationCenter().k(23, Integer.valueOf(message10.f26973id));
-                        gzVar2.d0(message10.f26973id);
-                        gzVar2.i0(message10.f26973id, r12);
+                        gzVar2.getNotificationCenter().k(23, Integer.valueOf(message10.f26974id));
+                        gzVar2.d0(message10.f26974id);
+                        gzVar2.i0(message10.f26974id, r12);
                         i29++;
                         i7 = i30;
                     }
@@ -467,13 +467,13 @@ public final class vx implements Runnable {
                 }
                 return;
             default:
-                gz gzVar5 = this.f26220b;
-                TLRPC.TL_error tL_error6 = this.f26221c;
+                gz gzVar5 = this.f26228b;
+                TLRPC.TL_error tL_error6 = this.f26229c;
                 TLRPC.Message message11 = (TLRPC.Message) this.h;
                 TLObject tLObject3 = this.d;
-                ij ijVar4 = (ij) this.f26224n;
-                boolean z18 = this.f26222e;
-                TLObject tLObject4 = this.f26223f;
+                ij ijVar4 = (ij) this.f26232n;
+                boolean z18 = this.f26230e;
+                TLObject tLObject4 = this.f26231f;
                 if (tL_error6 == null) {
                     String str3 = message11.attachPath;
                     TLRPC.Updates updates2 = (TLRPC.Updates) tLObject3;
@@ -482,8 +482,8 @@ public final class vx implements Runnable {
                     ArrayList arrayList15 = new ArrayList();
                     arrayList15.add(message11);
                     gzVar5.getMessagesStorage().j1(arrayList15, false, true, false, 0, false, 0, 0L);
-                    k00 k00Var = gzVar5.getMessagesController().f24862q7;
-                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) k00Var.f23633e.f(k00.p(message11.f26973id, -message11.dialog_id));
+                    k00 k00Var = gzVar5.getMessagesController().f24870q7;
+                    TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) k00Var.f23640e.f(k00.p(message11.f26974id, -message11.dialog_id));
                     if (tL_forumTopic != null) {
                         tL_forumTopic.topMessage = message11;
                         k00Var.y(-message11.dialog_id, true);
@@ -492,19 +492,19 @@ public final class vx implements Runnable {
                     return;
                 }
                 org.telegram.ui.Components.v4.c0(gzVar5.currentAccount, tL_error6, null, tLObject4, new Object[0]);
-                gzVar5.i0(message11.f26973id, z18);
+                gzVar5.i0(message11.f26974id, z18);
                 gzVar5.l0(ijVar4);
                 return;
         }
     }
 
     public vx(gz gzVar, TLRPC.TL_error tL_error, TLRPC.Message message, TLObject tLObject, ij ijVar, String str, HashMap hashMap, boolean z9, TLObject tLObject2) {
-        this.f26220b = gzVar;
-        this.f26221c = tL_error;
+        this.f26228b = gzVar;
+        this.f26229c = tL_error;
         this.h = message;
         this.d = tLObject;
-        this.f26224n = ijVar;
-        this.f26222e = z9;
-        this.f26223f = tLObject2;
+        this.f26232n = ijVar;
+        this.f26230e = z9;
+        this.f26231f = tLObject2;
     }
 }

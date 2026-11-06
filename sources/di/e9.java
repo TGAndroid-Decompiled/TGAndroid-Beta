@@ -70,7 +70,7 @@ public final class e9 extends v {
             if (rect.bottom != 0 || rect.top != 0) {
                 int height = rootView.getHeight();
                 if (rect.top != 0) {
-                    i11 = org.telegram.messenger.g0.f22531m;
+                    i11 = org.telegram.messenger.g0.f22538m;
                 } else {
                     i11 = 0;
                 }
@@ -91,7 +91,7 @@ public final class e9 extends v {
         }
         p9Var.f9583y0.getLayoutParams().height = size + 1;
         p9Var.f9583y0.getLayoutParams().width = size2;
-        ((FrameLayout.LayoutParams) p9Var.f9583y0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22531m;
+        ((FrameLayout.LayoutParams) p9Var.f9583y0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22538m;
         super.onMeasure(i7, i10);
     }
 }

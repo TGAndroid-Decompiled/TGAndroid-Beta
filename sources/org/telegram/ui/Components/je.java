@@ -2,21 +2,21 @@ package org.telegram.ui.Components;
 
 import android.animation.AnimatorSet;
 public final class je implements Runnable {
-    public final int f34920a;
-    public final ChatActivityEnterView f34921b;
+    public final int f34946a;
+    public final ChatActivityEnterView f34947b;
 
     public je(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f34920a = i7;
-        this.f34921b = chatActivityEnterView;
+        this.f34946a = i7;
+        this.f34947b = chatActivityEnterView;
     }
 
     @Override
     public final void run() {
-        switch (this.f34920a) {
+        switch (this.f34946a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f34921b;
-                je jeVar = chatActivityEnterView.f31114r3;
-                if ((!chatActivityEnterView.g0() || !chatActivityEnterView.s()) && !org.telegram.ui.ActionBar.f2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f31074k3 && !chatActivityEnterView.f31158z2 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E) {
+                ChatActivityEnterView chatActivityEnterView = this.f34947b;
+                je jeVar = chatActivityEnterView.f31115r3;
+                if ((!chatActivityEnterView.g0() || !chatActivityEnterView.s()) && !org.telegram.ui.ActionBar.f2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f31075k3 && !chatActivityEnterView.f31159z2 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E) {
                     wf wfVar = chatActivityEnterView.Z2;
                     if (wfVar != null) {
                         wfVar.f1();
@@ -29,14 +29,14 @@ public final class je implements Runnable {
                 }
                 return;
             case 1:
-                wf wfVar2 = this.f34921b.Z2;
+                wf wfVar2 = this.f34947b.Z2;
                 if (wfVar2 != null) {
                     wfVar2.Z1(0, 0, 0, 0L, 0L, true);
                     return;
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f34921b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f34947b;
                 AnimatorSet animatorSet = chatActivityEnterView2.V0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     chatActivityEnterView2.V0.start();

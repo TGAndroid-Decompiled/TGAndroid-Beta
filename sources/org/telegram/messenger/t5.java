@@ -9,10 +9,10 @@ public abstract class t5 {
         try {
             rz rzVar = new rz();
             kz kzVar = new kz(256.0f, 256.0f, 204.8f);
-            rzVar.f25375a.add(kzVar);
-            rzVar.f25376b.put(kzVar, new Paint(1));
-            rzVar.f25378e = 512;
-            rzVar.f25379f = 512;
+            rzVar.f25383a.add(kzVar);
+            rzVar.f25384b.put(kzVar, new Paint(1));
+            rzVar.f25386e = 512;
+            rzVar.f25387f = 512;
             rzVar.f(i7, null, 0.65f, false);
             return rzVar;
         } catch (Exception e10) {
@@ -26,10 +26,10 @@ public abstract class t5 {
         path.addRect(0.0f, 0.0f, 512.0f, 512.0f, Path.Direction.CW);
         path.close();
         rz rzVar = new rz();
-        rzVar.f25375a.add(path);
-        rzVar.f25376b.put(path, new Paint(1));
-        rzVar.f25378e = 512;
-        rzVar.f25379f = 512;
+        rzVar.f25383a.add(path);
+        rzVar.f25384b.put(path, new Paint(1));
+        rzVar.f25386e = 512;
+        rzVar.f25387f = 512;
         rzVar.f(i7, null, 1.0f, false);
         return rzVar;
     }
@@ -52,7 +52,7 @@ public abstract class t5 {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z9) {
-                i10 = photoSize.f26977w;
+                i10 = photoSize.f26978w;
                 i11 = photoSize.h;
             }
         }
@@ -82,7 +82,7 @@ public abstract class t5 {
                     for (int i13 = 0; i13 < size2; i13++) {
                         TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i13);
                         if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                            i10 = documentAttribute.f26959w;
+                            i10 = documentAttribute.f26960w;
                             i11 = documentAttribute.h;
                             break;
                         }

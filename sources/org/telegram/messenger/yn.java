@@ -7,34 +7,34 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class yn implements RequestDelegate {
-    public final int f26667a;
-    public final c1 f26668b;
-    public final Object f26669c;
+    public final int f26675a;
+    public final c1 f26676b;
+    public final Object f26677c;
     public final Object d;
-    public final Object f26670e;
-    public final Object f26671f;
-    public final TLObject f26672g;
+    public final Object f26678e;
+    public final Object f26679f;
+    public final TLObject f26680g;
 
     public yn(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i7) {
-        this.f26667a = i7;
-        this.f26668b = c1Var;
-        this.f26669c = obj;
+        this.f26675a = i7;
+        this.f26676b = c1Var;
+        this.f26677c = obj;
         this.d = obj2;
-        this.f26670e = obj3;
-        this.f26671f = obj4;
-        this.f26672g = tLObject;
+        this.f26678e = obj3;
+        this.f26679f = obj4;
+        this.f26680g = tLObject;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f26667a) {
+        switch (this.f26675a) {
             case 0:
-                qp qpVar = (qp) this.f26668b;
-                Context context = (Context) this.f26669c;
+                qp qpVar = (qp) this.f26676b;
+                Context context = (Context) this.f26677c;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.d;
-                qr qrVar = (qr) this.f26670e;
-                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f26671f;
-                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) this.f26672g;
+                qr qrVar = (qr) this.f26678e;
+                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f26679f;
+                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) this.f26680g;
                 qpVar.getClass();
                 if (tL_error == null) {
                     if (context != null) {
@@ -47,12 +47,12 @@ public final class yn implements RequestDelegate {
                 g0.h3(new gn(qpVar, qrVar, context, u1Var, tL_error, f2Var, tL_channels_convertToGigagroup, 1));
                 return;
             default:
-                final f10 f10Var = (f10) this.f26668b;
-                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f26669c;
+                final f10 f10Var = (f10) this.f26676b;
+                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f26677c;
                 final String str = (String) this.d;
-                final d10 d10Var = (d10) this.f26670e;
-                final bi.r3 r3Var = (bi.r3) this.f26671f;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f26672g;
+                final d10 d10Var = (d10) this.f26678e;
+                final bi.r3 r3Var = (bi.r3) this.f26679f;
+                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f26680g;
                 f10Var.getClass();
                 if (tLObject instanceof TLRPC.TL_messages_translateResult) {
                     ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;

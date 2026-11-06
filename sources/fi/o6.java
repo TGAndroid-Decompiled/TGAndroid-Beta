@@ -24,7 +24,7 @@ public final class o6 extends p6 {
 
     @Override
     public final void c(org.telegram.ui.ActionBar.f2 f2Var) {
-        f2Var.presentFragment(an.ra(-this.f12561b.f26952id));
+        f2Var.presentFragment(an.ra(-this.f12561b.f26953id));
     }
 
     @Override

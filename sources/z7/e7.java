@@ -7,14 +7,14 @@ public enum e7 implements b {
     FILEPATH(4),
     ANDROID_MEDIA_IMAGE(5);
     
-    public final int f59655a;
+    public final int f59654a;
 
     e7(int i7) {
-        this.f59655a = i7;
+        this.f59654a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f59655a;
+        return this.f59654a;
     }
 }

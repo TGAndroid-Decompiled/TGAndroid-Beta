@@ -21,31 +21,31 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.y1;
 import org.telegram.ui.Cells.g6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.v4;
-import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w8;
+import org.telegram.ui.Components.x31;
 public final class f extends f2 implements ls {
     public ri.c f15522a;
     public long f15523b;
     public TLRPC.Chat f15524c;
     public TLRPC.User d;
     public FrameLayout f15525e;
-    public p41 f15526f;
+    public q41 f15526f;
     public e h;
     public ArrayList f15527n;
     public ab.b0 f15528r;
 
-    public static void Z(f fVar, w31 w31Var) {
+    public static void Z(f fVar, x31 x31Var) {
         f fVar2;
-        if (w31Var.d == 1) {
+        if (x31Var.d == 1) {
             fVar2 = fVar;
             v4.O(fVar.getParentActivity(), fVar2, hd.M0(2131751906, null), null, hd.M0(2131751907, null), null, Integer.MAX_VALUE, hd.M0(2131751753, null), fVar.resourceProvider, new b(fVar));
         } else {
             fVar2 = fVar;
         }
-        Object obj = w31Var.G;
+        Object obj = x31Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             fVar2.getMessagesController().M0(Long.valueOf(-fVar2.f15523b));
@@ -93,7 +93,7 @@ public final class f extends f2 implements ls {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new bi.s(this, 5));
         ri.c cVar = new ri.c();
-        cVar.a(getThemedColor(k6.f27848d6));
+        cVar.a(getThemedColor(k6.f27849d6));
         this.f15522a = cVar;
         dh.c cVar2 = new dh.c(cVar, cVar, cVar);
         this.actionBar.setBackground(null);
@@ -101,7 +101,7 @@ public final class f extends f2 implements ls {
         this.actionBar.Q0 = true;
         FrameLayout frameLayout = new FrameLayout(context);
         this.f15525e = frameLayout;
-        r6.i(k6.f27792a7, frameLayout, null);
+        r6.i(k6.f27793a7, frameLayout, null);
         e eVar = new e(context, this.resourceProvider);
         this.h = eVar;
         eVar.setTitle(hd.M0(2131751847, null));
@@ -124,14 +124,14 @@ public final class f extends f2 implements ls {
                 this.h.f15516a.e(chat, new w8(this.f15524c));
             }
         }
-        p41 p41Var = new p41(this, new a(this, 0), new b(this), new x3(this, 6));
-        this.f15526f = p41Var;
-        p41Var.setClipToPadding(false);
-        p41 p41Var2 = this.f15526f;
-        k41 k41Var = p41Var2.f36781f3;
-        k41Var.f35132r = false;
-        k41Var.f35133s = true;
-        p41Var2.r1();
+        q41 q41Var = new q41(this, new a(this, 0), new b(this), new x3(this, 6));
+        this.f15526f = q41Var;
+        q41Var.setClipToPadding(false);
+        q41 q41Var2 = this.f15526f;
+        l41 l41Var = q41Var2.f37160f3;
+        l41Var.f35510r = false;
+        l41Var.f35511s = true;
+        q41Var2.r1();
         this.f15525e.addView(this.f15526f, ha.c(-1.0f, -1));
         this.f15525e.addView(this.actionBar, ha.e(-1, -2, 48));
         FrameLayout frameLayout2 = this.f15525e;
@@ -144,7 +144,7 @@ public final class f extends f2 implements ls {
         int i11;
         if (i7 == qs.T) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            long j3 = chatFull.f26953id;
+            long j3 = chatFull.f26954id;
             View B1 = this.f15526f.B1((int) (j3 ^ (j3 >>> 32)));
             if (B1 instanceof g6) {
                 g6 g6Var = (g6) B1;
@@ -157,7 +157,7 @@ public final class f extends f2 implements ls {
                 g6Var.setSubLabel(hd.G(i11, "Chats", new Object[0]));
                 return;
             }
-            this.f15526f.f36781f3.O(false);
+            this.f15526f.f37160f3.O(false);
         }
     }
 
@@ -207,7 +207,7 @@ public final class f extends f2 implements ls {
         try {
             ri.c cVar = this.f15522a;
             if (cVar != null) {
-                cVar.a(getThemedColor(k6.f27848d6));
+                cVar.a(getThemedColor(k6.f27849d6));
             }
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {

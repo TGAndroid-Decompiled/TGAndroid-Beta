@@ -84,45 +84,45 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
     public String V;
     public int V0;
     public boolean W;
-    public final sc f31372a;
-    public boolean f31373a0;
-    public ImageView f31374b;
-    public z8 f31375b0;
-    public he0 f31376c;
-    public Paint f31377c0;
+    public final sc f31373a;
+    public boolean f31374a0;
+    public ImageView f31375b;
+    public z8 f31376b0;
+    public he0 f31377c;
+    public Paint f31378c0;
     public i00 d;
-    public LinearGradient f31378d0;
-    public i00 f31379e;
-    public Matrix f31380e0;
-    public AnimatorSet f31381f;
-    public int f31382f0;
-    public TextPaint f31383g0;
+    public LinearGradient f31379d0;
+    public i00 f31380e;
+    public Matrix f31381e0;
+    public AnimatorSet f31382f;
+    public int f31383f0;
+    public TextPaint f31384g0;
     public final org.telegram.ui.ActionBar.f2 h;
-    public boolean f31384h0;
-    public boolean f31385i0;
-    public final i6 f31386j0;
-    public ic f31387k0;
-    public boolean f31388l0;
+    public boolean f31385h0;
+    public boolean f31386i0;
+    public final i6 f31387j0;
+    public ic f31388k0;
+    public boolean f31389l0;
     public final g00 m0;
-    public final kg f31389n;
-    public final int f31390n0;
-    public final boolean f31391o0;
-    public m00 f31392p0;
-    public final org.telegram.ui.ActionBar.f6 f31393q0;
-    public final View f31394r;
-    public boolean f31395r0;
-    public h00 f31396s;
-    public int f31397s0;
-    public final dt f31398t0;
-    public final h2.f f31399u0;
-    public final h2.f f31400v0;
-    public di.a4 f31401w;
-    public boolean f31402w0;
-    public View f31403x;
-    public boolean f31404x0;
-    public ch0 f31405y;
-    public boolean f31406y0;
-    public boolean f31407z0;
+    public final kg f31390n;
+    public final int f31391n0;
+    public final boolean f31392o0;
+    public m00 f31393p0;
+    public final org.telegram.ui.ActionBar.f6 f31394q0;
+    public final View f31395r;
+    public boolean f31396r0;
+    public h00 f31397s;
+    public int f31398s0;
+    public final dt f31399t0;
+    public final h2.f f31400u0;
+    public final h2.f f31401v0;
+    public di.a4 f31402w;
+    public boolean f31403w0;
+    public View f31404x;
+    public boolean f31405x0;
+    public ch0 f31406y;
+    public boolean f31407y0;
+    public boolean f31408z0;
 
     public FragmentContextView(Context context, org.telegram.ui.ww wwVar, boolean z9) {
         this(context, wwVar, null, z9, null);
@@ -130,12 +130,12 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
 
     private int getTitleTextColor() {
         int i7 = this.U;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f31393q0;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f31394q0;
         if (i7 == 4) {
-            return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28145t7, f6Var);
+            return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28146t7, f6Var);
         }
         if (i7 != 1 && i7 != 3) {
-            return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28165u7, f6Var);
+            return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28166u7, f6Var);
         }
         return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.A7, f6Var);
     }
@@ -149,7 +149,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
 
     public static boolean j() {
         org.telegram.messenger.ij ijVar = MediaController.B().f21292u0;
-        if (ijVar != null && org.telegram.messenger.ij.S4(ijVar.f23237k)) {
+        if (ijVar != null && org.telegram.messenger.ij.S4(ijVar.f23244k)) {
             return true;
         }
         return false;
@@ -160,45 +160,45 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
     }
 
     public final void b() {
-        if (this.f31396s != null) {
+        if (this.f31397s != null) {
             return;
         }
         Context context = getContext();
         h00 h00Var = new h00(this, context);
-        this.f31396s = h00Var;
-        this.f31387k0 = new ic(h00Var);
-        int i7 = org.telegram.messenger.g0.f22537q.x;
-        i6 i6Var = this.f31386j0;
+        this.f31397s = h00Var;
+        this.f31388k0 = new ic(h00Var);
+        int i7 = org.telegram.messenger.g0.f22544q.x;
+        i6 i6Var = this.f31387j0;
         i6Var.M = i7;
         i6Var.A = 0.4f;
         i6Var.setCallback(h00Var);
         i6Var.u(-1);
         i6Var.w(org.telegram.messenger.g0.L(14.0f));
         i6Var.x(org.telegram.messenger.g0.o());
-        addView(this.f31396s, c8.ha.d(-1, 36.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
+        addView(this.f31397s, c8.ha.d(-1, 36.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         View view = new View(context);
-        this.f31403x = view;
-        this.f31396s.addView(view, c8.ha.c(-1.0f, -1));
+        this.f31404x = view;
+        this.f31397s.addView(view, c8.ha.c(-1.0f, -1));
         ImageView imageView = new ImageView(context);
-        this.f31374b = imageView;
+        this.f31375b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f31374b;
-        int i10 = org.telegram.ui.ActionBar.k6.f28203w7;
+        ImageView imageView2 = this.f31375b;
+        int i10 = org.telegram.ui.ActionBar.k6.f28204w7;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f31393q0;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f31394q0;
         org.telegram.ui.ActionBar.r6.t(imageView2, i10, f6Var, mode);
-        ImageView imageView3 = this.f31374b;
+        ImageView imageView3 = this.f31375b;
         he0 he0Var = new he0(16);
-        this.f31376c = he0Var;
+        this.f31377c = he0Var;
         imageView3.setImageDrawable(he0Var);
-        this.f31374b.setBackground(org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.w0(i10, f6Var) & 436207615, 1, org.telegram.messenger.g0.L(14.0f)));
-        addView(this.f31374b, c8.ha.e(36, 36, 51));
-        this.f31374b.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f31969b;
+        this.f31375b.setBackground(org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.w0(i10, f6Var) & 436207615, 1, org.telegram.messenger.g0.L(14.0f)));
+        addView(this.f31375b, c8.ha.e(36, 36, 51));
+        this.f31375b.setOnClickListener(new View.OnClickListener(this) {
+            public final FragmentContextView f31976b;
 
             {
-                this.f31969b = this;
+                this.f31976b = this;
             }
 
             @Override
@@ -210,16 +210,16 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 int i12;
                 int i13 = r2;
                 boolean z9 = false;
-                FragmentContextView fragmentContextView = this.f31969b;
+                FragmentContextView fragmentContextView = this.f31976b;
                 switch (i13) {
                     case 0:
-                        kg kgVar = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31393q0;
+                        kg kgVar = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
                         if (fragmentContextView.U == 2) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f2Var.getParentActivity(), f6Var2);
                             String M0 = org.telegram.messenger.hd.M0(2131744836, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                             u1Var.R = M0;
                             if (f2Var instanceof org.telegram.ui.ww) {
                                 u1Var.T = org.telegram.messenger.hd.M0(2131744838, null);
@@ -239,7 +239,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             alertDialog$Builder.p();
                             TextView textView = (TextView) u1Var.d(-1);
                             if (textView != null) {
-                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, f6Var2);
+                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28090q7, f6Var2);
                                 return;
                             }
                             return;
@@ -247,8 +247,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         MediaController.B().q(true, true, false, false);
                         return;
                     case 1:
-                        kg kgVar2 = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31393q0;
+                        kg kgVar2 = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var2 = fragmentContextView.h;
                         int i14 = fragmentContextView.U;
                         if (i14 == 6) {
@@ -256,7 +256,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             if (g1Var != null) {
                                 long j11 = g1Var.f9023b;
                                 int i15 = g1Var.f9025e;
-                                if (i15 != org.telegram.messenger.p10.f24459s0) {
+                                if (i15 != org.telegram.messenger.p10.f24467s0) {
                                     LaunchActivity launchActivity = LaunchActivity.G1;
                                     if (launchActivity != null) {
                                         launchActivity.O0(i15);
@@ -293,11 +293,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                 if (kgVar2 != null) {
                                     j12 = kgVar2.a();
                                 }
-                                if (org.telegram.messenger.ij.B0(ijVar.f23237k) == j12) {
-                                    fragmentContextView.f31389n.l(ijVar.f1(), 0, false, 0, true, 0);
+                                if (org.telegram.messenger.ij.B0(ijVar.f23244k) == j12) {
+                                    fragmentContextView.f31390n.l(ijVar.f1(), 0, false, 0, true, 0);
                                     return;
                                 }
-                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23237k);
+                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23244k);
                                 Bundle bundle = new Bundle();
                                 if (org.telegram.messenger.m5.C(B0)) {
                                     bundle.putInt("enc_id", (int) (B0 & 4294967295L));
@@ -315,7 +315,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             fragmentContextView.getContext().startActivity(new Intent(fragmentContextView.getContext(), LaunchActivity.class).setAction("voip"));
                             return;
                         } else if (i14 == 2) {
-                            int i16 = org.telegram.messenger.p10.f24459s0;
+                            int i16 = org.telegram.messenger.p10.f24467s0;
                             if (kgVar2 != null) {
                                 j3 = kgVar2.a();
                                 i11 = f2Var2.getCurrentAccount();
@@ -324,7 +324,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                     for (int i17 = 0; i17 < 4; i17++) {
                                         if (!org.telegram.messenger.sd.f(i17).I.isEmpty()) {
                                             org.telegram.messenger.rd rdVar = (org.telegram.messenger.rd) org.telegram.messenger.sd.f(i17).I.get(0);
-                                            j3 = rdVar.f25265a;
+                                            j3 = rdVar.f25273a;
                                             i11 = rdVar.h.I1;
                                         }
                                     }
@@ -347,8 +347,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             return;
                         } else if (i14 == 4) {
                             if (f2Var2.getParentActivity() != null && (groupCall = kgVar2.getGroupCall()) != null) {
-                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25202c));
-                                TLRPC.GroupCall groupCall2 = groupCall.f25201b;
+                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25210c));
+                                TLRPC.GroupCall groupCall2 = groupCall.f25209b;
                                 if (groupCall2 != null && !groupCall2.rtmp_stream) {
                                     z9 = true;
                                 }
@@ -415,7 +415,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             }
                             fragmentContextView.D.d();
                             org.telegram.ui.ActionBar.k6.G0().c(true);
-                            fragmentContextView.f31372a.h(true);
+                            fragmentContextView.f31373a.h(true);
                             try {
                                 fragmentContextView.D.performHapticFeedback(3, 2);
                                 return;
@@ -428,22 +428,22 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
         });
         ?? imageView4 = new ImageView(context);
-        this.f31405y = imageView4;
+        this.f31406y = imageView4;
         imageView4.setScaleType(scaleType);
-        this.f31405y.setAutoRepeat(true);
-        this.f31405y.f(2131624064, 30, 30, null);
-        org.telegram.ui.ActionBar.r6.C(this.f31405y, org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(22.0f), org.telegram.ui.ActionBar.k6.w0(i10, f6Var)), org.telegram.ui.ActionBar.r6.N(i10), f6Var);
-        addView(this.f31405y, c8.ha.d(22, 22.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
+        this.f31406y.setAutoRepeat(true);
+        this.f31406y.f(2131624064, 30, 30, null);
+        org.telegram.ui.ActionBar.r6.C(this.f31406y, org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(22.0f), org.telegram.ui.ActionBar.k6.w0(i10, f6Var)), org.telegram.ui.ActionBar.r6.N(i10), f6Var);
+        addView(this.f31406y, c8.ha.d(22, 22.0f, 51, 7.0f, 7.0f, 0.0f, 0.0f));
         i00 i00Var = new i00(this, context, context, 0);
         this.d = i00Var;
         addView(i00Var, c8.ha.d(-1, 36.0f, 51, 35.0f, 0.0f, 36, 0.0f));
         i00 i00Var2 = new i00(this, context, context, 1);
-        this.f31379e = i00Var2;
+        this.f31380e = i00Var2;
         addView(i00Var2, c8.ha.d(-1, 36.0f, 51, 35.0f, 10.0f, 36, 0.0f));
         org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
         this.O = nVar;
-        nVar.f39319g = 1.0f;
-        nVar.f39321j = false;
+        nVar.f39340g = 1.0f;
+        nVar.f39342j = false;
         org.telegram.ui.ActionBar.m2 m2Var = new org.telegram.ui.ActionBar.m2(2, context, this);
         this.M = m2Var;
         m2Var.setText(org.telegram.messenger.hd.M0(2131743443, null));
@@ -461,10 +461,10 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         this.M.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
         addView(this.M, c8.ha.d(-2, 28.0f, 53, 0.0f, 10.0f, 14.0f, 0.0f));
         this.M.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f31969b;
+            public final FragmentContextView f31976b;
 
             {
-                this.f31969b = this;
+                this.f31976b = this;
             }
 
             @Override
@@ -476,16 +476,16 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 int i122;
                 int i13 = r2;
                 boolean z9 = false;
-                FragmentContextView fragmentContextView = this.f31969b;
+                FragmentContextView fragmentContextView = this.f31976b;
                 switch (i13) {
                     case 0:
-                        kg kgVar = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31393q0;
+                        kg kgVar = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
                         if (fragmentContextView.U == 2) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f2Var.getParentActivity(), f6Var2);
                             String M0 = org.telegram.messenger.hd.M0(2131744836, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                             u1Var.R = M0;
                             if (f2Var instanceof org.telegram.ui.ww) {
                                 u1Var.T = org.telegram.messenger.hd.M0(2131744838, null);
@@ -505,7 +505,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             alertDialog$Builder.p();
                             TextView textView = (TextView) u1Var.d(-1);
                             if (textView != null) {
-                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, f6Var2);
+                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28090q7, f6Var2);
                                 return;
                             }
                             return;
@@ -513,8 +513,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         MediaController.B().q(true, true, false, false);
                         return;
                     case 1:
-                        kg kgVar2 = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31393q0;
+                        kg kgVar2 = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var2 = fragmentContextView.h;
                         int i14 = fragmentContextView.U;
                         if (i14 == 6) {
@@ -522,7 +522,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             if (g1Var != null) {
                                 long j11 = g1Var.f9023b;
                                 int i15 = g1Var.f9025e;
-                                if (i15 != org.telegram.messenger.p10.f24459s0) {
+                                if (i15 != org.telegram.messenger.p10.f24467s0) {
                                     LaunchActivity launchActivity = LaunchActivity.G1;
                                     if (launchActivity != null) {
                                         launchActivity.O0(i15);
@@ -559,11 +559,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                 if (kgVar2 != null) {
                                     j12 = kgVar2.a();
                                 }
-                                if (org.telegram.messenger.ij.B0(ijVar.f23237k) == j12) {
-                                    fragmentContextView.f31389n.l(ijVar.f1(), 0, false, 0, true, 0);
+                                if (org.telegram.messenger.ij.B0(ijVar.f23244k) == j12) {
+                                    fragmentContextView.f31390n.l(ijVar.f1(), 0, false, 0, true, 0);
                                     return;
                                 }
-                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23237k);
+                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23244k);
                                 Bundle bundle = new Bundle();
                                 if (org.telegram.messenger.m5.C(B0)) {
                                     bundle.putInt("enc_id", (int) (B0 & 4294967295L));
@@ -581,7 +581,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             fragmentContextView.getContext().startActivity(new Intent(fragmentContextView.getContext(), LaunchActivity.class).setAction("voip"));
                             return;
                         } else if (i14 == 2) {
-                            int i16 = org.telegram.messenger.p10.f24459s0;
+                            int i16 = org.telegram.messenger.p10.f24467s0;
                             if (kgVar2 != null) {
                                 j3 = kgVar2.a();
                                 i112 = f2Var2.getCurrentAccount();
@@ -590,7 +590,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                     for (int i17 = 0; i17 < 4; i17++) {
                                         if (!org.telegram.messenger.sd.f(i17).I.isEmpty()) {
                                             org.telegram.messenger.rd rdVar = (org.telegram.messenger.rd) org.telegram.messenger.sd.f(i17).I.get(0);
-                                            j3 = rdVar.f25265a;
+                                            j3 = rdVar.f25273a;
                                             i112 = rdVar.h.I1;
                                         }
                                     }
@@ -613,8 +613,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             return;
                         } else if (i14 == 4) {
                             if (f2Var2.getParentActivity() != null && (groupCall = kgVar2.getGroupCall()) != null) {
-                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25202c));
-                                TLRPC.GroupCall groupCall2 = groupCall.f25201b;
+                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25210c));
+                                TLRPC.GroupCall groupCall2 = groupCall.f25209b;
                                 if (groupCall2 != null && !groupCall2.rtmp_stream) {
                                     z9 = true;
                                 }
@@ -681,7 +681,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             }
                             fragmentContextView.D.d();
                             org.telegram.ui.ActionBar.k6.G0().c(true);
-                            fragmentContextView.f31372a.h(true);
+                            fragmentContextView.f31373a.h(true);
                             try {
                                 fragmentContextView.D.performHapticFeedback(3, 2);
                                 return;
@@ -701,7 +701,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         this.L = imageView5;
         imageView5.setImageResource(2131232256);
         ImageView imageView6 = this.L;
-        int i13 = org.telegram.ui.ActionBar.k6.f28222x7;
+        int i13 = org.telegram.ui.ActionBar.k6.f28223x7;
         org.telegram.ui.ActionBar.r6.t(imageView6, i13, f6Var, mode);
         this.K.addView(this.L, c8.ha.e(20, 20, 17));
         this.K.setBackground(org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.w0(i13, f6Var) & 436207615, 1, org.telegram.messenger.g0.L(14.0f)));
@@ -709,15 +709,15 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         this.K.setOnClickListener(new bi.l1(12));
         this.K.setVisibility(8);
         addView(this.K, c8.ha.d(36, 36.0f, 53, 0.0f, 0.0f, 36.0f, 0.0f));
-        if (!this.f31391o0) {
+        if (!this.f31392o0) {
             h();
         }
         z8 z8Var = new z8(context, false);
-        this.f31375b0 = z8Var;
+        this.f31376b0 = z8Var;
         z8Var.setAvatarsTextSize(org.telegram.messenger.g0.L(21.0f));
-        this.f31375b0.setDelegate(new e00(this, 1));
-        this.f31375b0.setVisibility(8);
-        addView(this.f31375b0, c8.ha.e(108, 36, 51));
+        this.f31376b0.setDelegate(new e00(this, 1));
+        this.f31376b0.setVisibility(8);
+        addView(this.f31376b0, c8.ha.e(108, 36, 51));
         this.E = new zg0(2131624332, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(20.0f), true, null);
         k00 k00Var = new k00(this, context);
         this.D = k00Var;
@@ -728,10 +728,10 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         this.D.setVisibility(8);
         addView(this.D, c8.ha.d(36, 36.0f, 53, 0.0f, 0.0f, 2.0f, 0.0f));
         this.D.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f31969b;
+            public final FragmentContextView f31976b;
 
             {
-                this.f31969b = this;
+                this.f31976b = this;
             }
 
             @Override
@@ -743,16 +743,16 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 int i122;
                 int i132 = r2;
                 boolean z9 = false;
-                FragmentContextView fragmentContextView = this.f31969b;
+                FragmentContextView fragmentContextView = this.f31976b;
                 switch (i132) {
                     case 0:
-                        kg kgVar = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31393q0;
+                        kg kgVar = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
                         if (fragmentContextView.U == 2) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f2Var.getParentActivity(), f6Var2);
                             String M0 = org.telegram.messenger.hd.M0(2131744836, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                             u1Var.R = M0;
                             if (f2Var instanceof org.telegram.ui.ww) {
                                 u1Var.T = org.telegram.messenger.hd.M0(2131744838, null);
@@ -772,7 +772,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             alertDialog$Builder.p();
                             TextView textView = (TextView) u1Var.d(-1);
                             if (textView != null) {
-                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, f6Var2);
+                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28090q7, f6Var2);
                                 return;
                             }
                             return;
@@ -780,8 +780,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         MediaController.B().q(true, true, false, false);
                         return;
                     case 1:
-                        kg kgVar2 = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31393q0;
+                        kg kgVar2 = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var2 = fragmentContextView.h;
                         int i14 = fragmentContextView.U;
                         if (i14 == 6) {
@@ -789,7 +789,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             if (g1Var != null) {
                                 long j11 = g1Var.f9023b;
                                 int i15 = g1Var.f9025e;
-                                if (i15 != org.telegram.messenger.p10.f24459s0) {
+                                if (i15 != org.telegram.messenger.p10.f24467s0) {
                                     LaunchActivity launchActivity = LaunchActivity.G1;
                                     if (launchActivity != null) {
                                         launchActivity.O0(i15);
@@ -826,11 +826,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                 if (kgVar2 != null) {
                                     j12 = kgVar2.a();
                                 }
-                                if (org.telegram.messenger.ij.B0(ijVar.f23237k) == j12) {
-                                    fragmentContextView.f31389n.l(ijVar.f1(), 0, false, 0, true, 0);
+                                if (org.telegram.messenger.ij.B0(ijVar.f23244k) == j12) {
+                                    fragmentContextView.f31390n.l(ijVar.f1(), 0, false, 0, true, 0);
                                     return;
                                 }
-                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23237k);
+                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23244k);
                                 Bundle bundle = new Bundle();
                                 if (org.telegram.messenger.m5.C(B0)) {
                                     bundle.putInt("enc_id", (int) (B0 & 4294967295L));
@@ -848,7 +848,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             fragmentContextView.getContext().startActivity(new Intent(fragmentContextView.getContext(), LaunchActivity.class).setAction("voip"));
                             return;
                         } else if (i14 == 2) {
-                            int i16 = org.telegram.messenger.p10.f24459s0;
+                            int i16 = org.telegram.messenger.p10.f24467s0;
                             if (kgVar2 != null) {
                                 j3 = kgVar2.a();
                                 i112 = f2Var2.getCurrentAccount();
@@ -857,7 +857,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                     for (int i17 = 0; i17 < 4; i17++) {
                                         if (!org.telegram.messenger.sd.f(i17).I.isEmpty()) {
                                             org.telegram.messenger.rd rdVar = (org.telegram.messenger.rd) org.telegram.messenger.sd.f(i17).I.get(0);
-                                            j3 = rdVar.f25265a;
+                                            j3 = rdVar.f25273a;
                                             i112 = rdVar.h.I1;
                                         }
                                     }
@@ -880,8 +880,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             return;
                         } else if (i14 == 4) {
                             if (f2Var2.getParentActivity() != null && (groupCall = kgVar2.getGroupCall()) != null) {
-                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25202c));
-                                TLRPC.GroupCall groupCall2 = groupCall.f25201b;
+                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25210c));
+                                TLRPC.GroupCall groupCall2 = groupCall.f25209b;
                                 if (groupCall2 != null && !groupCall2.rtmp_stream) {
                                     z9 = true;
                                 }
@@ -948,7 +948,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             }
                             fragmentContextView.D.d();
                             org.telegram.ui.ActionBar.k6.G0().c(true);
-                            fragmentContextView.f31372a.h(true);
+                            fragmentContextView.f31373a.h(true);
                             try {
                                 fragmentContextView.D.performHapticFeedback(3, 2);
                                 return;
@@ -968,10 +968,10 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         this.F.setScaleType(scaleType);
         addView(this.F, c8.ha.d(36, 36.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
         this.F.setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f31969b;
+            public final FragmentContextView f31976b;
 
             {
-                this.f31969b = this;
+                this.f31976b = this;
             }
 
             @Override
@@ -983,16 +983,16 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 int i122;
                 int i132 = r2;
                 boolean z9 = false;
-                FragmentContextView fragmentContextView = this.f31969b;
+                FragmentContextView fragmentContextView = this.f31976b;
                 switch (i132) {
                     case 0:
-                        kg kgVar = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31393q0;
+                        kg kgVar = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
                         if (fragmentContextView.U == 2) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f2Var.getParentActivity(), f6Var2);
                             String M0 = org.telegram.messenger.hd.M0(2131744836, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                             u1Var.R = M0;
                             if (f2Var instanceof org.telegram.ui.ww) {
                                 u1Var.T = org.telegram.messenger.hd.M0(2131744838, null);
@@ -1012,7 +1012,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             alertDialog$Builder.p();
                             TextView textView = (TextView) u1Var.d(-1);
                             if (textView != null) {
-                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, f6Var2);
+                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28090q7, f6Var2);
                                 return;
                             }
                             return;
@@ -1020,8 +1020,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         MediaController.B().q(true, true, false, false);
                         return;
                     case 1:
-                        kg kgVar2 = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31393q0;
+                        kg kgVar2 = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var2 = fragmentContextView.h;
                         int i14 = fragmentContextView.U;
                         if (i14 == 6) {
@@ -1029,7 +1029,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             if (g1Var != null) {
                                 long j11 = g1Var.f9023b;
                                 int i15 = g1Var.f9025e;
-                                if (i15 != org.telegram.messenger.p10.f24459s0) {
+                                if (i15 != org.telegram.messenger.p10.f24467s0) {
                                     LaunchActivity launchActivity = LaunchActivity.G1;
                                     if (launchActivity != null) {
                                         launchActivity.O0(i15);
@@ -1066,11 +1066,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                 if (kgVar2 != null) {
                                     j12 = kgVar2.a();
                                 }
-                                if (org.telegram.messenger.ij.B0(ijVar.f23237k) == j12) {
-                                    fragmentContextView.f31389n.l(ijVar.f1(), 0, false, 0, true, 0);
+                                if (org.telegram.messenger.ij.B0(ijVar.f23244k) == j12) {
+                                    fragmentContextView.f31390n.l(ijVar.f1(), 0, false, 0, true, 0);
                                     return;
                                 }
-                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23237k);
+                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23244k);
                                 Bundle bundle = new Bundle();
                                 if (org.telegram.messenger.m5.C(B0)) {
                                     bundle.putInt("enc_id", (int) (B0 & 4294967295L));
@@ -1088,7 +1088,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             fragmentContextView.getContext().startActivity(new Intent(fragmentContextView.getContext(), LaunchActivity.class).setAction("voip"));
                             return;
                         } else if (i14 == 2) {
-                            int i16 = org.telegram.messenger.p10.f24459s0;
+                            int i16 = org.telegram.messenger.p10.f24467s0;
                             if (kgVar2 != null) {
                                 j3 = kgVar2.a();
                                 i112 = f2Var2.getCurrentAccount();
@@ -1097,7 +1097,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                     for (int i17 = 0; i17 < 4; i17++) {
                                         if (!org.telegram.messenger.sd.f(i17).I.isEmpty()) {
                                             org.telegram.messenger.rd rdVar = (org.telegram.messenger.rd) org.telegram.messenger.sd.f(i17).I.get(0);
-                                            j3 = rdVar.f25265a;
+                                            j3 = rdVar.f25273a;
                                             i112 = rdVar.h.I1;
                                         }
                                     }
@@ -1120,8 +1120,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             return;
                         } else if (i14 == 4) {
                             if (f2Var2.getParentActivity() != null && (groupCall = kgVar2.getGroupCall()) != null) {
-                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25202c));
-                                TLRPC.GroupCall groupCall2 = groupCall.f25201b;
+                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25210c));
+                                TLRPC.GroupCall groupCall2 = groupCall.f25209b;
                                 if (groupCall2 != null && !groupCall2.rtmp_stream) {
                                     z9 = true;
                                 }
@@ -1188,7 +1188,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             }
                             fragmentContextView.D.d();
                             org.telegram.ui.ActionBar.k6.G0().c(true);
-                            fragmentContextView.f31372a.h(true);
+                            fragmentContextView.f31373a.h(true);
                             try {
                                 fragmentContextView.D.performHapticFeedback(3, 2);
                                 return;
@@ -1201,13 +1201,13 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
         });
         di.a4 a4Var = new di.a4(getContext(), 14);
-        this.f31401w = a4Var;
+        this.f31402w = a4Var;
         addView(a4Var, c8.ha.d(-1, -2.0f, 48, 96.0f, 3.0f, 96.0f, 0.0f));
         setOnClickListener(new View.OnClickListener(this) {
-            public final FragmentContextView f31969b;
+            public final FragmentContextView f31976b;
 
             {
-                this.f31969b = this;
+                this.f31976b = this;
             }
 
             @Override
@@ -1219,16 +1219,16 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 int i122;
                 int i132 = r2;
                 boolean z9 = false;
-                FragmentContextView fragmentContextView = this.f31969b;
+                FragmentContextView fragmentContextView = this.f31976b;
                 switch (i132) {
                     case 0:
-                        kg kgVar = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31393q0;
+                        kg kgVar = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var2 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
                         if (fragmentContextView.U == 2) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f2Var.getParentActivity(), f6Var2);
                             String M0 = org.telegram.messenger.hd.M0(2131744836, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                             u1Var.R = M0;
                             if (f2Var instanceof org.telegram.ui.ww) {
                                 u1Var.T = org.telegram.messenger.hd.M0(2131744838, null);
@@ -1248,7 +1248,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             alertDialog$Builder.p();
                             TextView textView = (TextView) u1Var.d(-1);
                             if (textView != null) {
-                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, f6Var2);
+                                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28090q7, f6Var2);
                                 return;
                             }
                             return;
@@ -1256,8 +1256,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         MediaController.B().q(true, true, false, false);
                         return;
                     case 1:
-                        kg kgVar2 = fragmentContextView.f31389n;
-                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31393q0;
+                        kg kgVar2 = fragmentContextView.f31390n;
+                        org.telegram.ui.ActionBar.f6 f6Var3 = fragmentContextView.f31394q0;
                         org.telegram.ui.ActionBar.f2 f2Var2 = fragmentContextView.h;
                         int i14 = fragmentContextView.U;
                         if (i14 == 6) {
@@ -1265,7 +1265,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             if (g1Var != null) {
                                 long j11 = g1Var.f9023b;
                                 int i15 = g1Var.f9025e;
-                                if (i15 != org.telegram.messenger.p10.f24459s0) {
+                                if (i15 != org.telegram.messenger.p10.f24467s0) {
                                     LaunchActivity launchActivity = LaunchActivity.G1;
                                     if (launchActivity != null) {
                                         launchActivity.O0(i15);
@@ -1302,11 +1302,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                 if (kgVar2 != null) {
                                     j12 = kgVar2.a();
                                 }
-                                if (org.telegram.messenger.ij.B0(ijVar.f23237k) == j12) {
-                                    fragmentContextView.f31389n.l(ijVar.f1(), 0, false, 0, true, 0);
+                                if (org.telegram.messenger.ij.B0(ijVar.f23244k) == j12) {
+                                    fragmentContextView.f31390n.l(ijVar.f1(), 0, false, 0, true, 0);
                                     return;
                                 }
-                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23237k);
+                                long B0 = org.telegram.messenger.ij.B0(ijVar.f23244k);
                                 Bundle bundle = new Bundle();
                                 if (org.telegram.messenger.m5.C(B0)) {
                                     bundle.putInt("enc_id", (int) (B0 & 4294967295L));
@@ -1324,7 +1324,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             fragmentContextView.getContext().startActivity(new Intent(fragmentContextView.getContext(), LaunchActivity.class).setAction("voip"));
                             return;
                         } else if (i14 == 2) {
-                            int i16 = org.telegram.messenger.p10.f24459s0;
+                            int i16 = org.telegram.messenger.p10.f24467s0;
                             if (kgVar2 != null) {
                                 j3 = kgVar2.a();
                                 i112 = f2Var2.getCurrentAccount();
@@ -1333,7 +1333,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                     for (int i17 = 0; i17 < 4; i17++) {
                                         if (!org.telegram.messenger.sd.f(i17).I.isEmpty()) {
                                             org.telegram.messenger.rd rdVar = (org.telegram.messenger.rd) org.telegram.messenger.sd.f(i17).I.get(0);
-                                            j3 = rdVar.f25265a;
+                                            j3 = rdVar.f25273a;
                                             i112 = rdVar.h.I1;
                                         }
                                     }
@@ -1356,8 +1356,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             return;
                         } else if (i14 == 4) {
                             if (f2Var2.getParentActivity() != null && (groupCall = kgVar2.getGroupCall()) != null) {
-                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25202c));
-                                TLRPC.GroupCall groupCall2 = groupCall.f25201b;
+                                TLRPC.Chat M02 = f2Var2.getMessagesController().M0(Long.valueOf(groupCall.f25210c));
+                                TLRPC.GroupCall groupCall2 = groupCall.f25209b;
                                 if (groupCall2 != null && !groupCall2.rtmp_stream) {
                                     z9 = true;
                                 }
@@ -1424,7 +1424,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             }
                             fragmentContextView.D.d();
                             org.telegram.ui.ActionBar.k6.G0().c(true);
-                            fragmentContextView.f31372a.h(true);
+                            fragmentContextView.f31373a.h(true);
                             try {
                                 fragmentContextView.D.performHapticFeedback(3, 2);
                                 return;
@@ -1441,7 +1441,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
 
     public final void c(boolean z9) {
         int i7;
-        kg kgVar = this.f31389n;
+        kg kgVar = this.f31390n;
         if (kgVar != null) {
             if (!this.T || ((i7 = this.U) != 1 && i7 != 3)) {
                 b();
@@ -1455,7 +1455,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 if ((j() || kgVar.q() || ((visibleDialog instanceof l30) && !((l30) visibleDialog).I)) && B != null) {
                     B = null;
                 }
-                h2.f fVar = this.f31399u0;
+                h2.f fVar = this.f31400u0;
                 if (B == null) {
                     if (this.T && ((z9 && this.U == -1) || this.U == 5)) {
                         this.T = false;
@@ -1466,19 +1466,19 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             setTopPadding(0.0f);
                             return;
                         }
-                        AnimatorSet animatorSet = this.f31381f;
+                        AnimatorSet animatorSet = this.f31382f;
                         if (animatorSet != null) {
                             animatorSet.cancel();
-                            this.f31381f = null;
+                            this.f31382f = null;
                         }
                         fVar.d();
                         AnimatorSet animatorSet2 = new AnimatorSet();
-                        this.f31381f = animatorSet2;
+                        this.f31382f = animatorSet2;
                         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
-                        this.f31381f.setDuration(220L);
-                        this.f31381f.setInterpolator(xq.f40329f);
-                        this.f31381f.addListener(new f00(this, 3));
-                        this.f31381f.start();
+                        this.f31382f.setDuration(220L);
+                        this.f31382f.setInterpolator(xq.f40345f);
+                        this.f31382f.addListener(new f00(this, 3));
+                        this.f31382f.start();
                         return;
                     }
                     int i10 = this.U;
@@ -1486,41 +1486,41 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         this.T = false;
                         setVisibility(8);
                     }
-                } else if (this.U != 5 && this.f31381f != null && !z9) {
-                    this.f31407z0 = true;
+                } else if (this.U != 5 && this.f31382f != null && !z9) {
+                    this.f31408z0 = true;
                 } else {
                     r(5);
                     if (z9 && this.S == 0.0f) {
                         setTopPadding(org.telegram.messenger.g0.M(getStyleHeight()));
-                        m00 m00Var = this.f31392p0;
+                        m00 m00Var = this.f31393p0;
                         if (m00Var != null) {
                             ((uo0) m00Var).b(true);
-                            ((uo0) this.f31392p0).b(false);
+                            ((uo0) this.f31393p0).b(false);
                         }
                     }
                     if (!this.T) {
                         if (!z9) {
-                            AnimatorSet animatorSet3 = this.f31381f;
+                            AnimatorSet animatorSet3 = this.f31382f;
                             if (animatorSet3 != null) {
                                 animatorSet3.cancel();
-                                this.f31381f = null;
+                                this.f31382f = null;
                             }
                             fVar.d();
-                            this.f31381f = new AnimatorSet();
-                            m00 m00Var2 = this.f31392p0;
+                            this.f31382f = new AnimatorSet();
+                            m00 m00Var2 = this.f31393p0;
                             if (m00Var2 != null) {
                                 ((uo0) m00Var2).b(true);
                             }
-                            this.f31381f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", org.telegram.messenger.g0.M(getStyleHeight())));
-                            this.f31381f.setDuration(200L);
-                            this.f31381f.addListener(new f00(this, 4));
-                            this.f31381f.start();
+                            this.f31382f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", org.telegram.messenger.g0.M(getStyleHeight())));
+                            this.f31382f.setDuration(200L);
+                            this.f31382f.addListener(new f00(this, 4));
+                            this.f31382f.start();
                         }
                         this.T = true;
                         setVisibility(0);
                     }
                     int i11 = this.Q;
-                    int i12 = B.f26538l;
+                    int i12 = B.f26546l;
                     if (i11 != i12) {
                         this.Q = i12;
                         this.d.b(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0("ImportUploading", null, 2131749221, Integer.valueOf(i12))), false);
@@ -1548,11 +1548,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 i7 = false;
             }
         } else {
-            i7 = org.telegram.messenger.sd.f(f2Var.getCurrentAccount()).i(this.f31389n.a());
+            i7 = org.telegram.messenger.sd.f(f2Var.getCurrentAccount()).i(this.f31390n.a());
         }
-        dt dtVar = this.f31398t0;
+        dt dtVar = this.f31399t0;
         if (!i7) {
-            this.f31397s0 = -1;
+            this.f31398s0 = -1;
             org.telegram.messenger.g0.r(dtVar);
             if (this.T) {
                 this.T = false;
@@ -1563,40 +1563,40 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     setTopPadding(0.0f);
                     return;
                 }
-                AnimatorSet animatorSet = this.f31381f;
+                AnimatorSet animatorSet = this.f31382f;
                 if (animatorSet != null) {
                     animatorSet.cancel();
-                    this.f31381f = null;
+                    this.f31382f = null;
                 }
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f31381f = animatorSet2;
+                this.f31382f = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
-                this.f31381f.setDuration(200L);
-                this.f31381f.addListener(new f00(this, 11));
-                this.f31381f.start();
+                this.f31382f.setDuration(200L);
+                this.f31382f.addListener(new f00(this, 11));
+                this.f31382f.start();
                 return;
             }
             return;
         }
         b();
         r(2);
-        this.f31374b.setImageDrawable(new no0(getContext(), 1));
+        this.f31375b.setImageDrawable(new no0(getContext(), 1));
         if (z9 && this.S == 0.0f) {
             setTopPadding(org.telegram.messenger.g0.M(getStyleHeight()));
         }
         if (!this.T) {
             if (!z9) {
-                AnimatorSet animatorSet3 = this.f31381f;
+                AnimatorSet animatorSet3 = this.f31382f;
                 if (animatorSet3 != null) {
                     animatorSet3.cancel();
-                    this.f31381f = null;
+                    this.f31382f = null;
                 }
                 AnimatorSet animatorSet4 = new AnimatorSet();
-                this.f31381f = animatorSet4;
+                this.f31382f = animatorSet4;
                 animatorSet4.playTogether(ObjectAnimator.ofFloat(this, "topPadding", org.telegram.messenger.g0.M(getStyleHeight())));
-                this.f31381f.setDuration(200L);
-                this.f31381f.addListener(new f00(this, 0));
-                this.f31381f.start();
+                this.f31382f.setDuration(200L);
+                this.f31382f.addListener(new f00(this, 0));
+                this.f31382f.start();
             }
             this.T = true;
             setVisibility(0);
@@ -1609,7 +1609,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
             if (arrayList.size() == 1) {
                 org.telegram.messenger.rd rdVar = (org.telegram.messenger.rd) arrayList.get(0);
-                long B0 = org.telegram.messenger.ij.B0(rdVar.h.f23237k);
+                long B0 = org.telegram.messenger.ij.B0(rdVar.h.f23244k);
                 if (org.telegram.messenger.m5.E(B0)) {
                     G = org.telegram.messenger.t10.j(org.telegram.messenger.qp.s1(rdVar.h.I1).a2(Long.valueOf(B0)), true);
                     M0 = org.telegram.messenger.hd.M0(2131753965, null);
@@ -1640,7 +1640,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     nextTextView.setEllipsize(TextUtils.TruncateAt.END);
                 }
             }
-            spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o(), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28145t7, this.f31393q0)), indexOf, M02.length() + indexOf, 18);
+            spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o(), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28146t7, this.f31394q0)), indexOf, M02.length() + indexOf, 18);
             this.d.b(spannableStringBuilder, false);
             return;
         }
@@ -1660,28 +1660,28 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             e(false);
         } else {
             int i12 = org.telegram.messenger.qs.F4;
-            kg kgVar = this.f31389n;
+            kg kgVar = this.f31390n;
             if (i7 == i12) {
                 if (kgVar != null) {
                     if (kgVar.a() == ((Long) objArr[0]).longValue()) {
                         f();
                     }
                 }
-            } else if (i7 != org.telegram.messenger.qs.f24993h2 && i7 != org.telegram.messenger.qs.f24987g2 && i7 != org.telegram.messenger.qs.f24981f2 && i7 != org.telegram.messenger.qs.D2) {
-                int i13 = org.telegram.messenger.qs.f25075v2;
-                if (i7 != i13 && i7 != org.telegram.messenger.qs.f25082w2 && i7 != org.telegram.messenger.qs.F2) {
+            } else if (i7 != org.telegram.messenger.qs.f25001h2 && i7 != org.telegram.messenger.qs.f24995g2 && i7 != org.telegram.messenger.qs.f24989f2 && i7 != org.telegram.messenger.qs.D2) {
+                int i13 = org.telegram.messenger.qs.f25083v2;
+                if (i7 != i13 && i7 != org.telegram.messenger.qs.f25090w2 && i7 != org.telegram.messenger.qs.F2) {
                     if (i7 == org.telegram.messenger.qs.C2) {
                         b();
                         if (this.T && this.U == 4) {
                             org.telegram.messenger.r3 groupCall = kgVar.getGroupCall();
-                            if (groupCall != null && this.f31379e != null) {
+                            if (groupCall != null && this.f31380e != null) {
                                 if (groupCall.j()) {
-                                    this.f31379e.b(org.telegram.messenger.hd.W(4, groupCall.f25201b.schedule_date, true), false);
+                                    this.f31380e.b(org.telegram.messenger.hd.W(4, groupCall.f25209b.schedule_date, true), false);
                                 } else {
-                                    TLRPC.GroupCall groupCall2 = groupCall.f25201b;
+                                    TLRPC.GroupCall groupCall2 = groupCall.f25209b;
                                     int i14 = groupCall2.participants_count;
                                     if (i14 == 0) {
-                                        i00 i00Var = this.f31379e;
+                                        i00 i00Var = this.f31380e;
                                         if (groupCall2.rtmp_stream) {
                                             i11 = 2131743536;
                                         } else {
@@ -1689,7 +1689,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                         }
                                         i00Var.b(org.telegram.messenger.hd.M0(i11, null), false);
                                     } else {
-                                        i00 i00Var2 = this.f31379e;
+                                        i00 i00Var2 = this.f31380e;
                                         if (groupCall2.rtmp_stream) {
                                             str = "ViewersWatching";
                                         } else {
@@ -1703,7 +1703,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                             return;
                         }
                         return;
-                    } else if (i7 == org.telegram.messenger.qs.f25074v1) {
+                    } else if (i7 == org.telegram.messenger.qs.f25082v1) {
                         int i15 = this.U;
                         if (i15 == 1 || i15 == 3 || i15 == 4) {
                             a(false);
@@ -1715,7 +1715,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         return;
                     } else {
                         int i16 = org.telegram.messenger.qs.N4;
-                        sc scVar = this.f31372a;
+                        sc scVar = this.f31373a;
                         if (i7 == i16) {
                             if (VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isMicMute()) {
                                 this.N0 = Math.min(8500.0f, ((Float) objArr[0]).floatValue() * 4000.0f) / 8500.0f;
@@ -1738,9 +1738,9 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                                 org.telegram.ui.ActionBar.k6.G0().a(Math.max(this.M0, this.N0));
                                 scVar.f(Math.max(this.M0, this.N0));
                             }
-                            this.f31375b0.invalidate();
+                            this.f31376b0.invalidate();
                             return;
-                        } else if (i7 == org.telegram.messenger.qs.f24975e2 && this.U == 0) {
+                        } else if (i7 == org.telegram.messenger.qs.f24983e2 && this.U == 0) {
                             invalidate();
                             return;
                         } else {
@@ -1781,45 +1781,45 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             z9 = true;
         }
         di.g1 g1Var = di.g1.W;
-        h2.f fVar = this.f31399u0;
+        h2.f fVar = this.f31400u0;
         int i7 = 0;
         if (g1Var != null) {
             b();
             int i10 = this.U;
-            if (6 != i10 && this.f31381f != null && !z9) {
-                this.f31404x0 = true;
+            if (6 != i10 && this.f31382f != null && !z9) {
+                this.f31405x0 = true;
                 return;
             } else if (6 != i10 && this.T && !z9) {
-                AnimatorSet animatorSet = this.f31381f;
+                AnimatorSet animatorSet = this.f31382f;
                 if (animatorSet != null) {
                     animatorSet.cancel();
-                    this.f31381f = null;
+                    this.f31382f = null;
                 }
                 fVar.d();
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f31381f = animatorSet2;
+                this.f31382f = animatorSet2;
                 animatorSet2.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
-                this.f31381f.setDuration(220L);
-                this.f31381f.setInterpolator(xq.f40329f);
-                this.f31381f.addListener(new f00(this, 6));
-                this.f31381f.start();
+                this.f31382f.setDuration(220L);
+                this.f31382f.setInterpolator(xq.f40345f);
+                this.f31382f.addListener(new f00(this, 6));
+                this.f31382f.start();
                 return;
             } else {
                 r(6);
                 if (!this.T) {
                     if (!z9) {
-                        AnimatorSet animatorSet3 = this.f31381f;
+                        AnimatorSet animatorSet3 = this.f31382f;
                         if (animatorSet3 != null) {
                             animatorSet3.cancel();
-                            this.f31381f = null;
+                            this.f31382f = null;
                         }
-                        this.f31381f = new AnimatorSet();
-                        this.f31400v0.d();
-                        this.f31381f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", org.telegram.messenger.g0.M(getStyleHeight())));
-                        this.f31381f.setDuration(220L);
-                        this.f31381f.setInterpolator(xq.f40329f);
-                        this.f31381f.addListener(new f00(this, 7));
-                        this.f31381f.start();
+                        this.f31382f = new AnimatorSet();
+                        this.f31401v0.d();
+                        this.f31382f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", org.telegram.messenger.g0.M(getStyleHeight())));
+                        this.f31382f.setDuration(220L);
+                        this.f31382f.setInterpolator(xq.f40345f);
+                        this.f31382f.addListener(new f00(this, 7));
+                        this.f31382f.start();
                     } else {
                         setTopPadding(org.telegram.messenger.g0.M(getStyleHeight()));
                         n();
@@ -1841,19 +1841,19 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     }
                     setTopPadding(0.0f);
                 } else {
-                    AnimatorSet animatorSet4 = this.f31381f;
+                    AnimatorSet animatorSet4 = this.f31382f;
                     if (animatorSet4 != null) {
                         animatorSet4.cancel();
-                        this.f31381f = null;
+                        this.f31382f = null;
                     }
                     fVar.d();
                     AnimatorSet animatorSet5 = new AnimatorSet();
-                    this.f31381f = animatorSet5;
+                    this.f31382f = animatorSet5;
                     animatorSet5.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
-                    this.f31381f.setDuration(220L);
-                    this.f31381f.setInterpolator(xq.f40329f);
-                    this.f31381f.addListener(new f00(this, 5));
-                    this.f31381f.start();
+                    this.f31382f.setDuration(220L);
+                    this.f31382f.setInterpolator(xq.f40345f);
+                    this.f31382f.addListener(new f00(this, 5));
+                    this.f31382f.start();
                 }
             } else if (z10 && this.U == -1) {
                 this.T = false;
@@ -1877,13 +1877,13 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         int i10;
         String format;
         TextView nextTextView;
-        kg kgVar = this.f31389n;
+        kg kgVar = this.f31390n;
         if (kgVar != null && this.d != null) {
             b();
             long a10 = kgVar.a();
             int currentAccount = this.h.getCurrentAccount();
-            ArrayList arrayList = (ArrayList) org.telegram.messenger.sd.f(currentAccount).f25443c.f(a10);
-            if (!this.f31395r0) {
+            ArrayList arrayList = (ArrayList) org.telegram.messenger.sd.f(currentAccount).f25451c.f(a10);
+            if (!this.f31396r0) {
                 org.telegram.messenger.sd f10 = org.telegram.messenger.sd.f(currentAccount);
                 a0.h hVar = f10.G;
                 if (hVar.h(a10) < 0) {
@@ -1893,7 +1893,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     tL_messages_getRecentLocations.limit = 100;
                     f10.getConnectionsManager().sendRequest(tL_messages_getRecentLocations, new org.telegram.messenger.p4(f10, a10, 1));
                 }
-                this.f31395r0 = true;
+                this.f31396r0 = true;
             }
             if (arrayList != null) {
                 long e10 = org.telegram.messenger.p10.i(currentAccount).e();
@@ -1917,8 +1917,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 user = null;
                 i10 = 0;
             }
-            if (this.f31397s0 != i10) {
-                this.f31397s0 = i10;
+            if (this.f31398s0 != i10) {
+                this.f31398s0 = i10;
                 String M0 = org.telegram.messenger.hd.M0(2131748839, null);
                 if (i10 == 0) {
                     format = M0;
@@ -1986,7 +1986,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         }
                     }
                     if (indexOf >= 0) {
-                        spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o(), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28145t7, this.f31393q0)), indexOf, M0.length() + indexOf, 18);
+                        spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o(), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28146t7, this.f31394q0)), indexOf, M0.length() + indexOf, 18);
                     }
                     this.d.b(spannableStringBuilder, false);
                 }
@@ -2020,56 +2020,56 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             z10 = z9;
         }
         boolean z13 = this.T;
-        h2.f fVar = this.f31399u0;
-        if (ijVar != null && ijVar.f1() != 0 && !org.telegram.messenger.ij.M4(ijVar.f23237k)) {
+        h2.f fVar = this.f31400u0;
+        if (ijVar != null && ijVar.f1() != 0 && !org.telegram.messenger.ij.M4(ijVar.f23244k)) {
             b();
             int i10 = this.U;
-            if (i10 != 0 && this.f31381f != null && !z10) {
-                this.f31406y0 = true;
+            if (i10 != 0 && this.f31382f != null && !z10) {
+                this.f31407y0 = true;
                 return;
             }
             r(0);
             if (z10 && this.S == 0.0f) {
                 setTopPadding(org.telegram.messenger.g0.M(getStyleHeight()));
-                m00 m00Var = this.f31392p0;
+                m00 m00Var = this.f31393p0;
                 if (m00Var != null) {
                     ((uo0) m00Var).b(true);
-                    ((uo0) this.f31392p0).b(false);
+                    ((uo0) this.f31393p0).b(false);
                 }
             }
             if (!this.T) {
                 if (!z10) {
-                    AnimatorSet animatorSet = this.f31381f;
+                    AnimatorSet animatorSet = this.f31382f;
                     if (animatorSet != null) {
                         animatorSet.cancel();
-                        this.f31381f = null;
+                        this.f31382f = null;
                     }
                     fVar.d();
-                    this.f31381f = new AnimatorSet();
-                    m00 m00Var2 = this.f31392p0;
+                    this.f31382f = new AnimatorSet();
+                    m00 m00Var2 = this.f31393p0;
                     if (m00Var2 != null) {
                         ((uo0) m00Var2).b(true);
                     }
-                    this.f31381f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", org.telegram.messenger.g0.M(getStyleHeight())));
-                    this.f31381f.setDuration(200L);
-                    this.f31381f.addListener(new f00(this, 2));
-                    this.f31381f.start();
+                    this.f31382f.playTogether(ObjectAnimator.ofFloat(this, "topPadding", org.telegram.messenger.g0.M(getStyleHeight())));
+                    this.f31382f.setDuration(200L);
+                    this.f31382f.addListener(new f00(this, 2));
+                    this.f31382f.start();
                 }
                 this.T = true;
                 setVisibility(0);
             }
             if (MediaController.B().H()) {
-                this.f31376c.a(false, !z10);
-                this.f31374b.setContentDescription(org.telegram.messenger.hd.M0(2131754929, null));
+                this.f31377c.a(false, !z10);
+                this.f31375b.setContentDescription(org.telegram.messenger.hd.M0(2131754929, null));
             } else {
-                this.f31376c.a(true, !z10);
-                this.f31374b.setContentDescription(org.telegram.messenger.hd.M0(2131754930, null));
+                this.f31377c.a(true, !z10);
+                this.f31375b.setContentDescription(org.telegram.messenger.hd.M0(2131754930, null));
             }
             if (this.R == ijVar && i10 == 0) {
                 return;
             }
             this.R = ijVar;
-            if (!org.telegram.messenger.ij.S4(ijVar.f23237k) && !this.R.i4()) {
+            if (!org.telegram.messenger.ij.S4(ijVar.f23244k) && !this.R.i4()) {
                 this.W = true;
                 if (this.G != null) {
                     if (ijVar.L0() >= 600.0d) {
@@ -2119,17 +2119,17 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 }
                 q(false);
             }
-            spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o(), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28145t7, this.f31393q0)), 0, ijVar.x1(true).length(), 18);
+            spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o(), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28146t7, this.f31394q0)), 0, ijVar.x1(true).length(), 18);
             this.d.b(spannableStringBuilder, (!z10 && z13 && this.W) ? false : false);
             return;
         }
         this.R = null;
-        if (this.f31373a0 && VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isHangingUp() && VoIPService.getSharedInstance().getCallState() != 15 && !p10.d()) {
+        if (this.f31374a0 && VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isHangingUp() && VoIPService.getSharedInstance().getCallState() != 15 && !p10.d()) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (!j() && !z11 && (kgVar = this.f31389n) != null && !p10.d()) {
+        if (!j() && !z11 && (kgVar = this.f31390n) != null && !p10.d()) {
             org.telegram.messenger.r3 groupCall = kgVar.getGroupCall();
             if (groupCall != null && groupCall.y()) {
                 z11 = true;
@@ -2152,29 +2152,29 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 setTopPadding(0.0f);
                 return;
             }
-            AnimatorSet animatorSet2 = this.f31381f;
+            AnimatorSet animatorSet2 = this.f31382f;
             if (animatorSet2 != null) {
                 animatorSet2.cancel();
-                this.f31381f = null;
+                this.f31382f = null;
             }
             fVar.d();
             AnimatorSet animatorSet3 = new AnimatorSet();
-            this.f31381f = animatorSet3;
+            this.f31382f = animatorSet3;
             animatorSet3.playTogether(ObjectAnimator.ofFloat(this, "topPadding", 0.0f));
-            this.f31381f.setDuration(200L);
-            m00 m00Var3 = this.f31392p0;
+            this.f31382f.setDuration(200L);
+            m00 m00Var3 = this.f31393p0;
             if (m00Var3 != null) {
                 ((uo0) m00Var3).b(true);
             }
-            this.f31381f.addListener(new f00(this, 1));
-            this.f31381f.start();
+            this.f31382f.addListener(new f00(this, 1));
+            this.f31382f.start();
         } else {
             setVisibility(8);
         }
     }
 
     public sc getCapsuleBlobDrawable() {
-        return this.f31372a;
+        return this.f31373a;
     }
 
     public int getCurrentStyle() {
@@ -2197,9 +2197,9 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             return;
         }
         Context context = getContext();
-        int i7 = org.telegram.ui.ActionBar.k6.f27956j5;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f31393q0;
-        org.telegram.ui.ActionBar.r0 r0Var = new org.telegram.ui.ActionBar.r0(context, null, 0, org.telegram.ui.ActionBar.k6.w0(i7, f6Var), false, this.f31393q0);
+        int i7 = org.telegram.ui.ActionBar.k6.f27957j5;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f31394q0;
+        org.telegram.ui.ActionBar.r0 r0Var = new org.telegram.ui.ActionBar.r0(context, null, 0, org.telegram.ui.ActionBar.k6.w0(i7, f6Var), false, this.f31394q0);
         this.G = r0Var;
         if (r0Var.getIconView() != null) {
             org.telegram.ui.ActionBar.r6.t(this.G.getIconView(), i7, f6Var, PorterDuff.Mode.SRC_IN);
@@ -2229,7 +2229,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         p0VarArr[3] = this.G.z(3, 2131232370, org.telegram.messenger.hd.M0(2131745271, null));
         p0VarArr[4] = this.G.z(4, 2131232375, org.telegram.messenger.hd.M0(2131745265, null));
         p0VarArr[5] = this.G.z(5, 2131232374, org.telegram.messenger.hd.M0(2131745266, null));
-        if (org.telegram.messenger.g0.f22536p >= 3.0f) {
+        if (org.telegram.messenger.g0.f22543p >= 3.0f) {
             this.G.setPadding(0, 1, 0, 0);
         }
         this.G.setAdditionalXOffset(org.telegram.messenger.g0.L(8.0f));
@@ -2256,7 +2256,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 launchActivity.O0(rdVar.h.I1);
                 org.telegram.ui.pa0 pa0Var = new org.telegram.ui.pa0(2);
                 pa0Var.G0(rdVar.h);
-                pa0Var.G0 = new di.c1(rdVar, org.telegram.messenger.ij.B0(rdVar.h.f23237k), 4);
+                pa0Var.G0 = new di.c1(rdVar, org.telegram.messenger.ij.B0(rdVar.h.f23244k), 4);
                 launchActivity.t0(pa0Var);
             }
         }
@@ -2284,7 +2284,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
 
     public final void n() {
         org.telegram.ui.Components.voip.n nVar = this.O;
-        if (nVar != null && nVar.f39319g >= 1.0f) {
+        if (nVar != null && nVar.f39340g >= 1.0f) {
             this.O0 = false;
             org.telegram.messenger.g0.i3(new e00(this, 0), 150L);
             return;
@@ -2301,15 +2301,15 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         float f10;
         ValueAnimator valueAnimator;
         b();
-        if (!z9 && (valueAnimator = this.f31375b0.f40886a.f40568f) != null) {
+        if (!z9 && (valueAnimator = this.f31376b0.f40906a.f40580f) != null) {
             valueAnimator.cancel();
-            this.f31375b0.f40886a.f40568f = null;
+            this.f31376b0.f40906a.f40580f = null;
         }
-        y8 y8Var = this.f31375b0.f40886a;
-        if (y8Var.f40568f == null) {
+        y8 y8Var = this.f31376b0.f40906a;
+        if (y8Var.f40580f == null) {
             int i11 = this.U;
-            int i12 = this.f31390n0;
-            kg kgVar = this.f31389n;
+            int i12 = this.f31391n0;
+            kg kgVar = this.f31390n;
             if (i11 == 4) {
                 if (kgVar != null) {
                     r3Var = kgVar.getGroupCall();
@@ -2334,29 +2334,29 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
             int i13 = 0;
             if (r3Var != null) {
-                ArrayList arrayList = r3Var.f25203e;
+                ArrayList arrayList = r3Var.f25211e;
                 int size = arrayList.size();
                 for (int i14 = 0; i14 < 3; i14++) {
                     if (i14 < size) {
-                        this.f31375b0.b(i14, i7, (TLObject) arrayList.get(i14));
+                        this.f31376b0.b(i14, i7, (TLObject) arrayList.get(i14));
                     } else {
-                        this.f31375b0.b(i14, i7, null);
+                        this.f31376b0.b(i14, i7, null);
                     }
                 }
             } else if (user != null) {
-                this.f31375b0.b(0, i7, user);
+                this.f31376b0.b(0, i7, user);
                 for (int i15 = 1; i15 < 3; i15++) {
-                    this.f31375b0.b(i15, i7, null);
+                    this.f31376b0.b(i15, i7, null);
                 }
             } else {
                 for (int i16 = 0; i16 < 3; i16++) {
-                    this.f31375b0.b(i16, i7, null);
+                    this.f31376b0.b(i16, i7, null);
                 }
             }
-            this.f31375b0.a(z9);
+            this.f31376b0.a(z9);
             if (this.U == 4 && r3Var != null) {
-                if (!r3Var.f25201b.rtmp_stream) {
-                    i13 = Math.min(3, r3Var.f25203e.size());
+                if (!r3Var.f25209b.rtmp_stream) {
+                    i13 = Math.min(3, r3Var.f25211e.size());
                 }
                 if (i13 == 0) {
                     e10 = 10;
@@ -2369,17 +2369,17 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     if (org.telegram.messenger.g0.L(i17) != i18) {
                         float translationX = (this.d.getTranslationX() + i18) - org.telegram.messenger.g0.L(f10);
                         this.d.setTranslationX(translationX);
-                        this.f31379e.setTranslationX(translationX);
+                        this.f31380e.setTranslationX(translationX);
                         ViewPropertyAnimator duration = this.d.animate().translationX(0.0f).setDuration(220L);
-                        xq xqVar = xq.f40329f;
+                        xq xqVar = xq.f40345f;
                         duration.setInterpolator(xqVar);
-                        this.f31379e.animate().translationX(0.0f).setDuration(220L).setInterpolator(xqVar);
+                        this.f31380e.animate().translationX(0.0f).setDuration(220L).setInterpolator(xqVar);
                     }
                 } else {
                     this.d.animate().cancel();
-                    this.f31379e.animate().cancel();
+                    this.f31380e.animate().cancel();
                     this.d.setTranslationX(0.0f);
-                    this.f31379e.setTranslationX(0.0f);
+                    this.f31380e.setTranslationX(0.0f);
                 }
                 i00 i00Var = this.d;
                 float f11 = i17;
@@ -2390,7 +2390,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     i10 = 36;
                 }
                 i00Var.setLayoutParams(c8.ha.d(-1, 20.0f, 51, f11, 5.0f, i10, 0.0f));
-                i00 i00Var2 = this.f31379e;
+                i00 i00Var2 = this.f31380e;
                 if (r3Var.j()) {
                     i19 = 90;
                 }
@@ -2399,7 +2399,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
             return;
         }
-        y8Var.f40569g = true;
+        y8Var.f40581g = true;
     }
 
     @Override
@@ -2408,7 +2408,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         super.onAttachedToWindow();
         m();
         int i7 = 15;
-        if (this.f31391o0) {
+        if (this.f31392o0) {
             ab.b0 b0Var = new ab.b0(org.telegram.messenger.qs.e(), this);
             b0Var.c(org.telegram.messenger.qs.D4);
             b0Var.c(org.telegram.messenger.qs.F4);
@@ -2417,20 +2417,20 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         } else {
             for (int i10 = 0; i10 < 4; i10++) {
                 ab.b0 b0Var2 = new ab.b0(org.telegram.messenger.qs.f(i10), this);
-                b0Var2.c(org.telegram.messenger.qs.f24981f2);
-                b0Var2.c(org.telegram.messenger.qs.f24987g2);
-                b0Var2.c(org.telegram.messenger.qs.f24993h2);
-                b0Var2.c(org.telegram.messenger.qs.f25082w2);
+                b0Var2.c(org.telegram.messenger.qs.f24989f2);
+                b0Var2.c(org.telegram.messenger.qs.f24995g2);
+                b0Var2.c(org.telegram.messenger.qs.f25001h2);
+                b0Var2.c(org.telegram.messenger.qs.f25090w2);
                 b0Var2.c(org.telegram.messenger.qs.C2);
-                b0Var2.c(org.telegram.messenger.qs.f25074v1);
+                b0Var2.c(org.telegram.messenger.qs.f25082v1);
                 b0Var2.c(org.telegram.messenger.qs.G2);
-                b0Var2.c(org.telegram.messenger.qs.f24975e2);
+                b0Var2.c(org.telegram.messenger.qs.f24983e2);
                 this.K0[i10] = b0Var2;
                 GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(0L, this);
             }
             ab.b0 b0Var3 = new ab.b0(org.telegram.messenger.qs.e(), this);
             b0Var3.c(org.telegram.messenger.qs.J4);
-            b0Var3.c(org.telegram.messenger.qs.f25075v2);
+            b0Var3.c(org.telegram.messenger.qs.f25083v2);
             b0Var3.c(org.telegram.messenger.qs.D2);
             b0Var3.c(org.telegram.messenger.qs.O4);
             b0Var3.c(org.telegram.messenger.qs.N4);
@@ -2441,7 +2441,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             } else if (VoIPService.getSharedInstance() != null && !VoIPService.getSharedInstance().isHangingUp() && VoIPService.getSharedInstance().getCallState() != 15 && !p10.d()) {
                 a(true);
             } else {
-                kg kgVar = this.f31389n;
+                kg kgVar = this.f31390n;
                 if (kgVar != null && this.h.getSendMessagesHelper().B(kgVar.a()) != null && !j()) {
                     c(true);
                 } else if (kgVar != null && kgVar.getGroupCall() != null && kgVar.getGroupCall().y() && !p10.d() && !j()) {
@@ -2455,19 +2455,19 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         }
         int i11 = this.U;
         if (i11 != 3 && i11 != 1) {
-            if (i11 == 4 && !this.f31388l0) {
-                this.f31388l0 = true;
+            if (i11 == 4 && !this.f31389l0) {
+                this.f31389l0 = true;
                 this.m0.run();
             }
         } else {
-            ArrayList arrayList = org.telegram.ui.ActionBar.k6.G0().f36448l;
+            ArrayList arrayList = org.telegram.ui.ActionBar.k6.G0().f36487l;
             if (!arrayList.contains(this)) {
                 arrayList.add(this);
             }
-            sc scVar = this.f31372a;
-            if (!scVar.f37974u) {
-                scVar.f37974u = true;
-                scVar.f37973t = SystemClock.elapsedRealtime();
+            sc scVar = this.f31373a;
+            if (!scVar.f37978u) {
+                scVar.f37978u = true;
+                scVar.f37977t = SystemClock.elapsedRealtime();
                 bg.k.d().a(60, scVar.F);
             }
             if (VoIPService.getSharedInstance() != null) {
@@ -2486,7 +2486,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 }
                 zg0Var.P(i7);
                 zg0 zg0Var2 = this.E;
-                zg0Var2.N(zg0Var2.f40958f - 1, false, true);
+                zg0Var2.N(zg0Var2.f40978f - 1, false, true);
                 this.D.invalidate();
             }
         }
@@ -2507,7 +2507,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             z9 = false;
         }
         boolean z10 = this.P;
-        sc scVar = this.f31372a;
+        sc scVar = this.f31373a;
         if (z10 != z9) {
             this.P = z9;
             zg0 zg0Var = this.E;
@@ -2518,7 +2518,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
             zg0Var.P(i7);
             zg0 zg0Var2 = this.E;
-            zg0Var2.N(zg0Var2.f40958f - 1, false, true);
+            zg0Var2.N(zg0Var2.f40978f - 1, false, true);
             this.D.invalidate();
             org.telegram.ui.ActionBar.k6.G0().c(this.T);
             scVar.h(this.T);
@@ -2543,20 +2543,20 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        AnimatorSet animatorSet = this.f31381f;
+        AnimatorSet animatorSet = this.f31382f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f31381f = null;
+            this.f31382f = null;
         }
-        if (this.f31388l0) {
+        if (this.f31389l0) {
             org.telegram.messenger.g0.r(this.m0);
-            this.f31388l0 = false;
+            this.f31389l0 = false;
         }
         this.T = false;
-        this.f31399u0.e();
+        this.f31400u0.e();
         this.S = 0.0f;
         m();
-        if (!this.f31391o0) {
+        if (!this.f31392o0) {
             for (int i7 = 0; i7 < 4; i7++) {
                 GroupCallMessagesController.getInstance(i7).unsubscribeFromCallMessages(0L, this);
             }
@@ -2564,16 +2564,16 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         int i10 = this.U;
         if (i10 == 3 || i10 == 1) {
             o00 G0 = org.telegram.ui.ActionBar.k6.G0();
-            ArrayList arrayList = G0.f36448l;
+            ArrayList arrayList = G0.f36487l;
             arrayList.remove(this);
             if (arrayList.isEmpty()) {
-                G0.d = G0.f36440b;
-                G0.f36440b = null;
-                G0.f36441c = null;
+                G0.d = G0.f36479b;
+                G0.f36479b = null;
+                G0.f36480c = null;
             }
-            sc scVar = this.f31372a;
-            if (scVar.f37974u) {
-                scVar.f37974u = false;
+            sc scVar = this.f31373a;
+            if (scVar.f37978u) {
+                scVar.f37978u = false;
                 bg.k.d().f(scVar.F);
             }
         }
@@ -2595,12 +2595,12 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
 
     @Override
     public final void onNewGroupCallMessage(long j3, GroupCallMessage groupCallMessage) {
-        if (this.f31401w != null) {
+        if (this.f31402w != null) {
             int i7 = this.U;
             if ((i7 == 1 || i7 == 3) && VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().getGroupCallID() == j3) {
                 this.V0++;
                 if (!groupCallMessage.isOut()) {
-                    this.U0.f(new l00(this.f31401w, groupCallMessage), true);
+                    this.U0.f(new l00(this.f31402w, groupCallMessage), true);
                 }
             }
         }
@@ -2649,29 +2649,29 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 if (!sharedInstance.isSwitchingStream() && (callState == 1 || callState == 2 || callState == 6 || callState == 5)) {
                     this.d.b(org.telegram.messenger.hd.M0(2131743393, null), false);
                 } else if (sharedInstance.isConference() && (r3Var = sharedInstance.groupCall) != null) {
-                    if (r3Var.f25203e.size() <= 1) {
+                    if (r3Var.f25211e.size() <= 1) {
                         this.d.b(org.telegram.messenger.hd.M0(2131751823, null), false);
                         return;
                     }
                     StringBuilder sb2 = new StringBuilder();
-                    for (int i10 = 0; i10 < Math.min(3, sharedInstance.groupCall.f25203e.size()); i10++) {
+                    for (int i10 = 0; i10 < Math.min(3, sharedInstance.groupCall.f25211e.size()); i10++) {
                         if (i10 > 0) {
                             sb2.append(", ");
                         }
-                        sb2.append(org.telegram.messenger.m5.s(sharedInstance.getAccount(), org.telegram.messenger.m5.o(((TLRPC.GroupCallParticipant) sharedInstance.groupCall.f25203e.get(i10)).peer)));
+                        sb2.append(org.telegram.messenger.m5.s(sharedInstance.getAccount(), org.telegram.messenger.m5.o(((TLRPC.GroupCallParticipant) sharedInstance.groupCall.f25211e.get(i10)).peer)));
                     }
-                    if (sharedInstance.groupCall.f25203e.size() > 3) {
+                    if (sharedInstance.groupCall.f25211e.size() > 3) {
                         sb2.append(" ");
-                        sb2.append(org.telegram.messenger.hd.G(sharedInstance.groupCall.f25203e.size() - 3, "AndOther", new Object[0]));
+                        sb2.append(org.telegram.messenger.hd.G(sharedInstance.groupCall.f25211e.size() - 3, "AndOther", new Object[0]));
                     }
                     this.d.b(sb2.toString(), false);
                 } else {
                     TLRPC.Chat chat = sharedInstance.getChat();
-                    kg kgVar = this.f31389n;
+                    kg kgVar = this.f31390n;
                     if (chat != null) {
-                        if (!TextUtils.isEmpty(sharedInstance.groupCall.f25201b.title)) {
-                            this.d.b(sharedInstance.groupCall.f25201b.title, false);
-                        } else if (kgVar != null && kgVar.g() != null && kgVar.g().f26952id == sharedInstance.getChat().f26952id) {
+                        if (!TextUtils.isEmpty(sharedInstance.groupCall.f25209b.title)) {
+                            this.d.b(sharedInstance.groupCall.f25209b.title, false);
+                        } else if (kgVar != null && kgVar.g() != null && kgVar.g().f26953id == sharedInstance.getChat().f26953id) {
                             TLRPC.Chat g10 = kgVar.g();
                             if (VoIPService.hasRtmpStream()) {
                                 this.d.b(org.telegram.messenger.hd.M0(2131743449, null), false);
@@ -2685,7 +2685,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         }
                     } else if (sharedInstance.getUser() != null) {
                         TLRPC.User user = sharedInstance.getUser();
-                        if (kgVar != null && kgVar.j() != null && kgVar.j().f27101id == user.f27101id) {
+                        if (kgVar != null && kgVar.j() != null && kgVar.j().f27102id == user.f27102id) {
                             this.d.setText(org.telegram.messenger.hd.M0(2131746047, null));
                         } else {
                             this.d.setText(org.telegram.messenger.g5.m(0, user.first_name, user.last_name));
@@ -2709,7 +2709,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         while (true) {
             org.telegram.ui.ActionBar.p0[] p0VarArr = this.J;
             if (i7 < p0VarArr.length) {
-                org.telegram.ui.ActionBar.f6 f6Var = this.f31393q0;
+                org.telegram.ui.ActionBar.f6 f6Var = this.f31394q0;
                 if (!z10 && Math.abs(C - W0[i7]) < 0.05f) {
                     org.telegram.ui.ActionBar.p0 p0Var = p0VarArr[i7];
                     int i10 = org.telegram.ui.ActionBar.k6.Ei;
@@ -2742,19 +2742,19 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         if (this.U != i7) {
             b();
             int i14 = this.U;
-            sc scVar = this.f31372a;
+            sc scVar = this.f31373a;
             boolean z11 = true;
             if (i14 == 3 || i14 == 1) {
                 o00 G0 = org.telegram.ui.ActionBar.k6.G0();
-                ArrayList arrayList = G0.f36448l;
+                ArrayList arrayList = G0.f36487l;
                 arrayList.remove(this);
                 if (arrayList.isEmpty()) {
-                    G0.d = G0.f36440b;
-                    G0.f36440b = null;
-                    G0.f36441c = null;
+                    G0.d = G0.f36479b;
+                    G0.f36479b = null;
+                    G0.f36480c = null;
                 }
-                if (scVar.f37974u) {
-                    scVar.f37974u = false;
+                if (scVar.f37978u) {
+                    scVar.f37978u = false;
                     bg.k.d().f(scVar.F);
                 }
                 if (VoIPService.getSharedInstance() != null) {
@@ -2766,7 +2766,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 }
             }
             this.U = i7;
-            h00 h00Var = this.f31396s;
+            h00 h00Var = this.f31397s;
             if (i7 != 4) {
                 z9 = true;
             } else {
@@ -2774,31 +2774,31 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
             h00Var.setWillNotDraw(z9);
             if (i7 != 4) {
-                this.f31384h0 = false;
+                this.f31385h0 = false;
             }
-            z8 z8Var = this.f31375b0;
+            z8 z8Var = this.f31376b0;
             if (z8Var != null) {
                 z8Var.setStyle(this.U);
-                this.f31375b0.setLayoutParams(c8.ha.e(108, getStyleHeight(), 51));
+                this.f31376b0.setLayoutParams(c8.ha.e(108, getStyleHeight(), 51));
             }
-            this.f31396s.setLayoutParams(c8.ha.d(-1, getStyleHeight(), 51, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.f31397s.setLayoutParams(c8.ha.d(-1, getStyleHeight(), 51, 0.0f, 0.0f, 0.0f, 0.0f));
             float f10 = this.S;
             if (f10 > 0.0f && f10 != org.telegram.messenger.g0.M(getStyleHeight())) {
                 setTopPadding(org.telegram.messenger.g0.M(getStyleHeight()));
             }
-            org.telegram.ui.ActionBar.f6 f6Var = this.f31393q0;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f31394q0;
             if (i7 == 6) {
-                this.f31403x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
-                this.f31396s.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.bl, f6Var), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.cl, f6Var)}));
-                this.f31396s.setTag(null);
-                this.f31379e.setVisibility(8);
+                this.f31404x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
+                this.f31397s.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.bl, f6Var), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.cl, f6Var)}));
+                this.f31397s.setTag(null);
+                this.f31380e.setVisibility(8);
                 this.M.setVisibility(8);
                 this.F.setVisibility(8);
-                this.f31374b.setVisibility(8);
+                this.f31375b.setVisibility(8);
                 this.D.setVisibility(8);
-                this.f31405y.setVisibility(8);
-                this.f31405y.i();
-                this.f31375b0.setVisibility(8);
+                this.f31406y.setVisibility(8);
+                this.f31406y.i();
+                this.f31376b0.setVisibility(8);
                 this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.A7));
                 for (int i15 = 0; i15 < 2; i15++) {
                     i00 i00Var = this.d;
@@ -2816,9 +2816,9 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 }
                 this.d.setLayoutParams(c8.ha.d(-2, -2.0f, 17, 0.0f, -1.0f, 0, 0.0f));
             } else if (i7 == 5) {
-                this.f31403x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
-                this.f31396s.setBackgroundColor(0);
-                this.f31396s.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28184v7));
+                this.f31404x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
+                this.f31397s.setBackgroundColor(0);
+                this.f31397s.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28185v7));
                 for (int i16 = 0; i16 < 2; i16++) {
                     i00 i00Var2 = this.d;
                     if (i16 == 0) {
@@ -2828,20 +2828,20 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     }
                     if (nextTextView4 != null) {
                         nextTextView4.setGravity(19);
-                        org.telegram.ui.ActionBar.r6.V(nextTextView4, org.telegram.ui.ActionBar.k6.f28165u7, f6Var);
+                        org.telegram.ui.ActionBar.r6.V(nextTextView4, org.telegram.ui.ActionBar.k6.f28166u7, f6Var);
                         nextTextView4.setTypeface(Typeface.DEFAULT);
                         nextTextView4.setTextSize(1, 15.0f);
                     }
                 }
-                this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28165u7));
-                this.f31379e.setVisibility(8);
+                this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28166u7));
+                this.f31380e.setVisibility(8);
                 this.M.setVisibility(8);
                 this.F.setVisibility(8);
-                this.f31374b.setVisibility(8);
+                this.f31375b.setVisibility(8);
                 this.D.setVisibility(8);
-                this.f31375b0.setVisibility(8);
-                this.f31405y.setVisibility(0);
-                this.f31405y.d();
+                this.f31376b0.setVisibility(8);
+                this.f31406y.setVisibility(0);
+                this.f31406y.d();
                 this.F.setContentDescription(org.telegram.messenger.hd.M0(2131754900, null));
                 org.telegram.ui.ActionBar.r0 r0Var = this.G;
                 if (r0Var != null) {
@@ -2851,11 +2851,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 this.d.setLayoutParams(c8.ha.d(-1, 36.0f, 51, 35.0f, 0.0f, 36, 0.0f));
             } else if (i7 != 0 && i7 != 2) {
                 if (i7 == 4) {
-                    this.f31403x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
-                    this.f31396s.setBackgroundColor(0);
-                    this.f31396s.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28184v7));
+                    this.f31404x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
+                    this.f31397s.setBackgroundColor(0);
+                    this.f31397s.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28185v7));
                     this.D.setVisibility(8);
-                    this.f31379e.setVisibility(0);
+                    this.f31380e.setVisibility(0);
                     for (int i17 = 0; i17 < 2; i17++) {
                         i00 i00Var3 = this.d;
                         if (i17 == 0) {
@@ -2865,42 +2865,42 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                         }
                         if (nextTextView3 != null) {
                             nextTextView3.setGravity(51);
-                            org.telegram.ui.ActionBar.r6.V(nextTextView3, org.telegram.ui.ActionBar.k6.f28145t7, f6Var);
+                            org.telegram.ui.ActionBar.r6.V(nextTextView3, org.telegram.ui.ActionBar.k6.f28146t7, f6Var);
                             nextTextView3.setTypeface(org.telegram.messenger.g0.o());
                             nextTextView3.setTextSize(1, 15.0f);
                         }
                     }
-                    this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28145t7));
+                    this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28146t7));
                     this.d.setPadding(0, 0, this.N, 0);
-                    this.f31405y.setVisibility(8);
-                    this.f31405y.i();
-                    kg kgVar = this.f31389n;
-                    z11 = (kgVar == null || kgVar.getGroupCall() == null || kgVar.getGroupCall().f25201b == null || !kgVar.getGroupCall().f25201b.rtmp_stream) ? false : false;
-                    z8 z8Var2 = this.f31375b0;
+                    this.f31406y.setVisibility(8);
+                    this.f31406y.i();
+                    kg kgVar = this.f31390n;
+                    z11 = (kgVar == null || kgVar.getGroupCall() == null || kgVar.getGroupCall().f25209b == null || !kgVar.getGroupCall().f25209b.rtmp_stream) ? false : false;
+                    z8 z8Var2 = this.f31376b0;
                     if (!z11) {
                         i13 = 0;
                     } else {
                         i13 = 8;
                     }
                     z8Var2.setVisibility(i13);
-                    if (this.f31375b0.getVisibility() != 8) {
+                    if (this.f31376b0.getVisibility() != 8) {
                         o(false);
                     } else {
                         this.d.setTranslationX(-org.telegram.messenger.g0.L(36.0f));
-                        this.f31379e.setTranslationX(-org.telegram.messenger.g0.L(36.0f));
+                        this.f31380e.setTranslationX(-org.telegram.messenger.g0.L(36.0f));
                     }
                     this.F.setVisibility(8);
-                    this.f31374b.setVisibility(8);
+                    this.f31375b.setVisibility(8);
                     org.telegram.ui.ActionBar.r0 r0Var2 = this.G;
                     if (r0Var2 != null) {
                         r0Var2.setVisibility(8);
                         this.G.setTag(null);
                     }
                 } else if (i7 == 1 || i7 == 3) {
-                    this.f31403x.setBackground(null);
+                    this.f31404x.setBackground(null);
                     p();
                     boolean hasRtmpStream = VoIPService.hasRtmpStream();
-                    z8 z8Var3 = this.f31375b0;
+                    z8 z8Var3 = this.f31376b0;
                     if (!hasRtmpStream) {
                         i10 = 0;
                     } else {
@@ -2910,11 +2910,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     if (i7 == 3 && VoIPService.getSharedInstance() != null) {
                         VoIPService.getSharedInstance().registerStateListener(this);
                     }
-                    if (this.f31375b0.getVisibility() != 8) {
+                    if (this.f31376b0.getVisibility() != 8) {
                         o(false);
                     } else {
                         this.d.setTranslationX(0.0f);
-                        this.f31379e.setTranslationX(0.0f);
+                        this.f31380e.setTranslationX(0.0f);
                     }
                     k00 k00Var = this.D;
                     if (!hasRtmpStream) {
@@ -2937,19 +2937,19 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     }
                     zg0Var.P(i12);
                     zg0 zg0Var2 = this.E;
-                    zg0Var2.N(zg0Var2.f40958f - 1, false, true);
+                    zg0Var2.N(zg0Var2.f40978f - 1, false, true);
                     this.D.invalidate();
-                    this.f31396s.setBackground(null);
-                    this.f31396s.setBackgroundColor(0);
-                    this.f31405y.setVisibility(8);
-                    this.f31405y.i();
-                    ArrayList arrayList2 = org.telegram.ui.ActionBar.k6.G0().f36448l;
+                    this.f31397s.setBackground(null);
+                    this.f31397s.setBackgroundColor(0);
+                    this.f31406y.setVisibility(8);
+                    this.f31406y.i();
+                    ArrayList arrayList2 = org.telegram.ui.ActionBar.k6.G0().f36487l;
                     if (!arrayList2.contains(this)) {
                         arrayList2.add(this);
                     }
-                    if (!scVar.f37974u) {
-                        scVar.f37974u = true;
-                        scVar.f37973t = SystemClock.elapsedRealtime();
+                    if (!scVar.f37978u) {
+                        scVar.f37978u = true;
+                        scVar.f37977t = SystemClock.elapsedRealtime();
                         bg.k.d().a(60, scVar.F);
                     }
                     invalidate();
@@ -2969,8 +2969,8 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     }
                     this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.A7));
                     this.F.setVisibility(8);
-                    this.f31374b.setVisibility(8);
-                    this.f31379e.setVisibility(8);
+                    this.f31375b.setVisibility(8);
+                    this.f31380e.setVisibility(8);
                     this.M.setVisibility(8);
                     this.d.setLayoutParams(c8.ha.d(-2, -2.0f, 17, 0.0f, 0.0f, 0, 0.0f));
                     this.d.setPadding(org.telegram.messenger.g0.L(88.0f), 0, org.telegram.messenger.g0.L(88.0f) + this.N, 0);
@@ -2981,17 +2981,17 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     }
                 }
             } else {
-                this.f31403x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
-                this.f31396s.setBackgroundColor(0);
-                this.f31396s.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28184v7));
-                this.f31379e.setVisibility(8);
+                this.f31404x.setBackground(org.telegram.ui.ActionBar.k6.N0(false));
+                this.f31397s.setBackgroundColor(0);
+                this.f31397s.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28185v7));
+                this.f31380e.setVisibility(8);
                 this.M.setVisibility(8);
                 this.F.setVisibility(0);
-                this.f31374b.setVisibility(0);
+                this.f31375b.setVisibility(0);
                 this.D.setVisibility(8);
-                this.f31405y.setVisibility(8);
-                this.f31405y.i();
-                this.f31375b0.setVisibility(8);
+                this.f31406y.setVisibility(8);
+                this.f31406y.i();
+                this.f31376b0.setVisibility(8);
                 for (int i19 = 0; i19 < 2; i19++) {
                     i00 i00Var5 = this.d;
                     if (i19 == 0) {
@@ -3001,18 +3001,18 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     }
                     if (nextTextView != null) {
                         nextTextView.setGravity(19);
-                        org.telegram.ui.ActionBar.r6.V(nextTextView, org.telegram.ui.ActionBar.k6.f28165u7, f6Var);
+                        org.telegram.ui.ActionBar.r6.V(nextTextView, org.telegram.ui.ActionBar.k6.f28166u7, f6Var);
                         nextTextView.setTypeface(Typeface.DEFAULT);
                         nextTextView.setTextSize(1, 15.0f);
                     }
                 }
-                this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28165u7));
+                this.d.setTag(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28166u7));
                 if (i7 == 6) {
-                    this.f31374b.setLayoutParams(c8.ha.d(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
+                    this.f31375b.setLayoutParams(c8.ha.d(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
                     this.d.setLayoutParams(c8.ha.d(-1, 36.0f, 51, 51.0f, 0.0f, 36, 0.0f));
                     this.F.setVisibility(8);
                 } else if (i7 == 0) {
-                    this.f31374b.setLayoutParams(c8.ha.d(36, 36.0f, 51, 3.0f, 0.0f, 0.0f, 0.0f));
+                    this.f31375b.setLayoutParams(c8.ha.d(36, 36.0f, 51, 3.0f, 0.0f, 0.0f, 0.0f));
                     this.d.setLayoutParams(c8.ha.d(-1, 36.0f, 51, 37.0f, 0.0f, 36, 0.0f));
                     h();
                     org.telegram.ui.ActionBar.r0 r0Var4 = this.G;
@@ -3022,7 +3022,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     }
                     this.F.setContentDescription(org.telegram.messenger.hd.M0(2131754900, null));
                 } else {
-                    this.f31374b.setLayoutParams(c8.ha.d(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
+                    this.f31375b.setLayoutParams(c8.ha.d(36, 36.0f, 51, 8.0f, 0.0f, 0.0f, 0.0f));
                     this.d.setLayoutParams(c8.ha.d(-1, 36.0f, 51, 51.0f, 0.0f, 36, 0.0f));
                     this.F.setContentDescription(org.telegram.messenger.hd.M0(2131754755, null));
                 }
@@ -3031,7 +3031,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
     }
 
     public void setDelegate(m00 m00Var) {
-        this.f31392p0 = m00Var;
+        this.f31393p0 = m00Var;
     }
 
     public void setDrawOverlay(boolean z9) {
@@ -3039,15 +3039,15 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
     }
 
     public void setLeftMargin(float f10) {
-        if (this.f31396s == null) {
+        if (this.f31397s == null) {
             this.T0 = f10;
             return;
         }
-        ImageView imageView = this.f31374b;
+        ImageView imageView = this.f31375b;
         if (imageView != null) {
             imageView.setTranslationX(f10);
         }
-        ch0 ch0Var = this.f31405y;
+        ch0 ch0Var = this.f31406y;
         if (ch0Var != null) {
             ch0Var.setTranslationX(f10);
         }
@@ -3055,11 +3055,11 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         if (i00Var != null) {
             i00Var.setTranslationX(f10);
         }
-        i00 i00Var2 = this.f31379e;
+        i00 i00Var2 = this.f31380e;
         if (i00Var2 != null) {
             i00Var2.setTranslationX(f10);
         }
-        z8 z8Var = this.f31375b0;
+        z8 z8Var = this.f31376b0;
         if (z8Var != null) {
             z8Var.setTranslationX(f10);
         }
@@ -3070,7 +3070,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
     }
 
     public void setSupportsCalls(boolean z9) {
-        this.f31373a0 = z9;
+        this.f31374a0 = z9;
     }
 
     public void setTopPadding(float f10) {
@@ -3090,9 +3090,9 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
     public final void updateColors() {
         int i7;
         TextView nextTextView;
-        t31[] t31VarArr;
+        u31[] u31VarArr;
         TextView nextTextView2;
-        sc scVar = this.f31372a;
+        sc scVar = this.f31373a;
         int i10 = scVar.A;
         if (i10 >= 0) {
             scVar.E = 1.0f;
@@ -3101,14 +3101,14 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
         if (!i(MediaController.B().C(this.W), 1.0f)) {
             i7 = org.telegram.ui.ActionBar.k6.Ei;
         } else {
-            i7 = org.telegram.ui.ActionBar.k6.f28222x7;
+            i7 = org.telegram.ui.ActionBar.k6.f28223x7;
         }
-        org.telegram.ui.ActionBar.f6 f6Var = this.f31393q0;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f31394q0;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
         du0 du0Var = this.H;
         if (du0Var != null) {
-            du0Var.f33045a.u(w02);
-            Paint paint = du0Var.f33046b;
+            du0Var.f33074a.u(w02);
+            Paint paint = du0Var.f33075b;
             if (paint != null) {
                 paint.setColor(w02);
             }
@@ -3129,10 +3129,10 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 this.J0 = w02;
             }
         }
-        if (this.f31374b != null) {
-            int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28203w7, f6Var);
+        if (this.f31375b != null) {
+            int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28204w7, f6Var);
             if (this.F0 == null || w03 != this.H0) {
-                ImageView imageView = this.f31374b;
+                ImageView imageView = this.f31375b;
                 this.H0 = w03;
                 PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(w03, PorterDuff.Mode.MULTIPLY);
                 this.F0 = porterDuffColorFilter;
@@ -3140,7 +3140,7 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
             }
         }
         if (this.F != null) {
-            int w04 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28222x7, f6Var);
+            int w04 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28223x7, f6Var);
             if (this.G0 == null || w04 != this.I0) {
                 ImageView imageView2 = this.F;
                 this.I0 = w04;
@@ -3149,16 +3149,16 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                 imageView2.setColorFilter(porterDuffColorFilter2);
             }
         }
-        if (this.f31379e != null) {
+        if (this.f31380e != null) {
             for (int i11 = 0; i11 < 2; i11++) {
-                i00 i00Var = this.f31379e;
+                i00 i00Var = this.f31380e;
                 if (i11 == 0) {
                     nextTextView2 = i00Var.getTextView();
                 } else {
                     nextTextView2 = i00Var.getNextTextView();
                 }
                 if (nextTextView2 != null) {
-                    nextTextView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28222x7, f6Var));
+                    nextTextView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28223x7, f6Var));
                 }
             }
         }
@@ -3177,9 +3177,9 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
                     if (nextTextView != null) {
                         nextTextView.setTextColor(org.telegram.ui.ActionBar.k6.w0(intValue, f6Var));
                         CharSequence text = nextTextView.getText();
-                        if ((text instanceof Spanned) && (t31VarArr = (t31[]) ((Spanned) text).getSpans(0, text.length(), t31.class)) != null) {
-                            for (t31 t31Var : t31VarArr) {
-                                t31Var.f38211b = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28145t7, f6Var);
+                        if ((text instanceof Spanned) && (u31VarArr = (u31[]) ((Spanned) text).getSpans(0, text.length(), u31.class)) != null) {
+                            for (u31 u31Var : u31VarArr) {
+                                u31Var.f38495b = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28146t7, f6Var);
                             }
                         }
                     }
@@ -3190,31 +3190,31 @@ public class FragmentContextView extends FrameLayout implements org.telegram.mes
 
     public FragmentContextView(Context context, org.telegram.ui.ActionBar.f2 f2Var, View view, boolean z9, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f31372a = new sc();
+        this.f31373a = new sc();
         this.J = new org.telegram.ui.ActionBar.p0[6];
         this.Q = -1;
         this.U = -1;
-        this.f31373a0 = true;
-        this.f31386j0 = new i6(false, true, true);
+        this.f31374a0 = true;
+        this.f31387j0 = new i6(false, true, true);
         this.m0 = new g00(this);
-        this.f31390n0 = org.telegram.messenger.p10.f24459s0;
-        this.f31397s0 = -1;
-        this.f31398t0 = new dt(this, 4);
-        this.f31399u0 = new h2.f((int[]) null);
-        this.f31400v0 = new h2.f(new int[]{org.telegram.messenger.qs.D});
+        this.f31391n0 = org.telegram.messenger.p10.f24467s0;
+        this.f31398s0 = -1;
+        this.f31399t0 = new dt(this, 4);
+        this.f31400u0 = new h2.f((int[]) null);
+        this.f31401v0 = new h2.f(new int[]{org.telegram.messenger.qs.D});
         this.K0 = new org.telegram.messenger.ms[4];
         this.Q0 = new Paint(1);
         this.S0 = 0;
         this.U0 = new te.j(new a00(this), xq.h, 450L);
         this.V0 = 0;
-        this.f31393q0 = f6Var;
+        this.f31394q0 = f6Var;
         this.h = f2Var;
         if (f2Var instanceof kg) {
-            this.f31389n = (kg) f2Var;
+            this.f31390n = (kg) f2Var;
         }
-        this.f31394r = view;
+        this.f31395r = view;
         this.T = true;
-        this.f31391o0 = z9;
+        this.f31392o0 = z9;
         if (view == null) {
             ((ViewGroup) f2Var.getFragmentView()).setClipToPadding(false);
         }

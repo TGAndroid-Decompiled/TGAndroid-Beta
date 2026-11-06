@@ -33,7 +33,7 @@ public final class d implements Runnable {
                     if (zVar.f5131r0 == null) {
                         zVar.f5131r0 = new SpannableStringBuilder("l");
                         wp wpVar = new wp(2131231976, 0);
-                        wpVar.f40061n = 1;
+                        wpVar.f40069n = 1;
                         zVar.f5131r0.setSpan(wpVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -41,9 +41,9 @@ public final class d implements Runnable {
                     zVar.f5109a0.g(spannableStringBuilder, true);
                     org.telegram.ui.Components.cc ccVar = zVar.f5122j0;
                     if (ccVar != null) {
-                        org.telegram.ui.Components.gb gbVar = ccVar.f32523e;
+                        org.telegram.ui.Components.gb gbVar = ccVar.f32510e;
                         if ((gbVar instanceof org.telegram.ui.Components.kb) && gbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{z.w0(zVar.P - currentTime)}, ((org.telegram.ui.Components.kb) zVar.f5122j0.f32523e).f35252b);
+                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{z.w0(zVar.P - currentTime)}, ((org.telegram.ui.Components.kb) zVar.f5122j0.f32510e).f35243b);
                         }
                     }
                     org.telegram.messenger.g0.r(dVar);

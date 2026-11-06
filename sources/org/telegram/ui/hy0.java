@@ -47,13 +47,13 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.zip.Adler32;
 import java.util.zip.InflaterInputStream;
 public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
-    public final int f46527a;
-    public Object f46528b;
-    public Object f46529c;
+    public final int f46526a;
+    public Object f46527b;
+    public Object f46528c;
     public Object d;
 
     public hy0(int i7, boolean z9) {
-        this.f46527a = i7;
+        this.f46526a = i7;
     }
 
     public static void I(File file, File file2) {
@@ -128,22 +128,22 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         if (bArr2 != null) {
             bArr = Arrays.copyOf(bArr2, bArr2.length);
         }
-        a8.ia.p(eVar.f53636x.isEmpty());
+        a8.ia.p(eVar.f53635x.isEmpty());
         eVar.K = bArr;
         return eVar;
     }
 
     public View A(int i7) {
-        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b).getChildAt(i7);
+        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b).getChildAt(i7);
     }
 
     public int B() {
-        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b).getChildCount();
+        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b).getChildCount();
     }
 
     public boolean C() {
         String trim;
-        ArrayDeque arrayDeque = (ArrayDeque) this.f46529c;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f46528c;
         if (((String) this.d) != null) {
             return true;
         }
@@ -154,7 +154,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             return true;
         }
         do {
-            String readLine = ((BufferedReader) this.f46528b).readLine();
+            String readLine = ((BufferedReader) this.f46527b).readLine();
             this.d = readLine;
             if (readLine != null) {
                 trim = readLine.trim();
@@ -168,24 +168,24 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public void D(View view) {
         ((ArrayList) this.d).add(view);
-        org.telegram.ui.Components.uy uyVar = (org.telegram.ui.Components.uy) this.f46528b;
+        org.telegram.ui.Components.uy uyVar = (org.telegram.ui.Components.uy) this.f46527b;
         v4.d1 U = RecyclerView.U(view);
         if (U != null) {
-            View view2 = U.f56952a;
-            RecyclerView recyclerView = (RecyclerView) uyVar.f38757b;
-            int i7 = U.f56968s;
+            View view2 = U.f56951a;
+            RecyclerView recyclerView = (RecyclerView) uyVar.f38750b;
+            int i7 = U.f56967s;
             if (i7 != -1) {
-                U.f56967r = i7;
+                U.f56966r = i7;
             } else {
-                WeakHashMap weakHashMap = r0.i0.f54098a;
-                U.f56967r = view2.getImportantForAccessibility();
+                WeakHashMap weakHashMap = r0.i0.f54097a;
+                U.f56966r = view2.getImportantForAccessibility();
             }
             if (recyclerView.c0()) {
-                U.f56968s = 4;
+                U.f56967s = 4;
                 recyclerView.K0.add(U);
                 return;
             }
-            WeakHashMap weakHashMap2 = r0.i0.f54098a;
+            WeakHashMap weakHashMap2 = r0.i0.f54097a;
             view2.setImportantForAccessibility(4);
         }
     }
@@ -205,8 +205,8 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public void G() {
         int i7;
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b;
-        ((a8.ua) this.f46529c).H();
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b;
+        ((a8.ua) this.f46528c).H();
         ArrayList arrayList = (ArrayList) this.d;
         int size = arrayList.size();
         while (true) {
@@ -216,16 +216,16 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             }
             v4.d1 U = RecyclerView.U((View) arrayList.get(size));
             if (U != null) {
-                int i10 = U.f56967r;
+                int i10 = U.f56966r;
                 if (recyclerView.c0()) {
-                    U.f56968s = i10;
+                    U.f56967s = i10;
                     recyclerView.K0.add(U);
                 } else {
-                    View view = U.f56952a;
-                    WeakHashMap weakHashMap = r0.i0.f54098a;
+                    View view = U.f56951a;
+                    WeakHashMap weakHashMap = r0.i0.f54097a;
                     view.setImportantForAccessibility(i10);
                 }
-                U.f56967r = 0;
+                U.f56966r = 0;
             }
             arrayList.remove(size);
         }
@@ -239,9 +239,9 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public void H(g7.c cVar) {
-        if (((wf.d) this.f46528b) != null) {
+        if (((wf.d) this.f46527b) != null) {
             for (int i7 = 0; i7 < cVar.f13573a.size(); i7++) {
-                wf.d dVar = (wf.d) this.f46528b;
+                wf.d dVar = (wf.d) this.f46527b;
                 dVar.h.remove(cVar.a(i7).d);
                 dVar.h();
             }
@@ -252,7 +252,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         Long l10;
         char c10;
         u5.a aVar = (u5.a) this.d;
-        Context context = (Context) this.f46528b;
+        Context context = (Context) this.f46527b;
         ComponentName componentName = new ComponentName(context, JobInfoSchedulerService.class);
         JobScheduler jobScheduler = (JobScheduler) context.getSystemService("jobscheduler");
         Adler32 adler32 = new Adler32();
@@ -278,13 +278,13 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
                 int i10 = next.getExtras().getInt("attemptNumber");
                 if (next.getId() == value) {
                     if (i10 >= i7) {
-                        c8.bc.a(iVar, "JobInfoScheduler", "Upload for context %s is already scheduled. Returning...");
+                        c8.cc.a(iVar, "JobInfoScheduler", "Upload for context %s is already scheduled. Returning...");
                         return;
                     }
                 }
             }
         }
-        Cursor rawQuery = ((v5.g) ((v5.d) this.f46529c)).a().rawQuery("SELECT next_request_ms FROM transport_contexts WHERE backend_name = ? and priority = ?", new String[]{str2, String.valueOf(y5.a.a(dVar))});
+        Cursor rawQuery = ((v5.g) ((v5.d) this.f46528c)).a().rawQuery("SELECT next_request_ms FROM transport_contexts WHERE backend_name = ? and priority = ?", new String[]{str2, String.valueOf(y5.a.a(dVar))});
         try {
             if (rawQuery.moveToNext()) {
                 l10 = Long.valueOf(rawQuery.getLong(0));
@@ -295,16 +295,16 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             long longValue = l10.longValue();
             JobInfo.Builder builder = new JobInfo.Builder(value, componentName);
             builder.setMinimumLatency(aVar.a(dVar, longValue, i7));
-            Set set = ((u5.b) aVar.f56252b.get(dVar)).f56255c;
-            if (set.contains(u5.c.f56256a)) {
+            Set set = ((u5.b) aVar.f56251b.get(dVar)).f56254c;
+            if (set.contains(u5.c.f56255a)) {
                 builder.setRequiredNetworkType(2);
             } else {
                 builder.setRequiredNetworkType(1);
             }
-            if (set.contains(u5.c.f56258c)) {
+            if (set.contains(u5.c.f56257c)) {
                 builder.setRequiresCharging(true);
             }
-            if (set.contains(u5.c.f56257b)) {
+            if (set.contains(u5.c.f56256b)) {
                 builder.setRequiresDeviceIdle(true);
             }
             PersistableBundle persistableBundle = new PersistableBundle();
@@ -327,7 +327,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             objArr[2] = valueOf2;
             objArr[3] = l10;
             objArr[4] = valueOf3;
-            String c11 = c8.bc.c("JobInfoScheduler");
+            String c11 = c8.cc.c("JobInfoScheduler");
             if (Log.isLoggable(c11, 3)) {
                 Log.d(c11, String.format("Scheduling upload for context %s with jobId=%d in %dms(Backend next call timestamp %d). Attempt %d", objArr));
             }
@@ -340,25 +340,25 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public void K(wf.a aVar) {
         g7.c cVar;
-        g7.c cVar2 = (g7.c) this.f46529c;
+        g7.c cVar2 = (g7.c) this.f46528c;
         if (cVar2 != null && ((wf.a) this.d) == null && aVar != null) {
             j(cVar2);
         }
-        if (((wf.a) this.d) != null && (cVar = (g7.c) this.f46529c) != null && aVar == null) {
+        if (((wf.a) this.d) != null && (cVar = (g7.c) this.f46528c) != null && aVar == null) {
             H(cVar);
         }
         wf.a aVar2 = (wf.a) this.d;
         if (aVar2 != null) {
-            h6.h hVar = aVar2.f57556a;
+            h6.h hVar = aVar2.f57555a;
             q6.m.d("Must be called from the main thread.");
             hVar.f14253i.remove(aVar2);
         }
         if (aVar != null) {
-            aVar.f57556a.p(aVar);
-            g7.c cVar3 = (g7.c) this.f46529c;
+            aVar.f57555a.p(aVar);
+            g7.c cVar3 = (g7.c) this.f46528c;
             if (cVar3 != null) {
                 aVar.d = cVar3;
-                aVar.f57561g = 0;
+                aVar.f57560g = 0;
                 aVar.h = 0;
                 aVar.p();
             }
@@ -367,10 +367,10 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public FileOutputStream L() {
-        File file = (File) this.f46529c;
+        File file = (File) this.f46528c;
         File file2 = (File) this.d;
         if (file2.exists()) {
-            I(file2, (File) this.f46528b);
+            I(file2, (File) this.f46527b);
         }
         try {
             return new FileOutputStream(file);
@@ -388,20 +388,20 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public void M(View view) {
         if (((ArrayList) this.d).remove(view)) {
-            org.telegram.ui.Components.uy uyVar = (org.telegram.ui.Components.uy) this.f46528b;
+            org.telegram.ui.Components.uy uyVar = (org.telegram.ui.Components.uy) this.f46527b;
             v4.d1 U = RecyclerView.U(view);
             if (U != null) {
-                RecyclerView recyclerView = (RecyclerView) uyVar.f38757b;
-                int i7 = U.f56967r;
+                RecyclerView recyclerView = (RecyclerView) uyVar.f38750b;
+                int i7 = U.f56966r;
                 if (recyclerView.c0()) {
-                    U.f56968s = i7;
+                    U.f56967s = i7;
                     recyclerView.K0.add(U);
                 } else {
-                    View view2 = U.f56952a;
-                    WeakHashMap weakHashMap = r0.i0.f54098a;
+                    View view2 = U.f56951a;
+                    WeakHashMap weakHashMap = r0.i0.f54097a;
                     view2.setImportantForAccessibility(i7);
                 }
-                U.f56967r = 0;
+                U.f56966r = 0;
             }
         }
     }
@@ -410,15 +410,15 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         hy0 hy0Var = new hy0(8, false);
         ((hy0) this.d).d = hy0Var;
         this.d = hy0Var;
-        hy0Var.f46529c = obj;
-        hy0Var.f46528b = str;
+        hy0Var.f46528c = obj;
+        hy0Var.f46527b = str;
     }
 
     @Override
     public void a() {
         org.telegram.messenger.c20 c20Var;
-        boolean[] zArr = (boolean[]) this.f46528b;
-        if (!zArr[0] && (c20Var = (org.telegram.messenger.c20) this.f46529c) != null) {
+        boolean[] zArr = (boolean[]) this.f46527b;
+        if (!zArr[0] && (c20Var = (org.telegram.messenger.c20) this.f46528c) != null) {
             zArr[0] = true;
             c20Var.a(Boolean.TRUE);
         }
@@ -427,14 +427,14 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     @Override
     public oa.a b(Class cls, na.d dVar) {
-        ((HashMap) this.f46528b).put(cls, dVar);
-        ((HashMap) this.f46529c).remove(cls);
+        ((HashMap) this.f46527b).put(cls, dVar);
+        ((HashMap) this.f46528c).remove(cls);
         return this;
     }
 
     @Override
     public Uri c() {
-        return (Uri) this.f46528b;
+        return (Uri) this.f46527b;
     }
 
     @Override
@@ -444,12 +444,12 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     @Override
     public Object mo24get() {
-        return new hy0((Context) ((fd.a) this.f46528b).mo24get(), (v5.d) ((fd.a) this.f46529c).mo24get(), (u5.a) ((sa.d) this.d).mo24get(), 19);
+        return new hy0((Context) ((fd.a) this.f46527b).mo24get(), (v5.d) ((fd.a) this.f46528c).mo24get(), (u5.a) ((sa.d) this.d).mo24get(), 19);
     }
 
     @Override
     public ClipDescription getDescription() {
-        return (ClipDescription) this.f46529c;
+        return (ClipDescription) this.f46528c;
     }
 
     @Override
@@ -458,11 +458,11 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public void j(g7.c cVar) {
-        if (((wf.d) this.f46528b) == null) {
-            this.f46528b = new wf.d();
+        if (((wf.d) this.f46527b) == null) {
+            this.f46527b = new wf.d();
         }
         for (int i7 = 0; i7 < cVar.f13573a.size(); i7++) {
-            wf.d dVar = (wf.d) this.f46528b;
+            wf.d dVar = (wf.d) this.f46527b;
             wf.e a10 = cVar.a(i7);
             dVar.h.put(a10.d, a10);
             dVar.h();
@@ -471,13 +471,13 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public void k(int i7, View view, boolean z9) {
         int z10;
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b;
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b;
         if (i7 < 0) {
             z10 = recyclerView.getChildCount();
         } else {
             z10 = z(i7);
         }
-        ((a8.ua) this.f46529c).F(z10, z9);
+        ((a8.ua) this.f46528c).F(z10, z9);
         if (z9) {
             D(view);
         }
@@ -498,13 +498,13 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public void l(View view, int i7, ViewGroup.LayoutParams layoutParams, boolean z9) {
         int z10;
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b;
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b;
         if (i7 < 0) {
             z10 = recyclerView.getChildCount();
         } else {
             z10 = z(i7);
         }
-        ((a8.ua) this.f46529c).F(z10, z9);
+        ((a8.ua) this.f46528c).F(z10, z9);
         if (z9) {
             D(view);
         }
@@ -513,15 +513,15 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             if (!U.l() && !U.r()) {
                 throw new IllegalArgumentException("Called attach on a child which is not detached: " + U + recyclerView.C());
             }
-            U.f56961l &= -257;
+            U.f56960l &= -257;
         }
         recyclerView.attachViewToParent(view, z10, layoutParams);
     }
 
     public String m(int i7, long j3, long j10, String str) {
-        ArrayList arrayList = (ArrayList) this.f46528b;
+        ArrayList arrayList = (ArrayList) this.f46527b;
         ArrayList arrayList2 = (ArrayList) this.d;
-        ArrayList arrayList3 = (ArrayList) this.f46529c;
+        ArrayList arrayList3 = (ArrayList) this.f46528c;
         StringBuilder sb2 = new StringBuilder();
         for (int i10 = 0; i10 < arrayList3.size(); i10++) {
             sb2.append((String) arrayList.get(i10));
@@ -540,23 +540,23 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public void n() {
-        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f46528b;
+        android.support.v4.media.session.a0 a0Var = (android.support.v4.media.session.a0) this.f46527b;
         if (a0Var != null) {
-            int i7 = ((s4.e) this.d).f54707n.d;
+            int i7 = ((s4.e) this.d).f54706n.d;
             android.support.v4.media.session.u uVar = (android.support.v4.media.session.u) a0Var.f1763b;
             uVar.getClass();
             AudioAttributes.Builder builder = new AudioAttributes.Builder();
             builder.setLegacyStreamType(i7);
             uVar.f1793a.setPlaybackToLocal(builder.build());
-            this.f46529c = null;
+            this.f46528c = null;
         }
     }
 
     public void p(int i7) {
         v4.d1 U;
         int z9 = z(i7);
-        ((a8.ua) this.f46529c).G(z9);
-        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b;
+        ((a8.ua) this.f46528c).G(z9);
+        RecyclerView recyclerView = (RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b;
         View childAt = recyclerView.getChildAt(z9);
         if (childAt != null && (U = RecyclerView.U(childAt)) != null) {
             if (U.l() && !U.r()) {
@@ -568,8 +568,8 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public void q(Object obj, ByteArrayOutputStream byteArrayOutputStream) {
-        HashMap hashMap = (HashMap) this.f46528b;
-        qa.e eVar = new qa.e(byteArrayOutputStream, hashMap, (HashMap) this.f46529c, (na.d) this.d);
+        HashMap hashMap = (HashMap) this.f46527b;
+        qa.e eVar = new qa.e(byteArrayOutputStream, hashMap, (HashMap) this.f46528c, (na.d) this.d);
         if (obj == null) {
             return;
         }
@@ -589,21 +589,21 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         allocateDirect.put(byteBuffer).flip();
         MediaCodec.BufferInfo bufferInfo2 = new MediaCodec.BufferInfo();
         bufferInfo2.set(0, bufferInfo.size, bufferInfo.presentationTimeUs, bufferInfo.flags);
-        ((ArrayList) this.f46528b).add(allocateDirect);
-        ((ArrayList) this.f46529c).add(bufferInfo2);
+        ((ArrayList) this.f46527b).add(allocateDirect);
+        ((ArrayList) this.f46528c).add(bufferInfo2);
     }
 
     public tf.e s(tf.f fVar) {
         InflaterInputStream inflaterInputStream;
-        int i7 = fVar.f55440c;
-        InputStream inputStream = (uf.a) this.f46528b;
+        int i7 = fVar.f55439c;
+        InputStream inputStream = (uf.a) this.f46527b;
         if (fVar.d) {
             org.telegram.ui.Components.uy uyVar = (org.telegram.ui.Components.uy) this.d;
             uyVar.getClass();
             byte[] bArr = new byte[i7];
             int i10 = 0;
             while (i10 < i7) {
-                int read = ((ab.d) uyVar.f38757b).read(bArr, i10, i7 - i10);
+                int read = ((ab.d) uyVar.f38750b).read(bArr, i10, i7 - i10);
                 if (read > 0) {
                     i10 += read;
                 } else {
@@ -627,14 +627,14 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             inputStream = new ByteArrayInputStream(bArr, 0, i11);
             i7 = i11;
         }
-        if (!fVar.f55442f) {
-            if (fVar.f55441e) {
-                i7 = fVar.f55443g;
+        if (!fVar.f55441f) {
+            if (fVar.f55440e) {
+                i7 = fVar.f55442g;
                 inflaterInputStream = new InflaterInputStream(inputStream);
             } else {
                 inflaterInputStream = inputStream;
             }
-            return new tf.e(inflaterInputStream, fVar.f55439b, i7, (tf.h) this.f46529c, fVar);
+            return new tf.e(inflaterInputStream, fVar.f55438b, i7, (tf.h) this.f46528c, fVar);
         }
         throw new Exception("Frame encryption is not supported");
     }
@@ -646,10 +646,10 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
         if (d0Var == null) {
             return q2.m.A;
         }
-        synchronized (this.f46528b) {
+        synchronized (this.f46527b) {
             try {
-                if (!d0Var.equals((e2.d0) this.f46529c)) {
-                    this.f46529c = d0Var;
+                if (!d0Var.equals((e2.d0) this.f46528c)) {
+                    this.f46528c = d0Var;
                     this.d = o(d0Var);
                 }
                 eVar = (q2.e) this.d;
@@ -663,16 +663,16 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
 
     public String toString() {
         String str = "";
-        switch (this.f46527a) {
+        switch (this.f46526a) {
             case 9:
                 StringBuilder sb2 = new StringBuilder(32);
-                sb2.append((String) this.f46528b);
+                sb2.append((String) this.f46527b);
                 sb2.append('{');
-                hy0 hy0Var = (hy0) ((hy0) this.f46529c).d;
+                hy0 hy0Var = (hy0) ((hy0) this.f46528c).d;
                 while (hy0Var != null) {
-                    Object obj = hy0Var.f46529c;
+                    Object obj = hy0Var.f46528c;
                     sb2.append(str);
-                    String str2 = (String) hy0Var.f46528b;
+                    String str2 = (String) hy0Var.f46527b;
                     if (str2 != null) {
                         sb2.append(str2);
                         sb2.append('=');
@@ -690,23 +690,23 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
                 return sb2.toString();
             case 18:
                 StringBuilder sb3 = new StringBuilder("id3v2tag[pos=");
-                uf.a aVar = (uf.a) this.f46528b;
+                uf.a aVar = (uf.a) this.f46527b;
                 sb3.append(aVar.f915b);
                 sb3.append(", ");
                 sb3.append(aVar.e());
                 sb3.append(" left]");
                 return sb3.toString();
             case 22:
-                return ((a8.ua) this.f46529c).toString() + ", hidden list:" + ((ArrayList) this.d).size();
+                return ((a8.ua) this.f46528c).toString() + ", hidden list:" + ((ArrayList) this.d).size();
             case 29:
                 StringBuilder sb4 = new StringBuilder(32);
-                sb4.append((String) this.f46528b);
+                sb4.append((String) this.f46527b);
                 sb4.append('{');
-                hy0 hy0Var2 = (hy0) ((hy0) this.f46529c).d;
+                hy0 hy0Var2 = (hy0) ((hy0) this.f46528c).d;
                 while (hy0Var2 != null) {
-                    Object obj2 = hy0Var2.f46529c;
+                    Object obj2 = hy0Var2.f46528c;
                     sb4.append(str);
-                    String str3 = (String) hy0Var2.f46528b;
+                    String str3 = (String) hy0Var2.f46527b;
                     if (str3 != null) {
                         sb4.append(str3);
                         sb4.append('=');
@@ -728,11 +728,11 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public View u(int i7) {
-        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b).getChildAt(z(i7));
+        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b).getChildAt(z(i7));
     }
 
     public int v() {
-        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b).getChildCount() - ((ArrayList) this.d).size();
+        return ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b).getChildCount() - ((ArrayList) this.d).size();
     }
 
     @Override
@@ -765,15 +765,15 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             }
             return ByteBuffer.wrap(bArr);
         }
-        return (ByteBuffer) this.f46529c;
+        return (ByteBuffer) this.f46528c;
     }
 
     public int z(int i7) {
-        a8.ua uaVar = (a8.ua) this.f46529c;
+        a8.ua uaVar = (a8.ua) this.f46528c;
         if (i7 < 0) {
             return -1;
         }
-        int childCount = ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46528b).f38757b).getChildCount();
+        int childCount = ((RecyclerView) ((org.telegram.ui.Components.uy) this.f46527b).f38750b).getChildCount();
         int i10 = i7;
         while (i10 < childCount) {
             int B = i7 - (i10 - uaVar.B(i10));
@@ -789,64 +789,64 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public hy0(Object obj, Object obj2, Object obj3, int i7) {
-        this.f46527a = i7;
-        this.f46528b = obj;
-        this.f46529c = obj2;
+        this.f46526a = i7;
+        this.f46527b = obj;
+        this.f46528c = obj2;
         this.d = obj3;
     }
 
     public hy0(String str, int i7) {
-        this.f46527a = i7;
+        this.f46526a = i7;
         switch (i7) {
             case 29:
                 hy0 hy0Var = new hy0(28, false);
-                this.f46529c = hy0Var;
+                this.f46528c = hy0Var;
                 this.d = hy0Var;
-                this.f46528b = str;
+                this.f46527b = str;
                 return;
             default:
                 hy0 hy0Var2 = new hy0(8, false);
-                this.f46529c = hy0Var2;
+                this.f46528c = hy0Var2;
                 this.d = hy0Var2;
-                this.f46528b = str;
+                this.f46527b = str;
                 return;
         }
     }
 
     public hy0(InputStream inputStream, long j3, int i7, tf.h hVar) {
-        this.f46527a = 18;
+        this.f46526a = 18;
         uf.a aVar = new uf.a(inputStream, j3, i7);
-        this.f46528b = aVar;
+        this.f46527b = aVar;
         this.d = new org.telegram.ui.Components.uy(aVar, 19);
-        this.f46529c = hVar;
+        this.f46528c = hVar;
     }
 
     public hy0(String str, Boolean bool, uc.a aVar, String str2) {
-        this.f46527a = 20;
-        this.f46528b = str;
-        this.f46529c = str2;
+        this.f46526a = 20;
+        this.f46527b = str;
+        this.f46528c = str2;
         this.d = aVar;
     }
 
     public hy0(int i7) {
-        this.f46527a = i7;
+        this.f46526a = i7;
         switch (i7) {
             case 17:
-                this.f46528b = new Object();
-                this.f46529c = null;
+                this.f46527b = new Object();
+                this.f46528c = null;
                 this.d = null;
                 return;
             case 25:
-                this.f46528b = new ArrayList();
-                this.f46529c = new ArrayList();
+                this.f46527b = new ArrayList();
+                this.f46528c = new ArrayList();
                 return;
             case 27:
-                this.f46528b = new HashMap();
-                this.f46529c = new HashMap();
-                this.d = y7.i.f58950c;
+                this.f46527b = new HashMap();
+                this.f46528c = new HashMap();
+                this.d = y7.i.f58949c;
                 return;
             default:
-                this.f46528b = new Object();
+                this.f46527b = new Object();
                 return;
         }
     }
@@ -868,69 +868,69 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
     }
 
     public hy0(org.telegram.ui.Components.uy uyVar) {
-        this.f46527a = 22;
-        this.f46528b = uyVar;
-        this.f46529c = new a8.ua(8);
+        this.f46526a = 22;
+        this.f46527b = uyVar;
+        this.f46528c = new a8.ua(8);
         this.d = new ArrayList();
     }
 
     public hy0(File file) {
-        this.f46527a = 5;
-        this.f46528b = file;
-        this.f46529c = new File(file.getPath() + ".new");
+        this.f46526a = 5;
+        this.f46527b = file;
+        this.f46528c = new File(file.getPath() + ".new");
         this.d = new File(file.getPath() + ".bak");
     }
 
     public hy0(f3.r rVar) {
-        this.f46527a = 26;
-        this.f46528b = rVar;
+        this.f46526a = 26;
+        this.f46527b = rVar;
     }
 
     public hy0(Runnable runnable) {
-        this.f46527a = 11;
-        this.f46529c = new CopyOnWriteArrayList();
+        this.f46526a = 11;
+        this.f46528c = new CopyOnWriteArrayList();
         this.d = new HashMap();
-        this.f46528b = runnable;
+        this.f46527b = runnable;
     }
 
     public hy0(byte[] bArr, m9.y yVar) {
-        this.f46527a = 3;
-        this.f46528b = bArr;
-        this.f46529c = null;
+        this.f46526a = 3;
+        this.f46527b = bArr;
+        this.f46528c = null;
         this.d = yVar;
     }
 
     public hy0(e2.o0 o0Var, m9.y yVar) {
-        this.f46527a = 3;
-        this.f46528b = o0Var.f10435k;
-        this.f46529c = o0Var.f10438n;
+        this.f46526a = 3;
+        this.f46527b = o0Var.f10435k;
+        this.f46528c = o0Var.f10438n;
         this.d = yVar;
     }
 
     public hy0(org.telegram.ui.Components.qt qtVar) {
-        this.f46527a = 12;
-        this.f46527a = 12;
-        this.f46528b = qtVar;
-        this.f46529c = Choreographer.getInstance();
-        this.d = new org.telegram.ui.Components.wy0(this, 1);
+        this.f46526a = 12;
+        this.f46526a = 12;
+        this.f46527b = qtVar;
+        this.f46528c = Choreographer.getInstance();
+        this.d = new org.telegram.ui.Components.xy0(this, 1);
     }
 
     public hy0(String str, String str2) {
-        this.f46527a = 21;
-        this.f46528b = str;
-        this.f46529c = str2;
+        this.f46526a = 21;
+        this.f46527b = str;
+        this.f46528c = str2;
         this.d = str2.isEmpty() ? str : a8.p0.D(str, "/", str2);
     }
 
     public hy0(s4.e eVar, android.support.v4.media.session.a0 a0Var) {
-        this.f46527a = 14;
+        this.f46526a = 14;
         this.d = eVar;
-        this.f46528b = a0Var;
+        this.f46527b = a0Var;
     }
 
     public hy0(ArrayDeque arrayDeque, BufferedReader bufferedReader) {
-        this.f46527a = 13;
-        this.f46529c = arrayDeque;
-        this.f46528b = bufferedReader;
+        this.f46526a = 13;
+        this.f46528c = arrayDeque;
+        this.f46527b = bufferedReader;
     }
 }

@@ -40,7 +40,7 @@ public class MusicPlayerService extends Service implements ls {
     public static float d(ij ijVar, boolean z9) {
         if (z9) {
             if (ijVar != null) {
-                if (ij.S4(ijVar.f23237k) || ijVar.i4()) {
+                if (ij.S4(ijVar.f23244k) || ijVar.i4()) {
                     return MediaController.B().f21280p0;
                 }
                 return 1.0f;
@@ -74,15 +74,15 @@ public class MusicPlayerService extends Service implements ls {
                     fileLocation2 = user.photo.photo_small;
                 }
                 if (fileLocation2 != null) {
-                    w7.G(p10.f24459s0);
-                    File K = w7.K(fileLocation2, null, true, true);
-                    if (K.exists()) {
+                    w7.G(p10.f24467s0);
+                    File J = w7.J(fileLocation2, null, true, true);
+                    if (J.exists()) {
                         float f10 = i10;
-                        return gc.K(K.getAbsolutePath(), null, f10, f10, false);
+                        return gc.K(J.getAbsolutePath(), null, f10, f10, false);
                     } else if (z9) {
                         if (z10) {
                             this.f21314r = w7.r(null, fileLocation2);
-                            this.h.q0(hc.l(p10.f24459s0, 0, user), "", null, null, null, 0);
+                            this.h.q0(hc.l(p10.f24467s0, 0, user), "", null, null, null, 0);
                         } else {
                             this.f21314r = null;
                         }
@@ -96,11 +96,11 @@ public class MusicPlayerService extends Service implements ls {
                     fileLocation = chat.photo.photo_small;
                 }
                 if (fileLocation != null) {
-                    w7.G(p10.f24459s0);
-                    File K2 = w7.K(fileLocation, null, true, true);
-                    if (K2.exists()) {
+                    w7.G(p10.f24467s0);
+                    File J2 = w7.J(fileLocation, null, true, true);
+                    if (J2.exists()) {
                         float f11 = i10;
-                        return gc.K(K2.getAbsolutePath(), null, f11, f11, false);
+                        return gc.K(J2.getAbsolutePath(), null, f11, f11, false);
                     } else if (z9) {
                         if (z10) {
                             this.f21314r = w7.r(null, fileLocation);
@@ -123,7 +123,7 @@ public class MusicPlayerService extends Service implements ls {
         } else {
             w8Var = new org.telegram.ui.Components.w8((TLRPC.Chat) tLObject);
         }
-        w8Var.f39914r = 1;
+        w8Var.f39922r = 1;
         float f12 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(g0.L(f12), g0.L(f12), Bitmap.Config.ARGB_8888);
         w8Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
@@ -137,17 +137,17 @@ public class MusicPlayerService extends Service implements ls {
         String str2;
         int i11;
         float f10;
-        if (i7 == qs.f24987g2) {
+        if (i7 == qs.f24995g2) {
             ij ijVar = MediaController.B().f21292u0;
             if (ijVar != null) {
                 a(ijVar, false);
             } else {
                 stopSelf();
             }
-        } else if (i7 == qs.f24999i2) {
+        } else if (i7 == qs.f25007i2) {
             ij ijVar2 = MediaController.B().f21292u0;
             if (ijVar2 != null) {
-                long round = Math.round(((Float) objArr[1]).floatValue() * ijVar2.f23224h0) * 1000;
+                long round = Math.round(((Float) objArr[1]).floatValue() * ijVar2.f23231h0) * 1000;
                 f(round);
                 RemoteControlClient remoteControlClient = this.f21308a;
                 if (remoteControlClient != null) {
@@ -301,8 +301,8 @@ public class MusicPlayerService extends Service implements ls {
     public final void onCreate() {
         this.f21309b = (AudioManager) getSystemService("audio");
         for (int i7 = 0; i7 < 4; i7++) {
-            qs.f(i7).b(this, qs.f24999i2);
-            qs.f(i7).b(this, qs.f24987g2);
+            qs.f(i7).b(this, qs.f25007i2);
+            qs.f(i7).b(this, qs.f24995g2);
             qs.f(i7).b(this, qs.R1);
             qs.f(i7).b(this, qs.Y1);
         }
@@ -343,8 +343,8 @@ public class MusicPlayerService extends Service implements ls {
             a0Var.q();
         }
         for (int i7 = 0; i7 < 4; i7++) {
-            qs.f(i7).n(this, qs.f24999i2);
-            qs.f(i7).n(this, qs.f24987g2);
+            qs.f(i7).n(this, qs.f25007i2);
+            qs.f(i7).n(this, qs.f24995g2);
             qs.f(i7).n(this, qs.R1);
             qs.f(i7).n(this, qs.Y1);
         }

@@ -67,7 +67,7 @@ public class r0 extends c {
 
     public r0(Context context, int i7, long j3, boolean z9, f6 f6Var, boolean z10, boolean z11, boolean z12) {
         super(z10, z12);
-        this.f16902x = p10.f24459s0;
+        this.f16902x = p10.f24467s0;
         this.M = -1;
         this.P = new ArrayList();
         this.T = true;
@@ -83,7 +83,7 @@ public class r0 extends c {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56956f;
+        int i7 = d1Var.f56955f;
         if (i7 == 6) {
             if (sd.f(this.f16902x).h(this.L) == null && this.F == null) {
                 return false;
@@ -261,7 +261,7 @@ public class r0 extends c {
         this.P = new ArrayList(arrayList);
         long e10 = p10.i(this.f16902x).e();
         for (int i7 = 0; i7 < this.P.size(); i7++) {
-            if (((la0) this.P.get(i7)).f47493a == e10 || ((la0) this.P.get(i7)).f47494b.out) {
+            if (((la0) this.P.get(i7)).f47492a == e10 || ((la0) this.P.get(i7)).f47493b.out) {
                 this.P.remove(i7);
                 break;
             }
@@ -478,8 +478,8 @@ public class r0 extends c {
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         long j3;
-        int i10 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i10 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         if (i10 != 0) {
             boolean z10 = true;
             if (i10 != 1) {
@@ -518,25 +518,25 @@ public class r0 extends c {
                             TLRPC.TL_channelLocation tL_channelLocation = this.O;
                             long j10 = this.L;
                             if (tL_channelLocation != null) {
-                                TextView textView = r7Var.f30195f;
-                                Location location = r7Var.f30201y;
-                                l9 l9Var = r7Var.f30193c;
-                                r7Var.E = p10.f24459s0;
+                                TextView textView = r7Var.f30196f;
+                                Location location = r7Var.f30202y;
+                                l9 l9Var = r7Var.f30194c;
+                                r7Var.E = p10.f24467s0;
                                 String str = tL_channelLocation.address;
-                                r7Var.f30196n = null;
+                                r7Var.f30197n = null;
                                 String str2 = "";
                                 if (m5.E(j10)) {
                                     TLRPC.User a22 = qp.s1(r7Var.E).a2(Long.valueOf(j10));
                                     if (a22 != null) {
-                                        r7Var.f30196n = new w8(0, a22);
+                                        r7Var.f30197n = new w8(0, a22);
                                         str2 = t10.p(a22);
-                                        l9Var.e(a22, r7Var.f30196n);
+                                        l9Var.e(a22, r7Var.f30197n);
                                     }
                                 } else {
                                     TLRPC.Chat M0 = qp.s1(r7Var.E).M0(Long.valueOf(-j10));
                                     if (M0 != null) {
                                         w8 w8Var = new w8(M0);
-                                        r7Var.f30196n = w8Var;
+                                        r7Var.f30197n = w8Var;
                                         str2 = M0.title;
                                         l9Var.e(M0, w8Var);
                                     }
@@ -565,30 +565,30 @@ public class r0 extends c {
                             if (i12 >= 0 && i12 < this.P.size()) {
                                 la0 la0Var = (la0) this.P.get(i12);
                                 Location location2 = this.F;
-                                TextView textView2 = r7Var.f30195f;
-                                l9 l9Var2 = r7Var.f30193c;
+                                TextView textView2 = r7Var.f30196f;
+                                l9 l9Var2 = r7Var.f30194c;
                                 k5 k5Var = r7Var.d;
-                                Location location3 = r7Var.f30201y;
-                                r7Var.f30200x = la0Var;
-                                if (m5.E(la0Var.f47493a)) {
-                                    TLRPC.User a23 = qp.s1(r7Var.E).a2(Long.valueOf(la0Var.f47493a));
+                                Location location3 = r7Var.f30202y;
+                                r7Var.f30201x = la0Var;
+                                if (m5.E(la0Var.f47492a)) {
+                                    TLRPC.User a23 = qp.s1(r7Var.E).a2(Long.valueOf(la0Var.f47492a));
                                     if (a23 != null) {
-                                        r7Var.f30196n.r(a23);
+                                        r7Var.f30197n.r(a23);
                                         k5Var.l(g5.m(0, a23.first_name, a23.last_name), false);
-                                        l9Var2.e(a23, r7Var.f30196n);
+                                        l9Var2.e(a23, r7Var.f30197n);
                                     }
                                 } else {
-                                    TLRPC.Chat M02 = qp.s1(r7Var.E).M0(Long.valueOf(-la0Var.f47493a));
+                                    TLRPC.Chat M02 = qp.s1(r7Var.E).M0(Long.valueOf(-la0Var.f47492a));
                                     if (M02 != null) {
-                                        r7Var.f30196n.q(M02);
+                                        r7Var.f30197n.q(M02);
                                         k5Var.l(M02.title, false);
-                                        l9Var2.e(M02, r7Var.f30196n);
+                                        l9Var2.e(M02, r7Var.f30197n);
                                     }
                                 }
-                                cb a10 = la0Var.f47496e.a();
-                                location3.setLatitude(a10.f21791a);
-                                location3.setLongitude(a10.f21792b);
-                                TLRPC.Message message = la0Var.f47494b;
+                                cb a10 = la0Var.f47495e.a();
+                                location3.setLatitude(a10.f21797a);
+                                location3.setLongitude(a10.f21798b);
+                                TLRPC.Message message = la0Var.f47493b;
                                 int i13 = message.edit_date;
                                 if (i13 != 0) {
                                     j3 = i13;
@@ -623,7 +623,7 @@ public class r0 extends c {
                     if (i14 >= b() || d(i14) != 7) {
                         z10 = false;
                     }
-                    q6Var2.f30149y = z10;
+                    q6Var2.f30150y = z10;
                     q6Var2.invalidate();
                     return;
                 }
@@ -685,7 +685,7 @@ public class r0 extends c {
                             break;
                         case 10:
                             View y6Var = new y6(context, (org.telegram.ui.Cells.f1) null);
-                            new xp(new ColorDrawable(k6.w0(k6.f27792a7, f6Var)), k6.Y0(context, 2131231230, k6.f27812b7)).f40324x = true;
+                            new xp(new ColorDrawable(k6.w0(k6.f27793a7, f6Var)), k6.Y0(context, 2131231230, k6.f27813b7)).f40340x = true;
                             view2 = y6Var;
                             break;
                         case 11:
@@ -724,8 +724,8 @@ public class r0 extends c {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        if (d1Var.f56956f == 1) {
-            this.E = (q6) d1Var.f56952a;
+        if (d1Var.f56955f == 1) {
+            this.E = (q6) d1Var.f56951a;
             Q();
         }
     }

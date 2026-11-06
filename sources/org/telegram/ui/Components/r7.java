@@ -38,7 +38,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                 if (!z9 && (imageView2 = profileActivity.X0) != null) {
                     imageView2.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY));
                 }
-                if (profileActivity.I0 && (imageView = this.f27657e) != null) {
+                if (profileActivity.I0 && (imageView = this.f27658e) != null) {
                     imageView.setColorFilter(i7, PorterDuff.Mode.SRC_IN);
                     return;
                 }
@@ -81,7 +81,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
             case 3:
                 org.telegram.ui.ww wwVar = (org.telegram.ui.ww) this.G1;
                 org.telegram.ui.lw lwVar = wwVar.X;
-                if (lwVar != null && lwVar.getAlpha() > 0.0f && wwVar.f51534b.f55396f) {
+                if (lwVar != null && lwVar.getAlpha() > 0.0f && wwVar.f51532b.f55395f) {
                     return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -95,11 +95,11 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
         switch (this.F1) {
             case 3:
                 org.telegram.ui.ww wwVar = (org.telegram.ui.ww) this.G1;
-                wwVar.X.f37447r.getText().clear();
-                if (z9 && wwVar.X.f37447r.isFocused()) {
-                    org.telegram.messenger.g0.v1(wwVar.X.f37447r);
+                wwVar.X.f37441r.getText().clear();
+                if (z9 && wwVar.X.f37441r.isFocused()) {
+                    org.telegram.messenger.g0.v1(wwVar.X.f37441r);
                 }
-                wwVar.X.f37447r.clearFocus();
+                wwVar.X.f37441r.clearFocus();
                 wwVar.Y.b(false);
                 return;
             default:
@@ -145,13 +145,13 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
         switch (this.F1) {
             case 0:
                 super.setAlpha(f10);
-                ((b8) this.G1).f28615b.invalidate();
+                ((b8) this.G1).f28616b.invalidate();
                 return;
             case 1:
                 di diVar = (di) this.G1;
-                dh dhVar = diVar.f32975x2;
-                TextView textView = diVar.f32904d3;
-                dh dhVar2 = diVar.f32952r3;
+                dh dhVar = diVar.f33004x2;
+                TextView textView = diVar.f32933d3;
+                dh dhVar2 = diVar.f32981r3;
                 float alpha = getAlpha();
                 super.setAlpha(f10);
                 if (alpha != f10) {
@@ -167,17 +167,17 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                         textView.setVisibility(i7);
                     }
                     di.I0(diVar);
-                    diVar.f28615b.invalidate();
+                    diVar.f28616b.invalidate();
                     if (dhVar != null && dhVar2 != null) {
                         if (dhVar.getTag() == null) {
-                            vh vhVar = diVar.f32955s2;
+                            vh vhVar = diVar.f32984s2;
                             if (vhVar == null || vhVar.M()) {
                                 dhVar2.setAlpha(1.0f - f10);
                                 dhVar2.setTranslationY(org.telegram.messenger.g0.L(44.0f) * f10);
                             }
                             dhVar.setTranslationY(org.telegram.messenger.g0.L(48.0f) * f10);
                             return;
-                        } else if (diVar.f32955s2 == null) {
+                        } else if (diVar.f32984s2 == null) {
                             if (f10 == 0.0f) {
                                 f11 = 1.0f;
                             }
@@ -195,7 +195,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 2:
                 super.setAlpha(f10);
-                ((qe0) this.G1).f28615b.invalidate();
+                ((qe0) this.G1).f28616b.invalidate();
                 return;
             case 3:
             case 5:
@@ -204,18 +204,18 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                 return;
             case 4:
                 super.setAlpha(f10);
-                ((PhotoViewer) this.G1).f41381e0.invalidate();
+                ((PhotoViewer) this.G1).f41380e0.invalidate();
                 return;
             case 6:
                 super.setAlpha(f10);
                 SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.G1;
-                secretMediaViewer.f41931r.setAlpha(f10);
-                secretMediaViewer.f41923n.setAlpha(f10);
+                secretMediaViewer.f41930r.setAlpha(f10);
+                secretMediaViewer.f41922n.setAlpha(f10);
                 return;
             case 7:
                 if (getAlpha() != f10) {
                     super.setAlpha(f10);
-                    ((ug.w0) this.G1).f28615b.invalidate();
+                    ((ug.w0) this.G1).f28616b.invalidate();
                     return;
                 }
                 return;
@@ -231,7 +231,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                 ug.w0 w0Var = (ug.w0) this.G1;
                 r7 r7Var = w0Var.E1;
                 if (r7Var != null && r7Var.getTag() != null) {
-                    if (i0.a.h(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, w0Var.I0)) > 0.699999988079071d) {
+                    if (i0.a.h(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, w0Var.I0)) > 0.699999988079071d) {
                         z9 = true;
                     } else {
                         z9 = false;
@@ -239,7 +239,7 @@ public final class r7 extends org.telegram.ui.ActionBar.k {
                     org.telegram.messenger.g0.q3(w0Var, z9);
                     return;
                 }
-                org.telegram.ui.ActionBar.f2 f2Var = w0Var.f56752i1;
+                org.telegram.ui.ActionBar.f2 f2Var = w0Var.f56751i1;
                 if (f2Var != null) {
                     org.telegram.messenger.g0.q3(w0Var, f2Var.isLightStatusBar());
                     return;

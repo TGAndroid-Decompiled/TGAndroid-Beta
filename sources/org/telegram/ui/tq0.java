@@ -12,39 +12,39 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class tq0 extends FrameLayout implements org.telegram.messenger.ls {
-    public final FrameLayout f50124a;
-    public final sq0 f50125b;
-    public final org.telegram.ui.ActionBar.k5[] f50126c;
+    public final FrameLayout f50123a;
+    public final sq0 f50124b;
+    public final org.telegram.ui.ActionBar.k5[] f50125c;
     public final org.telegram.ui.Components.j6 d;
-    public AnimatorSet f50127e;
-    public AnimatorSet f50128f;
+    public AnimatorSet f50126e;
+    public AnimatorSet f50127f;
     public boolean h;
-    public ValueAnimator f50129n;
-    public float f50130r;
-    public int f50131s;
+    public ValueAnimator f50128n;
+    public float f50129r;
+    public int f50130s;
 
     public tq0(Activity activity) {
         super(activity);
         FrameLayout frameLayout = new FrameLayout(activity);
-        this.f50124a = frameLayout;
+        this.f50123a = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(56.0f), 0, 0, 0);
         addView(frameLayout, c8.ha.e(-1, -1, 119));
         sq0 sq0Var = new sq0(activity, 0);
-        this.f50125b = sq0Var;
+        this.f50124b = sq0Var;
         sq0Var.setPivotX(org.telegram.messenger.g0.L(16.0f));
         sq0Var.setPadding(org.telegram.messenger.g0.L(16.0f), 0, 0, 0);
         sq0Var.setClipToPadding(false);
         frameLayout.addView(sq0Var, c8.ha.e(-1, -1, 119));
-        this.f50126c = new org.telegram.ui.ActionBar.k5[2];
+        this.f50125c = new org.telegram.ui.ActionBar.k5[2];
         for (int i7 = 0; i7 < 2; i7++) {
-            this.f50126c[i7] = new org.telegram.ui.ActionBar.k5(activity);
-            this.f50126c[i7].setGravity(19);
-            this.f50126c[i7].setTextColor(-1);
-            this.f50126c[i7].setTextSize(20);
-            this.f50126c[i7].setTypeface(org.telegram.messenger.g0.o());
-            this.f50126c[i7].setDrawablePadding(org.telegram.messenger.g0.L(4.0f));
-            this.f50126c[i7].setScrollNonFitText(true);
-            this.f50125b.addView(this.f50126c[i7], c8.ha.e(-1, -2, 19));
+            this.f50125c[i7] = new org.telegram.ui.ActionBar.k5(activity);
+            this.f50125c[i7].setGravity(19);
+            this.f50125c[i7].setTextColor(-1);
+            this.f50125c[i7].setTextSize(20);
+            this.f50125c[i7].setTypeface(org.telegram.messenger.g0.o());
+            this.f50125c[i7].setDrawablePadding(org.telegram.messenger.g0.L(4.0f));
+            this.f50125c[i7].setScrollNonFitText(true);
+            this.f50124b.addView(this.f50125c[i7], c8.ha.e(-1, -2, 19));
         }
         org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(activity, true, false, false);
         this.d = j6Var;
@@ -55,7 +55,7 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
         j6Var.setEllipsizeByGradient(true);
         j6Var.setImportantForAccessibility(1);
         j6Var.setAccessibilityLiveRegion(1);
-        this.f50124a.addView(j6Var, c8.ha.d(-1, 20.0f, 51, 16.0f, 0.0f, 0.0f, 0.0f));
+        this.f50123a.addView(j6Var, c8.ha.d(-1, 20.0f, 51, 16.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public final void a(CharSequence charSequence, boolean z9) {
@@ -72,11 +72,11 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
         org.telegram.ui.Components.j6 j6Var = this.d;
         if (z11 != z12) {
             this.h = z11;
-            AnimatorSet animatorSet = this.f50128f;
+            AnimatorSet animatorSet = this.f50127f;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             if (point.x > point.y) {
                 z10 = true;
             } else {
@@ -95,7 +95,7 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
             int L = org.telegram.messenger.g0.L(i7 - i10);
             float f14 = 0.87f;
             float f15 = 0.0f;
-            sq0 sq0Var = this.f50125b;
+            sq0 sq0Var = this.f50124b;
             if (z9) {
                 ArrayList arrayList = new ArrayList();
                 if (!isEmpty) {
@@ -122,10 +122,10 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
                 }
                 arrayList.add(ObjectAnimator.ofFloat(sq0Var, View.SCALE_Y, f14));
                 AnimatorSet animatorSet2 = new AnimatorSet();
-                this.f50128f = animatorSet2;
+                this.f50127f = animatorSet2;
                 animatorSet2.playTogether(arrayList);
-                this.f50128f.setInterpolator(org.telegram.ui.Components.xq.h);
-                this.f50128f.start();
+                this.f50127f.setInterpolator(org.telegram.ui.Components.xq.h);
+                this.f50127f.start();
             } else {
                 if (!isEmpty) {
                     f10 = 1.0f;
@@ -160,7 +160,7 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
     public final void b(boolean z9) {
         int i7;
         int i10;
-        org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50126c;
+        org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50125c;
         int i11 = 0;
         TextPaint paint = k5VarArr[0].getPaint();
         float N = org.telegram.messenger.g0.N(0.66f);
@@ -188,7 +188,7 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
 
     public final void c(CharSequence charSequence) {
         boolean z9;
-        org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50126c;
+        org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50125c;
         boolean z10 = true;
         k5VarArr[1].setAlpha(0.0f);
         k5VarArr[1].setVisibility(8);
@@ -223,7 +223,7 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
         boolean equals;
         int i7;
         Property property;
-        org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50126c;
+        org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50125c;
         CharSequence text = k5VarArr[0].getText();
         if (text == null) {
             equals = false;
@@ -233,10 +233,10 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
         if (equals) {
             return;
         }
-        AnimatorSet animatorSet = this.f50127e;
+        AnimatorSet animatorSet = this.f50126e;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f50127e = null;
+            this.f50126e = null;
         }
         org.telegram.ui.ActionBar.k5 k5Var = k5VarArr[1];
         org.telegram.ui.ActionBar.k5 k5Var2 = k5VarArr[0];
@@ -244,7 +244,7 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
         k5Var.R = k5Var2.R;
         k5Var.b();
         k5VarArr[1].k(k5VarArr[0].getText());
-        k5VarArr[1].setRightPadding((int) this.f50130r);
+        k5VarArr[1].setRightPadding((int) this.f50129r);
         org.telegram.ui.ActionBar.k5 k5Var3 = k5VarArr[0];
         k5Var3.R = 0.0f;
         k5Var3.b();
@@ -288,18 +288,18 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
         }
         arrayList.add(ObjectAnimator.ofFloat(k5Var5, property3, 0.0f));
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f50127e = animatorSet2;
+        this.f50126e = animatorSet2;
         animatorSet2.playTogether(arrayList);
-        this.f50127e.addListener(new d30(this, 18));
-        this.f50127e.setDuration(320L);
-        this.f50127e.setInterpolator(org.telegram.ui.Components.xq.h);
-        this.f50127e.start();
+        this.f50126e.addListener(new d30(this, 18));
+        this.f50126e.setDuration(320L);
+        this.f50126e.setInterpolator(org.telegram.ui.Components.xq.h);
+        this.f50126e.start();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25001i4) {
-            org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50126c;
+        if (i7 == org.telegram.messenger.qs.f25009i4) {
+            org.telegram.ui.ActionBar.k5[] k5VarArr = this.f50125c;
             k5VarArr[0].invalidate();
             k5VarArr[1].invalidate();
             this.d.invalidate();
@@ -309,33 +309,33 @@ public final class tq0 extends FrameLayout implements org.telegram.messenger.ls 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.qs.e().c(this, org.telegram.messenger.qs.f25001i4);
+        org.telegram.messenger.qs.e().c(this, org.telegram.messenger.qs.f25009i4);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.qs.e().n(this, org.telegram.messenger.qs.f25001i4);
+        org.telegram.messenger.qs.e().n(this, org.telegram.messenger.qs.f25009i4);
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        this.f50124a.layout(0, org.telegram.messenger.g0.f22531m, i11 - i7, i12 - i10);
+        this.f50123a.layout(0, org.telegram.messenger.g0.f22538m, i11 - i7, i12 - i10);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
-        int i11 = org.telegram.messenger.g0.f22531m;
-        int i12 = this.f50131s;
-        int i13 = org.telegram.messenger.g0.f22537q.y;
+        int i11 = org.telegram.messenger.g0.f22538m;
+        int i12 = this.f50130s;
+        int i13 = org.telegram.messenger.g0.f22544q.y;
         if (i12 != i13) {
-            this.f50131s = i13;
+            this.f50130s = i13;
             this.h = !this.h;
             a(this.d.getText(), false);
         }
-        this.f50124a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - i11, 1073741824));
+        this.f50123a.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2 - i11, 1073741824));
         setMeasuredDimension(size, size2);
     }
 }

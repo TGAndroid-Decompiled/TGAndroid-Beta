@@ -35,7 +35,7 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.t0;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.t9;
@@ -98,20 +98,20 @@ public abstract class f {
                         ij ijVar = B.f21292u0;
                         if ((B.f21268i0 != null || B.E0 != null) && ijVar != null && B.L(ijVar)) {
                             try {
-                                s51 s51Var = B.f21268i0;
-                                if (s51Var != null) {
-                                    j3 = s51Var.U();
+                                t51 t51Var = B.f21268i0;
+                                if (t51Var != null) {
+                                    j3 = t51Var.U();
                                     if (j3 != -9223372036854775807L) {
-                                        ijVar.f23197b0 = Utilities.l(((float) a10) / ((float) j3));
+                                        ijVar.f23204b0 = Utilities.l(((float) a10) / ((float) j3));
                                     }
                                     B.f21268i0.q0(a10, false);
                                     if (!B.T1) {
                                         v(a10);
                                     }
                                 } else {
-                                    s51 s51Var2 = B.E0;
-                                    if (s51Var2 != null) {
-                                        j3 = s51Var2.U();
+                                    t51 t51Var2 = B.E0;
+                                    if (t51Var2 != null) {
+                                        j3 = t51Var2.U();
                                         B.E0.p0(a10);
                                         if (!B.T1) {
                                             v(a10);
@@ -121,7 +121,7 @@ public abstract class f {
                                     }
                                 }
                                 if (j3 != 0) {
-                                    qs.f(ijVar.I1).k(qs.f24999i2, Integer.valueOf(ijVar.f1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
+                                    qs.f(ijVar.I1).k(qs.f25007i2, Integer.valueOf(ijVar.f1()), Float.valueOf(Utilities.l(((float) a10) / ((float) j3))));
                                 }
                             } catch (Exception e12) {
                                 a8.g(e12, true);
@@ -259,7 +259,7 @@ public abstract class f {
     public static Context f() {
         LaunchActivity launchActivity = LaunchActivity.G1;
         if (launchActivity == null) {
-            return t0.f25555b;
+            return t0.f25563b;
         }
         return launchActivity;
     }

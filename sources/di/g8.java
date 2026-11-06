@@ -82,10 +82,10 @@ public final class g8 extends View implements org.telegram.ui.Cells.r9 {
         Layout.Alignment alignment;
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i7).setBreakStrategy(0).setHyphenationFrequency(0);
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 alignment = mu0.a();
             } else {
-                Layout.Alignment[] alignmentArr = mu0.f36084a;
+                Layout.Alignment[] alignmentArr = mu0.f36100a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -108,7 +108,7 @@ public final class g8 extends View implements org.telegram.ui.Cells.r9 {
         if (charSequence2 == null || !TextUtils.equals(charSequence2, charSequence)) {
             z11 = false;
         } else {
-            z11 = ui.K(ui.b0(p10.f24459s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), ui.b0(p10.f24459s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
+            z11 = ui.K(ui.b0(p10.f24467s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence2)}, true, true), ui.b0(p10.f24467s0).W(new CharSequence[]{new SpannableStringBuilder(charSequence)}, true, true));
         }
         if (z11) {
             f8 f8Var = f8VarArr[0];
@@ -134,7 +134,7 @@ public final class g8 extends View implements org.telegram.ui.Cells.r9 {
             f8 f8Var4 = f8VarArr[1];
             f8 f8Var5 = f8VarArr[0];
             f8Var4.f9017q = f8Var5.f9017q;
-            f8Var4.f9018r.e(true, f8Var5.f9018r.f39857c);
+            f8Var4.f9018r.e(true, f8Var5.f9018r.f39855c);
             f8VarArr[0].g(charSequence, c8Var, c8Var2);
             f8 f8Var6 = f8VarArr[0];
             f8Var6.f9017q = z9;
@@ -150,7 +150,7 @@ public final class g8 extends View implements org.telegram.ui.Cells.r9 {
             ofFloat.addUpdateListener(new ah.h(this, 23));
             this.I.addListener(new bi.t5(this, 15));
             this.I.setDuration(180L);
-            this.I.setInterpolator(xq.f40330g);
+            this.I.setInterpolator(xq.f40346g);
             this.I.start();
             return;
         }

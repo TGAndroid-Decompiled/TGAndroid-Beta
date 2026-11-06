@@ -9,7 +9,7 @@ public final class b91 extends v4.y {
 
     @Override
     public final boolean s() {
-        if (this.S.f50676y > 0) {
+        if (this.S.f50675y > 0) {
             return true;
         }
         return false;

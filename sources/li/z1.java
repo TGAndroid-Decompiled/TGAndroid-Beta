@@ -19,7 +19,7 @@ public final class z1 extends Drawable {
 
     public z1(Context context, int i7) {
         Drawable h = jg.g.h(context, i7);
-        this.d = k6.f27848d6;
+        this.d = k6.f27849d6;
         this.f19042g = true;
         this.f19037a = context;
         this.f19038b = h;

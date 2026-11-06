@@ -1,19 +1,19 @@
 package w7;
 
-import c8.ed;
+import c8.fd;
 import j$.util.Objects;
 import java.util.AbstractMap;
 public final class h extends d {
-    public final i f57504c;
+    public final i f57503c;
 
     public h(i iVar) {
-        this.f57504c = iVar;
+        this.f57503c = iVar;
     }
 
     @Override
     public final Object get(int i7) {
-        i iVar = this.f57504c;
-        ed.a(i7, iVar.f57506e);
+        i iVar = this.f57503c;
+        fd.a(i7, iVar.f57505e);
         Object[] objArr = iVar.d;
         int i10 = i7 + i7;
         Object obj = objArr[i10];
@@ -25,6 +25,6 @@ public final class h extends d {
 
     @Override
     public final int size() {
-        return this.f57504c.f57506e;
+        return this.f57503c.f57505e;
     }
 }

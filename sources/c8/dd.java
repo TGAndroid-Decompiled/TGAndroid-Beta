@@ -1,10 +1,13 @@
 package c8;
+
+import java.io.DataInputStream;
 public abstract class dd {
-    public static void a(int i7, Object[] objArr) {
-        for (int i10 = 0; i10 < i7; i10++) {
-            if (objArr[i10] == null) {
-                throw new NullPointerException(jg.g.j(i10, "at index "));
-            }
+    public static float[] a(DataInputStream dataInputStream) {
+        int readInt = dataInputStream.readInt();
+        float[] fArr = new float[readInt];
+        for (int i7 = 0; i7 < readInt; i7++) {
+            fArr[i7] = dataInputStream.readFloat();
         }
+        return fArr;
     }
 }

@@ -9,22 +9,22 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class e4 implements RemoteViewsService.RemoteViewsFactory {
-    public ArrayList f22151a;
-    public Context f22152b;
-    public int f22153c;
+    public ArrayList f22158a;
+    public Context f22159b;
+    public int f22160c;
     public c d;
-    public Paint f22154e;
-    public RectF f22155f;
-    public a0.h f22156g;
+    public Paint f22161e;
+    public RectF f22162f;
+    public a0.h f22163g;
     public a0.h h;
-    public boolean f22157i;
+    public boolean f22164i;
 
     @Override
     public final int getCount() {
-        if (this.f22157i) {
+        if (this.f22164i) {
             return 1;
         }
-        return this.f22151a.size() + 1;
+        return this.f22158a.size() + 1;
     }
 
     @Override
@@ -59,22 +59,22 @@ public final class e4 implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public final void onDataSetChanged() {
-        ArrayList arrayList = this.f22151a;
+        ArrayList arrayList = this.f22158a;
         arrayList.clear();
         a0.h hVar = this.h;
         hVar.b();
         c cVar = this.d;
         if (cVar != null) {
-            int i7 = cVar.f21723a;
+            int i7 = cVar.f21729a;
             if (p10.i(i7).p()) {
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
                 a0.h hVar2 = new a0.h();
                 yr a02 = yr.a0(i7);
-                int i10 = this.f22153c;
-                a0.h hVar3 = this.f22156g;
+                int i10 = this.f22160c;
+                a0.h hVar3 = this.f22163g;
                 CountDownLatch countDownLatch = new CountDownLatch(1);
-                a02.f26688a.c(new bg.c(a02, i10, arrayList, 0, hVar3, hVar2, arrayList3, arrayList2, countDownLatch));
+                a02.f26696a.c(new bg.c(a02, i10, arrayList, 0, hVar3, hVar2, arrayList3, arrayList2, countDownLatch));
                 try {
                     countDownLatch.await();
                 } catch (Exception e10) {
@@ -85,7 +85,7 @@ public final class e4 implements RemoteViewsService.RemoteViewsFactory {
                 hVar.b();
                 int m10 = hVar2.m();
                 for (int i11 = 0; i11 < m10; i11++) {
-                    hVar.k(new ij(cVar.f21723a, (TLRPC.Message) hVar2.n(i11), (a0.h) null, (a0.h) null, false, true), hVar2.j(i11));
+                    hVar.k(new ij(cVar.f21729a, (TLRPC.Message) hVar2.n(i11), (a0.h) null, (a0.h) null, false, true), hVar2.j(i11));
                 }
             }
         }

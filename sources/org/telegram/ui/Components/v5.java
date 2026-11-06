@@ -155,7 +155,7 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
         if (this.R0) {
             this.R0 = false;
             t5 t5Var = new t5(this, 0);
-            Typeface typeface = org.telegram.messenger.g0.f22509a;
+            Typeface typeface = org.telegram.messenger.g0.f22516a;
             if (Looper.myLooper() != Looper.getMainLooper()) {
                 org.telegram.messenger.g0.h3(t5Var);
             } else {
@@ -464,14 +464,14 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
         if (!g()) {
             s5 s5Var = this.f38839n;
             if (s5Var != null) {
-                s5Var.f37888b.recycle();
-                Arrays.fill(s5Var.f37887a, (Object) null);
+                s5Var.f37906b.recycle();
+                Arrays.fill(s5Var.f37905a, (Object) null);
                 this.f38839n = null;
             }
             s5 s5Var2 = this.f38851w;
             if (s5Var2 != null) {
-                s5Var2.f37888b.recycle();
-                Arrays.fill(s5Var2.f37887a, (Object) null);
+                s5Var2.f37906b.recycle();
+                Arrays.fill(s5Var2.f37905a, (Object) null);
                 this.f38851w = null;
             }
             org.telegram.messenger.q5 q5Var = this.f38832f0;
@@ -484,8 +484,8 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
                 ArrayList arrayList = this.h;
                 if (i7 < arrayList.size()) {
                     s5 s5Var3 = (s5) arrayList.get(i7);
-                    s5Var3.f37888b.recycle();
-                    Arrays.fill(s5Var3.f37887a, (Object) null);
+                    s5Var3.f37906b.recycle();
+                    Arrays.fill(s5Var3.f37905a, (Object) null);
                     i7++;
                 } else {
                     arrayList.clear();
@@ -503,15 +503,15 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
     public final Bitmap m() {
         s5 s5Var = this.f38839n;
         if (s5Var != null) {
-            return s5Var.f37888b;
+            return s5Var.f37906b;
         }
         s5 s5Var2 = this.f38844r;
         if (s5Var2 != null) {
-            return s5Var2.f37888b;
+            return s5Var2.f37906b;
         }
         s5 s5Var3 = this.f38846s;
         if (s5Var3 != null) {
-            return s5Var3.f37888b;
+            return s5Var3.f37906b;
         }
         return null;
     }
@@ -533,12 +533,12 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
             return (int) this.M;
         }
         s5 s5Var = this.f38844r;
-        if (s5Var != null && (i7 = s5Var.f37890e) != 0) {
+        if (s5Var != null && (i7 = s5Var.f37908e) != 0) {
             return i7;
         }
         s5 s5Var2 = this.f38839n;
         if (s5Var2 != null) {
-            return s5Var2.f37890e;
+            return s5Var2.f37908e;
         }
         return 0;
     }
@@ -604,7 +604,7 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
         if (this.f38828d0 == null) {
             s5 s5Var = this.f38851w;
             if (s5Var != null) {
-                return s5Var.f37888b;
+                return s5Var.f37906b;
             }
             return null;
         }
@@ -617,8 +617,8 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
                 this.f38851w = new s5(Bitmap.createBitmap((int) (iArr[0] * f10), (int) (iArr[1] * f10), Bitmap.Config.ARGB_8888));
             }
         }
-        this.f38828d0.c(this.f38851w.f37888b, false, this.f38833g0, this.f38834h0, z9);
-        return this.f38851w.f37888b;
+        this.f38828d0.c(this.f38851w.f37906b, false, this.f38833g0, this.f38834h0, z9);
+        return this.f38851w.f37906b;
     }
 
     public final boolean s() {
@@ -651,7 +651,7 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
     public final void stop() {
         this.f38825b0 = false;
         t5 t5Var = new t5(this, 0);
-        Typeface typeface = org.telegram.messenger.g0.f22509a;
+        Typeface typeface = org.telegram.messenger.g0.f22516a;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             org.telegram.messenger.g0.h3(t5Var);
         } else {
@@ -675,7 +675,7 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
         this.f38825b0 = false;
         this.f38827c0 = true;
         t5 t5Var = new t5(this, 0);
-        Typeface typeface = org.telegram.messenger.g0.f22509a;
+        Typeface typeface = org.telegram.messenger.g0.f22516a;
         if (Looper.myLooper() != Looper.getMainLooper()) {
             org.telegram.messenger.g0.h3(t5Var);
         } else {
@@ -694,19 +694,19 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
             ArrayList arrayList = new ArrayList();
             s5 s5Var = this.f38839n;
             if (s5Var != null) {
-                arrayList.add(s5Var.f37888b);
+                arrayList.add(s5Var.f37906b);
             }
             s5 s5Var2 = this.f38844r;
             if (s5Var2 != null) {
-                arrayList.add(s5Var2.f37888b);
+                arrayList.add(s5Var2.f37906b);
             }
             s5 s5Var3 = this.f38846s;
             if (s5Var3 != null) {
-                arrayList.add(s5Var3.f37888b);
+                arrayList.add(s5Var3.f37906b);
             }
             s5 s5Var4 = this.f38851w;
             if (s5Var4 != null) {
-                arrayList.add(s5Var4.f37888b);
+                arrayList.add(s5Var4.f37906b);
             }
             ArrayList arrayList2 = this.h;
             int size = arrayList2.size();
@@ -715,7 +715,7 @@ public final class v5 extends BitmapDrawable implements Animatable, bg.g {
                 i7++;
                 s5 s5Var5 = (s5) obj;
                 if (s5Var5 != null) {
-                    arrayList.add(s5Var5.f37888b);
+                    arrayList.add(s5Var5.f37906b);
                 }
             }
             this.h.clear();

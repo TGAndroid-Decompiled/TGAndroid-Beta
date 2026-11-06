@@ -14,7 +14,7 @@ public final class j7 extends cp {
             case 0:
                 return org.telegram.messenger.g0.L(26.0f);
             default:
-                return (int) ((this.f32636b * 2.0f) + this.f32635a);
+                return (int) ((this.f32623b * 2.0f) + this.f32622a);
         }
     }
 
@@ -24,7 +24,7 @@ public final class j7 extends cp {
             case 0:
                 return org.telegram.messenger.g0.L(26.0f);
             default:
-                return (int) ((this.f32636b * 2.0f) + this.f32635a);
+                return (int) ((this.f32623b * 2.0f) + this.f32622a);
         }
     }
 

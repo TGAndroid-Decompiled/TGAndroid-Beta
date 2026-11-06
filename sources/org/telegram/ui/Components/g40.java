@@ -55,37 +55,37 @@ public final class g40 implements Runnable {
     public volatile int X;
     public volatile d40 Y;
     public long Z;
-    public org.telegram.messenger.pe f33747a;
-    public boolean f33748a0;
-    public File f33749b;
-    public long f33750b0;
-    public boolean f33751c;
+    public org.telegram.messenger.pe f33784a;
+    public boolean f33785a0;
+    public File f33786b;
+    public long f33787b0;
+    public boolean f33788c;
     public int d;
-    public long f33753d0;
-    public int f33754e;
-    public long f33755e0;
-    public int f33756f;
-    public long f33757f0;
-    public boolean f33763l0;
+    public long f33790d0;
+    public int f33791e;
+    public long f33792e0;
+    public int f33793f;
+    public long f33794f0;
+    public boolean f33800l0;
     public int m0;
-    public boolean f33764n;
-    public int f33765n0;
-    public int f33766o0;
-    public int f33767p0;
-    public int f33768q0;
-    public Surface f33769r;
-    public int f33770r0;
-    public int f33772s0;
-    public int f33773t0;
-    public int f33774u0;
-    public int f33775v0;
-    public EGLContext f33778x;
-    public p30 f33779x0;
-    public EGLConfig f33780y;
-    public AudioRecord f33781y0;
+    public boolean f33801n;
+    public int f33802n0;
+    public int f33803o0;
+    public int f33804p0;
+    public int f33805q0;
+    public Surface f33806r;
+    public int f33807r0;
+    public int f33809s0;
+    public int f33810t0;
+    public int f33811u0;
+    public int f33812v0;
+    public EGLContext f33815x;
+    public p30 f33816x0;
+    public EGLConfig f33817y;
+    public AudioRecord f33818y0;
     public boolean h = true;
-    public EGLDisplay f33771s = EGL14.EGL_NO_DISPLAY;
-    public EGLContext f33776w = EGL14.EGL_NO_CONTEXT;
+    public EGLDisplay f33808s = EGL14.EGL_NO_DISPLAY;
+    public EGLContext f33813w = EGL14.EGL_NO_CONTEXT;
     public EGLSurface D = EGL14.EGL_NO_SURFACE;
     public final ArrayList L = new ArrayList();
     public int M = -5;
@@ -94,14 +94,14 @@ public final class g40 implements Runnable {
     public long R = 0;
     public long S = -1;
     public final Object U = new Object();
-    public long f33752c0 = -1;
-    public long f33758g0 = -1;
-    public long f33759h0 = -1;
-    public long f33760i0 = -1;
-    public long f33761j0 = 0;
-    public long f33762k0 = -1;
-    public Integer f33777w0 = 0;
-    public final ArrayBlockingQueue f33782z0 = new ArrayBlockingQueue(10);
+    public long f33789c0 = -1;
+    public long f33795g0 = -1;
+    public long f33796h0 = -1;
+    public long f33797i0 = -1;
+    public long f33798j0 = 0;
+    public long f33799k0 = -1;
+    public Integer f33814w0 = 0;
+    public final ArrayBlockingQueue f33819z0 = new ArrayBlockingQueue(10);
     public final ArrayList A0 = new ArrayList();
     public final f40 E0 = new f40(this, 0);
 
@@ -126,36 +126,36 @@ public final class g40 implements Runnable {
                 i10 = ((minBufferSize / 2048) + 1) * 4096;
             }
             int i11 = i10;
-            g40Var.f33782z0.clear();
+            g40Var.f33819z0.clear();
             for (int i12 = 0; i12 < 3; i12++) {
-                g40Var.f33782z0.add(new x30());
+                g40Var.f33819z0.add(new x30());
             }
             if (z9) {
-                g40Var.f33758g0 = g40Var.f33753d0 + g40Var.f33755e0;
-                g40Var.f33762k0 = g40Var.f33760i0 + g40Var.f33761j0;
+                g40Var.f33795g0 = g40Var.f33790d0 + g40Var.f33792e0;
+                g40Var.f33799k0 = g40Var.f33797i0 + g40Var.f33798j0;
                 g40Var.Q = true;
                 j3 = 0;
             } else {
-                g40Var.f33758g0 = -1L;
-                g40Var.f33762k0 = -1L;
+                g40Var.f33795g0 = -1L;
+                g40Var.f33799k0 = -1L;
                 j3 = 0;
                 g40Var.R = 0L;
             }
             g40Var.S = -1L;
             g40Var.O = j3;
             g40Var.P = -1L;
-            g40Var.f33759h0 = -1L;
-            g40Var.f33752c0 = -1L;
-            g40Var.f33753d0 = -1L;
-            g40Var.f33757f0 = -1L;
-            g40Var.f33760i0 = -1L;
-            g40Var.f33748a0 = false;
+            g40Var.f33796h0 = -1L;
+            g40Var.f33789c0 = -1L;
+            g40Var.f33790d0 = -1L;
+            g40Var.f33794f0 = -1L;
+            g40Var.f33797i0 = -1L;
+            g40Var.f33785a0 = false;
             g40Var.Z = 0L;
             AudioRecord audioRecord = new AudioRecord(0, 48000, 16, 2, i11);
-            g40Var.f33781y0 = audioRecord;
+            g40Var.f33818y0 = audioRecord;
             audioRecord.startRecording();
-            if (org.telegram.messenger.r2.f25191a) {
-                org.telegram.messenger.a8.b("InstantCamera initied audio record with channels " + g40Var.f33781y0.getChannelCount() + " sample rate = " + g40Var.f33781y0.getSampleRate() + " bufferSize = " + i11);
+            if (org.telegram.messenger.r2.f25199a) {
+                org.telegram.messenger.a8.b("InstantCamera initied audio record with channels " + g40Var.f33818y0.getChannelCount() + " sample rate = " + g40Var.f33818y0.getSampleRate() + " bufferSize = " + i11);
             }
             g40Var.D0 = false;
             Thread thread = new Thread(g40Var.E0);
@@ -167,7 +167,7 @@ public final class g40 implements Runnable {
             mediaFormat.setString("mime", "audio/mp4a-latm");
             mediaFormat.setInteger("sample-rate", 48000);
             mediaFormat.setInteger("channel-count", 1);
-            mediaFormat.setInteger("bitrate", org.telegram.messenger.qp.s1(g40Var.H0.f36480e).f24923x3 * 1024);
+            mediaFormat.setInteger("bitrate", org.telegram.messenger.qp.s1(g40Var.H0.f36522e).f24931x3 * 1024);
             mediaFormat.setInteger("max-input-size", 20480);
             MediaCodec createEncoderByType = MediaCodec.createEncoderByType("audio/mp4a-latm");
             g40Var.F = createEncoderByType;
@@ -175,35 +175,35 @@ public final class g40 implements Runnable {
             g40Var.F.start();
             g40Var.E = MediaCodec.createEncoderByType("video/avc");
             g40Var.H = true;
-            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", g40Var.d, g40Var.f33754e);
+            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", g40Var.d, g40Var.f33791e);
             createVideoFormat.setInteger("color-format", 2130708361);
-            createVideoFormat.setInteger("bitrate", g40Var.f33756f);
+            createVideoFormat.setInteger("bitrate", g40Var.f33793f);
             createVideoFormat.setInteger("frame-rate", 30);
             createVideoFormat.setInteger("i-frame-interval", 1);
             g40Var.E.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
-            g40Var.f33769r = g40Var.E.createInputSurface();
+            g40Var.f33806r = g40Var.E.createInputSurface();
             g40Var.E.start();
             if (!z9) {
-                org.telegram.messenger.pe peVar = g40Var.f33747a;
+                org.telegram.messenger.pe peVar = g40Var.f33784a;
                 ThreadLocal threadLocal = org.telegram.messenger.gc.I;
-                if (!TextUtils.isEmpty(org.telegram.messenger.iz.f23377h0) && peVar.getAbsolutePath().startsWith(org.telegram.messenger.iz.f23377h0)) {
+                if (!TextUtils.isEmpty(org.telegram.messenger.iz.f23384h0) && peVar.getAbsolutePath().startsWith(org.telegram.messenger.iz.f23384h0)) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                g40Var.f33749b = g40Var.f33747a;
+                g40Var.f33786b = g40Var.f33784a;
                 if (z10) {
                     File file = new File(org.telegram.messenger.t0.h(), "camera_tmp.mp4");
-                    g40Var.f33749b = file;
+                    g40Var.f33786b = file;
                     if (file.exists()) {
-                        g40Var.f33749b.delete();
+                        g40Var.f33786b.delete();
                     }
-                    g40Var.f33751c = true;
+                    g40Var.f33788c = true;
                 }
                 Mp4Movie mp4Movie = new Mp4Movie();
-                mp4Movie.setCacheFile(g40Var.f33749b);
+                mp4Movie.setCacheFile(g40Var.f33786b);
                 mp4Movie.setRotation(0);
-                mp4Movie.setSize(g40Var.d, g40Var.f33754e);
+                mp4Movie.setSize(g40Var.d, g40Var.f33791e);
                 MP4Builder createMovie = new MP4Builder().createMovie(mp4Movie, g40Var.H0.Q, false);
                 g40Var.K = createMovie;
                 o40 o40Var2 = g40Var.H0;
@@ -212,44 +212,44 @@ public final class g40 implements Runnable {
                 createMovie.setAllowSyncFiles(j10);
             }
             org.telegram.messenger.g0.h3(new bi.k1(26, g40Var, z9));
-            if (g40Var.f33771s == EGL14.EGL_NO_DISPLAY) {
+            if (g40Var.f33808s == EGL14.EGL_NO_DISPLAY) {
                 EGLDisplay eglGetDisplay = EGL14.eglGetDisplay(0);
-                g40Var.f33771s = eglGetDisplay;
+                g40Var.f33808s = eglGetDisplay;
                 if (eglGetDisplay != EGL14.EGL_NO_DISPLAY) {
                     int[] iArr = new int[2];
                     if (EGL14.eglInitialize(eglGetDisplay, iArr, 0, iArr, 1)) {
-                        if (g40Var.f33776w == EGL14.EGL_NO_CONTEXT) {
+                        if (g40Var.f33813w == EGL14.EGL_NO_CONTEXT) {
                             EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                            if (EGL14.eglChooseConfig(g40Var.f33771s, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
+                            if (EGL14.eglChooseConfig(g40Var.f33808s, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 4, 12610, 1, 12344}, 0, eGLConfigArr, 0, 1, new int[1], 0)) {
                                 i7 = 0;
-                                g40Var.f33776w = EGL14.eglCreateContext(g40Var.f33771s, eGLConfigArr[0], g40Var.f33778x, new int[]{12440, 2, 12344}, 0);
-                                g40Var.f33780y = eGLConfigArr[0];
+                                g40Var.f33813w = EGL14.eglCreateContext(g40Var.f33808s, eGLConfigArr[0], g40Var.f33815x, new int[]{12440, 2, 12344}, 0);
+                                g40Var.f33817y = eGLConfigArr[0];
                             } else {
                                 throw new RuntimeException("Unable to find a suitable EGLConfig");
                             }
                         } else {
                             i7 = 0;
                         }
-                        EGL14.eglQueryContext(g40Var.f33771s, g40Var.f33776w, 12440, new int[1], i7);
+                        EGL14.eglQueryContext(g40Var.f33808s, g40Var.f33813w, 12440, new int[1], i7);
                         if (g40Var.D == EGL14.EGL_NO_SURFACE) {
-                            EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(g40Var.f33771s, g40Var.f33780y, g40Var.f33769r, new int[]{12344}, i7);
+                            EGLSurface eglCreateWindowSurface = EGL14.eglCreateWindowSurface(g40Var.f33808s, g40Var.f33817y, g40Var.f33806r, new int[]{12344}, i7);
                             g40Var.D = eglCreateWindowSurface;
                             if (eglCreateWindowSurface != null) {
-                                if (!EGL14.eglMakeCurrent(g40Var.f33771s, eglCreateWindowSurface, eglCreateWindowSurface, g40Var.f33776w)) {
-                                    if (org.telegram.messenger.r2.f25191a) {
+                                if (!EGL14.eglMakeCurrent(g40Var.f33808s, eglCreateWindowSurface, eglCreateWindowSurface, g40Var.f33813w)) {
+                                    if (org.telegram.messenger.r2.f25199a) {
                                         org.telegram.messenger.a8.d("eglMakeCurrent failed " + GLUtils.getEGLErrorString(EGL14.eglGetError()));
                                     }
                                     throw new RuntimeException("eglMakeCurrent failed");
                                 }
                                 GLES20.glBlendFunc(770, 771);
-                                p30 p30Var = g40Var.f33779x0;
+                                p30 p30Var = g40Var.f33816x0;
                                 if (p30Var != null) {
                                     p30Var.b();
-                                    g40Var.f33779x0 = null;
+                                    g40Var.f33816x0 = null;
                                 }
-                                g40Var.f33779x0 = new p30(g40Var.d, g40Var.f33754e);
+                                g40Var.f33816x0 = new p30(g40Var.d, g40Var.f33791e);
                                 Size size = g40Var.H0.m0[0];
-                                if (org.telegram.messenger.iz.o() != 0 && o40.l() && (size == null || Math.max(size.getHeight(), size.getWidth()) * 0.7f >= org.telegram.messenger.qp.s1(o40Var.f36480e).f24903v3)) {
+                                if (org.telegram.messenger.iz.o() != 0 && o40.l() && (size == null || Math.max(size.getHeight(), size.getWidth()) * 0.7f >= org.telegram.messenger.qp.s1(o40Var.f36522e).f24911v3)) {
                                     str = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform vec2 resolution;\nuniform vec2 preview;\nuniform float alpha;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec2 c_textureSize = preview;\n   vec2 c_onePixel = (1.0 / c_textureSize);\n   vec2 uv = vTextureCoord;\n   vec2 pixel = uv * c_textureSize + 0.5;\n   vec2 frac = fract(pixel);\n   pixel = (floor(pixel) / c_textureSize) - vec2(c_onePixel);\n   vec4 tl = texture2D(sTexture, pixel + vec2(0.0         , 0.0));\n   vec4 tr = texture2D(sTexture, pixel + vec2(c_onePixel.x, 0.0));\n   vec4 bl = texture2D(sTexture, pixel + vec2(0.0         , c_onePixel.y));\n   vec4 br = texture2D(sTexture, pixel + vec2(c_onePixel.x, c_onePixel.y));\n   vec4 x1 = mix(tl, tr, frac.x);\n   vec4 x2 = mix(bl, br, frac.x);\n   gl_FragColor = mix(x1, x2, frac.y) * alpha;\n}\n";
                                 } else {
                                     str = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform float alpha;\nuniform vec2 preview;\nuniform vec2 resolution;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   vec4 textColor = texture2D(sTexture, vTextureCoord);\n   gl_FragColor = vec4(textColor.rgb * alpha, alpha);\n}\n";
@@ -269,14 +269,14 @@ public final class g40 implements Runnable {
                                         g40Var.m0 = 0;
                                         return;
                                     }
-                                    g40Var.f33767p0 = GLES20.glGetAttribLocation(g40Var.m0, "aPosition");
-                                    g40Var.f33768q0 = GLES20.glGetAttribLocation(g40Var.m0, "aTextureCoord");
-                                    g40Var.f33772s0 = GLES20.glGetUniformLocation(g40Var.m0, "preview");
-                                    g40Var.f33770r0 = GLES20.glGetUniformLocation(g40Var.m0, "resolution");
-                                    g40Var.f33774u0 = GLES20.glGetUniformLocation(g40Var.m0, "alpha");
-                                    g40Var.f33765n0 = GLES20.glGetUniformLocation(g40Var.m0, "uMVPMatrix");
-                                    g40Var.f33766o0 = GLES20.glGetUniformLocation(g40Var.m0, "uSTMatrix");
-                                    g40Var.f33773t0 = GLES20.glGetUniformLocation(g40Var.m0, "texelSize");
+                                    g40Var.f33804p0 = GLES20.glGetAttribLocation(g40Var.m0, "aPosition");
+                                    g40Var.f33805q0 = GLES20.glGetAttribLocation(g40Var.m0, "aTextureCoord");
+                                    g40Var.f33809s0 = GLES20.glGetUniformLocation(g40Var.m0, "preview");
+                                    g40Var.f33807r0 = GLES20.glGetUniformLocation(g40Var.m0, "resolution");
+                                    g40Var.f33811u0 = GLES20.glGetUniformLocation(g40Var.m0, "alpha");
+                                    g40Var.f33802n0 = GLES20.glGetUniformLocation(g40Var.m0, "uMVPMatrix");
+                                    g40Var.f33803o0 = GLES20.glGetUniformLocation(g40Var.m0, "uSTMatrix");
+                                    g40Var.f33810t0 = GLES20.glGetUniformLocation(g40Var.m0, "texelSize");
                                     return;
                                 }
                                 return;
@@ -285,7 +285,7 @@ public final class g40 implements Runnable {
                         }
                         throw new IllegalStateException("surface already created");
                     }
-                    g40Var.f33771s = null;
+                    g40Var.f33808s = null;
                     throw new RuntimeException("unable to initialize EGL14");
                 }
                 throw new RuntimeException("unable to get EGL14 display");
@@ -343,10 +343,10 @@ public final class g40 implements Runnable {
                 org.telegram.messenger.a8.g(e12, true);
             }
         }
-        File file = g40Var.H0.f36484f0;
+        File file = g40Var.H0.f36526f0;
         if (file != null) {
             file.delete();
-            g40Var.H0.f36484f0 = null;
+            g40Var.H0.f36526f0 = null;
         }
         MP4Builder mP4Builder = g40Var.K;
         if (mP4Builder != null) {
@@ -356,20 +356,20 @@ public final class g40 implements Runnable {
                 org.telegram.messenger.a8.g(e13, true);
             }
             org.telegram.messenger.a8.b("InstantCamera handleStopRecording finish muxer");
-            if (g40Var.f33751c) {
-                if (g40Var.f33747a.exists()) {
+            if (g40Var.f33788c) {
+                if (g40Var.f33784a.exists()) {
                     try {
-                        g40Var.f33747a.delete();
+                        g40Var.f33784a.delete();
                     } catch (Exception e14) {
-                        org.telegram.messenger.a8.d("InstantCamera copying fileToWrite to videoFile, deleting videoFile error " + g40Var.f33747a);
+                        org.telegram.messenger.a8.d("InstantCamera copying fileToWrite to videoFile, deleting videoFile error " + g40Var.f33784a);
                         org.telegram.messenger.a8.g(e14, true);
                     }
                 }
-                if (!g40Var.f33749b.renameTo(g40Var.f33747a)) {
+                if (!g40Var.f33786b.renameTo(g40Var.f33784a)) {
                     org.telegram.messenger.a8.d("InstantCamera unable to rename file, try move file");
                     try {
-                        org.telegram.messenger.g0.E(g40Var.f33749b, g40Var.f33747a);
-                        g40Var.f33749b.delete();
+                        org.telegram.messenger.g0.E(g40Var.f33786b, g40Var.f33784a);
+                        g40Var.f33786b.delete();
                     } catch (IOException e15) {
                         org.telegram.messenger.a8.g(e15, true);
                         org.telegram.messenger.a8.d("InstantCamera unable to move file");
@@ -384,13 +384,13 @@ public final class g40 implements Runnable {
         }
         org.telegram.messenger.a8.b("InstantCamera handleStopRecording send " + i7);
         if (i7 == 0) {
-            org.telegram.messenger.w7.G(g40Var.H0.f36480e).b(g40Var.f33747a.getAbsolutePath(), false);
+            org.telegram.messenger.w7.G(g40Var.H0.f36522e).b(g40Var.f33784a.getAbsolutePath(), false);
             try {
-                g40Var.f33749b.delete();
+                g40Var.f33786b.delete();
             } catch (Throwable unused) {
             }
             try {
-                g40Var.f33747a.delete();
+                g40Var.f33784a.delete();
             } catch (Throwable unused2) {
             }
         } else {
@@ -400,41 +400,41 @@ public final class g40 implements Runnable {
             }
             org.telegram.messenger.g0.h3(new e40(g40Var, 2));
         }
-        EGL14.eglDestroySurface(g40Var.f33771s, g40Var.D);
+        EGL14.eglDestroySurface(g40Var.f33808s, g40Var.D);
         g40Var.D = EGL14.EGL_NO_SURFACE;
-        Surface surface = g40Var.f33769r;
+        Surface surface = g40Var.f33806r;
         if (surface != null) {
             surface.release();
-            g40Var.f33769r = null;
+            g40Var.f33806r = null;
         }
-        EGLDisplay eGLDisplay = g40Var.f33771s;
+        EGLDisplay eGLDisplay = g40Var.f33808s;
         if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-            EGL14.eglDestroyContext(g40Var.f33771s, g40Var.f33776w);
+            EGL14.eglDestroyContext(g40Var.f33808s, g40Var.f33813w);
             EGL14.eglReleaseThread();
-            EGL14.eglTerminate(g40Var.f33771s);
+            EGL14.eglTerminate(g40Var.f33808s);
         }
-        g40Var.f33771s = EGL14.EGL_NO_DISPLAY;
-        g40Var.f33776w = EGL14.EGL_NO_CONTEXT;
-        g40Var.f33780y = null;
+        g40Var.f33808s = EGL14.EGL_NO_DISPLAY;
+        g40Var.f33813w = EGL14.EGL_NO_CONTEXT;
+        g40Var.f33817y = null;
         g40Var.T.getClass();
         Looper.myLooper().quit();
-        p30 p30Var = g40Var.f33779x0;
+        p30 p30Var = g40Var.f33816x0;
         if (p30Var != null) {
             p30Var.b();
-            g40Var.f33779x0 = null;
+            g40Var.f33816x0 = null;
         }
         org.telegram.messenger.g0.h3(new e40(g40Var, 3));
     }
 
     public static void g(boolean z9) {
-        AudioManager audioManager = (AudioManager) org.telegram.messenger.t0.f25555b.getSystemService("audio");
-        if (org.telegram.messenger.iz.f23413u0 && !c8.ia.d("android.permission.BLUETOOTH_CONNECT")) {
-            org.telegram.messenger.iz.f23413u0 = false;
+        AudioManager audioManager = (AudioManager) org.telegram.messenger.t0.f25563b.getSystemService("audio");
+        if (org.telegram.messenger.iz.f23420u0 && !c8.ia.d("android.permission.BLUETOOTH_CONNECT")) {
+            org.telegram.messenger.iz.f23420u0 = false;
             org.telegram.messenger.iz.y();
         }
-        if ((audioManager.isBluetoothScoAvailableOffCall() && org.telegram.messenger.iz.f23413u0) || !z9) {
+        if ((audioManager.isBluetoothScoAvailableOffCall() && org.telegram.messenger.iz.f23420u0) || !z9) {
             BluetoothAdapter defaultAdapter = BluetoothAdapter.getDefaultAdapter();
             if (defaultAdapter != null) {
                 try {
@@ -478,10 +478,10 @@ public final class g40 implements Runnable {
 
     public final void c(org.telegram.messenger.pe peVar, long j3, boolean z9) {
         o40 o40Var = this.H0;
-        int i7 = o40Var.f36480e;
+        int i7 = o40Var.f36522e;
         long j10 = 0;
         if (this.h) {
-            org.telegram.messenger.w7.G(i7).h0(peVar.toString(), o40Var.Q, false, 1L, 33554432, false);
+            org.telegram.messenger.w7.G(i7).g0(peVar.toString(), o40Var.Q, false, 1L, 33554432, false);
             this.h = false;
             if (z9) {
                 org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(i7);
@@ -566,8 +566,8 @@ public final class g40 implements Runnable {
                                 this.H = false;
                             }
                             long writeSampleData = this.K.writeSampleData(this.M, outputBuffer, this.I, true);
-                            if (writeSampleData != 0 && !this.f33751c && this.H0.Z0) {
-                                c(this.f33747a, writeSampleData, false);
+                            if (writeSampleData != 0 && !this.f33788c && this.H0.Z0) {
+                                c(this.f33784a, writeSampleData, false);
                             }
                         } else if (this.M == -5) {
                             byte[] bArr2 = new byte[i7];
@@ -591,7 +591,7 @@ public final class g40 implements Runnable {
                             }
                             byteBuffer = null;
                             byteBuffer2 = null;
-                            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", this.d, this.f33754e);
+                            MediaFormat createVideoFormat = MediaFormat.createVideoFormat("video/avc", this.d, this.f33791e);
                             if (byteBuffer != null && byteBuffer2 != null) {
                                 createVideoFormat.setByteBuffer("csd-0", byteBuffer);
                                 createVideoFormat.setByteBuffer("csd-1", byteBuffer2);
@@ -635,8 +635,8 @@ public final class g40 implements Runnable {
                         }
                         if (bufferInfo3.size != 0) {
                             long writeSampleData2 = this.K.writeSampleData(this.N, outputBuffer2, bufferInfo3, false);
-                            if (writeSampleData2 != 0 && !this.f33751c && this.H0.Z0) {
-                                c(this.f33747a, writeSampleData2, false);
+                            if (writeSampleData2 != 0 && !this.f33788c && this.H0.Z0) {
+                                c(this.f33784a, writeSampleData2, false);
                             }
                             MediaCodec mediaCodec = this.F;
                             if (mediaCodec != null) {
@@ -667,17 +667,17 @@ public final class g40 implements Runnable {
                 }
                 long timestamp = surfaceTexture.getTimestamp();
                 if (timestamp == 0) {
-                    int i7 = this.f33775v0 + 1;
-                    this.f33775v0 = i7;
+                    int i7 = this.f33812v0 + 1;
+                    this.f33812v0 = i7;
                     if (i7 > 1) {
-                        if (org.telegram.messenger.r2.f25191a) {
+                        if (org.telegram.messenger.r2.f25199a) {
                             org.telegram.messenger.a8.b("InstantCamera fix timestamp enabled");
                         }
                     } else {
                         return;
                     }
                 } else {
-                    this.f33775v0 = 0;
+                    this.f33812v0 = 0;
                     j3 = timestamp;
                 }
                 this.T.sendMessage(this.T.obtainMessage(2, (int) (j3 >> 32), (int) j3, num));
@@ -688,22 +688,22 @@ public final class g40 implements Runnable {
     }
 
     public final void finalize() {
-        p30 p30Var = this.f33779x0;
+        p30 p30Var = this.f33816x0;
         if (p30Var != null) {
             p30Var.b();
-            this.f33779x0 = null;
+            this.f33816x0 = null;
         }
         try {
-            EGLDisplay eGLDisplay = this.f33771s;
+            EGLDisplay eGLDisplay = this.f33808s;
             if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
                 EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
                 EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-                EGL14.eglDestroyContext(this.f33771s, this.f33776w);
+                EGL14.eglDestroyContext(this.f33808s, this.f33813w);
                 EGL14.eglReleaseThread();
-                EGL14.eglTerminate(this.f33771s);
-                this.f33771s = EGL14.EGL_NO_DISPLAY;
-                this.f33776w = EGL14.EGL_NO_CONTEXT;
-                this.f33780y = null;
+                EGL14.eglTerminate(this.f33808s);
+                this.f33808s = EGL14.EGL_NO_DISPLAY;
+                this.f33813w = EGL14.EGL_NO_CONTEXT;
+                this.f33817y = null;
             }
         } finally {
             super.finalize();
@@ -711,40 +711,40 @@ public final class g40 implements Runnable {
     }
 
     public final void h(File file) {
-        s51 s51Var = new s51();
+        t51 t51Var = new t51();
         o40 o40Var = this.H0;
-        o40Var.S = s51Var;
-        s51Var.J = new uy(this, 1);
-        s51Var.A0(o40Var.f36500p0);
+        o40Var.S = t51Var;
+        t51Var.J = new uy(this, 1);
+        t51Var.A0(o40Var.f36542p0);
         o40Var.S.j0(Uri.fromFile(file), "other");
         o40Var.S.h0();
         o40Var.S.t0(true);
         o40Var.s();
         AnimatorSet animatorSet = new AnimatorSet();
-        LinearLayout linearLayout = o40Var.f36473a1;
+        LinearLayout linearLayout = o40Var.f36515a1;
         Property property = View.ALPHA;
-        animatorSet.playTogether(ObjectAnimator.ofFloat(linearLayout, property, 0.0f), ObjectAnimator.ofInt(o40Var.f36497n, m6.f35877b, 0), ObjectAnimator.ofFloat(o40Var.F, property, 1.0f));
+        animatorSet.playTogether(ObjectAnimator.ofFloat(linearLayout, property, 0.0f), ObjectAnimator.ofInt(o40Var.f36539n, m6.f35890b, 0), ObjectAnimator.ofFloat(o40Var.F, property, 1.0f));
         animatorSet.setDuration(180L);
         animatorSet.setInterpolator(new DecelerateInterpolator());
         animatorSet.start();
-        EGL14.eglDestroySurface(this.f33771s, this.D);
+        EGL14.eglDestroySurface(this.f33808s, this.D);
         this.D = EGL14.EGL_NO_SURFACE;
-        Surface surface = this.f33769r;
+        Surface surface = this.f33806r;
         if (surface != null) {
             surface.release();
-            this.f33769r = null;
+            this.f33806r = null;
         }
-        EGLDisplay eGLDisplay = this.f33771s;
+        EGLDisplay eGLDisplay = this.f33808s;
         if (eGLDisplay != EGL14.EGL_NO_DISPLAY) {
             EGLSurface eGLSurface = EGL14.EGL_NO_SURFACE;
             EGL14.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL14.EGL_NO_CONTEXT);
-            EGL14.eglDestroyContext(this.f33771s, this.f33776w);
+            EGL14.eglDestroyContext(this.f33808s, this.f33813w);
             EGL14.eglReleaseThread();
-            EGL14.eglTerminate(this.f33771s);
+            EGL14.eglTerminate(this.f33808s);
         }
-        this.f33771s = EGL14.EGL_NO_DISPLAY;
-        this.f33776w = EGL14.EGL_NO_CONTEXT;
-        this.f33780y = null;
+        this.f33808s = EGL14.EGL_NO_DISPLAY;
+        this.f33813w = EGL14.EGL_NO_CONTEXT;
+        this.f33817y = null;
     }
 
     public final void i(int i7, d40 d40Var) {

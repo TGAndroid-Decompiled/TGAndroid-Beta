@@ -2,17 +2,17 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class bh implements RequestDelegate {
-    public final int f21629a;
-    public final int f21630b;
-    public final String f21631c;
+    public final int f21630a;
+    public final int f21631b;
+    public final String f21632c;
     public final String d;
-    public final c1 f21632e;
+    public final c1 f21633e;
 
     public bh(c1 c1Var, int i7, String str, String str2, int i10) {
-        this.f21629a = i10;
-        this.f21632e = c1Var;
-        this.f21630b = i7;
-        this.f21631c = str;
+        this.f21630a = i10;
+        this.f21633e = c1Var;
+        this.f21631b = i7;
+        this.f21632c = str;
         this.d = str2;
     }
 

@@ -6,12 +6,12 @@ import java.lang.ref.WeakReference;
 import java.util.Iterator;
 import org.telegram.messenger.AnimatedFileDrawableStream;
 public final class t5 implements Runnable {
-    public final int f38218a;
-    public final v5 f38219b;
+    public final int f38213a;
+    public final v5 f38214b;
 
     public t5(v5 v5Var, int i7) {
-        this.f38218a = i7;
-        this.f38219b = v5Var;
+        this.f38213a = i7;
+        this.f38214b = v5Var;
     }
 
     @Override
@@ -22,12 +22,12 @@ public final class t5 implements Runnable {
         boolean z11;
         boolean z12;
         View view;
-        switch (this.f38218a) {
+        switch (this.f38213a) {
             case 0:
-                this.f38219b.i();
+                this.f38214b.i();
                 return;
             case 1:
-                v5 v5Var = this.f38219b;
+                v5 v5Var = this.f38214b;
                 if (v5Var.D0 != null) {
                     bg.i.c();
                     v5Var.D0 = null;
@@ -37,13 +37,13 @@ public final class t5 implements Runnable {
                 v5Var.x(false);
                 return;
             case 2:
-                this.f38219b.t();
+                this.f38214b.t();
                 return;
             case 3:
-                bg.i iVar = this.f38219b.f38857z0;
+                bg.i iVar = this.f38214b.f38857z0;
                 return;
             case 4:
-                v5 v5Var2 = this.f38219b;
+                v5 v5Var2 = this.f38214b;
                 v5Var2.k();
                 v5Var2.f38829e = null;
                 if (v5Var2.M >= 0 && v5Var2.L == -1) {
@@ -53,7 +53,7 @@ public final class t5 implements Runnable {
                 v5Var2.t();
                 return;
             case 5:
-                v5 v5Var3 = this.f38219b;
+                v5 v5Var3 = this.f38214b;
                 if (!v5Var3.f38827c0 && !v5Var3.f38853x && !v5Var3.C0 && v5Var3.D0 == null) {
                     v5Var3.f38833g0 = (float) System.currentTimeMillis();
                     if (zg0.T0 == null) {
@@ -70,10 +70,10 @@ public final class t5 implements Runnable {
                 }
                 return;
             case 6:
-                v5 v5Var4 = this.f38219b;
+                v5 v5Var4 = this.f38214b;
                 v5Var4.k();
                 if (v5Var4.f38849u0 != null && v5Var4.N) {
-                    org.telegram.messenger.w7.G(v5Var4.J).a0(v5Var4.f38849u0.f21153c, false, false);
+                    org.telegram.messenger.w7.G(v5Var4.J).Z(v5Var4.f38849u0.f21153c, false, false);
                 }
                 int i10 = v5Var4.O;
                 if (i10 <= 0) {
@@ -132,7 +132,7 @@ public final class t5 implements Runnable {
                 v5Var4.x(false);
                 return;
             case 7:
-                v5 v5Var5 = this.f38219b;
+                v5 v5Var5 = this.f38214b;
                 if (v5Var5.f38827c0) {
                     org.telegram.messenger.g0.h3(v5Var5.F0);
                     return;
@@ -187,7 +187,7 @@ public final class t5 implements Runnable {
                     b7.l lVar = v5Var5.A0;
                     int i12 = lVar.f3009a;
                     bg.i iVar2 = v5Var5.f38857z0;
-                    int f11 = iVar2.f(v5Var5.f38851w.f37888b, iVar2.f3306i);
+                    int f11 = iVar2.f(v5Var5.f38851w.f37906b, iVar2.f3306i);
                     lVar.f3009a = iVar2.f3306i;
                     if (iVar2.f3314q && !iVar2.f3303e.isEmpty()) {
                         int i13 = iVar2.f3306i + 1;
@@ -202,9 +202,9 @@ public final class t5 implements Runnable {
                     int[] iArr2 = v5Var5.d;
                     s5 s5Var2 = v5Var5.f38851w;
                     int max = v5Var5.A0.f3009a * Math.max(16, iArr2[4] / Math.max(1, v5Var5.f38857z0.f3303e.size()));
-                    s5Var2.f37890e = max;
+                    s5Var2.f37908e = max;
                     iArr2[3] = max;
-                    v5Var5.f38851w.f37891f = false;
+                    v5Var5.f38851w.f37909f = false;
                     if (v5Var5.f38857z0.g()) {
                         org.telegram.messenger.g0.h3(v5Var5.E0);
                     }
@@ -252,12 +252,12 @@ public final class t5 implements Runnable {
                 }
                 if (v5Var5.f38851w != null) {
                     System.currentTimeMillis();
-                    if (v5Var5.f38828d0.c(v5Var5.f38851w.f37888b, false, v5Var5.f38833g0, v5Var5.f38834h0, v5Var5.f38837k0) == 0) {
+                    if (v5Var5.f38828d0.c(v5Var5.f38851w.f37906b, false, v5Var5.f38833g0, v5Var5.f38834h0, v5Var5.f38837k0) == 0) {
                         org.telegram.messenger.g0.h3(v5Var5.B0);
                         return;
                     }
                     if (!v5Var5.f38831f) {
-                        if (v5Var5.f38828d0.f31005a[7] == 1) {
+                        if (v5Var5.f38828d0.f31006a[7] == 1) {
                             z10 = true;
                         } else {
                             z10 = false;
@@ -272,16 +272,16 @@ public final class t5 implements Runnable {
                         v5Var5.f38826c = i14;
                     }
                     s5 s5Var3 = v5Var5.f38851w;
-                    s5Var3.f37890e = i14;
-                    if (v5Var5.f38828d0.f31005a[6] == 1) {
+                    s5Var3.f37908e = i14;
+                    if (v5Var5.f38828d0.f31006a[6] == 1) {
                         z13 = true;
                     }
-                    s5Var3.f37891f = z13;
+                    s5Var3.f37909f = z13;
                 }
                 org.telegram.messenger.g0.h3(v5Var5.F0);
                 return;
             case 8:
-                v5 v5Var6 = this.f38219b;
+                v5 v5Var6 = this.f38214b;
                 xe.b bVar = v5Var6.f38847s0;
                 Iterator it2 = bVar.iterator();
                 while (it2.hasNext()) {
@@ -299,7 +299,7 @@ public final class t5 implements Runnable {
                 }
                 return;
             default:
-                v5 v5Var7 = this.f38219b;
+                v5 v5Var7 = this.f38214b;
                 v5Var7.f38857z0.b();
                 org.telegram.messenger.g0.h3(new t5(v5Var7, 1));
                 return;

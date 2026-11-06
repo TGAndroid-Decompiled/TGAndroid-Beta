@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.widget.CheckBox;
-import c8.fc;
+import c8.gc;
 public final class o extends CheckBox implements u0.k {
     public final q f19183a;
     public final h2.c f19184b;
@@ -162,7 +162,7 @@ public final class o extends CheckBox implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((fc) getEmojiTextViewHelper().f19259b.f38757b).a(inputFilterArr));
+        super.setFilters(((gc) getEmojiTextViewHelper().f19259b.f38750b).a(inputFilterArr));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {

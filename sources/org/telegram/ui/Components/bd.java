@@ -5,29 +5,29 @@ import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class bd implements Runnable {
-    public final int f32099a = 0;
-    public final Object f32100b;
-    public final boolean f32101c;
+    public final int f32133a = 0;
+    public final Object f32134b;
+    public final boolean f32135c;
     public final int d;
-    public final int f32102e;
-    public final boolean f32103f;
+    public final int f32136e;
+    public final boolean f32137f;
     public final Long h;
-    public final String f32104n;
-    public final Object f32105r;
-    public final Object f32106s;
-    public final Object f32107w;
+    public final String f32138n;
+    public final Object f32139r;
+    public final Object f32140s;
+    public final Object f32141w;
 
     public bd(pf pfVar, Object obj, org.telegram.messenger.gf gfVar, boolean z9, int i7, int i10, boolean z10, Long l10, String str, Object obj2) {
-        this.f32105r = pfVar;
-        this.f32100b = obj;
-        this.f32106s = gfVar;
-        this.f32101c = z9;
+        this.f32139r = pfVar;
+        this.f32134b = obj;
+        this.f32140s = gfVar;
+        this.f32135c = z9;
         this.d = i7;
-        this.f32102e = i10;
-        this.f32103f = z10;
+        this.f32136e = i10;
+        this.f32137f = z10;
         this.h = l10;
-        this.f32104n = str;
-        this.f32107w = obj2;
+        this.f32138n = str;
+        this.f32141w = obj2;
     }
 
     @Override
@@ -42,14 +42,14 @@ public final class bd implements Runnable {
         String str;
         org.telegram.messenger.ij threadMessage4;
         String str2;
-        switch (this.f32099a) {
+        switch (this.f32133a) {
             case 0:
-                ChatActivityEnterView.f((ChatActivityEnterView) this.f32105r, (TLRPC.Document) this.f32106s, this.f32104n, (org.telegram.messenger.ej) this.f32107w, this.f32101c, this.d, this.f32102e, this.f32100b, this.h, this.f32103f);
+                ChatActivityEnterView.f((ChatActivityEnterView) this.f32139r, (TLRPC.Document) this.f32140s, this.f32138n, (org.telegram.messenger.ej) this.f32141w, this.f32135c, this.d, this.f32136e, this.f32134b, this.h, this.f32137f);
                 return;
             default:
-                org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) this.f32106s;
-                ChatActivityEnterView chatActivityEnterView = ((pf) this.f32105r).f36874a;
-                boolean z10 = chatActivityEnterView.f31159z3;
+                org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) this.f32140s;
+                ChatActivityEnterView chatActivityEnterView = ((pf) this.f32139r).f36890a;
+                boolean z10 = chatActivityEnterView.f31160z3;
                 org.telegram.ui.an anVar = chatActivityEnterView.P2;
                 boolean z11 = false;
                 if (z10) {
@@ -65,15 +65,15 @@ public final class bd implements Runnable {
                 } else {
                     storyItem = null;
                 }
-                Object obj = this.f32100b;
+                Object obj = this.f32134b;
                 boolean z12 = obj instanceof TLRPC.Document;
-                boolean z13 = this.f32101c;
+                boolean z13 = this.f32135c;
                 int i7 = this.d;
-                int i10 = this.f32102e;
+                int i10 = this.f32136e;
                 Long l10 = this.h;
                 int i11 = i7;
-                String str3 = this.f32104n;
-                Object obj2 = this.f32107w;
+                String str3 = this.f32138n;
+                Object obj2 = this.f32141w;
                 if (z12) {
                     TLRPC.Document document = (TLRPC.Document) obj;
                     if (gfVar != null) {
@@ -82,34 +82,34 @@ public final class bd implements Runnable {
                         j20Var = null;
                     }
                     if (j20Var != null && gfVar != null) {
-                        j20Var.f23461s = true;
+                        j20Var.f23468s = true;
                         boolean c10 = j20Var.c();
-                        j20Var.f23461s = false;
-                        j20Var.f23462t = true;
+                        j20Var.f23468s = false;
+                        j20Var.f23469t = true;
                         z11 = c10;
                     }
-                    boolean z14 = this.f32103f;
+                    boolean z14 = this.f32137f;
                     if (z11) {
                         ArrayList arrayList = new ArrayList();
                         ?? obj3 = new Object();
                         if (!gfVar.f26824b && (str2 = gfVar.h) != null) {
-                            obj3.f22486c = str2;
+                            obj3.f22493c = str2;
                             if (gfVar.c()) {
-                                obj3.f22505y = gfVar.clone();
+                                obj3.f22512y = gfVar.clone();
                             }
                         } else {
                             String str4 = gfVar.I;
                             if (str4 != null) {
-                                obj3.f22486c = str4;
+                                obj3.f22493c = str4;
                             }
                         }
-                        obj3.f22487e = gfVar.f26825c;
-                        obj3.f22488f = gfVar.f26828g;
-                        obj3.f22489g = gfVar.f26826e;
-                        obj3.f22497p = gfVar.d();
-                        obj3.f22496o = gfVar.f26824b;
-                        obj3.f22498q = gfVar.j();
-                        obj3.f22506z = gfVar.f26833m;
+                        obj3.f22494e = gfVar.f26825c;
+                        obj3.f22495f = gfVar.f26828g;
+                        obj3.f22496g = gfVar.f26826e;
+                        obj3.f22504p = gfVar.d();
+                        obj3.f22503o = gfVar.f26824b;
+                        obj3.f22505q = gfVar.j();
+                        obj3.f22513z = gfVar.f26833m;
                         obj3.A = gfVar.P;
                         CharSequence charSequence2 = gfVar.f26823a;
                         if (charSequence2 != null) {
@@ -118,15 +118,15 @@ public final class bd implements Runnable {
                             str = null;
                         }
                         obj3.d = str;
-                        obj3.f22490i = gfVar.f26834n;
-                        obj3.f22491j = gfVar.f26838r;
+                        obj3.f22497i = gfVar.f26834n;
+                        obj3.f22498j = gfVar.f26838r;
                         obj3.h = gfVar.f26843x;
-                        obj3.f22492k = gfVar.f26839s;
-                        obj3.f22499r = gfVar.L;
-                        obj3.f22501t = org.telegram.messenger.gz.h(gfVar.f26823a);
-                        obj3.f22502u = gfVar.M;
-                        obj3.f22503w = gfVar.N;
-                        obj3.f22504x = gfVar.c();
+                        obj3.f22499k = gfVar.f26839s;
+                        obj3.f22506r = gfVar.L;
+                        obj3.f22508t = org.telegram.messenger.gz.h(gfVar.f26823a);
+                        obj3.f22509u = gfVar.M;
+                        obj3.f22510w = gfVar.N;
+                        obj3.f22511x = gfVar.c();
                         arrayList.add(obj3);
                         gfVar.e();
                         org.telegram.messenger.c a10 = org.telegram.messenger.c.a(chatActivityEnterView.Q);
@@ -161,7 +161,7 @@ public final class bd implements Runnable {
                         i11 = i11;
                         org.telegram.messenger.ui.b0(chatActivityEnterView.Q).c(document, (int) (System.currentTimeMillis() / 1000), true);
                         if (org.telegram.messenger.m5.C(chatActivityEnterView.Q2)) {
-                            org.telegram.messenger.qp.s1(chatActivityEnterView.R.f21723a).t4(obj2, document);
+                            org.telegram.messenger.qp.s1(chatActivityEnterView.R.f21729a).t4(obj2, document);
                         }
                     }
                 } else {
@@ -172,12 +172,12 @@ public final class bd implements Runnable {
                         if (botInlineResult.document != null) {
                             org.telegram.messenger.ui.b0(chatActivityEnterView.Q).c(botInlineResult.document, (int) (System.currentTimeMillis() / 1000), false);
                             if (org.telegram.messenger.m5.C(chatActivityEnterView.Q2)) {
-                                org.telegram.messenger.qp.s1(chatActivityEnterView.R.f21723a).t4(obj2, botInlineResult.document);
+                                org.telegram.messenger.qp.s1(chatActivityEnterView.R.f21729a).t4(obj2, botInlineResult.document);
                             }
                         }
                         TLRPC.User user = (TLRPC.User) obj2;
                         HashMap hashMap = new HashMap();
-                        hashMap.put("id", botInlineResult.f26950id);
+                        hashMap.put("id", botInlineResult.f26951id);
                         hashMap.put("query_id", "" + botInlineResult.query_id);
                         hashMap.put("force_gif", "1");
                         if (storyItem3 == null) {
@@ -222,15 +222,15 @@ public final class bd implements Runnable {
     }
 
     public bd(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, org.telegram.messenger.ej ejVar, boolean z9, int i7, int i10, Object obj, Long l10, boolean z10) {
-        this.f32105r = chatActivityEnterView;
-        this.f32106s = document;
-        this.f32104n = str;
-        this.f32107w = ejVar;
-        this.f32101c = z9;
+        this.f32139r = chatActivityEnterView;
+        this.f32140s = document;
+        this.f32138n = str;
+        this.f32141w = ejVar;
+        this.f32135c = z9;
         this.d = i7;
-        this.f32102e = i10;
-        this.f32100b = obj;
+        this.f32136e = i10;
+        this.f32134b = obj;
         this.h = l10;
-        this.f32103f = z10;
+        this.f32137f = z10;
     }
 }

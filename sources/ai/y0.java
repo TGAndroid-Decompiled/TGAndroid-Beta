@@ -118,7 +118,7 @@ public final class y0 implements ls {
                 int i7 = 0;
                 while (true) {
                     if (i7 < arrayList2.size()) {
-                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i7)).f27181id == tL_starGiftUnique.f27181id) {
+                        if (((TL_stars.TL_starGiftUnique) arrayList2.get(i7)).f27182id == tL_starGiftUnique.f27182id) {
                             break;
                         }
                         i7++;
@@ -211,13 +211,13 @@ public final class y0 implements ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TLRPC.ChatFull chatFull;
         long j3 = this.f1691c.f1669f;
-        if (i7 == qs.f25008k0) {
+        if (i7 == qs.f25016k0) {
             r();
         } else if (i7 == qs.E0) {
             if (((Long) objArr[0]).longValue() == j3) {
                 i(((TLRPC.UserFull) objArr[1]).share_theme);
             }
-        } else if (i7 == qs.T && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f26953id) == j3) {
+        } else if (i7 == qs.T && (chatFull = (TLRPC.ChatFull) objArr[0]) != null && (-chatFull.f26954id) == j3) {
             i(chatFull.share_theme);
         }
     }
@@ -235,7 +235,7 @@ public final class y0 implements ls {
     }
 
     public final SharedPreferences f() {
-        return qp.s1(this.f1689a).f24759e7;
+        return qp.s1(this.f1689a).f24767e7;
     }
 
     public final void g() {
@@ -256,7 +256,7 @@ public final class y0 implements ls {
             return;
         }
         qs.f(i7).c(this, qs.T);
-        yr.a0(i7).F0(M0.f26952id, t3.T(M0), null, true, false, 0);
+        yr.a0(i7).F0(M0.f26953id, t3.T(M0), null, true, false, 0);
     }
 
     public final void i(TLRPC.ShareTheme shareTheme) {
@@ -403,7 +403,7 @@ public final class y0 implements ls {
     public final void l() {
         this.E = true;
         int i7 = this.f1689a;
-        qs.f(i7).n(this, qs.f25008k0);
+        qs.f(i7).n(this, qs.f25016k0);
         qs.f(i7).n(this, qs.E0);
         qs.f(i7).n(this, qs.T);
         org.telegram.messenger.g0.r(this.F);

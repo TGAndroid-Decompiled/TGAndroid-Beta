@@ -5,7 +5,7 @@ import androidx.datastore.preferences.protobuf.c0;
 import androidx.datastore.preferences.protobuf.e0;
 import androidx.datastore.preferences.protobuf.m;
 import androidx.datastore.preferences.protobuf.z;
-import c8.pb;
+import c8.qb;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ import kotlin.jvm.internal.j;
 import m1.g1;
 import m1.y0;
 public final class h implements y0 {
-    public static final h f53596a = new Object();
+    public static final h f53595a = new Object();
 
     @Override
     public final Object a() {
@@ -46,7 +46,7 @@ public final class h implements y0 {
                     if (C == 0) {
                         i7 = -1;
                     } else {
-                        i7 = g.f53595a[p1.g.c(C)];
+                        i7 = g.f53594a[p1.g.c(C)];
                     }
                     switch (i7) {
                         case -1:
@@ -70,13 +70,13 @@ public final class h implements y0 {
                             bVar.e(new e(name), Long.valueOf(value.z()));
                             break;
                         case 6:
-                            e a10 = pb.a(name);
+                            e a10 = qb.a(name);
                             String A = value.A();
                             j.d(A, "value.string");
                             bVar.e(a10, A);
                             break;
                         case 7:
-                            e b10 = pb.b(name);
+                            e b10 = qb.b(name);
                             b0 n10 = value.B().n();
                             j.d(n10, "value.stringSet.stringsList");
                             bVar.e(b10, hd.f.o(n10));
@@ -115,7 +115,7 @@ public final class h implements y0 {
         p1.a n10 = p1.c.n();
         for (Map.Entry entry : a11.entrySet()) {
             Object value = entry.getValue();
-            String str = ((e) entry.getKey()).f53594a;
+            String str = ((e) entry.getKey()).f53593a;
             if (value instanceof Boolean) {
                 p1.f D = p1.h.D();
                 boolean booleanValue = ((Boolean) value).booleanValue();

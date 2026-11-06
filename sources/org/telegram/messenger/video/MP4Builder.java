@@ -2,7 +2,7 @@ package org.telegram.messenger.video;
 
 import android.media.MediaCodec;
 import android.media.MediaFormat;
-import c8.jb;
+import c8.kb;
 import i5.r;
 import i5.t;
 import i5.u;
@@ -124,19 +124,19 @@ public class MP4Builder {
         ?? aVar = new com.googlecode.mp4parser.a("mvhd");
         aVar.f15310r = 1.0d;
         aVar.f15311s = 1.0f;
-        pc.d dVar = pc.d.f53472j;
+        pc.d dVar = pc.d.f53470j;
         aVar.f15312w = dVar;
         Date date = new Date();
         com.google.android.recaptcha.internal.a.t(ze.a.c(i5.m.Q, aVar, aVar, date));
         aVar.f15307e = date;
         long j3 = 4294967296L;
-        if (jb.a(date) >= 4294967296L) {
+        if (kb.a(date) >= 4294967296L) {
             aVar.h();
         }
         Date date2 = new Date();
         com.google.android.recaptcha.internal.a.t(ze.a.c(i5.m.R, aVar, aVar, date2));
         aVar.f15308f = date2;
-        if (jb.a(date2) >= 4294967296L) {
+        if (kb.a(date2) >= 4294967296L) {
             aVar.h();
         }
         com.google.android.recaptcha.internal.a.t(ze.a.c(i5.m.U, aVar, aVar, dVar));
@@ -296,7 +296,7 @@ public class MP4Builder {
         String str;
         ?? bVar = new com.googlecode.mp4parser.b("trak");
         ?? aVar = new com.googlecode.mp4parser.a("tkhd");
-        pc.d dVar = pc.d.f53472j;
+        pc.d dVar = pc.d.f53470j;
         aVar.f15345x = dVar;
         ui.e c10 = ze.a.c(y.Z, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();
@@ -323,7 +323,7 @@ public class MP4Builder {
         Date creationTime = track.getCreationTime();
         com.google.android.recaptcha.internal.a.t(ze.a.c(y.P, aVar, aVar, creationTime));
         aVar.f15339e = creationTime;
-        if (jb.a(creationTime) >= 4294967296L) {
+        if (kb.a(creationTime) >= 4294967296L) {
             aVar.h();
         }
         long timescale = (getTimescale(mp4Movie) * track.getDuration()) / track.getTimeScale();
@@ -343,7 +343,7 @@ public class MP4Builder {
         Date date = new Date();
         com.google.android.recaptcha.internal.a.t(ze.a.c(y.Q, aVar, aVar, date));
         aVar.f15340f = date;
-        if (jb.a(date) >= 4294967296L) {
+        if (kb.a(date) >= 4294967296L) {
             aVar.h();
         }
         long trackId = track.getTrackId() + 1;

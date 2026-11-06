@@ -24,7 +24,7 @@ public final class m2 extends View {
             default:
                 p2 p2Var2 = this.f12414b;
                 p2Var2.f12588q.reset();
-                p2Var2.f12588q.postTranslate(-getX(), (-getY()) + org.telegram.messenger.g0.f22531m);
+                p2Var2.f12588q.postTranslate(-getX(), (-getY()) + org.telegram.messenger.g0.f22538m);
                 p2Var2.f12588q.postScale(1.0f / getScaleX(), 1.0f / getScaleY(), getPivotX(), getPivotY());
                 p2Var2.b(canvas, false);
                 return;

@@ -2,20 +2,20 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class li extends v31 {
-    public static final int f35664b = 0;
+public final class li extends w31 {
+    public static final int f35684b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         mi miVar = (mi) view;
-        CharSequence charSequence = w31Var.f39830l;
-        CharSequence charSequence2 = w31Var.f39831m;
-        miVar.f35942b.setText(charSequence);
-        miVar.f35943c.setText(charSequence2);
+        CharSequence charSequence = x31Var.f40159l;
+        CharSequence charSequence2 = x31Var.f40160m;
+        miVar.f35958b.setText(charSequence);
+        miVar.f35959c.setText(charSequence2);
     }
 
     @Override

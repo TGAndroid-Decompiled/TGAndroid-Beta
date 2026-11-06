@@ -63,7 +63,7 @@ public final class v implements ab {
             case 0:
                 return;
             case 1:
-                if (ccVar.f32520a == 2 && (b4Var = ((j3) this.f6404b).f9252y.f9221z1) != null) {
+                if (ccVar.f32507a == 2 && (b4Var = ((j3) this.f6404b).f9252y.f9221z1) != null) {
                     p9 p9Var = ((g9) b4Var).d;
                     p9Var.X0 = true;
                     p9Var.V();
@@ -81,7 +81,7 @@ public final class v implements ab {
             case 10:
                 return;
             default:
-                gb gbVar = ccVar.f32523e;
+                gb gbVar = ccVar.f32510e;
                 zh.i0 i0Var = (zh.i0) this.f6404b;
                 fh.g c10 = i0Var.l1.c(gbVar, null, true);
                 gh.e eVar = new gh.e(i0Var.I0);
@@ -109,7 +109,7 @@ public final class v implements ab {
             case 0:
                 return;
             case 1:
-                if (ccVar.f32520a == 2 && (b4Var = ((j3) this.f6404b).f9252y.f9221z1) != null) {
+                if (ccVar.f32507a == 2 && (b4Var = ((j3) this.f6404b).f9252y.f9221z1) != null) {
                     p9 p9Var = ((g9) b4Var).d;
                     p9Var.X0 = false;
                     p9Var.V();
@@ -181,7 +181,7 @@ public final class v implements ab {
                 L = org.telegram.messenger.g0.L(12.0f);
                 break;
             case 5:
-                return ((q7) this.f6404b).f37171e.f32057u1.getHeight();
+                return ((q7) this.f6404b).f37177e.f32091u1.getHeight();
             case 6:
                 ab abVar = (ab) this.f6404b;
                 if (abVar == null) {
@@ -190,14 +190,14 @@ public final class v implements ab {
                 return abVar.f(i7);
             case 7:
                 editTextHeight = org.telegram.messenger.g0.L(126.0f);
-                L = ((ql) this.f6404b).f37331c.f38948b.Q();
+                L = ((ql) this.f6404b).f37326c.f38969b.Q();
                 break;
             case 8:
                 editTextHeight = u80.Z((u80) this.f6404b).d;
                 L = org.telegram.messenger.g0.L(72.0f);
                 break;
             case 9:
-                FrameLayout frameLayout = ((yv0) this.f6404b).f40760s1;
+                FrameLayout frameLayout = ((yv0) this.f6404b).f40772s1;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -270,7 +270,7 @@ public final class v implements ab {
             case 6:
                 ab abVar = (ab) this.f6404b;
                 if (abVar == null) {
-                    return org.telegram.messenger.g0.f22531m;
+                    return org.telegram.messenger.g0.f22538m;
                 }
                 return abVar.h(i7);
             case 7:
@@ -282,7 +282,7 @@ public final class v implements ab {
             case 10:
                 return 0;
             default:
-                return org.telegram.messenger.g0.f22531m;
+                return org.telegram.messenger.g0.f22538m;
         }
     }
 

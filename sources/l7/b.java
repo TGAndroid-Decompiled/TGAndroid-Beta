@@ -3,7 +3,7 @@ package l7;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Parcelable;
-import c8.xb;
+import c8.yb;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.j;
 public final class b extends j {
@@ -25,7 +25,7 @@ public final class b extends j {
             if (byteArrayExtra == null) {
                 a10 = null;
             } else {
-                a10 = xb.a(byteArrayExtra, creator);
+                a10 = yb.a(byteArrayExtra, creator);
             }
             Status status2 = (Status) a10;
             if (status2 != null) {
@@ -33,7 +33,7 @@ public final class b extends j {
                     Parcelable.Creator<a6.g> creator2 = a6.g.CREATOR;
                     byte[] byteArrayExtra2 = intent.getByteArrayExtra("sign_in_credential");
                     if (byteArrayExtra2 != null) {
-                        bVar = xb.a(byteArrayExtra2, creator2);
+                        bVar = yb.a(byteArrayExtra2, creator2);
                     }
                     a6.g gVar = (a6.g) bVar;
                     if (gVar != null) {

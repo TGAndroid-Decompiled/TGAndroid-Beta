@@ -80,7 +80,7 @@ public abstract class y4 extends s70 implements te.b {
             super.onDraw(canvas);
             return;
         }
-        float f10 = this.P0.f55401f;
+        float f10 = this.P0.f55400f;
         int L = org.telegram.messenger.g0.L(6.0f);
         canvas.save();
         canvas.translate(this.R0 - getTranslationX(), (-L) * f10);

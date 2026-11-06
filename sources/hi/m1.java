@@ -40,7 +40,7 @@ public final class m1 {
 
     public static File b() {
         try {
-            File filesDir = org.telegram.messenger.t0.f25555b.getFilesDir();
+            File filesDir = org.telegram.messenger.t0.f25563b.getFilesDir();
             if (filesDir != null) {
                 File file = new File(filesDir, "apps_storage/");
                 file.mkdirs();

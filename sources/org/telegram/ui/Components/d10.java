@@ -9,13 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public abstract class d10 extends org.telegram.ui.ActionBar.v2 {
-    public static final int f32747i1 = 0;
+    public static final int f32751i1 = 0;
 
     public d10(Context context, org.telegram.ui.ActionBar.f2 f2Var) {
         super(context, true);
         int i7;
-        this.f28647v0 = false;
-        this.f28646u0 = false;
+        this.f28648v0 = false;
+        this.f28647u0 = false;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
         this.N = f10;
         ?? imageView = new ImageView(context);
@@ -25,7 +25,7 @@ public abstract class d10 extends org.telegram.ui.ActionBar.v2 {
         f10.addView((View) imageView, c8.ha.t(160, 160, 49, 17, 30, 17, 0));
         TextView textView = new TextView(context);
         org.telegram.messenger.camera.q.m(textView, 1, 24.0f);
-        org.telegram.messenger.camera.q.o(textView, org.telegram.ui.ActionBar.k6.f27956j5, null, null, 2131749553);
+        org.telegram.messenger.camera.q.o(textView, org.telegram.ui.ActionBar.k6.f27957j5, null, null, 2131749553);
         f10.addView(textView, c8.ha.t(-2, -2, 49, 17, 18, 17, 0));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -34,20 +34,20 @@ public abstract class d10 extends org.telegram.ui.ActionBar.v2 {
         while (true) {
             if (i10 < 3) {
                 LinearLayout f11 = org.telegram.messenger.k5.f(context, 0);
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     i7 = 5;
                 } else {
                     i7 = 3;
                 }
                 linearLayout.addView(f11, c8.ha.t(-2, -2, i7, 0, 8, 0, 0));
                 ImageView imageView2 = new ImageView(context);
-                int i11 = org.telegram.ui.ActionBar.k6.f28106r5;
+                int i11 = org.telegram.ui.ActionBar.k6.f28107r5;
                 org.telegram.ui.ActionBar.r6.t(imageView2, i11, null, PorterDuff.Mode.MULTIPLY);
                 imageView2.setImageResource(2131231623);
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 15.0f);
                 org.telegram.ui.ActionBar.r6.V(textView2, i11, null);
-                textView2.setGravity((org.telegram.messenger.hd.f22871a0 ? 5 : 3) | 16);
+                textView2.setGravity((org.telegram.messenger.hd.f22878a0 ? 5 : 3) | 16);
                 textView2.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
                 if (i10 != 0) {
                     if (i10 != 1) {
@@ -60,7 +60,7 @@ public abstract class d10 extends org.telegram.ui.ActionBar.v2 {
                 } else {
                     textView2.setText(org.telegram.messenger.hd.M0(2131749557, null));
                 }
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     f11.addView(textView2, c8.ha.o(-2, -2));
                     f11.addView(imageView2, c8.ha.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
                 } else {
@@ -71,11 +71,11 @@ public abstract class d10 extends org.telegram.ui.ActionBar.v2 {
             } else {
                 ?? frameLayout = new FrameLayout(context);
                 View view = new View(context);
-                frameLayout.f32352a = view;
+                frameLayout.f32374a = view;
                 view.setBackground(org.telegram.ui.ActionBar.z5.f(org.telegram.ui.ActionBar.k6.Ci, 4.0f));
                 frameLayout.addView(view, c8.ha.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
                 TextView textView3 = new TextView(context);
-                frameLayout.f32353b = textView3;
+                frameLayout.f32375b = textView3;
                 textView3.setLines(1);
                 textView3.setSingleLine(true);
                 textView3.setGravity(1);
@@ -89,7 +89,7 @@ public abstract class d10 extends org.telegram.ui.ActionBar.v2 {
                 f10.addView((View) frameLayout, c8.ha.t(-1, 50, 51, 0, 29, 0, 0));
                 TextView textView4 = new TextView(context);
                 textView4.setTextSize(1, 14.0f);
-                org.telegram.messenger.camera.q.o(textView4, org.telegram.ui.ActionBar.k6.f28029n5, null, null, 2131749559);
+                org.telegram.messenger.camera.q.o(textView4, org.telegram.ui.ActionBar.k6.f28030n5, null, null, 2131749559);
                 textView4.setGravity(17);
                 f10.addView(textView4, c8.ha.t(-2, 48, 49, 17, 0, 17, 16));
                 textView4.setOnClickListener(new h0(this, 19));

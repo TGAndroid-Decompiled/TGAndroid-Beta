@@ -2,23 +2,23 @@ package org.telegram.ui.Components;
 
 import android.os.SystemClock;
 public final class i40 implements Runnable {
-    public final int f34433a;
-    public final n40 f34434b;
+    public final int f34479a;
+    public final n40 f34480b;
 
     public i40(n40 n40Var, int i7) {
-        this.f34433a = i7;
-        this.f34434b = n40Var;
+        this.f34479a = i7;
+        this.f34480b = n40Var;
     }
 
     @Override
     public final void run() {
         wi.s0 s0Var;
-        int i7 = this.f34433a;
-        n40 n40Var = this.f34434b;
+        int i7 = this.f34479a;
+        n40 n40Var = this.f34480b;
         switch (i7) {
             case 0:
                 wi.s0 s0Var2 = n40Var.Q;
-                if (s0Var2 != null && s0Var2.f58046a == 3) {
+                if (s0Var2 != null && s0Var2.f58045a == 3) {
                     long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
                     long j3 = n40Var.F0;
                     if (j3 == 0 || elapsedRealtimeNanos - j3 >= 70000000) {
@@ -36,10 +36,10 @@ public final class i40 implements Runnable {
                 int i11 = n40.K0;
                 wi.t0 t0Var = n40Var.O;
                 if (t0Var != null && (s0Var = n40Var.Q) != null) {
-                    if (s0Var.f58046a == 3) {
+                    if (s0Var.f58045a == 3) {
                         n40Var.w();
                         return;
-                    } else if (s0Var.f58049e) {
+                    } else if (s0Var.f58048e) {
                         t0Var.p();
                         return;
                     } else {

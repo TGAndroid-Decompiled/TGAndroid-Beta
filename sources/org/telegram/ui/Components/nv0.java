@@ -4,10 +4,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nv0 implements org.telegram.ui.is {
-    public final yv0 f36391a;
+    public final yv0 f36430a;
 
     public nv0(yv0 yv0Var) {
-        this.f36391a = yv0Var;
+        this.f36430a = yv0Var;
     }
 
     @Override
@@ -32,18 +32,18 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final void F(TLRPC.Document document) {
-        yv0 yv0Var = this.f36391a;
+        yv0 yv0Var = this.f36430a;
         yv0Var.J1.documents.remove(document);
         boolean isEmpty = yv0Var.J1.documents.isEmpty();
         if (isEmpty) {
             yv0Var.dismiss();
         }
-        yv0Var.f40751k1.f();
+        yv0Var.f40763k1.f();
         org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, yv0Var.getContext(), yv0Var.I0);
         u1Var.r(350L);
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
         tL_stickers_removeStickerFromSet.sticker = org.telegram.messenger.ui.a0(document, "").document;
-        ConnectionsManager.getInstance(yv0Var.f28612a).sendRequest(tL_stickers_removeStickerFromSet, new bi.u9(this, isEmpty, u1Var, 4));
+        ConnectionsManager.getInstance(yv0Var.f28613a).sendRequest(tL_stickers_removeStickerFromSet, new bi.u9(this, isEmpty, u1Var, 4));
     }
 
     @Override
@@ -78,7 +78,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final long a() {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f36391a.C1;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f36430a.C1;
         if (f2Var instanceof org.telegram.ui.an) {
             return ((org.telegram.ui.an) f2Var).a();
         }
@@ -87,7 +87,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final boolean b() {
-        vv0 vv0Var = this.f36391a.S1;
+        vv0 vv0Var = this.f36430a.S1;
         if (vv0Var != null && vv0Var.b()) {
             return true;
         }
@@ -96,7 +96,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final boolean c() {
-        vv0 vv0Var = this.f36391a.S1;
+        vv0 vv0Var = this.f36430a.S1;
         if (vv0Var != null && vv0Var.c()) {
             return true;
         }
@@ -115,7 +115,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final boolean f() {
-        if (this.f36391a.O1 != null) {
+        if (this.f36430a.O1 != null) {
             return true;
         }
         return false;
@@ -129,7 +129,7 @@ public final class nv0 implements org.telegram.ui.is {
     @Override
     public final boolean h() {
         TLRPC.StickerSet stickerSet;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f36391a.J1;
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = this.f36430a.J1;
         if (tL_messages_stickerSet != null && (stickerSet = tL_messages_stickerSet.set) != null && stickerSet.emojis) {
             return false;
         }
@@ -138,7 +138,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final void i(org.telegram.messenger.zy zyVar) {
-        this.f36391a.S0(zyVar);
+        this.f36430a.S0(zyVar);
     }
 
     @Override
@@ -148,7 +148,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final boolean k(int i7) {
-        if (this.f36391a.S1 != null) {
+        if (this.f36430a.S1 != null) {
             return true;
         }
         return false;
@@ -156,7 +156,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z9, int i7, int i10) {
-        yv0 yv0Var = this.f36391a;
+        yv0 yv0Var = this.f36430a;
         vv0 vv0Var = yv0Var.S1;
         if (vv0Var == null) {
             return;
@@ -172,7 +172,7 @@ public final class nv0 implements org.telegram.ui.is {
 
     @Override
     public final void o(TLRPC.Document document) {
-        yv0 yv0Var = this.f36391a;
+        yv0 yv0Var = this.f36430a;
         yv0.M0(yv0Var.C1, yv0Var.J1, document);
     }
 

@@ -6,18 +6,18 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 public final class h {
-    public static final String[] f54361e = {"Connection", "Upgrade"};
-    public static final String[] f54362f = {"Upgrade", "websocket"};
-    public static final String[] f54363g = {"Sec-WebSocket-Version", "13"};
-    public Object f54364a;
-    public Serializable f54365b;
-    public Object f54366c;
+    public static final String[] f54360e = {"Connection", "Upgrade"};
+    public static final String[] f54361f = {"Upgrade", "websocket"};
+    public static final String[] f54362g = {"Sec-WebSocket-Version", "13"};
+    public Object f54363a;
+    public Serializable f54364b;
+    public Object f54365c;
     public Serializable d;
 
     public synchronized void a(Exception exc) {
         try {
-            CountDownLatch countDownLatch = (CountDownLatch) this.f54364a;
-            if (countDownLatch != null && ((ArrayList) this.f54365b) != null) {
+            CountDownLatch countDownLatch = (CountDownLatch) this.f54363a;
+            if (countDownLatch != null && ((ArrayList) this.f54364b) != null) {
                 if (((Exception) this.d) == null) {
                     this.d = exc;
                 }
@@ -32,9 +32,9 @@ public final class h {
 
     public synchronized void b(t tVar, Socket socket) {
         ArrayList arrayList;
-        if (((CountDownLatch) this.f54364a) != null && (arrayList = (ArrayList) this.f54365b) != null) {
-            if (((Socket) this.f54366c) == null) {
-                this.f54366c = socket;
+        if (((CountDownLatch) this.f54363a) != null && (arrayList = (ArrayList) this.f54364b) != null) {
+            if (((Socket) this.f54365c) == null) {
+                this.f54365c = socket;
                 int size = arrayList.size();
                 int i7 = 0;
                 while (i7 < size) {
@@ -52,7 +52,7 @@ public final class h {
                 } catch (IOException unused) {
                 }
             }
-            ((CountDownLatch) this.f54364a).countDown();
+            ((CountDownLatch) this.f54363a).countDown();
         } else {
             throw new IllegalStateException("Cannot set socket before awaiting!");
         }

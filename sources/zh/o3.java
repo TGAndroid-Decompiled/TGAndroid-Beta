@@ -9,8 +9,8 @@ import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.jy;
-import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.lz;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
@@ -25,10 +25,10 @@ public final class o3 extends na implements ls {
     public k60 V1;
     public final ri.c W1;
     public final ri.c X1;
-    public k41 Y1;
+    public l41 Y1;
     public i0.b Z1;
-    public boolean f60397a2;
-    public int f60398b2;
+    public boolean f60396a2;
+    public int f60397b2;
 
     public o3(org.telegram.ui.ActionBar.f2 r20, long r21, int r23, hi.d4 r24) {
         throw new UnsupportedOperationException("Method not decompiled: zh.o3.<init>(org.telegram.ui.ActionBar.f2, long, int, hi.d4):void");
@@ -36,10 +36,10 @@ public final class o3 extends na implements ls {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, false, new q0(this, 4), this.I0);
-        this.Y1 = k41Var;
-        k41Var.f35132r = false;
-        return k41Var;
+        l41 l41Var = new l41(pj0Var, getContext(), this.f28613a, 0, false, new q0(this, 4), this.I0);
+        this.Y1 = l41Var;
+        l41Var.f35510r = false;
+        return l41Var;
     }
 
     @Override
@@ -51,22 +51,22 @@ public final class o3 extends na implements ls {
     public final r0.k1 b0(r0.k1 k1Var) {
         this.Z1 = org.telegram.messenger.g0.I0(k1Var, false);
         d1();
-        return r0.k1.f54108b;
+        return r0.k1.f54107b;
     }
 
     public final void d1() {
-        this.f36222k1.setPadding(org.telegram.messenger.g0.L(9.0f) + this.Z1.f15117a + this.f28645t0, 0, org.telegram.messenger.g0.L(9.0f) + this.Z1.f15119c + this.f28645t0, this.Z1.d);
+        this.f36261k1.setPadding(org.telegram.messenger.g0.L(9.0f) + this.Z1.f15117a + this.f28646t0, 0, org.telegram.messenger.g0.L(9.0f) + this.Z1.f15119c + this.f28646t0, this.Z1.d);
         i0.b bVar = this.Z1;
         int i7 = bVar.f15117a;
-        int i10 = this.f28645t0;
+        int i10 = this.f28646t0;
         this.T1.setPadding(i7 + i10, 0, bVar.f15119c + i10, bVar.d);
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        k41 k41Var;
-        if (i7 == qs.G3 && (k41Var = this.Y1) != null) {
-            k41Var.O(true);
+        l41 l41Var;
+        if (i7 == qs.G3 && (l41Var = this.Y1) != null) {
+            l41Var.O(true);
             if (e1()) {
                 this.Q1.a();
             }
@@ -75,12 +75,12 @@ public final class o3 extends na implements ls {
 
     @Override
     public final void dismiss() {
-        qs.f(this.f28612a).n(this, qs.G3);
+        qs.f(this.f28613a).n(this, qs.G3);
         super.dismiss();
     }
 
     public final boolean e1() {
-        pj0 pj0Var = this.f36222k1;
+        pj0 pj0Var = this.f36261k1;
         if (pj0Var != null && pj0Var.G) {
             for (int i7 = 0; i7 < pj0Var.getChildCount(); i7++) {
                 if (pj0Var.getChildAt(i7) instanceof lz) {
@@ -97,18 +97,18 @@ public final class o3 extends na implements ls {
         try {
             ri.c cVar = this.W1;
             if (cVar != null) {
-                cVar.a(k6.w0(k6.f27848d6, this.I0));
+                cVar.a(k6.w0(k6.f27849d6, this.I0));
             }
             ri.c cVar2 = this.X1;
             if (cVar2 != null) {
-                cVar2.a(k6.w0(k6.f27792a7, this.I0));
+                cVar2.a(k6.w0(k6.f27793a7, this.I0));
             }
-            int w02 = k6.w0(k6.f27792a7, this.I0);
-            if (this.f60397a2 && w02 == this.f60398b2) {
+            int w02 = k6.w0(k6.f27793a7, this.I0);
+            if (this.f60396a2 && w02 == this.f60397b2) {
                 return;
             }
-            this.f60397a2 = true;
-            this.f60398b2 = w02;
+            this.f60396a2 = true;
+            this.f60397b2 = w02;
             v0(w02);
         } catch (Exception e10) {
             a8.g(e10, true);

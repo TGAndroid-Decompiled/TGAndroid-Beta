@@ -10,29 +10,29 @@ public final class vt extends org.telegram.ui.Components.fw0 {
     public vt(Context context, long j3, m4.d0 d0Var) {
         super(context);
         this.I = d0Var;
-        this.f33641a = new RectF();
-        this.f33645f = 0.0f;
+        this.f33651a = new RectF();
+        this.f33655f = 0.0f;
         org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, true, true);
-        this.f33647r = i6Var;
+        this.f33657r = i6Var;
         org.telegram.ui.Components.i6 i6Var2 = new org.telegram.ui.Components.i6(false, true, false);
-        this.f33648s = i6Var2;
+        this.f33658s = i6Var2;
         i6Var.setCallback(this);
         i6Var2.setCallback(this);
-        this.f33646n = Long.valueOf(j3);
+        this.f33656n = Long.valueOf(j3);
         org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
-        w8Var.f39912p = 1.5f;
+        w8Var.f39920p = 1.5f;
         ImageReceiver imageReceiver = new ImageReceiver(null);
         this.h = imageReceiver;
         imageReceiver.H0(this);
         if (j3 == Long.MAX_VALUE) {
-            this.f33649w = org.telegram.messenger.hd.M0(2131752647, null);
+            this.f33659w = org.telegram.messenger.hd.M0(2131752647, null);
             w8Var.g(14);
             imageReceiver.i0(null, w8Var, null);
             return;
         }
-        String H = org.telegram.messenger.m5.H(imageReceiver, w8Var, org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24459s0).e2(j3));
-        this.f33649w = H;
-        this.f33649w = org.telegram.messenger.i6.m(H, null, false, null, 0);
+        String H = org.telegram.messenger.m5.H(imageReceiver, w8Var, org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24467s0).e2(j3));
+        this.f33659w = H;
+        this.f33659w = org.telegram.messenger.i6.m(H, null, false, null, 0);
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class vt extends org.telegram.ui.Components.fw0 {
         y6 y6Var = (y6) d0Var.f19609b;
         y6Var.Z.dismiss();
         Bundle bundle = new Bundle();
-        long j3 = ((s6) d0Var.f19608a).f49661a;
+        long j3 = ((s6) d0Var.f19608a).f49660a;
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
         } else {

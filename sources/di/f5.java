@@ -24,15 +24,15 @@ public final class f5 extends av0 {
                 super.e(z9, z10);
                 float f10 = 1.0f;
                 if (z10) {
-                    ViewPropertyAnimator animate = ((TextView) v91Var.f50658n.d).animate();
+                    ViewPropertyAnimator animate = ((TextView) v91Var.f50657n.d).animate();
                     if (z9) {
                         f10 = 0.0f;
                     }
                     animate.alpha(f10).start();
                     return;
                 }
-                ((TextView) v91Var.f50658n.d).animate().cancel();
-                TextView textView = (TextView) v91Var.f50658n.d;
+                ((TextView) v91Var.f50657n.d).animate().cancel();
+                TextView textView = (TextView) v91Var.f50657n.d;
                 if (z9) {
                     f10 = 0.0f;
                 }

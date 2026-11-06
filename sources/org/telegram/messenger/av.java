@@ -24,7 +24,7 @@ public final class av extends zu {
 
     public av(kv kvVar, Rect rect, int i7, TL_iv.pageBlockBlockquote pageblockblockquote, SpannableStringBuilder spannableStringBuilder) {
         super(kvVar, rect, i7, spannableStringBuilder);
-        this.f21535k0 = jg.g.h(t0.f25555b, 2131230871);
+        this.f21535k0 = jg.g.h(t0.f25563b, 2131230871);
         boolean z9 = pageblockblockquote.collapsed;
         this.f21531g0 = z9;
         this.f21532h0 = z9;
@@ -33,8 +33,8 @@ public final class av extends zu {
     @Override
     public final int I() {
         if (this.f21531g0) {
-            Rect rect = this.f22444b;
-            return (int) Math.min((this.W.f23586b.getPaint().getTextSize() * 1.4f * 3.0f) + rect.top + this.Z + rect.bottom, super.I());
+            Rect rect = this.f22451b;
+            return (int) Math.min((this.W.f23593b.getPaint().getTextSize() * 1.4f * 3.0f) + rect.top + this.Z + rect.bottom, super.I());
         }
         return super.I();
     }
@@ -50,7 +50,7 @@ public final class av extends zu {
             f10 = 1.0f;
         }
         int i7 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        int i10 = this.f22445c;
+        int i10 = this.f22452c;
         if (i7 != 0) {
             canvas.save();
             canvas.scale(f10, f10, i10 / 2.0f, I() / 2.0f);
@@ -60,7 +60,7 @@ public final class av extends zu {
         } else {
             z9 = false;
         }
-        int i11 = (this.f21534j0 - this.f22444b.bottom) - this.f26922a0;
+        int i11 = (this.f21534j0 - this.f22451b.bottom) - this.f26922a0;
         canvas.save();
         canvas.clipRect(0, 0, i10, i11);
         if (z9) {
@@ -77,12 +77,12 @@ public final class av extends zu {
             canvas.restore();
         }
         canvas.restore();
-        kv kvVar = this.f22443a;
-        int i12 = kvVar.f23777y.i();
+        kv kvVar = this.f22450a;
+        int i12 = kvVar.f23784y.i();
         int i13 = this.f21536l0;
         Drawable drawable = this.f21535k0;
         if (i12 != i13) {
-            int i14 = kvVar.f23777y.i();
+            int i14 = kvVar.f23784y.i();
             this.f21536l0 = i14;
             drawable.setColorFilter(new PorterDuffColorFilter(i14, PorterDuff.Mode.SRC_IN));
         }
@@ -106,7 +106,7 @@ public final class av extends zu {
             }
             return super.Y(motionEvent);
         }
-        kv kvVar = this.f22443a;
+        kv kvVar = this.f22450a;
         if (actionMasked == 0) {
             boolean Y = super.Y(motionEvent);
             this.f21530f0 = Y;
@@ -136,7 +136,7 @@ public final class av extends zu {
             }
             kvVar.X();
             this.f21531g0 = !this.f21531g0;
-            kvVar.f23774u = true;
+            kvVar.f23781u = true;
             kvVar.Q();
             View view3 = kvVar.Q;
             if (view3 != null) {

@@ -13,7 +13,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ez;
-import org.telegram.ui.Components.ky0;
+import org.telegram.ui.Components.ly0;
 import org.telegram.ui.Components.tv;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ef0;
@@ -58,12 +58,12 @@ public final class u5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.m0(17));
                 return;
             case 8:
-                org.telegram.messenger.p5 p5Var = org.telegram.messenger.d4.f21947s;
+                org.telegram.messenger.p5 p5Var = org.telegram.messenger.d4.f21954s;
                 return;
             case 9:
                 return;
             case 10:
-                int i7 = bc.f21606i;
+                int i7 = bc.f21607i;
                 return;
             case 11:
                 Pattern pattern = ui.R1;
@@ -75,19 +75,19 @@ public final class u5 implements RequestDelegate {
                 int i10 = qp.C8;
                 return;
             case 14:
-                String str = dt.f22050j0;
+                String str = dt.f22057j0;
                 return;
             case 15:
                 Paint paint = la.H;
                 return;
             case 16:
-                int i11 = fo.f45679i3;
+                int i11 = fo.f45678i3;
                 return;
             case 17:
                 org.telegram.messenger.g0.h3(new ai.m0(22));
                 return;
             case 18:
-                Pattern pattern2 = org.telegram.ui.Components.v4.f38814a;
+                Pattern pattern2 = org.telegram.ui.Components.v4.f38813a;
                 return;
             case 19:
                 int i12 = tv.H0;
@@ -99,10 +99,10 @@ public final class u5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.m0(22));
                 return;
             case 22:
-                int i14 = ky0.f35440e;
+                int i14 = ly0.f35789e;
                 return;
             case 23:
-                int i15 = gd0.f45953v0;
+                int i15 = gd0.f45952v0;
                 return;
             case 24:
                 org.telegram.messenger.g0.h3(new ef0(tLObject, 5));
@@ -111,7 +111,7 @@ public final class u5 implements RequestDelegate {
                 int i16 = xj0.R;
                 return;
             case 26:
-                List list = hl0.f46405g1;
+                List list = hl0.f46404g1;
                 return;
             case 27:
                 RectF rectF = ProfileActivity.S6;

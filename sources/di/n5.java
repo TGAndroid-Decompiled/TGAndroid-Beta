@@ -21,7 +21,7 @@ public final class n5 implements c5.g {
                 return;
             case 1:
                 qb0 qb0Var = (qb0) this.f9405b;
-                c5.g gVar = qb0Var.f37252c;
+                c5.g gVar = qb0Var.f37247c;
                 if (gVar != null) {
                     gVar.a(i7);
                 }
@@ -80,11 +80,11 @@ public final class n5 implements c5.g {
             case 1:
                 qb0 qb0Var = (qb0) this.f9405b;
                 qb0Var.h = i7;
-                qb0Var.f37255n = f10;
+                qb0Var.f37250n = f10;
                 if (qb0Var.d.getChildAt(i7) != null) {
                     qb0.a(qb0Var, i7, (int) (qb0Var.d.getChildAt(i7).getWidth() * f10));
                     qb0Var.invalidate();
-                    c5.g gVar = qb0Var.f37252c;
+                    c5.g gVar = qb0Var.f37247c;
                     if (gVar != null) {
                         gVar.b(f10, i7, i10);
                         return;
@@ -94,8 +94,8 @@ public final class n5 implements c5.g {
                 return;
             default:
                 kf0 kf0Var = (kf0) this.f9405b;
-                if (!kf0Var.f35277a && Math.abs(i7 - kf0Var.f35286x) == 1) {
-                    int i14 = kf0Var.f35286x;
+                if (!kf0Var.f35268a && Math.abs(i7 - kf0Var.f35277x) == 1) {
+                    int i14 = kf0Var.f35277x;
                     if (i7 > i14) {
                         kf0.a(kf0Var, 0, 1, 1);
                     } else if (i7 < i14) {
@@ -103,10 +103,10 @@ public final class n5 implements c5.g {
                         kf0.a(kf0Var, 2, 0, -1);
                     }
                 }
-                int i15 = kf0Var.f35286x;
-                int i16 = kf0Var.f35287y;
-                kf0Var.f35286x = i7;
-                kf0Var.f35287y = i10;
+                int i15 = kf0Var.f35277x;
+                int i16 = kf0Var.f35278y;
+                kf0Var.f35277x = i7;
+                kf0Var.f35278y = i10;
                 if (i15 != i7 || i16 != i10) {
                     kf0Var.H = true;
                     kf0Var.postInvalidateOnAnimation();
@@ -129,9 +129,9 @@ public final class n5 implements c5.g {
             case 1:
                 qb0 qb0Var = (qb0) this.f9405b;
                 if (i7 == 0) {
-                    qb0.a(qb0Var, qb0Var.f37253e.getCurrentItem(), 0);
+                    qb0.a(qb0Var, qb0Var.f37248e.getCurrentItem(), 0);
                 }
-                c5.g gVar = qb0Var.f37252c;
+                c5.g gVar = qb0Var.f37247c;
                 if (gVar != null) {
                     gVar.c(i7);
                     return;

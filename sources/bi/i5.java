@@ -26,7 +26,7 @@ public final class i5 extends k7 {
         switch (this.f4042t3) {
             case 1:
                 zh.h1 h1Var = (zh.h1) this.f4043u3;
-                return new org.telegram.ui.Components.hc(h1Var.f28618c, h1Var.I0);
+                return new org.telegram.ui.Components.hc(h1Var.f28619c, h1Var.I0);
             default:
                 return super.k();
         }

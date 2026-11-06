@@ -175,7 +175,7 @@ public final class g implements p, l5.g, tr, r1, bp {
                 if (z11) {
                     try {
                         Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + t0.f25555b.getPackageName()));
+                        intent.setData(Uri.parse("package:" + t0.f25563b.getPackageName()));
                         context.startActivity(intent);
                         return;
                     } catch (Exception e10) {

@@ -5,16 +5,16 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 public final class vv extends c5.k {
-    public final gy f39693w0;
+    public final gy f39714w0;
 
     public vv(gy gyVar, Context context) {
         super(context);
-        this.f39693w0 = gyVar;
+        this.f39714w0 = gyVar;
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f39693w0.f34032f) {
+        if (this.f39714w0.f34040f) {
             return false;
         }
         if (getParent() != null) {
@@ -30,7 +30,7 @@ public final class vv extends c5.k {
     @Override
     public final void x(int i7, boolean z9) {
         boolean z10;
-        gy gyVar = this.f39693w0;
+        gy gyVar = this.f39714w0;
         kw kwVar = gyVar.I;
         if (i7 == 1) {
             z10 = true;
@@ -52,7 +52,7 @@ public final class vv extends c5.k {
                 }
                 return;
             } else if (i7 == 1) {
-                gyVar.f34039h0.y0(0);
+                gyVar.f34047h0.y0(0);
                 return;
             } else {
                 gyVar.D0.y0(1);

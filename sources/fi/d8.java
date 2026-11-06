@@ -15,7 +15,7 @@ public final class d8 implements Runnable {
         switch (this.f11794a) {
             case 0:
                 s8 s8Var = this.f11795b.W;
-                cc.h(s8Var.f28618c);
+                cc.h(s8Var.f28619c);
                 super/*org.telegram.ui.ActionBar.v2*/.dismiss();
                 return;
             case 1:

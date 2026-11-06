@@ -41,7 +41,7 @@ public final class j6 extends q6 {
             Integer num = (Integer) obj;
             ij f10 = f(num.intValue());
             if (f10 != null) {
-                reorderpreviewmedias.order.add(qp.Z4(f10.f23241l.media));
+                reorderpreviewmedias.order.add(qp.Z4(f10.f23248l.media));
                 arrayList2.add(f10);
                 arrayList3.add(num);
             }
@@ -70,7 +70,7 @@ public final class j6 extends q6 {
             while (true) {
                 if (i10 >= arrayList.size()) {
                     break;
-                } else if (qp.t0(ijVar.f23241l.media, (TLRPC.MessageMedia) arrayList.get(i10))) {
+                } else if (qp.t0(ijVar.f23248l.media, (TLRPC.MessageMedia) arrayList.get(i10))) {
                     arrayList2.remove(i7);
                     ArrayList arrayList3 = this.H;
                     if (!arrayList3.isEmpty() && ijVar.f1() < ((ArrayList) arrayList3.get(0)).size()) {
@@ -107,13 +107,13 @@ public final class j6 extends q6 {
             arrayList = this.f9643i;
             if (i7 < arrayList.size()) {
                 ijVar = (ij) arrayList.get(i7);
-                if (inputMedia != null && (storyItem = ijVar.f23241l) != null && (messageMedia = storyItem.media) != null) {
+                if (inputMedia != null && (storyItem = ijVar.f23248l) != null && (messageMedia = storyItem.media) != null) {
                     if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
                         TLRPC.Photo photo = messageMedia.photo;
-                        if (photo != null && photo.f26976id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f27015id.f26971id) {
+                        if (photo != null && photo.f26977id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f27016id.f26972id) {
                             break;
                         }
-                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f26958id == ((TLRPC.TL_inputMediaDocument) inputMedia).f27013id.f26964id) {
+                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f26959id == ((TLRPC.TL_inputMediaDocument) inputMedia).f27014id.f26965id) {
                         break;
                     }
                 }
@@ -136,16 +136,16 @@ public final class j6 extends q6 {
         }
         i6 i6Var = new i6(this, this.d, botpreviewmedia);
         ij ijVar2 = new ij(this.f9639c, i6Var);
-        TLRPC.Message message = ijVar2.f23237k;
+        TLRPC.Message message = ijVar2.f23244k;
         if (ijVar == null) {
             f12 = this.I;
             this.I = f12 + 1;
         } else {
             f12 = ijVar.f1();
         }
-        message.f26973id = f12;
-        i6Var.f27191id = f12;
-        ijVar2.f23233j = this;
+        message.f26974id = f12;
+        i6Var.f27192id = f12;
+        ijVar2.f23240j = this;
         ijVar2.r0(false);
         if (arrayList2.isEmpty()) {
             arrayList2.add(new ArrayList());
@@ -183,12 +183,12 @@ public final class j6 extends q6 {
     public final void I(TL_bots.botPreviewMedia botpreviewmedia) {
         i6 i6Var = new i6(this, this.d, botpreviewmedia);
         ij ijVar = new ij(this.f9639c, i6Var);
-        TLRPC.Message message = ijVar.f23237k;
+        TLRPC.Message message = ijVar.f23244k;
         int i7 = this.I;
         this.I = i7 + 1;
-        message.f26973id = i7;
-        i6Var.f27191id = i7;
-        ijVar.f23233j = this;
+        message.f26974id = i7;
+        i6Var.f27192id = i7;
+        ijVar.f23240j = this;
         ijVar.r0(false);
         ArrayList arrayList = this.H;
         if (arrayList.isEmpty()) {

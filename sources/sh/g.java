@@ -2,7 +2,7 @@ package sh;
 
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import c8.yc;
+import c8.zc;
 import java.util.ArrayList;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.hd;
@@ -18,7 +18,7 @@ public abstract class g {
         int i7;
         int i10 = 0;
         if (ijVar.D == 17) {
-            TLRPC.Message message = ijVar.f23237k;
+            TLRPC.Message message = ijVar.f23244k;
             int i11 = ijVar.I1;
             TLRPC.MessageMedia o12 = ij.o1(message);
             if (TLRPC.TL_messageMediaPoll.class.isInstance(o12)) {
@@ -37,7 +37,7 @@ public abstract class g {
                     if (messageFwdHeader != null) {
                         B0 = m5.o(messageFwdHeader.from_id);
                     } else {
-                        B0 = ij.B0(ijVar.f23237k);
+                        B0 = ij.B0(ijVar.f23244k);
                     }
                     TLRPC.Chat M0 = qp.s1(i11).M0(Long.valueOf(-B0));
                     if (M0 != null) {
@@ -57,7 +57,7 @@ public abstract class g {
                 }
                 ArrayList<String> arrayList = tL_messageMediaPoll.poll.countries_iso2;
                 if (arrayList != null && !arrayList.isEmpty()) {
-                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) qp.s1(i11).f24927x7.O.f13555b).f24105c)) {
+                    if (!tL_messageMediaPoll.poll.countries_iso2.contains(((n0) qp.s1(i11).f24935x7.O.f13555b).f24112c)) {
                         return i10 | 4;
                     }
                 }
@@ -73,7 +73,7 @@ public abstract class g {
         int i10;
         int i11;
         if (ijVar.D == 17) {
-            TLRPC.Message message = ijVar.f23237k;
+            TLRPC.Message message = ijVar.f23244k;
             int i12 = ijVar.I1;
             TLRPC.MessageMedia o12 = ij.o1(message);
             if (TLRPC.TL_messageMediaPoll.class.isInstance(o12)) {
@@ -83,7 +83,7 @@ public abstract class g {
             }
             TLRPC.TL_messageMediaPoll tL_messageMediaPoll = (TLRPC.TL_messageMediaPoll) messageMedia;
             if (tL_messageMediaPoll != null) {
-                if (yc.a(i7, 4)) {
+                if (zc.a(i7, 4)) {
                     ArrayList arrayList = new ArrayList(tL_messageMediaPoll.poll.countries_iso2.size());
                     ArrayList<String> arrayList2 = tL_messageMediaPoll.poll.countries_iso2;
                     int size = arrayList2.size();
@@ -120,15 +120,15 @@ public abstract class g {
                         i10 = 2131747112;
                     }
                     return g0.X2(hd.a0(null, null, i10, stringBuffer, jg.g.i(1, arrayList)));
-                } else if (yc.a(i7, 1)) {
+                } else if (zc.a(i7, 1)) {
                     TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                     if (messageFwdHeader != null) {
                         B0 = m5.o(messageFwdHeader.from_id);
                     } else {
-                        B0 = ij.B0(ijVar.f23237k);
+                        B0 = ij.B0(ijVar.f23244k);
                     }
                     return g0.X2(hd.a0(null, null, 2131747117, m5.u(qp.s1(i12).M0(Long.valueOf(-B0)))));
-                } else if (yc.a(i7, 2)) {
+                } else if (zc.a(i7, 2)) {
                     return g0.X2(hd.M0(2131747114, null));
                 }
             }

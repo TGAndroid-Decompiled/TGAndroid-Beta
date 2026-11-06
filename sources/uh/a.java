@@ -18,23 +18,23 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.xq;
 public final class a extends c implements te.b {
     public final te.a d;
-    public final int[] f56801e;
-    public final Drawable f56802f;
+    public final int[] f56800e;
+    public final Drawable f56801f;
     public final TextPaint h;
-    public StaticLayout f56803n;
-    public int f56804r;
-    public int f56805s;
+    public StaticLayout f56802n;
+    public int f56803r;
+    public int f56804s;
 
     public a(Context context, f6 f6Var) {
         super(f6Var);
         this.d = new te.a(0, this, xq.h, 320L, false);
-        this.f56801e = new int[]{16842910, 16842919};
-        this.f56802f = g.h(context, 2131232488);
+        this.f56800e = new int[]{16842910, 16842919};
+        this.f56801f = g.h(context, 2131232488);
         this.h = new TextPaint(k6.P2);
-        int w02 = k6.w0(k6.f27940i6, f6Var);
-        if (this.f56818b != w02) {
-            k6.H1(this.f56817a, w02, false);
-            this.f56818b = w02;
+        int w02 = k6.w0(k6.f27941i6, f6Var);
+        if (this.f56817b != w02) {
+            k6.H1(this.f56816a, w02, false);
+            this.f56817b = w02;
         }
         b();
         c();
@@ -49,19 +49,19 @@ public final class a extends c implements te.b {
 
     @Override
     public final void a(int i7) {
-        this.f56817a.setAlpha(i7);
+        this.f56816a.setAlpha(i7);
         b();
         c();
     }
 
     public final void b() {
-        Drawable drawable = this.f56802f;
-        drawable.setAlpha((int) ((1.0f - this.d.f55395e) * this.f56819c));
+        Drawable drawable = this.f56801f;
+        drawable.setAlpha((int) ((1.0f - this.d.f55394e) * this.f56818c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.f55395e) * this.f56819c));
+        textPaint.setAlpha((int) ((1.0f - this.d.f55394e) * this.f56818c));
     }
 
     public final void d(boolean z9, boolean z10) {
@@ -71,21 +71,21 @@ public final class a extends c implements te.b {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f56817a.draw(canvas);
-        s.b(canvas, this.f56802f, 1.0f - this.d.f55395e);
-        if (this.f56803n != null) {
+        this.f56816a.draw(canvas);
+        s.b(canvas, this.f56801f, 1.0f - this.d.f55394e);
+        if (this.f56802n != null) {
             canvas.save();
             canvas.translate(g0.L(44.0f) + bounds.left, g0.L(13.66f) + bounds.top);
-            this.f56803n.draw(canvas);
+            this.f56802n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i7) {
-        if (this.f56805s != i7) {
-            this.f56805s = i7;
+        if (this.f56804s != i7) {
+            this.f56804s = i7;
             this.h.setColor(i7);
-            this.f56802f.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
+            this.f56801f.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -97,13 +97,13 @@ public final class a extends c implements te.b {
         float L = g0.L(22.33f) + rect.left;
         g0.L(27.0f);
         g0.L(44.0f);
-        s.d(this.f56802f, L, exactCenterY, 17);
+        s.d(this.f56801f, L, exactCenterY, 17);
         int width = rect.width() - g0.L(56.0f);
-        if (this.f56803n != null && this.f56804r == width) {
+        if (this.f56802n != null && this.f56803r == width) {
             return;
         }
-        this.f56804r = width;
-        this.f56803n = new StaticLayout(hd.M0(2131747183, null), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f56803r = width;
+        this.f56802n = new StaticLayout(hd.M0(2131747183, null), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override

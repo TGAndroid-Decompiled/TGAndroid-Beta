@@ -1,28 +1,60 @@
 package c8;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public abstract class zd {
-    public static final long a(long j3) {
-        long j10 = (j3 << 1) + 1;
-        int i7 = yd.a.d;
-        int i10 = yd.b.f59300a;
-        return j10;
-    }
-
-    public static final long b(long j3) {
-        long j10 = j3 << 1;
-        int i7 = yd.a.d;
-        int i10 = yd.b.f59300a;
-        return j10;
-    }
-
-    public static final long c(int i7, yd.c unit) {
-        kotlin.jvm.internal.j.e(unit, "unit");
-        if (unit.compareTo(yd.c.d) <= 0) {
-            return b(ee.a(i7, unit, yd.c.f59301b));
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String sb2;
+        int i7 = 0;
+        int i10 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i10 >= length) {
+                break;
+            }
+            Object obj = objArr[i10];
+            if (obj == null) {
+                sb2 = "null";
+            } else {
+                try {
+                    sb2 = obj.toString();
+                } catch (Exception e10) {
+                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e10);
+                    StringBuilder u10 = a8.p0.u("<", str2, " threw ");
+                    u10.append(e10.getClass().getName());
+                    u10.append(">");
+                    sb2 = u10.toString();
+                }
+            }
+            objArr[i10] = sb2;
+            i10++;
         }
-        return d(i7, unit);
-    }
-
-    public static final long d(long r5, yd.c r7) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.zd.d(long, yd.c):long");
+        StringBuilder sb3 = new StringBuilder((length * 16) + str.length());
+        int i11 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i7 >= length2 || (indexOf = str.indexOf("%s", i11)) == -1) {
+                break;
+            }
+            sb3.append((CharSequence) str, i11, indexOf);
+            sb3.append(objArr[i7]);
+            i7++;
+            i11 = indexOf + 2;
+        }
+        sb3.append((CharSequence) str, i11, str.length());
+        if (i7 < length2) {
+            sb3.append(" [");
+            sb3.append(objArr[i7]);
+            for (int i12 = i7 + 1; i12 < objArr.length; i12++) {
+                sb3.append(", ");
+                sb3.append(objArr[i12]);
+            }
+            sb3.append(']');
+        }
+        return sb3.toString();
     }
 }

@@ -4,20 +4,20 @@ import android.app.Activity;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
 public final class bw extends UndoView {
-    public final ww f44495j0;
+    public final ww f44494j0;
 
     public bw(ww wwVar, Activity activity) {
         super(activity);
-        this.f44495j0 = wwVar;
+        this.f44494j0 = wwVar;
     }
 
     @Override
     public final boolean a() {
         int i7 = 0;
         while (true) {
-            vw[] vwVarArr = this.f44495j0.f51551e0;
+            vw[] vwVarArr = this.f44494j0.f51549e0;
             if (i7 < vwVarArr.length) {
-                if (vwVarArr[i7].f50849y.k()) {
+                if (vwVarArr[i7].f50848y.k()) {
                     return false;
                 }
                 i7++;
@@ -32,13 +32,13 @@ public final class bw extends UndoView {
         if (i7 != 1 && i7 != 27) {
             return;
         }
-        ww wwVar = this.f44495j0;
+        ww wwVar = this.f44494j0;
         wwVar.M4(true, true);
         if (wwVar.R1 != null) {
             int i10 = 0;
             while (true) {
                 if (i10 < wwVar.R1.size()) {
-                    if (((TLRPC.Dialog) wwVar.R1.get(i10)).f26956id == j3) {
+                    if (((TLRPC.Dialog) wwVar.R1.get(i10)).f26957id == j3) {
                         break;
                     }
                     i10++;
@@ -48,7 +48,7 @@ public final class bw extends UndoView {
                 }
             }
             if (i10 >= 0) {
-                wwVar.f51551e0[0].d.f();
+                wwVar.f51549e0[0].d.f();
                 org.telegram.messenger.g0.h3(new q8(this, i10, (TLRPC.Dialog) wwVar.R1.remove(i10), 28));
             } else {
                 wwVar.M4(false, true);
@@ -60,12 +60,12 @@ public final class bw extends UndoView {
     @Override
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        ww wwVar = this.f44495j0;
-        UndoView[] undoViewArr = wwVar.f51652y0;
+        ww wwVar = this.f44494j0;
+        UndoView[] undoViewArr = wwVar.f51650y0;
         if (this == undoViewArr[0]) {
             UndoView undoView = undoViewArr[1];
             if (undoView == null || undoView.getVisibility() != 0) {
-                wwVar.f51631u1 = Math.max(0.0f, (org.telegram.messenger.g0.L(8.0f) + getMeasuredHeight()) - f10);
+                wwVar.f51629u1 = Math.max(0.0f, (org.telegram.messenger.g0.L(8.0f) + getMeasuredHeight()) - f10);
                 wwVar.k5();
             }
         }

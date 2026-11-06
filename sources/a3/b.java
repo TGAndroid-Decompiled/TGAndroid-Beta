@@ -65,7 +65,7 @@ public final class b extends d {
             y2.l lVar = (y2.l) h9.o.n(list);
             long j3 = lVar.h;
             if (j3 != -9223372036854775807L) {
-                long j10 = lVar.f58805n;
+                long j10 = lVar.f58804n;
                 if (j10 != -9223372036854775807L) {
                     return j10 - j3;
                 }
@@ -120,7 +120,7 @@ public final class b extends d {
             b10 = b(((y2.l) h9.o.n(list)).d);
         }
         if (b10 != -1) {
-            i11 = ((y2.l) h9.o.n(list)).f58803e;
+            i11 = ((y2.l) h9.o.n(list)).f58802e;
             i12 = b10;
         }
         int w10 = w(1, elapsedRealtime);

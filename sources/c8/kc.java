@@ -1,20 +1,24 @@
 package c8;
 
+import android.app.AppOpsManager;
+import android.content.Context;
 import android.os.Build;
-import android.widget.EdgeEffect;
+import android.os.Process;
+import android.provider.Settings;
 public abstract class kc {
-    public static float a(EdgeEffect edgeEffect) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return u0.c.b(edgeEffect);
+    public static ti.n f5747a;
+
+    public static boolean a(Context context) {
+        if (Settings.canDrawOverlays(context)) {
+            return true;
         }
-        return 0.0f;
+        return false;
     }
 
-    public static float b(EdgeEffect edgeEffect, float f10, float f11) {
-        if (Build.VERSION.SDK_INT >= 31) {
-            return u0.c.c(edgeEffect, f10, f11);
+    public static boolean b(Context context) {
+        if (Build.VERSION.SDK_INT < 26 || !context.getPackageManager().hasSystemFeature("android.software.picture_in_picture") || ((AppOpsManager) context.getSystemService("appops")).checkOpNoThrow("android:picture_in_picture", Process.myUid(), context.getPackageName()) != 0) {
+            return false;
         }
-        u0.b.a(edgeEffect, f10, f11);
-        return f10;
+        return true;
     }
 }

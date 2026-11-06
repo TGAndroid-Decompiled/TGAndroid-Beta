@@ -3,25 +3,25 @@ package org.telegram.messenger;
 import android.graphics.SurfaceTexture;
 import java.util.ArrayList;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.PhotoViewer;
-public final class le implements p51 {
-    public final int f23872a;
-    public final int f23873b;
-    public final ij f23874c;
+public final class le implements q51 {
+    public final int f23879a;
+    public final int f23880b;
+    public final ij f23881c;
     public final MediaController d;
 
     public le(MediaController mediaController, int i7, ij ijVar, int i10) {
-        this.f23872a = i10;
+        this.f23879a = i10;
         this.d = mediaController;
-        this.f23873b = i7;
-        this.f23874c = ijVar;
+        this.f23880b = i7;
+        this.f23881c = ijVar;
     }
 
     @Override
-    public final void onError(s51 s51Var, Exception exc) {
-        switch (this.f23872a) {
+    public final void onError(t51 t51Var, Exception exc) {
+        switch (this.f23879a) {
             case 0:
                 return;
             default:
@@ -32,43 +32,43 @@ public final class le implements p51 {
 
     @Override
     public final void onRenderedFirstFrame(m2.a aVar) {
-        int i7 = this.f23872a;
+        int i7 = this.f23879a;
     }
 
     @Override
     public final void onSeekFinished(m2.a aVar) {
-        int i7 = this.f23872a;
+        int i7 = this.f23879a;
     }
 
     @Override
     public final void onSeekStarted(m2.a aVar) {
-        int i7 = this.f23872a;
+        int i7 = this.f23879a;
     }
 
     @Override
     public final void onStateChanged(boolean z9, int i7) {
-        int i10 = this.f23872a;
-        int i11 = this.f23873b;
+        int i10 = this.f23879a;
+        int i11 = this.f23880b;
         switch (i10) {
             case 0:
                 MediaController mediaController = this.d;
                 ArrayList arrayList = mediaController.R0;
                 if (i11 == mediaController.m0) {
-                    ij ijVar = this.f23874c;
-                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z9 || ijVar.f23197b0 < 0.999f)) {
-                        s51 s51Var = mediaController.f21268i0;
-                        if (s51Var != null && mediaController.f21290t0 != 0.0f && (i7 == 3 || i7 == 1)) {
-                            mediaController.f21268i0.q0((int) (((float) s51Var.U()) * mediaController.f21290t0), false);
+                    ij ijVar = this.f23881c;
+                    if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z9 || ijVar.f23204b0 < 0.999f)) {
+                        t51 t51Var = mediaController.f21268i0;
+                        if (t51Var != null && mediaController.f21290t0 != 0.0f && (i7 == 3 || i7 == 1)) {
+                            mediaController.f21268i0.q0((int) (((float) t51Var.U()) * mediaController.f21290t0), false);
                             mediaController.f21290t0 = 0.0f;
                         }
                     } else {
-                        ijVar.f23197b0 = 1.0f;
+                        ijVar.f23204b0 = 1.0f;
                         qs.f(ijVar.I1).k(148, Integer.valueOf(ijVar.f1()), 0);
                         if (!mediaController.a0()) {
-                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !ij.S4(ijVar.f23237k))) {
+                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !ij.S4(ijVar.f23244k))) {
                                 mediaController.U(true);
                             } else {
-                                mediaController.q(true, mediaController.F(), ij.S4(ijVar.f23237k), false);
+                                mediaController.q(true, mediaController.F(), ij.S4(ijVar.f23244k), false);
                             }
                         }
                     }
@@ -82,7 +82,7 @@ public final class le implements p51 {
             default:
                 MediaController mediaController2 = this.d;
                 if (i11 == mediaController2.m0) {
-                    MediaController.f(mediaController2, this.f23874c, null, true, z9, i7);
+                    MediaController.f(mediaController2, this.f23881c, null, true, z9, i7);
                     return;
                 }
                 return;
@@ -91,7 +91,7 @@ public final class le implements p51 {
 
     @Override
     public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f23872a) {
+        switch (this.f23879a) {
             case 0:
                 return false;
             default:
@@ -128,10 +128,10 @@ public final class le implements p51 {
                         }
                         PipRoundVideoView pipRoundVideoView2 = mediaController.H0;
                         if (pipRoundVideoView2 != null) {
-                            if (pipRoundVideoView2.f31423c.getSurfaceTexture() != surfaceTexture) {
-                                mediaController.H0.f31423c.setSurfaceTexture(surfaceTexture);
+                            if (pipRoundVideoView2.f31424c.getSurfaceTexture() != surfaceTexture) {
+                                mediaController.H0.f31424c.setSurfaceTexture(surfaceTexture);
                             }
-                            mediaController.E0.A0(mediaController.H0.f31423c);
+                            mediaController.E0.A0(mediaController.H0.f31424c);
                         }
                     }
                     mediaController.I0 = 0;
@@ -146,13 +146,13 @@ public final class le implements p51 {
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int i7 = this.f23872a;
+        int i7 = this.f23879a;
     }
 
     @Override
     public final void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        switch (this.f23872a) {
+        switch (this.f23879a) {
             case 0:
                 return;
             default:
@@ -174,7 +174,7 @@ public final class le implements p51 {
 
     @Override
     public final void onRenderedFirstFrame() {
-        switch (this.f23872a) {
+        switch (this.f23879a) {
             case 0:
                 return;
             default:
@@ -217,7 +217,7 @@ public final class le implements p51 {
     private final void j(SurfaceTexture surfaceTexture) {
     }
 
-    private final void a(s51 s51Var, Exception exc) {
+    private final void a(t51 t51Var, Exception exc) {
     }
 
     private final void k(int i7, int i10, float f10, int i11) {

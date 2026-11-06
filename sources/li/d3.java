@@ -24,7 +24,7 @@ public final class d3 implements x4 {
         t3 t3Var = this.d;
         t3Var.f18877g4.remove(sVar);
         t3Var.f18894s3.remove(this.f18518b);
-        t3Var.f36781f3.O(true);
+        t3Var.f37160f3.O(true);
         t3Var.f18887o3.onContentChanged();
     }
 
@@ -33,16 +33,16 @@ public final class d3 implements x4 {
         String str = this.f18519c;
         document.localPath = str;
         t3 t3Var = this.d;
-        w7.G(t3Var.f18883m3).f0(str, document);
+        w7.G(t3Var.f18883m3).e0(str, document);
         s sVar = this.f18517a;
         sVar.h = document;
         sVar.f18811a = 2;
         TL_iv.PageBlock pageBlock = this.f18518b.f18389b;
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f26958id;
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f26959id;
         }
         t3Var.f18877g4.remove(sVar);
-        t3Var.f36781f3.O(false);
+        t3Var.f37160f3.O(false);
         t3Var.f18887o3.onContentChanged();
     }
 

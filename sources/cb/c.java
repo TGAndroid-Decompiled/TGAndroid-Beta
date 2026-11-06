@@ -101,8 +101,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.co0;
 import org.telegram.ui.Components.d90;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.dr0;
 import q6.m;
@@ -110,7 +110,7 @@ import sg.h;
 import sg.j1;
 import sg.l0;
 import tg.l1;
-public final class c implements SuccessContinuation, k, androidx.activity.result.b, co0, j, te.b, o0, i0, p, dr0, d90, l1, p51, za, w, OnSuccessListener {
+public final class c implements SuccessContinuation, k, androidx.activity.result.b, co0, j, te.b, o0, i0, p, dr0, d90, l1, q51, za, w, OnSuccessListener {
     public static volatile c f6038c;
     public final int f6039a;
     public Object f6040b;
@@ -147,7 +147,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     @Override
     public void C0() {
         cc k10 = ((k7) this.f6040b).k().k(false);
-        k10.f32537t = true;
+        k10.f32524t = true;
         k10.j();
     }
 
@@ -195,7 +195,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
                 oVar.E.setFocusableInTouchMode(false);
             }
         }
-        qs.e().k(qs.f25009k1, 512);
+        qs.e().k(qs.f25017k1, 512);
     }
 
     @Override
@@ -216,9 +216,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     @Override
     public void X(float f10) {
         x9 x9Var = (x9) this.f6040b;
-        l0.e(x9Var.f12538o1).k(String.valueOf(h.f54968a.indexOf(x9Var.f12555x0.getCurrentBrush())), f10);
+        l0.e(x9Var.f12538o1).k(String.valueOf(h.f54967a.indexOf(x9Var.f12555x0.getCurrentBrush())), f10);
         j1 j1Var = x9Var.f12531j1;
-        j1Var.f55019c = f10;
+        j1Var.f55018c = f10;
         x9Var.B0(j1Var, null, false);
     }
 
@@ -323,9 +323,9 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         int i7 = x9Var.f12538o1;
         h currentBrush = x9Var.f12555x0.getCurrentBrush();
         if (currentBrush == null) {
-            return l0.e(i7).f55041i;
+            return l0.e(i7).f55040i;
         }
-        return l0.e(i7).f(String.valueOf(h.f54968a.indexOf(currentBrush)), currentBrush.d());
+        return l0.e(i7).f(String.valueOf(h.f54967a.indexOf(currentBrush)), currentBrush.d());
     }
 
     @Override
@@ -485,8 +485,8 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
         y5 y5Var = (y5) this.f6040b;
         w5 w5Var = y5Var.L;
         g0.r(w5Var);
-        s51 s51Var = y5Var.D;
-        if (s51Var != null && s51Var.d0()) {
+        t51 t51Var = y5Var.D;
+        if (t51Var != null && t51Var.d0()) {
             g0.h3(w5Var);
         }
     }
@@ -1071,7 +1071,7 @@ public final class c implements SuccessContinuation, k, androidx.activity.result
     }
 
     @Override
-    public void onError(s51 s51Var, Exception exc) {
+    public void onError(t51 t51Var, Exception exc) {
     }
 
     @Override

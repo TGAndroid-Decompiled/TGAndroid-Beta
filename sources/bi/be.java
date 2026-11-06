@@ -13,7 +13,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.c20;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 public final class be extends View implements org.telegram.ui.ActionBar.a6 {
@@ -40,7 +40,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
         this.f3537c = z9;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, ceVar.f3614i1));
+        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, ceVar.f3614i1));
     }
 
     @Override
@@ -230,7 +230,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
             aeVar.f3473a = (arrayList3.size() - r82) - i11;
             long j3 = vdVar3.d;
             Paint paint = aeVar.h;
-            aeVar.f3485o = new ly0(dd.U0(jg.g.m(j3, ',', new StringBuilder("⭐️")), 0.85f, wpVarArr), 12.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
+            aeVar.f3485o = new my0(dd.U0(jg.g.m(j3, ',', new StringBuilder("⭐️")), 0.85f, wpVarArr), 12.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
             boolean z12 = beVar.f3537c;
             int i14 = ceVar.f3615j1;
             if (z12) {
@@ -250,7 +250,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
             if (this.f3537c) {
                 int i16 = i11 + 1;
                 aeVar.v = i16;
-                aeVar.f3491u = new ly0(jg.g.j(i16, ""), 10.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
+                aeVar.f3491u = new my0(jg.g.j(i16, ""), 10.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
                 if (i16 > 0 && aeVar.f3489s == null) {
                     Drawable mutate = beVar.getContext().getResources().getDrawable(2131231174).mutate();
                     aeVar.f3489s = mutate;
@@ -259,7 +259,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
                     mutate.setColorFilter(new PorterDuffColorFilter(i17, mode));
                     Drawable mutate2 = beVar.getContext().getResources().getDrawable(2131231175).mutate();
                     aeVar.f3490t = mutate2;
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, ceVar.f3614i1), mode));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, ceVar.f3614i1), mode));
                 }
             }
             if (vdVar3.f4929b) {
@@ -275,7 +275,7 @@ public final class be extends View implements org.telegram.ui.ActionBar.a6 {
                         r22 = null;
                         t6 = org.telegram.messenger.m5.t(aeVar.f3480j);
                     }
-                    aeVar.f3484n = new ly0(t6, 12.0f, r22);
+                    aeVar.f3484n = new my0(t6, 12.0f, r22);
                     beVar.invalidate();
                     i11++;
                     arrayList3 = arrayList;

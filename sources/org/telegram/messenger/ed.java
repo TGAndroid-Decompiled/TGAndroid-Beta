@@ -3,17 +3,17 @@ package org.telegram.messenger;
 import android.text.TextUtils;
 import java.io.File;
 public final class ed {
-    public String f22174a;
-    public String f22175b;
-    public String f22176c;
+    public String f22181a;
+    public String f22182b;
+    public String f22183c;
     public String d;
-    public String f22177e;
-    public String f22178f;
-    public boolean f22179g;
+    public String f22184e;
+    public String f22185f;
+    public boolean f22186g;
     public int h;
-    public int f22180i;
-    public boolean f22181j;
-    public int f22182k;
+    public int f22187i;
+    public boolean f22188j;
+    public int f22189k;
 
     public static ed a(String str) {
         String str2;
@@ -26,9 +26,9 @@ public final class ed {
             if (split.length >= 4) {
                 ?? obj = new Object();
                 boolean z9 = false;
-                obj.f22174a = split[0];
-                obj.f22175b = split[1];
-                obj.f22176c = split[2].toLowerCase();
+                obj.f22181a = split[0];
+                obj.f22182b = split[1];
+                obj.f22183c = split[2].toLowerCase();
                 obj.d = split[3];
                 if (split.length >= 5) {
                     obj.h = Utilities.z(split[4]).intValue();
@@ -38,31 +38,31 @@ public final class ed {
                 } else {
                     str2 = "";
                 }
-                obj.f22177e = str2;
+                obj.f22184e = str2;
                 if (split.length >= 7) {
                     str3 = split[6];
                 } else {
-                    str3 = obj.f22176c;
+                    str3 = obj.f22183c;
                 }
-                obj.f22178f = str3;
+                obj.f22185f = str3;
                 if (split.length >= 8) {
                     if (Utilities.z(split[7]).intValue() == 1) {
                         z9 = true;
                     }
-                    obj.f22179g = z9;
+                    obj.f22186g = z9;
                 }
                 if (split.length >= 9) {
-                    obj.f22180i = Utilities.z(split[8]).intValue();
+                    obj.f22187i = Utilities.z(split[8]).intValue();
                 }
                 if (split.length >= 10) {
-                    obj.f22182k = Utilities.z(split[9]).intValue();
+                    obj.f22189k = Utilities.z(split[9]).intValue();
                 } else {
-                    obj.f22182k = Integer.MAX_VALUE;
+                    obj.f22189k = Integer.MAX_VALUE;
                 }
-                boolean isEmpty = TextUtils.isEmpty(obj.f22177e);
+                boolean isEmpty = TextUtils.isEmpty(obj.f22184e);
                 edVar = obj;
                 if (!isEmpty) {
-                    obj.f22177e = obj.f22177e.replace("-", "_");
+                    obj.f22184e = obj.f22184e.replace("-", "_");
                     edVar = obj;
                 }
             }
@@ -72,31 +72,31 @@ public final class ed {
 
     public final String b() {
         if (this.d != null && !i() && !j()) {
-            return "local_" + this.f22176c;
+            return "local_" + this.f22183c;
         } else if (j()) {
-            return "unofficial_" + this.f22176c;
+            return "unofficial_" + this.f22183c;
         } else {
-            return this.f22176c;
+            return this.f22183c;
         }
     }
 
     public final String c() {
-        return this.f22176c.replace("_", "-");
+        return this.f22183c.replace("_", "-");
     }
 
     public final File d() {
         if (j()) {
-            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_base_"), this.f22176c, ".xml"));
+            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_base_"), this.f22183c, ".xml"));
         }
         return null;
     }
 
     public final File e() {
         if (i()) {
-            return new File(t0.h(), a8.p0.s(new StringBuilder("remote_"), this.f22176c, ".xml"));
+            return new File(t0.h(), a8.p0.s(new StringBuilder("remote_"), this.f22183c, ".xml"));
         }
         if (j()) {
-            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_"), this.f22176c, ".xml"));
+            return new File(t0.h(), a8.p0.s(new StringBuilder("unofficial_"), this.f22183c, ".xml"));
         }
         if (!TextUtils.isEmpty(this.d)) {
             return new File(this.d);
@@ -105,16 +105,16 @@ public final class ed {
     }
 
     public final String f() {
-        String str = this.f22177e;
+        String str = this.f22184e;
         if (str == null) {
             str = "";
         }
-        TextUtils.isEmpty(this.f22178f);
-        return this.f22174a + "|" + this.f22175b + "|" + this.f22176c + "|" + this.d + "|" + this.h + "|" + str + "|" + this.f22178f + "|" + (this.f22179g ? 1 : 0) + "|" + this.f22180i + "|" + this.f22182k;
+        TextUtils.isEmpty(this.f22185f);
+        return this.f22181a + "|" + this.f22182b + "|" + this.f22183c + "|" + this.d + "|" + this.h + "|" + str + "|" + this.f22185f + "|" + (this.f22186g ? 1 : 0) + "|" + this.f22187i + "|" + this.f22189k;
     }
 
     public final boolean g() {
-        if (j() && !TextUtils.isEmpty(this.f22177e) && !this.f22177e.equals(this.f22176c)) {
+        if (j() && !TextUtils.isEmpty(this.f22184e) && !this.f22184e.equals(this.f22183c)) {
             return true;
         }
         return false;

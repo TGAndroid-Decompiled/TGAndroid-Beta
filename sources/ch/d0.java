@@ -44,12 +44,12 @@ public abstract class d0 extends ys implements a6 {
         setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(12.0f));
         r6.V(this, k6.Ie, f6Var);
         r6.H(this, k6.Vc, f6Var);
-        r6.D(this, k6.f27948ig, f6Var);
+        r6.D(this, k6.f27949ig, f6Var);
         int i11 = k6.Je;
         r6.m(this, 34, i11, f6Var);
         r6.E(this, i11, f6Var);
         r6.m(this, 30, k6.Ke, f6Var);
-        r6.m(this, 36, k6.f27967jg, f6Var);
+        r6.m(this, 36, k6.f27968jg, f6Var);
         if (i10 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -94,7 +94,7 @@ public abstract class d0 extends ys implements a6 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.Z1.f38757b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.Z1.f38750b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -151,7 +151,7 @@ public abstract class d0 extends ys implements a6 {
         try {
             setHintColor(k6.w0(k6.Je, f6Var));
             setCursorColor(k6.w0(k6.Ke, f6Var));
-            setHandlesColor(k6.w0(k6.f27967jg, f6Var));
+            setHandlesColor(k6.w0(k6.f27968jg, f6Var));
             invalidate();
         } catch (Exception e10) {
             a8.g(e10, true);

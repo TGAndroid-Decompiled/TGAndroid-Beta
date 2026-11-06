@@ -1,6 +1,6 @@
 package a0;
 
-import c8.tc;
+import c8.uc;
 public final class k {
     public int[] f27a;
     public int f28b;
@@ -13,9 +13,9 @@ public final class k {
             if (i7 == i10) {
                 int[] iArr = this.f27a;
                 int[] iArr2 = kVar.f27a;
-                ud.e a10 = tc.a(0, i10);
-                int i11 = a10.f56427a;
-                int i12 = a10.f56428b;
+                ud.e a10 = uc.a(0, i10);
+                int i11 = a10.f56426a;
+                int i12 = a10.f56427b;
                 if (i11 <= i12) {
                     while (iArr[i11] == iArr2[i11]) {
                         if (i11 != i12) {

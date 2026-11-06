@@ -13,14 +13,14 @@ public final class g extends q6.h {
 
     public g(Context context, Looper looper, q3 q3Var, z5.b bVar, k kVar, l lVar) {
         super(context, looper, 68, q3Var, kVar, lVar, 0);
-        bVar = bVar == null ? z5.b.f59609c : bVar;
+        bVar = bVar == null ? z5.b.f59608c : bVar;
         ?? obj = new Object();
-        obj.f57152a = Boolean.FALSE;
-        z5.b bVar2 = z5.b.f59609c;
+        obj.f57151a = Boolean.FALSE;
+        z5.b bVar2 = z5.b.f59608c;
         bVar.getClass();
-        obj.f57152a = Boolean.valueOf(bVar.f59610a);
-        obj.f57153b = bVar.f59611b;
-        obj.f57153b = e.a();
+        obj.f57151a = Boolean.valueOf(bVar.f59609a);
+        obj.f57152b = bVar.f59610b;
+        obj.f57152b = e.a();
         this.F = new z5.b(obj);
     }
 
@@ -47,8 +47,8 @@ public final class g extends q6.h {
         bVar.getClass();
         Bundle bundle = new Bundle();
         bundle.putString("consumer_package", null);
-        bundle.putBoolean("force_save_dialog", bVar.f59610a);
-        bundle.putString("log_session_id", bVar.f59611b);
+        bundle.putBoolean("force_save_dialog", bVar.f59609a);
+        bundle.putString("log_session_id", bVar.f59610b);
         return bundle;
     }
 

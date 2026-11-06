@@ -30,7 +30,7 @@ public final class d {
     public long f6226l;
 
     public static d a(i5 i5Var, boolean z9, boolean z10) {
-        int i7 = p10.f24459s0;
+        int i7 = p10.f24467s0;
         ?? obj = new Object();
         obj.f6218b = new Rect();
         obj.f6219c = new ArrayList();
@@ -93,10 +93,10 @@ public final class d {
         ImageReceiver imageReceiver = this.f6224j;
         if (imageReceiver != null && this.f6223i) {
             imageReceiver.P();
-            TLRPC.Document document2 = i5Var.f34445e;
+            TLRPC.Document document2 = i5Var.f34492e;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
             String V = ij.V(document2, null, null);
-            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(i7).f25825r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
+            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(i7).f25833r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
                 if (z11) {
                     StringBuilder sb2 = new StringBuilder();
                     int i10 = f6216m;
@@ -119,7 +119,7 @@ public final class d {
                 z10 = false;
             }
             if (!z10) {
-                String str = p10.i(i7).f24467d0;
+                String str = p10.i(i7).f24475d0;
                 if (str != null && (tL_messages_stickerSet = ui.b0(i7).p0(str)) == null) {
                     tL_messages_stickerSet = ui.b0(i7).n0(str);
                 }

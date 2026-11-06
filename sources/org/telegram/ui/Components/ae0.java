@@ -20,25 +20,25 @@ public abstract class ae0 extends FrameLayout {
     public float J;
     public boolean K;
     public ob0 L;
-    public int f31787a;
-    public PhotoViewer f31788b;
-    public LinearLayout f31789c;
+    public int f31783a;
+    public PhotoViewer f31784b;
+    public LinearLayout f31785c;
     public TextView d;
-    public TextView f31790e;
-    public rt f31791f;
+    public TextView f31786e;
+    public rt f31787f;
     public bi.ec h;
-    public RadialProgressView f31792n;
-    public View f31793r;
-    public String f31794s;
-    public ArrayList f31795w;
-    public String f31796x;
-    public boolean f31797y;
+    public RadialProgressView f31788n;
+    public View f31789r;
+    public String f31790s;
+    public ArrayList f31791w;
+    public String f31792x;
+    public boolean f31793y;
 
     public static void a(org.telegram.ui.cq0 cq0Var, String str) {
         String str2;
         double ceil;
         int videoDuration = cq0Var.getVideoDuration() / 1000;
-        ArrayList arrayList = cq0Var.f31795w;
+        ArrayList arrayList = cq0Var.f31791w;
         arrayList.clear();
         if (videoDuration > 15) {
             String[] split = str.split("\\|");
@@ -84,7 +84,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final boolean d() {
-        return this.f31797y;
+        return this.f31793y;
     }
 
     @Override
@@ -96,7 +96,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final boolean e() {
-        if (this.f31792n.getVisibility() != 0) {
+        if (this.f31788n.getVisibility() != 0) {
             ti.o c10 = l2.i.d().c();
             if (c10 != null) {
                 c10.b();
@@ -104,8 +104,8 @@ public abstract class ae0 extends FrameLayout {
                 return true;
             }
             this.h.setVisibility(0);
-            PhotoViewer photoViewer = this.f31788b;
-            if (photoViewer.D != null && photoViewer.f41391f0 != null) {
+            PhotoViewer photoViewer = this.f31784b;
+            if (photoViewer.D != null && photoViewer.f41390f0 != null) {
                 photoViewer.T0();
                 photoViewer.O8.g(photoViewer.D, null, true);
                 return true;
@@ -115,7 +115,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final void f() {
-        if (this.G && this.f31797y) {
+        if (this.G && this.f31793y) {
             h("pauseVideo();");
             this.G = false;
             b(true);
@@ -123,7 +123,7 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public final void g() {
-        if (!this.G && this.f31797y) {
+        if (!this.G && this.f31793y) {
             h("playVideo();");
             this.G = true;
             b(false);
@@ -159,11 +159,11 @@ public abstract class ae0 extends FrameLayout {
     }
 
     public WebView getWebView() {
-        return this.f31791f;
+        return this.f31787f;
     }
 
     public final void h(String str) {
-        this.f31791f.evaluateJavascript(str, null);
+        this.f31787f.evaluateJavascript(str, null);
     }
 
     public final void i(long j3) {
@@ -181,7 +181,7 @@ public abstract class ae0 extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        rt rtVar = this.f31791f;
+        rt rtVar = this.f31787f;
         if (rtVar.getParent() == this) {
             TLRPC.WebPage webPage = this.D;
             int i11 = webPage.embed_width;
@@ -211,8 +211,8 @@ public abstract class ae0 extends FrameLayout {
 
     public void setPlaybackSpeed(float f10) {
         this.E = f10;
-        if (this.f31792n.getVisibility() != 0) {
-            if (this.f31797y) {
+        if (this.f31788n.getVisibility() != 0) {
+            if (this.f31793y) {
                 h("setPlaybackSpeed(" + f10 + ");");
                 return;
             }

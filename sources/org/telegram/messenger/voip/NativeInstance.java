@@ -81,19 +81,19 @@ public class NativeInstance {
     }
 
     public static NativeInstance make(String str, Instance.Config config, String str2, Instance.Endpoint[] endpointArr, Instance.Proxy proxy, int i7, Instance.EncryptionKey encryptionKey, VideoSink videoSink, long j3, AudioLevelsCallback audioLevelsCallback) {
-        if (r2.f25191a) {
+        if (r2.f25199a) {
             a8.b("create new tgvoip instance, version " + str);
         }
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.persistentStateFilePath = str2;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;
-        Point point = org.telegram.messenger.g0.f22537q;
+        Point point = org.telegram.messenger.g0.f22544q;
         nativeInstance.nativePtr = makeNativeInstance(str, nativeInstance, config, str2, endpointArr, proxy, i7, encryptionKey, videoSink, j3, Math.min(point.x, point.y) / Math.max(point.x, point.y));
         return nativeInstance;
     }
 
     public static NativeInstance makeGroup(String str, long j3, boolean z9, boolean z10, PayloadCallback payloadCallback, AudioLevelsCallback audioLevelsCallback, VideoSourcesCallback videoSourcesCallback, RequestBroadcastPartCallback requestBroadcastPartCallback, RequestBroadcastPartCallback requestBroadcastPartCallback2, RequestCurrentTimeCallback requestCurrentTimeCallback, boolean z11) {
-        ContextUtils.initialize(org.telegram.messenger.t0.f25555b);
+        ContextUtils.initialize(org.telegram.messenger.t0.f25563b);
         NativeInstance nativeInstance = new NativeInstance();
         nativeInstance.payloadCallback = payloadCallback;
         nativeInstance.audioLevelsCallback = audioLevelsCallback;

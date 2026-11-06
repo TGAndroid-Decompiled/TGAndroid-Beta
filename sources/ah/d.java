@@ -106,7 +106,7 @@ public final class d implements View.OnClickListener {
             case 12:
                 if (((sc) ((a) this.f1066b).f1058c).f4724f > 0 && (Q = LaunchActivity.Q()) != 0) {
                     ?? obj = new Object();
-                    obj.f27420a = true;
+                    obj.f27421a = true;
                     Q.showAsSheet(new dd(), obj);
                     return;
                 }
@@ -183,7 +183,7 @@ public final class d implements View.OnClickListener {
                 ((af) this.f1066b).run();
                 return;
             case 28:
-                ChatActivityEnterView.e(((jd) ((k0) this.f1066b).d).f34908a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.e(((jd) ((k0) this.f1066b).d).f34934a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             default:
                 ((d0) this.f1066b).run();

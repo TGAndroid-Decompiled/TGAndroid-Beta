@@ -1,6 +1,16 @@
 package c8;
 public abstract class zc {
-    public static int a(android.content.Context r15, java.lang.String r16, java.lang.String r17) {
-        throw new UnsupportedOperationException("Method not decompiled: c8.zc.a(android.content.Context, java.lang.String, java.lang.String):int");
+    public static boolean a(int i7, int i10) {
+        if ((i7 & i10) != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static int b(int i7, int i10, boolean z9) {
+        if (z9) {
+            return i7 | i10;
+        }
+        return i7 & (~i10);
     }
 }

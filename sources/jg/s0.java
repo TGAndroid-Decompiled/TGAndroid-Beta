@@ -58,8 +58,8 @@ public abstract class s0 extends c {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
-        int i11 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i11 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         boolean z9 = true;
         if (i11 == 0) {
             TLRPC.TL_messageMediaVenue H = H(i7);

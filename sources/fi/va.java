@@ -66,18 +66,18 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.cp;
-import org.telegram.ui.Components.d41;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.e41;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.jd0;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.ld0;
 import org.telegram.ui.Components.ob0;
-import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.rd0;
-import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.sd0;
-import org.telegram.ui.Components.uy0;
+import org.telegram.ui.Components.t51;
+import org.telegram.ui.Components.vy0;
 import org.telegram.ui.Components.x60;
 import org.telegram.ui.Components.xp;
 import org.telegram.ui.Components.xq;
@@ -151,7 +151,7 @@ public final class va implements ls {
     public final k3 U0;
     public int U1;
     public boolean V;
-    public final q71 V0;
+    public final r71 V0;
     public boolean V1;
     public boolean W;
     public final m3 W0;
@@ -316,7 +316,7 @@ public final class va implements ls {
         ua uaVar = new ua(this, activity);
         this.f12975n = uaVar;
         d9 d9Var = new d9(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f54098a;
+        WeakHashMap weakHashMap = r0.i0.f54097a;
         r0.a0.i(uaVar, d9Var);
         this.f12975n.setFocusable(true);
         this.f12975n.setImportantForAccessibility(2);
@@ -376,12 +376,12 @@ public final class va implements ls {
         this.f12959h0.setClipToOutline(true);
         u8 u8Var = new u8(this, 14);
         ?? view = new View(activity);
-        view.f37645a = new TextPaint(1);
-        view.f37646b = new TextPaint(1);
+        view.f37605a = new TextPaint(1);
+        view.f37606b = new TextPaint(1);
         xq xqVar = xq.h;
-        view.f37652s = new org.telegram.ui.Components.w5((View) view, 0L, 350L, xqVar);
+        view.f37612s = new org.telegram.ui.Components.w5((View) view, 0L, 350L, xqVar);
         view.I = new ob0(view, 4);
-        view.f37655y = u8Var;
+        view.f37615y = u8Var;
         this.C1 = view;
         ja jaVar = new ja(this, activity, this.f12988r0, this.f12992s0);
         this.X0 = jaVar;
@@ -626,7 +626,7 @@ public final class va implements ls {
         i6Var.u(-1);
         i6Var.x(org.telegram.messenger.g0.o());
         i6Var.setCallback(view2);
-        i6Var.f34477b = 1;
+        i6Var.f34508b = 1;
         view2.a(0L, false);
         this.J0 = view2;
         h0(false, false);
@@ -673,15 +673,15 @@ public final class va implements ls {
         m3Var5.K = Layout.Alignment.ALIGN_CENTER;
         this.W0 = m3Var5;
         this.f12968k0.addView(m3Var5, c8.ha.d(-1, -1.0f, 80, 0.0f, 0.0f, 0.0f, 100.0f));
-        q71 q71Var = new q71(activity);
-        this.V0 = q71Var;
-        q71Var.M = false;
-        q71Var.setAlpha(0.0f);
+        r71 r71Var = new r71(activity);
+        this.V0 = r71Var;
+        r71Var.M = false;
+        r71Var.setAlpha(0.0f);
         this.f12968k0.addView(this.V0, c8.ha.d(-1, 50.0f, 81, 0.0f, 0.0f, 0.0f, 108.0f));
         this.V0.setDelegate(new d9(this, 4));
-        q71 q71Var2 = this.V0;
+        r71 r71Var2 = this.V0;
         this.T1 = 0.0f;
-        q71Var2.b(false, 0.0f);
+        r71Var2.b(false, 0.0f);
         q6 q6Var = new q6(activity, i7, new u8(this, 12));
         this.D0 = q6Var;
         q6Var.f12666c = new v8(this, 9);
@@ -975,7 +975,7 @@ public final class va implements ls {
     public final boolean I() {
         i3 i3Var;
         if (!this.W && (i3Var = this.M0) != null) {
-            if (i3Var.getTranslationY() < (this.f12975n.getMeasuredHeight() - ((int) (org.telegram.messenger.g0.f22537q.y * 0.35f))) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f22531m)) {
+            if (i3Var.getTranslationY() < (this.f12975n.getMeasuredHeight() - ((int) (org.telegram.messenger.g0.f22544q.y * 0.35f))) - (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + org.telegram.messenger.g0.f22538m)) {
                 return true;
             }
             return false;
@@ -1179,7 +1179,7 @@ public final class va implements ls {
         t5 t5Var = this.f12979o1;
         if (t5Var != null) {
             di.y6 P1 = qp.s1(t5Var.f12854a).P1();
-            TL_stories.PeerStories peerStories = (TL_stories.PeerStories) P1.f9969i.f(p10.i(P1.f9963a).f24478n);
+            TL_stories.PeerStories peerStories = (TL_stories.PeerStories) P1.f9969i.f(p10.i(P1.f9963a).f24486n);
             if (peerStories != null) {
                 i7 = peerStories.stories.size();
             } else {
@@ -1190,7 +1190,7 @@ public final class va implements ls {
         }
         x9 x9Var = this.f13002v1;
         if (x9Var != null && (u0Var = x9Var.f12555x0.d) != null) {
-            u0Var.postRunnable(u0Var.f55127x);
+            u0Var.postRunnable(u0Var.f55126x);
         }
         ja jaVar = this.X0;
         if (jaVar != null) {
@@ -1201,7 +1201,7 @@ public final class va implements ls {
             z0Var.d = true;
             v0 v0Var = new v0(z0Var, 1);
             yr a02 = yr.a0(z0Var.f13229a);
-            a02.f26688a.c(new bi.u7((Object) a02, false, (Object) v0Var, 3));
+            a02.f26696a.c(new bi.u7((Object) a02, false, (Object) v0Var, 3));
         }
     }
 
@@ -1351,7 +1351,7 @@ public final class va implements ls {
             this.F.e();
         } else {
             this.J = 0;
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             rectF.set(0.0f, org.telegram.messenger.g0.L(100.0f), point.x, org.telegram.messenger.g0.L(100.0f) + point.y);
             this.G = org.telegram.messenger.g0.L(8.0f);
         }
@@ -1408,7 +1408,7 @@ public final class va implements ls {
             this.F.e();
         } else {
             this.J = 0;
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             rectF.set(0.0f, org.telegram.messenger.g0.L(100.0f), point.x, org.telegram.messenger.g0.L(100.0f) + point.y);
             this.G = org.telegram.messenger.g0.L(8.0f);
         }
@@ -1512,7 +1512,7 @@ public final class va implements ls {
             this.F.e();
         } else {
             this.J = 0;
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             rectF.set(0.0f, org.telegram.messenger.g0.L(100.0f), point.x, org.telegram.messenger.g0.L(100.0f) + point.y);
             this.G = org.telegram.messenger.g0.L(8.0f);
         }
@@ -1627,7 +1627,7 @@ public final class va implements ls {
             org.telegram.messenger.g0.m0 = false;
             canvas.restore();
             Paint paint = new Paint(2);
-            g51 textureView = this.X0.getTextureView();
+            h51 textureView = this.X0.getTextureView();
             if (e7Var.K && !e7Var.f11918u && textureView != null) {
                 Bitmap bitmap = textureView.getBitmap();
                 Matrix transform = textureView.getTransform(null);
@@ -1674,10 +1674,10 @@ public final class va implements ls {
                 x9 x9Var2 = this.f13002v1;
                 x9Var2.f12543r0 = true;
                 j5 j5Var = x9Var2.A0;
-                j5Var.f55524a = true;
+                j5Var.f55523a = true;
                 j5Var.draw(canvas);
                 x9 x9Var3 = this.f13002v1;
-                x9Var3.A0.f55524a = false;
+                x9Var3.A0.f55523a = false;
                 x9Var3.f12543r0 = false;
                 canvas.restore();
             }
@@ -1714,7 +1714,7 @@ public final class va implements ls {
         int size;
         char c10;
         View[] viewPages;
-        d41[] d41VarArr;
+        e41[] e41VarArr;
         s8 s8Var = this.f12984q0;
         BitmapDrawable bitmapDrawable = null;
         if (s8Var != null) {
@@ -1746,7 +1746,7 @@ public final class va implements ls {
         }
         e7 e7Var = this.K1;
         int i11 = this.f12942c;
-        if ((e7Var == null || (!e7Var.f11892g && e7Var.J0 == 0)) && (o4 = qp.s1(i11).f24780h0.o()) != null && o4.a(i11, A())) {
+        if ((e7Var == null || (!e7Var.f11892g && e7Var.J0 == 0)) && (o4 = qp.s1(i11).f24788h0.o()) != null && o4.a(i11, A())) {
             g0(o4, false);
             return;
         }
@@ -1757,7 +1757,7 @@ public final class va implements ls {
             CharSequence text = laVar.getText();
             if (text instanceof Spannable) {
                 Spannable spannable = (Spannable) text;
-                if (((uy0[]) spannable.getSpans(0, text.length(), uy0.class)).length > 0 || ((URLSpan[]) spannable.getSpans(0, text.length(), URLSpan.class)).length > 0) {
+                if (((vy0[]) spannable.getSpans(0, text.length(), vy0.class)).length > 0 || ((URLSpan[]) spannable.getSpans(0, text.length(), URLSpan.class)).length > 0) {
                     new hc(this.f12975n, bVar).Q(2131624345, 36, org.telegram.messenger.g0.S2(hd.M0(2131744582, null), org.telegram.ui.ActionBar.k6.Uc, 0, new u8(this, 27), bVar)).k(true);
                     int i12 = -this.U1;
                     this.U1 = i12;
@@ -1790,10 +1790,10 @@ public final class va implements ls {
             CharSequence text2 = laVar.getText();
             ArrayList arrayList2 = new ArrayList();
             if (text2 instanceof Spanned) {
-                for (d41 d41Var : (d41[]) ((Spanned) text2).getSpans(0, text2.length(), d41.class)) {
-                    if (d41Var != null) {
+                for (e41 e41Var : (e41[]) ((Spanned) text2).getSpans(0, text2.length(), e41.class)) {
+                    if (e41Var != null) {
                         try {
-                            TLRPC.User a22 = qp.s1(i11).a2(Long.valueOf(Long.parseLong(d41Var.getURL())));
+                            TLRPC.User a22 = qp.s1(i11).a2(Long.valueOf(Long.parseLong(e41Var.getURL())));
                             if (a22 != null && !t10.B(a22) && t10.n(a22) != null && !arrayList2.contains(a22)) {
                                 arrayList2.add(t10.n(a22));
                             }
@@ -1816,7 +1816,7 @@ public final class va implements ls {
                             TLObject f22 = qp.s1(i11).f2(charSequence);
                             if (f22 instanceof TLRPC.User) {
                                 TLRPC.User user = (TLRPC.User) f22;
-                                if (!user.bot && !t10.B(user) && user.f27101id != 777000 && !t10.z(user) && !arrayList2.contains(charSequence)) {
+                                if (!user.bot && !t10.B(user) && user.f27102id != 777000 && !t10.z(user) && !arrayList2.contains(charSequence)) {
                                     arrayList2.add(charSequence);
                                 }
                             }
@@ -1832,7 +1832,7 @@ public final class va implements ls {
                     TLObject f23 = qp.s1(i11).f2(charSequence2);
                     if (f23 instanceof TLRPC.User) {
                         TLRPC.User user2 = (TLRPC.User) f23;
-                        if (!user2.bot && !t10.B(user2) && user2.f27101id != 777000 && !t10.z(user2) && !arrayList2.contains(charSequence2)) {
+                        if (!user2.bot && !t10.B(user2) && user2.f27102id != 777000 && !t10.z(user2) && !arrayList2.contains(charSequence2)) {
                             arrayList2.add(charSequence2);
                         }
                     }
@@ -1898,7 +1898,7 @@ public final class va implements ls {
         } else {
             this.F = null;
             this.J = 0;
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             rectF.set(0.0f, org.telegram.messenger.g0.L(100.0f), point.x, org.telegram.messenger.g0.L(100.0f) + point.y);
             this.G = org.telegram.messenger.g0.L(8.0f);
         }
@@ -1927,8 +1927,8 @@ public final class va implements ls {
                     xp xpVar = new xp(new ColorDrawable(-14540254), mutate);
                     int L = org.telegram.messenger.g0.L(64.0f);
                     int L2 = org.telegram.messenger.g0.L(64.0f);
-                    xpVar.f40318e = L;
-                    xpVar.f40319f = L2;
+                    xpVar.f40334e = L;
+                    xpVar.f40335f = L2;
                     this.A0.setCameraThumb(xpVar);
                     if (activity.shouldShowRequestPermissionRationale("android.permission.CAMERA")) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, activity, this.f12934a);
@@ -1936,7 +1936,7 @@ public final class va implements ls {
                         alertDialog$Builder.m(2131624116, 72, org.telegram.ui.ActionBar.k6.x0(null, i7, false), null);
                         alertDialog$Builder.n(i7, null);
                         SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.M0(2131747307, null));
-                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                         u1Var.T = X2;
                         alertDialog$Builder.k(hd.M0(2131747299, null), new d9(this, 12));
                         alertDialog$Builder.h(hd.M0(2131751772, null), null);
@@ -2009,10 +2009,10 @@ public final class va implements ls {
     }
 
     public final void d() {
-        qs.e().b(this, qs.f25049r2);
+        qs.e().b(this, qs.f25057r2);
         int i7 = this.f12942c;
-        qs.f(i7).b(this, qs.f25099y5);
-        qs.f(i7).b(this, qs.f24959b3);
+        qs.f(i7).b(this, qs.f25107y5);
+        qs.f(i7).b(this, qs.f24967b3);
     }
 
     public final void d0(String str) {
@@ -2072,7 +2072,7 @@ public final class va implements ls {
         z9 = false;
         z9 = false;
         z9 = false;
-        if (i7 == qs.f25049r2) {
+        if (i7 == qs.f25057r2) {
             g6 g6Var = this.O0;
             if (g6Var != null) {
                 g6Var.h();
@@ -2080,20 +2080,20 @@ public final class va implements ls {
             if (this.f12974m2 != null && MediaController.f21242b2 != null) {
                 for (int i11 = 0; i11 < MediaController.f21242b2.size(); i11++) {
                     we weVar = (we) MediaController.f21242b2.get(i11);
-                    int i12 = weVar.f26286a;
+                    int i12 = weVar.f26294a;
                     we weVar2 = this.f12974m2;
-                    if (i12 == weVar2.f26286a && weVar.f26287b == weVar2.f26287b) {
+                    if (i12 == weVar2.f26294a && weVar.f26295b == weVar2.f26295b) {
                         this.f12974m2 = weVar;
                         return;
                     }
                 }
             }
-        } else if (i7 == qs.f25099y5) {
+        } else if (i7 == qs.f25107y5) {
             g6 g6Var2 = this.O0;
             if (g6Var2 != null && !this.V1) {
                 g6Var2.h();
             }
-        } else if (i7 == qs.f24959b3) {
+        } else if (i7 == qs.f24967b3) {
             int i13 = this.f12953f0;
             int i14 = this.f12942c;
             if (i13 == 1) {
@@ -2181,7 +2181,7 @@ public final class va implements ls {
             if (z9) {
                 height = 0.0f;
             } else {
-                height = (uaVar.getHeight() - this.M0.g()) + (org.telegram.messenger.g0.f22532n * 2.5f);
+                height = (uaVar.getHeight() - this.M0.g()) + (org.telegram.messenger.g0.f22539n * 2.5f);
             }
             Math.max(1, uaVar.getHeight());
             i3 i3Var3 = this.M0;
@@ -2193,10 +2193,10 @@ public final class va implements ls {
             }
             this.f12970k2 = z10;
             if (z9) {
-                r1.g gVar2 = new r1.g(i3Var3, r1.g.f54159p, height);
+                r1.g gVar2 = new r1.g(i3Var3, r1.g.f54158p, height);
                 this.f12980o2 = gVar2;
-                gVar2.f54175m.a(0.75f);
-                this.f12980o2.f54175m.b(350.0f);
+                gVar2.f54174m.a(0.75f);
+                this.f12980o2.f54174m.b(350.0f);
                 this.f12980o2.a(new f9(this, height, 0));
                 this.f12980o2.h();
             } else {
@@ -2233,14 +2233,14 @@ public final class va implements ls {
             zg0Var2.N(i7, false, false);
         } else if (z9) {
             zg0 zg0Var3 = this.f12954f1;
-            if (zg0Var3.f40950a0 > 20) {
+            if (zg0Var3.f40970a0 > 20) {
                 zg0Var3.N(0, false, false);
             }
             this.f12954f1.P(20);
             this.f12954f1.start();
         } else {
             zg0 zg0Var4 = this.f12954f1;
-            int i10 = zg0Var4.f40950a0;
+            int i10 = zg0Var4.f40970a0;
             if (i10 != 0 && i10 < 43) {
                 zg0Var4.P(43);
                 this.f12954f1.start();
@@ -2257,7 +2257,7 @@ public final class va implements ls {
         na naVar = this.f12987r;
         if (z9) {
             this.P.d();
-            qs.e().k(qs.f25004j1, 512);
+            qs.e().k(qs.f25012j1, 512);
             this.L = Float.valueOf(this.K);
             ValueAnimator ofFloat = ValueAnimator.ofFloat(this.I, f10);
             this.E = ofFloat;
@@ -2576,8 +2576,8 @@ public final class va implements ls {
     public final void i0(boolean z9) {
         Integer num;
         float f10;
-        q71 q71Var = this.V0;
-        if ((q71Var.getTag() != null && z9) || (q71Var.getTag() == null && !z9)) {
+        r71 r71Var = this.V0;
+        if ((r71Var.getTag() != null && z9) || (r71Var.getTag() == null && !z9)) {
             if (z9) {
                 Runnable runnable = this.f12951e2;
                 if (runnable != null) {
@@ -2599,12 +2599,12 @@ public final class va implements ls {
         } else {
             num = null;
         }
-        q71Var.setTag(num);
+        r71Var.setTag(num);
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.f12955f2 = animatorSet2;
         animatorSet2.setDuration(180L);
         if (z9) {
-            q71Var.setVisibility(0);
+            r71Var.setVisibility(0);
         }
         AnimatorSet animatorSet3 = this.f12955f2;
         Property property = View.ALPHA;
@@ -2613,7 +2613,7 @@ public final class va implements ls {
         } else {
             f10 = 0.0f;
         }
-        animatorSet3.playTogether(ObjectAnimator.ofFloat(q71Var, property, f10));
+        animatorSet3.playTogether(ObjectAnimator.ofFloat(r71Var, property, f10));
         this.f12955f2.addListener(new ch.y(13, this, z9));
         this.f12955f2.start();
         if (z9) {
@@ -2851,7 +2851,7 @@ public final class va implements ls {
         int i7;
         zg0 zg0Var = this.f12960h1;
         if (zg0Var != null) {
-            int[] iArr = zg0Var.f40956e;
+            int[] iArr = zg0Var.f40976e;
             int i10 = 0;
             if (z9) {
                 e7 e7Var = this.K1;
@@ -2942,22 +2942,22 @@ public final class va implements ls {
                     return;
                 }
                 this.f12948e = true;
-                s51 s51Var = jaVar.D;
-                if (s51Var != null) {
-                    s51Var.g0();
+                t51 t51Var = jaVar.D;
+                if (t51Var != null) {
+                    t51Var.g0();
                     jaVar.D.m0();
                     jaVar.D = null;
                 }
-                s51 s51Var2 = jaVar.f13195y;
-                if (s51Var2 != null) {
-                    j3 = s51Var2.S();
+                t51 t51Var2 = jaVar.f13195y;
+                if (t51Var2 != null) {
+                    j3 = t51Var2.S();
                     jaVar.f13195y.g0();
                     jaVar.f13195y.m0();
                     jaVar.f13195y = null;
                 }
-                s51 s51Var3 = jaVar.f13169e;
-                if (s51Var3 != null) {
-                    j3 = s51Var3.S();
+                t51 t51Var3 = jaVar.f13169e;
+                if (t51Var3 != null) {
+                    j3 = t51Var3.S();
                     jaVar.f13169e.g0();
                     jaVar.f13169e.m0();
                     jaVar.f13169e = null;
@@ -2975,10 +2975,10 @@ public final class va implements ls {
                 this.f12975n.setBackgroundColor(0);
                 this.f12940b1.b(false, true);
             }
-            qs.e().n(this, qs.f25049r2);
+            qs.e().n(this, qs.f25057r2);
             int i10 = this.f12942c;
-            qs.f(i10).n(this, qs.f25099y5);
-            qs.f(i10).n(this, qs.f24959b3);
+            qs.f(i10).n(this, qs.f25107y5);
+            qs.f(i10).n(this, qs.f24967b3);
         }
     }
 
@@ -3025,7 +3025,7 @@ public final class va implements ls {
             if (qp.e1().getInt("storyhint2", 0) < 1) {
                 this.W0.w();
                 qp.e1().edit().putInt("storyhint2", qp.e1().getInt("storyhint2", 0) + 1).apply();
-            } else if ((!b1.q(this.B0.getContext()) || !qp.e1().getBoolean("dualcam", b1.p(org.telegram.messenger.t0.f25555b, false))) && this.B0.f11636a && qp.e1().getInt("storydualhint", 0) < 2) {
+            } else if ((!b1.q(this.B0.getContext()) || !qp.e1().getBoolean("dualcam", b1.p(org.telegram.messenger.t0.f25563b, false))) && this.B0.f11636a && qp.e1().getInt("storydualhint", 0) < 2) {
                 this.l1.w();
             }
             if (this.C0 == null) {
@@ -3054,7 +3054,7 @@ public final class va implements ls {
                     q10 = this.X0.getPhotoBitmap();
                 } else {
                     d9 d9Var = new d9(this, 10);
-                    Point point = org.telegram.messenger.g0.f22537q;
+                    Point point = org.telegram.messenger.g0.f22544q;
                     q10 = e7.q(d9Var, point.x, point.y, 0, true);
                 }
                 bitmap = q10;
@@ -3062,7 +3062,7 @@ public final class va implements ls {
                 bitmap = null;
             }
             if (bitmap != null || this.K1.K) {
-                g51 textureView = this.X0.getTextureView();
+                h51 textureView = this.X0.getTextureView();
                 int orientation = this.X0.getOrientation();
                 e7 e7Var2 = this.K1;
                 if (e7Var2 != null) {
@@ -3103,7 +3103,7 @@ public final class va implements ls {
                 this.B1.getToolsView().setVisibility(8);
                 this.B1.getToolsView().setAlpha(0.0f);
                 this.B1.getToolsView().setTranslationY(org.telegram.messenger.g0.L(186.0f));
-                this.B1.f37998i0.setVisibility(0);
+                this.B1.f38002i0.setVisibility(0);
             }
         }
     }

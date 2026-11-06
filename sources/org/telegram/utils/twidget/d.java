@@ -38,47 +38,47 @@ public final class d {
     public float T;
     public boolean U;
     public boolean V;
-    public final Paint f52752a = new Paint(3);
-    public final Paint f52753b = new Paint(1);
-    public final Paint f52754c = new Paint();
+    public final Paint f52750a = new Paint(3);
+    public final Paint f52751b = new Paint(1);
+    public final Paint f52752c = new Paint();
     public final Paint d;
-    public final Path f52755e;
-    public final Path f52756f;
-    public final Matrix f52757g;
+    public final Path f52753e;
+    public final Path f52754f;
+    public final Matrix f52755g;
     public final Matrix h;
-    public final float[] f52758i;
-    public final float[] f52759j;
-    public final float[] f52760k;
-    public final RectF f52761l;
-    public final Rect f52762m;
-    public final int f52763n;
-    public Bitmap f52764o;
-    public Bitmap f52765p;
-    public Canvas f52766q;
-    public int f52767r;
-    public int f52768s;
-    public int[] f52769t;
-    public int f52770u;
+    public final float[] f52756i;
+    public final float[] f52757j;
+    public final float[] f52758k;
+    public final RectF f52759l;
+    public final Rect f52760m;
+    public final int f52761n;
+    public Bitmap f52762o;
+    public Bitmap f52763p;
+    public Canvas f52764q;
+    public int f52765r;
+    public int f52766s;
+    public int[] f52767t;
+    public int f52768u;
     public int v;
-    public int f52771w;
-    public int f52772x;
-    public int f52773y;
-    public int f52774z;
+    public int f52769w;
+    public int f52770x;
+    public int f52771y;
+    public int f52772z;
 
     public d(int i7) {
         Paint paint = new Paint();
         this.d = paint;
-        this.f52755e = new Path();
-        this.f52756f = new Path();
-        this.f52757g = new Matrix();
+        this.f52753e = new Path();
+        this.f52754f = new Path();
+        this.f52755g = new Matrix();
         this.h = new Matrix();
-        this.f52758i = new float[9];
-        this.f52759j = new float[6];
-        this.f52760k = new float[8];
-        this.f52761l = new RectF();
-        this.f52762m = new Rect();
-        this.f52768s = -1;
-        this.f52763n = i7;
+        this.f52756i = new float[9];
+        this.f52757j = new float[6];
+        this.f52758k = new float[8];
+        this.f52759l = new RectF();
+        this.f52760m = new Rect();
+        this.f52766s = -1;
+        this.f52761n = i7;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
@@ -88,11 +88,11 @@ public final class d {
 
     public final void a(Paint paint) {
         int[] iArr;
-        if (this.f52772x != 0 && (iArr = this.E) != null) {
+        if (this.f52770x != 0 && (iArr = this.E) != null) {
             float[] fArr = this.F;
             paint.setColor(-16777216);
-            int i7 = this.f52772x;
-            float[] fArr2 = this.f52759j;
+            int i7 = this.f52770x;
+            float[] fArr2 = this.f52757j;
             if (i7 == 1) {
                 paint.setShader(new LinearGradient(fArr2[0], fArr2[1], fArr2[2], fArr2[3], iArr, fArr, Shader.TileMode.CLAMP));
                 return;
@@ -119,7 +119,7 @@ public final class d {
             }
         }
         paint.setShader(null);
-        paint.setColor(this.f52773y);
+        paint.setColor(this.f52771y);
     }
 
     public final void c(android.graphics.Canvas r18, org.telegram.utils.twidget.c r19) {
@@ -173,21 +173,21 @@ public final class d {
     }
 
     public final float e() {
-        int[] iArr = this.f52769t;
-        int i7 = this.f52770u;
-        this.f52770u = i7 + 1;
+        int[] iArr = this.f52767t;
+        int i7 = this.f52768u;
+        this.f52768u = i7 + 1;
         return Float.intBitsToFloat(iArr[i7]);
     }
 
     public final void f(Path path, boolean z9) {
         path.rewind();
-        int[] iArr = this.f52769t;
-        int i7 = this.f52770u;
+        int[] iArr = this.f52767t;
+        int i7 = this.f52768u;
         int i10 = i7 + 1;
-        this.f52770u = i10;
+        this.f52768u = i10;
         int i11 = iArr[i7];
         int i12 = i7 + 2;
-        this.f52770u = i12;
+        this.f52768u = i12;
         int i13 = iArr[i10];
         int i14 = i12 + i11;
         int i15 = i14;
@@ -216,7 +216,7 @@ public final class d {
             }
             i15 += 2;
         }
-        this.f52770u = i11 + i13 + this.f52770u;
+        this.f52768u = i11 + i13 + this.f52768u;
         if (z9) {
             path.setFillType(Path.FillType.WINDING);
         }

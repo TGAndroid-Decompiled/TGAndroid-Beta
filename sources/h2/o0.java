@@ -54,30 +54,30 @@ public final class o0 implements Runnable {
                 String str = (String) this.f14130e;
                 boolean z12 = this.f14129c;
                 if (z11) {
-                    t7Var.d.f26257n.remove(str);
+                    t7Var.d.f26265n.remove(str);
                 } else {
                     t7Var.d.h.remove(str);
                 }
                 qb qbVar = t7Var.d.E;
                 if (qbVar != null) {
-                    Utilities.d.c(new nb(qbVar, qbVar.f24675a, str, z11));
+                    Utilities.d.c(new nb(qbVar, qbVar.f24683a, str, z11));
                 }
                 if (z12) {
                     w7 w7Var = t7Var.d;
-                    int i7 = w7Var.f26259s - 1;
-                    w7Var.f26259s = i7;
-                    if (i7 < 1 && (y8Var2 = (y8) w7Var.f26256f.poll()) != null) {
-                        t7Var.d.f26259s++;
+                    int i7 = w7Var.f26267s - 1;
+                    w7Var.f26267s = i7;
+                    if (i7 < 1 && (y8Var2 = (y8) w7Var.f26264f.poll()) != null) {
+                        t7Var.d.f26267s++;
                         y8Var2.c();
                         return;
                     }
                     return;
                 }
                 w7 w7Var2 = t7Var.d;
-                int i10 = w7Var2.f26258r - 1;
-                w7Var2.f26258r = i10;
-                if (i10 < 1 && (y8Var = (y8) w7Var2.f26255e.poll()) != null) {
-                    t7Var.d.f26258r++;
+                int i10 = w7Var2.f26266r - 1;
+                w7Var2.f26266r = i10;
+                if (i10 < 1 && (y8Var = (y8) w7Var2.f26263e.poll()) != null) {
+                    t7Var.d.f26266r++;
                     y8Var.c();
                     return;
                 }
@@ -89,13 +89,13 @@ public final class o0 implements Runnable {
                 String str2 = (String) this.f14130e;
                 boolean z13 = this.f14128b;
                 boolean z14 = this.f14129c;
-                h2 h2Var = ((e2) this.d).f29046b;
-                h2Var.f29235e0 = false;
-                h2Var.f29237f0 = str2;
+                h2 h2Var = ((e2) this.d).f29047b;
+                h2Var.f29236e0 = false;
+                h2Var.f29238f0 = str2;
                 if (str2 == null) {
-                    h2Var.f29237f0 = "";
+                    h2Var.f29238f0 = "";
                 }
-                h2Var.f29238g0 = z13;
+                h2Var.f29239g0 = z13;
                 h2Var.f(z14, true);
                 return;
             case 4:
@@ -103,9 +103,9 @@ public final class o0 implements Runnable {
                 c20 c20Var = (c20) this.f14130e;
                 boolean z15 = this.f14128b;
                 boolean z16 = this.f14129c;
-                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) n0Var.f42796e;
-                r0 r0Var = n0Var.f42795c;
-                if (r0Var != null && TextUtils.equals(r0Var.f43084c, tL_walletState.address) && n0Var.f42795c.f(tL_walletState.public_key)) {
+                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) n0Var.f42795e;
+                r0 r0Var = n0Var.f42794c;
+                if (r0Var != null && TextUtils.equals(r0Var.f43083c, tL_walletState.address) && n0Var.f42794c.f(tL_walletState.public_key)) {
                     c20Var.a(null);
                     return;
                 } else {
@@ -118,10 +118,10 @@ public final class o0 implements Runnable {
                 boolean z17 = this.f14128b;
                 boolean z18 = this.f14129c;
                 org.telegram.ui.Wallet.n0.H("getSecretPhrase: ready!");
-                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) n0Var2.f42796e;
-                if (n0Var2.f42795c.f(tL_walletState2.public_key)) {
+                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) n0Var2.f42795e;
+                if (n0Var2.f42794c.f(tL_walletState2.public_key)) {
                     org.telegram.ui.Wallet.n0.H("getSecretPhrase: device has secured phrase, requesting");
-                    r0 r0Var2 = n0Var2.f42795c;
+                    r0 r0Var2 = n0Var2.f42794c;
                     byte[] bArr = tL_walletState2.public_key;
                     org.telegram.ui.Wallet.k kVar = new org.telegram.ui.Wallet.k(v10Var, 1);
                     if (bArr == null) {
@@ -138,7 +138,7 @@ public final class o0 implements Runnable {
                     return;
                 } else {
                     org.telegram.ui.Wallet.n0.H("getSecretPhrase: exportSecretPhrase through password request");
-                    i3.a(n0Var2.f42793a, new ai.c0(9), null, null, null, new di.b0(4, n0Var2, v10Var), z17, z18, new v0((Object) null, 2));
+                    i3.a(n0Var2.f42792a, new ai.c0(9), null, null, null, new di.b0(4, n0Var2, v10Var), z17, z18, new v0((Object) null, 2));
                     return;
                 }
         }

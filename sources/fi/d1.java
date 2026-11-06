@@ -3,7 +3,7 @@ package fi;
 import android.content.DialogInterface;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.as;
-import org.telegram.ui.Components.dz0;
+import org.telegram.ui.Components.ez0;
 import org.telegram.ui.c40;
 public final class d1 implements DialogInterface.OnDismissListener {
     public final int f11782a;
@@ -19,7 +19,7 @@ public final class d1 implements DialogInterface.OnDismissListener {
                 int i7 = k2.f12251y1;
                 return;
             case 1:
-                org.telegram.ui.b.f44135a = false;
+                org.telegram.ui.b.f44134a = false;
                 return;
             case 2:
                 return;
@@ -27,15 +27,15 @@ public final class d1 implements DialogInterface.OnDismissListener {
                 as.f21499j.edit().putInt("dismissed_count", as.f21499j.getInt("dismissed_count", 0) + 1).apply();
                 return;
             case 4:
-                int i10 = dz0.f33073e;
+                int i10 = ez0.f33413e;
                 return;
             case 5:
-                c40 c40Var = c40.f44540u5;
+                c40 c40Var = c40.f44539u5;
                 return;
             case 6:
                 return;
             case 7:
-                org.telegram.utils.twidget.p.f52882i = false;
+                org.telegram.utils.twidget.p.f52880i = false;
                 return;
             default:
                 MediaController.f21246g2 = false;

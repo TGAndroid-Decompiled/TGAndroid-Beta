@@ -1,37 +1,37 @@
 package org.telegram.ui.web;
 
+import android.util.Base64InputStream;
+import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-public final class c1 extends FileInputStream {
-    public final long f51109a;
+import java.io.FilterInputStream;
+import java.util.HashMap;
+public final class c1 {
+    public final HashMap f51104a = new HashMap();
+    public File f51105b;
+    public long f51106c;
+    public long d;
 
-    public c1(long j3, long j10, File file) {
-        super(file);
-        this.f51109a = j10;
-        if (j3 > 0 && skip(j3) != j3) {
-            throw new RuntimeException("BoundedInputStream failed to skip");
+    public final FilterInputStream a() {
+        String str;
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(new b1(this.f51106c, this.d, this.f51105b));
+        HashMap hashMap = this.f51104a;
+        d1 d1Var = (d1) hashMap.get("content-transfer-encoding");
+        String str2 = null;
+        if (d1Var == null) {
+            str = null;
+        } else {
+            str = d1Var.f51111a;
         }
-    }
-
-    @Override
-    public final int read() {
-        if (getChannel().position() >= this.f51109a) {
-            return -1;
+        if ("base64".equals(str)) {
+            return new Base64InputStream(bufferedInputStream, 0);
         }
-        return super.read();
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i7, int i10) {
-        long position = getChannel().position();
-        long j3 = this.f51109a;
-        if (position >= j3) {
-            return -1;
+        d1 d1Var2 = (d1) hashMap.get("content-transfer-encoding");
+        if (d1Var2 != null) {
+            str2 = d1Var2.f51111a;
         }
-        long position2 = j3 - getChannel().position();
-        if (i10 > position2) {
-            i10 = (int) position2;
+        if ("quoted-printable".equalsIgnoreCase(str2)) {
+            return new e1(bufferedInputStream, 0);
         }
-        return super.read(bArr, i7, i10);
+        return bufferedInputStream;
     }
 }

@@ -17,7 +17,7 @@ public final class j0 implements r1 {
         s0 s0Var = this.f1298a;
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25563b.getPackageName()));
             s0Var.getParentActivity().startActivity(intent);
         } catch (Exception e10) {
             a8.g(e10, true);

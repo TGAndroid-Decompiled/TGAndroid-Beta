@@ -28,36 +28,36 @@ public final class x4 extends mo0 {
             org.telegram.ui.Components.hc k10 = k();
             if (hVar.m() == 1) {
                 long j3 = hVar.j(0);
-                if (j3 == p10.i(this.f28612a).f24478n) {
+                if (j3 == p10.i(this.f28613a).f24486n) {
                     org.telegram.ui.Components.cc G = k10.G(2131624190, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131748885, new Object[0])));
-                    G.f32535r = false;
-                    G.f32537t = true;
+                    G.f32522r = false;
+                    G.f32524t = true;
                     G.j();
                 } else if (j3 < 0) {
-                    TLRPC.Chat M0 = qp.s1(this.f28612a).M0(Long.valueOf(-j3));
+                    TLRPC.Chat M0 = qp.s1(this.f28613a).M0(Long.valueOf(-j3));
                     if (tL_forumTopic != null) {
                         str = tL_forumTopic.title;
                     } else {
                         str = M0.title;
                     }
                     org.telegram.ui.Components.cc G2 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131748889, str)));
-                    G2.f32535r = false;
-                    G2.f32537t = true;
+                    G2.f32522r = false;
+                    G2.f32524t = true;
                     G2.j();
                 } else {
-                    org.telegram.ui.Components.cc G3 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131748889, qp.s1(this.f28612a).a2(Long.valueOf(j3)).first_name)));
-                    G3.f32535r = false;
-                    G3.f32537t = true;
+                    org.telegram.ui.Components.cc G3 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131748889, qp.s1(this.f28613a).a2(Long.valueOf(j3)).first_name)));
+                    G3.f32522r = false;
+                    G3.f32524t = true;
                     G3.j();
                 }
             } else {
                 org.telegram.ui.Components.cc Q = k10.Q(2131624028, 36, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(hVar.m(), "LinkSharedToManyChats", Integer.valueOf(hVar.m()))));
-                Q.f32535r = false;
-                Q.f32537t = true;
+                Q.f32522r = false;
+                Q.f32524t = true;
                 Q.j();
             }
             try {
-                this.f28618c.performHapticFeedback(3);
+                this.f28619c.performHapticFeedback(3);
             } catch (Exception unused) {
             }
         }
@@ -79,22 +79,22 @@ public final class x4 extends mo0 {
             if (ijVar != null) {
                 arrayList.add(ijVar);
             } else if (k7Var.y1() instanceof TL_stars.TL_starGiftUnique) {
-                long e10 = p10.i(k7Var.f28612a).e();
+                long e10 = p10.i(k7Var.f28613a).e();
                 TLRPC.TL_messageService tL_messageService = new TLRPC.TL_messageService();
-                tL_messageService.peer_id = qp.s1(k7Var.f28612a).z1(e10);
-                tL_messageService.from_id = qp.s1(k7Var.f28612a).z1(e10);
-                tL_messageService.date = ConnectionsManager.getInstance(k7Var.f28612a).getCurrentTime();
+                tL_messageService.peer_id = qp.s1(k7Var.f28613a).z1(e10);
+                tL_messageService.from_id = qp.s1(k7Var.f28613a).z1(e10);
+                tL_messageService.date = ConnectionsManager.getInstance(k7Var.f28613a).getCurrentTime();
                 TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = new TLRPC.TL_messageActionStarGiftUnique();
                 tL_messageActionStarGiftUnique.gift = (TL_stars.TL_starGiftUnique) k7Var.y1();
                 tL_messageActionStarGiftUnique.upgrade = true;
                 tL_messageService.action = tL_messageActionStarGiftUnique;
-                ij ijVar2 = new ij(k7Var.f28612a, tL_messageService, false, false);
+                ij ijVar2 = new ij(k7Var.f28613a, tL_messageService, false, false);
                 ijVar2.M5();
                 arrayList.add(ijVar2);
             } else {
                 return;
             }
-            final fi.va D = fi.va.D(launchActivity, k7Var.f28612a);
+            final fi.va D = fi.va.D(launchActivity, k7Var.f28613a);
             D.R = new z10() {
                 @Override
                 public final void a(Object obj, Object obj2, Object obj3, Object obj4) {

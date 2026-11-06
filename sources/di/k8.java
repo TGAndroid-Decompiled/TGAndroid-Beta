@@ -22,7 +22,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.Components.a80;
 import org.telegram.ui.Components.qu;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.xz;
 public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
@@ -54,7 +54,7 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         this.f9317a = f6Var;
         setMinimumWidth(org.telegram.messenger.g0.L(196.0f));
         setPadding(org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(8.0f));
-        int i10 = org.telegram.ui.ActionBar.k6.f27940i6;
+        int i10 = org.telegram.ui.ActionBar.k6.f27941i6;
         org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(i10, f6Var), 0, 8);
         org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i10);
         setBackground(a02);
@@ -72,7 +72,7 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         a80Var.f(org.telegram.ui.ActionBar.k6.r1(0.2f, -1), org.telegram.ui.ActionBar.k6.r1(0.05f, -1));
         Path path = new Path();
         this.f9322n = path;
-        a80Var.f31747y = path;
+        a80Var.f31743y = path;
         a80Var.k(4.0f);
         boolean[] zArr = {true};
         this.f9327y = obj;
@@ -86,8 +86,8 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
                 TLRPC.Photo photo = (TLRPC.Photo) tLObject;
                 TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputStickeredMediaPhoto.f27022id = tL_inputPhoto;
-                tL_inputPhoto.f26971id = photo.f26976id;
+                tL_inputStickeredMediaPhoto.f27023id = tL_inputPhoto;
+                tL_inputPhoto.f26972id = photo.f26977id;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 byte[] bArr = photo.file_reference;
                 tL_inputPhoto.file_reference = bArr;
@@ -99,8 +99,8 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
                 TLRPC.Document document = (TLRPC.Document) tLObject;
                 TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                 TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                tL_inputStickeredMediaDocument.f27021id = tL_inputDocument;
-                tL_inputDocument.f26964id = document.f26958id;
+                tL_inputStickeredMediaDocument.f27022id = tL_inputDocument;
+                tL_inputDocument.f26965id = document.f26959id;
                 tL_inputDocument.access_hash = document.access_hash;
                 byte[] bArr2 = document.file_reference;
                 tL_inputDocument.file_reference = bArr2;
@@ -169,11 +169,11 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         if (k8Var.f9324s != null && arrayList != null && !arrayList.isEmpty()) {
             for (int i13 = 0; i13 < arrayList.size(); i13++) {
                 TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) arrayList.get(i13);
-                long j3 = inputStickerSet.f26972id;
+                long j3 = inputStickerSet.f26973id;
                 int i14 = 0;
                 while (true) {
                     if (i14 < k8Var.f9324s.size()) {
-                        if (((TLRPC.InputStickerSet) k8Var.f9324s.get(i14)).f26972id == j3) {
+                        if (((TLRPC.InputStickerSet) k8Var.f9324s.get(i14)).f26973id == j3) {
                             break;
                         }
                         i14++;
@@ -219,15 +219,15 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
             return;
         }
         SpannableString spannableString = new SpannableString("x " + tL_messages_stickerSet.set.title);
-        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31726a), 0, spannableString.length(), 33);
-        spannableString.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
+        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31722a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new u31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
         ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
         int i7 = 0;
         while (true) {
             if (i7 >= arrayList.size()) {
                 document = null;
                 break;
-            } else if (arrayList.get(i7).f26958id == tL_messages_stickerSet.set.thumb_document_id) {
+            } else if (arrayList.get(i7).f26959id == tL_messages_stickerSet.set.thumb_document_id) {
                 document = arrayList.get(i7);
                 break;
             } else {
@@ -301,7 +301,7 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
             if (this.D > 0.0f) {
                 canvas.save();
                 float paddingLeft2 = getPaddingLeft();
-                if (!hd.f22871a0) {
+                if (!hd.f22878a0) {
                     f11 = this.f9320e;
                 }
                 canvas.translate(paddingLeft2 - f11, getPaddingTop());
@@ -413,13 +413,13 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         CharSequence charSequence;
         String M0;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
-        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31726a), 0, spannableString.length(), 33);
-        spannableString.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
+        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31722a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new u31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
         TLRPC.Document document = stickerSetCovered.cover;
         if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
             ArrayList<TLRPC.Document> arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                if (arrayList.get(i7).f26958id == stickerSetCovered.set.thumb_document_id) {
+                if (arrayList.get(i7).f26959id == stickerSetCovered.set.thumb_document_id) {
                     document = arrayList.get(i7);
                 }
             }
@@ -452,11 +452,11 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         boolean z9 = this.f9325w;
         a80 a80Var = this.h;
         if (z9 && this.f9326x) {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickersEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31726a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickersEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31722a), null, null));
         } else if (z9) {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31726a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31722a), null, null));
         } else {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickers", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31726a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickers", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31722a), null, null));
         }
     }
 }

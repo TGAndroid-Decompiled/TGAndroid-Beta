@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
 public final class j implements View.OnLongClickListener {
-    public final int f34801a;
-    public final Object f34802b;
-    public final Object f34803c;
+    public final int f34830a;
+    public final Object f34831b;
+    public final Object f34832c;
     public final Object d;
 
     public j(Object obj, Object obj2, Object obj3, int i7) {
-        this.f34801a = i7;
-        this.f34802b = obj;
-        this.f34803c = obj2;
+        this.f34830a = i7;
+        this.f34831b = obj;
+        this.f34832c = obj2;
         this.d = obj3;
     }
 
@@ -23,31 +23,31 @@ public final class j implements View.OnLongClickListener {
         int i7;
         xe xeVar;
         boolean z10;
-        int i10 = this.f34801a;
+        int i10 = this.f34830a;
         Object obj = this.d;
-        Object obj2 = this.f34803c;
-        Object obj3 = this.f34802b;
+        Object obj2 = this.f34832c;
+        Object obj3 = this.f34831b;
         switch (i10) {
             case 0:
                 g0 g0Var = (g0) obj3;
                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj2;
                 Context context = (Context) obj;
-                if (g0Var.f33679e2) {
+                if (g0Var.f33706e2) {
                     return false;
                 }
-                if (g0Var.f33681g2 != null) {
+                if (g0Var.f33708g2 != null) {
                     if (g0Var.l1() == null) {
                         return false;
                     }
-                } else if (g0Var.f33680f2 == null || g0Var.m1() == null) {
+                } else if (g0Var.f33707f2 == null || g0Var.m1() == null) {
                     return false;
                 }
-                if (g0Var.d2 == org.telegram.messenger.p10.i(g0Var.f28612a).e()) {
+                if (g0Var.d2 == org.telegram.messenger.p10.i(g0Var.f28613a).e()) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                k60 F = k60.F(g0Var.f28618c, f6Var, g0Var.f33698x2);
+                k60 F = k60.F(g0Var.f28619c, f6Var, g0Var.f33725x2);
                 F.l(2131231508, org.telegram.messenger.hd.M0(2131745584, null), new a(g0Var, 4), !z9);
                 if (z9) {
                     i7 = 2131745515;
@@ -65,7 +65,7 @@ public final class j implements View.OnLongClickListener {
                 if (ijVar.G3() || (xeVar = chatActivityEnterView.E0) == null || TextUtils.isEmpty(xeVar.getTextToUse())) {
                     return false;
                 }
-                if (djVar != null && (!djVar.f22004c || djVar.f22008i)) {
+                if (djVar != null && (!djVar.f22011c || djVar.f22015i)) {
                     return false;
                 }
                 int i11 = ijVar.D;
@@ -73,7 +73,7 @@ public final class j implements View.OnLongClickListener {
                     return false;
                 }
                 org.telegram.ui.bg0 bg0Var = new org.telegram.ui.bg0(chatActivityEnterView.getContext(), f6Var2);
-                bg0Var.f44327g0 = true;
+                bg0Var.f44326g0 = true;
                 ArrayList arrayList = new ArrayList();
                 if (djVar != null) {
                     ArrayList arrayList2 = djVar.d;
@@ -90,7 +90,7 @@ public final class j implements View.OnLongClickListener {
                     arrayList.add(chatActivityEnterView.d0(ijVar, true));
                 }
                 bg0Var.p(arrayList);
-                k60 F2 = k60.F(chatActivityEnterView.f31082m1, f6Var2, chatActivityEnterView.F1);
+                k60 F2 = k60.F(chatActivityEnterView.f31083m1, f6Var2, chatActivityEnterView.F1);
                 ha0 ha0Var = new ha0(chatActivityEnterView.getContext(), 2131624139, org.telegram.messenger.hd.M0(2131752560, null), 2131624138, org.telegram.messenger.hd.M0(2131752559, null), chatActivityEnterView.W3);
                 ha0Var.a(!chatActivityEnterView.R4, false);
                 ha0Var.setOnClickListener(new di.u3(chatActivityEnterView, arrayList, ha0Var, bg0Var, 10));

@@ -114,7 +114,7 @@ public abstract class lq {
             }
             switch (c10) {
                 case 0:
-                    return org.telegram.messenger.hd.a0(null, null, 2131751726, Integer.valueOf(((org.telegram.messenger.j0) org.telegram.messenger.qp.s1(i7).f24927x7.N.f13555b).f23432c), b(treeSet));
+                    return org.telegram.messenger.hd.a0(null, null, 2131751726, Integer.valueOf(((org.telegram.messenger.j0) org.telegram.messenger.qp.s1(i7).f24935x7.N.f13555b).f23439c), b(treeSet));
                 case 1:
                     String c11 = c(str, treeSet);
                     if (c11 == null) {
@@ -165,7 +165,7 @@ public abstract class lq {
             return;
         }
         TreeSet treeSet = new TreeSet();
-        HashSet<String> hashSet = ((org.telegram.messenger.o0) org.telegram.messenger.qp.s1(i7).f24927x7.f24433i0.f13889b).f24249c;
+        HashSet<String> hashSet = ((org.telegram.messenger.o0) org.telegram.messenger.qp.s1(i7).f24935x7.f24440i0.f13889b).f24256c;
         if (hashSet != null) {
             for (String str2 : hashSet) {
                 if (!TextUtils.isEmpty(str2)) {
@@ -205,7 +205,7 @@ public abstract class lq {
         org.telegram.ui.Cells.i3 i3Var2 = k3Var.d;
         i3Var2.setImeOptions(5);
         int L = org.telegram.messenger.g0.L(16.0f);
-        int i12 = org.telegram.ui.ActionBar.k6.f27848d6;
+        int i12 = org.telegram.ui.ActionBar.k6.f27849d6;
         ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(L, org.telegram.ui.ActionBar.k6.w0(i12, f6Var));
         org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i12);
         k3Var.setBackground(d02);
@@ -272,8 +272,8 @@ public abstract class lq {
         linearLayout3.addView(h, c8.ha.q(0, 48, 119.0f, 1, 5, 0, 0, 0));
         l10.T0 = false;
         l10.P0 = true;
-        l10.f28641r = true;
-        l10.w0(org.telegram.ui.ActionBar.k6.f27792a7);
+        l10.f28642r = true;
+        l10.w0(org.telegram.ui.ActionBar.k6.f27793a7);
         l10.N();
         new WeakReference(l10);
         boolean[] zArr = new boolean[1];

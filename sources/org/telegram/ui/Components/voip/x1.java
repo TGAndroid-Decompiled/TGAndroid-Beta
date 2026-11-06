@@ -5,35 +5,35 @@ import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.v60;
 public final class x1 extends v60 {
-    public final TLRPC.User f39558j1;
-    public final TLRPC.Chat f39559k1;
+    public final TLRPC.User f39579j1;
+    public final TLRPC.Chat f39580k1;
     public final String l1;
-    public final TLRPC.InputPeer f39560m1;
+    public final TLRPC.InputPeer f39581m1;
     public final boolean n1;
-    public final boolean f39561o1;
-    public final boolean f39562p1;
-    public final Activity f39563q1;
-    public final org.telegram.ui.ActionBar.f2 f39564r1;
-    public final org.telegram.messenger.c f39565s1;
-    public final boolean f39566t1;
+    public final boolean f39582o1;
+    public final boolean f39583p1;
+    public final Activity f39584q1;
+    public final org.telegram.ui.ActionBar.f2 f39585r1;
+    public final org.telegram.messenger.c f39586s1;
+    public final boolean f39587t1;
 
     public x1(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z9, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.f2 f2Var, org.telegram.messenger.c cVar, boolean z12) {
         super(context, chat);
-        this.f39558j1 = user;
-        this.f39559k1 = chat2;
+        this.f39579j1 = user;
+        this.f39580k1 = chat2;
         this.l1 = str;
-        this.f39560m1 = inputPeer;
+        this.f39581m1 = inputPeer;
         this.n1 = z9;
-        this.f39561o1 = z10;
-        this.f39562p1 = z11;
-        this.f39563q1 = activity;
-        this.f39564r1 = f2Var;
-        this.f39565s1 = cVar;
-        this.f39566t1 = z12;
+        this.f39582o1 = z10;
+        this.f39583p1 = z11;
+        this.f39584q1 = activity;
+        this.f39585r1 = f2Var;
+        this.f39586s1 = cVar;
+        this.f39587t1 = z12;
     }
 
     @Override
     public final void I0() {
-        y1.b(this.f39558j1, this.f39559k1, this.l1, this.f39560m1, false, this.n1, this.f39561o1, this.f39562p1, this.f39563q1, this.f39564r1, this.f39565s1, false, true, this.f39566t1);
+        y1.b(this.f39579j1, this.f39580k1, this.l1, this.f39581m1, false, this.n1, this.f39582o1, this.f39583p1, this.f39584q1, this.f39585r1, this.f39586s1, false, true, this.f39587t1);
     }
 }

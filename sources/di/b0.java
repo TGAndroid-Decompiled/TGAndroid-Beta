@@ -181,7 +181,7 @@ public final class b0 implements x10 {
                 pnVar.E0 = ((Boolean) obj).booleanValue();
                 pnVar.G0 = ((Boolean) obj2).booleanValue();
                 pnVar.H0 = ((Boolean) obj3).booleanValue();
-                c4 c4Var = pnVar.f48864e;
+                c4 c4Var = pnVar.f48863e;
                 if (pnVar.E0) {
                     f10 = 16.0f;
                 } else {
@@ -190,20 +190,20 @@ public final class b0 implements x10 {
                 int L = org.telegram.messenger.g0.L(f10);
                 boolean z11 = false;
                 if (c4Var.getRoundRadius()[0] != L) {
-                    ValueAnimator valueAnimator = c4Var.f35572y;
+                    ValueAnimator valueAnimator = c4Var.f35592y;
                     if (valueAnimator != null) {
                         valueAnimator.cancel();
                     }
                     ValueAnimator ofInt = ValueAnimator.ofInt(c4Var.getRoundRadius()[0], L);
-                    c4Var.f35572y = ofInt;
+                    c4Var.f35592y = ofInt;
                     ofInt.addUpdateListener(new m4(c4Var, 8));
-                    c4Var.f35572y.setDuration(200L);
-                    c4Var.f35572y.start();
+                    c4Var.f35592y.setDuration(200L);
+                    c4Var.f35592y.start();
                 }
                 ((org.telegram.ui.Cells.m8) view).setChecked(pnVar.E0);
                 pnVar.u0(false, true);
                 if (!pnVar.N0) {
-                    TLRPC.Chat chat = pnVar.f48887w0;
+                    TLRPC.Chat chat = pnVar.f48886w0;
                     if (chat.forum != pnVar.E0 || chat.forum_tabs != pnVar.G0 || chat.forum_sidebar != pnVar.H0) {
                         if (!org.telegram.messenger.t3.T(chat) && pnVar.E0) {
                             Context parentActivity = pnVar.getParentActivity();
@@ -211,18 +211,18 @@ public final class b0 implements x10 {
                                 parentActivity = LaunchActivity.G1;
                             }
                             if (parentActivity == null) {
-                                parentActivity = org.telegram.messenger.t0.f25555b;
+                                parentActivity = org.telegram.messenger.t0.f25563b;
                             }
                             if (parentActivity != null) {
                                 org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, parentActivity, null);
                                 pnVar.N0 = true;
                                 u1Var.r(250L);
-                                pnVar.getMessagesController().T(pnVar.getParentActivity(), pnVar.f48885v0, pnVar, new ni.c(17, pnVar, u1Var), null);
+                                pnVar.getMessagesController().T(pnVar.getParentActivity(), pnVar.f48884v0, pnVar, new ni.c(17, pnVar, u1Var), null);
                                 return;
                             }
                             return;
                         }
-                        TLRPC.Chat chat2 = pnVar.f48887w0;
+                        TLRPC.Chat chat2 = pnVar.f48886w0;
                         if (chat2.forum_tabs != pnVar.G0) {
                             z9 = true;
                         } else {
@@ -231,8 +231,8 @@ public final class b0 implements x10 {
                         if (chat2.forum_sidebar != pnVar.H0) {
                             z11 = true;
                         }
-                        pnVar.getMessagesController().a5(pnVar.f48885v0, pnVar.E0, pnVar.G0, pnVar.H0);
-                        TLRPC.Chat chat3 = pnVar.f48887w0;
+                        pnVar.getMessagesController().a5(pnVar.f48884v0, pnVar.E0, pnVar.G0, pnVar.H0);
+                        TLRPC.Chat chat3 = pnVar.f48886w0;
                         chat3.forum = pnVar.E0;
                         chat3.forum_tabs = pnVar.G0;
                         chat3.forum_sidebar = pnVar.H0;
@@ -281,7 +281,7 @@ public final class b0 implements x10 {
                     TL_wallet.fetchEncryptedSecretPhrasePart fetchencryptedsecretphrasepart = new TL_wallet.fetchEncryptedSecretPhrasePart();
                     fetchencryptedsecretphrasepart.token = secretphraseparts.token;
                     fetchencryptedsecretphrasepart.public_key = key_to_public_key;
-                    ConnectionsManager.getInstance(n0Var.f42793a).sendRequestTyped(fetchencryptedsecretphrasepart, new d3.b(1), new v10() {
+                    ConnectionsManager.getInstance(n0Var.f42792a).sendRequestTyped(fetchencryptedsecretphrasepart, new d3.b(1), new v10() {
                         @Override
                         public final void a(Object obj4, Object obj5) {
                             n0 n0Var2 = n0.this;

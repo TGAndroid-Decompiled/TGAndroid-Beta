@@ -11,8 +11,8 @@ import android.graphics.drawable.shapes.RectShape;
 import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.StateSet;
 public abstract class z5 {
-    public static final int f28832a = k6.f27848d6;
-    public static float[] f28833b;
+    public static final int f28833a = k6.f27849d6;
+    public static float[] f28834b;
 
     public static float[] a(float... fArr) {
         if (fArr.length == 0) {
@@ -25,11 +25,11 @@ public abstract class z5 {
         float f10;
         float f11;
         float f12;
-        if (f28833b == null) {
-            f28833b = new float[3];
+        if (f28834b == null) {
+            f28834b = new float[3];
         }
-        Color.colorToHSV(i7, f28833b);
-        float[] fArr = f28833b;
+        Color.colorToHSV(i7, f28834b);
+        float[] fArr = f28834b;
         float f13 = fArr[1];
         if (f13 > 0.01f) {
             if (k6.I.q()) {
@@ -38,7 +38,7 @@ public abstract class z5 {
                 f11 = -0.25f;
             }
             fArr[1] = Math.min(1.0f, Math.max(0.0f, f13 + f11));
-            float[] fArr2 = f28833b;
+            float[] fArr2 = f28834b;
             float f14 = fArr2[2];
             if (k6.I.q()) {
                 f12 = 0.05f;
@@ -55,19 +55,19 @@ public abstract class z5 {
             }
             fArr[2] = Math.min(1.0f, Math.max(0.0f, f15 + f10));
         }
-        return Color.HSVToColor(127, f28833b);
+        return Color.HSVToColor(127, f28834b);
     }
 
     public static org.telegram.ui.Cells.y c(y5 y5Var, int i7) {
         ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i7});
         ?? drawable = new Drawable();
-        drawable.f28807b = -1.0f;
-        if (y5.f28805c == null) {
+        drawable.f28808b = -1.0f;
+        if (y5.f28806c == null) {
             Paint paint = new Paint(1);
-            y5.f28805c = paint;
+            y5.f28806c = paint;
             paint.setColor(-1);
         }
-        drawable.f28806a = y5.f28805c;
+        drawable.f28807a = y5.f28806c;
         return new RippleDrawable(colorStateList, y5Var, drawable);
     }
 

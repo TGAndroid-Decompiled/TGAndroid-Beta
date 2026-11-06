@@ -1,24 +1,24 @@
 package org.telegram.messenger;
 public final class sn implements Runnable {
-    public final int f25489a;
-    public final qp f25490b;
+    public final int f25497a;
+    public final qp f25498b;
 
     public sn(qp qpVar, int i7) {
-        this.f25489a = i7;
-        this.f25490b = qpVar;
+        this.f25497a = i7;
+        this.f25498b = qpVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25489a;
-        qp qpVar = this.f25490b;
+        int i7 = this.f25497a;
+        qp qpVar = this.f25498b;
         switch (i7) {
             case 0:
                 qpVar.getMessagesController().T4(null);
                 qpVar.getNotificationCenter().k(3, Boolean.TRUE);
                 return;
             case 1:
-                qpVar.f24754e2 = false;
+                qpVar.f24762e2 = false;
                 return;
             case 2:
                 qpVar.getNotificationCenter().k(2, 8192);
@@ -35,19 +35,19 @@ public final class sn implements Runnable {
                 qpVar.Q1.b();
                 qpVar.R1.clear();
                 qpVar.S1.clear();
-                qpVar.f24753e1.clear();
-                qpVar.f24763f1.clear();
-                qpVar.f24772g1.clear();
-                qpVar.f24725b1.b();
-                qpVar.f24735c1.b();
-                qpVar.f24781h1 = 0L;
-                qpVar.f24789i1 = 0L;
-                qpVar.f24797j1 = 0L;
-                qpVar.f24891u0.clear();
-                qpVar.f24900v0.clear();
-                qpVar.f24764f2 = false;
-                qpVar.f24822m2 = null;
-                qpVar.f24831n2 = null;
+                qpVar.f24761e1.clear();
+                qpVar.f24771f1.clear();
+                qpVar.f24780g1.clear();
+                qpVar.f24733b1.b();
+                qpVar.f24743c1.b();
+                qpVar.f24789h1 = 0L;
+                qpVar.f24797i1 = 0L;
+                qpVar.f24805j1 = 0L;
+                qpVar.f24899u0.clear();
+                qpVar.f24908v0.clear();
+                qpVar.f24772f2 = false;
+                qpVar.f24830m2 = null;
+                qpVar.f24839n2 = null;
                 return;
             case 6:
                 a8.b("cleanup: isUpdating = false");
@@ -56,7 +56,7 @@ public final class sn implements Runnable {
                 qpVar.X0.clear();
                 qpVar.Z0.b();
                 qpVar.Y0.clear();
-                qpVar.f24939z0.clear();
+                qpVar.f24947z0.clear();
                 qpVar.A0.b();
                 qpVar.B0.clear();
                 qpVar.C0.b();

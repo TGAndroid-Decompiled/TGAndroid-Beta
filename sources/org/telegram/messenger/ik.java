@@ -11,17 +11,17 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ik implements Runnable {
-    public final int f23297a;
-    public final Object f23298b;
-    public final long f23299c;
+    public final int f23304a;
+    public final Object f23305b;
+    public final long f23306c;
     public final int d;
-    public final Object f23300e;
+    public final Object f23307e;
 
     public ik(int i7, int i10, long j3, Object obj, Object obj2) {
-        this.f23297a = i10;
-        this.f23298b = obj;
-        this.f23300e = obj2;
-        this.f23299c = j3;
+        this.f23304a = i10;
+        this.f23305b = obj;
+        this.f23307e = obj2;
+        this.f23306c = j3;
         this.d = i7;
     }
 
@@ -30,24 +30,24 @@ public final class ik implements Runnable {
     }
 
     private final void b() {
-        wz wzVar = (wz) this.f23298b;
-        yr yrVar = (yr) this.f23300e;
-        long j3 = this.f23299c;
+        wz wzVar = (wz) this.f23305b;
+        yr yrVar = (yr) this.f23307e;
+        long j3 = this.f23306c;
         int i7 = this.d;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         try {
-            SQLiteDatabase sQLiteDatabase = yrVar.f26690b;
+            SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
             Locale locale = Locale.US;
             SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT data, mid FROM media_v4 WHERE uid = " + j3 + " AND mid > 0 AND type = 4 ORDER BY date DESC, mid DESC", new Object[0]);
             while (queryFinalized.next()) {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                 if (byteBufferValue != null) {
                     TLRPC.Message TLdeserialize = TLRPC.Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                    TLdeserialize.readAttachPath(byteBufferValue, p10.i(i7).f24478n);
+                    TLdeserialize.readAttachPath(byteBufferValue, p10.i(i7).f24486n);
                     byteBufferValue.reuse();
                     if (ij.L3(TLdeserialize)) {
-                        TLdeserialize.f26973id = queryFinalized.intValue(1);
+                        TLdeserialize.f26974id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j3;
                         ij ijVar = new ij(i7, TLdeserialize, false, true);
                         arrayList.add(ijVar);
@@ -70,26 +70,26 @@ public final class ik implements Runnable {
     }
 
     public ik(c1 c1Var, long j3, int i7, Object obj, int i10) {
-        this.f23297a = i10;
-        this.f23298b = c1Var;
-        this.f23299c = j3;
+        this.f23304a = i10;
+        this.f23305b = c1Var;
+        this.f23306c = j3;
         this.d = i7;
-        this.f23300e = obj;
+        this.f23307e = obj;
     }
 
     public ik(c1 c1Var, long j3, TLObject tLObject, int i7, int i10) {
-        this.f23297a = i10;
-        this.f23298b = c1Var;
-        this.f23299c = j3;
-        this.f23300e = tLObject;
+        this.f23304a = i10;
+        this.f23305b = c1Var;
+        this.f23306c = j3;
+        this.f23307e = tLObject;
         this.d = i7;
     }
 
     public ik(yr yrVar, int i7, long j3, TLObject tLObject, int i10) {
-        this.f23297a = i10;
-        this.f23298b = yrVar;
+        this.f23304a = i10;
+        this.f23305b = yrVar;
         this.d = i7;
-        this.f23299c = j3;
-        this.f23300e = tLObject;
+        this.f23306c = j3;
+        this.f23307e = tLObject;
     }
 }

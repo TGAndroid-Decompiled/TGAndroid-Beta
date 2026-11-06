@@ -7,7 +7,7 @@ import java.util.HashSet;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.j21;
+import org.telegram.ui.Components.k21;
 public final class z3 implements Runnable {
     public final int f26783a = 0;
     public final long f26784b;
@@ -125,7 +125,7 @@ public final class z3 implements Runnable {
                     return;
                 }
                 SystemClock.elapsedRealtime();
-                lpVar.f23911a = tL_channels_sendAsPeers;
+                lpVar.f23918a = tL_channels_sendAsPeers;
                 qpVar.getNotificationCenter().k(16, Long.valueOf(j10), tL_channels_sendAsPeers, Boolean.valueOf(z10));
                 return;
             case 2:
@@ -140,7 +140,7 @@ public final class z3 implements Runnable {
                     TLRPC.TL_messages_savedDialogs tL_messages_savedDialogs = (TLRPC.TL_messages_savedDialogs) tLObject2;
                     ArrayList l10 = qg.d.l(tL_messages_savedDialogs.dialogs);
                     while (i7 < tL_messages_savedDialogs.messages.size()) {
-                        hVar2.k(tL_messages_savedDialogs.messages.get(i7), tL_messages_savedDialogs.messages.get(i7).f26973id);
+                        hVar2.k(tL_messages_savedDialogs.messages.get(i7), tL_messages_savedDialogs.messages.get(i7).f26974id);
                         i7++;
                     }
                     g0.h3(new fi(k00Var, tL_messages_savedDialogs, j11, l10, hVar2, hashSet, runnable2));
@@ -149,7 +149,7 @@ public final class z3 implements Runnable {
                     a0.h hVar3 = new a0.h();
                     TLRPC.TL_messages_forumTopics tL_messages_forumTopics = (TLRPC.TL_messages_forumTopics) tLObject2;
                     while (i7 < tL_messages_forumTopics.messages.size()) {
-                        hVar3.k(tL_messages_forumTopics.messages.get(i7), tL_messages_forumTopics.messages.get(i7).f26973id);
+                        hVar3.k(tL_messages_forumTopics.messages.get(i7), tL_messages_forumTopics.messages.get(i7).f26974id);
                         i7++;
                     }
                     g0.h3(new bi.m3(k00Var, tLObject2, j11, tL_messages_forumTopics, hVar3, runnable2, 4));
@@ -181,23 +181,23 @@ public final class z3 implements Runnable {
                     TLRPC.TL_messages_translateText tL_messages_translateText = new TLRPC.TL_messages_translateText();
                     if (z12) {
                         tL_messages_translateText.flags |= 2;
-                        tL_messages_translateText.text.addAll(b10Var.f21574c);
+                        tL_messages_translateText.text.addAll(b10Var.f21575c);
                     } else {
                         tL_messages_translateText.flags |= 1;
                         tL_messages_translateText.peer = f10Var.getMessagesController().j1(j12);
-                        tL_messages_translateText.f27076id = b10Var.f21573b;
+                        tL_messages_translateText.f27077id = b10Var.f21574b;
                     }
-                    tL_messages_translateText.to_lang = f10.D(b10Var.f21575e);
+                    tL_messages_translateText.to_lang = f10.D(b10Var.f21576e);
                     int sendRequest = f10Var.getConnectionsManager().sendRequest(tL_messages_translateText, new y3(f10Var, b10Var, z12, j12, hashSet2, 4));
                     synchronized (f10Var) {
                         b10Var.h = sendRequest;
                     }
                     return;
                 }
-                String str4 = b10Var.f21575e;
-                while (i7 < b10Var.f21573b.size()) {
+                String str4 = b10Var.f21576e;
+                while (i7 < b10Var.f21574b.size()) {
                     String str5 = str4;
-                    j21.J0(((TLRPC.TL_textWithEntities) b10Var.f21574c.get(i7)).text, null, str5, new r00(f10Var, (z10) b10Var.d.get(i7), z12, ((Integer) b10Var.f21573b.get(i7)).intValue(), str4, j12, 0));
+                    k21.J0(((TLRPC.TL_textWithEntities) b10Var.f21575c.get(i7)).text, null, str5, new r00(f10Var, (z10) b10Var.d.get(i7), z12, ((Integer) b10Var.f21574b.get(i7)).intValue(), str4, j12, 0));
                     i7++;
                     str4 = str5;
                 }

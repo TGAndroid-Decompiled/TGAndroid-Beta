@@ -37,16 +37,16 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.y1;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.rt0;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 public final class q1 extends f2 implements ls {
     public static org.telegram.ui.ActionBar.u1 f17508f;
-    public p41 f17509a;
+    public q41 f17509a;
     public final ArrayList f17510b;
     public f5 f17511c;
     public int d;
@@ -61,8 +61,8 @@ public final class q1 extends f2 implements ls {
     public static void Z(q1 q1Var, int i7, ArrayList arrayList) {
         if (i7 == q1Var.d) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (((w31) arrayList.get(i10)).G instanceof s1) {
-                    ((s1) ((w31) arrayList.get(i10)).G).f17531c = i10;
+                if (((x31) arrayList.get(i10)).G instanceof s1) {
+                    ((s1) ((x31) arrayList.get(i10)).G).f17531c = i10;
                 }
             }
             t1 f10 = t1.f(q1Var.currentAccount);
@@ -84,16 +84,16 @@ public final class q1 extends f2 implements ls {
         }
     }
 
-    public static void a0(q1 q1Var, ArrayList arrayList, k41 k41Var) {
+    public static void a0(q1 q1Var, ArrayList arrayList, l41 l41Var) {
         String M0 = hd.M0(2131752683, null);
         String M02 = hd.M0(2131752670, null);
-        w31 w31Var = new w31(2);
-        w31Var.f39830l = M0;
-        w31Var.f39833o = M02;
-        w31Var.f39831m = "RestrictedEmoji";
-        w31Var.f39832n = "📝";
-        arrayList.add(w31Var);
-        k41Var.V();
+        x31 x31Var = new x31(2);
+        x31Var.f40159l = M0;
+        x31Var.f40162o = M02;
+        x31Var.f40160m = "RestrictedEmoji";
+        x31Var.f40161n = "📝";
+        arrayList.add(x31Var);
+        l41Var.V();
         t1 f10 = t1.f(q1Var.currentAccount);
         ArrayList arrayList2 = f10.f17545b;
         int i7 = 0;
@@ -115,36 +115,36 @@ public final class q1 extends f2 implements ls {
             }
         }
         if (arrayList2.size() + (i10 ^ 1) + (i11 ^ 1) < qp.s1(f10.f17544a).B5) {
-            w31 c10 = w31.c(1, 2131232422, hd.M0(2131752682, null));
-            c10.f39835q = true;
+            x31 c10 = x31.c(1, 2131232422, hd.M0(2131752682, null));
+            c10.f40164q = true;
             arrayList.add(c10);
         }
-        q1Var.d = k41Var.M();
+        q1Var.d = l41Var.M();
         ArrayList arrayList3 = t1.f(q1Var.currentAccount).f17545b;
         int size = arrayList3.size();
         while (i7 < size) {
             Object obj = arrayList3.get(i7);
             i7++;
             s1 s1Var = (s1) obj;
-            w31 w31Var2 = new w31(16);
-            w31Var2.G = s1Var;
-            w31Var2.L(q1Var.f17510b.contains(Integer.valueOf(s1Var.f17529a)));
-            arrayList.add(w31Var2);
+            x31 x31Var2 = new x31(16);
+            x31Var2.G = s1Var;
+            x31Var2.L(q1Var.f17510b.contains(Integer.valueOf(s1Var.f17529a)));
+            arrayList.add(x31Var2);
         }
-        k41Var.L();
-        k41Var.U();
-        arrayList.add(w31.C(hd.M0(2131752681, null)));
+        l41Var.L();
+        l41Var.U();
+        arrayList.add(x31.C(hd.M0(2131752681, null)));
     }
 
-    public static void b0(q1 q1Var, w31 w31Var, View view) {
-        if (w31Var.d == 1) {
+    public static void b0(q1 q1Var, x31 x31Var, View view) {
+        if (x31Var.d == 1) {
             i0(q1Var.getParentActivity(), q1Var.currentAccount, null, null, q1Var.getResourceProvider(), new ii.c(q1Var, 7));
-        } else if (w31Var.f54440a == 16 && (w31Var.G instanceof s1)) {
+        } else if (x31Var.f54439a == 16 && (x31Var.G instanceof s1)) {
             if (!q1Var.f17510b.isEmpty()) {
-                q1Var.j0(w31Var, view);
+                q1Var.j0(x31Var, view);
                 return;
             }
-            s1 s1Var = (s1) w31Var.G;
+            s1 s1Var = (s1) x31Var.G;
             if (!s1Var.f17534g) {
                 Bundle f10 = rf.b.f(5, "chatMode");
                 f10.putLong("user_id", q1Var.getUserConfig().e());
@@ -216,7 +216,7 @@ public final class q1 extends f2 implements ls {
             i10 = 2131752673;
         }
         String M0 = hd.M0(i10, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder2.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder2.f27293a;
         u1Var.R = M0;
         final x0 x0Var = new x0(activity, f6Var);
         ui.b0(i7).M(org.telegram.messenger.g0.G0(), true);
@@ -231,13 +231,13 @@ public final class q1 extends f2 implements ls {
             str2 = s1Var.f17530b;
         }
         x0Var.setText(str2);
-        int i12 = k6.f27956j5;
+        int i12 = k6.f27957j5;
         r6.V(x0Var, i12, f6Var);
         r6.m(x0Var, 34, k6.Li, f6Var);
         x0Var.setHintText(hd.M0(2131752661, null));
         x0Var.setSingleLine(true);
         x0Var.setFocusable(true);
-        r6.G(x0Var, k6.f27977k6, k6.f27995l6, k6.f28069p7, f6Var);
+        r6.G(x0Var, k6.f27978k6, k6.f27996l6, k6.f28070p7, f6Var);
         x0Var.setImeOptions(6);
         x0Var.setBackgroundDrawable(null);
         x0Var.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
@@ -255,7 +255,7 @@ public final class q1 extends f2 implements ls {
         textView.setText(hd.M0(i11, null));
         frameLayout.addView(textView, ha.e(-1, -2, 83));
         TextView textView2 = new TextView(activity);
-        r6.V(textView2, k6.f28089q7, f6Var);
+        r6.V(textView2, k6.f28090q7, f6Var);
         jg.g.v(textView2, 1, 16.0f, null, 2131752662);
         textView2.setAlpha(0.0f);
         frameLayout.addView(textView2, ha.e(-1, -2, 83));
@@ -265,7 +265,7 @@ public final class q1 extends f2 implements ls {
         e10.addView(frameLayout, ha.k(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
         e10.addView(x0Var, ha.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.o(e10);
-        u1Var.f28547a = org.telegram.messenger.g0.L(292.0f);
+        u1Var.f28548a = org.telegram.messenger.g0.L(292.0f);
         x0Var.setOnEditorActionListener(new m1(x0Var, i7, s1Var, textView2, s2Var, c20Var, u1VarArr, view));
         alertDialog$Builder2.k(hd.M0(2131751355, null), new j1(x0Var, s2Var, i7, s1Var, textView2, c20Var));
         alertDialog$Builder2.h(hd.M0(2131752589, null), new x3(16));
@@ -316,7 +316,7 @@ public final class q1 extends f2 implements ls {
             });
             u1VarArr[0].show();
         }
-        u1VarArr[r11].f28570j0 = r11;
+        u1VarArr[r11].f28571j0 = r11;
         x0Var.setSelection(x0Var.getText().length());
     }
 
@@ -332,7 +332,7 @@ public final class q1 extends f2 implements ls {
         b10.setContentDescription(hd.M0(2131751336, null));
         l10.b(2, 2131232108).setContentDescription(hd.M0(2131751599, null));
         l1 l1Var = new l1(context, null, 0);
-        p41 p41Var = new p41(this, new v10(this) {
+        q41 q41Var = new q41(this, new v10(this) {
             public final q1 f17401b;
 
             {
@@ -346,17 +346,17 @@ public final class q1 extends f2 implements ls {
                         q1.Z(this.f17401b, ((Integer) obj).intValue(), (ArrayList) obj2);
                         return;
                     default:
-                        q1.a0(this.f17401b, (ArrayList) obj, (k41) obj2);
+                        q1.a0(this.f17401b, (ArrayList) obj, (l41) obj2);
                         return;
                 }
             }
         }, new h1(this), new h1(this));
-        this.f17509a = p41Var;
-        p41Var.r1();
+        this.f17509a = q41Var;
+        q41Var.r1();
         this.f17509a.setSectionsDrawBackground(true);
-        p41 p41Var2 = this.f17509a;
-        p41Var2.f36781f3.f35132r = false;
-        p41Var2.E1(new v10(this) {
+        q41 q41Var2 = this.f17509a;
+        q41Var2.f37160f3.f35510r = false;
+        q41Var2.E1(new v10(this) {
             public final q1 f17401b;
 
             {
@@ -370,7 +370,7 @@ public final class q1 extends f2 implements ls {
                         q1.Z(this.f17401b, ((Integer) obj).intValue(), (ArrayList) obj2);
                         return;
                     default:
-                        q1.a0(this.f17401b, (ArrayList) obj, (k41) obj2);
+                        q1.a0(this.f17401b, (ArrayList) obj, (l41) obj2);
                         return;
                 }
             }
@@ -382,10 +382,10 @@ public final class q1 extends f2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        p41 p41Var;
-        k41 k41Var;
-        if (i7 == qs.F1 && (p41Var = this.f17509a) != null && (k41Var = p41Var.f36781f3) != null) {
-            k41Var.O(true);
+        q41 q41Var;
+        l41 l41Var;
+        if (i7 == qs.F1 && (q41Var = this.f17509a) != null && (l41Var = q41Var.f37160f3) != null) {
+            l41Var.O(true);
         }
     }
 
@@ -399,9 +399,9 @@ public final class q1 extends f2 implements ls {
         return true;
     }
 
-    public final void j0(w31 w31Var, View view) {
+    public final void j0(x31 x31Var, View view) {
         boolean z9;
-        s1 s1Var = (s1) w31Var.G;
+        s1 s1Var = (s1) x31Var.G;
         p1 p1Var = (p1) view;
         Integer valueOf = Integer.valueOf(s1Var.f17529a);
         ArrayList arrayList = this.f17510b;
@@ -412,7 +412,7 @@ public final class q1 extends f2 implements ls {
         }
         this.f17509a.z1(!arrayList.isEmpty());
         boolean contains = arrayList.contains(Integer.valueOf(s1Var.f17529a));
-        w31Var.f39824e = contains;
+        x31Var.f40153e = contains;
         p1Var.d.a(contains, true);
         if (this.simpleActionBar.s() == arrayList.isEmpty()) {
             if (arrayList.isEmpty()) {

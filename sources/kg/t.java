@@ -50,7 +50,7 @@ public final class t extends FrameLayout {
         this.f17535a = k5Var;
         k5Var.setTextSize(15);
         r6.Y(k5Var, k6.G6, null);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -60,9 +60,9 @@ public final class t extends FrameLayout {
         k5 k5Var2 = new k5(context);
         this.f17537c = k5Var2;
         k5Var2.setTextSize(14);
-        int i12 = k6.f28258z6;
+        int i12 = k6.f28259z6;
         r6.Y(k5Var2, i12, null);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i10 = 3;
         } else {
             i10 = 5;
@@ -75,8 +75,8 @@ public final class t extends FrameLayout {
         lVar.setMaxLines(1);
         lVar.setEllipsize(TextUtils.TruncateAt.END);
         r6.V(lVar, i12, f6Var);
-        lVar.setGravity(hd.f22871a0 ? 5 : 3);
-        lVar.f58748r = false;
+        lVar.setGravity(hd.f22878a0 ? 5 : 3);
+        lVar.f58747r = false;
         lVar.setUseAlphaForEmoji(false);
         qs.i(lVar);
         addView(lVar, ha.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
@@ -89,11 +89,11 @@ public final class t extends FrameLayout {
         if (this.f17538e) {
             Paint W0 = k6.W0("paintDivider", this.d);
             if (W0 == null) {
-                W0 = k6.f27971k0;
+                W0 = k6.f27972k0;
             }
             Paint paint = W0;
             float f11 = 64.0f;
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 64.0f;
@@ -101,7 +101,7 @@ public final class t extends FrameLayout {
             float L = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width = getWidth();
-            if (!hd.f22871a0) {
+            if (!hd.f22878a0) {
                 f11 = 0.0f;
             }
             canvas.drawRect(L, measuredHeight, width - org.telegram.messenger.g0.L(f11), getMeasuredHeight(), paint);
@@ -111,7 +111,7 @@ public final class t extends FrameLayout {
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        boolean z10 = hd.f22871a0;
+        boolean z10 = hd.f22878a0;
         k5 k5Var = this.f17537c;
         k5 k5Var2 = this.f17535a;
         if (z10) {

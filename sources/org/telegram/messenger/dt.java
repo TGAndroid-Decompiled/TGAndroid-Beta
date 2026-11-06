@@ -48,13 +48,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.LaunchActivity;
 public final class dt extends c1 implements ls {
-    public static String f22050j0;
-    public static e0.i0 f22052l0;
+    public static String f22057j0;
+    public static e0.i0 f22059l0;
     public static NotificationManager m0;
-    public static AudioManager f22054o0;
-    public static volatile dt[] f22055p0;
-    public static final Object[] f22056q0;
-    public static final a0.h f22057r0;
+    public static AudioManager f22061o0;
+    public static volatile dt[] f22062p0;
+    public static final Object[] f22063q0;
+    public static final a0.h f22064r0;
     public final ArrayList D;
     public final a0.h E;
     public long F;
@@ -78,64 +78,64 @@ public final class dt extends c1 implements ls {
     public SoundPool X;
     public int Y;
     public int Z;
-    public final ArrayList f22058a;
-    public boolean f22059a0;
-    public final ArrayList f22060b;
-    public boolean f22061b0;
-    public final a0.h f22062c;
-    public final AlarmManager f22063c0;
+    public final ArrayList f22065a;
+    public boolean f22066a0;
+    public final ArrayList f22067b;
+    public boolean f22068b0;
+    public final a0.h f22069c;
+    public final AlarmManager f22070c0;
     public final a0.h d;
-    public final int f22064d0;
-    public final a0.h f22065e;
-    public final String f22066e0;
-    public final a0.h f22067f;
-    public final xh.f f22068f0;
-    public final et f22069g0;
+    public final int f22071d0;
+    public final a0.h f22072e;
+    public final String f22073e0;
+    public final a0.h f22074f;
+    public final xh.f f22075f0;
+    public final et f22076g0;
     public final a0.h h;
-    public final char[] f22070h0;
-    public final rs f22071i0;
-    public final a0.h f22072n;
-    public final a0.h f22073r;
-    public final HashSet f22074s;
-    public final ArrayList f22075w;
-    public ArrayList f22076x;
-    public final HashSet f22077y;
-    public static final p5 f22051k0 = new p5("notificationsQueue");
-    public static final long f22053n0 = m5.F(1);
+    public final char[] f22077h0;
+    public final rs f22078i0;
+    public final a0.h f22079n;
+    public final a0.h f22080r;
+    public final HashSet f22081s;
+    public final ArrayList f22082w;
+    public ArrayList f22083x;
+    public final HashSet f22084y;
+    public static final p5 f22058k0 = new p5("notificationsQueue");
+    public static final long f22060n0 = m5.F(1);
 
     static {
-        f22052l0 = null;
+        f22059l0 = null;
         m0 = null;
-        if (Build.VERSION.SDK_INT >= 26 && t0.f25555b != null) {
-            f22052l0 = new e0.i0(t0.f25555b);
-            m0 = (NotificationManager) t0.f25555b.getSystemService("notification");
+        if (Build.VERSION.SDK_INT >= 26 && t0.f25563b != null) {
+            f22059l0 = new e0.i0(t0.f25563b);
+            m0 = (NotificationManager) t0.f25563b.getSystemService("notification");
             i();
         }
-        f22054o0 = (AudioManager) t0.f25555b.getSystemService("audio");
-        f22055p0 = new dt[4];
-        f22056q0 = new Object[4];
+        f22061o0 = (AudioManager) t0.f25563b.getSystemService("audio");
+        f22062p0 = new dt[4];
+        f22063q0 = new Object[4];
         for (int i7 = 0; i7 < 4; i7++) {
-            f22056q0[i7] = new Object();
+            f22063q0[i7] = new Object();
         }
-        f22057r0 = new a0.h();
+        f22064r0 = new a0.h();
     }
 
     public dt(int i7) {
         super(i7);
         Object valueOf;
-        this.f22058a = new ArrayList();
-        this.f22060b = new ArrayList();
-        this.f22062c = new a0.h();
+        this.f22065a = new ArrayList();
+        this.f22067b = new ArrayList();
+        this.f22069c = new a0.h();
         this.d = new a0.h();
-        this.f22065e = new a0.h();
-        this.f22067f = new a0.h();
+        this.f22072e = new a0.h();
+        this.f22074f = new a0.h();
         this.h = new a0.h();
-        this.f22072n = new a0.h();
-        this.f22073r = new a0.h();
-        this.f22074s = new HashSet();
-        this.f22075w = new ArrayList();
-        this.f22076x = new ArrayList();
-        this.f22077y = new HashSet();
+        this.f22079n = new a0.h();
+        this.f22080r = new a0.h();
+        this.f22081s = new HashSet();
+        this.f22082w = new ArrayList();
+        this.f22083x = new ArrayList();
+        this.f22084y = new HashSet();
         this.D = new ArrayList();
         this.E = new a0.h();
         this.F = 0L;
@@ -146,10 +146,10 @@ public final class dt extends c1 implements ls {
         this.K = false;
         this.L = 0;
         this.N = -1;
-        this.f22068f0 = new xh.f();
-        this.f22070h0 = new char[]{10252, 10338, 10385, 10280, 10277, 10286, 10321};
-        this.f22071i0 = new rs(this, 11);
-        this.f22064d0 = this.currentAccount + 1;
+        this.f22075f0 = new xh.f();
+        this.f22077h0 = new char[]{10252, 10338, 10385, 10280, 10277, 10286, 10321};
+        this.f22078i0 = new rs(this, 11);
+        this.f22071d0 = this.currentAccount + 1;
         StringBuilder sb2 = new StringBuilder("messages");
         int i10 = this.currentAccount;
         if (i10 == 0) {
@@ -158,39 +158,39 @@ public final class dt extends c1 implements ls {
             valueOf = Integer.valueOf(i10);
         }
         sb2.append(valueOf);
-        this.f22066e0 = sb2.toString();
+        this.f22073e0 = sb2.toString();
         SharedPreferences c10 = getAccountInstance().c();
         this.M = c10.getBoolean("EnableInChatSound", true);
         this.R = c10.getBoolean("badgeNumber", true);
         this.S = c10.getBoolean("badgeNumberMuted", false);
         this.T = c10.getBoolean("badgeNumberMessages", true);
-        f22052l0 = new e0.i0(t0.f25555b);
-        m0 = (NotificationManager) t0.f25555b.getSystemService("notification");
+        f22059l0 = new e0.i0(t0.f25563b);
+        m0 = (NotificationManager) t0.f25563b.getSystemService("notification");
         try {
-            f22054o0 = (AudioManager) t0.f25555b.getSystemService("audio");
+            f22061o0 = (AudioManager) t0.f25563b.getSystemService("audio");
         } catch (Exception e10) {
             a8.g(e10, true);
         }
         try {
-            this.f22063c0 = (AlarmManager) t0.f25555b.getSystemService("alarm");
+            this.f22070c0 = (AlarmManager) t0.f25563b.getSystemService("alarm");
         } catch (Exception e11) {
             a8.g(e11, true);
         }
         try {
-            PowerManager.WakeLock newWakeLock = ((PowerManager) t0.f25555b.getSystemService("power")).newWakeLock(1, "telegram:notification_delay_lock");
+            PowerManager.WakeLock newWakeLock = ((PowerManager) t0.f25563b.getSystemService("power")).newWakeLock(1, "telegram:notification_delay_lock");
             this.V = newWakeLock;
             newWakeLock.setReferenceCounted(false);
         } catch (Exception e12) {
             a8.g(e12, true);
         }
         this.U = new rs(this, 12);
-        this.f22069g0 = new et(this.currentAccount);
+        this.f22076g0 = new et(this.currentAccount);
         g0.h3(new rs(this, 13));
     }
 
     public static boolean E(ij ijVar) {
         TLRPC.MessageAction messageAction;
-        TLRPC.Message message = ijVar.f23237k;
+        TLRPC.Message message = ijVar.f23244k;
         TLRPC.Peer peer = message.peer_id;
         if ((peer != null && peer.chat_id == 0 && peer.channel_id == 0 && ((messageAction = message.action) == null || (messageAction instanceof TLRPC.TL_messageActionEmpty))) || ijVar.J) {
             return true;
@@ -301,7 +301,7 @@ public final class dt extends c1 implements ls {
                 TLRPC.User user = (TLRPC.User) obj;
                 c10 = 2;
                 try {
-                    paint2.setShader(new LinearGradient(size, size2, size, size2 + f12, new int[]{org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28070p8[org.telegram.ui.Components.w8.e(user.f27101id)], false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28090q8[org.telegram.ui.Components.w8.e(user.f27101id)], false)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+                    paint2.setShader(new LinearGradient(size, size2, size, size2 + f12, new int[]{org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28071p8[org.telegram.ui.Components.w8.e(user.f27102id)], false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28091q8[org.telegram.ui.Components.w8.e(user.f27102id)], false)}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                     canvas.drawCircle(f14, f15, f13, paint2);
                     if (textPaint == null) {
                         try {
@@ -364,7 +364,7 @@ public final class dt extends c1 implements ls {
 
     public static void W(Notification notification, e0.q qVar, boolean z9) {
         if (z9) {
-            qVar.f10115y = f22050j0;
+            qVar.f10115y = f22057j0;
         } else {
             qVar.f10115y = notification.getChannelId();
         }
@@ -374,7 +374,7 @@ public final class dt extends c1 implements ls {
         boolean z9;
         String M0;
         if (dtVar.getUserConfig().p()) {
-            if (iz.Q0 || dtVar.currentAccount == p10.f24459s0) {
+            if (iz.Q0 || dtVar.currentAccount == p10.f24467s0) {
                 try {
                     String str2 = "wallet_tonconnect_" + dtVar.currentAccount;
                     if (Build.VERSION.SDK_INT >= 26) {
@@ -384,13 +384,13 @@ public final class dt extends c1 implements ls {
                         z9 = false;
                         if (!TextUtils.isEmpty(str) && !z9) {
                             M0 = hd.a0(null, null, 2131747924, str);
-                            Intent intent = new Intent(t0.f25555b, LaunchActivity.class);
+                            Intent intent = new Intent(t0.f25563b, LaunchActivity.class);
                             intent.setAction("android.intent.action.VIEW");
                             intent.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                             intent.putExtra("currentAccount", dtVar.currentAccount);
                             intent.addFlags(67108864);
-                            PendingIntent activity = PendingIntent.getActivity(t0.f25555b, dtVar.currentAccount, intent, 201326592);
-                            e0.q qVar = new e0.q(t0.f25555b, str2);
+                            PendingIntent activity = PendingIntent.getActivity(t0.f25563b, dtVar.currentAccount, intent, 201326592);
+                            e0.q qVar = new e0.q(t0.f25563b, str2);
                             qVar.F.icon = 2131232452;
                             qVar.f10097e = e0.q.d(hd.M0(2131689472, null));
                             qVar.f10098f = e0.q.d(M0);
@@ -402,16 +402,16 @@ public final class dt extends c1 implements ls {
                             qVar.F.when = j3;
                             qVar.h(16, true);
                             qVar.f10099g = activity;
-                            f22052l0.e("wallet_tonconnect", dtVar.currentAccount, qVar.b());
+                            f22059l0.e("wallet_tonconnect", dtVar.currentAccount, qVar.b());
                         }
                         M0 = hd.M0(2131747925, null);
-                        Intent intent2 = new Intent(t0.f25555b, LaunchActivity.class);
+                        Intent intent2 = new Intent(t0.f25563b, LaunchActivity.class);
                         intent2.setAction("android.intent.action.VIEW");
                         intent2.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                         intent2.putExtra("currentAccount", dtVar.currentAccount);
                         intent2.addFlags(67108864);
-                        PendingIntent activity2 = PendingIntent.getActivity(t0.f25555b, dtVar.currentAccount, intent2, 201326592);
-                        e0.q qVar2 = new e0.q(t0.f25555b, str2);
+                        PendingIntent activity2 = PendingIntent.getActivity(t0.f25563b, dtVar.currentAccount, intent2, 201326592);
+                        e0.q qVar2 = new e0.q(t0.f25563b, str2);
                         qVar2.F.icon = 2131232452;
                         qVar2.f10097e = e0.q.d(hd.M0(2131689472, null));
                         qVar2.f10098f = e0.q.d(M0);
@@ -423,18 +423,18 @@ public final class dt extends c1 implements ls {
                         qVar2.F.when = j3;
                         qVar2.h(16, true);
                         qVar2.f10099g = activity2;
-                        f22052l0.e("wallet_tonconnect", dtVar.currentAccount, qVar2.b());
+                        f22059l0.e("wallet_tonconnect", dtVar.currentAccount, qVar2.b());
                     }
                     z9 = true;
                     if (!TextUtils.isEmpty(str)) {
                         M0 = hd.a0(null, null, 2131747924, str);
-                        Intent intent22 = new Intent(t0.f25555b, LaunchActivity.class);
+                        Intent intent22 = new Intent(t0.f25563b, LaunchActivity.class);
                         intent22.setAction("android.intent.action.VIEW");
                         intent22.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                         intent22.putExtra("currentAccount", dtVar.currentAccount);
                         intent22.addFlags(67108864);
-                        PendingIntent activity22 = PendingIntent.getActivity(t0.f25555b, dtVar.currentAccount, intent22, 201326592);
-                        e0.q qVar22 = new e0.q(t0.f25555b, str2);
+                        PendingIntent activity22 = PendingIntent.getActivity(t0.f25563b, dtVar.currentAccount, intent22, 201326592);
+                        e0.q qVar22 = new e0.q(t0.f25563b, str2);
                         qVar22.F.icon = 2131232452;
                         qVar22.f10097e = e0.q.d(hd.M0(2131689472, null));
                         qVar22.f10098f = e0.q.d(M0);
@@ -446,16 +446,16 @@ public final class dt extends c1 implements ls {
                         qVar22.F.when = j3;
                         qVar22.h(16, true);
                         qVar22.f10099g = activity22;
-                        f22052l0.e("wallet_tonconnect", dtVar.currentAccount, qVar22.b());
+                        f22059l0.e("wallet_tonconnect", dtVar.currentAccount, qVar22.b());
                     }
                     M0 = hd.M0(2131747925, null);
-                    Intent intent222 = new Intent(t0.f25555b, LaunchActivity.class);
+                    Intent intent222 = new Intent(t0.f25563b, LaunchActivity.class);
                     intent222.setAction("android.intent.action.VIEW");
                     intent222.setData(Uri.parse("tg://resolve?domain=sendgrams"));
                     intent222.putExtra("currentAccount", dtVar.currentAccount);
                     intent222.addFlags(67108864);
-                    PendingIntent activity222 = PendingIntent.getActivity(t0.f25555b, dtVar.currentAccount, intent222, 201326592);
-                    e0.q qVar222 = new e0.q(t0.f25555b, str2);
+                    PendingIntent activity222 = PendingIntent.getActivity(t0.f25563b, dtVar.currentAccount, intent222, 201326592);
+                    e0.q qVar222 = new e0.q(t0.f25563b, str2);
                     qVar222.F.icon = 2131232452;
                     qVar222.f10097e = e0.q.d(hd.M0(2131689472, null));
                     qVar222.f10098f = e0.q.d(M0);
@@ -467,7 +467,7 @@ public final class dt extends c1 implements ls {
                     qVar222.F.when = j3;
                     qVar222.h(16, true);
                     qVar222.f10099g = activity222;
-                    f22052l0.e("wallet_tonconnect", dtVar.currentAccount, qVar222.b());
+                    f22059l0.e("wallet_tonconnect", dtVar.currentAccount, qVar222.b());
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }
@@ -486,7 +486,7 @@ public final class dt extends c1 implements ls {
                     if (!key.endsWith("_s")) {
                         String str = (String) entry.getValue();
                         m0.deleteNotificationChannel(str);
-                        if (r2.f25191a) {
+                        if (r2.f25199a) {
                             a8.b("delete all channel " + str);
                         }
                     }
@@ -501,19 +501,19 @@ public final class dt extends c1 implements ls {
 
     public static void c(dt dtVar) {
         PowerManager.WakeLock wakeLock = dtVar.V;
-        f22052l0.b(dtVar.currentAccount, "wallet_tonconnect");
+        f22059l0.b(dtVar.currentAccount, "wallet_tonconnect");
         dtVar.F = 0L;
         dtVar.G = 0L;
         dtVar.I = 0;
         dtVar.J = 0;
-        dtVar.f22058a.clear();
-        dtVar.f22062c.b();
+        dtVar.f22065a.clear();
+        dtVar.f22069c.b();
         dtVar.d.b();
-        dtVar.f22067f.b();
+        dtVar.f22074f.b();
         dtVar.h.b();
-        dtVar.f22072n.b();
-        dtVar.f22077y.clear();
-        dtVar.f22060b.clear();
+        dtVar.f22079n.b();
+        dtVar.f22084y.clear();
+        dtVar.f22067b.clear();
         dtVar.K = false;
         dtVar.N = 0;
         try {
@@ -546,7 +546,7 @@ public final class dt extends c1 implements ls {
                         } catch (Exception e11) {
                             a8.g(e11, true);
                         }
-                        if (r2.f25191a) {
+                        if (r2.f25199a) {
                             a8.b("delete channel cleanup " + id2);
                         }
                     }
@@ -585,9 +585,9 @@ public final class dt extends c1 implements ls {
         boolean z12;
         SparseArray sparseArray2;
         int intValue2;
-        dtVar.f22067f.b();
-        dtVar.f22058a.clear();
-        dtVar.f22062c.b();
+        dtVar.f22074f.b();
+        dtVar.f22065a.clear();
+        dtVar.f22069c.b();
         dtVar.D.clear();
         dtVar.E.b();
         boolean z13 = false;
@@ -606,15 +606,15 @@ public final class dt extends c1 implements ls {
                     } else {
                         j12 = 0;
                     }
-                    SparseArray sparseArray3 = (SparseArray) dtVar.f22062c.f(j12);
-                    if (sparseArray3 == null || sparseArray3.indexOfKey(message3.f26973id) < 0) {
+                    SparseArray sparseArray3 = (SparseArray) dtVar.f22069c.f(j12);
+                    if (sparseArray3 == null || sparseArray3.indexOfKey(message3.f26974id) < 0) {
                         ij ijVar2 = new ij(dtVar.currentAccount, message3, false, false);
                         if (E(ijVar2)) {
                             dtVar.J++;
                         }
-                        long B0 = ij.B0(ijVar2.f23237k);
-                        long c22 = ij.c2(dtVar.currentAccount, ijVar2.f23237k, dtVar.getMessagesController().u2(ijVar2), false);
-                        if (ijVar2.f23237k.mentioned) {
+                        long B0 = ij.B0(ijVar2.f23244k);
+                        long c22 = ij.c2(dtVar.currentAccount, ijVar2.f23244k, dtVar.getMessagesController().u2(ijVar2), false);
+                        if (ijVar2.f23244k.mentioned) {
                             message = message3;
                             j14 = ijVar2.Z0();
                             j13 = j12;
@@ -652,18 +652,18 @@ public final class dt extends c1 implements ls {
                             }
                             hVar2.k(Boolean.valueOf(z12), j14);
                         }
-                        if (z12 && (j14 != dtVar.F || !t0.f25562w)) {
+                        if (z12 && (j14 != dtVar.F || !t0.f25570w)) {
                             if (sparseArray == null) {
                                 sparseArray2 = new SparseArray();
-                                dtVar.f22062c.k(sparseArray2, j15);
+                                dtVar.f22069c.k(sparseArray2, j15);
                             } else {
                                 sparseArray2 = sparseArray;
                             }
-                            sparseArray2.put(message2.f26973id, ijVar);
+                            sparseArray2.put(message2.f26974id, ijVar);
                             dtVar.h(ijVar);
                             if (B0 != j14) {
-                                Integer num = (Integer) dtVar.f22073r.f(B0);
-                                a0.h hVar3 = dtVar.f22073r;
+                                Integer num = (Integer) dtVar.f22080r.f(B0);
+                                a0.h hVar3 = dtVar.f22080r;
                                 if (num == null) {
                                     intValue2 = 1;
                                 } else {
@@ -697,7 +697,7 @@ public final class dt extends c1 implements ls {
             if (z10) {
                 Integer num2 = (Integer) hVar.n(i14);
                 int intValue3 = num2.intValue();
-                dtVar.f22067f.k(num2, j18);
+                dtVar.f22074f.k(num2, j18);
                 if (!dtVar.getMessagesController().p2(j18)) {
                     if (dtVar.getMessagesController().t2(j18)) {
                         int i15 = dtVar.I;
@@ -718,13 +718,13 @@ public final class dt extends c1 implements ls {
         for (int i16 = 0; i16 < arrayList2.size(); i16++) {
             ij ijVar3 = (ij) arrayList2.get(i16);
             int f12 = ijVar3.f1();
-            if (dtVar.f22062c.h(f12) < 0) {
+            if (dtVar.f22069c.h(f12) < 0) {
                 if (E(ijVar3)) {
                     dtVar.J++;
                 }
-                long B02 = ij.B0(ijVar3.f23237k);
-                long c23 = ij.c2(dtVar.currentAccount, ijVar3.f23237k, dtVar.getMessagesController().u2(ijVar3), false);
-                TLRPC.Message message4 = ijVar3.f23237k;
+                long B02 = ij.B0(ijVar3.f23244k);
+                long c23 = ij.c2(dtVar.currentAccount, ijVar3.f23244k, dtVar.getMessagesController().u2(ijVar3), false);
+                TLRPC.Message message4 = ijVar3.f23244k;
                 long j19 = message4.random_id;
                 if (message4.mentioned) {
                     j3 = ijVar3.Z0();
@@ -751,22 +751,22 @@ public final class dt extends c1 implements ls {
                     }
                     hVar2.k(Boolean.valueOf(z9), j10);
                 }
-                if (z9 && (j10 != dtVar.F || !t0.f25562w)) {
+                if (z9 && (j10 != dtVar.F || !t0.f25570w)) {
                     if (f12 != 0) {
                         if (ijVar3.J) {
-                            j11 = ij.B0(ijVar3.f23237k);
+                            j11 = ij.B0(ijVar3.f23244k);
                         } else {
-                            long j21 = ijVar3.f23237k.peer_id.channel_id;
+                            long j21 = ijVar3.f23244k.peer_id.channel_id;
                             if (j21 != 0) {
                                 j11 = -j21;
                             } else {
                                 j11 = 0;
                             }
                         }
-                        SparseArray sparseArray4 = (SparseArray) dtVar.f22062c.f(j11);
+                        SparseArray sparseArray4 = (SparseArray) dtVar.f22069c.f(j11);
                         if (sparseArray4 == null) {
                             sparseArray4 = new SparseArray();
-                            dtVar.f22062c.k(sparseArray4, j11);
+                            dtVar.f22069c.k(sparseArray4, j11);
                         }
                         sparseArray4.put(f12, ijVar3);
                     } else if (j19 != 0) {
@@ -774,8 +774,8 @@ public final class dt extends c1 implements ls {
                     }
                     dtVar.h(ijVar3);
                     if (B02 != j10) {
-                        Integer num3 = (Integer) dtVar.f22073r.f(B02);
-                        a0.h hVar4 = dtVar.f22073r;
+                        Integer num3 = (Integer) dtVar.f22080r.f(B02);
+                        a0.h hVar4 = dtVar.f22080r;
                         if (num3 == null) {
                             intValue = 1;
                         } else {
@@ -783,7 +783,7 @@ public final class dt extends c1 implements ls {
                         }
                         hVar4.k(Integer.valueOf(intValue), B02);
                     }
-                    Integer num4 = (Integer) dtVar.f22067f.f(j10);
+                    Integer num4 = (Integer) dtVar.f22074f.f(j10);
                     if (num4 != null) {
                         i7 = num4.intValue() + 1;
                     } else {
@@ -814,7 +814,7 @@ public final class dt extends c1 implements ls {
                             dtVar.I += i7;
                         }
                     }
-                    dtVar.f22067f.k(Integer.valueOf(i7), j10);
+                    dtVar.f22074f.k(Integer.valueOf(i7), j10);
                 }
             }
         }
@@ -822,10 +822,10 @@ public final class dt extends c1 implements ls {
             Iterator it = collection.iterator();
             while (it.hasNext()) {
                 ct ctVar = (ct) it.next();
-                long j22 = ctVar.f21896a;
+                long j22 = ctVar.f21902a;
                 ct ctVar2 = (ct) dtVar.E.f(j22);
                 if (ctVar2 != null) {
-                    ctVar2.f21898c.putAll(ctVar.f21898c);
+                    ctVar2.f21904c.putAll(ctVar.f21904c);
                 } else {
                     dtVar.D.add(ctVar);
                     dtVar.E.k(ctVar, j22);
@@ -833,7 +833,7 @@ public final class dt extends c1 implements ls {
             }
             Collections.sort(dtVar.D, Comparator$CC.comparingLong(new sk(2)));
         }
-        g0.h3(new xs(dtVar, dtVar.f22067f.m(), 4));
+        g0.h3(new xs(dtVar, dtVar.f22074f.m(), 4));
         if (SystemClock.elapsedRealtime() / 1000 < 60) {
             z13 = true;
         }
@@ -850,28 +850,28 @@ public final class dt extends c1 implements ls {
     public static void i() {
         SharedPreferences sharedPreferences;
         if (Build.VERSION.SDK_INT >= 26) {
-            if (f22050j0 == null) {
-                sharedPreferences = t0.f25555b.getSharedPreferences("Notifications", 0);
-                f22050j0 = sharedPreferences.getString("OtherKey", "Other3");
+            if (f22057j0 == null) {
+                sharedPreferences = t0.f25563b.getSharedPreferences("Notifications", 0);
+                f22057j0 = sharedPreferences.getString("OtherKey", "Other3");
             } else {
                 sharedPreferences = null;
             }
-            NotificationChannel notificationChannel = m0.getNotificationChannel(f22050j0);
+            NotificationChannel notificationChannel = m0.getNotificationChannel(f22057j0);
             if (notificationChannel != null && notificationChannel.getImportance() == 0) {
                 try {
-                    m0.deleteNotificationChannel(f22050j0);
+                    m0.deleteNotificationChannel(f22057j0);
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }
-                f22050j0 = null;
+                f22057j0 = null;
                 notificationChannel = null;
             }
-            if (f22050j0 == null) {
+            if (f22057j0 == null) {
                 if (sharedPreferences == null) {
-                    sharedPreferences = t0.f25555b.getSharedPreferences("Notifications", 0);
+                    sharedPreferences = t0.f25563b.getSharedPreferences("Notifications", 0);
                 }
-                f22050j0 = "Other" + Utilities.f21331b.nextLong();
-                sharedPreferences.edit().putString("OtherKey", f22050j0).commit();
+                f22057j0 = "Other" + Utilities.f21331b.nextLong();
+                sharedPreferences.edit().putString("OtherKey", f22057j0).commit();
             }
             String M0 = hd.M0(2131749188, null);
             if (notificationChannel != null && !TextUtils.equals(notificationChannel.getName(), M0)) {
@@ -883,7 +883,7 @@ public final class dt extends c1 implements ls {
                 }
             }
             if (notificationChannel == null) {
-                NotificationChannel notificationChannel2 = new NotificationChannel(f22050j0, M0, 3);
+                NotificationChannel notificationChannel2 = new NotificationChannel(f22057j0, M0, 3);
                 notificationChannel2.enableLights(false);
                 notificationChannel2.enableVibration(false);
                 notificationChannel2.setSound(null, null);
@@ -927,7 +927,7 @@ public final class dt extends c1 implements ls {
     public static String r(ij ijVar, String str) {
         boolean z9;
         int i7;
-        TLRPC.Message message = ijVar.f23237k;
+        TLRPC.Message message = ijVar.f23244k;
         TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) message.action;
         boolean A = t10.A(ij.B0(message));
         if (!tL_messageActionGramTransfer.comment_encrypted && !TextUtils.isEmpty(tL_messageActionGramTransfer.comment)) {
@@ -954,7 +954,7 @@ public final class dt extends c1 implements ls {
         String string = sharedPreferences.getString(str3, "NoSound");
         if (j3 != 0) {
             TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone = new TLRPC.TL_notificationSoundRingtone();
-            tL_notificationSoundRingtone.f27079id = j3;
+            tL_notificationSoundRingtone.f27080id = j3;
             return tL_notificationSoundRingtone;
         } else if (string != null) {
             if (string.equalsIgnoreCase("NoSound")) {
@@ -971,13 +971,13 @@ public final class dt extends c1 implements ls {
 
     public static dt t(int i7) {
         dt dtVar;
-        dt dtVar2 = f22055p0[i7];
+        dt dtVar2 = f22062p0[i7];
         if (dtVar2 == null) {
-            synchronized (f22056q0[i7]) {
+            synchronized (f22063q0[i7]) {
                 try {
-                    dtVar = f22055p0[i7];
+                    dtVar = f22062p0[i7];
                     if (dtVar == null) {
-                        dt[] dtVarArr = f22055p0;
+                        dt[] dtVarArr = f22062p0;
                         dt dtVar3 = new dt(i7);
                         dtVarArr[i7] = dtVar3;
                         dtVar = dtVar3;
@@ -1001,7 +1001,7 @@ public final class dt extends c1 implements ls {
             return String.valueOf(j3);
         }
         long j11 = (j10 << 12) + j3;
-        a0.h hVar = f22057r0;
+        a0.h hVar = f22064r0;
         int h = hVar.h(j11);
         if (h >= 0) {
             return (String) hVar.n(h);
@@ -1019,15 +1019,15 @@ public final class dt extends c1 implements ls {
     public final boolean A() {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f22058a;
+            ArrayList arrayList = this.f22065a;
             if (i7 >= arrayList.size()) {
                 return false;
             }
             ij ijVar = (ij) arrayList.get(i7);
-            long B0 = ij.B0(ijVar.f23237k);
+            long B0 = ij.B0(ijVar.f23244k);
             if (!ijVar.I) {
-                TLRPC.Message message = ijVar.f23237k;
-                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && ((ijVar.f23237k.peer_id.channel_id == 0 || ijVar.B4()) && B0 != 489000 && B0 != 489001)) {
+                TLRPC.Message message = ijVar.f23244k;
+                if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && ((ijVar.f23244k.peer_id.channel_id == 0 || ijVar.B4()) && B0 != 489000 && B0 != 489001)) {
                     return true;
                 }
             }
@@ -1072,7 +1072,7 @@ public final class dt extends c1 implements ls {
         } else {
             z10 = false;
         }
-        SharedPreferences.Editor edit = qp.s1(this.currentAccount).f24749d7.edit();
+        SharedPreferences.Editor edit = qp.s1(this.currentAccount).f24757d7.edit();
         if (D && !z10) {
             edit.remove("notify2_" + v(j3, j10, false));
         } else {
@@ -1093,7 +1093,7 @@ public final class dt extends c1 implements ls {
         boolean z9;
         long j11 = 0;
         if (j3 != 0) {
-            SharedPreferences.Editor edit = qp.s1(this.currentAccount).f24749d7.edit();
+            SharedPreferences.Editor edit = qp.s1(this.currentAccount).f24757d7.edit();
             int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
             if (i10 != 0) {
                 z9 = true;
@@ -1140,8 +1140,8 @@ public final class dt extends c1 implements ls {
         int i7 = 0;
         for (int i10 = 0; i10 < min; i10++) {
             ct ctVar = (ct) arrayList3.get(i10);
-            HashMap hashMap = ctVar.f21898c;
-            long j3 = ctVar.f21896a;
+            HashMap hashMap = ctVar.f21904c;
+            long j3 = ctVar.f21902a;
             i7 += hashMap.size();
             z9 |= ctVar.d;
             TLRPC.User a22 = getMessagesController().a2(Long.valueOf(j3));
@@ -1156,26 +1156,26 @@ public final class dt extends c1 implements ls {
                     w7 fileLoader = getFileLoader();
                     TLRPC.FileLocation fileLocation2 = a22.photo.photo_small;
                     fileLoader.getClass();
-                    File K = w7.K(fileLocation2, null, true, true);
-                    if (!K.exists()) {
+                    File J = w7.J(fileLocation2, null, true, true);
+                    if (!J.exists()) {
                         if (a22.photo.photo_big != null) {
                             w7 fileLoader2 = getFileLoader();
                             TLRPC.FileLocation fileLocation3 = a22.photo.photo_big;
                             fileLoader2.getClass();
-                            K = w7.K(fileLocation3, null, true, true);
+                            J = w7.J(fileLocation3, null, true, true);
                         } else {
-                            K = null;
+                            J = null;
                         }
-                        if (K != null && !K.exists()) {
-                            K = null;
+                        if (J != null && !J.exists()) {
+                            J = null;
                         }
                     }
-                    if (K != null) {
-                        file = K;
+                    if (J != null) {
+                        file = J;
                     }
                 }
             } else {
-                str = ctVar.f21897b;
+                str = ctVar.f21903b;
                 if (str == null) {
                 }
             }
@@ -1196,14 +1196,14 @@ public final class dt extends c1 implements ls {
     }
 
     public final void J(LongSparseIntArray longSparseIntArray) {
-        f22051k0.c(new ws(this, longSparseIntArray, new ArrayList(), 0));
+        f22058k0.c(new ws(this, longSparseIntArray, new ArrayList(), 0));
     }
 
     public final void K(ArrayList arrayList, boolean z9, boolean z10, CountDownLatch countDownLatch) {
         boolean z11;
         boolean z12;
         Object valueOf;
-        if (r2.f25191a) {
+        if (r2.f25199a) {
             StringBuilder sb2 = new StringBuilder("NotificationsController: processNewMessages msgs.size()=");
             if (arrayList == null) {
                 valueOf = "null";
@@ -1227,13 +1227,13 @@ public final class dt extends c1 implements ls {
             int i7 = 0;
             while (i7 < arrayList.size()) {
                 ij ijVar = (ij) arrayList.get(i7);
-                if (ijVar != null && ijVar.f23237k != null && !ijVar.Q3()) {
-                    TLRPC.MessageAction messageAction = ijVar.f23237k.action;
+                if (ijVar != null && ijVar.f23244k != null && !ijVar.Q3()) {
+                    TLRPC.MessageAction messageAction = ijVar.f23244k.action;
                     if (messageAction instanceof TLRPC.TL_messageActionConferenceCall) {
                         TLRPC.TL_messageActionConferenceCall tL_messageActionConferenceCall = (TLRPC.TL_messageActionConferenceCall) messageAction;
-                        if (!tL_messageActionConferenceCall.active && !tL_messageActionConferenceCall.missed && getConnectionsManager().getCurrentTime() - ijVar.f23237k.date < getMessagesController().f24783h3 / 1000) {
+                        if (!tL_messageActionConferenceCall.active && !tL_messageActionConferenceCall.missed && getConnectionsManager().getCurrentTime() - ijVar.f23244k.date < getMessagesController().f24791h3 / 1000) {
                             HashSet hashSet = new HashSet();
-                            hashSet.add(Long.valueOf(ij.B0(ijVar.f23237k)));
+                            hashSet.add(Long.valueOf(ij.B0(ijVar.f23244k)));
                             ArrayList<TLRPC.Peer> arrayList2 = tL_messageActionConferenceCall.other_participants;
                             int size = arrayList2.size();
                             int i10 = 0;
@@ -1251,11 +1251,11 @@ public final class dt extends c1 implements ls {
                                 }
                                 sb3.append(m5.s(this.currentAccount, longValue));
                             }
-                            VoIPGroupNotification.request(t0.f25555b, this.currentAccount, ij.B0(ijVar.f23237k), sb3.toString(), tL_messageActionConferenceCall.call_id, ijVar.f1(), tL_messageActionConferenceCall.video);
+                            VoIPGroupNotification.request(t0.f25563b, this.currentAccount, ij.B0(ijVar.f23244k), sb3.toString(), tL_messageActionConferenceCall.call_id, ijVar.f1(), tL_messageActionConferenceCall.video);
                             arrayList.remove(i7);
                             i7--;
                         } else {
-                            VoIPGroupNotification.hide(t0.f25555b, this.currentAccount, ijVar.f1());
+                            VoIPGroupNotification.hide(t0.f25563b, this.currentAccount, ijVar.f1());
                         }
                     }
                 }
@@ -1269,15 +1269,15 @@ public final class dt extends c1 implements ls {
             }
             return;
         }
-        f22051k0.c(new nn(this, arrayList, new ArrayList(0), z12, z11, countDownLatch));
+        f22058k0.c(new nn(this, arrayList, new ArrayList(0), z12, z11, countDownLatch));
     }
 
     public final void L(LongSparseIntArray longSparseIntArray, long j3, int i7, int i10, boolean z9) {
-        f22051k0.c(new pg(this, longSparseIntArray, new ArrayList(0), j3, i10, i7, z9));
+        f22058k0.c(new pg(this, longSparseIntArray, new ArrayList(0), j3, i10, i7, z9));
     }
 
     public final void M(a0.h hVar, boolean z9) {
-        f22051k0.c(new aa.d0(this, hVar, z9, new ArrayList(0), 22));
+        f22058k0.c(new aa.d0(this, hVar, z9, new ArrayList(0), 22));
     }
 
     public final void N(long j3) {
@@ -1289,17 +1289,17 @@ public final class dt extends c1 implements ls {
 
     public final String O(ij ijVar) {
         String str;
-        TLRPC.Message message = ijVar.f23237k;
+        TLRPC.Message message = ijVar.f23244k;
         if (message != null && (str = message.message) != null && message.entities != null) {
             StringBuilder sb2 = new StringBuilder(str);
             if (ijVar.I2) {
                 return sb2.toString();
             }
-            for (int i7 = 0; i7 < ijVar.f23237k.entities.size(); i7++) {
-                if (ijVar.f23237k.entities.get(i7) instanceof TLRPC.TL_messageEntitySpoiler) {
-                    TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = (TLRPC.TL_messageEntitySpoiler) ijVar.f23237k.entities.get(i7);
+            for (int i7 = 0; i7 < ijVar.f23244k.entities.size(); i7++) {
+                if (ijVar.f23244k.entities.get(i7) instanceof TLRPC.TL_messageEntitySpoiler) {
+                    TLRPC.TL_messageEntitySpoiler tL_messageEntitySpoiler = (TLRPC.TL_messageEntitySpoiler) ijVar.f23244k.entities.get(i7);
                     for (int i10 = 0; i10 < tL_messageEntitySpoiler.length; i10++) {
-                        char[] cArr = this.f22070h0;
+                        char[] cArr = this.f22077h0;
                         sb2.setCharAt(tL_messageEntitySpoiler.offset + i10, cArr[i10 % cArr.length]);
                     }
                 }
@@ -1347,7 +1347,7 @@ public final class dt extends c1 implements ls {
             }
             edit.commit();
             qVar.f10115y = e0(j3, j10, str, jArr, i7, uri2, i10, z9, z10, z11, i11);
-            f22052l0.e(null, this.f22064d0, qVar.b());
+            f22059l0.e(null, this.f22071d0, qVar.b());
         }
     }
 
@@ -1355,11 +1355,11 @@ public final class dt extends c1 implements ls {
         int i7;
         rs rsVar = this.U;
         try {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.b("delay notification start, onlineReason = " + z9);
             }
             this.V.acquire(10000L);
-            p5 p5Var = f22051k0;
+            p5 p5Var = f22058k0;
             p5Var.a(rsVar);
             if (z9) {
                 i7 = 3000;
@@ -1375,14 +1375,14 @@ public final class dt extends c1 implements ls {
 
     public final void R() {
         try {
-            Intent intent = new Intent(t0.f25555b, NotificationRepeat.class);
+            Intent intent = new Intent(t0.f25563b, NotificationRepeat.class);
             intent.putExtra("currentAccount", this.currentAccount);
-            PendingIntent service = PendingIntent.getService(t0.f25555b, 0, intent, 33554432);
+            PendingIntent service = PendingIntent.getService(t0.f25563b, 0, intent, 33554432);
             int i7 = getAccountInstance().c().getInt("repeat_messages", 60);
             if (i7 > 0 && this.J > 0) {
-                this.f22063c0.set(2, SystemClock.elapsedRealtime() + (i7 * 60000), service);
+                this.f22070c0.set(2, SystemClock.elapsedRealtime() + (i7 * 60000), service);
             } else {
-                this.f22063c0.cancel(service);
+                this.f22070c0.cancel(service);
             }
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -1394,11 +1394,11 @@ public final class dt extends c1 implements ls {
             a8.b("setBadge " + i7);
             this.N = i7;
             try {
-                if (fs.f22441c == null && !fs.f22440b) {
+                if (fs.f22448c == null && !fs.f22447b) {
                     fs.b();
-                    fs.f22440b = true;
+                    fs.f22447b = true;
                 }
-                cs csVar = fs.f22441c;
+                cs csVar = fs.f22448c;
                 if (csVar != null) {
                     csVar.a(i7);
                 }
@@ -1409,7 +1409,7 @@ public final class dt extends c1 implements ls {
 
     public final void T(long j3, int i7, long j10) {
         SharedPreferences.Editor edit = getAccountInstance().c().edit();
-        TLRPC.Dialog dialog = (TLRPC.Dialog) qp.s1(p10.f24459s0).Q.f(j3);
+        TLRPC.Dialog dialog = (TLRPC.Dialog) qp.s1(p10.f24467s0).Q.f(j3);
         if (i7 == 4) {
             if (D(j3, null, false, false)) {
                 edit.remove("notify2_" + v(j3, j10, false));
@@ -1421,7 +1421,7 @@ public final class dt extends c1 implements ls {
                 dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
             }
         } else {
-            int currentTime = ConnectionsManager.getInstance(p10.f24459s0).getCurrentTime();
+            int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
             if (i7 == 0) {
                 currentTime += 3600;
             } else if (i7 == 1) {
@@ -1439,8 +1439,8 @@ public final class dt extends c1 implements ls {
                 edit.putInt("notifyuntil_" + v(j3, j10, false), currentTime);
                 j11 = 1 | (((long) currentTime) << 32);
             }
-            t(p10.f24459s0).N(j3);
-            yr.a0(p10.f24459s0).E1(j3, j11);
+            t(p10.f24467s0).N(j3);
+            yr.a0(p10.f24467s0).E1(j3, j11);
             if (dialog != null) {
                 TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
                 dialog.notify_settings = tL_peerNotifySettings;
@@ -1455,12 +1455,12 @@ public final class dt extends c1 implements ls {
         getAccountInstance().c().edit().putInt(q(i7), i10).commit();
         b0(i7);
         yr messagesStorage = getMessagesStorage();
-        messagesStorage.f26688a.c(new qq(messagesStorage, 25));
+        messagesStorage.f26696a.c(new qq(messagesStorage, 25));
         m(i7);
     }
 
     public final void V(int i7) {
-        f22051k0.c(new xs(this, i7, 7));
+        f22058k0.c(new xs(this, i7, 7));
     }
 
     public final void X(e0.q r90, java.lang.String r91, long r92, long r94, java.lang.String r96, long[] r97, int r98, android.net.Uri r99, int r100, boolean r101, boolean r102, boolean r103, int r104) {
@@ -1468,7 +1468,7 @@ public final class dt extends c1 implements ls {
     }
 
     public final void Y() {
-        f22051k0.c(new rs(this, 3));
+        f22058k0.c(new rs(this, 3));
     }
 
     public final void Z(boolean r54) {
@@ -1476,7 +1476,7 @@ public final class dt extends c1 implements ls {
     }
 
     public final void a0(long j3, String str) {
-        f22051k0.c(new hr(this, str, j3, 3));
+        f22058k0.c(new hr(this, str, j3, 3));
     }
 
     public final void b0(int i7) {
@@ -1548,7 +1548,7 @@ public final class dt extends c1 implements ls {
     public final void c0(long j3, long j10, boolean z9) {
         int i7;
         if (z9) {
-            getNotificationCenter().k(qs.f24979f0, new Object[0]);
+            getNotificationCenter().k(qs.f24987f0, new Object[0]);
         }
         if (m5.C(j3)) {
             return;
@@ -1589,7 +1589,7 @@ public final class dt extends c1 implements ls {
         tL_inputPeerNotifySettings5.flags = tL_inputPeerNotifySettings5.flags | 8;
         if (j11 != 0) {
             TLRPC.TL_notificationSoundRingtone tL_notificationSoundRingtone = new TLRPC.TL_notificationSoundRingtone();
-            tL_notificationSoundRingtone.f27079id = j11;
+            tL_notificationSoundRingtone.f27080id = j11;
             updatenotifysettings.settings.sound = tL_notificationSoundRingtone;
         } else if (string != null) {
             if (string.equalsIgnoreCase("NoSound")) {
@@ -1631,13 +1631,13 @@ public final class dt extends c1 implements ls {
             if (i7 >= arrayList.size()) {
                 break;
             }
-            for (Pair pair : ((ct) arrayList.get(i7)).f21898c.values()) {
+            for (Pair pair : ((ct) arrayList.get(i7)).f21904c.values()) {
                 j3 = Math.min(j3, ((Long) pair.second).longValue());
             }
             i7++;
         }
-        p5 p5Var = f22051k0;
-        rs rsVar = this.f22071i0;
+        p5 p5Var = f22058k0;
+        rs rsVar = this.f22078i0;
         p5Var.a(rsVar);
         long currentTimeMillis = j3 - System.currentTimeMillis();
         if (j3 != Long.MAX_VALUE) {
@@ -1648,7 +1648,7 @@ public final class dt extends c1 implements ls {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == qs.Y1) {
-            f22051k0.c(new yq(11, this, (String) objArr[0]));
+            f22058k0.c(new yq(11, this, (String) objArr[0]));
         }
     }
 
@@ -1659,9 +1659,9 @@ public final class dt extends c1 implements ls {
     public final void h(ij ijVar) {
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f22058a;
+            ArrayList arrayList = this.f22065a;
             if (i7 < arrayList.size()) {
-                if (((ij) arrayList.get(i7)).f1() == ijVar.f1() && ij.B0(((ij) arrayList.get(i7)).f23237k) == ij.B0(ijVar.f23237k) && ((ij) arrayList.get(i7)).K == ijVar.K) {
+                if (((ij) arrayList.get(i7)).f1() == ijVar.f1() && ij.B0(((ij) arrayList.get(i7)).f23244k) == ij.B0(ijVar.f23244k) && ((ij) arrayList.get(i7)).K == ijVar.K) {
                     return;
                 }
                 i7++;
@@ -1680,14 +1680,14 @@ public final class dt extends c1 implements ls {
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
-        f22051k0.c(new ss(this, j3, j10, 1));
+        f22058k0.c(new ss(this, j3, j10, 1));
     }
 
     public final void m(int i7) {
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
-        f22051k0.c(new xs(this, i7, 8));
+        f22058k0.c(new xs(this, i7, 8));
     }
 
     public final void n(int i7) {
@@ -1718,7 +1718,7 @@ public final class dt extends c1 implements ls {
                     } catch (Exception e10) {
                         a8.g(e10, true);
                     }
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.b("delete channel global internal ".concat(string));
                     }
                 }
@@ -1742,7 +1742,7 @@ public final class dt extends c1 implements ls {
                     } catch (Exception e11) {
                         a8.g(e11, true);
                     }
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.b("delete channel global internal ".concat(string2));
                     }
                 }
@@ -1783,7 +1783,7 @@ public final class dt extends c1 implements ls {
                     } catch (Exception e10) {
                         a8.g(e10, true);
                     }
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.b("delete channel internal ".concat(string));
                     }
                 }
@@ -1796,7 +1796,7 @@ public final class dt extends c1 implements ls {
                     } catch (Exception e11) {
                         a8.g(e11, true);
                     }
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.b("delete channel internal ".concat(string2));
                     }
                 }
@@ -1811,13 +1811,13 @@ public final class dt extends c1 implements ls {
         a0.h hVar = this.h;
         a8.b("NotificationsController dismissNotification");
         try {
-            f22052l0.b(this.f22064d0, null);
-            this.f22058a.clear();
-            this.f22062c.b();
-            this.f22072n.b();
+            f22059l0.b(this.f22071d0, null);
+            this.f22065a.clear();
+            this.f22069c.b();
+            this.f22079n.b();
             for (int i7 = 0; i7 < hVar.m(); i7++) {
-                if (!this.f22077y.contains(Long.valueOf(hVar.j(i7)))) {
-                    f22052l0.b(((Integer) hVar.n(i7)).intValue(), null);
+                if (!this.f22084y.contains(Long.valueOf(hVar.j(i7)))) {
+                    f22059l0.b(((Integer) hVar.n(i7)).intValue(), null);
                 }
             }
             hVar.b();
@@ -1828,8 +1828,8 @@ public final class dt extends c1 implements ls {
     }
 
     public final int u(long j3, long j10) {
-        int c10 = this.f22069g0.c(-1, j3, j10, "notify2_");
-        if (c10 == 3 && this.f22069g0.c(0, j3, j10, "notifyuntil_") >= getConnectionsManager().getCurrentTime()) {
+        int c10 = this.f22076g0.c(-1, j3, j10, "notify2_");
+        if (c10 == 3 && this.f22076g0.c(0, j3, j10, "notifyuntil_") >= getConnectionsManager().getCurrentTime()) {
             return 2;
         }
         return c10;
@@ -1856,18 +1856,18 @@ public final class dt extends c1 implements ls {
     public final int z() {
         int i7 = 0;
         for (int i10 = 0; i10 < 4; i10++) {
-            if (p10.i(i10).p() && (iz.Q0 || p10.f24459s0 == i10)) {
+            if (p10.i(i10).p() && (iz.Q0 || p10.f24467s0 == i10)) {
                 dt t6 = t(i10);
                 if (t6.R) {
                     if (t6.T) {
                         if (t6.S) {
                             try {
-                                ArrayList arrayList = new ArrayList(qp.s1(i10).f24929y);
+                                ArrayList arrayList = new ArrayList(qp.s1(i10).f24937y);
                                 int size = arrayList.size();
                                 for (int i11 = 0; i11 < size; i11++) {
                                     TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList.get(i11);
-                                    if (dialog != null && m5.z(dialog.f26956id)) {
-                                        TLRPC.Chat M0 = getMessagesController().M0(Long.valueOf(-dialog.f26956id));
+                                    if (dialog != null && m5.z(dialog.f26957id)) {
+                                        TLRPC.Chat M0 = getMessagesController().M0(Long.valueOf(-dialog.f26957id));
                                         if (!t3.r0(M0)) {
                                             if (t3.Y(M0)) {
                                             }
@@ -1885,11 +1885,11 @@ public final class dt extends c1 implements ls {
                         }
                     } else if (t6.S) {
                         try {
-                            int size2 = qp.s1(i10).f24929y.size();
+                            int size2 = qp.s1(i10).f24937y.size();
                             for (int i12 = 0; i12 < size2; i12++) {
-                                TLRPC.Dialog dialog2 = (TLRPC.Dialog) qp.s1(i10).f24929y.get(i12);
-                                if (m5.z(dialog2.f26956id)) {
-                                    TLRPC.Chat M02 = getMessagesController().M0(Long.valueOf(-dialog2.f26956id));
+                                TLRPC.Dialog dialog2 = (TLRPC.Dialog) qp.s1(i10).f24937y.get(i12);
+                                if (m5.z(dialog2.f26957id)) {
+                                    TLRPC.Chat M02 = getMessagesController().M0(Long.valueOf(-dialog2.f26957id));
                                     if (!t3.r0(M02)) {
                                         if (t3.Y(M02)) {
                                         }
@@ -1903,7 +1903,7 @@ public final class dt extends c1 implements ls {
                             a8.g(e11, false);
                         }
                     } else {
-                        i7 += t6.f22067f.m();
+                        i7 += t6.f22074f.m();
                     }
                 }
             }

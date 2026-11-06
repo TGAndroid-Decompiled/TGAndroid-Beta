@@ -9,32 +9,32 @@ import java.math.RoundingMode;
 import java.util.Collections;
 import java.util.List;
 public abstract class m {
-    public final u f53047a;
-    public final i0 f53048b;
-    public final long f53049c;
+    public final u f53045a;
+    public final i0 f53046b;
+    public final long f53047c;
     public final List d;
-    public final List f53050e;
-    public final List f53051f;
+    public final List f53048e;
+    public final List f53049f;
     public final j h;
 
     public m(u uVar, List list, s sVar, List list2, List list3, List list4) {
         List unmodifiableList;
         ia.f(!list.isEmpty());
-        this.f53047a = uVar;
-        this.f53048b = i0.q(list);
+        this.f53045a = uVar;
+        this.f53046b = i0.q(list);
         if (list2 == null) {
             unmodifiableList = Collections.EMPTY_LIST;
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(list2);
         }
         this.d = unmodifiableList;
-        this.f53050e = list3;
-        this.f53051f = list4;
+        this.f53048e = list3;
+        this.f53049f = list4;
         this.h = sVar.a(this);
-        long j3 = sVar.f53065c;
-        long j10 = sVar.f53064b;
+        long j3 = sVar.f53063c;
+        long j10 = sVar.f53062b;
         String str = m0.f14112a;
-        this.f53049c = m0.a0(j3, 1000000L, j10, RoundingMode.DOWN);
+        this.f53047c = m0.a0(j3, 1000000L, j10, RoundingMode.DOWN);
     }
 
     public abstract String b();

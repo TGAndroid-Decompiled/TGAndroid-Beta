@@ -2,56 +2,56 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class tn implements Runnable {
-    public final int f25634a;
-    public final qp f25635b;
-    public final TLRPC.Dialog f25636c;
+    public final int f25642a;
+    public final qp f25643b;
+    public final TLRPC.Dialog f25644c;
 
     public tn(qp qpVar, TLRPC.Dialog dialog, int i7) {
-        this.f25634a = i7;
-        this.f25635b = qpVar;
-        this.f25636c = dialog;
+        this.f25642a = i7;
+        this.f25643b = qpVar;
+        this.f25644c = dialog;
     }
 
     @Override
     public final void run() {
-        switch (this.f25634a) {
+        switch (this.f25642a) {
             case 0:
-                boolean z9 = r2.f25191a;
-                TLRPC.Dialog dialog = this.f25636c;
+                boolean z9 = r2.f25199a;
+                TLRPC.Dialog dialog = this.f25644c;
                 if (z9) {
-                    a8.b("checkLastDialogMessage for " + dialog.f26956id + " has not message");
+                    a8.b("checkLastDialogMessage for " + dialog.f26957id + " has not message");
                 }
-                qp qpVar = this.f25635b;
-                if (qpVar.getMediaDataController().R(dialog.f26956id, 0L) == null) {
-                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) qpVar.Q.f(dialog.f26956id);
+                qp qpVar = this.f25643b;
+                if (qpVar.getMediaDataController().R(dialog.f26957id, 0L) == null) {
+                    TLRPC.Dialog dialog2 = (TLRPC.Dialog) qpVar.Q.f(dialog.f26957id);
                     if (dialog2 == null) {
-                        if (r2.f25191a) {
-                            a8.b("checkLastDialogMessage for " + dialog.f26956id + " current dialog not found");
+                        if (r2.f25199a) {
+                            a8.b("checkLastDialogMessage for " + dialog.f26957id + " current dialog not found");
                         }
                         yr messagesStorage = qpVar.getMessagesStorage();
-                        messagesStorage.f26688a.c(new hr(messagesStorage, dialog.f26956id, new tn(qpVar, dialog, 2), 1));
+                        messagesStorage.f26696a.c(new hr(messagesStorage, dialog.f26957id, new tn(qpVar, dialog, 2), 1));
                         return;
                     }
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         StringBuilder sb2 = new StringBuilder("checkLastDialogMessage for ");
-                        sb2.append(dialog.f26956id);
+                        sb2.append(dialog.f26957id);
                         sb2.append(" current dialog top message ");
                         jg.g.s(dialog2.top_message, sb2);
                     }
                     if (dialog2.top_message == 0) {
-                        qpVar.X(3, dialog.f26956id, false);
+                        qpVar.X(3, dialog.f26957id, false);
                         return;
                     }
                     return;
                 }
                 return;
             case 1:
-                this.f25635b.f24744d1.e(this.f25636c.f26956id);
+                this.f25643b.f24752d1.e(this.f25644c.f26957id);
                 return;
             default:
-                qp qpVar2 = this.f25635b;
+                qp qpVar2 = this.f25643b;
                 qpVar2.getClass();
-                qpVar2.X(3, this.f25636c.f26956id, false);
+                qpVar2.X(3, this.f25644c.f26957id, false);
                 return;
         }
     }

@@ -23,7 +23,7 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.x70;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zg0;
@@ -271,7 +271,7 @@ public class m3 extends View {
             return textPaint.measureText(charSequence.toString());
         }
         Spanned spanned = (Spanned) charSequence;
-        t31[] t31VarArr = (t31[]) spanned.getSpans(0, charSequence.length(), t31.class);
+        u31[] u31VarArr = (u31[]) spanned.getSpans(0, charSequence.length(), u31.class);
         ReplacementSpan[] replacementSpanArr = (ReplacementSpan[]) spanned.getSpans(0, charSequence.length(), ReplacementSpan.class);
         int i7 = 0;
         int i10 = 0;
@@ -285,11 +285,11 @@ public class m3 extends View {
         }
         CharSequence charSequence3 = charSequence;
         TextPaint textPaint3 = textPaint;
-        if (t31VarArr != null && t31VarArr.length != 0) {
+        if (u31VarArr != null && u31VarArr.length != 0) {
             int i11 = 0;
-            for (int i12 = 0; i12 < t31VarArr.length; i12++) {
-                int spanStart2 = spanned.getSpanStart(t31VarArr[i12]);
-                int spanEnd2 = spanned.getSpanEnd(t31VarArr[i12]);
+            for (int i12 = 0; i12 < u31VarArr.length; i12++) {
+                int spanStart2 = spanned.getSpanStart(u31VarArr[i12]);
+                int spanEnd2 = spanned.getSpanEnd(u31VarArr[i12]);
                 int max = Math.max(i11, spanStart2);
                 if (max - i11 > 0) {
                     f10 += textPaint3.measureText(spanned, i11, max);
@@ -297,7 +297,7 @@ public class m3 extends View {
                 i11 = Math.max(max, spanEnd2);
                 if (i11 - max > 0) {
                     Typeface typeface = textPaint3.getTypeface();
-                    textPaint3.setTypeface(t31VarArr[i12].f38210a);
+                    textPaint3.setTypeface(u31VarArr[i12].f38494a);
                     textPaint3.setTypeface(typeface);
                     f10 = textPaint3.measureText(spanned, max, i11) + f10;
                 }
@@ -398,7 +398,7 @@ public class m3 extends View {
             if (this.I) {
                 f10 = this.P;
             } else {
-                f10 = i6Var.f34480e;
+                f10 = i6Var.f34511e;
             }
             if (this.f12437r) {
                 if (this.f12432n == null) {
@@ -764,7 +764,7 @@ public class m3 extends View {
         invalidate();
         Runnable runnable2 = this.f12436q0;
         if (runnable2 != null) {
-            org.telegram.messenger.g0.i3(runnable2, w5Var.f39857c * ((float) w5Var.f39860g));
+            org.telegram.messenger.g0.i3(runnable2, w5Var.f39855c * ((float) w5Var.f39858g));
         }
         this.Q.f(true);
     }
@@ -793,7 +793,7 @@ public class m3 extends View {
             return charSequence;
         }
         if (!this.I) {
-            return this.H.f34483i;
+            return this.H.f34514i;
         }
         StaticLayout staticLayout = this.L;
         if (staticLayout != null) {
@@ -806,7 +806,7 @@ public class m3 extends View {
         if (this.I) {
             return this.J;
         }
-        return this.H.f34475a;
+        return this.H.f34506a;
     }
 
     public final void i(float f10) {
@@ -1037,7 +1037,7 @@ public class m3 extends View {
             this.f12449y0 = ofFloat;
             ofFloat.addUpdateListener(new ah.h(this, 29));
             this.f12449y0.addListener(new bi.t5(this, 19));
-            this.f12449y0.setInterpolator(xq.f40333k);
+            this.f12449y0.setInterpolator(xq.f40349k);
             this.f12449y0.setDuration(300L);
             this.f12449y0.start();
         }

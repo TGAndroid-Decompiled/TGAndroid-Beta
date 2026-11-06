@@ -82,7 +82,7 @@ public final class v0 implements v10 {
                     if (!(webPage2 instanceof TLRPC.TL_webPageEmpty)) {
                         if (messageMedia instanceof TLRPC.TL_messageMediaWebPage) {
                             if (webPage2 instanceof TLRPC.TL_webPagePending) {
-                                long j3 = webPage2.f27107id;
+                                long j3 = webPage2.f27108id;
                                 int i12 = this.f4857b;
                                 hi.b1 b1Var = new hi.b1(j3, lsVarArr, i12, z0Var);
                                 lsVarArr[0] = b1Var;
@@ -162,12 +162,12 @@ public final class v0 implements v10 {
                     z10 = true;
                 }
                 if (!z10) {
-                    qp.s1(i13).B0(chat2.f26952id, true);
+                    qp.s1(i13).B0(chat2.f26953id, true);
                 }
                 org.telegram.messenger.g0.h3(new gq0(a1Var, 5));
                 org.telegram.messenger.g0.i3(new bg.m0(i13, chat2, 17), 1000L);
                 yr a02 = yr.a0(i13);
-                long j10 = chat2.f26952id;
+                long j10 = chat2.f26953id;
                 a02.R1(-j10, j10, new ArrayList(), null);
                 return;
             case 5:
@@ -176,7 +176,7 @@ public final class v0 implements v10 {
                 TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI = (TLRPC.TL_messages_composeMessageWithAI) obj3;
                 TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI = (TLRPC.TL_composedMessageWithAI) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
-                FrameLayout frameLayout = g0Var.f33699y2;
+                FrameLayout frameLayout = g0Var.f33726y2;
                 g0Var.I2 = -1;
                 g0Var.J2 = false;
                 if (tL_error5 != null && ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error5.text) || "AICOMPOSE_FLOOD_PREMIUM".equalsIgnoreCase(tL_error5.text))) {
@@ -213,10 +213,10 @@ public final class v0 implements v10 {
                         TLRPC.TL_textWithEntities tL_textWithEntities = tL_composedMessageWithAI.diff_text;
                         if (tL_textWithEntities != null) {
                             g0Var.Y1 = ij.h0(tL_textWithEntities, false);
-                            g0Var.f33676a2 = ij.h0(tL_composedMessageWithAI.result_text, false);
+                            g0Var.f33703a2 = ij.h0(tL_composedMessageWithAI.result_text, false);
                         } else {
                             CharSequence h02 = ij.h0(tL_composedMessageWithAI.result_text, false);
-                            g0Var.f33676a2 = h02;
+                            g0Var.f33703a2 = h02;
                             g0Var.Y1 = h02;
                         }
                     }
@@ -229,7 +229,7 @@ public final class v0 implements v10 {
                 TLRPC.TL_messages_composeRichMessageWithAI tL_messages_composeRichMessageWithAI = (TLRPC.TL_messages_composeRichMessageWithAI) obj3;
                 TLRPC.TL_composedRichMessageWithAI tL_composedRichMessageWithAI = (TLRPC.TL_composedRichMessageWithAI) obj;
                 TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj2;
-                FrameLayout frameLayout2 = g0Var2.f33699y2;
+                FrameLayout frameLayout2 = g0Var2.f33726y2;
                 g0Var2.I2 = -1;
                 g0Var2.J2 = false;
                 if (tL_error6 != null && ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error6.text) || "AICOMPOSE_FLOOD_PREMIUM".equalsIgnoreCase(tL_error6.text))) {
@@ -301,7 +301,7 @@ public final class v0 implements v10 {
                     if ("EMPTY".equalsIgnoreCase(str3)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2);
                         String M0 = org.telegram.messenger.hd.M0(2131747631, null);
-                        org.telegram.ui.ActionBar.u1 u1Var3 = alertDialog$Builder.f27292a;
+                        org.telegram.ui.ActionBar.u1 u1Var3 = alertDialog$Builder.f27293a;
                         u1Var3.R = M0;
                         u1Var3.T = org.telegram.messenger.hd.M0(2131747632, null);
                         alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
@@ -323,7 +323,7 @@ public final class v0 implements v10 {
                             } else if (T instanceof PrivacySettingsActivity) {
                                 v2Var.dismiss();
                                 PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) T;
-                                ArrayList arrayList3 = privacySettingsActivity.f41680e;
+                                ArrayList arrayList3 = privacySettingsActivity.f41679e;
                                 if (arrayList3 == null) {
                                     arrayList3 = new ArrayList();
                                 }

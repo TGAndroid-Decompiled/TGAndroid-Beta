@@ -5,18 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import org.telegram.tgnet.ConnectionsManager;
 public final class q0 extends BroadcastReceiver {
-    public final int f24647a;
+    public final int f24655a;
 
     public q0(int i7) {
-        this.f24647a = i7;
+        this.f24655a = i7;
     }
 
     @Override
     public final void onReceive(Context context, Intent intent) {
-        switch (this.f24647a) {
+        switch (this.f24655a) {
             case 0:
                 try {
-                    t0.f25556c = t0.f25557e.getActiveNetworkInfo();
+                    t0.f25564c = t0.f25565e.getActiveNetworkInfo();
                 } catch (Throwable unused) {
                 }
                 boolean p10 = t0.p();
@@ -36,17 +36,17 @@ public final class q0 extends BroadcastReceiver {
                 return;
             default:
                 if (intent.getAction().equals("android.intent.action.SCREEN_OFF")) {
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.b("screen off");
                     }
-                    ConnectionsManager.getInstance(p10.f24459s0).setAppPaused(true, true);
-                    t0.f25562w = false;
+                    ConnectionsManager.getInstance(p10.f24467s0).setAppPaused(true, true);
+                    t0.f25570w = false;
                 } else if (intent.getAction().equals("android.intent.action.SCREEN_ON")) {
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.b("screen on");
                     }
-                    ConnectionsManager.getInstance(p10.f24459s0).setAppPaused(false, true);
-                    t0.f25562w = true;
+                    ConnectionsManager.getInstance(p10.f24467s0).setAppPaused(false, true);
+                    t0.f25570w = true;
                 }
                 qs.e().k(287, new Object[0]);
                 return;

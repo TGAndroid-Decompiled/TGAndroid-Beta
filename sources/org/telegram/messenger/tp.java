@@ -8,14 +8,14 @@ import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class tp implements Runnable {
-    public final int f25643a;
-    public final yr f25644b;
-    public final int f25645c;
+    public final int f25651a;
+    public final yr f25652b;
+    public final int f25653c;
 
     public tp(yr yrVar, int i7, int i10) {
-        this.f25643a = i10;
-        this.f25644b = yrVar;
-        this.f25645c = i7;
+        this.f25651a = i10;
+        this.f25652b = yrVar;
+        this.f25653c = i7;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class tp implements Runnable {
         boolean z9;
         boolean z10;
         boolean z11;
-        int i7 = this.f25643a;
+        int i7 = this.f25651a;
         SQLiteCursor sQLiteCursor = null;
-        int i10 = this.f25645c;
-        yr yrVar = this.f25644b;
+        int i10 = this.f25653c;
+        yr yrVar = this.f25652b;
         switch (i7) {
             case 0:
                 qp messagesController = yrVar.getMessagesController();
                 p10 userConfig = messagesController.getUserConfig();
-                int i11 = this.f25645c;
+                int i11 = this.f25653c;
                 if (userConfig.g(i11)[0] == 2147483647L) {
                     if (i11 == 1) {
-                        messagesController.f24804k0 = false;
+                        messagesController.f24812k0 = false;
                         messagesController.D();
                         return;
                     }
@@ -50,14 +50,14 @@ public final class tp implements Runnable {
             case 2:
                 yrVar.getClass();
                 try {
-                    yrVar.f26690b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
+                    yrVar.f26698b.executeFast("DELETE FROM shortcut_widget WHERE id = " + i10).stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     yrVar.o(e10, true);
                     return;
                 }
             case 3:
-                yr yrVar2 = this.f25644b;
+                yr yrVar2 = this.f25652b;
                 try {
                     try {
                         ArrayList arrayList = new ArrayList();
@@ -65,18 +65,18 @@ public final class tp implements Runnable {
                         ArrayList arrayList3 = new ArrayList();
                         a0.h hVar = new a0.h();
                         if (i10 >= 0) {
-                            queryFinalized = yrVar2.f26690b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
+                            queryFinalized = yrVar2.f26698b.queryFinalized(String.format(Locale.US, "SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0 AND folder_id = %1$d", Integer.valueOf(i10)), new Object[0]);
                         } else {
-                            queryFinalized = yrVar2.f26690b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
+                            queryFinalized = yrVar2.f26698b.queryFinalized("SELECT did, last_mid, unread_count, date FROM dialogs WHERE unread_count > 0", new Object[0]);
                         }
                         while (queryFinalized.next()) {
                             try {
                                 long longValue = queryFinalized.longValue(0);
                                 if (!m5.D(longValue)) {
                                     ?? obj = new Object();
-                                    obj.f25879a = queryFinalized.intValue(1);
-                                    obj.f25881c = queryFinalized.intValue(2);
-                                    obj.f25880b = queryFinalized.intValue(3);
+                                    obj.f25887a = queryFinalized.intValue(1);
+                                    obj.f25889c = queryFinalized.intValue(2);
+                                    obj.f25888b = queryFinalized.intValue(3);
                                     hVar.k(obj, longValue);
                                     if (!m5.C(longValue)) {
                                         if (m5.z(longValue)) {
@@ -136,9 +136,9 @@ public final class tp implements Runnable {
             case 4:
                 try {
                     if (i10 == 0) {
-                        yrVar.f26690b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
+                        yrVar.f26698b.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
                     } else {
-                        SQLiteDatabase sQLiteDatabase = yrVar.f26690b;
+                        SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
                         Locale locale = Locale.US;
                         sQLiteDatabase.executeFast("DELETE FROM download_queue WHERE type = " + i10).stepThis().dispose();
                     }
@@ -154,7 +154,7 @@ public final class tp implements Runnable {
                 try {
                     try {
                         ArrayList arrayList7 = new ArrayList();
-                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26690b;
+                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26698b;
                         Locale locale2 = Locale.US;
                         SQLiteCursor queryFinalized2 = sQLiteDatabase2.queryFinalized("SELECT uid, type, data, parent FROM download_queue WHERE type = " + i10 + " ORDER BY date DESC LIMIT 3", new Object[0]);
                         while (queryFinalized2.next()) {

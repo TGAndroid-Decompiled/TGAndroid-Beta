@@ -76,7 +76,7 @@ public final class v2 implements bi {
         String str2;
         i4 i4Var = this.f9864a;
         if (i4Var.f9192s0.m0 && (storyItem = i4Var.f9213x1.f9038a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || i4Var.f9190r2.f32895a2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || i4Var.f9190r2.f32924a2.getSelectedPhotos().isEmpty())) {
                 u2 u2Var = i4Var.f9190r2;
                 if (u2Var != null) {
                     u2Var.L(i7);
@@ -88,8 +88,8 @@ public final class v2 implements bi {
             if (i7 != 8) {
                 i4Var.f9190r2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = i4Var.f9190r2.f32895a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = i4Var.f9190r2.f32895a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = i4Var.f9190r2.f32924a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = i4Var.f9190r2.f32924a2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;
@@ -104,16 +104,16 @@ public final class v2 implements bi {
                             ?? obj = new Object();
                             boolean z18 = gfVar.f26824b;
                             if (!z18 && (str2 = gfVar.h) != null) {
-                                obj.f22486c = str2;
+                                obj.f22493c = str2;
                             } else {
                                 String str3 = gfVar.I;
                                 if (str3 != null) {
-                                    obj.f22486c = str3;
+                                    obj.f22493c = str3;
                                 }
                             }
-                            obj.f22487e = gfVar.f26825c;
-                            obj.f22488f = gfVar.f26828g;
-                            obj.f22496o = z18;
+                            obj.f22494e = gfVar.f26825c;
+                            obj.f22495f = gfVar.f26828g;
+                            obj.f22503o = z18;
                             CharSequence charSequence = gfVar.f26823a;
                             if (charSequence != null) {
                                 str = charSequence.toString();
@@ -121,19 +121,19 @@ public final class v2 implements bi {
                                 str = null;
                             }
                             obj.d = str;
-                            obj.f22490i = gfVar.f26834n;
-                            obj.f22491j = gfVar.f26838r;
+                            obj.f22497i = gfVar.f26834n;
+                            obj.f22498j = gfVar.f26838r;
                             obj.h = gfVar.f26843x;
-                            obj.f22492k = gfVar.f26839s;
-                            obj.f22499r = gfVar.L;
-                            obj.f22501t = gz.h(gfVar.f26823a);
-                            obj.f22502u = gfVar.M;
+                            obj.f22499k = gfVar.f26839s;
+                            obj.f22506r = gfVar.L;
+                            obj.f22508t = gz.h(gfVar.f26823a);
+                            obj.f22509u = gfVar.M;
                             arrayList.add(obj);
                             gfVar.e();
                         }
                     }
                     if (i13 == 0) {
-                        z14 = ((fz) arrayList.get(i12)).f22501t;
+                        z14 = ((fz) arrayList.get(i12)).f22508t;
                     } else {
                         z14 = i12;
                     }

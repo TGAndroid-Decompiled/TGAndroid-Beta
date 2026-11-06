@@ -5,26 +5,26 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 public final class cr0 extends org.telegram.ui.ActionBar.n0 {
-    public final xs0 f32652a;
+    public final xs0 f32639a;
 
     public cr0(xs0 xs0Var) {
-        this.f32652a = xs0Var;
+        this.f32639a = xs0Var;
     }
 
     @Override
     public final void g() {
-        org.telegram.ui.ActionBar.r0 r0Var = this.f32652a.f40400p0;
+        org.telegram.ui.ActionBar.r0 r0Var = this.f32639a.f40416p0;
         r0Var.setTranslationX(((View) r0Var.getParent()).getMeasuredWidth() - r0Var.getRight());
     }
 
     @Override
     public final void h() {
-        xs0 xs0Var = this.f32652a;
+        xs0 xs0Var = this.f32639a;
         qq0 qq0Var = xs0Var.L0;
-        ImageView imageView = xs0Var.f40413t0;
+        ImageView imageView = xs0Var.f40429t0;
         xs0Var.X0 = false;
         xs0Var.Y0 = null;
-        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40397o0;
+        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40413o0;
         if (r0Var != null) {
             r0Var.setVisibility(0);
         }
@@ -38,28 +38,28 @@ public final class cr0 extends org.telegram.ui.ActionBar.n0 {
         }
         er0 er0Var = xs0Var.V;
         if (er0Var != null) {
-            org.telegram.ui.bn bnVar = er0Var.f44858a;
+            org.telegram.ui.bn bnVar = er0Var.f44857a;
             org.telegram.ui.sm smVar = bnVar.Rc;
             if (smVar != null) {
                 smVar.h();
             }
             bnVar.G3 = false;
-            bnVar.f43922q0 = false;
+            bnVar.f43921q0 = false;
             bnVar.Lc(false);
             bnVar.md();
         }
         xs0Var.W0 = false;
         xs0Var.setSearchItemVisibility(0);
-        xs0Var.f40381i0.G(null, true);
-        xs0Var.f40387k0.G(null, true);
-        xs0Var.f40384j0.G(null, true);
-        xs0Var.f40390l0.F(null, true);
+        xs0Var.f40397i0.G(null, true);
+        xs0Var.f40403k0.G(null, true);
+        xs0Var.f40400j0.G(null, true);
+        xs0Var.f40406l0.F(null, true);
         js0 js0Var = xs0Var.U;
         if (js0Var != null) {
             js0Var.E(null, null);
         }
         xs0Var.V0(false);
-        ch0 ch0Var = xs0Var.f40415u0;
+        ch0 ch0Var = xs0Var.f40431u0;
         if (ch0Var != null) {
             ch0Var.animate().scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(320L).setInterpolator(xq.h).start();
         }
@@ -73,7 +73,7 @@ public final class cr0 extends org.telegram.ui.ActionBar.n0 {
     @Override
     public final void i() {
         boolean z9;
-        xs0 xs0Var = this.f32652a;
+        xs0 xs0Var = this.f32639a;
         xs0Var.X0 = true;
         qq0 qq0Var = xs0Var.L0;
         if (qq0Var != null) {
@@ -84,17 +84,17 @@ public final class cr0 extends org.telegram.ui.ActionBar.n0 {
             }
             qq0Var.g(z9);
         }
-        ImageView imageView = xs0Var.f40413t0;
+        ImageView imageView = xs0Var.f40429t0;
         if (imageView != null) {
             imageView.setVisibility(8);
         }
-        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40397o0;
+        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40413o0;
         if (r0Var != null) {
             r0Var.setVisibility(8);
         }
         xs0Var.setSearchItemVisibility(8);
         xs0Var.V0(true);
-        ch0 ch0Var = xs0Var.f40415u0;
+        ch0 ch0Var = xs0Var.f40431u0;
         if (ch0Var != null) {
             ch0Var.animate().scaleX(0.6f).scaleY(0.6f).alpha(0.0f).setDuration(320L).setInterpolator(xq.h).start();
         }
@@ -102,9 +102,9 @@ public final class cr0 extends org.telegram.ui.ActionBar.n0 {
 
     @Override
     public final void k(EditTextBoldCursor editTextBoldCursor) {
-        er0 er0Var = this.f32652a.V;
+        er0 er0Var = this.f32639a.V;
         if (er0Var != null) {
-            er0Var.f44858a.J9();
+            er0Var.f44857a.J9();
         }
     }
 
@@ -113,23 +113,23 @@ public final class cr0 extends org.telegram.ui.ActionBar.n0 {
         boolean z9;
         js0 js0Var;
         String obj = editText.getText().toString();
-        xs0 xs0Var = this.f32652a;
+        xs0 xs0Var = this.f32639a;
         er0 er0Var = xs0Var.V;
         if (er0Var != null) {
-            org.telegram.ui.bn bnVar = er0Var.f44858a;
-            org.telegram.ui.ActionBar.r0 r0Var = bnVar.f43838j0;
+            org.telegram.ui.bn bnVar = er0Var.f44857a;
+            org.telegram.ui.ActionBar.r0 r0Var = bnVar.f43837j0;
             if (r0Var != null) {
                 bnVar.H3 = obj;
                 r0Var.P(obj, false);
             }
             if (TextUtils.isEmpty(obj) && xs0Var.Y0 == null) {
-                org.telegram.ui.bn bnVar2 = er0Var.f44858a;
+                org.telegram.ui.bn bnVar2 = er0Var.f44857a;
                 org.telegram.ui.sm smVar = bnVar2.Rc;
                 if (smVar != null) {
                     smVar.h();
                 }
                 bnVar2.G3 = false;
-                bnVar2.f43922q0 = false;
+                bnVar2.f43921q0 = false;
                 bnVar2.Lc(false);
                 bnVar2.md();
             }
@@ -144,22 +144,22 @@ public final class cr0 extends org.telegram.ui.ActionBar.n0 {
         xs0Var.post(new ob0(this, 29));
         int i7 = xs0Var.m0[0].E;
         if (i7 == 1) {
-            ur0 ur0Var = xs0Var.f40381i0;
+            ur0 ur0Var = xs0Var.f40397i0;
             if (ur0Var != null) {
                 ur0Var.G(obj, true);
             }
         } else if (i7 == 3) {
-            ur0 ur0Var2 = xs0Var.f40387k0;
+            ur0 ur0Var2 = xs0Var.f40403k0;
             if (ur0Var2 != null) {
                 ur0Var2.G(obj, true);
             }
         } else if (i7 == 4) {
-            ur0 ur0Var3 = xs0Var.f40384j0;
+            ur0 ur0Var3 = xs0Var.f40400j0;
             if (ur0Var3 != null) {
                 ur0Var3.G(obj, true);
             }
         } else if (i7 == 7) {
-            qr0 qr0Var = xs0Var.f40390l0;
+            qr0 qr0Var = xs0Var.f40406l0;
             if (qr0Var != null) {
                 qr0Var.F(obj, true);
             }

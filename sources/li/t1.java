@@ -28,7 +28,7 @@ public final class t1 extends rt0 {
     public final void dispatchDraw(Canvas canvas) {
         b2 b2Var = this.f18866i0;
         Rect rect = b2Var.f18469x;
-        int r12 = k6.r1(b2Var.I, b2Var.getThemedColor(k6.f27848d6));
+        int r12 = k6.r1(b2Var.I, b2Var.getThemedColor(k6.f27849d6));
         Paint paint = this.f18864g0;
         paint.setColor(r12);
         if (b2Var.E && b2Var.f18471y != null) {

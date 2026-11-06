@@ -5,11 +5,11 @@ import android.util.LruCache;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stars;
 public abstract class q7 {
-    public static final LruCache f43058a = new LruCache(128);
-    public static final float[] f43059b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
-    public static final float[] f43060c = {0.0f, 0.47809f, 1.0f};
+    public static final LruCache f43057a = new LruCache(128);
+    public static final float[] f43058b = {0.017513232f, 0.2844959f, 1.2347647f, 0.012535676f, 0.21663007f, 0.8356014f, 0.02682078f, 0.40080056f, 2.4040875f, 0.0032399998f, 0.171f, 0.47039998f};
+    public static final float[] f43059c = {0.0f, 0.47809f, 1.0f};
     public static final LruCache d = new LruCache(64);
-    public static final int f43061e;
+    public static final int f43060e;
 
     static {
         float[] j3 = j(-16748084);
@@ -26,7 +26,7 @@ public abstract class q7 {
             }
         }
         float z9 = com.google.android.recaptcha.internal.a.z(f12, f11, 0.723f, f11);
-        f43061e = l(f10, e(f10, z9), z9);
+        f43060e = l(f10, e(f10, z9), z9);
     }
 
     public static int a(int i7, float[] fArr) {
@@ -56,7 +56,7 @@ public abstract class q7 {
     public static int b(int i7, float[] fArr) {
         int i10 = i7 * 4;
         int i11 = i10 + 10;
-        int i12 = f43061e;
+        int i12 = f43060e;
         if (fArr != null && fArr.length >= 18) {
             float f10 = fArr[i11];
             float f11 = 0.0f;
@@ -268,7 +268,7 @@ public abstract class q7 {
         float[] fArr;
         float f10;
         String str = i7 + ":" + i10 + ":" + i11;
-        LruCache lruCache = f43058a;
+        LruCache lruCache = f43057a;
         Integer num = (Integer) lruCache.get(str);
         if (num != null) {
             return num.intValue();
@@ -383,7 +383,7 @@ public abstract class q7 {
                     }
                     i11 = i15;
                     i12 = i16;
-                    dArr = org.telegram.ui.ActionBar.u4.d(org.telegram.ui.ActionBar.u4.f28601f, org.telegram.ui.ActionBar.u4.d(org.telegram.ui.ActionBar.u4.f28598b, d16));
+                    dArr = org.telegram.ui.ActionBar.u4.d(org.telegram.ui.ActionBar.u4.f28602f, org.telegram.ui.ActionBar.u4.d(org.telegram.ui.ActionBar.u4.f28599b, d16));
                     double d17 = dArr[i11];
                     if (d17 >= 0.0d) {
                         double d18 = dArr[i12];

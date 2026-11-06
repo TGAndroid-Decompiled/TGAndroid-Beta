@@ -1,26 +1,26 @@
 package org.telegram.ui;
 public final class yc0 implements Runnable {
-    public final int f52210a;
-    public final gd0 f52211b;
-    public final int f52212c;
+    public final int f52208a;
+    public final gd0 f52209b;
+    public final int f52210c;
 
     public yc0(gd0 gd0Var, int i7, int i10) {
-        this.f52210a = i10;
-        this.f52211b = gd0Var;
-        this.f52212c = i7;
+        this.f52208a = i10;
+        this.f52209b = gd0Var;
+        this.f52210c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f52210a) {
+        switch (this.f52208a) {
             case 0:
-                org.telegram.messenger.g0.h3(new yc0(this.f52211b, this.f52212c, 1));
+                org.telegram.messenger.g0.h3(new yc0(this.f52209b, this.f52210c, 1));
                 return;
             case 1:
-                this.f52211b.z(this.f52212c);
+                this.f52209b.z(this.f52210c);
                 return;
             default:
-                this.f52211b.f45963f.f52311f[this.f52212c].C(1.0f);
+                this.f52209b.f45962f.f52309f[this.f52210c].C(1.0f);
                 return;
         }
     }

@@ -29,7 +29,7 @@ public final class i0 extends FrameLayout {
         this.f14709c = keyboardButton;
         xh.l lVar = new xh.l(context);
         this.f14707a = lVar;
-        lVar.f58748r = false;
+        lVar.f58747r = false;
         lVar.setTextSize(1, 14.0f);
         lVar.setTypeface(org.telegram.messenger.g0.o());
         qs.i(lVar);
@@ -78,13 +78,13 @@ public final class i0 extends FrameLayout {
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_primary) {
                 r12 = k6.r1(0.8f, k6.w0(k6.Rl, f6Var));
-                k10 = i0.a.k(k6.w0(k6.f27940i6, f6Var), r12);
+                k10 = i0.a.k(k6.w0(k6.f27941i6, f6Var), r12);
             } else if (keyboardButtonStyle.bg_danger) {
                 r12 = k6.r1(0.8f, k6.w0(k6.Sl, f6Var));
-                k10 = i0.a.k(k6.w0(k6.f27940i6, f6Var), r12);
+                k10 = i0.a.k(k6.w0(k6.f27941i6, f6Var), r12);
             } else if (keyboardButtonStyle.bg_success) {
                 r12 = k6.r1(0.8f, k6.w0(k6.Tl, f6Var));
-                k10 = i0.a.k(k6.w0(k6.f27940i6, f6Var), r12);
+                k10 = i0.a.k(k6.w0(k6.f27941i6, f6Var), r12);
             }
             i7 = r12;
             i10 = k10;

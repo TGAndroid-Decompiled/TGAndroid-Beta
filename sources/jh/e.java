@@ -48,7 +48,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
         this.f17033x = new LongSparseArray();
         this.f17034y = new LongSparseArray();
         this.D = new c(this, 1);
-        this.f17024a = iz.f23376g1;
+        this.f17024a = iz.f23383g1;
     }
 
     public final void a() {
@@ -88,7 +88,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
         this.E.addOnGlobalLayoutListener(this);
         this.E.addOnScrollChangedListener(this);
         g0.i3(this.D, 400L);
-        if (r2.f25191a) {
+        if (r2.f25199a) {
             Log.d("ViewMetrics", "attach");
         }
     }
@@ -104,7 +104,7 @@ public final class e extends View implements ViewTreeObserver.OnPreDrawListener,
         this.E = null;
         this.f17031s = 0L;
         g0.r(this.D);
-        if (r2.f25191a) {
+        if (r2.f25199a) {
             Log.d("ViewMetrics", "detach");
         }
         super.onDetachedFromWindow();

@@ -4,7 +4,7 @@ import a4.k;
 import c8.u9;
 import c8.v9;
 public abstract class f {
-    public static final g f54002a = new Object();
+    public static final g f54001a = new Object();
 
     public static final me.d a(me.d dVar, pb.b module) {
         kotlin.jvm.internal.j.e(dVar, "<this>");
@@ -21,7 +21,7 @@ public abstract class f {
 
     public static final byte b(char c10) {
         if (c10 < '~') {
-            return c.f53999b[c10];
+            return c.f53998b[c10];
         }
         return (byte) 0;
     }
@@ -72,7 +72,7 @@ public abstract class f {
         kotlin.jvm.internal.j.e(dVar, "<this>");
         kotlin.jvm.internal.j.e(json, "json");
         if (kotlin.jvm.internal.j.a(dVar.e(), me.f.f20010b)) {
-            json.f53485a.getClass();
+            json.f53483a.getClass();
         }
     }
 
@@ -80,20 +80,20 @@ public abstract class f {
         kotlin.jvm.internal.j.e(desc, "desc");
         v9 e10 = desc.e();
         if (e10 instanceof me.a) {
-            return j.f54014f;
+            return j.f54013f;
         }
         if (kotlin.jvm.internal.j.a(e10, me.f.f20011c)) {
             return j.d;
         }
         if (kotlin.jvm.internal.j.a(e10, me.f.d)) {
-            me.d a10 = a(desc.i(0), bVar.f53486b);
+            me.d a10 = a(desc.i(0), bVar.f53484b);
             v9 e11 = a10.e();
             if (!(e11 instanceof me.c) && !kotlin.jvm.internal.j.a(e11, me.e.f20009c)) {
-                bVar.f53485a.getClass();
+                bVar.f53483a.getClass();
                 throw new d("Value of type '" + a10.a() + "' can't be used in JSON as a key in the map. It should have either primitive or enum kind, but its kind is '" + a10.e() + "'.\nUse 'allowStructuredMapKeys = true' in 'Json {}' builder to convert such maps to [key1, value1, key2, value2,...] arrays.");
             }
-            return j.f54013e;
+            return j.f54012e;
         }
-        return j.f54012c;
+        return j.f54011c;
     }
 }

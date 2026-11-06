@@ -7,36 +7,36 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.ImageReceiver;
 public final class oc extends Drawable {
-    public final int f36573a;
-    public final Object f36574b;
-    public final Object f36575c;
+    public final int f36591a;
+    public final Object f36592b;
+    public final Object f36593c;
 
     public oc(int i7, Object obj, Object obj2) {
-        this.f36573a = i7;
-        this.f36574b = obj;
-        this.f36575c = obj2;
+        this.f36591a = i7;
+        this.f36592b = obj;
+        this.f36593c = obj2;
     }
 
     @Override
     public final void draw(Canvas canvas) {
         float offsetY;
-        switch (this.f36573a) {
+        switch (this.f36591a) {
             case 0:
-                pc pcVar = (pc) this.f36575c;
-                if (pcVar.f36841c > 1) {
-                    pcVar.c(canvas, pcVar.f36851o);
+                pc pcVar = (pc) this.f36593c;
+                if (pcVar.f36857c > 1) {
+                    pcVar.c(canvas, pcVar.f36867o);
                     return;
                 } else {
-                    pcVar.c(canvas, (Paint) this.f36574b);
+                    pcVar.c(canvas, (Paint) this.f36592b);
                     return;
                 }
             case 1:
-                Paint paint = (Paint) this.f36574b;
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f36575c;
+                Paint paint = (Paint) this.f36592b;
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f36593c;
                 if (chatActivityEnterView.U0 != null) {
                     paint.setAlpha(Math.round(chatActivityEnterView.C3 * 102.0f));
                     float width = chatActivityEnterView.getWidth();
-                    float y10 = (chatActivityEnterView.U0.getY() - chatActivityEnterView.getHeight()) + org.telegram.ui.ActionBar.k6.f27937i3.getIntrinsicHeight();
+                    float y10 = (chatActivityEnterView.U0.getY() - chatActivityEnterView.getHeight()) + org.telegram.ui.ActionBar.k6.f27938i3.getIntrinsicHeight();
                     xe xeVar = chatActivityEnterView.E0;
                     if (xeVar == null) {
                         offsetY = 0.0f;
@@ -48,8 +48,8 @@ public final class oc extends Drawable {
                 }
                 return;
             case 2:
-                Paint paint2 = (Paint) this.f36575c;
-                canvas.drawRect(getBounds(), (Paint) this.f36574b);
+                Paint paint2 = (Paint) this.f36593c;
+                canvas.drawRect(getBounds(), (Paint) this.f36592b);
                 int L = org.telegram.messenger.g0.L(9.0f);
                 int width2 = getBounds().width() / L;
                 int height = getBounds().height() / L;
@@ -69,16 +69,16 @@ public final class oc extends Drawable {
                 }
                 return;
             case 3:
-                ((ly0) this.f36574b).c(getBounds().centerX() - (((ly0) this.f36574b).f35782c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, (org.telegram.ui.ActionBar.f6) this.f36575c), canvas);
+                ((my0) this.f36592b).c(getBounds().centerX() - (((my0) this.f36592b).f36125c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, (org.telegram.ui.ActionBar.f6) this.f36593c), canvas);
                 return;
             default:
-                ImageReceiver imageReceiver = (ImageReceiver) this.f36574b;
+                ImageReceiver imageReceiver = (ImageReceiver) this.f36592b;
                 imageReceiver.h(canvas, null);
-                Drawable drawable = (Drawable) this.f36575c;
+                Drawable drawable = (Drawable) this.f36593c;
                 int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
                 int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
                 int A = (int) com.google.android.recaptcha.internal.a.A(imageReceiver.M0, intrinsicWidth, 2.0f, imageReceiver.K0);
-                int interpolation = (int) ((((imageReceiver.N0 / 2.0f) - intrinsicHeight) + imageReceiver.L0) - ((1.0f - xq.f40333k.getInterpolation(imageReceiver.f21194h1)) * org.telegram.messenger.g0.L(16.0f)));
+                int interpolation = (int) ((((imageReceiver.N0 / 2.0f) - intrinsicHeight) + imageReceiver.L0) - ((1.0f - xq.f40349k.getInterpolation(imageReceiver.f21194h1)) * org.telegram.messenger.g0.L(16.0f)));
                 drawable.setAlpha((int) (imageReceiver.getAlpha() * Math.min(1.0f, imageReceiver.f21194h1 * 5.0f) * 255.0f));
                 drawable.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
                 drawable.draw(canvas);
@@ -88,9 +88,9 @@ public final class oc extends Drawable {
 
     @Override
     public int getAlpha() {
-        switch (this.f36573a) {
+        switch (this.f36591a) {
             case 4:
-                return (int) (((ImageReceiver) this.f36574b).getAlpha() * 255.0f);
+                return (int) (((ImageReceiver) this.f36592b).getAlpha() * 255.0f);
             default:
                 return super.getAlpha();
         }
@@ -98,7 +98,7 @@ public final class oc extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f36573a) {
+        switch (this.f36591a) {
             case 2:
                 return 0;
             default:
@@ -108,7 +108,7 @@ public final class oc extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f36573a) {
+        switch (this.f36591a) {
             case 2:
                 return 0;
             default:
@@ -118,7 +118,7 @@ public final class oc extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f36573a) {
+        switch (this.f36591a) {
             case 0:
                 return -2;
             case 1:
@@ -134,9 +134,9 @@ public final class oc extends Drawable {
 
     @Override
     public void onBoundsChange(Rect rect) {
-        switch (this.f36573a) {
+        switch (this.f36591a) {
             case 4:
-                ((ImageReceiver) this.f36574b).y0(org.telegram.messenger.g0.L(2.0f) + rect.left, org.telegram.messenger.g0.L(2.0f) + rect.top, org.telegram.messenger.camera.q.w(2.0f, rect.left, rect.right - org.telegram.messenger.g0.L(2.0f)), org.telegram.messenger.camera.q.w(2.0f, rect.top, rect.bottom - org.telegram.messenger.g0.L(2.0f)));
+                ((ImageReceiver) this.f36592b).y0(org.telegram.messenger.g0.L(2.0f) + rect.left, org.telegram.messenger.g0.L(2.0f) + rect.top, org.telegram.messenger.camera.q.w(2.0f, rect.left, rect.right - org.telegram.messenger.g0.L(2.0f)), org.telegram.messenger.camera.q.w(2.0f, rect.top, rect.bottom - org.telegram.messenger.g0.L(2.0f)));
                 return;
             default:
                 super.onBoundsChange(rect);
@@ -146,29 +146,29 @@ public final class oc extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f36573a) {
+        switch (this.f36591a) {
             case 0:
             case 1:
             case 2:
             case 3:
                 return;
             default:
-                ((ImageReceiver) this.f36574b).setAlpha(i7 / 255.0f);
+                ((ImageReceiver) this.f36592b).setAlpha(i7 / 255.0f);
                 return;
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        int i7 = this.f36573a;
+        int i7 = this.f36591a;
     }
 
     public oc(boolean z9) {
-        this.f36573a = 2;
+        this.f36591a = 2;
         Paint paint = new Paint();
-        this.f36574b = paint;
+        this.f36592b = paint;
         Paint paint2 = new Paint();
-        this.f36575c = paint2;
+        this.f36593c = paint2;
         paint2.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
         if (z9) {
             paint.setColor(-14865331);
@@ -180,16 +180,16 @@ public final class oc extends Drawable {
     }
 
     public oc(pc pcVar, Paint paint) {
-        this.f36573a = 0;
-        this.f36575c = pcVar;
-        this.f36574b = paint;
+        this.f36591a = 0;
+        this.f36593c = pcVar;
+        this.f36592b = paint;
     }
 
     public oc(ChatActivityEnterView chatActivityEnterView) {
-        this.f36573a = 1;
-        this.f36575c = chatActivityEnterView;
+        this.f36591a = 1;
+        this.f36593c = chatActivityEnterView;
         Paint paint = new Paint();
-        this.f36574b = paint;
+        this.f36592b = paint;
         paint.setColor(0);
     }
 

@@ -5,17 +5,17 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 public final class d30 extends Drawable {
-    public byte[] f32761a;
-    public final Paint f32762b = new Paint();
-    public final int[] f32763c = {-1, -2758925, -13805707, -13657655};
+    public byte[] f32763a;
+    public final Paint f32764b = new Paint();
+    public final int[] f32765c = {-1, -2758925, -13805707, -13657655};
 
     @Override
     public final void draw(Canvas canvas) {
-        byte[] bArr = this.f32761a;
+        byte[] bArr = this.f32763a;
         if (bArr != null) {
             int length = bArr.length;
-            int[] iArr = this.f32763c;
-            Paint paint = this.f32762b;
+            int[] iArr = this.f32765c;
+            Paint paint = this.f32764b;
             if (length == 16) {
                 float floor = (float) Math.floor(Math.min(getBounds().width(), getBounds().height()) / 8.0f);
                 float f10 = 8.0f * floor;
@@ -26,7 +26,7 @@ public final class d30 extends Drawable {
                     int i11 = 0;
                     while (i11 < 8) {
                         int i12 = i7 + 2;
-                        paint.setColor(iArr[Math.abs((this.f32761a[i7 / 8] >> (i7 % 8)) & 3) % 4]);
+                        paint.setColor(iArr[Math.abs((this.f32763a[i7 / 8] >> (i7 % 8)) & 3) % 4]);
                         float f11 = (i11 * floor) + max;
                         float f12 = i10 * floor;
                         canvas.drawRect(f11, f12 + max2, f11 + floor, f12 + floor + max2, paint);
@@ -45,7 +45,7 @@ public final class d30 extends Drawable {
             while (i14 < 12) {
                 int i15 = i13;
                 for (int i16 = 0; i16 < 12; i16++) {
-                    paint.setColor(iArr[Math.abs((this.f32761a[i15 / 8] >> (i15 % 8)) & 3) % 4]);
+                    paint.setColor(iArr[Math.abs((this.f32763a[i15 / 8] >> (i15 % 8)) & 3) % 4]);
                     float f14 = (i16 * floor2) + max3;
                     float f15 = i14 * floor2;
                     canvas.drawRect(f14, f15 + max4, f14 + floor2, f15 + floor2 + max4, paint);

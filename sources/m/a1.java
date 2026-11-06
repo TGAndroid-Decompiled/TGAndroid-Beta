@@ -15,9 +15,9 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.view.textclassifier.TextClassifier;
 import android.widget.TextView;
-import c8.fc;
+import c8.gc;
 import c8.h9;
-import c8.lc;
+import c8.mc;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 public class a1 extends TextView implements u0.k {
@@ -118,7 +118,7 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return lc.d(super.getCustomSelectionActionModeCallback());
+        return mc.d(super.getCustomSelectionActionModeCallback());
     }
 
     @Override
@@ -177,7 +177,7 @@ public class a1 extends TextView implements u0.k {
                     if (Build.VERSION.SDK_INT >= 29) {
                         throw null;
                     }
-                    lc.a(this);
+                    mc.a(this);
                     throw null;
                 }
                 throw new ClassCastException();
@@ -201,7 +201,7 @@ public class a1 extends TextView implements u0.k {
     }
 
     public p0.c getTextMetricsParamsCompat() {
-        return lc.a(this);
+        return mc.a(this);
     }
 
     @Override
@@ -232,7 +232,7 @@ public class a1 extends TextView implements u0.k {
                     if (Build.VERSION.SDK_INT >= 29) {
                         throw null;
                     }
-                    lc.a(this);
+                    mc.a(this);
                     throw null;
                 }
                 throw new ClassCastException();
@@ -352,7 +352,7 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(lc.e(callback, this));
+        super.setCustomSelectionActionModeCallback(mc.e(callback, this));
     }
 
     public void setEmojiCompatEnabled(boolean z9) {
@@ -361,7 +361,7 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((fc) getEmojiTextViewHelper().f19259b.f38757b).a(inputFilterArr));
+        super.setFilters(((gc) getEmojiTextViewHelper().f19259b.f38750b).a(inputFilterArr));
     }
 
     @Override
@@ -369,7 +369,7 @@ public class a1 extends TextView implements u0.k {
         if (Build.VERSION.SDK_INT >= 28) {
             getSuperCaller().P(i7);
         } else {
-            lc.b(this, i7);
+            mc.b(this, i7);
         }
     }
 
@@ -378,7 +378,7 @@ public class a1 extends TextView implements u0.k {
         if (Build.VERSION.SDK_INT >= 28) {
             getSuperCaller().B(i7);
         } else {
-            lc.c(this, i7);
+            mc.c(this, i7);
         }
     }
 
@@ -399,7 +399,7 @@ public class a1 extends TextView implements u0.k {
         if (Build.VERSION.SDK_INT >= 29) {
             throw null;
         }
-        lc.a(this);
+        mc.a(this);
         throw null;
     }
 
@@ -459,7 +459,7 @@ public class a1 extends TextView implements u0.k {
 
     public void setTextMetricsParamsCompat(p0.c cVar) {
         TextDirectionHeuristic textDirectionHeuristic;
-        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f52987b;
+        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f52985b;
         TextDirectionHeuristic textDirectionHeuristic3 = TextDirectionHeuristics.FIRSTSTRONG_RTL;
         int i7 = 1;
         if (textDirectionHeuristic2 != textDirectionHeuristic3 && textDirectionHeuristic2 != (textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR)) {
@@ -478,8 +478,8 @@ public class a1 extends TextView implements u0.k {
             }
         }
         setTextDirection(i7);
-        getPaint().set(cVar.f52986a);
-        setBreakStrategy(cVar.f52988c);
+        getPaint().set(cVar.f52984a);
+        setBreakStrategy(cVar.f52986c);
         setHyphenationFrequency(cVar.d);
     }
 

@@ -1,54 +1,33 @@
 package org.telegram.ui.Components;
+public final class q11 implements Runnable {
+    public final int f37137a;
+    public final org.telegram.messenger.ij f37138b;
+    public final long f37139c;
+    public final String d;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-public final class q11 extends Drawable {
-    public final zg0 f37121a;
-    public int f37122b;
-    public final TextPaint f37123c;
-
-    public q11(TextPaint textPaint) {
-        a5.b bVar = new a5.b(this, 8);
-        this.f37123c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        zg0 zg0Var = new zg0(2131624000, (int) textSize, (int) (textSize * 1.25f));
-        this.f37121a = zg0Var;
-        zg0Var.setCallback(bVar);
-        zg0Var.K(1);
-        zg0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        zg0Var.J(true);
-        zg0Var.start();
+    public q11(org.telegram.messenger.ij ijVar, long j3, String str, int i7) {
+        this.f37137a = i7;
+        this.f37138b = ijVar;
+        this.f37139c = j3;
+        this.d = str;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f37123c.getColor();
-        int i7 = this.f37122b;
-        zg0 zg0Var = this.f37121a;
-        if (color != i7) {
-            zg0Var.Z = true;
-            zg0Var.Q(color, "Comp 1");
-            zg0Var.o();
-            zg0Var.J(true);
-            zg0Var.V(0L);
-            this.f37122b = color;
+    public final void run() {
+        int i7 = this.f37137a;
+        String str = this.d;
+        long j3 = this.f37139c;
+        org.telegram.messenger.ij ijVar = this.f37138b;
+        switch (i7) {
+            case 0:
+                s11.f(ijVar, j3, str);
+                return;
+            default:
+                org.telegram.messenger.qs f10 = org.telegram.messenger.qs.f(ijVar.I1);
+                Long valueOf = Long.valueOf(j3);
+                Boolean bool = Boolean.TRUE;
+                f10.k(115, ijVar, valueOf, str, bool, bool);
+                return;
         }
-        zg0Var.draw(canvas);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i7) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

@@ -27,7 +27,7 @@ public final class w6 implements c20 {
                 TLRPC.Document document = e7Var.f11883c0;
                 int i10 = qp.C8;
                 TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                tL_inputDocument.f26964id = document.f26958id;
+                tL_inputDocument.f26965id = document.f26959id;
                 tL_inputDocument.access_hash = document.access_hash;
                 tL_inputDocument.file_reference = document.file_reference;
                 tL_inputFileStoryDocument.doc = tL_inputDocument;
@@ -36,13 +36,13 @@ public final class w6 implements c20 {
             default:
                 j20 j20Var = (j20) obj;
                 x6Var.F = j20Var;
-                x6Var.E.f23255p0 = j20Var;
-                x6Var.D = j20Var.f23460r / 1000;
+                x6Var.E.f23262p0 = j20Var;
+                x6Var.D = j20Var.f23467r / 1000;
                 if (j20Var.c()) {
                     MediaController.B().h0(x6Var.E, false, false, false);
                     return;
-                } else if (new File(x6Var.E.f23255p0.f23457o).renameTo(new File(x6Var.f9931e))) {
-                    org.telegram.messenger.w7.G(x6Var.M.f9963a).i0(false, 33554432, x6Var.f9931e, false);
+                } else if (new File(x6Var.E.f23262p0.f23464o).renameTo(new File(x6Var.f9931e))) {
+                    org.telegram.messenger.w7.G(x6Var.M.f9963a).h0(false, 33554432, x6Var.f9931e, false);
                     return;
                 } else {
                     return;

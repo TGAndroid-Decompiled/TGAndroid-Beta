@@ -6,8 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 import org.telegram.tgnet.TLRPC;
 public final class m0 implements k0 {
-    public Set f23951b = Collections.EMPTY_SET;
-    public final String f23950a = "agent_bot_ids";
+    public Set f23958b = Collections.EMPTY_SET;
+    public final String f23957a = "agent_bot_ids";
 
     @Override
     public final boolean a(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
@@ -26,13 +26,13 @@ public final class m0 implements k0 {
                     }
                 }
             }
-            if (!hashSet.equals(this.f23951b)) {
-                this.f23951b = hashSet;
+            if (!hashSet.equals(this.f23958b)) {
+                this.f23958b = hashSet;
                 HashSet hashSet2 = new HashSet();
-                for (Long l10 : this.f23951b) {
+                for (Long l10 : this.f23958b) {
                     hashSet2.add(Long.toString(l10.longValue()));
                 }
-                editor.putStringSet(this.f23950a, hashSet2);
+                editor.putStringSet(this.f23957a, hashSet2);
                 return true;
             }
         }
@@ -41,7 +41,7 @@ public final class m0 implements k0 {
 
     @Override
     public final void b(SharedPreferences sharedPreferences) {
-        Set<String> stringSet = sharedPreferences.getStringSet(this.f23950a, null);
+        Set<String> stringSet = sharedPreferences.getStringSet(this.f23957a, null);
         HashSet hashSet = new HashSet();
         if (stringSet != null) {
             for (String str : stringSet) {
@@ -51,6 +51,6 @@ public final class m0 implements k0 {
                 }
             }
         }
-        this.f23951b = hashSet;
+        this.f23958b = hashSet;
     }
 }

@@ -9,21 +9,21 @@ import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 public final class s implements Runnable {
-    public final int f55846a;
-    public final g0 f55847b;
-    public final j f55848c;
+    public final int f55845a;
+    public final g0 f55846b;
+    public final j f55847c;
 
     public s(g0 g0Var, j jVar, int i7) {
-        this.f55846a = i7;
-        this.f55847b = g0Var;
-        this.f55848c = jVar;
+        this.f55845a = i7;
+        this.f55846b = g0Var;
+        this.f55847c = jVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f55846a;
-        final j jVar = this.f55848c;
-        final g0 g0Var = this.f55847b;
+        int i7 = this.f55845a;
+        final j jVar = this.f55847c;
+        final g0 g0Var = this.f55846b;
         switch (i7) {
             case 0:
                 g0Var.q0(jVar);
@@ -33,7 +33,7 @@ public final class s implements Runnable {
                 linearLayout.setOrientation(0);
                 TextView textView = new TextView(g0Var.getContext());
                 int i10 = k6.E8;
-                u uVar = g0Var.f55613z1;
+                u uVar = g0Var.f55612z1;
                 r6.V(textView, i10, uVar);
                 textView.setBackground(k6.N0(false));
                 textView.setGravity(16);

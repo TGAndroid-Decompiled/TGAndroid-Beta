@@ -8,19 +8,19 @@ import java.util.LinkedHashMap;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class j2 implements Runnable {
-    public final int f34820a = 0;
-    public final long f34821b;
-    public final boolean f34822c;
+    public final int f34849a = 0;
+    public final long f34850b;
+    public final boolean f34851c;
     public final Object d;
-    public final Object f34823e;
-    public final Object f34824f;
+    public final Object f34852e;
+    public final Object f34853f;
 
     public j2(Context context, String str, long j3, boolean z9, vf.b bVar) {
         this.d = context;
-        this.f34823e = str;
-        this.f34821b = j3;
-        this.f34822c = z9;
-        this.f34824f = bVar;
+        this.f34852e = str;
+        this.f34850b = j3;
+        this.f34851c = z9;
+        this.f34853f = bVar;
     }
 
     @Override
@@ -30,13 +30,13 @@ public final class j2 implements Runnable {
         Object obj;
         ew0 r10;
         boolean z9 = false;
-        switch (this.f34820a) {
+        switch (this.f34849a) {
             case 0:
                 Context context = (Context) this.d;
-                long j3 = this.f34821b;
-                boolean z10 = this.f34822c;
-                vf.b bVar = (vf.b) this.f34824f;
-                Uri parse = Uri.parse((String) this.f34823e);
+                long j3 = this.f34850b;
+                boolean z10 = this.f34851c;
+                vf.b bVar = (vf.b) this.f34853f;
+                Uri parse = Uri.parse((String) this.f34852e);
                 if (j3 == 0) {
                     z9 = true;
                 }
@@ -44,42 +44,42 @@ public final class j2 implements Runnable {
                 return;
             case 1:
                 b8 b8Var = (b8) this.d;
-                long j10 = this.f34821b;
-                boolean z11 = this.f34822c;
-                TLRPC.Document document = (TLRPC.Document) this.f34823e;
-                Runnable runnable = (Runnable) this.f34824f;
-                HashSet hashSet = org.telegram.messenger.qp.s1(b8Var.f28612a).H1().f23570b;
+                long j10 = this.f34850b;
+                boolean z11 = this.f34851c;
+                TLRPC.Document document = (TLRPC.Document) this.f34852e;
+                Runnable runnable = (Runnable) this.f34853f;
+                HashSet hashSet = org.telegram.messenger.qp.s1(b8Var.f28613a).H1().f23577b;
                 if (z11) {
                     hashSet.add(Long.valueOf(j10));
                 } else {
                     hashSet.remove(Long.valueOf(j10));
                 }
-                long e10 = org.telegram.messenger.p10.i(b8Var.f28612a).e();
-                TLRPC.UserFull b22 = org.telegram.messenger.qp.s1(b8Var.f28612a).b2(e10);
+                long e10 = org.telegram.messenger.p10.i(b8Var.f28613a).e();
+                TLRPC.UserFull b22 = org.telegram.messenger.qp.s1(b8Var.f28613a).b2(e10);
                 if (b22 != null) {
                     if (z11) {
                         b22.flags2 |= 2097152;
                         b22.saved_music = document;
                     } else {
                         TLRPC.Document document2 = b22.saved_music;
-                        if (document2 != null && document2.f26958id == j10) {
+                        if (document2 != null && document2.f26959id == j10) {
                             b22.flags2 &= -2097153;
                             b22.saved_music = null;
                         }
                     }
-                    org.telegram.messenger.yr.a0(b8Var.f28612a).j2(b22, true);
-                    org.telegram.messenger.qs.f(b8Var.f28612a).k(246, Long.valueOf(e10));
+                    org.telegram.messenger.yr.a0(b8Var.f28613a).j2(b22, true);
+                    org.telegram.messenger.qs.f(b8Var.f28613a).k(246, Long.valueOf(e10));
                 }
                 runnable.run();
                 return;
             default:
                 org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.d;
-                long j11 = this.f34821b;
-                String str = (String) this.f34823e;
-                boolean z12 = this.f34822c;
-                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34824f;
+                long j11 = this.f34850b;
+                String str = (String) this.f34852e;
+                boolean z12 = this.f34851c;
+                org.telegram.messenger.c20 c20Var = (org.telegram.messenger.c20) this.f34853f;
                 try {
-                    obj = org.telegram.ui.Wallet.r0.f43079f;
+                    obj = org.telegram.ui.Wallet.r0.f43078f;
                     synchronized (obj) {
                         r0Var.c(j11);
                         r10 = r0Var.r();
@@ -88,16 +88,16 @@ public final class j2 implements Runnable {
                     e = e11;
                     k0Var = null;
                 }
-                if (((LinkedHashMap) r10.f33342e).containsKey(str)) {
+                if (((LinkedHashMap) r10.f33361e).containsKey(str)) {
                     k0Var = r0Var.h(r10, str, j11);
                     try {
                         synchronized (obj) {
                             r0Var.c(j11);
                             if (z12) {
                                 try {
-                                    r10.f33340b = ConnectionsManager.getInstance(r0Var.f43083b).getCurrentTime();
+                                    r10.f33359b = ConnectionsManager.getInstance(r0Var.f43082b).getCurrentTime();
                                     if (!r0Var.d.exists()) {
-                                        if (r0Var.q().edit().putInt("lastUsageDate", r10.f33340b).commit()) {
+                                        if (r0Var.q().edit().putInt("lastUsageDate", r10.f33359b).commit()) {
                                             org.telegram.messenger.g0.h3(new org.telegram.ui.Wallet.z(2));
                                         } else {
                                             throw new IOException("usage write");
@@ -132,17 +132,17 @@ public final class j2 implements Runnable {
 
     public j2(b8 b8Var, long j3, boolean z9, TLRPC.Document document, Runnable runnable) {
         this.d = b8Var;
-        this.f34821b = j3;
-        this.f34822c = z9;
-        this.f34823e = document;
-        this.f34824f = runnable;
+        this.f34850b = j3;
+        this.f34851c = z9;
+        this.f34852e = document;
+        this.f34853f = runnable;
     }
 
     public j2(org.telegram.ui.Wallet.r0 r0Var, long j3, String str, boolean z9, org.telegram.messenger.c20 c20Var) {
         this.d = r0Var;
-        this.f34821b = j3;
-        this.f34823e = str;
-        this.f34822c = z9;
-        this.f34824f = c20Var;
+        this.f34850b = j3;
+        this.f34852e = str;
+        this.f34851c = z9;
+        this.f34853f = c20Var;
     }
 }

@@ -42,20 +42,20 @@ public final class g0 extends vh implements a6, ls, te.b {
         this.f17381n = new te.a(0, this, xq.h, 380L, false);
         this.f17385x = new HashSet();
         this.D = new e0(this, context);
-        ci ciVar = new ci(k6.f27848d6, context, f6Var);
+        ci ciVar = new ci(k6.f27849d6, context, f6Var);
         ciVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f17382r = frameLayout;
-        zh zhVar = new zh(context, f6Var, this.f38948b);
+        zh zhVar = new zh(context, f6Var, this.f38969b);
         this.F = zhVar;
         zhVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         ah.j jVar = new ah.j(this, 8);
-        ah.i iVar = zhVar.f37447r;
+        ah.i iVar = zhVar.f37441r;
         iVar.addTextChangedListener(jVar);
         iVar.setHint(hd.M0(2131752656, null));
         frameLayout.addView(ciVar, ha.g());
         FrameLayout.LayoutParams d = ha.d(-1, 48.0f, 51, 7.0f, 8.0f, 7.0f, 4.0f);
-        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f22531m;
+        ((ViewGroup.MarginLayoutParams) d).topMargin += org.telegram.messenger.g0.f22538m;
         frameLayout.addView(zhVar, d);
         iy iyVar = new iy(context, f6Var);
         this.E = iyVar;
@@ -67,8 +67,8 @@ public final class g0 extends vh implements a6, ls, te.b {
         setBlur3Capture(q1Var);
         this.d = q1Var;
         this.h = true;
-        this.f38951f = true;
-        qs.e().h(q1Var, qs.f25001i4, new ii.c(this, 4));
+        this.f38972f = true;
+        qs.e().h(q1Var, qs.f25009i4, new ii.c(this, 4));
         q1Var.setClipToPadding(false);
         getContext();
         c0 c0Var = new c0(this, org.telegram.messenger.g0.L(9.0f), q1Var, 0);
@@ -86,7 +86,7 @@ public final class g0 extends vh implements a6, ls, te.b {
         q1Var.setOnItemClickListener(new ai.k(this, 15));
         q1Var.setOnScrollListener(new ai.b(this, 21));
         FrameLayout.LayoutParams e10 = ha.e(-1, 60, 51);
-        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f22531m;
+        ((ViewGroup.MarginLayoutParams) e10).height += org.telegram.messenger.g0.f22538m;
         addView(frameLayout, e10);
         P();
     }
@@ -116,22 +116,22 @@ public final class g0 extends vh implements a6, ls, te.b {
     @Override
     public final void B(int i7, int i10) {
         int i11;
-        di diVar = this.f38948b;
-        if (diVar.f32930l3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        di diVar = this.f38969b;
+        if (diVar.f32959l3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i11 = org.telegram.messenger.g0.L(8.0f);
-            diVar.f28640q0 = false;
+            diVar.f28641q0 = false;
         } else {
             if (!org.telegram.messenger.g0.Q1()) {
-                Point point = org.telegram.messenger.g0.f22537q;
+                Point point = org.telegram.messenger.g0.f22544q;
                 if (point.x > point.y) {
                     i11 = (int) (i10 / 3.5f);
-                    diVar.f28640q0 = true;
+                    diVar.f28641q0 = true;
                 }
             }
             i11 = (i10 / 5) * 2;
-            diVar.f28640q0 = true;
+            diVar.f28641q0 = true;
         }
-        this.f17383s.q1(0, i11 + org.telegram.messenger.g0.f22531m, 0, this.f38950e);
+        this.f17383s.q1(0, i11 + org.telegram.messenger.g0.f22538m, 0, this.f38971e);
     }
 
     @Override
@@ -178,9 +178,9 @@ public final class g0 extends vh implements a6, ls, te.b {
         hashSet.add(Integer.valueOf(k6.P7));
         hashSet.add(Integer.valueOf(k6.O7));
         hashSet.add(Integer.valueOf(k6.J7));
-        hashSet.add(Integer.valueOf(k6.f28087q5));
-        hashSet.add(Integer.valueOf(k6.f27849d7));
-        hashSet.add(Integer.valueOf(k6.f27940i6));
+        hashSet.add(Integer.valueOf(k6.f28088q5));
+        hashSet.add(Integer.valueOf(k6.f27850d7));
+        hashSet.add(Integer.valueOf(k6.f27941i6));
     }
 
     @Override
@@ -192,7 +192,7 @@ public final class g0 extends vh implements a6, ls, te.b {
         }
         View childAt = q1Var.getChildAt(0);
         xi0 xi0Var = (xi0) q1Var.G(childAt);
-        int top = (childAt.getTop() - org.telegram.messenger.g0.f22531m) - org.telegram.messenger.g0.L(8.0f);
+        int top = (childAt.getTop() - org.telegram.messenger.g0.f22538m) - org.telegram.messenger.g0.L(8.0f);
         if (top > 0 && xi0Var != null && xi0Var.b() == 0) {
             i7 = top;
         } else {
@@ -227,9 +227,9 @@ public final class g0 extends vh implements a6, ls, te.b {
     @Override
     public ArrayList<t6> getThemeDescriptions() {
         ArrayList<t6> arrayList = new ArrayList<>();
-        arrayList.add(new t6(this.E, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27831c7));
-        arrayList.add(new t6(this.E, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27922h6));
-        int i7 = k6.f28087q5;
+        arrayList.add(new t6(this.E, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27832c7));
+        arrayList.add(new t6(this.E, 2048, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27923h6));
+        int i7 = k6.f28088q5;
         arrayList.add(new t6(this.f17383s, 0, new Class[]{f0.class}, new String[]{"nameTextView"}, (Drawable[]) null, (s6) null, i7));
         return arrayList;
     }
@@ -243,13 +243,13 @@ public final class g0 extends vh implements a6, ls, te.b {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f38948b.f28615b.invalidate();
+        this.f38969b.f28616b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {
         zh zhVar = this.F;
         if (zhVar != null) {
-            zhVar.setupBlurredBackground(cVar.c(zhVar, c8.g0.a(this.f38947a), false));
+            zhVar.setupBlurredBackground(cVar.c(zhVar, c8.g0.a(this.f38968a), false));
         }
     }
 

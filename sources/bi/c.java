@@ -46,7 +46,7 @@ public final class c extends LinearLayout implements ls {
             StringBuilder sb2 = new StringBuilder(10);
             sb2.append('~');
             org.telegram.messenger.r1.i().getClass();
-            sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) (s5.c() * ((org.telegram.messenger.i0) qp.s1(i7).f24927x7.f24438l.f14323b).f23003a * 100.0d), false));
+            sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) (s5.c() * ((org.telegram.messenger.i0) qp.s1(i7).f24935x7.f24445l.f14323b).f23010a * 100.0d), false));
             int i11 = org.telegram.ui.ActionBar.k6.vj;
             int i12 = org.telegram.ui.ActionBar.k6.tj;
             org.telegram.ui.ActionBar.r6.n(w70Var, i11, i12, 3, 0.33f, f6Var);
@@ -57,7 +57,7 @@ public final class c extends LinearLayout implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25097y3) {
+        if (i7 == qs.f25105y3) {
             a();
         }
     }
@@ -75,7 +75,7 @@ public final class c extends LinearLayout implements ls {
         super.onAttachedToWindow();
         a();
         int i7 = this.f3544a;
-        qs.f(i7).c(this, qs.f25097y3);
+        qs.f(i7).c(this, qs.f25105y3);
         qs.f(i7).c(this, qs.C3);
     }
 
@@ -83,7 +83,7 @@ public final class c extends LinearLayout implements ls {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = this.f3544a;
-        qs.f(i7).n(this, qs.f25097y3);
+        qs.f(i7).n(this, qs.f25105y3);
         qs.f(i7).n(this, qs.C3);
     }
 

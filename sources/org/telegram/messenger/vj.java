@@ -2,10 +2,10 @@ package org.telegram.messenger;
 
 import java.util.Comparator;
 public final class vj implements Comparator {
-    public final int f26034a;
+    public final int f26042a;
 
     public vj(int i7) {
-        this.f26034a = i7;
+        this.f26042a = i7;
     }
 
     @Override
@@ -14,6 +14,6 @@ public final class vj implements Comparator {
     }
 
     public vj(qp qpVar, int i7) {
-        this.f26034a = i7;
+        this.f26042a = i7;
     }
 }

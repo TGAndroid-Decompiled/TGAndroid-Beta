@@ -7,8 +7,8 @@ import android.os.CancellationSignal;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import androidx.credentials.playservices.controllers.identityauth.HiddenActivity;
 import c8.a1;
-import c8.pb;
-import c8.uc;
+import c8.qb;
+import c8.vc;
 import di.z0;
 import gd.k;
 import j7.f;
@@ -78,7 +78,7 @@ public final class b implements l {
                         }
                     }
                     if (hVar != null) {
-                        v0.c a10 = uc.a(hVar.f16565a, hVar.f16566b);
+                        v0.c a10 = vc.a(hVar.f16565a, hVar.f16566b);
                         if (a10 instanceof v0.f) {
                             CredentialProviderPlayServicesImpl.Companion.getClass();
                             if (!a1.g.a(cancellationSignal)) {
@@ -122,12 +122,12 @@ public final class b implements l {
                 e eVar = (e) this.d;
                 q1.b bVar = (q1.b) obj;
                 ((sa.h) this.f10132b).getClass();
-                e eVar2 = sa.h.f54904c;
+                e eVar2 = sa.h.f54903c;
                 e eVar3 = sa.h.d;
                 String str3 = "";
                 if (((String) a1.a(bVar, eVar3, "")).equals(str)) {
                     e d = sa.h.d(bVar, str);
-                    if (d != null && !d.f53594a.equals(str2)) {
+                    if (d != null && !d.f53593a.equals(str2)) {
                         sa.h.f(bVar, str);
                         HashSet hashSet = new HashSet((Collection) a1.a(bVar, eVar, new HashSet()));
                         hashSet.add(str);
@@ -147,7 +147,7 @@ public final class b implements l {
                             for (String str5 : set) {
                                 long j11 = j10;
                                 if (str4 == null || str4.compareTo(str5) > 0) {
-                                    str3 = ((e) entry.getKey()).f53594a;
+                                    str3 = ((e) entry.getKey()).f53593a;
                                     hashSet2 = set;
                                     str4 = str5;
                                 }
@@ -160,7 +160,7 @@ public final class b implements l {
                     obj2 = null;
                     HashSet hashSet3 = new HashSet(hashSet2);
                     hashSet3.remove(str4);
-                    bVar.e(pb.b(str3), hashSet3);
+                    bVar.e(qb.b(str3), hashSet3);
                     longValue = longValue2 - j3;
                     bVar.e(eVar2, Long.valueOf(longValue));
                 } else {

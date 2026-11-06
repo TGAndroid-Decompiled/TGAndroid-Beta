@@ -51,7 +51,7 @@ public final class rd extends AnimatorListenerAdapter {
             RectF rectF = this.f4653e;
             LaunchActivity.b0(rectF.centerX(), rectF.centerY(), 1.5f);
             try {
-                ceVar.f28618c.performHapticFeedback(0, 1);
+                ceVar.f28619c.performHapticFeedback(0, 1);
             } catch (Exception unused) {
             }
             Runnable runnable = this.f4654f;
@@ -60,7 +60,7 @@ public final class rd extends AnimatorListenerAdapter {
             }
         }
         LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity != null && (r80Var = launchActivity.f41290v0) != null) {
+        if (launchActivity != null && (r80Var = launchActivity.f41289v0) != null) {
             r80Var.c(true);
         }
     }

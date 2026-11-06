@@ -1,23 +1,23 @@
 package org.telegram.ui.Wallet;
 public final class z1 implements Runnable {
-    public final int f43411a;
-    public final boolean[] f43412b;
-    public final b2 f43413c;
+    public final int f43410a;
+    public final boolean[] f43411b;
+    public final b2 f43412c;
     public final z2 d;
 
     public z1(boolean[] zArr, b2 b2Var, z2 z2Var, int i7) {
-        this.f43411a = i7;
-        this.f43412b = zArr;
-        this.f43413c = b2Var;
+        this.f43410a = i7;
+        this.f43411b = zArr;
+        this.f43412c = b2Var;
         this.d = z2Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f43411a) {
+        switch (this.f43410a) {
             case 0:
-                if (!this.f43412b[0]) {
-                    if (this.f43413c.f42132m) {
+                if (!this.f43411b[0]) {
+                    if (this.f43412c.f42131m) {
                         org.telegram.messenger.g0.i3(this, 1000L);
                         return;
                     } else {
@@ -27,8 +27,8 @@ public final class z1 implements Runnable {
                 }
                 return;
             default:
-                if (!this.f43412b[0]) {
-                    if (this.f43413c.f42132m) {
+                if (!this.f43411b[0]) {
+                    if (this.f43412c.f42131m) {
                         org.telegram.messenger.g0.i3(this, 1000L);
                         return;
                     } else {

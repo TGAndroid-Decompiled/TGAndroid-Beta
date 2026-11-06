@@ -125,7 +125,7 @@ public final class d9 extends rt0 {
                 ofFloat.addUpdateListener(new a9(this, 0));
                 p9Var.G.addListener(new b9(this, 0));
                 p9Var.G.setDuration(250L);
-                p9Var.G.setInterpolator(xq.f40329f);
+                p9Var.G.setInterpolator(xq.f40345f);
                 p9Var.G.start();
             }
             if (p9Var.V >= 0.3f) {
@@ -236,11 +236,11 @@ public final class d9 extends rt0 {
             org.telegram.messenger.g0.a3(f2Var.getParentActivity(), f2Var.getClassGuid());
         }
         setTag(2131296351, new c9(this));
-        qs.f(p9Var.h).c(p9Var, qs.f25092x5);
-        qs.f(p9Var.h).c(p9Var, qs.f25078v5);
-        qs.f(p9Var.h).c(p9Var, qs.f24969d1);
-        qs.f(p9Var.h).c(p9Var, qs.f24963c1);
-        qs.f(p9Var.h).c(p9Var, qs.f25085w5);
+        qs.f(p9Var.h).c(p9Var, qs.f25100x5);
+        qs.f(p9Var.h).c(p9Var, qs.f25086v5);
+        qs.f(p9Var.h).c(p9Var, qs.f24977d1);
+        qs.f(p9Var.h).c(p9Var, qs.f24971c1);
+        qs.f(p9Var.h).c(p9Var, qs.f25093w5);
     }
 
     @Override
@@ -248,11 +248,11 @@ public final class d9 extends rt0 {
         super.onDetachedFromWindow();
         setTag(2131296351, null);
         p9 p9Var = this.f8950r0;
-        qs.f(p9Var.h).n(p9Var, qs.f25092x5);
-        qs.f(p9Var.h).n(p9Var, qs.f25078v5);
-        qs.f(p9Var.h).n(p9Var, qs.f24969d1);
-        qs.f(p9Var.h).n(p9Var, qs.f24963c1);
-        qs.f(p9Var.h).n(p9Var, qs.f25085w5);
+        qs.f(p9Var.h).n(p9Var, qs.f25100x5);
+        qs.f(p9Var.h).n(p9Var, qs.f25086v5);
+        qs.f(p9Var.h).n(p9Var, qs.f24977d1);
+        qs.f(p9Var.h).n(p9Var, qs.f24971c1);
+        qs.f(p9Var.h).n(p9Var, qs.f25093w5);
     }
 
     @Override
@@ -263,7 +263,7 @@ public final class d9 extends rt0 {
     @Override
     public final void onMeasure(int i7, int i10) {
         p9 p9Var = this.f8950r0;
-        ((FrameLayout.LayoutParams) p9Var.f9537c1.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22531m - org.telegram.messenger.g0.L(2.0f);
+        ((FrameLayout.LayoutParams) p9Var.f9537c1.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22538m - org.telegram.messenger.g0.L(2.0f);
         p9Var.f9537c1.getLayoutParams().height = org.telegram.messenger.g0.L(2.0f);
         super.onMeasure(i7, i10);
     }
@@ -284,7 +284,7 @@ public final class d9 extends rt0 {
                 ofFloat.addUpdateListener(new a9(this, 1));
                 p9Var.G.addListener(new b9(this, 1));
                 p9Var.G.setDuration(150L);
-                p9Var.G.setInterpolator(xq.f40329f);
+                p9Var.G.setInterpolator(xq.f40345f);
                 p9Var.G.start();
             }
             i4 z9 = p9Var.z();

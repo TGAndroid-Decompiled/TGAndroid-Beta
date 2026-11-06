@@ -7,7 +7,7 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Trace;
 import androidx.fragment.app.t0;
-import c8.ge;
+import c8.he;
 import c8.j0;
 import c8.k0;
 import java.nio.MappedByteBuffer;
@@ -42,7 +42,7 @@ public final class f implements Runnable {
                         bVar.getClass();
                         o0.h[] hVarArr = {d};
                         j0 j0Var = i0.e.f15123a;
-                        ge.a("TypefaceCompat.createFromFontInfo");
+                        he.a("TypefaceCompat.createFromFontInfo");
                         Typeface b10 = i0.e.f15123a.b(context, hVarArr, 0);
                         Trace.endSection();
                         MappedByteBuffer e10 = k0.e(qVar.f2328a, d.f20688a);

@@ -66,7 +66,7 @@ public final class g implements View.OnClickListener {
                 p pVar = (p) obj;
                 TLRPC.Chat chat = pVar.I;
                 if (chat != null && !chat.title.equals(((bi.v) pVar.f15586r.f3761b).getText().toString())) {
-                    pVar.getMessagesController().C(pVar.I.f26952id, ((bi.v) pVar.f15586r.f3761b).getText().toString(), new i(pVar, 1));
+                    pVar.getMessagesController().C(pVar.I.f26953id, ((bi.v) pVar.f15586r.f3761b).getText().toString(), new i(pVar, 1));
                 }
                 TLRPC.Chat chat2 = pVar.I;
                 if (chat2 != null && pVar.f15585n != pVar.h) {
@@ -90,7 +90,7 @@ public final class g implements View.OnClickListener {
                 fi.d dVar = d0Var.f15504o1;
                 if (!dVar.Q) {
                     dVar.setLoading(true);
-                    qp s12 = qp.s1(d0Var.f28612a);
+                    qp s12 = qp.s1(d0Var.f28613a);
                     t tVar = new t(d0Var, 2);
                     TLRPC.TL_channels_getAdminedPublicChannels tL_channels_getAdminedPublicChannels = new TLRPC.TL_channels_getAdminedPublicChannels();
                     tL_channels_getAdminedPublicChannels.for_community_peer = true;
@@ -100,7 +100,7 @@ public final class g implements View.OnClickListener {
                 return;
             case 3:
                 jg.n nVar = (jg.n) obj;
-                qp.s1(nVar.F).f24874s.clear();
+                qp.s1(nVar.F).f24882s.clear();
                 qp.e1().edit().remove("installReferer").commit();
                 nVar.f();
                 return;
@@ -115,10 +115,10 @@ public final class g implements View.OnClickListener {
                 LongSparseArray longSparseArray = d2Var.f16699n;
                 u3 u3Var = (u3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = u3Var.getStickerSet();
-                if (stickerSet != null && d2Var.h.indexOfKey(stickerSet.set.f26979id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f26979id) < 0) {
-                    if (u3Var.f30567r) {
-                        longSparseArray.put(stickerSet.set.f26979id, stickerSet);
-                        d2Var.f16697e.f33450a.h(u3Var.getStickerSet());
+                if (stickerSet != null && d2Var.h.indexOfKey(stickerSet.set.f26980id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f26980id) < 0) {
+                    if (u3Var.f30568r) {
+                        longSparseArray.put(stickerSet.set.f26980id, stickerSet);
+                        d2Var.f16697e.f33782a.h(u3Var.getStickerSet());
                         return;
                     }
                     d2Var.F(stickerSet, u3Var);
@@ -150,7 +150,7 @@ public final class g implements View.OnClickListener {
                 } else {
                     eVar.f17350x &= -2;
                 }
-                qp.s1(i12).f24749d7.edit().putInt("dialog_botflags" + eVar.f17348s, eVar.f17350x).apply();
+                qp.s1(i12).f24757d7.edit().putInt("dialog_botflags" + eVar.f17348s, eVar.f17350x).apply();
                 TL_account.toggleConnectedBotPaused toggleconnectedbotpaused = new TL_account.toggleConnectedBotPaused();
                 toggleconnectedbotpaused.peer = qp.s1(i12).j1(eVar.f17348s);
                 toggleconnectedbotpaused.paused = eVar.f17347r;
@@ -190,7 +190,7 @@ public final class g implements View.OnClickListener {
                             f2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        t3Var.f36781f3.O(true);
+                        t3Var.f37160f3.O(true);
                         f2 f2Var2 = t3Var.Q3;
                         if (f2Var2 != null) {
                             f2Var2.h();
@@ -211,10 +211,10 @@ public final class g implements View.OnClickListener {
                 return;
             case 13:
                 org.telegram.ui.ActionBar.y yVar = (org.telegram.ui.ActionBar.y) obj;
-                org.telegram.ui.ActionBar.k kVar = yVar.f28755b;
+                org.telegram.ui.ActionBar.k kVar = yVar.f28756b;
                 org.telegram.ui.ActionBar.r0 r0Var2 = (org.telegram.ui.ActionBar.r0) view;
                 if (r0Var2.s()) {
-                    if (kVar.f27691u0.a()) {
+                    if (kVar.f27692u0.a()) {
                         r0Var2.U(null, null);
                         return;
                     }
@@ -236,17 +236,17 @@ public final class g implements View.OnClickListener {
                 return;
             case 16:
                 b5 b5Var = (b5) obj;
-                if (!b5Var.f27354y.f55396f) {
-                    if (b5Var.f27353x.f55396f) {
-                        y4 y4Var = b5Var.f27344a;
-                        int i13 = b5Var.f27345b;
+                if (!b5Var.f27355y.f55395f) {
+                    if (b5Var.f27354x.f55395f) {
+                        y4 y4Var = b5Var.f27345a;
+                        int i13 = b5Var.f27346b;
                         org.telegram.ui.ActionBar.j jVar = y4Var.V;
                         if (jVar != null) {
                             jVar.b(i13);
                             return;
                         }
                         return;
-                    } else if (b5Var.f27346c == a5.f27328b) {
+                    } else if (b5Var.f27347c == a5.f27329b) {
                         org.telegram.messenger.g0.G3(4.0f, b5Var, null);
                         return;
                     } else {
@@ -263,8 +263,8 @@ public final class g implements View.OnClickListener {
                 return;
             case 18:
                 t0 t0Var = (t0) obj;
-                if (!t0Var.f39474a) {
-                    if (t0Var.f39484y == 0 && t0Var.D) {
+                if (!t0Var.f39495a) {
+                    if (t0Var.f39505y == 0 && t0Var.D) {
                         ((Activity) t0Var.getContext()).startActivityForResult(((MediaProjectionManager) t0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -275,8 +275,8 @@ public final class g implements View.OnClickListener {
                 return;
             case 19:
                 yb1 yb1Var = (yb1) obj;
-                if (!yb1Var.f39610a) {
-                    if (yb1Var.f39619x == 0) {
+                if (!yb1Var.f39631a) {
+                    if (yb1Var.f39640x == 0) {
                         ((Activity) yb1Var.getContext()).startActivityForResult(((MediaProjectionManager) yb1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -289,7 +289,7 @@ public final class g implements View.OnClickListener {
                 org.telegram.ui.web.j jVar2 = (org.telegram.ui.web.j) obj;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(jVar2.getContext());
                 String M0 = hd.M0(2131742915, null);
-                u1 u1Var = alertDialog$Builder.f27292a;
+                u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = hd.M0(2131742916, null);
                 alertDialog$Builder.k(hd.M0(2131747830, null), new org.telegram.ui.web.a(jVar2));
@@ -313,12 +313,12 @@ public final class g implements View.OnClickListener {
                 return;
             case 26:
                 PremiumPreviewFragment.u0();
-                PremiumPreviewFragment.p0(((f1) obj).f56481l2, null, "profile", null);
+                PremiumPreviewFragment.p0(((f1) obj).f56480l2, null, "profile", null);
                 return;
             case 27:
                 final wg.g0 g0Var = (wg.g0) obj;
                 yg.a aVar3 = g0Var.I2;
-                if (!aVar3.f59323a.Q) {
+                if (!aVar3.f59322a.Q) {
                     aVar3.b(true);
                     String str = g0Var.J2;
                     c20 c20Var = new c20() {
@@ -335,7 +335,7 @@ public final class g implements View.OnClickListener {
                                 default:
                                     g0 g0Var3 = g0Var;
                                     g0Var3.I2.b(false);
-                                    h.c((TLRPC.TL_error) obj2, (FrameLayout) g0Var3.f28615b, g0Var3.I0, new e0(g0Var3, 0));
+                                    h.c((TLRPC.TL_error) obj2, (FrameLayout) g0Var3.f28616b, g0Var3.I0, new e0(g0Var3, 0));
                                     return;
                             }
                         }
@@ -354,12 +354,12 @@ public final class g implements View.OnClickListener {
                                 default:
                                     g0 g0Var3 = g0Var;
                                     g0Var3.I2.b(false);
-                                    h.c((TLRPC.TL_error) obj2, (FrameLayout) g0Var3.f28615b, g0Var3.I0, new e0(g0Var3, 0));
+                                    h.c((TLRPC.TL_error) obj2, (FrameLayout) g0Var3.f28616b, g0Var3.I0, new e0(g0Var3, 0));
                                     return;
                             }
                         }
                     };
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24459s0);
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(p10.f24467s0);
                     TLRPC.TL_payments_applyGiftCode tL_payments_applyGiftCode = new TLRPC.TL_payments_applyGiftCode();
                     tL_payments_applyGiftCode.slug = str;
                     connectionsManager.sendRequest(tL_payments_applyGiftCode, new wg.n(c20Var2, c20Var, 0), 2);
@@ -370,7 +370,7 @@ public final class g implements View.OnClickListener {
                 ((wg.j0) obj).dismiss();
                 return;
             default:
-                ((wg.b0) ((xg.f) obj)).f57609r.dismiss();
+                ((wg.b0) ((xg.f) obj)).f57608r.dismiss();
                 return;
         }
     }

@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public abstract class m5 {
     public static boolean A() {
-        TLRPC.User a22 = qp.s1(p10.f24459s0).a2(0L);
+        TLRPC.User a22 = qp.s1(p10.f24467s0).a2(0L);
         if (a22 == null) {
             return false;
         }
@@ -170,10 +170,10 @@ public abstract class m5 {
 
     public static long d(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f27101id;
+            return ((TLRPC.User) tLObject).f27102id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f26952id;
+            return -((TLRPC.Chat) tLObject).f26953id;
         }
         return 0L;
     }
@@ -343,7 +343,7 @@ public abstract class m5 {
     }
 
     public static String t(long j3) {
-        return u(qp.s1(p10.f24459s0).e2(j3));
+        return u(qp.s1(p10.f24467s0).e2(j3));
     }
 
     public static String u(TLObject tLObject) {
@@ -389,7 +389,7 @@ public abstract class m5 {
     }
 
     public static String w(long j3) {
-        int i7 = p10.f24459s0;
+        int i7 = p10.f24467s0;
         TLObject e22 = qp.s1(i7).e2(j3);
         if (e22 instanceof TLRPC.User) {
             return hd.d0(i7, (TLRPC.User) e22, null, null);
@@ -411,26 +411,26 @@ public abstract class m5 {
     }
 
     public static void x(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f26956id == 0) {
+        if (dialog != null && dialog.f26957id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
                     long j3 = peer.user_id;
                     if (j3 != 0) {
-                        dialog.f26956id = j3;
+                        dialog.f26957id = j3;
                         return;
                     }
                     long j10 = peer.chat_id;
                     if (j10 != 0) {
-                        dialog.f26956id = -j10;
+                        dialog.f26957id = -j10;
                     } else {
-                        dialog.f26956id = -peer.channel_id;
+                        dialog.f26957id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f26956id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f27003id;
+                dialog.f26957id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f27004id;
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f26956id = -dialog.community_id;
+                dialog.f26957id = -dialog.community_id;
             }
         }
     }

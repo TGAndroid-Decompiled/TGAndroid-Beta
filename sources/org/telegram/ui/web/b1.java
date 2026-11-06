@@ -1,121 +1,37 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.c20;
-import org.telegram.messenger.sz;
-public final class b1 extends AsyncTask {
-    public final int f51098a = 1;
-    public final HashMap f51099b = new HashMap();
-    public Exception f51100c;
-    public final c20 d;
+import java.io.File;
+import java.io.FileInputStream;
+public final class b1 extends FileInputStream {
+    public final long f51098a;
 
-    public b1(c20 c20Var) {
-        this.d = c20Var;
-    }
-
-    @Override
-    public final Object doInBackground(Object[] objArr) {
-        BufferedReader bufferedReader;
-        switch (this.f51098a) {
-            case 0:
-                try {
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry : this.f51099b.entrySet()) {
-                        if (entry.getKey() != null && entry.getValue() != null) {
-                            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-                        }
-                    }
-                    httpURLConnection.setRequestMethod("GET");
-                    httpURLConnection.setDoInput(true);
-                    int responseCode = httpURLConnection.getResponseCode();
-                    if (responseCode >= 200 && responseCode < 300) {
-                        if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                            return sz.g(new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64);
-                        }
-                        return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
-                    }
-                    httpURLConnection.disconnect();
-                    return null;
-                } catch (Exception e10) {
-                    this.f51100c = e10;
-                    return null;
-                }
-            default:
-                try {
-                    HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry2 : this.f51099b.entrySet()) {
-                        if (entry2.getKey() != null && entry2.getValue() != null) {
-                            httpURLConnection2.setRequestProperty((String) entry2.getKey(), (String) entry2.getValue());
-                        }
-                    }
-                    httpURLConnection2.setRequestMethod("GET");
-                    httpURLConnection2.setDoInput(true);
-                    int responseCode2 = httpURLConnection2.getResponseCode();
-                    if (responseCode2 >= 200 && responseCode2 < 300) {
-                        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection2.getInputStream()));
-                    } else {
-                        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection2.getErrorStream()));
-                    }
-                    StringBuilder sb2 = new StringBuilder();
-                    while (true) {
-                        String readLine = bufferedReader.readLine();
-                        if (readLine != null) {
-                            sb2.append(readLine);
-                        } else {
-                            bufferedReader.close();
-                            return sb2.toString();
-                        }
-                    }
-                } catch (Exception e11) {
-                    this.f51100c = e11;
-                    return null;
-                }
-                break;
+    public b1(long j3, long j10, File file) {
+        super(file);
+        this.f51098a = j10;
+        if (j3 > 0 && skip(j3) != j3) {
+            throw new RuntimeException("BoundedInputStream failed to skip");
         }
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        switch (this.f51098a) {
-            case 0:
-                Bitmap bitmap = (Bitmap) obj;
-                org.telegram.ui.Wallet.t tVar = (org.telegram.ui.Wallet.t) this.d;
-                if (tVar != null) {
-                    if (this.f51100c == null) {
-                        tVar.a(bitmap);
-                        return;
-                    } else {
-                        tVar.a(null);
-                        return;
-                    }
-                }
-                return;
-            default:
-                String str = (String) obj;
-                c20 c20Var = this.d;
-                if (c20Var != null) {
-                    if (this.f51100c == null) {
-                        c20Var.a(str);
-                        return;
-                    } else {
-                        c20Var.a(null);
-                        return;
-                    }
-                }
-                return;
+    public final int read() {
+        if (getChannel().position() >= this.f51098a) {
+            return -1;
         }
+        return super.read();
     }
 
-    public b1(org.telegram.ui.Wallet.t tVar) {
-        this.d = tVar;
+    @Override
+    public final int read(byte[] bArr, int i7, int i10) {
+        long position = getChannel().position();
+        long j3 = this.f51098a;
+        if (position >= j3) {
+            return -1;
+        }
+        long position2 = j3 - getChannel().position();
+        if (i10 > position2) {
+            i10 = (int) position2;
+        }
+        return super.read(bArr, i7, i10);
     }
 }

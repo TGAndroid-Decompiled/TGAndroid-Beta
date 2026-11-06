@@ -9,7 +9,7 @@ public final class g01 extends m11 {
     public final h01 S;
 
     public g01(h01 h01Var, Context context, Runnable runnable, View view, a11 a11Var, org.telegram.ui.ActionBar.f6 f6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(h01Var.f46180e, context, runnable, view, a11Var, f6Var);
+        super(h01Var.f46179e, context, runnable, view, a11Var, f6Var);
         this.S = h01Var;
         this.Q = view2;
         this.R = tL_starGiftUnique;
@@ -18,6 +18,6 @@ public final class g01 extends m11 {
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.S.f46180e.X0 = null;
+        this.S.f46179e.X0 = null;
     }
 }

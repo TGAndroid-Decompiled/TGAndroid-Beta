@@ -31,29 +31,29 @@ public final class m5 extends org.telegram.ui.Components.l9 {
         gf gfVar;
         Drawable drawable;
         float floatValue;
-        org.telegram.ui.Components.i5 i5Var = this.f35565e;
+        org.telegram.ui.Components.i5 i5Var = this.f35585e;
         if (i5Var != null) {
-            imageReceiver = i5Var.f34450k;
+            imageReceiver = i5Var.f34497k;
         } else {
-            imageReceiver = this.f35562a;
+            imageReceiver = this.f35582a;
         }
         if (imageReceiver != null) {
-            if (this.f35564c != -1 && this.d != -1) {
+            if (this.f35584c != -1 && this.d != -1) {
                 int height = getHeight();
                 int i7 = this.d;
-                imageReceiver.y0((getWidth() - this.f35564c) / 2, (height - i7) / 2, this.f35564c, i7);
+                imageReceiver.y0((getWidth() - this.f35584c) / 2, (height - i7) / 2, this.f35584c, i7);
                 int height2 = getHeight();
                 int i10 = this.d;
-                this.f35563b.y0((getWidth() - this.f35564c) / 2, (height2 - i10) / 2, this.f35564c, i10);
+                this.f35583b.y0((getWidth() - this.f35584c) / 2, (height2 - i10) / 2, this.f35584c, i10);
             } else {
                 imageReceiver.y0(0.0f, 0.0f, getWidth(), getHeight());
-                this.f35563b.y0(0.0f, 0.0f, getWidth(), getHeight());
+                this.f35583b.y0(0.0f, 0.0f, getWidth(), getHeight());
             }
             imageReceiver.h(canvas, null);
             q5 q5Var = this.K;
             if (q5Var.O) {
-                Rect rect = q5.f30126b0;
-                this.f35563b.h(canvas, null);
+                Rect rect = q5.f30127b0;
+                this.f35583b.h(canvas, null);
                 if (q5Var.N == null) {
                     if (q5Var.M == null) {
                         xh.f fVar = new xh.f();
@@ -69,7 +69,7 @@ public final class m5 extends org.telegram.ui.Components.l9 {
             int i11 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
             if (i11 != 0 && q5Var.S != null) {
                 Paint paint = this.G;
-                paint.setAlpha((int) (xq.f40329f.getInterpolation(1.0f - f10) * 255.0f));
+                paint.setAlpha((int) (xq.f40345f.getInterpolation(1.0f - f10) * 255.0f));
                 canvas.drawBitmap(q5Var.S, 0.0f, 0.0f, paint);
                 long min = Math.min(16L, System.currentTimeMillis() - this.H);
                 Float f11 = q5Var.T;
@@ -82,7 +82,7 @@ public final class m5 extends org.telegram.ui.Components.l9 {
                 this.H = System.currentTimeMillis();
                 invalidate();
                 if (q5Var.N != null) {
-                    q5Var.f30129b.invalidate();
+                    q5Var.f30130b.invalidate();
                 }
             } else if (i11 == 0 && (bitmap = q5Var.S) != null) {
                 bitmap.recycle();
@@ -90,9 +90,9 @@ public final class m5 extends org.telegram.ui.Components.l9 {
                 q5Var.T = null;
                 invalidate();
             }
-            if (q5Var.f30135s) {
+            if (q5Var.f30136s) {
                 o5 o5Var = q5Var.V;
-                if ((o5Var == null || !((tl) ((org.telegram.ui.Components.u) o5Var).f38450b).f38368s) && (gfVar = q5Var.H) != null && gfVar.i() && q5Var.H.d()) {
+                if ((o5Var == null || !((tl) ((org.telegram.ui.Components.u) o5Var).f38449b).f38357s) && (gfVar = q5Var.H) != null && gfVar.i() && q5Var.H.d()) {
                     if (q5Var.H.j()) {
                         if (this.J == null) {
                             this.J = getContext().getResources().getDrawable(2131231746).mutate();

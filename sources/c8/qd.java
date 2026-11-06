@@ -1,17 +1,68 @@
 package c8;
 public abstract class qd {
-    public static final boolean a(char c10, char c11, boolean z9) {
-        if (c10 == c11) {
-            return true;
+    public static String a(String str) {
+        if (d(str)) {
+            return null;
         }
-        if (!z9) {
-            return false;
+        if ("American Express".equalsIgnoreCase(str)) {
+            return "American Express";
         }
-        char upperCase = Character.toUpperCase(c10);
-        char upperCase2 = Character.toUpperCase(c11);
-        if (upperCase == upperCase2 || Character.toLowerCase(upperCase) == Character.toLowerCase(upperCase2)) {
-            return true;
+        if ("MasterCard".equalsIgnoreCase(str)) {
+            return "MasterCard";
+        }
+        if ("Diners Club".equalsIgnoreCase(str)) {
+            return "Diners Club";
+        }
+        if ("Discover".equalsIgnoreCase(str)) {
+            return "Discover";
+        }
+        if ("JCB".equalsIgnoreCase(str)) {
+            return "JCB";
+        }
+        if ("Visa".equalsIgnoreCase(str)) {
+            return "Visa";
+        }
+        return "Unknown";
+    }
+
+    public static String b(String str) {
+        if (d(str)) {
+            return null;
+        }
+        if ("credit".equalsIgnoreCase(str)) {
+            return "credit";
+        }
+        if ("debit".equalsIgnoreCase(str)) {
+            return "debit";
+        }
+        if ("prepaid".equalsIgnoreCase(str)) {
+            return "prepaid";
+        }
+        return "unknown";
+    }
+
+    public static boolean c(String str, String... strArr) {
+        if (str != null) {
+            for (String str2 : strArr) {
+                if (str.startsWith(str2)) {
+                    return true;
+                }
+            }
         }
         return false;
+    }
+
+    public static boolean d(String str) {
+        if (str != null && str.trim().length() != 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static String e(String str) {
+        if (d(str)) {
+            return null;
+        }
+        return str;
     }
 }

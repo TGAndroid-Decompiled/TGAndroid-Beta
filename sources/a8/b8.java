@@ -21,7 +21,7 @@ import android.media.MediaCrypto;
 import android.media.MediaFormat;
 import android.os.Bundle;
 import android.view.Surface;
-import c8.hc;
+import c8.ic;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -130,13 +130,13 @@ public class b8 {
     }
 
     public static boolean i(x2.g0 g0Var, Object obj, boolean z9, int i7, int i10, int i11) {
-        Object obj2 = g0Var.f58235a;
-        int i12 = g0Var.f58236b;
+        Object obj2 = g0Var.f58234a;
+        int i12 = g0Var.f58235b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z9 || i12 != i7 || g0Var.f58237c != i10) {
-            if (z9 || i12 != -1 || g0Var.f58238e != i11) {
+        if (!z9 || i12 != i7 || g0Var.f58236c != i10) {
+            if (z9 || i12 != -1 || g0Var.f58237e != i11) {
                 return false;
             }
             return true;
@@ -160,7 +160,7 @@ public class b8 {
 
     public void a(wa waVar, x2.g0 g0Var, e2.l1 l1Var) {
         if (g0Var != null) {
-            if (l1Var.b(g0Var.f58235a) != -1) {
+            if (l1Var.b(g0Var.f58234a) != -1) {
                 waVar.v(g0Var, l1Var);
                 return;
             }
@@ -284,7 +284,7 @@ public class b8 {
                     sb2.append("String at ");
                     sb2.append(i10);
                     sb2.append(" is null and is ignored by put method.");
-                    hc.a(sb2.toString());
+                    ic.a(sb2.toString());
                 } else {
                     int i11 = 20000;
                     if (str2.length() > 20000) {
@@ -292,7 +292,7 @@ public class b8 {
                         sb3.append("String at ");
                         sb3.append(i10);
                         sb3.append(" is too long, truncating string.");
-                        hc.a(sb3.toString());
+                        ic.a(sb3.toString());
                         String str3 = strArr2[i7];
                         if (str3.length() > 20000) {
                             if (Character.isHighSurrogate(str3.charAt(19999)) && Character.isLowSurrogate(str3.charAt(20000))) {
@@ -308,7 +308,7 @@ public class b8 {
             if (i7 > 0) {
                 Object[] objArr = (String[]) Arrays.copyOfRange(strArr2, 0, i7);
                 if (objArr.length >= 100) {
-                    hc.a("Input Array of elements is too big, cutting off.");
+                    ic.a("Input Array of elements is too big, cutting off.");
                     objArr = Arrays.copyOf(objArr, 100);
                 }
                 bundle.putStringArray(str, (String[]) objArr);
@@ -316,7 +316,7 @@ public class b8 {
             }
             return;
         }
-        hc.a("String array is empty and is ignored by put method.");
+        ic.a("String array is empty and is ignored by put method.");
     }
 
     public void k(float f10, float f11, float f12, float f13) {
@@ -346,7 +346,7 @@ public class b8 {
 
     public void o() {
         if (((LocationManager) this.f336b) == null) {
-            this.f336b = (LocationManager) org.telegram.messenger.t0.f25555b.getSystemService("location");
+            this.f336b = (LocationManager) org.telegram.messenger.t0.f25563b.getSystemService("location");
         }
         try {
             ((LocationManager) this.f336b).requestLocationUpdates("gps", 1L, 0.0f, (qd) this.f337c);

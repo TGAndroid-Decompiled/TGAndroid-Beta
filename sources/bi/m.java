@@ -33,7 +33,7 @@ public final class m implements RequestDelegate {
                 b70 b70Var = (b70) this.d;
                 TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = (TLRPC.TL_messages_importChatInvite) this.f4300e;
                 if (tLObject instanceof TLRPC.TL_chatInviteJoinResultOk) {
-                    qp.s1(b70Var.f28612a).O3(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
+                    qp.s1(b70Var.f28613a).O3(((TLRPC.TL_chatInviteJoinResultOk) tLObject).updates, false);
                 } else if (tLObject instanceof TLRPC.TL_chatInviteJoinResultWebView) {
                     org.telegram.messenger.g0.h3(new w60(b70Var, (TLRPC.TL_chatInviteJoinResultWebView) tLObject, this.f4298b, 0));
                 }

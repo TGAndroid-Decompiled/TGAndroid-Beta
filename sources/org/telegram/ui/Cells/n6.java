@@ -9,9 +9,9 @@ import org.telegram.messenger.hd;
 import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.w70;
 public final class n6 extends FrameLayout {
-    public final n2.n0 f29615a;
-    public final w70 f29616b;
-    public final CheckBoxSquare f29617c;
+    public final n2.n0 f29616a;
+    public final w70 f29617b;
+    public final CheckBoxSquare f29618c;
 
     public n6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -20,33 +20,33 @@ public final class n6 extends FrameLayout {
         float f10;
         float f11;
         CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
-        this.f29617c = checkBoxSquare;
+        this.f29618c = checkBoxSquare;
         checkBoxSquare.setDuplicateParentStateEnabled(false);
         checkBoxSquare.setFocusable(false);
         checkBoxSquare.setFocusableInTouchMode(false);
         checkBoxSquare.setClickable(false);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         addView(checkBoxSquare, c8.ha.d(18, 18.0f, i7 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         n2.n0 n0Var = new n2.n0(this);
-        this.f29615a = n0Var;
+        this.f29616a = n0Var;
         w70 w70Var = new w70(context, n0Var, f6Var);
-        this.f29616b = w70Var;
+        this.f29617b = w70Var;
         org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.G6, f6Var);
         org.telegram.ui.ActionBar.r6.H(w70Var, org.telegram.ui.ActionBar.k6.J6, f6Var);
         w70Var.setTextSize(1, 15.0f);
         w70Var.setMaxLines(2);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i10 = 5;
         } else {
             i10 = 3;
         }
         w70Var.setGravity(i10 | 16);
         w70Var.setEllipsize(TextUtils.TruncateAt.END);
-        boolean z9 = hd.f22871a0;
+        boolean z9 = hd.f22878a0;
         int i11 = (z9 ? 5 : 3) | 48;
         if (z9) {
             f10 = 16.0f;
@@ -63,20 +63,20 @@ public final class n6 extends FrameLayout {
     }
 
     public CheckBoxSquare getCheckBox() {
-        return this.f29617c;
+        return this.f29618c;
     }
 
     public TextView getTextView() {
-        return this.f29616b;
+        return this.f29617b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        n2.n0 n0Var = this.f29615a;
+        n2.n0 n0Var = this.f29616a;
         if (n0Var != null) {
             canvas.save();
-            w70 w70Var = this.f29616b;
+            w70 w70Var = this.f29617b;
             canvas.translate(w70Var.getLeft(), w70Var.getTop());
             if (n0Var.h(canvas)) {
                 invalidate();
@@ -86,10 +86,10 @@ public final class n6 extends FrameLayout {
     }
 
     public void setChecked(boolean z9) {
-        this.f29617c.a(z9, true);
+        this.f29618c.a(z9, true);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f29616b.setText(charSequence);
+        this.f29617b.setText(charSequence);
     }
 }

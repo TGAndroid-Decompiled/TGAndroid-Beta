@@ -102,7 +102,7 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i7 = k6.f27956j5;
+        int i7 = k6.f27957j5;
         TextView textView = this.d;
         f6 f6Var = this.J;
         r6.V(textView, i7, f6Var);
@@ -112,9 +112,9 @@ public class e extends FrameLayout {
         this.h.setProgressColor(k6.w0(i10, f6Var));
         this.H = getContext().getResources().getDrawable(2131232754).mutate();
         int L = g0.L(4.0f);
-        this.I = k6.k0(L, L, L, L, k6.w0(k6.f27921h5, f6Var), k6.w0(k6.f27940i6, f6Var), -16777216);
+        this.I = k6.k0(L, L, L, L, k6.w0(k6.f27922h5, f6Var), k6.w0(k6.f27941i6, f6Var), -16777216);
         xp xpVar = new xp(this.H, this.I, g0.L(3.0f), g0.L(3.0f));
-        xpVar.f40324x = true;
+        xpVar.f40340x = true;
         setBackground(xpVar);
     }
 
@@ -180,15 +180,15 @@ public class e extends FrameLayout {
             boolean z15 = fVar.f20576n;
             mg.a aVar = fVar.f20565a;
             if (!z15) {
-                ((LinearLayout) eVar.f56841e).setVisibility(8);
+                ((LinearLayout) eVar.f56840e).setVisibility(8);
                 z11 = z12;
                 i14 = i20;
                 i15 = i17;
             } else {
-                LinearLayout linearLayout = (LinearLayout) eVar.f56841e;
+                LinearLayout linearLayout = (LinearLayout) eVar.f56840e;
                 TextView textView2 = (TextView) eVar.d;
-                TextView textView3 = (TextView) eVar.f56840c;
-                q5 q5Var = (q5) eVar.f56839b;
+                TextView textView3 = (TextView) eVar.f56839c;
+                q5 q5Var = (q5) eVar.f56838b;
                 if (linearLayout.getMeasuredHeight() == 0) {
                     linearLayout.requestLayout();
                 }
@@ -230,11 +230,11 @@ public class e extends FrameLayout {
                         charSequence = String.format("%d", Long.valueOf(j11));
                     } else {
                         int i23 = 0;
-                        while (f11 >= 1000.0f && i23 < g0.f22521g0.length - 1) {
+                        while (f11 >= 1000.0f && i23 < g0.f22528g0.length - 1) {
                             f11 /= 1000.0f;
                             i23++;
                         }
-                        charSequence = String.format("%.2f", Float.valueOf(f11)) + g0.f22521g0[i23];
+                        charSequence = String.format("%.2f", Float.valueOf(f11)) + g0.f22528g0[i23];
                     }
                 }
                 q5Var.setText(charSequence);
@@ -257,7 +257,7 @@ public class e extends FrameLayout {
                 if (i25 >= 0 && k6.f1(i25)) {
                     r6.V(q5Var, aVar.f20018g, f6Var);
                 } else {
-                    q6 q6Var = r6.f28474a;
+                    q6 q6Var = r6.f28475a;
                     q5Var.setTag(2131296709, null);
                     if (k6.D0().q()) {
                         i13 = aVar.f20019i;
@@ -266,7 +266,7 @@ public class e extends FrameLayout {
                     }
                     q5Var.setTextColor(i13);
                 }
-                int i26 = k6.f27956j5;
+                int i26 = k6.f27957j5;
                 r6.V(textView3, i26, f6Var);
                 if (this.E && textView2 != null) {
                     textView2.setVisibility(0);
@@ -342,7 +342,7 @@ public class e extends FrameLayout {
         this.f20556c = new ui.e[i7];
         for (int i10 = 0; i10 < i7; i10++) {
             this.f20556c[i10] = new ui.e(this);
-            linearLayout.addView((LinearLayout) this.f20556c[i10].f56841e);
+            linearLayout.addView((LinearLayout) this.f20556c[i10].f56840e);
         }
     }
 

@@ -33,7 +33,7 @@ public final class o0 implements f1 {
             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) aVar.f18389b;
             if (!pageblockdetails.open) {
                 pageblockdetails.open = true;
-                t3Var.f36781f3.O(true);
+                t3Var.f37160f3.O(true);
             }
             int i7 = indexOf + 1;
             if (i7 < arrayList.size() && !((a) arrayList.get(i7)).f18394i && !t3.A3((a) arrayList.get(i7))) {

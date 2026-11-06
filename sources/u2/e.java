@@ -10,19 +10,19 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicReference;
 public final class e implements m {
     public static final ArrayDeque h = new ArrayDeque();
-    public static final Object f56142n = new Object();
-    public final MediaCodec f56143a;
-    public final HandlerThread f56144b;
-    public android.support.v4.media.session.q f56145c;
+    public static final Object f56141n = new Object();
+    public final MediaCodec f56142a;
+    public final HandlerThread f56143b;
+    public android.support.v4.media.session.q f56144c;
     public final AtomicReference d;
-    public final h2.i f56146e;
-    public boolean f56147f;
+    public final h2.i f56145e;
+    public boolean f56146f;
 
     public e(MediaCodec mediaCodec, HandlerThread handlerThread) {
         h2.i iVar = new h2.i();
-        this.f56143a = mediaCodec;
-        this.f56144b = handlerThread;
-        this.f56146e = iVar;
+        this.f56142a = mediaCodec;
+        this.f56143b = handlerThread;
+        this.f56145e = iVar;
         this.d = new AtomicReference();
     }
 
@@ -51,11 +51,11 @@ public final class e implements m {
     public final void a(int i7, int i10, int i11, long j3) {
         i();
         d c10 = c();
-        c10.f56138a = i7;
-        c10.f56139b = i10;
+        c10.f56137a = i7;
+        c10.f56138b = i10;
         c10.d = j3;
-        c10.f56141e = i11;
-        android.support.v4.media.session.q qVar = this.f56145c;
+        c10.f56140e = i11;
+        android.support.v4.media.session.q qVar = this.f56144c;
         String str = m0.f14112a;
         qVar.obtainMessage(1, c10).sendToTarget();
     }
@@ -64,11 +64,11 @@ public final class e implements m {
     public final void b(int i7, k2.d dVar, long j3, int i10) {
         i();
         d c10 = c();
-        c10.f56138a = i7;
-        c10.f56139b = 0;
+        c10.f56137a = i7;
+        c10.f56138b = 0;
         c10.d = j3;
-        c10.f56141e = i10;
-        MediaCodec.CryptoInfo cryptoInfo = c10.f56140c;
+        c10.f56140e = i10;
+        MediaCodec.CryptoInfo cryptoInfo = c10.f56139c;
         cryptoInfo.numSubSamples = dVar.f17166f;
         int[] iArr = dVar.d;
         int[] iArr2 = cryptoInfo.numBytesOfClearData;
@@ -116,23 +116,23 @@ public final class e implements m {
         if (Build.VERSION.SDK_INT >= 24) {
             cryptoInfo.setPattern(new MediaCodec.CryptoInfo.Pattern(dVar.f17167g, dVar.h));
         }
-        android.support.v4.media.session.q qVar = this.f56145c;
+        android.support.v4.media.session.q qVar = this.f56144c;
         String str = m0.f14112a;
         qVar.obtainMessage(2, c10).sendToTarget();
     }
 
     @Override
     public final void flush() {
-        if (this.f56147f) {
+        if (this.f56146f) {
             try {
-                android.support.v4.media.session.q qVar = this.f56145c;
+                android.support.v4.media.session.q qVar = this.f56144c;
                 qVar.getClass();
                 qVar.removeCallbacksAndMessages(null);
-                h2.i iVar = this.f56146e;
+                h2.i iVar = this.f56145e;
                 synchronized (iVar) {
                     iVar.f14094b = false;
                 }
-                android.support.v4.media.session.q qVar2 = this.f56145c;
+                android.support.v4.media.session.q qVar2 = this.f56144c;
                 qVar2.getClass();
                 qVar2.obtainMessage(3).sendToTarget();
                 iVar.a();
@@ -155,27 +155,27 @@ public final class e implements m {
     @Override
     public final void setParameters(Bundle bundle) {
         i();
-        android.support.v4.media.session.q qVar = this.f56145c;
+        android.support.v4.media.session.q qVar = this.f56144c;
         String str = m0.f14112a;
         qVar.obtainMessage(4, bundle).sendToTarget();
     }
 
     @Override
     public final void shutdown() {
-        if (this.f56147f) {
+        if (this.f56146f) {
             flush();
-            this.f56144b.quit();
+            this.f56143b.quit();
         }
-        this.f56147f = false;
+        this.f56146f = false;
     }
 
     @Override
     public final void start() {
-        if (!this.f56147f) {
-            HandlerThread handlerThread = this.f56144b;
+        if (!this.f56146f) {
+            HandlerThread handlerThread = this.f56143b;
             handlerThread.start();
-            this.f56145c = new android.support.v4.media.session.q(this, handlerThread.getLooper(), 13);
-            this.f56147f = true;
+            this.f56144c = new android.support.v4.media.session.q(this, handlerThread.getLooper(), 13);
+            this.f56146f = true;
         }
     }
 }

@@ -4,7 +4,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Trace;
 import android.util.Log;
-import c8.ge;
+import c8.he;
 import c8.j0;
 import java.lang.reflect.Method;
 public abstract class e {
@@ -12,7 +12,7 @@ public abstract class e {
     public static final a0.j f15124b;
 
     static {
-        ge.a("TypefaceCompat static init");
+        he.a("TypefaceCompat static init");
         int i7 = Build.VERSION.SDK_INT;
         if (i7 >= 29) {
             f15123a = new j0();

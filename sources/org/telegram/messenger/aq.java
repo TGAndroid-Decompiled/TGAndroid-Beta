@@ -26,7 +26,7 @@ public final class aq implements Runnable {
                 yr yrVar = this.f21488b;
                 yrVar.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase = yrVar.f26690b;
+                    SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("UPDATE dialogs SET ttl_period = " + i7 + " WHERE did = " + j3).stepThis().dispose();
                     return;
@@ -45,7 +45,7 @@ public final class aq implements Runnable {
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLitePreparedStatement = yrVar2.f26690b.executeFast("UPDATE chat_settings_v2 SET links = ? WHERE uid = ?");
+                        sQLitePreparedStatement = yrVar2.f26698b.executeFast("UPDATE chat_settings_v2 SET links = ? WHERE uid = ?");
                         sQLitePreparedStatement.requery();
                         sQLitePreparedStatement.bindInteger(1, i10);
                         sQLitePreparedStatement.bindLong(2, j10);
@@ -74,7 +74,7 @@ public final class aq implements Runnable {
                 SQLitePreparedStatement sQLitePreparedStatement2 = null;
                 try {
                     try {
-                        sQLitePreparedStatement2 = yrVar3.f26690b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
+                        sQLitePreparedStatement2 = yrVar3.f26698b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
                         sQLitePreparedStatement2.bindInteger(1, i11);
                         sQLitePreparedStatement2.bindLong(2, j11);
                         sQLitePreparedStatement2.step();
@@ -100,7 +100,7 @@ public final class aq implements Runnable {
                 yr yrVar4 = this.f21488b;
                 yrVar4.getClass();
                 try {
-                    SQLiteDatabase sQLiteDatabase2 = yrVar4.f26690b;
+                    SQLiteDatabase sQLiteDatabase2 = yrVar4.f26698b;
                     Locale locale2 = Locale.US;
                     sQLiteDatabase2.executeFast("UPDATE messages_v2 SET mention = 1, read_state = read_state & ~2 WHERE mid = " + i12 + " AND uid = " + j12).stepThis().dispose();
                     return;
@@ -114,7 +114,7 @@ public final class aq implements Runnable {
                 yr yrVar5 = this.f21488b;
                 yrVar5.getClass();
                 try {
-                    SQLitePreparedStatement executeFast = yrVar5.f26690b.executeFast("UPDATE dialogs SET pts = ? WHERE did = ?");
+                    SQLitePreparedStatement executeFast = yrVar5.f26698b.executeFast("UPDATE dialogs SET pts = ? WHERE did = ?");
                     executeFast.bindInteger(1, i13);
                     executeFast.bindLong(2, -j13);
                     executeFast.step();
@@ -129,7 +129,7 @@ public final class aq implements Runnable {
                 int i14 = this.f21489c;
                 long j14 = this.d;
                 try {
-                    SQLiteDatabase sQLiteDatabase3 = yrVar6.f26690b;
+                    SQLiteDatabase sQLiteDatabase3 = yrVar6.f26698b;
                     Locale locale3 = Locale.US;
                     sQLiteDatabase3.executeFast("DELETE FROM download_queue WHERE uid = " + j14 + " AND type = " + i14).stepThis().dispose();
                     return;
@@ -145,7 +145,7 @@ public final class aq implements Runnable {
                 SQLitePreparedStatement sQLitePreparedStatement3 = null;
                 try {
                     try {
-                        sQLitePreparedStatement3 = yrVar7.f26690b.executeFast("UPDATE chat_settings_v2 SET online = ? WHERE uid = ?");
+                        sQLitePreparedStatement3 = yrVar7.f26698b.executeFast("UPDATE chat_settings_v2 SET online = ? WHERE uid = ?");
                         sQLitePreparedStatement3.requery();
                         sQLitePreparedStatement3.bindInteger(1, i15);
                         sQLitePreparedStatement3.bindLong(2, j15);

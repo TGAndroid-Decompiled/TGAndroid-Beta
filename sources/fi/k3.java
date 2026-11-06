@@ -16,9 +16,9 @@ public final class k3 extends View implements o2 {
         i6Var.u(-1);
         i6Var.w(org.telegram.messenger.g0.L(14.0f));
         i6Var.s(org.telegram.messenger.g0.L(1.4f), org.telegram.messenger.g0.L(0.4f), 1275068416);
-        i6Var.f34477b = 1;
+        i6Var.f34508b = 1;
         i6Var.setCallback(this);
-        i6Var.M = org.telegram.messenger.g0.f22537q.x;
+        i6Var.M = org.telegram.messenger.g0.f22544q.x;
     }
 
     @Override

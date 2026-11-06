@@ -7,11 +7,11 @@ public class RefererReceiver extends BroadcastReceiver {
     @Override
     public final void onReceive(Context context, Intent intent) {
         try {
-            qp s12 = qp.s1(p10.f24459s0);
+            qp s12 = qp.s1(p10.f24467s0);
             String string = intent.getExtras().getString("referrer");
             if (string != null) {
                 s12.R3 = string;
-                s12.f24759e7.edit().putString("installReferer", string).commit();
+                s12.f24767e7.edit().putString("installReferer", string).commit();
             }
         } catch (Exception unused) {
         }

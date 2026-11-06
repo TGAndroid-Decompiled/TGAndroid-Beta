@@ -36,7 +36,7 @@ public abstract class e40 {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
             org.telegram.messenger.qp.s1(i7).Y3(groupcall.users, false);
             org.telegram.messenger.qp.s1(i7).S3(groupcall.chats, false);
-            if (VoIPService.getSharedInstance() != null && (conferenceCall = VoIPService.getSharedInstance().conference) != null && (groupCall = conferenceCall.groupCall) != null && groupcall.call.f26962id == groupCall.f26962id && (launchActivity = LaunchActivity.G1) != null) {
+            if (VoIPService.getSharedInstance() != null && (conferenceCall = VoIPService.getSharedInstance().conference) != null && (groupCall = conferenceCall.groupCall) != null && groupcall.call.f26963id == groupCall.f26963id && (launchActivity = LaunchActivity.G1) != null) {
                 c40.e1(launchActivity, org.telegram.messenger.c.a(VoIPService.getSharedInstance().getAccount()), null, null, false, null);
                 return;
             }
@@ -56,7 +56,7 @@ public abstract class e40 {
             frameLayout.addView(org.telegram.messenger.camera.q.e(context, 2131231091), c8.ha.e(56, 56, 17));
             f10.addView(frameLayout, c8.ha.t(80, 80, 1, 2, 21, 2, 13));
             int i11 = org.telegram.ui.ActionBar.k6.G6;
-            org.telegram.ui.Components.w70 a10 = c8.na.a(context, 20.0f, i11, true, bVar2);
+            org.telegram.ui.Components.w70 a10 = c8.qa.a(context, 20.0f, i11, true, bVar2);
             a10.setText(org.telegram.messenger.hd.M0(2131749461, null));
             a10.setGravity(17);
             f10.addView(a10, c8.ha.t(-1, -2, 1, 2, 0, 2, 4));
@@ -83,7 +83,7 @@ public abstract class e40 {
                 }
             }).collect(Collectors.toList());
             boolean isEmpty = list.isEmpty();
-            org.telegram.ui.Components.w70 a11 = c8.na.a(context, 14.0f, i11, false, bVar2);
+            org.telegram.ui.Components.w70 a11 = c8.qa.a(context, 14.0f, i11, false, bVar2);
             a11.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131749467, null)));
             a11.setGravity(17);
             a11.setMaxWidth(fi.m3.a(a11.getText(), a11.getPaint()));
@@ -102,7 +102,7 @@ public abstract class e40 {
                 }
                 z8Var.a(false);
                 f10.addView(z8Var, c8.ha.k(2.0f, 11.0f, 5.0f, 0.0f, -1, 58));
-                org.telegram.ui.Components.w70 a12 = c8.na.a(context, 14.0f, org.telegram.ui.ActionBar.k6.G6, false, bVar2);
+                org.telegram.ui.Components.w70 a12 = c8.qa.a(context, 14.0f, org.telegram.ui.ActionBar.k6.G6, false, bVar2);
                 a12.setGravity(17);
                 if (list.size() == 1) {
                     a12.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131749463, org.telegram.messenger.m5.s(i7, ((Long) list.get(0)).longValue()))));
@@ -118,19 +118,19 @@ public abstract class e40 {
             linearLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f));
             linearLayout.setClipToPadding(false);
             linearLayout.setOrientation(0);
-            int i13 = org.telegram.ui.ActionBar.k6.f27940i6;
+            int i13 = org.telegram.ui.ActionBar.k6.f27941i6;
             org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(i13, bVar2), 20, 20);
             org.telegram.ui.ActionBar.n6 N2 = org.telegram.ui.ActionBar.r6.N(i13);
             linearLayout.setBackground(a02);
             org.telegram.ui.ActionBar.r6.k(linearLayout, a02, null, N2, bVar2);
             org.telegram.ui.Components.wo woVar = new org.telegram.ui.Components.wo(24, context, bVar2);
-            woVar.b(org.telegram.ui.ActionBar.k6.h7, org.telegram.ui.ActionBar.k6.f27958j7, org.telegram.ui.ActionBar.k6.f27978k7);
+            woVar.b(org.telegram.ui.ActionBar.k6.h7, org.telegram.ui.ActionBar.k6.f27959j7, org.telegram.ui.ActionBar.k6.f27979k7);
             woVar.setDrawUnchecked(true);
             woVar.a(org.telegram.messenger.qp.e1().getBoolean("callmiconstart", true), false);
             woVar.setDrawBackgroundAsArc(10);
             linearLayout.addView(woVar, c8.ha.t(26, 26, 16, 0, 0, 0, 0));
             TextView textView = new TextView(context);
-            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27956j5, bVar2);
+            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27957j5, bVar2);
             jg.g.v(textView, 1, 14.0f, null, 2131749468);
             linearLayout.addView(textView, c8.ha.t(-2, -2, 16, 9, 0, 0, 0));
             f10.addView(linearLayout, c8.ha.t(-2, 38, 1, 0, 4, 0, 12));
@@ -179,7 +179,7 @@ public abstract class e40 {
         getgroupcall.limit = 10;
         int sendRequest = ConnectionsManager.getInstance(i7).sendRequest(getgroupcall, new bg.k0(u1Var, bVar, i7, activity, tL_inputGroupCallSlug, 10));
         if (bVar != null) {
-            bVar.f57232b = new org.telegram.messenger.g9(i7, sendRequest, 6);
+            bVar.f57231b = new org.telegram.messenger.g9(i7, sendRequest, 6);
             bVar.d();
         }
     }

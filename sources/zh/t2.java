@@ -3,25 +3,25 @@ package zh;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class t2 extends v31 {
+import org.telegram.ui.Components.x31;
+public final class t2 extends w31 {
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
-    public static w31 i(String str) {
-        w31 K = w31.K(t2.class);
-        K.f39830l = str;
+    public static x31 i(String str) {
+        x31 K = x31.K(t2.class);
+        K.f40159l = str;
         return K;
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
-        ((u2) view).set(w31Var.f39830l);
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
+        ((u2) view).set(x31Var.f40159l);
     }
 
     @Override

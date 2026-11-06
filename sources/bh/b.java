@@ -40,7 +40,7 @@ public final class b extends pa {
         this.f3405c0.addView(this.f3404b0, ha.c(22.0f, -2));
         this.f3405c0.setPadding(g0.L(8.0f), 0, g0.L(8.0f), 0);
         FrameLayout frameLayout = this.f3405c0;
-        boolean z9 = hd.f22871a0;
+        boolean z9 = hd.f22878a0;
         if (z9) {
             i7 = 3;
         } else {
@@ -75,7 +75,7 @@ public final class b extends pa {
         float L;
         int i7;
         if (this.S) {
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 L = 0.0f;
             } else {
                 L = g0.L(70.0f);
@@ -83,12 +83,12 @@ public final class b extends pa {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 i7 = g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, k6.f27971k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, k6.f27972k0);
         }
     }
 
@@ -99,7 +99,7 @@ public final class b extends pa {
         FrameLayout frameLayout = this.f3405c0;
         TextView textView = this.f3404b0;
         int i10 = 0;
-        k5 k5Var = this.f29749b;
+        k5 k5Var = this.f29750b;
         if (!z9 && !boost.giveaway) {
             frameLayout.setVisibility(8);
         } else {
@@ -107,7 +107,7 @@ public final class b extends pa {
             int i11 = ((boost.expires - boost.date) / 30) / 86400;
             long j3 = boost.stars;
             int i12 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
-            c4 c4Var = this.f29747a;
+            c4 c4Var = this.f29748a;
             w8 w8Var = this.E;
             if (i12 > 0) {
                 k5Var.l(hd.G((int) j3, "BoostingBoostStars", new Object[0]), false);
@@ -129,7 +129,7 @@ public final class b extends pa {
             }
             String format = hd.E0().o0().format(new Date(boost.expires * 1000));
             int i13 = (boost.stars > 0L ? 1 : (boost.stars == 0L ? 0 : -1));
-            k5 k5Var2 = this.f29750c;
+            k5 k5Var2 = this.f29751c;
             if (i13 > 0) {
                 k5Var2.l(hd.a0(null, null, 2131753244, format), false);
             } else {
@@ -173,13 +173,13 @@ public final class b extends pa {
         }
         if (frameLayout.getVisibility() == 0) {
             int L = g0.L(22.0f) + ((int) textView.getPaint().measureText(textView.getText().toString()));
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 i7 = L;
             } else {
                 i7 = 0;
             }
             int paddingTop = k5Var.getPaddingTop();
-            if (!hd.f22871a0) {
+            if (!hd.f22878a0) {
                 i10 = L;
             }
             k5Var.setPadding(i7, paddingTop, i10, k5Var.getPaddingBottom());

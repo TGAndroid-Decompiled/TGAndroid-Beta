@@ -28,7 +28,7 @@ public final class j extends lz {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        int w02 = k6.w0(k6.f27848d6, this.V.W.f10846c);
+        int w02 = k6.w0(k6.f27849d6, this.V.W.f10846c);
         Paint paint = this.U;
         paint.setColor(w02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), paint);

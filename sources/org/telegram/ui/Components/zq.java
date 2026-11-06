@@ -6,29 +6,29 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 public final class zq extends ImageView {
-    public final int f41084a = 0;
-    public Object f41085b;
-    public final ViewGroup f41086c;
+    public final int f41104a = 0;
+    public Object f41105b;
+    public final ViewGroup f41106c;
 
     public zq(br brVar, Context context, uy uyVar) {
         super(context);
-        this.f41086c = brVar;
-        this.f41085b = uyVar;
+        this.f41106c = brVar;
+        this.f41105b = uyVar;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f41084a) {
+        switch (this.f41104a) {
             case 0:
-                br brVar = (br) this.f41086c;
-                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (brVar.f32280n || brVar.f32279f)) {
-                    brVar.f32280n = false;
-                    brVar.f32279f = false;
-                    removeCallbacks(brVar.f32281r);
+                br brVar = (br) this.f41106c;
+                if ((motionEvent.getAction() == 1 || motionEvent.getAction() == 3) && (brVar.f32314n || brVar.f32313f)) {
+                    brVar.f32314n = false;
+                    brVar.f32313f = false;
+                    removeCallbacks(brVar.f32315r);
                     removeCallbacks(brVar.h);
                 }
                 super.onTouchEvent(motionEvent);
-                return ((GestureDetector) ((uy) this.f41085b).f38757b).onTouchEvent(motionEvent);
+                return ((GestureDetector) ((uy) this.f41105b).f38750b).onTouchEvent(motionEvent);
             default:
                 return super.onTouchEvent(motionEvent);
         }
@@ -36,6 +36,6 @@ public final class zq extends ImageView {
 
     public zq(ii0 ii0Var, Context context) {
         super(context);
-        this.f41086c = ii0Var;
+        this.f41106c = ii0Var;
     }
 }

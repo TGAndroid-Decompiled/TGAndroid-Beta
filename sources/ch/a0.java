@@ -74,7 +74,7 @@ public final class a0 extends FrameLayout implements a6 {
         if (b0Var.f6204y != 1 && (ii0Var == null || ii0Var.getDelegate() == null || !ii0Var.getDelegate().U())) {
             return;
         }
-        b0Var.f6193m.f49031f0.invalidate();
+        b0Var.f6193m.f49030f0.invalidate();
     }
 
     @Override

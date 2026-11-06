@@ -3,36 +3,36 @@ package org.telegram.messenger;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.tgnet.TLRPC;
 public final class nf implements Runnable {
-    public final int f24174a;
-    public final ui f24175b;
-    public final TLRPC.Document f24176c;
+    public final int f24181a;
+    public final ui f24182b;
+    public final TLRPC.Document f24183c;
 
     public nf(ui uiVar, TLRPC.Document document, int i7) {
-        this.f24174a = i7;
-        this.f24175b = uiVar;
-        this.f24176c = document;
+        this.f24181a = i7;
+        this.f24182b = uiVar;
+        this.f24183c = document;
     }
 
     @Override
     public final void run() {
-        switch (this.f24174a) {
+        switch (this.f24181a) {
             case 0:
-                ui uiVar = this.f24175b;
-                TLRPC.Document document = this.f24176c;
+                ui uiVar = this.f24182b;
+                TLRPC.Document document = this.f24183c;
                 try {
-                    SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26690b;
-                    sQLiteDatabase.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + document.f26958id + "' AND type = 2").stepThis().dispose();
+                    SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26698b;
+                    sQLiteDatabase.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + document.f26959id + "' AND type = 2").stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
                     return;
                 }
             default:
-                ui uiVar2 = this.f24175b;
-                TLRPC.Document document2 = this.f24176c;
+                ui uiVar2 = this.f24182b;
+                TLRPC.Document document2 = this.f24183c;
                 try {
-                    SQLiteDatabase sQLiteDatabase2 = uiVar2.getMessagesStorage().f26690b;
-                    sQLiteDatabase2.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + document2.f26958id + "' AND type = 2").stepThis().dispose();
+                    SQLiteDatabase sQLiteDatabase2 = uiVar2.getMessagesStorage().f26698b;
+                    sQLiteDatabase2.executeFast("DELETE FROM web_recent_v3 WHERE id = '" + document2.f26959id + "' AND type = 2").stepThis().dispose();
                     return;
                 } catch (Exception e11) {
                     a8.g(e11, true);

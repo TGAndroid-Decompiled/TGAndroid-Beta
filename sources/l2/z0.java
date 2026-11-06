@@ -261,14 +261,14 @@ public final class z0 implements Runnable {
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (viewGroup = (ViewGroup) actionBarPopupWindow$ActionBarPopupWindowLayout.getParent()) != null) {
                     viewGroup.removeView(actionBarLayout.J);
                 }
-                if (!actionBarLayout.h && !actionBarLayout.f27227a0) {
-                    actionBarLayout.f27274w.setTranslationX(0.0f);
+                if (!actionBarLayout.h && !actionBarLayout.f27228a0) {
+                    actionBarLayout.f27275w.setTranslationX(0.0f);
                 } else {
-                    actionBarLayout.f27274w.setScaleX(1.0f);
-                    actionBarLayout.f27274w.setScaleY(1.0f);
+                    actionBarLayout.f27275w.setScaleX(1.0f);
+                    actionBarLayout.f27275w.setScaleY(1.0f);
                     actionBarLayout.h = false;
                     actionBarLayout.J = null;
-                    actionBarLayout.f27227a0 = false;
+                    actionBarLayout.f27228a0 = false;
                 }
                 actionBarLayout.m(f2Var);
                 f2Var.setRemovingFromStack(false);
@@ -278,7 +278,7 @@ public final class z0 implements Runnable {
                 return;
             case 19:
                 ((f2) this.f18100c).presentFragment((an) this.d);
-                ((d3) this.f18099b).f27426c = false;
+                ((d3) this.f18099b).f27427c = false;
                 return;
             case 20:
                 d3 d3Var = (d3) this.f18099b;
@@ -286,7 +286,7 @@ public final class z0 implements Runnable {
                 org.telegram.ui.ActionBar.c3 c3Var = (org.telegram.ui.ActionBar.c3) this.d;
                 d3Var.getClass();
                 while (i7 < arrayList4.size()) {
-                    if (((a3) arrayList4.get(i7)).f27302a == c3Var) {
+                    if (((a3) arrayList4.get(i7)).f27303a == c3Var) {
                         arrayList4.remove(i7);
                         i7--;
                     }
@@ -300,25 +300,25 @@ public final class z0 implements Runnable {
                 j6 j6Var2 = (j6) this.d;
                 if (tLObject instanceof TLRPC.TL_wallPaper) {
                     TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject;
-                    j6Var.f27636g0 = w7.r(null, tL_wallPaper.document);
+                    j6Var.f27637g0 = w7.r(null, tL_wallPaper.document);
                     qs.f(j6Var.E).b(j6Var, 142);
                     qs.f(j6Var.E).b(j6Var, 143);
-                    w7.G(j6Var2.E).X(tL_wallPaper.document, tL_wallPaper, 1, 1);
+                    w7.G(j6Var2.E).W(tL_wallPaper.document, tL_wallPaper, 1, 1);
                     return;
                 }
                 j6Var.s();
                 return;
             case 22:
                 org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) this.f18099b;
-                y5.G0(t0Var.getContext(), t0Var.H, (TL_wallet.walletTransaction) this.f18100c, null, null, null, (org.telegram.ui.Cells.m0) this.d, t0Var.f30310g1);
+                y5.G0(t0Var.getContext(), t0Var.H, (TL_wallet.walletTransaction) this.f18100c, null, null, null, (org.telegram.ui.Cells.m0) this.d, t0Var.f30311g1);
                 return;
             case 23:
                 org.telegram.ui.Cells.t0 t0Var2 = (org.telegram.ui.Cells.t0) this.f18099b;
-                t0Var2.f30307f1.W(t0Var2, (TLRPC.TL_premiumGiftOption) this.f18100c, (String) this.d);
+                t0Var2.f30308f1.W(t0Var2, (TLRPC.TL_premiumGiftOption) this.f18100c, (String) this.d);
                 return;
             case 24:
                 j6 j6Var3 = (j6) this.f18100c;
-                j6Var3.f27634f = true ^ j6Var3.d((File) this.d, j6Var3.f27629c);
+                j6Var3.f27635f = true ^ j6Var3.d((File) this.d, j6Var3.f27630c);
                 org.telegram.messenger.g0.h3(new ea(8, (ga) this.f18099b, j6Var3));
                 return;
             case 25:
@@ -332,20 +332,20 @@ public final class z0 implements Runnable {
                 if (tLObject2 instanceof TLRPC.TL_messageMediaDocument) {
                     TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_account_saveMusic.f26980id = tL_inputDocument;
+                    tL_account_saveMusic.f26981id = tL_inputDocument;
                     TLRPC.Document document = ((TLRPC.TL_messageMediaDocument) tLObject2).document;
-                    tL_inputDocument.f26964id = document.f26958id;
+                    tL_inputDocument.f26965id = document.f26959id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    kp kpVar = b8Var2.f32043m2;
+                    kp kpVar = b8Var2.f32077m2;
                     if (kpVar != null) {
-                        kpVar.f23734c.add(0, kpVar.d(document));
+                        kpVar.f23741c.add(0, kpVar.d(document));
                         kpVar.e();
                     }
-                    b8Var2.f32044n2.clear();
-                    b8Var2.f32044n2.addAll(b8Var2.f32043m2.f23734c);
-                    b8Var2.f32049q1.f();
-                    ConnectionsManager.getInstance(b8Var2.f28612a).sendRequest(tL_account_saveMusic, null);
+                    b8Var2.f32078n2.clear();
+                    b8Var2.f32078n2.addAll(b8Var2.f32077m2.f23741c);
+                    b8Var2.f32083q1.f();
+                    ConnectionsManager.getInstance(b8Var2.f28613a).sendRequest(tL_account_saveMusic, null);
                     return;
                 }
                 return;
@@ -353,7 +353,7 @@ public final class z0 implements Runnable {
                 oe oeVar = (oe) this.f18099b;
                 oeVar.getClass();
                 ((it0) this.f18100c).getViewTreeObserver().removeOnDrawListener(oeVar);
-                ((an0) this.d).f31860a.setHideAvatar(true);
+                ((an0) this.d).f31856a.setHideAvatar(true);
                 return;
             case 28:
                 vf vfVar = (vf) this.f18099b;

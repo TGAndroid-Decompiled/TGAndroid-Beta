@@ -16,7 +16,7 @@ public abstract class n0 {
         TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
         user.photo = tL_userProfilePhoto;
         tL_userProfilePhoto.personal = z9;
-        tL_userProfilePhoto.photo_id = photo.f26976id;
+        tL_userProfilePhoto.photo_id = photo.f26977id;
         ArrayList<TLRPC.VideoSize> arrayList2 = photo.video_sizes;
         if (arrayList2 != null && arrayList2.size() > 0) {
             z10 = true;
@@ -37,9 +37,9 @@ public abstract class n0 {
         TLRPC.PhotoSize w13 = w7.w(photo2.sizes, 1000, false, null, false);
         if (w12 != null && w10 != null) {
             w7.G(i7);
-            File K = w7.K(w12, null, true, true);
+            File J = w7.J(w12, null, true, true);
             w7.G(i7);
-            w7.K(w10, null, true, true).renameTo(K);
+            w7.J(w10, null, true, true).renameTo(J);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(w10.location.volume_id);
             sb2.append("_");
@@ -51,9 +51,9 @@ public abstract class n0 {
         }
         if (w13 != null && w11 != null) {
             w7.G(i7);
-            File K2 = w7.K(w13, null, true, true);
+            File J2 = w7.J(w13, null, true, true);
             w7.G(i7);
-            w7.K(w11, null, true, true).renameTo(K2);
+            w7.J(w11, null, true, true).renameTo(J2);
             StringBuilder sb4 = new StringBuilder();
             sb4.append(w11.location.volume_id);
             sb4.append("_");

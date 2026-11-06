@@ -50,11 +50,11 @@ public final class kd implements Runnable {
                 fi.s8 s8Var = n8Var.W;
                 if (z9) {
                     int i10 = fi.s8.U1;
-                    qp.s1(s8Var.f28612a).T2(Long.valueOf(j3), new fi.f8(n8Var, j3, 0), 200);
+                    qp.s1(s8Var.f28613a).T2(Long.valueOf(j3), new fi.f8(n8Var, j3, 0), 200);
                     return;
                 }
                 int i11 = fi.s8.U1;
-                qp.s1(s8Var.f28612a).V2(0, j3, true);
+                qp.s1(s8Var.f28613a).V2(0, j3, true);
                 return;
             case 2:
                 ii.l0 l0Var = (ii.l0) obj;
@@ -83,7 +83,7 @@ public final class kd implements Runnable {
                 s12.getConnectionsManager().sendRequestTyped(tL_communities_togglePeerLinkRequestApproval, new d3.b(1), new org.telegram.messenger.q9(s12, j10, j0Var, 2));
                 return;
             case 3:
-                HashSet hashSet = ((dt) obj).f22077y;
+                HashSet hashSet = ((dt) obj).f22084y;
                 if (z9) {
                     hashSet.add(Long.valueOf(j3));
                     return;
@@ -94,8 +94,8 @@ public final class kd implements Runnable {
             default:
                 k00 k00Var = (k00) obj;
                 k00Var.getUserConfig().k().edit().remove("topics_end_reached_" + j3).apply();
-                k00Var.f23630a.l(j3);
-                k00Var.f23631b.l(j3);
+                k00Var.f23637a.l(j3);
+                k00Var.f23638b.l(j3);
                 k00Var.d.delete(j3);
                 k00Var.h.l(j3);
                 TLRPC.Chat M0 = k00Var.getMessagesController().M0(Long.valueOf(j3));

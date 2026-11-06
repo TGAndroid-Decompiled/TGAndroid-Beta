@@ -24,7 +24,7 @@ public final class sx extends yu0 {
         super.H1(i7);
         tx txVar = this.H3;
         gy gyVar = txVar.G;
-        sx sxVar = txVar.f38425r;
+        sx sxVar = txVar.f38414r;
         boolean z10 = true;
         if (sxVar.getSelectedCategory() == null) {
             z9 = true;
@@ -43,7 +43,7 @@ public final class sx extends yu0 {
             if (sxVar.getSelectedCategory() != null) {
                 z10 = false;
             }
-            tvVar.f37731o0 = z10;
+            tvVar.f37691o0 = z10;
             tvVar.invalidate();
         }
         txVar.g(false);

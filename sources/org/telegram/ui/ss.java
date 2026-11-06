@@ -21,7 +21,7 @@ public final class ss extends org.telegram.ui.Components.na {
     public final ArrayList S1;
     public final HashSet T1;
     public boolean U1;
-    public org.telegram.ui.Components.k41 V1;
+    public org.telegram.ui.Components.l41 V1;
 
     public ss(Activity activity, HashSet hashSet) {
         super(activity, null, false, false, new di.b());
@@ -31,8 +31,8 @@ public final class ss extends org.telegram.ui.Components.na {
         this.T1 = hashSet2;
         arrayList.addAll(hashSet);
         hashSet2.addAll(hashSet);
-        P(org.telegram.ui.ActionBar.k6.f27921h5);
-        this.f28643s = false;
+        P(org.telegram.ui.ActionBar.k6.f27922h5);
+        this.f28644s = false;
         FrameLayout frameLayout = new FrameLayout(activity);
         this.P1 = frameLayout;
         LinearLayout e10 = org.telegram.messenger.k5.e(activity, 1);
@@ -43,23 +43,23 @@ public final class ss extends org.telegram.ui.Components.na {
         frameLayout.addView(imageView, c8.ha.d(24, 24.0f, 53, 0.0f, 14.0f, 14.0f, 0.0f));
         c8.ka.a(imageView);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final ss f49564b;
+            public final ss f49563b;
 
             {
-                this.f49564b = this;
+                this.f49563b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f49564b.dismiss();
+                        this.f49563b.dismiss();
                         return;
                     case 1:
-                        this.f49564b.d1(false);
+                        this.f49563b.d1(false);
                         return;
                     default:
-                        this.f49564b.d1(true);
+                        this.f49563b.d1(true);
                         return;
                 }
             }
@@ -77,29 +77,29 @@ public final class ss extends org.telegram.ui.Components.na {
         frameLayout2.addView(imageView2, c8.ha.e(56, 56, 17));
         e10.addView(frameLayout2, c8.ha.t(80, 80, 1, 2, 21, 2, 13));
         int i10 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.Components.w70 a10 = c8.na.a(activity, 20.0f, i10, true, this.I0);
+        org.telegram.ui.Components.w70 a10 = c8.qa.a(activity, 20.0f, i10, true, this.I0);
         a10.setText(org.telegram.messenger.hd.M0(2131749482, null));
         a10.setGravity(17);
         e10.addView(a10, c8.ha.t(-1, -2, 1, 2, 0, 2, 4));
-        org.telegram.ui.Components.w70 a11 = c8.na.a(activity, 14.0f, i10, false, this.I0);
+        org.telegram.ui.Components.w70 a11 = c8.qa.a(activity, 14.0f, i10, false, this.I0);
         a11.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131749483, null)));
         a11.setGravity(17);
         a11.setMaxWidth(fi.m3.a(a11.getText(), a11.getPaint()));
         e10.addView(a11, c8.ha.t(-1, -2, 1, 2, 0, 2, 23));
-        org.telegram.ui.Components.k41 k41Var = this.V1;
-        if (k41Var != null) {
-            k41Var.O(false);
+        org.telegram.ui.Components.l41 l41Var = this.V1;
+        if (l41Var != null) {
+            l41Var.O(false);
         }
         v4.k kVar = new v4.k();
-        kVar.f56979m = false;
+        kVar.f56978m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.n(350L);
-        this.f36222k1.setItemAnimator(kVar);
-        this.f36222k1.setOnItemClickListener(new wr(this, 1));
+        this.f36261k1.setItemAnimator(kVar);
+        this.f36261k1.setOnItemClickListener(new wr(this, 1));
         FrameLayout frameLayout3 = new FrameLayout(activity);
         LinearLayout e11 = org.telegram.messenger.k5.e(activity, 0);
-        e11.setPadding(org.telegram.messenger.g0.L(14.0f) + this.f28645t0, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + this.f28645t0, org.telegram.messenger.g0.L(14.0f));
+        e11.setPadding(org.telegram.messenger.g0.L(14.0f) + this.f28646t0, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + this.f28646t0, org.telegram.messenger.g0.L(14.0f));
         frameLayout3.addView(e11, c8.ha.e(-1, -2, 87));
         fi.d dVar = new fi.d(activity, this.I0, true);
         this.Q1 = dVar;
@@ -110,23 +110,23 @@ public final class ss extends org.telegram.ui.Components.na {
         dVar.i(spannableStringBuilder, false, true);
         e11.addView(dVar, c8.ha.q(-1, 48, 1.0f, 119, 0, 0, 6, 0));
         dVar.setOnClickListener(new View.OnClickListener(this) {
-            public final ss f49564b;
+            public final ss f49563b;
 
             {
-                this.f49564b = this;
+                this.f49563b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f49564b.dismiss();
+                        this.f49563b.dismiss();
                         return;
                     case 1:
-                        this.f49564b.d1(false);
+                        this.f49563b.d1(false);
                         return;
                     default:
-                        this.f49564b.d1(true);
+                        this.f49563b.d1(true);
                         return;
                 }
             }
@@ -140,38 +140,38 @@ public final class ss extends org.telegram.ui.Components.na {
         dVar2.i(spannableStringBuilder2, false, true);
         e11.addView(dVar2, c8.ha.q(-1, 48, 1.0f, 119, 6, 0, 0, 0));
         dVar2.setOnClickListener(new View.OnClickListener(this) {
-            public final ss f49564b;
+            public final ss f49563b;
 
             {
-                this.f49564b = this;
+                this.f49563b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f49564b.dismiss();
+                        this.f49563b.dismiss();
                         return;
                     case 1:
-                        this.f49564b.d1(false);
+                        this.f49563b.d1(false);
                         return;
                     default:
-                        this.f49564b.d1(true);
+                        this.f49563b.d1(true);
                         return;
                 }
             }
         });
-        this.f28615b.addView(frameLayout3, c8.ha.e(-1, -2, 87));
-        org.telegram.ui.Components.pj0 pj0Var = this.f36222k1;
-        int i11 = this.f28645t0;
+        this.f28616b.addView(frameLayout3, c8.ha.e(-1, -2, 87));
+        org.telegram.ui.Components.pj0 pj0Var = this.f36261k1;
+        int i11 = this.f28646t0;
         pj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(76.0f));
     }
 
     @Override
     public final org.telegram.ui.Components.oj0 L0(org.telegram.ui.Components.pj0 pj0Var) {
-        org.telegram.ui.Components.k41 k41Var = new org.telegram.ui.Components.k41(pj0Var, getContext(), this.f28612a, 0, true, new a5(this, 10), this.I0);
-        this.V1 = k41Var;
-        return k41Var;
+        org.telegram.ui.Components.l41 l41Var = new org.telegram.ui.Components.l41(pj0Var, getContext(), this.f28613a, 0, true, new a5(this, 10), this.I0);
+        this.V1 = l41Var;
+        return l41Var;
     }
 
     @Override
@@ -196,6 +196,6 @@ public final class ss extends org.telegram.ui.Components.na {
         hashSet.addAll(this.T1);
         TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
         createconferencecall.random_id = Utilities.f21331b.nextInt();
-        ConnectionsManager.getInstance(this.f28612a).sendRequest(createconferencecall, new bi.d4(this, dVar2, z9, hashSet, 7));
+        ConnectionsManager.getInstance(this.f28613a).sendRequest(createconferencecall, new bi.d4(this, dVar2, z9, hashSet, 7));
     }
 }

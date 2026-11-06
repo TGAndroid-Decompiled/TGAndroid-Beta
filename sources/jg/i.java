@@ -19,35 +19,35 @@ public final class i extends d3 {
     public i(n nVar, Context context) {
         super(context);
         this.f16770f = nVar;
-        this.f29011a = p10.f24459s0;
+        this.f29012a = p10.f24467s0;
         setOrientation(1);
-        r6.i(k6.f27792a7, this, null);
+        r6.i(k6.f27793a7, this, null);
         a5 a5Var = new a5(context, 3);
         a5Var.f11605c = new Path();
         Paint paint = new Paint(1);
         a5Var.f11604b = paint;
-        paint.setColor(k6.x0(null, k6.f27848d6, false));
+        paint.setColor(k6.x0(null, k6.f27849d6, false));
         paint.setShadowLayer(org.telegram.messenger.g0.L(1.33f), 0.0f, org.telegram.messenger.g0.L(0.33f), 503316480);
         a5Var.setWillNotDraw(false);
         a5Var.setOrientation(1);
         a5Var.setPadding(org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(32.0f));
         l9 l9Var = new l9(context);
-        this.f29012b = l9Var;
+        this.f29013b = l9Var;
         l9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final jg.i f28982b;
+            public final jg.i f28983b;
 
             {
-                this.f28982b = this;
+                this.f28983b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f28982b.f29012b.getImageReceiver().P0(false);
+                        this.f28983b.f29013b.getImageReceiver().P0(false);
                         return;
                     default:
-                        this.f28982b.f16770f.L();
+                        this.f28983b.f16770f.L();
                         return;
                 }
             }
@@ -55,7 +55,7 @@ public final class i extends d3 {
         a();
         a5Var.addView(l9Var, ha.r(130, 130, 49));
         TextView textView = new TextView(context);
-        this.f29013c = textView;
+        this.f29014c = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         r6.V(textView, k6.G6, null);
@@ -65,10 +65,10 @@ public final class i extends d3 {
         this.d = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
-        r6.V(textView2, k6.f28240y6, null);
+        r6.V(textView2, k6.f28241y6, null);
         a5Var.addView(textView2, ha.t(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
-        this.f29014e = textView3;
+        this.f29015e = textView3;
         textView3.setGravity(17);
         textView3.setBackground(z5.f(k6.Ci, 8.0f));
         textView3.setTextSize(1, 14.0f);
@@ -76,20 +76,20 @@ public final class i extends d3 {
         textView3.setTypeface(org.telegram.messenger.g0.o());
         textView3.setPadding(org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final jg.i f28982b;
+            public final jg.i f28983b;
 
             {
-                this.f28982b = this;
+                this.f28983b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f28982b.f29012b.getImageReceiver().P0(false);
+                        this.f28983b.f29013b.getImageReceiver().P0(false);
                         return;
                     default:
-                        this.f28982b.f16770f.L();
+                        this.f28983b.f16770f.L();
                         return;
                 }
             }

@@ -42,7 +42,7 @@ public final class d6 implements Runnable {
                         TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
                         for (int i7 = 0; i7 < tL_stories_stories.stories.size(); i7++) {
                             for (int i10 = 0; i10 < peerStories.stories.size(); i10++) {
-                                if (peerStories.stories.get(i10).f27191id == tL_stories_stories.stories.get(i7).f27191id) {
+                                if (peerStories.stories.get(i10).f27192id == tL_stories_stories.stories.get(i7).f27192id) {
                                     peerStories.stories.set(i10, tL_stories_stories.stories.get(i7));
                                     y6Var.Z(j10, tL_stories_stories.stories.get(i7));
                                 }
@@ -50,7 +50,7 @@ public final class d6 implements Runnable {
                         }
                         if (!z9) {
                             l7 l7Var = y6Var.f9971k;
-                            l7Var.f9338b.f26688a.c(new j7(l7Var, peerStories, 0));
+                            l7Var.f9338b.f26696a.c(new j7(l7Var, peerStories, 0));
                         }
                     }
                     qs.f(y6Var.f9963a).k(324, new Object[0]);
@@ -65,7 +65,7 @@ public final class d6 implements Runnable {
                 long j12 = this.d;
                 Float f10 = (Float) this.h;
                 if (z10) {
-                    y8Var = (org.telegram.messenger.y8) w7Var.f26257n.get(str);
+                    y8Var = (org.telegram.messenger.y8) w7Var.f26265n.get(str);
                 } else {
                     y8Var = (org.telegram.messenger.y8) w7Var.h.get(str);
                 }
@@ -74,7 +74,7 @@ public final class d6 implements Runnable {
                     Utilities.d.c(new org.telegram.messenger.t8(y8Var2, f10, j12, j11));
                     return;
                 } else if (j12 != 0) {
-                    w7Var.f26262y.put(str, Long.valueOf(j12));
+                    w7Var.f26270y.put(str, Long.valueOf(j12));
                     return;
                 } else {
                     return;

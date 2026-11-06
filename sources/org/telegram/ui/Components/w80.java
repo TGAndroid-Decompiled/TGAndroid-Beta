@@ -16,14 +16,14 @@ public final class w80 extends yh.m {
             case 0:
                 yh.b bVar = (yh.b) this.F;
                 av0 av0Var = bVar.N1;
-                if (this.f59448e.isEmpty()) {
+                if (this.f59447e.isEmpty()) {
                     if (av0Var.getVisibility() != 4) {
                         av0Var.setVisibility(4);
                         return;
                     }
                     return;
                 } else if (z10) {
-                    bVar.f31691s1.J.setText("");
+                    bVar.f32028s1.J.setText("");
                     return;
                 } else {
                     super.f(str, z9, z10);

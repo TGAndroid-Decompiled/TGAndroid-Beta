@@ -2,7 +2,7 @@ package b9;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.ArrayList;
 import java.util.List;
 public final class u0 extends r6.a {
@@ -19,12 +19,12 @@ public final class u0 extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.q(parcel, 2, 4);
+        int r10 = xb.r(parcel, 20293);
+        xb.q(parcel, 2, 4);
         parcel.writeInt(this.f3110a);
-        wb.q(parcel, 3, 8);
+        xb.q(parcel, 3, 8);
         parcel.writeLong(this.f3111b);
-        wb.p(parcel, 4, this.f3112c);
-        wb.s(parcel, r10);
+        xb.p(parcel, 4, this.f3112c);
+        xb.s(parcel, r10);
     }
 }

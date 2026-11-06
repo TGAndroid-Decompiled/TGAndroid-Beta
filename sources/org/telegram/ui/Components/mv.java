@@ -13,7 +13,7 @@ public final class mv extends tx {
     public final void setTranslationY(float f10) {
         if (getTranslationY() != f10) {
             super.setTranslationY(f10);
-            this.H.f34036g0.invalidate();
+            this.H.f34044g0.invalidate();
         }
     }
 }

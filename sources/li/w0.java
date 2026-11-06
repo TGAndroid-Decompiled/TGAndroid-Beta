@@ -9,27 +9,27 @@ import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class w0 extends v31 {
+import org.telegram.ui.Components.x31;
+public final class w0 extends w31 {
     public static final int f18947b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         ij ijVar;
         s sVar;
         x0 x0Var = (x0) view;
-        a aVar = (a) w31Var.G;
+        a aVar = (a) x31Var.G;
         x0Var.f18986a = aVar;
-        x0Var.S = (o3) w31Var.H;
-        x0Var.M = hd.f22871a0;
+        x0Var.S = (o3) x31Var.H;
+        x0Var.M = hd.f22878a0;
         x0Var.c(aVar);
         x0Var.F.b();
         TLRPC.Document h = x0Var.h();
@@ -40,7 +40,7 @@ public final class w0 extends v31 {
             } else {
                 TLRPC.TL_message tL_message = new TLRPC.TL_message();
                 tL_message.out = true;
-                tL_message.f26973id = -Long.valueOf(h.f26958id).hashCode();
+                tL_message.f26974id = -Long.valueOf(h.f26959id).hashCode();
                 tL_message.peer_id = new TLRPC.TL_peerUser();
                 TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
                 tL_message.from_id = tL_peerUser;
@@ -76,7 +76,7 @@ public final class w0 extends v31 {
     @Override
     public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
         x0 x0Var = new x0(i7, context, f6Var);
-        x0Var.setBackground(new y1(k6.w0(k6.f27848d6, f6Var)));
+        x0Var.setBackground(new y1(k6.w0(k6.f27849d6, f6Var)));
         x0Var.W = true;
         return x0Var;
     }

@@ -14,37 +14,37 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.i90;
 public final class f1 implements v10 {
-    public final int f42454a;
-    public final Object f42455b;
-    public final Object f42456c;
+    public final int f42453a;
+    public final Object f42454b;
+    public final Object f42455c;
     public final Object d;
-    public final Object f42457e;
-    public final Object f42458f;
-    public final Object f42459g;
+    public final Object f42456e;
+    public final Object f42457f;
+    public final Object f42458g;
 
     public f1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
-        this.f42454a = i7;
-        this.f42455b = obj;
+        this.f42453a = i7;
+        this.f42454b = obj;
         this.d = obj2;
-        this.f42456c = obj3;
-        this.f42457e = obj4;
-        this.f42458f = obj5;
-        this.f42459g = obj6;
+        this.f42455c = obj3;
+        this.f42456e = obj4;
+        this.f42457f = obj5;
+        this.f42458g = obj6;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         TL_wallet.tonConnectSession tonconnectsession;
         CharSequence V;
-        switch (this.f42454a) {
+        switch (this.f42453a) {
             case 0:
                 int i7 = 0;
-                f2 f2Var = (f2) this.f42455b;
+                f2 f2Var = (f2) this.f42454b;
                 i90 i90Var = (i90) this.d;
-                String str = (String) this.f42456c;
-                String str2 = (String) this.f42457e;
-                String str3 = (String) this.f42458f;
-                String str4 = (String) this.f42459g;
+                String str = (String) this.f42455c;
+                String str2 = (String) this.f42456e;
+                String str3 = (String) this.f42457f;
+                String str4 = (String) this.f42458g;
                 TL_wallet.tonConnectSession tonconnectsession2 = (TL_wallet.tonConnectSession) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 f2Var.getClass();
@@ -55,7 +55,7 @@ public final class f1 implements v10 {
                         Object obj3 = arrayList.get(i7);
                         i7++;
                         TL_wallet.tonConnectSession tonconnectsession3 = (TL_wallet.tonConnectSession) obj3;
-                        if (tonconnectsession3.f27214id == tonconnectsession2.f27214id && (tonconnectsession3.manifest != null || tonconnectsession3.manifest_error != null || tonconnectsession3.closed || tonconnectsession3.closing)) {
+                        if (tonconnectsession3.f27215id == tonconnectsession2.f27215id && (tonconnectsession3.manifest != null || tonconnectsession3.manifest_error != null || tonconnectsession3.closed || tonconnectsession3.closing)) {
                             tonconnectsession = tonconnectsession3;
                             f2Var.p(tonconnectsession);
                             i90Var.a(new a2(tonconnectsession, str, str2, str3, str4), null);
@@ -70,12 +70,12 @@ public final class f1 implements v10 {
                 i90Var.a(null, f2.z(tL_error, "createSession"));
                 return;
             case 1:
-                f2 f2Var2 = (f2) this.f42455b;
+                f2 f2Var2 = (f2) this.f42454b;
                 t tVar = (t) this.d;
-                TL_wallet.tonConnectSession tonconnectsession4 = (TL_wallet.tonConnectSession) this.f42457e;
-                String str5 = (String) this.f42456c;
-                byte[] bArr = (byte[]) this.f42458f;
-                a2 a2Var = (a2) this.f42459g;
+                TL_wallet.tonConnectSession tonconnectsession4 = (TL_wallet.tonConnectSession) this.f42456e;
+                String str5 = (String) this.f42455c;
+                byte[] bArr = (byte[]) this.f42457f;
+                a2 a2Var = (a2) this.f42458g;
                 k0 k0Var = (k0) obj;
                 String str6 = (String) obj2;
                 f2Var2.getClass();
@@ -90,12 +90,12 @@ public final class f1 implements v10 {
                 tVar.a(str6);
                 return;
             case 2:
-                f2 f2Var3 = (f2) this.f42455b;
+                f2 f2Var3 = (f2) this.f42454b;
                 t tVar2 = (t) this.d;
-                k0 k0Var2 = (k0) this.f42457e;
-                TL_wallet.tonConnectSession tonconnectsession5 = (TL_wallet.tonConnectSession) this.f42458f;
-                String str7 = (String) this.f42456c;
-                byte[] bArr2 = (byte[]) this.f42459g;
+                k0 k0Var2 = (k0) this.f42456e;
+                TL_wallet.tonConnectSession tonconnectsession5 = (TL_wallet.tonConnectSession) this.f42457f;
+                String str7 = (String) this.f42455c;
+                byte[] bArr2 = (byte[]) this.f42458g;
                 TL_wallet.tonConnectNextEventId tonconnectnexteventid = (TL_wallet.tonConnectNextEventId) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 f2Var3.getClass();
@@ -107,17 +107,17 @@ public final class f1 implements v10 {
                     return;
                 }
             case 3:
-                f2 f2Var4 = (f2) this.f42455b;
+                f2 f2Var4 = (f2) this.f42454b;
                 bi.p5 p5Var = (bi.p5) this.d;
-                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f42457e;
-                String str8 = (String) this.f42456c;
-                byte[] bArr3 = (byte[]) this.f42458f;
-                JSONArray jSONArray = (JSONArray) this.f42459g;
+                TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.f42456e;
+                String str8 = (String) this.f42455c;
+                byte[] bArr3 = (byte[]) this.f42457f;
+                JSONArray jSONArray = (JSONArray) this.f42458g;
                 TL_wallet.tonConnectSession tonconnectsession6 = (TL_wallet.tonConnectSession) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                n0 n0Var = f2Var4.f42461b;
+                n0 n0Var = f2Var4.f42460b;
                 if (tL_error3 == null && tonconnectsession6 != null) {
-                    if (tonconnectsession6.f27214id == tL_urlAuthResultRequest.tc_session_id && tL_urlAuthResultRequest.tc_client_id.equals(tonconnectsession6.dapp_client_id) && !tonconnectsession6.closed && !tonconnectsession6.closing && tonconnectsession6.nonce != null && TextUtils.equals(str8, n0Var.t()) && Arrays.equals(bArr3, n0Var.y())) {
+                    if (tonconnectsession6.f27215id == tL_urlAuthResultRequest.tc_session_id && tL_urlAuthResultRequest.tc_client_id.equals(tonconnectsession6.dapp_client_id) && !tonconnectsession6.closed && !tonconnectsession6.closing && tonconnectsession6.nonce != null && TextUtils.equals(str8, n0Var.t()) && Arrays.equals(bArr3, n0Var.y())) {
                         n0Var.z(new e1(f2Var4, p5Var, tonconnectsession6, str8, bArr3, jSONArray, tL_urlAuthResultRequest), true, false);
                         return;
                     } else {
@@ -128,15 +128,15 @@ public final class f1 implements v10 {
                 p5Var.a(null, f2.z(tL_error3, "createSession"));
                 return;
             default:
-                u2 u2Var = (u2) this.f42455b;
+                u2 u2Var = (u2) this.f42454b;
                 int[] iArr = (int[]) this.d;
-                n0 n0Var2 = (n0) this.f42456c;
-                TextView textView = (TextView) this.f42457e;
-                e2 e2Var = (e2) this.f42458f;
-                g7 g7Var = (g7) this.f42459g;
+                n0 n0Var2 = (n0) this.f42455c;
+                TextView textView = (TextView) this.f42456e;
+                e2 e2Var = (e2) this.f42457f;
+                g7 g7Var = (g7) this.f42458g;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str9 = (String) obj2;
-                if (!u2Var.f43198e && !u2Var.d) {
+                if (!u2Var.f43197e && !u2Var.d) {
                     if (wallettransaction != null && wallettransaction.traceSucceeded && !wallettransaction.traceIncomplete) {
                         iArr[0] = 1;
                         SpannableStringBuilder n10 = n0.n(wallettransaction.fee, true);
@@ -147,7 +147,7 @@ public final class f1 implements v10 {
                             V = hd.V(null, null, 2131743120, n10, m10);
                         }
                         textView.setText(V);
-                    } else if (n0Var2.v() < e2Var.f42417c) {
+                    } else if (n0Var2.v() < e2Var.f42416c) {
                         iArr[0] = 2;
                         textView.setText(hd.M0(2131743067, null));
                     } else {
@@ -165,22 +165,22 @@ public final class f1 implements v10 {
     }
 
     public f1(f2 f2Var, Object obj, TLObject tLObject, String str, byte[] bArr, Object obj2, int i7) {
-        this.f42454a = i7;
-        this.f42455b = f2Var;
+        this.f42453a = i7;
+        this.f42454b = f2Var;
         this.d = obj;
-        this.f42457e = tLObject;
-        this.f42456c = str;
-        this.f42458f = bArr;
-        this.f42459g = obj2;
+        this.f42456e = tLObject;
+        this.f42455c = str;
+        this.f42457f = bArr;
+        this.f42458g = obj2;
     }
 
     public f1(f2 f2Var, t tVar, k0 k0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr) {
-        this.f42454a = 2;
-        this.f42455b = f2Var;
+        this.f42453a = 2;
+        this.f42454b = f2Var;
         this.d = tVar;
-        this.f42457e = k0Var;
-        this.f42458f = tonconnectsession;
-        this.f42456c = str;
-        this.f42459g = bArr;
+        this.f42456e = k0Var;
+        this.f42457f = tonconnectsession;
+        this.f42455c = str;
+        this.f42458g = bArr;
     }
 }

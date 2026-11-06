@@ -16,7 +16,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.Switch;
 import org.telegram.ui.Components.ax;
 import org.telegram.ui.Components.fr;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.x50;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.dx;
@@ -51,9 +51,9 @@ public final class p3 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != 0) {
                     ?? obj3 = new Object();
-                    obj3.f27420a = true;
+                    obj3.f27421a = true;
                     zh.m3 m3Var = new zh.m3(k7Var.P1, str, this.f4506b, k7Var.I0);
-                    m3Var.f60367e = new y3(k7Var, 0);
+                    m3Var.f60366e = new y3(k7Var, 0);
                     Q.showAsSheet(m3Var, obj3);
                     return;
                 }
@@ -77,12 +77,12 @@ public final class p3 implements View.OnClickListener {
                             int i10;
                             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj4;
                             pn pnVar2 = pn.this;
-                            TLRPC.Chat chat = pnVar2.f48887w0;
+                            TLRPC.Chat chat = pnVar2.f48886w0;
                             int i11 = chat.level;
                             int i12 = tL_premium_boostsStatus.level;
                             if (i11 != i12) {
                                 chat.level = i12;
-                                pnVar2.getMessagesController().Q3(pnVar2.f48887w0, false);
+                                pnVar2.getMessagesController().Q3(pnVar2.f48886w0, false);
                             }
                             Switch checkBox = pnVar2.M.getCheckBox();
                             if (tL_premium_boostsStatus.level < pnVar2.getMessagesController().A4) {
@@ -104,7 +104,7 @@ public final class p3 implements View.OnClickListener {
                             }
                             TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
                             pnVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = org.telegram.messenger.qp.i1(pnVar2.f48887w0);
+                            tL_channels_toggleAutotranslation.channel = org.telegram.messenger.qp.i1(pnVar2.f48886w0);
                             tL_channels_toggleAutotranslation.enabled = z10;
                             pnVar2.M.setChecked(z10);
                             zArr2[0] = false;
@@ -133,12 +133,12 @@ public final class p3 implements View.OnClickListener {
                         for (int i10 = 0; i10 < hVar.m(); i10++) {
                             arrayList.add(Long.valueOf(hVar.j(i10)));
                         }
-                        ex exVar = (ex) x50Var.d2.f51496b;
-                        ArrayList arrayList2 = exVar.f45426e;
+                        ex exVar = (ex) x50Var.d2.f51494b;
+                        ArrayList arrayList2 = exVar.f45425e;
                         arrayList2.clear();
                         arrayList2.addAll(arrayList);
                         exVar.e0();
-                        dx dxVar = exVar.f45427f;
+                        dx dxVar = exVar.f45426f;
                         if (dxVar != null) {
                             dxVar.a();
                         }
@@ -147,11 +147,11 @@ public final class p3 implements View.OnClickListener {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(W);
                     String G = org.telegram.messenger.hd.G(hVar.m(), "AddManyMembersAlertTitle", new Object[0]);
-                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27292a;
+                    org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27293a;
                     u1Var2.R = G;
                     StringBuilder sb2 = new StringBuilder();
                     for (int i11 = 0; i11 < hVar.m(); i11++) {
-                        TLRPC.User a22 = qp.s1(x50Var.f28612a).a2(Long.valueOf(hVar.j(i11)));
+                        TLRPC.User a22 = qp.s1(x50Var.f28613a).a2(Long.valueOf(hVar.j(i11)));
                         if (a22 != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
@@ -161,13 +161,13 @@ public final class p3 implements View.OnClickListener {
                             sb2.append("**");
                         }
                     }
-                    TLRPC.Chat M0 = qp.s1(x50Var.f28612a).M0(Long.valueOf(j3));
+                    TLRPC.Chat M0 = qp.s1(x50Var.f28613a).M0(Long.valueOf(j3));
                     if (hVar.m() > 5) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(hVar.m(), "AddManyMembersAlertNamesText", M0.title)));
                         String format = String.format("%d", Integer.valueOf(hVar.m()));
                         int indexOf = TextUtils.indexOf(spannableStringBuilder, format);
                         if (indexOf >= 0) {
-                            spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), indexOf, format.length() + indexOf, 33);
+                            spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o()), indexOf, format.length() + indexOf, 33);
                         }
                         u1Var2.T = spannableStringBuilder;
                     } else {
@@ -197,14 +197,14 @@ public final class p3 implements View.OnClickListener {
                 Long l10 = hl0Var.H0;
                 if (l10 != null && longValue == l10.longValue()) {
                     hl0Var.m0 = true;
-                    hl0Var.f46421f[0].setText("");
+                    hl0Var.f46420f[0].setText("");
                     hl0Var.m0 = false;
                     hl0Var.H0 = 0L;
                     hl0Var.R0();
                 } else {
-                    hl0Var.f46421f[0].setText(org.telegram.messenger.hd.E0().q(this.f4506b, false, true, true, hl0Var.C0.invoice.currency));
+                    hl0Var.f46420f[0].setText(org.telegram.messenger.hd.E0().q(this.f4506b, false, true, true, hl0Var.C0.invoice.currency));
                 }
-                EditTextBoldCursor editTextBoldCursor = hl0Var.f46421f[0];
+                EditTextBoldCursor editTextBoldCursor = hl0Var.f46420f[0];
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 return;
         }

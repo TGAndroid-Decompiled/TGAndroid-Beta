@@ -1,21 +1,21 @@
 package org.telegram.messenger;
 public final class yd implements Runnable {
-    public final int f26615a;
-    public final MediaController f26616b;
-    public final int f26617c;
+    public final int f26623a;
+    public final MediaController f26624b;
+    public final int f26625c;
 
     public yd(MediaController mediaController, int i7, int i10) {
-        this.f26615a = i10;
-        this.f26616b = mediaController;
-        this.f26617c = i7;
+        this.f26623a = i10;
+        this.f26624b = mediaController;
+        this.f26625c = i7;
     }
 
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f26615a;
-        int i11 = this.f26617c;
-        MediaController mediaController = this.f26616b;
+        int i10 = this.f26623a;
+        int i11 = this.f26625c;
+        MediaController mediaController = this.f26624b;
         switch (i10) {
             case 0:
                 qs f10 = qs.f(mediaController.f21267h1);

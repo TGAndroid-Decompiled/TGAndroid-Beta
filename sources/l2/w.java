@@ -162,7 +162,7 @@ public final class w implements Runnable {
                 TLParseException.lambda$doThrowOrLog$0((TLParseException) obj2);
                 return;
             case 16:
-                Drawable drawable = ActionBarLayout.f27223v1;
+                Drawable drawable = ActionBarLayout.f27224v1;
                 org.telegram.messenger.g0.h3((ai.a1) obj2);
                 return;
             case 17:
@@ -179,7 +179,7 @@ public final class w implements Runnable {
             case 20:
                 org.telegram.ui.ActionBar.q1 q1Var = (org.telegram.ui.ActionBar.q1) obj2;
                 org.telegram.ui.ActionBar.u1 u1Var = q1Var.d;
-                int i10 = org.telegram.messenger.g0.f22537q.x;
+                int i10 = org.telegram.messenger.g0.f22544q.x;
                 u1Var.L = i10;
                 int L2 = i10 - org.telegram.messenger.g0.L(56.0f);
                 if (org.telegram.messenger.g0.Q1()) {
@@ -216,9 +216,9 @@ public final class w implements Runnable {
                 }
             case 21:
                 x1 x1Var = (x1) obj2;
-                x1Var.f28736m1.setVisibility(0);
-                x1Var.f28737o1.setAlpha(0.0f);
-                int i12 = x1Var.f28735k1;
+                x1Var.f28737m1.setVisibility(0);
+                x1Var.f28738o1.setAlpha(0.0f);
+                int i12 = x1Var.f28736k1;
                 if (i12 != 0 && i12 != -1) {
                     try {
                         animation = AnimationUtils.loadAnimation(x1Var.getContext(), i12);
@@ -232,7 +232,7 @@ public final class w implements Runnable {
                     x1Var.n1.setAlpha(0.0f);
                     x1Var.n1.animate().setDuration(300L).alpha(1.0f).start();
                 }
-                x1Var.f28737o1.animate().setDuration(300L).alpha(1.0f).setListener(new v1(x1Var, 0)).start();
+                x1Var.f28738o1.animate().setDuration(300L).alpha(1.0f).setListener(new v1(x1Var, 0)).start();
                 return;
             case 22:
                 v2 v2Var = (v2) ((m2) obj2).f14794c;
@@ -249,7 +249,7 @@ public final class w implements Runnable {
                 }
             case 23:
                 try {
-                    ((n2) obj2).f28314b.K();
+                    ((n2) obj2).f28315b.K();
                     return;
                 } catch (Exception e13) {
                     a8.g(e13, true);
@@ -271,16 +271,16 @@ public final class w implements Runnable {
                 i4Var.j();
                 return;
             case 27:
-                i4 i4Var2 = ((f4) obj2).f27467b;
-                i4Var2.f27565c.dismiss();
-                i4Var2.f27567f.removeAllViews();
+                i4 i4Var2 = ((f4) obj2).f27468b;
+                i4Var2.f27566c.dismiss();
+                i4Var2.f27568f.removeAllViews();
                 return;
             case 28:
-                ((f4) obj2).f27467b.f27565c.dismiss();
+                ((f4) obj2).f27468b.f27566c.dismiss();
                 return;
             default:
                 i5 i5Var = (i5) obj2;
-                if (!i5Var.f27600y && i5Var.M) {
+                if (!i5Var.f27601y && i5Var.M) {
                     i5Var.c();
                     return;
                 }

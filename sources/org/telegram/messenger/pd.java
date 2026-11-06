@@ -11,16 +11,16 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class pd implements Runnable {
-    public final int f24532a;
+    public final int f24540a;
 
     public pd(int i7) {
-        this.f24532a = i7;
+        this.f24540a = i7;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.f2 Q;
-        switch (this.f24532a) {
+        switch (this.f24540a) {
             case 0:
                 qs.e().k(281, new Object[0]);
                 return;
@@ -36,7 +36,7 @@ public final class pd implements Runnable {
                 return;
             case 3:
                 try {
-                    g0.f.n(t0.f25555b);
+                    g0.f.n(t0.f25563b);
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -58,7 +58,7 @@ public final class pd implements Runnable {
                     file2.mkdir();
                     File file3 = new File(file, "Telegram Video");
                     file3.mkdir();
-                    if (!r2.f25192b) {
+                    if (!r2.f25200b) {
                         if (file2.isDirectory()) {
                             new File(file2, ".nomedia").delete();
                         }
@@ -81,32 +81,32 @@ public final class pd implements Runnable {
                     return;
                 }
             case 8:
-                if (!iz.f23360b && (Q = LaunchActivity.Q()) != null && Q.getParentActivity() != null) {
-                    iz.f23377h0 = null;
+                if (!iz.f23367b && (Q = LaunchActivity.Q()) != null && Q.getParentActivity() != null) {
+                    iz.f23384h0 = null;
                     iz.y();
                     gc.D().i(new pd(9));
-                    iz.f23360b = true;
+                    iz.f23367b = true;
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(Q.getParentActivity());
-                    alertDialog$Builder.f27292a.R = hd.M0(2131745839, null);
-                    alertDialog$Builder.f27292a.S = hd.M0(2131745838, null);
+                    alertDialog$Builder.f27293a.R = hd.M0(2131745839, null);
+                    alertDialog$Builder.f27293a.S = hd.M0(2131745838, null);
                     alertDialog$Builder.k(hd.M0(2131751356, null), new ch(11));
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                     u1Var.setCanceledOnTouchOutside(false);
                     u1Var.show();
                     return;
                 }
                 return;
             case 9:
-                int i11 = iz.f23357a;
+                int i11 = iz.f23364a;
                 return;
             case 10:
-                rz.f25373y = null;
+                rz.f25381y = null;
                 return;
             case 11:
                 org.telegram.ui.ActionBar.k6.F(false);
                 return;
             case 12:
-                int i12 = org.telegram.ui.an.f43707id;
+                int i12 = org.telegram.ui.an.f43706id;
                 return;
             case 13:
                 ch.k0.b(true);
@@ -120,23 +120,23 @@ public final class pd implements Runnable {
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != 0) {
                     ?? obj = new Object();
-                    obj.f27420a = true;
+                    obj.f27421a = true;
                     T.showAsSheet(new PremiumPreviewFragment(0, "schedule_repeat"), obj);
                     return;
                 }
                 return;
             case 16:
-                Pattern pattern = org.telegram.ui.Components.v4.f38814a;
+                Pattern pattern = org.telegram.ui.Components.v4.f38813a;
                 return;
             case 17:
-                g0.r(org.telegram.ui.Components.i5.f34440w);
+                g0.r(org.telegram.ui.Components.i5.f34487w);
                 try {
-                    if (org.telegram.ui.Components.i5.f34436r != null) {
-                        for (int i13 = 0; i13 < org.telegram.ui.Components.i5.f34436r.size(); i13++) {
-                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.i5.f34436r.valueAt(i13);
+                    if (org.telegram.ui.Components.i5.f34483r != null) {
+                        for (int i13 = 0; i13 < org.telegram.ui.Components.i5.f34483r.size(); i13++) {
+                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.i5.f34483r.valueAt(i13);
                             int i14 = 0;
                             while (i14 < longSparseArray.size()) {
-                                if (!((org.telegram.ui.Components.i5) longSparseArray.valueAt(i14)).f34442a) {
+                                if (!((org.telegram.ui.Components.i5) longSparseArray.valueAt(i14)).f34489a) {
                                     longSparseArray.removeAt(i14);
                                     i14--;
                                 }
@@ -147,7 +147,7 @@ public final class pd implements Runnable {
                     }
                     return;
                 } catch (Exception unused) {
-                    boolean z9 = r2.f25191a;
+                    boolean z9 = r2.f25199a;
                     return;
                 }
             case 18:
@@ -184,7 +184,7 @@ public final class pd implements Runnable {
             case 24:
                 return;
             case 25:
-                int i15 = org.telegram.ui.Components.bn.f32170r1;
+                int i15 = org.telegram.ui.Components.bn.f32204r1;
                 return;
             case 26:
                 PhotoViewer.p1().z0(false, false);

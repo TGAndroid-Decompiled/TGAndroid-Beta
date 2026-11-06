@@ -2,23 +2,23 @@ package org.telegram.ui.ActionBar;
 
 import android.view.View;
 public final class j1 implements Runnable {
-    public final int f27605a;
-    public final View f27606b;
+    public final int f27606a;
+    public final View f27607b;
 
     public j1(int i7, View view) {
-        this.f27605a = i7;
-        this.f27606b = view;
+        this.f27606a = i7;
+        this.f27607b = view;
     }
 
     @Override
     public final void run() {
-        switch (this.f27605a) {
+        switch (this.f27606a) {
             case 0:
-                View view = this.f27606b;
+                View view = this.f27607b;
                 if (view instanceof l5) {
                     l5 l5Var = (l5) view;
-                    if (!l5Var.f28277a) {
-                        l5Var.f28277a = true;
+                    if (!l5Var.f28278a) {
+                        l5Var.f28278a = true;
                         l5Var.invalidate();
                         return;
                     }
@@ -26,7 +26,7 @@ public final class j1 implements Runnable {
                 }
                 return;
             default:
-                this.f27606b.performClick();
+                this.f27607b.performClick();
                 return;
         }
     }

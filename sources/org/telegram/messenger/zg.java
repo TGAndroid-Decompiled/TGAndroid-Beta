@@ -68,14 +68,14 @@ public final class zg implements Runnable {
                 boolean[] zArr = (boolean[]) this.f26855r;
                 g5Var.Z = (HashMap) this.f26852e;
                 g5Var.Y = (HashMap) this.f26853f;
-                g5Var.f22581e = false;
-                g5Var.f22592r = true;
+                g5Var.f22588e = false;
+                g5Var.f22599r = true;
                 if (z11) {
                     g5Var.h = true;
                 }
-                if (!g5Var.f22595x.isEmpty() && g5Var.h) {
-                    g5Var.c(g5Var.f22595x, null, null, null);
-                    g5Var.f22595x.clear();
+                if (!g5Var.f22602x.isEmpty() && g5Var.h) {
+                    g5Var.c(g5Var.f22602x, null, null, null);
+                    g5Var.f22602x.clear();
                 }
                 g0.h3(new v4(g5Var, hashMap, arrayList3, hashMap2, 3));
                 if (zArr[0]) {

@@ -49,15 +49,15 @@ public final class e {
         Canvas canvas = new Canvas(createBitmap);
         drawable.setBounds(0, 0, intrinsicWidth, minimumHeight);
         drawable.draw(canvas);
-        y0Var.f56777f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        y0Var.f56776f.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         y0Var.d(0, -intrinsicWidth, 0, intrinsicWidth, 0.0f, minimumHeight);
-        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, y0Var.f56777f);
-        y0Var.f56777f.setXfermode(null);
-        int[] iArr = y0Var.f56782l;
-        ?? bitmapDrawable = new BitmapDrawable(t0.f25555b.getResources(), createBitmap);
-        bitmapDrawable.f56772b = drawable;
+        canvas.drawRect(0.0f, 0.0f, intrinsicWidth, minimumHeight, y0Var.f56776f);
+        y0Var.f56776f.setXfermode(null);
+        int[] iArr = y0Var.f56781l;
+        ?? bitmapDrawable = new BitmapDrawable(t0.f25563b.getResources(), createBitmap);
+        bitmapDrawable.f56771b = drawable;
         int[] iArr2 = new int[iArr.length];
-        bitmapDrawable.f56771a = iArr2;
+        bitmapDrawable.f56770a = iArr2;
         System.arraycopy(iArr, 0, iArr2, 0, iArr.length);
         return bitmapDrawable;
     }
@@ -71,13 +71,13 @@ public final class e {
 
     public x0 a(x0 x0Var) {
         y0 y0Var = (y0) this.f15424b;
-        int[] iArr = y0Var.f56782l;
+        int[] iArr = y0Var.f56781l;
         int i7 = iArr[0];
-        int[] iArr2 = x0Var.f56771a;
+        int[] iArr2 = x0Var.f56770a;
         if (i7 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
             return x0Var;
         }
-        return c(x0Var.f56772b, y0Var);
+        return c(x0Var.f56771b, y0Var);
     }
 
     public void b() {
@@ -91,7 +91,7 @@ public final class e {
     }
 
     public Paint e() {
-        if (qp.s1(p10.f24459s0).D3()) {
+        if (qp.s1(p10.f24467s0).D3()) {
             if (((Paint) this.d) == null) {
                 this.d = new Paint(1);
             }
@@ -109,12 +109,12 @@ public final class e {
         y0 y0Var = new y0(k6.zk, k6.Ak, k6.Bk, k6.Ck, null);
         this.f15424b = y0Var;
         y0 y0Var2 = new y0(k6.Tk, k6.Uk, -1, -1, null);
-        this.f15425c = y0Var.f56777f;
-        this.f15427f = t0.f25555b.getDrawable(2131232307).mutate();
-        this.f15428g = c(t0.f25555b.getDrawable(2131232362), y0Var);
-        this.f15429i = c(t0.f25555b.getDrawable(2131232362), y0Var2);
-        this.h = c(t0.f25555b.getDrawable(2131232309), y0Var);
-        this.f15426e = t0.f25555b.getDrawable(2131232307).mutate();
+        this.f15425c = y0Var.f56776f;
+        this.f15427f = t0.f25563b.getDrawable(2131232307).mutate();
+        this.f15428g = c(t0.f25563b.getDrawable(2131232362), y0Var);
+        this.f15429i = c(t0.f25563b.getDrawable(2131232362), y0Var2);
+        this.h = c(t0.f25563b.getDrawable(2131232309), y0Var);
+        this.f15426e = t0.f25563b.getDrawable(2131232307).mutate();
         y0Var.a();
         b();
     }

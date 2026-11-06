@@ -1,17 +1,17 @@
 package org.telegram.messenger;
 public final class rf implements Runnable {
-    public final int f25275a;
-    public final c20 f25276b;
+    public final int f25283a;
+    public final c20 f25284b;
 
     public rf(c20 c20Var, int i7) {
-        this.f25275a = i7;
-        this.f25276b = c20Var;
+        this.f25283a = i7;
+        this.f25284b = c20Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f25275a;
-        c20 c20Var = this.f25276b;
+        int i7 = this.f25283a;
+        c20 c20Var = this.f25284b;
         switch (i7) {
             case 0:
                 if (c20Var != null) {

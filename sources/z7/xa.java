@@ -3,12 +3,12 @@ package z7;
 import java.util.Iterator;
 import java.util.Map;
 public final class xa extends ua {
-    public final transient a8.v f59883c;
+    public final transient a8.v f59882c;
     public final transient Object[] d;
-    public final transient int f59884e = 1;
+    public final transient int f59883e = 1;
 
     public xa(a8.v vVar, Object[] objArr) {
-        this.f59883c = vVar;
+        this.f59882c = vVar;
         this.d = objArr;
     }
 
@@ -18,7 +18,7 @@ public final class xa extends ua {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f59883c.get(key))) {
+            if (value != null && value.equals(this.f59882c.get(key))) {
                 return true;
             }
         }
@@ -27,26 +27,26 @@ public final class xa extends ua {
 
     @Override
     public final int f(Object[] objArr) {
-        ta taVar = this.f59863b;
+        ta taVar = this.f59862b;
         if (taVar == null) {
             taVar = new wa(this);
-            this.f59863b = taVar;
+            this.f59862b = taVar;
         }
         return taVar.f(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        ta taVar = this.f59863b;
+        ta taVar = this.f59862b;
         if (taVar == null) {
             taVar = new wa(this);
-            this.f59863b = taVar;
+            this.f59862b = taVar;
         }
         return taVar.listIterator(0);
     }
 
     @Override
     public final int size() {
-        return this.f59884e;
+        return this.f59883e;
     }
 }

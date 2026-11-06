@@ -6,8 +6,8 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nu0 {
-    public final g5 f36387a;
-    public Drawable f36388b;
+    public final g5 f36426a;
+    public Drawable f36427b;
 
     public nu0(FrameLayout frameLayout) {
         this(18, frameLayout);
@@ -24,13 +24,13 @@ public final class nu0 {
     }
 
     public final g5 b(TLRPC.User user, TLRPC.Chat chat, int i7, boolean z9) {
-        g5 g5Var = this.f36387a;
+        g5 g5Var = this.f36426a;
         if (chat != null && chat.verified) {
-            Drawable drawable = this.f36388b;
+            Drawable drawable = this.f36427b;
             if (drawable == null) {
-                drawable = new xp(org.telegram.ui.ActionBar.k6.f27881f1, org.telegram.ui.ActionBar.k6.f27935i1);
+                drawable = new xp(org.telegram.ui.ActionBar.k6.f27882f1, org.telegram.ui.ActionBar.k6.f27936i1);
             }
-            this.f36388b = drawable;
+            this.f36427b = drawable;
             g5Var.g(drawable, z9);
             g5Var.k(null);
             return g5Var;
@@ -39,11 +39,11 @@ public final class nu0 {
             g5Var.k(Integer.valueOf(i7));
             return g5Var;
         } else if (user != null && user.verified) {
-            Drawable drawable2 = this.f36388b;
+            Drawable drawable2 = this.f36427b;
             if (drawable2 == null) {
-                drawable2 = new xp(org.telegram.ui.ActionBar.k6.f27881f1, org.telegram.ui.ActionBar.k6.f27935i1);
+                drawable2 = new xp(org.telegram.ui.ActionBar.k6.f27882f1, org.telegram.ui.ActionBar.k6.f27936i1);
             }
-            this.f36388b = drawable2;
+            this.f36427b = drawable2;
             g5Var.g(drawable2, z9);
             g5Var.k(null);
             return g5Var;
@@ -63,6 +63,6 @@ public final class nu0 {
     }
 
     public nu0(int i7, View view) {
-        this.f36387a = new g5(org.telegram.messenger.g0.L(i7), view);
+        this.f36426a = new g5(org.telegram.messenger.g0.L(i7), view);
     }
 }

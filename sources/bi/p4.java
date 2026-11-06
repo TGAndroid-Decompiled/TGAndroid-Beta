@@ -33,7 +33,7 @@ public final class p4 implements v10 {
                 final k7 k7Var = this.f4509b;
                 updatestargiftprice.stargift = k7Var.B1();
                 updatestargiftprice.resell_amount = o4;
-                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k7Var.f28612a);
+                ConnectionsManager connectionsManager = ConnectionsManager.getInstance(k7Var.f28613a);
                 final TL_stars.TL_starGiftUnique tL_starGiftUnique = this.f4510c;
                 connectionsManager.sendRequest(updatestargiftprice, new RequestDelegate() {
                     @Override
@@ -44,7 +44,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var2 = k7Var;
                                 final Runnable runnable2 = runnable;
                                 if (z9) {
-                                    qp.s1(k7Var2.f28612a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var2.f28613a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
                                     final cg.a aVar2 = aVar;
                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -142,7 +142,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var3 = k7Var;
                                 final Runnable runnable3 = runnable;
                                 if (z10) {
-                                    qp.s1(k7Var3.f28612a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var3.f28613a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique3 = tL_starGiftUnique;
                                     final cg.a aVar3 = aVar;
                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -243,7 +243,7 @@ public final class p4 implements v10 {
                 zh.k3 k3Var = k7Var2.O2;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique2 = this.f4510c;
                 if (k3Var == null) {
-                    zh.k3 k3Var2 = new zh.k3(k7Var2.f28612a, tL_starGiftUnique2.gift_id);
+                    zh.k3 k3Var2 = new zh.k3(k7Var2.f28613a, tL_starGiftUnique2.gift_id);
                     k7Var2.O2 = k3Var2;
                     k3Var2.a();
                 }
@@ -262,13 +262,13 @@ public final class p4 implements v10 {
                             if (starGift2 == null) {
                                 starGift2 = null;
                             }
-                            hashSet.add(Long.valueOf(starGift2.f27181id));
+                            hashSet.add(Long.valueOf(starGift2.f27182id));
                         }
                         i7++;
                     } else {
                         zh.l3 l3Var = new zh.l3(k7Var2.getContext(), tL_starGiftUnique2.title, k7Var2.O2);
                         l3Var.Y1.addAll(hashSet);
-                        l3Var.f60340a2.O(true);
+                        l3Var.f60339a2.O(true);
                         l3Var.Z1 = bool.booleanValue();
                         l3Var.W1.set(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(4 - hashSet.size(), "GiftCraftSelect", new Object[0])));
                         l3Var.X1 = new n2(c20Var, 0);
@@ -284,7 +284,7 @@ public final class p4 implements v10 {
                 final k7 k7Var3 = this.f4509b;
                 updatestargiftprice2.stargift = k7Var3.B1();
                 updatestargiftprice2.resell_amount = o10;
-                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(k7Var3.f28612a);
+                ConnectionsManager connectionsManager2 = ConnectionsManager.getInstance(k7Var3.f28613a);
                 final TL_stars.TL_starGiftUnique tL_starGiftUnique3 = this.f4510c;
                 connectionsManager2.sendRequest(updatestargiftprice2, new RequestDelegate() {
                     @Override
@@ -295,7 +295,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var22 = k7Var3;
                                 final Runnable runnable22 = runnable2;
                                 if (z9) {
-                                    qp.s1(k7Var22.f28612a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var22.f28613a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique22 = tL_starGiftUnique3;
                                     final cg.a aVar22 = aVar2;
                                     org.telegram.messenger.g0.h3(new Runnable() {
@@ -393,7 +393,7 @@ public final class p4 implements v10 {
                                 final k7 k7Var32 = k7Var3;
                                 final Runnable runnable3 = runnable2;
                                 if (z10) {
-                                    qp.s1(k7Var32.f28612a).O3((TLRPC.Updates) tLObject, false);
+                                    qp.s1(k7Var32.f28613a).O3((TLRPC.Updates) tLObject, false);
                                     final TL_stars.TL_starGiftUnique tL_starGiftUnique32 = tL_starGiftUnique3;
                                     final cg.a aVar3 = aVar2;
                                     org.telegram.messenger.g0.h3(new Runnable() {

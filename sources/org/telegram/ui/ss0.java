@@ -14,13 +14,13 @@ public final class ss0 extends ug.k1 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f56595r;
+        TextView textView = this.f56594r;
         if (textView.getVisibility() == 0) {
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
             ts0 ts0Var = this.N;
-            ts0Var.d.f50493n.f41620n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f56594n.h, ts0Var.d.f50493n.O);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), ts0Var.d.f50493n.f41620n0.f56777f);
+            ts0Var.d.f50492n.f41619n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f56593n.h, ts0Var.d.f50492n.O);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), ts0Var.d.f50492n.f41619n0.f56776f);
         }
         super.dispatchDraw(canvas);
     }

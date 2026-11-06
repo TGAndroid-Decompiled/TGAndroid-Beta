@@ -6,32 +6,32 @@ import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.View;
 public abstract class st0 extends rt0 {
-    public Activity f38115f0;
-    public final Rect f38116g0;
-    public int f38117h0;
-    public boolean f38118i0;
+    public Activity f38119f0;
+    public final Rect f38120g0;
+    public int f38121h0;
+    public boolean f38122i0;
 
     public st0(Context context, Activity activity) {
         super(context, null);
-        this.f38116g0 = new Rect();
+        this.f38120g0 = new Rect();
         setActivity(activity);
     }
 
     @Override
     public int Q() {
         View rootView = getRootView();
-        Rect rect = this.f38116g0;
+        Rect rect = this.f38120g0;
         getWindowVisibleDisplayFrame(rect);
         int i7 = 0;
-        if (this.f38118i0) {
+        if (this.f38122i0) {
             int height = rootView.getHeight();
             if (rect.top != 0) {
-                i7 = org.telegram.messenger.g0.f22531m;
+                i7 = org.telegram.messenger.g0.f22538m;
             }
             return ((height - i7) - org.telegram.messenger.g0.q1(rootView)) - (rect.bottom - rect.top);
         }
-        int height2 = (this.f38115f0.getWindow().getDecorView().getHeight() - org.telegram.messenger.g0.q1(rootView)) - rootView.getBottom();
-        if (height2 <= Math.max(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.f22531m)) {
+        int height2 = (this.f38119f0.getWindow().getDecorView().getHeight() - org.telegram.messenger.g0.q1(rootView)) - rootView.getBottom();
+        if (height2 <= Math.max(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.f22538m)) {
             return 0;
         }
         return height2;
@@ -40,11 +40,11 @@ public abstract class st0 extends rt0 {
     @Override
     public void R() {
         boolean z9;
-        if (this.f37789n == null && this.f37790r.isEmpty()) {
+        if (this.f37749n == null && this.f37750r.isEmpty()) {
             return;
         }
-        this.f38117h0 = Q();
-        Point point = org.telegram.messenger.g0.f22537q;
+        this.f38121h0 = Q();
+        Point point = org.telegram.messenger.g0.f22544q;
         if (point.x > point.y) {
             z9 = true;
         } else {
@@ -55,7 +55,7 @@ public abstract class st0 extends rt0 {
 
     @Override
     public int getKeyboardHeight() {
-        return this.f38117h0;
+        return this.f38121h0;
     }
 
     @Override
@@ -65,10 +65,10 @@ public abstract class st0 extends rt0 {
     }
 
     public void setActivity(Activity activity) {
-        this.f38115f0 = activity;
+        this.f38119f0 = activity;
     }
 
     public void setWithoutWindow(boolean z9) {
-        this.f38118i0 = z9;
+        this.f38122i0 = z9;
     }
 }

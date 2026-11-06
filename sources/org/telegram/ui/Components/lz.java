@@ -30,26 +30,26 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
     public lz R;
     public boolean S;
     public float T;
-    public int f35798a;
-    public LinearGradient f35799b;
-    public final Paint f35800c;
+    public int f35793a;
+    public LinearGradient f35794b;
+    public final Paint f35795c;
     public final Paint d;
-    public long f35801e;
-    public int f35802f;
+    public long f35796e;
+    public int f35797f;
     public final Matrix h;
-    public final RectF f35803n;
-    public int f35804r;
-    public int f35805s;
-    public int f35806w;
-    public boolean f35807x;
-    public boolean f35808y;
+    public final RectF f35798n;
+    public int f35799r;
+    public int f35800s;
+    public int f35801w;
+    public boolean f35802x;
+    public boolean f35803y;
 
     public lz(Context context) {
         this(context, null);
     }
 
     public final float a(float f10) {
-        if (org.telegram.messenger.hd.f22871a0) {
+        if (org.telegram.messenger.hd.f22878a0) {
             return getMeasuredWidth() - f10;
         }
         return f10;
@@ -62,7 +62,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
     }
 
     public final void b(RectF rectF) {
-        if (org.telegram.messenger.hd.f22871a0) {
+        if (org.telegram.messenger.hd.f22878a0) {
             rectF.left = getMeasuredWidth() - rectF.left;
             rectF.right = getMeasuredWidth() - rectF.right;
         }
@@ -86,7 +86,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
             case 18:
                 return org.telegram.messenger.g0.L(64.0f);
             case 7:
-                if (org.telegram.messenger.iz.f23399p1) {
+                if (org.telegram.messenger.iz.f23406p1) {
                     i10 = 78;
                 } else {
                     i10 = 72;
@@ -121,7 +121,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
             case 22:
                 return org.telegram.messenger.g0.L(60.0f);
             case 24:
-                if (org.telegram.messenger.iz.f23399p1) {
+                if (org.telegram.messenger.iz.f23406p1) {
                     i11 = 76;
                 } else {
                     i11 = 64;
@@ -174,7 +174,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
             return;
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f35801e - elapsedRealtime);
+        long abs = Math.abs(this.f35796e - elapsedRealtime);
         if (abs > 17) {
             abs = 16;
         }
@@ -187,31 +187,31 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
         }
         int i10 = this.E;
         if (i10 == 34 || i10 == 35 || i10 == 36) {
-            i7 = Math.max(i7, org.telegram.messenger.g0.f22537q.x);
+            i7 = Math.max(i7, org.telegram.messenger.g0.f22544q.x);
         }
         int i11 = this.P;
         if (i11 == 0) {
             i11 = getMeasuredHeight();
         }
-        this.f35801e = elapsedRealtime;
+        this.f35796e = elapsedRealtime;
         boolean z9 = this.D;
         Matrix matrix = this.h;
         if (!z9 && this.E != 13 && getViewType() != 14 && getViewType() != 17) {
-            int i12 = (int) ((((float) (abs * i11)) / 400.0f) + this.f35802f);
-            this.f35802f = i12;
+            int i12 = (int) ((((float) (abs * i11)) / 400.0f) + this.f35797f);
+            this.f35797f = i12;
             if (i12 >= i11 * 2) {
-                this.f35802f = (-this.f35798a) * 2;
+                this.f35797f = (-this.f35793a) * 2;
             }
-            matrix.setTranslate(this.Q, this.f35802f);
+            matrix.setTranslate(this.Q, this.f35797f);
         } else {
-            int i13 = (int) ((((float) (abs * i7)) / 400.0f) + this.f35802f);
-            this.f35802f = i13;
+            int i13 = (int) ((((float) (abs * i7)) / 400.0f) + this.f35797f);
+            this.f35797f = i13;
             if (i13 >= i7 * 2) {
-                this.f35802f = (-this.f35798a) * 2;
+                this.f35797f = (-this.f35793a) * 2;
             }
-            matrix.setTranslate(this.f35802f + this.Q, 0.0f);
+            matrix.setTranslate(this.f35797f + this.Q, 0.0f);
         }
-        LinearGradient linearGradient = this.f35799b;
+        LinearGradient linearGradient = this.f35794b;
         if (linearGradient != null) {
             linearGradient.setLocalMatrix(matrix);
         }
@@ -226,7 +226,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
     }
 
     public Paint getPaint() {
-        return this.f35800c;
+        return this.f35795c;
     }
 
     public int getViewType() {
@@ -276,9 +276,9 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                 lzVar.P = measuredHeight;
                 lzVar.Q = -getX();
             }
-            paint = this.R.f35800c;
+            paint = this.R.f35795c;
         } else {
-            paint = this.f35800c;
+            paint = this.f35795c;
         }
         Paint paint4 = paint;
         if (getViewType() == 34 || getViewType() == 35 || getViewType() == 36) {
@@ -287,7 +287,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
         updateColors();
         f();
         int i12 = this.F;
-        if (this.f35808y) {
+        if (this.f35803y) {
             int L20 = org.telegram.messenger.g0.L(32.0f) + i12;
             int i13 = this.J;
             if (i13 >= 0) {
@@ -309,7 +309,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
         int viewType = getViewType();
         int i14 = 0;
         int i15 = 1;
-        RectF rectF = this.f35803n;
+        RectF rectF = this.f35798n;
         if (viewType == 7) {
             while (i12 <= getMeasuredHeight()) {
                 int c10 = c(getMeasuredWidth());
@@ -320,12 +320,12 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                 rectF.set(org.telegram.messenger.g0.L(76.0f), org.telegram.messenger.g0.L(38.0f) + i12, org.telegram.messenger.g0.L(268.0f), org.telegram.messenger.g0.L(46.0f) + i12);
                 b(rectF);
                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
-                if (org.telegram.messenger.iz.f23399p1) {
+                if (org.telegram.messenger.iz.f23406p1) {
                     rectF.set(org.telegram.messenger.g0.L(76.0f), org.telegram.messenger.g0.L(54.0f) + i12, org.telegram.messenger.g0.L(220.0f), org.telegram.messenger.g0.L(62.0f) + i12);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
                 }
-                if (this.f35807x) {
+                if (this.f35802x) {
                     rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(16.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i12);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
@@ -348,12 +348,12 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                 rectF.set(org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(38.0f) + i12, org.telegram.messenger.g0.L(268.0f), org.telegram.messenger.g0.L(46.0f) + i12);
                 b(rectF);
                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
-                if (org.telegram.messenger.iz.f23399p1) {
+                if (org.telegram.messenger.iz.f23406p1) {
                     rectF.set(org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(54.0f) + i12, org.telegram.messenger.g0.L(220.0f), org.telegram.messenger.g0.L(62.0f) + i12);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
                 }
-                if (this.f35807x) {
+                if (this.f35802x) {
                     rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(16.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i12);
                     b(rectF);
                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint4);
@@ -438,7 +438,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                         rectF.set(org.telegram.messenger.g0.L(68.0f), org.telegram.messenger.g0.L(42.0f) + i12, org.telegram.messenger.g0.L(260.0f), org.telegram.messenger.g0.L(50.0f) + i12);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                        if (this.f35807x) {
+                        if (this.f35802x) {
                             rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(20.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(28.0f) + i12);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -466,7 +466,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                         }
                         int i26 = 0;
                         while (i26 < getColumnsCount()) {
-                            if (i25 == 0 && i26 < this.f35806w) {
+                            if (i25 == 0 && i26 < this.f35801w) {
                                 paint2 = paint6;
                             } else {
                                 paint2 = paint6;
@@ -496,7 +496,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                         rectF.set(org.telegram.messenger.g0.L(68.0f), org.telegram.messenger.g0.L(34.0f) + i12, org.telegram.messenger.g0.L(260.0f), org.telegram.messenger.g0.L(42.0f) + i12);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                        if (this.f35807x) {
+                        if (this.f35802x) {
                             rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(12.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(20.0f) + i12);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -517,7 +517,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                         rectF.set(org.telegram.messenger.g0.L(68.0f), org.telegram.messenger.g0.L(34.0f) + i12, org.telegram.messenger.g0.L(260.0f), org.telegram.messenger.g0.L(42.0f) + i12);
                         b(rectF);
                         canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                        if (this.f35807x) {
+                        if (this.f35802x) {
                             rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(12.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(20.0f) + i12);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -545,7 +545,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                             rectF.set(org.telegram.messenger.g0.L(68.0f), org.telegram.messenger.g0.L(54.0f) + i12, org.telegram.messenger.g0.L(188.0f), org.telegram.messenger.g0.L(62.0f) + i12);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                            if (this.f35807x) {
+                            if (this.f35802x) {
                                 rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(12.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(20.0f) + i12);
                                 b(rectF);
                                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -611,7 +611,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                                 rectF.set(org.telegram.messenger.g0.L(68.0f) + this.G, org.telegram.messenger.g0.L(39.0f) + i12, org.telegram.messenger.g0.L(260.0f) + this.G, org.telegram.messenger.g0.L(47.0f) + i12);
                                 b(rectF);
                                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                                if (this.f35807x) {
+                                if (this.f35802x) {
                                     rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(20.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(28.0f) + i12);
                                     b(rectF);
                                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -632,7 +632,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                                 rectF.set(org.telegram.messenger.g0.L(72.0f), org.telegram.messenger.g0.L(38.0f) + i12, org.telegram.messenger.g0.L(140.0f), org.telegram.messenger.g0.L(46.0f) + i12);
                                 b(rectF);
                                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                                if (this.f35807x) {
+                                if (this.f35802x) {
                                     rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(16.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i12);
                                     b(rectF);
                                     canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -766,7 +766,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                                     } else if (i40 == 26) {
                                         while (i12 <= getMeasuredHeight()) {
                                             int L26 = org.telegram.messenger.g0.L(21.0f) >> 1;
-                                            if (org.telegram.messenger.hd.f22871a0) {
+                                            if (org.telegram.messenger.hd.f22878a0) {
                                                 L7 = org.telegram.messenger.k5.z(21.0f, getMeasuredWidth(), L26);
                                             } else {
                                                 L7 = org.telegram.messenger.g0.L(21.0f) + L26;
@@ -794,7 +794,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                                             rectF.set(org.telegram.messenger.g0.L(68.0f) + this.G, org.telegram.messenger.g0.L(39.0f) + i12, org.telegram.messenger.g0.L(140.0f) + this.G, org.telegram.messenger.g0.L(47.0f) + i12);
                                             b(rectF);
                                             canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                                            if (this.f35807x) {
+                                            if (this.f35802x) {
                                                 rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(20.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(28.0f) + i12);
                                                 b(rectF);
                                                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -881,7 +881,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                                     if (this.N == null) {
                                         this.N = new Paint(i15);
                                     }
-                                    this.N.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, this.L));
+                                    this.N.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, this.L));
                                     RectF rectF4 = org.telegram.messenger.g0.P;
                                     int i49 = L27 + L28;
                                     int i50 = i15;
@@ -931,7 +931,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
                             rectF.set(org.telegram.messenger.g0.L(68.0f) + this.G, org.telegram.messenger.g0.L(39.0f) + i12, org.telegram.messenger.g0.L(140.0f) + this.G, org.telegram.messenger.g0.L(47.0f) + i12);
                             b(rectF);
                             canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
-                            if (this.f35807x) {
+                            if (this.f35802x) {
                                 rectF.set(getMeasuredWidth() - org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(20.0f) + i12, getMeasuredWidth() - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(28.0f) + i12);
                                 b(rectF);
                                 canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), paint6);
@@ -1062,7 +1062,7 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
     }
 
     public void setUseHeaderOffset(boolean z9) {
-        this.f35808y = z9;
+        this.f35803y = z9;
     }
 
     public void setViewType(int i7) {
@@ -1089,37 +1089,37 @@ public class lz extends View implements org.telegram.ui.ActionBar.a6 {
         org.telegram.ui.ActionBar.f6 f6Var = this.L;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i10, f6Var);
         int w03 = org.telegram.ui.ActionBar.k6.w0(this.I, f6Var);
-        if (this.f35805s == w03 && this.f35804r == w02) {
+        if (this.f35800s == w03 && this.f35799r == w02) {
             return;
         }
-        this.f35804r = w02;
-        this.f35805s = w03;
+        this.f35799r = w02;
+        this.f35800s = w03;
         int i11 = this.E;
         if (i11 != 34 && i11 != 35 && i11 != 36) {
             if (!this.D && i11 != 13 && i11 != 14 && i11 != 17) {
-                this.f35798a = org.telegram.messenger.g0.L(600.0f);
+                this.f35793a = org.telegram.messenger.g0.L(600.0f);
             } else {
-                this.f35798a = org.telegram.messenger.g0.L(200.0f);
+                this.f35793a = org.telegram.messenger.g0.L(200.0f);
             }
         } else {
-            this.f35798a = org.telegram.messenger.g0.f22537q.x;
+            this.f35793a = org.telegram.messenger.g0.f22544q.x;
         }
         if (!this.D && (i7 = this.E) != 13 && i7 != 14 && i7 != 17) {
-            this.f35799b = new LinearGradient(0.0f, 0.0f, 0.0f, this.f35798a, new int[]{w03, w02, w02, w03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+            this.f35794b = new LinearGradient(0.0f, 0.0f, 0.0f, this.f35793a, new int[]{w03, w02, w02, w03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
         } else {
-            this.f35799b = new LinearGradient(0.0f, 0.0f, this.f35798a, 0.0f, new int[]{w03, w02, w02, w03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+            this.f35794b = new LinearGradient(0.0f, 0.0f, this.f35793a, 0.0f, new int[]{w03, w02, w02, w03}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
         }
-        this.f35800c.setShader(this.f35799b);
+        this.f35795c.setShader(this.f35794b);
     }
 
     public lz(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f35800c = new Paint();
+        this.f35795c = new Paint();
         this.d = new Paint();
-        this.f35803n = new RectF();
-        this.f35807x = true;
+        this.f35798n = new RectF();
+        this.f35802x = true;
         this.H = org.telegram.ui.ActionBar.k6.G8;
-        this.I = org.telegram.ui.ActionBar.k6.f27940i6;
+        this.I = org.telegram.ui.ActionBar.k6.f27941i6;
         this.J = -1;
         this.K = 1;
         this.L = f6Var;

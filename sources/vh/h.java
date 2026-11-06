@@ -12,31 +12,31 @@ import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.y;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.c51;
 import org.telegram.ui.o41;
 public final class h extends na {
-    public k41 P1;
+    public l41 P1;
     public final o41 Q1;
     public boolean R1;
     public int S1;
 
     public h(Activity activity, f6 f6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
         super(activity, null, true, false, 2, f6Var);
-        v0(k6.w0(k6.f27792a7, f6Var));
-        this.f28650x = true;
-        this.f28636n = false;
+        v0(k6.w0(k6.f27793a7, f6Var));
+        this.f28651x = true;
+        this.f28637n = false;
         this.C1 = false;
         this.B1 = g0.L(12.0f);
         this.Q1 = c51.i0(tL_statsPollStats.votes_graph, hd.M0(2131747118, null), 2, false);
-        pj0 pj0Var = this.f36222k1;
-        int i7 = this.f28645t0;
-        pj0Var.setPadding(i7, 0, i7, g0.f22532n);
-        this.f36222k1.setClipToPadding(false);
-        this.f36222k1.setSections(true);
+        pj0 pj0Var = this.f36261k1;
+        int i7 = this.f28646t0;
+        pj0Var.setPadding(i7, 0, i7, g0.f22539n);
+        this.f36261k1.setClipToPadding(false);
+        this.f36261k1.setSections(true);
         y q10 = this.l1.q();
         q10.a(-1, 2131231269);
         q10.setTranslationX(-g0.L(5.0f));
@@ -52,10 +52,10 @@ public final class h extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new u1(this, 23), this.I0);
-        this.P1 = k41Var;
-        k41Var.f35132r = false;
-        return k41Var;
+        l41 l41Var = new l41(pj0Var, getContext(), this.f28613a, 0, true, new u1(this, 23), this.I0);
+        this.P1 = l41Var;
+        l41Var.f35510r = false;
+        return l41Var;
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class h extends na {
     public final void s0() {
         super.s0();
         try {
-            int w02 = k6.w0(k6.f27792a7, this.I0);
+            int w02 = k6.w0(k6.f27793a7, this.I0);
             if (this.R1 && w02 == this.S1) {
                 return;
             }

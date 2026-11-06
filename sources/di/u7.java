@@ -100,7 +100,7 @@ public final class u7 extends c5.a {
                 if (f10 == null) {
                     B0 = wVar.f9939w0;
                 } else {
-                    B0 = ij.B0(f10.f23237k);
+                    B0 = ij.B0(f10.f23244k);
                 }
                 w7Var.f9911b = B0;
             }

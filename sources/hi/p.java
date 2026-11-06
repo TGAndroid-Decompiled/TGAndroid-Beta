@@ -50,7 +50,7 @@ public final class p {
     }
 
     public static void b() {
-        Context context = org.telegram.messenger.t0.f25555b;
+        Context context = org.telegram.messenger.t0.f25563b;
         if (context == null) {
             return;
         }
@@ -100,7 +100,7 @@ public final class p {
         if (arrayList.isEmpty()) {
             c20Var.a(new ArrayList());
         } else {
-            yr.a0(i7).f26688a.c(new ai.a1(i7, arrayList, hashMap, c20Var, 4));
+            yr.a0(i7).f26696a.c(new ai.a1(i7, arrayList, hashMap, c20Var, 4));
         }
     }
 

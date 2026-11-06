@@ -31,14 +31,14 @@ public final class k extends Thread {
             default:
                 FilesMigrationService filesMigrationService = (FilesMigrationService) this.f17177b;
                 File externalStorageDirectory = Environment.getExternalStorageDirectory();
-                if (!TextUtils.isEmpty(iz.f23377h0)) {
+                if (!TextUtils.isEmpty(iz.f23384h0)) {
                     ArrayList d12 = g0.d1();
                     int size = d12.size();
                     int i7 = 0;
                     while (true) {
                         if (i7 < size) {
                             File file = (File) d12.get(i7);
-                            if (file.getAbsolutePath().startsWith(iz.f23377h0)) {
+                            if (file.getAbsolutePath().startsWith(iz.f23384h0)) {
                                 externalStorageDirectory = file;
                             } else {
                                 i7++;
@@ -46,7 +46,7 @@ public final class k extends Thread {
                         }
                     }
                 }
-                File file2 = new File(t0.f25555b.getExternalFilesDir(null), "Telegram");
+                File file2 = new File(t0.f25563b.getExternalFilesDir(null), "Telegram");
                 File file3 = new File(externalStorageDirectory, "Telegram");
                 filesMigrationService.f21171a = FilesMigrationService.b(file3);
                 long currentTimeMillis = System.currentTimeMillis();
@@ -54,7 +54,7 @@ public final class k extends Thread {
                     filesMigrationService.c(file3, file2);
                 }
                 a8.b("move time = " + (System.currentTimeMillis() - currentTimeMillis));
-                t0.f25555b.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
+                t0.f25563b.getSharedPreferences("systemConfig", 0).edit().putBoolean("migration_to_scoped_storage_finished", true).apply();
                 g0.h3(new org.telegram.messenger.a(this, 10));
                 return;
         }

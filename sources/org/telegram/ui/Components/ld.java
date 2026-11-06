@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.graphics.Canvas;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ld implements org.telegram.messenger.c20 {
-    public final int f35630a;
-    public final ChatActivityEnterView f35631b;
+    public final int f35650a;
+    public final ChatActivityEnterView f35651b;
 
     public ld(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f35630a = i7;
-        this.f35631b = chatActivityEnterView;
+        this.f35650a = i7;
+        this.f35651b = chatActivityEnterView;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f35630a;
-        ChatActivityEnterView chatActivityEnterView = this.f35631b;
+        int i7 = this.f35650a;
+        ChatActivityEnterView chatActivityEnterView = this.f35651b;
         switch (i7) {
             case 0:
                 chatActivityEnterView.Q0((TL_iv.RichMessage) obj);

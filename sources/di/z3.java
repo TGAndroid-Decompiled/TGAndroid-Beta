@@ -76,7 +76,7 @@ public final class z3 extends k.a {
             a4Var.setBackgroundColor(-15198184);
             actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(a4Var);
             LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) a4Var.getLayoutParams();
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 layoutParams.gravity = 5;
             }
             layoutParams.width = -1;
@@ -95,7 +95,7 @@ public final class z3 extends k.a {
             a4Var2.setBackgroundColor(-15198184);
             actionBarPopupWindow$ActionBarPopupWindowLayout2.addView(a4Var2);
             LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) a4Var2.getLayoutParams();
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 layoutParams2.gravity = 5;
             }
             layoutParams2.width = -1;
@@ -241,7 +241,7 @@ public final class z3 extends k.a {
             i4Var.f9172m3.setRightIcon(2131232059);
             actionBarPopupWindow$ActionBarPopupWindowLayout.addView(i4Var.f9172m3);
             LinearLayout.LayoutParams layoutParams3 = (LinearLayout.LayoutParams) i4Var.f9172m3.getLayoutParams();
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 layoutParams3.gravity = 5;
             }
             layoutParams3.width = -1;
@@ -251,7 +251,7 @@ public final class z3 extends k.a {
             org.telegram.ui.ActionBar.z0 z0Var2 = i4Var.f9172m3;
             z0Var2.P = new t3(actionBarPopupWindow$ActionBarPopupWindowLayout, b10, 0);
             z0Var2.setOnClickListener(new o3(this, 11));
-            actionBarPopupWindow$ActionBarPopupWindowLayout.f27283c = true;
+            actionBarPopupWindow$ActionBarPopupWindowLayout.f27284c = true;
             if (z9) {
                 org.telegram.ui.ActionBar.d1 d1Var = new org.telegram.ui.ActionBar.d1(org.telegram.ui.ActionBar.k6.H8, i4Var.getContext(), this.d);
                 d1Var.setTag(2131296437, 1);
@@ -268,9 +268,9 @@ public final class z3 extends k.a {
         TLRPC.Chat M0;
         i4 i4Var = this.f10013x;
         if (i4Var.f9170m1 && storyItem != null && !(storyItem.media instanceof TLRPC.TL_messageMediaVideoStream) && (M0 = qp.s1(i4Var.f9168l2).M0(Long.valueOf(-i4Var.f9164k1))) != null) {
-            TLRPC.ChatFull N0 = qp.s1(i4Var.f9168l2).N0(M0.f26952id);
+            TLRPC.ChatFull N0 = qp.s1(i4Var.f9168l2).N0(M0.f26953id);
             if (N0 == null) {
-                N0 = yr.a0(i4Var.f9168l2).F0(M0.f26952id, true, new CountDownLatch(1), false, false, 0);
+                N0 = yr.a0(i4Var.f9168l2).F0(M0.f26953id, true, new CountDownLatch(1), false, false, 0);
             }
             if (N0 != null && N0.can_view_stats) {
                 org.telegram.ui.ActionBar.r0.c(false, false, actionBarPopupWindow$ActionBarPopupWindowLayout, 2131232378, hd.M0(2131743543, null), false, this.d).setOnClickListener(new u3(this, storyItem, this.f10007e, M0, 0));

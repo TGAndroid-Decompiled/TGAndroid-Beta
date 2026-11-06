@@ -70,7 +70,7 @@ public final class m0 implements Runnable {
         switch (i11) {
             case 0:
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", p10.i(i12).f24478n);
+                bundle.putLong("user_id", p10.i(i12).f24486n);
                 ((q4) obj).getLastFragment().presentFragment(new ProfileActivity(bundle, null));
                 return;
             case 1:
@@ -165,7 +165,7 @@ public final class m0 implements Runnable {
                 vaVar.K1 = (e7) vaVar.H1.get(i12);
                 vaVar.N(0, 1);
                 vaVar.M(0, 1);
-                vaVar.f12947d1.f11667b.f36781f3.O(false);
+                vaVar.f12947d1.f11667b.f37160f3.O(false);
                 vaVar.f12944c1.setText(vaVar.K1.C0);
                 return;
             case 10:
@@ -183,7 +183,7 @@ public final class m0 implements Runnable {
                 }
             case 12:
                 try {
-                    SQLiteDatabase sQLiteDatabase = ((yr) obj).f26690b;
+                    SQLiteDatabase sQLiteDatabase = ((yr) obj).f26698b;
                     sQLiteDatabase.executeFast("DELETE FROM business_replies WHERE topic_id = " + i12).stepThis().dispose();
                     sQLiteDatabase.executeFast("DELETE FROM quick_replies_messages WHERE topic_id = " + i12).stepThis().dispose();
                     return;
@@ -232,30 +232,30 @@ public final class m0 implements Runnable {
                 ConnectionsManager.lambda$onUpdateConfig$21(i12, (TLRPC.TL_config) obj);
                 return;
             case 17:
-                qp.s1(i12).V2(0, ((TLRPC.Chat) obj).f26952id, true);
+                qp.s1(i12).V2(0, ((TLRPC.Chat) obj).f26953id, true);
                 return;
             case 18:
-                ((p4) ((org.telegram.ui.f) obj).f45451b).a0(i12, true);
+                ((p4) ((org.telegram.ui.f) obj).f45450b).a0(i12, true);
                 return;
             case 19:
-                q1 q1Var = ((e1) obj).f29042a;
+                q1 q1Var = ((e1) obj).f29043a;
                 int i14 = q1Var.M5;
                 if (i12 == i14) {
                     org.telegram.ui.Cells.c0 c0Var2 = (org.telegram.ui.Cells.c0) q1Var.H5.get(i14);
                     if (c0Var2 != null) {
-                        org.telegram.ui.Cells.y yVar = c0Var2.f28963s;
+                        org.telegram.ui.Cells.y yVar = c0Var2.f28964s;
                         if (yVar != null) {
                             yVar.setState(StateSet.NOTHING);
                         }
                         c0Var2.b(false);
-                        if (!q1Var.P5.f23256p1) {
-                            if (c0Var2.f28954j != null) {
+                        if (!q1Var.P5.f23263p1) {
+                            if (c0Var2.f28955j != null) {
                                 q1Var.n();
-                            } else if (c0Var2.f28953i != null) {
+                            } else if (c0Var2.f28954i != null) {
                                 q1Var.n();
                                 l1 l1Var = q1Var.Ra;
                                 if (l1Var != null) {
-                                    l1Var.v1(q1Var, c0Var2.f28953i);
+                                    l1Var.v1(q1Var, c0Var2.f28954i);
                                 }
                             }
                         }
@@ -266,54 +266,54 @@ public final class m0 implements Runnable {
                 }
                 return;
             case 20:
-                vd vdVar = ((ud) obj).f50402f;
+                vd vdVar = ((ud) obj).f50401f;
                 vdVar.getClass();
                 vdVar.c(i12);
                 return;
             case 21:
-                an anVar = ((gi) obj).f46011g;
+                an anVar = ((gi) obj).f46010g;
                 if (anVar.Wb == i12) {
                     anVar.lb();
                     return;
                 }
                 return;
             case 22:
-                an anVar2 = ((hi) obj).f46388g;
+                an anVar2 = ((hi) obj).f46387g;
                 if (anVar2.Wb == i12) {
                     anVar2.lb();
                     return;
                 }
                 return;
             case 23:
-                ((ni) obj).f48047a.l(this.f3355b, 0, true, 0, true, 0);
+                ((ni) obj).f48046a.l(this.f3355b, 0, true, 0, true, 0);
                 return;
             case 24:
-                an anVar3 = ((gi) obj).f46011g;
+                an anVar3 = ((gi) obj).f46010g;
                 if (anVar3.Wb == i12) {
                     anVar3.lb();
                     return;
                 }
                 return;
             case 25:
-                an anVar4 = ((hi) obj).f46388g;
+                an anVar4 = ((hi) obj).f46387g;
                 if (anVar4.Wb == i12) {
                     anVar4.lb();
                     return;
                 }
                 return;
             case 26:
-                an anVar5 = ((hi) obj).f46388g;
+                an anVar5 = ((hi) obj).f46387g;
                 if (anVar5.Wb == i12) {
                     anVar5.lb();
                     return;
                 }
                 return;
             case 27:
-                an anVar6 = ((ol) obj).f48442w0;
+                an anVar6 = ((ol) obj).f48441w0;
                 anVar6.B0.h1(i12, anVar6.M4);
                 return;
             case 28:
-                i10 = ((f2) ((lm) obj).f47561a).currentAccount;
+                i10 = ((f2) ((lm) obj).f47560a).currentAccount;
                 ConnectionsManager.getInstance(i10).cancelRequest(i12, true);
                 return;
             default:

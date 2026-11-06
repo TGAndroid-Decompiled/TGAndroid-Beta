@@ -65,7 +65,7 @@ public final class l8 extends LinearLayout {
     public final void dispatchDraw(Canvas canvas) {
         float f10;
         super.dispatchDraw(canvas);
-        int i7 = org.telegram.ui.ActionBar.k6.f27792a7;
+        int i7 = org.telegram.ui.ActionBar.k6.f27793a7;
         n8 n8Var = this.h;
         s8 s8Var = n8Var.W;
         int i10 = s8.U1;

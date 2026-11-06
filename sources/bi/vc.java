@@ -12,28 +12,28 @@ import org.telegram.messenger.t10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.q50;
-public final class vc extends v31 {
+public final class vc extends w31 {
     public static final int f4927b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         String p10;
         boolean z10;
         float f10;
         int i7;
         org.telegram.ui.ActionBar.k5 k5Var;
         wc wcVar = (wc) view;
-        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) w31Var.G;
+        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) x31Var.G;
         org.telegram.ui.ActionBar.k5 k5Var2 = wcVar.d;
         org.telegram.ui.Components.l9 l9Var = wcVar.f4993c;
         org.telegram.ui.ActionBar.f6 f6Var = wcVar.f4992b;
@@ -72,11 +72,11 @@ public final class vc extends v31 {
             if (starsSubscription.photo != null) {
                 q50 q50Var = new q50(14.0f, i10, textView3);
                 q50Var.a(4.0f);
-                q50Var.f49113f = false;
+                q50Var.f49112f = false;
                 SpannableString spannableString = new SpannableString("x");
                 k5Var = k5Var2;
                 spannableString.setSpan(q50Var, 0, 1, 33);
-                q50Var.f49110b.q0(org.telegram.messenger.hc.p(m20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                q50Var.f49109b.q0(org.telegram.messenger.hc.p(m20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
                 spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
             } else {
                 k5Var = k5Var2;
@@ -103,7 +103,7 @@ public final class vc extends v31 {
                 textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131744978, org.telegram.messenger.hd.u(j3, false)));
                 textView.setVisibility(0);
                 textView.setText(dd.a1(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
-                org.telegram.ui.ActionBar.r6.V(textView4, org.telegram.ui.ActionBar.k6.f28258z6, f6Var);
+                org.telegram.ui.ActionBar.r6.V(textView4, org.telegram.ui.ActionBar.k6.f28259z6, f6Var);
                 int i12 = starsSubscription.pricing.period;
                 if (i12 == 2592000) {
                     textView4.setText(org.telegram.messenger.hd.M0(2131745057, null));
@@ -142,13 +142,13 @@ public final class vc extends v31 {
     }
 
     @Override
-    public final boolean e(w31 w31Var, w31 w31Var2) {
-        if (w31Var2 != null) {
-            Object obj = w31Var.G;
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        if (x31Var2 != null) {
+            Object obj = x31Var.G;
             if (obj instanceof TL_stars.StarsSubscription) {
-                Object obj2 = w31Var2.G;
+                Object obj2 = x31Var2.G;
                 if (obj2 instanceof TL_stars.StarsSubscription) {
-                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f27182id, ((TL_stars.StarsSubscription) obj2).f27182id);
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f27183id, ((TL_stars.StarsSubscription) obj2).f27183id);
                 }
                 return false;
             }

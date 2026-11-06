@@ -10,9 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class ln extends LinearLayout {
-    public final org.telegram.ui.ActionBar.f6 f35682a;
-    public final TextView f35683b;
-    public final ArrayList f35684c;
+    public final org.telegram.ui.ActionBar.f6 f35702a;
+    public final TextView f35703b;
+    public final ArrayList f35704c;
     public final ArrayList d;
 
     public ln(Activity activity, View view, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -23,9 +23,9 @@ public final class ln extends LinearLayout {
         int i12;
         int i13;
         ArrayList arrayList = new ArrayList();
-        this.f35684c = arrayList;
+        this.f35704c = arrayList;
         this.d = new ArrayList();
-        this.f35682a = f6Var;
+        this.f35702a = f6Var;
         int L = org.telegram.messenger.g0.L(18.0f);
         if (f6Var != null) {
             paint = f6Var.d("paintChatActionBackground");
@@ -33,13 +33,13 @@ public final class ln extends LinearLayout {
             paint = null;
         }
         paint = paint == null ? org.telegram.ui.ActionBar.k6.V0("paintChatActionBackground") : paint;
-        int i14 = org.telegram.ui.ActionBar.k6.f27784a;
+        int i14 = org.telegram.ui.ActionBar.k6.f27785a;
         setBackground(new org.telegram.ui.ActionBar.w5(this, view, L, paint));
         setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f));
         setOrientation(1);
         if (i7 == 0) {
             TextView textView = new TextView(activity);
-            this.f35683b = textView;
+            this.f35703b = textView;
             textView.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.Wc, f6Var);
             textView.setGravity(1);
@@ -48,7 +48,7 @@ public final class ln extends LinearLayout {
             addView(textView, c8.ha.r(-2, -2, 49));
         } else if (i7 == 1) {
             TextView textView2 = new TextView(activity);
-            this.f35683b = textView2;
+            this.f35703b = textView2;
             textView2.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.Wc, f6Var);
             textView2.setGravity(1);
@@ -80,7 +80,7 @@ public final class ln extends LinearLayout {
         float f10 = 260.0f;
         textView3.setMaxWidth(org.telegram.messenger.g0.L(260.0f));
         if (i7 != 2) {
-            if (org.telegram.messenger.hd.f22871a0) {
+            if (org.telegram.messenger.hd.f22878a0) {
                 i10 = 5;
             } else {
                 i10 = 3;
@@ -98,7 +98,7 @@ public final class ln extends LinearLayout {
         int i16 = 0;
         while (i16 < 4) {
             LinearLayout e10 = org.telegram.messenger.k5.e(activity, 0);
-            if (org.telegram.messenger.hd.f22871a0) {
+            if (org.telegram.messenger.hd.f22878a0) {
                 i12 = 5;
             } else {
                 i12 = 3;
@@ -119,8 +119,8 @@ public final class ln extends LinearLayout {
             TextView textView4 = new TextView(activity);
             textView4.setTextSize(1, 15.0f);
             org.telegram.ui.ActionBar.r6.V(textView4, i17, f6Var);
-            this.f35684c.add(textView4);
-            if (org.telegram.messenger.hd.f22871a0) {
+            this.f35704c.add(textView4);
+            if (org.telegram.messenger.hd.f22878a0) {
                 i13 = 5;
             } else {
                 i13 = 3;
@@ -160,7 +160,7 @@ public final class ln extends LinearLayout {
             } else {
                 textView4.setText(org.telegram.messenger.hd.M0(2131749447, null));
             }
-            if (org.telegram.messenger.hd.f22871a0) {
+            if (org.telegram.messenger.hd.f22878a0) {
                 e10.addView(textView4, c8.ha.o(-2, -2));
                 if (i7 == 0) {
                     e10.addView(imageView2, c8.ha.k(8.0f, 3.0f, 0.0f, 0.0f, -2, -2));
@@ -185,14 +185,14 @@ public final class ln extends LinearLayout {
     }
 
     public void setStatusText(CharSequence charSequence) {
-        this.f35683b.setText(charSequence);
+        this.f35703b.setText(charSequence);
     }
 
     public void setTextColor(int i7) {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f35684c;
+            ArrayList arrayList = this.f35704c;
             if (i11 >= arrayList.size()) {
                 break;
             }
@@ -202,7 +202,7 @@ public final class ln extends LinearLayout {
         while (true) {
             ArrayList arrayList2 = this.d;
             if (i10 < arrayList2.size()) {
-                ((ImageView) arrayList2.get(i10)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Wc, this.f35682a), PorterDuff.Mode.MULTIPLY));
+                ((ImageView) arrayList2.get(i10)).setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Wc, this.f35702a), PorterDuff.Mode.MULTIPLY));
                 i10++;
             } else {
                 return;

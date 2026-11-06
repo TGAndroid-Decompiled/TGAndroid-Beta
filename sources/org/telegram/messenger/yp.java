@@ -3,30 +3,30 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.SQLite.SQLitePreparedStatement;
 public final class yp implements Runnable {
-    public final int f26679a;
-    public final yr f26680b;
-    public final ArrayList f26681c;
+    public final int f26687a;
+    public final yr f26688b;
+    public final ArrayList f26689c;
     public final ArrayList d;
 
     public yp(yr yrVar, ArrayList arrayList, ArrayList arrayList2, int i7) {
-        this.f26679a = i7;
-        this.f26680b = yrVar;
-        this.f26681c = arrayList;
+        this.f26687a = i7;
+        this.f26688b = yrVar;
+        this.f26689c = arrayList;
         this.d = arrayList2;
     }
 
     @Override
     public final void run() {
-        switch (this.f26679a) {
+        switch (this.f26687a) {
             case 0:
-                ArrayList arrayList = this.f26681c;
+                ArrayList arrayList = this.f26689c;
                 ArrayList arrayList2 = this.d;
-                yr yrVar = this.f26680b;
+                yr yrVar = this.f26688b;
                 yrVar.getClass();
                 SQLitePreparedStatement sQLitePreparedStatement = null;
                 try {
                     try {
-                        sQLitePreparedStatement = yrVar.f26690b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
+                        sQLitePreparedStatement = yrVar.f26698b.executeFast("UPDATE dialogs SET pinned = ? WHERE did = ?");
                         int size = arrayList.size();
                         for (int i7 = 0; i7 < size; i7++) {
                             sQLitePreparedStatement.requery();
@@ -51,9 +51,9 @@ public final class yp implements Runnable {
                     throw th2;
                 }
             default:
-                yr yrVar2 = this.f26680b;
+                yr yrVar2 = this.f26688b;
                 yrVar2.getClass();
-                ArrayList arrayList3 = this.f26681c;
+                ArrayList arrayList3 = this.f26689c;
                 if (!arrayList3.isEmpty()) {
                     yrVar2.getMessagesController().Y3(arrayList3, true);
                 }

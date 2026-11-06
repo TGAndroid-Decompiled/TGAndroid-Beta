@@ -26,7 +26,7 @@ public class z1 {
     public final a0.h h = new a0.h();
     public final a0.h f16995i = new a0.h();
     public final ArrayList f16996j = new ArrayList();
-    public final int f16999m = p10.f24459s0;
+    public final int f16999m = p10.f24467s0;
     public boolean f17002p = true;
     public boolean f17005s = false;
 
@@ -62,7 +62,7 @@ public class z1 {
                 z9 = true;
             }
             if (z9) {
-                yr.a0(this.f16999m).f26688a.c(new ha.b(15, this, this.f17003q));
+                yr.a0(this.f16999m).f26696a.c(new ha.b(15, this, this.f17003q));
             }
         }
     }
@@ -76,7 +76,7 @@ public class z1 {
     public final void c() {
         this.f17003q = new ArrayList();
         this.f17004r = new HashMap();
-        yr.a0(this.f16999m).f26688a.c(new w1(this, 0));
+        yr.a0(this.f16999m).f26696a.c(new w1(this, 0));
     }
 
     public boolean d(TLObject tLObject) {
@@ -121,37 +121,37 @@ public class z1 {
                         obj = ((g0) obj).f16724a;
                     }
                     if (obj instanceof bo0) {
-                        obj = ((bo0) obj).f32236b;
+                        obj = ((bo0) obj).f32270b;
                     }
                     boolean z9 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;
                     ArrayList arrayList4 = this.f16992e;
                     if (z9) {
                         TLRPC.User user = (TLRPC.User) obj;
-                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f27101id);
+                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f27102id);
                         if (user2 != null) {
                             arrayList4.remove(user2);
                             arrayList3.remove(user2);
-                            hVar.l(user2.f27101id);
+                            hVar.l(user2.f27102id);
                         }
-                        long j3 = user.f27101id;
+                        long j3 = user.f27102id;
                         a0.h hVar2 = this.h;
                         TLObject tLObject = (TLObject) hVar2.f(j3);
                         if (tLObject != null) {
                             this.f16994g.remove(tLObject);
-                            hVar2.l(user.f27101id);
+                            hVar2.l(user.f27102id);
                         }
-                        long j10 = user.f27101id;
+                        long j10 = user.f27102id;
                         a0.h hVar3 = this.f16995i;
                         Object f10 = hVar3.f(j10);
                         if (f10 != null) {
                             this.f16996j.remove(f10);
-                            hVar3.l(user.f27101id);
+                            hVar3.l(user.f27102id);
                         }
-                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f26952id)) != null) {
+                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f26953id)) != null) {
                         arrayList4.remove(chat);
                         arrayList3.remove(chat);
-                        hVar.l(-chat.f26952id);
+                        hVar.l(-chat.f26953id);
                     }
                 }
             }
@@ -176,7 +176,7 @@ public class z1 {
                 if (user != null) {
                     this.f16992e.remove(user);
                     this.d.remove(user);
-                    hVar.l(user.f27101id);
+                    hVar.l(user.f27102id);
                 }
             }
         }

@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.sp0;
-import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.up0;
+import org.telegram.ui.Components.v61;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xp0;
 import org.telegram.ui.Components.xs0;
 import org.telegram.ui.Components.yp0;
 import org.telegram.ui.ProfileActivity;
-public final class a extends u61 {
+public final class a extends v61 {
     public final int V;
     public Object W;
     public final FrameLayout f10809a0;
@@ -41,7 +41,7 @@ public final class a extends u61 {
                 }
                 return;
             case 1:
-                ((yp0) this.f10809a0).f47337b.f38245b0.get(i7, -1);
+                ((yp0) this.f10809a0).f47336b.f38513b0.get(i7, -1);
                 ((xp0) this.W).d.U0(1.0f);
                 return;
             default:
@@ -60,8 +60,8 @@ public final class a extends u61 {
         switch (this.V) {
             case 2:
                 up0 up0Var = (up0) this.f10809a0;
-                t61 t61Var = up0Var.f60217n;
-                if (up0Var.b() && t61Var != null) {
+                u61 u61Var = up0Var.f60216n;
+                if (up0Var.b() && u61Var != null) {
                     if (up0Var.J == null) {
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(jg.g.l(2131750097, null, new StringBuilder("+ ")));
                         wp wpVar = new wp(2131232560, 0);
@@ -69,7 +69,7 @@ public final class a extends u61 {
                         spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
                         up0Var.J = spannableStringBuilder;
                     }
-                    t61Var.a(-1, up0Var.J);
+                    u61Var.a(-1, up0Var.J);
                     return;
                 }
                 return;
@@ -108,7 +108,7 @@ public final class a extends u61 {
                 }
                 return;
             case 1:
-                ((xp0) this.W).d.U0(((yp0) this.f10809a0).f47337b.getAnimatingIndicatorProgress());
+                ((xp0) this.W).d.U0(((yp0) this.f10809a0).f47336b.getAnimatingIndicatorProgress());
                 return;
             default:
                 up0 up0Var = (up0) this.f10809a0;
@@ -147,13 +147,13 @@ public final class a extends u61 {
     public void z(int i7, boolean z9) {
         switch (this.V) {
             case 1:
-                int i10 = ((yp0) this.f10809a0).f47337b.f38245b0.get(i7, -1);
+                int i10 = ((yp0) this.f10809a0).f47336b.f38513b0.get(i7, -1);
                 xs0 xs0Var = ((xp0) this.W).d;
                 if (i10 <= 0) {
                     xs0.t(xs0Var, 8, z9);
                     return;
                 } else {
-                    xs0.t(xs0Var, xs0Var.v1(i10).f40077a, z9);
+                    xs0.t(xs0Var, xs0Var.v1(i10).f40085a, z9);
                     return;
                 }
             default:

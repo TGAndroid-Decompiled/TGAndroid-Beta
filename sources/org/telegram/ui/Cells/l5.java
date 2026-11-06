@@ -6,9 +6,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.hd;
 public final class l5 extends FrameLayout {
-    public ImageView f29510a;
-    public ImageView f29511b;
-    public TextView f29512c;
+    public ImageView f29511a;
+    public ImageView f29512b;
+    public TextView f29513c;
     public int d;
 
     @Override
@@ -21,9 +21,9 @@ public final class l5 extends FrameLayout {
     }
 
     public void setType(int i7) {
-        TextView textView = this.f29512c;
-        ImageView imageView = this.f29511b;
-        ImageView imageView2 = this.f29510a;
+        TextView textView = this.f29513c;
+        ImageView imageView = this.f29512b;
+        ImageView imageView2 = this.f29511a;
         if (i7 == 0) {
             imageView2.setImageResource(2131232514);
             imageView.setImageResource(2131232515);

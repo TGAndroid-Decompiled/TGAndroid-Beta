@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bm implements Runnable {
-    public final int f21668a = 0;
-    public final qp f21669b;
-    public final TLObject f21670c;
+    public final int f21669a = 0;
+    public final qp f21670b;
+    public final TLObject f21671c;
     public final long d;
 
     public bm(qp qpVar, long j3, TLObject tLObject) {
-        this.f21669b = qpVar;
+        this.f21670b = qpVar;
         this.d = j3;
-        this.f21670c = tLObject;
+        this.f21671c = tLObject;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f21668a;
+        int i7 = this.f21669a;
         long j3 = this.d;
-        TLObject tLObject = this.f21670c;
-        qp qpVar = this.f21669b;
+        TLObject tLObject = this.f21671c;
+        qp qpVar = this.f21670b;
         switch (i7) {
             case 0:
-                qpVar.f24883t0.l(j3);
+                qpVar.f24891t0.l(j3);
                 if (tLObject != null) {
                     TLRPC.TL_messages_peerSettings tL_messages_peerSettings = (TLRPC.TL_messages_peerSettings) tLObject;
                     TLRPC.PeerSettings peerSettings = tL_messages_peerSettings.settings;
@@ -52,7 +52,7 @@ public final class bm implements Runnable {
                         tL_userProfilePhoto.has_video = !tL_photos_photo.photo.video_sizes.isEmpty();
                         TLRPC.UserProfilePhoto userProfilePhoto = a22.photo;
                         TLRPC.Photo photo = tL_photos_photo.photo;
-                        userProfilePhoto.photo_id = photo.f26976id;
+                        userProfilePhoto.photo_id = photo.f26977id;
                         userProfilePhoto.photo_small = w7.w(photo.sizes, 150, false, null, false).location;
                         a22.photo.photo_big = w7.w(tL_photos_photo.photo.sizes, 800, false, null, false).location;
                         a22.photo.dc_id = tL_photos_photo.photo.dc_id;
@@ -77,8 +77,8 @@ public final class bm implements Runnable {
     }
 
     public bm(qp qpVar, TLObject tLObject, long j3) {
-        this.f21669b = qpVar;
-        this.f21670c = tLObject;
+        this.f21670b = qpVar;
+        this.f21671c = tLObject;
         this.d = j3;
     }
 }

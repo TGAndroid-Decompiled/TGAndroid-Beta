@@ -8,8 +8,8 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class p10 extends c1 {
-    public static int f24459s0;
-    public static volatile p10[] f24460t0 = new p10[4];
+    public static int f24467s0;
+    public static volatile p10[] f24468t0 = new p10[4];
     public int D;
     public int E;
     public int F;
@@ -33,44 +33,44 @@ public final class p10 extends c1 {
     public boolean X;
     public int Y;
     public TLRPC.TL_help_termsOfService Z;
-    public final Object f24461a;
-    public long f24462a0;
-    public volatile boolean f24463b;
-    public String f24464b0;
-    public TLRPC.User f24465c;
-    public String f24466c0;
+    public final Object f24469a;
+    public long f24470a0;
+    public volatile boolean f24471b;
+    public String f24472b0;
+    public TLRPC.User f24473c;
+    public String f24474c0;
     public boolean d;
-    public String f24467d0;
-    public int f24468e;
-    public String f24469e0;
-    public int f24470f;
-    public long f24471f0;
-    public long f24472g0;
+    public String f24475d0;
+    public int f24476e;
+    public String f24477e0;
+    public int f24478f;
+    public long f24479f0;
+    public long f24480g0;
     public int h;
-    public long f24473h0;
-    public long f24474i0;
-    public volatile byte[] f24475j0;
-    public volatile byte[] f24476k0;
-    public volatile long f24477l0;
+    public long f24481h0;
+    public long f24482i0;
+    public volatile byte[] f24483j0;
+    public volatile byte[] f24484k0;
+    public volatile long f24485l0;
     public LongSparseArray m0;
-    public long f24478n;
-    public LongSparseArray f24479n0;
-    public LongSparseArray f24480o0;
-    public int f24481p0;
-    public boolean f24482q0;
-    public int f24483r;
-    public long f24484r0;
-    public int f24485s;
-    public boolean f24486w;
-    public boolean f24487x;
-    public TL_account.tmpPassword f24488y;
+    public long f24486n;
+    public LongSparseArray f24487n0;
+    public LongSparseArray f24488o0;
+    public int f24489p0;
+    public boolean f24490q0;
+    public int f24491r;
+    public long f24492r0;
+    public int f24493s;
+    public boolean f24494w;
+    public boolean f24495x;
+    public TL_account.tmpPassword f24496y;
 
     public p10(int i7) {
         super(i7);
-        this.f24461a = new Object();
-        this.f24468e = -210000;
-        this.f24470f = -1;
-        this.f24487x = true;
+        this.f24469a = new Object();
+        this.f24476e = -210000;
+        this.f24478f = -1;
+        this.f24495x = true;
         this.J = -1;
         this.K = -1;
         this.L = -1L;
@@ -79,14 +79,14 @@ public final class p10 extends c1 {
         this.O = -1L;
         this.U = true;
         this.V = true;
-        this.f24481p0 = 0;
-        this.f24482q0 = false;
+        this.f24489p0 = 0;
+        this.f24490q0 = false;
     }
 
     public static int c() {
         int i7 = 0;
         for (int i10 = 0; i10 < 4; i10++) {
-            if (i(c.a(i10).f21723a).p()) {
+            if (i(c.a(i10).f21729a).p()) {
                 i7++;
             }
         }
@@ -95,13 +95,13 @@ public final class p10 extends c1 {
 
     public static p10 i(int i7) {
         p10 p10Var;
-        p10 p10Var2 = f24460t0[i7];
+        p10 p10Var2 = f24468t0[i7];
         if (p10Var2 == null) {
             synchronized (p10.class) {
                 try {
-                    p10Var = f24460t0[i7];
+                    p10Var = f24468t0[i7];
                     if (p10Var == null) {
-                        p10[] p10VarArr = f24460t0;
+                        p10[] p10VarArr = f24468t0;
                         p10 p10Var3 = new p10(i7);
                         p10VarArr[i7] = p10Var3;
                         p10Var = p10Var3;
@@ -119,7 +119,7 @@ public final class p10 extends c1 {
         int i7;
         for (int i10 = -1; i10 < 4; i10++) {
             if (i10 < 0) {
-                i7 = f24459s0;
+                i7 = f24467s0;
             } else {
                 i7 = i10;
             }
@@ -127,12 +127,12 @@ public final class p10 extends c1 {
                 return i7;
             }
         }
-        return f24459s0;
+        return f24467s0;
     }
 
     public static boolean o() {
         for (int i7 = 0; i7 < 4; i7++) {
-            if (i(c.a(i7).f21723a).p() && i(c.a(i7).f21723a).getUserConfig().q()) {
+            if (i(c.a(i7).f21729a).p() && i(c.a(i7).f21729a).getUserConfig().q()) {
                 return true;
             }
         }
@@ -149,33 +149,33 @@ public final class p10 extends c1 {
     public final void A(int i7, LongSparseArray longSparseArray) {
         if (i7 == 1) {
             this.m0 = longSparseArray;
-            Context context = t0.f25555b;
+            Context context = t0.f25563b;
             b6.l(context.getSharedPreferences("users_save_gallery_exceptions_" + this.currentAccount, 0), this.m0);
         } else if (i7 == 2) {
-            this.f24480o0 = longSparseArray;
-            Context context2 = t0.f25555b;
-            b6.l(context2.getSharedPreferences("groups_save_gallery_exceptions_" + this.currentAccount, 0), this.f24480o0);
+            this.f24488o0 = longSparseArray;
+            Context context2 = t0.f25563b;
+            b6.l(context2.getSharedPreferences("groups_save_gallery_exceptions_" + this.currentAccount, 0), this.f24488o0);
         } else if (i7 == 4) {
-            this.f24479n0 = longSparseArray;
-            Context context3 = t0.f25555b;
-            b6.l(context3.getSharedPreferences("channels_save_gallery_exceptions_" + this.currentAccount, 0), this.f24479n0);
+            this.f24487n0 = longSparseArray;
+            Context context3 = t0.f25563b;
+            b6.l(context3.getSharedPreferences("channels_save_gallery_exceptions_" + this.currentAccount, 0), this.f24487n0);
         }
     }
 
     public final void a(TLRPC.User user, final TLRPC.User user2) {
         if (user != null && user2 != null && user.premium != user2.premium) {
             g0.h3(new Runnable(this) {
-                public final p10 f24111b;
+                public final p10 f24118b;
 
                 {
-                    this.f24111b = this;
+                    this.f24118b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            p10 p10Var = this.f24111b;
+                            p10 p10Var = this.f24118b;
                             p10Var.getMessagesController().m5(user2.premium);
                             qs.f(p10Var.currentAccount).k(308, new Object[0]);
                             qs.e().k(310, new Object[0]);
@@ -186,7 +186,7 @@ public final class p10 extends c1 {
                             P1.S = null;
                             return;
                         default:
-                            p10 p10Var2 = this.f24111b;
+                            p10 p10Var2 = this.f24118b;
                             p10Var2.getMessagesController().m5(user2.premium);
                             qs.f(p10Var2.currentAccount).k(308, new Object[0]);
                             p10Var2.getMediaDataController().R0(true);
@@ -196,17 +196,17 @@ public final class p10 extends c1 {
             });
         } else if (user == null) {
             g0.h3(new Runnable(this) {
-                public final p10 f24111b;
+                public final p10 f24118b;
 
                 {
-                    this.f24111b = this;
+                    this.f24118b = this;
                 }
 
                 @Override
                 public final void run() {
                     switch (r3) {
                         case 0:
-                            p10 p10Var = this.f24111b;
+                            p10 p10Var = this.f24118b;
                             p10Var.getMessagesController().m5(user2.premium);
                             qs.f(p10Var.currentAccount).k(308, new Object[0]);
                             qs.e().k(310, new Object[0]);
@@ -217,7 +217,7 @@ public final class p10 extends c1 {
                             P1.S = null;
                             return;
                         default:
-                            p10 p10Var2 = this.f24111b;
+                            p10 p10Var2 = this.f24118b;
                             p10Var2.getMessagesController().m5(user2.premium);
                             qs.f(p10Var2.currentAccount).k(308, new Object[0]);
                             p10Var2.getMediaDataController().R0(true);
@@ -232,12 +232,12 @@ public final class p10 extends c1 {
         k().edit().clear().apply();
         this.Q = 0;
         this.R = 0;
-        this.f24465c = null;
-        this.f24478n = 0L;
+        this.f24473c = null;
+        this.f24486n = 0L;
         this.d = false;
         this.h = 0;
-        this.f24468e = -210000;
-        this.f24470f = -1;
+        this.f24476e = -210000;
+        this.f24478f = -1;
         this.S = false;
         this.T = false;
         this.J = -1;
@@ -250,40 +250,40 @@ public final class p10 extends c1 {
         this.E = 0;
         this.F = 0;
         this.G = 0;
-        this.f24486w = false;
+        this.f24494w = false;
         this.H = true;
         this.U = true;
         this.W = false;
         this.V = true;
-        this.f24487x = true;
+        this.f24495x = true;
         this.I = true;
         this.Z = null;
         this.P = false;
         this.X = false;
         this.Y = (int) (System.currentTimeMillis() / 1000);
-        this.f24483r = ((int) (System.currentTimeMillis() / 1000)) - 82800;
-        this.f24485s = ((int) (System.currentTimeMillis() / 1000)) - 90000;
+        this.f24491r = ((int) (System.currentTimeMillis() / 1000)) - 82800;
+        this.f24493s = ((int) (System.currentTimeMillis() / 1000)) - 90000;
         u();
         int i7 = 0;
         while (true) {
             if (i7 < 4) {
-                if (i(c.a(i7).f21723a).p()) {
+                if (i(c.a(i7).f21729a).p()) {
                     break;
                 }
                 i7++;
             } else {
-                iz.f23426z = false;
-                iz.f23420x = false;
-                iz.f23403r = 0;
-                iz.f23409t = 0L;
-                iz.f23412u = 0L;
+                iz.f23433z = false;
+                iz.f23427x = false;
+                iz.f23410r = 0;
+                iz.f23416t = 0L;
+                iz.f23419u = 0L;
                 iz.v = 0;
-                iz.f23406s = "";
-                iz.f23417w = new byte[0];
-                iz.f23423y = 3600;
+                iz.f23413s = "";
+                iz.f23424w = new byte[0];
+                iz.f23430y = 3600;
                 iz.B = 0;
                 iz.D = true;
-                iz.f23375g0 = true;
+                iz.f23382g0 = true;
                 iz.C = false;
                 iz.A = false;
                 iz.J = 0;
@@ -294,10 +294,10 @@ public final class p10 extends c1 {
                 iz.O = 0;
                 iz.P = false;
                 iz.Q = false;
-                iz.f23365c1 = 3;
-                iz.f23367d1 = 3;
-                iz.f23370e1 = 3;
-                iz.f23369e0 = 2;
+                iz.f23372c1 = 3;
+                iz.f23374d1 = 3;
+                iz.f23377e1 = 3;
+                iz.f23376e0 = 2;
                 iz.S = 0;
                 iz.y();
                 break;
@@ -308,9 +308,9 @@ public final class p10 extends c1 {
 
     public final String d() {
         String str;
-        synchronized (this.f24461a) {
+        synchronized (this.f24469a) {
             try {
-                TLRPC.User user = this.f24465c;
+                TLRPC.User user = this.f24473c;
                 if (user == null || (str = user.phone) == null) {
                     str = "";
                 }
@@ -322,11 +322,11 @@ public final class p10 extends c1 {
 
     public final long e() {
         long j3;
-        synchronized (this.f24461a) {
+        synchronized (this.f24469a) {
             try {
-                TLRPC.User user = this.f24465c;
+                TLRPC.User user = this.f24473c;
                 if (user != null) {
-                    j3 = user.f27101id;
+                    j3 = user.f27102id;
                 } else {
                     j3 = 0;
                 }
@@ -339,8 +339,8 @@ public final class p10 extends c1 {
 
     public final TLRPC.User f() {
         TLRPC.User user;
-        synchronized (this.f24461a) {
-            user = this.f24465c;
+        synchronized (this.f24469a) {
+            user = this.f24473c;
         }
         return user;
     }
@@ -442,45 +442,45 @@ public final class p10 extends c1 {
     }
 
     public final int h() {
-        return this.f24481p0;
+        return this.f24489p0;
     }
 
     public final int j() {
         int i7;
-        synchronized (this.f24461a) {
-            i7 = this.f24468e;
-            this.f24468e = i7 - 1;
+        synchronized (this.f24469a) {
+            i7 = this.f24476e;
+            this.f24476e = i7 - 1;
         }
         return i7;
     }
 
     public final SharedPreferences k() {
         if (this.currentAccount == 0) {
-            return t0.f25555b.getSharedPreferences("userconfing", 0);
+            return t0.f25563b.getSharedPreferences("userconfing", 0);
         }
-        Context context = t0.f25555b;
+        Context context = t0.f25563b;
         return context.getSharedPreferences("userconfig" + this.currentAccount, 0);
     }
 
     public final LongSparseArray m(int i7) {
         if (i7 == 1) {
             if (this.m0 == null) {
-                Context context = t0.f25555b;
+                Context context = t0.f25563b;
                 this.m0 = b6.j(context.getSharedPreferences("users_save_gallery_exceptions_" + this.currentAccount, 0));
             }
             return this.m0;
         } else if (i7 == 2) {
-            if (this.f24480o0 == null) {
-                Context context2 = t0.f25555b;
-                this.f24480o0 = b6.j(context2.getSharedPreferences("groups_save_gallery_exceptions_" + this.currentAccount, 0));
+            if (this.f24488o0 == null) {
+                Context context2 = t0.f25563b;
+                this.f24488o0 = b6.j(context2.getSharedPreferences("groups_save_gallery_exceptions_" + this.currentAccount, 0));
             }
-            return this.f24480o0;
+            return this.f24488o0;
         } else if (i7 == 4) {
-            if (this.f24479n0 == null) {
-                Context context3 = t0.f25555b;
-                this.f24479n0 = b6.j(context3.getSharedPreferences("channels_save_gallery_exceptions_" + this.currentAccount, 0));
+            if (this.f24487n0 == null) {
+                Context context3 = t0.f25563b;
+                this.f24487n0 = b6.j(context3.getSharedPreferences("channels_save_gallery_exceptions_" + this.currentAccount, 0));
             }
-            return this.f24479n0;
+            return this.f24487n0;
         } else {
             return null;
         }
@@ -501,8 +501,8 @@ public final class p10 extends c1 {
 
     public final boolean p() {
         boolean z9;
-        synchronized (this.f24461a) {
-            if (this.f24465c != null) {
+        synchronized (this.f24469a) {
+            if (this.f24473c != null) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -512,7 +512,7 @@ public final class p10 extends c1 {
     }
 
     public final boolean q() {
-        TLRPC.User user = this.f24465c;
+        TLRPC.User user = this.f24473c;
         if (user == null) {
             return false;
         }
@@ -524,21 +524,21 @@ public final class p10 extends c1 {
     }
 
     public final void t() {
-        if (!this.f24482q0 && System.currentTimeMillis() - this.f24484r0 >= 60000) {
-            this.f24482q0 = true;
+        if (!this.f24490q0 && System.currentTimeMillis() - this.f24492r0 >= 60000) {
+            this.f24490q0 = true;
             getConnectionsManager().sendRequest(new TLRPC.TL_messages_getDefaultHistoryTTL(), new s1(this, 8));
         }
     }
 
     public final void u() {
-        this.f24477l0 = 0L;
-        if (this.f24475j0 != null) {
-            Arrays.fill(this.f24475j0, (byte) 0);
-            this.f24475j0 = null;
+        this.f24485l0 = 0L;
+        if (this.f24483j0 != null) {
+            Arrays.fill(this.f24483j0, (byte) 0);
+            this.f24483j0 = null;
         }
-        if (this.f24476k0 != null) {
-            Arrays.fill(this.f24476k0, (byte) 0);
-            this.f24476k0 = null;
+        if (this.f24484k0 != null) {
+            Arrays.fill(this.f24484k0, (byte) 0);
+            this.f24484k0 = null;
         }
     }
 
@@ -547,10 +547,10 @@ public final class p10 extends c1 {
     }
 
     public final void w(TLRPC.User user) {
-        synchronized (this.f24461a) {
-            TLRPC.User user2 = this.f24465c;
-            this.f24465c = user;
-            this.f24478n = user.f27101id;
+        synchronized (this.f24469a) {
+            TLRPC.User user2 = this.f24473c;
+            this.f24473c = user;
+            this.f24486n = user.f27102id;
             a(user2, user);
         }
     }

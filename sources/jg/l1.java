@@ -39,11 +39,11 @@ public final class l1 extends FrameLayout {
         setWillNotDraw(false);
         y8 y8Var = new y8(this, false);
         this.f16829b = y8Var;
-        y8Var.f40573l = true;
-        y8Var.f40577p = org.telegram.messenger.g0.L(75.0f);
-        y8Var.f40576o = org.telegram.messenger.g0.L(48.0f);
-        y8Var.f40584x = true;
-        y8Var.f40580s = org.telegram.messenger.g0.L(22.0f);
+        y8Var.f40585l = true;
+        y8Var.f40589p = org.telegram.messenger.g0.L(75.0f);
+        y8Var.f40588o = org.telegram.messenger.g0.L(48.0f);
+        y8Var.f40596x = true;
+        y8Var.f40592s = org.telegram.messenger.g0.L(22.0f);
         for (int i10 = 0; i10 < 2; i10++) {
             this.f16830c[i10] = new TextView(context);
             r6.V(this.f16830c[i10], k6.G6, f6Var);
@@ -59,7 +59,7 @@ public final class l1 extends FrameLayout {
             textView.setVisibility(i7);
             addView(this.f16830c[i10], ha.d(-1, -2.0f, 48, 76.0f, 7.0f, 40.0f, 0.0f));
             this.d[i10] = new TextView(context);
-            r6.V(this.d[i10], k6.f28258z6, f6Var);
+            r6.V(this.d[i10], k6.f28259z6, f6Var);
             this.d[i10].setTextSize(1, 12.0f);
             TextView textView2 = this.d[i10];
             if (i10 == 0) {
@@ -87,9 +87,9 @@ public final class l1 extends FrameLayout {
                 break;
             }
             ij ijVar = (ij) k6Var.f9643i.get(i7);
-            long j3 = ijVar.f23241l.dialogId;
+            long j3 = ijVar.f23248l.dialogId;
             TextUtils.isEmpty(str);
-            y8Var.j(i10, k6Var.f9639c, ijVar.f23241l);
+            y8Var.j(i10, k6Var.f9639c, ijVar.f23248l);
             i10++;
             i7++;
         }
@@ -152,7 +152,7 @@ public final class l1 extends FrameLayout {
         super.onDraw(canvas);
         Paint W0 = k6.W0("paintDivider", this.f16828a);
         if (W0 == null) {
-            W0 = k6.f27971k0;
+            W0 = k6.f27972k0;
         }
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), W0);
     }

@@ -14,41 +14,41 @@ import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.l9;
-import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w8;
+import org.telegram.ui.Components.x31;
 import v4.o0;
-public final class g extends v31 {
+public final class g extends w31 {
     public static final int f17083b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         int i7;
         String o02;
         h hVar = (h) view;
-        f fVar = (f) w31Var.G;
+        f fVar = (f) x31Var.G;
         TLRPC.User user = fVar.f17081b;
         long j3 = fVar.f17080a;
         boolean z10 = fVar.f17082c;
-        boolean z11 = !w31Var.f39828j;
+        boolean z11 = !x31Var.f40157j;
         l9 l9Var = hVar.f17086c;
         TextView textView = hVar.f17089n;
         TextView textView2 = hVar.d;
-        hVar.E = (e) w31Var.H;
+        hVar.E = (e) x31Var.H;
         hVar.F = j3;
-        hVar.G = user.f27101id;
+        hVar.G = user.f27102id;
         int i10 = hVar.f17085b;
         TLRPC.Chat M0 = qp.s1(i10).M0(Long.valueOf(-j3));
         TLRPC.User a22 = qp.s1(i10).a2(Long.valueOf(j3));
-        hVar.f17088f.setText(m5.l(p10.f24459s0, j3));
+        hVar.f17088f.setText(m5.l(p10.f24467s0, j3));
         TextView textView3 = hVar.h;
         if (a22 != null) {
             i7 = 2131751898;
@@ -98,9 +98,9 @@ public final class g extends v31 {
     }
 
     @Override
-    public final boolean e(w31 w31Var, w31 w31Var2) {
-        f fVar = (f) w31Var.G;
-        f fVar2 = (f) w31Var2.G;
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        f fVar = (f) x31Var.G;
+        f fVar2 = (f) x31Var2.G;
         if (fVar.f17080a == fVar2.f17080a && m5.d(fVar.f17081b) == m5.d(fVar2.f17081b)) {
             return true;
         }

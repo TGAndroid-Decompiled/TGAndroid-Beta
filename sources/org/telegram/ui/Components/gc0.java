@@ -10,19 +10,19 @@ import android.widget.FrameLayout;
 import java.util.WeakHashMap;
 import org.telegram.ui.LaunchActivity;
 public final class gc0 extends Dialog {
-    public final FrameLayout f33893a;
-    public final fc0 f33894b;
+    public final FrameLayout f33901a;
+    public final fc0 f33902b;
 
     public gc0(LaunchActivity launchActivity) {
         super(launchActivity, 2131755352);
         org.telegram.messenger.g0.S(getWindow());
         FrameLayout frameLayout = new FrameLayout(launchActivity);
-        this.f33893a = frameLayout;
+        this.f33901a = frameLayout;
         k2 k2Var = new k2(28);
-        WeakHashMap weakHashMap = r0.i0.f54098a;
+        WeakHashMap weakHashMap = r0.i0.f54097a;
         r0.a0.i(frameLayout, k2Var);
         fc0 fc0Var = new fc0(this, launchActivity);
-        this.f33894b = fc0Var;
+        this.f33902b = fc0Var;
         frameLayout.addView(fc0Var, c8.ha.e(-1, -1, 119));
     }
 
@@ -33,7 +33,7 @@ public final class gc0 extends Dialog {
     @Override
     public final void dismiss() {
         LaunchActivity launchActivity;
-        if (this.f33894b.i() && (launchActivity = LaunchActivity.G1) != null) {
+        if (this.f33902b.i() && (launchActivity = LaunchActivity.G1) != null) {
             launchActivity.moveTaskToBack(true);
         }
     }
@@ -42,7 +42,7 @@ public final class gc0 extends Dialog {
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
         LaunchActivity launchActivity;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            if (this.f33894b.i() && (launchActivity = LaunchActivity.G1) != null) {
+            if (this.f33902b.i() && (launchActivity = LaunchActivity.G1) != null) {
                 launchActivity.moveTaskToBack(true);
             }
             return true;
@@ -53,7 +53,7 @@ public final class gc0 extends Dialog {
     @Override
     public final void onBackPressed() {
         LaunchActivity launchActivity;
-        if (this.f33894b.i() && (launchActivity = LaunchActivity.G1) != null) {
+        if (this.f33902b.i() && (launchActivity = LaunchActivity.G1) != null) {
             launchActivity.moveTaskToBack(true);
         }
     }
@@ -64,7 +64,7 @@ public final class gc0 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(2131755178);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        FrameLayout frameLayout = this.f33893a;
+        FrameLayout frameLayout = this.f33901a;
         setContentView(frameLayout, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
@@ -74,7 +74,7 @@ public final class gc0 extends Dialog {
         int i7 = attributes.flags & (-3);
         attributes.flags = i7;
         attributes.softInputMode = 16;
-        boolean z9 = org.telegram.messenger.r2.f25191a;
+        boolean z9 = org.telegram.messenger.r2.f25199a;
         attributes.flags = i7 | 8192;
         org.telegram.messenger.g0.h2();
         attributes.flags |= -2013198976;

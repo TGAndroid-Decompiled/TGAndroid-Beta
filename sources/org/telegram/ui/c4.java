@@ -6,24 +6,24 @@ import android.text.TextPaint;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class c4 extends FrameLayout {
-    public final org.telegram.ui.Components.mm0 f44535a;
-    public final int f44536b;
-    public final int f44537c;
+    public final org.telegram.ui.Components.mm0 f44534a;
+    public final int f44535b;
+    public final int f44536c;
     public int d;
-    public final TextPaint f44538e;
-    public final g4 f44539f;
+    public final TextPaint f44537e;
+    public final g4 f44538f;
 
     public c4(g4 g4Var, Context context) {
         super(context);
-        this.f44539f = g4Var;
-        this.f44536b = 12;
-        this.f44537c = 30;
+        this.f44538f = g4Var;
+        this.f44535b = 12;
+        this.f44536c = 30;
         setWillNotDraw(false);
         TextPaint textPaint = new TextPaint(1);
-        this.f44538e = textPaint;
+        this.f44537e = textPaint;
         textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
         org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null, false);
-        this.f44535a = mm0Var;
+        this.f44534a = mm0Var;
         mm0Var.setReportChanges(true);
         mm0Var.setSeparatorsCount(19);
         mm0Var.setDelegate(new f(this, 3));
@@ -33,15 +33,15 @@ public final class c4 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f44535a.invalidate();
+        this.f44534a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int i7 = org.telegram.ui.ActionBar.k6.I6;
-        this.f44539f.getClass();
+        this.f44538f.getClass();
         int v02 = org.telegram.ui.ActionBar.k6.v0(i7);
-        TextPaint textPaint = this.f44538e;
+        TextPaint textPaint = this.f44537e;
         textPaint.setColor(v02);
         canvas.drawText("" + org.telegram.messenger.iz.Z0, getMeasuredWidth() - org.telegram.messenger.g0.L(39.0f), org.telegram.messenger.g0.L(28.0f), textPaint);
     }
@@ -52,8 +52,8 @@ public final class c4 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i7);
         if (this.d != size) {
             int i11 = org.telegram.messenger.iz.Z0;
-            int i12 = this.f44536b;
-            this.f44535a.setProgress((i11 - i12) / (this.f44537c - i12));
+            int i12 = this.f44535b;
+            this.f44534a.setProgress((i11 - i12) / (this.f44536c - i12));
             this.d = size;
         }
     }

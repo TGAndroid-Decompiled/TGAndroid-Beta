@@ -9,9 +9,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class w00 extends LinearLayout {
-    public final fi.d f39791a;
-    public final fi.d f39792b;
-    public final fi.d f39793c;
+    public final fi.d f39815a;
+    public final fi.d f39816b;
+    public final fi.d f39817c;
     public final long d;
 
     public w00(Context context, int i7) {
@@ -32,7 +32,7 @@ public final class w00 extends LinearLayout {
         addView(g10, c8.ha.t(-2, -2, 49, 0, 15, 0, 7));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27831c7, null);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27832c7, null);
         textView.setGravity(1);
         if (org.telegram.messenger.p10.i(i7).q()) {
             i10 = 2131750477;
@@ -44,12 +44,12 @@ public final class w00 extends LinearLayout {
         textView.setLineSpacing(org.telegram.messenger.g0.L(2.0f), 1.0f);
         addView(textView, c8.ha.t(-2, -2, 49, 0, 0, 0, 14));
         fi.d dVar = new fi.d(context, null, true);
-        this.f39791a = dVar;
+        this.f39815a = dVar;
         dVar.f();
         dVar.i(org.telegram.messenger.hd.M0(2131750481, null), false, true);
         addView(dVar, c8.ha.r(-2, 44, 49));
         fi.d dVar2 = new fi.d(context, null, false);
-        this.f39792b = dVar2;
+        this.f39816b = dVar2;
         dVar2.f();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
         spannableStringBuilder.setSpan(new wp(2131232477, 0), 0, 1, 33);
@@ -57,7 +57,7 @@ public final class w00 extends LinearLayout {
         dVar2.i(spannableStringBuilder, false, true);
         addView(dVar2, c8.ha.t(-2, 44, 49, 0, 8, 0, 0));
         fi.d dVar3 = new fi.d(context, null, false);
-        this.f39793c = dVar3;
+        this.f39817c = dVar3;
         dVar3.f();
         dVar3.setVisibility(8);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("c");
@@ -79,11 +79,11 @@ public final class w00 extends LinearLayout {
     public final void onMeasure(int i7, int i10) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(44.0f), 1073741824);
-        fi.d dVar = this.f39791a;
+        fi.d dVar = this.f39815a;
         dVar.setUseWrapContent(true);
-        fi.d dVar2 = this.f39792b;
+        fi.d dVar2 = this.f39816b;
         dVar2.setUseWrapContent(true);
-        fi.d dVar3 = this.f39793c;
+        fi.d dVar3 = this.f39817c;
         dVar3.setUseWrapContent(true);
         dVar.measure(makeMeasureSpec, makeMeasureSpec2);
         dVar2.measure(makeMeasureSpec, makeMeasureSpec2);
@@ -105,6 +105,6 @@ public final class w00 extends LinearLayout {
         } else {
             i7 = 8;
         }
-        this.f39793c.setVisibility(i7);
+        this.f39817c.setVisibility(i7);
     }
 }

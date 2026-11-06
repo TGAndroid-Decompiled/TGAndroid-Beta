@@ -126,7 +126,7 @@ public class VideoCapturerDevice {
             long j10 = this.nativePtr;
             if (j10 != 0) {
                 this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j10);
-                this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25555b, this.nativeCapturerObserver);
+                this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25563b, this.nativeCapturerObserver);
                 a8.b("VideoCapturerDevice init(" + j3 + "): videoCapturer.startCapture SCREEN");
                 this.videoCapturer.startCapture(point.x, point.y, 30);
                 WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.Instance;
@@ -142,7 +142,7 @@ public class VideoCapturerDevice {
             return;
         }
         this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(this.nativePtr);
-        this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25555b, this.nativeCapturerObserver);
+        this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25563b, this.nativeCapturerObserver);
         a8.b("VideoCapturerDevice init(" + j3 + "): videoCapturer.startCapture CAMERA");
         this.videoCapturer.startCapture(1280, 720, 30);
     }
@@ -165,8 +165,8 @@ public class VideoCapturerDevice {
                     this.handler.post(new d3(this, j3, screenCaptureSize, 15));
                 }
             } else {
-                if (Camera2Enumerator.isSupported(org.telegram.messenger.t0.f25555b)) {
-                    camera1Enumerator = new Camera2Enumerator(org.telegram.messenger.t0.f25555b);
+                if (Camera2Enumerator.isSupported(org.telegram.messenger.t0.f25563b)) {
+                    camera1Enumerator = new Camera2Enumerator(org.telegram.messenger.t0.f25563b);
                 } else {
                     camera1Enumerator = new Camera1Enumerator();
                 }
@@ -297,7 +297,7 @@ public class VideoCapturerDevice {
     private static Point getScreenCaptureSize(int i7) {
         int i10;
         int i11;
-        Display defaultDisplay = ((WindowManager) org.telegram.messenger.t0.f25555b.getSystemService("window")).getDefaultDisplay();
+        Display defaultDisplay = ((WindowManager) org.telegram.messenger.t0.f25563b.getSystemService("window")).getDefaultDisplay();
         Point point = new Point();
         defaultDisplay.getRealSize(point);
         int i12 = point.x;

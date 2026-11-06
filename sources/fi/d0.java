@@ -28,7 +28,7 @@ public final class d0 {
 
     public d0(e0 e0Var) {
         this.f11781p = e0Var;
-        this.f11769b = new org.telegram.ui.Components.w5(e0Var, 0L, 1200L, xq.f40330g);
+        this.f11769b = new org.telegram.ui.Components.w5(e0Var, 0L, 1200L, xq.f40346g);
         this.f11770c = new ImageReceiver(e0Var);
     }
 
@@ -49,10 +49,10 @@ public final class d0 {
         this.f11772f = false;
         this.f11779n = e7Var;
         StringBuilder sb2 = new StringBuilder();
-        Point point = org.telegram.messenger.g0.f22537q;
-        sb2.append((int) Math.ceil(point.x / org.telegram.messenger.g0.f22536p));
+        Point point = org.telegram.messenger.g0.f22544q;
+        sb2.append((int) Math.ceil(point.x / org.telegram.messenger.g0.f22543p));
         sb2.append("_");
-        sb2.append((int) Math.ceil(point.y / org.telegram.messenger.g0.f22536p));
+        sb2.append((int) Math.ceil(point.y / org.telegram.messenger.g0.f22543p));
         if (e7Var != null && e7Var.K) {
             str = "_g";
         } else {

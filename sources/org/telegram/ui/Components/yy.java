@@ -12,21 +12,21 @@ public final class yy extends v4.k {
     @Override
     public final void C(v4.d1 d1Var, v4.j jVar) {
         super.C(d1Var, jVar);
-        View view = d1Var.f56952a;
+        View view = d1Var.f56951a;
         if (view instanceof cz) {
             cz czVar = (cz) view;
-            if (czVar.f32723x) {
-                ValueAnimator valueAnimator = czVar.f32702a;
+            if (czVar.f32728x) {
+                ValueAnimator valueAnimator = czVar.f32707a;
                 if (valueAnimator != null) {
                     valueAnimator.removeAllListeners();
-                    czVar.f32702a.removeAllUpdateListeners();
-                    czVar.f32702a.cancel();
+                    czVar.f32707a.removeAllUpdateListeners();
+                    czVar.f32707a.cancel();
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 ofFloat.addUpdateListener(new xy(czVar, 0));
                 ofFloat.addListener(new z5(czVar, 26));
-                czVar.f32702a = ofFloat;
-                ofFloat.setDuration(this.f57025e);
+                czVar.f32707a = ofFloat;
+                ofFloat.setDuration(this.f57024e);
                 ofFloat.start();
             }
         }
@@ -35,7 +35,7 @@ public final class yy extends v4.k {
     @Override
     public final void f(v4.d1 d1Var) {
         super.f(d1Var);
-        View view = d1Var.f56952a;
+        View view = d1Var.f56951a;
         view.setTranslationX(0.0f);
         if (view instanceof cz) {
             ((cz) view).a();
@@ -44,14 +44,14 @@ public final class yy extends v4.k {
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f57009p.isEmpty();
-        boolean isEmpty2 = this.f57011r.isEmpty();
-        boolean isEmpty3 = this.f57012s.isEmpty();
-        boolean isEmpty4 = this.f57010q.isEmpty();
+        boolean isEmpty = this.f57008p.isEmpty();
+        boolean isEmpty2 = this.f57010r.isEmpty();
+        boolean isEmpty3 = this.f57011s.isEmpty();
+        boolean isEmpty4 = this.f57009q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
             ofFloat.addUpdateListener(new e6(this, 23));
-            ofFloat.setDuration(this.f57025e);
+            ofFloat.setDuration(this.f57024e);
             ofFloat.start();
         }
         super.m();
@@ -64,8 +64,8 @@ public final class yy extends v4.k {
 
     @Override
     public final void x(v4.d1 d1Var) {
-        d1Var.f56952a.setTranslationX(0.0f);
-        View view = d1Var.f56952a;
+        d1Var.f56951a.setTranslationX(0.0f);
+        View view = d1Var.f56951a;
         if (view instanceof cz) {
             ((cz) view).a();
         }

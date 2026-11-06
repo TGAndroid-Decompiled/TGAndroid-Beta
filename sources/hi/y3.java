@@ -58,7 +58,7 @@ public final class y3 implements r1.c {
                 return;
             case 2:
                 ng ngVar = (ng) this.f15054c;
-                AnimatorSet animatorSet = ((di) this.f15053b).f28654z0;
+                AnimatorSet animatorSet = ((di) this.f15053b).f28655z0;
                 if (animatorSet != null && !animatorSet.isRunning()) {
                     ngVar.run();
                     return;
@@ -66,10 +66,10 @@ public final class y3 implements r1.c {
                 return;
             case 3:
                 di diVar = (di) ((y4) this.f15053b).d;
-                diVar.f32959t2.setTranslationY(0.0f);
-                diVar.f32959t2.m(diVar.f32911f4);
+                diVar.f32988t2.setTranslationY(0.0f);
+                diVar.f32988t2.m(diVar.f32940f4);
                 diVar.X0.g();
-                diVar.f28615b.invalidate();
+                diVar.f28616b.invalidate();
                 ((qg) this.f15054c).run();
                 diVar.P1(0);
                 return;

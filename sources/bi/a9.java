@@ -1428,7 +1428,7 @@ public final class a9 implements Runnable {
                         }
                     };
                     if (!org.telegram.messenger.r1.i().k()) {
-                        org.telegram.messenger.r1.i().f25187i.add(runnable);
+                        org.telegram.messenger.r1.i().f25195i.add(runnable);
                         return;
                     } else {
                         runnable.run();
@@ -2804,7 +2804,7 @@ public final class a9 implements Runnable {
                         }
                     };
                     if (!org.telegram.messenger.r1.i().k()) {
-                        org.telegram.messenger.r1.i().f25187i.add(runnable2);
+                        org.telegram.messenger.r1.i().f25195i.add(runnable2);
                         return;
                     } else {
                         runnable2.run();
@@ -4180,7 +4180,7 @@ public final class a9 implements Runnable {
                         }
                     };
                     if (!org.telegram.messenger.r1.i().k()) {
-                        org.telegram.messenger.r1.i().f25187i.add(runnable3);
+                        org.telegram.messenger.r1.i().f25195i.add(runnable3);
                         return;
                     } else {
                         runnable3.run();

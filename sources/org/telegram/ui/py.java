@@ -6,18 +6,18 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class py extends FrameLayout {
-    public ImageView f48973a;
-    public TextView f48974b;
-    public int f48975c;
+    public ImageView f48972a;
+    public TextView f48973b;
+    public int f48974c;
     public boolean d;
-    public Boolean f48976e;
+    public Boolean f48975e;
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextView textView = this.f48974b;
+        TextView textView = this.f48973b;
         super.onDraw(canvas);
         if (this.d) {
-            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27971k0);
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27972k0);
         }
     }
 

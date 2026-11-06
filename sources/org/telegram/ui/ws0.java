@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
 public final class ws0 {
-    public final TLRPC.TL_premiumSubscriptionOption f51501a;
-    public int f51502b;
-    public long f51503c;
+    public final TLRPC.TL_premiumSubscriptionOption f51499a;
+    public int f51500b;
+    public long f51501c;
     public long d;
-    public long f51504e;
-    public f5.l f51505f;
-    public f5.k f51506g;
+    public long f51502e;
+    public f5.l f51503f;
+    public f5.k f51504g;
     public int h;
 
     public ws0(TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption) {
-        this.f51501a = tL_premiumSubscriptionOption;
+        this.f51499a = tL_premiumSubscriptionOption;
     }
 
     public final void a() {
-        f5.l lVar = this.f51505f;
-        if (lVar != null && this.f51506g == null) {
+        f5.l lVar = this.f51503f;
+        if (lVar != null && this.f51504g == null) {
             ArrayList arrayList = lVar.h;
             int size = arrayList.size();
             int i7 = 0;
@@ -28,16 +28,16 @@ public final class ws0 {
                 i7++;
                 f5.k kVar = (f5.k) obj;
                 String str = ((f5.i) kVar.f11165b.f11163a.get(0)).d;
-                int i10 = this.f51501a.months;
+                int i10 = this.f51499a.months;
                 if (i10 == 12) {
                     if (str.equals("P1Y")) {
-                        this.f51506g = kVar;
+                        this.f51504g = kVar;
                         return;
                     }
                 } else {
                     Locale locale = Locale.ROOT;
                     if (str.equals("P" + i10 + "M")) {
-                        this.f51506g = kVar;
+                        this.f51504g = kVar;
                         return;
                     }
                 }
@@ -47,11 +47,11 @@ public final class ws0 {
 
     public final String b() {
         boolean b10 = org.telegram.messenger.r2.b();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f51501a;
+        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f51499a;
         if (!b10 && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f51505f != null) {
+            if (this.f51503f != null) {
                 a();
-                f5.k kVar = this.f51506g;
+                f5.k kVar = this.f51504g;
                 if (kVar == null) {
                     return "";
                 }
@@ -63,24 +63,24 @@ public final class ws0 {
     }
 
     public final int c() {
-        if (this.f51502b == 0) {
+        if (this.f51500b == 0) {
             if (h() == 0) {
                 return 0;
             }
-            if (this.f51504e != 0) {
-                int i7 = (int) ((1.0d - (i() / this.f51504e)) * 100.0d);
-                this.f51502b = i7;
+            if (this.f51502e != 0) {
+                int i7 = (int) ((1.0d - (i() / this.f51502e)) * 100.0d);
+                this.f51500b = i7;
                 if (i7 == 0) {
-                    this.f51502b = -1;
+                    this.f51500b = -1;
                 }
             }
         }
-        return this.f51502b;
+        return this.f51500b;
     }
 
     public final String d() {
-        if (!org.telegram.messenger.r2.b() && this.f51501a.store_product != null) {
-            if (this.f51505f == null) {
+        if (!org.telegram.messenger.r2.b() && this.f51499a.store_product != null) {
+            if (this.f51503f == null) {
                 return "";
             }
             org.telegram.messenger.r1 i7 = org.telegram.messenger.r1.i();
@@ -93,8 +93,8 @@ public final class ws0 {
     }
 
     public final String e() {
-        if (!org.telegram.messenger.r2.b() && this.f51501a.store_product != null) {
-            if (this.f51505f == null) {
+        if (!org.telegram.messenger.r2.b() && this.f51499a.store_product != null) {
+            if (this.f51503f == null) {
                 return "";
             }
             org.telegram.messenger.r1 i7 = org.telegram.messenger.r1.i();
@@ -107,8 +107,8 @@ public final class ws0 {
     }
 
     public final String f() {
-        if (!org.telegram.messenger.r2.b() && this.f51501a.store_product != null) {
-            if (this.f51505f == null) {
+        if (!org.telegram.messenger.r2.b() && this.f51499a.store_product != null) {
+            if (this.f51503f == null) {
                 return "";
             }
             org.telegram.messenger.r1 i7 = org.telegram.messenger.r1.i();
@@ -122,11 +122,11 @@ public final class ws0 {
 
     public final long g() {
         boolean b10 = org.telegram.messenger.r2.b();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f51501a;
+        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f51499a;
         if (!b10 && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f51505f != null) {
+            if (this.f51503f != null) {
                 a();
-                f5.k kVar = this.f51506g;
+                f5.k kVar = this.f51504g;
                 if (kVar == null) {
                     return 0L;
                 }
@@ -138,20 +138,20 @@ public final class ws0 {
     }
 
     public final long h() {
-        if (this.f51503c == 0) {
+        if (this.f51501c == 0) {
             long g10 = g();
             if (g10 != 0) {
-                this.f51503c = g10 / this.f51501a.months;
+                this.f51501c = g10 / this.f51499a.months;
             }
         }
-        return this.f51503c;
+        return this.f51501c;
     }
 
     public final long i() {
         if (this.d == 0) {
             long g10 = g();
             if (g10 != 0) {
-                this.d = (long) ((g10 / this.f51501a.months) * 12.0d);
+                this.d = (long) ((g10 / this.f51499a.months) * 12.0d);
             }
         }
         return this.d;

@@ -24,7 +24,7 @@ public final class y7 extends ImageReceiver {
             if (J0 != -1 && J0 != 0) {
                 imageView.setBackground(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(12.0f), z7Var.K));
             } else {
-                int i11 = org.telegram.ui.ActionBar.k6.f28087q5;
+                int i11 = org.telegram.ui.ActionBar.k6.f28088q5;
                 org.telegram.ui.ActionBar.f6 f6Var = this.J1;
                 z7Var.K = org.telegram.ui.ActionBar.k6.w0(i11, f6Var);
                 org.telegram.ui.ActionBar.r6.C(imageView, org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(12.0f), z7Var.K), org.telegram.ui.ActionBar.r6.N(i11), f6Var);

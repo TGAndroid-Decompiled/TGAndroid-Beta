@@ -2,12 +2,12 @@ package org.telegram.ui.Components;
 
 import android.graphics.Point;
 public final class jq0 implements ej0 {
-    public final zp0 f35019a;
-    public final xs0 f35020b;
+    public final zp0 f35045a;
+    public final xs0 f35046b;
 
     public jq0(xs0 xs0Var, zp0 zp0Var) {
-        this.f35020b = xs0Var;
-        this.f35019a = zp0Var;
+        this.f35046b = xs0Var;
+        this.f35045a = zp0Var;
     }
 
     @Override
@@ -17,9 +17,9 @@ public final class jq0 implements ej0 {
 
     @Override
     public final void i() {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f35020b.f40424x1;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f35046b.f40440x1;
         if (f2Var != null) {
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             if (point.x > point.y) {
                 f2Var.finishPreviewFragment();
             }
@@ -28,9 +28,9 @@ public final class jq0 implements ej0 {
 
     @Override
     public final void q(float f10) {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f35020b.f40424x1;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f35046b.f40440x1;
         if (f2Var != null) {
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             if (point.x > point.y) {
                 f2Var.movePreviewFragment(f10);
             }

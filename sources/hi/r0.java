@@ -58,7 +58,7 @@ public final class r0 {
     }
 
     public static void c() {
-        Context context = org.telegram.messenger.t0.f25555b;
+        Context context = org.telegram.messenger.t0.f25563b;
         if (context == null) {
             return;
         }
@@ -154,7 +154,7 @@ public final class r0 {
             activity = org.telegram.messenger.g0.W(this.f14917a);
         }
         if (activity == null) {
-            return org.telegram.messenger.g0.W(org.telegram.messenger.t0.f25555b);
+            return org.telegram.messenger.g0.W(org.telegram.messenger.t0.f25563b);
         }
         return activity;
     }
@@ -183,14 +183,14 @@ public final class r0 {
             TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(this.f14919c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f11, null);
             SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753057, t10.p(a22), t10.p(a22)));
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
             u1Var.T = X2;
             q0 q0Var = new q0(this.f14917a, p10.i(i7).f(), a22);
             int i10 = k6.L5;
             int x02 = k6.x0(null, i10, false);
-            u1Var.f28551b0 = q0Var;
-            u1Var.f28554c0 = x02;
-            u1Var.f28556d0 = -1;
+            u1Var.f28552b0 = q0Var;
+            u1Var.f28555c0 = x02;
+            u1Var.f28557d0 = -1;
             alertDialog$Builder.n(i10, null);
             if (!a() && (f10 = f()) != null && (!f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(hd.M0(2131753053, null), new a3.h(f11, zArr, nVar, 11));
@@ -304,7 +304,7 @@ public final class r0 {
     public final void j(c20 c20Var) {
         JSONObject jSONObject = new JSONObject();
         if (this.f14920e && a() && d()) {
-            LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f25555b.getSystemService("location");
+            LocationManager locationManager = (LocationManager) org.telegram.messenger.t0.f25563b.getSystemService("location");
             List<String> providers = locationManager.getProviders(true);
             Location location = null;
             for (int size = providers.size() - 1; size >= 0; size--) {
@@ -316,7 +316,7 @@ public final class r0 {
             if (location == null && !locationManager.isProviderEnabled("gps")) {
                 Context context = LaunchActivity.G1;
                 if (context == null) {
-                    context = org.telegram.messenger.t0.f25555b;
+                    context = org.telegram.messenger.t0.f25563b;
                 }
                 if (context != null) {
                     try {
@@ -324,7 +324,7 @@ public final class r0 {
                         int i7 = k6.L5;
                         alertDialog$Builder.m(2131624119, 72, k6.x0(null, i7, false), null);
                         alertDialog$Builder.n(i7, null);
-                        alertDialog$Builder.f27292a.T = hd.M0(2131749529, null);
+                        alertDialog$Builder.f27293a.T = hd.M0(2131749529, null);
                         alertDialog$Builder.k(hd.M0(2131751161, null), new qb(context, 1));
                         alertDialog$Builder.h(hd.M0(2131752589, null), null);
                         alertDialog$Builder.p();
@@ -378,14 +378,14 @@ public final class r0 {
             TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(this.f14919c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f(), null);
             SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753057, t10.p(a22), t10.p(a22)));
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
             u1Var.T = X2;
             q0 q0Var = new q0(this.f14917a, p10.i(i7).f(), a22);
             int i10 = k6.L5;
             int x02 = k6.x0(null, i10, false);
-            u1Var.f28551b0 = q0Var;
-            u1Var.f28554c0 = x02;
-            u1Var.f28556d0 = -1;
+            u1Var.f28552b0 = q0Var;
+            u1Var.f28555c0 = x02;
+            u1Var.f28557d0 = -1;
             alertDialog$Builder.n(i10, null);
             Activity f11 = f();
             if (f11 == null || (f11.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f11.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {

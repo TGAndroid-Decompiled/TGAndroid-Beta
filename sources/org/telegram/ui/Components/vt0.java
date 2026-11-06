@@ -24,37 +24,37 @@ public final class vt0 extends View {
     public final w5 M;
     public ut0 N;
     public final org.telegram.ui.ActionBar.f6 O;
-    public final tt0 f39680a;
-    public final Paint f39681b;
-    public final Paint f39682c;
+    public final tt0 f39701a;
+    public final Paint f39702b;
+    public final Paint f39703c;
     public final TextPaint d;
-    public int f39683e;
-    public int f39684f;
+    public int f39704e;
+    public int f39705f;
     public int h;
-    public int f39685n;
-    public int f39686r;
-    public int f39687s;
-    public boolean f39688w;
-    public boolean f39689x;
-    public float f39690y;
+    public int f39706n;
+    public int f39707r;
+    public int f39708s;
+    public boolean f39709w;
+    public boolean f39710x;
+    public float f39711y;
 
     public vt0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f39687s = -1;
+        this.f39708s = -1;
         this.J = Integer.MIN_VALUE;
-        xq xqVar = xq.f40329f;
+        xq xqVar = xq.f40345f;
         this.L = new w5(this, 120L, xqVar);
         this.M = new w5(this, 150L, xqVar);
         this.O = f6Var;
-        this.f39681b = new Paint(1);
+        this.f39702b = new Paint(1);
         TextPaint textPaint = new TextPaint(1);
         this.d = textPaint;
         Paint paint = new Paint(1);
-        this.f39682c = paint;
+        this.f39703c = paint;
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         paint.setStrokeCap(Paint.Cap.ROUND);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
-        this.f39680a = new tt0(0, this);
+        this.f39701a = new tt0(0, this);
     }
 
     public void setOption(int i7) {
@@ -113,7 +113,7 @@ public final class vt0 extends View {
         float e10 = this.L.e(false, this.I);
         float f15 = 0.0f;
         float f16 = 1.0f;
-        if (this.f39688w) {
+        if (this.f39709w) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
@@ -125,11 +125,11 @@ public final class vt0 extends View {
         while (true) {
             int length = this.F.length;
             org.telegram.ui.ActionBar.f6 f6Var2 = this.O;
-            Paint paint = this.f39681b;
+            Paint paint = this.f39702b;
             if (i12 < length) {
-                int i13 = this.f39685n;
-                int i14 = (this.h * i11) + this.f39686r;
-                int i15 = this.f39684f;
+                int i13 = this.f39706n;
+                int i14 = (this.h * i11) + this.f39707r;
+                int i15 = this.f39705f;
                 int i16 = (i15 / i11) + ((i14 + i15) * i12) + i13;
                 float f17 = i12;
                 float f18 = f17 - e10;
@@ -148,27 +148,27 @@ public final class vt0 extends View {
                 }
                 int f20 = i0.a.f(a10, w02, org.telegram.ui.ActionBar.k6.r1(f11, w03));
                 paint.setColor(f20);
-                Paint paint2 = this.f39682c;
+                Paint paint2 = this.f39703c;
                 paint2.setColor(f20);
                 float f21 = L3;
-                canvas2.drawCircle(i16, f21, org.telegram.messenger.g0.W1(max, this.f39684f / 2, org.telegram.messenger.g0.L(6.0f)), paint);
+                canvas2.drawCircle(i16, f21, org.telegram.messenger.g0.W1(max, this.f39705f / 2, org.telegram.messenger.g0.L(6.0f)), paint);
                 if (i12 != 0) {
                     f12 = 3.0f;
-                    int i19 = (i16 - (this.f39684f / 2)) - this.h;
-                    int i20 = this.f39686r;
+                    int i19 = (i16 - (this.f39705f / 2)) - this.h;
+                    int i20 = this.f39707r;
                     int i21 = i19 - i20;
-                    int i22 = this.f39687s;
+                    int i22 = this.f39708s;
                     if (i22 != -1 && i12 - 1 >= i22) {
                         int L4 = org.telegram.messenger.g0.L(3.0f) + i21;
                         int L5 = (i20 - org.telegram.messenger.g0.L(3.0f)) / org.telegram.messenger.g0.L(13.0f);
-                        if (this.f39683e != L5) {
+                        if (this.f39704e != L5) {
                             i10 = L4;
                             i7 = i16;
                             float[] fArr = new float[i18];
                             fArr[c11] = org.telegram.messenger.g0.L(6.0f);
                             fArr[1] = org.telegram.messenger.camera.q.A(8.0f, L5, L2) / (L5 - 1);
                             paint2.setPathEffect(new DashPathEffect(fArr, 0.0f));
-                            this.f39683e = L5;
+                            this.f39704e = L5;
                         } else {
                             i10 = L4;
                             i7 = i16;
@@ -193,7 +193,7 @@ public final class vt0 extends View {
                 }
                 int i23 = this.G[i12];
                 String str = this.F[i12];
-                int f23 = i0.a.f(max, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28240y6, f6Var), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28030n6, f6Var));
+                int f23 = i0.a.f(max, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28241y6, f6Var), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28031n6, f6Var));
                 TextPaint textPaint = this.d;
                 textPaint.setColor(f23);
                 if (this.H != null) {
@@ -236,9 +236,9 @@ public final class vt0 extends View {
                 f16 = f19;
                 i11 = 2;
             } else {
-                int i24 = (this.h * 2) + this.f39686r;
-                int i25 = this.f39684f;
-                float f24 = ((i24 + i25) * e10) + this.f39685n + (i25 / 2);
+                int i24 = (this.h * 2) + this.f39707r;
+                int i25 = this.f39705f;
+                float f24 = ((i24 + i25) * e10) + this.f39706n + (i25 / 2);
                 int i26 = org.telegram.ui.ActionBar.k6.N6;
                 paint.setColor(i0.a.o(org.telegram.ui.ActionBar.k6.w0(i26, f6Var2), 80));
                 float f25 = L3;
@@ -253,19 +253,19 @@ public final class vt0 extends View {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f39680a.e(this, accessibilityNodeInfo);
+        this.f39701a.e(this, accessibilityNodeInfo);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(74.0f), 1073741824));
-        this.f39684f = org.telegram.messenger.g0.L(6.0f);
+        this.f39705f = org.telegram.messenger.g0.L(6.0f);
         this.h = org.telegram.messenger.g0.L(2.0f);
-        this.f39685n = org.telegram.messenger.g0.L(22.0f);
+        this.f39706n = org.telegram.messenger.g0.L(22.0f);
         int measuredWidth = getMeasuredWidth();
-        int i11 = this.f39684f;
+        int i11 = this.f39705f;
         String[] strArr = this.F;
-        this.f39686r = (((measuredWidth - (i11 * strArr.length)) - ((strArr.length - 1) * (this.h * 2))) - (this.f39685n * 2)) / Math.max(1, strArr.length - 1);
+        this.f39707r = (((measuredWidth - (i11 * strArr.length)) - ((strArr.length - 1) * (this.h * 2))) - (this.f39706n * 2)) / Math.max(1, strArr.length - 1);
     }
 
     @Override
@@ -274,7 +274,7 @@ public final class vt0 extends View {
         boolean z9;
         float x10 = motionEvent.getX();
         float y10 = motionEvent.getY();
-        float a10 = c8.j9.a(((this.f39684f / 2.0f) + (x10 - this.f39685n)) / (((this.h * 2) + this.f39686r) + i7), 0.0f, this.F.length - 1);
+        float a10 = c8.j9.a(((this.f39705f / 2.0f) + (x10 - this.f39706n)) / (((this.h * 2) + this.f39707r) + i7), 0.0f, this.F.length - 1);
         if (Math.abs(a10 - Math.round(a10)) < 0.35f) {
             z9 = true;
         } else {
@@ -288,22 +288,22 @@ public final class vt0 extends View {
             a10 = Math.max(a10, i10);
         }
         if (motionEvent.getAction() == 0) {
-            this.f39690y = x10;
+            this.f39711y = x10;
             this.D = y10;
             this.K = a10;
             this.E = this.I;
-            this.f39689x = true;
+            this.f39710x = true;
             invalidate();
             return true;
         } else if (motionEvent.getAction() == 2) {
-            if (!this.f39688w && Math.abs(this.f39690y - x10) > Math.abs(this.D - y10)) {
+            if (!this.f39709w && Math.abs(this.f39711y - x10) > Math.abs(this.D - y10)) {
                 getParent().requestDisallowInterceptTouchEvent(true);
             }
-            if (this.f39689x && Math.abs(this.f39690y - x10) >= org.telegram.messenger.g0.f22516e) {
-                this.f39688w = true;
-                this.f39689x = false;
+            if (this.f39710x && Math.abs(this.f39711y - x10) >= org.telegram.messenger.g0.f22523e) {
+                this.f39709w = true;
+                this.f39710x = false;
             }
-            if (this.f39688w) {
+            if (this.f39709w) {
                 this.K = a10;
                 invalidate();
                 if (Math.round(this.K) != this.I && z9) {
@@ -315,7 +315,7 @@ public final class vt0 extends View {
         } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
             return true;
         } else {
-            if (!this.f39688w) {
+            if (!this.f39709w) {
                 this.K = a10;
                 if (motionEvent.getAction() == 1 && Math.round(this.K) != this.I) {
                     setOption(Math.round(this.K));
@@ -330,8 +330,8 @@ public final class vt0 extends View {
             if (ut0Var != null) {
                 ut0Var.n();
             }
-            this.f39689x = false;
-            this.f39688w = false;
+            this.f39710x = false;
+            this.f39709w = false;
             invalidate();
             getParent().requestDisallowInterceptTouchEvent(false);
             return true;
@@ -340,7 +340,7 @@ public final class vt0 extends View {
 
     @Override
     public final boolean performAccessibilityAction(int i7, Bundle bundle) {
-        if (!super.performAccessibilityAction(i7, bundle) && !this.f39680a.g(this, i7, bundle)) {
+        if (!super.performAccessibilityAction(i7, bundle) && !this.f39701a.g(this, i7, bundle)) {
             return false;
         }
         return true;
@@ -351,7 +351,7 @@ public final class vt0 extends View {
     }
 
     public void setDashedFrom(int i7) {
-        this.f39687s = i7;
+        this.f39708s = i7;
     }
 
     public void setMinAllowedIndex(int i7) {

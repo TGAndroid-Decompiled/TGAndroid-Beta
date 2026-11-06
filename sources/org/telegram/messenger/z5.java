@@ -69,10 +69,10 @@ public final class z5 extends c1 implements ls {
         this.H = new ArrayList();
         this.I = new SparseArray();
         this.S = new m.f3(this, 5);
-        SharedPreferences sharedPreferences = qp.s1(this.currentAccount).f24759e7;
+        SharedPreferences sharedPreferences = qp.s1(this.currentAccount).f24767e7;
         y5 y5Var = new y5(sharedPreferences.getString("preset0", "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0"), "1_1_1_1_1048576_512000_512000_524288_0_0_1_1_50_0");
         this.J = y5Var;
-        y5Var.f26575e = false;
+        y5Var.f26583e = false;
         this.K = new y5(sharedPreferences.getString("preset1", "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_10485760_1048576_524288_1_1_1_0_100_1");
         this.L = new y5(sharedPreferences.getString("preset2", "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1"), "13_13_13_13_1048576_15728640_3145728_524288_1_1_1_0_100_1");
         boolean contains = sharedPreferences.contains("newConfig");
@@ -121,18 +121,18 @@ public final class z5 extends c1 implements ls {
                 }
                 i10 = i12 + 1;
             }
-            jArr[2] = sharedPreferences.getLong("mobileMaxDownloadSize2", this.K.f26573b[1]);
-            jArr[3] = sharedPreferences.getLong("mobileMaxDownloadSize3", this.K.f26573b[2]);
-            jArr2[2] = sharedPreferences.getLong("wifiMaxDownloadSize2", this.L.f26573b[1]);
-            jArr2[3] = sharedPreferences.getLong("wifiMaxDownloadSize3", this.L.f26573b[2]);
-            jArr3[2] = sharedPreferences.getLong("roamingMaxDownloadSize2", this.J.f26573b[1]);
-            jArr3[3] = sharedPreferences.getLong("roamingMaxDownloadSize3", this.J.f26573b[2]);
+            jArr[2] = sharedPreferences.getLong("mobileMaxDownloadSize2", this.K.f26581b[1]);
+            jArr[3] = sharedPreferences.getLong("mobileMaxDownloadSize3", this.K.f26581b[2]);
+            jArr2[2] = sharedPreferences.getLong("wifiMaxDownloadSize2", this.L.f26581b[1]);
+            jArr2[3] = sharedPreferences.getLong("wifiMaxDownloadSize3", this.L.f26581b[2]);
+            jArr3[2] = sharedPreferences.getLong("roamingMaxDownloadSize2", this.J.f26581b[1]);
+            jArr3[3] = sharedPreferences.getLong("roamingMaxDownloadSize3", this.J.f26581b[2]);
             boolean z9 = sharedPreferences.getBoolean("globalAutodownloadEnabled", true);
-            y5 y5Var2 = new y5(iArr, this.K.f26573b[0], jArr[2], jArr[3], true, true, z9, false, 100, false);
+            y5 y5Var2 = new y5(iArr, this.K.f26581b[0], jArr[2], jArr[3], true, true, z9, false, 100, false);
             this.M = y5Var2;
-            y5 y5Var3 = new y5(iArr2, this.L.f26573b[0], jArr2[2], jArr2[3], true, true, z9, false, 100, true);
+            y5 y5Var3 = new y5(iArr2, this.L.f26581b[0], jArr2[2], jArr2[3], true, true, z9, false, 100, true);
             this.N = y5Var3;
-            y5 y5Var4 = new y5(iArr3, this.J.f26573b[0], jArr3[2], jArr3[3], false, false, z9, true, 50, true);
+            y5 y5Var4 = new y5(iArr3, this.J.f26581b[0], jArr3[2], jArr3[3], false, false, z9, true, 50, true);
             this.O = y5Var4;
             SharedPreferences.Editor edit = sharedPreferences.edit();
             edit.putBoolean("newConfig", true);
@@ -161,9 +161,9 @@ public final class z5 extends c1 implements ls {
         androidx.mediarouter.app.f fVar = new androidx.mediarouter.app.f(this, 5);
         IntentFilter intentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
         if (Build.VERSION.SDK_INT >= 33) {
-            t0.f25555b.registerReceiver(fVar, intentFilter, 4);
+            t0.f25563b.registerReceiver(fVar, intentFilter, 4);
         } else {
-            t0.f25555b.registerReceiver(fVar, intentFilter);
+            t0.f25563b.registerReceiver(fVar, intentFilter);
         }
         if (getUserConfig().p()) {
             g();
@@ -252,24 +252,24 @@ public final class z5 extends c1 implements ls {
         y5 n10;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (this.N.f26577g) {
+            if (this.N.f26585g) {
                 n10 = p();
             } else {
                 return false;
             }
         } else if (e10 == 2) {
-            if (this.O.f26577g) {
+            if (this.O.f26585g) {
                 n10 = o();
             } else {
                 return false;
             }
-        } else if (this.M.f26577g) {
+        } else if (this.M.f26585g) {
             n10 = n();
         } else {
             return false;
         }
-        int i10 = n10.f26572a[1];
-        long j10 = n10.f26573b[x(i7)];
+        int i10 = n10.f26580a[1];
+        long j10 = n10.f26581b[x(i7)];
         if (i7 == 1 || (j3 != 0 && j3 <= j10)) {
             if (i7 == 2 || (i7 & i10) != 0) {
                 return true;
@@ -283,7 +283,7 @@ public final class z5 extends c1 implements ls {
         TL_stories.StoryItem storyItem;
         TLRPC.MessageMedia messageMedia;
         if (ijVar.D == 23) {
-            int i7 = iz.f23357a;
+            int i7 = iz.f23364a;
             if (rc.e(1024) && (storyItem = ((TLRPC.TL_messageMediaStory) ij.n1(ijVar)).storyItem) != null && (messageMedia = storyItem.media) != null && messageMedia.document != null && storyItem.isPublic) {
                 return true;
             }
@@ -346,18 +346,18 @@ public final class z5 extends c1 implements ls {
                     this.f26801w = false;
                     u();
                     try {
-                        ArrayList arrayList3 = (ArrayList) getSendMessagesHelper().f22751a.get(str);
+                        ArrayList arrayList3 = (ArrayList) getSendMessagesHelper().f22758a.get(str);
                         if (arrayList3 != null) {
                             for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                                 sy syVar = (sy) arrayList3.get(i14);
-                                if (syVar.f25538n == null) {
-                                    long j3 = syVar.f25527a;
+                                if (syVar.f25546n == null) {
+                                    long j3 = syVar.f25535a;
                                     Long l14 = (Long) hVar.f(j3);
-                                    if (syVar.f25530e == 4) {
+                                    if (syVar.f25538e == 4) {
                                         if (l14 != null && l14.longValue() + 4000 >= System.currentTimeMillis()) {
                                         }
                                         ij ijVar = (ij) syVar.E.get(str + "_i");
-                                        if (ijVar != null && ij.M4(ijVar.f23237k)) {
+                                        if (ijVar != null && ij.M4(ijVar.f23244k)) {
                                             getMessagesController().C4(5, 0, j3, 0, null);
                                         } else if (ijVar != null && ijVar.F0() != null) {
                                             getMessagesController().C4(3, 0, j3, 0, null);
@@ -366,17 +366,17 @@ public final class z5 extends c1 implements ls {
                                         }
                                         hVar.k(Long.valueOf(System.currentTimeMillis()), j3);
                                     } else {
-                                        syVar.f25537m.F0();
+                                        syVar.f25545m.F0();
                                         if (l14 == null || l14.longValue() + 4000 < System.currentTimeMillis()) {
-                                            if (syVar.f25537m.i4()) {
+                                            if (syVar.f25545m.i4()) {
                                                 getMessagesController().C4(8, 0, j3, 0, null);
-                                            } else if (ij.M4(syVar.f25537m.f23237k)) {
+                                            } else if (ij.M4(syVar.f25545m.f23244k)) {
                                                 getMessagesController().C4(5, 0, j3, 0, null);
-                                            } else if (ij.S4(syVar.f25537m.f23237k)) {
+                                            } else if (ij.S4(syVar.f25545m.f23244k)) {
                                                 getMessagesController().C4(9, 0, j3, 0, null);
-                                            } else if (syVar.f25537m.F0() != null) {
+                                            } else if (syVar.f25545m.F0() != null) {
                                                 getMessagesController().C4(3, 0, j3, 0, null);
-                                            } else if (syVar.f25532g != null) {
+                                            } else if (syVar.f25540g != null) {
                                                 getMessagesController().C4(4, 0, j3, 0, null);
                                             }
                                             hVar.k(Long.valueOf(System.currentTimeMillis()), j3);
@@ -402,7 +402,7 @@ public final class z5 extends c1 implements ls {
             if (arrayList4 != null) {
                 int size3 = arrayList4.size();
                 for (int i15 = 0; i15 < size3; i15++) {
-                    ((ij) arrayList4.get(i15)).f23286x0 = true;
+                    ((ij) arrayList4.get(i15)).f23293x0 = true;
                 }
                 hashMap2.remove(str2);
             }
@@ -461,21 +461,21 @@ public final class z5 extends c1 implements ls {
         y5 n10;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (!this.N.f26577g) {
+            if (!this.N.f26585g) {
                 return false;
             }
             n10 = p();
         } else if (e10 == 2) {
-            if (!this.O.f26577g) {
+            if (!this.O.f26585g) {
                 return false;
             }
             n10 = o();
-        } else if (!this.M.f26577g) {
+        } else if (!this.M.f26585g) {
             return false;
         } else {
             n10 = n();
         }
-        return n10.f26575e;
+        return n10.f26583e;
     }
 
     public final void g() {
@@ -540,21 +540,21 @@ public final class z5 extends c1 implements ls {
                 }
                 arrayList4.clear();
             }
-            if (!this.M.f26577g && !this.O.f26577g && !this.N.f26577g) {
+            if (!this.M.f26585g && !this.O.f26585g && !this.N.f26585g) {
                 z9 = false;
             } else {
                 z9 = false;
                 for (int i17 = 0; i17 < 4; i17++) {
-                    if ((n().f26572a[i17] & 1) != 0 || (p().f26572a[i17] & 1) != 0 || (o().f26572a[i17] & 1) != 0) {
+                    if ((n().f26580a[i17] & 1) != 0 || (p().f26580a[i17] & 1) != 0 || (o().f26580a[i17] & 1) != 0) {
                         z9 |= true;
                     }
-                    if ((n().f26572a[i17] & 2) != 0 || (p().f26572a[i17] & 2) != 0 || (o().f26572a[i17] & 2) != 0) {
+                    if ((n().f26580a[i17] & 2) != 0 || (p().f26580a[i17] & 2) != 0 || (o().f26580a[i17] & 2) != 0) {
                         z9 |= true;
                     }
-                    if ((n().f26572a[i17] & 4) != 0 || (p().f26572a[i17] & 4) != 0 || (o().f26572a[i17] & 4) != 0) {
+                    if ((n().f26580a[i17] & 4) != 0 || (p().f26580a[i17] & 4) != 0 || (o().f26580a[i17] & 4) != 0) {
                         z9 |= true;
                     }
-                    if ((n().f26572a[i17] & 8) != 0 || (p().f26572a[i17] & 8) != 0 || (o().f26572a[i17] & 8) != 0) {
+                    if ((n().f26580a[i17] & 8) != 0 || (p().f26580a[i17] & 8) != 0 || (o().f26580a[i17] & 8) != 0) {
                         z9 |= true;
                     }
                 }
@@ -587,7 +587,7 @@ public final class z5 extends c1 implements ls {
             if (i7 == 0 || i7 == 2) {
                 yr messagesStorage = getMessagesStorage();
                 long j3 = a6Var.f21391c;
-                messagesStorage.f26688a.c(new aq(messagesStorage, a6Var.f21390b, j3, 6));
+                messagesStorage.f26696a.c(new aq(messagesStorage, a6Var.f21390b, j3, 6));
             }
             int i10 = a6Var.f21390b;
             if (i10 == 1) {
@@ -621,10 +621,10 @@ public final class z5 extends c1 implements ls {
     public final void i(int i7, long j3) {
         SparseArray sparseArray = this.I;
         ij ijVar = (ij) sparseArray.get(i7);
-        if (ijVar != null && ij.B0(ijVar.f23237k) == j3) {
+        if (ijVar != null && ij.B0(ijVar.f23244k) == j3) {
             sparseArray.remove(i7);
             if (sparseArray.size() == 0) {
-                getNotificationCenter().k(qs.f24961b5, new Object[0]);
+                getNotificationCenter().k(qs.f24969b5, new Object[0]);
             }
         }
     }
@@ -635,7 +635,7 @@ public final class z5 extends c1 implements ls {
             while (true) {
                 ArrayList arrayList2 = this.H;
                 if (i10 < arrayList2.size()) {
-                    if (((ij) arrayList.get(i7)).f1() == ((ij) arrayList2.get(i10)).f1() && ij.B0(((ij) arrayList2.get(i10)).f23237k) == ij.B0(((ij) arrayList.get(i7)).f23237k)) {
+                    if (((ij) arrayList.get(i7)).f1() == ((ij) arrayList2.get(i10)).f1() && ij.B0(((ij) arrayList2.get(i10)).f23244k) == ij.B0(((ij) arrayList.get(i7)).f23244k)) {
                         arrayList2.remove(i10);
                         break;
                     }
@@ -647,7 +647,7 @@ public final class z5 extends c1 implements ls {
                         if (i11 >= arrayList3.size()) {
                             break;
                         }
-                        if (((ij) arrayList.get(i7)).f1() == ((ij) arrayList3.get(i11)).f1() && ij.B0(((ij) arrayList3.get(i11)).f23237k) == ij.B0(((ij) arrayList.get(i7)).f23237k)) {
+                        if (((ij) arrayList.get(i7)).f1() == ((ij) arrayList3.get(i11)).f1() && ij.B0(((ij) arrayList3.get(i11)).f23244k) == ij.B0(((ij) arrayList.get(i7)).f23244k)) {
                             arrayList3.remove(i11);
                             break;
                         }
@@ -656,11 +656,11 @@ public final class z5 extends c1 implements ls {
                 }
             }
             ((ij) arrayList.get(i7)).P = false;
-            w7.G(this.currentAccount).X(((ij) arrayList.get(i7)).F0(), arrayList.get(i7), 0, 0);
+            w7.G(this.currentAccount).W(((ij) arrayList.get(i7)).F0(), arrayList.get(i7), 0, 0);
             w7.G(this.currentAccount).f(((ij) arrayList.get(i7)).F0());
         }
-        getNotificationCenter().k(qs.f24961b5, new Object[0]);
-        getMessagesStorage().f26688a.c(new b4(3, this, arrayList));
+        getNotificationCenter().k(qs.f24969b5, new Object[0]);
+        getMessagesStorage().f26696a.c(new b4(3, this, arrayList));
     }
 
     public final int k() {
@@ -674,19 +674,19 @@ public final class z5 extends c1 implements ls {
         int i7;
         int e10 = t0.e();
         if (e10 == 1) {
-            if (!this.N.f26577g) {
+            if (!this.N.f26585g) {
                 return 0;
             }
-            iArr = p().f26572a;
+            iArr = p().f26580a;
         } else if (e10 == 2) {
-            if (!this.O.f26577g) {
+            if (!this.O.f26585g) {
                 return 0;
             }
-            iArr = o().f26572a;
-        } else if (!this.M.f26577g) {
+            iArr = o().f26580a;
+        } else if (!this.M.f26585g) {
             return 0;
         } else {
-            iArr = n().f26572a;
+            iArr = n().f26580a;
         }
         int i10 = 0;
         for (int i11 = 0; i11 < iArr.length; i11++) {
@@ -714,31 +714,31 @@ public final class z5 extends c1 implements ls {
         int e10 = t0.e();
         int i7 = 0;
         if (e10 == 1) {
-            if (!this.N.f26577g) {
+            if (!this.N.f26585g) {
                 return 0;
             }
             int i10 = 0;
             while (i7 < 4) {
-                i10 |= p().f26572a[i7];
+                i10 |= p().f26580a[i7];
                 i7++;
             }
             return i10;
         } else if (e10 == 2) {
-            if (!this.O.f26577g) {
+            if (!this.O.f26585g) {
                 return 0;
             }
             int i11 = 0;
             while (i7 < 4) {
-                i11 |= o().f26572a[i7];
+                i11 |= o().f26580a[i7];
                 i7++;
             }
             return i11;
-        } else if (!this.M.f26577g) {
+        } else if (!this.M.f26585g) {
             return 0;
         } else {
             int i12 = 0;
             while (i7 < 4) {
-                i12 |= n().f26572a[i7];
+                i12 |= n().f26580a[i7];
                 i7++;
             }
             return i12;
@@ -789,7 +789,7 @@ public final class z5 extends c1 implements ls {
 
     public final void s(boolean z9) {
         if (!this.E) {
-            if (z9 || Math.abs(System.currentTimeMillis() - getUserConfig().f24462a0) >= 86400000) {
+            if (z9 || Math.abs(System.currentTimeMillis() - getUserConfig().f24470a0) >= 86400000) {
                 this.E = true;
                 getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new s1(this, 1));
             }
@@ -800,19 +800,19 @@ public final class z5 extends c1 implements ls {
         int m10 = m();
         if ((m10 & 1) != 0 && (i7 & 1) != 0 && this.f26794b.isEmpty()) {
             yr messagesStorage = getMessagesStorage();
-            messagesStorage.f26688a.c(new tp(messagesStorage, 1, 6));
+            messagesStorage.f26696a.c(new tp(messagesStorage, 1, 6));
         }
         if ((m10 & 2) != 0 && (i7 & 2) != 0 && this.f26795c.isEmpty()) {
             yr messagesStorage2 = getMessagesStorage();
-            messagesStorage2.f26688a.c(new tp(messagesStorage2, 2, 6));
+            messagesStorage2.f26696a.c(new tp(messagesStorage2, 2, 6));
         }
         if ((m10 & 4) != 0 && (i7 & 4) != 0 && this.f26796e.isEmpty()) {
             yr messagesStorage3 = getMessagesStorage();
-            messagesStorage3.f26688a.c(new tp(messagesStorage3, 4, 6));
+            messagesStorage3.f26696a.c(new tp(messagesStorage3, 4, 6));
         }
         if ((m10 & 8) != 0 && (i7 & 8) != 0 && this.d.isEmpty()) {
             yr messagesStorage4 = getMessagesStorage();
-            messagesStorage4.f26688a.c(new tp(messagesStorage4, 8, 6));
+            messagesStorage4.f26696a.c(new tp(messagesStorage4, 8, 6));
         }
     }
 
@@ -869,21 +869,21 @@ public final class z5 extends c1 implements ls {
         TL_account.saveAutoDownloadSettings saveautodownloadsettings = new TL_account.saveAutoDownloadSettings();
         if (i7 == 0) {
             o4 = n();
-            z9 = this.M.f26577g;
+            z9 = this.M.f26585g;
         } else if (i7 == 1) {
             o4 = p();
-            z9 = this.N.f26577g;
+            z9 = this.N.f26585g;
         } else {
             o4 = o();
-            z9 = this.O.f26577g;
+            z9 = this.O.f26585g;
         }
         TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings = new TLRPC.TL_autoDownloadSettings();
         saveautodownloadsettings.settings = tL_autoDownloadSettings;
         boolean z10 = o4.d;
-        long[] jArr = o4.f26573b;
+        long[] jArr = o4.f26581b;
         tL_autoDownloadSettings.audio_preload_next = z10;
-        tL_autoDownloadSettings.video_preload_large = o4.f26574c;
-        tL_autoDownloadSettings.phonecalls_less_data = o4.f26576f;
+        tL_autoDownloadSettings.video_preload_large = o4.f26582c;
+        tL_autoDownloadSettings.phonecalls_less_data = o4.f26584f;
         tL_autoDownloadSettings.video_upload_maxbitrate = o4.h;
         tL_autoDownloadSettings.disabled = !z9;
         int i10 = 0;
@@ -892,7 +892,7 @@ public final class z5 extends c1 implements ls {
         boolean z12 = false;
         boolean z13 = false;
         while (true) {
-            int[] iArr = o4.f26572a;
+            int[] iArr = o4.f26580a;
             if (i11 >= iArr.length) {
                 break;
             }
@@ -933,8 +933,8 @@ public final class z5 extends c1 implements ls {
     public final void y() {
         ArrayList arrayList = this.G;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (getFileLoader().T(((ij) arrayList.get(size)).S0())) {
-                getFileLoader().X(((ij) arrayList.get(size)).F0(), arrayList.get(size), 2, 0);
+            if (getFileLoader().S(((ij) arrayList.get(size)).S0())) {
+                getFileLoader().W(((ij) arrayList.get(size)).F0(), arrayList.get(size), 2, 0);
             }
         }
     }

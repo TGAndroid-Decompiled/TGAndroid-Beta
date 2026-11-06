@@ -12,7 +12,7 @@ public final class u7 extends mm0 {
 
     @Override
     public final boolean d(MotionEvent motionEvent) {
-        if (this.m0.f32064x2 != 0) {
+        if (this.m0.f32098x2 != 0) {
             return false;
         }
         return super.d(motionEvent);

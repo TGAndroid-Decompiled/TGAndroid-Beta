@@ -71,7 +71,7 @@ public final class yc extends LinearLayout {
         linearLayout.addView(w70Var, c8.ha.k(0.0f, 0.0f, 0.0f, 0.33f, -1, -2));
         TextView textView2 = new TextView(context);
         this.f5100r = textView2;
-        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28258z6, f6Var);
+        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28259z6, f6Var);
         textView2.setTextSize(1, 14.0f);
         textView2.setEllipsize(truncateAt);
         textView2.setSingleLine(true);
@@ -92,7 +92,7 @@ public final class yc extends LinearLayout {
         wp wpVar = new wp(0, jg.g.h(context, 2131231957));
         wpVar.d = false;
         wpVar.c(org.telegram.messenger.g0.L(18.0f));
-        wpVar.f40063s = org.telegram.messenger.g0.L(0.5f);
+        wpVar.f40071s = org.telegram.messenger.g0.L(0.5f);
         spannableString2.setSpan(wpVar, 0, spannableString2.length(), 33);
     }
 
@@ -119,7 +119,7 @@ public final class yc extends LinearLayout {
         int i7;
         super.onDraw(canvas);
         if (this.D) {
-            if (org.telegram.messenger.hd.f22871a0) {
+            if (org.telegram.messenger.hd.f22878a0) {
                 L = 0.0f;
             } else {
                 L = org.telegram.messenger.g0.L(72.0f);
@@ -127,12 +127,12 @@ public final class yc extends LinearLayout {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (org.telegram.messenger.hd.f22871a0) {
+            if (org.telegram.messenger.hd.f22878a0) {
                 i7 = org.telegram.messenger.g0.L(72.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawRect(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27971k0);
+            canvas.drawRect(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27972k0);
         }
     }
 

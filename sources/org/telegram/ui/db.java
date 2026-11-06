@@ -32,7 +32,7 @@ public final class db extends mi.l {
             org.telegram.messenger.g0.r(gq0Var);
             this.X = null;
         }
-        if (org.telegram.messenger.r2.f25191a) {
+        if (org.telegram.messenger.r2.f25199a) {
             org.telegram.messenger.a8.b("admin logs chatItemAnimator disable notifications");
         }
     }

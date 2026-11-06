@@ -11,8 +11,8 @@ import android.widget.TextView;
 import c8.ha;
 import org.telegram.messenger.hd;
 public final class o1 extends FrameLayout {
-    public final TextView f28328a;
-    public final ImageView f28329b;
+    public final TextView f28329a;
+    public final ImageView f28330b;
 
     public o1(Context context, f6 f6Var) {
         super(context);
@@ -24,41 +24,41 @@ public final class o1 extends FrameLayout {
         r6.k(this, h02, null, N, f6Var);
         setPadding(org.telegram.messenger.g0.L(23.0f), 0, org.telegram.messenger.g0.L(23.0f), 0);
         ImageView imageView = new ImageView(context);
-        this.f28329b = imageView;
+        this.f28330b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         r6.t(imageView, k6.J5, f6Var, PorterDuff.Mode.MULTIPLY);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         addView(imageView, ha.e(-2, 40, i7 | 16));
         TextView textView = new TextView(context);
-        this.f28328a = textView;
+        this.f28329a = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        r6.V(textView, k6.f27956j5, f6Var);
+        r6.V(textView, k6.f27957j5, f6Var);
         textView.setTextSize(1, 16.0f);
-        addView(textView, ha.e(-2, -2, (hd.f22871a0 ? 5 : 3) | 16));
+        addView(textView, ha.e(-2, -2, (hd.f22878a0 ? 5 : 3) | 16));
     }
 
     public final void a(int i7, CharSequence charSequence) {
         int L;
         int i10;
-        TextView textView = this.f28328a;
+        TextView textView = this.f28329a;
         textView.setText(charSequence);
-        ImageView imageView = this.f28329b;
+        ImageView imageView = this.f28330b;
         if (i7 != 0) {
             imageView.setImageResource(i7);
             imageView.setVisibility(0);
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 L = 0;
             } else {
                 L = org.telegram.messenger.g0.L(56.0f);
             }
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 i10 = org.telegram.messenger.g0.L(56.0f);
             } else {
                 i10 = 0;
@@ -76,10 +76,10 @@ public final class o1 extends FrameLayout {
     }
 
     public void setGravity(int i7) {
-        this.f28328a.setGravity(i7);
+        this.f28329a.setGravity(i7);
     }
 
     public void setTextColor(int i7) {
-        this.f28328a.setTextColor(i7);
+        this.f28329a.setTextColor(i7);
     }
 }

@@ -28,38 +28,38 @@ public class zf0 extends View {
     public fh.g N;
     public float O;
     public float P;
-    public final PorterDuffColorFilter f40935a;
-    public final PorterDuffColorFilter f40936b;
-    public ly0 f40937c;
-    public ly0 d;
-    public zf0 f40938e;
-    public zf0 f40939f;
+    public final PorterDuffColorFilter f40955a;
+    public final PorterDuffColorFilter f40956b;
+    public my0 f40957c;
+    public my0 d;
+    public zf0 f40958e;
+    public zf0 f40959f;
     public final Paint h;
-    public final Paint f40940n;
-    public final Path f40941r;
-    public final Drawable f40942s;
-    public final RectF f40943w;
-    public final Paint f40944x;
-    public final Path f40945y;
+    public final Paint f40960n;
+    public final Path f40961r;
+    public final Drawable f40962s;
+    public final RectF f40963w;
+    public final Paint f40964x;
+    public final Path f40965y;
 
     public zf0(Context context) {
         super(context);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f40935a = new PorterDuffColorFilter(-1, mode);
-        this.f40936b = new PorterDuffColorFilter(-16777216, mode);
+        this.f40955a = new PorterDuffColorFilter(-1, mode);
+        this.f40956b = new PorterDuffColorFilter(-16777216, mode);
         this.h = new Paint();
         Paint paint = new Paint();
-        this.f40940n = paint;
+        this.f40960n = paint;
         Path path = new Path();
-        this.f40941r = path;
-        this.f40943w = new RectF();
-        this.f40944x = new Paint(1);
-        this.f40945y = new Path();
+        this.f40961r = path;
+        this.f40963w = new RectF();
+        this.f40964x = new Paint(1);
+        this.f40965y = new Path();
         this.D = new ic(this);
         this.E = -1;
         this.L = new Paint(1);
         this.M = new Matrix();
-        this.f40942s = jg.g.h(context, 2131231073);
+        this.f40962s = jg.g.h(context, 2131231073);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
@@ -86,13 +86,13 @@ public class zf0 extends View {
         }
         this.E = i7;
         if (z9) {
-            porterDuffColorFilter = this.f40936b;
+            porterDuffColorFilter = this.f40956b;
         } else {
-            porterDuffColorFilter = this.f40935a;
+            porterDuffColorFilter = this.f40955a;
         }
-        this.f40942s.setColorFilter(porterDuffColorFilter);
+        this.f40962s.setColorFilter(porterDuffColorFilter);
         this.h.setColor(this.E);
-        this.f40940n.setColor(org.telegram.ui.ActionBar.k6.r1(0.85f, this.E));
+        this.f40960n.setColor(org.telegram.ui.ActionBar.k6.r1(0.85f, this.E));
         invalidate();
     }
 
@@ -103,31 +103,31 @@ public class zf0 extends View {
         int i10 = L / 2;
         int i11 = i7 - i10;
         int i12 = i7 + i10;
-        Drawable drawable = this.f40942s;
+        Drawable drawable = this.f40962s;
         drawable.setBounds(0, i11, L, i12);
         drawable.draw(canvas);
         canvas.translate(org.telegram.messenger.g0.L(16.6f), 0.0f);
-        this.f40937c.c(0.0f, height, f10, this.E, canvas);
-        canvas.translate(this.f40937c.k(), 0.0f);
+        this.f40957c.c(0.0f, height, f10, this.E, canvas);
+        canvas.translate(this.f40957c.k(), 0.0f);
         this.d.c(0.0f, height, f10 * 0.85f, this.E, canvas);
         canvas.translate(this.d.k(), 0.0f);
         float N = org.telegram.messenger.g0.N(1.16f);
-        Paint paint = this.f40940n;
+        Paint paint = this.f40960n;
         paint.setStrokeWidth(N);
         canvas.translate(org.telegram.messenger.g0.N(4.8f), height);
-        canvas.drawPath(this.f40941r, paint);
+        canvas.drawPath(this.f40961r, paint);
     }
 
     public float c(float f10) {
         float max = Math.max(0.0f, ((f10 - org.telegram.messenger.g0.L(16.0f)) - org.telegram.messenger.g0.L(16.6f)) - org.telegram.messenger.g0.L(8.0f));
-        ly0 ly0Var = this.f40937c;
-        ly0Var.f35793p = max / 2.0f;
-        this.d.f35793p = Math.max(0.0f, max - ly0Var.k());
-        return this.d.k() + this.f40937c.k() + org.telegram.messenger.g0.L(16.6f) + org.telegram.messenger.g0.L(8.0f);
+        my0 my0Var = this.f40957c;
+        my0Var.f36136p = max / 2.0f;
+        this.d.f36136p = Math.max(0.0f, max - my0Var.k());
+        return this.d.k() + this.f40957c.k() + org.telegram.messenger.g0.L(16.6f) + org.telegram.messenger.g0.L(8.0f);
     }
 
     public final void d(int i7, boolean z9) {
-        zf0 zf0Var = this.f40938e;
+        zf0 zf0Var = this.f40958e;
         if (zf0Var != null) {
             zf0Var.d(i7, z9);
         }
@@ -137,7 +137,7 @@ public class zf0 extends View {
         this.H = i7;
         this.I = z9;
         this.J = null;
-        this.f40944x.setColor(i7);
+        this.f40964x.setColor(i7);
         a();
     }
 
@@ -147,33 +147,33 @@ public class zf0 extends View {
             return false;
         }
         int action = motionEvent.getAction();
-        RectF rectF = this.f40943w;
+        RectF rectF = this.f40963w;
         ic icVar = this.D;
         if (action == 0) {
             icVar.c(rectF.contains(motionEvent.getX(), motionEvent.getY()));
-        } else if (motionEvent.getAction() == 2 && icVar.f34555i) {
+        } else if (motionEvent.getAction() == 2 && icVar.f34585i) {
             if (!rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                 icVar.c(false);
             }
         } else if (motionEvent.getAction() == 3) {
             icVar.c(false);
         } else if (motionEvent.getAction() == 1) {
-            if (icVar.f34555i) {
+            if (icVar.f34585i) {
                 performClick();
             }
             icVar.c(false);
         }
-        return icVar.f34555i;
+        return icVar.f34585i;
     }
 
     public final void e(String str, String str2) {
-        this.f40937c = new ly0(str, 11.0f, org.telegram.messenger.g0.o());
-        this.d = new ly0(str2, 11.0f, null);
+        this.f40957c = new my0(str, 11.0f, org.telegram.messenger.g0.o());
+        this.d = new my0(str2, 11.0f, null);
         setContentDescription(org.telegram.messenger.hd.M0(2131754799, null) + " " + ((Object) str) + " — " + ((Object) str2));
     }
 
     public final void f(float f10, float f11) {
-        zf0 zf0Var = this.f40938e;
+        zf0 zf0Var = this.f40958e;
         if (zf0Var != null) {
             zf0Var.f(f10, f11);
         }
@@ -187,7 +187,7 @@ public class zf0 extends View {
         float c10;
         float width;
         float f10;
-        if (this.f40937c != null && this.d != null) {
+        if (this.f40957c != null && this.d != null) {
             float l10 = Utilities.l(this.P / org.telegram.messenger.g0.L(21.0f));
             float a10 = this.D.a(0.02f);
             if (l10 <= 0.0f) {
@@ -199,16 +199,16 @@ public class zf0 extends View {
                 return;
             }
             int width2 = getWidth() - (org.telegram.messenger.g0.L(12.0f) * 2);
-            zf0 zf0Var = this.f40938e;
+            zf0 zf0Var = this.f40958e;
             if (zf0Var == null) {
-                zf0Var = this.f40939f;
+                zf0Var = this.f40959f;
             }
             if (zf0Var != null && zf0Var.getVisibility() == 0) {
-                zf0 zf0Var2 = this.f40939f;
+                zf0 zf0Var2 = this.f40959f;
                 if (zf0Var2 == null) {
                     zf0Var2 = this;
                 }
-                zf0 zf0Var3 = this.f40938e;
+                zf0 zf0Var3 = this.f40958e;
                 if (zf0Var3 == null) {
                     zf0Var3 = this;
                 }
@@ -216,7 +216,7 @@ public class zf0 extends View {
                 c10 = zf0Var3.c(f11 / 2.0f) + org.telegram.messenger.g0.L(16.0f);
                 float c11 = zf0Var2.c(Math.max(0.0f, (f11 - c10) - org.telegram.messenger.g0.L(6.0f))) + org.telegram.messenger.g0.L(16.0f);
                 width = (((getWidth() - c11) - org.telegram.messenger.g0.L(6.0f)) - c10) / 2.0f;
-                zf0 zf0Var4 = this.f40939f;
+                zf0 zf0Var4 = this.f40959f;
                 if (zf0Var4 == null) {
                     c10 = c11;
                 }
@@ -227,7 +227,7 @@ public class zf0 extends View {
                 c10 = c(width2) + org.telegram.messenger.g0.L(16.0f);
                 width = (getWidth() - c10) / 2.0f;
             }
-            RectF rectF = this.f40943w;
+            RectF rectF = this.f40963w;
             rectF.set(width, org.telegram.messenger.g0.L(10.0f), c10 + width, (org.telegram.messenger.g0.L(17.0f) * l10) + org.telegram.messenger.g0.L(10.0f));
             canvas.save();
             canvas.scale(a10, a10, rectF.centerX(), getHeight() / 2.0f);
@@ -246,7 +246,7 @@ public class zf0 extends View {
                 } else {
                     f10 = 1.0f;
                 }
-                Paint paint = this.f40944x;
+                Paint paint = this.f40964x;
                 paint.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
                 int alpha = paint.getAlpha();
                 paint.setAlpha((int) (alpha * l10 * f10));
@@ -270,7 +270,7 @@ public class zf0 extends View {
                     canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, paint2);
                 }
             }
-            Path path = this.f40945y;
+            Path path = this.f40965y;
             path.rewind();
             path.addRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, Path.Direction.CW);
             canvas.save();
@@ -290,7 +290,7 @@ public class zf0 extends View {
     @Override
     public void setAlpha(float f10) {
         super.setAlpha(f10);
-        zf0 zf0Var = this.f40938e;
+        zf0 zf0Var = this.f40958e;
         if (zf0Var != null) {
             zf0Var.setAlpha(f10);
         }
@@ -304,7 +304,7 @@ public class zf0 extends View {
             z9 = false;
         }
         this.F = z9;
-        zf0 zf0Var = this.f40938e;
+        zf0 zf0Var = this.f40958e;
         if (zf0Var != null) {
             zf0Var.setColor(fpVar);
         }
@@ -313,12 +313,12 @@ public class zf0 extends View {
 
     public void setGlassFactory(dh.c cVar) {
         fh.g gVar;
-        zf0 zf0Var = this.f40938e;
+        zf0 zf0Var = this.f40958e;
         if (zf0Var != null) {
             zf0Var.setGlassFactory(cVar);
         }
         if (cVar != null) {
-            gVar = cVar.c(this, if0.f34573o, false);
+            gVar = cVar.c(this, if0.f34603o, false);
         } else {
             gVar = null;
         }
@@ -332,7 +332,7 @@ public class zf0 extends View {
     }
 
     public void setParentExpanded(float f10) {
-        zf0 zf0Var = this.f40938e;
+        zf0 zf0Var = this.f40958e;
         if (zf0Var != null) {
             zf0Var.setParentExpanded(f10);
         }
@@ -344,8 +344,8 @@ public class zf0 extends View {
     }
 
     public void setTrailingView(zf0 zf0Var) {
-        this.f40938e = zf0Var;
-        zf0Var.f40939f = this;
+        this.f40958e = zf0Var;
+        zf0Var.f40959f = this;
         invalidate();
         zf0Var.invalidate();
     }

@@ -7,18 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.WeakHashMap;
 public final class za1 extends ViewGroup {
-    public final Paint f52516a;
-    public View f52517b;
-    public boolean f52518c;
+    public final Paint f52514a;
+    public View f52515b;
+    public boolean f52516c;
 
     public za1(Context context) {
         super(context);
-        this.f52516a = new Paint(1);
+        this.f52514a = new Paint(1);
         setClipToPadding(false);
     }
 
     public final boolean a() {
-        View view = this.f52517b;
+        View view = this.f52515b;
         if (view != null && view.getVisibility() == 0) {
             return true;
         }
@@ -30,8 +30,8 @@ public final class za1 extends ViewGroup {
         int paddingBottom = getPaddingBottom();
         float T1 = org.telegram.messenger.g0.T1(0.1f, 0.75f, org.telegram.messenger.g0.R0(paddingBottom));
         int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false);
-        int k10 = i0.a.k(org.telegram.ui.ActionBar.k6.r1(T1, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27848d6, false)), x02);
-        Paint paint = this.f52516a;
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.k6.r1(T1, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false)), x02);
+        Paint paint = this.f52514a;
         paint.setColor(x02);
         canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
         paint.setColor(k10);
@@ -65,9 +65,9 @@ public final class za1 extends ViewGroup {
         for (int i12 = 0; i12 < childCount; i12++) {
             getChildAt(i12).measure(makeMeasureSpec, makeMeasureSpec2);
         }
-        if (this.f52518c != a10) {
-            this.f52518c = a10;
-            WeakHashMap weakHashMap = r0.i0.f54098a;
+        if (this.f52516c != a10) {
+            this.f52516c = a10;
+            WeakHashMap weakHashMap = r0.i0.f54097a;
             r0.y.c(this);
         }
     }
@@ -75,7 +75,7 @@ public final class za1 extends ViewGroup {
     @Override
     public final void onViewAdded(View view) {
         super.onViewAdded(view);
-        this.f52517b = view;
+        this.f52515b = view;
     }
 
     @Override

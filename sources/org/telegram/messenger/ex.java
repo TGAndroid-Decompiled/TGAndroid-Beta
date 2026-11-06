@@ -6,34 +6,34 @@ public final class ex implements Runnable {
     public final sh.f E;
     public final ArrayList F;
     public final ArrayList G;
-    public final ArrayList f22264a;
-    public final ArrayList f22265b;
-    public final c f22266c;
+    public final ArrayList f22271a;
+    public final ArrayList f22272b;
+    public final c f22273c;
     public final ArrayList d;
-    public final long f22267e;
-    public final ij f22268f;
+    public final long f22274e;
+    public final ij f22275f;
     public final ij h;
-    public final org.telegram.ui.qm f22269n;
-    public final boolean f22270r;
-    public final int f22271s;
-    public final hw f22272w;
-    public final long f22273x;
-    public final long f22274y;
+    public final org.telegram.ui.qm f22276n;
+    public final boolean f22277r;
+    public final int f22278s;
+    public final hw f22279w;
+    public final long f22280x;
+    public final long f22281y;
 
     public ex(ArrayList arrayList, ArrayList arrayList2, c cVar, ArrayList arrayList3, long j3, ij ijVar, ij ijVar2, org.telegram.ui.qm qmVar, boolean z9, int i7, hw hwVar, long j10, long j11, nj njVar, sh.f fVar, ArrayList arrayList4, ArrayList arrayList5) {
-        this.f22264a = arrayList;
-        this.f22265b = arrayList2;
-        this.f22266c = cVar;
+        this.f22271a = arrayList;
+        this.f22272b = arrayList2;
+        this.f22273c = cVar;
         this.d = arrayList3;
-        this.f22267e = j3;
-        this.f22268f = ijVar;
+        this.f22274e = j3;
+        this.f22275f = ijVar;
         this.h = ijVar2;
-        this.f22269n = qmVar;
-        this.f22270r = z9;
-        this.f22271s = i7;
-        this.f22272w = hwVar;
-        this.f22273x = j10;
-        this.f22274y = j11;
+        this.f22276n = qmVar;
+        this.f22277r = z9;
+        this.f22278s = i7;
+        this.f22279w = hwVar;
+        this.f22280x = j10;
+        this.f22281y = j11;
         this.D = njVar;
         this.E = fVar;
         this.F = arrayList4;
@@ -42,12 +42,12 @@ public final class ex implements Runnable {
 
     @Override
     public final void run() {
-        ArrayList arrayList = this.f22264a;
+        ArrayList arrayList = this.f22271a;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f22265b;
+        ArrayList arrayList2 = this.f22272b;
         if (isEmpty && arrayList2.isEmpty()) {
             return;
         }
-        gz.V(this.f22271s, this.f22267e, 0L, this.f22273x, this.f22274y, null, null, arrayList, this.d, arrayList2, null, this.F, this.G, this.f22266c, this.f22268f, this.h, null, this.D, this.f22272w, null, this.f22269n, null, this.E, this.f22270r, false);
+        gz.V(this.f22278s, this.f22274e, 0L, this.f22280x, this.f22281y, null, null, arrayList, this.d, arrayList2, null, this.F, this.G, this.f22273c, this.f22275f, this.h, null, this.D, this.f22279w, null, this.f22276n, null, this.E, this.f22277r, false);
     }
 }

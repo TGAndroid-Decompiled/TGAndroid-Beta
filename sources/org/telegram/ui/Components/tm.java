@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.view.View;
 public final class tm extends View {
-    public final int f38371a;
+    public final int f38360a;
 
     public tm(Context context, int i7) {
         super(context);
-        this.f38371a = i7;
+        this.f38360a = i7;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class tm extends View {
         int i12;
         float L5;
         int i13;
-        switch (this.f38371a) {
+        switch (this.f38360a) {
             case 8:
                 super.onDraw(canvas);
-                canvas.drawLine(0.0f, org.telegram.messenger.g0.L(14.0f), 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawLine(0.0f, org.telegram.messenger.g0.L(14.0f), 2.0f, getMeasuredHeight() - org.telegram.messenger.g0.L(14.0f), org.telegram.ui.ActionBar.k6.f27972k0);
                 return;
             case 15:
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     L = 0.0f;
                 } else {
                     L = org.telegram.messenger.g0.L(20.0f);
@@ -38,15 +38,15 @@ public final class tm extends View {
                 float f10 = L;
                 float measuredHeight = getMeasuredHeight() - 1;
                 int measuredWidth = getMeasuredWidth();
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     i7 = org.telegram.messenger.g0.L(20.0f);
                 } else {
                     i7 = 0;
                 }
-                canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
                 return;
             case 16:
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     L2 = 0.0f;
                 } else {
                     L2 = org.telegram.messenger.g0.L(20.0f);
@@ -54,15 +54,15 @@ public final class tm extends View {
                 float f11 = L2;
                 float measuredHeight2 = getMeasuredHeight() - 1;
                 int measuredWidth2 = getMeasuredWidth();
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     i10 = org.telegram.messenger.g0.L(20.0f);
                 } else {
                     i10 = 0;
                 }
-                canvas.drawLine(f11, measuredHeight2, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawLine(f11, measuredHeight2, measuredWidth2 - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
                 return;
             case 17:
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     L3 = 0.0f;
                 } else {
                     L3 = org.telegram.messenger.g0.L(20.0f);
@@ -70,15 +70,15 @@ public final class tm extends View {
                 float f12 = L3;
                 float measuredHeight3 = getMeasuredHeight() - 1;
                 int measuredWidth3 = getMeasuredWidth();
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     i11 = org.telegram.messenger.g0.L(20.0f);
                 } else {
                     i11 = 0;
                 }
-                canvas.drawLine(f12, measuredHeight3, measuredWidth3 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawLine(f12, measuredHeight3, measuredWidth3 - i11, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
                 return;
             case 18:
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     L4 = 0.0f;
                 } else {
                     L4 = org.telegram.messenger.g0.L(20.0f);
@@ -86,15 +86,15 @@ public final class tm extends View {
                 float f13 = L4;
                 float measuredHeight4 = getMeasuredHeight() - 1;
                 int measuredWidth4 = getMeasuredWidth();
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     i12 = org.telegram.messenger.g0.L(20.0f);
                 } else {
                     i12 = 0;
                 }
-                canvas.drawLine(f13, measuredHeight4, measuredWidth4 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawLine(f13, measuredHeight4, measuredWidth4 - i12, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
                 return;
             case 26:
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     L5 = 0.0f;
                 } else {
                     L5 = org.telegram.messenger.g0.L(20.0f);
@@ -102,12 +102,12 @@ public final class tm extends View {
                 float f14 = L5;
                 float measuredHeight5 = getMeasuredHeight() - 1;
                 int measuredWidth5 = getMeasuredWidth();
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     i13 = org.telegram.messenger.g0.L(20.0f);
                 } else {
                     i13 = 0;
                 }
-                canvas.drawLine(f14, measuredHeight5, measuredWidth5 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawLine(f14, measuredHeight5, measuredWidth5 - i13, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -120,7 +120,7 @@ public final class tm extends View {
         boolean z9;
         float f10;
         float f11;
-        switch (this.f38371a) {
+        switch (this.f38360a) {
             case 1:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
                 return;
@@ -140,7 +140,7 @@ public final class tm extends View {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(52.0f), 1073741824));
                 return;
             case 7:
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.g0.f22537q.y * 0.4f), 1073741824));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.g0.f22544q.y * 0.4f), 1073741824));
                 return;
             case 8:
             case 15:
@@ -155,7 +155,7 @@ public final class tm extends View {
                 super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(300.0f), 1073741824));
                 return;
             case 10:
-                Point point = org.telegram.messenger.g0.f22537q;
+                Point point = org.telegram.messenger.g0.f22544q;
                 int i11 = point.x;
                 int i12 = point.y;
                 if (i11 < i12) {
@@ -175,13 +175,13 @@ public final class tm extends View {
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(5.0f), 1073741824));
                 return;
             case 12:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.g0.f22537q.y * 0.4f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (org.telegram.messenger.g0.f22544q.y * 0.4f), 1073741824));
                 return;
             case 13:
                 super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(4.0f), 1073741824));
                 return;
             case 14:
-                if (org.telegram.ui.c40.f44542w5) {
+                if (org.telegram.ui.c40.f44541w5) {
                     f11 = 0.0f;
                 } else {
                     f11 = 8.0f;

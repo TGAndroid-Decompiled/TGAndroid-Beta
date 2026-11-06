@@ -372,7 +372,7 @@ public class MrzRecognizer {
     public static zr i(Bitmap bitmap) {
         u8.e eVar;
         int i7;
-        u8.n nVar = new u8.n(new com.google.android.gms.internal.vision.t2(t0.f25555b, (com.google.android.gms.internal.vision.x1) new Object()));
+        u8.n nVar = new u8.n(new com.google.android.gms.internal.vision.t2(t0.f25563b, (com.google.android.gms.internal.vision.x1) new Object()));
         if (bitmap.getWidth() > 1500 || bitmap.getHeight() > 1500) {
             float max = 1500.0f / Math.max(bitmap.getWidth(), bitmap.getHeight());
             bitmap = Bitmap.createScaledBitmap(bitmap, Math.round(bitmap.getWidth() * max), Math.round(bitmap.getHeight() * max), true);
@@ -381,7 +381,7 @@ public class MrzRecognizer {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
         hy0Var.d = bitmap;
-        b7.d dVar = (b7.d) hy0Var.f46528b;
+        b7.d dVar = (b7.d) hy0Var.f46527b;
         dVar.f2991a = width;
         dVar.f2992b = height;
         SparseArray e12 = nVar.e1(hy0Var);
@@ -393,7 +393,7 @@ public class MrzRecognizer {
             int i14 = 4;
             if (i12 == 12 && (eVar = mVar.D) != null) {
                 ?? obj = new Object();
-                if ("ID".equals(eVar.f56320a)) {
+                if ("ID".equals(eVar.f56319a)) {
                     i7 = 2;
                 } else {
                     i7 = 4;
@@ -410,12 +410,12 @@ public class MrzRecognizer {
                     obj.f26916l = "CA";
                     obj.f26917m = "CA";
                 }
-                obj.f26908b = a(mVar.D.f56321b);
+                obj.f26908b = a(mVar.D.f56320b);
                 obj.f26909c = a(mVar.D.d);
-                obj.d = a(mVar.D.f56322c);
+                obj.d = a(mVar.D.f56321c);
                 u8.e eVar2 = mVar.D;
-                obj.f26910e = eVar2.f56327s;
-                String str2 = eVar2.f56323e;
+                obj.f26910e = eVar2.f56326s;
+                String str2 = eVar2.f56322e;
                 if (str2 != null) {
                     if (!str2.equals("1")) {
                         if (str2.equals("2")) {
@@ -431,25 +431,25 @@ public class MrzRecognizer {
                     i13 = 2;
                 }
                 try {
-                    String str3 = mVar.D.f56330y;
+                    String str3 = mVar.D.f56329y;
                     if (str3 != null && str3.length() == 8) {
-                        obj.f26913i = Integer.parseInt(mVar.D.f56330y.substring(i10, i10 + 4));
-                        obj.f26914j = Integer.parseInt(mVar.D.f56330y.substring(i14, i14 + 2));
-                        obj.f26915k = Integer.parseInt(mVar.D.f56330y.substring(i13, i13 + 2));
+                        obj.f26913i = Integer.parseInt(mVar.D.f56329y.substring(i10, i10 + 4));
+                        obj.f26914j = Integer.parseInt(mVar.D.f56329y.substring(i14, i14 + 2));
+                        obj.f26915k = Integer.parseInt(mVar.D.f56329y.substring(i13, i13 + 2));
                     }
-                    String str4 = mVar.D.f56329x;
+                    String str4 = mVar.D.f56328x;
                     if (str4 != null && str4.length() == 8) {
-                        obj.f26911f = Integer.parseInt(mVar.D.f56329x.substring(i10, i10 + 4));
-                        obj.f26912g = Integer.parseInt(mVar.D.f56329x.substring(i14, i14 + 2));
-                        obj.h = Integer.parseInt(mVar.D.f56329x.substring(i13, i13 + 2));
+                        obj.f26911f = Integer.parseInt(mVar.D.f56328x.substring(i10, i10 + 4));
+                        obj.f26912g = Integer.parseInt(mVar.D.f56328x.substring(i14, i14 + 2));
+                        obj.h = Integer.parseInt(mVar.D.f56328x.substring(i13, i13 + 2));
                     }
                 } catch (NumberFormatException unused) {
                 }
                 return obj;
             }
-            if (i12 == 7 && mVar.f56350a == 2048 && mVar.f56351b.matches("^[A-Za-z0-9=]+$")) {
+            if (i12 == 7 && mVar.f56349a == 2048 && mVar.f56350b.matches("^[A-Za-z0-9=]+$")) {
                 try {
-                    String[] split = new String(Base64.decode(mVar.f56351b, 0), "windows-1251").split("\\|");
+                    String[] split = new String(Base64.decode(mVar.f56350b, 0), "windows-1251").split("\\|");
                     if (split.length >= 10) {
                         ?? obj2 = new Object();
                         obj2.f26907a = 4;

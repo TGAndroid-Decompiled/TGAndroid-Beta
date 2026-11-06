@@ -13,25 +13,25 @@ public final class gx extends oj0 {
     public boolean D;
     public boolean E;
     public final gy F;
-    public final bx f34003c;
+    public final bx f34011c;
     public long d;
-    public TLRPC.StickerSet f34004e;
-    public ArrayList f34005f;
+    public TLRPC.StickerSet f34012e;
+    public ArrayList f34013f;
     public final ArrayList h = new ArrayList();
-    public final ArrayList f34006n = new ArrayList();
-    public final ArrayList f34007r = new ArrayList();
-    public final ArrayList f34008s = new ArrayList();
-    public String f34009w;
-    public String f34010x;
-    public fx f34011y;
+    public final ArrayList f34014n = new ArrayList();
+    public final ArrayList f34015r = new ArrayList();
+    public final ArrayList f34016s = new ArrayList();
+    public String f34017w;
+    public String f34018x;
+    public fx f34019y;
 
     public gx(gy gyVar, Context context) {
         this.F = gyVar;
-        bx bxVar = new bx(context, gyVar.f34024c1, new d(this, 11), new ax(this, 0), gyVar.Z1);
-        this.f34003c = bxVar;
+        bx bxVar = new bx(context, gyVar.f34032c1, new d(this, 11), new ax(this, 0), gyVar.Z1);
+        this.f34011c = bxVar;
         bxVar.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(5.0f));
         bxVar.setClipToPadding(false);
-        bxVar.f36781f3.f35132r = false;
+        bxVar.f37160f3.f35510r = false;
         bxVar.setNestedScrollingEnabled(false);
         bxVar.setDrawSelection(false);
         bxVar.setOnTouchListener(new m.d2(this, 1));
@@ -47,16 +47,16 @@ public final class gx extends oj0 {
             str = "";
         }
         String str2 = str;
-        String str3 = gxVar.f34009w;
+        String str3 = gxVar.f34017w;
         if (str3 == null) {
             return;
         }
-        org.telegram.messenger.ui.b0(gyVar.f34024c1).Z1(true, str2, str3, new di.s2((Object) gxVar, str3, arrayList, (Object) runnable, 9), z9);
+        org.telegram.messenger.ui.b0(gyVar.f34032c1).Z1(true, str2, str3, new di.s2((Object) gxVar, str3, arrayList, (Object) runnable, 9), z9);
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56956f;
+        int i7 = d1Var.f56955f;
         if (i7 != 0 && i7 != 4) {
             return false;
         }
@@ -68,7 +68,7 @@ public final class gx extends oj0 {
         sw swVar = gyVar.P;
         long j3 = 0;
         if (TextUtils.isEmpty(str)) {
-            this.f34009w = null;
+            this.f34017w = null;
             v4.g0 adapter = swVar.getAdapter();
             pw pwVar = gyVar.R;
             if (adapter != pwVar) {
@@ -76,21 +76,21 @@ public final class gx extends oj0 {
                 this.D = false;
             }
             this.d = 0L;
-            gyVar.f34018b.a(false, true);
+            gyVar.f34026b.a(false, true);
             f();
         } else {
-            this.f34009w = str.toLowerCase();
+            this.f34017w = str.toLowerCase();
         }
-        fx fxVar = this.f34011y;
+        fx fxVar = this.f34019y;
         if (fxVar != null) {
             org.telegram.messenger.g0.r(fxVar);
         }
-        if (!TextUtils.isEmpty(this.f34009w)) {
-            this.f34006n.clear();
+        if (!TextUtils.isEmpty(this.f34017w)) {
+            this.f34014n.clear();
             this.E = false;
             gyVar.V.e(true);
             fx fxVar2 = new fx(this);
-            this.f34011y = fxVar2;
+            this.f34019y = fxVar2;
             if (z9) {
                 j3 = 300;
             }
@@ -101,12 +101,12 @@ public final class gx extends oj0 {
     @Override
     public final int b() {
         if (this.d != 0) {
-            return this.f34005f.size() + 4;
+            return this.f34013f.size() + 4;
         }
         ArrayList arrayList = this.h;
         boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f34008s;
-        ArrayList arrayList3 = this.f34007r;
+        ArrayList arrayList2 = this.f34016s;
+        ArrayList arrayList3 = this.f34015r;
         if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.D) {
             return this.F.getRecentEmoji().size() + 1;
         }
@@ -133,7 +133,7 @@ public final class gx extends oj0 {
 
     @Override
     public final void f() {
-        this.f34003c.f36781f3.O(false);
+        this.f34011c.f37160f3.O(false);
         super.f();
     }
 
@@ -174,16 +174,16 @@ public final class gx extends oj0 {
                         }
                     } else {
                         ViewGroup.LayoutParams o0Var = new v4.o0(-1, org.telegram.messenger.g0.L(79.0f));
-                        View view2 = this.f34003c;
+                        View view2 = this.f34011c;
                         view2.setLayoutParams(o0Var);
                         e5Var = view2;
                     }
                 } else {
-                    e5Var = new org.telegram.ui.Cells.j8(gyVar.getContext(), true, false, gyVar.Z1, gyVar.f34044i2);
+                    e5Var = new org.telegram.ui.Cells.j8(gyVar.getContext(), true, false, gyVar.Z1, gyVar.f34052i2);
                 }
             } else {
                 View view3 = new View(gyVar.getContext());
-                view3.setLayoutParams(new v4.o0(-1, gyVar.f34020b1));
+                view3.setLayoutParams(new v4.o0(-1, gyVar.f34028b1));
                 e5Var = view3;
             }
         } else {

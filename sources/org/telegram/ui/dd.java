@@ -3,20 +3,20 @@ package org.telegram.ui;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class dd implements Runnable {
-    public final int f45052a;
-    public final zd f45053b;
+    public final int f45051a;
+    public final zd f45052b;
 
     public dd(zd zdVar, int i7) {
-        this.f45052a = i7;
-        this.f45053b = zdVar;
+        this.f45051a = i7;
+        this.f45052b = zdVar;
     }
 
     @Override
     public final void run() {
         boolean z9;
-        int i7 = this.f45052a;
+        int i7 = this.f45051a;
         boolean z10 = false;
-        zd zdVar = this.f45053b;
+        zd zdVar = this.f45052b;
         switch (i7) {
             case 0:
                 vf.c.t(zdVar.getContext(), org.telegram.messenger.hd.M0(2131748403, null));
@@ -25,19 +25,19 @@ public final class dd implements Runnable {
                 vf.c.t(zdVar.getContext(), org.telegram.messenger.hd.M0(2131748369, null));
                 return;
             case 2:
-                org.telegram.ui.Components.p41 p41Var = zdVar.X0;
-                if (p41Var != null) {
-                    boolean z11 = zdVar.f34372e0;
+                org.telegram.ui.Components.q41 q41Var = zdVar.X0;
+                if (q41Var != null) {
+                    boolean z11 = zdVar.f34410e0;
                     if (zdVar.R0 != -1) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
-                    org.telegram.ui.Components.k41 k41Var = p41Var.f36781f3;
-                    if (z9 == zdVar.f52531a1.a()) {
+                    org.telegram.ui.Components.l41 l41Var = q41Var.f37160f3;
+                    if (z9 == zdVar.f52529a1.a()) {
                         z10 = true;
                     }
-                    k41Var.O(z10);
+                    l41Var.O(z10);
                     if (z11 && zdVar.R0 != -1) {
                         zdVar.a();
                         return;
@@ -46,7 +46,7 @@ public final class dd implements Runnable {
                 }
                 return;
             case 3:
-                zdVar.f52541k1 = zdVar.f52540j1;
+                zdVar.f52539k1 = zdVar.f52538j1;
                 return;
             case 4:
                 zdVar.J0.setLoading(false);
@@ -58,12 +58,12 @@ public final class dd implements Runnable {
                 zdVar.Y0.setVisibility(8);
                 return;
             default:
-                int i10 = zdVar.f52544o0;
-                org.telegram.messenger.g0.r(zdVar.f52553s1);
-                if (zdVar.f52540j1 != zdVar.f52541k1) {
+                int i10 = zdVar.f52542o0;
+                org.telegram.messenger.g0.r(zdVar.f52551s1);
+                if (zdVar.f52538j1 != zdVar.f52539k1) {
                     TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.qp.s1(i10).h1(-zdVar.f52546p0);
-                    tL_channels_restrictSponsoredMessages.restricted = zdVar.f52540j1;
+                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.qp.s1(i10).h1(-zdVar.f52544p0);
+                    tL_channels_restrictSponsoredMessages.restricted = zdVar.f52538j1;
                     ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new kd(zdVar, 0));
                     return;
                 }

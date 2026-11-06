@@ -2,27 +2,27 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLObject;
 public final class gp0 implements Runnable {
-    public final int f33956a = 0;
-    public final org.telegram.ui.ActionBar.z0 f33957b;
-    public final org.telegram.ui.ActionBar.z0 f33958c;
+    public final int f33964a = 0;
+    public final org.telegram.ui.ActionBar.z0 f33965b;
+    public final org.telegram.ui.ActionBar.z0 f33966c;
     public final org.telegram.ui.ActionBar.z0 d;
-    public final org.telegram.ui.ActionBar.z0 f33959e;
-    public final org.telegram.ui.ActionBar.z0 f33960f;
+    public final org.telegram.ui.ActionBar.z0 f33967e;
+    public final org.telegram.ui.ActionBar.z0 f33968f;
     public final boolean h;
-    public final org.telegram.ui.ActionBar.z0 f33961n;
-    public final org.telegram.ui.ActionBar.z0 f33962r;
-    public final Object f33963s;
+    public final org.telegram.ui.ActionBar.z0 f33969n;
+    public final org.telegram.ui.ActionBar.z0 f33970r;
+    public final Object f33971s;
 
     public gp0(org.telegram.ui.ActionBar.z0 z0Var, bi.v9 v9Var, org.telegram.ui.ActionBar.z0 z0Var2, org.telegram.ui.ActionBar.z0 z0Var3, org.telegram.ui.ActionBar.z0 z0Var4, org.telegram.ui.ActionBar.z0 z0Var5, boolean z9, org.telegram.ui.ActionBar.z0 z0Var6, org.telegram.ui.ActionBar.z0 z0Var7) {
-        this.f33957b = z0Var;
-        this.f33963s = v9Var;
-        this.f33958c = z0Var2;
+        this.f33965b = z0Var;
+        this.f33971s = v9Var;
+        this.f33966c = z0Var2;
         this.d = z0Var3;
-        this.f33959e = z0Var4;
-        this.f33960f = z0Var5;
+        this.f33967e = z0Var4;
+        this.f33968f = z0Var5;
         this.h = z9;
-        this.f33961n = z0Var6;
-        this.f33962r = z0Var7;
+        this.f33969n = z0Var6;
+        this.f33970r = z0Var7;
     }
 
     @Override
@@ -31,16 +31,16 @@ public final class gp0 implements Runnable {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f33956a;
-        org.telegram.ui.ActionBar.z0 z0Var = this.f33962r;
-        org.telegram.ui.ActionBar.z0 z0Var2 = this.f33961n;
+        int i13 = this.f33964a;
+        org.telegram.ui.ActionBar.z0 z0Var = this.f33970r;
+        org.telegram.ui.ActionBar.z0 z0Var2 = this.f33969n;
         boolean z9 = this.h;
-        org.telegram.ui.ActionBar.z0 z0Var3 = this.f33960f;
-        org.telegram.ui.ActionBar.z0 z0Var4 = this.f33959e;
+        org.telegram.ui.ActionBar.z0 z0Var3 = this.f33968f;
+        org.telegram.ui.ActionBar.z0 z0Var4 = this.f33967e;
         org.telegram.ui.ActionBar.z0 z0Var5 = this.d;
-        org.telegram.ui.ActionBar.z0 z0Var6 = this.f33958c;
-        org.telegram.ui.ActionBar.z0 z0Var7 = this.f33957b;
-        Object obj = this.f33963s;
+        org.telegram.ui.ActionBar.z0 z0Var6 = this.f33966c;
+        org.telegram.ui.ActionBar.z0 z0Var7 = this.f33965b;
+        Object obj = this.f33971s;
         switch (i13) {
             case 0:
                 bi.v9 v9Var = (bi.v9) obj;
@@ -69,7 +69,7 @@ public final class gp0 implements Runnable {
                 }
                 return;
             default:
-                bi.v9 v9Var2 = ((zh.n3) obj).f60386c.Q1;
+                bi.v9 v9Var2 = ((zh.n3) obj).f60385c.Q1;
                 if (v9Var2.f4909e) {
                     i11 = 2131750196;
                 } else {
@@ -96,14 +96,14 @@ public final class gp0 implements Runnable {
     }
 
     public gp0(zh.n3 n3Var, org.telegram.ui.ActionBar.z0 z0Var, org.telegram.ui.ActionBar.z0 z0Var2, org.telegram.ui.ActionBar.z0 z0Var3, org.telegram.ui.ActionBar.z0 z0Var4, org.telegram.ui.ActionBar.z0 z0Var5, boolean z9, org.telegram.ui.ActionBar.z0 z0Var6, org.telegram.ui.ActionBar.z0 z0Var7) {
-        this.f33963s = n3Var;
-        this.f33957b = z0Var;
-        this.f33958c = z0Var2;
+        this.f33971s = n3Var;
+        this.f33965b = z0Var;
+        this.f33966c = z0Var2;
         this.d = z0Var3;
-        this.f33959e = z0Var4;
-        this.f33960f = z0Var5;
+        this.f33967e = z0Var4;
+        this.f33968f = z0Var5;
         this.h = z9;
-        this.f33961n = z0Var6;
-        this.f33962r = z0Var7;
+        this.f33969n = z0Var6;
+        this.f33970r = z0Var7;
     }
 }

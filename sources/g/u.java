@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
-import c8.tb;
+import c8.ub;
 import m.k1;
 import m.m3;
 import r0.i0;
@@ -65,7 +65,7 @@ public abstract class u extends androidx.activity.m {
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        return tb.b(this.f13380e, getWindow().getDecorView(), this, keyEvent);
+        return ub.b(this.f13380e, getWindow().getDecorView(), this, keyEvent);
     }
 
     @Override

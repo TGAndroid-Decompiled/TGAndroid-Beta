@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.c20;
 import org.telegram.messenger.x10;
-import org.telegram.ui.Components.sx0;
+import org.telegram.ui.Components.tx0;
 import org.telegram.ui.Components.wp;
 public final class r implements c20 {
     public final int f9663a = 1;
@@ -24,14 +24,14 @@ public final class r implements c20 {
     public final Object f9671k;
     public final Object f9672l;
 
-    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.b5 b5Var, org.telegram.ui.ActionBar.f6 f6Var, int i7, TextView textView, org.telegram.ui.Wallet.a3[] a3VarArr, sx0 sx0Var, x10 x10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
+    public r(LinearLayout linearLayout, org.telegram.ui.Wallet.b5 b5Var, org.telegram.ui.ActionBar.f6 f6Var, int i7, TextView textView, org.telegram.ui.Wallet.a3[] a3VarArr, tx0 tx0Var, x10 x10Var, Context context, TextView[] textViewArr, SpannableString[] spannableStringArr) {
         this.f9665c = linearLayout;
         this.d = b5Var;
         this.f9666e = f6Var;
         this.f9664b = i7;
         this.f9667f = textView;
         this.f9668g = a3VarArr;
-        this.h = sx0Var;
+        this.h = tx0Var;
         this.f9669i = x10Var;
         this.f9670j = context;
         this.f9671k = textViewArr;

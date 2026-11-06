@@ -59,7 +59,7 @@ public final class w0 implements RequestDelegate {
                 long j3 = this.f15011b;
                 if (z9) {
                     TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-                    qp.s1(c40Var.f28612a).O3(updates, false);
+                    qp.s1(c40Var.f28613a).O3(updates, false);
                     org.telegram.messenger.g0.h3(new bi.d3(c40Var, updates, j3, 27));
                 } else if (tL_error != null && "USER_PRIVACY_RESTRICTED".equalsIgnoreCase(tL_error.text)) {
                     hashSet.add(Long.valueOf(j3));

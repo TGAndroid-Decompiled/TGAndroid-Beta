@@ -70,7 +70,7 @@ public final class u extends View {
             this.f1648c = f10;
             invalidate();
         }
-        float interpolation = (1.0f - (xq.f40330g.getInterpolation(this.f1648c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
+        float interpolation = (1.0f - (xq.f40346g.getInterpolation(this.f1648c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
         float f13 = interpolation / 2.0f;
         int width = (int) ((getWidth() / 2.0f) - f13);
         int height = (int) ((getHeight() / 2.0f) - f13);

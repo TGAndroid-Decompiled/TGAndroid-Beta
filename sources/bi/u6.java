@@ -19,7 +19,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.p10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.my0;
 public final class u6 extends a5.h {
     public org.telegram.ui.Components.i6 D;
     public final float E;
@@ -38,8 +38,8 @@ public final class u6 extends a5.h {
     public final org.telegram.ui.Components.g5 f4815r;
     public RadialGradient f4816s;
     public final Matrix f4817w;
-    public final ly0 f4818x;
-    public final ly0 f4819y;
+    public final my0 f4818x;
+    public final my0 f4819y;
 
     public u6(View view, TL_stars.StarGift starGift, int i7, float f10) {
         super(view);
@@ -74,24 +74,24 @@ public final class u6 extends a5.h {
             float f14 = i7;
             dd.c1(imageReceiver, starGift.sticker, (int) (0.75f * f14));
             String str = starGift.title;
-            ly0 ly0Var = new ly0(str == null ? "Gift" : str, 16.0f, org.telegram.messenger.g0.o());
-            this.f4818x = ly0Var;
-            ly0Var.n(-1);
+            my0 my0Var = new my0(str == null ? "Gift" : str, 16.0f, org.telegram.messenger.g0.o());
+            this.f4818x = my0Var;
+            my0Var.n(-1);
             float f15 = i7 - 30;
-            ly0Var.p(org.telegram.messenger.g0.L(f15));
+            my0Var.p(org.telegram.messenger.g0.L(f15));
             Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-            ly0Var.a();
-            ly0Var.m(1);
+            my0Var.a();
+            my0Var.m(1);
             if (starGift.sold_out) {
                 G = org.telegram.messenger.hd.M0(2131749966, null);
             } else {
                 G = org.telegram.messenger.hd.G(starGift.availability_total, "Gift2SoldAuctionPreviewGifts", new Object[0]);
             }
-            ly0 ly0Var2 = new ly0(G, 13.0f, null);
-            this.f4819y = ly0Var2;
-            ly0Var2.p(org.telegram.messenger.g0.L(f15));
-            ly0Var2.a();
-            ly0Var2.m(1);
+            my0 my0Var2 = new my0(G, 13.0f, null);
+            this.f4819y = my0Var2;
+            my0Var2.p(org.telegram.messenger.g0.L(f15));
+            my0Var2.a();
+            my0Var2.m(1);
             ud udVar = new ud(1, 40);
             this.f4812e = udVar;
             float f16 = 0.45f * f14;
@@ -263,7 +263,7 @@ public final class u6 extends a5.h {
         this.f4815r.a();
         this.f4814n.P();
         if (this.F != null) {
-            int currentTime = ConnectionsManager.getInstance(p10.f24459s0).getCurrentTime();
+            int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
             int i7 = this.H;
             if (currentTime >= i7) {
                 i7 = this.G;
@@ -283,9 +283,9 @@ public final class u6 extends a5.h {
     }
 
     public final void c(int i7) {
-        ly0 ly0Var = this.f4819y;
-        if (ly0Var != null) {
-            ly0Var.n(i7 | (-16777216));
+        my0 my0Var = this.f4819y;
+        if (my0Var != null) {
+            my0Var.n(i7 | (-16777216));
         }
     }
 
@@ -296,7 +296,7 @@ public final class u6 extends a5.h {
         if (this.F == null) {
             this.F = new bg.q(new a1.c(this, 13));
         }
-        int currentTime = ConnectionsManager.getInstance(p10.f24459s0).getCurrentTime();
+        int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
         if (currentTime < i7) {
             i11 = i7 - currentTime;
         } else {
@@ -315,7 +315,7 @@ public final class u6 extends a5.h {
 
     @Override
     public final void draw(Canvas canvas) {
-        ly0 ly0Var;
+        my0 my0Var;
         Paint paint = (Paint) this.f220b;
         Rect bounds = getBounds();
         RectF rectF = this.d;
@@ -342,9 +342,9 @@ public final class u6 extends a5.h {
             udVar.b(canvas, -1, 1.0f);
         }
         canvas.restore();
-        ly0 ly0Var2 = this.f4818x;
+        my0 my0Var2 = this.f4818x;
         ImageReceiver imageReceiver = this.f4814n;
-        if (ly0Var2 != null && (ly0Var = this.f4819y) != null) {
+        if (my0Var2 != null && (my0Var = this.f4819y) != null) {
             if (this.D != null) {
                 Paint paint2 = this.I;
                 paint2.setColor(1342177280);
@@ -357,8 +357,8 @@ public final class u6 extends a5.h {
             float min = Math.min(rectF.width(), rectF.height()) * 0.6f;
             imageReceiver.y0(rectF.centerX() - (min / 2.0f), (rectF.height() * 0.12f) + rectF.top, min, min);
             imageReceiver.h(canvas, null);
-            ly0Var2.e(canvas, rectF.centerX() - (ly0Var2.k() / 2.0f), rectF.bottom - org.telegram.messenger.g0.L(50.0f));
-            ly0Var.e(canvas, rectF.centerX() - (ly0Var.k() / 2.0f), rectF.bottom - org.telegram.messenger.g0.L(30.0f));
+            my0Var2.e(canvas, rectF.centerX() - (my0Var2.k() / 2.0f), rectF.bottom - org.telegram.messenger.g0.L(50.0f));
+            my0Var.e(canvas, rectF.centerX() - (my0Var.k() / 2.0f), rectF.bottom - org.telegram.messenger.g0.L(30.0f));
         } else {
             float min2 = Math.min(rectF.width(), rectF.height()) * 0.75f;
             float f11 = min2 / 2.0f;
@@ -393,8 +393,8 @@ public final class u6 extends a5.h {
     }
 
     public final void h() {
-        ly0 ly0Var;
-        int currentTime = ConnectionsManager.getInstance(p10.f24459s0).getCurrentTime();
+        my0 my0Var;
+        int currentTime = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
         int i7 = this.G;
         if (currentTime > i7) {
             this.D.t(org.telegram.messenger.hd.M0(2131750365, null), true, true);
@@ -406,8 +406,8 @@ public final class u6 extends a5.h {
                 this.D.t(org.telegram.messenger.g0.g0(i7 - currentTime, true, false), true, true);
             }
         }
-        if (currentTime > this.G && (ly0Var = this.f4819y) != null) {
-            ly0Var.q(org.telegram.messenger.hd.M0(2131749966, null));
+        if (currentTime > this.G && (my0Var = this.f4819y) != null) {
+            my0Var.q(org.telegram.messenger.hd.M0(2131749966, null));
         }
     }
 }

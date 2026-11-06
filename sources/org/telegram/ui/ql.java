@@ -9,24 +9,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class ql implements qq0 {
-    public final TL_iv.RichMessage f49254a;
-    public final ArrayList f49255b;
-    public final org.telegram.messenger.ij f49256c;
+    public final TL_iv.RichMessage f49253a;
+    public final ArrayList f49254b;
+    public final org.telegram.messenger.ij f49255c;
 
     public ql(TL_iv.RichMessage richMessage, ArrayList arrayList, org.telegram.messenger.ij ijVar) {
-        this.f49254a = richMessage;
-        this.f49255b = arrayList;
-        this.f49256c = ijVar;
+        this.f49253a = richMessage;
+        this.f49254b = arrayList;
+        this.f49255c = ijVar;
     }
 
     @Override
     public final boolean a(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f49255b;
+            ArrayList arrayList = this.f49254b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = d4.b(this.f49254a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = d4.b(this.f49253a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
                         return org.telegram.messenger.ij.L4(b10);
                     }
@@ -44,11 +44,11 @@ public final class ql implements qq0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize w10;
         if (i7 >= 0) {
-            ArrayList arrayList = this.f49255b;
+            ArrayList arrayList = this.f49254b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 boolean z9 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f49254a;
+                TL_iv.RichMessage richMessage = this.f49253a;
                 if (z9) {
                     TLRPC.Photo f10 = d4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f10 != null && (w10 = org.telegram.messenger.w7.w(f10.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
@@ -74,11 +74,11 @@ public final class ql implements qq0 {
     @Override
     public final TLObject d(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f49255b;
+            ArrayList arrayList = this.f49254b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 boolean z9 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f49254a;
+                TL_iv.RichMessage richMessage = this.f49253a;
                 if (z9) {
                     return d4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
@@ -133,29 +133,29 @@ public final class ql implements qq0 {
 
     @Override
     public final Object g() {
-        org.telegram.messenger.ij ijVar = this.f49256c;
+        org.telegram.messenger.ij ijVar = this.f49255c;
         if (ijVar != null) {
             return ijVar;
         }
-        return this.f49254a;
+        return this.f49253a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i7) {
-        return (TL_iv.PageBlock) this.f49255b.get(i7);
+        return (TL_iv.PageBlock) this.f49254b.get(i7);
     }
 
     @Override
     public final List getAll() {
-        return this.f49255b;
+        return this.f49254b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         org.telegram.messenger.kv kvVar;
-        org.telegram.messenger.ij ijVar = this.f49256c;
-        if (ijVar != null && (kvVar = ijVar.f23284w2) != null) {
-            ArrayList arrayList = kvVar.f23761g;
+        org.telegram.messenger.ij ijVar = this.f49255c;
+        if (ijVar != null && (kvVar = ijVar.f23291w2) != null) {
+            ArrayList arrayList = kvVar.f23768g;
             if (pageBlock != null) {
                 for (int i7 = 0; i7 < arrayList.size(); i7++) {
                     org.telegram.messenger.fu fuVar = (org.telegram.messenger.fu) arrayList.get(i7);
@@ -163,18 +163,18 @@ public final class ql implements qq0 {
                         org.telegram.messenger.wu wuVar = (org.telegram.messenger.wu) fuVar;
                         ArrayList arrayList2 = wuVar.X;
                         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                            if (((org.telegram.messenger.yt) arrayList2.get(i10)).f26705b == pageBlock) {
+                            if (((org.telegram.messenger.yt) arrayList2.get(i10)).f26713b == pageBlock) {
                                 int max = Math.max(0, Math.min(i10, arrayList2.size() - 1));
-                                ValueAnimator valueAnimator = wuVar.f26373k0;
+                                ValueAnimator valueAnimator = wuVar.f26381k0;
                                 if (valueAnimator != null) {
                                     valueAnimator.cancel();
-                                    wuVar.f26373k0 = null;
+                                    wuVar.f26381k0 = null;
                                 }
-                                if (wuVar.f26363a0 != max || wuVar.f26364b0 != 0.0f) {
-                                    wuVar.f26363a0 = max;
-                                    wuVar.f26364b0 = 0.0f;
-                                    wuVar.f26365c0 = false;
-                                    wuVar.f26366d0 = false;
+                                if (wuVar.f26371a0 != max || wuVar.f26372b0 != 0.0f) {
+                                    wuVar.f26371a0 = max;
+                                    wuVar.f26372b0 = 0.0f;
+                                    wuVar.f26373c0 = false;
+                                    wuVar.f26374d0 = false;
                                     View view = wuVar.V;
                                     if (view != null) {
                                         view.invalidate();
@@ -199,6 +199,6 @@ public final class ql implements qq0 {
 
     @Override
     public final int j() {
-        return this.f49255b.size();
+        return this.f49254b.size();
     }
 }

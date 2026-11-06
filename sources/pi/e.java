@@ -9,22 +9,22 @@ import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.graphics.RuntimeShader;
 import android.support.v4.media.session.w;
-import c8.nb;
+import c8.ob;
 import java.util.Arrays;
 import org.telegram.ui.Components.ra0;
-public final class e extends nb {
-    public final RenderNode f53569a = w.o();
-    public final RuntimeShader f53570b = ra0.a();
-    public int f53571c = -1;
+public final class e extends ob {
+    public final RenderNode f53568a = w.o();
+    public final RuntimeShader f53569b = ra0.a();
+    public int f53570c = -1;
     public int d = -1;
-    public int f53572e;
-    public RenderEffect[] f53573f;
-    public float[] f53574g;
+    public int f53571e;
+    public RenderEffect[] f53572f;
+    public float[] f53573g;
     public float[] h;
-    public final f f53575i;
+    public final f f53574i;
 
     public e(f fVar) {
-        this.f53575i = fVar;
+        this.f53574i = fVar;
     }
 
     @Override
@@ -45,7 +45,7 @@ public final class e extends nb {
         int a11;
         int g10;
         int g11;
-        f fVar = this.f53575i;
+        f fVar = this.f53574i;
         a aVar2 = fVar.h;
         if (aVar2 != null && aVar2.h() && aVar2.f() > 0) {
             i7 = 1;
@@ -72,21 +72,21 @@ public final class e extends nb {
         float f15 = i10;
         int ceil = ((int) Math.ceil((rectF.right - f10) / f15)) + i7;
         int ceil2 = ((int) Math.ceil((rectF.bottom - f11) / f15)) + i7;
-        if (!fVar.f53580w && this.f53571c == rect.width() && this.d == rect.height() && this.f53572e == i10) {
+        if (!fVar.f53579w && this.f53570c == rect.width() && this.d == rect.height() && this.f53571e == i10) {
             aVar = aVar2;
             i12 = i7;
             i11 = ceil;
             f12 = f15;
             i13 = ceil2;
         } else {
-            int i16 = fVar.f53582y;
+            int i16 = fVar.f53581y;
             if (i16 != 1 && i16 != 4) {
                 height = rect.width();
             } else {
                 height = rect.height();
             }
             float f16 = height;
-            RuntimeShader runtimeShader = this.f53570b;
+            RuntimeShader runtimeShader = this.f53569b;
             g gVar = fVar.D;
             gVar.getClass();
             float f17 = 0;
@@ -96,21 +96,21 @@ public final class e extends nb {
             i12 = i7;
             i13 = ceil2;
             runtimeShader.setInputShader("alphaMask", f.k(fVar, gVar, f16, f17, -1, i10));
-            RuntimeShader runtimeShader2 = this.f53570b;
+            RuntimeShader runtimeShader2 = this.f53569b;
             g gVar2 = fVar.E;
             gVar2.getClass();
             runtimeShader2.setInputShader("overlay", f.k(fVar, gVar2, f16, f17, fVar.H, i10));
-            this.f53570b.setFloatUniform("background_color_premultiplied", Color.red(fVar.H) / 255.0f, Color.green(fVar.H) / 255.0f, Color.blue(fVar.H) / 255.0f, 1.0f);
-            this.f53571c = rect.width();
+            this.f53569b.setFloatUniform("background_color_premultiplied", Color.red(fVar.H) / 255.0f, Color.green(fVar.H) / 255.0f, Color.blue(fVar.H) / 255.0f, 1.0f);
+            this.f53570c = rect.width();
             this.d = rect.height();
-            this.f53572e = i10;
+            this.f53571e = i10;
             int i17 = i10 * i10;
-            RenderEffect[] renderEffectArr = this.f53573f;
+            RenderEffect[] renderEffectArr = this.f53572f;
             if (renderEffectArr != null && renderEffectArr.length == i17) {
                 Arrays.fill(renderEffectArr, (Object) null);
             } else {
-                this.f53573f = new RenderEffect[i17];
-                this.f53574g = new float[i17];
+                this.f53572f = new RenderEffect[i17];
+                this.f53573g = new float[i17];
                 this.h = new float[i17];
             }
         }
@@ -135,53 +135,53 @@ public final class e extends nb {
         int i18 = (i15 * i10) + i14;
         float f18 = f13 / f12;
         float f19 = f14 / f12;
-        RenderEffect renderEffect = this.f53573f[i18];
-        if (renderEffect == null || this.f53574g[i18] != f18 || this.h[i18] != f19) {
-            this.f53570b.setFloatUniform("shader_offset", f18, f19);
-            renderEffect = RenderEffect.createRuntimeShaderEffect(this.f53570b, "content");
-            this.f53573f[i18] = renderEffect;
-            this.f53574g[i18] = f18;
+        RenderEffect renderEffect = this.f53572f[i18];
+        if (renderEffect == null || this.f53573g[i18] != f18 || this.h[i18] != f19) {
+            this.f53569b.setFloatUniform("shader_offset", f18, f19);
+            renderEffect = RenderEffect.createRuntimeShaderEffect(this.f53569b, "content");
+            this.f53572f[i18] = renderEffect;
+            this.f53573g[i18] = f18;
             this.h[i18] = f19;
         }
-        this.f53569a.setPosition(0, 0, i11, i13);
-        this.f53569a.setPivotX(0.0f);
-        this.f53569a.setPivotY(0.0f);
-        this.f53569a.setScaleX(f12);
-        this.f53569a.setScaleY(f12);
-        this.f53569a.setTranslationX(f13);
-        this.f53569a.setTranslationY(f14);
-        RecordingCanvas beginRecording = this.f53569a.beginRecording();
+        this.f53568a.setPosition(0, 0, i11, i13);
+        this.f53568a.setPivotX(0.0f);
+        this.f53568a.setPivotY(0.0f);
+        this.f53568a.setScaleX(f12);
+        this.f53568a.setScaleY(f12);
+        this.f53568a.setTranslationX(f13);
+        this.f53568a.setTranslationY(f14);
+        RecordingCanvas beginRecording = this.f53568a.beginRecording();
         if (i12 != 0) {
             fVar.h.d(f10, f11, i10, beginRecording, rectF);
         } else {
             beginRecording.save();
             beginRecording.translate(-rectF.left, -rectF.top);
-            fVar.f53576f.e(beginRecording, rectF.left, rectF.top, rectF.right, rectF.bottom);
+            fVar.f53575f.e(beginRecording, rectF.left, rectF.top, rectF.right, rectF.bottom);
             beginRecording.restore();
         }
-        this.f53569a.endRecording();
-        this.f53569a.setRenderEffect(renderEffect);
-        fVar.f53580w = false;
+        this.f53568a.endRecording();
+        this.f53568a.setRenderEffect(renderEffect);
+        fVar.f53579w = false;
     }
 
     @Override
     public final void b() {
-        this.f53569a.discardDisplayList();
-        this.f53571c = -1;
+        this.f53568a.discardDisplayList();
+        this.f53570c = -1;
     }
 
     @Override
     public final void c(Canvas canvas) {
-        canvas.drawRenderNode(this.f53569a);
+        canvas.drawRenderNode(this.f53568a);
     }
 
     @Override
     public final boolean d() {
-        return this.f53569a.hasDisplayList();
+        return this.f53568a.hasDisplayList();
     }
 
     @Override
     public final void e(float f10) {
-        this.f53569a.setAlpha(f10);
+        this.f53568a.setAlpha(f10);
     }
 }

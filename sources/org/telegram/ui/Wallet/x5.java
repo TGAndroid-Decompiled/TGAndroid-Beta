@@ -12,18 +12,18 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.xq;
 public final class x5 extends Drawable {
-    public final int f43326a;
-    public final Path f43327b;
-    public final Paint f43328c;
+    public final int f43325a;
+    public final Path f43326b;
+    public final Paint f43327c;
     public final Object d;
-    public final Object f43329e;
+    public final Object f43328e;
 
     public x5(org.telegram.ui.l0 l0Var) {
-        this.f43326a = 1;
-        this.f43329e = l0Var;
-        this.f43327b = new Path();
+        this.f43325a = 1;
+        this.f43328e = l0Var;
+        this.f43326b = new Path();
         Paint paint = new Paint(1);
-        this.f43328c = paint;
+        this.f43327c = paint;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -32,14 +32,14 @@ public final class x5 extends Drawable {
 
     public void c() {
         invalidateSelf();
-        ((org.telegram.ui.l0) this.f43329e).O.setContentDescription(hd.M0(2131750588, null));
+        ((org.telegram.ui.l0) this.f43328e).O.setContentDescription(hd.M0(2131750588, null));
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        switch (this.f43326a) {
+        switch (this.f43325a) {
             case 0:
-                canvas.drawPath(this.f43327b, this.f43328c);
+                canvas.drawPath(this.f43326b, this.f43327c);
                 return;
             default:
                 float d = ((org.telegram.ui.Components.w5) this.d).d(true);
@@ -47,7 +47,7 @@ public final class x5 extends Drawable {
                 float centerY = getBounds().centerY();
                 float width = getBounds().width();
                 float f10 = 0.57f * width;
-                Path path = this.f43327b;
+                Path path = this.f43326b;
                 path.rewind();
                 float f11 = f10 / 2.0f;
                 path.moveTo(centerX - org.telegram.messenger.g0.T1(f11, (-f10) / 2.0f, d), centerY);
@@ -59,7 +59,7 @@ public final class x5 extends Drawable {
                 path.lineTo(f12, centerY);
                 path.lineTo(f13, f14 + centerY);
                 canvas.save();
-                Paint paint = this.f43328c;
+                Paint paint = this.f43327c;
                 paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
                 canvas.translate(0.0f, (-width) * 0.1f * d);
                 canvas.rotate(d * 90.0f, centerX, centerY);
@@ -71,7 +71,7 @@ public final class x5 extends Drawable {
 
     @Override
     public int getIntrinsicHeight() {
-        switch (this.f43326a) {
+        switch (this.f43325a) {
             case 1:
                 return org.telegram.messenger.g0.L(24.0f);
             default:
@@ -81,7 +81,7 @@ public final class x5 extends Drawable {
 
     @Override
     public int getIntrinsicWidth() {
-        switch (this.f43326a) {
+        switch (this.f43325a) {
             case 1:
                 return org.telegram.messenger.g0.L(24.0f);
             default:
@@ -91,7 +91,7 @@ public final class x5 extends Drawable {
 
     @Override
     public final int getOpacity() {
-        switch (this.f43326a) {
+        switch (this.f43325a) {
             case 0:
                 return -3;
             default:
@@ -101,15 +101,15 @@ public final class x5 extends Drawable {
 
     @Override
     public void onBoundsChange(Rect rect) {
-        switch (this.f43326a) {
+        switch (this.f43325a) {
             case 0:
                 super.onBoundsChange(rect);
                 RectF rectF = (RectF) this.d;
                 rectF.set(rect);
-                Path path = this.f43327b;
+                Path path = this.f43326b;
                 path.reset();
-                path.addRoundRect(rectF, (float[]) this.f43329e, Path.Direction.CW);
-                this.f43328c.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
+                path.addRoundRect(rectF, (float[]) this.f43328e, Path.Direction.CW);
+                this.f43327c.setShader(new LinearGradient(0.0f, rect.top, 0.0f, rect.bottom, new int[]{-16216082, -12207881}, new float[]{0.15f, 0.53f}, Shader.TileMode.CLAMP));
                 return;
             default:
                 super.onBoundsChange(rect);
@@ -119,9 +119,9 @@ public final class x5 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        switch (this.f43326a) {
+        switch (this.f43325a) {
             case 0:
-                this.f43328c.setAlpha(i7);
+                this.f43327c.setAlpha(i7);
                 invalidateSelf();
                 return;
             default:
@@ -131,9 +131,9 @@ public final class x5 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        switch (this.f43326a) {
+        switch (this.f43325a) {
             case 0:
-                this.f43328c.setColorFilter(colorFilter);
+                this.f43327c.setColorFilter(colorFilter);
                 invalidateSelf();
                 return;
             default:
@@ -142,11 +142,11 @@ public final class x5 extends Drawable {
     }
 
     public x5() {
-        this.f43326a = 0;
-        this.f43328c = new Paint(1);
-        this.f43327b = new Path();
+        this.f43325a = 0;
+        this.f43327c = new Paint(1);
+        this.f43326b = new Path();
         this.d = new RectF();
-        this.f43329e = new float[]{org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
+        this.f43328e = new float[]{org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), 0.0f, 0.0f, 0.0f, 0.0f};
     }
 
     private final void a(int i7) {

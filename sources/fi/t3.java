@@ -18,12 +18,12 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.l10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.ry;
 import org.telegram.ui.Components.sd0;
-import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.wk;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.j40;
@@ -58,7 +58,7 @@ public final class t3 implements c20 {
                 if (view instanceof a4) {
                     w3Var.getClass();
                     int R = RecyclerView.R(view);
-                    w31 G = w3Var.f36781f3.G(R);
+                    x31 G = w3Var.f37160f3.G(R);
                     if (G != null) {
                         a4 a4Var = (a4) view;
                         a4Var.setPosition(b4Var.b(R));
@@ -86,14 +86,14 @@ public final class t3 implements c20 {
                 e7Var.B0 = i12;
                 y5Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i10, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 y5Var.invalidate();
-                g51 g51Var = y5Var.f13179n;
-                if (g51Var != null) {
+                h51 h51Var = y5Var.f13179n;
+                if (h51Var != null) {
                     int i13 = y5Var.U;
                     int i14 = y5Var.V;
-                    ry ryVar = g51Var.f33798b;
+                    ry ryVar = h51Var.f34179b;
                     if (ryVar == null) {
-                        g51Var.f33802n = i13;
-                        g51Var.f33803r = i14;
+                        h51Var.f34183n = i13;
+                        h51Var.f34184r = i14;
                     } else {
                         ryVar.h(i13, i14);
                     }
@@ -102,7 +102,7 @@ public final class t3 implements c20 {
                 if (sd0Var != null) {
                     int i15 = y5Var.U;
                     int i16 = y5Var.V;
-                    ry ryVar2 = sd0Var.f38001l0;
+                    ry ryVar2 = sd0Var.f38005l0;
                     if (ryVar2 != null) {
                         ryVar2.h(i15, i16);
                         return;
@@ -142,7 +142,7 @@ public final class t3 implements c20 {
                         textView.setTextSize(1, 20.0f);
                         textView.setGravity(17);
                         textView.setText(hd.G(arrayList.size(), "UnconfirmedAuthDeniedTitle", new Object[0]));
-                        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27956j5, null);
+                        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27957j5, null);
                         linearLayout.addView(textView, c8.ha.k(28.0f, 14.0f, 28.0f, 0.0f, -1, -2));
                         TextView textView2 = new TextView(maVar.getContext());
                         textView2.setTextSize(1, 14.0f);
@@ -159,12 +159,12 @@ public final class t3 implements c20 {
                             }
                             textView2.setText(hd.a0(null, null, 2131743907, str2));
                         }
-                        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f27956j5, null);
+                        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f27957j5, null);
                         linearLayout.addView(textView2, c8.ha.k(40.0f, 9.0f, 40.0f, 0.0f, -1, -2));
                         FrameLayout frameLayout = new FrameLayout(maVar.getContext());
                         frameLayout.setPadding(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(10.0f));
                         int L3 = org.telegram.messenger.g0.L(12.0f);
-                        int i19 = org.telegram.ui.ActionBar.k6.f28089q7;
+                        int i19 = org.telegram.ui.ActionBar.k6.f28090q7;
                         int x02 = org.telegram.ui.ActionBar.k6.x0(null, i19, false);
                         float f11 = 0.15f;
                         if (org.telegram.ui.ActionBar.k6.I.q()) {
@@ -194,8 +194,8 @@ public final class t3 implements c20 {
                         org.telegram.ui.ActionBar.v2 l10 = org.telegram.messenger.k5.l(1, maVar.getContext(), null, false);
                         l10.N = linearLayout;
                         l10.show();
-                        l10.f28616b0 = false;
-                        l10.f28619c0 = false;
+                        l10.f28617b0 = false;
+                        l10.f28620c0 = false;
                         org.telegram.ui.Cells.f fVar = new org.telegram.ui.Cells.f(l10, 12);
                         org.telegram.messenger.g0.r(dVar.J);
                         dVar.setCountFilled(false);
@@ -210,7 +210,7 @@ public final class t3 implements c20 {
                         org.telegram.messenger.k5.p(null, 2131743880, new hc(org.telegram.ui.Components.xa.a(maVar.getContext()), null), null);
                     }
                 }
-                maVar.f29579e.a(false, true);
+                maVar.f29580e.a(false, true);
                 qp.s1(i10).U1().a();
                 return;
             case 4:
@@ -218,11 +218,11 @@ public final class t3 implements c20 {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = org.telegram.messenger.g0.b0(wkVar.f39994h0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.g0.b0(wkVar.f39994h0.getLongitude());
+                tL_geoPoint.lat = org.telegram.messenger.g0.b0(wkVar.f40002h0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.g0.b0(wkVar.f40002h0.getLongitude());
                 tL_messageMediaGeoLive.period = i10;
-                wkVar.f40000n0.d(tL_messageMediaGeoLive, wkVar.f40001o0, true, 0, ((Long) obj).longValue());
-                wkVar.f38948b.a(true);
+                wkVar.f40008n0.d(tL_messageMediaGeoLive, wkVar.f40009o0, true, 0, ((Long) obj).longValue());
+                wkVar.f38969b.a(true);
                 return;
             case 5:
                 j40.l1((j40) obj2, i10, (org.telegram.messenger.e3) obj);
@@ -238,13 +238,13 @@ public final class t3 implements c20 {
             default:
                 org.telegram.ui.Wallet.x9 x9Var = (org.telegram.ui.Wallet.x9) obj2;
                 String str3 = (String) obj;
-                if (!x9Var.f43344r && i10 == x9Var.J) {
+                if (!x9Var.f43343r && i10 == x9Var.J) {
                     x9Var.E = 0;
                     x9Var.L = false;
                     if (WalletEngine2.isValidRecipientAddress(str3)) {
                         str = WalletEngine2.toUserFriendlyAddress(str3);
                     }
-                    x9Var.f43348y = str;
+                    x9Var.f43347y = str;
                     d dVar2 = x9Var.Z;
                     if (dVar2 != null) {
                         if (str != null) {
@@ -252,7 +252,7 @@ public final class t3 implements c20 {
                         }
                         dVar2.setEnabled(z10);
                     }
-                    x9Var.f35844a.f36781f3.O(true);
+                    x9Var.f36227a.f37160f3.O(true);
                     return;
                 }
                 return;

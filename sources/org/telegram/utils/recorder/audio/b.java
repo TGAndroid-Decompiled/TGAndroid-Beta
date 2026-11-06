@@ -9,50 +9,50 @@ import org.telegram.ui.ea0;
 import vi.g;
 import vi.h;
 public final class b implements Runnable {
-    public final int f52711a = 1;
-    public final long f52712b;
-    public final Object f52713c;
+    public final int f52709a = 1;
+    public final long f52710b;
+    public final Object f52711c;
     public final Object d;
 
     public b(long j3, g gVar, h hVar) {
-        this.f52713c = hVar;
+        this.f52711c = hVar;
         this.d = gVar;
-        this.f52712b = j3;
+        this.f52710b = j3;
     }
 
     @Override
     public final void run() {
         long j3;
         byte[] bArr;
-        switch (this.f52711a) {
+        switch (this.f52709a) {
             case 0:
-                d dVar = (d) this.f52713c;
+                d dVar = (d) this.f52711c;
                 Exception exc = (Exception) this.d;
-                ac.e eVar = dVar.f52722g;
-                vi.b bVar = dVar.f52721f;
-                File file = dVar.f52717a;
-                ByteBuffer byteBuffer = dVar.f52733s;
-                if (!dVar.f52736w) {
-                    dVar.f52736w = true;
+                ac.e eVar = dVar.f52720g;
+                vi.b bVar = dVar.f52719f;
+                File file = dVar.f52715a;
+                ByteBuffer byteBuffer = dVar.f52731s;
+                if (!dVar.f52734w) {
+                    dVar.f52734w = true;
                     Exception exc2 = dVar.v;
                     if (exc2 == null) {
                         exc2 = exc;
                     }
                     if (exc2 == null) {
                         try {
-                            if (dVar.f52734t != null && byteBuffer.position() > 0) {
+                            if (dVar.f52732t != null && byteBuffer.position() > 0) {
                                 dVar.b(byteBuffer.position());
                                 byteBuffer.clear();
                             }
                         } catch (Throwable th2) {
                             try {
                                 exc2 = d.a(th2);
-                                AudioNoiseSuppressor audioNoiseSuppressor = dVar.f52735u;
+                                AudioNoiseSuppressor audioNoiseSuppressor = dVar.f52733u;
                                 if (audioNoiseSuppressor != null) {
                                     audioNoiseSuppressor.c();
-                                    dVar.f52735u = null;
+                                    dVar.f52733u = null;
                                 }
-                                AudioRecorderNative audioRecorderNative = dVar.f52734t;
+                                AudioRecorderNative audioRecorderNative = dVar.f52732t;
                                 if (audioRecorderNative != null) {
                                     try {
                                         audioRecorderNative.c();
@@ -60,11 +60,11 @@ public final class b implements Runnable {
                                     }
                                 }
                             } catch (Throwable th3) {
-                                if (dVar.f52735u != null) {
-                                    dVar.f52735u.c();
-                                    dVar.f52735u = null;
+                                if (dVar.f52733u != null) {
+                                    dVar.f52733u.c();
+                                    dVar.f52733u = null;
                                 }
-                                AudioRecorderNative audioRecorderNative2 = dVar.f52734t;
+                                AudioRecorderNative audioRecorderNative2 = dVar.f52732t;
                                 if (audioRecorderNative2 != null) {
                                     try {
                                         if (!audioRecorderNative2.c() && exc2 == null) {
@@ -75,19 +75,19 @@ public final class b implements Runnable {
                                             d.a(th4);
                                         }
                                     }
-                                    dVar.f52734t.f();
-                                    dVar.f52734t = null;
+                                    dVar.f52732t.f();
+                                    dVar.f52732t = null;
                                 }
                                 throw th3;
                             }
                         }
                     }
-                    AudioNoiseSuppressor audioNoiseSuppressor2 = dVar.f52735u;
+                    AudioNoiseSuppressor audioNoiseSuppressor2 = dVar.f52733u;
                     if (audioNoiseSuppressor2 != null) {
                         audioNoiseSuppressor2.c();
-                        dVar.f52735u = null;
+                        dVar.f52733u = null;
                     }
-                    AudioRecorderNative audioRecorderNative3 = dVar.f52734t;
+                    AudioRecorderNative audioRecorderNative3 = dVar.f52732t;
                     if (audioRecorderNative3 != null) {
                         try {
                             if (!audioRecorderNative3.c() && exc2 == null) {
@@ -98,55 +98,55 @@ public final class b implements Runnable {
                                 exc2 = d.a(th5);
                             }
                         }
-                        dVar.f52734t.f();
-                        dVar.f52734t = null;
+                        dVar.f52732t.f();
+                        dVar.f52732t = null;
                     }
                     if (file.isFile()) {
                         j3 = file.length();
                     } else {
                         j3 = 0;
                     }
-                    if (dVar.f52739z > 0) {
-                        bVar.b("RNNoise summary: frames=" + dVar.f52739z + ", averageMs=" + ((dVar.A / dVar.f52739z) / 1000000.0d) + ", maxMs=" + (dVar.B / 1000000.0d));
+                    if (dVar.f52737z > 0) {
+                        bVar.b("RNNoise summary: frames=" + dVar.f52737z + ", averageMs=" + ((dVar.A / dVar.f52737z) / 1000000.0d) + ", maxMs=" + (dVar.B / 1000000.0d));
                     }
                     Exception exc3 = exc2;
-                    long j10 = this.f52712b;
+                    long j10 = this.f52710b;
                     StringBuilder t6 = p0.t(j10, "capture stopped: samples=", ", durationMs=");
                     t6.append((1000 * j10) / 48000);
                     t6.append(", bytes=");
                     t6.append(j3);
                     t6.append(", maxQueuedChunks=");
-                    t6.append(dVar.f52738y);
+                    t6.append(dVar.f52736y);
                     bVar.b(t6.toString());
                     if (exc3 == null) {
                         h hVar = (h) eVar.f1025c;
                         hVar.a((g) eVar.f1024b, j3);
-                        hVar.f57455i.post(new yk(eVar, eVar.f1023a, j10, 4));
+                        hVar.f57454i.post(new yk(eVar, eVar.f1023a, j10, 4));
                     } else {
-                        ((h) eVar.f1025c).f57455i.post(new ea0(eVar, eVar.f1023a, exc3, 3));
+                        ((h) eVar.f1025c).f57454i.post(new ea0(eVar, eVar.f1023a, exc3, 3));
                     }
-                    dVar.f52724j.quitSafely();
-                    dVar.f52726l.clear();
+                    dVar.f52722j.quitSafely();
+                    dVar.f52724l.clear();
                     return;
                 }
                 return;
             default:
-                h hVar2 = (h) this.f52713c;
+                h hVar2 = (h) this.f52711c;
                 g gVar = (g) this.d;
                 try {
-                    bArr = AudioRecorderNative.e(gVar.f57446b.getAbsolutePath());
+                    bArr = AudioRecorderNative.e(gVar.f57445b.getAbsolutePath());
                 } catch (Throwable th6) {
                     hVar2.h.a("final waveform extraction failed", th6);
                     bArr = null;
                 }
-                hVar2.f57455i.post(new w2(hVar2, gVar, this.f52712b, bArr, 27));
+                hVar2.f57454i.post(new w2(hVar2, gVar, this.f52710b, bArr, 27));
                 return;
         }
     }
 
     public b(d dVar, long j3, Exception exc) {
-        this.f52713c = dVar;
-        this.f52712b = j3;
+        this.f52711c = dVar;
+        this.f52710b = j3;
         this.d = exc;
     }
 }

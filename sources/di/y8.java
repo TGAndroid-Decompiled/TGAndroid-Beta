@@ -49,10 +49,10 @@ public final class y8 extends AnimatorListenerAdapter {
                 if (m9Var.d != null && (z9 = p9Var.z()) != null && (dh0Var = z9.X0.d) != null) {
                     dh0 dh0Var2 = m9Var.d;
                     dh0Var2.getClass();
-                    dh0Var2.f32874c = dh0Var.f32874c;
-                    dh0Var2.f32876f = dh0Var.f32876f;
-                    dh0Var2.f32873b = dh0Var.f32873b;
-                    dh0Var2.f32872a = System.currentTimeMillis();
+                    dh0Var2.f32903c = dh0Var.f32903c;
+                    dh0Var2.f32905f = dh0Var.f32905f;
+                    dh0Var2.f32902b = dh0Var.f32902b;
+                    dh0Var2.f32901a = System.currentTimeMillis();
                     dh0Var2.c();
                 }
                 h4 h4Var = p9Var.F0;

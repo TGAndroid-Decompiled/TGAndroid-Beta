@@ -130,7 +130,7 @@ public final class c implements Comparator {
             case 23:
                 return ((Integer) ((Pair) obj).first).intValue() - ((Integer) ((Pair) obj2).first).intValue();
             case 24:
-                int i15 = ProfileStoriesView.f41976s0;
+                int i15 = ProfileStoriesView.f41975s0;
                 return (int) (((k4) obj2).f9292i - ((k4) obj).f9292i);
             case 25:
                 return (int) (((Long) obj2).longValue() - ((Long) obj).longValue());

@@ -21,7 +21,7 @@ public final class ah implements Runnable {
         int i7 = this.f21437c;
         double d = this.d;
         try {
-            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26690b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26698b.executeFast("REPLACE INTO chat_hints VALUES(?, ?, ?, ?)");
             executeFast.requery();
             executeFast.bindLong(1, j3);
             executeFast.bindInteger(2, i7);

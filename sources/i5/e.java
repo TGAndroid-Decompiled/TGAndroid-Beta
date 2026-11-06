@@ -1,6 +1,6 @@
 package i5;
 
-import c8.ib;
+import c8.jb;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +18,10 @@ public final class e extends com.googlecode.mp4parser.c {
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a10 = ib.a(h5.b.i(byteBuffer));
+        int a10 = jb.a(h5.b.i(byteBuffer));
         this.f15284e = new ArrayList(a10);
         for (int i7 = 0; i7 < a10; i7++) {
-            this.f15284e.add(new d(ib.a(h5.b.i(byteBuffer)), byteBuffer.getInt()));
+            this.f15284e.add(new d(jb.a(h5.b.i(byteBuffer)), byteBuffer.getInt()));
         }
     }
 

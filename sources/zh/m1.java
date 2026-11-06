@@ -11,25 +11,25 @@ import java.util.HashMap;
 import org.telegram.messenger.hd;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.up0;
-public final class m1 extends l61 {
-    public final int f60360a;
-    public final f6 f60361b;
-    public final up0 f60362c;
+public final class m1 extends m61 {
+    public final int f60359a;
+    public final f6 f60360b;
+    public final up0 f60361c;
 
     public m1(up0 up0Var, int i7, f6 f6Var) {
-        this.f60362c = up0Var;
-        this.f60360a = i7;
-        this.f60361b = f6Var;
+        this.f60361c = up0Var;
+        this.f60359a = i7;
+        this.f60360b = f6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        up0 up0Var = this.f60362c;
+        up0 up0Var = this.f60361c;
         i1 i1Var = up0Var.Q;
-        t9 t9Var = up0Var.f60215e;
+        t9 t9Var = up0Var.f60214e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i7 = 0;
@@ -73,9 +73,9 @@ public final class m1 extends l61 {
         a2 currentPage = up0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
-                i7 = t9Var.f(currentPage.f60109e.d) + 1;
+                i7 = t9Var.f(currentPage.f60108e.d) + 1;
             }
-            up0Var.f60217n.e(0.0f, i7, i7);
+            up0Var.f60216n.e(0.0f, i7, i7);
         }
         org.telegram.messenger.g0.r(i1Var);
         org.telegram.messenger.g0.i3(i1Var, 1000L);
@@ -85,8 +85,8 @@ public final class m1 extends l61 {
     public final void b(View view, int i7, int i10) {
         v9 v9Var;
         boolean z9;
-        up0 up0Var = this.f60362c;
-        t9 t9Var = up0Var.f60215e;
+        up0 up0Var = this.f60361c;
+        t9 t9Var = up0Var.f60214e;
         a2 a2Var = (a2) view;
         int i11 = 0;
         if (i10 == 0) {
@@ -106,14 +106,14 @@ public final class m1 extends l61 {
             z9 = true;
         }
         a2Var.d = z9;
-        a2Var.f60109e = v9Var;
+        a2Var.f60108e = v9Var;
         if (v9Var != null) {
             v9Var.a();
         }
         a2Var.f(false);
         LinearLayout linearLayout = a2Var.D;
         if (linearLayout != null) {
-            if (!a2Var.f60106a.f60215e.h()) {
+            if (!a2Var.f60105a.f60214e.h()) {
                 i11 = 8;
             }
             linearLayout.setVisibility(i11);
@@ -135,20 +135,20 @@ public final class m1 extends l61 {
         if (i7 == -1) {
             return null;
         }
-        int i10 = this.f60360a;
-        f6 f6Var = this.f60361b;
-        up0 up0Var = this.f60362c;
+        int i10 = this.f60359a;
+        f6 f6Var = this.f60360b;
+        up0 up0Var = this.f60361c;
         a2 a2Var = new a2(up0Var, i10, f6Var);
         oi.q qVar = up0Var.N;
         if (qVar != null) {
-            qVar.b(a2Var.f60110f);
+            qVar.b(a2Var.f60109f);
         }
         return a2Var;
     }
 
     @Override
     public final int e() {
-        return this.f60362c.f60215e.d().size() + 1;
+        return this.f60361c.f60214e.d().size() + 1;
     }
 
     @Override
@@ -156,7 +156,7 @@ public final class m1 extends l61 {
         if (i7 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f60362c.f60215e.d().get(i7 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f60361c.f60214e.d().get(i7 - 1)).collection_id;
     }
 
     @Override
@@ -164,7 +164,7 @@ public final class m1 extends l61 {
         if (i7 == 0) {
             return hd.M0(2131750247, null);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f60362c.f60215e.d().get(i7 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f60361c.f60214e.d().get(i7 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }

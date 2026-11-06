@@ -67,7 +67,7 @@ public final class s7 implements DialogInterface.OnDismissListener {
                     v2Var.dismiss();
                     v2VarArr[0] = null;
                 }
-                bi0.f44356a = null;
+                bi0.f44355a = null;
                 org.telegram.ui.ActionBar.v2 v2Var2 = v2VarArr2[0];
                 if (v2Var2 != null) {
                     v2Var2.dismiss();

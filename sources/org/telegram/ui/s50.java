@@ -4,25 +4,25 @@ import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 import org.telegram.messenger.Intro;
 public final class s50 implements TextureView.SurfaceTextureListener {
-    public final int f49656a;
-    public final org.telegram.messenger.ls f49657b;
+    public final int f49655a;
+    public final org.telegram.messenger.ls f49656b;
 
     public s50(org.telegram.messenger.ls lsVar, int i7) {
-        this.f49656a = i7;
-        this.f49657b = lsVar;
+        this.f49655a = i7;
+        this.f49656b = lsVar;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        switch (this.f49656a) {
+        switch (this.f49655a) {
             case 0:
-                u50 u50Var = (u50) this.f49657b;
+                u50 u50Var = (u50) this.f49656b;
                 if (u50Var.I == null && surfaceTexture != null) {
                     u50Var.I = new t50(u50Var, surfaceTexture);
                     Intro.onSurfaceChanged(i7, i10, Math.min(i7 / 150.0f, i10 / 150.0f), 0);
                     u50Var.I.postRunnable(new hz(this, 12));
                     t50 t50Var = u50Var.I;
-                    t50Var.postRunnable(t50Var.f49948x);
+                    t50Var.postRunnable(t50Var.f49947x);
                     return;
                 }
                 return;
@@ -33,9 +33,9 @@ public final class s50 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f49656a) {
+        switch (this.f49655a) {
             case 0:
-                u50 u50Var = (u50) this.f49657b;
+                u50 u50Var = (u50) this.f49656b;
                 t50 t50Var = u50Var.I;
                 if (t50Var != null) {
                     t50Var.postRunnable(new hz(t50Var, 14));
@@ -44,7 +44,7 @@ public final class s50 implements TextureView.SurfaceTextureListener {
                 }
                 return true;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f49657b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f49656b;
                 TextureView textureView = photoViewer.B2;
                 if (textureView != null && photoViewer.E3) {
                     if (photoViewer.K3) {
@@ -53,7 +53,7 @@ public final class s50 implements TextureView.SurfaceTextureListener {
                     textureView.setSurfaceTexture(surfaceTexture);
                     photoViewer.B2.setVisibility(0);
                     photoViewer.E3 = false;
-                    photoViewer.f41381e0.invalidate();
+                    photoViewer.f41380e0.invalidate();
                     return false;
                 }
                 return true;
@@ -62,9 +62,9 @@ public final class s50 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        switch (this.f49656a) {
+        switch (this.f49655a) {
             case 0:
-                if (((u50) this.f49657b).I != null) {
+                if (((u50) this.f49656b).I != null) {
                     Intro.onSurfaceChanged(i7, i10, Math.min(i7 / 150.0f, i10 / 150.0f), 0);
                     return;
                 }
@@ -76,11 +76,11 @@ public final class s50 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        switch (this.f49656a) {
+        switch (this.f49655a) {
             case 0:
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f49657b;
+                PhotoViewer photoViewer = (PhotoViewer) this.f49656b;
                 if (photoViewer.F3 == 1) {
                     photoViewer.q0(true);
                     return;

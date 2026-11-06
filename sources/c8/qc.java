@@ -1,60 +1,45 @@
 package c8;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public abstract class qc {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String sb2;
-        int i7 = 0;
-        int i10 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i10 >= length) {
-                break;
+    public static void a(int i7, int i10) {
+        String a10;
+        if (i7 >= 0 && i7 < i10) {
+            return;
+        }
+        if (i7 >= 0) {
+            if (i10 < 0) {
+                throw new IllegalArgumentException(jg.g.j(i10, "negative size: "));
             }
-            Object obj = objArr[i10];
-            if (obj == null) {
-                sb2 = "null";
+            a10 = rc.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i7), Integer.valueOf(i10));
+        } else {
+            a10 = rc.a("%s (%s) must not be negative", "index", Integer.valueOf(i7));
+        }
+        throw new IndexOutOfBoundsException(a10);
+    }
+
+    public static void b(int i7, int i10, int i11) {
+        String c10;
+        if (i7 >= 0 && i10 >= i7 && i10 <= i11) {
+            return;
+        }
+        if (i7 >= 0 && i7 <= i11) {
+            if (i10 >= 0 && i10 <= i11) {
+                c10 = rc.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i10), Integer.valueOf(i7));
             } else {
-                try {
-                    sb2 = obj.toString();
-                } catch (Exception e10) {
-                    String str2 = obj.getClass().getName() + '@' + Integer.toHexString(System.identityHashCode(obj));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(str2), (Throwable) e10);
-                    StringBuilder u10 = a8.p0.u("<", str2, " threw ");
-                    u10.append(e10.getClass().getName());
-                    u10.append(">");
-                    sb2 = u10.toString();
-                }
+                c10 = c(i10, i11, "end index");
             }
-            objArr[i10] = sb2;
-            i10++;
+        } else {
+            c10 = c(i7, i11, "start index");
         }
-        StringBuilder sb3 = new StringBuilder((length * 16) + str.length());
-        int i11 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i7 >= length2 || (indexOf = str.indexOf("%s", i11)) == -1) {
-                break;
-            }
-            sb3.append((CharSequence) str, i11, indexOf);
-            sb3.append(objArr[i7]);
-            i7++;
-            i11 = indexOf + 2;
+        throw new IndexOutOfBoundsException(c10);
+    }
+
+    public static String c(int i7, int i10, String str) {
+        if (i7 < 0) {
+            return rc.a("%s (%s) must not be negative", str, Integer.valueOf(i7));
         }
-        sb3.append((CharSequence) str, i11, str.length());
-        if (i7 < length2) {
-            sb3.append(" [");
-            sb3.append(objArr[i7]);
-            for (int i12 = i7 + 1; i12 < objArr.length; i12++) {
-                sb3.append(", ");
-                sb3.append(objArr[i12]);
-            }
-            sb3.append(']');
+        if (i10 >= 0) {
+            return rc.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i7), Integer.valueOf(i10));
         }
-        return sb3.toString();
+        throw new IllegalArgumentException(jg.g.j(i10, "negative size: "));
     }
 }

@@ -21,7 +21,7 @@ public final class n implements mj {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f18712b.f38948b.W1.startActivityForResult(intent, 21);
+            this.f18712b.f38969b.W1.startActivityForResult(intent, 21);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -38,7 +38,7 @@ public final class n implements mj {
             t3Var.getClass();
             if (ijVar != null && ijVar.F0() != null) {
                 TLRPC.Document F0 = ijVar.F0();
-                TLRPC.Message message = ijVar.f23237k;
+                TLRPC.Message message = ijVar.f23244k;
                 if (message != null) {
                     str2 = message.attachPath;
                 } else {

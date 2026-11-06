@@ -24,8 +24,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.ly0;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.my0;
+import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.wo;
 import org.telegram.ui.Components.xz;
@@ -59,9 +59,9 @@ public final class p1 extends FrameLayout {
         this.f17476c = lVar;
         lVar.setLines(2);
         lVar.setEllipsize(TextUtils.TruncateAt.END);
-        r6.V(lVar, k6.f28258z6, f6Var);
+        r6.V(lVar, k6.f28259z6, f6Var);
         lVar.setTextSize(1, 14.0f);
-        boolean z10 = hd.f22871a0;
+        boolean z10 = hd.f22878a0;
         if (z10) {
             f10 = i7;
         } else {
@@ -75,7 +75,7 @@ public final class p1 extends FrameLayout {
             imageView.setImageResource(2131231627);
             r6.t(imageView, k6.Ii, null, PorterDuff.Mode.MULTIPLY);
             imageView.setAlpha(0.0f);
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 i10 = 3;
             } else {
                 i10 = 5;
@@ -86,7 +86,7 @@ public final class p1 extends FrameLayout {
         }
         wo woVar = new wo(21, getContext(), f6Var);
         this.d = woVar;
-        woVar.b(-1, k6.f27848d6, k6.f27978k7);
+        woVar.b(-1, k6.f27849d6, k6.f27979k7);
         woVar.setDrawUnchecked(false);
         woVar.setDrawBackgroundAsArc(3);
         addView(woVar, ha.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
@@ -114,12 +114,12 @@ public final class p1 extends FrameLayout {
             str3 = "/".concat(str3);
         }
         spannableStringBuilder.append((CharSequence) "/").append((CharSequence) s1Var.f17530b);
-        spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
         int i7 = k6.G6;
         f6 f6Var = this.f17478f;
         spannableStringBuilder.setSpan(new xz(i7, f6Var), 0, spannableStringBuilder.length(), 33);
         if (str3 != null) {
-            xz xzVar = new xz(k6.f28048o6, f6Var);
+            xz xzVar = new xz(k6.f28049o6, f6Var);
             if (str3.length() <= 0) {
                 length = 1;
             } else {
@@ -131,12 +131,12 @@ public final class p1 extends FrameLayout {
         xh.l lVar = this.f17476c;
         if (ijVar != null) {
             spannableStringBuilder.append((CharSequence) " ");
-            CharSequence charSequence = s1Var.f17532e.f23293z;
+            CharSequence charSequence = s1Var.f17532e.f23300z;
             if (TextUtils.isEmpty(charSequence)) {
                 charSequence = s1Var.f17532e.v;
             }
             CharSequence m10 = i6.m(new SpannableStringBuilder(charSequence), lVar.getPaint().getFontMetricsInt(), false, null, 0);
-            TLRPC.Message message = s1Var.f17532e.f23237k;
+            TLRPC.Message message = s1Var.f17532e.f23244k;
             if (message != null) {
                 ij.C5(m10, message.entities, lVar.getPaint().getFontMetricsInt(), false);
             }
@@ -144,11 +144,11 @@ public final class p1 extends FrameLayout {
         }
         if (s1Var.a() > 1) {
             spannableStringBuilder.append((CharSequence) "  ");
-            int L = org.telegram.messenger.g0.f22537q.x - org.telegram.messenger.g0.L(80.0f);
+            int L = org.telegram.messenger.g0.f22544q.x - org.telegram.messenger.g0.L(80.0f);
             int i10 = o1.d;
             SpannableString spannableString = new SpannableString("+");
             o1 o1Var = new o1(s1Var.a() - 1);
-            this.f17479n[0] = (int) (((ly0) o1Var.f17465c).f35782c + org.telegram.messenger.g0.L(10.0f));
+            this.f17479n[0] = (int) (((my0) o1Var.f17465c).f36125c + org.telegram.messenger.g0.L(10.0f));
             spannableString.setSpan(o1Var, 0, spannableString.length(), 33);
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(TextUtils.ellipsize(spannableStringBuilder, lVar.getPaint(), (L * 1.5f) - iArr[0], TextUtils.TruncateAt.END));
             if (spannableStringBuilder2.length() > 0 && spannableStringBuilder2.charAt(spannableStringBuilder2.length() - 1) == 8230) {
@@ -158,7 +158,7 @@ public final class p1 extends FrameLayout {
             spannableStringBuilder = spannableStringBuilder2;
         }
         lVar.setText(spannableStringBuilder);
-        int i11 = p10.f24459s0;
+        int i11 = p10.f24467s0;
         TLRPC.MessageMedia n1 = ij.n1(s1Var.f17532e);
         long j10 = 0;
         ImageReceiver imageReceiver = this.f17475b;
@@ -172,7 +172,7 @@ public final class p1 extends FrameLayout {
             }
             imageReceiver.p0(f10, "36_36", bitmapDrawable, j10, null, ijVar2, 0);
             imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
-        } else if (n1 != null && n1.document != null && (ij.M4(s1Var.f17532e.f23237k) || s1Var.f17532e.u4())) {
+        } else if (n1 != null && n1.document != null && (ij.M4(s1Var.f17532e.f23244k) || s1Var.f17532e.u4())) {
             TLRPC.PhotoSize w11 = w7.w(n1.document.thumbs, org.telegram.messenger.g0.L(36.0f), true, null, true);
             if (w11 == null) {
                 hc b10 = hc.b(n1.document);
@@ -213,7 +213,7 @@ public final class p1 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         int L;
         float f10;
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             L = getMeasuredWidth() - org.telegram.messenger.g0.L(51.0f);
         } else {
             L = org.telegram.messenger.g0.L(15.0f);
@@ -226,11 +226,11 @@ public final class p1 extends FrameLayout {
         if (this.f17480r) {
             Paint W0 = k6.W0("paintDivider", this.f17478f);
             if (W0 == null) {
-                W0 = k6.f27971k0;
+                W0 = k6.f27972k0;
             }
             Paint paint = W0;
             float f12 = 64.0f;
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 64.0f;
@@ -238,7 +238,7 @@ public final class p1 extends FrameLayout {
             float L2 = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width = getWidth();
-            if (!hd.f22871a0) {
+            if (!hd.f22878a0) {
                 f12 = 0.0f;
             }
             canvas.drawRect(L2, measuredHeight, width - org.telegram.messenger.g0.L(f12), getMeasuredHeight(), paint);

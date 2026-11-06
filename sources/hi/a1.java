@@ -66,17 +66,17 @@ public final class a1 implements Runnable {
                 if (tLObject != null) {
                     TL_phone.joinAsPeers joinaspeers = (TL_phone.joinAsPeers) tLObject;
                     if (joinaspeers.peers.size() == 1) {
-                        r60Var.a(qp.s1(cVar.f21723a).j1(ij.C1(joinaspeers.peers.get(0))), false, false, false);
+                        r60Var.a(qp.s1(cVar.f21729a).j1(ij.C1(joinaspeers.peers.get(0))), false, false, false);
                         return;
                     }
-                    t60.f38225z1 = joinaspeers.peers;
+                    t60.f38243z1 = joinaspeers.peers;
                     long j3 = this.f14499c;
                     t60.B1 = j3;
                     t60.A1 = SystemClock.elapsedRealtime();
-                    int i10 = cVar.f21723a;
+                    int i10 = cVar.f21729a;
                     t60.C1 = i10;
                     qp.s1(i10).S3(joinaspeers.chats, false);
-                    qp.s1(cVar.f21723a).Y3(joinaspeers.users, false);
+                    qp.s1(cVar.f21729a).Y3(joinaspeers.users, false);
                     t60.L0(context2, j3, joinaspeers.peers, f2Var, this.f14500e, peer, r60Var);
                     return;
                 }
@@ -97,7 +97,7 @@ public final class a1 implements Runnable {
                     k0Var = k0Var2;
                 }
                 try {
-                    b2Var = new org.telegram.ui.Wallet.b2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.f2.g(k0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, f2Var2.f42464f.getCurrentTime()), str, bArr);
+                    b2Var = new org.telegram.ui.Wallet.b2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.f2.g(k0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, f2Var2.f42463f.getCurrentTime()), str, bArr);
                     i7 = null;
                 } catch (Exception e12) {
                     e = e12;

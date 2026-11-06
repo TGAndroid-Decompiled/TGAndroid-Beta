@@ -58,7 +58,7 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt.setAlpha((f10 * 0.4f) + 0.6f);
                 }
-                float interpolation = xq.f40329f.getInterpolation(o5Var.J0);
+                float interpolation = xq.f40345f.getInterpolation(o5Var.J0);
                 if (view != null && view2 != null) {
                     float f12 = 1.0f - interpolation;
                     float f13 = (f12 * 0.4f) + 0.6f;
@@ -93,15 +93,15 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.d;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (kVar.f20090l) {
-                    x1Var.f30793h0 = (-kVar.f20097s) * floatValue2;
-                    x1Var.f30798i0 = (-kVar.f20098t) * floatValue2;
-                    x1Var.f30807k0 = (-kVar.f20099u) * floatValue2;
-                    x1Var.f30803j0 = (-kVar.v) * floatValue2;
+                    x1Var.f30794h0 = (-kVar.f20097s) * floatValue2;
+                    x1Var.f30799i0 = (-kVar.f20098t) * floatValue2;
+                    x1Var.f30808k0 = (-kVar.f20099u) * floatValue2;
+                    x1Var.f30804j0 = (-kVar.v) * floatValue2;
                 } else {
-                    x1Var.f30793h0 = ((-kVar.f20097s) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f30798i0 = ((-kVar.f20098t) * floatValue2) - q1Var.getAnimationOffsetX();
-                    x1Var.f30807k0 = ((-kVar.f20099u) * floatValue2) - q1Var.getTranslationY();
-                    x1Var.f30803j0 = ((-kVar.v) * floatValue2) - q1Var.getTranslationY();
+                    x1Var.f30794h0 = ((-kVar.f20097s) * floatValue2) - q1Var.getAnimationOffsetX();
+                    x1Var.f30799i0 = ((-kVar.f20098t) * floatValue2) - q1Var.getAnimationOffsetX();
+                    x1Var.f30808k0 = ((-kVar.f20099u) * floatValue2) - q1Var.getTranslationY();
+                    x1Var.f30804j0 = ((-kVar.v) * floatValue2) - q1Var.getTranslationY();
                 }
                 q1Var.invalidate();
                 return;
@@ -124,7 +124,7 @@ public final class g3 implements ValueAnimator.AnimatorUpdateListener {
                     }
                     childAt2.setAlpha((f11 * 0.4f) + 0.6f);
                 }
-                float interpolation2 = xq.f40329f.getInterpolation(g0Var.R0);
+                float interpolation2 = xq.f40345f.getInterpolation(g0Var.R0);
                 if (view3 != null && view4 != null) {
                     float f15 = 1.0f - interpolation2;
                     float f16 = (f15 * 0.4f) + 0.6f;

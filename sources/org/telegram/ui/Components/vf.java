@@ -58,7 +58,7 @@ public abstract class vf extends ys {
         org.telegram.ui.an anVar = chatActivityEnterView.P2;
         if (anVar != null && anVar.getParentActivity() != null) {
             org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) arrayList.get(0);
-            if (chatActivityEnterView.f31158z2) {
+            if (chatActivityEnterView.f31159z2) {
                 org.telegram.messenger.g0.v1(this);
                 org.telegram.messenger.g0.i3(new a9.h(this, arrayList, file, false, 9), 100L);
                 return;
@@ -80,11 +80,11 @@ public abstract class vf extends ys {
             chatActivityEnterView.L0 = null;
         }
         org.telegram.ui.qm qmVar = chatActivityEnterView.V2;
-        if (qmVar != null && anVar != null && qmVar.f49267f) {
+        if (qmVar != null && anVar != null && qmVar.f49266f) {
             anVar.uc();
             return;
         }
-        t0.h hVar = (t0.h) qtVar.f37394b;
+        t0.h hVar = (t0.h) qtVar.f37389b;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             org.telegram.messenger.c cVar = chatActivityEnterView.R;
             Uri c10 = hVar.c();
@@ -144,12 +144,12 @@ public abstract class vf extends ys {
         }
         try {
             int i7 = ChatActivityEnterView.s5;
-            if (chatActivityEnterView.f31018b2 != null) {
+            if (chatActivityEnterView.f31019b2 != null) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            if (!z9 && !chatActivityEnterView.f31103p5) {
+            if (!z9 && !chatActivityEnterView.f31104p5) {
                 t0.b.b(editorInfo, new String[]{"image/gif", "image/*", "image/jpg", "image/png", "image/webp"});
                 return t0.f.a(onCreateInputConnection, editorInfo, new u(this, 18));
             }
@@ -217,8 +217,8 @@ public abstract class vf extends ys {
             } else {
                 z9 = false;
             }
-            if (wdVar.f34928x != z9) {
-                wdVar.f34928x = z9;
+            if (wdVar.f34954x != z9) {
+                wdVar.f34954x = z9;
                 wdVar.invalidate();
             }
             if (!z9 && (k60Var = chatActivityEnterView.Y4) != null) {
@@ -234,7 +234,7 @@ public abstract class vf extends ys {
             ChatActivityEnterView chatActivityEnterView = this.Z1;
             chatActivityEnterView.X1 = true;
             ClipData primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip();
-            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.f31018b2 == null) {
+            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("image/*") && chatActivityEnterView.f31019b2 == null) {
                 I(primaryClip.getItemAt(0).getUri(), primaryClip.getDescription().getMimeType(0));
             }
         }
@@ -246,21 +246,21 @@ public abstract class vf extends ys {
         int i7;
         ChatActivityEnterView chatActivityEnterView = this.Z1;
         if (!chatActivityEnterView.E3 && chatActivityEnterView.B3 == null) {
-            if (!chatActivityEnterView.f31156z0 && !chatActivityEnterView.q0()) {
+            if (!chatActivityEnterView.f31157z0 && !chatActivityEnterView.q0()) {
                 if (this.Y1 == null) {
                     pc pcVar = new pc(this);
                     this.Y1 = pcVar;
                     pcVar.h = new Runnable(this) {
-                        public final vf f38323b;
+                        public final vf f38312b;
 
                         {
-                            this.f38323b = this;
+                            this.f38312b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i10 = r2;
-                            vf vfVar = this.f38323b;
+                            vf vfVar = this.f38312b;
                             switch (i10) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = vfVar.Z1;
@@ -269,7 +269,7 @@ public abstract class vf extends ys {
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = vfVar.Z1;
-                                    chatActivityEnterView3.f31079l3 = false;
+                                    chatActivityEnterView3.f31080l3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
@@ -283,8 +283,8 @@ public abstract class vf extends ys {
                 RectF rectF = org.telegram.messenger.g0.P;
                 float f10 = 0;
                 rectF.set(f10, f10, measuredWidth, measuredHeight);
-                pcVar2.f36845i = false;
-                pcVar2.f36841c = 0;
+                pcVar2.f36861i = false;
+                pcVar2.f36857c = 0;
                 pcVar2.a(rectF);
                 return this.Y1.b(motionEvent);
             } else if (chatActivityEnterView.s0() && motionEvent.getAction() == 0) {
@@ -299,20 +299,20 @@ public abstract class vf extends ys {
                     i7 = 2;
                 }
                 chatActivityEnterView.t1(i7, 0, true, true);
-                if (chatActivityEnterView.f31159z3) {
+                if (chatActivityEnterView.f31160z3) {
                     chatActivityEnterView.n1(false, true, false, true);
-                    chatActivityEnterView.f31079l3 = true;
+                    chatActivityEnterView.f31080l3 = true;
                     org.telegram.messenger.g0.i3(new Runnable(this) {
-                        public final vf f38323b;
+                        public final vf f38312b;
 
                         {
-                            this.f38323b = this;
+                            this.f38312b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i10 = r2;
-                            vf vfVar = this.f38323b;
+                            vf vfVar = this.f38312b;
                             switch (i10) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = vfVar.Z1;
@@ -321,7 +321,7 @@ public abstract class vf extends ys {
                                     return;
                                 default:
                                     ChatActivityEnterView chatActivityEnterView3 = vfVar.Z1;
-                                    chatActivityEnterView3.f31079l3 = false;
+                                    chatActivityEnterView3.f31080l3 = false;
                                     chatActivityEnterView3.I0();
                                     return;
                             }
@@ -345,7 +345,7 @@ public abstract class vf extends ys {
     @Override
     public final boolean requestFocus(int i7, Rect rect) {
         ChatActivityEnterView chatActivityEnterView = this.Z1;
-        if (!chatActivityEnterView.f31156z0 && !chatActivityEnterView.q0()) {
+        if (!chatActivityEnterView.f31157z0 && !chatActivityEnterView.q0()) {
             return false;
         }
         chatActivityEnterView.getClass();
@@ -362,8 +362,8 @@ public abstract class vf extends ys {
     public void setOffsetY(float f10) {
         super.setOffsetY(f10);
         ChatActivityEnterView chatActivityEnterView = this.Z1;
-        if (chatActivityEnterView.f31082m1.getForeground() != null) {
-            rt0 rt0Var = chatActivityEnterView.f31082m1;
+        if (chatActivityEnterView.f31083m1.getForeground() != null) {
+            rt0 rt0Var = chatActivityEnterView.f31083m1;
             rt0Var.invalidateDrawable(rt0Var.getForeground());
         }
     }

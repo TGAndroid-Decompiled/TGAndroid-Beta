@@ -2,7 +2,7 @@ package ii;
 
 import android.text.SpannableStringBuilder;
 import bi.v0;
-import c8.yc;
+import c8.zc;
 import java.util.ArrayList;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.ij;
@@ -26,7 +26,7 @@ public abstract class m0 {
         int i12;
         int i13;
         int i14;
-        TLRPC.Message message = ijVar.f23237k;
+        TLRPC.Message message = ijVar.f23244k;
         TLRPC.TL_messageActionChangeCommunity tL_messageActionChangeCommunity = (TLRPC.TL_messageActionChangeCommunity) message.action;
         if (m5.o(message.peer_id) == m5.o(message.from_id)) {
             z11 = true;
@@ -129,7 +129,7 @@ public abstract class m0 {
                 TL_communities.CommunityPeer communityPeer2 = communityPeer;
                 if (m5.o(communityPeer2.peer) == j3) {
                     if (user != null) {
-                        dialog = qp.s1(i7).S0(user.f27101id);
+                        dialog = qp.s1(i7).S0(user.f27102id);
                     }
                     return c(M0, dialog, user, communityPeer2);
                 }
@@ -146,7 +146,7 @@ public abstract class m0 {
         } else if (chat != null) {
             if (!t3.j0(chat)) {
                 if (!t3.t0(chat) && !communityPeer.can_view_history) {
-                    if (yc.a(communityPeer.flags, 1) && !communityPeer.visible) {
+                    if (zc.a(communityPeer.flags, 1) && !communityPeer.visible) {
                         return 4;
                     }
                     return 3;

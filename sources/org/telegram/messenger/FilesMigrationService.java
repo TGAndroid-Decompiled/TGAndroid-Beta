@@ -32,11 +32,11 @@ public class FilesMigrationService extends Service {
     public int f21172b;
 
     public static void a(org.telegram.ui.ww wwVar) {
-        SharedPreferences sharedPreferences = t0.f25555b.getSharedPreferences("systemConfig", 0);
+        SharedPreferences sharedPreferences = t0.f25563b.getSharedPreferences("systemConfig", 0);
         if (Environment.isExternalStorageLegacy() && !sharedPreferences.getBoolean("migration_to_scoped_storage_finished", false) && sharedPreferences.getInt("migration_to_scoped_storage_count", 0) < 5 && !f21170f && f21169e == null && !d) {
             if (Build.VERSION.SDK_INT >= 30) {
                 File externalStorageDirectory = Environment.getExternalStorageDirectory();
-                if (!TextUtils.isEmpty(iz.f23377h0)) {
+                if (!TextUtils.isEmpty(iz.f23384h0)) {
                     ArrayList d12 = g0.d1();
                     int size = d12.size();
                     int i7 = 0;
@@ -45,7 +45,7 @@ public class FilesMigrationService extends Service {
                             break;
                         }
                         File file = (File) d12.get(i7);
-                        if (file.getAbsolutePath().startsWith(iz.f23377h0)) {
+                        if (file.getAbsolutePath().startsWith(iz.f23384h0)) {
                             externalStorageDirectory = file;
                             break;
                         }
@@ -56,17 +56,17 @@ public class FilesMigrationService extends Service {
             }
             if (f21168c) {
                 c9 c9Var = new c9((Context) wwVar.getParentActivity(), false);
-                c9Var.f21749j1 = wwVar;
+                c9Var.f21755j1 = wwVar;
                 c9Var.setCanceledOnTouchOutside(false);
                 Activity parentActivity = wwVar.getParentActivity();
                 LinearLayout e10 = k5.e(parentActivity, 1);
-                bv0 bv0Var = new bv0(parentActivity, c9Var.f28612a);
+                bv0 bv0Var = new bv0(parentActivity, c9Var.f28613a);
                 bv0Var.setStickerNum(7);
                 bv0Var.getImageReceiver().W(1);
                 e10.addView(bv0Var, c8.ha.t(144, 144, 1, 0, 16, 0, 0));
                 TextView textView = new TextView(parentActivity);
                 textView.setGravity(8388611);
-                int i10 = org.telegram.ui.ActionBar.k6.f27956j5;
+                int i10 = org.telegram.ui.ActionBar.k6.f27957j5;
                 k5.n(textView, i10, null, 1, 20.0f);
                 textView.setText(hd.M0(2131748430, null));
                 e10.addView(textView, c8.ha.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
@@ -174,7 +174,7 @@ public class FilesMigrationService extends Service {
     @Override
     public final int onStartCommand(Intent intent, int i7, int i10) {
         dt.i();
-        Notification build = z8.b(this, dt.f22050j0).setContentTitle(hd.M0(2131748429, null)).setAutoCancel(false).setSmallIcon(2131232452).build();
+        Notification build = z8.b(this, dt.f22057j0).setContentTitle(hd.M0(2131748429, null)).setAutoCancel(false).setSmallIcon(2131232452).build();
         d = true;
         new k2.k(this).start();
         try {

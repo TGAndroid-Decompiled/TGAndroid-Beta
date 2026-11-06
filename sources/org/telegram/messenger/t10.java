@@ -51,7 +51,7 @@ public abstract class t10 {
 
     public static boolean b(TLRPC.UserFull userFull) {
         TLRPC.DisallowedGiftsSettings disallowedGiftsSettings;
-        if ((userFull != null && userFull.f27102id == p10.i(p10.f24459s0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
+        if ((userFull != null && userFull.f27103id == p10.i(p10.f24467s0).e()) || userFull == null || (disallowedGiftsSettings = userFull.disallowed_stargifts) == null || !disallowedGiftsSettings.disallow_limited_stargifts || !disallowedGiftsSettings.disallow_unlimited_stargifts || !disallowedGiftsSettings.disallow_unique_stargifts || !disallowedGiftsSettings.disallow_premium_gifts) {
             return false;
         }
         return true;
@@ -109,7 +109,7 @@ public abstract class t10 {
         if ((peerColor instanceof TLRPC.TL_peerColor) && (peerColor.flags & 1) != 0) {
             return peerColor.color;
         }
-        return (int) (user.f27101id % 7);
+        return (int) (user.f27102id % 7);
     }
 
     public static long f(TLRPC.User user) {
@@ -282,7 +282,7 @@ public abstract class t10 {
     }
 
     public static boolean s(TLRPC.User user) {
-        if (user != null && user.f27101id == 2666000) {
+        if (user != null && user.f27102id == 2666000) {
             return true;
         }
         return false;
@@ -332,7 +332,7 @@ public abstract class t10 {
 
     public static boolean z(TLRPC.User user) {
         if (user != null) {
-            long j3 = user.f27101id;
+            long j3 = user.f27102id;
             if (j3 == 708513 || j3 == 1271266957) {
                 return true;
             }

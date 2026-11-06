@@ -3,7 +3,7 @@ package f7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.ResultReceiver;
-import c8.wb;
+import c8.xb;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -130,31 +130,31 @@ public final class v extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         String str;
-        int r10 = wb.r(parcel, 20293);
-        wb.k(parcel, 2, this.f11440a, i7);
-        wb.k(parcel, 3, this.f11441b, i7);
-        wb.c(parcel, 4, this.f11442c);
-        wb.p(parcel, 5, this.d);
+        int r10 = xb.r(parcel, 20293);
+        xb.k(parcel, 2, this.f11440a, i7);
+        xb.k(parcel, 3, this.f11441b, i7);
+        xb.c(parcel, 4, this.f11442c);
+        xb.p(parcel, 5, this.d);
         Double d = this.f11443e;
         if (d != null) {
-            wb.q(parcel, 6, 8);
+            xb.q(parcel, 6, 8);
             parcel.writeDouble(d.doubleValue());
         }
-        wb.p(parcel, 7, this.f11444f);
-        wb.k(parcel, 8, this.h, i7);
-        wb.i(parcel, 9, this.f11445n);
-        wb.k(parcel, 10, this.f11446r, i7);
+        xb.p(parcel, 7, this.f11444f);
+        xb.k(parcel, 8, this.h, i7);
+        xb.i(parcel, 9, this.f11445n);
+        xb.k(parcel, 10, this.f11446r, i7);
         e eVar = this.f11447s;
         if (eVar == null) {
             str = null;
         } else {
             str = eVar.f11363a;
         }
-        wb.l(parcel, 11, str);
-        wb.k(parcel, 12, this.f11448w, i7);
-        wb.l(parcel, 13, this.f11449x);
-        wb.k(parcel, 14, this.f11450y, i7);
-        wb.s(parcel, r10);
+        xb.l(parcel, 11, str);
+        xb.k(parcel, 12, this.f11448w, i7);
+        xb.l(parcel, 13, this.f11449x);
+        xb.k(parcel, 14, this.f11450y, i7);
+        xb.s(parcel, r10);
     }
 
     public v(String str) {

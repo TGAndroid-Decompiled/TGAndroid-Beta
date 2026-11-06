@@ -19,7 +19,7 @@ public final class tb implements View.OnClickListener {
             case 0:
                 if (this.f4770b.f4724f > 0 && (Q = LaunchActivity.Q()) != 0) {
                     ?? obj = new Object();
-                    obj.f27420a = true;
+                    obj.f27421a = true;
                     Q.showAsSheet(new dd(), obj);
                     return;
                 }
@@ -27,7 +27,7 @@ public final class tb implements View.OnClickListener {
             default:
                 if (this.f4770b.f4724f > 0 && (Q2 = LaunchActivity.Q()) != 0) {
                     ?? obj2 = new Object();
-                    obj2.f27420a = true;
+                    obj2.f27421a = true;
                     Q2.showAsSheet(new dd(), obj2);
                     return;
                 }

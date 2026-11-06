@@ -7,21 +7,21 @@ import org.telegram.messenger.s3;
 import org.telegram.ui.c40;
 import org.telegram.ui.f40;
 public abstract class r extends FrameLayout {
-    public int f39434a;
-    public f40 f39435b;
-    public y f39436c;
+    public int f39455a;
+    public f40 f39456b;
+    public y f39457c;
     public s3 d;
-    public boolean f39437e;
-    public final boolean f39438f;
+    public boolean f39458e;
+    public final boolean f39459f;
 
     public r(Context context, boolean z9) {
         super(context);
-        this.f39438f = z9;
+        this.f39459f = z9;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        f40 f40Var = this.f39435b;
+        f40 f40Var = this.f39456b;
         if (f40Var != null) {
             measuredHeight = f40Var.F();
         } else {
@@ -35,19 +35,19 @@ public abstract class r extends FrameLayout {
     }
 
     public y getRenderer() {
-        return this.f39436c;
+        return this.f39457c;
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f39437e = true;
+        this.f39458e = true;
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f39437e = false;
+        this.f39458e = false;
     }
 
     @Override
@@ -55,24 +55,24 @@ public abstract class r extends FrameLayout {
         float f10;
         int i11;
         float f11;
-        if (this.f39438f) {
+        if (this.f39459f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f39435b.F(), 1073741824));
+            super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(this.f39456b.F(), 1073741824));
             return;
         }
-        if (c40.f44542w5) {
+        if (c40.f44541w5) {
             f10 = 3.0f;
         } else {
             f10 = 2.0f;
         }
-        int A = org.telegram.messenger.camera.q.A(14.0f, 2, org.telegram.messenger.g0.f22537q.x);
-        if (c40.f44542w5) {
+        int A = org.telegram.messenger.camera.q.A(14.0f, 2, org.telegram.messenger.g0.f22544q.x);
+        if (c40.f44541w5) {
             i11 = -org.telegram.messenger.g0.L(90.0f);
         } else {
             i11 = 0;
         }
         float f12 = A + i11;
-        if (c40.f44543x5) {
+        if (c40.f44542x5) {
             f11 = f12 / 2.0f;
         } else {
             f11 = f12 / f10;
@@ -81,6 +81,6 @@ public abstract class r extends FrameLayout {
     }
 
     public void setRenderer(y yVar) {
-        this.f39436c = yVar;
+        this.f39457c = yVar;
     }
 }

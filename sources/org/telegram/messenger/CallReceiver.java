@@ -14,7 +14,7 @@ public class CallReceiver extends BroadcastReceiver {
             str = string;
         }
         if (str != null) {
-            qs.e().k(qs.f24995h4, str);
+            qs.e().k(qs.f25003h4, str);
         }
     }
 
@@ -23,7 +23,7 @@ public class CallReceiver extends BroadcastReceiver {
         if (intent.getAction().equals("android.intent.action.PHONE_STATE") && TelephonyManager.EXTRA_STATE_RINGING.equals(intent.getStringExtra("state"))) {
             String d = pf.b.d(intent.getStringExtra("incoming_number"), false);
             iz.q().edit().putString("last_call_phone_number", d).putLong("last_call_time", System.currentTimeMillis()).apply();
-            qs.e().k(qs.f24995h4, d);
+            qs.e().k(qs.f25003h4, d);
         }
     }
 }

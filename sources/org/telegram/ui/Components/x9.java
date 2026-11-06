@@ -5,36 +5,36 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 public abstract class x9 extends pj0 {
-    public int f40231e3;
-    public int f40232f3;
-    public boolean f40233g3;
-    public int f40234h3;
-    public boolean f40235i3;
+    public int f40247e3;
+    public int f40248f3;
+    public boolean f40249g3;
+    public int f40250h3;
+    public boolean f40251i3;
 
     public final void A1() {
         if (getLayoutParams() == null) {
             return;
         }
         if (org.telegram.messenger.iz.f()) {
-            this.f40231e3 = z1();
-            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f40231e3;
+            this.f40247e3 = z1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f40247e3;
             return;
         }
-        this.f40231e3 = 0;
+        this.f40247e3 = 0;
         ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
     }
 
     @Override
     public final void d(Canvas canvas, RectF rectF) {
-        this.f40235i3 = true;
+        this.f40251i3 = true;
         super.d(canvas, rectF);
-        this.f40235i3 = false;
+        this.f40251i3 = false;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        if (this.f40231e3 != 0 && !Y0()) {
-            canvas.clipRect(0, this.f40231e3, getMeasuredWidth(), getMeasuredHeight() + this.f40234h3);
+        if (this.f40247e3 != 0 && !Y0()) {
+            canvas.clipRect(0, this.f40247e3, getMeasuredWidth(), getMeasuredHeight() + this.f40250h3);
             super.dispatchDraw(canvas);
             return;
         }
@@ -43,7 +43,7 @@ public abstract class x9 extends pj0 {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view.getY() + view.getMeasuredHeight() < this.f40231e3 && !this.f40235i3 && !Y0()) {
+        if (view.getY() + view.getMeasuredHeight() < this.f40247e3 && !this.f40251i3 && !Y0()) {
             return true;
         }
         return super.drawChild(canvas, view, j3);
@@ -57,16 +57,16 @@ public abstract class x9 extends pj0 {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        this.f40233g3 = true;
+        this.f40249g3 = true;
         A1();
-        super.setPadding(getPaddingLeft(), this.f40232f3 + this.f40231e3, getPaddingRight(), getPaddingBottom());
-        this.f40233g3 = false;
+        super.setPadding(getPaddingLeft(), this.f40248f3 + this.f40247e3, getPaddingRight(), getPaddingBottom());
+        this.f40249g3 = false;
         super.onMeasure(i7, i10);
     }
 
     @Override
     public void requestLayout() {
-        if (this.f40233g3) {
+        if (this.f40249g3) {
             return;
         }
         super.requestLayout();
@@ -74,8 +74,8 @@ public abstract class x9 extends pj0 {
 
     @Override
     public final void setPadding(int i7, int i10, int i11, int i12) {
-        this.f40232f3 = i10;
-        super.setPadding(i7, i10 + this.f40231e3, i11, i12);
+        this.f40248f3 = i10;
+        super.setPadding(i7, i10 + this.f40247e3, i11, i12);
     }
 
     public int z1() {

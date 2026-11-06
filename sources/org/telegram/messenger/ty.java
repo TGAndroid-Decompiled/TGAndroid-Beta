@@ -3,13 +3,13 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 public final class ty {
-    public TLObject f25689a;
-    public ij f25690b;
-    public ArrayList f25691c;
+    public TLObject f25697a;
+    public ij f25698b;
+    public ArrayList f25699c;
     public String d;
-    public ArrayList f25692e;
-    public ArrayList f25693f;
-    public sy f25694g;
+    public ArrayList f25700e;
+    public ArrayList f25701f;
+    public sy f25702g;
     public Object h;
-    public boolean f25695i;
+    public boolean f25703i;
 }

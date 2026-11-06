@@ -22,15 +22,15 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.y1;
 import org.telegram.ui.Components.av0;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.p41;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.q41;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.an;
 public final class s extends f2 implements te.b {
     public final te.a f15594a;
     public long f15595b;
     public FrameLayout f15596c;
-    public p41 d;
+    public q41 d;
     public lh.f f15597e;
     public LinearLayout f15598f;
     public fi.d h;
@@ -45,19 +45,19 @@ public final class s extends f2 implements te.b {
         this.f15594a = new te.a(0, this, xq.h, 320L, false);
     }
 
-    public static void Z(s sVar, w31 w31Var) {
-        Object obj = w31Var.G;
+    public static void Z(s sVar, x31 x31Var) {
+        Object obj = x31Var.G;
         if (obj instanceof ji.f) {
             ji.f fVar = (ji.f) obj;
             long j3 = fVar.f17080a;
             TLRPC.Chat M0 = qp.s1(sVar.currentAccount).M0(Long.valueOf(-j3));
             TLRPC.User a22 = qp.s1(sVar.currentAccount).a2(Long.valueOf(j3));
             if (a22 != null) {
-                sVar.presentFragment(an.ra(a22.f27101id));
+                sVar.presentFragment(an.ra(a22.f27102id));
             } else if (!t3.t0(M0) && !t3.j0(M0)) {
                 new ki.b(sVar.getParentActivity(), M0, new ha.b(9, sVar, fVar)).show();
             } else {
-                sVar.presentFragment(an.ra(-M0.f26952id));
+                sVar.presentFragment(an.ra(-M0.f26953id));
             }
         }
     }
@@ -105,14 +105,14 @@ public final class s extends f2 implements te.b {
         this.actionBar.setTitle(hd.M0(2131751895, null));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f15596c = frameLayout;
-        int i7 = k6.f27792a7;
+        int i7 = k6.f27793a7;
         r6.i(i7, frameLayout, null);
-        p41 p41Var = new p41(this, new u1(this, 3), new q(this), new x3(this, 7));
-        this.d = p41Var;
-        p41Var.setClipToPadding(false);
-        p41 p41Var2 = this.d;
-        p41Var2.f36781f3.f35132r = false;
-        p41Var2.r1();
+        q41 q41Var = new q41(this, new u1(this, 3), new q(this), new x3(this, 7));
+        this.d = q41Var;
+        q41Var.setClipToPadding(false);
+        q41 q41Var2 = this.d;
+        q41Var2.f37160f3.f35510r = false;
+        q41Var2.r1();
         this.d.j(new ai.b(this, 16));
         this.actionBar.setAdaptiveBackground(this.d);
         this.f15596c.addView(this.d, ha.c(-1.0f, -1));
@@ -131,7 +131,7 @@ public final class s extends f2 implements te.b {
         this.f15599n = dVar;
         dVar.e();
         fi.d dVar2 = this.f15599n;
-        int f10 = i0.a.f(0.125f, getThemedColor(k6.f27848d6), getThemedColor(k6.G6));
+        int f10 = i0.a.f(0.125f, getThemedColor(k6.f27849d6), getThemedColor(k6.G6));
         this.f15603x = f10;
         dVar2.setColor(f10);
         this.f15599n.setText(hd.M0(2131751900, null));
@@ -184,7 +184,7 @@ public final class s extends f2 implements te.b {
         av0 av0Var = new av0(getParentActivity(), null, 16, this.resourceProvider);
         this.f15600r = av0Var;
         av0Var.d.setText(hd.M0(2131748224, null));
-        this.f15600r.f31929e.setText(hd.M0(2131748223, null));
+        this.f15600r.f31925e.setText(hd.M0(2131748223, null));
         this.f15600r.setAnimateLayoutChange(true);
         this.f15600r.setVisibility(8);
         this.f15596c.addView(this.f15600r, ha.e(-2, -2, 17));
@@ -196,7 +196,7 @@ public final class s extends f2 implements te.b {
         a0(0);
         FrameLayout frameLayout2 = this.f15596c;
         q qVar = new q(this);
-        WeakHashMap weakHashMap = r0.i0.f54098a;
+        WeakHashMap weakHashMap = r0.i0.f54097a;
         r0.a0.i(frameLayout2, qVar);
         setBulletinDelegate(new r7(4));
         FrameLayout frameLayout3 = this.f15596c;
@@ -237,7 +237,7 @@ public final class s extends f2 implements te.b {
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            int f10 = i0.a.f(0.125f, getThemedColor(k6.f27848d6), getThemedColor(k6.G6));
+            int f10 = i0.a.f(0.125f, getThemedColor(k6.f27849d6), getThemedColor(k6.G6));
             fi.d dVar = this.f15599n;
             if (dVar != null && f10 != this.f15603x) {
                 this.f15603x = f10;

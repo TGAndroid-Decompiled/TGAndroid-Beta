@@ -26,7 +26,7 @@ public final class h extends s {
     public boolean Y0() {
         switch (this.Q) {
             case 4:
-                if (((yv0) this.R).N1 != null && hd.f22871a0) {
+                if (((yv0) this.R).N1 != null && hd.f22878a0) {
                     return true;
                 }
                 return false;
@@ -71,12 +71,12 @@ public final class h extends s {
         switch (this.Q) {
             case 2:
                 oi oiVar = new oi(this, recyclerView.getContext());
-                oiVar.f57121a = i7;
+                oiVar.f57120a = i7;
                 w0(oiVar);
                 return;
             case 3:
                 nl nlVar = new nl(this, recyclerView.getContext());
-                nlVar.f57121a = i7;
+                nlVar.f57120a = i7;
                 w0(nlVar);
                 return;
             default:

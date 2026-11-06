@@ -16,11 +16,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 public final class h extends ca {
-    public static final s0.b f55309b = new s0.b(17);
-    public final g f55310a;
+    public static final s0.b f55308b = new s0.b(17);
+    public final g f55309a;
 
     public h(g gVar) {
-        this.f55310a = gVar;
+        this.f55309a = gVar;
     }
 
     public static a d(x xVar, int i7, int i10) {

@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class i50 extends FrameLayout {
-    public TextView f34457a;
+    public TextView f34504a;
 
     @Override
     public final void onMeasure(int i7, int i10) {

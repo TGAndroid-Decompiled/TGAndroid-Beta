@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class g9 extends org.telegram.ui.Components.v31 {
-    public static final int f45924b = 0;
+public final class g9 extends org.telegram.ui.Components.w31 {
+    public static final int f45923b = 0;
 
     static {
-        org.telegram.ui.Components.v31.h(new org.telegram.ui.Components.v31());
+        org.telegram.ui.Components.w31.h(new org.telegram.ui.Components.w31());
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.w31 w31Var, boolean z9, org.telegram.ui.Components.k41 k41Var, org.telegram.ui.Components.p41 p41Var) {
+    public final void b(View view, org.telegram.ui.Components.x31 x31Var, boolean z9, org.telegram.ui.Components.l41 l41Var, org.telegram.ui.Components.q41 q41Var) {
         String lowerCase;
         h9 h9Var = (h9) view;
-        TLRPC.Chat chat = (TLRPC.Chat) w31Var.G;
-        View.OnClickListener onClickListener = w31Var.D;
-        h9Var.f46295c = chat;
-        org.telegram.ui.Components.ag0 ag0Var = h9Var.f46294b;
-        ag0Var.setTag(Long.valueOf(chat.f26952id));
+        TLRPC.Chat chat = (TLRPC.Chat) x31Var.G;
+        View.OnClickListener onClickListener = x31Var.D;
+        h9Var.f46294c = chat;
+        org.telegram.ui.Components.ag0 ag0Var = h9Var.f46293b;
+        ag0Var.setTag(Long.valueOf(chat.f26953id));
         if (org.telegram.messenger.t3.T(chat) && !chat.megagroup) {
             if (!org.telegram.messenger.t3.t0(chat)) {
                 lowerCase = org.telegram.messenger.hd.M0(2131752329, null).toLowerCase();
@@ -32,7 +32,7 @@ public final class g9 extends org.telegram.ui.Components.v31 {
         } else {
             lowerCase = org.telegram.messenger.hd.M0(2131748637, null).toLowerCase();
         }
-        h9Var.f46293a.x(chat, null, null, lowerCase, false, false);
+        h9Var.f46292a.x(chat, null, null, lowerCase, false, false);
         ag0Var.setOnClickListener(onClickListener);
     }
 

@@ -4,15 +4,15 @@ import android.text.SpannableStringBuilder;
 import java.util.Collections;
 import org.telegram.tgnet.TLRPC;
 public final class su implements Runnable {
-    public final int f49836a;
-    public final ww f49837b;
-    public final long f49838c;
+    public final int f49835a;
+    public final ww f49836b;
+    public final long f49837c;
     public final boolean d;
 
     public su(ww wwVar, long j3, boolean z9, int i7) {
-        this.f49836a = i7;
-        this.f49837b = wwVar;
-        this.f49838c = j3;
+        this.f49835a = i7;
+        this.f49836b = wwVar;
+        this.f49837c = j3;
         this.d = z9;
     }
 
@@ -21,15 +21,15 @@ public final class su implements Runnable {
         String str;
         TLRPC.Chat chat;
         SpannableStringBuilder X2;
-        int i7 = this.f49836a;
+        int i7 = this.f49835a;
         boolean z9 = this.d;
-        long j3 = this.f49838c;
-        ww wwVar = this.f49837b;
+        long j3 = this.f49837c;
+        ww wwVar = this.f49836b;
         switch (i7) {
             case 0:
-                ww wwVar2 = this.f49837b;
+                ww wwVar2 = this.f49836b;
                 di.y6 P1 = wwVar2.getMessagesController().P1();
-                long j10 = this.f49838c;
+                long j10 = this.f49837c;
                 boolean z10 = this.d;
                 P1.l0(j10, z10, false);
                 ?? obj = new Object();

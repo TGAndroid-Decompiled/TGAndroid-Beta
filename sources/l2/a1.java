@@ -97,11 +97,11 @@ public final class a1 {
     }
 
     public final y0 d(e2.l1 l1Var, x2.g0 g0Var, long j3, long j10, long j11) {
-        l1Var.g(g0Var.f58235a, this.f17741a);
+        l1Var.g(g0Var.f58234a, this.f17741a);
         if (g0Var.b()) {
-            return e(l1Var, g0Var.f58235a, g0Var.f58236b, g0Var.f58237c, j3, g0Var.d, false);
+            return e(l1Var, g0Var.f58234a, g0Var.f58235b, g0Var.f58236c, j3, g0Var.d, false);
         }
-        return f(l1Var, g0Var.f58235a, j10, j11, j3, g0Var.d, false);
+        return f(l1Var, g0Var.f58234a, j10, j11, j3, g0Var.d, false);
     }
 
     public final y0 e(e2.l1 l1Var, Object obj, int i7, int i10, long j3, long j10, boolean z9) {
@@ -175,17 +175,17 @@ public final class a1 {
         long j10;
         x2.g0 g0Var = y0Var.f18087a;
         boolean b10 = g0Var.b();
-        int i7 = g0Var.f58238e;
+        int i7 = g0Var.f58237e;
         if (!b10 && i7 == -1) {
             z9 = true;
         } else {
             z9 = false;
         }
         boolean z10 = z9;
-        int i10 = g0Var.f58236b;
+        int i10 = g0Var.f58235b;
         boolean j11 = j(l1Var, g0Var);
         boolean i11 = i(l1Var, g0Var, z10);
-        Object obj = g0Var.f58235a;
+        Object obj = g0Var.f58234a;
         e2.i1 i1Var = this.f17741a;
         l1Var.g(obj, i1Var);
         if (!g0Var.b() && i7 != -1) {
@@ -195,7 +195,7 @@ public final class a1 {
             j3 = -9223372036854775807L;
         }
         if (g0Var.b()) {
-            j10 = i1Var.a(i10, g0Var.f58237c);
+            j10 = i1Var.a(i10, g0Var.f58236c);
         } else if (j3 != -9223372036854775807L && j3 != Long.MIN_VALUE) {
             j10 = j3;
         } else {
@@ -210,7 +210,7 @@ public final class a1 {
     }
 
     public final boolean i(e2.l1 l1Var, x2.g0 g0Var, boolean z9) {
-        int b10 = l1Var.b(g0Var.f58235a);
+        int b10 = l1Var.b(g0Var.f58234a);
         if (!l1Var.m(l1Var.f(b10, this.f17741a, false).f10282c, this.f17742b, 0L).f10330i) {
             if (l1Var.d(b10, this.f17741a, this.f17742b, this.f17746g, this.h) == -1 && z9) {
                 return true;
@@ -221,12 +221,12 @@ public final class a1 {
 
     public final boolean j(e2.l1 l1Var, x2.g0 g0Var) {
         boolean z9;
-        if (!g0Var.b() && g0Var.f58238e == -1) {
+        if (!g0Var.b() && g0Var.f58237e == -1) {
             z9 = true;
         } else {
             z9 = false;
         }
-        Object obj = g0Var.f58235a;
+        Object obj = g0Var.f58234a;
         if (z9) {
             if (l1Var.m(l1Var.g(obj, this.f17741a).f10282c, this.f17742b, 0L).f10336o == l1Var.b(obj)) {
                 return true;

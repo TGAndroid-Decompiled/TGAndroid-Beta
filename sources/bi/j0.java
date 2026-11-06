@@ -14,7 +14,7 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.r31;
 import org.telegram.ui.un0;
 public final class j0 implements RequestDelegate {
     public final int f4074a;
@@ -49,7 +49,7 @@ public final class j0 implements RequestDelegate {
             case 4:
                 ce ceVar = (ce) obj;
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    yr.a0(ceVar.f3615j1).j1(new ArrayList(Arrays.asList(ceVar.C1.f23237k)), true, true, true, 0, false, 0, 0L);
+                    yr.a0(ceVar.f3615j1).j1(new ArrayList(Arrays.asList(ceVar.C1.f23244k)), true, true, true, 0, false, 0, 0L);
                     return;
                 } else {
                     ceVar.getClass();
@@ -109,7 +109,7 @@ public final class j0 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new li.j3(1, (li.y4) obj, tLObject));
                 return;
             case 22:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.web.w(6, (org.telegram.ui.web.v1) obj, tLObject));
+                org.telegram.messenger.g0.h3(new org.telegram.ui.web.w(6, (org.telegram.ui.web.u1) obj, tLObject));
                 return;
             case 23:
                 wg.u0 u0Var = (wg.u0) obj;
@@ -135,8 +135,8 @@ public final class j0 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (org.telegram.messenger.hd.E0().f22899y != null) {
-                            locale = org.telegram.messenger.hd.E0().f22899y;
+                        if (org.telegram.messenger.hd.E0().f22906y != null) {
+                            locale = org.telegram.messenger.hd.E0().f22906y;
                         } else {
                             locale = Locale.getDefault();
                         }
@@ -162,7 +162,7 @@ public final class j0 implements RequestDelegate {
                             }
                         });
                     }
-                    org.telegram.messenger.g0.h3(new q31(u0Var, hashMap, arrayList, 20));
+                    org.telegram.messenger.g0.h3(new r31(u0Var, hashMap, arrayList, 20));
                     return;
                 }
                 return;
@@ -196,8 +196,8 @@ public final class j0 implements RequestDelegate {
                         }
                     }
                     if (Build.VERSION.SDK_INT >= 24) {
-                        if (org.telegram.messenger.hd.E0().f22899y != null) {
-                            locale2 = org.telegram.messenger.hd.E0().f22899y;
+                        if (org.telegram.messenger.hd.E0().f22906y != null) {
+                            locale2 = org.telegram.messenger.hd.E0().f22906y;
                         } else {
                             locale2 = Locale.getDefault();
                         }
@@ -223,7 +223,7 @@ public final class j0 implements RequestDelegate {
                             }
                         });
                     }
-                    org.telegram.messenger.g0.h3(new q31(cVar, hashMap2, arrayList2, 23));
+                    org.telegram.messenger.g0.h3(new r31(cVar, hashMap2, arrayList2, 23));
                     return;
                 }
                 return;
@@ -234,7 +234,7 @@ public final class j0 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new wi.q(4, (yf.c) obj, tLObject));
                 return;
             default:
-                org.telegram.messenger.g0.h3(new q31((yf.d) obj, tLObject, tL_error));
+                org.telegram.messenger.g0.h3(new r31((yf.d) obj, tLObject, tL_error));
                 return;
         }
     }

@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import java.util.TimerTask;
 public final class wj0 extends TimerTask {
-    public final xj0 f51452a;
+    public final xj0 f51450a;
 
     public wj0(xj0 xj0Var) {
-        this.f51452a = xj0Var;
+        this.f51450a = xj0Var;
     }
 
     @Override
     public final void run() {
-        xj0 xj0Var = this.f51452a;
-        if (xj0Var.f51897w == null) {
+        xj0 xj0Var = this.f51450a;
+        if (xj0Var.f51895w == null) {
             return;
         }
         double currentTimeMillis = System.currentTimeMillis();

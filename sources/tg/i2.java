@@ -23,7 +23,7 @@ import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ha0;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.u41;
+import org.telegram.ui.Components.v41;
 import org.telegram.ui.Components.xq;
 public final class i2 extends Dialog {
     public float D;
@@ -31,33 +31,33 @@ public final class i2 extends Dialog {
     public boolean F;
     public h0 G;
     public ai.i H;
-    public final int f55664a;
-    public final u41 f55665b;
-    public final bi.t f55666c;
+    public final int f55663a;
+    public final v41 f55664b;
+    public final bi.t f55665c;
     public final bi.s1 d;
-    public final ImageView f55667e;
-    public final g2 f55668f;
+    public final ImageView f55666e;
+    public final g2 f55667f;
     public final Rect h;
-    public Bitmap f55669n;
-    public BitmapShader f55670r;
-    public Paint f55671s;
-    public Matrix f55672w;
-    public final ha0 f55673x;
-    public final ha0 f55674y;
+    public Bitmap f55668n;
+    public BitmapShader f55669r;
+    public Paint f55670s;
+    public Matrix f55671w;
+    public final ha0 f55672x;
+    public final ha0 f55673y;
 
     public i2(Context context, final int i7) {
         super(context, 2131755352);
         di.b bVar = new di.b();
         this.h = new Rect();
         this.F = false;
-        this.f55664a = i7;
-        u41 u41Var = new u41(9, context, this);
-        this.f55665b = u41Var;
-        u41Var.setOnClickListener(new ii.g(this, 24));
+        this.f55663a = i7;
+        v41 v41Var = new v41(9, context, this);
+        this.f55664b = v41Var;
+        v41Var.setOnClickListener(new ii.g(this, 24));
         bi.t tVar = new bi.t(context, 12);
-        this.f55666c = tVar;
+        this.f55665c = tVar;
         tVar.setOrientation(1);
-        u41Var.addView(tVar, ha.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
+        v41Var.addView(tVar, ha.d(-2, -2.0f, 17, 8.0f, 8.0f, 8.0f, 8.0f));
         bi.s1 s1Var = new bi.s1(this, context, 12);
         s1Var.setWillNotDraw(false);
         tVar.addView(s1Var, ha.q(-1, -2, 1.0f, 49, 0, 0, 0, 0));
@@ -77,72 +77,72 @@ public final class i2 extends Dialog {
         this.d = s1Var2;
         s1Var.addView(s1Var2, ha.d(-1, -1.0f, 119, 0.0f, 56.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f55667e = imageView;
+        this.f55666e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         s1Var2.addView(imageView, ha.e(-1, -1, 119));
-        g2 g2Var = new g2(this, context, org.telegram.messenger.g0.f22536p);
-        this.f55668f = g2Var;
+        g2 g2Var = new g2(this, context, org.telegram.messenger.g0.f22543p);
+        this.f55667f = g2Var;
         s1Var2.addView(g2Var, ha.e(-2, -2, 17));
-        k60 F = k60.F(u41Var, bVar, u41Var);
+        k60 F = k60.F(v41Var, bVar, v41Var);
         ha0 ha0Var = new ha0(getContext(), 2131624139, hd.M0(2131744645, null), 2131624138, hd.M0(2131744644, null), bVar);
-        this.f55673x = ha0Var;
+        this.f55672x = ha0Var;
         ha0Var.setOnClickListener(new View.OnClickListener(this) {
-            public final i2 f55570b;
+            public final i2 f55569b;
 
             {
-                this.f55570b = this;
+                this.f55569b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        i2 i2Var = this.f55570b;
+                        i2 i2Var = this.f55569b;
                         h0 h0Var = i2Var.G;
-                        boolean z9 = h0Var.f55620f;
-                        h0Var.f55620f = !z9;
-                        i2Var.f55673x.a(z9, true);
-                        i2Var.f55668f.b(i7, i2Var.G, true);
+                        boolean z9 = h0Var.f55619f;
+                        h0Var.f55619f = !z9;
+                        i2Var.f55672x.a(z9, true);
+                        i2Var.f55667f.b(i7, i2Var.G, true);
                         return;
                     default:
-                        i2 i2Var2 = this.f55570b;
+                        i2 i2Var2 = this.f55569b;
                         h0 h0Var2 = i2Var2.G;
-                        boolean z10 = h0Var2.f55619e;
-                        h0Var2.f55619e = !z10;
-                        i2Var2.f55674y.a(z10, true);
-                        i2Var2.f55668f.b(i7, i2Var2.G, true);
+                        boolean z10 = h0Var2.f55618e;
+                        h0Var2.f55618e = !z10;
+                        i2Var2.f55673y.a(z10, true);
+                        i2Var2.f55667f.b(i7, i2Var2.G, true);
                         return;
                 }
             }
         });
         F.q(ha0Var);
         ha0 ha0Var2 = new ha0(context, 2131624089, hd.M0(2131748898, null), 2131624086, hd.M0(2131748897, null), bVar);
-        this.f55674y = ha0Var2;
+        this.f55673y = ha0Var2;
         ha0Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final i2 f55570b;
+            public final i2 f55569b;
 
             {
-                this.f55570b = this;
+                this.f55569b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r3) {
                     case 0:
-                        i2 i2Var = this.f55570b;
+                        i2 i2Var = this.f55569b;
                         h0 h0Var = i2Var.G;
-                        boolean z9 = h0Var.f55620f;
-                        h0Var.f55620f = !z9;
-                        i2Var.f55673x.a(z9, true);
-                        i2Var.f55668f.b(i7, i2Var.G, true);
+                        boolean z9 = h0Var.f55619f;
+                        h0Var.f55619f = !z9;
+                        i2Var.f55672x.a(z9, true);
+                        i2Var.f55667f.b(i7, i2Var.G, true);
                         return;
                     default:
-                        i2 i2Var2 = this.f55570b;
+                        i2 i2Var2 = this.f55569b;
                         h0 h0Var2 = i2Var2.G;
-                        boolean z10 = h0Var2.f55619e;
-                        h0Var2.f55619e = !z10;
-                        i2Var2.f55674y.a(z10, true);
-                        i2Var2.f55668f.b(i7, i2Var2.G, true);
+                        boolean z10 = h0Var2.f55618e;
+                        h0Var2.f55618e = !z10;
+                        i2Var2.f55673y.a(z10, true);
+                        i2Var2.f55667f.b(i7, i2Var2.G, true);
                         return;
                 }
             }
@@ -152,8 +152,8 @@ public final class i2 extends Dialog {
         F.c(2131232357, hd.M0(2131754218, null), new e2(this, 2), false);
         F.c(2131232108, hd.M0(2131751362, null), new e2(this, 3), true);
         tVar.addView(F.A, ha.p(-2, -2, 0.0f, 85));
-        u41Var.setFitsSystemWindows(true);
-        u41Var.setOnApplyWindowInsetsListener(new h2(this));
+        v41Var.setFitsSystemWindows(true);
+        v41Var.setOnApplyWindowInsetsListener(new h2(this));
     }
 
     public final void b(boolean z9, e2 e2Var) {
@@ -196,7 +196,7 @@ public final class i2 extends Dialog {
         }
         this.F = true;
         b(false, new e2(this, 1));
-        this.f55665b.invalidate();
+        this.f55664b.invalidate();
     }
 
     @Override
@@ -210,8 +210,8 @@ public final class i2 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(2131755178);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        u41 u41Var = this.f55665b;
-        setContentView(u41Var, layoutParams);
+        v41 v41Var = this.f55664b;
+        setContentView(v41Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.height = -1;
@@ -226,8 +226,8 @@ public final class i2 extends Dialog {
             attributes.layoutInDisplayCutoutMode = 1;
         }
         window.setAttributes(attributes);
-        u41Var.setSystemUiVisibility(256);
-        org.telegram.messenger.g0.o3(u41Var, !k6.I.q());
+        v41Var.setSystemUiVisibility(256);
+        org.telegram.messenger.g0.o3(v41Var, !k6.I.q());
     }
 
     @Override

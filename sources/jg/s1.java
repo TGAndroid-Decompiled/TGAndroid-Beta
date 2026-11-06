@@ -38,7 +38,7 @@ public abstract class s1 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56956f;
+        int i7 = d1Var.f56955f;
         if (i7 != 0 && i7 != 2 && i7 != 3) {
             return false;
         }
@@ -156,7 +156,7 @@ public abstract class s1 extends oj0 {
                             lz lzVar = new lz(context, null);
                             lzVar.setIsSingleCell(true);
                             lzVar.setViewType(29);
-                            r6.i(k6.f27848d6, lzVar, null);
+                            r6.i(k6.f27849d6, lzVar, null);
                             x3Var = lzVar;
                         }
                     } else {

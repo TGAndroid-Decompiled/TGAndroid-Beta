@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
-public final class n90 extends u61 {
+public final class n90 extends v61 {
     public final ia0 V;
 
     public n90(ia0 ia0Var, Context context, ea0 ea0Var) {
@@ -16,13 +16,13 @@ public final class n90 extends u61 {
         boolean z9;
         int i7 = 0;
         while (true) {
-            View[] viewArr = this.V.f34542f.f38534e;
+            View[] viewArr = this.V.f34572f.f38890e;
             if (i7 < viewArr.length) {
                 View view = viewArr[i7];
                 if (view != null) {
                     ca0 ca0Var = (ca0) view;
-                    if (ca0Var.f32502a == 0) {
-                        z9 = ca0Var.f32508e.f30657i;
+                    if (ca0Var.f32489a == 0) {
+                        z9 = ca0Var.f32495e.f30658i;
                         break;
                     }
                 }
@@ -40,24 +40,24 @@ public final class n90 extends u61 {
 
     @Override
     public final void u() {
-        View view = this.f38534e[0];
+        View view = this.f38890e[0];
         if (view instanceof ca0) {
-            ((ca0) view).f32508e.V();
+            ((ca0) view).f32495e.V();
         }
     }
 
     @Override
     public final void w(boolean z9) {
         ia0 ia0Var = this.V;
-        ia0Var.f34541e.setSelectedTab(ia0Var.f34542f.getPositionAnimated());
-        View[] viewArr = this.f38534e;
+        ia0Var.f34571e.setSelectedTab(ia0Var.f34572f.getPositionAnimated());
+        View[] viewArr = this.f38890e;
         View view = viewArr[0];
         if (view instanceof ca0) {
-            ((ca0) view).f32508e.G();
+            ((ca0) view).f32495e.G();
         }
         View view2 = viewArr[1];
         if (view2 instanceof ca0) {
-            ((ca0) view2).f32508e.G();
+            ((ca0) view2).f32495e.G();
         }
     }
 }

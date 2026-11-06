@@ -11,22 +11,22 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 public final class dx extends FrameLayout {
-    public org.telegram.ui.Components.j9 f45150a;
-    public org.telegram.ui.Components.j9 f45151b;
-    public Drawable f45152c;
+    public org.telegram.ui.Components.j9 f45149a;
+    public org.telegram.ui.Components.j9 f45150b;
+    public Drawable f45151c;
     public Drawable d;
-    public final Drawable f45153e;
-    public Paint f45154f;
+    public final Drawable f45152e;
+    public Paint f45153f;
     public RectF h;
-    public final ViewGroup[] f45155n;
-    public final ex f45156r;
+    public final ViewGroup[] f45154n;
+    public final ex f45155r;
 
     public dx(ex exVar, Context context) {
         super(context);
-        this.f45156r = exVar;
-        this.f45154f = new Paint(1);
+        this.f45155r = exVar;
+        this.f45153f = new Paint(1);
         this.h = new RectF();
-        this.f45155n = new ViewGroup[2];
+        this.f45154n = new ViewGroup[2];
         int i7 = 0;
         setWillNotDraw(false);
         setPadding(0, org.telegram.messenger.g0.L(24.0f), 0, org.telegram.messenger.g0.L(24.0f));
@@ -40,26 +40,26 @@ public final class dx extends FrameLayout {
         linearLayout.setBackgroundResource(2131232857);
         f10.addView(linearLayout, c8.ha.t(-2, -2, 17, 10, 0, 10, 0));
         exVar.d = new ImageView(context);
-        int i10 = exVar.f45432x;
+        int i10 = exVar.f45431x;
         if (i10 == 0) {
             while (i7 < 2) {
-                this.f45155n[i7] = (ViewGroup) exVar.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
-                linearLayout.addView(this.f45155n[i7], c8.ha.o(-1, -2));
+                this.f45154n[i7] = (ViewGroup) exVar.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
+                linearLayout.addView(this.f45154n[i7], c8.ha.o(-1, -2));
                 i7++;
             }
             linearLayout.addView(exVar.d, c8.ha.r(218, 160, 17));
             exVar.d.setImageResource(2131231003);
         } else if (i10 == 1) {
             while (i7 < 2) {
-                this.f45155n[i7] = (ViewGroup) exVar.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
-                linearLayout.addView(this.f45155n[i7], c8.ha.o(160, -2));
+                this.f45154n[i7] = (ViewGroup) exVar.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
+                linearLayout.addView(this.f45154n[i7], c8.ha.o(160, -2));
                 i7++;
             }
             linearLayout.addView(exVar.d, c8.ha.r(160, 160, 17));
             exVar.d.setImageResource(2131231031);
         }
         a();
-        this.f45153e = org.telegram.ui.ActionBar.k6.Y0(context, 2131231230, org.telegram.ui.ActionBar.k6.f27812b7);
+        this.f45152e = org.telegram.ui.ActionBar.k6.Y0(context, 2131231230, org.telegram.ui.ActionBar.k6.f27813b7);
     }
 
     public final void a() {
@@ -74,15 +74,15 @@ public final class dx extends FrameLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.j9 j9Var = this.f45150a;
+        org.telegram.ui.Components.j9 j9Var = this.f45149a;
         if (j9Var != null) {
             j9Var.dispose();
-            this.f45150a = null;
+            this.f45149a = null;
         }
-        org.telegram.ui.Components.j9 j9Var2 = this.f45151b;
+        org.telegram.ui.Components.j9 j9Var2 = this.f45150b;
         if (j9Var2 != null) {
             j9Var2.dispose();
-            this.f45151b = null;
+            this.f45150b = null;
         }
     }
 

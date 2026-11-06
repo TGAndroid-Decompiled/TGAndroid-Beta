@@ -3,7 +3,7 @@ package f6;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import c8.wb;
+import c8.xb;
 import c8.y0;
 import j$.util.DesugarCollections;
 import java.util.Arrays;
@@ -115,16 +115,16 @@ public final class n extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         List unmodifiableList;
-        int r10 = wb.r(parcel, 20293);
-        wb.l(parcel, 2, this.f11293a);
-        wb.l(parcel, 3, this.f11294b);
+        int r10 = xb.r(parcel, 20293);
+        xb.l(parcel, 2, this.f11293a);
+        xb.l(parcel, 3, this.f11294b);
         int i10 = this.f11295c;
-        wb.q(parcel, 4, 4);
+        xb.q(parcel, 4, 4);
         parcel.writeInt(i10);
-        wb.l(parcel, 5, this.d);
-        wb.k(parcel, 6, this.f11296e, i7);
+        xb.l(parcel, 5, this.d);
+        xb.k(parcel, 6, this.f11296e, i7);
         int i11 = this.f11297f;
-        wb.q(parcel, 7, 4);
+        xb.q(parcel, 7, 4);
         parcel.writeInt(i11);
         List list = this.h;
         if (list == null) {
@@ -132,16 +132,16 @@ public final class n extends r6.a {
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(list);
         }
-        wb.p(parcel, 8, unmodifiableList);
+        xb.p(parcel, 8, unmodifiableList);
         int i12 = this.f11298n;
-        wb.q(parcel, 9, 4);
+        xb.q(parcel, 9, 4);
         parcel.writeInt(i12);
         long j3 = this.f11299r;
-        wb.q(parcel, 10, 8);
+        xb.q(parcel, 10, 8);
         parcel.writeLong(j3);
         boolean z9 = this.f11300s;
-        wb.q(parcel, 11, 4);
+        xb.q(parcel, 11, 4);
         parcel.writeInt(z9 ? 1 : 0);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

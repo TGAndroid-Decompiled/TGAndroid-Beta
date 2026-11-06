@@ -14,15 +14,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
-    public final int f36789a;
-    public final w70 f36790b;
-    public final Runnable f36791c;
+    public final int f36781a;
+    public final w70 f36782b;
+    public final Runnable f36783c;
 
     public p6(Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var, Runnable runnable, org.telegram.ui.bh bhVar) {
         super(context);
         int i10;
-        this.f36789a = i7;
-        this.f36791c = runnable;
+        this.f36781a = i7;
+        this.f36783c = runnable;
         org.telegram.messenger.g5.r(i7).B();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -44,15 +44,15 @@ public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
         linearLayout.addView(imageView, c8.ha.t(80, 80, 49, 0, i10, 0, 14));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27956j5, f6Var);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27957j5, f6Var);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setGravity(1);
         textView.setText(org.telegram.messenger.hd.M0(2131754167, null));
         linearLayout.addView(textView, c8.ha.t(-1, -2, 1, 32, 0, 32, 9));
         w70 w70Var = new w70(context, null);
-        this.f36790b = w70Var;
+        this.f36782b = w70Var;
         w70Var.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.f28258z6, f6Var);
+        org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.f28259z6, f6Var);
         w70Var.setGravity(1);
         b();
         linearLayout.addView(w70Var, c8.ha.t(-1, -2, 1, 32, 0, 32, 25));
@@ -70,7 +70,7 @@ public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
     public final FrameLayout a(int i7, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
         FrameLayout frameLayout = new FrameLayout(getContext());
         ImageView imageView = new ImageView(getContext());
-        int i10 = org.telegram.ui.ActionBar.k6.f27956j5;
+        int i10 = org.telegram.ui.ActionBar.k6.f27957j5;
         org.telegram.ui.ActionBar.r6.t(imageView, i10, f6Var, PorterDuff.Mode.SRC_ATOP);
         imageView.setImageResource(i7);
         frameLayout.addView(imageView, c8.ha.d(24, 24.0f, 51, 0.0f, 8.0f, 0.0f, 0.0f));
@@ -83,7 +83,7 @@ public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
         textView.setText(str);
         linearLayout.addView(textView, c8.ha.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
         TextView textView2 = new TextView(getContext());
-        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28258z6, f6Var);
+        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28259z6, f6Var);
         textView2.setTextSize(0, org.telegram.messenger.g0.L(14.0f));
         textView2.setText(str2);
         linearLayout.addView(textView2, c8.ha.k(0.0f, 2.6f, 0.0f, 0.0f, -1, -2));
@@ -94,7 +94,7 @@ public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
     public final void b() {
         boolean z9;
         String str;
-        TLRPC.GlobalPrivacySettings globalPrivacySettings = org.telegram.messenger.g5.r(this.f36789a).X;
+        TLRPC.GlobalPrivacySettings globalPrivacySettings = org.telegram.messenger.g5.r(this.f36781a).X;
         if (globalPrivacySettings != null) {
             z9 = globalPrivacySettings.keep_archived_unmuted;
         } else {
@@ -107,7 +107,7 @@ public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
         }
         String N0 = org.telegram.messenger.hd.N0(str);
         int i7 = org.telegram.ui.ActionBar.k6.Uc;
-        SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(N0, i7, 0, this.f36791c, null);
+        SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(N0, i7, 0, this.f36783c, null);
         SpannableString spannableString = new SpannableString(">");
         Drawable mutate = getContext().getResources().getDrawable(2131232059).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(i7, PorterDuff.Mode.SRC_IN));
@@ -115,14 +115,14 @@ public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
         wpVar.a(i7);
         wpVar.c(org.telegram.messenger.g0.L(18.0f));
         wpVar.E = org.telegram.messenger.g0.L(11.0f);
-        wpVar.f40062r = -org.telegram.messenger.g0.L(5.0f);
+        wpVar.f40070r = -org.telegram.messenger.g0.L(5.0f);
         spannableString.setSpan(wpVar, 0, spannableString.length(), 33);
-        this.f36790b.setText(org.telegram.messenger.g0.K2(S2, spannableString, ">"));
+        this.f36782b.setText(org.telegram.messenger.g0.K2(S2, spannableString, ">"));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25008k0) {
+        if (i7 == org.telegram.messenger.qs.f25016k0) {
             b();
         }
     }
@@ -130,14 +130,14 @@ public final class p6 extends FrameLayout implements org.telegram.messenger.ls {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        org.telegram.messenger.qs.f(this.f36789a).c(this, org.telegram.messenger.qs.f25008k0);
+        org.telegram.messenger.qs.f(this.f36781a).c(this, org.telegram.messenger.qs.f25016k0);
         b();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.qs.f(this.f36789a).n(this, org.telegram.messenger.qs.f25008k0);
+        org.telegram.messenger.qs.f(this.f36781a).n(this, org.telegram.messenger.qs.f25016k0);
     }
 
     @Override

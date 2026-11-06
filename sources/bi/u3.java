@@ -103,7 +103,7 @@ public final class u3 implements DialogInterface.OnDismissListener {
                 org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) obj;
                 f2Var2.onPause();
                 f2Var2.onFragmentDestroy();
-                if (d2Var != null && (runnable = d2Var.f27421b) != null) {
+                if (d2Var != null && (runnable = d2Var.f27422b) != null) {
                     runnable.run();
                     return;
                 }
@@ -124,7 +124,7 @@ public final class u3 implements DialogInterface.OnDismissListener {
                 return;
             case 10:
                 ExternalActionActivity externalActionActivity = (ExternalActionActivity) obj2;
-                ArrayList arrayList = ExternalActionActivity.f41222y;
+                ArrayList arrayList = ExternalActionActivity.f41221y;
                 externalActionActivity.getClass();
                 externalActionActivity.setResult(1, new Intent().putExtra("error", ((TLRPC.TL_error) obj).text));
                 externalActionActivity.finish();
@@ -133,14 +133,14 @@ public final class u3 implements DialogInterface.OnDismissListener {
                 LaunchActivity launchActivity = (LaunchActivity) obj2;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj;
                 if (u1Var == launchActivity.F0) {
-                    ActionBarLayout actionBarLayout = launchActivity.f41276o0;
+                    ActionBarLayout actionBarLayout = launchActivity.f41275o0;
                     if (actionBarLayout == null) {
                         lastFragment = null;
                     } else {
                         lastFragment = actionBarLayout.getLastFragment();
                     }
                     try {
-                        String str = org.telegram.messenger.hd.E0().B.f22176c;
+                        String str = org.telegram.messenger.hd.E0().B.f22183c;
                         if (lastFragment != null) {
                             org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(lastFragment);
                             if (str.equals("en")) {
@@ -149,7 +149,7 @@ public final class u3 implements DialogInterface.OnDismissListener {
                                 hashMap2 = launchActivity.H0;
                             }
                             org.telegram.ui.Components.cc Q = a02.Q(2131624103, 36, LaunchActivity.U(2131752545, "ChangeLanguageLater", hashMap2));
-                            Q.f32527j = 5000;
+                            Q.f32514j = 5000;
                             Q.j();
                         } else {
                             org.telegram.ui.Components.hc hcVar = new org.telegram.ui.Components.hc(org.telegram.ui.Components.xa.a(launchActivity), null);
@@ -159,7 +159,7 @@ public final class u3 implements DialogInterface.OnDismissListener {
                                 hashMap = launchActivity.H0;
                             }
                             org.telegram.ui.Components.cc Q2 = hcVar.Q(2131624103, 36, LaunchActivity.U(2131752545, "ChangeLanguageLater", hashMap));
-                            Q2.f32527j = 5000;
+                            Q2.f32514j = 5000;
                             Q2.j();
                         }
                     } catch (Exception e10) {
@@ -189,12 +189,12 @@ public final class u3 implements DialogInterface.OnDismissListener {
                 if (!((boolean[]) obj2)[0]) {
                     g01Var.c(true);
                 }
-                g01Var.f47631x = null;
+                g01Var.f47630x = null;
                 return;
             case 14:
                 ec1 ec1Var = (ec1) obj;
                 if (!((boolean[]) obj2)[0]) {
-                    ec1Var.f45309t0.b();
+                    ec1Var.f45308t0.b();
                     return;
                 }
                 return;
@@ -220,7 +220,7 @@ public final class u3 implements DialogInterface.OnDismissListener {
                     x0Var.getClass();
                     runnable3.run();
                 }
-                x0Var.f51363c0 = null;
+                x0Var.f51358c0 = null;
                 return;
             case 17:
                 boolean[] zArr3 = (boolean[]) obj2;

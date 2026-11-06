@@ -46,7 +46,7 @@ public final class s5 extends FrameLayout {
         this.h = l5Var;
         Drawable h = jg.g.h(context, 2131232728);
         this.f9762s = h;
-        org.telegram.ui.ActionBar.r6.y(this, h, org.telegram.ui.ActionBar.k6.f27921h5, bVar, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.r6.y(this, h, org.telegram.ui.ActionBar.k6.f27922h5, bVar, PorterDuff.Mode.MULTIPLY);
         q5 q5Var = new q5(this, context);
         this.f9758e = q5Var;
         m5 m5Var = new m5(this, context);
@@ -79,7 +79,7 @@ public final class s5 extends FrameLayout {
             obj.f9699a = (TL_stories.StoryItem) arrayList.get(i10);
             arrayList2.add(obj);
         }
-        ArrayList F = qp.s1(this.f9761r.h).f24780h0.F(p10.i(p10.f24459s0).e());
+        ArrayList F = qp.s1(this.f9761r.h).f24788h0.F(p10.i(p10.f24467s0).e());
         if (F != null) {
             for (int i11 = 0; i11 < F.size(); i11++) {
                 ?? obj2 = new Object();
@@ -145,7 +145,7 @@ public final class s5 extends FrameLayout {
         int i11;
         int i12 = 0;
         if (this.f9761r.f9532b) {
-            i11 = org.telegram.messenger.g0.f22531m;
+            i11 = org.telegram.messenger.g0.f22538m;
         } else {
             i11 = 0;
         }
@@ -154,8 +154,8 @@ public final class s5 extends FrameLayout {
         ((FrameLayout.LayoutParams) l5Var.getLayoutParams()).topMargin = i11;
         this.f9760n = l5Var.getFinalHeight();
         this.f9756b = org.telegram.messenger.g0.L(20.0f) + i11;
-        ((FrameLayout.LayoutParams) this.f9758e.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22531m;
-        float L = (((org.telegram.messenger.g0.L(20.0f) + i11) + this.f9760n) + org.telegram.messenger.g0.L(24.0f)) - org.telegram.messenger.g0.f22531m;
+        ((FrameLayout.LayoutParams) this.f9758e.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22538m;
+        float L = (((org.telegram.messenger.g0.L(20.0f) + i11) + this.f9760n) + org.telegram.messenger.g0.L(24.0f)) - org.telegram.messenger.g0.f22538m;
         this.d = L;
         this.f9757c = size - L;
         while (true) {
@@ -194,7 +194,7 @@ public final class s5 extends FrameLayout {
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
             ofFloat.addUpdateListener(new ah.h(this, 21));
-            ofFloat.setInterpolator(org.telegram.ui.ActionBar.i1.f27540w);
+            ofFloat.setInterpolator(org.telegram.ui.ActionBar.i1.f27541w);
             ofFloat.setDuration(250L);
             ofFloat.start();
         }
@@ -203,7 +203,7 @@ public final class s5 extends FrameLayout {
             currentPage.f9305r.dispatchTouchEvent(org.telegram.messenger.g0.R());
             FrameLayout frameLayout = currentPage.f9301c;
             if (frameLayout.getTranslationY() != 0.0f) {
-                currentPage.d.y((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.i1.f27540w);
+                currentPage.d.y((int) frameLayout.getTranslationY(), 250L, org.telegram.ui.ActionBar.i1.f27541w);
             }
         }
     }
@@ -234,7 +234,7 @@ public final class s5 extends FrameLayout {
                         m9Var.f9364c = null;
                     }
                     f9 f9Var = p9Var.f9559n0;
-                    int i13 = ijVar.f23241l.f27191id;
+                    int i13 = ijVar.f23248l.f27192id;
                     p9 p9Var2 = f9Var.N0;
                     int i14 = 0;
                     while (true) {

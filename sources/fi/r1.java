@@ -34,7 +34,7 @@ public final class r1 extends oj0 {
         arrayList.clear();
         k2 k2Var = t1Var.f12845r;
         int i7 = k2.f12251y1;
-        arrayList.addAll(new ArrayList(ui.b0(k2Var.f28612a).f25809i0));
+        arrayList.addAll(new ArrayList(ui.b0(k2Var.f28613a).f25817i0));
         if (z9) {
             r1Var.f();
         }
@@ -42,7 +42,7 @@ public final class r1 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56956f == 2) {
+        if (d1Var.f56955f == 2) {
             return true;
         }
         return false;
@@ -77,12 +77,12 @@ public final class r1 extends oj0 {
             t1Var.d.c(true);
             if (this.d >= 0) {
                 int i7 = k2.f12251y1;
-                ConnectionsManager.getInstance(k2Var.f28612a).cancelRequest(this.d, true);
+                ConnectionsManager.getInstance(k2Var.f28613a).cancelRequest(this.d, true);
                 this.d = -1;
             }
             if (this.f12720f == null) {
                 int i10 = k2.f12251y1;
-                TLObject f22 = qp.s1(k2Var.f28612a).f2(qp.s1(k2Var.f28612a).K3);
+                TLObject f22 = qp.s1(k2Var.f28613a).f2(qp.s1(k2Var.f28613a).K3);
                 if (f22 instanceof TLRPC.User) {
                     this.f12720f = (TLRPC.User) f22;
                 }
@@ -91,13 +91,13 @@ public final class r1 extends oj0 {
             if (user == null && !this.f12721n) {
                 TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
                 int i11 = k2.f12251y1;
-                tL_contacts_resolveUsername.username = qp.s1(k2Var.f28612a).K3;
-                this.d = ConnectionsManager.getInstance(k2Var.f28612a).sendRequest(tL_contacts_resolveUsername, new bi.j0(this, 8));
+                tL_contacts_resolveUsername.username = qp.s1(k2Var.f28613a).K3;
+                this.d = ConnectionsManager.getInstance(k2Var.f28613a).sendRequest(tL_contacts_resolveUsername, new bi.j0(this, 8));
             } else if (user == null) {
             } else {
                 TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
                 int i12 = k2.f12251y1;
-                tL_messages_getInlineBotResults.bot = qp.s1(k2Var.f28612a).q1(this.f12720f);
+                tL_messages_getInlineBotResults.bot = qp.s1(k2Var.f28613a).q1(this.f12720f);
                 String str = this.f12719e;
                 String str2 = "";
                 if (str == null) {
@@ -112,7 +112,7 @@ public final class r1 extends oj0 {
                 tL_messages_getInlineBotResults.offset = str2;
                 tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
                 String str4 = "gif_search_" + tL_messages_getInlineBotResults.query + "_" + tL_messages_getInlineBotResults.offset;
-                yr.a0(k2Var.f28612a).M(str4, new bi.d4(this, isEmpty, tL_messages_getInlineBotResults, str4));
+                yr.a0(k2Var.f28613a).M(str4, new bi.d4(this, isEmpty, tL_messages_getInlineBotResults, str4));
             }
         }
     }
@@ -124,7 +124,7 @@ public final class r1 extends oj0 {
             if (this.d != -1) {
                 k2 k2Var = t1Var.f12845r;
                 int i7 = k2.f12251y1;
-                ConnectionsManager.getInstance(k2Var.f28612a).cancelRequest(this.d, true);
+                ConnectionsManager.getInstance(k2Var.f28613a).cancelRequest(this.d, true);
                 this.d = -1;
             }
             this.f12722r = false;
@@ -185,8 +185,8 @@ public final class r1 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        int i10 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i10 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         if (i10 == 0) {
             view.setTag(34);
             view.setLayoutParams(new v4.o0(-1, (int) this.f12723s.f12845r.f12256o1));
@@ -223,10 +223,10 @@ public final class r1 extends oj0 {
         } else {
             org.telegram.ui.Cells.h2 h2Var2 = new org.telegram.ui.Cells.h2(t1Var.getContext());
             h2Var2.getPhotoImage().E0(7);
-            if (h2Var2.f29233d0 == null) {
+            if (h2Var2.f29234d0 == null) {
                 ic icVar = new ic(h2Var2, 1.0f, 3.0f);
-                icVar.f34552e = 120L;
-                h2Var2.f29233d0 = icVar;
+                icVar.f34582e = 120L;
+                h2Var2.f29234d0 = icVar;
             }
             h2Var2.setIsKeyboard(true);
             h2Var2.setCanPreviewGif(true);

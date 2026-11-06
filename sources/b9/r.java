@@ -2,7 +2,7 @@ package b9;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 public final class r extends r6.a {
     public static final Parcelable.Creator<r> CREATOR = new c(15);
     public final int f3095a;
@@ -17,13 +17,13 @@ public final class r extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.q(parcel, 2, 4);
+        int r10 = xb.r(parcel, 20293);
+        xb.q(parcel, 2, 4);
         parcel.writeInt(this.f3095a);
-        wb.q(parcel, 3, 4);
+        xb.q(parcel, 3, 4);
         parcel.writeInt(this.f3096b ? 1 : 0);
-        wb.q(parcel, 4, 4);
+        xb.q(parcel, 4, 4);
         parcel.writeInt(this.f3097c ? 1 : 0);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

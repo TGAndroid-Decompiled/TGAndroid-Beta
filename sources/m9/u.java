@@ -268,7 +268,7 @@ public final class u implements Runnable {
                 f5.f fVar3 = f5.z.f11201i;
                 ((f5.b) this.f19994b).y(24, 7, fVar3);
                 com.google.android.gms.internal.play_billing.p pVar = com.google.android.gms.internal.play_billing.r.f7444b;
-                ((q1) ((p1) this.f19995c).f24458b).a(fVar3, com.google.android.gms.internal.play_billing.v.f7471e);
+                ((q1) ((p1) this.f19995c).f24466b).a(fVar3, com.google.android.gms.internal.play_billing.v.f7471e);
                 return;
             case 17:
                 f5.f fVar4 = f5.z.f11201i;
@@ -471,14 +471,14 @@ public final class u implements Runnable {
             case 27:
                 ArrayList arrayList2 = (ArrayList) this.f19994b;
                 for (int i15 = 0; i15 < arrayList2.size(); i15++) {
-                    if (arrayList2.get(i15) != null && ((uo) arrayList2.get(i15)).f38688a != null) {
-                        ((uo) arrayList2.get(i15)).f38688a.m(0);
+                    if (arrayList2.get(i15) != null && ((uo) arrayList2.get(i15)).f38684a != null) {
+                        ((uo) arrayList2.get(i15)).f38684a.m(0);
                     }
                 }
                 org.telegram.messenger.g0.h3(new hi(2, this, arrayList2));
                 return;
             case 28:
-                an anVar = ((ll) this.f19995c).f47558b;
+                an anVar = ((ll) this.f19995c).f47557b;
                 if (this == anVar.Z5) {
                     anVar.yb((CharSequence) this.f19994b, false);
                     anVar.Z5 = null;
@@ -505,7 +505,7 @@ public final class u implements Runnable {
                 tL_chatBannedRights.embed_links = z19;
                 tL_chatBannedRights.send_polls = z19;
                 tL_chatBannedRights.send_reactions = z19;
-                org.telegram.messenger.g0.b4(oqVar.f48475c);
+                org.telegram.messenger.g0.b4(oqVar.f48474c);
                 iq B0 = oqVar.B0();
                 oqVar.G0();
                 oqVar.F0(B0);
@@ -518,9 +518,9 @@ public final class u implements Runnable {
             case 0:
                 android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(u.class.getSimpleName(), 28);
                 wf.b bVar = new wf.b(19, false);
-                ((wf.b) a0Var.d).f57564c = bVar;
+                ((wf.b) a0Var.d).f57563c = bVar;
                 a0Var.d = bVar;
-                bVar.f57563b = (t) this.f19995c;
+                bVar.f57562b = (t) this.f19995c;
                 return a0Var.toString();
             default:
                 return super.toString();

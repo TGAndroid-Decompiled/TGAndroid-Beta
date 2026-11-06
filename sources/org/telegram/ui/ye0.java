@@ -18,7 +18,7 @@ public final class ye0 extends org.telegram.ui.Components.mo0 {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) hVar.n(0)).f26956id;
+            long j3 = ((TLRPC.Dialog) hVar.n(0)).f26957id;
             if (j3 != 0 && j3 != cf0Var.getUserConfig().e()) {
                 a02 = org.telegram.messenger.hd.a0(null, null, 2131749183, cf0Var.getMessagesController().B1(j3, true));
             } else {
@@ -28,7 +28,7 @@ public final class ye0 extends org.telegram.ui.Components.mo0 {
             a02 = org.telegram.messenger.hd.a0(null, null, 2131749186, org.telegram.messenger.hd.G(i7, "Chats", new Object[0]));
         }
         org.telegram.ui.Components.cc Q = org.telegram.ui.Components.hc.a0(cf0Var).Q(2131624028, 36, org.telegram.messenger.g0.X2(a02));
-        Q.f32535r = false;
+        Q.f32522r = false;
         Q.k(true);
     }
 }

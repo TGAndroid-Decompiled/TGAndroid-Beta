@@ -5,22 +5,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o21 implements RequestDelegate {
-    public final int f48223a;
-    public final SessionsActivity f48224b;
+    public final int f48222a;
+    public final SessionsActivity f48223b;
 
     public o21(SessionsActivity sessionsActivity, int i7) {
-        this.f48223a = i7;
-        this.f48224b = sessionsActivity;
+        this.f48222a = i7;
+        this.f48223b = sessionsActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f48223a) {
+        switch (this.f48222a) {
             case 0:
-                org.telegram.messenger.g0.h3(new ru0(this.f48224b, 19));
+                org.telegram.messenger.g0.h3(new ru0(this.f48223b, 19));
                 return;
             case 1:
-                final SessionsActivity sessionsActivity = this.f48224b;
+                final SessionsActivity sessionsActivity = this.f48223b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -62,13 +62,13 @@ public final class o21 implements RequestDelegate {
                     if (i10.p()) {
                         i10.d = false;
                         i10.v(false);
-                        org.telegram.messenger.qp.s1(i7).Z3(org.telegram.messenger.iz.f23371f, org.telegram.messenger.iz.f23374g);
+                        org.telegram.messenger.qp.s1(i7).Z3(org.telegram.messenger.iz.f23378f, org.telegram.messenger.iz.f23381g);
                         ConnectionsManager.getInstance(i7).setUserId(i10.e());
                     }
                 }
                 return;
             case 2:
-                final SessionsActivity sessionsActivity2 = this.f48224b;
+                final SessionsActivity sessionsActivity2 = this.f48223b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -110,13 +110,13 @@ public final class o21 implements RequestDelegate {
                     if (i12.p()) {
                         i12.d = false;
                         i12.v(false);
-                        org.telegram.messenger.qp.s1(i11).Z3(org.telegram.messenger.iz.f23371f, org.telegram.messenger.iz.f23374g);
+                        org.telegram.messenger.qp.s1(i11).Z3(org.telegram.messenger.iz.f23378f, org.telegram.messenger.iz.f23381g);
                         ConnectionsManager.getInstance(i11).setUserId(i12.e());
                     }
                 }
                 return;
             default:
-                final SessionsActivity sessionsActivity3 = this.f48224b;
+                final SessionsActivity sessionsActivity3 = this.f48223b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {

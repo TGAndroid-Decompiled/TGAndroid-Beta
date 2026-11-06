@@ -24,25 +24,25 @@ import org.telegram.ui.rc1;
 import org.telegram.ui.xc1;
 import org.telegram.ui.yc1;
 public final class n implements Runnable {
-    public final int f42790a;
-    public final Object f42791b;
-    public final Object f42792c;
+    public final int f42789a;
+    public final Object f42790b;
+    public final Object f42791c;
 
     public n(int i7, Object obj, Object obj2) {
-        this.f42790a = i7;
-        this.f42791b = obj;
-        this.f42792c = obj2;
+        this.f42789a = i7;
+        this.f42790b = obj;
+        this.f42791c = obj2;
     }
 
     @Override
     public final void run() {
         String message;
-        int i7 = this.f42790a;
-        Object obj = this.f42792c;
-        Object obj2 = this.f42791b;
+        int i7 = this.f42789a;
+        Object obj = this.f42791c;
+        Object obj2 = this.f42790b;
         switch (i7) {
             case 0:
-                qp.s1(((n0) obj2).f42793a).O3((TLRPC.Updates) obj, false);
+                qp.s1(((n0) obj2).f42792a).O3((TLRPC.Updates) obj, false);
                 return;
             case 1:
                 n0 n0Var = (n0) obj2;
@@ -66,7 +66,7 @@ public final class n implements Runnable {
                     jVar.a(500000L, null);
                     return;
                 }
-                WalletEngine2 walletEngine2 = n0Var2.f42794b;
+                WalletEngine2 walletEngine2 = n0Var2.f42793b;
                 if (walletEngine2 == null) {
                     n0.j("emulate disable backup: no engine!");
                     jVar.a(null, "NULL_ENGINE");
@@ -85,14 +85,14 @@ public final class n implements Runnable {
                 eVar.a(null, message);
                 return;
             case 5:
-                qp.s1(((f2) obj2).f42460a).O3((TLRPC.Updates) obj, false);
+                qp.s1(((f2) obj2).f42459a).O3((TLRPC.Updates) obj, false);
                 return;
             case 6:
                 u2 u2Var = (u2) obj2;
                 z2 z2Var = (z2) obj;
-                if (!u2Var.f43198e) {
-                    z2Var.f28619c0 = true;
-                    Runnable runnable = u2Var.f43200g;
+                if (!u2Var.f43197e) {
+                    z2Var.f28620c0 = true;
+                    Runnable runnable = u2Var.f43199g;
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -153,7 +153,7 @@ public final class n implements Runnable {
             case 19:
                 c8 c8Var = (c8) obj2;
                 TLRPC.UserFull userFull = (TLRPC.UserFull) obj;
-                if (!c8Var.f42253a1 && userFull != null) {
+                if (!c8Var.f42252a1 && userFull != null) {
                     TL_wallet.card cardVar = userFull.wallet_card;
                     if (cardVar == null) {
                         cardVar = new TL_wallet.card();
@@ -172,13 +172,13 @@ public final class n implements Runnable {
                 return;
             case 21:
                 ((r0) obj).B();
-                ((o8) obj2).f35844a.f36781f3.O(true);
+                ((o8) obj2).f36227a.f37160f3.O(true);
                 return;
             case 22:
                 o8 o8Var = (o8) obj;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, o8Var.getParentActivity(), o8Var.getResourceProvider());
                 String M0 = hd.M0(2131743132, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = hd.M0(2131743134, null);
                 alertDialog$Builder.h(hd.M0(2131752589, null), null);
@@ -200,7 +200,7 @@ public final class n implements Runnable {
                 int i10 = iArr[0] - 1;
                 iArr[0] = i10;
                 if (i10 == 0) {
-                    mc1Var.f47785a.G0(true);
+                    mc1Var.f47784a.G0(true);
                     return;
                 }
                 return;
@@ -208,8 +208,8 @@ public final class n implements Runnable {
                 rc1 rc1Var = (rc1) obj2;
                 String str = (String) obj;
                 rc1Var.d.clear();
-                rc1Var.f49485e.clear();
-                rc1Var.f49486f = true;
+                rc1Var.f49484e.clear();
+                rc1Var.f49485f = true;
                 rc1Var.F(str, "", true);
                 rc1Var.h = str;
                 rc1Var.f();
@@ -222,26 +222,26 @@ public final class n implements Runnable {
                 qp.s1(WallpapersListActivity.u0(wallpapersListActivity)).Y3(tL_contacts_resolvedPeer.users, false);
                 qp.s1(WallpapersListActivity.v0(wallpapersListActivity)).S3(tL_contacts_resolvedPeer.chats, false);
                 wallpapersListActivity.getMessagesStorage().m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, true, true);
-                String str2 = rc1Var2.f49492y;
-                rc1Var2.f49492y = null;
+                String str2 = rc1Var2.f49491y;
+                rc1Var2.f49491y = null;
                 rc1Var2.F(str2, "", false);
                 return;
             case 28:
                 String str3 = (String) obj;
-                yc1 yc1Var = ((xc1) obj2).f51839a;
+                yc1 yc1Var = ((xc1) obj2).f51837a;
                 Activity parentActivity = yc1Var.getParentActivity();
-                ij ijVar = yc1Var.f52218n;
+                ij ijVar = yc1Var.f52216n;
                 if (parentActivity != null) {
-                    if (org.telegram.messenger.r2.f25191a) {
+                    if (org.telegram.messenger.r2.f25199a) {
                         org.telegram.messenger.a8.b(str3);
                     }
                     str3.getClass();
                     if (!str3.equals("share_game")) {
                         if (str3.equals("share_score")) {
-                            ijVar.f23237k.with_my_score = true;
+                            ijVar.f23244k.with_my_score = true;
                         }
                     } else {
-                        ijVar.f23237k.with_my_score = false;
+                        ijVar.f23244k.with_my_score = false;
                     }
                     yc1Var.showDialog(mo0.N0(yc1Var.getParentActivity(), ijVar, null, false, yc1Var.h));
                     return;
@@ -249,7 +249,7 @@ public final class n implements Runnable {
                 return;
             default:
                 org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) obj2;
-                hi.p pVar2 = x0Var.f51372j0;
+                hi.p pVar2 = x0Var.f51367j0;
                 pVar2.f14849f = true;
                 pVar2.k();
                 x0Var.v((di.o7) obj);
@@ -258,8 +258,8 @@ public final class n implements Runnable {
     }
 
     public n(o8 o8Var, n0 n0Var) {
-        this.f42790a = 22;
-        this.f42792c = o8Var;
-        this.f42791b = n0Var;
+        this.f42789a = 22;
+        this.f42791c = o8Var;
+        this.f42790b = n0Var;
     }
 }

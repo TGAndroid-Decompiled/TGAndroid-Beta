@@ -71,7 +71,7 @@ public final class e0 extends za {
             if (i7 == 1) {
                 ac acVar = new ac(getContext(), f6Var, true);
                 acVar.e(hd.M0(2131753074, null));
-                acVar.f31760b = new Runnable(this) {
+                acVar.f31756b = new Runnable(this) {
                     public final e0 f14550b;
 
                     {
@@ -86,7 +86,7 @@ public final class e0 extends za {
                                 e0 e0Var = this.f14550b;
                                 cc bulletin = e0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f32527j = 2750;
+                                    bulletin.f32514j = 2750;
                                     bulletin.i(true);
                                 }
                                 f0 f0Var = e0Var.f14626f;
@@ -118,7 +118,7 @@ public final class e0 extends za {
             } else if (i7 == 2) {
                 ac acVar2 = new ac(getContext(), f6Var, true);
                 acVar2.e(hd.M0(2131753073, null));
-                acVar2.f31760b = new Runnable(this) {
+                acVar2.f31756b = new Runnable(this) {
                     public final e0 f14550b;
 
                     {
@@ -133,7 +133,7 @@ public final class e0 extends za {
                                 e0 e0Var = this.f14550b;
                                 cc bulletin = e0Var.getBulletin();
                                 if (bulletin != null) {
-                                    bulletin.f32527j = 2750;
+                                    bulletin.f32514j = 2750;
                                     bulletin.i(true);
                                 }
                                 f0 f0Var = e0Var.f14626f;
@@ -233,7 +233,7 @@ public final class e0 extends za {
                 cc bulletin2 = getBulletin();
                 if (bulletin2 != null) {
                     bulletin2.i(false);
-                    bulletin2.f32527j = 5000;
+                    bulletin2.f32514j = 5000;
                     bulletin2.i(true);
                 }
             }

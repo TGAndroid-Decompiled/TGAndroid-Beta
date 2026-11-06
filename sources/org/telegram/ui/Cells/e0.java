@@ -11,22 +11,22 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 public final class e0 extends Drawable {
-    public final Drawable f29037a;
-    public final Paint f29038b;
-    public final Paint f29039c;
+    public final Drawable f29038a;
+    public final Paint f29039b;
+    public final Paint f29040c;
     public final Paint d;
-    public int f29040e;
-    public ColorFilter f29041f;
+    public int f29041e;
+    public ColorFilter f29042f;
 
     public e0(Context context) {
         Paint paint = new Paint(1);
-        this.f29038b = paint;
+        this.f29039b = paint;
         Paint paint2 = new Paint(1);
-        this.f29039c = paint2;
+        this.f29040c = paint2;
         this.d = new Paint();
-        this.f29040e = 255;
+        this.f29041e = 255;
         Drawable h = jg.g.h(context, 2131232158);
-        this.f29037a = h;
+        this.f29038a = h;
         h.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
         paint.setShader(new RadialGradient(400.0f, 213.0f, 500.0f, -4811527, -9674273, Shader.TileMode.CLAMP));
         paint2.setColor(-1);
@@ -35,11 +35,11 @@ public final class e0 extends Drawable {
     }
 
     public final void a(Canvas canvas, float f10, float f11, float f12, float f13) {
-        Drawable drawable = this.f29037a;
+        Drawable drawable = this.f29038a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-            drawable.setAlpha(Math.round(this.f29040e * f13));
+            drawable.setAlpha(Math.round(this.f29041e * f13));
             drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
             canvas.save();
             canvas.translate(f10, f11);
@@ -53,7 +53,7 @@ public final class e0 extends Drawable {
     public final void b(Canvas canvas, Rect rect, float f10, float f11, float f12, float f13, float f14, float f15) {
         float f16 = rect.left;
         float f17 = rect.top;
-        canvas.drawLine((f12 * f10) + f16, (f13 * f11) + f17, (f14 * f10) + f16, (f15 * f11) + f17, this.f29039c);
+        canvas.drawLine((f12 * f10) + f16, (f13 * f11) + f17, (f14 * f10) + f16, (f15 * f11) + f17, this.f29040c);
     }
 
     @Override
@@ -61,8 +61,8 @@ public final class e0 extends Drawable {
         Canvas canvas2;
         int i7;
         Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f29040e != 0) {
-            ColorFilter colorFilter = this.f29041f;
+        if (!bounds.isEmpty() && this.f29041e != 0) {
+            ColorFilter colorFilter = this.f29042f;
             if (colorFilter != null) {
                 Paint paint = this.d;
                 paint.setColorFilter(colorFilter);
@@ -74,8 +74,8 @@ public final class e0 extends Drawable {
             }
             float width = bounds.width() / 800.0f;
             float height = bounds.height() / 427.0f;
-            int i10 = this.f29040e;
-            Paint paint2 = this.f29038b;
+            int i10 = this.f29041e;
+            Paint paint2 = this.f29039b;
             paint2.setAlpha(i10);
             canvas2.save();
             canvas2.translate(bounds.left, bounds.top);
@@ -83,8 +83,8 @@ public final class e0 extends Drawable {
             Canvas canvas3 = canvas2;
             canvas3.drawRect(0.0f, 0.0f, 800.0f, 427.0f, paint2);
             canvas3.restore();
-            int i11 = this.f29040e;
-            Paint paint3 = this.f29039c;
+            int i11 = this.f29041e;
+            Paint paint3 = this.f29040c;
             paint3.setAlpha(i11);
             paint3.setStrokeWidth(Math.min(width, height) * 16.4f);
             b(canvas3, bounds, width, height, 449.809f, 246.04f, 483.703f, 212.418f);
@@ -138,16 +138,16 @@ public final class e0 extends Drawable {
     @Override
     public final void setAlpha(int i7) {
         int max = Math.max(0, Math.min(255, i7));
-        if (this.f29040e != max) {
-            this.f29040e = max;
+        if (this.f29041e != max) {
+            this.f29041e = max;
             invalidateSelf();
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        if (this.f29041f != colorFilter) {
-            this.f29041f = colorFilter;
+        if (this.f29042f != colorFilter) {
+            this.f29042f = colorFilter;
             invalidateSelf();
         }
     }

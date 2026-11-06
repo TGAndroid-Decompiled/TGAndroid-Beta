@@ -74,7 +74,7 @@ public final class z5 extends ys {
         switch (this.Y1) {
             case 0:
                 InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                if (((a6) this.Z1).f28891s) {
+                if (((a6) this.Z1).f28892s) {
                     editorInfo.imeOptions &= -1073741825;
                 }
                 return onCreateInputConnection;

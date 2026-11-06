@@ -1,7 +1,7 @@
 package i5;
 
 import a8.p0;
-import c8.ib;
+import c8.jb;
 import java.nio.ByteBuffer;
 import y7.i6;
 public final class o extends com.googlecode.mp4parser.c {
@@ -28,7 +28,7 @@ public final class o extends com.googlecode.mp4parser.c {
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
         this.f15319e = h5.b.i(byteBuffer);
-        int a10 = ib.a(h5.b.i(byteBuffer));
+        int a10 = jb.a(h5.b.i(byteBuffer));
         this.h = a10;
         if (this.f15319e == 0) {
             this.f15320f = new long[a10];

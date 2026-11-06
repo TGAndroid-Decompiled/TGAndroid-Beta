@@ -87,14 +87,14 @@ public final class f {
     public void c(Canvas canvas, float f10, float f11, float f12) {
         Drawable drawable = (Drawable) this.f18268g;
         l0 l0Var = (l0) this.h;
-        RectF rectF = l0Var.f51200a;
+        RectF rectF = l0Var.f51179a;
         rectF.set(0.0f, 0.0f, f10, f11);
         canvas.saveLayerAlpha(rectF, (int) (f12 * 255.0f), 31);
         i6 i6Var = (i6) this.d;
         float i7 = i6Var.i();
         i6 i6Var2 = (i6) this.f18266e;
         float i10 = i6Var2.i();
-        TextPaint textPaint = i6Var2.f34475a;
+        TextPaint textPaint = i6Var2.f34506a;
         float f13 = i10 * i7;
         canvas.save();
         float f14 = 0.82f * f11;
@@ -110,7 +110,7 @@ public final class f {
         canvas.translate(0.0f, com.google.android.recaptcha.internal.a.v(1.0f, f13, g0.L(4.0f), (g0.L(14.0f) * f13) + ((1.0f - l0Var.G) * f14 * f13) + (-g0.L(1.0f))));
         float T12 = g0.T1(1.15f, 0.9f, f13) * l0Var.G;
         canvas.scale(T12, T12, 0.0f, 0.0f);
-        i6Var2.u(i0.a.f(d, this.f18263a, k6.x0(null, k6.f28089q7, false)));
+        i6Var2.u(i0.a.f(d, this.f18263a, k6.x0(null, k6.f28090q7, false)));
         if (d > 0.0f) {
             if (this.f18264b != textPaint.getColor()) {
                 int color = textPaint.getColor();
@@ -125,7 +125,7 @@ public final class f {
         i6Var2.draw(canvas);
         canvas.restore();
         rectF.set(f10 - g0.L(12.0f), 0.0f, f10, f11);
-        l0Var.f51223r0.m(canvas, rectF, 2, 1.0f);
+        l0Var.f51202r0.m(canvas, rectF, 2, 1.0f);
         canvas.restore();
     }
 
@@ -133,7 +133,7 @@ public final class f {
         Canvas canvas;
         Paint paint = (Paint) this.f18268g;
         RectF rectF = (RectF) this.f18267f;
-        int w02 = k6.w0(k6.f27848d6, (f6) this.h);
+        int w02 = k6.w0(k6.f27849d6, (f6) this.h);
         int i11 = (i7 + i10) << 10;
         if (i11 == this.f18263a && !this.f18265c) {
             if (w02 != this.f18264b && (canvas = (Canvas) this.f18266e) != null && ((Bitmap) this.d) != null) {

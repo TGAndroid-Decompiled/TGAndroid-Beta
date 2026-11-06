@@ -405,9 +405,9 @@ public abstract class g extends View implements i {
                 e eVar = this.Q0;
                 if (eVar != null) {
                     getSelectedDate();
-                    l41 l41Var = (l41) ((li0) eVar).f47551b;
+                    l41 l41Var = (l41) ((li0) eVar).f47550b;
                     l41Var.f();
-                    l41Var.f47410b.f18319t0.d(false, false);
+                    l41Var.f47409b.f18319t0.d(false, false);
                 }
                 B();
                 invalidate();
@@ -607,7 +607,7 @@ public abstract class g extends View implements i {
                     this.f18322w = f12;
                 } else {
                     float f14 = this.T0;
-                    this.f18322w = (xq.f40330g.getInterpolation(f13) * (f12 - f14)) + f14;
+                    this.f18322w = (xq.f40346g.getInterpolation(f13) * (f12 - f14)) + f14;
                 }
                 invalidate();
             }
@@ -622,7 +622,7 @@ public abstract class g extends View implements i {
                         this.f18324x = f16;
                     } else {
                         float f18 = this.U0;
-                        this.f18324x = (xq.f40330g.getInterpolation(f17) * (f16 - f18)) + f18;
+                        this.f18324x = (xq.f40346g.getInterpolation(f17) * (f16 - f18)) + f18;
                     }
                     invalidate();
                 }
@@ -659,7 +659,7 @@ public abstract class g extends View implements i {
         paint2.setColor(w05);
         this.Q.setColor(k6.w0(k6.Rj, f6Var));
         this.R.setColor(k6.w0(k6.Qj, f6Var));
-        this.S.setColor(k6.w0(k6.f27848d6, f6Var));
+        this.S.setColor(k6.w0(k6.f27849d6, f6Var));
         this.T.setColor(k6.w0(k6.Sj, f6Var));
         this.f18319t0.b();
         this.f18310n = paint.getAlpha();
@@ -1156,7 +1156,7 @@ public abstract class g extends View implements i {
         if (!this.I) {
             setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i7));
         } else {
-            setMeasuredDimension(View.MeasureSpec.getSize(i7), g0.f22537q.y - g0.L(56.0f));
+            setMeasuredDimension(View.MeasureSpec.getSize(i7), g0.f22544q.y - g0.L(56.0f));
         }
         int measuredWidth = getMeasuredWidth();
         int i11 = this.X0;

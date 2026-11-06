@@ -67,7 +67,7 @@ public final class c extends FrameLayout implements a6 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull N0 = qp.s1(i7).N0(chat.f26952id);
+        TLRPC.ChatFull N0 = qp.s1(i7).N0(chat.f26953id);
         setTitle(m5.u(chat));
         if (N0 != null) {
             i10 = N0.linked_peers.size();
@@ -80,7 +80,7 @@ public final class c extends FrameLayout implements a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f28258z6));
+        hashSet.add(Integer.valueOf(k6.f28259z6));
         hashSet.add(Integer.valueOf(k6.G6));
     }
 
@@ -107,7 +107,7 @@ public final class c extends FrameLayout implements a6 {
 
     @Override
     public final void updateColors() {
-        int i7 = k6.f28258z6;
+        int i7 = k6.f28259z6;
         f6 f6Var = this.f17074a;
         this.f17077e.setColorFilter(k6.w0(i7, f6Var));
         this.f17076c.setTextColor(k6.w0(k6.G6, f6Var));

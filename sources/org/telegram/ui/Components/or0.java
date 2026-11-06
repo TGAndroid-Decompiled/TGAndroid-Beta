@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class or0 implements jg.y1, org.telegram.ui.Cells.z4 {
-    public final qr0 f36650a;
+    public final qr0 f36668a;
 
     public or0(qr0 qr0Var) {
-        this.f36650a = qr0Var;
+        this.f36668a = qr0Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class or0 implements jg.y1, org.telegram.ui.Cells.z4 {
     @Override
     public boolean b(org.telegram.ui.Cells.a5 a5Var, boolean z9) {
         int intValue = ((Integer) a5Var.getTag()).intValue();
-        qr0 qr0Var = this.f36650a;
+        qr0 qr0Var = this.f36668a;
         TLObject E = qr0Var.E(intValue);
         if (E instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
@@ -27,7 +27,7 @@ public final class or0 implements jg.y1, org.telegram.ui.Cells.z4 {
             tL_chatChannelParticipant.user_id = org.telegram.messenger.ij.C1(channelParticipant.peer);
             tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
             tL_chatChannelParticipant.date = channelParticipant.date;
-            return qr0Var.f37390s.F1.h(tL_chatChannelParticipant, true, !z9, a5Var);
+            return qr0Var.f37385s.F1.h(tL_chatChannelParticipant, true, !z9, a5Var);
         }
         return false;
     }
@@ -39,21 +39,21 @@ public final class or0 implements jg.y1, org.telegram.ui.Cells.z4 {
 
     @Override
     public void q(int i7) {
-        qr0 qr0Var = this.f36650a;
+        qr0 qr0Var = this.f36668a;
         qr0Var.f();
         if (i7 == 1) {
-            int i10 = qr0Var.f37389r - 1;
-            qr0Var.f37389r = i10;
+            int i10 = qr0Var.f37384r - 1;
+            qr0Var.f37384r = i10;
             if (i10 == 0) {
                 int i11 = 0;
                 while (true) {
-                    xs0 xs0Var = qr0Var.f37390s;
+                    xs0 xs0Var = qr0Var.f37385s;
                     sr0[] sr0VarArr = xs0Var.m0;
                     if (i11 < sr0VarArr.length) {
                         sr0 sr0Var = sr0VarArr[i11];
                         if (sr0Var.E == 7) {
                             if (qr0Var.h == 0) {
-                                sr0Var.f38109w.e(false, true);
+                                sr0Var.f38113w.e(false, true);
                             } else {
                                 xs0Var.D(sr0Var.h, 0, null);
                             }

@@ -47,7 +47,7 @@ public final class q0 extends LinearLayout {
         w70 w70Var2 = new w70(context, null);
         this.f4552c = w70Var2;
         w70Var2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.r6.V(w70Var2, org.telegram.ui.ActionBar.k6.f28258z6, f6Var);
+        org.telegram.ui.ActionBar.r6.V(w70Var2, org.telegram.ui.ActionBar.k6.f28259z6, f6Var);
         org.telegram.ui.ActionBar.r6.H(w70Var2, i11, f6Var);
         linearLayout.addView(w70Var2, c8.ha.r(-1, -2, 7));
         addView(linearLayout, c8.ha.q(-1, -2, 1.0f, 55, 0, 0, 0, 0));

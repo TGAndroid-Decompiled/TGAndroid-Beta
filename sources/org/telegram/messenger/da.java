@@ -3,10 +3,10 @@ package org.telegram.messenger;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 public final class da implements wa {
-    public LatLngBounds f21979a;
+    public LatLngBounds f21986a;
 
     public final cb a() {
-        LatLngBounds latLngBounds = this.f21979a;
+        LatLngBounds latLngBounds = this.f21986a;
         LatLng latLng = latLngBounds.f7698a;
         double d = latLng.f7696a;
         LatLng latLng2 = latLngBounds.f7699b;

@@ -57,7 +57,7 @@ public final class o9 extends VideoPlayerHolderBase {
                                         StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
                                         sb2.append(z10.getCurrentPeer());
                                         sb2.append(" storyId=");
-                                        jg.g.s(g4Var.f9038a.f27191id, sb2);
+                                        jg.g.s(g4Var.f9038a.f27192id, sb2);
                                         return;
                                     }
                                     return;
@@ -71,7 +71,7 @@ public final class o9 extends VideoPlayerHolderBase {
                                         StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
                                         sb3.append(z11.getCurrentPeer());
                                         sb3.append(" storyId=");
-                                        jg.g.s(g4Var2.f9038a.f27191id, sb3);
+                                        jg.g.s(g4Var2.f9038a.f27192id, sb3);
                                         return;
                                     }
                                     return;
@@ -101,7 +101,7 @@ public final class o9 extends VideoPlayerHolderBase {
                                         StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
                                         sb2.append(z10.getCurrentPeer());
                                         sb2.append(" storyId=");
-                                        jg.g.s(g4Var.f9038a.f27191id, sb2);
+                                        jg.g.s(g4Var.f9038a.f27192id, sb2);
                                         return;
                                     }
                                     return;
@@ -115,7 +115,7 @@ public final class o9 extends VideoPlayerHolderBase {
                                         StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
                                         sb3.append(z11.getCurrentPeer());
                                         sb3.append(" storyId=");
-                                        jg.g.s(g4Var2.f9038a.f27191id, sb3);
+                                        jg.g.s(g4Var2.f9038a.f27192id, sb3);
                                         return;
                                     }
                                     return;

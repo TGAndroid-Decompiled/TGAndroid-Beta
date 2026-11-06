@@ -7,16 +7,16 @@ import android.widget.TextView;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
-import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.ty0;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.uy0;
 import org.telegram.ui.Components.w70;
 public abstract class x6 extends LinearLayout {
-    public TextView f30885a;
-    public w70 f30886b;
-    public TextView f30887c;
+    public TextView f30886a;
+    public w70 f30887b;
+    public TextView f30888c;
     public TextView d;
-    public int f30888e;
-    public int f30889f;
+    public int f30889e;
+    public int f30890f;
 
     @Override
     public final void onMeasure(int i7, int i10) {
@@ -24,14 +24,14 @@ public abstract class x6 extends LinearLayout {
     }
 
     public void setType(int i7) {
-        int i10 = this.f30889f;
-        TextView textView = this.f30887c;
-        w70 w70Var = this.f30886b;
-        TextView textView2 = this.f30885a;
+        int i10 = this.f30890f;
+        TextView textView = this.f30888c;
+        w70 w70Var = this.f30887b;
+        TextView textView2 = this.f30886a;
         TextView textView3 = this.d;
-        this.f30888e = i7;
+        this.f30889e = i7;
         if (i7 == 0) {
-            textView2.setText(hd.a0(null, null, 2131752156, org.telegram.messenger.k5.i(new StringBuilder("+"), qp.s1(i10).a2(Long.valueOf(p10.i(i10).f24478n)).phone, pf.b.c())));
+            textView2.setText(hd.a0(null, null, 2131752156, org.telegram.messenger.k5.i(new StringBuilder("+"), qp.s1(i10).a2(Long.valueOf(p10.i(i10).f24486n)).phone, pf.b.c())));
             String M0 = hd.M0(2131752155, null);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(M0);
             int indexOf = M0.indexOf("**");
@@ -40,7 +40,7 @@ public abstract class x6 extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new a41(hd.M0(2131752154, null), (ty0) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new b41(hd.M0(2131752154, null), (uy0) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class lj0 implements TextWatcher {
-    public final int f47552a;
-    public final bk0 f47553b;
+    public final int f47551a;
+    public final bk0 f47552b;
 
     public lj0(bk0 bk0Var, int i7) {
-        this.f47552a = i7;
-        this.f47553b = bk0Var;
+        this.f47551a = i7;
+        this.f47552b = bk0Var;
     }
 
     @Override
@@ -19,8 +19,8 @@ public final class lj0 implements TextWatcher {
         boolean z9;
         String str;
         int indexOf;
-        int i7 = this.f47552a;
-        bk0 bk0Var = this.f47553b;
+        int i7 = this.f47551a;
+        bk0 bk0Var = this.f47552b;
         switch (i7) {
             case 0:
                 if (!bk0Var.Z0 && bk0Var.T0 != 0 && bk0Var.Y[0].length() == bk0Var.T0) {
@@ -101,12 +101,12 @@ public final class lj0 implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f47552a;
+        int i12 = this.f47551a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f47552a;
+        int i12 = this.f47551a;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

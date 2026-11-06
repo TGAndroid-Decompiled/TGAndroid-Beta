@@ -9,26 +9,26 @@ import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.t31;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
+import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.w31;
-public final class r2 extends v31 {
-    public static final int f60430b = 0;
+import org.telegram.ui.Components.x31;
+public final class r2 extends w31 {
+    public static final int f60429b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         s2 s2Var = (s2) view;
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) w31Var.G;
-        int i7 = w31Var.f39843z;
-        String str = (String) w31Var.f39830l;
-        boolean z10 = w31Var.f39824e;
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) x31Var.G;
+        int i7 = x31Var.f40172z;
+        String str = (String) x31Var.f40159l;
+        boolean z10 = x31Var.f40153e;
         s2Var.getClass();
         ShapeDrawable L = k6.L(org.telegram.messenger.g0.L(20.0f), stargiftattributebackdrop.center_color | (-16777216));
         SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;
@@ -40,7 +40,7 @@ public final class r2 extends v31 {
             spannableStringBuilder2.append((CharSequence) "  ");
             int length = spannableStringBuilder2.length();
             spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
-            spannableStringBuilder2.setSpan(new t31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
         s2Var.j(spannableStringBuilder, 0, L);
@@ -53,7 +53,7 @@ public final class r2 extends v31 {
         z0Var.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
         z0Var.c(k6.E8, k6.F8);
         z0Var.g(-1, PorterDuff.Mode.MULTIPLY);
-        z0Var.f28812c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
+        z0Var.f28813c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
         z0Var.a(2);
         z0Var.setBackground(null);
         return z0Var;

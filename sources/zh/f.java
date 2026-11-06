@@ -13,18 +13,18 @@ import org.telegram.messenger.w9;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.td0;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 public final class f extends na implements u9 {
-    public final w31 P1;
+    public final x31 P1;
     public final LongSparseArray Q1;
     public ArrayList R1;
     public boolean S1;
-    public k41 T1;
+    public l41 T1;
     public int U1;
 
     public f(Context context) {
@@ -32,10 +32,10 @@ public final class f extends na implements u9 {
         int i7 = 0;
         this.Q1 = new LongSparseArray();
         this.R1 = new ArrayList();
-        int x02 = k6.x0(null, k6.f27792a7, false);
+        int x02 = k6.x0(null, k6.f27793a7, false);
         this.U1 = x02;
         v0(x02);
-        w9.c(this.f28612a).f26270f.add(this);
+        w9.c(this.f28613a).f26278f.add(this);
         this.C1 = false;
         this.B1 = org.telegram.messenger.g0.L(12.0f);
         N();
@@ -44,30 +44,30 @@ public final class f extends na implements u9 {
         linearLayout.setClipChildren(false);
         linearLayout.setClipToPadding(false);
         linearLayout.setClickable(true);
-        this.P1 = w31.j(-1, linearLayout);
-        this.f36222k1.setPadding(this.f28645t0, org.telegram.messenger.g0.L(9.0f), this.f28645t0, org.telegram.messenger.g0.L(9.0f));
-        this.f36222k1.setOverScrollMode(2);
+        this.P1 = x31.j(-1, linearLayout);
+        this.f36261k1.setPadding(this.f28646t0, org.telegram.messenger.g0.L(9.0f), this.f28646t0, org.telegram.messenger.g0.L(9.0f));
+        this.f36261k1.setOverScrollMode(2);
         this.T1.O(false);
-        ArrayList arrayList = w9.c(this.f28612a).f26268c;
+        ArrayList arrayList = w9.c(this.f28613a).f26276c;
         int size = arrayList.size();
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
             s9 s9Var = (s9) obj;
             e eVar = new e(context, s9Var);
-            eVar.f60192a.setOnClickListener(new td0(this, context, s9Var, 4));
+            eVar.f60191a.setOnClickListener(new td0(this, context, s9Var, 4));
             linearLayout.addView(eVar, ha.o(-1, -2));
-            this.Q1.put(s9Var.f25431b, eVar);
+            this.Q1.put(s9Var.f25439b, eVar);
         }
         g(arrayList);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new hi.u1(this, 26), this.I0);
-        this.T1 = k41Var;
-        k41Var.f35132r = false;
-        return k41Var;
+        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new hi.u1(this, 26), this.I0);
+        this.T1 = l41Var;
+        l41Var.f35510r = false;
+        return l41Var;
     }
 
     @Override
@@ -81,7 +81,7 @@ public final class f extends na implements u9 {
 
     @Override
     public final void dismiss() {
-        w9.c(this.f28612a).f26270f.remove(this);
+        w9.c(this.f28613a).f26278f.remove(this);
         super.dismiss();
     }
 
@@ -96,18 +96,18 @@ public final class f extends na implements u9 {
             Object obj = arrayList.get(i10);
             i10++;
             s9 s9Var = (s9) obj;
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = s9Var.f25434f;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = s9Var.f25442f;
             if (tL_starGiftAuctionState != null) {
                 i7 = tL_starGiftAuctionState.next_round_at;
             } else {
                 i7 = 0;
             }
-            e eVar = (e) this.Q1.get(s9Var.f25431b);
+            e eVar = (e) this.Q1.get(s9Var.f25439b);
             if (eVar != null) {
                 eVar.b(this.S1);
-                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28612a).getCurrentTime());
+                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28613a).getCurrentTime());
                 eVar.a(max, this.S1);
-                eVar.f60196f.a(max);
+                eVar.f60195f.a(max);
             }
         }
     }
@@ -116,7 +116,7 @@ public final class f extends na implements u9 {
     public final void s0() {
         try {
             super.s0();
-            int x02 = k6.x0(null, k6.f27792a7, false);
+            int x02 = k6.x0(null, k6.f27793a7, false);
             if (x02 != this.U1) {
                 this.U1 = x02;
                 v0(x02);

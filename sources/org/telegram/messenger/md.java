@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class md implements Runnable {
-    public final int f23996a;
-    public final sd f23997b;
-    public final Integer f23998c;
+    public final int f24003a;
+    public final sd f24004b;
+    public final Integer f24005c;
 
     public md(sd sdVar, Integer num, int i7) {
-        this.f23996a = i7;
-        this.f23997b = sdVar;
-        this.f23998c = num;
+        this.f24003a = i7;
+        this.f24004b = sdVar;
+        this.f24005c = num;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f23996a;
-        Integer num = this.f23998c;
-        sd sdVar = this.f23997b;
+        int i7 = this.f24003a;
+        Integer num = this.f24005c;
+        sd sdVar = this.f24004b;
         switch (i7) {
             case 0:
-                if (!sdVar.f25442b.isEmpty()) {
+                if (!sdVar.f25450b.isEmpty()) {
                     g0.h3(new md(sdVar, num, 1));
                     return;
                 }

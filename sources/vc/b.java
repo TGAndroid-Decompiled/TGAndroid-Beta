@@ -1,6 +1,6 @@
 package vc;
 
-import c8.nd;
+import c8.od;
 import g9.l;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import org.telegram.ui.Cells.f1;
 import tc.g;
 public abstract class b {
-    public static final c f57226a = new c();
+    public static final c f57225a = new c();
 
     public static HttpURLConnection a(String str, l lVar) {
         Throwable th2;
@@ -45,7 +45,7 @@ public abstract class b {
             httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
         }
         if (httpURLConnection instanceof HttpsURLConnection) {
-            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57226a);
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57225a);
         }
         httpURLConnection.setDoOutput(true);
         httpURLConnection.setRequestMethod("POST");
@@ -77,8 +77,8 @@ public abstract class b {
             if (sb2.length() > 0) {
                 sb2.append("&");
             }
-            String str = aVar.f57224a;
-            String str2 = aVar.f57225b;
+            String str = aVar.f57223a;
+            String str2 = aVar.f57224b;
             if (str == null) {
                 encode = null;
             } else {
@@ -151,12 +151,12 @@ public abstract class b {
         String str3;
         try {
             JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
-            nd.a(jSONObject.optString("charge"));
-            nd.a(jSONObject.optString("code"));
-            nd.a(jSONObject.optString("decline_code"));
-            str3 = nd.a(jSONObject.optString("message"));
-            nd.a(jSONObject.optString("param"));
-            nd.a(jSONObject.optString("type"));
+            od.a(jSONObject.optString("charge"));
+            od.a(jSONObject.optString("code"));
+            od.a(jSONObject.optString("decline_code"));
+            str3 = od.a(jSONObject.optString("message"));
+            od.a(jSONObject.optString("param"));
+            od.a(jSONObject.optString("type"));
         } catch (JSONException unused) {
             str3 = "An improperly formatted error response was found.";
         }

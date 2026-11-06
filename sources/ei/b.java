@@ -18,7 +18,7 @@ import org.telegram.ui.Components.fm0;
 import org.telegram.ui.Components.hg0;
 import org.telegram.ui.Components.iy;
 import org.telegram.ui.Components.mo0;
-import org.telegram.ui.Components.r01;
+import org.telegram.ui.Components.s01;
 import org.telegram.ui.Components.v4;
 import org.telegram.ui.Components.vj;
 import org.telegram.ui.Components.vo;
@@ -46,18 +46,18 @@ public final class b implements View.OnTouchListener {
                 int i7 = n.f10828a0;
                 return true;
             case 1:
-                int i10 = v2.f28611h1;
+                int i10 = v2.f28612h1;
                 return true;
             case 2:
                 return true;
             case 3:
-                HashSet hashSet = g4.f45800c1;
+                HashSet hashSet = g4.f45799c1;
                 return true;
             case 4:
                 int i11 = m5.f4324f;
                 return true;
             case 5:
-                int i12 = z2.f30949x;
+                int i12 = z2.f30950x;
                 return true;
             case 6:
                 Paint paint = la.H;
@@ -66,12 +66,12 @@ public final class b implements View.OnTouchListener {
                 int i13 = mb.Q0;
                 return true;
             case 8:
-                int i14 = an.f43707id;
+                int i14 = an.f43706id;
                 return true;
             case 9:
                 return true;
             case 10:
-                Pattern pattern = v4.f38814a;
+                Pattern pattern = v4.f38813a;
                 return true;
             case 11:
                 b8 b8Var = b8.P2;
@@ -83,13 +83,13 @@ public final class b implements View.OnTouchListener {
                 int i16 = di.E4;
                 return true;
             case 14:
-                int i17 = vj.f38956g0;
+                int i17 = vj.f38977g0;
                 return true;
             case 15:
                 int i18 = wk.F0;
                 return true;
             case 16:
-                int i19 = vo.f38993c2;
+                int i19 = vo.f39014c2;
                 return true;
             case 17:
                 vt vtVar = vt.O1;
@@ -98,37 +98,37 @@ public final class b implements View.OnTouchListener {
                 int i20 = iy.h;
                 return true;
             case 19:
-                int[] iArr = ec0.f33193i0;
+                int[] iArr = ec0.f33212i0;
                 return true;
             case 20:
                 int i21 = hg0.R;
                 return true;
             case 21:
-                int i22 = fm0.f33577a1;
+                int i22 = fm0.f33587a1;
                 return true;
             case 22:
                 int i23 = mo0.Q2;
                 return true;
             case 23:
-                int[] iArr2 = xs0.f40349s2;
+                int[] iArr2 = xs0.f40365s2;
                 return true;
             case 24:
-                int i24 = yv0.f40739n2;
+                int i24 = yv0.f40751n2;
                 return true;
             case 25:
-                int i25 = r01.f37452n0;
+                int i25 = s01.m0;
                 return true;
             case 26:
-                int i26 = UndoView.f31591i0;
+                int i26 = UndoView.f31592i0;
                 return true;
             case 27:
-                int i27 = UndoView.f31591i0;
+                int i27 = UndoView.f31592i0;
                 return true;
             case 28:
                 int i28 = ah0.V1;
                 return true;
             default:
-                List list = hl0.f46405g1;
+                List list = hl0.f46404g1;
                 return true;
         }
     }

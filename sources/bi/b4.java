@@ -37,11 +37,11 @@ public final class b4 implements Runnable {
                                 return;
                             }
                         }
-                        qs f10 = qs.f(k7Var.f28612a);
+                        qs f10 = qs.f(k7Var.f28613a);
                         Long valueOf = Long.valueOf(j3);
                         Boolean bool = Boolean.FALSE;
                         f10.k(6, valueOf, bool);
-                        qs.f(k7Var.f28612a).k(5, Long.valueOf(j3), bool);
+                        qs.f(k7Var.f28613a).k(5, Long.valueOf(j3), bool);
                         an ra2 = an.ra(j3);
                         ra2.whenFullyVisible(new a4(1, k7Var, ra2));
                         Q.presentFragment(ra2);
@@ -53,38 +53,38 @@ public final class b4 implements Runnable {
                 return;
             case 1:
                 Context context = k7Var.getContext();
-                vf.c.v(context, qp.s1(k7Var.f28612a).H6 + str, false);
+                vf.c.v(context, qp.s1(k7Var.f28613a).H6 + str, false);
                 return;
             case 2:
                 Context context2 = k7Var.getContext();
-                vf.c.v(context2, qp.s1(k7Var.f28612a).H6 + str, false);
+                vf.c.v(context2, qp.s1(k7Var.f28613a).H6 + str, false);
                 return;
             case 3:
                 Context context3 = k7Var.getContext();
-                vf.c.v(context3, qp.s1(k7Var.f28612a).H6 + str, false);
+                vf.c.v(context3, qp.s1(k7Var.f28613a).H6 + str, false);
                 return;
             case 4:
                 Context context4 = k7Var.getContext();
-                vf.c.v(context4, qp.s1(k7Var.f28612a).H6 + str, false);
+                vf.c.v(context4, qp.s1(k7Var.f28613a).H6 + str, false);
                 return;
             case 5:
                 Context context5 = k7Var.getContext();
-                vf.c.v(context5, qp.s1(k7Var.f28612a).H6 + str, false);
+                vf.c.v(context5, qp.s1(k7Var.f28613a).H6 + str, false);
                 return;
             case 6:
                 Context context6 = k7Var.getContext();
-                vf.c.v(context6, qp.s1(k7Var.f28612a).H6 + str, false);
+                vf.c.v(context6, qp.s1(k7Var.f28613a).H6 + str, false);
                 return;
             case 7:
                 org.telegram.messenger.g0.g(str);
                 org.telegram.ui.Components.cc k10 = k7Var.k().k(false);
-                k10.f32537t = true;
+                k10.f32524t = true;
                 k10.j();
                 return;
             default:
                 k7Var.dismiss();
                 Context context7 = k7Var.getContext();
-                vf.c.t(context7, "https://" + qp.s1(k7Var.f28612a).U2 + "/" + str);
+                vf.c.t(context7, "https://" + qp.s1(k7Var.f28613a).U2 + "/" + str);
                 return;
         }
     }

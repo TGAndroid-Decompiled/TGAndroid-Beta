@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class nz {
-    public char f24241a;
-    public String f24242b;
-    public int f24243c;
+    public char f24248a;
+    public String f24249b;
+    public int f24250c;
     public int d;
 
     public static void c(char c10) {
@@ -14,23 +14,23 @@ public final class nz {
     }
 
     public final char b() {
-        int i7 = this.f24243c;
+        int i7 = this.f24250c;
         int i10 = this.d;
         if (i7 < i10) {
-            this.f24243c = i7 + 1;
+            this.f24250c = i7 + 1;
         }
-        int i11 = this.f24243c;
+        int i11 = this.f24250c;
         if (i11 == i10) {
             return (char) 0;
         }
-        return this.f24242b.charAt(i11);
+        return this.f24249b.charAt(i11);
     }
 
     public final void d() {
         while (true) {
-            int i7 = this.f24243c;
-            if (i7 < this.d && Character.isWhitespace(this.f24242b.charAt(i7))) {
-                this.f24241a = b();
+            int i7 = this.f24250c;
+            if (i7 < this.d && Character.isWhitespace(this.f24249b.charAt(i7))) {
+                this.f24248a = b();
             } else {
                 return;
             }

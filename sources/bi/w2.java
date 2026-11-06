@@ -45,10 +45,10 @@ public final class w2 implements Runnable {
         org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) this.d;
         TLRPC.User user = (TLRPC.User) this.f4955e;
         org.telegram.messenger.r3 r3Var = c40Var.R2;
-        if (r3Var != null && !c40Var.f44583j2) {
+        if (r3Var != null && !c40Var.f44582j2) {
             r3Var.a(this.f4954c);
             c40Var.Q0(true);
-            h20 h20Var = c40Var.f44638v3;
+            h20 h20Var = c40Var.f44637v3;
             if (h20Var != null) {
                 h20Var.dismiss();
             }
@@ -83,7 +83,7 @@ public final class w2 implements Runnable {
         org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f4955e;
         if (str != null) {
             org.telegram.messenger.c a10 = org.telegram.messenger.c.a(launchActivity.O);
-            int i7 = a10.f21723a;
+            int i7 = a10.f21729a;
             qp s12 = qp.s1(i7);
             long j3 = this.f4954c;
             long j10 = -j3;
@@ -91,7 +91,7 @@ public final class w2 implements Runnable {
             if (g12 != null) {
                 TLRPC.Chat M0 = qp.s1(i7).M0(Long.valueOf(j10));
                 qp.s1(i7).j1(j3);
-                org.telegram.ui.Components.voip.y1.l(M0, null, false, Boolean.valueOf(!g12.f25201b.rtmp_stream), launchActivity, f2Var, a10);
+                org.telegram.ui.Components.voip.y1.l(M0, null, false, Boolean.valueOf(!g12.f25209b.rtmp_stream), launchActivity, f2Var, a10);
                 return;
             }
             TLRPC.ChatFull N0 = qp.s1(i7).N0(j10);
@@ -225,7 +225,7 @@ public final class w2 implements Runnable {
         try {
             Arrays.fill(bArr4, (byte) 0);
             byte[] secretPhraseToPublicKey = WalletEngine2.secretPhraseToPublicKey(k0Var);
-            TL_wallet.WalletState walletState = n0Var.f42796e;
+            TL_wallet.WalletState walletState = n0Var.f42795e;
             if (walletState instanceof TL_wallet.TL_walletState) {
                 bArr = ((TL_wallet.TL_walletState) walletState).public_key;
             } else {

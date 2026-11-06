@@ -103,7 +103,7 @@ public final class ra implements Runnable {
                         a0Var.f1763b = (e1) next;
                         a0Var.d = l7Var;
                         obj5.f339f = new f1(a0Var);
-                        pb.m.f53453a.execute(new pa(taVar, new wa((b8) obj5, 0), a8Var, taVar.b(), 0));
+                        pb.m.f53451a.execute(new pa(taVar, new wa((b8) obj5, 0), a8Var, taVar.b(), 0));
                     }
                     hashMap.remove(a8Var);
                     return;
@@ -242,21 +242,21 @@ public final class ra implements Runnable {
             case 14:
                 uf ufVar = (uf) this.f622b;
                 c8.fb fbVar = c8.fb.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
-                HashMap hashMap2 = ufVar.f5901j;
+                HashMap hashMap2 = ufVar.f5899j;
                 jg jgVar = (jg) hashMap2.get(fbVar);
                 if (jgVar != null) {
                     jg jgVar2 = jgVar;
                     cd cdVar = jgVar2.f5723a;
                     if (cdVar == null) {
                         jg jgVar3 = jgVar2;
-                        cd cdVar2 = new cd(jgVar3, jgVar3.f5739c);
+                        cd cdVar2 = new cd(jgVar3, jgVar3.f5738c);
                         jgVar2.f5723a = cdVar2;
                         cdVar = cdVar2;
                     }
                     Iterator it2 = cdVar.iterator();
                     while (it2.hasNext()) {
                         Object next2 = it2.next();
-                        Object obj6 = (Collection) jgVar.f5739c.get(next2);
+                        Object obj6 = (Collection) jgVar.f5738c.get(next2);
                         if (obj6 == null) {
                             obj6 = new ArrayList(i7);
                         }
@@ -295,7 +295,7 @@ public final class ra implements Runnable {
                         dVar.f13620n = new c8.i1(a0Var2);
                         uf ufVar2 = ufVar;
                         c8.fb fbVar2 = fbVar;
-                        pb.m.f53453a.execute(new pa(ufVar2, new wa(dVar, 0), fbVar2, ufVar.c(), 1));
+                        pb.m.f53451a.execute(new pa(ufVar2, new wa(dVar, 0), fbVar2, ufVar.c(), 1));
                         fbVar = fbVar2;
                         ufVar = ufVar2;
                         jgVar = jgVar4;

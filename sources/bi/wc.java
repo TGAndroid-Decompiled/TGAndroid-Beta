@@ -45,7 +45,7 @@ public final class wc extends LinearLayout {
         textView.setVisibility(8);
         TextView f10 = org.telegram.messenger.camera.q.f(linearLayout, textView, c8.ha.k(0.0f, 0.0f, 0.0f, 1.0f, -1, -2), context);
         this.f4995f = f10;
-        int i11 = org.telegram.ui.ActionBar.k6.f28258z6;
+        int i11 = org.telegram.ui.ActionBar.k6.f28259z6;
         org.telegram.ui.ActionBar.r6.V(f10, i11, f6Var);
         f10.setTextSize(1, 14.0f);
         linearLayout.addView(f10, c8.ha.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
@@ -68,7 +68,7 @@ public final class wc extends LinearLayout {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f4998s) {
-            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27971k0);
+            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27972k0);
         }
     }
 

@@ -128,7 +128,7 @@ public final class h {
             hashMap.put(bc.b.f3160c, 0);
             xz xzVar = new xz();
             if (colorDrawable != null) {
-                xzVar.f26549g = colorDrawable;
+                xzVar.f26557g = colorDrawable;
             }
             g gVar = new g();
             Bitmap a10 = xzVar.a(str, i7, i7, hashMap, null, f10, 0, -1);
@@ -173,7 +173,7 @@ public final class h {
             Rect rect = gVar.f1184c;
             int i18 = gVar.f1183b;
             rect.set(0, 0, i18, i18);
-            int i19 = xzVar.f26548f;
+            int i19 = xzVar.f26556f;
             gVar.f1191l = i19;
             int round = Math.round(i19 / gVar.f1186f) + 2;
             int i20 = (gVar.f1185e - round) / 2;

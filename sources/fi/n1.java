@@ -75,8 +75,8 @@ public final class n1 implements View.OnTouchListener {
                 org.telegram.ui.Components.a8 a8Var = (org.telegram.ui.Components.a8) obj2;
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) obj;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.b8 b8Var = a8Var.f31725n;
-                    b8Var.f32063x1.t(b8Var.f32045o1.T(wVar));
+                    org.telegram.ui.Components.b8 b8Var = a8Var.f31721n;
+                    b8Var.f32097x1.t(b8Var.f32079o1.T(wVar));
                 }
                 return false;
             case 3:
@@ -89,16 +89,16 @@ public final class n1 implements View.OnTouchListener {
                 org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) obj;
                 bxVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    ex exVar = bxVar.f44500f;
-                    exVar.f45425c.t(exVar.f45424b.T(h4Var));
+                    ex exVar = bxVar.f44499f;
+                    exVar.f45424c.t(exVar.f45423b.T(h4Var));
                 }
                 return false;
             case 6:
                 e00 e00Var = (e00) obj2;
                 a00 a00Var = (a00) obj;
                 if (motionEvent.getAction() == 0) {
-                    FiltersSetupActivity filtersSetupActivity = e00Var.f45171e;
-                    filtersSetupActivity.f41235c.t(filtersSetupActivity.f41233a.T(a00Var));
+                    FiltersSetupActivity filtersSetupActivity = e00Var.f45170e;
+                    filtersSetupActivity.f41234c.t(filtersSetupActivity.f41232a.T(a00Var));
                 }
                 return false;
             default:
@@ -158,7 +158,7 @@ public final class n1 implements View.OnTouchListener {
                     if (intValue == 8) {
                         w10.h(hd.M0(2131747464, str2), new pu(27, bk0Var, editTextBoldCursor));
                     }
-                    bk0Var.showDialog(w10.f27292a);
+                    bk0Var.showDialog(w10.f27293a);
                     return true;
                 } catch (Exception e11) {
                     e = e11;

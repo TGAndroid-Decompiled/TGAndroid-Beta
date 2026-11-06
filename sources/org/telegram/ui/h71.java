@@ -18,9 +18,9 @@ public final class h71 extends org.telegram.ui.Components.mo0 {
         int m10 = hVar.m();
         j71 j71Var = this.R2;
         if (m10 == 1) {
-            j71Var.f46866a.m0.m(((TLRPC.Dialog) hVar.n(0)).f26956id, Integer.valueOf(i7), 61);
+            j71Var.f46865a.m0.m(((TLRPC.Dialog) hVar.n(0)).f26957id, Integer.valueOf(i7), 61);
         } else {
-            j71Var.f46866a.m0.k(0L, 61, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+            j71Var.f46865a.m0.k(0L, 61, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
     }
 }

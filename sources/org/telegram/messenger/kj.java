@@ -4,16 +4,16 @@ import android.util.LongSparseArray;
 import android.util.SparseBooleanArray;
 import java.util.ArrayList;
 public final class kj {
-    public final Boolean f23686a;
-    public final int f23687b;
-    public final long f23688c;
-    public final ArrayList f23689e;
-    public final SparseBooleanArray f23691g;
-    public final boolean f23692i;
-    public final boolean f23693j;
-    public final mj f23694k;
+    public final Boolean f23693a;
+    public final int f23694b;
+    public final long f23695c;
+    public final ArrayList f23696e;
+    public final SparseBooleanArray f23698g;
+    public final boolean f23699i;
+    public final boolean f23700j;
+    public final mj f23701k;
     public final LongSparseArray d = new LongSparseArray();
-    public final ArrayList f23690f = new ArrayList();
+    public final ArrayList f23697f = new ArrayList();
     public final ArrayList h = new ArrayList();
 
     public kj(org.telegram.messenger.mj r21, java.lang.Boolean r22, int r23, java.util.ArrayList r24, long r25, android.util.SparseBooleanArray r27) {
@@ -21,7 +21,7 @@ public final class kj {
     }
 
     public final kj a(ArrayList arrayList) {
-        ArrayList arrayList2 = this.f23689e;
+        ArrayList arrayList2 = this.f23696e;
         if (arrayList2 != null && arrayList2.size() <= 1 && arrayList != null) {
             boolean z9 = false;
             for (int i7 = 0; i7 < arrayList2.size(); i7++) {
@@ -33,7 +33,7 @@ public final class kj {
                             break;
                         }
                         ij ijVar2 = (ij) arrayList.get(i10);
-                        if (ijVar2 != null && ijVar.f1() == ijVar2.f1() && ij.B0(ijVar.f23237k) == ij.B0(ijVar2.f23237k)) {
+                        if (ijVar2 != null && ijVar.f1() == ijVar2.f1() && ij.B0(ijVar.f23244k) == ij.B0(ijVar2.f23244k)) {
                             arrayList2.set(i7, ijVar2);
                             z9 = true;
                             break;
@@ -43,7 +43,7 @@ public final class kj {
                 }
             }
             if (z9) {
-                return new kj(this.f23694k, this.f23686a, this.f23687b, this.f23689e, this.f23688c, null);
+                return new kj(this.f23701k, this.f23693a, this.f23694b, this.f23696e, this.f23695c, null);
             }
             return null;
         }
@@ -54,10 +54,10 @@ public final class kj {
         arrayList.clear();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList2 = this.f23689e;
+            ArrayList arrayList2 = this.f23696e;
             if (i7 < arrayList2.size()) {
                 ij ijVar = (ij) arrayList2.get(i7);
-                if (this.f23691g.get(ijVar.f1(), false)) {
+                if (this.f23698g.get(ijVar.f1(), false)) {
                     arrayList.add(ijVar);
                 }
                 i7++;

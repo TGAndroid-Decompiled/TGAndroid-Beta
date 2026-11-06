@@ -6,10 +6,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class rf implements Runnable {
-    public final ChatActivityEnterView f37666a;
+    public final ChatActivityEnterView f37626a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f37666a = chatActivityEnterView;
+        this.f37626a = chatActivityEnterView;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class rf implements Runnable {
         boolean z9;
         boolean z10;
         int i7;
-        ChatActivityEnterView chatActivityEnterView = this.f37666a;
+        ChatActivityEnterView chatActivityEnterView = this.f37626a;
         je jeVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         wf wfVar = chatActivityEnterView.Z2;
@@ -27,15 +27,15 @@ public final class rf implements Runnable {
             wfVar.D();
             chatActivityEnterView.J3 = true;
             chatActivityEnterView.I3 = false;
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31072k1;
+            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f31073k1;
             if (slideTextView != null) {
                 slideTextView.setAlpha(1.0f);
-                chatActivityEnterView.f31072k1.setTranslationY(0.0f);
+                chatActivityEnterView.f31073k1.setTranslationY(0.0f);
             }
             org.telegram.messenger.hw hwVar = null;
-            chatActivityEnterView.f31026c3 = null;
-            chatActivityEnterView.f31019b3 = null;
-            if (chatActivityEnterView.f31024c1) {
+            chatActivityEnterView.f31027c3 = null;
+            chatActivityEnterView.f31020b3 = null;
+            if (chatActivityEnterView.f31025c1) {
                 if (activity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
                     z9 = true;
                 } else {
@@ -62,12 +62,12 @@ public final class rf implements Runnable {
                         }
                         fg fgVar = chatActivityEnterView.Y0;
                         if (fgVar != null) {
-                            fgVar.f33522a = false;
+                            fgVar.f33532a = false;
                             fgVar.d = 0L;
-                            fgVar.f33525e = 0L;
+                            fgVar.f33535e = 0L;
                             fgVar.h = 0L;
-                            fgVar.f33527n = 0L;
-                            fgVar.f33523b = false;
+                            fgVar.f33537n = 0L;
+                            fgVar.f33533b = false;
                             return;
                         }
                         return;

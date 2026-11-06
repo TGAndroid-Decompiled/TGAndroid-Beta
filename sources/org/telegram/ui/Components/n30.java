@@ -2,10 +2,10 @@ package org.telegram.ui.Components;
 
 import android.opengl.GLES20;
 public final class n30 extends e4.b {
-    public final int f36155g;
+    public final int f36191g;
 
     public n30() {
         super(2131624181);
-        this.f36155g = GLES20.glGetUniformLocation(this.f10666a, "texOffset");
+        this.f36191g = GLES20.glGetUniformLocation(this.f10666a, "texOffset");
     }
 }

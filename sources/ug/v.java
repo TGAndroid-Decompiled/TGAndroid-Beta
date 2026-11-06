@@ -12,34 +12,34 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.l00;
 public final class v implements Runnable {
-    public final int f56742a;
-    public final i0 f56743b;
+    public final int f56741a;
+    public final i0 f56742b;
 
     public v(i0 i0Var, int i7) {
-        this.f56742a = i7;
-        this.f56743b = i0Var;
+        this.f56741a = i7;
+        this.f56742b = i0Var;
     }
 
     @Override
     public final void run() {
         String G;
-        int i7 = this.f56742a;
-        i0 i0Var = this.f56743b;
+        int i7 = this.f56741a;
+        i0 i0Var = this.f56742b;
         switch (i7) {
             case 0:
                 if (LaunchActivity.Q() != null) {
                     ?? obj = new Object();
-                    obj.f27420a = true;
+                    obj.f27421a = true;
                     i0Var.C2.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 1:
-                i0Var.f56526p2.g(i0Var.T1, false);
+                i0Var.f56525p2.g(i0Var.T1, false);
                 i0Var.t1();
                 return;
             case 2:
-                HashSet hashSet = i0Var.f56527q2;
+                HashSet hashSet = i0Var.f56526q2;
                 hc X = hc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
@@ -53,19 +53,19 @@ public final class v implements Runnable {
                 return;
             case 3:
                 fi.d dVar = i0Var.K2;
-                TLRPC.ChatFull N0 = qp.s1(i0Var.f28612a).N0(-i0Var.S1);
+                TLRPC.ChatFull N0 = qp.s1(i0Var.f28613a).N0(-i0Var.S1);
                 dVar.c(Math.max(N0.boosts_unrestrict - N0.boosts_applied, 0), false);
                 return;
             default:
                 if (t3.N(i0Var.n1())) {
-                    if (i0Var.f56533w2.getParent() != null) {
-                        ((ViewGroup) i0Var.f56533w2.getParent()).removeView(i0Var.f56533w2);
+                    if (i0Var.f56532w2.getParent() != null) {
+                        ((ViewGroup) i0Var.f56532w2.getParent()).removeView(i0Var.f56532w2);
                     }
                     l00 l00Var = i0Var.D2;
                     if (l00Var != null && l00Var.getParent() != null) {
                         ((ViewGroup) i0Var.D2.getParent()).removeView(i0Var.D2);
                     }
-                    i0Var.f36222k1.setPadding(0, 0, 0, 0);
+                    i0Var.f36261k1.setPadding(0, 0, 0, 0);
                     return;
                 }
                 return;

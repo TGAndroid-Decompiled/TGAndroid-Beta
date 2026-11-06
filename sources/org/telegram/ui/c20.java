@@ -7,17 +7,17 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class c20 extends FrameLayout {
-    public final Rect f44530a;
-    public final RectF f44531b;
-    public final Path f44532c;
+    public final Rect f44529a;
+    public final RectF f44530b;
+    public final Path f44531c;
     public final c40 d;
 
     public c20(c40 c40Var, LaunchActivity launchActivity) {
         super(launchActivity);
         this.d = c40Var;
-        this.f44530a = new Rect();
-        this.f44531b = new RectF();
-        this.f44532c = new Path();
+        this.f44529a = new Rect();
+        this.f44530b = new RectF();
+        this.f44531c = new Path();
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class c20 extends FrameLayout {
         View childAt;
         org.telegram.ui.Components.voip.y yVar;
         c40 c40Var = this.d;
-        b20 b20Var = c40Var.f44577i1;
+        b20 b20Var = c40Var.f44576i1;
         if (c40Var.U3 != 1.0f) {
             if (c40Var.O4 != null && c40Var.S4) {
                 canvas.save();
@@ -53,14 +53,14 @@ public final class c20 extends FrameLayout {
             }
         }
         b20Var.setAlpha(c40Var.U3);
-        Path path = this.f44532c;
+        Path path = this.f44531c;
         path.reset();
-        RectF rectF = this.f44531b;
+        RectF rectF = this.f44530b;
         rectF.set(0.0f, 0.0f, getMeasuredHeight(), getMeasuredWidth());
         path.addRoundRect(rectF, new float[]{org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f), 0.0f, 0.0f, 0.0f, 0.0f}, Path.Direction.CCW);
         canvas.save();
         canvas.clipPath(path);
-        if (b20Var.f38036i1) {
+        if (b20Var.f38040i1) {
             for (int i11 = 0; i11 < b20Var.getChildCount(); i11++) {
                 childAt = b20Var.getChildAt(i11);
                 if (childAt instanceof org.telegram.ui.Components.qf0) {
@@ -69,9 +69,9 @@ public final class c20 extends FrameLayout {
             }
         }
         childAt = null;
-        if (childAt != null && (yVar = c40Var.Q4) != null && yVar.f39598w && !c40Var.f44643w4) {
+        if (childAt != null && (yVar = c40Var.Q4) != null && yVar.f39619w && !c40Var.f44642w4) {
             canvas.save();
-            Rect rect = this.f44530a;
+            Rect rect = this.f44529a;
             rect.setEmpty();
             b20Var.getChildVisibleRect(childAt, rect, null);
             int i12 = rect.left;
@@ -91,7 +91,7 @@ public final class c20 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.d.f28615b.invalidate();
+        this.d.f28616b.invalidate();
     }
 
     @Override

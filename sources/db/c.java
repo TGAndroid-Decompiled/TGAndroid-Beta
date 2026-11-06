@@ -2,7 +2,7 @@ package db;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 public final class c extends r6.a {
     public static final Parcelable.Creator<c> CREATOR = new k(1);
     public final int f8574a;
@@ -37,12 +37,12 @@ public final class c extends r6.a {
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
-        int r10 = wb.r(dest, 20293);
-        wb.q(dest, 1, 4);
+        int r10 = xb.r(dest, 20293);
+        xb.q(dest, 1, 4);
         dest.writeInt(this.f8574a);
-        wb.l(dest, 2, this.f8575b);
-        wb.q(dest, 3, 4);
+        xb.l(dest, 2, this.f8575b);
+        xb.q(dest, 3, 4);
         dest.writeInt(this.f8576c);
-        wb.s(dest, r10);
+        xb.s(dest, r10);
     }
 }

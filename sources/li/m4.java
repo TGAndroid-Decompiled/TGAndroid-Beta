@@ -84,9 +84,9 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f27856df));
-        hashSet.add(Integer.valueOf(k6.f28172ue));
-        hashSet.add(Integer.valueOf(k6.f27948ig));
+        hashSet.add(Integer.valueOf(k6.f27857df));
+        hashSet.add(Integer.valueOf(k6.f28173ue));
+        hashSet.add(Integer.valueOf(k6.f27949ig));
         hashSet.add(Integer.valueOf(k6.G6));
     }
 
@@ -134,16 +134,16 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
             int measuredWidth = getMeasuredWidth();
             int i7 = this.K;
             if (measuredWidth > 0 && i7 > 0) {
-                float f10 = org.telegram.messenger.g0.f22536p;
+                float f10 = org.telegram.messenger.g0.f22543p;
                 int i10 = (int) (measuredWidth / f10);
                 int i11 = (int) (i7 / f10);
                 String str = map.geo.lat + "_" + map.geo._long + "_" + i10 + "x" + i11;
                 if (!str.equals(this.I)) {
                     this.I = str;
-                    int i12 = qp.s1(this.f18699n).f24823m3;
+                    int i12 = qp.s1(this.f18699n).f24831m3;
                     this.H = i12;
                     if (i12 == 2) {
-                        imageReceiver.q0(hc.p(m20.b(map.geo, i10, i11, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f22536p)))), null, null, null, null, 0);
+                        imageReceiver.q0(hc.p(m20.b(map.geo, i10, i11, 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f22543p)))), null, null, null, null, 0);
                         return;
                     }
                     TLRPC.GeoPoint geoPoint = map.geo;
@@ -217,7 +217,7 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
         if (k4Var != null && (textSelectionHelper = ((p3) k4Var).f18772a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f29313p0 && R <= textSelectionHelper.f29316s0) {
+            if (R >= 0 && R > textSelectionHelper.f29314p0 && R <= textSelectionHelper.f29317s0) {
                 canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f18703x);
             }
         }
@@ -243,8 +243,8 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
         int paddingRight = getPaddingRight();
         int max = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
-        if (map != null && map.f27177w > 0 && map.h > 0) {
-            this.K = Math.max(Math.min((int) (((max - org.telegram.messenger.g0.L(32.0f)) * map.h) / map.f27177w), org.telegram.messenger.g0.L(420.0f)), org.telegram.messenger.g0.L(120.0f));
+        if (map != null && map.f27178w > 0 && map.h > 0) {
+            this.K = Math.max(Math.min((int) (((max - org.telegram.messenger.g0.L(32.0f)) * map.h) / map.f27178w), org.telegram.messenger.g0.L(420.0f)), org.telegram.messenger.g0.L(120.0f));
         } else {
             this.K = (org.telegram.messenger.g0.L(200.0f) - getPaddingTop()) - getPaddingBottom();
         }
@@ -255,11 +255,11 @@ public final class m4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
 
     @Override
     public final void updateColors() {
-        int i7 = k6.f27856df;
+        int i7 = k6.f27857df;
         f6 f6Var = this.f18700r;
         this.f18701s.setColor(k6.w0(i7, f6Var));
-        this.f18702w.setColor(k6.w0(k6.f28172ue, f6Var));
-        this.f18703x.setColor(k6.w0(k6.f27948ig, f6Var));
+        this.f18702w.setColor(k6.w0(k6.f28173ue, f6Var));
+        this.f18703x.setColor(k6.w0(k6.f27949ig, f6Var));
         int i10 = k6.G6;
         this.f18704y.setColor(k6.r1(0.5f, k6.w0(i10, f6Var)));
         this.E.setColorFilter(new PorterDuffColorFilter(k6.r1(0.5f, k6.w0(i10, f6Var)), PorterDuff.Mode.SRC_IN));

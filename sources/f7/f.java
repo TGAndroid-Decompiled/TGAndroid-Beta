@@ -2,7 +2,7 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.Arrays;
 public final class f extends r6.a {
     public static final Parcelable.Creator<f> CREATOR = new t0(0);
@@ -71,19 +71,19 @@ public final class f extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.k(parcel, 2, this.f11367a, i7);
-        wb.k(parcel, 3, this.f11368b, i7);
-        wb.k(parcel, 4, this.f11369c, i7);
-        wb.k(parcel, 5, this.d, i7);
-        wb.k(parcel, 6, this.f11370e, i7);
-        wb.k(parcel, 7, this.f11371f, i7);
-        wb.k(parcel, 8, this.h, i7);
-        wb.k(parcel, 9, this.f11372n, i7);
-        wb.k(parcel, 10, this.f11373r, i7);
-        wb.k(parcel, 11, this.f11374s, i7);
-        wb.k(parcel, 12, this.f11375w, i7);
-        wb.k(parcel, 13, this.f11376x, i7);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.k(parcel, 2, this.f11367a, i7);
+        xb.k(parcel, 3, this.f11368b, i7);
+        xb.k(parcel, 4, this.f11369c, i7);
+        xb.k(parcel, 5, this.d, i7);
+        xb.k(parcel, 6, this.f11370e, i7);
+        xb.k(parcel, 7, this.f11371f, i7);
+        xb.k(parcel, 8, this.h, i7);
+        xb.k(parcel, 9, this.f11372n, i7);
+        xb.k(parcel, 10, this.f11373r, i7);
+        xb.k(parcel, 11, this.f11374s, i7);
+        xb.k(parcel, 12, this.f11375w, i7);
+        xb.k(parcel, 13, this.f11376x, i7);
+        xb.s(parcel, r10);
     }
 }

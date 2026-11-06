@@ -21,7 +21,7 @@ public abstract class h4 {
     public static EditTextBoldCursor a(Context context, f6 f6Var, String str, String str2) {
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         editTextBoldCursor.setTextSize(1, 18.0f);
-        r6.V(editTextBoldCursor, k6.f27956j5, f6Var);
+        r6.V(editTextBoldCursor, k6.f27957j5, f6Var);
         editTextBoldCursor.setHintText(str);
         r6.m(editTextBoldCursor, 34, k6.H6, f6Var);
         r6.m(editTextBoldCursor, 35, k6.L6, f6Var);
@@ -33,12 +33,12 @@ public abstract class h4 {
             str2 = "";
         }
         editTextBoldCursor.setText(str2);
-        r6.G(editTextBoldCursor, k6.f27977k6, k6.f27995l6, k6.f28069p7, f6Var);
+        r6.G(editTextBoldCursor, k6.f27978k6, k6.f27996l6, k6.f28070p7, f6Var);
         editTextBoldCursor.setImeOptions(5);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.setPadding(0, 0, 0, 0);
-        r6.D(editTextBoldCursor, k6.f27948ig, f6Var);
-        r6.m(editTextBoldCursor, 36, k6.f27967jg, f6Var);
+        r6.D(editTextBoldCursor, k6.f27949ig, f6Var);
+        r6.m(editTextBoldCursor, 36, k6.f27968jg, f6Var);
         return editTextBoldCursor;
     }
 
@@ -257,7 +257,7 @@ public abstract class h4 {
             i7 = 2131746005;
         }
         String M02 = hd.M0(i7, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
         u1Var.R = M02;
         alertDialog$Builder.o(f10);
         alertDialog$Builder.k(hd.M0(2131747830, null), new a3.g(c10, d0Var, a10, q3Var, 3));
@@ -265,8 +265,8 @@ public abstract class h4 {
             alertDialog$Builder.i(hd.M0(2131746008, null), new l2.y(d0Var, 8));
             String M03 = hd.M0(2131751599, null);
             c4 c4Var = new c4(q3Var, 2);
-            u1Var.f28576p0 = M03;
-            u1Var.f28577q0 = c4Var;
+            u1Var.f28577p0 = M03;
+            u1Var.f28578q0 = c4Var;
             alertDialog$Builder.h(hd.M0(2131752589, null), null);
             u1Var.J0 = true;
             i10 = -4;
@@ -305,7 +305,7 @@ public abstract class h4 {
         } else {
             alertDialog$Builder = new AlertDialog$Builder(0, context, f6Var);
         }
-        alertDialog$Builder.f27292a.R = str;
+        alertDialog$Builder.f27293a.R = str;
         alertDialog$Builder.o(f10);
         alertDialog$Builder.k(hd.M0(2131747830, null), new a3.h(a10, a11, c4Var, 16));
         if (q3Var.c()) {
@@ -378,11 +378,11 @@ public abstract class h4 {
     }
 
     public static void j(AlertDialog$Builder alertDialog$Builder, EditTextBoldCursor editTextBoldCursor, int i7, f6 f6Var) {
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
         u1Var.setOnShowListener(new kg.r(editTextBoldCursor, 1));
         u1Var.r(250L);
         if (i7 != 0 && (u1Var.d(i7) instanceof TextView)) {
-            r6.V((TextView) u1Var.d(i7), k6.f28089q7, f6Var);
+            r6.V((TextView) u1Var.d(i7), k6.f28090q7, f6Var);
         }
     }
 
@@ -398,7 +398,7 @@ public abstract class h4 {
         wwVar.C2 = new l2.y(g4Var, 9);
         if (z9) {
             ?? obj = new Object();
-            obj.f27420a = true;
+            obj.f27421a = true;
             f2Var.showAsSheet(wwVar, obj);
             return;
         }

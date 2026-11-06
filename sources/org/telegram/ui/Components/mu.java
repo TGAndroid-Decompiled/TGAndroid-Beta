@@ -11,62 +11,62 @@ import android.widget.TextView;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public final class mu extends FrameLayout {
-    public final w70 f36073a;
-    public final TextView f36074b;
-    public final TextView f36075c;
+    public final w70 f36089a;
+    public final TextView f36090b;
+    public final TextView f36091c;
     public final TextView d;
-    public final ug.p0 f36076e;
-    public final org.telegram.ui.ActionBar.r0 f36077f;
+    public final ug.p0 f36092e;
+    public final org.telegram.ui.ActionBar.r0 f36093f;
     public final boolean h;
-    public final bi.w4 f36078n;
-    public TLRPC.TL_messages_stickerSet f36079r;
-    public boolean f36080s;
-    public float f36081w;
-    public ValueAnimator f36082x;
-    public final qu f36083y;
+    public final bi.w4 f36094n;
+    public TLRPC.TL_messages_stickerSet f36095r;
+    public boolean f36096s;
+    public float f36097w;
+    public ValueAnimator f36098x;
+    public final qu f36099y;
 
     public mu(qu quVar, Context context, boolean z9) {
         super(context);
         float f10;
         float f11;
         float f12;
-        this.f36083y = quVar;
-        this.f36078n = new bi.w4(this, 6);
-        this.f36080s = false;
-        this.f36081w = 0.0f;
+        this.f36099y = quVar;
+        this.f36094n = new bi.w4(this, 6);
+        this.f36096s = false;
+        this.f36097w = 0.0f;
         this.h = z9;
         if (!z9) {
             Pattern pattern = qu.M1;
             float f13 = 8.0f;
-            if (!org.telegram.messenger.p10.i(quVar.f28612a).q()) {
+            if (!org.telegram.messenger.p10.i(quVar.f28613a).q()) {
                 f12 = 16.0f;
                 f11 = 28.0f;
                 ug.p0 p0Var = new ug.p0(org.telegram.messenger.g0.L(4.0f), context, quVar.I0, false);
-                this.f36076e = p0Var;
+                this.f36092e = p0Var;
                 p0Var.b(org.telegram.messenger.hd.M0(2131743877, null), new View.OnClickListener(this) {
-                    public final mu f35428b;
+                    public final mu f35419b;
 
                     {
-                        this.f35428b = this;
+                        this.f35419b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         int i7 = r2;
-                        mu muVar = this.f35428b;
+                        mu muVar = this.f35419b;
                         switch (i7) {
                             case 0:
-                                qu quVar2 = muVar.f36083y;
+                                qu quVar2 = muVar.f36099y;
                                 quVar2.H1 = SystemClock.elapsedRealtime();
                                 quVar2.M0();
                                 return;
                             case 1:
-                                qu.J0(muVar.f36078n, muVar.f36079r, true, null, null);
+                                qu.J0(muVar.f36094n, muVar.f36095r, true, null, null);
                                 muVar.a(true, true);
                                 return;
                             case 2:
-                                bi.w4 w4Var = muVar.f36078n;
-                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36079r;
+                                bi.w4 w4Var = muVar.f36094n;
+                                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36095r;
                                 gp gpVar = new gp(muVar, 11);
                                 Pattern pattern2 = qu.M1;
                                 if (w4Var != null && tL_messages_stickerSet != null && w4Var.getFragmentView() != null) {
@@ -75,7 +75,7 @@ public final class mu extends FrameLayout {
                                 muVar.a(false, true);
                                 return;
                             default:
-                                muVar.f36077f.U(null, null);
+                                muVar.f36093f.U(null, null);
                                 return;
                         }
                     }
@@ -91,14 +91,14 @@ public final class mu extends FrameLayout {
                 p0Var.getChildAt(0).setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
                 addView(p0Var, c8.ha.i(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
                 p0Var.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824));
-                f13 = (org.telegram.messenger.g0.L(16.0f) + p0Var.getMeasuredWidth()) / org.telegram.messenger.g0.f22536p;
+                f13 = (org.telegram.messenger.g0.L(16.0f) + p0Var.getMeasuredWidth()) / org.telegram.messenger.g0.f22543p;
             } else {
                 f11 = 28.0f;
                 f12 = 16.0f;
             }
             float f14 = f13;
             TextView textView = new TextView(context);
-            this.f36075c = textView;
+            this.f36091c = textView;
             textView.setTypeface(org.telegram.messenger.g0.o());
             org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.Gi, quVar.I0);
             int i7 = org.telegram.ui.ActionBar.k6.Ci;
@@ -112,29 +112,29 @@ public final class mu extends FrameLayout {
             textView.setPadding(org.telegram.messenger.g0.L(18.0f), 0, org.telegram.messenger.g0.L(18.0f), 0);
             textView.setGravity(17);
             textView.setOnClickListener(new View.OnClickListener(this) {
-                public final mu f35428b;
+                public final mu f35419b;
 
                 {
-                    this.f35428b = this;
+                    this.f35419b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    mu muVar = this.f35428b;
+                    mu muVar = this.f35419b;
                     switch (i72) {
                         case 0:
-                            qu quVar2 = muVar.f36083y;
+                            qu quVar2 = muVar.f36099y;
                             quVar2.H1 = SystemClock.elapsedRealtime();
                             quVar2.M0();
                             return;
                         case 1:
-                            qu.J0(muVar.f36078n, muVar.f36079r, true, null, null);
+                            qu.J0(muVar.f36094n, muVar.f36095r, true, null, null);
                             muVar.a(true, true);
                             return;
                         case 2:
-                            bi.w4 w4Var = muVar.f36078n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36079r;
+                            bi.w4 w4Var = muVar.f36094n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36095r;
                             gp gpVar = new gp(muVar, 11);
                             Pattern pattern2 = qu.M1;
                             if (w4Var != null && tL_messages_stickerSet != null && w4Var.getFragmentView() != null) {
@@ -143,14 +143,14 @@ public final class mu extends FrameLayout {
                             muVar.a(false, true);
                             return;
                         default:
-                            muVar.f36077f.U(null, null);
+                            muVar.f36093f.U(null, null);
                             return;
                     }
                 }
             });
             addView(textView, c8.ha.i(-2.0f, 28.0f, 8388661, 0.0f, 15.66f, 5.66f, 0.0f));
             textView.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f11), 1073741824));
-            float max = Math.max(f14, (org.telegram.messenger.g0.L(f12) + textView.getMeasuredWidth()) / org.telegram.messenger.g0.f22536p);
+            float max = Math.max(f14, (org.telegram.messenger.g0.L(f12) + textView.getMeasuredWidth()) / org.telegram.messenger.g0.f22543p);
             TextView textView2 = new TextView(context);
             this.d = textView2;
             textView2.setTypeface(org.telegram.messenger.g0.o());
@@ -164,29 +164,29 @@ public final class mu extends FrameLayout {
             textView2.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
             textView2.setGravity(17);
             textView2.setOnClickListener(new View.OnClickListener(this) {
-                public final mu f35428b;
+                public final mu f35419b;
 
                 {
-                    this.f35428b = this;
+                    this.f35419b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    mu muVar = this.f35428b;
+                    mu muVar = this.f35419b;
                     switch (i72) {
                         case 0:
-                            qu quVar2 = muVar.f36083y;
+                            qu quVar2 = muVar.f36099y;
                             quVar2.H1 = SystemClock.elapsedRealtime();
                             quVar2.M0();
                             return;
                         case 1:
-                            qu.J0(muVar.f36078n, muVar.f36079r, true, null, null);
+                            qu.J0(muVar.f36094n, muVar.f36095r, true, null, null);
                             muVar.a(true, true);
                             return;
                         case 2:
-                            bi.w4 w4Var = muVar.f36078n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36079r;
+                            bi.w4 w4Var = muVar.f36094n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36095r;
                             gp gpVar = new gp(muVar, 11);
                             Pattern pattern2 = qu.M1;
                             if (w4Var != null && tL_messages_stickerSet != null && w4Var.getFragmentView() != null) {
@@ -195,7 +195,7 @@ public final class mu extends FrameLayout {
                             muVar.a(false, true);
                             return;
                         default:
-                            muVar.f36077f.U(null, null);
+                            muVar.f36093f.U(null, null);
                             return;
                     }
                 }
@@ -206,14 +206,14 @@ public final class mu extends FrameLayout {
             textView2.setScaleY(0.0f);
             textView2.setAlpha(0.0f);
             textView2.measure(View.MeasureSpec.makeMeasureSpec(99999, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(f11), 1073741824));
-            f10 = Math.max(max, (org.telegram.messenger.g0.L(f12) + textView2.getMeasuredWidth()) / org.telegram.messenger.g0.f22536p);
+            f10 = Math.max(max, (org.telegram.messenger.g0.L(f12) + textView2.getMeasuredWidth()) / org.telegram.messenger.g0.f22543p);
         } else {
             f10 = 32.0f;
         }
         float f16 = f10;
         Pattern pattern2 = qu.M1;
         w70 w70Var = new w70(context, quVar.I0);
-        this.f36073a = w70Var;
+        this.f36089a = w70Var;
         w70Var.setPadding(org.telegram.messenger.g0.L(2.0f), 0, org.telegram.messenger.g0.L(2.0f), 0);
         w70Var.setTypeface(org.telegram.messenger.g0.o());
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
@@ -221,7 +221,7 @@ public final class mu extends FrameLayout {
         w70Var.setSingleLine(true);
         w70Var.setLines(1);
         org.telegram.ui.ActionBar.r6.H(w70Var, org.telegram.ui.ActionBar.k6.J6, quVar.I0);
-        org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.f27956j5, quVar.I0);
+        org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.f27957j5, quVar.I0);
         if (z9) {
             w70Var.setTextSize(1, 20.0f);
             addView(w70Var, c8.ha.i(-1.0f, -2.0f, 8388659, 12.0f, 11.0f, f16, 0.0f));
@@ -231,9 +231,9 @@ public final class mu extends FrameLayout {
         }
         if (!z9) {
             TextView textView3 = new TextView(context);
-            this.f36074b = textView3;
+            this.f36090b = textView3;
             textView3.setTextSize(1, 13.0f);
-            org.telegram.ui.ActionBar.r6.V(textView3, org.telegram.ui.ActionBar.k6.f28087q5, quVar.I0);
+            org.telegram.ui.ActionBar.r6.V(textView3, org.telegram.ui.ActionBar.k6.f28088q5, quVar.I0);
             textView3.setEllipsize(truncateAt);
             textView3.setSingleLine(true);
             textView3.setLines(1);
@@ -241,7 +241,7 @@ public final class mu extends FrameLayout {
         }
         if (z9) {
             org.telegram.ui.ActionBar.r0 r0Var = new org.telegram.ui.ActionBar.r0(context, null, 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.xj, quVar.I0), false, quVar.I0);
-            this.f36077f = r0Var;
+            this.f36093f = r0Var;
             r0Var.setLongClickEnabled(false);
             r0Var.setSubMenuOpenSide(2);
             r0Var.setIcon(2131231244);
@@ -251,33 +251,33 @@ public final class mu extends FrameLayout {
             org.telegram.ui.ActionBar.f6 f6Var3 = quVar.I0;
             r0Var.setBackground(h02);
             org.telegram.ui.ActionBar.r6.k(r0Var, h02, null, N2, f6Var3);
-            addView(r0Var, c8.ha.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (quVar.f28645t0 / org.telegram.messenger.g0.f22536p), 0.0f));
+            addView(r0Var, c8.ha.d(40, 40.0f, 53, 0.0f, 5.0f, 5.0f - (quVar.f28646t0 / org.telegram.messenger.g0.f22543p), 0.0f));
             r0Var.e(1, 2131232363, org.telegram.messenger.hd.M0(2131744847, null));
             r0Var.e(2, 2131232203, org.telegram.messenger.hd.M0(2131751762, null));
             r0Var.setOnClickListener(new View.OnClickListener(this) {
-                public final mu f35428b;
+                public final mu f35419b;
 
                 {
-                    this.f35428b = this;
+                    this.f35419b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     int i72 = r2;
-                    mu muVar = this.f35428b;
+                    mu muVar = this.f35419b;
                     switch (i72) {
                         case 0:
-                            qu quVar2 = muVar.f36083y;
+                            qu quVar2 = muVar.f36099y;
                             quVar2.H1 = SystemClock.elapsedRealtime();
                             quVar2.M0();
                             return;
                         case 1:
-                            qu.J0(muVar.f36078n, muVar.f36079r, true, null, null);
+                            qu.J0(muVar.f36094n, muVar.f36095r, true, null, null);
                             muVar.a(true, true);
                             return;
                         case 2:
-                            bi.w4 w4Var = muVar.f36078n;
-                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36079r;
+                            bi.w4 w4Var = muVar.f36094n;
+                            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = muVar.f36095r;
                             gp gpVar = new gp(muVar, 11);
                             Pattern pattern22 = qu.M1;
                             if (w4Var != null && tL_messages_stickerSet != null && w4Var.getFragmentView() != null) {
@@ -286,7 +286,7 @@ public final class mu extends FrameLayout {
                             muVar.a(false, true);
                             return;
                         default:
-                            muVar.f36077f.U(null, null);
+                            muVar.f36093f.U(null, null);
                             return;
                     }
                 }
@@ -304,29 +304,29 @@ public final class mu extends FrameLayout {
         float f13;
         float f14;
         float f15;
-        if (this.f36080s != z9) {
-            this.f36080s = z9;
-            ValueAnimator valueAnimator = this.f36082x;
+        if (this.f36096s != z9) {
+            this.f36096s = z9;
+            ValueAnimator valueAnimator = this.f36098x;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f36082x = null;
+                this.f36098x = null;
             }
-            TextView textView2 = this.f36075c;
+            TextView textView2 = this.f36091c;
             if (textView2 != null && (textView = this.d) != null) {
                 textView2.setClickable(!z9);
                 textView.setClickable(z9);
                 float f16 = 0.0f;
                 if (z10) {
-                    float f17 = this.f36081w;
+                    float f17 = this.f36097w;
                     if (z9) {
                         f16 = 1.0f;
                     }
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f17, f16);
-                    this.f36082x = ofFloat;
+                    this.f36098x = ofFloat;
                     ofFloat.addUpdateListener(new e6(this, 18));
-                    this.f36082x.setInterpolator(xq.h);
-                    this.f36082x.setDuration(250L);
-                    this.f36082x.start();
+                    this.f36098x.setInterpolator(xq.h);
+                    this.f36098x.setDuration(250L);
+                    this.f36098x.start();
                     return;
                 }
                 if (z9) {
@@ -334,7 +334,7 @@ public final class mu extends FrameLayout {
                 } else {
                     f10 = 0.0f;
                 }
-                this.f36081w = f10;
+                this.f36097w = f10;
                 if (z9) {
                     f11 = 0.0f;
                 } else {

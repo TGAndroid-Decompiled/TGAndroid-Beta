@@ -135,7 +135,7 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
         addView(textView, ha.e(-2, 38, 17));
         int i10 = k6.Ci;
         int w02 = k6.w0(i10, f6Var);
-        int w10 = k6.w(k6.w0(k6.f27848d6, f6Var), k6.r1(0.1f, w02));
+        int w10 = k6.w(k6.w0(k6.f27849d6, f6Var), k6.r1(0.1f, w02));
         r6.V(textView, i10, f6Var);
         textView.setBackground(k6.b0(w10, k6.r1(0.16f, w02), org.telegram.messenger.g0.L(19.0f), org.telegram.messenger.g0.L(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(2131232042).mutate();
@@ -161,7 +161,7 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f27848d6));
+        hashSet.add(Integer.valueOf(k6.f27849d6));
     }
 
     public final void h() {
@@ -283,11 +283,11 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
                     c0 c0Var5 = (c0) arrayList.get(i34);
                     int i35 = iArr[i34];
                     gu guVar = c0Var5.f18491a;
-                    guVar.f22701e = Math.max(org.telegram.messenger.g0.L(34.0f), i35);
+                    guVar.f22708e = Math.max(org.telegram.messenger.g0.L(34.0f), i35);
                     LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) c0Var5.getLayoutParams();
                     if (layoutParams2 != null) {
                         int i36 = layoutParams2.width;
-                        int i37 = guVar.f22701e;
+                        int i37 = guVar.f22708e;
                         if (i36 != i37) {
                             layoutParams2.width = i37;
                             c0Var5.setLayoutParams(layoutParams2);
@@ -314,7 +314,7 @@ public final class f0 extends y implements org.telegram.ui.ActionBar.a6 {
         int i7 = k6.Ci;
         f6 f6Var = this.f18550r;
         int w02 = k6.w0(i7, f6Var);
-        int i10 = k6.f27848d6;
+        int i10 = k6.f27849d6;
         int w03 = k6.w0(i10, f6Var);
         if (w02 != this.F || w03 != this.G) {
             this.F = w02;

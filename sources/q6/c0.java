@@ -7,11 +7,11 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 public final class c0 extends com.google.android.gms.internal.cast.y {
-    public final d f53744a;
+    public final d f53743a;
 
     public c0(d dVar, Looper looper) {
         super(looper, 4);
-        this.f53744a = dVar;
+        this.f53743a = dVar;
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
         PendingIntent pendingIntent;
         PendingIntent pendingIntent2;
         y yVar;
-        d dVar = this.f53744a;
+        d dVar = this.f53743a;
         if (dVar.C.get() != message.arg1) {
             int i7 = message.what;
             if ((i7 == 2 || i7 == 1 || i7 == 7) && (yVar = (y) message.obj) != null) {
@@ -33,7 +33,7 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
         if ((i10 != 1 && i10 != 7 && i10 != 4 && i10 != 5) || dVar.t()) {
             int i11 = message.what;
             if (i11 == 4) {
-                dVar.f53767z = new n6.a(message.arg2, null, null);
+                dVar.f53766z = new n6.a(message.arg2, null, null);
                 if (!dVar.A && !TextUtils.isEmpty(dVar.o()) && !TextUtils.isEmpty(null)) {
                     try {
                         Class.forName(dVar.o());
@@ -44,19 +44,19 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
                     } catch (ClassNotFoundException unused) {
                     }
                 }
-                n6.a aVar = dVar.f53767z;
+                n6.a aVar = dVar.f53766z;
                 if (aVar == null) {
                     aVar = new n6.a(8, null, null);
                 }
-                dVar.f53757o.a(aVar);
+                dVar.f53756o.a(aVar);
                 dVar.u(aVar);
                 return;
             } else if (i11 == 5) {
-                n6.a aVar2 = dVar.f53767z;
+                n6.a aVar2 = dVar.f53766z;
                 if (aVar2 == null) {
                     aVar2 = new n6.a(8, null, null);
                 }
-                dVar.f53757o.a(aVar2);
+                dVar.f53756o.a(aVar2);
                 dVar.u(aVar2);
                 return;
             } else if (i11 == 3) {
@@ -67,14 +67,14 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
                     pendingIntent2 = null;
                 }
                 n6.a aVar3 = new n6.a(message.arg2, pendingIntent2, null);
-                dVar.f53757o.a(aVar3);
+                dVar.f53756o.a(aVar3);
                 dVar.u(aVar3);
                 return;
             } else if (i11 == 6) {
                 dVar.A(5, null);
-                n nVar = dVar.f53762t;
+                n nVar = dVar.f53761t;
                 if (nVar != null) {
-                    ((com.google.android.gms.common.api.k) nVar.f53826a).onConnectionSuspended(message.arg2);
+                    ((com.google.android.gms.common.api.k) nVar.f53825a).onConnectionSuspended(message.arg2);
                 }
                 dVar.v(message.arg2);
                 dVar.y(5, 1, null);
@@ -98,8 +98,8 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
                 y yVar3 = (y) message.obj;
                 synchronized (yVar3) {
                     try {
-                        bool = yVar3.f53860a;
-                        if (yVar3.f53861b) {
+                        bool = yVar3.f53859a;
+                        if (yVar3.f53860b) {
                             String obj2 = yVar3.toString();
                             StringBuilder sb3 = new StringBuilder(obj2.length() + 47);
                             sb3.append("Callback proxy ");
@@ -112,7 +112,7 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
                     }
                 }
                 if (bool != null) {
-                    d dVar2 = yVar3.f53864f;
+                    d dVar2 = yVar3.f53863f;
                     int i13 = yVar3.d;
                     if (i13 == 0) {
                         if (!yVar3.a()) {
@@ -121,7 +121,7 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
                         }
                     } else {
                         dVar2.A(1, null);
-                        Bundle bundle = yVar3.f53863e;
+                        Bundle bundle = yVar3.f53862e;
                         if (bundle != null) {
                             pendingIntent = (PendingIntent) bundle.getParcelable("pendingIntent");
                         } else {
@@ -131,7 +131,7 @@ public final class c0 extends com.google.android.gms.internal.cast.y {
                     }
                 }
                 synchronized (yVar3) {
-                    yVar3.f53861b = true;
+                    yVar3.f53860b = true;
                 }
                 yVar3.c();
                 return;

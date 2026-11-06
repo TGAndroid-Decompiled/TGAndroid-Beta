@@ -17,9 +17,9 @@ public final class l70 extends mo0 {
             return;
         }
         if (hVar != null && hVar.m() == 1) {
-            long j3 = ((TLRPC.Dialog) hVar.n(0)).f26956id;
-            if (j3 != 0 && j3 != org.telegram.messenger.p10.i(this.f28612a).e()) {
-                a02 = org.telegram.messenger.hd.a0(null, null, 2131749183, org.telegram.messenger.qp.s1(this.f28612a).B1(j3, true));
+            long j3 = ((TLRPC.Dialog) hVar.n(0)).f26957id;
+            if (j3 != 0 && j3 != org.telegram.messenger.p10.i(this.f28613a).e()) {
+                a02 = org.telegram.messenger.hd.a0(null, null, 2131749183, org.telegram.messenger.qp.s1(this.f28613a).B1(j3, true));
             } else {
                 a02 = org.telegram.messenger.hd.M0(2131749184, null);
             }

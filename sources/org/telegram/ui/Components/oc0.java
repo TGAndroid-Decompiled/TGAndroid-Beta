@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import android.app.Activity;
 public final class oc0 implements org.telegram.messenger.c20 {
-    public final int f36576a;
-    public final String[] f36577b;
-    public final Activity f36578c;
+    public final int f36594a;
+    public final String[] f36595b;
+    public final Activity f36596c;
     public final org.telegram.messenger.c20 d;
 
     public oc0(String[] strArr, Activity activity, org.telegram.messenger.c20 c20Var, int i7) {
-        this.f36576a = i7;
-        this.f36577b = strArr;
-        this.f36578c = activity;
+        this.f36594a = i7;
+        this.f36595b = strArr;
+        this.f36596c = activity;
         this.d = c20Var;
     }
 
     @Override
     public final void a(Object obj) {
         int[] iArr = (int[]) obj;
-        switch (this.f36576a) {
+        switch (this.f36594a) {
             case 0:
-                String[] strArr = this.f36577b;
+                String[] strArr = this.f36595b;
                 int length = strArr.length;
                 boolean z9 = false;
                 int i7 = 0;
                 while (true) {
                     if (i7 < length) {
-                        if (this.f36578c.checkSelfPermission(strArr[i7]) == 0) {
+                        if (this.f36596c.checkSelfPermission(strArr[i7]) == 0) {
                             z9 = true;
                         } else {
                             i7++;
@@ -39,13 +39,13 @@ public final class oc0 implements org.telegram.messenger.c20 {
                 }
                 return;
             default:
-                String[] strArr2 = this.f36577b;
+                String[] strArr2 = this.f36595b;
                 int length2 = strArr2.length;
                 boolean z10 = false;
                 int i10 = 0;
                 while (true) {
                     if (i10 < length2) {
-                        if (this.f36578c.checkSelfPermission(strArr2[i10]) == 0) {
+                        if (this.f36596c.checkSelfPermission(strArr2[i10]) == 0) {
                             i10++;
                         }
                     } else {

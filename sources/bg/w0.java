@@ -49,8 +49,8 @@ public final class w0 implements r0.m0, mw {
         xx xxVar;
         xe xeVar;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3394c;
-        if (chatActivityEnterView.f31148x3) {
-            if ((chatActivityEnterView.f31159z3 || (xeVar = chatActivityEnterView.E0) == null || xeVar.length() <= 0) && (xxVar = chatActivityEnterView.U0.f34093y0) != null && xxVar.b() > 0 && !chatActivityEnterView.f31074k3) {
+        if (chatActivityEnterView.f31149x3) {
+            if ((chatActivityEnterView.f31160z3 || (xeVar = chatActivityEnterView.E0) == null || xeVar.length() <= 0) && (xxVar = chatActivityEnterView.U0.f34101y0) != null && xxVar.b() > 0 && !chatActivityEnterView.f31075k3) {
                 return true;
             }
             return false;
@@ -61,34 +61,34 @@ public final class w0 implements r0.m0, mw {
     public void e() {
         int i7;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3394c;
-        rt0 rt0Var = chatActivityEnterView.f31082m1;
+        rt0 rt0Var = chatActivityEnterView.f31083m1;
         if (d()) {
             AnimatorSet animatorSet = chatActivityEnterView.B3;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
             chatActivityEnterView.E3 = true;
-            this.f3392a = chatActivityEnterView.f31159z3;
-            chatActivityEnterView.f31159z3 = true;
-            qs.e().k(qs.f25004j1, 1);
-            int height = ((((rt0Var.getHeight() - org.telegram.messenger.g0.f22531m) - org.telegram.messenger.g0.f22532n) - org.telegram.messenger.g0.L(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
+            this.f3392a = chatActivityEnterView.f31160z3;
+            chatActivityEnterView.f31160z3 = true;
+            qs.e().k(qs.f25012j1, 1);
+            int height = ((((rt0Var.getHeight() - org.telegram.messenger.g0.f22538m) - org.telegram.messenger.g0.f22539n) - org.telegram.messenger.g0.L(6.0f)) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - chatActivityEnterView.getHeight();
             chatActivityEnterView.D3 = height;
             if (chatActivityEnterView.R1 == 2) {
                 int L = org.telegram.messenger.g0.L(175.0f);
-                Point point = org.telegram.messenger.g0.f22537q;
+                Point point = org.telegram.messenger.g0.f22544q;
                 if (point.x > point.y) {
-                    i7 = chatActivityEnterView.f31153y2;
+                    i7 = chatActivityEnterView.f31154y2;
                 } else {
-                    i7 = chatActivityEnterView.f31147x2;
+                    i7 = chatActivityEnterView.f31148x2;
                 }
                 chatActivityEnterView.D3 = Math.min(height, L + i7);
             }
-            if (chatActivityEnterView.f31059h5 == null) {
+            if (chatActivityEnterView.f31060h5 == null) {
                 chatActivityEnterView.U0.getLayoutParams().height = chatActivityEnterView.D3;
             }
             chatActivityEnterView.U0.setLayerType(2, null);
             rt0Var.requestLayout();
-            if (chatActivityEnterView.f31155y4) {
+            if (chatActivityEnterView.f31156y4) {
                 rt0Var.setForeground(new oc(chatActivityEnterView));
             }
             this.f3393b = (int) chatActivityEnterView.getTranslationY();

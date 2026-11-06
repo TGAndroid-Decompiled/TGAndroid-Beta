@@ -26,7 +26,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 return;
             default:
                 w0 w0Var = (w0) this.f17148b;
-                if (w0Var.f() && !w0Var.f43251f) {
+                if (w0Var.f() && !w0Var.f43250f) {
                     if (i7 == 5) {
                         w0Var.c("AUTH_CANCELED");
                         return;
@@ -58,7 +58,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 return;
             default:
                 w0 w0Var = (w0) obj;
-                if (w0Var.f() && (alertDialog = w0Var.f43253i) != null) {
+                if (w0Var.f() && (alertDialog = w0Var.f43252i) != null) {
                     alertDialog.setMessage(hd.M0(2131743118, null));
                     return;
                 }
@@ -83,7 +83,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
                 return;
             default:
                 w0 w0Var = (w0) this.f17148b;
-                if (w0Var.f() && (alertDialog = w0Var.f43253i) != null) {
+                if (w0Var.f() && (alertDialog = w0Var.f43252i) != null) {
                     alertDialog.setMessage(charSequence);
                     return;
                 }

@@ -33,7 +33,7 @@ public final class l0 extends View {
         g0 g0Var = this.d.h;
         float f10 = g0Var.E;
         if (!z9) {
-            i7 = org.telegram.messenger.g0.f22531m;
+            i7 = org.telegram.messenger.g0.f22538m;
         } else {
             i7 = 0;
         }
@@ -97,8 +97,8 @@ public final class l0 extends View {
             canvas.translate(iArr[0] * f15, iArr[1] * f15);
             ye yeVar2 = m0Var.f12393b.G0;
             if (yeVar2 != null) {
-                f13 = yeVar2.f26621e;
-                f12 = yeVar2.f26622f;
+                f13 = yeVar2.f26629e;
+                f12 = yeVar2.f26630f;
             } else {
                 f12 = 1.0f;
                 f13 = 1.0f;
@@ -111,7 +111,7 @@ public final class l0 extends View {
         boolean z10 = getContext() instanceof BubbleActivity;
         float f16 = g0Var.E;
         if (!z10) {
-            i7 = org.telegram.messenger.g0.f22531m;
+            i7 = org.telegram.messenger.g0.f22538m;
         } else {
             i7 = 0;
         }
@@ -121,12 +121,12 @@ public final class l0 extends View {
             float contentHeight = m0Var.f12393b.getContentHeight();
             ye yeVar3 = m0Var.f12393b.G0;
             if (yeVar3 != null) {
-                f10 = yeVar3.f26621e;
+                f10 = yeVar3.f26629e;
             } else {
                 f10 = 1.0f;
             }
             if (yeVar3 != null) {
-                f11 = yeVar3.f26622f;
+                f11 = yeVar3.f26630f;
             } else {
                 f11 = 1.0f;
             }
@@ -154,7 +154,7 @@ public final class l0 extends View {
         float f19 = (gVar.f20965f / z11) * containerWidth;
         tg.n1 n1Var2 = m0Var.f12393b;
         if (n1Var2 != null && (yeVar = n1Var2.G0) != null) {
-            T1 = org.telegram.messenger.g0.T1(yeVar.f26620c, f19, f14);
+            T1 = org.telegram.messenger.g0.T1(yeVar.f26628c, f19, f14);
         } else {
             T1 = org.telegram.messenger.g0.T1(1.0f, f19, f14);
         }
@@ -165,14 +165,14 @@ public final class l0 extends View {
         if (yeVar4 == null) {
             T12 = org.telegram.messenger.g0.T1(0.0f, e10, m0Var.f12399s);
         } else {
-            T12 = org.telegram.messenger.g0.T1(yeVar4.d + yeVar4.f26625k, e10, m0Var.f12399s);
+            T12 = org.telegram.messenger.g0.T1(yeVar4.d + yeVar4.f26633k, e10, m0Var.f12399s);
         }
         canvas.rotate(T12);
         canvas.rotate(m0Var.f12393b.getOrientation());
         org.telegram.ui.Components.w5 w5Var = m0Var.f12394c;
         if (m0Var.E) {
             ye yeVar5 = m0Var.f12393b.G0;
-            if (yeVar5 != null && yeVar5.f26626l) {
+            if (yeVar5 != null && yeVar5.f26634l) {
                 z9 = true;
             }
             z9 = false;

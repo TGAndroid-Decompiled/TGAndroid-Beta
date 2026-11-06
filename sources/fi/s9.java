@@ -47,7 +47,7 @@ public final class s9 implements e6 {
                 }
                 if (this.f12819a.p0() && (arrayList = this.f12819a.f13000u2) != null && !arrayList.isEmpty()) {
                     va vaVar3 = this.f12819a;
-                    org.telegram.messenger.t0.f25555b.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) vaVar3.f13000u2.get(vaVar3.f12997t2)).commit();
+                    org.telegram.messenger.t0.f25563b.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) vaVar3.f13000u2.get(vaVar3.f12997t2)).commit();
                 }
                 this.f12819a.B0.switchCamera();
                 va.Z(this.f12819a.B0.isFrontface());

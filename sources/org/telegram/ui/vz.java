@@ -5,13 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class vz extends org.telegram.ui.Components.kj0 {
-    public final Context f50856r;
-    public final uz f50857s = new uz(this);
-    public final yz f50858w;
+    public final Context f50855r;
+    public final uz f50856s = new uz(this);
+    public final yz f50857w;
 
     public vz(yz yzVar, Context context) {
-        this.f50858w = yzVar;
-        this.f50856r = context;
+        this.f50857w = yzVar;
+        this.f50855r = context;
     }
 
     @Override
@@ -27,12 +27,12 @@ public final class vz extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int M(int i7) {
-        yz yzVar = this.f50858w;
+        yz yzVar = this.f50857w;
         int i10 = 1;
-        if (i7 >= yzVar.f52397n.size()) {
+        if (i7 >= yzVar.f52395n.size()) {
             return 1;
         }
-        int size = ((ArrayList) yzVar.f52402r.get(yzVar.f52397n.get(i7))).size();
+        int size = ((ArrayList) yzVar.f52400r.get(yzVar.f52395n.get(i7))).size();
         if (i7 == 0) {
             i10 = 0;
         }
@@ -46,7 +46,7 @@ public final class vz extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int P(int i7, int i10) {
-        if (i7 < this.f50858w.f52397n.size()) {
+        if (i7 < this.f50857w.f52395n.size()) {
             if (i7 != 0 && i10 == 0) {
                 return 0;
             }
@@ -57,10 +57,10 @@ public final class vz extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int R() {
-        yz yzVar = this.f50858w;
-        ArrayList arrayList = yzVar.f52397n;
+        yz yzVar = this.f50857w;
+        ArrayList arrayList = yzVar.f52395n;
         int i7 = 0;
-        if (yzVar.f52389f.isEmpty() || (arrayList.isEmpty() && yzVar.M)) {
+        if (yzVar.f52387f.isEmpty() || (arrayList.isEmpty() && yzVar.M)) {
             return 0;
         }
         int size = arrayList.size();
@@ -73,17 +73,17 @@ public final class vz extends org.telegram.ui.Components.kj0 {
     @Override
     public final View T(int i7, View view) {
         if (view == null) {
-            view = new org.telegram.ui.Cells.x3(this.f50856r, null);
-            view.setBackgroundColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27868e7, false) & (-218103809));
+            view = new org.telegram.ui.Cells.x3(this.f50855r, null);
+            view.setBackgroundColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27869e7, false) & (-218103809));
         }
         if (i7 == 0) {
             view.setAlpha(0.0f);
             return view;
         }
-        yz yzVar = this.f50858w;
-        if (i7 < yzVar.f52397n.size()) {
+        yz yzVar = this.f50857w;
+        if (i7 < yzVar.f52395n.size()) {
             view.setAlpha(1.0f);
-            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) ((ArrayList) yzVar.f52402r.get((String) yzVar.f52397n.get(i7))).get(0)).f23237k.date, false));
+            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) ((ArrayList) yzVar.f52400r.get((String) yzVar.f52395n.get(i7))).get(0)).f23244k.date, false));
         }
         return view;
     }
@@ -96,13 +96,13 @@ public final class vz extends org.telegram.ui.Components.kj0 {
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
         boolean z9;
-        yz yzVar = this.f50858w;
-        ArrayList arrayList = yzVar.f52397n;
-        int i11 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        yz yzVar = this.f50857w;
+        ArrayList arrayList = yzVar.f52395n;
+        int i11 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         if (i11 != 2) {
-            ArrayList arrayList2 = (ArrayList) yzVar.f52402r.get((String) arrayList.get(i7));
-            int i12 = d1Var.f56956f;
+            ArrayList arrayList2 = (ArrayList) yzVar.f52400r.get((String) arrayList.get(i7));
+            int i12 = d1Var.f56955f;
             boolean z10 = false;
             if (i12 != 0) {
                 if (i12 == 1) {
@@ -121,21 +121,21 @@ public final class vz extends org.telegram.ui.Components.kj0 {
                     }
                     k7Var.D = z10;
                     k7Var.e();
-                    k7Var.f29431b0 = ijVar;
+                    k7Var.f29432b0 = ijVar;
                     k7Var.requestLayout();
                     k7Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.tj(this, k7Var, ijVar, z9, 4));
                     return;
                 }
                 return;
             }
-            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) arrayList2.get(0)).f23237k.date, false));
+            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) arrayList2.get(0)).f23244k.date, false));
         }
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.Cells.x3 x3Var;
-        Context context = this.f50856r;
+        Context context = this.f50855r;
         if (i7 != 0) {
             if (i7 != 1) {
                 org.telegram.ui.Components.lz lzVar = new org.telegram.ui.Components.lz(context, null);
@@ -144,7 +144,7 @@ public final class vz extends org.telegram.ui.Components.kj0 {
                 x3Var = lzVar;
             } else {
                 org.telegram.ui.Cells.k7 k7Var = new org.telegram.ui.Cells.k7(1, context, null);
-                k7Var.setDelegate(this.f50857s);
+                k7Var.setDelegate(this.f50856s);
                 x3Var = k7Var;
             }
         } else {

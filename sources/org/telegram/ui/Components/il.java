@@ -6,22 +6,22 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.widget.ImageView;
 public final class il extends AnimatorListenerAdapter {
-    public final int f34695a;
-    public final ChatAttachAlertPhotoLayout f34696b;
+    public final int f34725a;
+    public final ChatAttachAlertPhotoLayout f34726b;
 
     public il(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f34695a = i7;
-        this.f34696b = chatAttachAlertPhotoLayout;
+        this.f34725a = i7;
+        this.f34726b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
-        int i10 = this.f34695a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34696b;
+        int i10 = this.f34725a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34726b;
         switch (i10) {
             case 0:
-                ImageView imageView = chatAttachAlertPhotoLayout.f31220r0;
+                ImageView imageView = chatAttachAlertPhotoLayout.f31221r0;
                 ql qlVar = chatAttachAlertPhotoLayout.P;
                 if (qlVar != null && qlVar.isFrontface()) {
                     i7 = 2131230929;
@@ -29,21 +29,21 @@ public final class il extends AnimatorListenerAdapter {
                     i7 = 2131230930;
                 }
                 imageView.setImageResource(i7);
-                ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f31220r0, View.SCALE_X, 1.0f).setDuration(100L).start();
+                ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.f31221r0, View.SCALE_X, 1.0f).setDuration(100L).start();
                 return;
             case 1:
                 chatAttachAlertPhotoLayout.m0 = null;
                 return;
             case 2:
-                chatAttachAlertPhotoLayout.f31199f1.e();
-                chatAttachAlertPhotoLayout.f31194d0 = false;
+                chatAttachAlertPhotoLayout.f31200f1.e();
+                chatAttachAlertPhotoLayout.f31195d0 = false;
                 ql qlVar2 = chatAttachAlertPhotoLayout.P;
                 if (qlVar2 != null) {
                     qlVar2.invalidateOutline();
                     chatAttachAlertPhotoLayout.P.invalidate();
                 }
-                if (chatAttachAlertPhotoLayout.f31190b0) {
-                    chatAttachAlertPhotoLayout.f38948b.T3.F0();
+                if (chatAttachAlertPhotoLayout.f31191b0) {
+                    chatAttachAlertPhotoLayout.f38969b.T3.F0();
                 }
                 ql qlVar3 = chatAttachAlertPhotoLayout.P;
                 if (qlVar3 != null) {
@@ -56,12 +56,12 @@ public final class il extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                q71 q71Var = chatAttachAlertPhotoLayout.f31210l0;
-                chatAttachAlertPhotoLayout.f31199f1.e();
-                chatAttachAlertPhotoLayout.f31205i1 = false;
+                r71 r71Var = chatAttachAlertPhotoLayout.f31211l0;
+                chatAttachAlertPhotoLayout.f31200f1.e();
+                chatAttachAlertPhotoLayout.f31206i1 = false;
                 chatAttachAlertPhotoLayout.setAlertKeepScreenOn(false);
                 chatAttachAlertPhotoLayout.setCameraOpenProgress(0.0f);
-                chatAttachAlertPhotoLayout.f31194d0 = false;
+                chatAttachAlertPhotoLayout.f31195d0 = false;
                 jl jlVar2 = chatAttachAlertPhotoLayout.E;
                 if (jlVar2 != null) {
                     jlVar2.invalidate();
@@ -71,16 +71,16 @@ public final class il extends AnimatorListenerAdapter {
                     qlVar4.invalidateOutline();
                     chatAttachAlertPhotoLayout.P.invalidate();
                 }
-                chatAttachAlertPhotoLayout.f31190b0 = false;
-                bi.e5 e5Var = chatAttachAlertPhotoLayout.f31206j0;
+                chatAttachAlertPhotoLayout.f31191b0 = false;
+                bi.e5 e5Var = chatAttachAlertPhotoLayout.f31207j0;
                 if (e5Var != null) {
                     e5Var.setVisibility(8);
                 }
-                if (q71Var != null) {
-                    q71Var.setVisibility(8);
-                    q71Var.setTag(null);
+                if (r71Var != null) {
+                    r71Var.setVisibility(8);
+                    r71Var.setTag(null);
                 }
-                jl jlVar3 = chatAttachAlertPhotoLayout.f31219r;
+                jl jlVar3 = chatAttachAlertPhotoLayout.f31220r;
                 if (jlVar3 != null) {
                     jlVar3.setVisibility(8);
                 }

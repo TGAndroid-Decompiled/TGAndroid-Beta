@@ -97,9 +97,9 @@ public final class x1 implements Runnable {
                     }
                     float f10 = i10 * 100.0f;
                     r1.g gVar = a3Var.d;
-                    r1.h hVar = gVar.f54175m;
-                    if (((float) hVar.f54183i) != f10) {
-                        hVar.f54183i = f10;
+                    r1.h hVar = gVar.f54174m;
+                    if (((float) hVar.f54182i) != f10) {
+                        hVar.f54182i = f10;
                         gVar.h();
                     }
                 }
@@ -127,7 +127,7 @@ public final class x1 implements Runnable {
                 s2Var.y("settings_button_pressed", null);
                 return;
             case 11:
-                ui.b0(a3Var.H).y0(a3Var.I, ui.f25786c2, null);
+                ui.b0(a3Var.H).y0(a3Var.I, ui.f25794c2, null);
                 return;
             case 12:
                 vf.c.t(a3Var.getContext(), hd.M0(2131752893, null));
@@ -137,7 +137,7 @@ public final class x1 implements Runnable {
                 Context context = a3Var.getContext();
                 hc hcVar = new hc(xa.a(a3Var.getContext()), a3Var.F);
                 long j3 = a3Var.I;
-                int i14 = oy0.f48567s1;
+                int i14 = oy0.f48566s1;
                 oy0.J0(i13, context, j3, false, false, new ArrayList(), hcVar, null, new byte[0], null, null);
                 return;
             case 14:

@@ -44,11 +44,11 @@ public final class g1 extends LinearLayout implements a6 {
         int w02 = k6.w0(i14, f6Var);
         a80Var.g(k6.r1(0.05f, w02), k6.r1(0.15f, w02), k6.r1(0.1f, w02), k6.r1(0.3f, w02));
         a80Var.k(4.0f);
-        a80Var.f31746x.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
+        a80Var.f31742x.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
         imageReceiver.J0(org.telegram.messenger.g0.L(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -56,7 +56,7 @@ public final class g1 extends LinearLayout implements a6 {
         textView.setGravity(i7);
         r6.V(textView, i14, f6Var);
         textView.setTextSize(1, 16.0f);
-        boolean z9 = hd.f22871a0;
+        boolean z9 = hd.f22878a0;
         if (z9) {
             i10 = 70;
         } else {
@@ -69,10 +69,10 @@ public final class g1 extends LinearLayout implements a6 {
         }
         addView(textView, ha.t(-1, -2, 55, i10, 10, i11, 4));
         TextView textView2 = new TextView(context);
-        textView2.setGravity(hd.f22871a0 ? 5 : 3);
-        org.telegram.messenger.camera.q.o(textView2, k6.f28258z6, f6Var, null, 2131752689);
+        textView2.setGravity(hd.f22878a0 ? 5 : 3);
+        org.telegram.messenger.camera.q.o(textView2, k6.f28259z6, f6Var, null, 2131752689);
         textView2.setTextSize(1, 13.0f);
-        boolean z10 = hd.f22871a0;
+        boolean z10 = hd.f22878a0;
         if (z10) {
             i12 = 70;
         } else {
@@ -91,7 +91,7 @@ public final class g1 extends LinearLayout implements a6 {
         if (tL_businessLocation != null) {
             this.d.setText(tL_businessLocation.address);
             if (tL_businessLocation.geo_point != null) {
-                this.f17389c.p0(hc.p(m20.b(tL_businessLocation.geo_point, org.telegram.messenger.g0.L(44.0f), org.telegram.messenger.g0.L(44.0f), 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f22536p)))), "44_44", this.f17388b, 0L, null, null, 0);
+                this.f17389c.p0(hc.p(m20.b(tL_businessLocation.geo_point, org.telegram.messenger.g0.L(44.0f), org.telegram.messenger.g0.L(44.0f), 15, Math.min(2, (int) Math.ceil(org.telegram.messenger.g0.f22543p)))), "44_44", this.f17388b, 0L, null, null, 0);
             } else {
                 this.f17389c.w0(null);
             }
@@ -105,7 +105,7 @@ public final class g1 extends LinearLayout implements a6 {
     public final void onDraw(Canvas canvas) {
         int width;
         float f10;
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             width = org.telegram.messenger.g0.L(16.0f);
         } else {
             width = getWidth() - org.telegram.messenger.g0.L(60.0f);
@@ -118,11 +118,11 @@ public final class g1 extends LinearLayout implements a6 {
         if (this.f17390e) {
             Paint W0 = k6.W0("paintDivider", this.f17387a);
             if (W0 == null) {
-                W0 = k6.f27971k0;
+                W0 = k6.f27972k0;
             }
             Paint paint = W0;
             float f12 = 21.33f;
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 f10 = 0.0f;
             } else {
                 f10 = 21.33f;
@@ -130,7 +130,7 @@ public final class g1 extends LinearLayout implements a6 {
             float L = org.telegram.messenger.g0.L(f10);
             float measuredHeight = getMeasuredHeight() - 1;
             int width2 = getWidth();
-            if (!hd.f22871a0) {
+            if (!hd.f22878a0) {
                 f12 = 0.0f;
             }
             canvas.drawRect(L, measuredHeight, width2 - org.telegram.messenger.g0.L(f12), getMeasuredHeight(), paint);

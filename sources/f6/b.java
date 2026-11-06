@@ -2,7 +2,7 @@ package f6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 import org.json.JSONArray;
@@ -72,19 +72,19 @@ public final class b extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.q(parcel, 2, 8);
+        int r10 = xb.r(parcel, 20293);
+        xb.q(parcel, 2, 8);
         parcel.writeLong(this.f11223a);
-        wb.l(parcel, 3, this.f11224b);
-        wb.q(parcel, 4, 8);
+        xb.l(parcel, 3, this.f11224b);
+        xb.q(parcel, 4, 8);
         parcel.writeLong(this.f11225c);
-        wb.q(parcel, 5, 4);
+        xb.q(parcel, 5, 4);
         parcel.writeInt(this.d ? 1 : 0);
-        wb.m(parcel, 6, this.f11226e);
-        wb.q(parcel, 7, 4);
+        xb.m(parcel, 6, this.f11226e);
+        xb.q(parcel, 7, 4);
         parcel.writeInt(this.f11227f ? 1 : 0);
-        wb.q(parcel, 8, 4);
+        xb.q(parcel, 8, 4);
         parcel.writeInt(this.h ? 1 : 0);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

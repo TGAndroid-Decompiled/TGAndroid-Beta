@@ -11,36 +11,36 @@ import org.telegram.messenger.c20;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.c61;
-public final class f1 extends v31 {
-    public static final int f60211b = 0;
+public final class f1 extends w31 {
+    public static final int f60210b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         boolean z10;
         g1 g1Var = (g1) view;
-        int i7 = w31Var.d;
-        ArrayList arrayList = (ArrayList) w31Var.G;
-        int i10 = w31Var.f39843z;
-        c20 c20Var = (c20) w31Var.H;
-        c61 c61Var = g1Var.f60229a;
+        int i7 = x31Var.d;
+        ArrayList arrayList = (ArrayList) x31Var.G;
+        int i10 = x31Var.f40172z;
+        c20 c20Var = (c20) x31Var.H;
+        c61 c61Var = g1Var.f60228a;
         ArrayList arrayList2 = g1Var.d;
-        if (g1Var.f60235r == i7) {
+        if (g1Var.f60234r == i7) {
             z10 = true;
         } else {
             z10 = false;
         }
-        g1Var.f60235r = i7;
+        g1Var.f60234r = i7;
         if (arrayList2.size() != arrayList.size()) {
             int i11 = 0;
             int i12 = 0;
@@ -66,7 +66,7 @@ public final class f1 extends v31 {
                 w70Var.setGravity(17);
                 w70Var.setText((CharSequence) arrayList.get(i12));
                 w70Var.setTypeface(org.telegram.messenger.g0.o());
-                r6.W(w70Var, r6.q(k6.f27811b6, k6.f27830c6), null);
+                r6.W(w70Var, r6.q(k6.f27812b6, k6.f27831c6), null);
                 w70Var.setTextSize(1, 14.0f);
                 w70Var.setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
                 w70Var.setEllipsize(TextUtils.TruncateAt.END);
@@ -78,9 +78,9 @@ public final class f1 extends v31 {
                 i12++;
             }
         }
-        g1Var.f60230b = i10;
+        g1Var.f60229b = i10;
         if (!z10) {
-            g1Var.f60231c.e(true, i10);
+            g1Var.f60230c.e(true, i10);
         }
         c61Var.invalidate();
         for (int i13 = 0; i13 < arrayList2.size(); i13++) {
@@ -89,8 +89,8 @@ public final class f1 extends v31 {
     }
 
     @Override
-    public final boolean c(w31 w31Var, w31 w31Var2) {
-        if (w31Var.f39843z == w31Var2.f39843z && w31Var.H == w31Var2.H && e(w31Var, w31Var2)) {
+    public final boolean c(x31 x31Var, x31 x31Var2) {
+        if (x31Var.f40172z == x31Var2.f40172z && x31Var.H == x31Var2.H && e(x31Var, x31Var2)) {
             return true;
         }
         return false;
@@ -102,10 +102,10 @@ public final class f1 extends v31 {
     }
 
     @Override
-    public final boolean e(w31 w31Var, w31 w31Var2) {
-        if (w31Var.d == w31Var2.d) {
-            ArrayList arrayList = (ArrayList) w31Var.G;
-            ArrayList arrayList2 = (ArrayList) w31Var2.G;
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        if (x31Var.d == x31Var2.d) {
+            ArrayList arrayList = (ArrayList) x31Var.G;
+            ArrayList arrayList2 = (ArrayList) x31Var2.G;
             if (arrayList != arrayList2) {
                 if (arrayList != null || arrayList2 != null) {
                     if (arrayList != null && arrayList2 != null && arrayList.size() == arrayList2.size()) {

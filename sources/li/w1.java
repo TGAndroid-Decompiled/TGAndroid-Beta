@@ -40,12 +40,12 @@ public final class w1 extends dg {
     public final boolean d() {
         switch (this.f18948n0) {
             case 0:
-                if (!((b2) this.f18949o0).L0 && this.f32865r <= 0) {
+                if (!((b2) this.f18949o0).L0 && this.f32894r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((y3) this.f18949o0).W && this.f32865r <= 0) {
+                if (!((y3) this.f18949o0).W && this.f32894r <= 0) {
                     return false;
                 }
                 return true;
@@ -69,7 +69,7 @@ public final class w1 extends dg {
             default:
                 return super.getFillColor();
             case 4:
-                int i10 = k6.f28039ng;
+                int i10 = k6.f28040ng;
                 Drawable[] drawableArr = PhotoViewer.Y8;
                 return ((PhotoViewer) obj).w1(i10);
         }

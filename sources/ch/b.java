@@ -33,8 +33,8 @@ public final class b extends ReplacementSpan {
         Layout.Alignment alignment;
         if (this.f6180c == null) {
             String M0 = hd.M0(2131746407, null);
-            int i7 = org.telegram.messenger.g0.f22537q.x;
-            if (hd.f22871a0) {
+            int i7 = org.telegram.messenger.g0.f22544q.x;
+            if (hd.f22878a0) {
                 alignment = Layout.Alignment.ALIGN_OPPOSITE;
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;

@@ -625,7 +625,7 @@ public final class a6 extends FrameLayout implements org.telegram.ui.ActionBar.a
             Paint.FontMetricsInt fontMetricsInt = g1Var.getPaint().getFontMetricsInt();
             int max = Math.max(1, Math.round((g1Var.getTextSize() * 0.85f) / 1.2f));
             for (org.telegram.messenger.f6 f6Var : (org.telegram.messenger.f6[]) editable.getSpans(0, editable.length(), org.telegram.messenger.f6.class)) {
-                f6Var.f22344b = 0.85f;
+                f6Var.f22351b = 0.85f;
             }
             for (org.telegram.ui.Components.r5 r5Var : (org.telegram.ui.Components.r5[]) editable.getSpans(0, editable.length(), org.telegram.ui.Components.r5.class)) {
                 r5Var.replaceFontMetrics(fontMetricsInt);
@@ -764,7 +764,7 @@ public final class a6 extends FrameLayout implements org.telegram.ui.ActionBar.a
             this.f18429s = linearLayout3;
             linearLayout3.setOrientation(0);
             LinearLayout linearLayout4 = this.f18429s;
-            int i7 = k6.f27940i6;
+            int i7 = k6.f27941i6;
             r6.R(linearLayout4, k6.a0(k6.w0(i7, this.f18422a), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f)), null, r6.N(i7), this.f18422a);
             this.f18429s.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
             addView(this.f18429s, ha.d(-2, -2.0f, 53, 0.0f, -15.0f, -5.0f, 0.0f));
@@ -807,7 +807,7 @@ public final class a6 extends FrameLayout implements org.telegram.ui.ActionBar.a
         ImageView imageView2 = this.f18431x;
         f6 f6Var = this.f18422a;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        int i11 = L.f28323a;
+        int i11 = L.f28324a;
         float f12 = L.d;
         int Q = r6.Q(i11, -1, 2, f12, f6Var);
         PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(Q, mode);
@@ -964,13 +964,13 @@ public final class a6 extends FrameLayout implements org.telegram.ui.ActionBar.a
             } else {
                 int L3 = org.telegram.messenger.g0.L(16.0f) + c10;
                 int L4 = org.telegram.messenger.g0.L(16.0f) + d;
-                if (hd.f22871a0) {
+                if (hd.f22878a0) {
                     i7 = L4;
                 } else {
                     i7 = L3;
                 }
                 int width2 = getWidth();
-                if (!hd.f22871a0) {
+                if (!hd.f22878a0) {
                     L3 = L4;
                 }
                 width = width2 - L3;
@@ -1344,7 +1344,7 @@ public final class a6 extends FrameLayout implements org.telegram.ui.ActionBar.a
         try {
             I();
             if (getBackground() instanceof y1) {
-                ((y1) getBackground()).a(k6.w0(k6.f27848d6, this.f18422a));
+                ((y1) getBackground()).a(k6.w0(k6.f27849d6, this.f18422a));
                 invalidate();
             }
         } catch (Exception e10) {

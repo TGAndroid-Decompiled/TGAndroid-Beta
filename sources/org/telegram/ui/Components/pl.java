@@ -4,20 +4,20 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
 public abstract class pl extends org.telegram.ui.nq0 {
-    public final ChatAttachAlertPhotoLayout f36966a;
+    public final ChatAttachAlertPhotoLayout f36982a;
 
     public pl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f36966a = chatAttachAlertPhotoLayout;
+        this.f36982a = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final int H() {
-        return ChatAttachAlertPhotoLayout.f31185s1.size();
+        return ChatAttachAlertPhotoLayout.f31186s1.size();
     }
 
     @Override
     public final boolean O() {
-        di diVar = this.f36966a.f38948b;
+        di diVar = this.f36982a.f38969b;
         if (diVar != null && diVar.Z1) {
             return true;
         }
@@ -26,35 +26,35 @@ public abstract class pl extends org.telegram.ui.nq0 {
 
     @Override
     public final int S(int i7) {
-        boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-        org.telegram.messenger.gf e02 = this.f36966a.e0(i7);
+        boolean z9 = ChatAttachAlertPhotoLayout.f31184q1;
+        org.telegram.messenger.gf e02 = this.f36982a.e0(i7);
         if (e02 == null) {
             return -1;
         }
-        return ChatAttachAlertPhotoLayout.f31186t1.indexOf(Integer.valueOf(e02.C));
+        return ChatAttachAlertPhotoLayout.f31187t1.indexOf(Integer.valueOf(e02.C));
     }
 
     @Override
     public final ArrayList c() {
-        return ChatAttachAlertPhotoLayout.f31186t1;
+        return ChatAttachAlertPhotoLayout.f31187t1;
     }
 
     @Override
     public final int k(int i7, org.telegram.messenger.j20 j20Var) {
         boolean z9;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f36966a;
-        jl jlVar = chatAttachAlertPhotoLayout.f31219r;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f36982a;
+        jl jlVar = chatAttachAlertPhotoLayout.f31220r;
         jl jlVar2 = chatAttachAlertPhotoLayout.E;
-        di diVar = chatAttachAlertPhotoLayout.f38948b;
-        if (diVar.M3 < 0 || ChatAttachAlertPhotoLayout.f31185s1.size() < diVar.M3 || x(i7)) {
-            boolean z10 = ChatAttachAlertPhotoLayout.f31183q1;
+        di diVar = chatAttachAlertPhotoLayout.f38969b;
+        if (diVar.M3 < 0 || ChatAttachAlertPhotoLayout.f31186s1.size() < diVar.M3 || x(i7)) {
+            boolean z10 = ChatAttachAlertPhotoLayout.f31184q1;
             org.telegram.messenger.gf e02 = chatAttachAlertPhotoLayout.e0(i7);
             if (e02 != null && !chatAttachAlertPhotoLayout.a0(e02)) {
                 int i10 = 1;
-                if (ChatAttachAlertPhotoLayout.f31185s1.size() + 1 <= ChatAttachAlertPhotoLayout.Q(chatAttachAlertPhotoLayout)) {
+                if (ChatAttachAlertPhotoLayout.f31186s1.size() + 1 <= ChatAttachAlertPhotoLayout.Q(chatAttachAlertPhotoLayout)) {
                     int S = chatAttachAlertPhotoLayout.S(e02, -1);
                     if (S == -1) {
-                        S = ChatAttachAlertPhotoLayout.f31186t1.indexOf(Integer.valueOf(e02.C));
+                        S = ChatAttachAlertPhotoLayout.f31187t1.indexOf(Integer.valueOf(e02.C));
                         z9 = true;
                     } else {
                         e02.f26839s = null;
@@ -108,20 +108,20 @@ public abstract class pl extends org.telegram.ui.nq0 {
 
     @Override
     public final void m() {
-        boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-        this.f36966a.y0();
+        boolean z9 = ChatAttachAlertPhotoLayout.f31184q1;
+        this.f36982a.y0();
     }
 
     @Override
     public final HashMap v() {
-        return ChatAttachAlertPhotoLayout.f31185s1;
+        return ChatAttachAlertPhotoLayout.f31186s1;
     }
 
     @Override
     public final boolean x(int i7) {
-        boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-        org.telegram.messenger.gf e02 = this.f36966a.e0(i7);
-        if (e02 != null && ChatAttachAlertPhotoLayout.f31185s1.containsKey(Integer.valueOf(e02.C))) {
+        boolean z9 = ChatAttachAlertPhotoLayout.f31184q1;
+        org.telegram.messenger.gf e02 = this.f36982a.e0(i7);
+        if (e02 != null && ChatAttachAlertPhotoLayout.f31186s1.containsKey(Integer.valueOf(e02.C))) {
             return true;
         }
         return false;

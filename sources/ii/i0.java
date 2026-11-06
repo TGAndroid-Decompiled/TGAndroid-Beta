@@ -11,32 +11,32 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.p2;
 import org.telegram.ui.Cells.t2;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class i0 extends v31 {
+import org.telegram.ui.Components.x31;
+public final class i0 extends w31 {
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
-    public static w31 i(uo uoVar, p2 p2Var) {
+    public static x31 i(uo uoVar, p2 p2Var) {
         long j3;
-        TLRPC.User user = uoVar.f25872c;
+        TLRPC.User user = uoVar.f25880c;
         if (user != null) {
-            w31 K = w31.K(i0.class);
-            long j10 = user.f27101id;
+            x31 K = x31.K(i0.class);
+            long j10 = user.f27102id;
             K.B = j10;
             K.d = (int) (j10 ^ (j10 >>> 32));
             K.G = user;
             K.H = p2Var;
             return K;
         }
-        TLRPC.Chat chat = uoVar.f25871b;
-        w31 K2 = w31.K(i0.class);
+        TLRPC.Chat chat = uoVar.f25879b;
+        x31 K2 = x31.K(i0.class);
         if (chat != null) {
-            j3 = -chat.f26952id;
+            j3 = -chat.f26953id;
         } else {
             j3 = 0;
         }
@@ -48,15 +48,15 @@ public final class i0 extends v31 {
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         t2 t2Var = (t2) view;
-        t2Var.setDialogCellDelegate((p2) w31Var.H);
-        Object obj = w31Var.G;
+        t2Var.setDialogCellDelegate((p2) x31Var.H);
+        Object obj = x31Var.G;
         boolean z10 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            t2Var.Q0 = t3.e0(p10.f24459s0, chat);
-            TLRPC.Dialog S0 = qp.s1(p10.f24459s0).S0(-chat.f26952id);
+            t2Var.Q0 = t3.e0(p10.f24467s0, chat);
+            TLRPC.Dialog S0 = qp.s1(p10.f24467s0).S0(-chat.f26953id);
             if (S0 != null) {
                 z10 = false;
             }
@@ -67,11 +67,11 @@ public final class i0 extends v31 {
                 return;
             }
             t2Var.setCustomMessageWithoutRebuild(hd.G(chat.participants_count, "Members", new Object[0]));
-            t2Var.d0(-chat.f26952id, null, 0, false, false);
+            t2Var.d0(-chat.f26953id, null, 0, false, false);
         } else if (obj instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) obj;
-            t2Var.Q0 = t3.f0(p10.f24459s0, user);
-            TLRPC.Dialog S02 = qp.s1(p10.f24459s0).S0(user.f27101id);
+            t2Var.Q0 = t3.f0(p10.f24467s0, user);
+            TLRPC.Dialog S02 = qp.s1(p10.f24467s0).S0(user.f27102id);
             if (S02 != null) {
                 z10 = false;
             }
@@ -82,13 +82,13 @@ public final class i0 extends v31 {
                 return;
             }
             t2Var.setCustomMessageWithoutRebuild(hd.M0(2131753156, null));
-            t2Var.d0(user.f27101id, null, 0, false, false);
+            t2Var.d0(user.f27102id, null, 0, false, false);
         }
     }
 
     @Override
-    public final boolean c(w31 w31Var, w31 w31Var2) {
-        if (w31Var.d == w31Var2.d) {
+    public final boolean c(x31 x31Var, x31 x31Var2) {
+        if (x31Var.d == x31Var2.d) {
             return true;
         }
         return false;
@@ -102,8 +102,8 @@ public final class i0 extends v31 {
     }
 
     @Override
-    public final boolean e(w31 w31Var, w31 w31Var2) {
-        if (w31Var.d == w31Var2.d) {
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        if (x31Var.d == x31Var2.d) {
             return true;
         }
         return false;

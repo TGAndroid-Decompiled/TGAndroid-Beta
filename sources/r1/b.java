@@ -2,11 +2,11 @@ package r1;
 
 import android.view.View;
 public final class b extends e {
-    public final int f54156a;
+    public final int f54155a;
 
     @Override
     public final float a(Object obj) {
-        switch (this.f54156a) {
+        switch (this.f54155a) {
             case 0:
                 return ((View) obj).getAlpha();
             case 1:
@@ -28,7 +28,7 @@ public final class b extends e {
 
     @Override
     public final void b(Object obj, float f10) {
-        switch (this.f54156a) {
+        switch (this.f54155a) {
             case 0:
                 ((View) obj).setAlpha(f10);
                 return;

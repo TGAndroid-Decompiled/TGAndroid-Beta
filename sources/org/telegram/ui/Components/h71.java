@@ -1,24 +1,321 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.util.Property;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-public interface h71 {
-    TextureView a(View view, boolean z9, float f10, int i7, boolean z10);
+import android.widget.FrameLayout;
+import org.telegram.messenger.ImageReceiver;
+public final class h71 extends FrameLayout {
+    public static final int I = 0;
+    public AnimatorSet D;
+    public int E;
+    public int F;
+    public final s51 G;
+    public final l71 H;
+    public final ImageReceiver f34213a;
+    public boolean f34214b;
+    public final TextPaint f34215c;
+    public StaticLayout d;
+    public StaticLayout f34216e;
+    public final Paint f34217f;
+    public final Paint h;
+    public final Paint f34218n;
+    public int f34219r;
+    public int f34220s;
+    public int f34221w;
+    public int f34222x;
+    public boolean f34223y;
 
-    void b();
+    public h71(l71 l71Var, Context context) {
+        super(context);
+        this.H = l71Var;
+        this.f34223y = true;
+        this.G = new s51(this, 3);
+        setWillNotDraw(false);
+        TextPaint textPaint = new TextPaint(1);
+        this.f34215c = textPaint;
+        textPaint.setColor(-1);
+        textPaint.setTextSize(org.telegram.messenger.g0.L(12.0f));
+        Paint paint = new Paint(1);
+        this.f34217f = paint;
+        paint.setColor(-15095832);
+        Paint paint2 = new Paint();
+        this.h = paint2;
+        paint2.setColor(-6975081);
+        Paint paint3 = new Paint(1);
+        this.f34218n = paint3;
+        paint3.setColor(-1);
+        this.f34213a = new ImageReceiver(this);
+    }
 
-    void c(float f10);
+    public final void a() {
+        s51 s51Var = this.G;
+        org.telegram.messenger.g0.r(s51Var);
+        if (this.f34223y && this.H.f35552a.d0()) {
+            org.telegram.messenger.g0.i3(s51Var, 3000L);
+        }
+    }
 
-    void d();
+    public final void b(int i7) {
+        if (this.f34220s != i7 && i7 >= 0 && !this.H.H) {
+            this.f34220s = i7;
+            StaticLayout staticLayout = new StaticLayout(org.telegram.messenger.g0.g0(this.f34220s, false, false), this.f34215c, org.telegram.messenger.g0.L(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.d = staticLayout;
+            if (staticLayout.getLineCount() > 0) {
+                this.f34219r = (int) Math.ceil(this.d.getLineWidth(0));
+            }
+            invalidate();
+        }
+    }
 
-    void e(k71 k71Var, boolean z9);
+    public final void c(int i7) {
+        if (!this.f34214b && i7 >= 0 && !this.H.H) {
+            this.f34221w = i7;
+            this.f34216e = new StaticLayout(org.telegram.messenger.g0.g0(this.f34221w, false, false), this.f34215c, org.telegram.messenger.g0.L(1000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            invalidate();
+        }
+    }
 
-    TextureView f(View view, boolean z9, int i7, int i10, boolean z10);
+    public final void d(boolean z9, boolean z10) {
+        if (this.f34223y == z9) {
+            return;
+        }
+        this.f34223y = z9;
+        AnimatorSet animatorSet = this.D;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+        }
+        boolean z11 = this.f34223y;
+        Property property = View.ALPHA;
+        if (z11) {
+            if (z10) {
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                this.D = animatorSet2;
+                animatorSet2.playTogether(ObjectAnimator.ofFloat(this, property, 1.0f));
+                this.D.setDuration(150L);
+                this.D.addListener(new g71(this, 0));
+                this.D.start();
+            } else {
+                setAlpha(1.0f);
+            }
+        } else if (z10) {
+            AnimatorSet animatorSet3 = new AnimatorSet();
+            this.D = animatorSet3;
+            animatorSet3.playTogether(ObjectAnimator.ofFloat(this, property, 0.0f));
+            this.D.setDuration(150L);
+            this.D.addListener(new g71(this, 1));
+            this.D.start();
+        } else {
+            setAlpha(0.0f);
+        }
+        a();
+    }
 
-    ViewGroup g();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int L;
+        int L2;
+        Canvas canvas2;
+        int i7;
+        int i10;
+        int i11;
+        l71 l71Var = this.H;
+        if (l71Var.P) {
+            if (l71Var.M && l71Var.N != 0.0f) {
+                long currentTimeMillis = System.currentTimeMillis();
+                l71Var.L = currentTimeMillis;
+                float f10 = l71Var.N - (((float) (currentTimeMillis - l71Var.L)) / 150.0f);
+                l71Var.N = f10;
+                if (f10 < 0.0f) {
+                    l71Var.N = 0.0f;
+                }
+                invalidate();
+            }
+            float f11 = l71Var.N;
+            ImageReceiver imageReceiver = this.f34213a;
+            imageReceiver.setAlpha(f11);
+            imageReceiver.h(canvas, null);
+        }
+        if (l71Var.f35552a.d != null && !l71Var.H) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            if (!l71Var.U) {
+                int i12 = 10;
+                if (this.d != null) {
+                    canvas.save();
+                    float L3 = (measuredWidth - org.telegram.messenger.g0.L(58.0f)) - this.f34219r;
+                    if (l71Var.T) {
+                        i11 = 6;
+                    } else {
+                        i11 = 10;
+                    }
+                    canvas.translate(L3, measuredHeight - org.telegram.messenger.g0.L(i11 + 29));
+                    this.d.draw(canvas);
+                    canvas.restore();
+                }
+                if (this.f34216e != null) {
+                    canvas.save();
+                    float L4 = org.telegram.messenger.g0.L(18.0f);
+                    if (l71Var.T) {
+                        i12 = 6;
+                    }
+                    canvas.translate(L4, measuredHeight - org.telegram.messenger.g0.L(i12 + 29));
+                    this.f34216e.draw(canvas);
+                    canvas.restore();
+                }
+            }
+            if (this.f34220s != 0) {
+                float f12 = 7.0f;
+                int i13 = 0;
+                if (l71Var.U) {
+                    L = measuredHeight - org.telegram.messenger.g0.L(3.0f);
+                    L2 = org.telegram.messenger.g0.L(7.0f);
+                } else if (l71Var.T) {
+                    L = measuredHeight - org.telegram.messenger.g0.L(29.0f);
+                    i13 = org.telegram.messenger.g0.L(36.0f) + this.f34219r;
+                    measuredWidth = (measuredWidth - org.telegram.messenger.g0.L(76.0f)) - this.f34219r;
+                    L2 = org.telegram.messenger.g0.L(28.0f);
+                } else {
+                    L = measuredHeight - org.telegram.messenger.g0.L(13.0f);
+                    L2 = org.telegram.messenger.g0.L(12.0f);
+                }
+                int i14 = measuredHeight - L2;
+                boolean z9 = l71Var.T;
+                Paint paint = this.h;
+                if (z9) {
+                    canvas.drawRect(i13, L, measuredWidth, org.telegram.messenger.g0.L(3.0f) + L, paint);
+                    canvas2 = canvas;
+                } else {
+                    canvas2 = canvas;
+                }
+                if (this.f34214b) {
+                    i7 = this.F;
+                } else {
+                    i7 = ((int) ((this.f34221w / this.f34220s) * (measuredWidth - i13))) + i13;
+                }
+                int i15 = this.f34222x;
+                if (i15 != 0 && (i10 = this.f34220s) != 0) {
+                    float f13 = i13;
+                    float f14 = L;
+                    float c10 = com.google.android.recaptcha.internal.a.c(i15, i10, measuredWidth - i13, f13);
+                    float L5 = org.telegram.messenger.g0.L(3.0f) + L;
+                    if (l71Var.T) {
+                        paint = this.f34218n;
+                    }
+                    canvas2.drawRect(f13, f14, c10, L5, paint);
+                }
+                float f15 = i7;
+                Paint paint2 = this.f34217f;
+                canvas2.drawRect(i13, L, f15, org.telegram.messenger.g0.L(3.0f) + L, paint2);
+                if (!l71Var.U) {
+                    float f16 = i14;
+                    if (!this.f34214b) {
+                        f12 = 5.0f;
+                    }
+                    canvas2.drawCircle(f15, f16, org.telegram.messenger.g0.L(f12), paint2);
+                }
+            }
+        }
+    }
 
-    boolean h();
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            if (!this.f34223y) {
+                d(true, true);
+                return true;
+            }
+            onTouchEvent(motionEvent);
+            return this.f34214b;
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
 
-    void i(boolean z9, c71 c71Var, float f10, boolean z10);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        int measuredWidth;
+        int measuredHeight;
+        int i7;
+        int i10;
+        l71 l71Var = this.H;
+        t51 t51Var = l71Var.f35552a;
+        if (l71Var.T) {
+            i7 = org.telegram.messenger.g0.L(36.0f) + this.f34219r;
+            measuredWidth = (getMeasuredWidth() - org.telegram.messenger.g0.L(76.0f)) - this.f34219r;
+            measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(28.0f);
+        } else {
+            measuredWidth = getMeasuredWidth();
+            measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(12.0f);
+            i7 = 0;
+        }
+        int i11 = this.f34220s;
+        if (i11 != 0) {
+            i10 = (int) ((this.f34221w / i11) * (measuredWidth - i7));
+        } else {
+            i10 = 0;
+        }
+        int i12 = i10 + i7;
+        int action = motionEvent.getAction();
+        s51 s51Var = this.G;
+        if (action == 0) {
+            if (this.f34223y && !l71Var.U && !l71Var.H) {
+                if (this.f34220s != 0) {
+                    int x10 = (int) motionEvent.getX();
+                    int y10 = (int) motionEvent.getY();
+                    if (x10 >= i12 - org.telegram.messenger.g0.L(10.0f) && x10 <= org.telegram.messenger.g0.L(10.0f) + i12 && y10 >= measuredHeight - org.telegram.messenger.g0.L(10.0f) && y10 <= org.telegram.messenger.g0.L(10.0f) + measuredHeight) {
+                        this.f34214b = true;
+                        this.E = x10;
+                        this.F = i12;
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                        invalidate();
+                    }
+                }
+            } else {
+                d(true, true);
+            }
+            org.telegram.messenger.g0.r(s51Var);
+        } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+            if (motionEvent.getAction() == 2 && this.f34214b) {
+                int x11 = (int) motionEvent.getX();
+                int i13 = this.F - (this.E - x11);
+                this.F = i13;
+                this.E = x11;
+                if (i13 < i7) {
+                    this.F = i7;
+                } else if (i13 > measuredWidth) {
+                    this.F = measuredWidth;
+                }
+                c((int) (((this.F - i7) / (measuredWidth - i7)) * this.f34220s * 1000));
+                invalidate();
+            }
+        } else {
+            if (l71Var.f35572x && t51Var.d0()) {
+                org.telegram.messenger.g0.i3(s51Var, 3000L);
+            }
+            if (this.f34214b) {
+                this.f34214b = false;
+                if (l71Var.f35572x) {
+                    int i14 = (int) (((this.F - i7) / (measuredWidth - i7)) * this.f34220s);
+                    this.f34221w = i14;
+                    t51Var.q0(i14 * 1000, false);
+                }
+            }
+        }
+        super.onTouchEvent(motionEvent);
+        return true;
+    }
+
+    @Override
+    public final void requestDisallowInterceptTouchEvent(boolean z9) {
+        super.requestDisallowInterceptTouchEvent(z9);
+        a();
+    }
 }

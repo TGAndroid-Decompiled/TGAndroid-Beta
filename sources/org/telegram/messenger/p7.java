@@ -5,47 +5,47 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class p7 implements Runnable {
-    public final int f24510a = 1;
-    public final int f24511b;
-    public final long f24512c;
+    public final int f24518a = 1;
+    public final int f24519b;
+    public final long f24520c;
     public final int d;
-    public final c1 f24513e;
-    public final Object f24514f;
+    public final c1 f24521e;
+    public final Object f24522f;
     public final Object h;
-    public final Object f24515n;
-    public final Object f24516r;
-    public final Object f24517s;
-    public final Object f24518w;
-    public final Object f24519x;
+    public final Object f24523n;
+    public final Object f24524r;
+    public final Object f24525s;
+    public final Object f24526w;
+    public final Object f24527x;
 
     public p7(w7 w7Var, TLRPC.Document document, ew ewVar, m20 m20Var, TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, hc hcVar, Object obj, String str, long j3, int i7, int i10) {
-        this.f24513e = w7Var;
-        this.f24514f = document;
+        this.f24521e = w7Var;
+        this.f24522f = document;
         this.h = ewVar;
-        this.f24515n = m20Var;
-        this.f24516r = tL_fileLocationToBeDeprecated;
-        this.f24517s = hcVar;
-        this.f24518w = obj;
-        this.f24519x = str;
-        this.f24512c = j3;
-        this.f24511b = i7;
+        this.f24523n = m20Var;
+        this.f24524r = tL_fileLocationToBeDeprecated;
+        this.f24525s = hcVar;
+        this.f24526w = obj;
+        this.f24527x = str;
+        this.f24520c = j3;
+        this.f24519b = i7;
         this.d = i10;
     }
 
     @Override
     public final void run() {
         a0.h hVar;
-        int i7 = this.f24510a;
-        Object obj = this.f24519x;
-        Object obj2 = this.f24517s;
-        Object obj3 = this.f24516r;
-        Object obj4 = this.f24515n;
+        int i7 = this.f24518a;
+        Object obj = this.f24527x;
+        Object obj2 = this.f24525s;
+        Object obj3 = this.f24524r;
+        Object obj4 = this.f24523n;
         Object obj5 = this.h;
-        Object obj6 = this.f24514f;
-        c1 c1Var = this.f24513e;
+        Object obj6 = this.f24522f;
+        c1 c1Var = this.f24521e;
         switch (i7) {
             case 0:
-                ((w7) c1Var).Z((TLRPC.Document) obj6, (ew) obj5, (m20) obj4, (TLRPC.TL_fileLocationToBeDeprecated) obj3, (hc) obj2, this.f24518w, (String) obj, this.f24512c, this.f24511b, null, 0L, false, this.d);
+                ((w7) c1Var).Y((TLRPC.Document) obj6, (ew) obj5, (m20) obj4, (TLRPC.TL_fileLocationToBeDeprecated) obj3, (hc) obj2, this.f24526w, (String) obj, this.f24520c, this.f24519b, null, 0L, false, this.d);
                 return;
             default:
                 ui uiVar = (ui) c1Var;
@@ -54,7 +54,7 @@ public final class p7 implements Runnable {
                 ArrayList arrayList = (ArrayList) obj4;
                 a0.h hVar3 = (a0.h) obj3;
                 HashMap hashMap2 = (HashMap) obj2;
-                a0.h hVar4 = (a0.h) this.f24518w;
+                a0.h hVar4 = (a0.h) this.f24526w;
                 Runnable runnable = (Runnable) obj;
                 a0.h hVar5 = uiVar.J;
                 ConcurrentHashMap concurrentHashMap = uiVar.N;
@@ -62,15 +62,15 @@ public final class p7 implements Runnable {
                 ArrayList[] arrayListArr = uiVar.G;
                 int i10 = 0;
                 while (true) {
-                    int i11 = this.f24511b;
+                    int i11 = this.f24519b;
                     Runnable runnable2 = runnable;
                     if (i10 < arrayListArr[i11].size()) {
                         TLRPC.StickerSet stickerSet = ((TLRPC.TL_messages_stickerSet) arrayListArr[i11].get(i10)).set;
                         HashMap hashMap3 = hashMap2;
-                        hVar6.l(stickerSet.f26979id);
+                        hVar6.l(stickerSet.f26980id);
                         concurrentHashMap.remove(stickerSet.short_name);
                         if (i11 != 3 && i11 != 6 && i11 != 4) {
-                            hVar5.l(stickerSet.f26979id);
+                            hVar5.l(stickerSet.f26980id);
                         }
                         i10++;
                         runnable = runnable2;
@@ -91,14 +91,14 @@ public final class p7 implements Runnable {
                         }
                         concurrentHashMap.putAll(hashMap);
                         arrayListArr[i11] = arrayList;
-                        uiVar.X[i11] = this.f24512c;
+                        uiVar.X[i11] = this.f24520c;
                         uiVar.Y[i11] = this.d;
                         uiVar.H[i11] = hVar3;
                         if (i11 == 0) {
-                            uiVar.f25797d0 = hashMap4;
-                            uiVar.f25795c0 = hVar4;
+                            uiVar.f25805d0 = hashMap4;
+                            uiVar.f25803c0 = hVar4;
                         } else if (i11 == 3) {
-                            uiVar.f25800e0 = hashMap4;
+                            uiVar.f25808e0 = hashMap4;
                         }
                         uiVar.getNotificationCenter().k(60, Integer.valueOf(i11), Boolean.TRUE);
                         if (runnable2 != null) {
@@ -113,16 +113,16 @@ public final class p7 implements Runnable {
     }
 
     public p7(ui uiVar, int i7, a0.h hVar, HashMap hashMap, ArrayList arrayList, long j3, int i10, a0.h hVar2, HashMap hashMap2, a0.h hVar3, Runnable runnable) {
-        this.f24513e = uiVar;
-        this.f24511b = i7;
-        this.f24514f = hVar;
+        this.f24521e = uiVar;
+        this.f24519b = i7;
+        this.f24522f = hVar;
         this.h = hashMap;
-        this.f24515n = arrayList;
-        this.f24512c = j3;
+        this.f24523n = arrayList;
+        this.f24520c = j3;
         this.d = i10;
-        this.f24516r = hVar2;
-        this.f24517s = hashMap2;
-        this.f24518w = hVar3;
-        this.f24519x = runnable;
+        this.f24524r = hVar2;
+        this.f24525s = hashMap2;
+        this.f24526w = hVar3;
+        this.f24527x = runnable;
     }
 }

@@ -48,10 +48,10 @@ public final class w extends q11 {
         } else if (l10 == null && document == null) {
         } else {
             if (document != null) {
-                i5.g(p10.f24459s0).e(document);
+                i5.g(p10.f24467s0).e(document);
             }
             if (l10 == null) {
-                longValue = document.f26958id;
+                longValue = document.f26959id;
             } else {
                 longValue = l10.longValue();
             }

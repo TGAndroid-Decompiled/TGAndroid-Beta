@@ -5,36 +5,36 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 public final class g6 implements org.telegram.ui.Components.et0, i7 {
-    public final y6 f45869a;
+    public final y6 f45868a;
 
     public g6(y6 y6Var) {
-        this.f45869a = y6Var;
+        this.f45868a = y6Var;
     }
 
     @Override
     public void F(boolean z9) {
-        te.a aVar = this.f45869a.T;
-        if (aVar != null && aVar.f55396f != z9) {
+        te.a aVar = this.f45868a.T;
+        if (aVar != null && aVar.f55395f != z9) {
             aVar.a(z9, true);
         }
     }
 
     @Override
     public float Y0() {
-        return jg.g.e(9.66f, oi.a.d(this.f45869a.P), 0);
+        return jg.g.e(9.66f, oi.a.d(this.f45868a.P), 0);
     }
 
     @Override
     public void clear() {
-        y6.k0(this.f45869a);
+        y6.k0(this.f45868a);
     }
 
     @Override
     public void d() {
-        y6 y6Var = this.f45869a;
-        ci.c cVar = y6Var.f52112d0;
+        y6 y6Var = this.f45868a;
+        ci.c cVar = y6Var.f52110d0;
         if (cVar != null && cVar.f6430j.size() > 0) {
-            y6Var.f52112d0.d();
+            y6Var.f52110d0.d();
             i6 i6Var = y6Var.M;
             if (i6Var != null) {
                 i6Var.f(false);
@@ -45,15 +45,15 @@ public final class g6 implements org.telegram.ui.Components.et0, i7 {
 
     @Override
     public int e1() {
-        return this.f45869a.Q;
+        return this.f45868a.Q;
     }
 
     @Override
     public void o(s6 s6Var, ci.b bVar, boolean z9) {
         HashSet hashSet;
-        y6 y6Var = this.f45869a;
+        y6 y6Var = this.f45868a;
         if (s6Var != null) {
-            if (y6Var.f52112d0.f6430j.size() <= 0 && !z9) {
+            if (y6Var.f52110d0.f6430j.size() <= 0 && !z9) {
                 if (y6Var.G > 0 && y6Var.getParentActivity() != null) {
                     s6Var.getClass();
                     boolean z10 = true;
@@ -62,25 +62,25 @@ public final class g6 implements org.telegram.ui.Components.et0, i7 {
                     Object obj = sparseArray.get(0);
                     ArrayList arrayList = cVar.d;
                     if (obj != null) {
-                        arrayList.addAll(((t6) sparseArray.get(0)).f49954b);
+                        arrayList.addAll(((t6) sparseArray.get(0)).f49953b);
                     }
                     if (sparseArray.get(1) != null) {
-                        arrayList.addAll(((t6) sparseArray.get(1)).f49954b);
+                        arrayList.addAll(((t6) sparseArray.get(1)).f49953b);
                     }
                     Object obj2 = sparseArray.get(2);
                     ArrayList arrayList2 = cVar.f6426e;
                     if (obj2 != null) {
-                        arrayList2.addAll(((t6) sparseArray.get(2)).f49954b);
+                        arrayList2.addAll(((t6) sparseArray.get(2)).f49953b);
                     }
                     Object obj3 = sparseArray.get(3);
                     ArrayList arrayList3 = cVar.f6427f;
                     if (obj3 != null) {
-                        arrayList3.addAll(((t6) sparseArray.get(3)).f49954b);
+                        arrayList3.addAll(((t6) sparseArray.get(3)).f49953b);
                     }
                     Object obj4 = sparseArray.get(4);
                     ArrayList arrayList4 = cVar.f6428g;
                     if (obj4 != null) {
-                        arrayList4.addAll(((t6) sparseArray.get(4)).f49954b);
+                        arrayList4.addAll(((t6) sparseArray.get(4)).f49953b);
                     }
                     int i7 = 0;
                     while (true) {
@@ -129,14 +129,14 @@ public final class g6 implements org.telegram.ui.Components.et0, i7 {
                 }
                 return;
             }
-            ci.c cVar2 = y6Var.f52112d0;
+            ci.c cVar2 = y6Var.f52110d0;
             HashSet hashSet2 = cVar2.f6430j;
             HashSet hashSet3 = cVar2.f6432l;
-            long j3 = s6Var.f49661a;
+            long j3 = s6Var.f49660a;
             SparseArray sparseArray2 = s6Var.d;
             if (!hashSet3.contains(Long.valueOf(j3))) {
                 for (int i13 = 0; i13 < sparseArray2.size(); i13++) {
-                    ArrayList arrayList5 = ((t6) sparseArray2.valueAt(i13)).f49954b;
+                    ArrayList arrayList5 = ((t6) sparseArray2.valueAt(i13)).f49953b;
                     int size2 = arrayList5.size();
                     int i14 = 0;
                     while (i14 < size2) {
@@ -150,7 +150,7 @@ public final class g6 implements org.telegram.ui.Components.et0, i7 {
                 }
             } else {
                 for (int i15 = 0; i15 < sparseArray2.size(); i15++) {
-                    ArrayList arrayList6 = ((t6) sparseArray2.valueAt(i15)).f49954b;
+                    ArrayList arrayList6 = ((t6) sparseArray2.valueAt(i15)).f49953b;
                     int size3 = arrayList6.size();
                     int i16 = 0;
                     while (i16 < size3) {
@@ -167,7 +167,7 @@ public final class g6 implements org.telegram.ui.Components.et0, i7 {
             y6Var.M.e();
             y6.i0(y6Var);
         } else if (bVar != null) {
-            y6Var.f52112d0.i(bVar);
+            y6Var.f52110d0.i(bVar);
             y6Var.M.e();
             y6.i0(y6Var);
         }

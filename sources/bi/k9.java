@@ -50,7 +50,7 @@ public final class k9 implements c20 {
         TLRPC.TL_payments_paymentFormStars tL_payments_paymentFormStars = this.f4222k;
         int i10 = this.f4223l;
         if (i7 < 0) {
-            boolean z9 = qp.s1(eaVar.f3807a).f24802j7;
+            boolean z9 = qp.s1(eaVar.f3807a).f24810j7;
             Context context = this.f4217e;
             org.telegram.ui.ActionBar.f6 f6Var = this.f4218f;
             int i11 = 0;

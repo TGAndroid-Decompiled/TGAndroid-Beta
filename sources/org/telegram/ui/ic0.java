@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ic0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f46645a;
-    public final pc0 f46646b;
+    public final int f46644a;
+    public final pc0 f46645b;
 
     public ic0(pc0 pc0Var, int i7) {
-        this.f46645a = i7;
-        this.f46646b = pc0Var;
+        this.f46644a = i7;
+        this.f46645b = pc0Var;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        int i10 = this.f46645a;
-        pc0 pc0Var = this.f46646b;
+        int i10 = this.f46644a;
+        pc0 pc0Var = this.f46645b;
         switch (i10) {
             case 0:
                 pc0Var.c(true);
@@ -21,14 +21,14 @@ public final class ic0 implements org.telegram.ui.ActionBar.r1 {
                 pc0Var.n();
                 return;
             case 1:
-                pc0Var.P.f44778q0.popup = false;
+                pc0Var.P.f44777q0.popup = false;
                 pc0Var.h(null);
                 return;
             case 2:
                 ce0 ce0Var = pc0Var.P;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ce0Var.getParentActivity());
                 String M0 = org.telegram.messenger.hd.M0(2131744199, "TermsOfService");
-                org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27293a;
                 u1Var2.R = M0;
                 u1Var2.T = org.telegram.messenger.hd.M0(2131743978, "TosDecline");
                 alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131745321, "SignUp"), new ic0(pc0Var, 3));
@@ -36,7 +36,7 @@ public final class ic0 implements org.telegram.ui.ActionBar.r1 {
                 ce0Var.showDialog(u1Var2);
                 return;
             case 3:
-                pc0Var.P.f44778q0.popup = false;
+                pc0Var.P.f44777q0.popup = false;
                 pc0Var.h(null);
                 return;
             default:

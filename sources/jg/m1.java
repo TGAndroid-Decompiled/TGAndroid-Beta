@@ -33,7 +33,7 @@ public final class m1 extends oj0 implements ls {
     public String f16846y;
     public final HashSet d = new HashSet();
     public final ArrayList f16839e = new ArrayList();
-    public final int f16842r = p10.f24459s0;
+    public final int f16842r = p10.f24467s0;
     public final h9 E = new h9(this, 21);
 
     public m1(Context context, an anVar, f6 f6Var, int i7, boolean z9) {
@@ -46,7 +46,7 @@ public final class m1 extends oj0 implements ls {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56956f;
+        int i7 = d1Var.f56955f;
         if (i7 != 0 && i7 != 2) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class m1 extends oj0 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25092x5 && objArr[0] == this.D) {
+        if (i7 == qs.f25100x5 && objArr[0] == this.D) {
             f();
         }
     }
@@ -97,7 +97,7 @@ public final class m1 extends oj0 implements ls {
         if (i10 == 0) {
             arrayList = ui.b0(i7).Y0;
         } else {
-            arrayList = oa.a(i7).b(i10).f24146a;
+            arrayList = oa.a(i7).b(i10).f24153a;
         }
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
@@ -110,8 +110,8 @@ public final class m1 extends oj0 implements ls {
         int i13 = this.f16841n;
         this.h = arrayList2.size();
         if (i10 != 0) {
-            if (!oa.a(i7).b(i10).f24157n && this.h != 0) {
-                i11 = Utilities.j(oa.a(i7).b(i10).f24156m - this.h, 3, 0);
+            if (!oa.a(i7).b(i10).f24164n && this.h != 0) {
+                i11 = Utilities.j(oa.a(i7).b(i10).f24163m - this.h, 3, 0);
             }
             this.f16841n = i11;
         } else {
@@ -136,18 +136,18 @@ public final class m1 extends oj0 implements ls {
         boolean z9;
         int i10;
         int i11;
-        int i12 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i12 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         if (i12 == 0) {
             t2 t2Var = (t2) view;
-            t2Var.f30475s2 = true;
+            t2Var.f30476s2 = true;
             ij ijVar = (ij) E(i7);
-            long B0 = ij.B0(ijVar.f23237k);
-            int i13 = ijVar.f23237k.date;
+            long B0 = ij.B0(ijVar.f23244k);
+            int i13 = ijVar.f23244k.date;
             if (this.f16845x) {
-                t2Var.f30467r0 = true;
+                t2Var.f30468r0 = true;
                 long Q1 = ijVar.Q1();
-                TLRPC.Message message = ijVar.f23237k;
+                TLRPC.Message message = ijVar.f23244k;
                 TLRPC.MessageFwdHeader messageFwdHeader = message.fwd_from;
                 if (messageFwdHeader != null && ((i10 = messageFwdHeader.date) != 0 || messageFwdHeader.saved_date != 0)) {
                     if (i10 == 0) {

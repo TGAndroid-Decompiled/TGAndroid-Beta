@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
@@ -26,17 +26,17 @@ import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.wp;
 public final class b extends na {
     public final nc P1;
-    public k41 Q1;
+    public l41 Q1;
 
     public b(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (f6) null, false);
         int i7;
         int i10;
         this.B1 = g0.L(30.0f);
-        pj0 pj0Var = this.f36222k1;
-        int i11 = this.f28645t0;
-        pj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22532n);
-        this.f36222k1.setClipToPadding(false);
+        pj0 pj0Var = this.f36261k1;
+        int i11 = this.f28646t0;
+        pj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22539n);
+        this.f36261k1.setClipToPadding(false);
         d dVar = new d(context, this.I0, true);
         dVar.setText(hd.M0(2131752589, null));
         dVar.e();
@@ -72,17 +72,17 @@ public final class b extends na {
         spannableStringBuilder.append((CharSequence) hd.M0(i10, null));
         r6.V(textView, i12, this.I0);
         textView.setText(spannableStringBuilder);
-        this.f28615b.addView(dVar2, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28645t0, 0, g0.L(12.0f) + this.f28645t0, g0.L(70.0f) + g0.f22532n));
-        this.f28615b.addView(dVar, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28645t0, 0, g0.L(12.0f) + this.f28645t0, g0.L(12.0f) + g0.f22532n));
+        this.f28616b.addView(dVar2, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28646t0, 0, g0.L(12.0f) + this.f28646t0, g0.L(70.0f) + g0.f22539n));
+        this.f28616b.addView(dVar, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28646t0, 0, g0.L(12.0f) + this.f28646t0, g0.L(12.0f) + g0.f22539n));
         this.Q1.O(false);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new u1(this, 15), this.I0);
-        this.Q1 = k41Var;
-        k41Var.f35132r = false;
-        return k41Var;
+        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new u1(this, 15), this.I0);
+        this.Q1 = l41Var;
+        l41Var.f35510r = false;
+        return l41Var;
     }
 
     @Override

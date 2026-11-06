@@ -6,10 +6,10 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bu implements org.telegram.ui.is {
-    public final qu f32290a;
+    public final qu f32324a;
 
     public bu(qu quVar) {
-        this.f32290a = quVar;
+        this.f32324a = quVar;
     }
 
     @Override
@@ -24,8 +24,8 @@ public final class bu implements org.telegram.ui.is {
 
     @Override
     public final void C(TLRPC.Document document) {
-        qu quVar = this.f32290a;
-        org.telegram.ui.ActionBar.f2 f2Var = quVar.f37396j1;
+        qu quVar = this.f32324a;
+        org.telegram.ui.ActionBar.f2 f2Var = quVar.f37391j1;
         if (f2Var instanceof org.telegram.ui.an) {
             ((org.telegram.ui.an) f2Var).Cb(document);
         }
@@ -40,7 +40,7 @@ public final class bu implements org.telegram.ui.is {
 
     @Override
     public final boolean E(TLRPC.Document document) {
-        if (org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).q() && org.telegram.messenger.ij.I2(document)) {
+        if (org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).q() && org.telegram.messenger.ij.I2(document)) {
             return true;
         }
         return false;
@@ -56,8 +56,8 @@ public final class bu implements org.telegram.ui.is {
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.ij.U(document));
         valueOf.setSpan(new r5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (org.telegram.messenger.g0.g(valueOf)) {
-            qu quVar = this.f32290a;
-            org.telegram.messenger.camera.q.r(null, 2131751185, new hc((FrameLayout) quVar.f28615b, quVar.I0));
+            qu quVar = this.f32324a;
+            org.telegram.messenger.camera.q.r(null, 2131751185, new hc((FrameLayout) quVar.f28616b, quVar.I0));
         }
     }
 
@@ -80,11 +80,11 @@ public final class bu implements org.telegram.ui.is {
     public final Boolean P(TLRPC.Document document) {
         TLRPC.User f10;
         boolean z9;
-        if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).q() || !org.telegram.messenger.ij.I2(document) || (f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).f()) == null) {
+        if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).q() || !org.telegram.messenger.ij.I2(document) || (f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).f()) == null) {
             return null;
         }
         Long h = org.telegram.messenger.t10.h(f10);
-        if (document != null && (h == null || h.longValue() != document.f26958id)) {
+        if (document != null && (h == null || h.longValue() != document.f26959id)) {
             z9 = true;
         } else {
             z9 = false;
@@ -109,7 +109,7 @@ public final class bu implements org.telegram.ui.is {
 
     @Override
     public final boolean c() {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f32290a.f37396j1;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f32324a.f37391j1;
         if (f2Var instanceof org.telegram.ui.an) {
             return ((org.telegram.ui.an) f2Var).c();
         }
@@ -148,11 +148,11 @@ public final class bu implements org.telegram.ui.is {
 
     @Override
     public final boolean k(int i7) {
-        qu quVar = this.f32290a;
-        org.telegram.ui.ActionBar.f2 f2Var = quVar.f37396j1;
+        qu quVar = this.f32324a;
+        org.telegram.ui.ActionBar.f2 f2Var = quVar.f37391j1;
         if ((f2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) f2Var).S6()) {
-            if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).q()) {
-                if (((org.telegram.ui.an) quVar.f37396j1).j() != null && org.telegram.messenger.t10.B(((org.telegram.ui.an) quVar.f37396j1).j())) {
+            if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).q()) {
+                if (((org.telegram.ui.an) quVar.f37391j1).j() != null && org.telegram.messenger.t10.B(((org.telegram.ui.an) quVar.f37391j1).j())) {
                     return true;
                 }
                 return false;
@@ -180,29 +180,29 @@ public final class bu implements org.telegram.ui.is {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
-            tL_emojiStatus.document_id = document.f26958id;
+            tL_emojiStatus.document_id = document.f26959id;
             emojiStatus = tL_emojiStatus;
         }
-        TLRPC.User f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).f();
+        TLRPC.User f10 = org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).f();
         if (f10 == null) {
             obj = new TLRPC.TL_emojiStatusEmpty();
         } else {
             obj = f10.emoji_status;
         }
-        qu quVar = this.f32290a;
-        org.telegram.messenger.qp.s1(quVar.f28612a).h5(emojiStatus, null);
+        qu quVar = this.f32324a;
+        org.telegram.messenger.qp.s1(quVar.f28613a).h5(emojiStatus, null);
         fq fqVar = new fq(8, this, obj);
         if (document == null) {
             ub ubVar = new ub(quVar.getContext(), quVar.I0);
-            ubVar.f38581b.setText(org.telegram.messenger.hd.M0(2131746286, null));
-            ubVar.f38580a.setImageResource(2131232362);
+            ubVar.f38577b.setText(org.telegram.messenger.hd.M0(2131746286, null));
+            ubVar.f38576a.setImageResource(2131232362);
             ac acVar = new ac(quVar.getContext(), quVar.I0, true);
-            acVar.f31760b = fqVar;
+            acVar.f31756b = fqVar;
             ubVar.setButton(acVar);
-            cc.f((FrameLayout) quVar.f28615b, ubVar, 1500).j();
+            cc.f((FrameLayout) quVar.f28616b, ubVar, 1500).j();
             return;
         }
-        new hc((FrameLayout) quVar.f28615b, quVar.I0).r(document, org.telegram.messenger.hd.M0(2131745546, null), org.telegram.messenger.hd.M0(2131743886, null), fqVar).j();
+        new hc((FrameLayout) quVar.f28616b, quVar.I0).r(document, org.telegram.messenger.hd.M0(2131745546, null), org.telegram.messenger.hd.M0(2131743886, null), fqVar).j();
     }
 
     @Override

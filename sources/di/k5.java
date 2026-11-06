@@ -79,7 +79,7 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
         this.f9307w = p9Var.h;
         TextView textView = new TextView(context);
         this.h = textView;
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27956j5, bVar);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27957j5, bVar);
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setPadding(org.telegram.messenger.g0.L(21.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(21.0f), org.telegram.messenger.g0.L(8.0f));
@@ -109,7 +109,7 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
         View view = new View(getContext());
         this.f9298a = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i7 = org.telegram.ui.ActionBar.k6.f27921h5;
+        int i7 = org.telegram.ui.ActionBar.k6.f27922h5;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i7, bVar);
         this.f9299a0 = w02;
         view.setBackground(new GradientDrawable(orientation, new int[]{w02, 0}));
@@ -154,11 +154,11 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
         j5 j5Var;
         int i10;
         if (storyItem != null) {
-            SparseArray sparseArray = (SparseArray) qp.s1(i7).f24780h0.f9983x.f(storyItem.dialogId);
+            SparseArray sparseArray = (SparseArray) qp.s1(i7).f24788h0.f9983x.f(storyItem.dialogId);
             if (sparseArray == null) {
                 j5Var = null;
             } else {
-                j5Var = (j5) sparseArray.get(storyItem.f27191id);
+                j5Var = (j5) sparseArray.get(storyItem.f27192id);
             }
             TL_stories.StoryViews storyViews = storyItem.views;
             if (storyViews == null) {
@@ -175,12 +175,12 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
             j5 j5Var2 = new j5(i7, j3, storyItem);
             j5Var2.c();
             if (sparseArray == null) {
-                a0.h hVar = qp.s1(i7).f24780h0.f9983x;
+                a0.h hVar = qp.s1(i7).f24788h0.f9983x;
                 long j10 = storyItem.dialogId;
                 sparseArray = new SparseArray();
                 hVar.k(sparseArray, j10);
             }
-            sparseArray.put(storyItem.f27191id, j5Var2);
+            sparseArray.put(storyItem.f27192id, j5Var2);
         }
     }
 
@@ -224,10 +224,10 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
         int R;
         float f10;
         int i11 = 0;
-        if (i7 == qs.f25078v5) {
+        if (i7 == qs.f25086v5) {
             if (this.D.f9700b != null) {
                 int i12 = this.f9307w;
-                TL_stories.PeerStories y10 = qp.s1(i12).f24780h0.y(p10.i(i12).f24478n);
+                TL_stories.PeerStories y10 = qp.s1(i12).f24788h0.y(p10.i(i12).f24486n);
                 if (y10 != null) {
                     while (i11 < y10.stories.size()) {
                         TL_stories.StoryItem storyItem = y10.stories.get(i11);
@@ -243,7 +243,7 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
                     }
                 }
             }
-        } else if (i7 != qs.f24953a3) {
+        } else if (i7 != qs.f24961a3) {
         } else {
             while (true) {
                 r4 r4Var = this.f9305r;
@@ -376,9 +376,9 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
         h(false);
         if (r5Var != null && r5Var.f9699a != null) {
             dt t6 = dt.t(this.f9307w);
-            int i7 = r5Var.f9699a.f27191id;
+            int i7 = r5Var.f9699a.f27192id;
             if (j3 == t6.getUserConfig().e()) {
-                dt.f22051k0.c(new xs(t6, i7, 5));
+                dt.f22058k0.c(new xs(t6, i7, 5));
             }
         }
     }
@@ -413,7 +413,7 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
                 ofFloat.addUpdateListener(new ah.h(a5Var, 20));
                 a5Var.f8813x.addListener(new bi.t5(a5Var, 13));
                 a5Var.f8813x.setDuration(250L);
-                a5Var.f8813x.setInterpolator(xq.f40329f);
+                a5Var.f8813x.setInterpolator(xq.f40345f);
                 a5Var.f8813x.start();
             }
         }
@@ -450,8 +450,8 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
         }
         this.f9308x.E();
         int i7 = this.f9307w;
-        qs.f(i7).c(this, qs.f25078v5);
-        qs.f(i7).c(this, qs.f24953a3);
+        qs.f(i7).c(this, qs.f25086v5);
+        qs.f(i7).c(this, qs.f24961a3);
         setTag(2131296351, new ch.v(this, 2));
     }
 
@@ -464,8 +464,8 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
             j5Var.f9270r.remove(this);
         }
         int i7 = this.f9307w;
-        qs.f(i7).n(this, qs.f25078v5);
-        qs.f(i7).n(this, qs.f24953a3);
+        qs.f(i7).n(this, qs.f25086v5);
+        qs.f(i7).n(this, qs.f24961a3);
         setTag(2131296351, null);
     }
 
@@ -500,7 +500,7 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public final void updateColors() {
         try {
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, this.f9306s);
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, this.f9306s);
             View view = this.f9298a;
             if (view != null && w02 != this.f9299a0) {
                 this.f9299a0 = w02;

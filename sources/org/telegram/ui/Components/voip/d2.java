@@ -6,42 +6,42 @@ import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 public final class d2 extends FrameLayout {
     public static final int h = 0;
-    public final float f39089a;
-    public float f39090b;
-    public float f39091c;
+    public final float f39110a;
+    public float f39111b;
+    public float f39112c;
     public float d;
-    public float f39092e;
-    public final e2 f39093f;
+    public float f39113e;
+    public final e2 f39114f;
 
     public d2(e2 e2Var, Context context) {
         super(context);
-        this.f39093f = e2Var;
-        this.f39089a = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f39114f = e2Var;
+        this.f39110a = ViewConfiguration.get(context).getScaledTouchSlop();
         setOutlineProvider(new bg.q0(18));
         setClipToOutline(true);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        e2 e2Var = this.f39093f;
-        e2Var.f39121r.setPivotX(e2Var.f39122s.getMeasuredWidth());
-        e2Var.f39121r.setPivotY(e2Var.f39122s.getMeasuredHeight());
-        e2Var.f39121r.setTranslationX((1.0f / getScaleX()) * (-org.telegram.messenger.g0.L(4.0f)) * e2Var.f39123w);
-        e2Var.f39121r.setTranslationY((1.0f / getScaleY()) * (-org.telegram.messenger.g0.L(4.0f)) * e2Var.f39123w);
-        e2Var.f39121r.setRoundCorners((1.0f / getScaleY()) * org.telegram.messenger.g0.L(8.0f) * e2Var.f39123w);
-        e2Var.f39121r.setScaleX(((1.0f - e2Var.f39123w) * 0.6f) + 0.4f);
-        e2Var.f39121r.setScaleY(((1.0f - e2Var.f39123w) * 0.6f) + 0.4f);
-        e2Var.f39121r.setAlpha(Math.min(1.0f, 1.0f - e2Var.f39123w));
+        e2 e2Var = this.f39114f;
+        e2Var.f39142r.setPivotX(e2Var.f39143s.getMeasuredWidth());
+        e2Var.f39142r.setPivotY(e2Var.f39143s.getMeasuredHeight());
+        e2Var.f39142r.setTranslationX((1.0f / getScaleX()) * (-org.telegram.messenger.g0.L(4.0f)) * e2Var.f39144w);
+        e2Var.f39142r.setTranslationY((1.0f / getScaleY()) * (-org.telegram.messenger.g0.L(4.0f)) * e2Var.f39144w);
+        e2Var.f39142r.setRoundCorners((1.0f / getScaleY()) * org.telegram.messenger.g0.L(8.0f) * e2Var.f39144w);
+        e2Var.f39142r.setScaleX(((1.0f - e2Var.f39144w) * 0.6f) + 0.4f);
+        e2Var.f39142r.setScaleY(((1.0f - e2Var.f39144w) * 0.6f) + 0.4f);
+        e2Var.f39142r.setAlpha(Math.min(1.0f, 1.0f - e2Var.f39144w));
         super.dispatchDraw(canvas);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        this.f39090b = org.telegram.messenger.g0.L(16.0f);
-        this.f39091c = org.telegram.messenger.g0.L(16.0f);
+        this.f39111b = org.telegram.messenger.g0.L(16.0f);
+        this.f39112c = org.telegram.messenger.g0.L(16.0f);
         this.d = org.telegram.messenger.g0.L(60.0f);
-        this.f39092e = org.telegram.messenger.g0.L(16.0f);
+        this.f39113e = org.telegram.messenger.g0.L(16.0f);
     }
 
     @Override

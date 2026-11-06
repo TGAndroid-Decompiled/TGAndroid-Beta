@@ -6,23 +6,23 @@ import f3.j0;
 import h2.m0;
 import h2.x;
 public final class c implements j0 {
-    public final int f58784a;
-    public final u f58785b;
-    public final f3.n f58786c = new f3.n();
+    public final int f58783a;
+    public final u f58784b;
+    public final f3.n f58785c = new f3.n();
     public final d d;
-    public u f58787e;
-    public j0 f58788f;
-    public long f58789g;
+    public u f58786e;
+    public j0 f58787f;
+    public long f58788g;
 
     public c(int i7, int i10, u uVar, d dVar) {
-        this.f58784a = i10;
-        this.f58785b = uVar;
+        this.f58783a = i10;
+        this.f58784b = uVar;
         this.d = dVar;
     }
 
     @Override
     public final void a(x xVar, int i7, int i10) {
-        j0 j0Var = this.f58788f;
+        j0 j0Var = this.f58787f;
         String str = m0.f14112a;
         j0Var.b(i7, xVar);
     }
@@ -34,11 +34,11 @@ public final class c implements j0 {
 
     @Override
     public final void c(long j3, int i7, int i10, int i11, i0 i0Var) {
-        long j10 = this.f58789g;
+        long j10 = this.f58788g;
         if (j10 != -9223372036854775807L && j3 >= j10) {
-            this.f58788f = this.f58786c;
+            this.f58787f = this.f58785c;
         }
-        j0 j0Var = this.f58788f;
+        j0 j0Var = this.f58787f;
         String str = m0.f14112a;
         j0Var.c(j3, i7, i10, i11, i0Var);
     }
@@ -50,7 +50,7 @@ public final class c implements j0 {
 
     @Override
     public final int f(e2.n nVar, int i7, boolean z9) {
-        j0 j0Var = this.f58788f;
+        j0 j0Var = this.f58787f;
         String str = m0.f14112a;
         return j0Var.e(nVar, i7, z9);
     }
@@ -58,12 +58,12 @@ public final class c implements j0 {
     @Override
     public final void g(u uVar) {
         this.d.getClass();
-        u uVar2 = this.f58785b;
+        u uVar2 = this.f58784b;
         if (uVar2 != null) {
             uVar = uVar.d(uVar2);
         }
-        this.f58787e = uVar;
-        j0 j0Var = this.f58788f;
+        this.f58786e = uVar;
+        j0 j0Var = this.f58787f;
         String str = m0.f14112a;
         j0Var.g(uVar);
     }

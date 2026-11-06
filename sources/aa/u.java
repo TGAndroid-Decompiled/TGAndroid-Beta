@@ -96,9 +96,9 @@ public final class u {
         ba.e.a();
         try {
             wf.b bVar = this.d;
-            ga.d dVar = (ga.d) bVar.f57564c;
+            ga.d dVar = (ga.d) bVar.f57563c;
             dVar.getClass();
-            if (!new File((File) dVar.d, (String) bVar.f57563b).delete()) {
+            if (!new File((File) dVar.d, (String) bVar.f57562b).delete()) {
                 Log.w("FirebaseCrashlytics", "Initialization marker file was not properly removed.", null);
             }
         } catch (Exception e10) {

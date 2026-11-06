@@ -5,17 +5,17 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class sv0 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public org.telegram.ui.ActionBar.f6 f38128a;
-    public ShapeDrawable f38129b;
-    public View f38130c;
+    public org.telegram.ui.ActionBar.f6 f38132a;
+    public ShapeDrawable f38133b;
+    public View f38134c;
 
     @Override
     public final void updateColors() {
         try {
-            ShapeDrawable shapeDrawable = this.f38129b;
+            ShapeDrawable shapeDrawable = this.f38133b;
             if (shapeDrawable != null) {
-                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.r1(0.12f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Bf, this.f38128a)), shapeDrawable);
-                View view = this.f38130c;
+                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.r1(0.12f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Bf, this.f38132a)), shapeDrawable);
+                View view = this.f38134c;
                 if (view != null) {
                     view.invalidate();
                 }

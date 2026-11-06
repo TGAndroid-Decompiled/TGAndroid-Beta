@@ -20,7 +20,7 @@ public class v3 extends View implements a6 {
     public v3(Context context, f6 f6Var) {
         super(context);
         lt0 lt0Var = new lt0(new g2.c(27), new g2.c(28));
-        lt0Var.f35743c = 100.0f;
+        lt0Var.f35763c = 100.0f;
         this.f15003a = lt0Var;
         Paint paint = new Paint(1);
         this.f15004b = paint;
@@ -48,7 +48,7 @@ public class v3 extends View implements a6 {
         r1.h hVar = new r1.h();
         hVar.b(400.0f);
         hVar.a(1.0f);
-        gVar.f54175m = hVar;
+        gVar.f54174m = hVar;
         this.d = gVar;
     }
 
@@ -70,7 +70,7 @@ public class v3 extends View implements a6 {
             setLoadProgress(f10);
             return;
         }
-        gVar.f54175m.f54183i = f10 * 100.0f;
+        gVar.f54174m.f54182i = f10 * 100.0f;
         gVar.h();
     }
 

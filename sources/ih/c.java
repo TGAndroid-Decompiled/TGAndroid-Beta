@@ -20,7 +20,7 @@ public final class c extends Drawable {
     public c() {
         this.f15478a = 1;
         this.d = 255;
-        this.f15479b = g.h(t0.f25555b, 2131232697);
+        this.f15479b = g.h(t0.f25563b, 2131232697);
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class c extends Drawable {
                 float exactCenterX = getBounds().exactCenterX();
                 float exactCenterY = getBounds().exactCenterY();
                 int x02 = k6.x0(null, k6.G6, false);
-                int x03 = k6.x0(null, k6.f27848d6, false);
+                int x03 = k6.x0(null, k6.f27849d6, false);
                 int i7 = this.f15480c;
                 Drawable drawable = this.f15479b;
                 if (i7 != x03) {

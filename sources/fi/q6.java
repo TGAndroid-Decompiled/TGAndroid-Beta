@@ -18,7 +18,7 @@ import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 public final class q6 extends View {
@@ -39,8 +39,8 @@ public final class q6 extends View {
     public final RectF f12668f;
     public final ImageReceiver h;
     public boolean f12669n;
-    public ly0 f12670r;
-    public ly0 f12671s;
+    public my0 f12670r;
+    public my0 f12671s;
     public final Path f12672w;
     public final Paint f12673x;
     public final ic f12674y;
@@ -65,7 +65,7 @@ public final class q6 extends View {
         if (p6Var == null) {
             return;
         }
-        this.f12670r = new ly0(p6Var.b(), 16.0f, org.telegram.messenger.g0.o());
+        this.f12670r = new my0(p6Var.b(), 16.0f, org.telegram.messenger.g0.o());
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.E.a());
         if (spannableStringBuilder.toString().contains(">")) {
             spannableStringBuilder.clear();
@@ -78,7 +78,7 @@ public final class q6 extends View {
             wpVar.I = 1.25f;
             spannableStringBuilder.setSpan(wpVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         }
-        this.f12671s = new ly0(spannableStringBuilder, 14.0f, null);
+        this.f12671s = new my0(spannableStringBuilder, 14.0f, null);
         this.E.d(this.h);
         this.f12669n = true;
     }
@@ -94,10 +94,10 @@ public final class q6 extends View {
         int[] iArr;
         int[] iArr2;
         float d = this.d.d(this.D);
-        ly0 ly0Var = this.f12670r;
-        if (ly0Var != null && this.f12671s != null && d > 0.0f) {
-            ly0Var.f35793p = getWidth() * 0.7f;
-            this.f12671s.f35793p = getWidth() * 0.7f;
+        my0 my0Var = this.f12670r;
+        if (my0Var != null && this.f12671s != null && d > 0.0f) {
+            my0Var.f36136p = getWidth() * 0.7f;
+            this.f12671s.f36136p = getWidth() * 0.7f;
             float L = org.telegram.messenger.g0.L(5.0f);
             float L2 = org.telegram.messenger.g0.L(10.0f);
             float L3 = org.telegram.messenger.g0.L(32.0f);
@@ -109,7 +109,7 @@ public final class q6 extends View {
             } else {
                 f10 = 0.0f;
             }
-            float max = Math.max(min, Math.max(this.f12670r.f35782c, this.f12671s.f35782c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
+            float max = Math.max(min, Math.max(this.f12670r.f36125c, this.f12671s.f36125c) + f10 + L + org.telegram.messenger.g0.L(15.0f) + L);
             if (this.f12669n) {
                 f11 = L3;
             } else {
@@ -163,20 +163,20 @@ public final class q6 extends View {
                 imageReceiver.h(canvas, null);
             }
             float centerY = rectF.centerY() - ((this.f12671s.i() + (this.f12670r.i() + L4)) / f13);
-            ly0 ly0Var2 = this.f12670r;
+            my0 my0Var2 = this.f12670r;
             float f17 = rectF.left;
             if (this.f12669n) {
                 f14 = L5 + L3 + L5;
             } else {
                 f14 = 0.0f;
             }
-            ly0Var2.c(f17 + f14 + f12, (ly0Var2.i() / f13) + centerY, d, -1, canvas);
-            ly0 ly0Var3 = this.f12671s;
+            my0Var2.c(f17 + f14 + f12, (my0Var2.i() / f13) + centerY, d, -1, canvas);
+            my0 my0Var3 = this.f12671s;
             float f18 = rectF.left;
             if (this.f12669n) {
                 f15 = L3 + L5 + L5;
             }
-            ly0Var3.c(f18 + f15 + f12, this.f12670r.i() + centerY + L4 + (this.f12671s.i() / f13), d, org.telegram.ui.ActionBar.k6.w(-16777216, -1610612737), canvas);
+            my0Var3.c(f18 + f15 + f12, this.f12670r.i() + centerY + L4 + (this.f12671s.i() / f13), d, org.telegram.ui.ActionBar.k6.w(-16777216, -1610612737), canvas);
             canvas.restore();
         }
     }
@@ -195,11 +195,11 @@ public final class q6 extends View {
                     icVar.c(true);
                 }
             } else if (motionEvent.getAction() == 2) {
-                if (icVar.f34555i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
+                if (icVar.f34585i && !rectF.contains(motionEvent.getX(), motionEvent.getY())) {
                     icVar.c(false);
                 }
             } else if (motionEvent.getAction() == 1) {
-                if (icVar.f34555i && (v8Var = this.f12666c) != null && this.E != null) {
+                if (icVar.f34585i && (v8Var = this.f12666c) != null && this.E != null) {
                     v8Var.a(new m6(this, 1));
                 }
                 icVar.c(false);
@@ -208,7 +208,7 @@ public final class q6 extends View {
                 icVar.c(false);
                 this.L = false;
             }
-            if (!this.L && !icVar.f34555i) {
+            if (!this.L && !icVar.f34585i) {
                 return false;
             }
             return true;

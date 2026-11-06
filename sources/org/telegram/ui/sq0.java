@@ -11,19 +11,19 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class sq0 extends FrameLayout {
-    public final int f49818a;
+    public final int f49817a;
 
     public sq0(Context context, int i7) {
         super(context);
-        this.f49818a = i7;
+        this.f49817a = i7;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 12:
-                org.telegram.ui.ActionBar.k6.f27937i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.k6.f27937i3.getIntrinsicHeight());
-                org.telegram.ui.ActionBar.k6.f27937i3.draw(canvas);
+                org.telegram.ui.ActionBar.k6.f27938i3.setBounds(0, 0, getMeasuredWidth(), org.telegram.ui.ActionBar.k6.f27938i3.getIntrinsicHeight());
+                org.telegram.ui.ActionBar.k6.f27938i3.draw(canvas);
                 super.dispatchDraw(canvas);
                 return;
             default:
@@ -34,7 +34,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 14:
                 return false;
             default:
@@ -44,7 +44,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean drawChild(Canvas canvas, View view, long j3) {
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 14:
                 return false;
             case 16:
@@ -58,7 +58,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean hasOverlappingRendering() {
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 15:
                 return false;
             default:
@@ -68,16 +68,16 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 1:
-                int intrinsicHeight = org.telegram.ui.ActionBar.k6.f27937i3.getIntrinsicHeight();
-                org.telegram.ui.ActionBar.k6.f27937i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
-                org.telegram.ui.ActionBar.k6.f27937i3.draw(canvas);
-                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27954j2);
+                int intrinsicHeight = org.telegram.ui.ActionBar.k6.f27938i3.getIntrinsicHeight();
+                org.telegram.ui.ActionBar.k6.f27938i3.setBounds(0, 0, getMeasuredWidth(), intrinsicHeight);
+                org.telegram.ui.ActionBar.k6.f27938i3.draw(canvas);
+                canvas.drawRect(0.0f, intrinsicHeight, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27955j2);
                 return;
             case 11:
                 super.onDraw(canvas);
-                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), 1.0f, org.telegram.ui.ActionBar.k6.f27972k0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -87,7 +87,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 8:
                 int childCount = getChildCount();
                 int i13 = 0;
@@ -110,7 +110,7 @@ public final class sq0 extends FrameLayout {
     @Override
     public void onMeasure(int i7, int i10) {
         int i11;
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 0:
                 super.onMeasure(i7, i10);
                 setPivotY(getMeasuredHeight());
@@ -169,7 +169,7 @@ public final class sq0 extends FrameLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f49818a) {
+        switch (this.f49817a) {
             case 14:
                 return false;
             case 17:
@@ -181,8 +181,8 @@ public final class sq0 extends FrameLayout {
 
     public sq0(org.telegram.ui.Components.m20 m20Var, Context context, int i7, String str, CharSequence charSequence) {
         super(context);
-        this.f49818a = 4;
-        boolean z9 = org.telegram.messenger.hd.f22871a0;
+        this.f49817a = 4;
+        boolean z9 = org.telegram.messenger.hd.f22878a0;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         int i10 = org.telegram.ui.ActionBar.k6.G6;
@@ -205,8 +205,8 @@ public final class sq0 extends FrameLayout {
 
     public sq0(sy0 sy0Var, Context context, int i7, String str, CharSequence charSequence) {
         super(context);
-        this.f49818a = 3;
-        boolean z9 = org.telegram.messenger.hd.f22871a0;
+        this.f49817a = 3;
+        boolean z9 = org.telegram.messenger.hd.f22878a0;
         ImageView imageView = new ImageView(getContext());
         Drawable mutate = getContext().getResources().getDrawable(i7).mutate();
         int i10 = org.telegram.ui.ActionBar.k6.G6;
@@ -228,7 +228,7 @@ public final class sq0 extends FrameLayout {
 
     public sq0(Context context, zh.n2 n2Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f49818a = 22;
+        this.f49817a = 22;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
         addView(f10, c8.ha.e(-1, -2, 23));
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
@@ -265,7 +265,7 @@ public final class sq0 extends FrameLayout {
 
     public sq0(Context context) {
         super(context);
-        this.f49818a = 2;
+        this.f49817a = 2;
         setPadding(org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(11.0f));
     }
 }

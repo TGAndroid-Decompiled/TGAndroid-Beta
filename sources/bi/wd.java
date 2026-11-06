@@ -48,7 +48,7 @@ public final class wd implements ValueAnimator.AnimatorUpdateListener {
                 g10Var.M = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i11, i10);
                 g10Var.F.setColorFilter(new PorterDuffColorFilter(g10Var.L, PorterDuff.Mode.MULTIPLY));
                 g10Var.E.setColor(g10Var.L);
-                g10Var.f33717r.setColor(g10Var.M);
+                g10Var.f33760r.setColor(g10Var.M);
                 g10Var.J.d(i0.a.o(g10Var.M, 38));
                 g10Var.invalidate();
                 return;

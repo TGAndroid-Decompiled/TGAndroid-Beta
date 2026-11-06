@@ -27,7 +27,7 @@ public final class c extends pa {
         float L;
         int i7;
         if (this.S) {
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 L = 0.0f;
             } else {
                 L = g0.L(70.0f);
@@ -35,12 +35,12 @@ public final class c extends pa {
             float f10 = L;
             float measuredHeight = getMeasuredHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 i7 = g0.L(70.0f);
             } else {
                 i7 = 0;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, k6.f27971k0);
+            canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, k6.f27972k0);
         }
     }
 
@@ -71,6 +71,6 @@ public final class c extends pa {
             aVar2.f3402e = aVar2.f3399a.measureText(valueOf2);
             aVar2.invalidateSelf();
         }
-        this.f29749b.i(this.f3410b0);
+        this.f29750b.i(this.f3410b0);
     }
 }

@@ -10,24 +10,24 @@ import java.util.Locale;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.t0;
 public final class b {
-    public static volatile b f53491j;
-    public final byte[] f53492a;
-    public final boolean f53493b;
-    public final ByteBuffer f53494c;
+    public static volatile b f53489j;
+    public final byte[] f53490a;
+    public final boolean f53491b;
+    public final ByteBuffer f53492c;
     public final String d;
-    public final String f53495e;
-    public final HashMap f53496f;
-    public final HashMap f53497g;
+    public final String f53493e;
+    public final HashMap f53494f;
+    public final HashMap f53495g;
     public final HashMap h;
-    public final HashMap f53498i;
+    public final HashMap f53496i;
 
     public b() {
         InputStream inputStream;
         ByteArrayOutputStream byteArrayOutputStream;
-        this.f53493b = false;
+        this.f53491b = false;
         ByteArrayOutputStream byteArrayOutputStream2 = null;
         try {
-            inputStream = t0.f25555b.getAssets().open("PhoneFormats.dat");
+            inputStream = t0.f25563b.getAssets().open("PhoneFormats.dat");
             try {
                 try {
                     byteArrayOutputStream = new ByteArrayOutputStream();
@@ -54,9 +54,9 @@ public final class b {
                 byteArrayOutputStream.write(bArr, 0, read);
             }
             byte[] byteArray = byteArrayOutputStream.toByteArray();
-            this.f53492a = byteArray;
+            this.f53490a = byteArray;
             ByteBuffer wrap = ByteBuffer.wrap(byteArray);
-            this.f53494c = wrap;
+            this.f53492c = wrap;
             wrap.order(ByteOrder.LITTLE_ENDIAN);
             try {
                 byteArrayOutputStream.close();
@@ -69,10 +69,10 @@ public final class b {
                 a8.g(e13, true);
             }
             this.d = Locale.getDefault().getCountry().toLowerCase();
-            this.f53496f = new HashMap(255);
-            this.f53497g = new HashMap(255);
+            this.f53494f = new HashMap(255);
+            this.f53495g = new HashMap(255);
             this.h = new HashMap(10);
-            this.f53498i = new HashMap(255);
+            this.f53496i = new HashMap(255);
             int f10 = f(0);
             int i7 = 4;
             int i10 = (f10 * 12) + 4;
@@ -82,22 +82,22 @@ public final class b {
                 int f11 = f(i7 + 8) + i10;
                 i7 += 12;
                 if (g11.equals(this.d)) {
-                    this.f53495e = g10;
+                    this.f53493e = g10;
                 }
-                this.f53498i.put(g11, g10);
-                this.f53496f.put(g10, Integer.valueOf(f11));
-                ArrayList arrayList = (ArrayList) this.f53497g.get(g10);
+                this.f53496i.put(g11, g10);
+                this.f53494f.put(g10, Integer.valueOf(f11));
+                ArrayList arrayList = (ArrayList) this.f53495g.get(g10);
                 if (arrayList == null) {
                     arrayList = new ArrayList();
-                    this.f53497g.put(g10, arrayList);
+                    this.f53495g.put(g10, arrayList);
                 }
                 arrayList.add(g11);
             }
-            String str = this.f53495e;
+            String str = this.f53493e;
             if (str != null) {
                 a(str);
             }
-            this.f53493b = true;
+            this.f53491b = true;
         } catch (Exception e14) {
             e = e14;
             byteArrayOutputStream2 = byteArrayOutputStream;
@@ -139,14 +139,14 @@ public final class b {
 
     public static b c() {
         b bVar;
-        b bVar2 = f53491j;
+        b bVar2 = f53489j;
         if (bVar2 == null) {
             synchronized (b.class) {
                 try {
-                    bVar = f53491j;
+                    bVar = f53489j;
                     if (bVar == null) {
                         bVar = new b();
-                        f53491j = bVar;
+                        f53489j = bVar;
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -180,16 +180,16 @@ public final class b {
         Integer num;
         b bVar = this;
         a aVar = (a) bVar.h.get(str);
-        if (aVar == null && (num = (Integer) bVar.f53496f.get(str)) != null) {
+        if (aVar == null && (num = (Integer) bVar.f53494f.get(str)) != null) {
             int intValue = num.intValue();
             ?? obj = new Object();
             new ArrayList();
-            obj.f53488a = "";
-            obj.f53489b = new ArrayList();
-            obj.f53490c = new ArrayList();
+            obj.f53486a = "";
+            obj.f53487b = new ArrayList();
+            obj.f53488c = new ArrayList();
             obj.d = new ArrayList();
-            obj.f53488a = str;
-            ArrayList arrayList = (ArrayList) bVar.f53497g.get(str);
+            obj.f53486a = str;
+            ArrayList arrayList = (ArrayList) bVar.f53495g.get(str);
             bVar.h.put(str, obj);
             short e10 = bVar.e(intValue);
             short e11 = bVar.e(intValue + 4);
@@ -204,7 +204,7 @@ public final class b {
                 arrayList2.add(g10);
                 i7 += g10.length() + 1;
             }
-            obj.f53489b = arrayList2;
+            obj.f53487b = arrayList2;
             int i10 = i7 + 1;
             ArrayList arrayList3 = new ArrayList(5);
             while (true) {
@@ -215,26 +215,26 @@ public final class b {
                 arrayList3.add(g11);
                 i10 += g11.length() + 1;
             }
-            obj.f53490c = arrayList3;
+            obj.f53488c = arrayList3;
             ArrayList arrayList4 = new ArrayList(e12);
             int i11 = intValue + e10;
             int i12 = i11;
             int i13 = 0;
             while (i13 < e12) {
                 ?? obj2 = new Object();
-                obj2.f53505b = new ArrayList();
-                obj2.f53504a = bVar.e(i12);
+                obj2.f53503b = new ArrayList();
+                obj2.f53502a = bVar.e(i12);
                 short e13 = bVar.e(i12 + 2);
                 i12 += 4;
                 ArrayList arrayList5 = new ArrayList(e13);
                 int i14 = 0;
                 while (i14 < e13) {
                     ?? obj3 = new Object();
-                    obj3.f53499a = bVar.f(i12);
-                    obj3.f53500b = bVar.f(i12 + 4);
-                    byte[] bArr = bVar.f53492a;
+                    obj3.f53497a = bVar.f(i12);
+                    obj3.f53498b = bVar.f(i12 + 4);
+                    byte[] bArr = bVar.f53490a;
                     byte b10 = bArr[i12 + 8];
-                    obj3.f53501c = bArr[i12 + 9];
+                    obj3.f53499c = bArr[i12 + 9];
                     byte b11 = bArr[i12 + 10];
                     byte b12 = bArr[i12 + 11];
                     obj3.d = bArr[i12 + 12];
@@ -242,16 +242,16 @@ public final class b {
                     short e14 = bVar.e(i12 + 14);
                     i12 += 16;
                     String g12 = bVar.g(i11 + e11 + e14);
-                    obj3.f53502e = g12;
+                    obj3.f53500e = g12;
                     int indexOf = g12.indexOf("[[");
                     if (indexOf != -1) {
-                        obj3.f53502e = rf.b.q(obj3.f53502e.substring(0, indexOf), obj3.f53502e.substring(obj3.f53502e.indexOf("]]") + 2));
+                        obj3.f53500e = rf.b.q(obj3.f53500e.substring(0, indexOf), obj3.f53500e.substring(obj3.f53500e.indexOf("]]") + 2));
                     }
                     arrayList5.add(obj3);
                     i14++;
                     bVar = this;
                 }
-                obj2.f53505b = arrayList5;
+                obj2.f53503b = arrayList5;
                 arrayList4.add(obj2);
                 i13++;
                 bVar = this;
@@ -264,7 +264,7 @@ public final class b {
 
     public final String b(String str) {
         String str2;
-        if (this.f53493b) {
+        if (this.f53491b) {
             try {
                 StringBuilder sb2 = new StringBuilder(str);
                 for (int length = sb2.length() - 1; length >= 0; length--) {
@@ -288,9 +288,9 @@ public final class b {
                         return "+" + aVar.a(substring);
                     }
                 } else {
-                    a a10 = a(this.f53495e);
+                    a a10 = a(this.f53493e);
                     if (a10 != null) {
-                        ArrayList arrayList = a10.f53490c;
+                        ArrayList arrayList = a10.f53488c;
                         int size = arrayList.size();
                         int i10 = 0;
                         while (true) {
@@ -336,17 +336,17 @@ public final class b {
     }
 
     public final short e(int i7) {
-        if (i7 + 2 <= this.f53492a.length) {
-            this.f53494c.position(i7);
-            return this.f53494c.getShort();
+        if (i7 + 2 <= this.f53490a.length) {
+            this.f53492c.position(i7);
+            return this.f53492c.getShort();
         }
         return (short) 0;
     }
 
     public final int f(int i7) {
-        if (i7 + 4 <= this.f53492a.length) {
-            this.f53494c.position(i7);
-            return this.f53494c.getInt();
+        if (i7 + 4 <= this.f53490a.length) {
+            this.f53492c.position(i7);
+            return this.f53492c.getInt();
         }
         return 0;
     }

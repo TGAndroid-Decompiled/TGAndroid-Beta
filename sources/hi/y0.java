@@ -134,7 +134,7 @@ public final class y0 implements Runnable {
                 String str3 = (String) obj6;
                 qbVar.getClass();
                 org.telegram.messenger.g0.h3(new pb(this.f15045b, str3, (TLRPC.InputFile) obj4, (TLRPC.InputEncryptedFile) obj3, (byte[]) obj2, (byte[]) obj, this.f15046c));
-                qbVar.f24676b.f22627u.remove(str3);
+                qbVar.f24684b.f22634u.remove(str3);
                 return;
             default:
                 LaunchActivity launchActivity = (LaunchActivity) obj6;
@@ -143,8 +143,8 @@ public final class y0 implements Runnable {
                 String str5 = (String) obj3;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str6 = (String) obj;
-                ArrayList arrayList = launchActivity.f41261f0;
-                ArrayList arrayList2 = launchActivity.f41257d0;
+                ArrayList arrayList = launchActivity.f41260f0;
+                ArrayList arrayList2 = launchActivity.f41256d0;
                 ArrayList arrayList3 = launchActivity.C0;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
@@ -226,13 +226,13 @@ public final class y0 implements Runnable {
                                 if (anVar.j() != null) {
                                     tLObject = anVar.j();
                                 } else {
-                                    tLObject = anVar.f43772e;
+                                    tLObject = anVar.f43771e;
                                 }
                                 if (!ui.t(tL_attachMenuBot, tLObject)) {
                                     a02 = hc.a0(f2Var);
                                     r22 = 0;
                                 } else {
-                                    anVar.wa(user.f27101id, str6, false);
+                                    anVar.wa(user.f27102id, str6, false);
                                 }
                             } else {
                                 r22 = 0;
@@ -243,7 +243,7 @@ public final class y0 implements Runnable {
                         return;
                     }
                     q6 q6Var = new q6(launchActivity);
-                    q6Var.setColor(k6.x0(null, k6.f27943ia, false));
+                    q6Var.setColor(k6.x0(null, k6.f27944ia, false));
                     r6.i(k6.L5, q6Var, null);
                     q6Var.setAttachBot(tL_attachMenuBot);
                     vc1.a(launchActivity, new tp(launchActivity, i12, this.f15046c, wwVar, f2Var, user, str6), null);

@@ -10,7 +10,7 @@ import android.os.Looper;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Log;
-import c8.yc;
+import c8.zc;
 import com.google.android.gms.internal.play_billing.u;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -163,7 +163,7 @@ public final class n implements OnSuccessListener, te.i {
         Iterator it = ((te.j) this.d).iterator();
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
-            fArr[((Integer) eVar.f55404a).intValue()] = eVar.c();
+            fArr[((Integer) eVar.f55403a).intValue()] = eVar.c();
         }
         ((xf) this.f19919c).run();
     }
@@ -199,7 +199,7 @@ public final class n implements OnSuccessListener, te.i {
 
     public void h(int i7, boolean z9, boolean z10) {
         int numberOfLeadingZeros = 31 - Integer.numberOfLeadingZeros(this.f19917a);
-        int b10 = yc.b(this.f19917a, 1 << i7, z9);
+        int b10 = zc.b(this.f19917a, 1 << i7, z9);
         this.f19917a = b10;
         int numberOfLeadingZeros2 = 31 - Integer.numberOfLeadingZeros(b10);
         if (numberOfLeadingZeros != numberOfLeadingZeros2) {

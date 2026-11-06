@@ -88,7 +88,7 @@ public final class v8 implements c20 {
                     P1.d(j3, x6Var, P1.f9964b, false);
                 }
                 P1.d(j3, x6Var, P1.f9965c, true);
-                if (j3 != p10.i(i13).f24478n) {
+                if (j3 != p10.i(i13).f24486n) {
                     int i14 = 0;
                     while (true) {
                         if (i14 < arrayList2.size()) {
@@ -167,14 +167,14 @@ public final class v8 implements c20 {
             case 5:
                 di.b bVar = vaVar.f12934a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.wa waVar = new org.telegram.ui.Components.xa(vaVar.f12938b, new r7(1)).f40238a;
+                org.telegram.ui.Components.wa waVar = new org.telegram.ui.Components.xa(vaVar.f12938b, new r7(1)).f40254a;
                 WindowManager.LayoutParams layout = waVar.getLayout();
                 if (layout != null) {
                     layout.height = -2;
                     layout.width = vaVar.f12987r.getWidth();
                     layout.y = (int) (vaVar.f12987r.getY() + org.telegram.messenger.g0.L(56.0f));
-                    org.telegram.ui.Components.xa xaVar = waVar.f39945a;
-                    xaVar.getWindow().setAttributes(xaVar.f40239b);
+                    org.telegram.ui.Components.xa xaVar = waVar.f39953a;
+                    xaVar.getWindow().setAttributes(xaVar.f40255b);
                 }
                 waVar.setTouchable(true);
                 new hc(waVar, bVar).G(2131624020, 3, org.telegram.messenger.g0.S2(hd.G(intValue, "StoryPeriodPremium", new Object[0]), org.telegram.ui.ActionBar.k6.Uc, 0, new u8(vaVar, 27), bVar)).k(true);
@@ -198,8 +198,8 @@ public final class v8 implements c20 {
                     f10 = 0.0f;
                 }
                 org.telegram.messenger.camera.q.k(animate, f10, 120L);
-                cc ccVar = cc.f32519w;
-                if (ccVar != null && ccVar.f32520a == 2) {
+                cc ccVar = cc.f32506w;
+                if (ccVar != null && ccVar.f32507a == 2) {
                     ccVar.l();
                     return;
                 }
@@ -399,8 +399,8 @@ public final class v8 implements c20 {
                     }
                     o9Var2.setTranslationY(i17 - contentHeight);
                 }
-                cc ccVar2 = cc.f32519w;
-                if (ccVar2 != null && ccVar2.f32520a == 2) {
+                cc ccVar2 = cc.f32506w;
+                if (ccVar2 != null && ccVar2.f32507a == 2) {
                     ccVar2.l();
                 }
                 if (vaVar.f12944c1.f12375o0 && (o9Var = vaVar.f12947d1) != null) {

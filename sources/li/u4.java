@@ -39,13 +39,13 @@ public final class u4 implements ls {
                 for (int i7 = 0; i7 < size; i7++) {
                     h20 h20Var = (h20) arrayList.get(i7);
                     if (h20Var != null) {
-                        if (h20Var.f22800a == 0) {
-                            byte b10 = h20Var.f22801b;
+                        if (h20Var.f22807a == 0) {
+                            byte b10 = h20Var.f22808b;
                             if ((b10 & 1) != 0 || (b10 & 4) != 0) {
                                 return true;
                             }
                         }
-                        ArrayList arrayList3 = h20Var.f22808k;
+                        ArrayList arrayList3 = h20Var.f22815k;
                         if (arrayList3 != null && !arrayList3.isEmpty()) {
                             return true;
                         }
@@ -87,9 +87,9 @@ public final class u4 implements ls {
 
     public final void d() {
         qs f10 = qs.f(this.f18916a);
-        f10.n(this, qs.f24952a2);
-        f10.n(this, qs.f24958b2);
-        f10.n(this, qs.f24964c2);
+        f10.n(this, qs.f24960a2);
+        f10.n(this, qs.f24966b2);
+        f10.n(this, qs.f24972c2);
     }
 
     @Override
@@ -99,7 +99,7 @@ public final class u4 implements ls {
         s sVar = (s) mVar.f14264b;
         t3 t3Var = (t3) mVar.d;
         if (!this.h && !this.f18921n && i10 == this.f18916a && objArr.length != 0 && objArr[0] == this.f18918c) {
-            if (i7 == qs.f24958b2) {
+            if (i7 == qs.f24966b2) {
                 long longValue = ((Long) objArr[3]).longValue();
                 sVar.f18815f = ((Float) objArr[4]).floatValue();
                 View C1 = t3Var.C1(aVar);
@@ -112,9 +112,9 @@ public final class u4 implements ls {
                     d();
                     String str = this.f18919e;
                     j20 j20Var = this.d;
-                    int i11 = j20Var.f23453k;
-                    int i12 = j20Var.f23454l;
-                    int ceil = (int) Math.ceil(j20Var.f23460r / 1000.0d);
+                    int i11 = j20Var.f23460k;
+                    int i12 = j20Var.f23461l;
+                    int ceil = (int) Math.ceil(j20Var.f23467r / 1000.0d);
                     t3Var.f18878h4.remove(sVar);
                     sVar.f18812b = true;
                     sVar.f18814e = str;
@@ -130,7 +130,7 @@ public final class u4 implements ls {
                     t3Var.q4(aVar);
                     t3Var.O4((a) mVar.f14265c, sVar, str, true, sVar.f18818j, sVar.f18819k, ceil);
                 }
-            } else if (i7 == qs.f24964c2) {
+            } else if (i7 == qs.f24972c2) {
                 b();
             }
         }

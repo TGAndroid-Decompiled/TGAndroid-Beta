@@ -6,29 +6,29 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.hd;
 public final class b3 extends k1.b {
-    public static final int f27336r = 0;
-    public final RectF f27337o;
-    public final Rect f27338p;
-    public final d3 f27339q;
+    public static final int f27337r = 0;
+    public final RectF f27338o;
+    public final Rect f27339p;
+    public final d3 f27340q;
 
     public b3(d3 d3Var, d3 d3Var2) {
         super(d3Var2);
-        this.f27339q = d3Var;
-        this.f27337o = new RectF();
-        this.f27338p = new Rect();
+        this.f27340q = d3Var;
+        this.f27338o = new RectF();
+        this.f27339p = new Rect();
     }
 
     @Override
     public final int g(float f10, float f11) {
         a3 c10;
-        d3 d3Var = this.f27339q;
-        if (d3Var.f27425b) {
+        d3 d3Var = this.f27340q;
+        if (d3Var.f27426b) {
             ArrayList<c3> tabs = d3Var.getTabs();
             if (!tabs.isEmpty() && (c10 = d3Var.c(tabs.get(0))) != null) {
                 float c11 = c10.c();
-                RectF rectF = this.f27337o;
+                RectF rectF = this.f27338o;
                 d3Var.d(rectF, c11);
-                Rect bounds = c10.f27311l.getBounds();
+                Rect bounds = c10.f27312l.getBounds();
                 if (!bounds.isEmpty() && bounds.contains((int) (f10 - rectF.left), (int) (f11 - rectF.centerY()))) {
                     return 2;
                 }
@@ -44,8 +44,8 @@ public final class b3 extends k1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        d3 d3Var = this.f27339q;
-        if (d3Var.f27425b) {
+        d3 d3Var = this.f27340q;
+        if (d3Var.f27426b) {
             ArrayList<c3> tabs = d3Var.getTabs();
             if (tabs.isEmpty() || d3Var.c(tabs.get(0)) == null) {
                 return;
@@ -58,7 +58,7 @@ public final class b3 extends k1.b {
     @Override
     public final boolean k(int i7, int i10) {
         if (i10 == 16) {
-            d3 d3Var = this.f27339q;
+            d3 d3Var = this.f27340q;
             ArrayList<c3> tabs = d3Var.getTabs();
             if (!tabs.isEmpty()) {
                 c3 c3Var = tabs.get(0);
@@ -80,7 +80,7 @@ public final class b3 extends k1.b {
         a3 c10;
         String str;
         String str2;
-        d3 d3Var = this.f27339q;
+        d3 d3Var = this.f27340q;
         ArrayList<c3> tabs = d3Var.getTabs();
         if (tabs.isEmpty()) {
             c3Var = null;
@@ -93,9 +93,9 @@ public final class b3 extends k1.b {
             c10 = d3Var.c(c3Var);
         }
         dVar.i("android.widget.Button");
-        dVar.b(s0.c.f54502c);
+        dVar.b(s0.c.f54501c);
         String str3 = "";
-        Rect rect = this.f27338p;
+        Rect rect = this.f27339p;
         if (c10 == null) {
             rect.set(0, 0, 1, 1);
             dVar.h(rect);
@@ -104,13 +104,13 @@ public final class b3 extends k1.b {
             return;
         }
         float c11 = c10.c();
-        RectF rectF = this.f27337o;
+        RectF rectF = this.f27338o;
         d3Var.d(rectF, c11);
         if (c3Var.b() != null) {
             str3 = c3Var.b();
         }
         if (i7 == 2) {
-            Rect bounds = c10.f27311l.getBounds();
+            Rect bounds = c10.f27312l.getBounds();
             rect.set((int) (rectF.left + bounds.left), (int) (rectF.centerY() + bounds.top), (int) (rectF.left + bounds.right), (int) (rectF.centerY() + bounds.bottom));
             dVar.h(rect);
             if (TextUtils.isEmpty(str3)) {

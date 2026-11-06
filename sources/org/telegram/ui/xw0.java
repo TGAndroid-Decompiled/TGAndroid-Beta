@@ -8,21 +8,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class xw0 {
-    public final int f52002a;
-    public boolean f52003b;
-    public zw0 f52004c;
-    public final boolean[] f52007g;
-    public boolean f52008i;
+    public final int f52000a;
+    public boolean f52001b;
+    public zw0 f52002c;
+    public final boolean[] f52005g;
+    public boolean f52006i;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f52005e = new ArrayList();
-    public final ArrayList f52006f = new ArrayList();
+    public final ArrayList f52003e = new ArrayList();
+    public final ArrayList f52004f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f52009j = new ArrayList();
+    public final ArrayList f52007j = new ArrayList();
 
     public xw0(int i7, int i10) {
         boolean[] zArr = new boolean[2];
-        this.f52007g = zArr;
-        this.f52002a = i10;
+        this.f52005g = zArr;
+        this.f52000a = i10;
         if (i10 <= 0) {
             zArr[0] = true;
         } else {
@@ -37,11 +37,11 @@ public final class xw0 {
                 }
             }
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
-            String[] strArr = ax0.f44107s;
+            String[] strArr = ax0.f44106s;
             tL_inputStickerSetShortName.short_name = "FestiveFontEmoji";
             org.telegram.messenger.ui.b0(i7).l0(tL_inputStickerSetShortName, 0, false, false, new y(this, hashSet, arrayList, 11));
         }
-        String str = ax0.f44107s[Utilities.f21331b.nextInt(3)];
+        String str = ax0.f44106s[Utilities.f21331b.nextInt(3)];
         TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName2 = new TLRPC.TL_inputStickerSetShortName();
         tL_inputStickerSetShortName2.short_name = "EmojiAnimations";
         org.telegram.messenger.ui.b0(i7).l0(tL_inputStickerSetShortName2, 0, false, false, new org.telegram.ui.Components.ex(22, this, str));
@@ -57,7 +57,7 @@ public final class xw0 {
                 i10 = 0;
             }
             if (xw0Var != null) {
-                if (xw0Var.f52002a == i10) {
+                if (xw0Var.f52000a == i10) {
                     return xw0Var;
                 }
                 xw0Var.b(false);
@@ -72,11 +72,11 @@ public final class xw0 {
     }
 
     public final void a() {
-        if (!this.f52003b && this.f52006f.size() >= this.f52005e.size()) {
-            boolean[] zArr = this.f52007g;
+        if (!this.f52001b && this.f52004f.size() >= this.f52003e.size()) {
+            boolean[] zArr = this.f52005g;
             int i7 = 0;
             if (zArr[0] && zArr[1]) {
-                this.f52003b = true;
+                this.f52001b = true;
                 ArrayList arrayList = this.h;
                 int size = arrayList.size();
                 while (i7 < size) {
@@ -90,14 +90,14 @@ public final class xw0 {
     }
 
     public final void b(boolean z9) {
-        if (!z9 && !this.f52009j.isEmpty()) {
-            this.f52008i = true;
+        if (!z9 && !this.f52007j.isEmpty()) {
+            this.f52006i = true;
             return;
         }
         this.h.clear();
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f52005e;
+            ArrayList arrayList = this.f52003e;
             if (i7 < arrayList.size()) {
                 ((zw0) arrayList.get(i7)).R();
                 i7++;

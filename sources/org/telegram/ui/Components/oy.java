@@ -4,19 +4,19 @@ import android.graphics.SurfaceTexture;
 import android.os.Looper;
 import android.view.Surface;
 public final class oy implements Runnable {
-    public final int f36688a;
-    public final ry f36689b;
+    public final int f36709a;
+    public final ry f36710b;
 
     public oy(ry ryVar, int i7) {
-        this.f36688a = i7;
-        this.f36689b = ryVar;
+        this.f36709a = i7;
+        this.f36710b = ryVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f36688a) {
+        switch (this.f36709a) {
             case 0:
-                this.f36689b.finish();
+                this.f36710b.finish();
                 Looper myLooper = Looper.myLooper();
                 if (myLooper != null) {
                     myLooper.quit();
@@ -24,15 +24,15 @@ public final class oy implements Runnable {
                 }
                 return;
             case 1:
-                ry.a(this.f36689b);
+                ry.a(this.f36710b);
                 return;
             default:
-                ry ryVar = this.f36689b;
-                ax axVar = ryVar.f37818b0;
-                SurfaceTexture surfaceTexture = ryVar.f37828x;
-                g51 g51Var = (g51) axVar.f31941b;
-                if (g51Var.f33797a != null) {
-                    g51Var.f33797a.y0(new Surface(surfaceTexture));
+                ry ryVar = this.f36710b;
+                ax axVar = ryVar.f37778b0;
+                SurfaceTexture surfaceTexture = ryVar.f37788x;
+                h51 h51Var = (h51) axVar.f31937b;
+                if (h51Var.f34178a != null) {
+                    h51Var.f34178a.y0(new Surface(surfaceTexture));
                     return;
                 }
                 return;

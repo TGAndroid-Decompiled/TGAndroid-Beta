@@ -10,27 +10,27 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLObject;
 public final class it0 extends View {
-    public final ImageReceiver f34748a;
-    public final w8 f34749b;
-    public final Paint f34750c;
+    public final ImageReceiver f34778a;
+    public final w8 f34779b;
+    public final Paint f34780c;
     public float d;
-    public boolean f34751e;
-    public ValueAnimator f34752f;
+    public boolean f34781e;
+    public ValueAnimator f34782f;
 
     public it0(Context context) {
         super(context);
         ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f34748a = imageReceiver;
-        this.f34749b = new w8((org.telegram.ui.ActionBar.f6) null);
+        this.f34778a = imageReceiver;
+        this.f34779b = new w8((org.telegram.ui.ActionBar.f6) null);
         Paint paint = new Paint(1);
-        this.f34750c = paint;
+        this.f34780c = paint;
         imageReceiver.J0(org.telegram.messenger.g0.L(28.0f));
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         paint.setStyle(Paint.Style.STROKE);
     }
 
     public final void a(boolean z9, boolean z10) {
-        ValueAnimator valueAnimator = this.f34752f;
+        ValueAnimator valueAnimator = this.f34782f;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
@@ -40,11 +40,11 @@ public final class it0 extends View {
                 f10 = 1.0f;
             }
             ValueAnimator duration = ValueAnimator.ofFloat(this.d, f10).setDuration(200L);
-            duration.setInterpolator(xq.f40329f);
+            duration.setInterpolator(xq.f40345f);
             duration.addUpdateListener(new c60(this, 20));
             duration.addListener(new e60(this, 22));
             duration.start();
-            this.f34752f = duration;
+            this.f34782f = duration;
             return;
         }
         if (z9) {
@@ -65,13 +65,13 @@ public final class it0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f34748a.P();
+        this.f34778a.P();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f34748a.R();
+        this.f34778a.R();
     }
 
     @Override
@@ -80,8 +80,8 @@ public final class it0 extends View {
         canvas.save();
         float f10 = (this.d * 0.1f) + 0.9f;
         canvas.scale(f10, f10);
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28012m5, false);
-        Paint paint = this.f34750c;
+        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28013m5, false);
+        Paint paint = this.f34780c;
         paint.setColor(x02);
         paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.d));
         float strokeWidth = paint.getStrokeWidth();
@@ -89,25 +89,25 @@ public final class it0 extends View {
         rectF.set(strokeWidth, strokeWidth, getWidth() - strokeWidth, getHeight() - strokeWidth);
         canvas.drawArc(rectF, -90.0f, this.d * 360.0f, false, paint);
         canvas.restore();
-        if (!this.f34751e) {
+        if (!this.f34781e) {
             float strokeWidth2 = paint.getStrokeWidth() * 2.5f * this.d;
             float f11 = 2.0f * strokeWidth2;
             float width = getWidth() - f11;
             float height = getHeight() - f11;
-            ImageReceiver imageReceiver = this.f34748a;
+            ImageReceiver imageReceiver = this.f34778a;
             imageReceiver.y0(strokeWidth2, strokeWidth2, width, height);
             imageReceiver.h(canvas, null);
         }
     }
 
     public void setAvatar(TLObject tLObject) {
-        w8 w8Var = this.f34749b;
+        w8 w8Var = this.f34779b;
         w8Var.l(tLObject);
-        this.f34748a.i0(tLObject, w8Var, null);
+        this.f34778a.i0(tLObject, w8Var, null);
     }
 
     public void setHideAvatar(boolean z9) {
-        this.f34751e = z9;
+        this.f34781e = z9;
         invalidate();
     }
 }

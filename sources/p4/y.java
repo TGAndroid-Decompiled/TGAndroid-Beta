@@ -2,33 +2,33 @@ package p4;
 
 import org.telegram.messenger.df;
 public final class y implements Runnable {
-    public final int f53375a;
-    public final d0 f53376b;
+    public final int f53373a;
+    public final d0 f53374b;
 
     public y(d0 d0Var, int i7) {
-        this.f53375a = i7;
-        this.f53376b = d0Var;
+        this.f53373a = i7;
+        this.f53374b = d0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f53375a) {
+        switch (this.f53373a) {
             case 0:
-                d0 d0Var = this.f53376b;
-                df dfVar = d0Var.f53127u;
+                d0 d0Var = this.f53374b;
+                df dfVar = d0Var.f53125u;
                 if (dfVar != null) {
-                    d0Var.f53126t.h0(dfVar);
+                    d0Var.f53124t.h0(dfVar);
                     return;
                 }
                 return;
             case 1:
-                this.f53376b.getClass();
+                this.f53374b.getClass();
                 return;
             case 2:
-                d0.a(this.f53376b);
+                d0.a(this.f53374b);
                 return;
             default:
-                this.f53376b.t();
+                this.f53374b.t();
                 return;
         }
     }

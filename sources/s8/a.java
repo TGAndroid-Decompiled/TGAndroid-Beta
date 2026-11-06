@@ -21,33 +21,33 @@ import q6.m;
 import x6.e;
 import x6.f;
 public final class a {
-    public static final long f54877n = TimeUnit.DAYS.toMillis(366);
-    public static volatile ScheduledExecutorService f54878o = null;
-    public static final Object f54879p = new Object();
-    public final Object f54880a;
-    public final PowerManager.WakeLock f54881b;
-    public int f54882c;
+    public static final long f54876n = TimeUnit.DAYS.toMillis(366);
+    public static volatile ScheduledExecutorService f54877o = null;
+    public static final Object f54878p = new Object();
+    public final Object f54879a;
+    public final PowerManager.WakeLock f54880b;
+    public int f54881c;
     public ScheduledFuture d;
-    public long f54883e;
-    public final HashSet f54884f;
-    public boolean f54885g;
+    public long f54882e;
+    public final HashSet f54883f;
+    public boolean f54884g;
     public f8.a h;
-    public final x6.a f54886i;
-    public final String f54887j;
-    public final HashMap f54888k;
-    public final AtomicInteger f54889l;
-    public final ScheduledExecutorService f54890m;
+    public final x6.a f54885i;
+    public final String f54886j;
+    public final HashMap f54887k;
+    public final AtomicInteger f54888l;
+    public final ScheduledExecutorService f54889m;
 
     public a(Context context) {
         String str;
         String packageName = context.getPackageName();
-        this.f54880a = new Object();
-        this.f54882c = 0;
-        this.f54884f = new HashSet();
-        this.f54885g = true;
-        this.f54886i = x6.a.f58539a;
-        this.f54888k = new HashMap();
-        this.f54889l = new AtomicInteger(0);
+        this.f54879a = new Object();
+        this.f54881c = 0;
+        this.f54883f = new HashSet();
+        this.f54884g = true;
+        this.f54885i = x6.a.f58538a;
+        this.f54887k = new HashMap();
+        this.f54888l = new AtomicInteger(0);
         m.f("wake:com.google.firebase.iid.WakeLockHolder", "WakeLock: wakeLockName must not be empty");
         context.getApplicationContext();
         WorkSource workSource = null;
@@ -58,15 +58,15 @@ public final class a {
             } else {
                 str = new String("*gcore*:");
             }
-            this.f54887j = str;
+            this.f54886j = str;
         } else {
-            this.f54887j = "wake:com.google.firebase.iid.WakeLockHolder";
+            this.f54886j = "wake:com.google.firebase.iid.WakeLockHolder";
         }
         PowerManager powerManager = (PowerManager) context.getSystemService("power");
         if (powerManager != null) {
-            this.f54881b = powerManager.newWakeLock(1, "wake:com.google.firebase.iid.WakeLockHolder");
+            this.f54880b = powerManager.newWakeLock(1, "wake:com.google.firebase.iid.WakeLockHolder");
             if (f.b(context)) {
-                int i7 = e.f58547a;
+                int i7 = e.f58546a;
                 packageName = (packageName == null || packageName.trim().isEmpty()) ? context.getPackageName() : packageName;
                 if (context.getPackageManager() != null && packageName != null) {
                     try {
@@ -84,26 +84,26 @@ public final class a {
                 }
                 if (workSource != null) {
                     try {
-                        this.f54881b.setWorkSource(workSource);
+                        this.f54880b.setWorkSource(workSource);
                     } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e10) {
                         Log.wtf("WakeLock", e10.toString());
                     }
                 }
             }
-            ScheduledExecutorService scheduledExecutorService = f54878o;
+            ScheduledExecutorService scheduledExecutorService = f54877o;
             if (scheduledExecutorService == null) {
-                synchronized (f54879p) {
+                synchronized (f54878p) {
                     try {
-                        scheduledExecutorService = f54878o;
+                        scheduledExecutorService = f54877o;
                         if (scheduledExecutorService == null) {
                             scheduledExecutorService = Executors.unconfigurableScheduledExecutorService(Executors.newScheduledThreadPool(1));
-                            f54878o = scheduledExecutorService;
+                            f54877o = scheduledExecutorService;
                         }
                     } finally {
                     }
                 }
             }
-            this.f54890m = scheduledExecutorService;
+            this.f54889m = scheduledExecutorService;
             return;
         }
         StringBuilder sb2 = new StringBuilder(29);
@@ -112,44 +112,44 @@ public final class a {
     }
 
     public final void a(long j3) {
-        this.f54889l.incrementAndGet();
+        this.f54888l.incrementAndGet();
         long j10 = Long.MAX_VALUE;
-        long max = Math.max(Math.min(Long.MAX_VALUE, f54877n), 1L);
+        long max = Math.max(Math.min(Long.MAX_VALUE, f54876n), 1L);
         if (j3 > 0) {
             max = Math.min(j3, max);
         }
-        synchronized (this.f54880a) {
+        synchronized (this.f54879a) {
             try {
                 if (!b()) {
                     this.h = f8.a.f11466a;
-                    this.f54881b.acquire();
-                    this.f54886i.getClass();
+                    this.f54880b.acquire();
+                    this.f54885i.getClass();
                     SystemClock.elapsedRealtime();
                 }
-                this.f54882c++;
-                if (this.f54885g) {
+                this.f54881c++;
+                if (this.f54884g) {
                     TextUtils.isEmpty(null);
                 }
-                b bVar = (b) this.f54888k.get(null);
+                b bVar = (b) this.f54887k.get(null);
                 b bVar2 = bVar;
                 if (bVar == null) {
                     Object obj = new Object();
-                    this.f54888k.put(null, obj);
+                    this.f54887k.put(null, obj);
                     bVar2 = obj;
                 }
-                bVar2.f54891a++;
-                this.f54886i.getClass();
+                bVar2.f54890a++;
+                this.f54885i.getClass();
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (Long.MAX_VALUE - elapsedRealtime > max) {
                     j10 = elapsedRealtime + max;
                 }
-                if (j10 > this.f54883e) {
-                    this.f54883e = j10;
+                if (j10 > this.f54882e) {
+                    this.f54882e = j10;
                     ScheduledFuture scheduledFuture = this.d;
                     if (scheduledFuture != null) {
                         scheduledFuture.cancel(false);
                     }
-                    this.d = this.f54890m.schedule(new dt(this, 28), max, TimeUnit.MILLISECONDS);
+                    this.d = this.f54889m.schedule(new dt(this, 28), max, TimeUnit.MILLISECONDS);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -159,8 +159,8 @@ public final class a {
 
     public final boolean b() {
         boolean z9;
-        synchronized (this.f54880a) {
-            if (this.f54882c > 0) {
+        synchronized (this.f54879a) {
+            if (this.f54881c > 0) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -170,25 +170,25 @@ public final class a {
     }
 
     public final void c() {
-        if (this.f54889l.decrementAndGet() < 0) {
-            Log.e("WakeLock", String.valueOf(this.f54887j).concat(" release without a matched acquire!"));
+        if (this.f54888l.decrementAndGet() < 0) {
+            Log.e("WakeLock", String.valueOf(this.f54886j).concat(" release without a matched acquire!"));
         }
-        synchronized (this.f54880a) {
+        synchronized (this.f54879a) {
             try {
-                if (this.f54885g) {
+                if (this.f54884g) {
                     TextUtils.isEmpty(null);
                 }
-                if (this.f54888k.containsKey(null)) {
-                    b bVar = (b) this.f54888k.get(null);
+                if (this.f54887k.containsKey(null)) {
+                    b bVar = (b) this.f54887k.get(null);
                     if (bVar != null) {
-                        int i7 = bVar.f54891a - 1;
-                        bVar.f54891a = i7;
+                        int i7 = bVar.f54890a - 1;
+                        bVar.f54890a = i7;
                         if (i7 == 0) {
-                            this.f54888k.remove(null);
+                            this.f54887k.remove(null);
                         }
                     }
                 } else {
-                    Log.w("WakeLock", String.valueOf(this.f54887j).concat(" counter does not exist"));
+                    Log.w("WakeLock", String.valueOf(this.f54886j).concat(" counter does not exist"));
                 }
                 e();
             } catch (Throwable th2) {
@@ -198,7 +198,7 @@ public final class a {
     }
 
     public final void d() {
-        HashSet hashSet = this.f54884f;
+        HashSet hashSet = this.f54883f;
         if (!hashSet.isEmpty()) {
             ArrayList arrayList = new ArrayList(hashSet);
             hashSet.clear();
@@ -211,40 +211,40 @@ public final class a {
     }
 
     public final void e() {
-        synchronized (this.f54880a) {
+        synchronized (this.f54879a) {
             try {
                 if (!b()) {
                     return;
                 }
-                if (this.f54885g) {
-                    int i7 = this.f54882c - 1;
-                    this.f54882c = i7;
+                if (this.f54884g) {
+                    int i7 = this.f54881c - 1;
+                    this.f54881c = i7;
                     if (i7 > 0) {
                         return;
                     }
                 } else {
-                    this.f54882c = 0;
+                    this.f54881c = 0;
                 }
                 d();
-                for (b bVar : this.f54888k.values()) {
-                    bVar.f54891a = 0;
+                for (b bVar : this.f54887k.values()) {
+                    bVar.f54890a = 0;
                 }
-                this.f54888k.clear();
+                this.f54887k.clear();
                 ScheduledFuture scheduledFuture = this.d;
                 if (scheduledFuture != null) {
                     scheduledFuture.cancel(false);
                     this.d = null;
-                    this.f54883e = 0L;
+                    this.f54882e = 0L;
                 }
-                if (this.f54881b.isHeld()) {
+                if (this.f54880b.isHeld()) {
                     try {
-                        this.f54881b.release();
+                        this.f54880b.release();
                         if (this.h != null) {
                             this.h = null;
                         }
                     } catch (RuntimeException e10) {
                         if (e10.getClass().equals(RuntimeException.class)) {
-                            Log.e("WakeLock", String.valueOf(this.f54887j).concat(" failed to release!"), e10);
+                            Log.e("WakeLock", String.valueOf(this.f54886j).concat(" failed to release!"), e10);
                             if (this.h != null) {
                                 this.h = null;
                             }
@@ -253,7 +253,7 @@ public final class a {
                         }
                     }
                 } else {
-                    Log.e("WakeLock", String.valueOf(this.f54887j).concat(" should be held!"));
+                    Log.e("WakeLock", String.valueOf(this.f54886j).concat(" should be held!"));
                 }
             } catch (Throwable th2) {
                 throw th2;

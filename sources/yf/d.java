@@ -9,20 +9,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class d implements ls {
-    public final int f59320a;
-    public final String f59321b;
-    public boolean f59322c;
+    public final int f59319a;
+    public final String f59320b;
+    public boolean f59321c;
 
     public d(String str, int i7) {
-        this.f59320a = i7;
-        this.f59321b = str;
+        this.f59319a = i7;
+        this.f59320b = str;
         qs.f(i7).b(this, qs.U1);
         qs.f(i7).b(this, qs.V1);
-        w7.G(i7).i0(false, 50331648, str, true);
+        w7.G(i7).h0(false, 50331648, str, true);
     }
 
     public final void a() {
-        int i7 = this.f59320a;
+        int i7 = this.f59319a;
         qs.f(i7).n(this, qs.U1);
         qs.f(i7).n(this, qs.V1);
     }
@@ -31,7 +31,7 @@ public final class d implements ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == qs.U1) {
             String str = (String) objArr[0];
-            if (!this.f59322c && str.equals(this.f59321b)) {
+            if (!this.f59321c && str.equals(this.f59320b)) {
                 TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
                 TL_account.uploadRingtone uploadringtone = new TL_account.uploadRingtone();
                 uploadringtone.file = inputFile;
@@ -43,7 +43,7 @@ public final class d implements ls {
                 } else {
                     uploadringtone.mime_type = "audio/mpeg";
                 }
-                ConnectionsManager.getInstance(this.f59320a).sendRequest(uploadringtone, new j0(this, 27));
+                ConnectionsManager.getInstance(this.f59319a).sendRequest(uploadringtone, new j0(this, 27));
             }
         }
     }

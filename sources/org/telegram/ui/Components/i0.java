@@ -4,7 +4,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class i0 extends na {
-    public k41 P1;
+    public l41 P1;
     public TLRPC.TL_channelAdminLogEventsFilter Q1;
     public ArrayList R1;
     public a0.h S1;
@@ -22,14 +22,14 @@ public final class i0 extends na {
         this.V1 = false;
         this.W1 = false;
         this.X1 = false;
-        this.f36227r1 = 0.35f;
+        this.f36266r1 = 0.35f;
         N();
-        int i7 = org.telegram.ui.ActionBar.k6.f27939i5;
+        int i7 = org.telegram.ui.ActionBar.k6.f27940i5;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i7, this.I0);
         this.Z1 = w02;
         v0(w02);
         Y0();
-        this.f36230u1 = true;
+        this.f36269u1 = true;
         if (tL_channelAdminLogEventsFilter != null) {
             TLRPC.TL_channelAdminLogEventsFilter tL_channelAdminLogEventsFilter2 = this.Q1;
             tL_channelAdminLogEventsFilter2.join = tL_channelAdminLogEventsFilter.join;
@@ -75,12 +75,12 @@ public final class i0 extends na {
         this.T1 = z9;
         this.P1.O(false);
         v4.k kVar = new v4.k();
-        kVar.f56979m = false;
+        kVar.f56978m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36222k1.setItemAnimator(kVar);
-        this.f36222k1.setOnItemClickListener(new u(this, 1));
+        this.f36261k1.setItemAnimator(kVar);
+        this.f36261k1.setOnItemClickListener(new u(this, 1));
         ah.a aVar = new ah.a(getContext(), this.I0, (pj0) null);
         this.U1 = aVar;
         aVar.setClickable(true);
@@ -92,25 +92,25 @@ public final class i0 extends na {
         dVar.i(org.telegram.messenger.hd.M0(2131751004, null), false, true);
         dVar.setOnClickListener(new h0(this, 0));
         aVar.addView(dVar, c8.ha.r(-1, 48, 87));
-        ViewGroup viewGroup = this.f28615b;
-        int i10 = this.f28645t0;
+        ViewGroup viewGroup = this.f28616b;
+        int i10 = this.f28646t0;
         viewGroup.addView(aVar, c8.ha.f(-2.0f, -1, 87, i10, 0, i10, 0));
-        pj0 pj0Var = this.f36222k1;
-        int i11 = this.f28645t0;
+        pj0 pj0Var = this.f36261k1;
+        int i11 = this.f28646t0;
         pj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(68.0f));
-        this.f36222k1.r1();
+        this.f36261k1.r1();
     }
 
     @Override
     public final boolean G() {
-        return !this.f36222k1.canScrollVertically(-1);
+        return !this.f36261k1.canScrollVertically(-1);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 3), this.I0);
-        this.P1 = k41Var;
-        return k41Var;
+        l41 l41Var = new l41(pj0Var, getContext(), this.f28613a, 0, true, new d(this, 3), this.I0);
+        this.P1 = l41Var;
+        return l41Var;
     }
 
     @Override
@@ -179,12 +179,12 @@ public final class i0 extends na {
                 Object obj = arrayList2.get(i7);
                 i7++;
                 long o4 = org.telegram.messenger.m5.o(((TLRPC.ChannelParticipant) obj).peer);
-                this.S1.k(org.telegram.messenger.qp.s1(this.f28612a).a2(Long.valueOf(o4)), o4);
+                this.S1.k(org.telegram.messenger.qp.s1(this.f28613a).a2(Long.valueOf(o4)), o4);
             }
         }
-        k41 k41Var = this.P1;
-        if (k41Var != null) {
-            k41Var.O(true);
+        l41 l41Var = this.P1;
+        if (l41Var != null) {
+            l41Var.O(true);
         }
     }
 
@@ -198,7 +198,7 @@ public final class i0 extends na {
     public final void s0() {
         try {
             super.s0();
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27939i5, this.I0);
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27940i5, this.I0);
             if (w02 != this.Z1) {
                 this.Z1 = w02;
                 v0(w02);

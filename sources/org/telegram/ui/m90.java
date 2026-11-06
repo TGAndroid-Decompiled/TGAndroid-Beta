@@ -30,7 +30,7 @@ public final class m90 extends w40 {
             }
             if (LaunchActivity.G1 != null && groupCall != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f26969id = groupCall.f26962id;
+                tL_inputGroupCall.f26970id = groupCall.f26963id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
                 org.telegram.ui.Components.voip.y1.g(LaunchActivity.G1, m90Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
             }
@@ -41,7 +41,7 @@ public final class m90 extends w40 {
             if (LaunchActivity.G1 != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                 TLRPC.GroupCall groupCall2 = groupcall.call;
-                tL_inputGroupCall2.f26969id = groupCall2.f26962id;
+                tL_inputGroupCall2.f26970id = groupCall2.f26963id;
                 tL_inputGroupCall2.access_hash = groupCall2.access_hash;
                 org.telegram.ui.Components.voip.y1.g(LaunchActivity.G1, m90Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
             }
@@ -54,10 +54,10 @@ public final class m90 extends w40 {
     public final void s0(HashSet hashSet) {
         if (hashSet.size() == 1) {
             TLRPC.User a22 = getMessagesController().a2((Long) hashSet.iterator().next());
-            TLRPC.UserFull b22 = getMessagesController().b2(a22.f27101id);
+            TLRPC.UserFull b22 = getMessagesController().b2(a22.f27102id);
             if (b22 == null) {
                 TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f27094id = getMessagesController().o1(a22.f27101id);
+                tL_users_getFullUser.f27095id = getMessagesController().o1(a22.f27102id);
                 getConnectionsManager().sendRequest(tL_users_getFullUser, new h50(5, this, a22));
                 return;
             }

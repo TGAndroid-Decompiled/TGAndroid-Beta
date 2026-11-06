@@ -2,14 +2,14 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.RequestDelegate;
 public final class fo implements RequestDelegate {
-    public final int f22420a;
-    public final c1 f22421b;
-    public final int f22422c;
+    public final int f22427a;
+    public final c1 f22428b;
+    public final int f22429c;
 
     public fo(c1 c1Var, int i7, int i10) {
-        this.f22420a = i10;
-        this.f22421b = c1Var;
-        this.f22422c = i7;
+        this.f22427a = i10;
+        this.f22428b = c1Var;
+        this.f22429c = i7;
     }
 
     @Override

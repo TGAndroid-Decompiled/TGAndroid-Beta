@@ -12,30 +12,30 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class oi implements Runnable {
-    public final int f24323a;
-    public final long f24324b;
-    public final int f24325c;
+    public final int f24330a;
+    public final long f24331b;
+    public final int f24332c;
     public final long d;
-    public final int f24326e;
-    public final ch.o0 f24327f;
+    public final int f24333e;
+    public final ch.o0 f24334f;
     public final int h;
-    public final int f24328n;
-    public final int f24329r;
-    public final int f24330s;
-    public final ui f24331w;
+    public final int f24335n;
+    public final int f24336r;
+    public final int f24337s;
+    public final ui f24338w;
 
     public oi(ui uiVar, int i7, long j3, int i10, long j10, int i11, ch.o0 o0Var, int i12, int i13, int i14, boolean z9, int i15) {
-        this.f24331w = uiVar;
-        this.f24323a = i7;
-        this.f24324b = j3;
-        this.f24325c = i10;
+        this.f24338w = uiVar;
+        this.f24330a = i7;
+        this.f24331b = j3;
+        this.f24332c = i10;
         this.d = j10;
-        this.f24326e = i11;
-        this.f24327f = o0Var;
+        this.f24333e = i11;
+        this.f24334f = o0Var;
         this.h = i12;
-        this.f24328n = i13;
-        this.f24329r = i14;
-        this.f24330s = i15;
+        this.f24335n = i13;
+        this.f24336r = i14;
+        this.f24337s = i15;
     }
 
     @Override
@@ -107,10 +107,10 @@ public final class oi implements Runnable {
         SQLitePreparedStatement executeFast;
         int i33;
         oi oiVar = this;
-        int i34 = oiVar.f24323a;
-        int i35 = oiVar.f24328n;
-        long j16 = oiVar.f24324b;
-        ui uiVar2 = oiVar.f24331w;
+        int i34 = oiVar.f24330a;
+        int i35 = oiVar.f24335n;
+        long j16 = oiVar.f24331b;
+        ui uiVar2 = oiVar.f24338w;
         long e10 = uiVar2.getUserConfig().e();
         TLRPC.TL_messages_messages tL_messages_messages4 = new TLRPC.TL_messages_messages();
         boolean z13 = false;
@@ -123,12 +123,12 @@ public final class oi implements Runnable {
                 R = uiVar2.getMessagesStorage().R();
                 C = m5.C(j16);
                 tL_messages_messages2 = tL_messages_messages4;
-                o0Var = oiVar.f24327f;
+                o0Var = oiVar.f24334f;
                 j11 = e10;
                 i17 = oiVar.h;
-                i18 = oiVar.f24325c;
+                i18 = oiVar.f24332c;
                 j12 = oiVar.d;
-                i19 = oiVar.f24326e;
+                i19 = oiVar.f24333e;
             } catch (Exception e11) {
                 e = e11;
                 tL_messages_messages = tL_messages_messages4;
@@ -456,7 +456,7 @@ public final class oi implements Runnable {
                             j14 = j11;
                             TLdeserialize.readAttachPath(byteBufferValue, j14);
                             byteBufferValue.reuse();
-                            TLdeserialize.f26973id = queryFinalized.intValue(1);
+                            TLdeserialize.f26974id = queryFinalized.intValue(1);
                             TLdeserialize.dialog_id = j16;
                             if (m5.C(j16)) {
                                 TLdeserialize.random_id = queryFinalized.longValue(2);
@@ -481,23 +481,23 @@ public final class oi implements Runnable {
                                         tL_messages_messages.users.clear();
                                         a8.f(e);
                                         g0.h3(new k7(oiVar, oiVar, i35, 11));
-                                        int i41 = oiVar.f24328n;
-                                        int i42 = oiVar.f24330s;
-                                        j10 = oiVar.f24324b;
-                                        int i43 = oiVar.f24323a;
+                                        int i41 = oiVar.f24335n;
+                                        int i42 = oiVar.f24337s;
+                                        j10 = oiVar.f24331b;
+                                        int i43 = oiVar.f24330a;
                                         i10 = i41;
                                         i7 = i42;
                                         i15 = i43;
                                         i14 = oiVar.h;
-                                        i13 = oiVar.f24325c;
-                                        i12 = oiVar.f24326e;
+                                        i13 = oiVar.f24332c;
+                                        i12 = oiVar.f24333e;
                                         j3 = oiVar.d;
-                                        i11 = oiVar.f24329r;
+                                        i11 = oiVar.f24336r;
                                         uiVar.u1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z13, i7);
                                     } catch (Throwable th3) {
                                         th = th3;
                                         g0.h3(new k7(oiVar, oiVar, i35, 11));
-                                        uiVar.u1(tL_messages_messages, oiVar.f24324b, oiVar.f24323a, oiVar.h, oiVar.f24325c, oiVar.f24326e, oiVar.d, oiVar.f24329r, oiVar.f24328n, false, oiVar.f24330s);
+                                        uiVar.u1(tL_messages_messages, oiVar.f24331b, oiVar.f24330a, oiVar.h, oiVar.f24332c, oiVar.f24333e, oiVar.d, oiVar.f24336r, oiVar.f24335n, false, oiVar.f24337s);
                                         throw th;
                                     }
                                 } catch (Throwable th4) {
@@ -507,7 +507,7 @@ public final class oi implements Runnable {
                                     uiVar = uiVar2;
                                     i35 = i35;
                                     g0.h3(new k7(oiVar, oiVar, i35, 11));
-                                    uiVar.u1(tL_messages_messages, oiVar.f24324b, oiVar.f24323a, oiVar.h, oiVar.f24325c, oiVar.f24326e, oiVar.d, oiVar.f24329r, oiVar.f24328n, false, oiVar.f24330s);
+                                    uiVar.u1(tL_messages_messages, oiVar.f24331b, oiVar.f24330a, oiVar.h, oiVar.f24332c, oiVar.f24333e, oiVar.d, oiVar.f24336r, oiVar.f24335n, false, oiVar.f24337s);
                                     throw th;
                                 }
                             } else {
@@ -539,18 +539,18 @@ public final class oi implements Runnable {
                         tL_messages_messages.users.clear();
                         a8.f(e);
                         g0.h3(new k7(oiVar, oiVar, i35, 11));
-                        int i412 = oiVar.f24328n;
-                        int i422 = oiVar.f24330s;
-                        j10 = oiVar.f24324b;
-                        int i432 = oiVar.f24323a;
+                        int i412 = oiVar.f24335n;
+                        int i422 = oiVar.f24337s;
+                        j10 = oiVar.f24331b;
+                        int i432 = oiVar.f24330a;
                         i10 = i412;
                         i7 = i422;
                         i15 = i432;
                         i14 = oiVar.h;
-                        i13 = oiVar.f24325c;
-                        i12 = oiVar.f24326e;
+                        i13 = oiVar.f24332c;
+                        i12 = oiVar.f24333e;
                         j3 = oiVar.d;
-                        i11 = oiVar.f24329r;
+                        i11 = oiVar.f24336r;
                         uiVar.u1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z13, i7);
                     } catch (Throwable th5) {
                         th = th5;
@@ -560,7 +560,7 @@ public final class oi implements Runnable {
                         uiVar = uiVar2;
                         i35 = i35;
                         g0.h3(new k7(oiVar, oiVar, i35, 11));
-                        uiVar.u1(tL_messages_messages, oiVar.f24324b, oiVar.f24323a, oiVar.h, oiVar.f24325c, oiVar.f24326e, oiVar.d, oiVar.f24329r, oiVar.f24328n, false, oiVar.f24330s);
+                        uiVar.u1(tL_messages_messages, oiVar.f24331b, oiVar.f24330a, oiVar.h, oiVar.f24332c, oiVar.f24333e, oiVar.d, oiVar.f24336r, oiVar.f24335n, false, oiVar.f24337s);
                         throw th;
                     }
                 }
@@ -602,7 +602,7 @@ public final class oi implements Runnable {
                                     TLRPC.Message TLdeserialize2 = TLRPC.Message.TLdeserialize(byteBufferValue2, byteBufferValue2.readInt32(false), false);
                                     TLdeserialize2.readAttachPath(byteBufferValue2, j18);
                                     byteBufferValue2.reuse();
-                                    TLdeserialize2.f26973id = intValue2;
+                                    TLdeserialize2.f26974id = intValue2;
                                     long j19 = j13;
                                     TLdeserialize2.dialog_id = j19;
                                     arrayList9.add(TLdeserialize2);
@@ -638,18 +638,18 @@ public final class oi implements Runnable {
                     z13 = z10;
                 }
                 g0.h3(new k7(this, this, i35, 11));
-                int i45 = this.f24328n;
-                int i46 = this.f24330s;
-                j10 = this.f24324b;
-                int i47 = this.f24323a;
+                int i45 = this.f24335n;
+                int i46 = this.f24337s;
+                j10 = this.f24331b;
+                int i47 = this.f24330a;
                 i10 = i45;
                 i7 = i46;
                 i14 = this.h;
-                i13 = this.f24325c;
+                i13 = this.f24332c;
                 tL_messages_messages = tL_messages_messages3;
-                i12 = this.f24326e;
+                i12 = this.f24333e;
                 j3 = this.d;
-                i11 = this.f24329r;
+                i11 = this.f24336r;
                 uiVar = uiVar2;
                 i15 = i47;
             } catch (Exception e14) {
@@ -663,18 +663,18 @@ public final class oi implements Runnable {
                 tL_messages_messages.users.clear();
                 a8.f(e);
                 g0.h3(new k7(oiVar, oiVar, i35, 11));
-                int i4122 = oiVar.f24328n;
-                int i4222 = oiVar.f24330s;
-                j10 = oiVar.f24324b;
-                int i4322 = oiVar.f24323a;
+                int i4122 = oiVar.f24335n;
+                int i4222 = oiVar.f24337s;
+                j10 = oiVar.f24331b;
+                int i4322 = oiVar.f24330a;
                 i10 = i4122;
                 i7 = i4222;
                 i15 = i4322;
                 i14 = oiVar.h;
-                i13 = oiVar.f24325c;
-                i12 = oiVar.f24326e;
+                i13 = oiVar.f24332c;
+                i12 = oiVar.f24333e;
                 j3 = oiVar.d;
-                i11 = oiVar.f24329r;
+                i11 = oiVar.f24336r;
                 uiVar.u1(tL_messages_messages, j10, i15, i14, i13, i12, j3, i11, i10, z13, i7);
             } catch (Throwable th6) {
                 th = th6;
@@ -683,7 +683,7 @@ public final class oi implements Runnable {
                 i35 = i35;
                 tL_messages_messages = tL_messages_messages2;
                 g0.h3(new k7(oiVar, oiVar, i35, 11));
-                uiVar.u1(tL_messages_messages, oiVar.f24324b, oiVar.f24323a, oiVar.h, oiVar.f24325c, oiVar.f24326e, oiVar.d, oiVar.f24329r, oiVar.f24328n, false, oiVar.f24330s);
+                uiVar.u1(tL_messages_messages, oiVar.f24331b, oiVar.f24330a, oiVar.h, oiVar.f24332c, oiVar.f24333e, oiVar.d, oiVar.f24336r, oiVar.f24335n, false, oiVar.f24337s);
                 throw th;
             }
         } catch (Exception e15) {

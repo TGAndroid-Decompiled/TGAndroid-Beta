@@ -67,7 +67,7 @@ public final class y4 implements ls {
             } else {
                 z9 = false;
             }
-            G.i0(false, i7, str2, z9);
+            G.h0(false, i7, str2, z9);
         }
     }
 
@@ -99,7 +99,7 @@ public final class y4 implements ls {
             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
             tL_documentAttributeVideo.supports_streaming = true;
             tL_documentAttributeVideo.duration = this.f19025n;
-            tL_documentAttributeVideo.f26959w = this.f19024f;
+            tL_documentAttributeVideo.f26960w = this.f19024f;
             tL_documentAttributeVideo.h = this.h;
             tL_inputMediaUploadedDocument.attributes.add(tL_documentAttributeVideo);
             tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
@@ -195,7 +195,7 @@ public final class y4 implements ls {
                         this.G = inputFile2;
                         this.H = true;
                         this.E = this.F;
-                        w7.G(this.f19020a).i0(false, 16777216, this.E, true);
+                        w7.G(this.f19020a).h0(false, 16777216, this.E, true);
                     } else if (this.f19023e && this.H) {
                         c(this.G, inputFile2);
                     } else {

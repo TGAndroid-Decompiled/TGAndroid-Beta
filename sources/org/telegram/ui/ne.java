@@ -4,24 +4,24 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.tgnet.tl.TL_stories;
 public final class ne implements org.telegram.messenger.c20 {
-    public final int f48033a;
-    public final an f48034b;
+    public final int f48032a;
+    public final an f48033b;
 
     public ne(an anVar, int i7) {
-        this.f48033a = i7;
-        this.f48034b = anVar;
+        this.f48032a = i7;
+        this.f48033b = anVar;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f48033a;
-        an anVar = this.f48034b;
+        int i7 = this.f48032a;
+        an anVar = this.f48033b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.nj njVar = (org.telegram.messenger.nj) obj;
-                an anVar2 = this.f48034b;
-                anVar2.f44005w5 = njVar;
-                anVar2.F5.f23237k.suggested_post = njVar.c();
+                an anVar2 = this.f48033b;
+                anVar2.f44004w5 = njVar;
+                anVar2.F5.f23244k.suggested_post = njVar.c();
                 anVar2.cc(true, null, anVar2.F5, null, null, true, 0, null, false, 0L, null, true);
                 return;
             case 1:
@@ -49,7 +49,7 @@ public final class ne implements org.telegram.messenger.c20 {
                     boolean Y9 = anVar.Y9();
                     if (q1Var.X6 != Y9) {
                         q1Var.X6 = Y9;
-                        anVar.f44038z0.getClass();
+                        anVar.f44037z0.getClass();
                         int R = RecyclerView.R(view);
                         q1Var.E6 = true;
                         q1Var.forceLayout();
@@ -68,13 +68,13 @@ public final class ne implements org.telegram.messenger.c20 {
                     return;
                 } else if (view instanceof org.telegram.ui.Cells.t0) {
                     org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) view;
-                    t0Var.f30302e0 = anVar.O9();
-                    t0Var.f30315i0 = anVar.Z9();
+                    t0Var.f30303e0 = anVar.O9();
+                    t0Var.f30316i0 = anVar.Z9();
                     anVar.Y9();
                     anVar.k9();
                     int l93 = anVar.l9();
-                    if (t0Var.f30318j0 != l93) {
-                        t0Var.f30318j0 = l93;
+                    if (t0Var.f30319j0 != l93) {
+                        t0Var.f30319j0 = l93;
                         t0Var.invalidate();
                         return;
                     }
@@ -95,30 +95,30 @@ public final class ne implements org.telegram.messenger.c20 {
                 TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                 if (tL_premium_boostsStatus != null) {
                     anVar.R1 = tL_premium_boostsStatus;
-                    anVar.getMessagesController().G0().b(anVar.f43843j6, tL_premium_boostsStatus, new ne(anVar, 4));
+                    anVar.getMessagesController().G0().b(anVar.f43842j6, tL_premium_boostsStatus, new ne(anVar, 4));
                     return;
                 }
                 return;
             case 7:
                 Long l10 = (Long) obj;
-                org.telegram.ui.Components.l11 l11Var = anVar.f43789f2;
-                if (l11Var != null) {
-                    l11Var.n(l10.longValue(), true);
+                org.telegram.ui.Components.m11 m11Var = anVar.f43788f2;
+                if (m11Var != null) {
+                    m11Var.n(l10.longValue(), true);
                     return;
                 }
                 return;
             case 8:
-                cr crVar = anVar.f43773e0;
-                crVar.f44874c.add(((org.telegram.ui.ActionBar.r0) obj).getIconView());
+                cr crVar = anVar.f43772e0;
+                crVar.f44873c.add(((org.telegram.ui.ActionBar.r0) obj).getIconView());
                 return;
             case 9:
                 int intValue = ((Integer) obj).intValue();
-                int i10 = an.f43707id;
+                int i10 = an.f43706id;
                 anVar.ab(intValue);
                 return;
             default:
                 int intValue2 = ((Integer) obj).intValue();
-                int i11 = an.f43707id;
+                int i11 = an.f43706id;
                 anVar.ab(intValue2);
                 return;
         }

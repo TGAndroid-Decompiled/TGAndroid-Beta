@@ -1,22 +1,22 @@
 package x2;
 public final class c implements c1 {
-    public final c1 f58208a;
-    public boolean f58209b;
-    public final d f58210c;
+    public final c1 f58207a;
+    public boolean f58208b;
+    public final d f58209c;
 
     public c(d dVar, c1 c1Var) {
-        this.f58210c = dVar;
-        this.f58208a = c1Var;
+        this.f58209c = dVar;
+        this.f58207a = c1Var;
     }
 
     @Override
     public final void a() {
-        this.f58208a.a();
+        this.f58207a.a();
     }
 
     @Override
     public final boolean f() {
-        if (!this.f58210c.f() && this.f58208a.f()) {
+        if (!this.f58209c.f() && this.f58207a.f()) {
             return true;
         }
         return false;
@@ -24,31 +24,31 @@ public final class c implements c1 {
 
     @Override
     public final int l(long j3) {
-        if (this.f58210c.f()) {
+        if (this.f58209c.f()) {
             return -3;
         }
-        return this.f58208a.l(j3);
+        return this.f58207a.l(j3);
     }
 
     @Override
     public final int m(wf.b bVar, k2.h hVar, int i7) {
-        d dVar = this.f58210c;
+        d dVar = this.f58209c;
         if (dVar.f()) {
             return -3;
         }
-        if (this.f58209b) {
+        if (this.f58208b) {
             hVar.setFlags(4);
             return -4;
         }
         long p10 = dVar.p();
-        int m10 = this.f58208a.m(bVar, hVar, i7);
-        if (dVar.f58220e != -9223372036854775807L && m10 != -3) {
-            dVar.f58220e = -9223372036854775807L;
+        int m10 = this.f58207a.m(bVar, hVar, i7);
+        if (dVar.f58219e != -9223372036854775807L && m10 != -3) {
+            dVar.f58219e = -9223372036854775807L;
         }
         if (m10 == -5) {
-            long j3 = dVar.f58221f;
+            long j3 = dVar.f58220f;
             long j10 = dVar.h;
-            e2.u uVar = (e2.u) bVar.f57564c;
+            e2.u uVar = (e2.u) bVar.f57563c;
             uVar.getClass();
             int i10 = uVar.O;
             int i11 = uVar.N;
@@ -62,7 +62,7 @@ public final class c implements c1 {
                 e2.t a10 = uVar.a();
                 a10.M = i11;
                 a10.N = i10;
-                bVar.f57564c = new e2.u(a10);
+                bVar.f57563c = new e2.u(a10);
             }
             return -5;
         }
@@ -70,7 +70,7 @@ public final class c implements c1 {
         if (j11 != Long.MIN_VALUE && ((m10 == -4 && hVar.f17173e >= j11) || (m10 == -3 && p10 == Long.MIN_VALUE && !hVar.d))) {
             hVar.clear();
             hVar.setFlags(4);
-            this.f58209b = true;
+            this.f58208b = true;
             return -4;
         }
         return m10;

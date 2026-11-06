@@ -11,27 +11,27 @@ import org.telegram.messenger.oc;
 import org.telegram.messenger.pc;
 import org.telegram.ui.Components.gd0;
 public final class e9 implements pc, oc, gd0 {
-    public final Object f29076a;
-    public final Object f29077b;
+    public final Object f29077a;
+    public final Object f29078b;
 
     public e9(Object obj, Object obj2) {
-        this.f29076a = obj;
-        this.f29077b = obj2;
+        this.f29077a = obj;
+        this.f29078b = obj2;
     }
 
     @Override
     public void a(String str) {
-        f9 f9Var = (f9) this.f29076a;
-        f9Var.f29129b = str;
-        f9Var.b((Menu) this.f29077b);
+        f9 f9Var = (f9) this.f29077a;
+        f9Var.f29130b = str;
+        f9Var.b((Menu) this.f29078b);
     }
 
     @Override
     public void l(int i7, int i10) {
-        s5 s5Var = (s5) this.f29076a;
-        m.f3 f3Var = s5Var.f30262e;
-        TextView textView = s5Var.f30260b;
-        ((gd0) this.f29077b).l(i7, i10);
+        s5 s5Var = (s5) this.f29077a;
+        m.f3 f3Var = s5Var.f30263e;
+        TextView textView = s5Var.f30261b;
+        ((gd0) this.f29078b).l(i7, i10);
         if (i10 > 0) {
             textView.setText("+" + i10);
         } else {
@@ -46,7 +46,7 @@ public final class e9 implements pc, oc, gd0 {
             AnimatorSet animatorSet2 = new AnimatorSet();
             s5Var.d = animatorSet2;
             Property property = View.ALPHA;
-            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, property, 1.0f), ObjectAnimator.ofFloat(s5Var.f30259a, property, 0.0f));
+            animatorSet2.playTogether(ObjectAnimator.ofFloat(textView, property, 1.0f), ObjectAnimator.ofFloat(s5Var.f30260a, property, 0.0f));
             s5Var.d.setDuration(250L);
             s5Var.d.setInterpolator(new DecelerateInterpolator());
             s5Var.d.addListener(new m.a(s5Var, 26));
@@ -59,10 +59,10 @@ public final class e9 implements pc, oc, gd0 {
 
     @Override
     public void r(Exception exc) {
-        f9 f9Var = (f9) this.f29076a;
+        f9 f9Var = (f9) this.f29077a;
         org.telegram.messenger.a8.d("mlkit: failed to detect language in selection");
         org.telegram.messenger.a8.g(exc, true);
-        f9Var.f29129b = null;
-        f9Var.b((Menu) this.f29077b);
+        f9Var.f29130b = null;
+        f9Var.b((Menu) this.f29078b);
     }
 }

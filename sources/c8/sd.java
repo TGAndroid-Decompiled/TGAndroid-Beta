@@ -1,15 +1,22 @@
 package c8;
-
-import java.lang.ref.Reference;
-import java.util.ArrayList;
 public abstract class sd {
-    public static void a(ArrayList arrayList, Object obj) {
-        for (int size = arrayList.size() - 1; size >= 0; size--) {
-            Object obj2 = ((Reference) arrayList.get(size)).get();
-            if (obj2 == null || obj2 == obj) {
-                arrayList.remove(size);
-                return;
-            }
+    public static void a(StringBuilder sb2, Object obj, rd.l lVar) {
+        boolean z9;
+        if (lVar != null) {
+            sb2.append((CharSequence) lVar.invoke(obj));
+            return;
+        }
+        if (obj == null) {
+            z9 = true;
+        } else {
+            z9 = obj instanceof CharSequence;
+        }
+        if (z9) {
+            sb2.append((CharSequence) obj);
+        } else if (obj instanceof Character) {
+            sb2.append(((Character) obj).charValue());
+        } else {
+            sb2.append((CharSequence) obj.toString());
         }
     }
 }

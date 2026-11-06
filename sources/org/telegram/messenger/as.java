@@ -69,7 +69,7 @@ public abstract class as {
                     if (str3.equalsIgnoreCase("x86")) {
                         str = "x86";
                     } else if (!str3.equalsIgnoreCase("mips")) {
-                        if (r2.f25191a) {
+                        if (r2.f25199a) {
                             a8.d("Unsupported arch: ".concat(str3));
                         }
                     }
@@ -110,7 +110,7 @@ public abstract class as {
     public static boolean g() {
         try {
             Class cls = Integer.TYPE;
-            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) t0.f25555b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), t0.f25555b.getPackageName())).intValue() == 0) {
+            if (((Integer) AppOpsManager.class.getMethod("checkOpNoThrow", cls, cls, String.class).invoke((AppOpsManager) t0.f25563b.getSystemService("appops"), 10020, Integer.valueOf(Process.myUid()), t0.f25563b.getPackageName())).intValue() == 0) {
                 return true;
             }
             return false;

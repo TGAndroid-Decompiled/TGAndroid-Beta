@@ -58,7 +58,7 @@ public class AnimatedFileDrawableStream implements j7 {
                     countDownLatch.countDown();
                     this.f21152b = null;
                     if (z9 && !this.h && !this.f21159w) {
-                        w7.G(this.f21155f).a0(this.f21153c, false, true);
+                        w7.G(this.f21155f).Z(this.f21153c, false, true);
                     }
                 }
                 Object obj = this.f21154e;
@@ -70,7 +70,7 @@ public class AnimatedFileDrawableStream implements j7 {
                     int i7 = 0;
                     while (true) {
                         if (i7 < arrayList.size()) {
-                            if (((ij) arrayList.get(i7)).f23237k.f26973id == f12) {
+                            if (((ij) arrayList.get(i7)).f23244k.f26974id == f12) {
                                 z10 = true;
                                 break;
                             }
@@ -99,7 +99,7 @@ public class AnimatedFileDrawableStream implements j7 {
         w7.G(i7).f(this.f21153c);
         hc hcVar = this.d;
         if (hcVar != null) {
-            w7.G(i7).e(null, null, null, hcVar.f22856f, "mp4", null);
+            w7.G(i7).e(null, null, null, hcVar.f22863f, "mp4", null);
         }
     }
 
@@ -230,7 +230,7 @@ public class AnimatedFileDrawableStream implements j7 {
                                             }
                                         }
                                         if (!this.f21159w) {
-                                            w7.G(this.f21155f).c0(this.f21153c, i12, z10);
+                                            w7.G(this.f21155f).b0(this.f21153c, i12, z10);
                                         }
                                         CountDownLatch countDownLatch3 = this.f21152b;
                                         if (countDownLatch3 != null) {

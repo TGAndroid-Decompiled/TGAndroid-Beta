@@ -20,12 +20,12 @@ public final class l {
 
     public final int a(ri.a aVar) {
         if (aVar instanceof ri.c) {
-            return ((ri.c) aVar).f54472b;
+            return ((ri.c) aVar).f54471b;
         }
         if (aVar instanceof ri.b) {
             return ((Integer) this.d.n(((ri.b) aVar).d)).intValue();
         } else if (aVar instanceof ri.g) {
-            return a(((ri.g) aVar).f54486a);
+            return a(((ri.g) aVar).f54485a);
         } else {
             return 0;
         }
@@ -33,12 +33,12 @@ public final class l {
 
     public final int b(ri.a aVar) {
         if (aVar instanceof ri.c) {
-            return ((ri.c) aVar).f54472b;
+            return ((ri.c) aVar).f54471b;
         }
         if (aVar instanceof ri.b) {
             return ((Integer) this.f17065e.n(((ri.b) aVar).d)).intValue();
         } else if (aVar instanceof ri.g) {
-            return b(((ri.g) aVar).f54486a);
+            return b(((ri.g) aVar).f54485a);
         } else {
             return 0;
         }
@@ -55,11 +55,11 @@ public final class l {
         ri.b bVar = this.f17063b;
         if (z10) {
             qa0 qa0Var = (qa0) drawable;
-            if (qa0Var.f37241q < 0) {
+            if (qa0Var.f37236q < 0) {
                 cVar.a(-16777216);
                 return cVar;
             }
-            bVar.a(qa0Var.f37235k);
+            bVar.a(qa0Var.f37230k);
             return bVar;
         }
         boolean z11 = drawable instanceof BitmapDrawable;
@@ -76,13 +76,13 @@ public final class l {
                 float f11 = f10 / 1.0f;
                 int round = Math.round(f11);
                 int round2 = Math.round(f11);
-                Bitmap bitmap = bVar.f54469f;
-                if (bitmap != null && !bitmap.isRecycled() && bVar.f54469f.getWidth() == round2 && bVar.f54469f.getHeight() == round2) {
-                    bVar.f54469f.eraseColor(0);
+                Bitmap bitmap = bVar.f54468f;
+                if (bitmap != null && !bitmap.isRecycled() && bVar.f54468f.getWidth() == round2 && bVar.f54468f.getHeight() == round2) {
+                    bVar.f54468f.eraseColor(0);
                 } else {
-                    bVar.f54469f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
+                    bVar.f54468f = Bitmap.createBitmap(round, round2, Bitmap.Config.ARGB_8888);
                 }
-                Canvas canvas = new Canvas(bVar.f54469f);
+                Canvas canvas = new Canvas(bVar.f54468f);
                 canvas.scale(f10 / round, 160 / round2);
                 Rect bounds = drawable.getBounds();
                 Rect rect = f17061f;
@@ -90,8 +90,8 @@ public final class l {
                 drawable.setBounds(0, 0, 120, 160);
                 drawable.draw(canvas);
                 drawable.setBounds(rect);
-                bVar.a(bVar.f54469f);
-                bVar.f54469f = null;
+                bVar.a(bVar.f54468f);
+                bVar.f54468f = null;
                 bVar.a((Bitmap) mVar.n(bVar.d));
             }
             return bVar;

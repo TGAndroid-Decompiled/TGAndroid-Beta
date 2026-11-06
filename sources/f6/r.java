@@ -2,7 +2,7 @@ package f6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.Arrays;
 import org.json.JSONObject;
 public final class r extends r6.a {
@@ -44,9 +44,9 @@ public final class r extends r6.a {
             jSONObject = jSONObject2.toString();
         }
         this.f11321b = jSONObject;
-        int r10 = wb.r(parcel, 20293);
-        wb.k(parcel, 2, this.f11320a, i7);
-        wb.l(parcel, 3, this.f11321b);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.k(parcel, 2, this.f11320a, i7);
+        xb.l(parcel, 3, this.f11321b);
+        xb.s(parcel, r10);
     }
 }

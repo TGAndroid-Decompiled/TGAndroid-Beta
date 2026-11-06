@@ -1,9 +1,9 @@
 package org.telegram.messenger;
 public final class ot implements id.c {
-    public final ht f24371a;
+    public final ht f24378a;
 
     public ot(ht htVar) {
-        this.f24371a = htVar;
+        this.f24378a = htVar;
     }
 
     @Override
@@ -14,7 +14,7 @@ public final class ot implements id.c {
     @Override
     public final void resumeWith(Object obj) {
         boolean z9 = obj instanceof gd.f;
-        ht htVar = this.f24371a;
+        ht htVar = this.f24378a;
         if (z9) {
             htVar.a(null, ((gd.f) obj).f13820a);
         } else {

@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.DialogInterface;
 import android.view.View;
 public final class p0 implements DialogInterface.OnDismissListener {
-    public final int f36705a;
-    public final Object f36706b;
+    public final int f36717a;
+    public final Object f36718b;
 
     public p0(Object obj, int i7) {
-        this.f36705a = i7;
-        this.f36706b = obj;
+        this.f36717a = i7;
+        this.f36718b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i7 = this.f36705a;
-        Object obj = this.f36706b;
+        int i7 = this.f36717a;
+        Object obj = this.f36718b;
         switch (i7) {
             case 0:
                 ((org.telegram.ui.xf) obj).run();
@@ -29,7 +29,7 @@ public final class p0 implements DialogInterface.OnDismissListener {
                 ((ChatActivityEnterView) obj).L0 = null;
                 return;
             case 4:
-                ((di) obj).f32973w4 = false;
+                ((di) obj).f33002w4 = false;
                 return;
             case 5:
                 ik ikVar = (ik) obj;
@@ -53,12 +53,12 @@ public final class p0 implements DialogInterface.OnDismissListener {
                 org.telegram.messenger.g0.v1((kl0) obj);
                 return;
             default:
-                ThemeEditorView themeEditorView = ((dz0) obj).d;
-                themeEditorView.f31573n = null;
+                ThemeEditorView themeEditorView = ((ez0) obj).d;
+                themeEditorView.f31574n = null;
                 if (themeEditorView.d != null) {
-                    org.telegram.messenger.g0.y3(themeEditorView.f31569j, themeEditorView.f31564c, themeEditorView.f31568i);
+                    org.telegram.messenger.g0.y3(themeEditorView.f31570j, themeEditorView.f31565c, themeEditorView.f31569i);
                     try {
-                        themeEditorView.f31569j.addView(themeEditorView.f31564c, themeEditorView.f31568i);
+                        themeEditorView.f31570j.addView(themeEditorView.f31565c, themeEditorView.f31569i);
                         themeEditorView.e();
                         return;
                     } catch (Exception unused) {

@@ -6,21 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import java.util.Random;
 public final class bp {
-    public float f32243g;
-    public float f32246k;
-    public final Path f32238a = new Path();
-    public final float[] f32239b = new float[4];
-    public final float[] f32240c = new float[4];
+    public float f32277g;
+    public float f32280k;
+    public final Path f32272a = new Path();
+    public final float[] f32273b = new float[4];
+    public final float[] f32274c = new float[4];
     public final Matrix d = new Matrix();
     public final float h = 1.0f;
-    public final Random f32244i = new Random();
-    public final int f32242f = 6;
-    public final float f32241e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f32245j = new float[6];
+    public final Random f32278i = new Random();
+    public final int f32276f = 6;
+    public final float f32275e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
+    public final float[] f32279j = new float[6];
 
     public bp() {
-        for (int i7 = 0; i7 < this.f32242f; i7++) {
-            this.f32245j[i7] = (this.f32244i.nextInt() % 100) / 100.0f;
+        for (int i7 = 0; i7 < this.f32276f; i7++) {
+            this.f32279j[i7] = (this.f32278i.nextInt() % 100) / 100.0f;
         }
     }
 
@@ -29,17 +29,17 @@ public final class bp {
         int i7;
         float f13;
         bp bpVar = this;
-        float f14 = bpVar.f32243g;
+        float f14 = bpVar.f32277g;
         float f15 = (f14 - 0.0f) - 0.0f;
         float f16 = f14 + 0.0f + 0.0f;
         float max = Math.max(f15, f16);
-        float f17 = bpVar.f32241e;
+        float f17 = bpVar.f32275e;
         float f18 = max * f17 * bpVar.h;
-        Path path = bpVar.f32238a;
+        Path path = bpVar.f32272a;
         path.reset();
         int i10 = 0;
         while (true) {
-            int i11 = bpVar.f32242f;
+            int i11 = bpVar.f32276f;
             if (i10 < i11) {
                 Matrix matrix = bpVar.d;
                 matrix.reset();
@@ -50,10 +50,10 @@ public final class bp {
                 } else {
                     f12 = f16;
                 }
-                float f20 = bpVar.f32246k;
-                float[] fArr = bpVar.f32245j;
+                float f20 = bpVar.f32280k;
+                float[] fArr = bpVar.f32279j;
                 float f21 = (fArr[i10] * f20) + f12;
-                float[] fArr2 = bpVar.f32239b;
+                float[] fArr2 = bpVar.f32273b;
                 fArr2[0] = f10;
                 float f22 = f11 - f21;
                 fArr2[1] = f22;
@@ -72,8 +72,8 @@ public final class bp {
                 } else {
                     f13 = f23;
                 }
-                float f24 = bpVar.f32246k;
-                float[] fArr3 = bpVar.f32240c;
+                float f24 = bpVar.f32280k;
+                float[] fArr3 = bpVar.f32274c;
                 fArr3[0] = f10;
                 float f25 = f11 - ((fArr[i7] * f24) + f13);
                 fArr3[1] = f25;

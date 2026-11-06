@@ -10,19 +10,19 @@ import java.util.HashSet;
 import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 public final class ja extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.Components.l9 f29380a;
-    public final TextView f29381b;
-    public TLRPC.TL_forumTopic f29382c;
+    public final org.telegram.ui.Components.l9 f29381a;
+    public final TextView f29382b;
+    public TLRPC.TL_forumTopic f29383c;
     public boolean d;
 
     public ja(Context context) {
         super(context);
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
-        this.f29380a = l9Var;
+        this.f29381a = l9Var;
         TextView textView = new TextView(context);
-        this.f29381b = textView;
+        this.f29382b = textView;
         org.telegram.messenger.k5.n(textView, org.telegram.ui.ActionBar.k6.G6, null, 1, 16.0f);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             addView(l9Var, c8.ha.d(30, 30.0f, 21, 12.0f, 0.0f, 12.0f, 0.0f));
             addView(textView, c8.ha.d(-1, -2.0f, 21, 12.0f, 0.0f, 56.0f, 0.0f));
             return;
@@ -36,16 +36,16 @@ public final class ja extends FrameLayout implements org.telegram.ui.ActionBar.a
         super.dispatchDraw(canvas);
         if (this.d) {
             int L = org.telegram.messenger.g0.L(56.0f);
-            if (hd.f22871a0) {
-                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - L, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
+            if (hd.f22878a0) {
+                canvas.drawLine(0.0f, getMeasuredHeight() - 1, getMeasuredWidth() - L, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
             } else {
-                canvas.drawLine(L, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
+                canvas.drawLine(L, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27972k0);
             }
         }
     }
 
     public TLRPC.TL_forumTopic getTopic() {
-        return this.f29382c;
+        return this.f29383c;
     }
 
     @Override
@@ -54,28 +54,28 @@ public final class ja extends FrameLayout implements org.telegram.ui.ActionBar.a
     }
 
     public void setTopic(TLRPC.TL_forumTopic tL_forumTopic) {
-        this.f29382c = tL_forumTopic;
+        this.f29383c = tL_forumTopic;
         boolean isEmpty = TextUtils.isEmpty(tL_forumTopic.searchQuery);
-        TextView textView = this.f29381b;
+        TextView textView = this.f29382b;
         if (isEmpty) {
             textView.setText(org.telegram.messenger.g0.D2(tL_forumTopic.title));
         } else {
             textView.setText(org.telegram.messenger.g0.w1(org.telegram.messenger.g0.D2(tL_forumTopic.title), tL_forumTopic.searchQuery, null));
         }
-        org.telegram.ui.Components.l9 l9Var = this.f29380a;
+        org.telegram.ui.Components.l9 l9Var = this.f29381a;
         qg.d.p(l9Var, tL_forumTopic, false, false, null);
         if (l9Var != null && l9Var.getImageReceiver() != null && (l9Var.getImageReceiver().t() instanceof qg.c)) {
-            ((qg.c) l9Var.getImageReceiver().t()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27833c9, false));
+            ((qg.c) l9Var.getImageReceiver().t()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27834c9, false));
         }
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.l9 l9Var = this.f29380a;
+        org.telegram.ui.Components.l9 l9Var = this.f29381a;
         if (l9Var != null) {
             try {
                 if (l9Var.getImageReceiver() != null && (l9Var.getImageReceiver().t() instanceof qg.c)) {
-                    ((qg.c) l9Var.getImageReceiver().t()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27833c9, false));
+                    ((qg.c) l9Var.getImageReceiver().t()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27834c9, false));
                     l9Var.invalidate();
                 }
             } catch (Exception e10) {

@@ -18,13 +18,13 @@ public final class ee extends jg {
     public final void draw(Canvas canvas) {
         Drawable drawable;
         ChatActivityEnterView chatActivityEnterView = this.G;
-        if (chatActivityEnterView.f31010a1) {
+        if (chatActivityEnterView.f31011a1) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             Rect rect = this.F;
             rect.set(0, 0, measuredWidth, measuredHeight);
             rect.inset(org.telegram.messenger.g0.L(7.5f), org.telegram.messenger.g0.L(7.5f));
-            if (getCurrentState() == hg.f34274b) {
+            if (getCurrentState() == hg.f34312b) {
                 drawable = chatActivityEnterView.O3;
             } else {
                 drawable = chatActivityEnterView.N3;

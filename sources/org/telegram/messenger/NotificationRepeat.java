@@ -12,7 +12,7 @@ public class NotificationRepeat extends IntentService {
     @Override
     public final void onHandleIntent(Intent intent) {
         if (intent != null) {
-            int intExtra = intent.getIntExtra("currentAccount", p10.f24459s0);
+            int intExtra = intent.getIntExtra("currentAccount", p10.f24467s0);
             if (!p10.r(intExtra)) {
                 return;
             }

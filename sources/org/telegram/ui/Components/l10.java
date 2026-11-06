@@ -8,16 +8,16 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class l10 implements Runnable {
-    public final int f35476a;
+    public final int f35465a;
 
     public l10(int i7) {
-        this.f35476a = i7;
+        this.f35465a = i7;
     }
 
     @Override
     public final void run() {
         hc a02;
-        switch (this.f35476a) {
+        switch (this.f35465a) {
             case 0:
                 if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().isMicMute()) {
                     VoIPService.getSharedInstance().setMicMute(false, true, false);
@@ -34,26 +34,26 @@ public final class l10 implements Runnable {
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != 0) {
                     ?? obj = new Object();
-                    obj.f27420a = true;
+                    obj.f27421a = true;
                     Q.showAsSheet(new PremiumPreviewFragment(0, "noncontacts"), obj);
                     return;
                 }
                 return;
             case 4:
-                int i7 = my0.f36098f;
+                int i7 = ny0.f36451f;
                 return;
             case 5:
                 SharedPreferences.Editor edit = org.telegram.messenger.qp.e1().edit();
-                cz0.f32725f = Boolean.TRUE;
+                dz0.f33097f = Boolean.TRUE;
                 edit.putBoolean("nothanos", true).apply();
                 return;
             case 6:
                 SharedPreferences.Editor edit2 = org.telegram.messenger.qp.e1().edit();
-                cz0.f32725f = Boolean.TRUE;
+                dz0.f33097f = Boolean.TRUE;
                 edit2.putBoolean("nothanos", true).apply();
                 return;
             case 7:
-                int i10 = l11.f35477l0;
+                int i10 = m11.f35814l0;
                 return;
             case 8:
                 org.telegram.messenger.vv.h();
@@ -77,7 +77,7 @@ public final class l10 implements Runnable {
                 di.w5.I0();
                 return;
             case 15:
-                org.telegram.ui.c40 c40Var = org.telegram.ui.c40.f44540u5;
+                org.telegram.ui.c40 c40Var = org.telegram.ui.c40.f44539u5;
                 if (c40Var != null) {
                     c40Var.show();
                     return;
@@ -121,7 +121,7 @@ public final class l10 implements Runnable {
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null && (a02 = hc.a0(T)) != null) {
                     cc I = a02.I(2131624091, org.telegram.messenger.hd.M0(2131746223, null), org.telegram.messenger.hd.M0(2131746186, null));
-                    I.f32527j = 5000;
+                    I.f32514j = 5000;
                     I.j();
                     return;
                 }
@@ -143,7 +143,7 @@ public final class l10 implements Runnable {
     }
 
     public l10(Object obj, int i7) {
-        this.f35476a = i7;
+        this.f35465a = i7;
     }
 
     private final void a() {

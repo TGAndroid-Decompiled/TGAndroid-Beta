@@ -12,28 +12,28 @@ import org.telegram.messenger.kf;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.wo;
 public final class w5 extends FrameLayout {
-    public org.telegram.ui.Components.l9 f30723a;
-    public FrameLayout f30724b;
-    public wo f30725c;
+    public org.telegram.ui.Components.l9 f30724a;
+    public FrameLayout f30725b;
+    public wo f30726c;
     public TextView d;
-    public bi.m5 f30726e;
-    public int f30727f;
+    public bi.m5 f30727e;
+    public int f30728f;
     public int h;
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f30725c.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
+        this.f30726c.b(org.telegram.ui.ActionBar.k6.W9, org.telegram.ui.ActionBar.k6.X9, org.telegram.ui.ActionBar.k6.V9);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f30727f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f30727f, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.f30728f + this.h, 1073741824), View.MeasureSpec.makeMeasureSpec(this.f30728f, 1073741824));
     }
 
     public void setImage(gf gfVar) {
-        bi.m5 m5Var = this.f30726e;
-        org.telegram.ui.Components.l9 l9Var = this.f30723a;
+        bi.m5 m5Var = this.f30727e;
+        org.telegram.ui.Components.l9 l9Var = this.f30724a;
         Drawable drawable = getResources().getDrawable(2131232450);
         String str = gfVar.f26825c;
         int i7 = gfVar.C;
@@ -67,11 +67,11 @@ public final class w5 extends FrameLayout {
     }
 
     public void setNum(int i7) {
-        this.f30725c.setNum(i7);
+        this.f30726c.setNum(i7);
     }
 
     public void setImage(kf kfVar) {
-        org.telegram.ui.Components.l9 l9Var = this.f30723a;
+        org.telegram.ui.Components.l9 l9Var = this.f30724a;
         Drawable drawable = getResources().getDrawable(2131232450);
         TLRPC.PhotoSize photoSize = kfVar.M;
         if (photoSize != null) {

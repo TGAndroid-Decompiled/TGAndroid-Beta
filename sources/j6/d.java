@@ -2,7 +2,7 @@ package j6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import f7.t0;
 import java.util.Arrays;
 import java.util.Locale;
@@ -43,24 +43,24 @@ public final class d extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
+        int r10 = xb.r(parcel, 20293);
         double d = this.f16509a;
-        wb.q(parcel, 2, 8);
+        xb.q(parcel, 2, 8);
         parcel.writeDouble(d);
         boolean z9 = this.f16510b;
-        wb.q(parcel, 3, 4);
+        xb.q(parcel, 3, 4);
         parcel.writeInt(z9 ? 1 : 0);
         int i10 = this.f16511c;
-        wb.q(parcel, 4, 4);
+        xb.q(parcel, 4, 4);
         parcel.writeInt(i10);
-        wb.k(parcel, 5, this.d, i7);
+        xb.k(parcel, 5, this.d, i7);
         int i11 = this.f16512e;
-        wb.q(parcel, 6, 4);
+        xb.q(parcel, 6, 4);
         parcel.writeInt(i11);
-        wb.k(parcel, 7, this.f16513f, i7);
+        xb.k(parcel, 7, this.f16513f, i7);
         double d2 = this.h;
-        wb.q(parcel, 8, 8);
+        xb.q(parcel, 8, 8);
         parcel.writeDouble(d2);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

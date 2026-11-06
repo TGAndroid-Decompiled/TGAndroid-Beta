@@ -23,8 +23,8 @@ public final class p extends LinearLayout {
         TextView textView = new TextView(context);
         this.f10841a = textView;
         textView.setTextSize(1, 16.0f);
-        r6.V(textView, k6.f27956j5, null);
-        if (hd.f22871a0) {
+        r6.V(textView, k6.f27957j5, null);
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -34,8 +34,8 @@ public final class p extends LinearLayout {
         TextView textView2 = new TextView(context);
         this.f10842b = textView2;
         textView2.setTextSize(1, 13.0f);
-        r6.V(textView2, k6.f28087q5, null);
-        textView2.setGravity(hd.f22871a0 ? 5 : 3);
+        r6.V(textView2, k6.f28088q5, null);
+        textView2.setGravity(hd.f22878a0 ? 5 : 3);
         addView(textView2, ha.t(-1, -2, 51, 0, 4, 0, 0));
     }
 
@@ -43,7 +43,7 @@ public final class p extends LinearLayout {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f10843c) {
-            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), k6.f27971k0);
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), k6.f27972k0);
         }
     }
 

@@ -19,13 +19,13 @@ public final class e extends d {
         float f12;
         float f13;
         int i11 = 3;
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        this.f59336c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        boolean z9 = hd.f22871a0;
+        this.f59335c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        boolean z9 = hd.f22878a0;
         if (z9) {
             i10 = 5;
         } else {
@@ -43,7 +43,7 @@ public final class e extends d {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ha.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
-        boolean z10 = hd.f22871a0;
+        boolean z10 = hd.f22878a0;
         if (z10) {
             i11 = 5;
         }
@@ -58,14 +58,14 @@ public final class e extends d {
         } else {
             f13 = 20.0f;
         }
-        this.f59337e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        this.f59336e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
     }
 
     public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        r6.Y(this.f59337e, k6.f28106r5, this.f59334a);
+        r6.Y(this.f59336e, k6.f28107r5, this.f59333a);
         boolean z9 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
         d4 d4Var = this.d;
-        w8 w8Var = this.f59335b;
+        w8 w8Var = this.f59334b;
         if (z9) {
             TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
             w8Var.g(26);
@@ -85,7 +85,7 @@ public final class e extends d {
             }
             setSubtitle(hd.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", hd.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
         }
-        l9 l9Var = this.f59336c;
+        l9 l9Var = this.f59335c;
         l9Var.setImageDrawable(w8Var);
         l9Var.setRoundRadius(g0.L(20.0f));
     }

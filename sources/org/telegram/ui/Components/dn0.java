@@ -4,16 +4,16 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 public final class dn0 extends ou0 {
-    public boolean f33016a = false;
-    public long f33017b = 0;
-    public boolean f33018c = false;
+    public boolean f33045a = false;
+    public long f33046b = 0;
+    public boolean f33047c = false;
     public float d;
-    public final Paint f33019e;
+    public final Paint f33048e;
 
     public dn0(boolean z9) {
         if (z9) {
             Paint paint = new Paint(1);
-            this.f33019e = paint;
+            this.f33048e = paint;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
@@ -22,7 +22,7 @@ public final class dn0 extends ou0 {
 
     @Override
     public final void b(int i7) {
-        Paint paint = this.f33019e;
+        Paint paint = this.f33048e;
         if (paint != null) {
             paint.setColor(i7);
         }
@@ -30,13 +30,13 @@ public final class dn0 extends ou0 {
 
     @Override
     public final void c(boolean z9) {
-        this.f33016a = z9;
+        this.f33045a = z9;
     }
 
     @Override
     public final void d() {
-        this.f33017b = System.currentTimeMillis();
-        this.f33018c = true;
+        this.f33046b = System.currentTimeMillis();
+        this.f33047c = true;
         invalidateSelf();
     }
 
@@ -45,7 +45,7 @@ public final class dn0 extends ou0 {
         float f10;
         float f11;
         float f12;
-        Paint paint = this.f33019e;
+        Paint paint = this.f33048e;
         if (paint == null) {
             paint = org.telegram.ui.ActionBar.k6.d2;
         }
@@ -60,7 +60,7 @@ public final class dn0 extends ou0 {
                 paint2.setAlpha(255);
             }
             float L = (org.telegram.messenger.g0.L(5.0f) * i7) + (org.telegram.messenger.g0.L(5.0f) * this.d);
-            if (this.f33016a) {
+            if (this.f33045a) {
                 f10 = 3.0f;
             } else {
                 f10 = 4.0f;
@@ -68,7 +68,7 @@ public final class dn0 extends ou0 {
             float L2 = org.telegram.messenger.g0.L(f10);
             float L3 = L + org.telegram.messenger.g0.L(4.0f);
             float f13 = 8.0f;
-            if (this.f33016a) {
+            if (this.f33045a) {
                 f11 = 7.0f;
             } else {
                 f11 = 8.0f;
@@ -76,24 +76,24 @@ public final class dn0 extends ou0 {
             float L4 = org.telegram.messenger.g0.L(f11);
             Canvas canvas2 = canvas;
             canvas2.drawLine(L, L2, L3, L4, paint2);
-            if (this.f33016a) {
+            if (this.f33045a) {
                 f12 = 11.0f;
             } else {
                 f12 = 12.0f;
             }
             float L5 = org.telegram.messenger.g0.L(f12);
             float L6 = L + org.telegram.messenger.g0.L(4.0f);
-            if (this.f33016a) {
+            if (this.f33045a) {
                 f13 = 7.0f;
             }
             canvas2.drawLine(L, L5, L6, org.telegram.messenger.g0.L(f13), paint2);
             i7++;
             canvas = canvas2;
         }
-        if (this.f33018c) {
+        if (this.f33047c) {
             long currentTimeMillis = System.currentTimeMillis();
-            long j3 = currentTimeMillis - this.f33017b;
-            this.f33017b = currentTimeMillis;
+            long j3 = currentTimeMillis - this.f33046b;
+            this.f33046b = currentTimeMillis;
             if (j3 > 50) {
                 j3 = 50;
             }
@@ -112,7 +112,7 @@ public final class dn0 extends ou0 {
 
     @Override
     public final void e() {
-        this.f33018c = false;
+        this.f33047c = false;
     }
 
     @Override

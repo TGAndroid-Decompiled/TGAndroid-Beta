@@ -16,7 +16,7 @@ import org.telegram.ui.ActionBar.o6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.Components.kt0;
 import org.telegram.ui.Components.lt0;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xp;
 public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.ui.ActionBar.r1, h2.o, h2.p, u9.d {
     public final int f15032a;
@@ -26,7 +26,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     }
 
     @Override
-    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
         switch (this.f15032a) {
             case 6:
                 return Boolean.FALSE;
@@ -165,7 +165,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     public void c(int i7, View view) {
         Drawable background = view.getBackground();
         if (background instanceof xp) {
-            Drawable drawable = ((xp) background).f40315a;
+            Drawable drawable = ((xp) background).f40331a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i7);
                 view.invalidate();
@@ -217,7 +217,7 @@ public final class x3 implements kt0, k9, b20, o6, p6, ih.b, g9.k, org.telegram.
     public int i(View view) {
         Drawable background = view.getBackground();
         if (background instanceof xp) {
-            Drawable drawable = ((xp) background).f40315a;
+            Drawable drawable = ((xp) background).f40331a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }

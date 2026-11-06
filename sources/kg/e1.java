@@ -12,8 +12,8 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q41;
 public final class e1 extends f2 {
     public final CharSequence f17355a;
     public final ArrayList f17356b;
@@ -22,7 +22,7 @@ public final class e1 extends f2 {
     public final int f17358e;
     public h9 f17359f;
     public ha.b h;
-    public p41 f17360n;
+    public q41 f17360n;
     public boolean f17361r;
 
     public e1(CharSequence charSequence, ArrayList arrayList, int i7, int i10, int i11) {
@@ -61,9 +61,9 @@ public final class e1 extends f2 {
         this.simpleActionBar.setTitle(this.f17355a);
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        p41 p41Var = new p41(this, new hi.u1(this, 12), new q4(this, 25), null);
-        this.f17360n = p41Var;
-        p41Var.r1();
+        q41 q41Var = new q41(this, new hi.u1(this, 12), new q4(this, 25), null);
+        this.f17360n = q41Var;
+        q41Var.r1();
         this.f17360n.setSectionsDrawBackground(true);
         frameLayout.addView(this.f17360n, ha.c(-1.0f, -1));
         this.fragmentView = frameLayout;
@@ -112,11 +112,11 @@ public final class e1 extends f2 {
             if (this.f17360n != null) {
                 for (int i10 = 0; i10 < this.f17360n.getChildCount(); i10++) {
                     View childAt = this.f17360n.getChildAt(i10);
-                    if ((childAt instanceof r8) && ((r8) childAt).f30203b == -1) {
+                    if ((childAt instanceof r8) && ((r8) childAt).f30204b == -1) {
                         if (this.f17361r) {
-                            i7 = k6.f27886f6;
+                            i7 = k6.f27887f6;
                         } else {
-                            i7 = k6.f27867e6;
+                            i7 = k6.f27868e6;
                         }
                         r6.i(i7, childAt, null);
                     }

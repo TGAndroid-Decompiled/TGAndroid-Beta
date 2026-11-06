@@ -20,11 +20,11 @@ public final class x9 {
         if (ijVar == null) {
             return null;
         }
-        TLRPC.Message message = ijVar.f23237k;
-        if (message != null && ((message.isThreadMessage || ijVar.l3()) && ijVar.f23237k.fwd_from != null)) {
-            return new x9(ijVar.Z0(), ijVar.f23237k.fwd_from.saved_from_msg_id);
+        TLRPC.Message message = ijVar.f23244k;
+        if (message != null && ((message.isThreadMessage || ijVar.l3()) && ijVar.f23244k.fwd_from != null)) {
+            return new x9(ijVar.Z0(), ijVar.f23244k.fwd_from.saved_from_msg_id);
         }
-        return new x9(ij.B0(ijVar.f23237k), ijVar.f1());
+        return new x9(ij.B0(ijVar.f23244k), ijVar.f1());
     }
 
     public final boolean equals(Object obj) {

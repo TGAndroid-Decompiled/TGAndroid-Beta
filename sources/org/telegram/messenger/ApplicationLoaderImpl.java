@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 public class ApplicationLoaderImpl extends t0 {
     @Override
     public final boolean b(Context context) {
-        if (Build.VERSION.SDK_INT >= 26 && !t0.f25555b.getPackageManager().canRequestPackageInstalls()) {
+        if (Build.VERSION.SDK_INT >= 26 && !t0.f25563b.getPackageManager().canRequestPackageInstalls()) {
             org.telegram.ui.Components.v4.j(context, null).show();
             return false;
         }
@@ -46,17 +46,17 @@ public class ApplicationLoaderImpl extends t0 {
         boolean z9 = false;
         try {
             w7.r(null, document);
-            w7.G(p10.f24459s0);
-            File K = w7.K(document, null, true, true);
-            z9 = K.exists();
+            w7.G(p10.f24467s0);
+            File J = w7.J(document, null, true, true);
+            z9 = J.exists();
             if (z9) {
                 Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setFlags(1);
                 if (Build.VERSION.SDK_INT >= 24) {
                     t0.d();
-                    intent.setDataAndType(FileProvider.d(activity, "org.telegram.messenger.beta.provider", K), "application/vnd.android.package-archive");
+                    intent.setDataAndType(FileProvider.d(activity, "org.telegram.messenger.beta.provider", J), "application/vnd.android.package-archive");
                 } else {
-                    intent.setDataAndType(Uri.fromFile(K), "application/vnd.android.package-archive");
+                    intent.setDataAndType(Uri.fromFile(J), "application/vnd.android.package-archive");
                 }
                 try {
                     activity.startActivityForResult(intent, 500);

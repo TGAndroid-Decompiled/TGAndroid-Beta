@@ -2,30 +2,30 @@ package fi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class z3 extends v31 {
+import org.telegram.ui.Components.x31;
+public final class z3 extends w31 {
     public static final int f13243b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         a4 a4Var = (a4) view;
-        a4Var.a(w31Var.d, w31Var.f39843z, (e7) w31Var.G);
-        a4Var.b(w31Var.f39824e, false);
-        boolean z10 = w31Var.f39825f;
+        a4Var.a(x31Var.d, x31Var.f40172z, (e7) x31Var.G);
+        a4Var.b(x31Var.f40153e, false);
+        boolean z10 = x31Var.f40154f;
         if (a4Var.h != z10) {
             a4Var.h = z10;
             a4Var.F.a(z10);
             a4Var.invalidate();
         }
-        a4Var.setOnCheckboxClick(w31Var.D);
+        a4Var.setOnCheckboxClick(x31Var.D);
     }
 
     @Override

@@ -5,46 +5,46 @@ import android.view.View;
 import org.telegram.messenger.d20;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.xe;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class f7 extends v31 {
-    public static final int f29126b = 0;
+import org.telegram.ui.Components.x31;
+public final class f7 extends w31 {
+    public static final int f29127b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
-    public static w31 i(xe xeVar, d20 d20Var) {
-        w31 K = w31.K(f7.class);
+    public static x31 i(xe xeVar, d20 d20Var) {
+        x31 K = x31.K(f7.class);
         K.G = xeVar;
         K.H = d20Var;
         return K;
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         g7 g7Var = (g7) view;
-        Object obj = w31Var.G;
+        Object obj = x31Var.G;
         if (obj instanceof ij) {
             g7Var.f((ij) obj, z9);
         } else if (obj instanceof xe) {
             xe xeVar = (xe) obj;
             g7Var.setTag(xeVar);
-            g7Var.f(xeVar.f26457e, z9);
+            g7Var.f(xeVar.f26465e, z9);
         }
-        Object obj2 = w31Var.H;
+        Object obj2 = x31Var.H;
         if (obj2 instanceof d20) {
             g7Var.setNeedPlayMessageListener((d20) obj2);
         }
-        g7Var.e(w31Var.f39824e, false);
+        g7Var.e(x31Var.f40153e, false);
     }
 
     @Override
-    public final boolean c(w31 w31Var, w31 w31Var2) {
-        if (w31Var.d == w31Var2.d && w31Var.G == w31Var2.G) {
+    public final boolean c(x31 x31Var, x31 x31Var2) {
+        if (x31Var.d == x31Var2.d && x31Var.G == x31Var2.G) {
             return true;
         }
         return false;
@@ -58,8 +58,8 @@ public final class f7 extends v31 {
     }
 
     @Override
-    public final boolean e(w31 w31Var, w31 w31Var2) {
-        if (w31Var.d == w31Var2.d && w31Var.G == w31Var2.G) {
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        if (x31Var.d == x31Var2.d && x31Var.G == x31Var2.G) {
             return true;
         }
         return false;

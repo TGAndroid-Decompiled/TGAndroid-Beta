@@ -22,7 +22,7 @@ public class VoipAudioManager {
     }
 
     private AudioManager getAudioManager() {
-        return (AudioManager) org.telegram.messenger.t0.f25555b.getSystemService("audio");
+        return (AudioManager) org.telegram.messenger.t0.f25563b.getSystemService("audio");
     }
 
     public static boolean isBluetoothDevice(AudioDeviceInfo audioDeviceInfo) {

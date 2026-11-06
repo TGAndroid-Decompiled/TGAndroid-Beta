@@ -5,19 +5,19 @@ import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.widget.ImageView;
 public class ub extends za {
-    public final ImageView f38580a;
-    public final w70 f38581b;
+    public final ImageView f38576a;
+    public final w70 f38577b;
 
     public ub(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
         int i7 = org.telegram.ui.ActionBar.k6.vj;
         getThemedColor(i7);
         ImageView imageView = new ImageView(context);
-        this.f38580a = imageView;
+        this.f38576a = imageView;
         org.telegram.ui.ActionBar.r6.t(imageView, i7, f6Var, PorterDuff.Mode.MULTIPLY);
         addView(imageView, c8.ha.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
         w70 w70Var = new w70(context, null);
-        this.f38581b = w70Var;
+        this.f38577b = w70Var;
         w70Var.setDisablePaddingsOffsetY(true);
         w70Var.setSingleLine();
         org.telegram.ui.ActionBar.r6.V(w70Var, i7, f6Var);
@@ -28,6 +28,6 @@ public class ub extends za {
 
     @Override
     public CharSequence getAccessibilityText() {
-        return this.f38581b.getText();
+        return this.f38577b.getText();
     }
 }

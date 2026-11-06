@@ -6,13 +6,13 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewOutlineProvider;
 public final class u extends ViewOutlineProvider {
-    public final Path f28543a = new Path();
+    public final Path f28544a = new Path();
 
     @Override
     public final void getOutline(View view, Outline outline) {
         float L = org.telegram.messenger.g0.L(29.0f);
         float L2 = org.telegram.messenger.g0.L(12.0f);
-        Path path = this.f28543a;
+        Path path = this.f28544a;
         path.rewind();
         path.addRoundRect(0.0f, 0.0f, view.getWidth(), view.getHeight(), new float[]{L, L, L, L, L2, L2, L2, L2}, Path.Direction.CW);
         if (Build.VERSION.SDK_INT >= 30) {

@@ -1,11 +1,11 @@
 package org.telegram.ui;
 public final class yo0 implements Runnable {
-    public final int f52296a;
-    public final PhotoViewer f52297b;
+    public final int f52294a;
+    public final PhotoViewer f52295b;
 
     public yo0(PhotoViewer photoViewer, int i7) {
-        this.f52296a = i7;
-        this.f52297b = photoViewer;
+        this.f52294a = i7;
+        this.f52295b = photoViewer;
     }
 
     @Override

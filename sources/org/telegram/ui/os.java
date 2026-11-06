@@ -15,31 +15,31 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Locale;
 public final class os extends org.telegram.ui.Components.kj0 {
-    public final Context f48537r;
-    public final HashMap f48538s = new HashMap();
-    public final ArrayList f48539w = new ArrayList();
-    public final qs f48540x;
+    public final Context f48536r;
+    public final HashMap f48537s = new HashMap();
+    public final ArrayList f48538w = new ArrayList();
+    public final qs f48539x;
 
     public os(qs qsVar, Context context, ArrayList arrayList, boolean z9) {
         Comparator un0Var;
         Locale locale;
-        this.f48540x = qsVar;
-        this.f48537r = context;
+        this.f48539x = qsVar;
+        this.f48536r = context;
         if (arrayList != null) {
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 ms msVar = (ms) arrayList.get(i7);
-                String upperCase = msVar.f47870a.substring(0, 1).toUpperCase();
-                ArrayList arrayList2 = (ArrayList) this.f48538s.get(upperCase);
+                String upperCase = msVar.f47869a.substring(0, 1).toUpperCase();
+                ArrayList arrayList2 = (ArrayList) this.f48537s.get(upperCase);
                 if (arrayList2 == null) {
                     arrayList2 = new ArrayList();
-                    this.f48538s.put(upperCase, arrayList2);
-                    this.f48539w.add(upperCase);
+                    this.f48537s.put(upperCase, arrayList2);
+                    this.f48538w.add(upperCase);
                 }
                 arrayList2.add(msVar);
             }
         } else {
             try {
-                InputStream open = org.telegram.messenger.t0.f25555b.getResources().getAssets().open("countries.txt");
+                InputStream open = org.telegram.messenger.t0.f25563b.getResources().getAssets().open("countries.txt");
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(open));
                 while (true) {
                     String readLine = bufferedReader.readLine();
@@ -48,17 +48,17 @@ public final class os extends org.telegram.ui.Components.kj0 {
                     }
                     String[] split = readLine.split(";");
                     ?? obj = new Object();
-                    obj.f47870a = split[2];
-                    obj.f47872c = split[0];
+                    obj.f47869a = split[2];
+                    obj.f47871c = split[0];
                     String str = split[1];
                     obj.d = str;
                     if (!str.equals("FT") || !z9) {
-                        String upperCase2 = obj.f47870a.substring(0, 1).toUpperCase();
-                        ArrayList arrayList3 = (ArrayList) this.f48538s.get(upperCase2);
+                        String upperCase2 = obj.f47869a.substring(0, 1).toUpperCase();
+                        ArrayList arrayList3 = (ArrayList) this.f48537s.get(upperCase2);
                         if (arrayList3 == null) {
                             arrayList3 = new ArrayList();
-                            this.f48538s.put(upperCase2, arrayList3);
-                            this.f48539w.add(upperCase2);
+                            this.f48537s.put(upperCase2, arrayList3);
+                            this.f48538w.add(upperCase2);
                         }
                         arrayList3.add(obj);
                     }
@@ -70,8 +70,8 @@ public final class os extends org.telegram.ui.Components.kj0 {
             }
         }
         if (Build.VERSION.SDK_INT >= 24) {
-            if (org.telegram.messenger.hd.E0().f22899y != null) {
-                locale = org.telegram.messenger.hd.E0().f22899y;
+            if (org.telegram.messenger.hd.E0().f22906y != null) {
+                locale = org.telegram.messenger.hd.E0().f22906y;
             } else {
                 locale = Locale.getDefault();
             }
@@ -81,8 +81,8 @@ public final class os extends org.telegram.ui.Components.kj0 {
         } else {
             un0Var = new un0(14);
         }
-        Collections.sort(this.f48539w, un0Var);
-        for (ArrayList arrayList4 : this.f48538s.values()) {
+        Collections.sort(this.f48538w, un0Var);
+        for (ArrayList arrayList4 : this.f48537s.values()) {
             Collections.sort(arrayList4, new ns(un0Var, 0));
         }
     }
@@ -90,7 +90,7 @@ public final class os extends org.telegram.ui.Components.kj0 {
     @Override
     public final String F(int i7) {
         int S = S(i7);
-        ArrayList arrayList = this.f48539w;
+        ArrayList arrayList = this.f48538w;
         if (S == -1) {
             S = arrayList.size() - 1;
         }
@@ -105,8 +105,8 @@ public final class os extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int M(int i7) {
-        ArrayList arrayList = this.f48539w;
-        int size = ((ArrayList) this.f48538s.get(arrayList.get(i7))).size();
+        ArrayList arrayList = this.f48538w;
+        int size = ((ArrayList) this.f48537s.get(arrayList.get(i7))).size();
         if (i7 != arrayList.size() - 1) {
             return size + 1;
         }
@@ -115,7 +115,7 @@ public final class os extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int P(int i7, int i10) {
-        if (i10 < ((ArrayList) this.f48538s.get(this.f48539w.get(i7))).size()) {
+        if (i10 < ((ArrayList) this.f48537s.get(this.f48538w.get(i7))).size()) {
             return 0;
         }
         return 1;
@@ -123,7 +123,7 @@ public final class os extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int R() {
-        return this.f48539w.size();
+        return this.f48538w.size();
     }
 
     @Override
@@ -133,7 +133,7 @@ public final class os extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final boolean V(int i7, int i10, v4.d1 d1Var) {
-        if (i10 < ((ArrayList) this.f48538s.get(this.f48539w.get(i7))).size()) {
+        if (i10 < ((ArrayList) this.f48537s.get(this.f48538w.get(i7))).size()) {
             return true;
         }
         return false;
@@ -141,13 +141,13 @@ public final class os extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
-        if (d1Var.f56956f == 0) {
-            ms msVar = (ms) ((ArrayList) this.f48538s.get(this.f48539w.get(i7))).get(i10);
-            org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f56952a;
+        if (d1Var.f56955f == 0) {
+            ms msVar = (ms) ((ArrayList) this.f48537s.get(this.f48538w.get(i7))).get(i10);
+            org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) d1Var.f56951a;
             String str = null;
             CharSequence m10 = org.telegram.messenger.i6.m(qs.a0(msVar), w9Var.getTextView().getPaint().getFontMetricsInt(), false, null, 0);
-            if (this.f48540x.h) {
-                str = "+" + msVar.f47872c;
+            if (this.f48539x.h) {
+                str = "+" + msVar.f47871c;
             }
             w9Var.c(m10, str, false, false);
         }
@@ -156,9 +156,9 @@ public final class os extends org.telegram.ui.Components.kj0 {
     @Override
     public final ms O(int i7, int i10) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f48539w;
+            ArrayList arrayList = this.f48538w;
             if (i7 < arrayList.size()) {
-                ArrayList arrayList2 = (ArrayList) this.f48538s.get(arrayList.get(i7));
+                ArrayList arrayList2 = (ArrayList) this.f48537s.get(arrayList.get(i7));
                 if (i10 >= 0 && i10 < arrayList2.size()) {
                     return (ms) arrayList2.get(i10);
                 }
@@ -170,7 +170,7 @@ public final class os extends org.telegram.ui.Components.kj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View Z;
-        Context context = this.f48537r;
+        Context context = this.f48536r;
         if (i7 != 0) {
             Z = new org.telegram.ui.Cells.e3(context, null);
             Z.setPadding(org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(8.0f));

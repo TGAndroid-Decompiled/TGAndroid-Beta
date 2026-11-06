@@ -28,10 +28,10 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.ac;
 import org.telegram.ui.Components.bc;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.v4;
-import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.z8;
 public final class l0 implements ji.e {
     public final Context f15558a;
@@ -60,7 +60,7 @@ public final class l0 implements ji.e {
         this.d = i7;
         this.f15561e = j3;
         this.f15562f = qp.s1(i7).M0(Long.valueOf(j3));
-        this.f15570o = qp.s1(i7).f24759e7.getLong(p0.o(j3, "community_requests_last_view_time_"), 0L);
+        this.f15570o = qp.s1(i7).f24767e7.getLong(p0.o(j3, "community_requests_last_view_time_"), 0L);
     }
 
     public final void a() {
@@ -80,8 +80,8 @@ public final class l0 implements ji.e {
         }
     }
 
-    public final void b(p41 p41Var) {
-        if (!this.f15568m && !this.f15569n && p41Var.f36780e3.N0() + 10 > p41Var.f36781f3.D.size()) {
+    public final void b(q41 q41Var) {
+        if (!this.f15568m && !this.f15569n && q41Var.f37159e3.N0() + 10 > q41Var.f37160f3.D.size()) {
             d();
         }
     }
@@ -106,16 +106,16 @@ public final class l0 implements ji.e {
                             z9 = false;
                         }
                         int i10 = ji.g.f17083b;
-                        w31 K = w31.K(ji.g.class);
+                        x31 K = x31.K(ji.g.class);
                         K.G = new ji.f(o4, a22, z10);
                         K.H = this;
-                        K.f39828j = !z9;
+                        K.f40157j = !z9;
                         arrayList.add(K);
                     }
                 }
             }
             if (!this.f15569n) {
-                arrayList.add(w31.p(29));
+                arrayList.add(x31.p(29));
             }
         }
     }
@@ -138,7 +138,7 @@ public final class l0 implements ji.e {
         int i7 = this.d;
         long currentTime = ConnectionsManager.getInstance(i7).getCurrentTime();
         this.f15570o = currentTime;
-        qp.s1(i7).f24759e7.edit().putLong("community_requests_last_view_time_" + this.f15561e, currentTime).apply();
+        qp.s1(i7).f24767e7.edit().putLong("community_requests_last_view_time_" + this.f15561e, currentTime).apply();
         a();
     }
 
@@ -169,7 +169,7 @@ public final class l0 implements ji.e {
                 u1 M = v4.M(this.f15558a, this.f15559b, M0, X2, hd.M0(i10, null), new k1(11, this, z9));
                 M.show();
                 if (!z9 && (textView = (TextView) M.d(-1)) != null) {
-                    r6.V(textView, k6.f28089q7, null);
+                    r6.V(textView, k6.f28090q7, null);
                     return;
                 }
                 return;
@@ -219,10 +219,10 @@ public final class l0 implements ji.e {
         f6 f6Var = this.f15559b;
         bc bcVar = new bc(context, f6Var, false);
         TLObject e22 = qp.s1(i11).e2(j3);
-        z8 z8Var = bcVar.f32093a;
+        z8 z8Var = bcVar.f32127a;
         if (e22 != null) {
             z8Var.setCount(1);
-            z8Var.b(0, p10.f24459s0, e22);
+            z8Var.b(0, p10.f24467s0, e22);
             i10 = 1;
         } else {
             i10 = 0;
@@ -231,26 +231,26 @@ public final class l0 implements ji.e {
         z8Var.setScaleX(1.333f);
         z8Var.setScaleY(1.333f);
         z8Var.a(false);
-        w70 w70Var = bcVar.f32094b;
+        w70 w70Var = bcVar.f32128b;
         w70Var.setSingleLine(false);
         w70Var.setMaxLines(2);
         w70Var.setTextSize(1, 14.0f);
         w70Var.setText(X2);
         if (w70Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             int L = org.telegram.messenger.g0.L(74 - ((3 - i10) * 12));
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 ((ViewGroup.MarginLayoutParams) w70Var.getLayoutParams()).rightMargin = L;
             } else {
                 ((ViewGroup.MarginLayoutParams) w70Var.getLayoutParams()).leftMargin = L;
             }
         }
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             z8Var.setTranslationX(org.telegram.messenger.g0.L(32 - ((i10 - 1) * 12)));
         }
         ac acVar = new ac(context, f6Var, true, true);
         acVar.e(hd.M0(2131743886, null));
-        acVar.f31760b = new r3(this, j3, 11);
-        acVar.f31761c = this.f15564i;
+        acVar.f31756b = new r3(this, j3, 11);
+        acVar.f31757c = this.f15564i;
         bcVar.setButton(acVar);
         this.f15560c.b(bcVar, 5000).j();
     }

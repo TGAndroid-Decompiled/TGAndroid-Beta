@@ -22,7 +22,7 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.z0;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.m11;
 import org.telegram.ui.Components.m50;
 import org.telegram.ui.an;
 import org.telegram.ui.oy0;
@@ -83,7 +83,7 @@ public final class h0 implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     a22.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f26976id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f26977id;
                     if (w10 != null) {
                         tL_userProfilePhoto.photo_small = w10.location;
                     }
@@ -92,9 +92,9 @@ public final class h0 implements Runnable {
                     }
                     if (w10 != null && fileLocationArr2[0] != null) {
                         w7.G(anVar2.getCurrentAccount());
-                        File K = w7.K(w10, null, true, true);
+                        File J = w7.J(w10, null, true, true);
                         w7.G(anVar2.getCurrentAccount());
-                        w7.K(fileLocationArr2[0], null, true, true).renameTo(K);
+                        w7.J(fileLocationArr2[0], null, true, true).renameTo(J);
                         StringBuilder sb2 = new StringBuilder();
                         sb2.append(fileLocationArr2[0].volume_id);
                         sb2.append("_");
@@ -113,14 +113,14 @@ public final class h0 implements Runnable {
                     }
                     if (x10 != null && str != null) {
                         w7.G(anVar.getCurrentAccount());
-                        new File(str).renameTo(w7.K(x10, "mp4", z9, z9));
+                        new File(str).renameTo(w7.J(x10, "mp4", z9, z9));
                     } else if (w11 != null && fileLocationArr[0] != null) {
                         w7.G(anVar.getCurrentAccount());
-                        File K2 = w7.K(w11, null, true, true);
+                        File J2 = w7.J(w11, null, true, true);
                         w7.G(anVar.getCurrentAccount());
-                        w7.K(fileLocationArr[0], null, true, true).renameTo(K2);
+                        w7.J(fileLocationArr[0], null, true, true).renameTo(J2);
                     }
-                    anVar.getMessagesController().U0(a22.f27101id);
+                    anVar.getMessagesController().U0(a22.f27102id);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(a22);
                     anVar.getMessagesStorage().m1(arrayList2, null, false, true);
@@ -138,10 +138,10 @@ public final class h0 implements Runnable {
             case 2:
                 m50 m50Var = (m50) obj5;
                 ((u1) obj2).c(400L);
-                m50.M0((Context) obj6, m50Var.f28612a, -j3, ((TLRPC.TL_chatInviteExported) obj4).subscription_pricing, (TLRPC.TL_chatInviteImporter) obj3, (TLRPC.ChannelParticipant) obj, m50Var.I0);
+                m50.M0((Context) obj6, m50Var.f28613a, -j3, ((TLRPC.TL_chatInviteExported) obj4).subscription_pricing, (TLRPC.TL_chatInviteImporter) obj3, (TLRPC.ChannelParticipant) obj, m50Var.I0);
                 return;
             case 3:
-                final l11 l11Var = (l11) obj5;
+                final m11 m11Var = (m11) obj5;
                 TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj2;
                 z0 z0Var = (z0) obj6;
                 final k60 k60Var = (k60) obj4;
@@ -163,8 +163,8 @@ public final class h0 implements Runnable {
                 z0Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        l11 l11Var2 = l11.this;
-                        int i11 = l11Var2.f35485e;
+                        m11 m11Var2 = m11.this;
+                        int i11 = m11Var2.f35822e;
                         k60Var.u();
                         boolean z11 = z10;
                         TLRPC.User user2 = user;
@@ -176,7 +176,7 @@ public final class h0 implements Runnable {
                         tL_channels_editBanned.participant = org.telegram.messenger.qp.n1(user2);
                         tL_channels_editBanned.channel = org.telegram.messenger.qp.i1(chat);
                         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
-                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new x1(l11Var2, 14));
+                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new x1(m11Var2, 14));
                     }
                 });
                 return;
@@ -185,7 +185,7 @@ public final class h0 implements Runnable {
                 f6 f6Var = (f6) obj4;
                 oy0 oy0Var = new oy0(activity, f6Var, this.f3291b, (byte[]) obj3);
                 oy0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) obj6));
-                oy0Var.f48575r1 = new ab.b0((an) obj2, activity, f6Var, (ij) obj, 10);
+                oy0Var.f48574r1 = new ab.b0((an) obj2, activity, f6Var, (ij) obj, 10);
                 oy0Var.show();
                 return;
         }
@@ -221,8 +221,8 @@ public final class h0 implements Runnable {
         this.f3295n = channelParticipant;
     }
 
-    public h0(l11 l11Var, TLRPC.ChannelParticipant channelParticipant, z0 z0Var, k60 k60Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
-        this.d = l11Var;
+    public h0(m11 m11Var, TLRPC.ChannelParticipant channelParticipant, z0 z0Var, k60 k60Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
+        this.d = m11Var;
         this.f3293e = channelParticipant;
         this.f3292c = z0Var;
         this.f3294f = k60Var;

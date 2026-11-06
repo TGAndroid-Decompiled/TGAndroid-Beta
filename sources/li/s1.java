@@ -8,7 +8,7 @@ import org.telegram.messenger.ej;
 import org.telegram.messenger.i6;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.hx;
-import org.telegram.ui.Components.s31;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.StickersActivity;
 public final class s1 implements hx {
     public final b2 f18824a;
@@ -164,7 +164,7 @@ public final class s1 implements hx {
     }
 
     @Override
-    public final void o(s31 s31Var) {
+    public final void o(t31 t31Var) {
     }
 
     @Override

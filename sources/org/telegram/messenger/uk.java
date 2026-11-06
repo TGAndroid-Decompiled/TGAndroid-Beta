@@ -1,13 +1,13 @@
 package org.telegram.messenger;
 public final class uk implements Runnable {
-    public final int f25851a;
-    public final qp f25852b;
-    public final int f25853c;
+    public final int f25859a;
+    public final qp f25860b;
+    public final int f25861c;
 
     public uk(qp qpVar, int i7, int i10) {
-        this.f25851a = i10;
-        this.f25852b = qpVar;
-        this.f25853c = i7;
+        this.f25859a = i10;
+        this.f25860b = qpVar;
+        this.f25861c = i7;
     }
 
     @Override

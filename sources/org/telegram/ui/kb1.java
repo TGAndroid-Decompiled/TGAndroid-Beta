@@ -10,42 +10,42 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class kb1 extends ViewGroup {
-    public AnimatorSet f47157a;
-    public boolean f47158b;
-    public final ArrayList f47159c;
+    public AnimatorSet f47156a;
+    public boolean f47157b;
+    public final ArrayList f47158c;
     public org.telegram.ui.Components.c20 d;
-    public org.telegram.ui.Components.c20 f47160e;
-    public final UsersSelectActivity f47161f;
+    public org.telegram.ui.Components.c20 f47159e;
+    public final UsersSelectActivity f47160f;
 
     public kb1(UsersSelectActivity usersSelectActivity, Context context) {
         super(context);
-        this.f47161f = usersSelectActivity;
-        this.f47159c = new ArrayList();
+        this.f47160f = usersSelectActivity;
+        this.f47158c = new ArrayList();
     }
 
     public final void a(org.telegram.ui.Components.c20 c20Var, boolean z9) {
-        UsersSelectActivity usersSelectActivity = this.f47161f;
+        UsersSelectActivity usersSelectActivity = this.f47160f;
         usersSelectActivity.P.add(c20Var);
         long uid = c20Var.getUid();
         if (uid > -9223372036854775801L) {
-            usersSelectActivity.f42080x++;
+            usersSelectActivity.f42079x++;
         }
         usersSelectActivity.O.k(c20Var, uid);
-        ah.i iVar = usersSelectActivity.f42073c;
+        ah.i iVar = usersSelectActivity.f42072c;
         iVar.t(false, TextUtils.isEmpty(iVar.getText()));
-        AnimatorSet animatorSet = this.f47157a;
+        AnimatorSet animatorSet = this.f47156a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.f47157a.setupEndValues();
-            this.f47157a.cancel();
+            this.f47156a.setupEndValues();
+            this.f47156a.cancel();
         }
-        this.f47158b = false;
+        this.f47157b = false;
         if (z9) {
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f47157a = animatorSet2;
+            this.f47156a = animatorSet2;
             animatorSet2.addListener(new r81(this, 3));
-            this.f47157a.setDuration(150L);
+            this.f47156a.setDuration(150L);
             this.d = c20Var;
-            ArrayList arrayList = this.f47159c;
+            ArrayList arrayList = this.f47158c;
             arrayList.clear();
             arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 0.01f, 1.0f));
             arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 0.01f, 1.0f));
@@ -55,31 +55,31 @@ public final class kb1 extends ViewGroup {
     }
 
     public final void b(org.telegram.ui.Components.c20 c20Var) {
-        UsersSelectActivity usersSelectActivity = this.f47161f;
-        usersSelectActivity.f42079w = true;
+        UsersSelectActivity usersSelectActivity = this.f47160f;
+        usersSelectActivity.f42078w = true;
         long uid = c20Var.getUid();
         if (uid > -9223372036854775801L) {
-            usersSelectActivity.f42080x--;
+            usersSelectActivity.f42079x--;
         }
         usersSelectActivity.O.l(uid);
         usersSelectActivity.P.remove(c20Var);
         c20Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f47157a;
+        AnimatorSet animatorSet = this.f47156a;
         if (animatorSet != null) {
             animatorSet.setupEndValues();
-            this.f47157a.cancel();
+            this.f47156a.cancel();
         }
-        this.f47158b = false;
+        this.f47157b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f47157a = animatorSet2;
+        this.f47156a = animatorSet2;
         animatorSet2.addListener(new org.telegram.ui.Components.v50(16, this, c20Var));
-        this.f47157a.setDuration(150L);
-        this.f47160e = c20Var;
-        ArrayList arrayList = this.f47159c;
+        this.f47156a.setDuration(150L);
+        this.f47159e = c20Var;
+        ArrayList arrayList = this.f47158c;
         arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(this.f47160e, View.SCALE_X, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f47160e, View.SCALE_Y, 1.0f, 0.01f));
-        arrayList.add(ObjectAnimator.ofFloat(this.f47160e, View.ALPHA, 1.0f, 0.0f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f47159e, View.SCALE_X, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f47159e, View.SCALE_Y, 1.0f, 0.01f));
+        arrayList.add(ObjectAnimator.ofFloat(this.f47159e, View.ALPHA, 1.0f, 0.0f));
         requestLayout();
     }
 
@@ -110,14 +110,14 @@ public final class kb1 extends ViewGroup {
         while (true) {
             property = View.TRANSLATION_Y;
             property2 = View.TRANSLATION_X;
-            arrayList = this.f47159c;
+            arrayList = this.f47158c;
             if (i12 >= childCount) {
                 break;
             }
             View childAt = getChildAt(i12);
             if (childAt instanceof org.telegram.ui.Components.c20) {
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
-                if (childAt != this.f47160e && childAt.getMeasuredWidth() + i13 > L) {
+                if (childAt != this.f47159e && childAt.getMeasuredWidth() + i13 > L) {
                     L2 = org.telegram.messenger.k5.C(8.0f, childAt.getMeasuredHeight(), L2);
                     i13 = 0;
                 }
@@ -126,8 +126,8 @@ public final class kb1 extends ViewGroup {
                     i14 = 0;
                 }
                 int L4 = org.telegram.messenger.g0.L(13.0f) + i13;
-                if (!this.f47158b) {
-                    org.telegram.ui.Components.c20 c20Var = this.f47160e;
+                if (!this.f47157b) {
+                    org.telegram.ui.Components.c20 c20Var = this.f47159e;
                     if (childAt == c20Var) {
                         childAt.setTranslationX(org.telegram.messenger.g0.L(13.0f) + i14);
                         childAt.setTranslationY(L3);
@@ -150,7 +150,7 @@ public final class kb1 extends ViewGroup {
                         childAt.setTranslationY(L2);
                     }
                 }
-                if (childAt != this.f47160e) {
+                if (childAt != this.f47159e) {
                     i13 = org.telegram.messenger.k5.C(9.0f, childAt.getMeasuredWidth(), i13);
                 }
                 i14 = org.telegram.messenger.k5.C(9.0f, childAt.getMeasuredWidth(), i14);
@@ -160,7 +160,7 @@ public final class kb1 extends ViewGroup {
         if (org.telegram.messenger.g0.Q1()) {
             y10 = org.telegram.messenger.g0.L(372.0f) / 3;
         } else {
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             y10 = org.telegram.messenger.camera.q.y(158.0f, Math.min(point.x, point.y), 3);
         }
         if (L - i13 < y10) {
@@ -170,37 +170,37 @@ public final class kb1 extends ViewGroup {
         if (L - i14 < y10) {
             L3 += org.telegram.messenger.g0.L(40.0f);
         }
-        UsersSelectActivity usersSelectActivity = this.f47161f;
-        usersSelectActivity.f42073c.measure(View.MeasureSpec.makeMeasureSpec(L - i13, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
-        if (!this.f47158b) {
+        UsersSelectActivity usersSelectActivity = this.f47160f;
+        usersSelectActivity.f42072c.measure(View.MeasureSpec.makeMeasureSpec(L - i13, 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(32.0f), 1073741824));
+        if (!this.f47157b) {
             int L5 = org.telegram.messenger.g0.L(42.0f) + L3;
             int L6 = org.telegram.messenger.g0.L(16.0f) + i13;
             usersSelectActivity.R = L2;
-            if (this.f47157a != null) {
+            if (this.f47156a != null) {
                 int L7 = org.telegram.messenger.g0.L(42.0f) + L2;
                 if (usersSelectActivity.D != L7) {
                     arrayList.add(ObjectAnimator.ofInt(usersSelectActivity, "containerHeight", L7));
                 }
                 float f12 = L6;
-                if (usersSelectActivity.f42073c.getTranslationX() != f12) {
-                    arrayList.add(ObjectAnimator.ofFloat(usersSelectActivity.f42073c, property2, f12));
+                if (usersSelectActivity.f42072c.getTranslationX() != f12) {
+                    arrayList.add(ObjectAnimator.ofFloat(usersSelectActivity.f42072c, property2, f12));
                 }
-                float translationY = usersSelectActivity.f42073c.getTranslationY();
+                float translationY = usersSelectActivity.f42072c.getTranslationY();
                 float f13 = usersSelectActivity.R;
                 if (translationY != f13) {
-                    arrayList.add(ObjectAnimator.ofFloat(usersSelectActivity.f42073c, property, f13));
+                    arrayList.add(ObjectAnimator.ofFloat(usersSelectActivity.f42072c, property, f13));
                 }
-                usersSelectActivity.f42073c.setAllowDrawCursor(false);
-                this.f47157a.playTogether(arrayList);
-                this.f47157a.start();
-                this.f47158b = true;
+                usersSelectActivity.f42072c.setAllowDrawCursor(false);
+                this.f47156a.playTogether(arrayList);
+                this.f47156a.start();
+                this.f47157b = true;
             } else {
                 usersSelectActivity.D = L5;
-                usersSelectActivity.f42073c.setTranslationX(L6);
-                usersSelectActivity.f42073c.setTranslationY(usersSelectActivity.R);
+                usersSelectActivity.f42072c.setTranslationX(L6);
+                usersSelectActivity.f42072c.setTranslationY(usersSelectActivity.R);
             }
-        } else if (this.f47157a != null && !usersSelectActivity.f42079w && this.f47160e == null) {
-            ah.i iVar = usersSelectActivity.f42073c;
+        } else if (this.f47156a != null && !usersSelectActivity.f42078w && this.f47159e == null) {
+            ah.i iVar = usersSelectActivity.f42072c;
             iVar.bringPointIntoView(iVar.getSelectionStart());
         }
         setMeasuredDimension(size, usersSelectActivity.D);

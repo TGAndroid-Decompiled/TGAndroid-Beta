@@ -46,7 +46,7 @@ public final class jj extends org.telegram.ui.Components.g90 {
                 return;
             }
             int[] h12 = org.telegram.messenger.ij.h1(botInlineResult);
-            rh rhVar = anVar.f43757cb;
+            rh rhVar = anVar.f43756cb;
             String str = botInlineResult.title;
             if (str == null) {
                 str = "";
@@ -79,12 +79,12 @@ public final class jj extends org.telegram.ui.Components.g90 {
             org.telegram.ui.Components.fe feVar = anVar.Z.P1;
             if (feVar != null) {
                 if (z9) {
-                    feVar.f36639e = true;
-                    feVar.f36637b = System.currentTimeMillis();
+                    feVar.f36657e = true;
+                    feVar.f36655b = System.currentTimeMillis();
                     feVar.invalidateSelf();
                     return;
                 }
-                feVar.f36639e = false;
+                feVar.f36657e = false;
             }
         }
     }
@@ -92,12 +92,12 @@ public final class jj extends org.telegram.ui.Components.g90 {
     @Override
     public final void m() {
         an anVar = this.W;
-        if (anVar.f43914p5 && ((getAdapter().R == null || anVar.f43927q5 || anVar.f43941r5) && anVar.h != null && getAdapter().R != null)) {
+        if (anVar.f43913p5 && ((getAdapter().R == null || anVar.f43926q5 || anVar.f43940r5) && anVar.h != null && getAdapter().R != null)) {
             SharedPreferences e12 = org.telegram.messenger.qp.e1();
             if (!e12.getBoolean("secretbot", false)) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar.getParentActivity(), anVar.f44023xa);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar.getParentActivity(), anVar.f44022xa);
                 String M0 = org.telegram.messenger.hd.M0(2131689472, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = org.telegram.messenger.hd.M0(2131745695, null);
                 alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
@@ -113,7 +113,7 @@ public final class jj extends org.telegram.ui.Components.g90 {
         boolean z10;
         if (this.V != z9) {
             an anVar = this.W;
-            org.telegram.ui.Components.ow0 ow0Var = anVar.f43937r1;
+            org.telegram.ui.Components.ow0 ow0Var = anVar.f43936r1;
             if (!anVar.isInPreviewMode() && z9) {
                 z10 = true;
             } else {

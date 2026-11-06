@@ -9,42 +9,42 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 public final class a1 extends View {
-    public final c1 f60104a;
-    public CharSequence f60105b;
+    public final c1 f60103a;
+    public CharSequence f60104b;
 
     public a1(Context context) {
         super(context);
         c1 c1Var = new c1(this);
-        this.f60104a = c1Var;
+        this.f60103a = c1Var;
         c1Var.setCallback(this);
     }
 
     public final void a(int i7, int i10) {
-        ((Paint) this.f60104a.f220b).setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(48.0f), org.telegram.messenger.g0.L(48.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+        ((Paint) this.f60103a.f220b).setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(48.0f), org.telegram.messenger.g0.L(48.0f), new int[]{i7, i10}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     public final void b(String str, boolean z9) {
         int i7;
-        this.f60105b = str;
+        this.f60104b = str;
         if (z9) {
             i7 = 10;
         } else {
             i7 = 11;
         }
-        this.f60104a.f(i7, str, z9);
+        this.f60103a.f(i7, str, z9);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int width = getWidth();
         int height = getHeight();
-        c1 c1Var = this.f60104a;
+        c1 c1Var = this.f60103a;
         c1Var.setBounds(0, 0, width, height);
         c1Var.draw(canvas);
     }
 
     public CharSequence getText() {
-        return this.f60105b;
+        return this.f60104b;
     }
 
     @Override
@@ -53,23 +53,23 @@ public final class a1 extends View {
     }
 
     public void setBackdrop(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
-        this.f60104a.e(stargiftattributebackdrop, false, false);
+        this.f60103a.e(stargiftattributebackdrop, false, false);
         invalidate();
     }
 
     public void setColor(int i7) {
-        Paint paint = (Paint) this.f60104a.f220b;
+        Paint paint = (Paint) this.f60103a.f220b;
         paint.setShader(null);
         paint.setColor(i7);
     }
 
     public void setStrokeColor(int i7) {
-        this.f60104a.f60148r.setColor(i7);
+        this.f60103a.f60147r.setColor(i7);
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f60104a != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f60103a != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

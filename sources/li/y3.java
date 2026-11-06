@@ -93,14 +93,14 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         this.f19009i0 = new ArrayList();
         this.f19010j0 = new ArrayList();
         this.f18996a = lVar;
-        f6 f6Var = lVar.f18675a.f38947a;
+        f6 f6Var = lVar.f18675a.f38968a;
         this.f18998b = f6Var;
         setClipChildren(false);
         setClipToPadding(false);
         View view = new View(context);
         this.f19000c = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i7 = k6.f27848d6;
+        int i7 = k6.f27849d6;
         GradientDrawable gradientDrawable = new GradientDrawable(orientation, new int[]{k6.w0(i7, f6Var), k6.r1(0.0f, k6.w0(i7, f6Var))});
         this.f19002d0 = gradientDrawable;
         view.setBackground(gradientDrawable);
@@ -124,7 +124,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         int i10 = k6.Ml;
         int w02 = k6.w0(i10, f6Var);
         int w03 = k6.w0(i10, f6Var);
-        int i11 = k6.f27940i6;
+        int i11 = k6.f27941i6;
         org.telegram.ui.Cells.y b02 = k6.b0(w02, k6.w(w03, k6.w0(i11, f6Var)), org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(22.0f));
         f(imageView, i10, b02);
         imageView.setBackground(new a2(b02));
@@ -180,9 +180,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -210,7 +210,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -262,9 +262,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -292,7 +292,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -359,9 +359,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -389,7 +389,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -428,7 +428,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         n6 N4 = r6.N(i11);
         jgVar.setBackground(b04);
         r6.k(jgVar, b04, N3, N4, f6Var);
-        jgVar.j(hg.f34276e, false);
+        jgVar.j(hg.f34314e, false);
         linearLayout3.addView(jgVar, ha.r(38, 38, 16));
         ka.a(jgVar);
         jgVar.setContentDescription("Emoji");
@@ -459,9 +459,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -489,7 +489,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -546,9 +546,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -576,7 +576,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -672,9 +672,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -702,7 +702,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -747,9 +747,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -777,7 +777,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -830,9 +830,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -860,7 +860,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -905,9 +905,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -935,7 +935,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -990,9 +990,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -1020,7 +1020,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -1073,9 +1073,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -1103,7 +1103,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -1153,9 +1153,9 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         if (k22 != null) {
                             TL_iv.RichMessage a10 = k22.a();
                             if (!a10.blocks.isEmpty()) {
-                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38947a);
+                                org.telegram.ui.Components.g0 g0Var = new org.telegram.ui.Components.g0(pVar2.getContext(), pVar2.f38968a);
                                 g0Var.s1(a10);
-                                g0Var.f33678c2 = new ii.c(k22, 9);
+                                g0Var.f33705c2 = new ii.c(k22, 9);
                                 g0Var.show();
                                 return;
                             }
@@ -1183,7 +1183,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                         l lVar2 = lVar;
                         p pVar3 = lVar2.f18675a;
                         Context context2 = pVar3.getContext();
-                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38947a).show();
+                        new v(pVar3.f18756n, context2, new ii.c(lVar2, 10), pVar3.f38968a).show();
                         return;
                     case 10:
                         p.P(lVar.f18675a);
@@ -1204,7 +1204,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         int i11;
         LinearLayout linearLayout = this.D;
         x1 x1Var = new x1(i7, linearLayout.getContext(), this.f18998b);
-        x1Var.c(k6.f27848d6);
+        x1Var.c(k6.f27849d6);
         if (z9) {
             x1Var.d();
             this.V.add(x1Var);
@@ -1314,7 +1314,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
                 ch0Var.setScaleY(f10);
             }
             if (z9) {
-                i7 = k6.f28089q7;
+                i7 = k6.f28090q7;
             } else {
                 i7 = k6.G6;
             }
@@ -1322,7 +1322,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
             zg0 animatedDrawable = ch0Var.getAnimatedDrawable();
             if (animatedDrawable != null) {
                 if (z9) {
-                    if (animatedDrawable.f40950a0 > 34) {
+                    if (animatedDrawable.f40970a0 > 34) {
                         animatedDrawable.N(0, false, false);
                     }
                     animatedDrawable.P(33);
@@ -1342,7 +1342,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         f6 f6Var = this.f18998b;
         this.f19009i0.add(Integer.valueOf(k6.w0(i7, f6Var)));
         if (drawable instanceof RippleDrawable) {
-            i10 = k6.w(k6.w0(i7, f6Var), k6.w0(k6.f27940i6, f6Var));
+            i10 = k6.w(k6.w0(i7, f6Var), k6.w0(k6.f27941i6, f6Var));
         } else {
             i10 = 0;
         }
@@ -1676,7 +1676,7 @@ public final class y3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         if (z9) {
             hgVar = hg.d;
         } else {
-            hgVar = hg.f34276e;
+            hgVar = hg.f34314e;
         }
         jg jgVar = this.f19019y;
         jgVar.j(hgVar, true);

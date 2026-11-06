@@ -3,7 +3,7 @@ package fi;
 import android.animation.ValueAnimator;
 import android.view.MotionEvent;
 import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.r71;
 public final class sa extends b10 {
     public final ua f12820a;
 
@@ -17,7 +17,7 @@ public final class sa extends b10 {
         va vaVar = this.f12820a.f12908n0;
         if (vaVar.f12953f0 == 0 && (y9Var = vaVar.B0) != null && !vaVar.S1 && y9Var.isInited() && !vaVar.P1 && !vaVar.O0.f12103x0) {
             q6 q6Var = vaVar.D0;
-            if ((q6Var == null || (!q6Var.f12674y.f34555i && !q6Var.L)) && !vaVar.I() && vaVar.f12983p2 == null) {
+            if ((q6Var == null || (!q6Var.f12674y.f34585i && !q6Var.L)) && !vaVar.I() && vaVar.f12983p2 == null) {
                 return true;
             }
             return false;
@@ -66,14 +66,14 @@ public final class sa extends b10 {
     public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
         q6 q6Var;
         y9 y9Var;
-        q71 q71Var;
+        r71 r71Var;
         ia iaVar;
         boolean z9;
         boolean z10;
         ua uaVar = this.f12820a;
         va vaVar = uaVar.f12908n0;
         ValueAnimator valueAnimator = vaVar.E;
-        if ((valueAnimator != null && valueAnimator.isRunning()) || (((q6Var = vaVar.D0) != null && (q6Var.f12674y.f34555i || q6Var.L)) || vaVar.O0.f12103x0 || (((y9Var = vaVar.B0) != null && y9Var.f11643s) || uaVar.f12905j0 || (((q71Var = vaVar.V0) != null && (q71Var.F || q71Var.G)) || vaVar.H())))) {
+        if ((valueAnimator != null && valueAnimator.isRunning()) || (((q6Var = vaVar.D0) != null && (q6Var.f12674y.f34585i || q6Var.L)) || vaVar.O0.f12103x0 || (((y9Var = vaVar.B0) != null && y9Var.f11643s) || uaVar.f12905j0 || (((r71Var = vaVar.V0) != null && (r71Var.F || r71Var.G)) || vaVar.H())))) {
             return false;
         }
         boolean z11 = true;

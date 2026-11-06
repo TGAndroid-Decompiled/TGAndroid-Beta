@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
-import c8.wb;
+import c8.xb;
 import com.google.android.gms.wearable.internal.DataItemAssetParcelable;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,8 +61,8 @@ public final class k extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.k(parcel, 2, this.f3064a, i7);
+        int r10 = xb.r(parcel, 20293);
+        xb.k(parcel, 2, this.f3064a, i7);
         Bundle bundle = new Bundle();
         ClassLoader classLoader = DataItemAssetParcelable.class.getClassLoader();
         q6.m.g(classLoader);
@@ -70,8 +70,8 @@ public final class k extends r6.a {
         for (Map.Entry entry : this.f3065b.entrySet()) {
             bundle.putParcelable((String) entry.getKey(), new DataItemAssetParcelable((DataItemAssetParcelable) entry.getValue()));
         }
-        wb.b(parcel, 4, bundle);
-        wb.c(parcel, 5, this.f3066c);
-        wb.s(parcel, r10);
+        xb.b(parcel, 4, bundle);
+        xb.c(parcel, 5, this.f3066c);
+        xb.s(parcel, r10);
     }
 }

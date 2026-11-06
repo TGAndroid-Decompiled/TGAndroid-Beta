@@ -1,19 +1,19 @@
 package x2;
 public final class g1 implements h1 {
-    public final int f58239a;
+    public final int f58238a;
 
     public g1(int i7) {
-        this.f58239a = i7;
+        this.f58238a = i7;
     }
 
     @Override
     public final h1 a(int i7, int i10) {
-        return new g1((this.f58239a - i10) + i7);
+        return new g1((this.f58238a - i10) + i7);
     }
 
     @Override
     public final int b() {
-        if (this.f58239a > 0) {
+        if (this.f58238a > 0) {
             return 0;
         }
         return -1;
@@ -36,7 +36,7 @@ public final class g1 implements h1 {
     @Override
     public final int e(int i7) {
         int i10 = i7 + 1;
-        if (i10 < this.f58239a) {
+        if (i10 < this.f58238a) {
             return i10;
         }
         return -1;
@@ -44,17 +44,17 @@ public final class g1 implements h1 {
 
     @Override
     public final h1 f(int i7, int i10) {
-        return new g1(this.f58239a + i10);
+        return new g1(this.f58238a + i10);
     }
 
     @Override
     public final int getLength() {
-        return this.f58239a;
+        return this.f58238a;
     }
 
     @Override
     public final int h() {
-        int i7 = this.f58239a;
+        int i7 = this.f58238a;
         if (i7 > 0) {
             return i7 - 1;
         }

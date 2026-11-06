@@ -40,7 +40,7 @@ public final class n3 extends FrameLayout {
         View view = new View(context);
         this.d = view;
         int L = org.telegram.messenger.g0.L(11.0f);
-        int i10 = k6.f27848d6;
+        int i10 = k6.f27849d6;
         Drawable L2 = k6.L(L, k6.w0(i10, f6Var));
         n6 N = r6.N(i10);
         view.setBackground(L2);
@@ -79,7 +79,7 @@ public final class n3 extends FrameLayout {
         f10.setSingleLine(true);
         f10.setEllipsize(truncateAt);
         f10.setTextSize(1, 14.0f);
-        r6.V(f10, k6.f28258z6, f6Var);
+        r6.V(f10, k6.f28259z6, f6Var);
         linearLayout.addView(f10, ha.t(-1, -2, 55, 6, 1, 24, 0));
         ImageView imageView2 = new ImageView(context);
         this.f14818r = imageView2;
@@ -93,7 +93,7 @@ public final class n3 extends FrameLayout {
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.f14819s) {
-            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), k6.f27971k0);
+            canvas.drawRect(org.telegram.messenger.g0.L(72.0f), getHeight() - 1, getWidth(), getHeight(), k6.f27972k0);
         }
     }
 

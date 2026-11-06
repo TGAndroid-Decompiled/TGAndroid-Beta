@@ -79,7 +79,7 @@ public final class o1 extends v4.m0 {
                 if (view instanceof org.telegram.ui.Cells.j8) {
                     rect.left = org.telegram.messenger.g0.L(5.0f);
                     rect.right = org.telegram.messenger.g0.L(5.0f);
-                    if (RecyclerView.R(view) + 1 > gyVar.R.E && !p10.i(gyVar.f34024c1).q() && !gyVar.U0) {
+                    if (RecyclerView.R(view) + 1 > gyVar.R.E && !p10.i(gyVar.f34032c1).q() && !gyVar.U0) {
                         rect.top = org.telegram.messenger.g0.L(10.0f);
                         return;
                     }
@@ -106,7 +106,7 @@ public final class o1 extends v4.m0 {
                 }
                 return;
             case 5:
-                if (RecyclerView.R(view) == ((jf0) this.f12511b).f46952c.size() - 1) {
+                if (RecyclerView.R(view) == ((jf0) this.f12511b).f46951c.size() - 1) {
                     rect.bottom = org.telegram.messenger.g0.L(4.0f);
                     return;
                 }
@@ -123,9 +123,9 @@ public final class o1 extends v4.m0 {
             case 7:
                 int R2 = RecyclerView.R(view);
                 bm0 bm0Var = (bm0) this.f12511b;
-                int i12 = bm0Var.f44430b0;
+                int i12 = bm0Var.f44429b0;
                 if (R2 >= i12) {
-                    int i13 = bm0Var.f44437f0;
+                    int i13 = bm0Var.f44436f0;
                     if (R2 < i12 + i13) {
                         int i14 = R2 - i12;
                         int i15 = i14 / 3;
@@ -182,7 +182,7 @@ public final class o1 extends v4.m0 {
                 int R3 = RecyclerView.R(view);
                 wg.w0 w0Var = (wg.w0) this.f12511b;
                 if (R3 == w0Var.V1.size()) {
-                    rect.bottom = w0Var.f57735h2;
+                    rect.bottom = w0Var.f57734h2;
                     return;
                 }
                 return;
@@ -191,7 +191,7 @@ public final class o1 extends v4.m0 {
                 int R4 = RecyclerView.R(view);
                 wg.f1 f1Var = (wg.f1) this.f12511b;
                 if (R4 == f1Var.Y1.size()) {
-                    rect.bottom = f1Var.f57643i2;
+                    rect.bottom = f1Var.f57642i2;
                     return;
                 }
                 return;

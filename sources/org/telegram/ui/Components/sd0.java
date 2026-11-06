@@ -56,134 +56,134 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     public float U;
     public boolean V;
     public final h2.c W;
-    public boolean f37985a;
-    public float f37986a0;
-    public final int f37987b;
-    public PointF f37988b0;
-    public final int f37989c;
-    public float f37990c0;
+    public boolean f37989a;
+    public float f37990a0;
+    public final int f37991b;
+    public PointF f37992b0;
+    public final int f37993c;
+    public float f37994c0;
     public final int d;
-    public float f37991d0;
-    public final int f37992e;
-    public org.telegram.messenger.hf f37993e0;
-    public final int f37994f;
-    public final FrameLayout f37995f0;
-    public final TextView f37996g0;
+    public float f37995d0;
+    public final int f37996e;
+    public org.telegram.messenger.hf f37997e0;
+    public final int f37998f;
+    public final FrameLayout f37999f0;
+    public final TextView f38000g0;
     public final int h;
-    public final TextView f37997h0;
-    public final TextureView f37998i0;
-    public final boolean f37999j0;
-    public final boolean f38000k0;
-    public ry f38001l0;
+    public final TextView f38001h0;
+    public final TextureView f38002i0;
+    public final boolean f38003j0;
+    public final boolean f38004k0;
+    public ry f38005l0;
     public final eh m0;
-    public final int f38002n;
-    public final FrameLayout f38003n0;
-    public final jd0 f38004o0;
-    public final ld0 f38005p0;
-    public final TextView f38006q0;
-    public final int f38007r;
-    public final TextView f38008r0;
-    public final int f38009s;
-    public final TextView f38010s0;
-    public final FrameLayout f38011t0;
-    public final RadioButton[] f38012u0;
-    public final sb0 f38013v0;
-    public final int f38014w;
-    public final boolean f38015w0;
-    public final int f38016x;
-    public final boolean f38017x0;
-    public final int f38018y;
-    public int f38019y0;
-    public final ImageView f38020z0;
+    public final int f38006n;
+    public final FrameLayout f38007n0;
+    public final jd0 f38008o0;
+    public final ld0 f38009p0;
+    public final TextView f38010q0;
+    public final int f38011r;
+    public final TextView f38012r0;
+    public final int f38013s;
+    public final TextView f38014s0;
+    public final FrameLayout f38015t0;
+    public final RadioButton[] f38016u0;
+    public final sb0 f38017v0;
+    public final int f38018w;
+    public final boolean f38019w0;
+    public final int f38020x;
+    public final boolean f38021x0;
+    public final int f38022y;
+    public int f38023y0;
+    public final ImageView f38024z0;
 
-    public sd0(Context context, g51 g51Var, Bitmap bitmap, Bitmap bitmap2, int i7, org.telegram.messenger.hf hfVar, sb0 sb0Var, int i10, boolean z9, boolean z10, y9 y9Var, final org.telegram.ui.ActionBar.f6 f6Var) {
+    public sd0(Context context, h51 h51Var, Bitmap bitmap, Bitmap bitmap2, int i7, org.telegram.messenger.hf hfVar, sb0 sb0Var, int i10, boolean z9, boolean z10, y9 y9Var, final org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f38012u0 = new RadioButton[4];
+        this.f38016u0 = new RadioButton[4];
         this.E0 = new Rect();
         this.F0 = new Matrix();
         this.G0 = new Paint(2);
-        this.f38000k0 = z10;
+        this.f38004k0 = z10;
         this.I0 = f6Var;
         boolean z11 = context instanceof BubbleActivity;
-        this.f38017x0 = z11;
-        this.f38013v0 = sb0Var;
-        this.f38015w0 = z9;
+        this.f38021x0 = z11;
+        this.f38017v0 = sb0Var;
+        this.f38019w0 = z9;
         this.F = 0;
         if (i10 == 1) {
             this.F = 1;
-            this.f38002n = 0;
+            this.f38006n = 0;
         } else if (i10 == 0) {
-            this.f38002n = -1;
+            this.f38006n = -1;
         }
         int i11 = this.F;
-        this.f37987b = i11;
-        this.f37989c = i11 + 1;
+        this.f37991b = i11;
+        this.f37993c = i11 + 1;
         this.d = i11 + 2;
-        this.f37992e = i11 + 3;
-        this.f37994f = i11 + 4;
+        this.f37996e = i11 + 3;
+        this.f37998f = i11 + 4;
         this.h = i11 + 5;
-        this.f38007r = i11 + 6;
-        this.f38009s = i11 + 7;
+        this.f38011r = i11 + 6;
+        this.f38013s = i11 + 7;
         int i12 = i11 + 9;
         this.F = i12;
-        this.f38014w = i11 + 8;
+        this.f38018w = i11 + 8;
         if (i10 == 2) {
             this.F = i11 + 10;
-            this.f38002n = i12;
+            this.f38006n = i12;
         }
-        if (g51Var == null) {
+        if (h51Var == null) {
             int i13 = this.F;
             this.F = i13 + 1;
-            this.f38016x = i13;
+            this.f38020x = i13;
         } else {
-            this.f38016x = -1;
+            this.f38020x = -1;
         }
         int i14 = this.F;
-        this.f38018y = i14;
+        this.f38022y = i14;
         this.D = i14 + 1;
         this.F = i14 + 3;
         this.E = i14 + 2;
         if (hfVar != null) {
-            this.G = hfVar.f22906a;
-            this.M = hfVar.f22907b;
-            this.H = hfVar.f22908c;
+            this.G = hfVar.f22913a;
+            this.M = hfVar.f22914b;
+            this.H = hfVar.f22915c;
             this.I = hfVar.d;
-            this.J = hfVar.f22909e;
-            this.K = hfVar.f22910f;
-            this.L = hfVar.f22911g;
+            this.J = hfVar.f22916e;
+            this.K = hfVar.f22917f;
+            this.L = hfVar.f22918g;
             this.N = hfVar.h;
-            this.O = hfVar.f22912i;
-            this.P = hfVar.f22913j;
-            this.Q = hfVar.f22914k;
-            this.R = hfVar.f22915l;
-            this.S = hfVar.f22916m;
-            this.T = hfVar.f22917n;
-            this.U = hfVar.f22918o;
-            this.W = hfVar.f22919p;
-            this.f37986a0 = hfVar.f22920q;
-            this.f37988b0 = hfVar.f22921r;
-            this.f37990c0 = hfVar.f22922s;
+            this.O = hfVar.f22919i;
+            this.P = hfVar.f22920j;
+            this.Q = hfVar.f22921k;
+            this.R = hfVar.f22922l;
+            this.S = hfVar.f22923m;
+            this.T = hfVar.f22924n;
+            this.U = hfVar.f22925o;
+            this.W = hfVar.f22926p;
+            this.f37990a0 = hfVar.f22927q;
+            this.f37992b0 = hfVar.f22928r;
+            this.f37994c0 = hfVar.f22929s;
             this.V = hfVar.a();
-            this.f37991d0 = hfVar.f22923t;
-            this.f37993e0 = hfVar;
+            this.f37995d0 = hfVar.f22930t;
+            this.f37997e0 = hfVar;
         } else {
             this.W = new h2.c();
-            this.f37986a0 = 0.35f;
-            this.f37988b0 = new PointF(0.5f, 0.5f);
-            this.f37990c0 = 0.15f;
-            this.f37991d0 = 1.5707964f;
+            this.f37990a0 = 0.35f;
+            this.f37992b0 = new PointF(0.5f, 0.5f);
+            this.f37994c0 = 0.15f;
+            this.f37995d0 = 1.5707964f;
             this.V = true;
         }
         this.C0 = bitmap;
         this.D0 = bitmap2;
         this.H0 = i7;
-        if (g51Var != null) {
-            this.f37998i0 = g51Var;
-            g51Var.setDelegate(new md0(this));
+        if (h51Var != null) {
+            this.f38002i0 = h51Var;
+            h51Var.setDelegate(new md0(this));
         } else {
-            this.f37999j0 = true;
+            this.f38003j0 = true;
             k40 k40Var = new k40(1, context, this);
-            this.f37998i0 = k40Var;
+            this.f38002i0 = k40Var;
             if (z10) {
                 addView(k40Var, c8.ha.e(-1, -1, 51));
             }
@@ -191,13 +191,13 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             k40Var.setSurfaceTextureListener(new pd0(this, z10, y9Var));
         }
         ?? frameLayout = new FrameLayout(context);
-        frameLayout.f34909a = new PointF();
+        frameLayout.f34935a = new PointF();
         frameLayout.d = new Object();
-        frameLayout.f34912e = new PointF(0.5f, 0.5f);
-        frameLayout.f34913f = 0.15f;
+        frameLayout.f34938e = new PointF(0.5f, 0.5f);
+        frameLayout.f34939f = 0.15f;
         frameLayout.h = 0.35f;
-        frameLayout.f34915r = new RectF();
-        frameLayout.f34919y = 1.0f;
+        frameLayout.f34941r = new RectF();
+        frameLayout.f34945y = 1.0f;
         frameLayout.F = true;
         Paint paint = new Paint(1);
         frameLayout.I = paint;
@@ -210,7 +210,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         Paint.Style style = Paint.Style.STROKE;
         paint2.setStyle(style);
         frameLayout.K = z11;
-        this.f38004o0 = frameLayout;
+        this.f38008o0 = frameLayout;
         frameLayout.setVisibility(4);
         if (z10) {
             addView((View) frameLayout, c8.ha.e(-1, -1, 51));
@@ -218,20 +218,20 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         frameLayout.setDelegate(new md0(this));
         h2.c cVar = this.W;
         ?? view = new View(context);
-        view.f35632a = 0;
-        view.f35634c = true;
-        view.f35635e = new Object();
+        view.f35652a = 0;
+        view.f35654c = true;
+        view.f35655e = new Object();
         Paint paint3 = new Paint(1);
-        view.f35636f = paint3;
+        view.f35656f = paint3;
         Paint paint4 = new Paint(1);
         view.h = paint4;
         Paint paint5 = new Paint(1);
-        view.f35637n = paint5;
+        view.f35657n = paint5;
         TextPaint textPaint = new TextPaint(1);
-        view.f35638r = textPaint;
-        view.f35639s = new Path();
+        view.f35658r = textPaint;
+        view.f35659s = new Path();
         view.setWillNotDraw(false);
-        view.f35641x = cVar;
+        view.f35661x = cVar;
         paint3.setColor(-1711276033);
         paint3.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
         paint3.setStyle(style);
@@ -243,20 +243,20 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         paint5.setStyle(style);
         textPaint.setColor(-4210753);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
-        this.f38005p0 = view;
+        this.f38009p0 = view;
         view.setDelegate(new md0(this));
         view.setVisibility(4);
         if (z10) {
             addView((View) view, c8.ha.e(-1, -1, 51));
         }
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f37995f0 = frameLayout2;
+        this.f37999f0 = frameLayout2;
         addView(frameLayout2, c8.ha.e(-1, (!z10 ? 40 : 0) + 186, 83));
         FrameLayout frameLayout3 = new FrameLayout(context);
         frameLayout3.setBackgroundColor(-16777216);
         frameLayout2.addView(frameLayout3, c8.ha.e(-1, 48, 83));
         TextView textView = new TextView(context);
-        this.f37997h0 = textView;
+        this.f38001h0 = textView;
         textView.setTextSize(1, 14.0f);
         textView.setTextColor(-1);
         textView.setGravity(17);
@@ -266,9 +266,9 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         textView.setTypeface(org.telegram.messenger.g0.o());
         frameLayout3.addView(textView, c8.ha.e(-2, -1, 51));
         TextView textView2 = new TextView(context);
-        this.f37996g0 = textView2;
+        this.f38000g0 = textView2;
         textView2.setTextSize(1, 14.0f);
-        int i15 = org.telegram.ui.ActionBar.k6.f28039ng;
+        int i15 = org.telegram.ui.ActionBar.k6.f28040ng;
         org.telegram.ui.ActionBar.r6.V(textView2, i15, f6Var);
         textView2.setGravity(17);
         textView2.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.h0(-12763843, 0, -1));
@@ -279,7 +279,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         LinearLayout linearLayout = new LinearLayout(context);
         frameLayout3.addView(linearLayout, c8.ha.e(-2, -1, 1));
         ImageView imageView = new ImageView(context);
-        this.f38020z0 = imageView;
+        this.f38024z0 = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(2131232283);
@@ -287,37 +287,37 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         imageView.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.h0(1090519039, 1, -1));
         linearLayout.addView(imageView, c8.ha.o(56, 48));
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final sd0 f36281b;
+            public final sd0 f36320b;
 
             {
-                this.f36281b = this;
+                this.f36320b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        sd0 sd0Var = this.f36281b;
-                        sd0Var.f38019y0 = 0;
-                        org.telegram.ui.ActionBar.r6.t(sd0Var.f38020z0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        sd0 sd0Var = this.f36320b;
+                        sd0Var.f38023y0 = 0;
+                        org.telegram.ui.ActionBar.r6.t(sd0Var.f38024z0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var.A0.setColorFilter((ColorFilter) null);
                         sd0Var.B0.setColorFilter((ColorFilter) null);
                         sd0Var.c();
                         return;
                     case 1:
-                        sd0 sd0Var2 = this.f36281b;
-                        sd0Var2.f38019y0 = 1;
-                        sd0Var2.f38020z0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.r6.t(sd0Var2.A0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        sd0 sd0Var2 = this.f36320b;
+                        sd0Var2.f38023y0 = 1;
+                        sd0Var2.f38024z0.setColorFilter((ColorFilter) null);
+                        org.telegram.ui.ActionBar.r6.t(sd0Var2.A0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var2.B0.setColorFilter((ColorFilter) null);
                         sd0Var2.c();
                         return;
                     default:
-                        sd0 sd0Var3 = this.f36281b;
-                        sd0Var3.f38019y0 = 2;
-                        sd0Var3.f38020z0.setColorFilter((ColorFilter) null);
+                        sd0 sd0Var3 = this.f36320b;
+                        sd0Var3.f38023y0 = 2;
+                        sd0Var3.f38024z0.setColorFilter((ColorFilter) null);
                         sd0Var3.A0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.r6.t(sd0Var3.B0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.r6.t(sd0Var3.B0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var3.c();
                         return;
                 }
@@ -330,43 +330,43 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         imageView2.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.h0(1090519039, 1, -1));
         linearLayout.addView(imageView2, c8.ha.o(56, 48));
         imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final sd0 f36281b;
+            public final sd0 f36320b;
 
             {
-                this.f36281b = this;
+                this.f36320b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        sd0 sd0Var = this.f36281b;
-                        sd0Var.f38019y0 = 0;
-                        org.telegram.ui.ActionBar.r6.t(sd0Var.f38020z0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        sd0 sd0Var = this.f36320b;
+                        sd0Var.f38023y0 = 0;
+                        org.telegram.ui.ActionBar.r6.t(sd0Var.f38024z0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var.A0.setColorFilter((ColorFilter) null);
                         sd0Var.B0.setColorFilter((ColorFilter) null);
                         sd0Var.c();
                         return;
                     case 1:
-                        sd0 sd0Var2 = this.f36281b;
-                        sd0Var2.f38019y0 = 1;
-                        sd0Var2.f38020z0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.r6.t(sd0Var2.A0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        sd0 sd0Var2 = this.f36320b;
+                        sd0Var2.f38023y0 = 1;
+                        sd0Var2.f38024z0.setColorFilter((ColorFilter) null);
+                        org.telegram.ui.ActionBar.r6.t(sd0Var2.A0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var2.B0.setColorFilter((ColorFilter) null);
                         sd0Var2.c();
                         return;
                     default:
-                        sd0 sd0Var3 = this.f36281b;
-                        sd0Var3.f38019y0 = 2;
-                        sd0Var3.f38020z0.setColorFilter((ColorFilter) null);
+                        sd0 sd0Var3 = this.f36320b;
+                        sd0Var3.f38023y0 = 2;
+                        sd0Var3.f38024z0.setColorFilter((ColorFilter) null);
                         sd0Var3.A0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.r6.t(sd0Var3.B0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.r6.t(sd0Var3.B0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var3.c();
                         return;
                 }
             }
         });
-        if (g51Var != null) {
+        if (h51Var != null) {
             imageView2.setVisibility(8);
         }
         ImageView imageView3 = new ImageView(context);
@@ -376,37 +376,37 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         imageView3.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.h0(1090519039, 1, -1));
         linearLayout.addView(imageView3, c8.ha.o(56, 48));
         imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final sd0 f36281b;
+            public final sd0 f36320b;
 
             {
-                this.f36281b = this;
+                this.f36320b = this;
             }
 
             @Override
             public final void onClick(View view2) {
                 switch (r3) {
                     case 0:
-                        sd0 sd0Var = this.f36281b;
-                        sd0Var.f38019y0 = 0;
-                        org.telegram.ui.ActionBar.r6.t(sd0Var.f38020z0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        sd0 sd0Var = this.f36320b;
+                        sd0Var.f38023y0 = 0;
+                        org.telegram.ui.ActionBar.r6.t(sd0Var.f38024z0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var.A0.setColorFilter((ColorFilter) null);
                         sd0Var.B0.setColorFilter((ColorFilter) null);
                         sd0Var.c();
                         return;
                     case 1:
-                        sd0 sd0Var2 = this.f36281b;
-                        sd0Var2.f38019y0 = 1;
-                        sd0Var2.f38020z0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.r6.t(sd0Var2.A0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        sd0 sd0Var2 = this.f36320b;
+                        sd0Var2.f38023y0 = 1;
+                        sd0Var2.f38024z0.setColorFilter((ColorFilter) null);
+                        org.telegram.ui.ActionBar.r6.t(sd0Var2.A0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var2.B0.setColorFilter((ColorFilter) null);
                         sd0Var2.c();
                         return;
                     default:
-                        sd0 sd0Var3 = this.f36281b;
-                        sd0Var3.f38019y0 = 2;
-                        sd0Var3.f38020z0.setColorFilter((ColorFilter) null);
+                        sd0 sd0Var3 = this.f36320b;
+                        sd0Var3.f38023y0 = 2;
+                        sd0Var3.f38024z0.setColorFilter((ColorFilter) null);
                         sd0Var3.A0.setColorFilter((ColorFilter) null);
-                        org.telegram.ui.ActionBar.r6.t(sd0Var3.B0, org.telegram.ui.ActionBar.k6.f28039ng, f6Var, PorterDuff.Mode.MULTIPLY);
+                        org.telegram.ui.ActionBar.r6.t(sd0Var3.B0, org.telegram.ui.ActionBar.k6.f28040ng, f6Var, PorterDuff.Mode.MULTIPLY);
                         sd0Var3.c();
                         return;
                 }
@@ -422,7 +422,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         ehVar.setAdapter(new org.telegram.ui.l4(4, this, context));
         frameLayout2.addView(ehVar, c8.ha.e(-1, (!z10 ? 60 : 0) + 120, 51));
         FrameLayout frameLayout4 = new FrameLayout(context);
-        this.f38011t0 = frameLayout4;
+        this.f38015t0 = frameLayout4;
         frameLayout4.setVisibility(4);
         frameLayout2.addView(frameLayout4, c8.ha.d(-1, 78.0f, 1, 0.0f, (!z10 ? 40 : 0) + 40, 0.0f, 0.0f));
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -432,9 +432,9 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         while (i16 < 4) {
             FrameLayout frameLayout5 = new FrameLayout(context);
             frameLayout5.setTag(Integer.valueOf(i16));
-            this.f38012u0[i16] = new RadioButton(context);
-            this.f38012u0[i16].setSize(org.telegram.messenger.g0.L(20.0f));
-            frameLayout5.addView(this.f38012u0[i16], c8.ha.e(30, 30, 49));
+            this.f38016u0[i16] = new RadioButton(context);
+            this.f38016u0[i16].setSize(org.telegram.messenger.g0.L(20.0f));
+            frameLayout5.addView(this.f38016u0[i16], c8.ha.e(30, 30, 49));
             TextView textView3 = new TextView(context);
             textView3.setTextSize(1, 12.0f);
             textView3.setGravity(16);
@@ -442,30 +442,30 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                 String M0 = org.telegram.messenger.hd.M0(2131751693, null);
                 textView3.setText(M0.substring(0, 1).toUpperCase() + M0.substring(1).toLowerCase());
                 textView3.setTextColor(-1);
-                this.f38012u0[i16].b(-1, -1);
+                this.f38016u0[i16].b(-1, -1);
             } else if (i16 == 1) {
                 String M02 = org.telegram.messenger.hd.M0(2131751690, null);
                 textView3.setText(M02.substring(0, 1).toUpperCase() + M02.substring(1).toLowerCase());
                 textView3.setTextColor(-1684147);
-                this.f38012u0[i16].b(-1684147, -1684147);
+                this.f38016u0[i16].b(-1684147, -1684147);
             } else if (i16 == 2) {
                 String M03 = org.telegram.messenger.hd.M0(2131751691, null);
                 textView3.setText(M03.substring(0, 1).toUpperCase() + M03.substring(1).toLowerCase());
                 textView3.setTextColor(-10831009);
-                this.f38012u0[i16].b(-10831009, -10831009);
+                this.f38016u0[i16].b(-10831009, -10831009);
             } else if (i16 == 3) {
                 String M04 = org.telegram.messenger.hd.M0(2131751692, null);
                 textView3.setText(M04.substring(0, 1).toUpperCase() + M04.substring(1).toLowerCase());
                 textView3.setTextColor(-12734994);
-                this.f38012u0[i16].b(-12734994, -12734994);
+                this.f38016u0[i16].b(-12734994, -12734994);
             }
             frameLayout5.addView(textView3, c8.ha.d(-2, -2.0f, 49, 0.0f, 38.0f, 0.0f, 0.0f));
             linearLayout2.addView(frameLayout5, c8.ha.k(i16 == 0 ? 0.0f : 30.0f, 0.0f, 0.0f, 0.0f, -2, -2));
             frameLayout5.setOnClickListener(new View.OnClickListener(this) {
-                public final sd0 f36585b;
+                public final sd0 f36603b;
 
                 {
-                    this.f36585b = this;
+                    this.f36603b = this;
                 }
 
                 @Override
@@ -473,12 +473,12 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                     boolean z12;
                     switch (r2) {
                         case 0:
-                            sd0 sd0Var = this.f36585b;
+                            sd0 sd0Var = this.f36603b;
                             sd0Var.getClass();
                             int intValue = ((Integer) view2.getTag()).intValue();
                             sd0Var.W.f14057a = intValue;
                             for (int i17 = 0; i17 < 4; i17++) {
-                                RadioButton radioButton = sd0Var.f38012u0[i17];
+                                RadioButton radioButton = sd0Var.f38016u0[i17];
                                 if (i17 == intValue) {
                                     z12 = true;
                                 } else {
@@ -486,40 +486,40 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                                 }
                                 radioButton.a(z12, true);
                             }
-                            sd0Var.f38005p0.invalidate();
+                            sd0Var.f38009p0.invalidate();
                             return;
                         case 1:
-                            sd0 sd0Var2 = this.f36585b;
+                            sd0 sd0Var2 = this.f36603b;
                             sd0Var2.T = 0;
                             sd0Var2.e();
-                            sd0Var2.f38004o0.setVisibility(4);
-                            ry ryVar = sd0Var2.f38001l0;
+                            sd0Var2.f38008o0.setVisibility(4);
+                            ry ryVar = sd0Var2.f38005l0;
                             if (ryVar != null) {
                                 ryVar.c(false, false, false);
                                 return;
                             }
                             return;
                         case 2:
-                            sd0 sd0Var3 = this.f36585b;
+                            sd0 sd0Var3 = this.f36603b;
                             sd0Var3.T = 1;
                             sd0Var3.e();
-                            jd0 jd0Var = sd0Var3.f38004o0;
+                            jd0 jd0Var = sd0Var3.f38008o0;
                             jd0Var.setVisibility(0);
                             jd0Var.setType(1);
-                            ry ryVar2 = sd0Var3.f38001l0;
+                            ry ryVar2 = sd0Var3.f38005l0;
                             if (ryVar2 != null) {
                                 ryVar2.c(false, false, false);
                                 return;
                             }
                             return;
                         default:
-                            sd0 sd0Var4 = this.f36585b;
+                            sd0 sd0Var4 = this.f36603b;
                             sd0Var4.T = 2;
                             sd0Var4.e();
-                            jd0 jd0Var2 = sd0Var4.f38004o0;
+                            jd0 jd0Var2 = sd0Var4.f38008o0;
                             jd0Var2.setVisibility(0);
                             jd0Var2.setType(0);
-                            ry ryVar3 = sd0Var4.f38001l0;
+                            ry ryVar3 = sd0Var4.f38005l0;
                             if (ryVar3 != null) {
                                 ryVar3.c(false, false, false);
                                 return;
@@ -531,21 +531,21 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             i16++;
         }
         FrameLayout frameLayout6 = new FrameLayout(context);
-        this.f38003n0 = frameLayout6;
+        this.f38007n0 = frameLayout6;
         frameLayout6.setVisibility(4);
-        this.f37995f0.addView(frameLayout6, c8.ha.d(280, 60.0f, 1, 0.0f, (z10 ? 0 : 40) + 40, 0.0f, 0.0f));
+        this.f37999f0.addView(frameLayout6, c8.ha.d(280, 60.0f, 1, 0.0f, (z10 ? 0 : 40) + 40, 0.0f, 0.0f));
         TextView textView4 = new TextView(context);
-        this.f38006q0 = textView4;
+        this.f38010q0 = textView4;
         textView4.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         textView4.setTextSize(1, 13.0f);
         textView4.setGravity(1);
         textView4.setText(org.telegram.messenger.hd.M0(2131753673, null));
         frameLayout6.addView(textView4, c8.ha.c(60.0f, 80));
         textView4.setOnClickListener(new View.OnClickListener(this) {
-            public final sd0 f36585b;
+            public final sd0 f36603b;
 
             {
-                this.f36585b = this;
+                this.f36603b = this;
             }
 
             @Override
@@ -553,12 +553,12 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                 boolean z12;
                 switch (r2) {
                     case 0:
-                        sd0 sd0Var = this.f36585b;
+                        sd0 sd0Var = this.f36603b;
                         sd0Var.getClass();
                         int intValue = ((Integer) view2.getTag()).intValue();
                         sd0Var.W.f14057a = intValue;
                         for (int i17 = 0; i17 < 4; i17++) {
-                            RadioButton radioButton = sd0Var.f38012u0[i17];
+                            RadioButton radioButton = sd0Var.f38016u0[i17];
                             if (i17 == intValue) {
                                 z12 = true;
                             } else {
@@ -566,40 +566,40 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                             }
                             radioButton.a(z12, true);
                         }
-                        sd0Var.f38005p0.invalidate();
+                        sd0Var.f38009p0.invalidate();
                         return;
                     case 1:
-                        sd0 sd0Var2 = this.f36585b;
+                        sd0 sd0Var2 = this.f36603b;
                         sd0Var2.T = 0;
                         sd0Var2.e();
-                        sd0Var2.f38004o0.setVisibility(4);
-                        ry ryVar = sd0Var2.f38001l0;
+                        sd0Var2.f38008o0.setVisibility(4);
+                        ry ryVar = sd0Var2.f38005l0;
                         if (ryVar != null) {
                             ryVar.c(false, false, false);
                             return;
                         }
                         return;
                     case 2:
-                        sd0 sd0Var3 = this.f36585b;
+                        sd0 sd0Var3 = this.f36603b;
                         sd0Var3.T = 1;
                         sd0Var3.e();
-                        jd0 jd0Var = sd0Var3.f38004o0;
+                        jd0 jd0Var = sd0Var3.f38008o0;
                         jd0Var.setVisibility(0);
                         jd0Var.setType(1);
-                        ry ryVar2 = sd0Var3.f38001l0;
+                        ry ryVar2 = sd0Var3.f38005l0;
                         if (ryVar2 != null) {
                             ryVar2.c(false, false, false);
                             return;
                         }
                         return;
                     default:
-                        sd0 sd0Var4 = this.f36585b;
+                        sd0 sd0Var4 = this.f36603b;
                         sd0Var4.T = 2;
                         sd0Var4.e();
-                        jd0 jd0Var2 = sd0Var4.f38004o0;
+                        jd0 jd0Var2 = sd0Var4.f38008o0;
                         jd0Var2.setVisibility(0);
                         jd0Var2.setType(0);
-                        ry ryVar3 = sd0Var4.f38001l0;
+                        ry ryVar3 = sd0Var4.f38005l0;
                         if (ryVar3 != null) {
                             ryVar3.c(false, false, false);
                             return;
@@ -609,17 +609,17 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             }
         });
         TextView textView5 = new TextView(context);
-        this.f38008r0 = textView5;
+        this.f38012r0 = textView5;
         textView5.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         textView5.setTextSize(1, 13.0f);
         textView5.setGravity(1);
         textView5.setText(org.telegram.messenger.hd.M0(2131753672, null));
         frameLayout6.addView(textView5, c8.ha.d(80, 80.0f, 51, 100.0f, 0.0f, 0.0f, 0.0f));
         textView5.setOnClickListener(new View.OnClickListener(this) {
-            public final sd0 f36585b;
+            public final sd0 f36603b;
 
             {
-                this.f36585b = this;
+                this.f36603b = this;
             }
 
             @Override
@@ -627,12 +627,12 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                 boolean z12;
                 switch (r2) {
                     case 0:
-                        sd0 sd0Var = this.f36585b;
+                        sd0 sd0Var = this.f36603b;
                         sd0Var.getClass();
                         int intValue = ((Integer) view2.getTag()).intValue();
                         sd0Var.W.f14057a = intValue;
                         for (int i17 = 0; i17 < 4; i17++) {
-                            RadioButton radioButton = sd0Var.f38012u0[i17];
+                            RadioButton radioButton = sd0Var.f38016u0[i17];
                             if (i17 == intValue) {
                                 z12 = true;
                             } else {
@@ -640,40 +640,40 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                             }
                             radioButton.a(z12, true);
                         }
-                        sd0Var.f38005p0.invalidate();
+                        sd0Var.f38009p0.invalidate();
                         return;
                     case 1:
-                        sd0 sd0Var2 = this.f36585b;
+                        sd0 sd0Var2 = this.f36603b;
                         sd0Var2.T = 0;
                         sd0Var2.e();
-                        sd0Var2.f38004o0.setVisibility(4);
-                        ry ryVar = sd0Var2.f38001l0;
+                        sd0Var2.f38008o0.setVisibility(4);
+                        ry ryVar = sd0Var2.f38005l0;
                         if (ryVar != null) {
                             ryVar.c(false, false, false);
                             return;
                         }
                         return;
                     case 2:
-                        sd0 sd0Var3 = this.f36585b;
+                        sd0 sd0Var3 = this.f36603b;
                         sd0Var3.T = 1;
                         sd0Var3.e();
-                        jd0 jd0Var = sd0Var3.f38004o0;
+                        jd0 jd0Var = sd0Var3.f38008o0;
                         jd0Var.setVisibility(0);
                         jd0Var.setType(1);
-                        ry ryVar2 = sd0Var3.f38001l0;
+                        ry ryVar2 = sd0Var3.f38005l0;
                         if (ryVar2 != null) {
                             ryVar2.c(false, false, false);
                             return;
                         }
                         return;
                     default:
-                        sd0 sd0Var4 = this.f36585b;
+                        sd0 sd0Var4 = this.f36603b;
                         sd0Var4.T = 2;
                         sd0Var4.e();
-                        jd0 jd0Var2 = sd0Var4.f38004o0;
+                        jd0 jd0Var2 = sd0Var4.f38008o0;
                         jd0Var2.setVisibility(0);
                         jd0Var2.setType(0);
-                        ry ryVar3 = sd0Var4.f38001l0;
+                        ry ryVar3 = sd0Var4.f38005l0;
                         if (ryVar3 != null) {
                             ryVar3.c(false, false, false);
                             return;
@@ -683,17 +683,17 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             }
         });
         TextView textView6 = new TextView(context);
-        this.f38010s0 = textView6;
+        this.f38014s0 = textView6;
         textView6.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         textView6.setTextSize(1, 13.0f);
         textView6.setGravity(1);
         textView6.setText(org.telegram.messenger.hd.M0(2131753674, null));
         frameLayout6.addView(textView6, c8.ha.d(80, 80.0f, 51, 200.0f, 0.0f, 0.0f, 0.0f));
         textView6.setOnClickListener(new View.OnClickListener(this) {
-            public final sd0 f36585b;
+            public final sd0 f36603b;
 
             {
-                this.f36585b = this;
+                this.f36603b = this;
             }
 
             @Override
@@ -701,12 +701,12 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                 boolean z12;
                 switch (r2) {
                     case 0:
-                        sd0 sd0Var = this.f36585b;
+                        sd0 sd0Var = this.f36603b;
                         sd0Var.getClass();
                         int intValue = ((Integer) view2.getTag()).intValue();
                         sd0Var.W.f14057a = intValue;
                         for (int i17 = 0; i17 < 4; i17++) {
-                            RadioButton radioButton = sd0Var.f38012u0[i17];
+                            RadioButton radioButton = sd0Var.f38016u0[i17];
                             if (i17 == intValue) {
                                 z12 = true;
                             } else {
@@ -714,40 +714,40 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                             }
                             radioButton.a(z12, true);
                         }
-                        sd0Var.f38005p0.invalidate();
+                        sd0Var.f38009p0.invalidate();
                         return;
                     case 1:
-                        sd0 sd0Var2 = this.f36585b;
+                        sd0 sd0Var2 = this.f36603b;
                         sd0Var2.T = 0;
                         sd0Var2.e();
-                        sd0Var2.f38004o0.setVisibility(4);
-                        ry ryVar = sd0Var2.f38001l0;
+                        sd0Var2.f38008o0.setVisibility(4);
+                        ry ryVar = sd0Var2.f38005l0;
                         if (ryVar != null) {
                             ryVar.c(false, false, false);
                             return;
                         }
                         return;
                     case 2:
-                        sd0 sd0Var3 = this.f36585b;
+                        sd0 sd0Var3 = this.f36603b;
                         sd0Var3.T = 1;
                         sd0Var3.e();
-                        jd0 jd0Var = sd0Var3.f38004o0;
+                        jd0 jd0Var = sd0Var3.f38008o0;
                         jd0Var.setVisibility(0);
                         jd0Var.setType(1);
-                        ry ryVar2 = sd0Var3.f38001l0;
+                        ry ryVar2 = sd0Var3.f38005l0;
                         if (ryVar2 != null) {
                             ryVar2.c(false, false, false);
                             return;
                         }
                         return;
                     default:
-                        sd0 sd0Var4 = this.f36585b;
+                        sd0 sd0Var4 = this.f36603b;
                         sd0Var4.T = 2;
                         sd0Var4.e();
-                        jd0 jd0Var2 = sd0Var4.f38004o0;
+                        jd0 jd0Var2 = sd0Var4.f38008o0;
                         jd0Var2.setVisibility(0);
                         jd0Var2.setType(0);
-                        ry ryVar3 = sd0Var4.f38001l0;
+                        ry ryVar3 = sd0Var4.f38005l0;
                         if (ryVar3 != null) {
                             ryVar3.c(false, false, false);
                             return;
@@ -757,19 +757,19 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             }
         });
         e();
-        if (this.f38017x0 || !z10) {
+        if (this.f38021x0 || !z10) {
             return;
         }
-        if (this.f37999j0) {
-            ((FrameLayout.LayoutParams) this.f37998i0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22531m;
+        if (this.f38003j0) {
+            ((FrameLayout.LayoutParams) this.f38002i0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22538m;
         }
-        ((FrameLayout.LayoutParams) this.f38005p0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22531m;
+        ((FrameLayout.LayoutParams) this.f38009p0.getLayoutParams()).topMargin = org.telegram.messenger.g0.f22538m;
     }
 
     private void setShowOriginal(boolean z9) {
-        if (this.f37985a != z9) {
-            this.f37985a = z9;
-            ry ryVar = this.f38001l0;
+        if (this.f37989a != z9) {
+            this.f37989a = z9;
+            ry ryVar = this.f38005l0;
             if (ryVar != null) {
                 ryVar.c(false, false, false);
             }
@@ -777,10 +777,10 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     }
 
     public final boolean a() {
-        org.telegram.messenger.hf hfVar = this.f37993e0;
+        org.telegram.messenger.hf hfVar = this.f37997e0;
         h2.c cVar = this.W;
         if (hfVar != null) {
-            if (this.G != hfVar.f22906a || this.I != hfVar.d || this.P != hfVar.f22913j || this.H != hfVar.f22908c || this.J != hfVar.f22909e || this.K != hfVar.f22910f || this.R != hfVar.f22915l || this.Q != hfVar.f22914k || this.S != hfVar.f22916m || this.U != hfVar.f22918o || this.L != hfVar.f22911g || this.M != hfVar.f22907b || this.O != hfVar.f22912i || this.N != hfVar.h || !cVar.F()) {
+            if (this.G != hfVar.f22913a || this.I != hfVar.d || this.P != hfVar.f22920j || this.H != hfVar.f22915c || this.J != hfVar.f22916e || this.K != hfVar.f22917f || this.R != hfVar.f22922l || this.Q != hfVar.f22921k || this.S != hfVar.f22923m || this.U != hfVar.f22925o || this.L != hfVar.f22918g || this.M != hfVar.f22914b || this.O != hfVar.f22919i || this.N != hfVar.h || !cVar.F()) {
                 return true;
             }
             return false;
@@ -792,23 +792,23 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     }
 
     public final void b() {
-        boolean z9 = this.f37999j0;
-        TextureView textureView = this.f37998i0;
+        boolean z9 = this.f38003j0;
+        TextureView textureView = this.f38002i0;
         if (z9) {
-            ry ryVar = this.f38001l0;
+            ry ryVar = this.f38005l0;
             if (ryVar != null) {
                 ryVar.postRunnable(new oy(ryVar, 0));
-                this.f38001l0 = null;
+                this.f38005l0 = null;
             }
             textureView.setVisibility(8);
-        } else if (textureView instanceof g51) {
-            g51 g51Var = (g51) textureView;
-            org.telegram.messenger.hf hfVar = this.f37993e0;
+        } else if (textureView instanceof h51) {
+            h51 h51Var = (h51) textureView;
+            org.telegram.messenger.hf hfVar = this.f37997e0;
             if (hfVar == null) {
-                g51Var.setDelegate(null);
+                h51Var.setDelegate(null);
                 return;
             }
-            ry ryVar2 = this.f38001l0;
+            ry ryVar2 = this.f38005l0;
             if (ryVar2 != null) {
                 ryVar2.d(new n(hfVar));
             }
@@ -817,12 +817,12 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
 
     public final void c() {
         boolean z9;
-        int i7 = this.f38019y0;
+        int i7 = this.f38023y0;
         eh ehVar = this.m0;
-        ld0 ld0Var = this.f38005p0;
-        FrameLayout frameLayout = this.f38011t0;
-        FrameLayout frameLayout2 = this.f38003n0;
-        jd0 jd0Var = this.f38004o0;
+        ld0 ld0Var = this.f38009p0;
+        FrameLayout frameLayout = this.f38015t0;
+        FrameLayout frameLayout2 = this.f38007n0;
+        jd0 jd0Var = this.f38008o0;
         if (i7 == 0) {
             jd0Var.setVisibility(4);
             frameLayout2.setVisibility(4);
@@ -846,7 +846,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             ld0Var.setVisibility(0);
             this.W.f14057a = 0;
             for (int i10 = 0; i10 < 4; i10++) {
-                RadioButton radioButton = this.f38012u0[i10];
+                RadioButton radioButton = this.f38016u0[i10];
                 if (i10 == 0) {
                     z9 = true;
                 } else {
@@ -871,8 +871,8 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         TextureView textureView;
         boolean drawChild = super.drawChild(canvas, view, j3);
-        sb0 sb0Var = this.f38013v0;
-        if (sb0Var != null && view == (textureView = this.f37998i0)) {
+        sb0 sb0Var = this.f38017v0;
+        if (sb0Var != null && view == (textureView = this.f38002i0)) {
             canvas.save();
             canvas.translate(textureView.getLeft(), textureView.getTop());
             Bitmap bitmap = this.D0;
@@ -905,13 +905,13 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
 
     public final void e() {
         int i7 = this.T;
-        TextView textView = this.f38010s0;
-        TextView textView2 = this.f38008r0;
+        TextView textView = this.f38014s0;
+        TextView textView2 = this.f38012r0;
         org.telegram.ui.ActionBar.f6 f6Var = this.I0;
-        TextView textView3 = this.f38006q0;
+        TextView textView3 = this.f38010q0;
         if (i7 == 0) {
             Drawable mutate = textView3.getContext().getResources().getDrawable(2131232070).mutate();
-            int i10 = org.telegram.ui.ActionBar.k6.f28039ng;
+            int i10 = org.telegram.ui.ActionBar.k6.f28040ng;
             org.telegram.ui.ActionBar.r6.y(this, mutate, i10, f6Var, PorterDuff.Mode.MULTIPLY);
             textView3.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate, (Drawable) null, (Drawable) null);
             textView3.setTextColor(org.telegram.ui.ActionBar.k6.w0(i10, f6Var));
@@ -923,7 +923,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             textView3.setCompoundDrawablesWithIntrinsicBounds(0, 2131232070, 0, 0);
             textView3.setTextColor(-1);
             Drawable mutate2 = textView3.getContext().getResources().getDrawable(2131232071).mutate();
-            int i11 = org.telegram.ui.ActionBar.k6.f28039ng;
+            int i11 = org.telegram.ui.ActionBar.k6.f28040ng;
             org.telegram.ui.ActionBar.r6.y(this, mutate2, i11, f6Var, PorterDuff.Mode.MULTIPLY);
             textView2.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate2, (Drawable) null, (Drawable) null);
             textView2.setTextColor(org.telegram.ui.ActionBar.k6.w0(i11, f6Var));
@@ -935,7 +935,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             textView2.setCompoundDrawablesWithIntrinsicBounds(0, 2131232071, 0, 0);
             textView2.setTextColor(-1);
             Drawable mutate3 = textView3.getContext().getResources().getDrawable(2131232069).mutate();
-            int i12 = org.telegram.ui.ActionBar.k6.f28039ng;
+            int i12 = org.telegram.ui.ActionBar.k6.f28040ng;
             org.telegram.ui.ActionBar.r6.y(this, mutate3, i12, f6Var, PorterDuff.Mode.MULTIPLY);
             textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, mutate3, (Drawable) null, (Drawable) null);
             textView.setTextColor(org.telegram.ui.ActionBar.k6.w0(i12, f6Var));
@@ -944,8 +944,8 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     }
 
     public Bitmap getBitmap() {
-        ry ryVar = this.f38001l0;
-        if (ryVar != null && ryVar.f37823f && ryVar.isAlive()) {
+        ry ryVar = this.f38005l0;
+        if (ryVar != null && ryVar.f37783f && ryVar.isAlive()) {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             Bitmap[] bitmapArr = new Bitmap[1];
             try {
@@ -962,26 +962,26 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
 
     @Override
     public float getBlurAngle() {
-        return this.f37991d0;
+        return this.f37995d0;
     }
 
     public jd0 getBlurControl() {
-        return this.f38004o0;
+        return this.f38008o0;
     }
 
     @Override
     public float getBlurExcludeBlurSize() {
-        return this.f37990c0;
+        return this.f37994c0;
     }
 
     @Override
     public PointF getBlurExcludePoint() {
-        return this.f37988b0;
+        return this.f37992b0;
     }
 
     @Override
     public float getBlurExcludeSize() {
-        return this.f37986a0;
+        return this.f37990a0;
     }
 
     @Override
@@ -990,7 +990,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     }
 
     public TextView getCancelTextView() {
-        return this.f37997h0;
+        return this.f38001h0;
     }
 
     @Override
@@ -999,11 +999,11 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     }
 
     public ld0 getCurveControl() {
-        return this.f38005p0;
+        return this.f38009p0;
     }
 
     public TextView getDoneTextView() {
-        return this.f37996g0;
+        return this.f38000g0;
     }
 
     @Override
@@ -1032,8 +1032,8 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     }
 
     public TextureView getMyTextureView() {
-        if (this.f37999j0 && !this.f38000k0) {
-            return this.f37998i0;
+        if (this.f38003j0 && !this.f38004k0) {
+            return this.f38002i0;
         }
         return null;
     }
@@ -1049,27 +1049,27 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
 
     public org.telegram.messenger.hf getSavedFilterState() {
         org.telegram.messenger.hf hfVar = new org.telegram.messenger.hf();
-        hfVar.f22906a = this.G;
-        hfVar.f22908c = this.H;
+        hfVar.f22913a = this.G;
+        hfVar.f22915c = this.H;
         hfVar.d = this.I;
-        hfVar.f22909e = this.J;
-        hfVar.f22910f = this.K;
-        hfVar.f22911g = this.L;
-        hfVar.f22907b = this.M;
+        hfVar.f22916e = this.J;
+        hfVar.f22917f = this.K;
+        hfVar.f22918g = this.L;
+        hfVar.f22914b = this.M;
         hfVar.h = this.N;
-        hfVar.f22912i = this.O;
-        hfVar.f22913j = this.P;
-        hfVar.f22914k = this.Q;
-        hfVar.f22915l = this.R;
-        hfVar.f22916m = this.S;
-        hfVar.f22917n = this.T;
-        hfVar.f22918o = this.U;
-        hfVar.f22919p = this.W;
-        hfVar.f22920q = this.f37986a0;
-        hfVar.f22921r = this.f37988b0;
-        hfVar.f22922s = this.f37990c0;
-        hfVar.f22923t = this.f37991d0;
-        this.f37993e0 = hfVar;
+        hfVar.f22919i = this.O;
+        hfVar.f22920j = this.P;
+        hfVar.f22921k = this.Q;
+        hfVar.f22922l = this.R;
+        hfVar.f22923m = this.S;
+        hfVar.f22924n = this.T;
+        hfVar.f22925o = this.U;
+        hfVar.f22926p = this.W;
+        hfVar.f22927q = this.f37990a0;
+        hfVar.f22928r = this.f37992b0;
+        hfVar.f22929s = this.f37994c0;
+        hfVar.f22930t = this.f37995d0;
+        this.f37997e0 = hfVar;
         return hfVar;
     }
 
@@ -1115,21 +1115,21 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
     }
 
     public FrameLayout getToolsView() {
-        return this.f37995f0;
+        return this.f37999f0;
     }
 
     public Bitmap getUiBlurBitmap() {
         da daVar;
-        ry ryVar = this.f38001l0;
+        ry ryVar = this.f38005l0;
         if (ryVar == null || (daVar = ryVar.I) == null) {
             return null;
         }
-        synchronized (daVar.f32811n) {
+        synchronized (daVar.f32840n) {
             try {
-                if (!daVar.f32814q) {
+                if (!daVar.f32843q) {
                     return null;
                 }
-                return daVar.f32813p;
+                return daVar.f32842p;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -1160,14 +1160,14 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                 setShowOriginal(false);
             }
         } else {
-            TextureView textureView = this.f37998i0;
-            if (textureView instanceof g51) {
+            TextureView textureView = this.f38002i0;
+            if (textureView instanceof h51) {
                 float x10 = motionEvent.getX();
                 float y10 = motionEvent.getY();
-                ki0 ki0Var = ((g51) textureView).f33799c;
-                float f10 = ki0Var.f35322a;
-                if (x10 >= f10 && x10 <= f10 + ki0Var.f35324c) {
-                    float f11 = ki0Var.f35323b;
+                ki0 ki0Var = ((h51) textureView).f34180c;
+                float f10 = ki0Var.f35313a;
+                if (x10 >= f10 && x10 <= f10 + ki0Var.f35315c) {
+                    float f11 = ki0Var.f35314b;
                     if (y10 >= f11 && y10 <= f11 + ki0Var.d) {
                         setShowOriginal(true);
                     }
@@ -1181,7 +1181,7 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
 
     @Override
     public final boolean n() {
-        if (!this.f37985a && !this.V) {
+        if (!this.f37989a && !this.V) {
             return false;
         }
         return true;
@@ -1206,17 +1206,17 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
         int i13;
         int size = View.MeasureSpec.getSize(i7);
         int size2 = View.MeasureSpec.getSize(i10);
-        if (this.f38000k0) {
+        if (this.f38004k0) {
             int L = size - org.telegram.messenger.g0.L(28.0f);
             int L2 = org.telegram.messenger.g0.L(214.0f);
-            boolean z9 = this.f38017x0;
+            boolean z9 = this.f38021x0;
             if (!z9) {
-                i11 = org.telegram.messenger.g0.f22531m;
+                i11 = org.telegram.messenger.g0.f22538m;
             } else {
                 i11 = 0;
             }
             int i14 = size2 - (L2 + i11);
-            TextureView textureView = this.f37998i0;
+            TextureView textureView = this.f38002i0;
             Bitmap bitmap = this.C0;
             if (bitmap != null) {
                 int i15 = this.H0 % 360;
@@ -1243,14 +1243,14 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             int ceil2 = (int) Math.ceil(((f14 - f13) / 2.0f) + org.telegram.messenger.g0.L(14.0f));
             float L3 = ((f15 - ceil) / 2.0f) + org.telegram.messenger.g0.L(14.0f);
             if (!z9) {
-                i12 = org.telegram.messenger.g0.f22531m;
+                i12 = org.telegram.messenger.g0.f22538m;
             } else {
                 i12 = 0;
             }
             int ceil3 = (int) Math.ceil(L3 + i12);
             int i16 = (int) f13;
             int i17 = (int) ceil;
-            if (this.f37999j0) {
+            if (this.f38003j0) {
                 FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) textureView.getLayoutParams();
                 layoutParams.leftMargin = ceil2;
                 layoutParams.topMargin = ceil3;
@@ -1259,23 +1259,23 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
             }
             float f16 = ceil2;
             if (!z9) {
-                i13 = org.telegram.messenger.g0.f22531m;
+                i13 = org.telegram.messenger.g0.f22538m;
             } else {
                 i13 = 0;
             }
             float f17 = ceil3 - i13;
             float f18 = i16;
             float f19 = i17;
-            ld0 ld0Var = this.f38005p0;
-            ki0 ki0Var = ld0Var.f35635e;
-            ki0Var.f35322a = f16;
-            ki0Var.f35323b = f17;
-            ki0Var.f35324c = f18;
+            ld0 ld0Var = this.f38009p0;
+            ki0 ki0Var = ld0Var.f35655e;
+            ki0Var.f35313a = f16;
+            ki0Var.f35314b = f17;
+            ki0Var.f35315c = f18;
             ki0Var.d = f19;
-            jd0 jd0Var = this.f38004o0;
+            jd0 jd0Var = this.f38008o0;
             mt0 mt0Var = jd0Var.d;
-            mt0Var.f36070a = f18;
-            mt0Var.f36071b = f19;
+            mt0Var.f36086a = f18;
+            mt0Var.f36087b = f19;
             ((FrameLayout.LayoutParams) jd0Var.getLayoutParams()).height = org.telegram.messenger.g0.L(38.0f) + i14;
             ((FrameLayout.LayoutParams) ld0Var.getLayoutParams()).height = org.telegram.messenger.g0.L(28.0f) + i14;
             if (org.telegram.messenger.g0.Q1()) {
@@ -1303,13 +1303,13 @@ public final class sd0 extends FrameLayout implements ty, fi.ra {
                 break;
             }
             View childAt = ehVar.getChildAt(i7);
-            if ((childAt instanceof org.telegram.ui.Cells.s5) && RecyclerView.R(childAt) == this.f37987b) {
+            if ((childAt instanceof org.telegram.ui.Cells.s5) && RecyclerView.R(childAt) == this.f37991b) {
                 ((org.telegram.ui.Cells.s5) childAt).a(org.telegram.messenger.hd.M0(2131751127, null), 0, this.G);
                 break;
             }
             i7++;
         }
-        ry ryVar = this.f38001l0;
+        ry ryVar = this.f38005l0;
         if (ryVar != null) {
             ryVar.c(true, false, false);
         }

@@ -9,7 +9,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLObject;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zg0;
@@ -20,7 +20,7 @@ public final class p1 {
     public final zg0 d;
     public final Paint f9500e;
     public final ImageReceiver f9501f;
-    public final ly0 f9502g;
+    public final my0 f9502g;
     public boolean h;
     public final org.telegram.ui.Components.w5 f9503i;
     public final org.telegram.ui.Components.w5 f9504j;
@@ -60,7 +60,7 @@ public final class p1 {
         spannableStringBuilder.setSpan(wpVar, 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append((CharSequence) hd.E(i10, ','));
-        this.f9502g = new ly0(spannableStringBuilder, 10.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
+        this.f9502g = new my0(spannableStringBuilder, 10.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
         org.telegram.ui.Components.w5 w5Var = new org.telegram.ui.Components.w5(view, 2000L, new LinearInterpolator());
         this.f9503i = w5Var;
         w5Var.e(true, 0.0f);

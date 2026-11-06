@@ -11,11 +11,11 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.wp;
 public final class v2 extends TextView {
-    public final wp f60461a;
+    public final wp f60460a;
 
     public v2(Context context, f6 f6Var) {
         super(context);
-        int i7 = k6.f28242y8;
+        int i7 = k6.f28243y8;
         int w02 = k6.w0(i7, f6Var);
         r6.V(this, i7, f6Var);
         org.telegram.ui.Cells.y b02 = k6.b0(k6.r1(0.08f, w02), k6.r1(0.15f, w02), org.telegram.messenger.g0.L(13.0f), org.telegram.messenger.g0.L(13.0f));
@@ -28,10 +28,10 @@ public final class v2 extends TextView {
         setTypeface(org.telegram.messenger.g0.o());
         ka.a(this);
         wp wpVar = new wp(2131230873, 0);
-        this.f60461a = wpVar;
+        this.f60460a = wpVar;
         wpVar.G = 0.8f;
-        wpVar.f40062r = 0.0f;
-        wpVar.f40063s = org.telegram.messenger.g0.L(1.0f);
+        wpVar.f40070r = 0.0f;
+        wpVar.f40071s = org.telegram.messenger.g0.L(1.0f);
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class v2 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f60461a, append.length() - 1, length, 33);
+        append.setSpan(this.f60460a, append.length() - 1, length, 33);
         setText(append);
     }
 }

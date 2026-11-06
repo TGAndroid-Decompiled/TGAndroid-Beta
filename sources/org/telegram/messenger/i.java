@@ -6,23 +6,23 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.yi0;
 public final class i implements yi0, f5.g {
-    public final Object f23000a;
-    public final Object f23001b;
-    public final Object f23002c;
+    public final Object f23007a;
+    public final Object f23008b;
+    public final Object f23009c;
 
     public i(Object obj, Object obj2, Object obj3) {
-        this.f23000a = obj;
-        this.f23001b = obj2;
-        this.f23002c = obj3;
+        this.f23007a = obj;
+        this.f23008b = obj2;
+        this.f23009c = obj3;
     }
 
     @Override
     public void a(f5.f fVar) {
         Object valueOf;
-        Purchase purchase = (Purchase) this.f23001b;
-        Runnable runnable = (Runnable) this.f23002c;
+        Purchase purchase = (Purchase) this.f23008b;
+        Runnable runnable = (Runnable) this.f23009c;
         StringBuilder sb2 = new StringBuilder("BillingController consumeGiftPurchase ");
-        sb2.append((TLRPC.InputStorePaymentPurpose) this.f23000a);
+        sb2.append((TLRPC.InputStorePaymentPurpose) this.f23007a);
         sb2.append(" ");
         sb2.append(purchase.a());
         sb2.append(" ");
@@ -44,9 +44,9 @@ public final class i implements yi0, f5.g {
 
     @Override
     public int run() {
-        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f23000a;
-        String str = (String) this.f23001b;
-        pj0 pj0Var = (pj0) this.f23002c;
+        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f23007a;
+        String str = (String) this.f23008b;
+        pj0 pj0Var = (pj0) this.f23009c;
         int i7 = -1;
         try {
             Field declaredField = f2Var.getClass().getDeclaredField(str);

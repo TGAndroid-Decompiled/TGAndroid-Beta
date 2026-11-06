@@ -13,12 +13,12 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.m5;
 public final class q0 extends WebViewClient {
-    public final WebView f51279a;
-    public final r0 f51280b;
+    public final WebView f51274a;
+    public final r0 f51275b;
 
     public q0(r0 r0Var, WebView webView) {
-        this.f51280b = r0Var;
-        this.f51279a = webView;
+        this.f51275b = r0Var;
+        this.f51274a = webView;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class q0 extends WebViewClient {
         f6 f6Var;
         Integer valueOf;
         Boolean valueOf2;
-        u0 u0Var = this.f51280b.f51292e;
+        u0 u0Var = this.f51275b.f51286e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -55,10 +55,10 @@ public final class q0 extends WebViewClient {
             if (x0Var == null) {
                 f6Var = null;
             } else {
-                f6Var = x0Var.f51365e;
+                f6Var = x0Var.f51360e;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, f6Var);
-            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
             u1Var.R = hd.M0(2131752104, null);
             u1Var.T = org.telegram.messenger.g0.U2(hd.M0(2131752105, null), new m5(this, 14));
             alertDialog$Builder.k(hd.M0(2131747830, null), null);
@@ -73,10 +73,10 @@ public final class q0 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        x0 x0Var = this.f51280b.f51292e.Q;
+        x0 x0Var = this.f51275b.f51286e.Q;
         if (x0Var != null) {
-            x0Var.H(Uri.parse(str), null, !x0Var.f51377o0, false, false);
-            this.f51279a.destroy();
+            x0Var.H(Uri.parse(str), null, !x0Var.f51372o0, false, false);
+            this.f51274a.destroy();
         }
         return true;
     }

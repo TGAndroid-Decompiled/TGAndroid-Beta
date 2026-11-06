@@ -12,7 +12,7 @@ public final class v7 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56956f == 2) {
+        if (d1Var.f56955f == 2) {
             return true;
         }
         return false;
@@ -49,7 +49,7 @@ public final class v7 extends oj0 {
         } else {
             View view2 = new View(w7Var.getContext());
             if (i7 == 0) {
-                L = (org.telegram.messenger.g0.f22537q.y + org.telegram.messenger.g0.f22531m) - org.telegram.messenger.g0.L(306.0f);
+                L = (org.telegram.messenger.g0.f22544q.y + org.telegram.messenger.g0.f22538m) - org.telegram.messenger.g0.L(306.0f);
             } else {
                 L = org.telegram.messenger.g0.L(54.0f);
             }

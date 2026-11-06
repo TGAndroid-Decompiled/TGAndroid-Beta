@@ -8,13 +8,13 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 public class fy extends v4.s0 {
-    public final int f33655a;
-    public boolean f33656b;
-    public final gy f33657c;
+    public final int f33680a;
+    public boolean f33681b;
+    public final gy f33682c;
 
     public fy(gy gyVar, int i7) {
-        this.f33657c = gyVar;
-        this.f33655a = i7;
+        this.f33682c = gyVar;
+        this.f33680a = i7;
     }
 
     @Override
@@ -23,19 +23,19 @@ public class fy extends v4.s0 {
         tx txVar;
         float f10;
         int i10;
-        gy gyVar = this.f33657c;
+        gy gyVar = this.f33682c;
         ObjectAnimator[] objectAnimatorArr = gyVar.R0;
-        v4.z0 z0Var = recyclerView.getLayoutManager().f57042e;
+        v4.z0 z0Var = recyclerView.getLayoutManager().f57041e;
         boolean z9 = true;
-        if (z0Var != null && z0Var.f57124e) {
-            this.f33656b = true;
+        if (z0Var != null && z0Var.f57123e) {
+            this.f33681b = true;
             return;
         }
-        int i11 = this.f33655a;
+        int i11 = this.f33680a;
         if (i7 == 0) {
-            if (!this.f33656b) {
+            if (!this.f33681b) {
                 int[] iArr = gyVar.Q0;
-                hx hxVar = gyVar.f34076t1;
+                hx hxVar = gyVar.f34084t1;
                 if ((hxVar == null || !hxVar.z()) && i11 != 0) {
                     float f11 = 48.0f;
                     if (i11 == 1) {
@@ -77,9 +77,9 @@ public class fy extends v4.s0 {
                         int L = org.telegram.messenger.g0.L(f11);
                         v4.d1 K = x10.K(0);
                         if (K != null) {
-                            int bottom = K.f56952a.getBottom();
+                            int bottom = K.f56951a.getBottom();
                             int i13 = iArr[i11];
-                            float f13 = (bottom - (L + i13)) / gyVar.f34020b1;
+                            float f13 = (bottom - (L + i13)) / gyVar.f34028b1;
                             if (f13 > 0.0f || f13 < 1.0f) {
                                 if (f13 <= 0.5f) {
                                     z9 = false;
@@ -93,7 +93,7 @@ public class fy extends v4.s0 {
             if (gyVar.J0) {
                 gyVar.J0 = false;
             }
-            this.f33656b = false;
+            this.f33681b = false;
             return;
         }
         if (i7 == 1) {
@@ -103,7 +103,7 @@ public class fy extends v4.s0 {
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 == 2) {
-                        txVar = gyVar.f34058o0;
+                        txVar = gyVar.f34066o0;
                     } else {
                         throw new IllegalArgumentException(jg.g.j(i11, "Unexpected argument: "));
                     }
@@ -116,14 +116,14 @@ public class fy extends v4.s0 {
             if (txVar != null) {
                 txVar.b();
             }
-            this.f33656b = false;
+            this.f33681b = false;
         }
-        if (!this.f33656b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
+        if (!this.f33681b && (objectAnimator = objectAnimatorArr[i11]) != null && objectAnimator.isRunning()) {
             objectAnimatorArr[i11].cancel();
         }
         if (i11 == 0) {
             if (gyVar.T0 == null) {
-                jg.e1 e1Var = new jg.e1(gyVar, gyVar.f34024c1, gyVar.f34076t1.a(), gyVar.f34076t1.f(), 1);
+                jg.e1 e1Var = new jg.e1(gyVar, gyVar.f34032c1, gyVar.f34084t1.a(), gyVar.f34084t1.f(), 1);
                 gyVar.T0 = e1Var;
                 e1Var.a();
             }
@@ -134,8 +134,8 @@ public class fy extends v4.s0 {
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
         int L;
-        gy gyVar = this.f33657c;
-        int i11 = this.f33655a;
+        gy gyVar = this.f33682c;
+        int i11 = this.f33680a;
         gyVar.p(i11);
         gy.e(gyVar, i11, i10);
         if (i11 != 0) {
@@ -149,9 +149,9 @@ public class fy extends v4.s0 {
         } else {
             gyVar.q(false);
         }
-        if (!this.f33656b) {
+        if (!this.f33681b) {
             float f10 = i10;
-            FrameLayout frameLayout = gyVar.f34055n;
+            FrameLayout frameLayout = gyVar.f34063n;
             if (SystemClock.elapsedRealtime() - gyVar.D2 >= ViewConfiguration.getTapTimeout()) {
                 gyVar.H += f10;
                 if (gyVar.h.getCurrentItem() == 0) {

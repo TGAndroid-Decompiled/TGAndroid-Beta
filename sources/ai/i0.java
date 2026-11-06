@@ -44,7 +44,7 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.q4;
 import org.telegram.ui.ActionBar.y1;
-import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.xq;
 public final class i0 extends FrameLayout {
     public final Paint D;
@@ -223,17 +223,17 @@ public final class i0 extends FrameLayout {
         return false;
     }
 
-    public static i0 k(m41 m41Var, View view, d20 d20Var, c20 c20Var, Runnable runnable) {
+    public static i0 k(n41 n41Var, View view, d20 d20Var, c20 c20Var, Runnable runnable) {
         FrameLayout frameLayout;
         int[] iArr;
         int[] iArr2;
-        q4 parentLayout = m41Var.getParentLayout();
+        q4 parentLayout = n41Var.getParentLayout();
         if (parentLayout != null) {
             frameLayout = parentLayout.getOverlayContainerView();
         } else {
             frameLayout = null;
         }
-        if (frameLayout == null || m41Var.getParentActivity() == null) {
+        if (frameLayout == null || n41Var.getParentActivity() == null) {
             return null;
         }
         frameLayout.getLocationInWindow(new int[2]);
@@ -241,10 +241,10 @@ public final class i0 extends FrameLayout {
         float width = (view.getWidth() / 2.0f) + (iArr2[0] - iArr[0]);
         float height = (view.getHeight() / 2.0f) + (iArr2[1] - iArr[1]);
         float min = Math.min(view.getWidth(), view.getHeight()) / 2.0f;
-        i0 i0Var = new i0(m41Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new wf.b(3, c20Var, runnable));
+        i0 i0Var = new i0(n41Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new wf.b(3, c20Var, runnable));
         i0Var.setPlainButton(true);
         i0Var.setAccept(d20Var);
-        i0Var.setOnGallery(new d0(m41Var, i0Var, d20Var, c20Var, 0));
+        i0Var.setOnGallery(new d0(n41Var, i0Var, d20Var, c20Var, 0));
         frameLayout.addView(i0Var, ha.c(-1.0f, -1));
         return i0Var;
     }
@@ -253,7 +253,7 @@ public final class i0 extends FrameLayout {
         u8.n nVar;
         String str = null;
         try {
-            Context context = org.telegram.messenger.t0.f25555b;
+            Context context = org.telegram.messenger.t0.f25563b;
             ?? obj = new Object();
             obj.f7660a = 256;
             nVar = new u8.n(new t2(context, (x1) obj));
@@ -264,7 +264,7 @@ public final class i0 extends FrameLayout {
         try {
             q4.q f10 = f(bitmap, nVar, new aa.n(20), d20Var);
             if (f10 != null) {
-                str = (String) f10.f53711b;
+                str = (String) f10.f53710b;
             }
             return str;
         } finally {
@@ -592,7 +592,7 @@ public final class i0 extends FrameLayout {
         RectF rectF2 = this.f1248f;
         if (rectF2.isEmpty()) {
             String[] strArr = l1.B9;
-            int i15 = org.telegram.messenger.g0.f22531m;
+            int i15 = org.telegram.messenger.g0.f22538m;
             View view = this;
             int i16 = 0;
             while (true) {

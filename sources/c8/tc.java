@@ -1,10 +1,9 @@
 package c8;
 public abstract class tc {
-    public static ud.e a(int i7, int i10) {
-        if (i10 <= Integer.MIN_VALUE) {
-            ud.e eVar = ud.e.d;
-            return ud.e.d;
+    public static void a(Object obj, String str) {
+        if (obj != null) {
+            return;
         }
-        return new ud.d(i7, i10 - 1, 1);
+        throw new NullPointerException(str);
     }
 }

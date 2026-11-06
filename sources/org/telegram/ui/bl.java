@@ -2,15 +2,15 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class bl extends nq0 {
-    public final an f44420a;
+    public final an f44419a;
 
     public bl(an anVar) {
-        this.f44420a = anVar;
+        this.f44419a = anVar;
     }
 
     @Override
     public final wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
-        return an.O1(this.f44420a, ijVar, fileLocation, i7, z9, false);
+        return an.O1(this.f44419a, ijVar, fileLocation, i7, z9, false);
     }
 
     @Override

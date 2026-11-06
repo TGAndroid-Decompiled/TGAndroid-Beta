@@ -46,7 +46,7 @@ public final class m2 extends di.n7 {
     @Override
     public final void e() {
         t2 t2Var = this.S;
-        p2 p2Var = t2Var.f30400d0;
+        p2 p2Var = t2Var.f30401d0;
         if (p2Var == null) {
             return;
         }
@@ -56,7 +56,7 @@ public final class m2 extends di.n7 {
     @Override
     public final void f(long j3) {
         t2 t2Var = this.S;
-        p2 p2Var = t2Var.f30400d0;
+        p2 p2Var = t2Var.f30401d0;
         if (p2Var == null) {
             return;
         }

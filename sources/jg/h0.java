@@ -111,7 +111,7 @@ public abstract class h0 extends oj0 {
     public boolean m0 = false;
 
     public h0(Context context, ww wwVar, int i7, int i10, v4.k kVar, boolean z9) {
-        int i11 = p10.f24459s0;
+        int i11 = p10.f24467s0;
         this.f16757s0 = i11;
         this.f16758t0 = new ArrayList();
         this.f16759u0 = new ArrayList();
@@ -134,7 +134,7 @@ public abstract class h0 extends oj0 {
         this.f16744h0 = i10;
         this.f16748l0 = p10.i(i11).e();
         if (i10 != 15) {
-            yr.a0(i11).f26688a.c(new r(i11, i10, new t(this), 0));
+            yr.a0(i11).f26696a.c(new r(i11, i10, new t(this), 0));
         }
         ui.b0(i11).M0(true);
     }
@@ -154,7 +154,7 @@ public abstract class h0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56956f;
+        int i7 = d1Var.f56955f;
         if (i7 != 1 && i7 != 4 && i7 != 10) {
             return true;
         }
@@ -203,9 +203,9 @@ public abstract class h0 extends oj0 {
         boolean z10 = this.N;
         int i7 = this.f16757s0;
         if (!z10) {
-            yr.a0(i7).f26688a.c(new j2(i7, 1));
+            yr.a0(i7).f26696a.c(new j2(i7, 1));
         } else {
-            yr.a0(i7).f26688a.c(new ha.b(13, (yl0) this, sb2));
+            yr.a0(i7).f26696a.c(new ha.b(13, (yl0) this, sb2));
         }
     }
 
@@ -219,20 +219,20 @@ public abstract class h0 extends oj0 {
             if (((TLRPC.User) obj).bot) {
                 return wwVar.A2;
             }
-            return wwVar.f51658z2;
+            return wwVar.f51656z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (t3.T(chat)) {
-                return wwVar.f51654y2;
+                return wwVar.f51652y2;
             }
             if (t3.n0(chat)) {
-                if (wwVar.f51637v2 || wwVar.f51643w2) {
+                if (wwVar.f51635v2 || wwVar.f51641w2) {
                     return true;
                 }
                 return false;
-            } else if (wwVar.f51637v2 || wwVar.f51649x2) {
+            } else if (wwVar.f51635v2 || wwVar.f51647x2) {
                 return true;
             } else {
                 return false;
@@ -334,12 +334,12 @@ public abstract class h0 extends oj0 {
                 boolean z9 = tLObject instanceof TLRPC.User;
                 int i13 = this.f16757s0;
                 if (z9) {
-                    TLRPC.User a22 = qp.s1(i13).a2(Long.valueOf(((TLRPC.User) tLObject).f27101id));
+                    TLRPC.User a22 = qp.s1(i13).a2(Long.valueOf(((TLRPC.User) tLObject).f27102id));
                     if (a22 != null) {
                         return a22;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (M0 = qp.s1(i13).M0(Long.valueOf(((TLRPC.Chat) tLObject).f26952id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (M0 = qp.s1(i13).M0(Long.valueOf(((TLRPC.Chat) tLObject).f26953id))) != null) {
                     return M0;
                 } else {
                     return tLObject;
@@ -494,8 +494,8 @@ public abstract class h0 extends oj0 {
     }
 
     public final boolean L() {
-        if (!this.N && !ui.b0(this.f16757s0).f25810i1.isEmpty()) {
-            if (this.f16744h0 != 14 || this.f16755r0.f51658z2) {
+        if (!this.N && !ui.b0(this.f16757s0).f25818i1.isEmpty()) {
+            if (this.f16744h0 != 14 || this.f16755r0.f51656z2) {
                 return true;
             }
             return false;
@@ -635,7 +635,7 @@ public abstract class h0 extends oj0 {
         G(str);
         f();
         int i7 = this.f16757s0;
-        yr.a0(i7).f26688a.c(new ua(i7, j3, 2));
+        yr.a0(i7).f26696a.c(new ua(i7, j3, 2));
     }
 
     public final boolean R() {
@@ -691,7 +691,7 @@ public abstract class h0 extends oj0 {
                     long a10 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f27063q = str;
+                    tL_messages_search.f27064q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = qp.s1(i11).j1(a10);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -756,7 +756,7 @@ public abstract class h0 extends oj0 {
                     }
                     tL_messages_searchGlobal.users_only = z11;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f27065q = str;
+                    tL_messages_searchGlobal.f27066q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -767,7 +767,7 @@ public abstract class h0 extends oj0 {
                         ij ijVar = (ij) g.i(1, arrayList);
                         tL_messages_searchGlobal.offset_id = ijVar.f1();
                         tL_messages_searchGlobal.offset_rate = this.f16737c0;
-                        tL_messages_searchGlobal.offset_peer = qp.s1(i11).j1(ij.C1(ijVar.f23237k.peer_id));
+                        tL_messages_searchGlobal.offset_peer = qp.s1(i11).j1(ij.C1(ijVar.f23244k.peer_id));
                     } else {
                         tL_messages_searchGlobal.offset_rate = 0;
                         tL_messages_searchGlobal.offset_id = 0;
@@ -798,7 +798,7 @@ public abstract class h0 extends oj0 {
         hw hwVar = this.U;
         if (hwVar != null && hwVar.a() != 0) {
             if (!TextUtils.isEmpty(str)) {
-                ArrayList l10 = qp.s1(this.f16757s0).f24862q7.l(-this.U.a());
+                ArrayList l10 = qp.s1(this.f16757s0).f24870q7.l(-this.U.a());
                 String trim = str.trim();
                 for (int i7 = 0; i7 < l10.size(); i7++) {
                     if (l10.get(i7) != null && ((TLRPC.TL_forumTopic) l10.get(i7)).title.toLowerCase().contains(trim)) {
@@ -923,7 +923,7 @@ public abstract class h0 extends oj0 {
                 if (i10 == 3) {
                     z10 = true;
                 }
-                g6Var.f29155l0 = z10;
+                g6Var.f29156l0 = z10;
                 e61Var = g6Var;
                 c61Var = e61Var;
                 break;
@@ -953,7 +953,7 @@ public abstract class h0 extends oj0 {
                 break;
             case 6:
                 e61 e61Var2 = new e61(2, context, null);
-                r6.m(e61Var2, 20, k6.f27940i6, null);
+                r6.m(e61Var2, 20, k6.f27941i6, null);
                 e61Var2.setTag(9);
                 e61Var2.setItemAnimator(null);
                 e61Var2.setLayoutAnimation(null);
@@ -995,7 +995,7 @@ public abstract class h0 extends oj0 {
                 textView2.setGravity(17);
                 c61Var2.addView(textView2, ha.t(-1, -2, 1, 0, 8, 0, 9));
                 TextView textView3 = new TextView(context);
-                c61Var2.f44706b = textView3;
+                c61Var2.f44705b = textView3;
                 textView3.setTextSize(1, 14.0f);
                 r6.V(textView3, i11, null);
                 textView3.setText(hd.a0(null, null, 2131745751, ""));

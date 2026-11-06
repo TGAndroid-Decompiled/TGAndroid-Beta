@@ -26,11 +26,11 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.fe0;
-import org.telegram.ui.Components.g51;
+import org.telegram.ui.Components.h51;
 import org.telegram.ui.Components.ny;
-import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.q51;
 import org.telegram.ui.Components.ry;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.je0;
 import org.telegram.ui.li0;
@@ -39,7 +39,7 @@ import org.telegram.ui.wo0;
 import ti.q;
 import v4.d0;
 import v4.g0;
-public class i implements l, d0, p51, a0 {
+public class i implements l, d0, q51, a0 {
     public final int f6014a;
     public boolean f6015b;
     public Object f6016c;
@@ -161,7 +161,7 @@ public class i implements l, d0, p51, a0 {
             boolean z9 = true;
             for (int i10 = 0; i10 < i7 && z9; i10++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i10));
-                i iVar = p0.f.f52990a;
+                i iVar = p0.f.f52988a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {
@@ -228,16 +228,16 @@ public class i implements l, d0, p51, a0 {
     }
 
     @Override
-    public void onError(s51 s51Var, Exception exc) {
+    public void onError(t51 t51Var, Exception exc) {
         View findViewWithTag;
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
-        if (photoViewer.F2 == s51Var) {
+        if (photoViewer.F2 == t51Var) {
             a8.g(exc, true);
-            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f41467o0.f28420b;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = photoViewer.f41466o0.f28421b;
             if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(10)) != null && findViewWithTag.getVisibility() == 0) {
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, photoViewer.D, photoViewer.f41531v2);
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, photoViewer.D, photoViewer.f41530v2);
                 String M0 = hd.M0(2131689472, "AppName");
-                u1 u1Var = alertDialog$Builder.f27292a;
+                u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = hd.M0(2131752562, null);
                 alertDialog$Builder.k(hd.M0(2131747816, "Open"), new li0(this, 2));
@@ -252,11 +252,11 @@ public class i implements l, d0, p51, a0 {
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
         if (!photoViewer.G3) {
             photoViewer.G3 = true;
-            photoViewer.f41381e0.invalidate();
+            photoViewer.f41380e0.invalidate();
         }
         if (photoViewer.E2 != null) {
-            s51 s51Var = photoViewer.F2;
-            if (s51Var == null || !s51Var.V) {
+            t51 t51Var = photoViewer.F2;
+            if (t51Var == null || !t51Var.V) {
                 org.telegram.messenger.g0.i3(new lp0(this, 1), 64L);
             }
         }
@@ -264,30 +264,30 @@ public class i implements l, d0, p51, a0 {
 
     @Override
     public void onStateChanged(boolean z9, int i7) {
-        s51 s51Var;
+        t51 t51Var;
         int i10;
         j20 j20Var;
-        s51 s51Var2;
+        t51 t51Var2;
         boolean z10;
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
-        ArrayList arrayList = photoViewer.f41398f7;
-        s51 s51Var3 = photoViewer.F2;
-        if (s51Var3 != null) {
-            if (!d1.f.u() && !photoViewer.f41493r) {
+        ArrayList arrayList = photoViewer.f41397f7;
+        t51 t51Var3 = photoViewer.F2;
+        if (t51Var3 != null) {
+            if (!d1.f.u() && !photoViewer.f41492r) {
                 z10 = false;
             } else {
                 z10 = true;
             }
-            s51Var3.t0(z10);
+            t51Var3.t0(z10);
         }
-        if (this.f6015b && (s51Var = photoViewer.F2) != null && s51Var.U() != -9223372036854775807L) {
+        if (this.f6015b && (t51Var = photoViewer.F2) != null && t51Var.U() != -9223372036854775807L) {
             this.f6015b = false;
-            if (photoViewer.X6.isEmpty() && photoViewer.f41378d7.isEmpty() && photoViewer.Z6.isEmpty() && !arrayList.isEmpty() && (i10 = photoViewer.P4) >= 0 && i10 < arrayList.size()) {
+            if (photoViewer.X6.isEmpty() && photoViewer.f41377d7.isEmpty() && photoViewer.Z6.isEmpty() && !arrayList.isEmpty() && (i10 = photoViewer.P4) >= 0 && i10 < arrayList.size()) {
                 Object obj = arrayList.get(photoViewer.P4);
                 if (obj instanceof gf) {
                     gf gfVar = (gf) obj;
                     if (gfVar.f26824b && (j20Var = gfVar.f26839s) != null) {
-                        photoViewer.F2.p0(j20Var.d * ((float) s51Var2.U()));
+                        photoViewer.F2.p0(j20Var.d * ((float) t51Var2.U()));
                         wo0 wo0Var = photoViewer.R7;
                         if (wo0Var != null) {
                             wo0Var.setProgress(gfVar.f26839s.d);
@@ -305,7 +305,7 @@ public class i implements l, d0, p51, a0 {
         q qVar = photoViewer.P8;
         if (qVar != null) {
             photoViewer.P8 = null;
-            qVar.f56040a = surfaceTexture;
+            qVar.f56039a = surfaceTexture;
             if (qVar.getSurfaceTexture() != surfaceTexture) {
                 qVar.setSurfaceTexture(surfaceTexture);
             }
@@ -316,9 +316,9 @@ public class i implements l, d0, p51, a0 {
             photoViewer.E3 = false;
             if (photoViewer.I3) {
                 photoViewer.F3 = 1;
-                photoViewer.f41532v3.setSurfaceTexture(surfaceTexture);
-                photoViewer.f41532v3.setSurfaceTextureListener(photoViewer.f41421i4);
-                photoViewer.f41532v3.setVisibility(0);
+                photoViewer.f41531v3.setSurfaceTexture(surfaceTexture);
+                photoViewer.f41531v3.setSurfaceTextureListener(photoViewer.f41420i4);
+                photoViewer.f41531v3.setVisibility(0);
                 return true;
             }
         }
@@ -336,7 +336,7 @@ public class i implements l, d0, p51, a0 {
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
         PhotoViewer photoViewer = (PhotoViewer) this.f6016c;
-        if (photoViewer.f41561y2 != null) {
+        if (photoViewer.f41560y2 != null) {
             float f12 = i7 * f10;
             int i12 = (int) f12;
             photoViewer.U = i12;
@@ -346,23 +346,23 @@ public class i implements l, d0, p51, a0 {
             if (oVar != null) {
                 oVar.c();
             }
-            fe0 fe0Var = photoViewer.f41561y2;
+            fe0 fe0Var = photoViewer.f41560y2;
             if (i10 == 0) {
                 f11 = 1.0f;
             } else {
                 f11 = f12 / f13;
             }
             fe0Var.a(f11, 0);
-            if (photoViewer.B2 instanceof g51) {
-                ((g51) photoViewer.B2).setHDRInfo(photoViewer.F2.V(null));
-                g51 g51Var = (g51) photoViewer.B2;
-                g51Var.d = i12;
-                g51Var.f33800e = i10;
-                ry ryVar = g51Var.f33798b;
+            if (photoViewer.B2 instanceof h51) {
+                ((h51) photoViewer.B2).setHDRInfo(photoViewer.F2.V(null));
+                h51 h51Var = (h51) photoViewer.B2;
+                h51Var.d = i12;
+                h51Var.f34181e = i10;
+                ry ryVar = h51Var.f34179b;
                 if (ryVar != null) {
                     ryVar.postRunnable(new ny(ryVar, i12, i10, 0));
                 }
-                if (photoViewer.f41365c2 == 1) {
+                if (photoViewer.f41364c2 == 1) {
                     photoViewer.w2();
                 }
             }
@@ -437,8 +437,8 @@ public class i implements l, d0, p51, a0 {
             PhotoViewer.N(photoViewer);
         }
         if (photoViewer.E2 != null) {
-            s51 s51Var = photoViewer.F2;
-            if (s51Var == null || !s51Var.V) {
+            t51 t51Var = photoViewer.F2;
+            if (t51Var == null || !t51Var.V) {
                 org.telegram.messenger.g0.i3(new lp0(this, 2), 64L);
             }
         }

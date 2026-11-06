@@ -83,7 +83,7 @@ public final class a4 implements Runnable {
                     if (zVar2 instanceof org.telegram.ui.Cells.q1) {
                         messageObject = ((org.telegram.ui.Cells.q1) zVar2).getPrimaryMessageObject();
                         if (messageObject != null) {
-                            TLRPC.Message message = messageObject.f23237k;
+                            TLRPC.Message message = messageObject.f23244k;
                             if (message != null && (tL_messageReactions2 = message.reactions) != null) {
                                 arrayList = tL_messageReactions2.top_reactors;
                             }
@@ -92,7 +92,7 @@ public final class a4 implements Runnable {
                             return;
                         }
                     } else if ((zVar2 instanceof org.telegram.ui.Cells.t0) && (messageObject = ((org.telegram.ui.Cells.t0) zVar2).getMessageObject()) != null) {
-                        TLRPC.Message message2 = messageObject.f23237k;
+                        TLRPC.Message message2 = messageObject.f23244k;
                         if (message2 != null && (tL_messageReactions = message2.reactions) != null) {
                             arrayList = tL_messageReactions.top_reactors;
                         }
@@ -105,7 +105,7 @@ public final class a4 implements Runnable {
                     if (caVar != null) {
                         caVar.b();
                     }
-                    TLRPC.ChatFull chatFull = anVar.f43917p8;
+                    TLRPC.ChatFull chatFull = anVar.f43916p8;
                     Context context = p7Var.getContext();
                     int currentAccount = anVar.getCurrentAccount();
                     long a10 = anVar.a();
@@ -244,7 +244,7 @@ public final class a4 implements Runnable {
                 ii0 ii0Var = (ii0) obj;
                 b0Var.f6192l = true;
                 b0Var.f6183a.invalidate();
-                ii0Var.f34613c1 = false;
+                ii0Var.f34643c1 = false;
                 ii0Var.invalidate();
                 b0Var.c(true);
                 return;
@@ -280,28 +280,28 @@ public final class a4 implements Runnable {
                     throw null;
                 }
             case 22:
-                ((d3.e) ((q4.q) obj2).f53712c).h.a((e2.x1) obj);
+                ((d3.e) ((q4.q) obj2).f53711c).h.a((e2.x1) obj);
                 return;
             case 23:
                 String str2 = h2.m0.f14112a;
-                j2.n.U(((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a.G, (l2.c) obj);
+                j2.n.U(((l2.c0) ((d3.h0) ((wf.b) obj2).f57563c)).f17771a.G, (l2.c) obj);
                 return;
             case 24:
                 e2.x1 x1Var = (e2.x1) obj;
                 String str3 = h2.m0.f14112a;
-                l2.i0 i0Var = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a;
+                l2.i0 i0Var = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57563c)).f17771a;
                 i0Var.f17867k0 = x1Var;
                 i0Var.f17870m.e(25, new l2.b0(x1Var));
                 return;
             case 25:
                 String str4 = h2.m0.f14112a;
-                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a.f17881s;
+                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57563c)).f17771a.f17881s;
                 m2.a U = eVar.U();
                 eVar.V(U, 1030, new hi.x3(U, (Exception) obj, 26));
                 return;
             case 26:
                 String str5 = h2.m0.f14112a;
-                m2.e eVar2 = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a.f17881s;
+                m2.e eVar2 = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57563c)).f17771a.f17881s;
                 m2.a U2 = eVar2.U();
                 eVar2.V(U2, 1019, new m2.c(U2, (String) obj, 3));
                 return;
@@ -336,7 +336,7 @@ public final class a4 implements Runnable {
                     v2Var.N();
                     LinearLayout f10 = org.telegram.messenger.k5.f(context2, 1);
                     TextView g10 = org.telegram.messenger.k5.g(context2, 1, 20.0f);
-                    org.telegram.ui.ActionBar.r6.V(g10, org.telegram.ui.ActionBar.k6.f27956j5, i0Var2);
+                    org.telegram.ui.ActionBar.r6.V(g10, org.telegram.ui.ActionBar.k6.f27957j5, i0Var2);
                     g10.setTypeface(org.telegram.messenger.g0.o());
                     g10.setText(org.telegram.messenger.hd.M0(2131751497, null));
                     f10.addView(g10, c8.ha.k(22.0f, 12.0f, 22.0f, 0.0f, -1, -2));
@@ -346,8 +346,8 @@ public final class a4 implements Runnable {
                     final org.telegram.ui.Cells.c2 c2Var = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var2);
                     wo checkBoxRound = c2Var.getCheckBoxRound();
                     int i15 = org.telegram.ui.ActionBar.k6.V6;
-                    int i16 = org.telegram.ui.ActionBar.k6.f27904g7;
-                    int i17 = org.telegram.ui.ActionBar.k6.f27978k7;
+                    int i16 = org.telegram.ui.ActionBar.k6.f27905g7;
+                    int i17 = org.telegram.ui.ActionBar.k6.f27979k7;
                     checkBoxRound.b(i15, i16, i17);
                     c2Var.e(org.telegram.messenger.hd.M0(2131751503, null), null, false, true, false);
                     c2Var.setOnClickListener(new View.OnClickListener() {
@@ -369,7 +369,7 @@ public final class a4 implements Runnable {
                             }
                         }
                     });
-                    int i18 = org.telegram.ui.ActionBar.k6.f27940i6;
+                    int i18 = org.telegram.ui.ActionBar.k6.f27941i6;
                     org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.w0(i18, i0Var2), 2, -1);
                     org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i18);
                     c2Var.setBackground(h02);
@@ -377,7 +377,7 @@ public final class a4 implements Runnable {
                     f10.addView(c2Var, c8.ha.o(-1, -2));
                     final org.telegram.ui.Cells.c2 c2Var2 = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var2);
                     c2Var2.getCheckBoxRound().b(i15, i16, i17);
-                    c2Var2.e(org.telegram.messenger.hd.a0(null, null, 2131751588, org.telegram.messenger.m5.l(p10.f24459s0, j10)), null, false, true, false);
+                    c2Var2.e(org.telegram.messenger.hd.a0(null, null, 2131751588, org.telegram.messenger.m5.l(p10.f24467s0, j10)), null, false, true, false);
                     c2Var2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
@@ -404,7 +404,7 @@ public final class a4 implements Runnable {
                     f10.addView(c2Var2, c8.ha.o(-1, -2));
                     final org.telegram.ui.Cells.c2 c2Var3 = new org.telegram.ui.Cells.c2(context2, 4, 21, true, i0Var2);
                     c2Var3.getCheckBoxRound().b(i15, i16, i17);
-                    c2Var3.e(org.telegram.messenger.hd.a0(null, null, 2131751569, org.telegram.messenger.m5.l(p10.f24459s0, j10)), null, false, false, false);
+                    c2Var3.e(org.telegram.messenger.hd.a0(null, null, 2131751569, org.telegram.messenger.m5.l(p10.f24467s0, j10)), null, false, false, false);
                     c2Var3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {

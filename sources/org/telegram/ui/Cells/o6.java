@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 public final class o6 extends LinearLayout {
-    public static final int f29653c = 0;
-    public TLRPC.RequestPeerType f29654a;
-    public ArrayList f29655b;
+    public static final int f29654c = 0;
+    public TLRPC.RequestPeerType f29655a;
+    public ArrayList f29656b;
 
     public final void a(Boolean bool, int i7, int i10) {
-        ArrayList arrayList = this.f29655b;
+        ArrayList arrayList = this.f29656b;
         if (bool != null) {
             if (bool.booleanValue()) {
                 arrayList.add(p6.a(org.telegram.messenger.g0.X2(hd.M0(i7, null))));
@@ -32,9 +32,9 @@ public final class o6 extends LinearLayout {
         int i7;
         String M0;
         int i10;
-        ArrayList arrayList = this.f29655b;
-        if (this.f29654a != requestPeerType) {
-            this.f29654a = requestPeerType;
+        ArrayList arrayList = this.f29656b;
+        if (this.f29655a != requestPeerType) {
+            this.f29655a = requestPeerType;
             removeAllViews();
             arrayList.clear();
             if (requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) {
@@ -114,7 +114,7 @@ public final class o6 extends LinearLayout {
                             f1.p(1, hd.M0(2131748691, null), arrayList2);
                         }
                         if (arrayList2.size() == 1) {
-                            arrayList.add(p6.a(TextUtils.concat(X22, " ", ((p6) arrayList2.get(0)).f29732b)));
+                            arrayList.add(p6.a(TextUtils.concat(X22, " ", ((p6) arrayList2.get(0)).f29733b)));
                         } else if (!arrayList2.isEmpty()) {
                             SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(X2);
                             valueOf.append((CharSequence) " ");
@@ -122,7 +122,7 @@ public final class o6 extends LinearLayout {
                                 if (i11 > 0) {
                                     valueOf.append((CharSequence) ", ");
                                 }
-                                valueOf.append((CharSequence) ((p6) arrayList2.get(i11)).f29732b.toString().toLowerCase());
+                                valueOf.append((CharSequence) ((p6) arrayList2.get(i11)).f29733b.toString().toLowerCase());
                             }
                             valueOf.append((CharSequence) ".");
                             arrayList.add(p6.a(valueOf));
@@ -133,7 +133,7 @@ public final class o6 extends LinearLayout {
             if (!arrayList.isEmpty()) {
                 n4 n4Var = new n4(getContext(), 20);
                 n4Var.setText(hd.M0(2131747335, null));
-                int i12 = org.telegram.ui.ActionBar.k6.f27848d6;
+                int i12 = org.telegram.ui.ActionBar.k6.f27849d6;
                 org.telegram.ui.ActionBar.r6.i(i12, n4Var, null);
                 addView(n4Var, c8.ha.o(-1, -2));
                 View v3Var = new v3(getContext(), 9, 1);
@@ -148,32 +148,32 @@ public final class o6 extends LinearLayout {
                     p6 p6Var = (p6) obj;
                     Context context = getContext();
                     bi.t tVar = new bi.t(context, 2);
-                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27848d6, tVar, null);
+                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27849d6, tVar, null);
                     tVar.setOrientation(0);
                     ImageView imageView = new ImageView(context);
                     imageView.setScaleType(ImageView.ScaleType.CENTER);
-                    if (p6Var.f29731a <= 0) {
+                    if (p6Var.f29732a <= 0) {
                         i10 = 2131231622;
                     } else {
                         i10 = 2131231623;
                     }
                     imageView.setImageResource(i10);
                     org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.L6, null, PorterDuff.Mode.MULTIPLY);
-                    tVar.addView(imageView, c8.ha.q(20, 20, 0.0f, 51, (p6Var.f29731a * 16) + 17, -1, 0, 0));
+                    tVar.addView(imageView, c8.ha.q(20, 20, 0.0f, 51, (p6Var.f29732a * 16) + 17, -1, 0, 0));
                     TextView textView = new TextView(context);
                     textView.setTextSize(1, 14.0f);
-                    org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28258z6, null);
+                    org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28259z6, null);
                     textView.setSingleLine(false);
-                    textView.setText(p6Var.f29732b);
+                    textView.setText(p6Var.f29733b);
                     tVar.addView(textView, c8.ha.t(-1, -2, 1, 6, 4, 24, 4));
                     addView(tVar, c8.ha.o(-1, -2));
                 }
-                int i14 = org.telegram.ui.ActionBar.k6.f27848d6;
+                int i14 = org.telegram.ui.ActionBar.k6.f27849d6;
                 View v3Var2 = new v3(getContext(), 12, 1);
                 v3Var2.setBackground(null);
                 org.telegram.ui.ActionBar.r6.i(i14, v3Var2, null);
                 addView(v3Var2, c8.ha.o(-1, -2));
-                Drawable Y0 = org.telegram.ui.ActionBar.k6.Y0(getContext(), 2131231230, org.telegram.ui.ActionBar.k6.f27812b7);
+                Drawable Y0 = org.telegram.ui.ActionBar.k6.Y0(getContext(), 2131231230, org.telegram.ui.ActionBar.k6.f27813b7);
                 View v3Var3 = new v3(getContext(), 12, 1);
                 v3Var3.setBackground(Y0);
                 addView(v3Var3, c8.ha.o(-1, -2));

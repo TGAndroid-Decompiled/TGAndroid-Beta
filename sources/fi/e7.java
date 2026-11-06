@@ -119,7 +119,7 @@ public final class e7 {
     public Drawable f11924x0;
     public String f11925y;
     public TLRPC.InputDocument f11927z;
-    public final int f11876a = p10.f24459s0;
+    public final int f11876a = p10.f24467s0;
     public double f11895i = -1.0d;
     public float F = 1.0f;
     public float G = 1.0f;
@@ -161,11 +161,11 @@ public final class e7 {
         TLRPC.Peer peer;
         if (ijVar != null) {
             int i7 = ijVar.I1;
-            TLRPC.Message message = ijVar.f23237k;
+            TLRPC.Message message = ijVar.f23244k;
             if (message != null) {
                 TLRPC.Chat M0 = qp.s1(i7).M0(Long.valueOf(-org.telegram.messenger.m5.o(message.peer_id)));
                 if ((M0 != null && M0.noforwards) || !org.telegram.messenger.t3.V(M0)) {
-                    TLRPC.MessageFwdHeader messageFwdHeader = ijVar.f23237k.fwd_from;
+                    TLRPC.MessageFwdHeader messageFwdHeader = ijVar.f23244k.fwd_from;
                     if (messageFwdHeader != null && (peer = messageFwdHeader.from_id) != null && (messageFwdHeader.flags & 4) != 0) {
                         long o4 = org.telegram.messenger.m5.o(peer);
                         TLRPC.Chat M02 = qp.s1(i7).M0(Long.valueOf(-o4));
@@ -306,7 +306,7 @@ public final class e7 {
     public static e7 n(File file, TL_stories.StoryItem storyItem) {
         e7 e7Var = new e7();
         e7Var.f11892g = true;
-        e7Var.f11890f = storyItem.f27191id;
+        e7Var.f11890f = storyItem.f27192id;
         e7Var.L = file;
         e7Var.M = false;
         e7Var.f11900k0 = 720;
@@ -330,7 +330,7 @@ public final class e7 {
                     }
                     TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i10);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                        e7Var.f11900k0 = documentAttribute.f26959w;
+                        e7Var.f11900k0 = documentAttribute.f26960w;
                         e7Var.f11902l0 = documentAttribute.h;
                         e7Var.f11895i = documentAttribute.duration;
                         break;
@@ -355,9 +355,9 @@ public final class e7 {
                             break;
                         }
                         org.telegram.messenger.w7.G(i7);
-                        File K = org.telegram.messenger.w7.K(photoSize, null, true, true);
-                        if (K != null && K.exists()) {
-                            e7Var.N = K.getAbsolutePath();
+                        File J = org.telegram.messenger.w7.J(photoSize, null, true, true);
+                        if (J != null && J.exists()) {
+                            e7Var.N = J.getAbsolutePath();
                             break;
                         }
                         i11++;
@@ -409,9 +409,9 @@ public final class e7 {
         arrayList.addAll(arrayList3);
         e7Var.I0 = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence m10 = org.telegram.messenger.i6.m(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.k6.f28045o2.getFontMetricsInt(), true, null, 0);
+            CharSequence m10 = org.telegram.messenger.i6.m(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.k6.f28046o2.getFontMetricsInt(), true, null, 0);
             ij.b(m10, storyItem.entities, true, false, true, false, 0);
-            e7Var.C0 = ij.C5(m10, storyItem.entities, org.telegram.ui.ActionBar.k6.f28045o2.getFontMetricsInt(), false);
+            e7Var.C0 = ij.C5(m10, storyItem.entities, org.telegram.ui.ActionBar.k6.f28046o2.getFontMetricsInt(), false);
         } catch (Exception unused) {
         }
         e7Var.A();
@@ -442,9 +442,9 @@ public final class e7 {
             return 0L;
         }
         if (D.booleanValue()) {
-            return org.telegram.messenger.m5.o(ijVar.f23237k.fwd_from.from_id);
+            return org.telegram.messenger.m5.o(ijVar.f23244k.fwd_from.from_id);
         }
-        return ij.B0(ijVar.f23237k);
+        return ij.B0(ijVar.f23244k);
     }
 
     public static Bitmap q(c7 c7Var, int i7, int i10, int i11, boolean z9) {
@@ -503,7 +503,7 @@ public final class e7 {
                 if (ij.L2(document, true)) {
                     RLottieNative a10 = RLottieNative.a(str, null, null, null, 0, null);
                     if (a10 != null) {
-                        int i7 = a10.f31468a[0];
+                        int i7 = a10.f31469a[0];
                         a10.d();
                         j3 = i7;
                     } else {
@@ -535,7 +535,7 @@ public final class e7 {
             tL_videoSize_layer127 = tL_videoSize_layer1272;
         }
         org.telegram.messenger.w7.G(i7);
-        return org.telegram.messenger.w7.K(tL_videoSize_layer127, str, true, true);
+        return org.telegram.messenger.w7.J(tL_videoSize_layer127, str, true, true);
     }
 
     public static File x(int i7, boolean z9) {
@@ -558,21 +558,21 @@ public final class e7 {
         e7Var.f11898j0 = 1920;
         e7Var.f11928z0 = p((ij) arrayList.get(0));
         h20 h20Var = new h20();
-        h20Var.f22800a = (byte) 6;
-        h20Var.f22802c = 0.5f;
+        h20Var.f22807a = (byte) 6;
+        h20Var.f22809c = 0.5f;
         h20Var.d = 0.5f;
         ArrayList arrayList2 = new ArrayList();
         e7Var.T0 = arrayList2;
         arrayList2.add(h20Var);
         if (arrayList.size() == 1 && (ijVar = (ij) arrayList.get(0)) != null && ((i7 = ijVar.D) == 8 || i7 == 3 || i7 == 5)) {
-            TLRPC.Message message = ijVar.f23237k;
+            TLRPC.Message message = ijVar.f23244k;
             if (message != null && message.attachPath != null) {
-                e7Var.L = new File(ijVar.f23237k.attachPath);
+                e7Var.L = new File(ijVar.f23244k.attachPath);
             }
             File file = e7Var.L;
             if (file == null || !file.exists()) {
                 org.telegram.messenger.w7.G(e7Var.f11876a);
-                e7Var.L = org.telegram.messenger.w7.N(ijVar.f23237k, false, true);
+                e7Var.L = org.telegram.messenger.w7.M(ijVar.f23244k, false, true);
             }
             File file2 = e7Var.L;
             if (file2 != null && file2.exists()) {
@@ -653,19 +653,19 @@ public final class e7 {
         ij ijVar;
         TLRPC.Message message;
         ArrayList arrayList3 = this.T0;
-        if (!this.K && this.f11925y == null && this.f11907o0 == null && ((arrayList = this.v) == null || arrayList.size() != 1 || (ijVar = (ij) this.v.get(0)) == null || (message = ijVar.f23237k) == null || !(message.action instanceof TLRPC.TL_messageActionStarGiftUnique))) {
+        if (!this.K && this.f11925y == null && this.f11907o0 == null && ((arrayList = this.v) == null || arrayList.size() != 1 || (ijVar = (ij) this.v.get(0)) == null || (message = ijVar.f23244k) == null || !(message.action instanceof TLRPC.TL_messageActionStarGiftUnique))) {
             if (arrayList3 != null && !arrayList3.isEmpty()) {
                 for (int i7 = 0; i7 < arrayList3.size(); i7++) {
                     h20 h20Var = (h20) arrayList3.get(i7);
-                    byte b10 = h20Var.f22800a;
+                    byte b10 = h20Var.f22807a;
                     if (b10 == 0) {
-                        if (!u(h20Var.B, h20Var.f22807j)) {
+                        if (!u(h20Var.B, h20Var.f22814j)) {
                         }
                     } else {
-                        if (b10 == 1 && (arrayList2 = h20Var.f22808k) != null && !arrayList2.isEmpty()) {
-                            for (int i10 = 0; i10 < h20Var.f22808k.size(); i10++) {
-                                g20 g20Var = (g20) h20Var.f22808k.get(i10);
-                                if (!u(g20Var.document, g20Var.f22559a)) {
+                        if (b10 == 1 && (arrayList2 = h20Var.f22815k) != null && !arrayList2.isEmpty()) {
+                            for (int i10 = 0; i10 < h20Var.f22815k.size(); i10++) {
+                                g20 g20Var = (g20) h20Var.f22815k.get(i10);
+                                if (!u(g20Var.document, g20Var.f22566a)) {
                                 }
                             }
                             continue;
@@ -709,8 +709,8 @@ public final class e7 {
                 if (photo.has_stickers) {
                     TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
                     TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                    tL_inputStickeredMediaPhoto.f27022id = tL_inputPhoto;
-                    tL_inputPhoto.f26971id = photo.f26976id;
+                    tL_inputStickeredMediaPhoto.f27023id = tL_inputPhoto;
+                    tL_inputPhoto.f26972id = photo.f26977id;
                     tL_inputPhoto.access_hash = photo.access_hash;
                     byte[] bArr = photo.file_reference;
                     tL_inputPhoto.file_reference = bArr;
@@ -725,8 +725,8 @@ public final class e7 {
                 if (document != null && ij.W2(document)) {
                     TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_inputStickeredMediaDocument.f27021id = tL_inputDocument;
-                    tL_inputDocument.f26964id = document.f26958id;
+                    tL_inputStickeredMediaDocument.f27022id = tL_inputDocument;
+                    tL_inputDocument.f26965id = document.f26959id;
                     tL_inputDocument.access_hash = document.access_hash;
                     byte[] bArr2 = document.file_reference;
                     tL_inputDocument.file_reference = bArr2;
@@ -981,13 +981,13 @@ public final class e7 {
                     Object obj = arrayList.get(i7);
                     i7++;
                     h20 h20Var = (h20) obj;
-                    if (h20Var.f22800a == 2 && !TextUtils.isEmpty(h20Var.f22817t)) {
+                    if (h20Var.f22807a == 2 && !TextUtils.isEmpty(h20Var.f22824t)) {
                         try {
-                            new File(h20Var.f22817t).delete();
+                            new File(h20Var.f22824t).delete();
                         } catch (Exception e10) {
                             org.telegram.messenger.a8.g(e10, true);
                         }
-                        h20Var.f22817t = "";
+                        h20Var.f22824t = "";
                     }
                 }
             }
@@ -1105,12 +1105,12 @@ public final class e7 {
                     if (this.N.startsWith("vthumb://")) {
                         long parseInt = Integer.parseInt(this.N.substring(9));
                         options.inJustDecodeBounds = true;
-                        MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f25555b.getContentResolver(), parseInt, 1, options);
+                        MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f25563b.getContentResolver(), parseInt, 1, options);
                         options.inSampleSize = d(options, 240, 240);
                         options.inJustDecodeBounds = false;
                         options.inPreferredConfig = Bitmap.Config.RGB_565;
                         options.inDither = true;
-                        bitmap = MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f25555b.getContentResolver(), parseInt, 1, options);
+                        bitmap = MediaStore.Video.Thumbnails.getThumbnail(org.telegram.messenger.t0.f25563b.getContentResolver(), parseInt, 1, options);
                     } else {
                         options.inJustDecodeBounds = true;
                         BitmapFactory.decodeFile(this.N);

@@ -14,7 +14,7 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.a6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.dy0;
+import org.telegram.ui.Components.ey0;
 import org.telegram.ui.LaunchActivity;
 public final class i3 implements View.OnClickListener {
     public final int f14715a = 1;
@@ -29,9 +29,9 @@ public final class i3 implements View.OnClickListener {
     public final Object f14722s;
     public final Object f14723w;
 
-    public i3(fi.d dVar, dy0 dy0Var, qp qpVar, long j3, TLRPC.User user, String[] strArr, int i7, org.telegram.ui.ActionBar.v2 v2Var, boolean z9, f6 f6Var) {
+    public i3(fi.d dVar, ey0 ey0Var, qp qpVar, long j3, TLRPC.User user, String[] strArr, int i7, org.telegram.ui.ActionBar.v2 v2Var, boolean z9, f6 f6Var) {
         this.f14716b = dVar;
-        this.f14721r = dy0Var;
+        this.f14721r = ey0Var;
         this.f14722s = qpVar;
         this.f14717c = j3;
         this.d = user;
@@ -73,8 +73,8 @@ public final class i3 implements View.OnClickListener {
                 }
                 return;
             default:
-                dy0 dy0Var = (dy0) this.f14721r;
-                a6 a6Var = dy0Var.h;
+                ey0 ey0Var = (ey0) this.f14721r;
+                a6 a6Var = ey0Var.h;
                 final qp qpVar = (qp) this.f14722s;
                 String[] strArr = (String[]) this.f14723w;
                 final fi.d dVar2 = this.f14716b;
@@ -102,7 +102,7 @@ public final class i3 implements View.OnClickListener {
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                                 org.telegram.ui.ActionBar.v2 v2Var3 = v2Var2;
                                 if (updates != null) {
-                                    long j12 = user2.f27101id;
+                                    long j12 = user2.f27102id;
                                     TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
                                     String str = tL_messages_editChatParticipantRank2.rank;
                                     org.telegram.messenger.qp qpVar2 = org.telegram.messenger.qp.this;
@@ -118,7 +118,7 @@ public final class i3 implements View.OnClickListener {
                                             i10 = 2131744288;
                                         }
                                         cc I = a02.I(2131623989, org.telegram.messenger.hd.M0(i10, null), tL_messages_editChatParticipantRank2.rank);
-                                        gb gbVar = I.f32523e;
+                                        gb gbVar = I.f32510e;
                                         if (gbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
                                             ((FrameLayout.LayoutParams) gbVar.getLayoutParams()).width = -2;
                                             ((FrameLayout.LayoutParams) gbVar.getLayoutParams()).gravity |= 1;
@@ -133,8 +133,8 @@ public final class i3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f10 = -dy0Var.D;
-                    dy0Var.D = f10;
+                    float f10 = -ey0Var.D;
+                    ey0Var.D = f10;
                     org.telegram.messenger.g0.G3(f10, textView, null);
                     org.telegram.messenger.p2.APP_ERROR.a();
                     return;

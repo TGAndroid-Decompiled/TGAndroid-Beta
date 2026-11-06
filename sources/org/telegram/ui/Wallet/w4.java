@@ -4,7 +4,7 @@ public final class w4 extends org.telegram.ui.ActionBar.v2 {
     public final void s0() {
         super.s0();
         try {
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27792a7, this.I0);
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27793a7, this.I0);
             v0(w02);
             if (this.G0 != w02) {
                 O(w02);

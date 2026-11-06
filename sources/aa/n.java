@@ -48,8 +48,8 @@ import org.chromium.support_lib_boundary.WebMessageListenerBoundaryInterface;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.lc;
 import org.telegram.ui.Components.et0;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.Components.zg0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.cv0;
@@ -59,7 +59,7 @@ import org.telegram.ui.wv0;
 import q7.l1;
 import q7.m1;
 import tg.r1;
-public final class n implements androidx.lifecycle.a0, androidx.activity.result.b, et0, lc, o11, o0, l9, WebMessageListenerBoundaryInterface, com.google.android.gms.common.api.internal.p, og.n, tg.c, p51, j1, OnCompleteListener, ib.b {
+public final class n implements androidx.lifecycle.a0, androidx.activity.result.b, et0, lc, o11, o0, l9, WebMessageListenerBoundaryInterface, com.google.android.gms.common.api.internal.p, og.n, tg.c, q51, j1, OnCompleteListener, ib.b {
     public final int f824a;
     public final Object f825b;
 
@@ -315,7 +315,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
                 if (aVar2 != null) {
                     aVar2.a(z9, true);
                 }
-                n00 n00Var = fVar.f48199s;
+                n00 n00Var = fVar.f48198s;
                 if (n00Var != null) {
                     n00Var.invalidate();
                     return;
@@ -365,14 +365,14 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         e7.b bVar = new e7.b(0, (TaskCompletionSource) obj2);
         m1 m1Var = (m1) ((l1) obj).n();
         Parcel obtain = Parcel.obtain();
-        obtain.writeInterfaceToken(m1Var.f53913b);
-        int i7 = q7.j.f53896a;
+        obtain.writeInterfaceToken(m1Var.f53912b);
+        int i7 = q7.j.f53895a;
         obtain.writeStrongBinder(bVar);
         obtain.writeInt(1);
         ((f7.v) this.f825b).writeToParcel(obtain, 0);
         Parcel obtain2 = Parcel.obtain();
         try {
-            m1Var.f53912a.transact(1, obtain, obtain2, 0);
+            m1Var.f53911a.transact(1, obtain, obtain2, 0);
             obtain2.readException();
         } finally {
             obtain.recycle();
@@ -411,7 +411,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
 
     @Override
     public void e(long j3, int i7, l3 l3Var) {
-        int i10 = ProfileStoriesView.f41976s0;
+        int i10 = ProfileStoriesView.f41975s0;
         ((cv0) this.f825b).f(true, false);
         l3Var.run();
     }
@@ -620,13 +620,13 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         m9Var.f9364c = null;
         cv0 cv0Var = (cv0) this.f825b;
         wv0 wv0Var = cv0Var.h;
-        ArrayList arrayList = cv0Var.f42003x;
+        ArrayList arrayList = cv0Var.f42002x;
         if (cv0Var.N < 0.2f) {
             m9Var.f9363b = wv0Var.getImageReceiver();
             m9Var.f9364c = null;
             m9Var.f9362a = wv0Var;
             m9Var.h = 0.0f;
-            m9Var.f9368i = org.telegram.messenger.g0.f22537q.y;
+            m9Var.f9368i = org.telegram.messenger.g0.f22544q.y;
             m9Var.f9367g = (View) cv0Var.getParent();
             m9Var.d = cv0Var.D;
             m9Var.f9373n = true;
@@ -670,7 +670,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         m9Var.f9363b = null;
         m9Var.f9362a = cv0Var;
         m9Var.h = 0.0f;
-        m9Var.f9368i = org.telegram.messenger.g0.f22537q.y;
+        m9Var.f9368i = org.telegram.messenger.g0.f22544q.y;
         m9Var.f9367g = (View) cv0Var.getParent();
         if (k4Var != null && k4Var2 != null) {
             m9Var.f9366f = new q7(this, new RectF(k4Var.f9296m), k4Var, new RectF(k4Var2.f9296m), k4Var2);
@@ -698,11 +698,11 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     public void onStateChanged(boolean z9, int i7) {
         y5 y5Var = (y5) this.f825b;
         w5 w5Var = y5Var.M;
-        s51 s51Var = y5Var.f13195y;
-        if (s51Var == null) {
+        t51 t51Var = y5Var.f13195y;
+        if (t51Var == null) {
             return;
         }
-        if (s51Var.d0()) {
+        if (t51Var.d0()) {
             org.telegram.messenger.g0.h3(w5Var);
         } else {
             org.telegram.messenger.g0.r(w5Var);
@@ -719,8 +719,8 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
         r1 r1Var = ((y5) this.f825b).f13193x;
         if (r1Var != null) {
             float f11 = i7 / i10;
-            if (Math.abs(r1Var.f55844y0 - f11) >= 1.0E-4f) {
-                r1Var.f55844y0 = f11;
+            if (Math.abs(r1Var.f55843y0 - f11) >= 1.0E-4f) {
+                r1Var.f55843y0 = f11;
                 r1Var.requestLayout();
             }
         }
@@ -890,7 +890,7 @@ public final class n implements androidx.lifecycle.a0, androidx.activity.result.
     }
 
     @Override
-    public void onError(s51 s51Var, Exception exc) {
+    public void onError(t51 t51Var, Exception exc) {
     }
 
     @Override

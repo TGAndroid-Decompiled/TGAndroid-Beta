@@ -7,24 +7,24 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 public final class ea extends View {
-    public final Paint f33180a;
-    public float f33181b;
-    public int f33182c;
+    public final Paint f33199a;
+    public float f33200b;
+    public int f33201c;
     public int d;
-    public final RectF f33183e;
-    public final c5.k f33184f;
+    public final RectF f33202e;
+    public final c5.k f33203f;
     public final int h;
-    public int f33185n;
-    public int f33186r;
+    public int f33204n;
+    public int f33205r;
 
     public ea(Context context, c5.k kVar, int i7) {
         super(context);
-        this.f33180a = new Paint(1);
+        this.f33199a = new Paint(1);
         new DecelerateInterpolator();
-        this.f33183e = new RectF();
-        this.f33185n = -1;
-        this.f33186r = -1;
-        this.f33184f = kVar;
+        this.f33202e = new RectF();
+        this.f33204n = -1;
+        this.f33205r = -1;
+        this.f33203f = kVar;
         this.h = i7;
     }
 
@@ -34,8 +34,8 @@ public final class ea extends View {
         RectF rectF;
         int L;
         org.telegram.messenger.g0.L(5.0f);
-        int i10 = this.f33185n;
-        Paint paint = this.f33180a;
+        int i10 = this.f33204n;
+        Paint paint = this.f33199a;
         if (i10 >= 0) {
             paint.setColor((org.telegram.ui.ActionBar.k6.x0(null, i10, false) & 16777215) | (-1275068416));
         } else {
@@ -46,11 +46,11 @@ public final class ea extends View {
             }
             paint.setColor(i7);
         }
-        this.d = this.f33184f.getCurrentItem();
+        this.d = this.f33203f.getCurrentItem();
         int i11 = 0;
         while (true) {
             int i12 = this.h;
-            rectF = this.f33183e;
+            rectF = this.f33202e;
             if (i11 >= i12) {
                 break;
             }
@@ -60,18 +60,18 @@ public final class ea extends View {
             }
             i11++;
         }
-        int i13 = this.f33186r;
+        int i13 = this.f33205r;
         if (i13 >= 0) {
             paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i13, false));
         } else {
             paint.setColor(-14509328);
         }
         int L2 = org.telegram.messenger.g0.L(11.0f) * this.d;
-        if (this.f33181b != 0.0f) {
-            if (this.f33182c >= this.d) {
-                rectF.set(L2, 0.0f, (org.telegram.messenger.g0.L(11.0f) * this.f33181b) + org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(5.0f));
+        if (this.f33200b != 0.0f) {
+            if (this.f33201c >= this.d) {
+                rectF.set(L2, 0.0f, (org.telegram.messenger.g0.L(11.0f) * this.f33200b) + org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(5.0f));
             } else {
-                rectF.set(com.google.android.recaptcha.internal.a.v(1.0f, this.f33181b, org.telegram.messenger.g0.L(11.0f), L2), 0.0f, org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(5.0f));
+                rectF.set(com.google.android.recaptcha.internal.a.v(1.0f, this.f33200b, org.telegram.messenger.g0.L(11.0f), L2), 0.0f, org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(5.0f));
             }
         } else {
             rectF.set(L2, 0.0f, org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(5.0f));

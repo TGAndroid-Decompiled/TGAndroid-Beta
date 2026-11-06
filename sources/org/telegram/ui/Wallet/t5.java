@@ -12,27 +12,27 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.xq;
 public final class t5 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f43162a;
-    public final org.telegram.ui.Components.d0 f43163b;
-    public final TextView[] f43164c;
+    public final org.telegram.ui.ActionBar.f6 f43161a;
+    public final org.telegram.ui.Components.d0 f43162b;
+    public final TextView[] f43163c;
     public int d;
-    public boolean f43165e;
-    public final org.telegram.ui.Components.w5 f43166f;
+    public boolean f43164e;
+    public final org.telegram.ui.Components.w5 f43165f;
     public final Paint h;
 
     public t5(Context context, CharSequence[] charSequenceArr, k kVar, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int i7;
         this.d = 0;
-        this.f43165e = false;
+        this.f43164e = false;
         this.h = new Paint(1);
-        this.f43162a = f6Var;
+        this.f43161a = f6Var;
         org.telegram.ui.Components.d0 d0Var = new org.telegram.ui.Components.d0(this, context, f6Var);
-        this.f43163b = d0Var;
-        this.f43166f = new org.telegram.ui.Components.w5(new s5(this, 0), 420L, xq.h);
+        this.f43162b = d0Var;
+        this.f43165f = new org.telegram.ui.Components.w5(new s5(this, 0), 420L, xq.h);
         d0Var.setOrientation(0);
         d0Var.setPadding(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
-        this.f43164c = new TextView[charSequenceArr.length];
+        this.f43163c = new TextView[charSequenceArr.length];
         for (int i10 = 0; i10 < charSequenceArr.length; i10++) {
             TextView textView = new TextView(context);
             textView.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f));
@@ -41,33 +41,33 @@ public final class t5 extends FrameLayout implements org.telegram.ui.ActionBar.a
             textView.setText(charSequenceArr[i10]);
             textView.setOnClickListener(new bi.la(this, kVar, i10, 19));
             c8.ka.a(textView);
-            org.telegram.ui.Components.d0 d0Var2 = this.f43163b;
+            org.telegram.ui.Components.d0 d0Var2 = this.f43162b;
             if (i10 == 0) {
                 i7 = 0;
             } else {
                 i7 = 3;
             }
             d0Var2.addView(textView, c8.ha.q(-2, -2, 0.0f, 19, i7, 0, 0, 0));
-            this.f43164c[i10] = textView;
+            this.f43163c[i10] = textView;
         }
-        addView(this.f43163b, c8.ha.e(-2, -2, 17));
+        addView(this.f43162b, c8.ha.e(-2, -2, 17));
         updateColors();
     }
 
     public final void a() {
         int i7 = 0;
-        float e10 = this.f43166f.e(false, this.d);
+        float e10 = this.f43165f.e(false, this.d);
         while (true) {
-            TextView[] textViewArr = this.f43164c;
+            TextView[] textViewArr = this.f43163c;
             if (i7 < textViewArr.length) {
                 float l10 = Utilities.l(1.0f - Math.abs(e10 - i7));
                 TextView textView = textViewArr[i7];
-                int i10 = org.telegram.ui.ActionBar.k6.f28258z6;
-                org.telegram.ui.ActionBar.f6 f6Var = this.f43162a;
+                int i10 = org.telegram.ui.ActionBar.k6.f28259z6;
+                org.telegram.ui.ActionBar.f6 f6Var = this.f43161a;
                 textView.setTextColor(i0.a.f(l10, org.telegram.ui.ActionBar.k6.w0(i10, f6Var), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, f6Var)));
                 i7++;
             } else {
-                this.f43163b.invalidate();
+                this.f43162b.invalidate();
                 return;
             }
         }
@@ -75,20 +75,20 @@ public final class t5 extends FrameLayout implements org.telegram.ui.ActionBar.a
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28258z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f28259z6));
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.Ci));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27848d6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27849d6));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         org.telegram.ui.Components.d0 d0Var;
-        if (this.f43165e && view == (d0Var = this.f43163b)) {
+        if (this.f43164e && view == (d0Var = this.f43162b)) {
             float N = org.telegram.messenger.g0.N(1.67f);
             float N2 = org.telegram.messenger.g0.N(0.67f);
             Paint paint = this.h;
             paint.setShadowLayer(N, 0.0f, N2, 520093696);
-            paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, this.f43162a));
+            paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d6, this.f43161a));
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(d0Var.getX(), d0Var.getY(), d0Var.getX() + d0Var.getWidth(), d0Var.getY() + d0Var.getHeight());
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), paint);
@@ -108,11 +108,11 @@ public final class t5 extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final void updateColors() {
         ShapeDrawable d02;
         a();
-        if (this.f43165e) {
+        if (this.f43164e) {
             d02 = null;
         } else {
-            d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, this.f43162a));
+            d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d6, this.f43161a));
         }
-        this.f43163b.setBackground(d02);
+        this.f43162b.setBackground(d02);
     }
 }

@@ -5,27 +5,27 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 public final class dz0 implements Runnable {
-    public final int f45165a;
-    public final SecretMediaViewer f45166b;
+    public final int f45164a;
+    public final SecretMediaViewer f45165b;
 
     public dz0(SecretMediaViewer secretMediaViewer, int i7) {
-        this.f45165a = i7;
-        this.f45166b = secretMediaViewer;
+        this.f45164a = i7;
+        this.f45165b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
         String format;
         String format2;
-        int i7 = this.f45165a;
-        SecretMediaViewer secretMediaViewer = this.f45166b;
+        int i7 = this.f45164a;
+        SecretMediaViewer secretMediaViewer = this.f45165b;
         switch (i7) {
             case 0:
                 secretMediaViewer.I0 = null;
-                secretMediaViewer.f41919k0 = 0;
-                secretMediaViewer.f41905e.setLayerType(0, null);
-                secretMediaViewer.f41905e.setVisibility(4);
-                secretMediaViewer.f41934s = false;
+                secretMediaViewer.f41918k0 = 0;
+                secretMediaViewer.f41904e.setLayerType(0, null);
+                secretMediaViewer.f41904e.setVisibility(4);
+                secretMediaViewer.f41933s = false;
                 secretMediaViewer.L = null;
                 secretMediaViewer.K = false;
                 secretMediaViewer.j();
@@ -33,19 +33,19 @@ public final class dz0 implements Runnable {
                 org.telegram.messenger.g0.i3(new dz0(secretMediaViewer, 4), 50L);
                 return;
             case 1:
-                bi.x5 x5Var = secretMediaViewer.f41905e;
+                bi.x5 x5Var = secretMediaViewer.f41904e;
                 if (x5Var != null) {
                     x5Var.setLayerType(0, null);
-                    secretMediaViewer.f41905e.setVisibility(4);
-                    secretMediaViewer.f41919k0 = 0;
-                    secretMediaViewer.f41934s = false;
+                    secretMediaViewer.f41904e.setVisibility(4);
+                    secretMediaViewer.f41918k0 = 0;
+                    secretMediaViewer.f41933s = false;
                     secretMediaViewer.L = null;
                     secretMediaViewer.K = false;
                     secretMediaViewer.j();
                     new ArrayList();
                     org.telegram.messenger.g0.i3(new dz0(secretMediaViewer, 4), 50L);
-                    secretMediaViewer.f41905e.setScaleX(1.0f);
-                    secretMediaViewer.f41905e.setScaleY(1.0f);
+                    secretMediaViewer.f41904e.setScaleX(1.0f);
+                    secretMediaViewer.f41904e.setScaleY(1.0f);
                     return;
                 }
                 return;
@@ -59,15 +59,15 @@ public final class dz0 implements Runnable {
                         U = 0;
                     }
                     if (U > 0) {
-                        org.telegram.ui.Components.u51 u51Var = secretMediaViewer.O;
-                        if (!u51Var.f38508f) {
-                            u51Var.h(false, ((float) S) / ((float) U));
+                        org.telegram.ui.Components.v51 v51Var = secretMediaViewer.O;
+                        if (!v51Var.f38865f) {
+                            v51Var.h(false, ((float) S) / ((float) U));
                             secretMediaViewer.P.invalidate();
                         }
                     }
-                    int[] iArr = secretMediaViewer.f41914h1;
+                    int[] iArr = secretMediaViewer.f41913h1;
                     Arrays.fill(iArr, 0);
-                    int[] iArr2 = secretMediaViewer.f41916i1;
+                    int[] iArr2 = secretMediaViewer.f41915i1;
                     Arrays.fill(iArr2, 0);
                     kp0 kp0Var2 = secretMediaViewer.D;
                     if (kp0Var2 != null) {
@@ -94,7 +94,7 @@ public final class dz0 implements Runnable {
                     Locale locale = Locale.ROOT;
                     k5Var.l(format + " / " + format2, false);
                     if (secretMediaViewer.D.d0()) {
-                        org.telegram.messenger.g0.i3(secretMediaViewer.f41912g1, 17L);
+                        org.telegram.messenger.g0.i3(secretMediaViewer.f41911g1, 17L);
                         return;
                     }
                     return;
@@ -104,26 +104,26 @@ public final class dz0 implements Runnable {
                 secretMediaViewer.n(false, true);
                 return;
             default:
-                org.telegram.messenger.jc jcVar = secretMediaViewer.f41911g0;
+                org.telegram.messenger.jc jcVar = secretMediaViewer.f41910g0;
                 if (jcVar != null) {
                     jcVar.a();
-                    secretMediaViewer.f41911g0 = null;
+                    secretMediaViewer.f41910g0 = null;
                 }
                 secretMediaViewer.h.w0(null);
                 try {
                     if (secretMediaViewer.d.getParent() != null) {
-                        ((WindowManager) secretMediaViewer.f41897b.getSystemService("window")).removeView(secretMediaViewer.d);
+                        ((WindowManager) secretMediaViewer.f41896b.getSystemService("window")).removeView(secretMediaViewer.d);
                     }
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }
-                secretMediaViewer.f41913h0 = false;
+                secretMediaViewer.f41912h0 = false;
                 return;
         }
     }
 
     public dz0(SecretMediaViewer secretMediaViewer, wq0 wq0Var, int i7) {
-        this.f45165a = i7;
-        this.f45166b = secretMediaViewer;
+        this.f45164a = i7;
+        this.f45165b = secretMediaViewer;
     }
 }

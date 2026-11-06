@@ -6,17 +6,17 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import org.telegram.ui.Components.ot0;
 public abstract class z extends ViewGroup implements ot0 {
-    public boolean f30938a;
-    public androidx.emoji2.text.j f30939b;
-    public int f30940c;
+    public boolean f30939a;
+    public androidx.emoji2.text.j f30940b;
+    public int f30941c;
     public m.f3 d;
-    public Runnable f30941e;
+    public Runnable f30942e;
 
     public z(Context context) {
         super(context);
-        this.f30938a = false;
-        this.f30939b = null;
-        this.f30940c = 0;
+        this.f30939a = false;
+        this.f30940b = null;
+        this.f30941c = 0;
         this.d = null;
         setWillNotDraw(false);
         setFocusable(true);
@@ -43,7 +43,7 @@ public abstract class z extends ViewGroup implements ot0 {
 
     @Override
     public final void f(Runnable runnable) {
-        this.f30941e = runnable;
+        this.f30942e = runnable;
     }
 
     public int getBoundsLeft() {
@@ -61,7 +61,7 @@ public abstract class z extends ViewGroup implements ot0 {
 
     @Override
     public void invalidate() {
-        Runnable runnable = this.f30941e;
+        Runnable runnable = this.f30942e;
         if (runnable != null) {
             runnable.run();
         }
@@ -69,8 +69,8 @@ public abstract class z extends ViewGroup implements ot0 {
     }
 
     public final void n() {
-        this.f30938a = false;
-        androidx.emoji2.text.j jVar = this.f30939b;
+        this.f30939a = false;
+        androidx.emoji2.text.j jVar = this.f30940b;
         if (jVar != null) {
             removeCallbacks(jVar);
         }
@@ -89,10 +89,10 @@ public abstract class z extends ViewGroup implements ot0 {
     }
 
     public final void u() {
-        if (this.f30938a) {
+        if (this.f30939a) {
             return;
         }
-        this.f30938a = true;
+        this.f30939a = true;
         if (this.d == null) {
             this.d = new m.f3(this, 19);
         }

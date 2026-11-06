@@ -5,23 +5,23 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ua1 implements Runnable {
-    public final int f50371a;
-    public final ya1 f50372b;
-    public final TLRPC.TL_error f50373c;
+    public final int f50370a;
+    public final ya1 f50371b;
+    public final TLRPC.TL_error f50372c;
 
     public ua1(ya1 ya1Var, TLRPC.TL_error tL_error, int i7) {
-        this.f50371a = i7;
-        this.f50372b = ya1Var;
-        this.f50373c = tL_error;
+        this.f50370a = i7;
+        this.f50371b = ya1Var;
+        this.f50372c = tL_error;
     }
 
     @Override
     public final void run() {
         String G;
         String G2;
-        int i7 = this.f50371a;
-        TLRPC.TL_error tL_error = this.f50373c;
-        ya1 ya1Var = this.f50372b;
+        int i7 = this.f50370a;
+        TLRPC.TL_error tL_error = this.f50372c;
+        ya1 ya1Var = this.f50371b;
         switch (i7) {
             case 0:
                 ya1Var.B0();
@@ -30,7 +30,7 @@ public final class ua1 implements Runnable {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ya1Var.getParentActivity());
                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), new qa1(ya1Var, 3));
                     String M0 = org.telegram.messenger.hd.M0(2131747435, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                     u1Var.T = M0;
                     u1Var.R = org.telegram.messenger.hd.M0(2131743932, null);
                     Dialog showDialog = ya1Var.showDialog(u1Var);

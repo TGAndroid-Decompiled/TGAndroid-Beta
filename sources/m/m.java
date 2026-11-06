@@ -13,7 +13,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.AutoCompleteTextView;
 import c8.h9;
-import c8.lc;
+import c8.mc;
 public class m extends AutoCompleteTextView implements u0.k {
     public static final int[] d = {16843126};
     public final h2.c f19151a;
@@ -71,7 +71,7 @@ public class m extends AutoCompleteTextView implements u0.k {
 
     @Override
     public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return lc.d(super.getCustomSelectionActionModeCallback());
+        return mc.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
@@ -143,7 +143,7 @@ public class m extends AutoCompleteTextView implements u0.k {
 
     @Override
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(lc.e(callback, this));
+        super.setCustomSelectionActionModeCallback(mc.e(callback, this));
     }
 
     @Override

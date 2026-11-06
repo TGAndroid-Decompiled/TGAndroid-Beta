@@ -25,7 +25,7 @@ public final class s extends EditTextBoldCursor {
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
         i6Var.setCallback(this);
-        i6Var.f34477b = 5;
+        i6Var.f34508b = 5;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class s extends EditTextBoldCursor {
         int i7;
         super.dispatchDraw(canvas);
         if (this.H1 < 0) {
-            i7 = k6.f28069p7;
+            i7 = k6.f28070p7;
         } else {
             i7 = k6.P5;
         }

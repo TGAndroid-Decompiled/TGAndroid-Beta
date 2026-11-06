@@ -5,44 +5,44 @@ import android.content.Context;
 import com.google.android.gms.tasks.Task;
 import java.util.HashMap;
 public final class e9 {
-    public static n9 f58918j;
-    public static final d f58919k;
-    public final String f58920a;
-    public final String f58921b;
-    public final c9 f58922c;
+    public static n9 f58917j;
+    public static final d f58918k;
+    public final String f58919a;
+    public final String f58920b;
+    public final c9 f58921c;
     public final pb.k d;
-    public final Task f58923e;
-    public final Task f58924f;
-    public final String f58925g;
+    public final Task f58922e;
+    public final Task f58923f;
+    public final String f58924g;
     public final int h;
-    public final HashMap f58926i = new HashMap();
+    public final HashMap f58925i = new HashMap();
 
     static {
         Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
         objArr[0].getClass();
         objArr[1].getClass();
-        f58919k = new d(objArr);
+        f58918k = new d(objArr);
     }
 
     public e9(Context context, pb.k kVar, c9 c9Var, String str) {
         int i7;
         new HashMap();
-        this.f58920a = context.getPackageName();
-        this.f58921b = pb.c.a(context);
+        this.f58919a = context.getPackageName();
+        this.f58920b = pb.c.a(context);
         this.d = kVar;
-        this.f58922c = c9Var;
+        this.f58921c = c9Var;
         h9.b();
-        this.f58925g = str;
+        this.f58924g = str;
         pb.f a10 = pb.f.a();
         a2.b bVar = new a2.b(this, 8);
         a10.getClass();
-        this.f58923e = pb.f.b(bVar);
+        this.f58922e = pb.f.b(bVar);
         pb.f a11 = pb.f.a();
         kVar.getClass();
         oa oaVar = new oa(kVar, 3);
         a11.getClass();
-        this.f58924f = pb.f.b(oaVar);
-        d dVar = f58919k;
+        this.f58923f = pb.f.b(oaVar);
+        d dVar = f58918k;
         if (dVar.containsKey(str)) {
             i7 = b7.f.d(context, (String) dVar.get(str), false);
         } else {

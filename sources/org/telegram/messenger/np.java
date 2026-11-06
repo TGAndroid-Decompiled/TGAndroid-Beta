@@ -1,8 +1,8 @@
 package org.telegram.messenger;
 public final class np {
-    public int f24203a;
-    public int f24204b;
-    public int f24205c;
+    public int f24210a;
+    public int f24211b;
+    public int f24212c;
     public int d;
-    public boolean f24206e;
+    public boolean f24213e;
 }

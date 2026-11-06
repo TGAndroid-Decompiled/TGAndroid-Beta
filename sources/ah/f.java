@@ -18,18 +18,18 @@ public final class f extends FrameLayout {
         super(context);
         int i7;
         this.f1072a = f6Var;
-        r6.i(k6.f27868e7, this, f6Var);
+        r6.i(k6.f27869e7, this, f6Var);
         TextView textView = new TextView(getContext());
         this.f1073b = textView;
         com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
-        r6.V(textView, k6.f27887f7, f6Var);
-        if (hd.f22871a0) {
+        r6.V(textView, k6.f27888f7, f6Var);
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
         textView.setGravity(i7 | 16);
-        addView(textView, ha.d(-1, -1.0f, (hd.f22871a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+        addView(textView, ha.d(-1, -1.0f, (hd.f22878a0 ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }
 
     @Override

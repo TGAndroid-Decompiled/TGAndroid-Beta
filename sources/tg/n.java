@@ -3,53 +3,53 @@ package tg;
 import c8.ha;
 import fi.s4;
 import java.util.List;
-import org.telegram.ui.Components.cz0;
+import org.telegram.ui.Components.dz0;
 import org.telegram.ui.d10;
 public final class n implements Runnable {
-    public final int f55760a;
-    public final g0 f55761b;
+    public final int f55759a;
+    public final g0 f55760b;
 
     public n(g0 g0Var, int i7) {
-        this.f55760a = i7;
-        this.f55761b = g0Var;
+        this.f55759a = i7;
+        this.f55760b = g0Var;
     }
 
     @Override
     public final void run() {
         int e10;
-        switch (this.f55760a) {
+        switch (this.f55759a) {
             case 0:
-                g0 g0Var = this.f55761b;
-                cz0 cz0Var = g0Var.J0;
-                if (cz0Var != null) {
+                g0 g0Var = this.f55760b;
+                dz0 dz0Var = g0Var.J0;
+                if (dz0Var != null) {
                     g0Var.J0 = null;
-                    g0Var.removeView(cz0Var);
+                    g0Var.removeView(dz0Var);
                     return;
                 }
                 return;
             case 1:
-                g0 g0Var2 = this.f55761b;
-                if (g0Var2.f55589n0 != null) {
-                    g0Var2.f55592p0.postRunnable(new n(g0Var2, 3), 200L);
+                g0 g0Var2 = this.f55760b;
+                if (g0Var2.f55588n0 != null) {
+                    g0Var2.f55591p0.postRunnable(new n(g0Var2, 3), 200L);
                     return;
                 }
                 return;
             case 2:
-                m1 m1Var = this.f55761b.U0;
+                m1 m1Var = this.f55760b.U0;
                 if (m1Var != null) {
                     m1Var.invalidate();
                     return;
                 }
                 return;
             case 3:
-                g0.Y(this.f55761b);
+                g0.Y(this.f55760b);
                 return;
             default:
-                g0 g0Var3 = this.f55761b;
-                boolean z9 = sg.l0.e(g0Var3.f55611y1).f55043k;
+                g0 g0Var3 = this.f55760b;
+                boolean z9 = sg.l0.e(g0Var3.f55610y1).f55042k;
                 int i7 = 0;
                 while (true) {
-                    List list = sg.g.f54960c;
+                    List list = sg.g.f54959c;
                     if (i7 < list.size()) {
                         sg.g gVar = (sg.g) list.get(i7);
                         if (z9) {

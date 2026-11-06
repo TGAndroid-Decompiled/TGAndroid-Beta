@@ -1,6 +1,6 @@
 package zd;
 public abstract class x extends id.a implements id.e {
-    public static final w f60030b = new w(id.d.f15452a, new gb.p(2));
+    public static final w f60029b = new w(id.d.f15452a, new gb.p(2));
 
     public x() {
         super(id.d.f15452a);
@@ -24,7 +24,7 @@ public abstract class x extends id.a implements id.e {
         if (key instanceof w) {
             w wVar = (w) key;
             id.g gVar = this.f15449a;
-            if ((gVar != wVar && wVar.f60026b != gVar) || (fVar = (id.f) wVar.f60025a.invoke(this)) == null) {
+            if ((gVar != wVar && wVar.f60025b != gVar) || (fVar = (id.f) wVar.f60024a.invoke(this)) == null) {
                 return null;
             }
             return fVar;

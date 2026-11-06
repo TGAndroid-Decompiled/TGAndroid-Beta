@@ -27,36 +27,36 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
     public final ArrayList X;
     public boolean Y;
     public int Z;
-    public boolean f49925a0;
-    public int f49926b0;
-    public final ArrayList f49927c0;
-    public int f49928d0;
-    public LimitPreviewView f49929e0;
-    public final n5 f49930f0;
-    public boolean f49931g0;
-    public LinearLayout f49932h0;
-    public final TLRPC.Chat f49933i0;
-    public String f49934j0;
-    public String f49935k0;
-    public int f49936l0;
+    public boolean f49924a0;
+    public int f49925b0;
+    public final ArrayList f49926c0;
+    public int f49927d0;
+    public LimitPreviewView f49928e0;
+    public final n5 f49929f0;
+    public boolean f49930g0;
+    public LinearLayout f49931h0;
+    public final TLRPC.Chat f49932i0;
+    public String f49933j0;
+    public String f49934k0;
+    public int f49935l0;
     public int m0;
-    public int f49937n0;
-    public int f49938o0;
+    public int f49936n0;
+    public int f49937o0;
 
     public t5(long j3) {
-        int i7 = org.telegram.messenger.p10.f24459s0;
+        int i7 = org.telegram.messenger.p10.f24467s0;
         this.S = i7;
         this.W = new ArrayList();
         this.X = new ArrayList();
-        this.f49927c0 = new ArrayList();
-        this.f49928d0 = 0;
-        this.f49930f0 = new n5(this);
-        this.f49934j0 = "";
-        this.f49935k0 = "";
-        this.f49936l0 = 5;
+        this.f49926c0 = new ArrayList();
+        this.f49927d0 = 0;
+        this.f49929f0 = new n5(this);
+        this.f49933j0 = "";
+        this.f49934k0 = "";
+        this.f49935l0 = 5;
         this.m0 = 5;
         this.R = j3;
-        this.f49933i0 = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(-j3));
+        this.f49932i0 = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(-j3));
     }
 
     public static void A0(t5 t5Var, Context context, View view, int i7) {
@@ -74,9 +74,9 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
                     if (z10 && boost.user_id == -1) {
                         org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.kb(t5Var.getParentActivity(), t5Var.getResourceProvider());
                         kbVar.c(2131623981, 36, 36, new String[0]);
-                        kbVar.f35252b.setText(org.telegram.messenger.hd.M0(2131753303, null));
-                        kbVar.f35252b.setSingleLine(false);
-                        kbVar.f35252b.setMaxLines(2);
+                        kbVar.f35243b.setText(org.telegram.messenger.hd.M0(2131753303, null));
+                        kbVar.f35243b.setSingleLine(false);
+                        kbVar.f35243b.setMaxLines(2);
                         org.telegram.ui.Components.cc.g(t5Var, kbVar, 2750).j();
                     } else if (!z11 && !z10) {
                         t5Var.presentFragment(ProfileActivity.A4(bVar.getDialogId()));
@@ -85,7 +85,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
                     TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = new TLRPC.TL_payments_checkedGiftCode();
                     tL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
                     tL_payments_checkedGiftCode.to_id = boost.user_id;
-                    tL_payments_checkedGiftCode.from_id = org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24459s0).z1(-t5Var.f49933i0.f26952id);
+                    tL_payments_checkedGiftCode.from_id = org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24467s0).z1(-t5Var.f49932i0.f26953id);
                     int i10 = boost.date;
                     tL_payments_checkedGiftCode.date = i10;
                     tL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
@@ -108,8 +108,8 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
         if (view instanceof bh.c) {
             wg.l.I0(t5Var, t5Var.resourceProvider, j3, ((bh.c) view).getPrepaidGiveaway());
         }
-        if (((s5) t5Var.f49927c0.get(i7)).f54440a == 9) {
-            if (t5Var.f49928d0 == 1) {
+        if (((s5) t5Var.f49926c0.get(i7)).f54439a == 9) {
+            if (t5Var.f49927d0 == 1) {
                 z9 = true;
             }
             t5Var.H0(Boolean.valueOf(z9));
@@ -119,7 +119,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
     public final void F0(CountDownLatch countDownLatch, k5 k5Var) {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
         tL_premium_getBoostsList.limit = this.m0;
-        tL_premium_getBoostsList.offset = this.f49934j0;
+        tL_premium_getBoostsList.offset = this.f49933j0;
         int i7 = this.S;
         tL_premium_getBoostsList.peer = org.telegram.messenger.qp.s1(i7).j1(this.R);
         ConnectionsManager.getInstance(i7).sendRequest(tL_premium_getBoostsList, new i5(this, countDownLatch, k5Var, 0), 2);
@@ -127,19 +127,19 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
 
     public final void G0(CountDownLatch countDownLatch, k5 k5Var) {
         TL_stories.TL_premium_getBoostsList tL_premium_getBoostsList = new TL_stories.TL_premium_getBoostsList();
-        tL_premium_getBoostsList.limit = this.f49936l0;
+        tL_premium_getBoostsList.limit = this.f49935l0;
         tL_premium_getBoostsList.gifts = true;
-        tL_premium_getBoostsList.offset = this.f49935k0;
+        tL_premium_getBoostsList.offset = this.f49934k0;
         int i7 = this.S;
         tL_premium_getBoostsList.peer = org.telegram.messenger.qp.s1(i7).j1(this.R);
         ConnectionsManager.getInstance(i7).sendRequest(tL_premium_getBoostsList, new i5(this, countDownLatch, k5Var, 1), 2);
     }
 
     public final void H0(Boolean bool) {
-        if (this.f49931g0) {
+        if (this.f49930g0) {
             return;
         }
-        this.f49931g0 = true;
+        this.f49930g0 = true;
         if (bool == null) {
             Utilities.f21333e.c(new k5(this, 1));
         } else if (bool.booleanValue()) {
@@ -157,24 +157,24 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
         if (getParentActivity() == null) {
             return;
         }
-        if (this.f49929e0 == null) {
+        if (this.f49928e0 == null) {
             LimitPreviewView limitPreviewView = new LimitPreviewView(2131231127, 0, 0, getParentActivity(), this.resourceProvider);
-            this.f49929e0 = limitPreviewView;
-            limitPreviewView.f31449c0 = true;
+            this.f49928e0 = limitPreviewView;
+            limitPreviewView.f31450c0 = true;
             limitPreviewView.setDarkGradientProvider(new w0(this, 5));
         }
-        if (this.f49929e0.getParent() != null) {
-            ((ViewGroup) this.f49929e0.getParent()).removeView(this.f49929e0);
+        if (this.f49928e0.getParent() != null) {
+            ((ViewGroup) this.f49928e0.getParent()).removeView(this.f49928e0);
         }
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.T;
         if (tL_premium_boostsStatus != null) {
-            this.f49929e0.g(tL_premium_boostsStatus, false);
+            this.f49928e0.g(tL_premium_boostsStatus, false);
             if (z9) {
-                this.f49929e0.setAlpha(0.0f);
-                this.f49929e0.animate().alpha(1.0f).start();
+                this.f49928e0.setAlpha(0.0f);
+                this.f49928e0.animate().alpha(1.0f).start();
             }
         }
-        TLRPC.Chat chat = this.f49933i0;
+        TLRPC.Chat chat = this.f49932i0;
         if (org.telegram.messenger.t3.V(chat)) {
             i7 = 2131753589;
         } else {
@@ -189,7 +189,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
         SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(i10, null));
         FrameLayout frameLayout = new FrameLayout(getParentActivity());
         if (this.T != null) {
-            view = this.f49929e0;
+            view = this.f49928e0;
         } else {
             view = new View(frameLayout.getContext());
         }
@@ -210,7 +210,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
         int i12;
         boolean z11;
         boolean z12;
-        ArrayList arrayList = this.f49927c0;
+        ArrayList arrayList = this.f49926c0;
         ArrayList arrayList2 = new ArrayList(arrayList);
         arrayList.clear();
         arrayList.add(new rg.a(14, false));
@@ -228,15 +228,15 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
                         z12 = false;
                     }
                     ?? aVar = new rg.a(11, true);
-                    aVar.f49653e = prepaidGiveaway;
-                    aVar.f49654f = z12;
+                    aVar.f49652e = prepaidGiveaway;
+                    aVar.f49653f = z12;
                     arrayList.add(aVar);
                 }
                 arrayList.add(new s5(6, org.telegram.messenger.hd.M0(2131753286, null)));
             }
             arrayList.add(new s5(13, org.telegram.messenger.hd.M0(2131753606, null)));
-            int i14 = this.f49928d0;
-            TLRPC.Chat chat = this.f49933i0;
+            int i14 = this.f49927d0;
+            TLRPC.Chat chat = this.f49932i0;
             if (i14 == 0) {
                 ArrayList arrayList3 = this.W;
                 if (arrayList3.isEmpty()) {
@@ -250,7 +250,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
                         } else {
                             z11 = false;
                         }
-                        arrayList.add(new s5(boost, z11, this.f49928d0));
+                        arrayList.add(new s5(boost, z11, this.f49927d0));
                     }
                     if (this.Y) {
                         arrayList.add(new rg.a(9, true));
@@ -272,14 +272,14 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
                 } else {
                     for (int i16 = 0; i16 < arrayList4.size(); i16++) {
                         TL_stories.Boost boost2 = (TL_stories.Boost) arrayList4.get(i16);
-                        if (i16 == arrayList4.size() - 1 && !this.f49925a0) {
+                        if (i16 == arrayList4.size() - 1 && !this.f49924a0) {
                             z10 = true;
                         } else {
                             z10 = false;
                         }
-                        arrayList.add(new s5(boost2, z10, this.f49928d0));
+                        arrayList.add(new s5(boost2, z10, this.f49927d0));
                     }
-                    if (this.f49925a0) {
+                    if (this.f49924a0) {
                         arrayList.add(new rg.a(9, true));
                     } else {
                         arrayList.add(new rg.a(7, false));
@@ -294,7 +294,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
             }
             arrayList.add(new s5(1, org.telegram.messenger.hd.M0(2131748913, null)));
             arrayList.add(new s5(3, this.T.boost_url));
-            if (org.telegram.messenger.qp.s1(this.S).f24850p4 && org.telegram.messenger.t3.N(chat)) {
+            if (org.telegram.messenger.qp.s1(this.S).f24858p4 && org.telegram.messenger.t3.N(chat)) {
                 if (org.telegram.messenger.t3.V(chat)) {
                     i10 = 2131753269;
                 } else {
@@ -313,7 +313,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
             }
             arrayList.add(new rg.a(15, false));
         }
-        n5 n5Var = this.f49930f0;
+        n5 n5Var = this.f49929f0;
         if (z9) {
             n5Var.E(arrayList2, arrayList);
         } else {
@@ -326,22 +326,22 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
         View createView = super.createView(context);
         I0(false);
         v4.k kVar = new v4.k();
-        kVar.f56979m = false;
+        kVar.f56978m = false;
         kVar.C = false;
-        this.f48194c.setItemAnimator(kVar);
-        this.f48194c.setOnItemClickListener(new di.p4(3, this, context));
+        this.f48193c.setItemAnimator(kVar);
+        this.f48193c.setOnItemClickListener(new di.p4(3, this, context));
         Activity parentActivity = getParentActivity();
         LinearLayout linearLayout = new LinearLayout(parentActivity);
-        this.f49932h0 = linearLayout;
+        this.f49931h0 = linearLayout;
         linearLayout.setOrientation(1);
-        this.f49932h0.addView(new di.m1(parentActivity), c8.ha.t(100, 100, 17, 0, 120, 0, 0));
-        ((ViewGroup) this.fragmentView).addView(this.f49932h0, c8.ha.e(-1, -2, 17));
-        this.f49932h0.setAlpha(0.0f);
+        this.f49931h0.addView(new di.m1(parentActivity), c8.ha.t(100, 100, 17, 0, 120, 0, 0));
+        ((ViewGroup) this.fragmentView).addView(this.f49931h0, c8.ha.e(-1, -2, 17));
+        this.f49931h0.setAlpha(0.0f);
         if (this.T == null) {
-            this.f49932h0.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
+            this.f49931h0.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
             getMessagesController().G0().a(this.R, new l5(this, 1));
         } else {
-            this.f49932h0.setVisibility(8);
+            this.f49931h0.setVisibility(8);
             H0(null);
         }
         J0(false);
@@ -392,7 +392,7 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
             if ((f2Var2 instanceof ProfileActivity) || (f2Var2 instanceof an)) {
                 wg.h.f(f2Var2, chat, false);
             }
-        } else if (i7 == org.telegram.messenger.qs.f25037p3) {
+        } else if (i7 == org.telegram.messenger.qs.f25045p3) {
             if (this.R == ((Long) objArr[2]).longValue()) {
                 this.T = (TL_stories.TL_premium_boostsStatus) objArr[0];
                 this.U = (org.telegram.messenger.e3) objArr[1];
@@ -402,20 +402,20 @@ public final class t5 extends o00 implements org.telegram.messenger.ls {
 
     @Override
     public final v4.g0 k0() {
-        return this.f49930f0;
+        return this.f49929f0;
     }
 
     @Override
     public final boolean onFragmentCreate() {
         getNotificationCenter().c(this, org.telegram.messenger.qs.V2);
-        getNotificationCenter().c(this, org.telegram.messenger.qs.f25037p3);
+        getNotificationCenter().c(this, org.telegram.messenger.qs.f25045p3);
         return super.onFragmentCreate();
     }
 
     @Override
     public final void onFragmentDestroy() {
         getNotificationCenter().n(this, org.telegram.messenger.qs.V2);
-        getNotificationCenter().n(this, org.telegram.messenger.qs.f25037p3);
+        getNotificationCenter().n(this, org.telegram.messenger.qs.f25045p3);
         super.onFragmentDestroy();
     }
 }

@@ -61,7 +61,7 @@ public abstract class s1 {
         l9Var2.setAnimatedEmojiDrawable(i5.m(i7, botVerifierSettings.icon, null, 3));
         frameLayout2.addView(l9Var2, ha.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         k5 k5Var = new k5(activity);
-        r6.Y(k5Var, k6.f27956j5, null);
+        r6.Y(k5Var, k6.f27957j5, null);
         k5Var.setTextSize(13);
         k5Var.setEllipsizeByGradient(true);
         k5Var.l(str, false);
@@ -71,7 +71,7 @@ public abstract class s1 {
         final boolean[] zArr = new boolean[1];
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
         String M02 = hd.M0(2131752997, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
         u1Var.R = M02;
         if (i11 >= 0) {
             i10 = 2131752998;

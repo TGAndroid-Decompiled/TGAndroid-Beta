@@ -2,21 +2,21 @@ package org.telegram.ui.Wallet;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class q5 extends v31 {
-    public static final int f43055b = 0;
+import org.telegram.ui.Components.x31;
+public final class q5 extends w31 {
+    public static final int f43054b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
-        ((r5) view).a(w31Var.f39829k, w31Var.f39830l, w31Var.f39831m);
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
+        ((r5) view).a(x31Var.f40158k, x31Var.f40159l, x31Var.f40160m);
     }
 
     @Override

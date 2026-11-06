@@ -7,17 +7,17 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.HashSet;
 public abstract class el0 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final View f33277a;
-    public final ImageView f33278b;
-    public final fi.c2 f33279c;
+    public final View f33296a;
+    public final ImageView f33297b;
+    public final fi.c2 f33298c;
     public final ah.i d;
-    public final org.telegram.ui.ActionBar.f6 f33280e;
+    public final org.telegram.ui.ActionBar.f6 f33299e;
 
     public el0(Context context, float f10, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f33280e = f6Var;
+        this.f33299e = f6Var;
         View view = new View(context);
-        this.f33277a = view;
+        this.f33296a = view;
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, f6Var)));
         addView(view, c8.ha.i(-1.0f, 36.0f, 8388659, f10, 11.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
@@ -27,12 +27,12 @@ public abstract class el0 extends FrameLayout implements org.telegram.ui.ActionB
         org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.Q5, f6Var, PorterDuff.Mode.MULTIPLY);
         addView(imageView, c8.ha.i(36.0f, 36.0f, 8388659, f10 + 2.0f, 11.0f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f33278b = imageView2;
+        this.f33297b = imageView2;
         imageView2.setScaleType(scaleType);
         fi.c2 c2Var = new fi.c2(3, this);
-        this.f33279c = c2Var;
+        this.f33298c = c2Var;
         imageView2.setImageDrawable(c2Var);
-        c2Var.f36640f = org.telegram.messenger.g0.L(7.0f);
+        c2Var.f36658f = org.telegram.messenger.g0.L(7.0f);
         imageView2.setScaleX(0.1f);
         imageView2.setScaleY(0.1f);
         imageView2.setAlpha(0.0f);
@@ -62,11 +62,11 @@ public abstract class el0 extends FrameLayout implements org.telegram.ui.ActionB
     public abstract void a(String str);
 
     public op getProgressDrawable() {
-        return this.f33279c;
+        return this.f33298c;
     }
 
     public View getSearchBackground() {
-        return this.f33277a;
+        return this.f33296a;
     }
 
     public EditTextBoldCursor getSearchEditText() {
@@ -79,10 +79,10 @@ public abstract class el0 extends FrameLayout implements org.telegram.ui.ActionB
 
     @Override
     public final void updateColors() {
-        View view = this.f33277a;
+        View view = this.f33296a;
         if (view != null) {
             try {
-                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, this.f33280e), view.getBackground());
+                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, this.f33299e), view.getBackground());
                 view.invalidate();
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);

@@ -6,23 +6,23 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class dc0 extends Drawable implements Drawable.Callback {
-    public final fh.g f32825a;
-    public final RectF f32826b = new RectF();
-    public int f32827c = 255;
+    public final fh.g f32854a;
+    public final RectF f32855b = new RectF();
+    public int f32856c = 255;
 
     public dc0(fh.g gVar) {
-        this.f32825a = gVar;
+        this.f32854a = gVar;
         gVar.setCallback(this);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        this.f32825a.draw(canvas);
+        this.f32854a.draw(canvas);
         Rect bounds = getBounds();
-        RectF rectF = this.f32826b;
+        RectF rectF = this.f32855b;
         rectF.set(bounds);
         float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
-        float f10 = this.f32827c / 255.0f;
+        float f10 = this.f32856c / 255.0f;
         ai.z.c(canvas, rectF, min, f10);
         ai.z.a(min, f10, 0, canvas, rectF);
     }
@@ -39,7 +39,7 @@ public final class dc0 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f32825a.setBounds(rect);
+        this.f32854a.setBounds(rect);
     }
 
     @Override
@@ -49,14 +49,14 @@ public final class dc0 extends Drawable implements Drawable.Callback {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f32827c = i7;
-        this.f32825a.setAlpha(i7);
+        this.f32856c = i7;
+        this.f32854a.setAlpha(i7);
         invalidateSelf();
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f32825a.getClass();
+        this.f32854a.getClass();
     }
 
     @Override

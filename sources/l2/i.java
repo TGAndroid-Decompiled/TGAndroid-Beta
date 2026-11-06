@@ -95,34 +95,34 @@ public final class i implements w0 {
         g("dismissed, prevState=" + i7);
         ((ArrayList) this.f17846c).remove(oVar);
         ti.r rVar = (ti.r) this.f17847e;
-        if (oVar == rVar.f56046e) {
-            rVar.f56046e = null;
+        if (oVar == rVar.f56045e) {
+            rVar.f56045e = null;
         }
-        if (oVar == rVar.f56047f) {
-            ti.q qVar = rVar.f56048g;
+        if (oVar == rVar.f56046f) {
+            ti.q qVar = rVar.f56047g;
             View view = rVar.h;
-            rVar.f56047f = null;
-            rVar.f56048g = null;
+            rVar.f56046f = null;
+            rVar.f56047g = null;
             rVar.h = null;
-            ti.s sVar = rVar.f56045c;
+            ti.s sVar = rVar.f56044c;
             if (sVar != null) {
                 sVar.a(null, null);
             }
             if (qVar != null) {
-                SurfaceTexture surfaceTexture = qVar.f56040a;
-                qVar.f56040a = null;
+                SurfaceTexture surfaceTexture = qVar.f56039a;
+                qVar.f56039a = null;
                 if (surfaceTexture != null) {
                     surfaceTexture.release();
                 }
             }
             if (view != null) {
-                oVar.f56031a.y(view);
+                oVar.f56030a.y(view);
             }
-            LaunchActivity launchActivity = rVar.f56044b;
-            if (launchActivity != null && rVar.f56049i && org.telegram.messenger.g0.H1(launchActivity)) {
-                rVar.f56044b.moveTaskToBack(false);
+            LaunchActivity launchActivity = rVar.f56043b;
+            if (launchActivity != null && rVar.f56048i && org.telegram.messenger.g0.H1(launchActivity)) {
+                rVar.f56043b.moveTaskToBack(false);
             }
-            rVar.f56049i = false;
+            rVar.f56048i = false;
             bg.v0 v0Var = rVar.d;
             if (v0Var != null) {
                 v0Var.c(false);

@@ -40,7 +40,7 @@ public final class n9 implements c20 {
         TLRPC.ChatInvite chatInvite = this.h;
         String str = this.f4425i;
         if (i7 < 0) {
-            boolean z9 = qp.s1(this.f4421c).f24802j7;
+            boolean z9 = qp.s1(this.f4421c).f24810j7;
             Context context = this.f4423f;
             org.telegram.ui.ActionBar.f6 f6Var = this.f4424g;
             if (z9) {

@@ -80,7 +80,7 @@ public final class u10 {
         if (f14 > f15) {
             this.f38470f = f15;
         }
-        float interpolation = xq.f40330g.getInterpolation(this.f38470f / f15);
+        float interpolation = xq.f40346g.getInterpolation(this.f38470f / f15);
         float f16 = L;
         float f17 = this.f38468c;
         float f18 = ((((this.f38466a - f17) * interpolation) + f17) * f16) - 200.0f;

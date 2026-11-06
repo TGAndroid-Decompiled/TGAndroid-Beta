@@ -2,42 +2,42 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class ve implements org.telegram.ui.ActionBar.r1, org.telegram.messenger.bp, gl0 {
-    public final int f50712a;
-    public final Runnable f50713b;
+    public final int f50711a;
+    public final Runnable f50712b;
 
     public ve(int i7, Runnable runnable) {
-        this.f50712a = i7;
-        this.f50713b = runnable;
+        this.f50711a = i7;
+        this.f50712b = runnable;
     }
 
     @Override
     public boolean a(TLRPC.TL_error tL_error) {
-        switch (this.f50712a) {
+        switch (this.f50711a) {
             case 3:
-                this.f50713b.run();
+                this.f50712b.run();
                 return true;
             case 4:
-                this.f50713b.run();
+                this.f50712b.run();
                 return true;
             case 5:
-                this.f50713b.run();
+                this.f50712b.run();
                 return true;
             case 6:
-                this.f50713b.run();
+                this.f50712b.run();
                 return true;
             case 7:
-                this.f50713b.run();
+                this.f50712b.run();
                 return true;
             default:
-                this.f50713b.run();
+                this.f50712b.run();
                 return true;
         }
     }
 
     @Override
     public void b(int i7) {
-        int i10 = this.f50712a;
-        Runnable runnable = this.f50713b;
+        int i10 = this.f50711a;
+        Runnable runnable = this.f50712b;
         switch (i10) {
             case 9:
                 String str = LaunchActivity.B1;
@@ -57,15 +57,15 @@ public final class ve implements org.telegram.ui.ActionBar.r1, org.telegram.mess
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f50712a) {
+        switch (this.f50711a) {
             case 0:
-                this.f50713b.run();
+                this.f50712b.run();
                 return;
             case 1:
-                this.f50713b.run();
+                this.f50712b.run();
                 return;
             default:
-                Runnable runnable = this.f50713b;
+                Runnable runnable = this.f50712b;
                 if (runnable != null) {
                     runnable.run();
                     return;

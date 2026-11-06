@@ -40,7 +40,7 @@ public final class r1 implements mj {
             t3Var.getClass();
             if (ijVar != null && ijVar.F0() != null) {
                 TLRPC.Document F0 = ijVar.F0();
-                TLRPC.Message message = ijVar.f23237k;
+                TLRPC.Message message = ijVar.f23244k;
                 if (message != null) {
                     str2 = message.attachPath;
                 } else {

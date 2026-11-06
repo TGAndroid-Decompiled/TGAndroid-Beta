@@ -7,38 +7,38 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class c3 implements View.OnClickListener {
-    public final int f32375a = 1;
-    public final int[] f32376b;
-    public final Object f32377c;
+    public final int f32396a = 1;
+    public final int[] f32397b;
+    public final Object f32398c;
     public final Object d;
-    public final KeyEvent.Callback f32378e;
-    public final ViewGroup f32379f;
+    public final KeyEvent.Callback f32399e;
+    public final ViewGroup f32400f;
     public final Object h;
-    public final Object f32380n;
-    public final Object f32381r;
+    public final Object f32401n;
+    public final Object f32402r;
 
     public c3(FrameLayout frameLayout, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.v2 v2Var, FrameLayout frameLayout2, int[] iArr, String[] strArr, int[] iArr2, org.telegram.ui.m6 m6Var) {
-        this.f32377c = frameLayout;
+        this.f32398c = frameLayout;
         this.d = f6Var;
-        this.f32378e = v2Var;
-        this.f32379f = frameLayout2;
-        this.f32376b = iArr;
+        this.f32399e = v2Var;
+        this.f32400f = frameLayout2;
+        this.f32397b = iArr;
         this.h = strArr;
-        this.f32380n = iArr2;
-        this.f32381r = m6Var;
+        this.f32401n = iArr2;
+        this.f32402r = m6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f32375a;
-        Object obj = this.f32381r;
-        Object obj2 = this.f32380n;
+        int i7 = this.f32396a;
+        Object obj = this.f32402r;
+        Object obj2 = this.f32401n;
         Object obj3 = this.h;
-        int[] iArr = this.f32376b;
-        ViewGroup viewGroup = this.f32379f;
-        KeyEvent.Callback callback = this.f32378e;
+        int[] iArr = this.f32397b;
+        ViewGroup viewGroup = this.f32400f;
+        KeyEvent.Callback callback = this.f32399e;
         Object obj4 = this.d;
-        Object obj5 = this.f32377c;
+        Object obj5 = this.f32398c;
         switch (i7) {
             case 0:
                 bi.r0 r0Var = (bi.r0) obj2;
@@ -51,9 +51,9 @@ public final class c3 implements View.OnClickListener {
                 int i12 = r0Var.f4602b;
                 Editable text = ysVar.getText();
                 ?? obj6 = new Object();
-                obj6.f38433a |= 128;
-                obj6.f38434b = i11;
-                obj6.f38435c = i12;
+                obj6.f38751a |= 128;
+                obj6.f38752b = i11;
+                obj6.f38753c = i12;
                 TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
                 tL_messageEntityFormattedDate.date = c10;
                 tL_messageEntityFormattedDate.flags = i10;
@@ -66,7 +66,7 @@ public final class c3 implements View.OnClickListener {
                 if (wsVar != null) {
                     wsVar.m();
                 }
-                ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28651x0.run();
+                ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28652x0.run();
                 return;
             default:
                 FrameLayout frameLayout = (FrameLayout) obj5;
@@ -76,28 +76,28 @@ public final class c3 implements View.OnClickListener {
                 String[] strArr = (String[]) obj3;
                 int[] iArr2 = (int[]) obj2;
                 Runnable runnable = (Runnable) obj;
-                if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).q()) {
+                if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24467s0).q()) {
                     new hc(frameLayout, f6Var).Q(2131624216, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.hd.M0(2131748496, null), new org.telegram.messenger.pd(15))).j();
                     return;
                 }
-                k60 F = k60.F(v2Var.f28618c, f6Var, frameLayout2);
+                k60 F = k60.F(v2Var.f28619c, f6Var, frameLayout2);
                 for (int i13 = 0; i13 < iArr.length; i13++) {
                     F.c(0, strArr[i13], new w2(iArr2, iArr[i13], runnable), false);
                 }
-                F.f35162i = 1;
+                F.f35187i = 1;
                 F.Z();
                 return;
         }
     }
 
     public c3(boolean[] zArr, hb0 hb0Var, hb0 hb0Var2, hb0 hb0Var3, hb0 hb0Var4, bi.r0 r0Var, int[] iArr, h9.f1 f1Var) {
-        this.f32377c = zArr;
+        this.f32398c = zArr;
         this.d = hb0Var;
-        this.f32378e = hb0Var2;
-        this.f32379f = hb0Var3;
+        this.f32399e = hb0Var2;
+        this.f32400f = hb0Var3;
         this.h = hb0Var4;
-        this.f32380n = r0Var;
-        this.f32376b = iArr;
-        this.f32381r = f1Var;
+        this.f32401n = r0Var;
+        this.f32397b = iArr;
+        this.f32402r = f1Var;
     }
 }

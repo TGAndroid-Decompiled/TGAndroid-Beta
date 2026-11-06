@@ -22,8 +22,8 @@ public final class y implements ls {
         this.d = f1Var;
         qs.f(i7).b(this, qs.Y1);
         w7.G(i7);
-        if (!w7.K(document, null, true, true).exists()) {
-            w7.G(i7).X(document, tL_starGiftUnique, 3, 1);
+        if (!w7.J(document, null, true, true).exists()) {
+            w7.G(i7).W(document, tL_starGiftUnique, 3, 1);
         }
         a();
     }
@@ -31,11 +31,11 @@ public final class y implements ls {
     public final void a() {
         if (!this.f1687e && !this.f1688f) {
             w7.G(this.f1684a);
-            if (w7.K(this.f1685b, null, true, true).exists()) {
+            if (w7.J(this.f1685b, null, true, true).exists()) {
                 this.f1688f = true;
                 qs.f(this.f1684a).n(this, qs.Y1);
                 w7.G(this.f1684a);
-                Utilities.f21333e.c(new a1.e(9, this, w7.K(this.f1685b, null, true, true)));
+                Utilities.f21333e.c(new a1.e(9, this, w7.J(this.f1685b, null, true, true)));
             }
         }
     }

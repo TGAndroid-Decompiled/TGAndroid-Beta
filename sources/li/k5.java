@@ -10,24 +10,24 @@ import org.telegram.messenger.i6;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class k5 extends v31 {
+import org.telegram.ui.Components.x31;
+public final class k5 extends w31 {
     public static final int f18674b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         boolean z10;
         m5 m5Var = (m5) view;
-        a aVar = (a) w31Var.G;
-        a3 a3Var = (a3) w31Var.H;
+        a aVar = (a) x31Var.G;
+        a3 a3Var = (a3) x31Var.H;
         o5 o5Var = m5Var.f18708w;
         boolean z11 = true;
         if (m5Var.f18986a != aVar) {
@@ -37,7 +37,7 @@ public final class k5 extends v31 {
         }
         m5Var.f18986a = aVar;
         m5Var.E = a3Var;
-        m5Var.D = hd.f22871a0;
+        m5Var.D = hd.f22878a0;
         m5Var.c(aVar);
         TL_iv.PageBlock pageBlock = aVar.f18389b;
         if (!(pageBlock instanceof TL_iv.pageBlockTable)) {
@@ -83,7 +83,7 @@ public final class k5 extends v31 {
     @Override
     public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
         m5 m5Var = new m5(context, f6Var);
-        m5Var.setBackground(new y1(k6.w0(k6.f27848d6, f6Var)));
+        m5Var.setBackground(new y1(k6.w0(k6.f27849d6, f6Var)));
         return m5Var;
     }
 

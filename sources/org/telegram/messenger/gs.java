@@ -4,27 +4,27 @@ import android.os.SystemClock;
 import android.util.SparseArray;
 import java.util.ArrayList;
 public final class gs implements Runnable {
-    public final int f22692a;
-    public final qs f22693b;
+    public final int f22699a;
+    public final qs f22700b;
 
     public gs(qs qsVar, int i7) {
-        this.f22692a = i7;
-        this.f22693b = qsVar;
+        this.f22699a = i7;
+        this.f22700b = qsVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f22692a) {
+        switch (this.f22699a) {
             case 0:
-                qs qsVar = this.f22693b;
+                qs qsVar = this.f22700b;
                 ArrayList arrayList = null;
-                qsVar.f25113i = null;
-                SparseArray sparseArray = qsVar.f25118n;
+                qsVar.f25121i = null;
+                SparseArray sparseArray = qsVar.f25126n;
                 if (sparseArray.size() != 0) {
                     long elapsedRealtime = SystemClock.elapsedRealtime();
                     long j3 = Long.MAX_VALUE;
                     for (int i7 = 0; i7 < sparseArray.size(); i7++) {
-                        long j10 = ((js) sparseArray.valueAt(i7)).f23581b;
+                        long j10 = ((js) sparseArray.valueAt(i7)).f23588b;
                         if (elapsedRealtime - j10 > 1000) {
                             if (arrayList == null) {
                                 arrayList = new ArrayList();
@@ -47,8 +47,8 @@ public final class gs implements Runnable {
                 }
                 return;
             default:
-                qs qsVar2 = this.f22693b;
-                qsVar2.f25113i = new gs(qsVar2, 0);
+                qs qsVar2 = this.f22700b;
+                qsVar2.f25121i = new gs(qsVar2, 0);
                 return;
         }
     }

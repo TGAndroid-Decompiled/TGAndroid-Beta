@@ -65,10 +65,10 @@ public final class d9 implements Runnable {
                 int i11 = 0;
                 k00Var.getMessagesController().Y3(tL_messages_forumTopics.users, false);
                 k00Var.getMessagesController().S3(tL_messages_forumTopics.chats, false);
-                k00Var.f23632c.put(j11, 0);
+                k00Var.f23639c.put(j11, 0);
                 k00Var.u(j11, tL_messages_forumTopics2.topics, hVar, false, i10, tL_messages_forumTopics.count);
                 k00Var.y(j11, true);
-                k00Var.getMessagesStorage().C1(k00Var.getConnectionsManager().getCurrentTime(), -j11, (List) k00Var.f23630a.f(j11), true);
+                k00Var.getMessagesStorage().C1(k00Var.getConnectionsManager().getCurrentTime(), -j11, (List) k00Var.f23637a.f(j11), true);
                 k00Var.getMessagesStorage().j1(tL_messages_forumTopics2.messages, false, true, false, 0, false, 0, 0L);
                 if (!tL_messages_forumTopics2.topics.isEmpty() && i10 == 1) {
                     TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) jg.g.i(1, tL_messages_forumTopics2.topics);
@@ -77,7 +77,7 @@ public final class d9 implements Runnable {
                     if (message != null) {
                         i11 = message.date;
                     }
-                    k00Var.x(j11, tL_forumTopic.f27004id, i12, i11);
+                    k00Var.x(j11, tL_forumTopic.f27005id, i12, i11);
                     return;
                 } else if (k00Var.l(j11) == null || k00Var.l(j11).size() < tL_messages_forumTopics2.count) {
                     k00Var.h.l(j11);
@@ -117,7 +117,7 @@ public final class d9 implements Runnable {
                         if (T != null) {
                             if (T instanceof an) {
                                 an anVar = (an) T;
-                                if (anVar.a() == j12 && anVar.f43791f4 == 0) {
+                                if (anVar.a() == j12 && anVar.f43790f4 == 0) {
                                     return;
                                 }
                             }
@@ -138,7 +138,7 @@ public final class d9 implements Runnable {
                     }
                     TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
                     TLRPC.GroupCall groupCall2 = groupcall.call;
-                    tL_inputGroupCall.f26969id = groupCall2.f26962id;
+                    tL_inputGroupCall.f26970id = groupCall2.f26963id;
                     tL_inputGroupCall.access_hash = groupCall2.access_hash;
                     v2Var.dismiss();
                     org.telegram.ui.Components.voip.y1.g(LaunchActivity.G1, i13, tL_inputGroupCall, false, groupcall.call, null);
@@ -202,18 +202,18 @@ public final class d9 implements Runnable {
                     if (arrayList.isEmpty()) {
                         for (int i18 = 0; i18 < arrayList3.size(); i18++) {
                             Pair pair = (Pair) arrayList3.get(i18);
-                            jf0Var.f46950a.add((Long) pair.first);
-                            jf0Var.f46951b.add((Integer) pair.second);
-                            jf0Var.f46952c.add((TLObject) hashMap.get(pair.first));
+                            jf0Var.f46949a.add((Long) pair.first);
+                            jf0Var.f46950b.add((Integer) pair.second);
+                            jf0Var.f46951c.add((TLObject) hashMap.get(pair.first));
                         }
                         jf0Var.b();
                         return;
                     } else if (org.telegram.messenger.t3.T(chat)) {
                         TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
-                        tL_channels_getParticipants.limit = qp.s1(i15).f24849p3;
+                        tL_channels_getParticipants.limit = qp.s1(i15).f24857p3;
                         tL_channels_getParticipants.offset = 0;
                         tL_channels_getParticipants.filter = new TLRPC.TL_channelParticipantsRecent();
-                        tL_channels_getParticipants.channel = qp.s1(i15).h1(chat.f26952id);
+                        tL_channels_getParticipants.channel = qp.s1(i15).h1(chat.f26953id);
                         ConnectionsManager.getInstance(i15).sendRequest(tL_channels_getParticipants, new RequestDelegate() {
                             @Override
                             public final void run(final TLObject tLObject3, TLRPC.TL_error tL_error3) {
@@ -241,16 +241,16 @@ public final class d9 implements Runnable {
                                                                 if (i21 < size3) {
                                                                     TLRPC.User user = tL_channels_channelParticipants.users.get(i21);
                                                                     org.telegram.messenger.qp.s1(i19).X3(user, false, false);
-                                                                    hashMap3.put(Long.valueOf(user.f27101id), user);
+                                                                    hashMap3.put(Long.valueOf(user.f27102id), user);
                                                                     i21++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList5 = arrayList4;
                                                                         if (i20 < arrayList5.size()) {
                                                                             Pair pair2 = (Pair) arrayList5.get(i20);
-                                                                            jf0Var3.f46950a.add((Long) pair2.first);
-                                                                            jf0Var3.f46951b.add((Integer) pair2.second);
-                                                                            jf0Var3.f46952c.add((TLObject) hashMap3.get(pair2.first));
+                                                                            jf0Var3.f46949a.add((Long) pair2.first);
+                                                                            jf0Var3.f46950b.add((Integer) pair2.second);
+                                                                            jf0Var3.f46951c.add((TLObject) hashMap3.get(pair2.first));
                                                                             i20++;
                                                                         }
                                                                     }
@@ -273,16 +273,16 @@ public final class d9 implements Runnable {
                                                                 if (i23 < size4) {
                                                                     TLRPC.User user2 = tL_messages_chatFull.users.get(i23);
                                                                     org.telegram.messenger.qp.s1(i19).X3(user2, false, false);
-                                                                    hashMap4.put(Long.valueOf(user2.f27101id), user2);
+                                                                    hashMap4.put(Long.valueOf(user2.f27102id), user2);
                                                                     i23++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList6 = arrayList4;
                                                                         if (i22 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i22);
-                                                                            jf0Var4.f46950a.add((Long) pair3.first);
-                                                                            jf0Var4.f46951b.add((Integer) pair3.second);
-                                                                            jf0Var4.f46952c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            jf0Var4.f46949a.add((Long) pair3.first);
+                                                                            jf0Var4.f46950b.add((Integer) pair3.second);
+                                                                            jf0Var4.f46951c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i22++;
                                                                         }
                                                                     }
@@ -318,16 +318,16 @@ public final class d9 implements Runnable {
                                                                 if (i21 < size3) {
                                                                     TLRPC.User user = tL_channels_channelParticipants.users.get(i21);
                                                                     org.telegram.messenger.qp.s1(i20).X3(user, false, false);
-                                                                    hashMap32.put(Long.valueOf(user.f27101id), user);
+                                                                    hashMap32.put(Long.valueOf(user.f27102id), user);
                                                                     i21++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList52 = arrayList5;
                                                                         if (i202 < arrayList52.size()) {
                                                                             Pair pair2 = (Pair) arrayList52.get(i202);
-                                                                            jf0Var32.f46950a.add((Long) pair2.first);
-                                                                            jf0Var32.f46951b.add((Integer) pair2.second);
-                                                                            jf0Var32.f46952c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            jf0Var32.f46949a.add((Long) pair2.first);
+                                                                            jf0Var32.f46950b.add((Integer) pair2.second);
+                                                                            jf0Var32.f46951c.add((TLObject) hashMap32.get(pair2.first));
                                                                             i202++;
                                                                         }
                                                                     }
@@ -350,16 +350,16 @@ public final class d9 implements Runnable {
                                                                 if (i23 < size4) {
                                                                     TLRPC.User user2 = tL_messages_chatFull.users.get(i23);
                                                                     org.telegram.messenger.qp.s1(i20).X3(user2, false, false);
-                                                                    hashMap4.put(Long.valueOf(user2.f27101id), user2);
+                                                                    hashMap4.put(Long.valueOf(user2.f27102id), user2);
                                                                     i23++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList6 = arrayList5;
                                                                         if (i22 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i22);
-                                                                            jf0Var4.f46950a.add((Long) pair3.first);
-                                                                            jf0Var4.f46951b.add((Integer) pair3.second);
-                                                                            jf0Var4.f46952c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            jf0Var4.f46949a.add((Long) pair3.first);
+                                                                            jf0Var4.f46950b.add((Integer) pair3.second);
+                                                                            jf0Var4.f46951c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i22++;
                                                                         }
                                                                     }
@@ -378,7 +378,7 @@ public final class d9 implements Runnable {
                         return;
                     } else {
                         TLRPC.TL_messages_getFullChat tL_messages_getFullChat = new TLRPC.TL_messages_getFullChat();
-                        tL_messages_getFullChat.chat_id = chat.f26952id;
+                        tL_messages_getFullChat.chat_id = chat.f26953id;
                         ConnectionsManager.getInstance(i15).sendRequest(tL_messages_getFullChat, new RequestDelegate() {
                             @Override
                             public final void run(final TLObject tLObject3, TLRPC.TL_error tL_error3) {
@@ -406,16 +406,16 @@ public final class d9 implements Runnable {
                                                                 if (i21 < size3) {
                                                                     TLRPC.User user = tL_channels_channelParticipants.users.get(i21);
                                                                     org.telegram.messenger.qp.s1(i19).X3(user, false, false);
-                                                                    hashMap32.put(Long.valueOf(user.f27101id), user);
+                                                                    hashMap32.put(Long.valueOf(user.f27102id), user);
                                                                     i21++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList52 = arrayList4;
                                                                         if (i202 < arrayList52.size()) {
                                                                             Pair pair2 = (Pair) arrayList52.get(i202);
-                                                                            jf0Var32.f46950a.add((Long) pair2.first);
-                                                                            jf0Var32.f46951b.add((Integer) pair2.second);
-                                                                            jf0Var32.f46952c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            jf0Var32.f46949a.add((Long) pair2.first);
+                                                                            jf0Var32.f46950b.add((Integer) pair2.second);
+                                                                            jf0Var32.f46951c.add((TLObject) hashMap32.get(pair2.first));
                                                                             i202++;
                                                                         }
                                                                     }
@@ -438,16 +438,16 @@ public final class d9 implements Runnable {
                                                                 if (i23 < size4) {
                                                                     TLRPC.User user2 = tL_messages_chatFull.users.get(i23);
                                                                     org.telegram.messenger.qp.s1(i19).X3(user2, false, false);
-                                                                    hashMap4.put(Long.valueOf(user2.f27101id), user2);
+                                                                    hashMap4.put(Long.valueOf(user2.f27102id), user2);
                                                                     i23++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList6 = arrayList4;
                                                                         if (i22 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i22);
-                                                                            jf0Var4.f46950a.add((Long) pair3.first);
-                                                                            jf0Var4.f46951b.add((Integer) pair3.second);
-                                                                            jf0Var4.f46952c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            jf0Var4.f46949a.add((Long) pair3.first);
+                                                                            jf0Var4.f46950b.add((Integer) pair3.second);
+                                                                            jf0Var4.f46951c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i22++;
                                                                         }
                                                                     }
@@ -483,16 +483,16 @@ public final class d9 implements Runnable {
                                                                 if (i21 < size3) {
                                                                     TLRPC.User user = tL_channels_channelParticipants.users.get(i21);
                                                                     org.telegram.messenger.qp.s1(i20).X3(user, false, false);
-                                                                    hashMap32.put(Long.valueOf(user.f27101id), user);
+                                                                    hashMap32.put(Long.valueOf(user.f27102id), user);
                                                                     i21++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList52 = arrayList5;
                                                                         if (i202 < arrayList52.size()) {
                                                                             Pair pair2 = (Pair) arrayList52.get(i202);
-                                                                            jf0Var32.f46950a.add((Long) pair2.first);
-                                                                            jf0Var32.f46951b.add((Integer) pair2.second);
-                                                                            jf0Var32.f46952c.add((TLObject) hashMap32.get(pair2.first));
+                                                                            jf0Var32.f46949a.add((Long) pair2.first);
+                                                                            jf0Var32.f46950b.add((Integer) pair2.second);
+                                                                            jf0Var32.f46951c.add((TLObject) hashMap32.get(pair2.first));
                                                                             i202++;
                                                                         }
                                                                     }
@@ -515,16 +515,16 @@ public final class d9 implements Runnable {
                                                                 if (i23 < size4) {
                                                                     TLRPC.User user2 = tL_messages_chatFull.users.get(i23);
                                                                     org.telegram.messenger.qp.s1(i20).X3(user2, false, false);
-                                                                    hashMap4.put(Long.valueOf(user2.f27101id), user2);
+                                                                    hashMap4.put(Long.valueOf(user2.f27102id), user2);
                                                                     i23++;
                                                                 } else {
                                                                     while (true) {
                                                                         ArrayList arrayList6 = arrayList5;
                                                                         if (i22 < arrayList6.size()) {
                                                                             Pair pair3 = (Pair) arrayList6.get(i22);
-                                                                            jf0Var4.f46950a.add((Long) pair3.first);
-                                                                            jf0Var4.f46951b.add((Integer) pair3.second);
-                                                                            jf0Var4.f46952c.add((TLObject) hashMap4.get(pair3.first));
+                                                                            jf0Var4.f46949a.add((Long) pair3.first);
+                                                                            jf0Var4.f46950b.add((Integer) pair3.second);
+                                                                            jf0Var4.f46951c.add((TLObject) hashMap4.get(pair3.first));
                                                                             i22++;
                                                                         }
                                                                     }

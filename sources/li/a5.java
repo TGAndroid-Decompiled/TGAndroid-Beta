@@ -129,7 +129,7 @@ public abstract class a5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = c6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (ug0Var != null && ug0Var.f38627e) {
+                    if (ug0Var != null && ug0Var.f38623e) {
                         z10 = z9;
                     } else {
                         z10 = false;

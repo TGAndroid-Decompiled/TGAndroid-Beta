@@ -22,26 +22,26 @@ public final class p7 {
 
     public p7(View view) {
         nt ntVar = new nt(1, view);
-        this.f9517a = p10.f24459s0;
+        this.f9517a = p10.f24467s0;
         this.f9518b = ntVar;
         xq xqVar = xq.h;
         this.f9521f = new org.telegram.ui.Components.z4(ntVar, 350L, xqVar);
         this.f9522g = new org.telegram.ui.Components.z4(ntVar, 350L, xqVar);
         e10 e10Var = new e10();
         this.f9519c = e10Var;
-        e10Var.f33097a = true;
-        e10Var.f33098b = true;
+        e10Var.f33124a = true;
+        e10Var.f33125b = true;
         b(false);
-        e10Var.f33099c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-        e10Var.f33099c.setStyle(Paint.Style.STROKE);
-        e10Var.f33099c.setStrokeCap(Paint.Cap.ROUND);
+        e10Var.f33126c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
+        e10Var.f33126c.setStyle(Paint.Style.STROKE);
+        e10Var.f33126c.setStrokeCap(Paint.Cap.ROUND);
     }
 
     public final Paint a(RectF rectF) {
         int m10;
         int n10;
         int i7 = this.f9524j;
-        int i10 = org.telegram.ui.ActionBar.r6.f28475b;
+        int i10 = org.telegram.ui.ActionBar.r6.f28476b;
         org.telegram.ui.Components.z4 z4Var = this.f9522g;
         org.telegram.ui.Components.z4 z4Var2 = this.f9521f;
         if (i7 != i10) {
@@ -72,19 +72,19 @@ public final class p7 {
         e10 e10Var = this.f9519c;
         e10Var.d(a10, a11, 0, 0);
         e10Var.b(rectF.left, rectF.top, rectF.right, rectF.bottom);
-        return e10Var.f33099c;
+        return e10Var.f33126c;
     }
 
     public final void b(boolean z9) {
         this.h = true;
         this.f9523i = null;
-        this.f9524j = org.telegram.ui.ActionBar.r6.f28475b;
+        this.f9524j = org.telegram.ui.ActionBar.r6.f28476b;
         d(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Vk, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Wk, false), z9);
     }
 
     public final void c(fp fpVar, boolean z9) {
         this.f9523i = fpVar;
-        this.f9524j = org.telegram.ui.ActionBar.r6.f28475b;
+        this.f9524j = org.telegram.ui.ActionBar.r6.f28476b;
         if (fpVar != null) {
             this.h = false;
             d(fpVar.m(org.telegram.ui.ActionBar.k6.I.q()), fpVar.n(org.telegram.ui.ActionBar.k6.I.q()), z9);

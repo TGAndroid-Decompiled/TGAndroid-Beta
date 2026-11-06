@@ -4,28 +4,28 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
 public final class ku implements org.telegram.ui.Components.bj0 {
-    public final int f47314a;
-    public final ww f47315b;
+    public final int f47313a;
+    public final ww f47314b;
 
     public ku(ww wwVar, int i7) {
-        this.f47314a = i7;
-        this.f47315b = wwVar;
+        this.f47313a = i7;
+        this.f47314b = wwVar;
     }
 
     @Override
     public final void c(int i7, View view) {
         jg.o0 o0Var;
-        switch (this.f47314a) {
+        switch (this.f47313a) {
             case 0:
-                ww wwVar = this.f47315b;
-                Object obj = wwVar.C0.f33600x0.G(i7).G;
+                ww wwVar = this.f47314b;
+                Object obj = wwVar.C0.f33610x0.G(i7).G;
                 if (obj instanceof org.telegram.messenger.ij) {
                     org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) obj;
                     Bundle bundle = new Bundle();
-                    if (org.telegram.messenger.ij.B0(ijVar.f23237k) >= 0) {
-                        bundle.putLong("user_id", org.telegram.messenger.ij.B0(ijVar.f23237k));
+                    if (org.telegram.messenger.ij.B0(ijVar.f23244k) >= 0) {
+                        bundle.putLong("user_id", org.telegram.messenger.ij.B0(ijVar.f23244k));
                     } else {
-                        bundle.putLong("chat_id", -org.telegram.messenger.ij.B0(ijVar.f23237k));
+                        bundle.putLong("chat_id", -org.telegram.messenger.ij.B0(ijVar.f23244k));
                     }
                     bundle.putInt("message_id", ijVar.f1());
                     an anVar = new an(bundle);
@@ -43,9 +43,9 @@ public final class ku implements org.telegram.ui.Components.bj0 {
                     return;
                 }
             default:
-                ww wwVar2 = this.f47315b;
-                wwVar2.f51535b0.I0(true);
-                ArrayList arrayList = wwVar2.f51535b0.f16888e3;
+                ww wwVar2 = this.f47314b;
+                wwVar2.f51533b0.I0(true);
+                ArrayList arrayList = wwVar2.f51533b0.f16888e3;
                 if (arrayList.isEmpty()) {
                     o0Var = jg.q0.j3[i7];
                 } else {

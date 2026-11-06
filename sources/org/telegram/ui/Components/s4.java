@@ -1,12 +1,12 @@
 package org.telegram.ui.Components;
 public final class s4 {
-    public final int f37878a;
-    public final int f37879b;
-    public final int f37880c;
+    public final int f37877a;
+    public final int f37878b;
+    public final int f37879c;
     public final int d;
-    public final int f37881e;
-    public final int f37882f;
-    public final int f37883g;
+    public final int f37880e;
+    public final int f37881f;
+    public final int f37882g;
     public final int h;
 
     public s4(org.telegram.ui.ActionBar.f6 r14) {
@@ -14,13 +14,13 @@ public final class s4 {
     }
 
     public s4(int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
-        this.f37878a = i7;
-        this.f37879b = i10;
-        this.f37880c = i11;
+        this.f37877a = i7;
+        this.f37878b = i10;
+        this.f37879c = i11;
         this.d = i12;
-        this.f37881e = i13;
-        this.f37882f = i14;
-        this.f37883g = i15;
+        this.f37880e = i13;
+        this.f37881f = i14;
+        this.f37882g = i15;
         this.h = i16;
     }
 }

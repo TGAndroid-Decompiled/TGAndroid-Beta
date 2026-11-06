@@ -57,7 +57,7 @@ public final class q0 extends pj0 implements a6 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(org.telegram.messenger.g0.L(28.0f));
-        r6.m(this, 20, k6.f27940i6, f6Var);
+        r6.m(this, 20, k6.f27941i6, f6Var);
     }
 
     public static void A1(int i7, int i10, ArrayList arrayList) {
@@ -310,7 +310,7 @@ public final class q0 extends pj0 implements a6 {
                 Object obj = arrayList.get(i7);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (p10.i(p10.f24459s0).f().f27101id == user.f27101id) {
+                    if (p10.i(p10.f24467s0).f().f27102id == user.f27102id) {
                         m10 = hd.M0(2131745902, null);
                     } else {
                         m10 = g5.m(10, user.first_name, user.last_name);
@@ -352,8 +352,8 @@ public final class q0 extends pj0 implements a6 {
 
     public ArrayList<t6> getThemeDescriptions() {
         ArrayList<t6> arrayList = new ArrayList<>();
-        arrayList.add(new t6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27868e7));
-        arrayList.add(new t6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27887f7));
+        arrayList.add(new t6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27869e7));
+        arrayList.add(new t6(this, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (s6) null, k6.f27888f7));
         return arrayList;
     }
 
@@ -361,7 +361,7 @@ public final class q0 extends pj0 implements a6 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f16891h3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), k6.f27971k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), k6.f27972k0);
         }
     }
 

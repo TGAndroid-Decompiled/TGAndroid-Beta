@@ -47,7 +47,7 @@ public final class d implements ToIntFunction {
             case 10:
                 return ((Integer) ((Object[]) obj)[1]).intValue();
             case 11:
-                return ((s9) obj).f25433e.bid_date;
+                return ((s9) obj).f25441e.bid_date;
             case 12:
                 return Integer.parseInt((String) obj);
             case 13:
@@ -55,13 +55,13 @@ public final class d implements ToIntFunction {
             case 14:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 15:
-                return ((TLRPC.Message) obj).f26973id;
+                return ((TLRPC.Message) obj).f26974id;
             case 16:
-                return ((TLRPC.Message) obj).f26973id;
+                return ((TLRPC.Message) obj).f26974id;
             case 17:
                 return ((x5) obj).d;
             case 18:
-                return ((x5) obj).f40168e;
+                return ((x5) obj).f40190e;
             case 19:
                 ad.c cVar = (ad.c) obj;
                 return cVar.d - cVar.f1036b;

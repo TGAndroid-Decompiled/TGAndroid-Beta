@@ -12,8 +12,8 @@ public final class zu0 extends wv0 {
     public final void dispatchDraw(Canvas canvas) {
         di.z2 z2Var;
         super.dispatchDraw(canvas);
-        org.telegram.ui.Components.i5 i5Var = this.f35565e;
-        if (i5Var != null && (z2Var = i5Var.f34450k) != null) {
+        org.telegram.ui.Components.i5 i5Var = this.f35585e;
+        if (i5Var != null && (z2Var = i5Var.f34497k) != null) {
             z2Var.P0(false);
         }
     }

@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class wg implements org.telegram.messenger.z10 {
-    public final int f39964a;
-    public final KeyEvent.Callback f39965b;
+    public final int f39972a;
+    public final KeyEvent.Callback f39973b;
 
     public wg(KeyEvent.Callback callback, int i7) {
-        this.f39964a = i7;
-        this.f39965b = callback;
+        this.f39972a = i7;
+        this.f39973b = callback;
     }
 
     @Override
     public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
-        switch (this.f39964a) {
+        switch (this.f39972a) {
             case 0:
-                di diVar = (di) this.f39965b;
+                di diVar = (di) this.f39973b;
                 CharSequence charSequence = (CharSequence) obj;
                 Integer num = (Integer) obj2;
                 Integer num2 = (Integer) obj3;
                 Boolean bool = (Boolean) obj4;
-                gh ghVar = diVar.f32979y2;
+                gh ghVar = diVar.f33008y2;
                 ghVar.setText(charSequence);
                 ghVar.w(charSequence.length(), charSequence.length());
                 diVar.n1();
                 return;
             case 1:
-                di diVar2 = (di) this.f39965b;
+                di diVar2 = (di) this.f39973b;
                 CharSequence charSequence2 = (CharSequence) obj;
                 Integer num3 = (Integer) obj2;
                 Integer num4 = (Integer) obj3;
@@ -36,7 +36,7 @@ public final class wg implements org.telegram.messenger.z10 {
                 diVar2.n1();
                 return;
             default:
-                uc ucVar = (uc) this.f39965b;
+                uc ucVar = (uc) this.f39973b;
                 Integer num5 = (Integer) obj2;
                 Integer num6 = (Integer) obj3;
                 Boolean bool3 = (Boolean) obj4;

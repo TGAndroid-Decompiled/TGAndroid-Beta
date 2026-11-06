@@ -16,21 +16,21 @@ public final class zv extends qu {
     @Override
     public final void K0(boolean z9) {
         gy gyVar = this.O1;
-        ArrayList arrayList = gyVar.f34062p1;
+        ArrayList arrayList = gyVar.f34070p1;
         TLRPC.StickerSet stickerSet = this.N1;
         if (z9) {
-            if (!arrayList.contains(Long.valueOf(stickerSet.f26979id))) {
-                arrayList.add(Long.valueOf(stickerSet.f26979id));
+            if (!arrayList.contains(Long.valueOf(stickerSet.f26980id))) {
+                arrayList.add(Long.valueOf(stickerSet.f26980id));
             }
         } else {
-            arrayList.remove(Long.valueOf(stickerSet.f26979id));
+            arrayList.remove(Long.valueOf(stickerSet.f26980id));
         }
         gyVar.T();
     }
 
     @Override
     public final void dismiss() {
-        this.O1.f34087w2 = false;
+        this.O1.f34095w2 = false;
         super.dismiss();
     }
 }

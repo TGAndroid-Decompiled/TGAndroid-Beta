@@ -6,17 +6,17 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class t9 implements jg.f0, org.telegram.ui.ActionBar.r1 {
-    public final x9 f43183a;
+    public final x9 f43182a;
 
     public t9(x9 x9Var) {
-        this.f43183a = x9Var;
+        this.f43182a = x9Var;
     }
 
     @Override
     public void a(a0.h hVar, ArrayList arrayList) {
-        x9 x9Var = this.f43183a;
-        ArrayList arrayList2 = x9Var.f43345s;
-        if (!x9Var.f43344r) {
+        x9 x9Var = this.f43182a;
+        ArrayList arrayList2 = x9Var.f43344s;
+        if (!x9Var.f43343r) {
             arrayList2.clear();
             int size = arrayList.size();
             int i7 = 0;
@@ -29,19 +29,19 @@ public final class t9 implements jg.f0, org.telegram.ui.ActionBar.r1 {
                     arrayList2.add((TLRPC.User) g0Var.f16724a);
                 }
             }
-            fi.w3 w3Var = x9Var.f35844a;
+            fi.w3 w3Var = x9Var.f36227a;
             if (w3Var != null) {
-                w3Var.f36781f3.O(true);
+                w3Var.f37160f3.O(true);
             }
         }
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        x9 x9Var = this.f43183a;
+        x9 x9Var = this.f43182a;
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25563b.getPackageName()));
             x9Var.getParentActivity().startActivity(intent);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

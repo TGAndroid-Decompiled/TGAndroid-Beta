@@ -114,7 +114,7 @@ public final class y {
                 int i7 = this.f17582a;
                 if (z9) {
                     yr a02 = yr.a0(i7);
-                    a02.f26688a.c(new u7(this, a02, z10, 5));
+                    a02.f26696a.c(new u7(this, a02, z10, 5));
                     return;
                 }
                 ConnectionsManager.getInstance(i7).sendRequest(new TL_account.getBusinessChatLinks(), new x(this, 0));
@@ -125,6 +125,6 @@ public final class y {
     public final void f() {
         ArrayList arrayList = new ArrayList(this.f17583b);
         yr a02 = yr.a0(this.f17582a);
-        a02.f26688a.c(new fi.x0(a02, arrayList, 1));
+        a02.f26696a.c(new fi.x0(a02, arrayList, 1));
     }
 }

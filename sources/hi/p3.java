@@ -16,10 +16,10 @@ public final class p3 extends org.telegram.ui.Cells.n4 {
         w70 w70Var = new w70(context, f6Var);
         this.f14867r = w70Var;
         w70Var.setTextSize(1, 14.0f);
-        r6.V(w70Var, k6.f28258z6, f6Var);
+        r6.V(w70Var, k6.f28259z6, f6Var);
         r6.H(w70Var, k6.L6, f6Var);
         w70Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 3;
         } else {
             i7 = 5;

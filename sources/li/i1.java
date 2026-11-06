@@ -81,7 +81,7 @@ public final class i1 implements View.OnClickListener {
                     b2Var2.A0 = gyVar;
                     gyVar.setVisibility(8);
                     gy gyVar2 = b2Var2.A0;
-                    gyVar2.f34091x2 = false;
+                    gyVar2.f34099x2 = false;
                     gyVar2.setDelegate(new s1(b2Var2));
                     int indexOfChild = b2Var2.O.indexOfChild(b2Var2.f18439a0);
                     if (indexOfChild < 0) {

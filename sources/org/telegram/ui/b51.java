@@ -1,5 +1,5 @@
 package org.telegram.ui;
 public final class b51 {
-    public int f44197a;
-    public boolean f44198b;
+    public int f44196a;
+    public boolean f44197b;
 }

@@ -49,11 +49,11 @@ public final class t implements f0, dj0 {
         if (hwVar != null) {
             Long l10 = (Long) view.getTag();
             long longValue = l10.longValue();
-            ww wwVar = hwVar.f46504a;
+            ww wwVar = hwVar.f46503a;
             if (wwVar.getParentActivity() != null && (a22 = wwVar.getMessagesController().a2(l10)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wwVar.getParentActivity());
                 String M0 = hd.M0(2131752234, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = org.telegram.messenger.g0.X2(hd.a0("ChatHintsDeleteAlert", null, 2131752235, g5.m(0, a22.first_name, a22.last_name)));
                 alertDialog$Builder.k(hd.M0(2131744856, null), new di.c1(hwVar, longValue, 8));
@@ -61,7 +61,7 @@ public final class t implements f0, dj0 {
                 wwVar.showDialog(u1Var);
                 TextView textView = (TextView) u1Var.d(-1);
                 if (textView != null) {
-                    r6.V(textView, k6.f28089q7, wwVar.getResourceProvider());
+                    r6.V(textView, k6.f28090q7, wwVar.getResourceProvider());
                 }
             }
         }

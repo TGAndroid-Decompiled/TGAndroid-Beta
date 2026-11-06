@@ -17,15 +17,15 @@ public final class c4 extends vg.r {
         switch (this.D) {
             case 0:
                 d4 d4Var = (d4) this.E;
-                d4Var.f42363o = true;
+                d4Var.f42362o = true;
                 setPaused(true);
                 setVisibility(8);
-                d4Var.f42338a.invalidate();
+                d4Var.f42337a.invalidate();
                 return;
             default:
                 setPaused(true);
                 setVisibility(8);
-                ((p8) this.E).f43019a.setVisibility(0);
+                ((p8) this.E).f43018a.setVisibility(0);
                 return;
         }
     }
@@ -34,9 +34,9 @@ public final class c4 extends vg.r {
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         switch (this.D) {
             case 1:
-                ImageView imageView = ((p8) this.E).f43019a;
+                ImageView imageView = ((p8) this.E).f43018a;
                 super.onSurfaceTextureUpdated(surfaceTexture);
-                if (this.f57403n && imageView.getVisibility() == 0) {
+                if (this.f57402n && imageView.getVisibility() == 0) {
                     imageView.setVisibility(4);
                     return;
                 }

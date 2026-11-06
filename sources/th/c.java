@@ -18,33 +18,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.RadialProgress2;
 public final class c extends sh.c {
-    public final String f55954b;
-    public final Uri f55955c;
+    public final String f55953b;
+    public final Uri f55954c;
     public final String d;
-    public final long f55956e;
-    public final String f55957f;
+    public final long f55955e;
+    public final String f55956f;
     public final Drawable h;
-    public final StaticLayout f55958n;
+    public final StaticLayout f55957n;
 
     public c(String str) {
         long j3;
-        this.f55954b = str;
-        this.f55955c = null;
+        this.f55953b = str;
+        this.f55954c = null;
         File file = new File(str);
         try {
             j3 = file.length();
         } catch (Throwable unused) {
             j3 = 0;
         }
-        this.f55956e = j3;
+        this.f55955e = j3;
         String name = file.getName();
         this.d = name;
         String[] split = name.split("\\.");
         String str2 = split.length > 1 ? split[split.length - 1] : "?";
-        this.f55957f = str2;
+        this.f55956f = str2;
         int m12 = g0.m1(name, false);
         if (m12 != 0) {
-            this.h = t0.f25555b.getResources().getDrawable(m12);
+            this.h = t0.f25563b.getResources().getDrawable(m12);
         } else {
             this.h = null;
         }
@@ -53,47 +53,47 @@ public final class c extends sh.c {
             textPaint.setTextSize(g0.L(13.0f));
             textPaint.setTypeface(g0.o());
             textPaint.setColor(k6.x0(null, k6.pj, false));
-            this.f55958n = new StaticLayout(TextUtils.ellipsize(str2, textPaint, g0.L(34.0f), TextUtils.TruncateAt.END), textPaint, g0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.f55957n = new StaticLayout(TextUtils.ellipsize(str2, textPaint, g0.L(34.0f), TextUtils.TruncateAt.END), textPaint, g0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             return;
         }
-        this.f55958n = null;
+        this.f55957n = null;
     }
 
     public static b d(View view, String str, String str2, TLRPC.Document document, ij ijVar) {
         b bVar = new b();
-        bVar.f55943a.setColor(k6.x0(null, k6.G6, false));
-        bVar.f55944b.setColor(k6.x0(null, k6.f28240y6, false));
+        bVar.f55942a.setColor(k6.x0(null, k6.G6, false));
+        bVar.f55943b.setColor(k6.x0(null, k6.f28241y6, false));
         bVar.d = true;
         RadialProgress2 radialProgress2 = new RadialProgress2(view, null);
-        bVar.f55945c = radialProgress2;
+        bVar.f55944c = radialProgress2;
         radialProgress2.setCircleRadius(g0.L(21.0f));
-        bVar.f55945c.g(k6.We, k6.Xe, k6.f27946id, k6.f27964jd);
+        bVar.f55944c.g(k6.We, k6.Xe, k6.f27947id, k6.f27965jd);
         if (ij.K3(document)) {
             if (ij.X2(document)) {
                 TLRPC.PhotoSize w10 = w7.w(document.thumbs, g0.L(22.0f), true, null, false);
-                bVar.f55945c.j(w7.w(document.thumbs, g0.L(44.0f), true, w10, true), w10, document, ijVar);
+                bVar.f55944c.j(w7.w(document.thumbs, g0.L(44.0f), true, w10, true), w10, document, ijVar);
             } else {
                 String t02 = ij.t0(document, true);
                 if (!TextUtils.isEmpty(t02)) {
-                    bVar.f55945c.h(t02);
+                    bVar.f55944c.h(t02);
                 } else {
-                    bVar.f55945c.i(null, null, null);
+                    bVar.f55944c.i(null, null, null);
                 }
             }
-            bVar.f55945c.setIcon(0, false, false);
+            bVar.f55944c.setIcon(0, false, false);
         } else {
-            bVar.f55945c.setIcon(5, false, false);
+            bVar.f55944c.setIcon(5, false, false);
         }
         if (str == null) {
             str = "";
         }
-        bVar.f55946e = str;
+        bVar.f55945e = str;
         if (str2 == null) {
             str2 = "";
         }
-        bVar.f55947f = str2;
-        bVar.f55953m = -1;
-        bVar.f55948g = null;
+        bVar.f55946f = str2;
+        bVar.f55952m = -1;
+        bVar.f55947g = null;
         bVar.h = null;
         bVar.invalidateSelf();
         view.addOnAttachStateChangeListener(new a(bVar));
@@ -108,24 +108,24 @@ public final class c extends sh.c {
             drawable.draw(canvas);
             canvas.save();
             canvas.translate((i7 - g0.L(34.0f)) / 2.0f, g0.L(15.0f));
-            this.f55958n.draw(canvas);
+            this.f55957n.draw(canvas);
             canvas.restore();
         }
     }
 
     public c(Uri uri) {
-        this.f55954b = null;
-        this.f55955c = uri;
+        this.f55953b = null;
+        this.f55954c = uri;
         String A = MediaController.A(uri);
         A = A == null ? "?" : A;
         this.d = A;
         String[] split = A.split("\\.");
         String str = split.length > 1 ? split[split.length - 1] : "?";
-        this.f55957f = str;
-        this.f55956e = 0L;
+        this.f55956f = str;
+        this.f55955e = 0L;
         int m12 = g0.m1(A, false);
         if (m12 != 0) {
-            this.h = t0.f25555b.getResources().getDrawable(m12);
+            this.h = t0.f25563b.getResources().getDrawable(m12);
         } else {
             this.h = null;
         }
@@ -134,9 +134,9 @@ public final class c extends sh.c {
             textPaint.setTextSize(g0.L(13.0f));
             textPaint.setTypeface(g0.o());
             textPaint.setColor(k6.x0(null, k6.pj, false));
-            this.f55958n = new StaticLayout(TextUtils.ellipsize(str, textPaint, g0.L(34.0f), TextUtils.TruncateAt.END), textPaint, g0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.f55957n = new StaticLayout(TextUtils.ellipsize(str, textPaint, g0.L(34.0f), TextUtils.TruncateAt.END), textPaint, g0.L(34.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
             return;
         }
-        this.f55958n = null;
+        this.f55957n = null;
     }
 }

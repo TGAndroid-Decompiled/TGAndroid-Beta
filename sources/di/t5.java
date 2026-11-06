@@ -71,9 +71,9 @@ public final class t5 implements View.OnClickListener {
                     }
                     return;
                 } else {
-                    y6 P1 = qp.s1(w5Var.f28612a).P1();
+                    y6 P1 = qp.s1(w5Var.f28613a).P1();
                     TL_stories.TL_storiesStealthMode tL_storiesStealthMode = P1.B;
-                    if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(w5Var.f28612a).getCurrentTime() <= tL_storiesStealthMode.cooldown_until_date) {
+                    if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(w5Var.f28613a).getCurrentTime() <= tL_storiesStealthMode.cooldown_until_date) {
                         if (w5Var.f9905j1) {
                             w5Var.dismiss();
                             ov ovVar2 = w5Var.l1;
@@ -83,7 +83,7 @@ public final class t5 implements View.OnClickListener {
                             }
                             return;
                         }
-                        new hc(w5Var.f28618c, f6Var).t(org.telegram.messenger.g0.X2(hd.M0(2131744885, null)), null).k(true);
+                        new hc(w5Var.f28619c, f6Var).t(org.telegram.messenger.g0.X2(hd.M0(2131744885, null)), null).k(true);
                         return;
                     }
                     TL_stories.TL_stories_activateStealthMode tL_stories_activateStealthMode = new TL_stories.TL_stories_activateStealthMode();
@@ -91,12 +91,12 @@ public final class t5 implements View.OnClickListener {
                     tL_stories_activateStealthMode.past = true;
                     TL_stories.TL_storiesStealthMode tL_storiesStealthMode2 = new TL_stories.TL_storiesStealthMode();
                     tL_storiesStealthMode2.flags |= 3;
-                    tL_storiesStealthMode2.cooldown_until_date = ConnectionsManager.getInstance(w5Var.f28612a).getCurrentTime() + qp.s1(w5Var.f28612a).f24771g0;
-                    tL_storiesStealthMode2.active_until_date = ConnectionsManager.getInstance(w5Var.f28612a).getCurrentTime() + qp.s1(w5Var.f28612a).f24762f0;
+                    tL_storiesStealthMode2.cooldown_until_date = ConnectionsManager.getInstance(w5Var.f28613a).getCurrentTime() + qp.s1(w5Var.f28613a).f24779g0;
+                    tL_storiesStealthMode2.active_until_date = ConnectionsManager.getInstance(w5Var.f28613a).getCurrentTime() + qp.s1(w5Var.f28613a).f24770f0;
                     P1.i0(tL_storiesStealthMode2);
-                    ConnectionsManager.getInstance(w5Var.f28612a).sendRequest(tL_stories_activateStealthMode, new u5(0));
+                    ConnectionsManager.getInstance(w5Var.f28613a).sendRequest(tL_stories_activateStealthMode, new u5(0));
                     try {
-                        w5Var.f28615b.performHapticFeedback(3);
+                        w5Var.f28616b.performHapticFeedback(3);
                     } catch (Exception unused) {
                     }
                     w5Var.dismiss();
@@ -118,7 +118,7 @@ public final class t5 implements View.OnClickListener {
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) obj2;
                 gh0 gh0Var = (gh0) obj;
                 iArr[0] = ((Integer) view.getTag()).intValue();
-                SharedPreferences.Editor edit = qp.s1(p10.f24459s0).f24749d7.edit();
+                SharedPreferences.Editor edit = qp.s1(p10.f24467s0).f24757d7.edit();
                 if (i10 == 1) {
                     edit.putInt("popupAll", iArr[0]);
                 } else if (i10 == 0) {
@@ -127,7 +127,7 @@ public final class t5 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f27292a.L0.run();
+                alertDialog$Builder.f27293a.L0.run();
                 gh0Var.run();
                 return;
             case 3:
@@ -185,9 +185,9 @@ public final class t5 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj2;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) obj;
                 qp messagesController = v91Var.getMessagesController();
-                long j3 = -v91Var.f50629a;
-                if (messagesController.r2(j3, tL_forumTopic.f27004id, null)) {
-                    v91Var.getNotificationsController().G(j3, tL_forumTopic.f27004id, false);
+                long j3 = -v91Var.f50628a;
+                if (messagesController.r2(j3, tL_forumTopic.f27005id, null)) {
+                    v91Var.getNotificationsController().G(j3, tL_forumTopic.f27005id, false);
                     v91Var.finishPreviewFragment();
                     if (hc.a(v91Var)) {
                         hc.z(v91Var, 4, 0, v91Var.getResourceProvider()).j();

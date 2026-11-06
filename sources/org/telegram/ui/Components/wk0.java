@@ -8,31 +8,31 @@ import android.view.animation.Interpolator;
 public final class wk0 {
     public static final float A;
     public static final float v = (float) (Math.log(0.75d) / Math.log(0.9d));
-    public static final float f40018w = 0.4f;
-    public static final float f40019x = 1.0f - 0.4f;
-    public static final float[] f40020y = new float[101];
-    public static final float f40021z;
-    public int f40022a;
-    public int f40023b;
-    public int f40024c;
+    public static final float f40026w = 0.4f;
+    public static final float f40027x = 1.0f - 0.4f;
+    public static final float[] f40028y = new float[101];
+    public static final float f40029z;
+    public int f40030a;
+    public int f40031b;
+    public int f40032c;
     public int d;
-    public int f40025e;
-    public int f40026f;
-    public int f40027g;
+    public int f40033e;
+    public int f40034f;
+    public int f40035g;
     public int h;
-    public int f40028i;
-    public int f40029j;
-    public int f40030k;
-    public long f40031l;
-    public int f40032m;
-    public float f40033n;
-    public float f40034o;
-    public float f40035p;
-    public final Interpolator f40037r;
-    public float f40039t;
-    public final float f40040u;
-    public boolean f40036q = true;
-    public final boolean f40038s = true;
+    public int f40036i;
+    public int f40037j;
+    public int f40038k;
+    public long f40039l;
+    public int f40040m;
+    public float f40041n;
+    public float f40042o;
+    public float f40043p;
+    public final Interpolator f40045r;
+    public float f40047t;
+    public final float f40048u;
+    public boolean f40044q = true;
+    public final boolean f40046s = true;
 
     static {
         float f10;
@@ -46,7 +46,7 @@ public final class wk0 {
                 float f15 = 1.0f - A2;
                 f10 = 3.0f * A2 * f15;
                 f11 = A2 * A2 * A2;
-                float B = com.google.android.recaptcha.internal.a.B(A2, f40019x, f15 * f40018w, f10) + f11;
+                float B = com.google.android.recaptcha.internal.a.B(A2, f40027x, f15 * f40026w, f10) + f11;
                 if (Math.abs(B - f13) < 1.0E-5d) {
                     break;
                 } else if (B > f13) {
@@ -55,22 +55,22 @@ public final class wk0 {
                     f12 = A2;
                 }
             }
-            f40020y[i7] = f10 + f11;
+            f40028y[i7] = f10 + f11;
         }
-        f40020y[100] = 1.0f;
-        f40021z = 8.0f;
+        f40028y[100] = 1.0f;
+        f40029z = 8.0f;
         A = 1.0f;
         A = 1.0f / e(1.0f);
     }
 
     public wk0(Context context, DecelerateInterpolator decelerateInterpolator) {
-        this.f40037r = decelerateInterpolator;
-        this.f40040u = context.getResources().getDisplayMetrics().density * 160.0f * 386.0878f * ViewConfiguration.getScrollFriction();
+        this.f40045r = decelerateInterpolator;
+        this.f40048u = context.getResources().getDisplayMetrics().density * 160.0f * 386.0878f * ViewConfiguration.getScrollFriction();
     }
 
     public static float e(float f10) {
         float z9;
-        float f11 = f10 * f40021z;
+        float f11 = f10 * f40029z;
         if (f11 < 1.0f) {
             z9 = f11 - (1.0f - ((float) Math.exp(-f11)));
         } else {
@@ -80,62 +80,62 @@ public final class wk0 {
     }
 
     public final void a() {
-        this.f40029j = this.d;
-        this.f40030k = this.f40025e;
-        this.f40036q = true;
+        this.f40037j = this.d;
+        this.f40038k = this.f40033e;
+        this.f40044q = true;
     }
 
     public final boolean b() {
         float interpolation;
-        if (this.f40036q) {
+        if (this.f40044q) {
             return false;
         }
-        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.f40031l);
-        int i7 = this.f40032m;
+        int currentAnimationTimeMillis = (int) (AnimationUtils.currentAnimationTimeMillis() - this.f40039l);
+        int i7 = this.f40040m;
         if (currentAnimationTimeMillis < i7) {
-            int i10 = this.f40022a;
+            int i10 = this.f40030a;
             if (i10 != 0) {
                 if (i10 == 1) {
                     float f10 = currentAnimationTimeMillis / i7;
                     int i11 = (int) (f10 * 100.0f);
                     float f11 = i11 / 100.0f;
                     int i12 = i11 + 1;
-                    float[] fArr = f40020y;
+                    float[] fArr = f40028y;
                     float f12 = fArr[i11];
                     float z9 = com.google.android.recaptcha.internal.a.z(fArr[i12], f12, (f10 - f11) / ((i12 / 100.0f) - f11), f12);
-                    int i13 = this.f40023b;
+                    int i13 = this.f40031b;
                     int round = Math.round((this.d - i13) * z9) + i13;
-                    this.f40029j = round;
-                    int min = Math.min(round, this.f40027g);
-                    this.f40029j = min;
-                    this.f40029j = Math.max(min, this.f40026f);
-                    int i14 = this.f40024c;
-                    int round2 = Math.round(z9 * (this.f40025e - i14)) + i14;
-                    this.f40030k = round2;
-                    int min2 = Math.min(round2, this.f40028i);
-                    this.f40030k = min2;
+                    this.f40037j = round;
+                    int min = Math.min(round, this.f40035g);
+                    this.f40037j = min;
+                    this.f40037j = Math.max(min, this.f40034f);
+                    int i14 = this.f40032c;
+                    int round2 = Math.round(z9 * (this.f40033e - i14)) + i14;
+                    this.f40038k = round2;
+                    int min2 = Math.min(round2, this.f40036i);
+                    this.f40038k = min2;
                     int max = Math.max(min2, this.h);
-                    this.f40030k = max;
-                    if (this.f40029j == this.d && max == this.f40025e) {
-                        this.f40036q = true;
+                    this.f40038k = max;
+                    if (this.f40037j == this.d && max == this.f40033e) {
+                        this.f40044q = true;
                     }
                 }
                 return true;
             }
-            float f13 = currentAnimationTimeMillis * this.f40033n;
-            Interpolator interpolator = this.f40037r;
+            float f13 = currentAnimationTimeMillis * this.f40041n;
+            Interpolator interpolator = this.f40045r;
             if (interpolator == null) {
                 interpolation = e(f13);
             } else {
                 interpolation = interpolator.getInterpolation(f13);
             }
-            this.f40029j = Math.round(this.f40034o * interpolation) + this.f40023b;
-            this.f40030k = Math.round(interpolation * this.f40035p) + this.f40024c;
+            this.f40037j = Math.round(this.f40042o * interpolation) + this.f40031b;
+            this.f40038k = Math.round(interpolation * this.f40043p) + this.f40032c;
             return true;
         }
-        this.f40029j = this.d;
-        this.f40030k = this.f40025e;
-        this.f40036q = true;
+        this.f40037j = this.d;
+        this.f40038k = this.f40033e;
+        this.f40044q = true;
         return true;
     }
 
@@ -144,16 +144,16 @@ public final class wk0 {
     }
 
     public final void d(int i7, int i10) {
-        this.f40022a = 0;
-        this.f40036q = false;
-        this.f40032m = i10;
-        this.f40031l = AnimationUtils.currentAnimationTimeMillis();
-        this.f40023b = 0;
-        this.f40024c = 0;
+        this.f40030a = 0;
+        this.f40044q = false;
+        this.f40040m = i10;
+        this.f40039l = AnimationUtils.currentAnimationTimeMillis();
+        this.f40031b = 0;
+        this.f40032c = 0;
         this.d = 0;
-        this.f40025e = i7;
-        this.f40034o = 0;
-        this.f40035p = i7;
-        this.f40033n = 1.0f / this.f40032m;
+        this.f40033e = i7;
+        this.f40042o = 0;
+        this.f40043p = i7;
+        this.f40041n = 1.0f / this.f40040m;
     }
 }

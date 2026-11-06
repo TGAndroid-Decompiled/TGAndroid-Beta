@@ -9,7 +9,7 @@ import org.telegram.ui.ActionBar.k6;
 public final class b3 extends org.telegram.ui.ActionBar.z0 {
     public final int V;
     public long W;
-    public z2 f60124a0;
+    public z2 f60123a0;
 
     public b3(int i7, Context context, f6 f6Var) {
         super(0, context, f6Var, false, false);
@@ -19,10 +19,10 @@ public final class b3 extends org.telegram.ui.ActionBar.z0 {
         int i11 = k6.F8;
         c(i10, i11);
         g(k6.w0(i11, f6Var), PorterDuff.Mode.SRC_IN);
-        this.f28812c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
+        this.f28813c.setTranslationX(org.telegram.messenger.g0.L(2.0f));
         a(2);
         setBackground(null);
-        this.f28812c.addOnAttachStateChangeListener(new m6(this, 15));
+        this.f28813c.addOnAttachStateChangeListener(new m6(this, 15));
     }
 
     @Override

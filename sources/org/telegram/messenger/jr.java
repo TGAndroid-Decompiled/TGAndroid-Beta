@@ -2,33 +2,33 @@ package org.telegram.messenger;
 
 import org.webrtc.TextureViewRenderer;
 public final class jr implements Runnable {
-    public final int f23575a;
-    public final int f23576b;
-    public final int f23577c;
+    public final int f23582a;
+    public final int f23583b;
+    public final int f23584c;
     public final int d;
-    public final int f23578e;
-    public final Object f23579f;
+    public final int f23585e;
+    public final Object f23586f;
 
     public jr(Object obj, int i7, int i10, int i11, int i12, int i13) {
-        this.f23575a = i13;
-        this.f23579f = obj;
-        this.f23576b = i7;
-        this.f23577c = i10;
+        this.f23582a = i13;
+        this.f23586f = obj;
+        this.f23583b = i7;
+        this.f23584c = i10;
         this.d = i11;
-        this.f23578e = i12;
+        this.f23585e = i12;
     }
 
     @Override
     public final void run() {
-        switch (this.f23575a) {
+        switch (this.f23582a) {
             case 0:
-                ((yr) this.f23579f).B1(this.f23576b, this.f23577c, this.d, this.f23578e);
+                ((yr) this.f23586f).B1(this.f23583b, this.f23584c, this.d, this.f23585e);
                 return;
             case 1:
-                org.telegram.ui.an.f0((org.telegram.ui.an) this.f23579f, this.f23576b, this.f23577c, this.d, this.f23578e);
+                org.telegram.ui.an.f0((org.telegram.ui.an) this.f23586f, this.f23583b, this.f23584c, this.d, this.f23585e);
                 return;
             default:
-                TextureViewRenderer.a((TextureViewRenderer) this.f23579f, this.f23576b, this.f23577c, this.d, this.f23578e);
+                TextureViewRenderer.a((TextureViewRenderer) this.f23586f, this.f23583b, this.f23584c, this.d, this.f23585e);
                 return;
         }
     }

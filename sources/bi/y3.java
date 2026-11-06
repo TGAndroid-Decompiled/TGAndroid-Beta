@@ -49,7 +49,7 @@ public final class y3 implements c20 {
                 if (savedStarGift != null) {
                     k7Var3.f4172e3 = Boolean.valueOf(savedStarGift.unsaved);
                     ij ijVar = k7Var3.f4205z2;
-                    if (ijVar != null && (message = ijVar.f23237k) != null) {
+                    if (ijVar != null && (message = ijVar.f23244k) != null) {
                         TLRPC.MessageAction messageAction = message.action;
                         if (messageAction instanceof TLRPC.TL_messageActionStarGiftUnique) {
                             TLRPC.TL_messageActionStarGiftUnique tL_messageActionStarGiftUnique = (TLRPC.TL_messageActionStarGiftUnique) messageAction;

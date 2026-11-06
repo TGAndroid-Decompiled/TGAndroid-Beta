@@ -2,31 +2,31 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qa0 implements Runnable {
-    public final int f49178a;
-    public final ce0 f49179b;
+    public final int f49177a;
+    public final ce0 f49178b;
 
     public qa0(ce0 ce0Var, int i7) {
-        this.f49178a = i7;
-        this.f49179b = ce0Var;
+        this.f49177a = i7;
+        this.f49178b = ce0Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f49178a;
-        ce0 ce0Var = this.f49179b;
+        int i7 = this.f49177a;
+        ce0 ce0Var = this.f49178b;
         switch (i7) {
             case 0:
-                ce0Var.f44762c0 = false;
+                ce0Var.f44761c0 = false;
                 return;
             case 1:
-                ce0Var.f44787w0 = false;
+                ce0Var.f44786w0 = false;
                 ce0Var.P1(true, true);
                 return;
             default:
                 if (ce0Var.getParentActivity() != null && !ce0Var.getParentActivity().isFinishing() && ce0Var.getParentActivity() != null) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ce0Var.getParentActivity());
                     String M0 = org.telegram.messenger.hd.M0(2131746072, null);
-                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                     u1Var.R = M0;
                     u1Var.T = org.telegram.messenger.hd.M0(2131745950, null);
                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), new ta0(ce0Var, 1));

@@ -67,14 +67,14 @@ import r0.l0;
 import s4.s0;
 import zd.b0;
 public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListener, lf.b, f5.y, com.google.android.gms.common.api.internal.p, ib.b, g9.k, i6.a {
-    public final int f53710a;
-    public Object f53711b;
-    public Object f53712c;
+    public final int f53709a;
+    public Object f53710b;
+    public Object f53711c;
 
     public q(int i7, Object obj, Object obj2) {
-        this.f53710a = i7;
-        this.f53712c = obj;
-        this.f53711b = obj2;
+        this.f53709a = i7;
+        this.f53711c = obj;
+        this.f53710b = obj2;
     }
 
     @Override
@@ -84,12 +84,12 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        c5.k kVar = (c5.k) this.f53712c;
+        c5.k kVar = (c5.k) this.f53711c;
         k1 g10 = i0.g(view, k1Var);
-        if (g10.f54109a.n()) {
+        if (g10.f54108a.n()) {
             return g10;
         }
-        Rect rect = (Rect) this.f53711b;
+        Rect rect = (Rect) this.f53710b;
         rect.left = g10.b();
         rect.top = g10.d();
         rect.right = g10.c();
@@ -106,7 +106,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     }
 
     public f5.d a() {
-        if (((f5.l) this.f53711b) != null) {
+        if (((f5.l) this.f53710b) != null) {
             return new f5.d(this);
         }
         throw new NullPointerException("ProductDetails is required for constructing ProductDetailsParams.");
@@ -115,8 +115,8 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     @Override
     public void accept(Object obj, Object obj2) {
         boolean z9;
-        e0 e0Var = (e0) this.f53711b;
-        String str = (String) this.f53712c;
+        e0 e0Var = (e0) this.f53710b;
+        String str = (String) this.f53711c;
         j6.w wVar = (j6.w) obj;
         TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
         if (e0Var.G == 2) {
@@ -144,14 +144,14 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public Object apply(Object obj) {
-        return ((g9.k) ((d0) this.f53711b).f13555b).apply(obj);
+        return ((g9.k) ((d0) this.f53710b).f13555b).apply(obj);
     }
 
     @Override
     public lf.a b(wf.b bVar) {
         int i7;
-        List list = (List) this.f53712c;
-        List list2 = (List) bVar.f57563b;
+        List list = (List) this.f53711c;
+        List list2 = (List) bVar.f57562b;
         if (list2 != null) {
             i7 = list2.size();
         } else {
@@ -163,13 +163,13 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             arrayList.addAll(list2);
             list = arrayList;
         }
-        return new ed.i(bVar, (List) this.f53711b, list);
+        return new ed.i(bVar, (List) this.f53710b, list);
     }
 
     public void c(k.a aVar) {
-        ui.e eVar = (ui.e) this.f53711b;
-        ((ActionMode.Callback) eVar.f56839b).onDestroyActionMode(eVar.r(aVar));
-        g.s sVar = (g.s) this.f53712c;
+        ui.e eVar = (ui.e) this.f53710b;
+        ((ActionMode.Callback) eVar.f56838b).onDestroyActionMode(eVar.r(aVar));
+        g.s sVar = (g.s) this.f53711c;
         if (sVar.E != null) {
             sVar.f13362f.getDecorView().removeCallbacks(sVar.F);
         }
@@ -185,87 +185,87 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
         }
         sVar.f13378y = null;
         ViewGroup viewGroup = sVar.J;
-        WeakHashMap weakHashMap = i0.f54098a;
+        WeakHashMap weakHashMap = i0.f54097a;
         r0.y.c(viewGroup);
         sVar.w();
     }
 
     public boolean d(k.a aVar, Menu menu) {
-        ViewGroup viewGroup = ((g.s) this.f53712c).J;
-        WeakHashMap weakHashMap = i0.f54098a;
+        ViewGroup viewGroup = ((g.s) this.f53711c).J;
+        WeakHashMap weakHashMap = i0.f54097a;
         r0.y.c(viewGroup);
-        ui.e eVar = (ui.e) this.f53711b;
-        ActionMode.Callback callback = (ActionMode.Callback) eVar.f56839b;
+        ui.e eVar = (ui.e) this.f53710b;
+        ActionMode.Callback callback = (ActionMode.Callback) eVar.f56838b;
         k.e r10 = eVar.r(aVar);
-        a0.l lVar = (a0.l) eVar.f56841e;
+        a0.l lVar = (a0.l) eVar.f56840e;
         Menu menu2 = (Menu) lVar.get(menu);
         if (menu2 == null) {
-            menu2 = new a0((Context) eVar.f56840c, (l.k) menu);
+            menu2 = new a0((Context) eVar.f56839c, (l.k) menu);
             lVar.put(menu, menu2);
         }
         return callback.onPrepareActionMode(r10, menu2);
     }
 
     public void e(android.support.v4.media.session.s sVar, Handler handler) {
-        l lVar = (l) this.f53711b;
+        l lVar = (l) this.f53710b;
         synchronized (lVar.d) {
-            lVar.f53702l = sVar;
-            lVar.f53693a.setCallback((android.support.v4.media.session.r) sVar.f1789e, handler);
+            lVar.f53701l = sVar;
+            lVar.f53692a.setCallback((android.support.v4.media.session.r) sVar.f1789e, handler);
             sVar.d0(lVar, handler);
         }
     }
 
     public void f(w wVar) {
-        l lVar = (l) this.f53711b;
-        lVar.f53698g = wVar;
+        l lVar = (l) this.f53710b;
+        lVar.f53697g = wVar;
         synchronized (lVar.d) {
-            for (int beginBroadcast = lVar.f53697f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
+            for (int beginBroadcast = lVar.f53696f.beginBroadcast() - 1; beginBroadcast >= 0; beginBroadcast--) {
                 try {
-                    ((b) lVar.f53697f.getBroadcastItem(beginBroadcast)).x0(wVar);
+                    ((b) lVar.f53696f.getBroadcastItem(beginBroadcast)).x0(wVar);
                 } catch (RemoteException | SecurityException e10) {
                     h2.a.d("MediaSessionCompat", "Dead object in setPlaybackState.", e10);
                 }
             }
-            lVar.f53697f.finishBroadcast();
+            lVar.f53696f.finishBroadcast();
         }
-        MediaSession mediaSession = lVar.f53693a;
-        if (wVar.f53732x == null) {
+        MediaSession mediaSession = lVar.f53692a;
+        if (wVar.f53731x == null) {
             PlaybackState.Builder builder = new PlaybackState.Builder();
-            builder.setState(wVar.f53723a, wVar.f53724b, wVar.d, wVar.f53728n);
-            builder.setBufferedPosition(wVar.f53725c);
-            builder.setActions(wVar.f53726e);
+            builder.setState(wVar.f53722a, wVar.f53723b, wVar.d, wVar.f53727n);
+            builder.setBufferedPosition(wVar.f53724c);
+            builder.setActions(wVar.f53725e);
             builder.setErrorMessage(wVar.h);
-            for (v vVar : wVar.f53729r) {
+            for (v vVar : wVar.f53728r) {
                 vVar.getClass();
-                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f53720a, vVar.f53721b, vVar.f53722c);
+                PlaybackState.CustomAction.Builder builder2 = new PlaybackState.CustomAction.Builder(vVar.f53719a, vVar.f53720b, vVar.f53721c);
                 builder2.setExtras(vVar.d);
                 PlaybackState.CustomAction build = builder2.build();
                 if (build != null) {
                     builder.addCustomAction(build);
                 }
             }
-            builder.setActiveQueueItemId(wVar.f53730s);
-            builder.setExtras(wVar.f53731w);
-            wVar.f53732x = builder.build();
+            builder.setActiveQueueItemId(wVar.f53729s);
+            builder.setExtras(wVar.f53730w);
+            wVar.f53731x = builder.build();
         }
-        mediaSession.setPlaybackState(wVar.f53732x);
+        mediaSession.setPlaybackState(wVar.f53731x);
     }
 
     public void g(f5.l lVar) {
-        this.f53711b = lVar;
+        this.f53710b = lVar;
         if (lVar.a() != null) {
             lVar.a().getClass();
             String str = lVar.a().d;
             if (str != null) {
-                this.f53712c = str;
+                this.f53711c = str;
             }
         }
     }
 
     @Override
     public Object mo24get() {
-        Context appContext = (Context) ((d9.o) this.f53711b).f8253a;
-        id.h blockingDispatcher = (id.h) ((ib.c) this.f53712c).mo24get();
+        Context appContext = (Context) ((d9.o) this.f53710b).f8253a;
+        id.h blockingDispatcher = (id.h) ((ib.c) this.f53711c).mo24get();
         kotlin.jvm.internal.j.e(appContext, "appContext");
         kotlin.jvm.internal.j.e(blockingDispatcher, "blockingDispatcher");
         return gb.r.a(jb.j.f16624a, new f1(new gb.p(0), 15), b0.b(blockingDispatcher), new gb.q(appContext, 0));
@@ -273,7 +273,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     public void h(g3 g3Var) {
         try {
-            o(g3Var, (p3) this.f53711b);
+            o(g3Var, (p3) this.f53710b);
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -281,11 +281,11 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     public void i(g3 g3Var, int i7, long j3) {
         try {
-            o3 o3Var = (o3) ((p3) this.f53711b).g();
+            o3 o3Var = (o3) ((p3) this.f53710b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7469b, i7);
             p3 p3Var = (p3) o3Var.a();
-            this.f53711b = p3Var;
+            this.f53710b = p3Var;
             if (j3 != 0) {
                 o3 o3Var2 = (o3) p3Var.g();
                 o3Var2.c();
@@ -309,9 +309,9 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             g3.r((g3) f3Var.f7469b, (v3) t3Var.a());
             g3 g3Var2 = (g3) f3Var.a();
             if (j3 == 0) {
-                p3Var = (p3) this.f53711b;
+                p3Var = (p3) this.f53710b;
             } else {
-                o3 o3Var = (o3) ((p3) this.f53711b).g();
+                o3 o3Var = (o3) ((p3) this.f53710b).g();
                 o3Var.c();
                 p3.r((p3) o3Var.f7469b, j3);
                 p3Var = (p3) o3Var.a();
@@ -325,10 +325,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     public void k(g3 g3Var, int i7, long j3, boolean z9) {
         p3 p3Var;
         try {
-            o3 o3Var = (o3) ((p3) this.f53711b).g();
+            o3 o3Var = (o3) ((p3) this.f53710b).g();
             o3Var.c();
             p3.p((p3) o3Var.f7469b, i7);
-            this.f53711b = (p3) o3Var.a();
+            this.f53710b = (p3) o3Var.a();
             f3 f3Var = (f3) g3Var.g();
             t3 t3Var = (t3) g3Var.o().g();
             t3Var.c();
@@ -337,9 +337,9 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             g3.r((g3) f3Var.f7469b, (v3) t3Var.a());
             g3 g3Var2 = (g3) f3Var.a();
             if (j3 == 0) {
-                p3Var = (p3) this.f53711b;
+                p3Var = (p3) this.f53710b;
             } else {
-                o3 o3Var2 = (o3) ((p3) this.f53711b).g();
+                o3 o3Var2 = (o3) ((p3) this.f53710b).g();
                 o3Var2.c();
                 p3.r((p3) o3Var2.f7469b, j3);
                 p3Var = (p3) o3Var2.a();
@@ -353,10 +353,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     public void l(l3 l3Var) {
         try {
             w3 t6 = x3.t();
-            t6.d((p3) this.f53711b);
+            t6.d((p3) this.f53710b);
             t6.c();
             x3.p((x3) t6.f7469b, l3Var);
-            ((ca.i) this.f53712c).m((x3) t6.a());
+            ((ca.i) this.f53711c).m((x3) t6.a());
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -365,10 +365,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     public void m(a4 a4Var) {
         try {
             w3 t6 = x3.t();
-            t6.d((p3) this.f53711b);
+            t6.d((p3) this.f53710b);
             t6.c();
             x3.r((x3) t6.f7469b, a4Var);
-            ((ca.i) this.f53712c).m((x3) t6.a());
+            ((ca.i) this.f53711c).m((x3) t6.a());
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -380,10 +380,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
         }
         try {
             w3 t6 = x3.t();
-            t6.d((p3) this.f53711b);
+            t6.d((p3) this.f53710b);
             t6.c();
             x3.s((x3) t6.f7469b, b4Var);
-            ((ca.i) this.f53712c).m((x3) t6.a());
+            ((ca.i) this.f53711c).m((x3) t6.a());
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -398,7 +398,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             t6.d(p3Var);
             t6.c();
             x3.n((x3) t6.f7469b, g3Var);
-            ((ca.i) this.f53712c).m((x3) t6.a());
+            ((ca.i) this.f53711c).m((x3) t6.a());
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -406,8 +406,8 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public void onComplete(Task task) {
-        d9.c cVar = (d9.c) this.f53711b;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f53712c;
+        d9.c cVar = (d9.c) this.f53710b;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f53711c;
         synchronized (cVar.f8225f) {
             cVar.f8224e.remove(taskCompletionSource);
         }
@@ -415,9 +415,9 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
 
     @Override
     public void p(Bitmap bitmap) {
-        wf.b bVar = (wf.b) this.f53711b;
-        bVar.f57564c = bitmap;
-        i6.f fVar = (i6.f) this.f53712c;
+        wf.b bVar = (wf.b) this.f53710b;
+        bVar.f57563c = bitmap;
+        i6.f fVar = (i6.f) this.f53711c;
         fVar.f15365l = bVar;
         fVar.b();
     }
@@ -428,7 +428,7 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             t6.d(p3Var);
             t6.c();
             x3.o((x3) t6.f7469b, i3Var);
-            ((ca.i) this.f53712c).m((x3) t6.a());
+            ((ca.i) this.f53711c).m((x3) t6.a());
         } catch (Throwable th2) {
             com.google.android.gms.internal.play_billing.u.i("BillingLogger", "Unable to log.", th2);
         }
@@ -437,10 +437,10 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     @Override
     public Task then(Object obj) {
         FileWriter fileWriter;
-        switch (this.f53710a) {
+        switch (this.f53709a) {
             case 3:
                 Boolean bool = (Boolean) obj;
-                aa.q qVar = (aa.q) this.f53712c;
+                aa.q qVar = (aa.q) this.f53711c;
                 if (!bool.booleanValue()) {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Deleting cached crash reports...", null);
@@ -462,14 +462,14 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
                 aa.x xVar = qVar.f835b;
                 if (booleanValue) {
                     xVar.h.trySetResult(null);
-                    return ((Task) this.f53711b).onSuccessTask(qVar.f837e.f3135a, new d6.i(this, 2));
+                    return ((Task) this.f53710b).onSuccessTask(qVar.f837e.f3135a, new d6.i(this, 2));
                 }
                 xVar.getClass();
                 throw new IllegalStateException("An invalid data collection token was used.");
             default:
                 Void r10 = (Void) obj;
-                ia.c cVar = (ia.c) this.f53712c;
-                JSONObject jSONObject = (JSONObject) ((ba.e) this.f53711b).f3137c.f3132a.submit(new aa.t(this, 2)).get();
+                ia.c cVar = (ia.c) this.f53711c;
+                JSONObject jSONObject = (JSONObject) ((ba.e) this.f53710b).f3137c.f3132a.submit(new aa.t(this, 2)).get();
                 FileWriter fileWriter2 = null;
                 if (jSONObject != null) {
                     ia.b y10 = ((gf.g) cVar.f15417c).y(jSONObject);
@@ -525,22 +525,22 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
     }
 
     public q(int i7, boolean z9) {
-        this.f53710a = i7;
+        this.f53709a = i7;
     }
 
     public q(Context context) {
-        this.f53710a = 14;
-        this.f53711b = context;
+        this.f53709a = 14;
+        this.f53710b = context;
     }
 
     public q(Object obj, Object obj2, boolean z9, int i7) {
-        this.f53710a = i7;
-        this.f53711b = obj;
-        this.f53712c = obj2;
+        this.f53709a = i7;
+        this.f53710b = obj;
+        this.f53711c = obj2;
     }
 
     public q(Context context, p3 p3Var) {
-        this.f53710a = 21;
+        this.f53709a = 21;
         ca.i iVar = new ca.i(2);
         try {
             o5.s.b(context);
@@ -548,71 +548,71 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
         } catch (Throwable unused) {
             iVar.f6015b = true;
         }
-        this.f53712c = iVar;
-        this.f53711b = p3Var;
+        this.f53711c = iVar;
+        this.f53710b = p3Var;
     }
 
     public q(int i7) {
-        this.f53710a = i7;
+        this.f53709a = i7;
         switch (i7) {
             case 15:
-                this.f53711b = new ConcurrentHashMap(16, 0.75f, 10);
-                this.f53712c = new ReferenceQueue();
+                this.f53710b = new ConcurrentHashMap(16, 0.75f, 10);
+                this.f53711c = new ReferenceQueue();
                 return;
             default:
-                this.f53711b = new AtomicInteger();
-                this.f53712c = new AtomicInteger();
+                this.f53710b = new AtomicInteger();
+                this.f53711c = new AtomicInteger();
                 return;
         }
     }
 
     public q(Animation animation) {
-        this.f53710a = 7;
-        this.f53711b = animation;
-        this.f53712c = null;
+        this.f53709a = 7;
+        this.f53710b = animation;
+        this.f53711c = null;
     }
 
     public q(Animator animator) {
-        this.f53710a = 7;
-        this.f53711b = null;
+        this.f53709a = 7;
+        this.f53710b = null;
         AnimatorSet animatorSet = new AnimatorSet();
-        this.f53712c = animatorSet;
+        this.f53711c = animatorSet;
         animatorSet.play(animator);
     }
 
     public q(ArrayList arrayList, ArrayList arrayList2) {
-        this.f53710a = 25;
+        this.f53709a = 25;
         int size = arrayList.size();
-        this.f53711b = new int[size];
-        this.f53712c = new float[size];
+        this.f53710b = new int[size];
+        this.f53711c = new float[size];
         for (int i7 = 0; i7 < size; i7++) {
-            ((int[]) this.f53711b)[i7] = ((Integer) arrayList.get(i7)).intValue();
-            ((float[]) this.f53712c)[i7] = ((Float) arrayList2.get(i7)).floatValue();
+            ((int[]) this.f53710b)[i7] = ((Integer) arrayList.get(i7)).intValue();
+            ((float[]) this.f53711c)[i7] = ((Float) arrayList2.get(i7)).floatValue();
         }
     }
 
     public q(int i7, int i10) {
-        this.f53710a = 25;
-        this.f53711b = new int[]{i7, i10};
-        this.f53712c = new float[]{0.0f, 1.0f};
+        this.f53709a = 25;
+        this.f53710b = new int[]{i7, i10};
+        this.f53711c = new float[]{0.0f, 1.0f};
     }
 
     public q(int i7, int i10, int i11) {
-        this.f53710a = 25;
-        this.f53711b = new int[]{i7, i10, i11};
-        this.f53712c = new float[]{0.0f, 0.5f, 1.0f};
+        this.f53709a = 25;
+        this.f53710b = new int[]{i7, i10, i11};
+        this.f53711c = new float[]{0.0f, 0.5f, 1.0f};
     }
 
     public q(d3.e eVar) {
-        this.f53710a = 16;
-        this.f53712c = eVar;
+        this.f53709a = 16;
+        this.f53711c = eVar;
     }
 
     public q(Context context, String str, ComponentName componentName, PendingIntent pendingIntent, Bundle bundle) {
-        this.f53710a = 0;
+        this.f53709a = 0;
         if (!TextUtils.isEmpty(str)) {
             if (componentName == null) {
-                int i7 = s0.f54800b;
+                int i7 = s0.f54799b;
                 Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
                 intent.setPackage(context.getPackageName());
                 List<ResolveInfo> queryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);
@@ -636,38 +636,38 @@ public final class q implements SuccessContinuation, r0.m, ce.c, OnCompleteListe
             }
             int i10 = Build.VERSION.SDK_INT;
             if (i10 >= 29) {
-                this.f53711b = new l(context, str, bundle);
+                this.f53710b = new l(context, str, bundle);
             } else if (i10 >= 28) {
-                this.f53711b = new l(context, str, bundle);
+                this.f53710b = new l(context, str, bundle);
             } else {
-                this.f53711b = new l(context, str, bundle);
+                this.f53710b = new l(context, str, bundle);
             }
             Looper myLooper = Looper.myLooper();
             e(new android.support.v4.media.session.s(1), new Handler(myLooper == null ? Looper.getMainLooper() : myLooper));
-            ((l) this.f53711b).f53693a.setMediaButtonReceiver(pendingIntent);
-            p pVar = ((l) this.f53711b).f53695c;
+            ((l) this.f53710b).f53692a.setMediaButtonReceiver(pendingIntent);
+            p pVar = ((l) this.f53710b).f53694c;
             ?? obj = new Object();
             DesugarCollections.synchronizedSet(new HashSet());
             if (Build.VERSION.SDK_INT >= 29) {
-                obj.f53719a = new f(context, pVar);
+                obj.f53718a = new f(context, pVar);
             } else {
-                obj.f53719a = new f(context, pVar);
+                obj.f53718a = new f(context, pVar);
             }
-            this.f53712c = obj;
+            this.f53711c = obj;
             return;
         }
         throw new IllegalArgumentException("tag must not be null or empty");
     }
 
     public q(t1 t1Var, int[] iArr) {
-        this.f53710a = 27;
-        this.f53711b = h9.i0.q(t1Var);
-        this.f53712c = iArr;
+        this.f53709a = 27;
+        this.f53710b = h9.i0.q(t1Var);
+        this.f53711c = iArr;
     }
 
     public q(c5.k kVar) {
-        this.f53710a = 9;
-        this.f53712c = kVar;
-        this.f53711b = new Rect();
+        this.f53709a = 9;
+        this.f53711c = kVar;
+        this.f53710b = new Rect();
     }
 }

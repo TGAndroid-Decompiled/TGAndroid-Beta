@@ -5,23 +5,23 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.w31;
-public final class f extends v31 {
-    public static final int f51127b = 0;
+import org.telegram.ui.Components.x31;
+public final class f extends w31 {
+    public static final int f51118b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(android.view.View r27, org.telegram.ui.Components.w31 r28, boolean r29, org.telegram.ui.Components.k41 r30, org.telegram.ui.Components.p41 r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f.b(android.view.View, org.telegram.ui.Components.w31, boolean, org.telegram.ui.Components.k41, org.telegram.ui.Components.p41):void");
+    public final void b(android.view.View r27, org.telegram.ui.Components.x31 r28, boolean r29, org.telegram.ui.Components.l41 r30, org.telegram.ui.Components.q41 r31) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.f.b(android.view.View, org.telegram.ui.Components.x31, boolean, org.telegram.ui.Components.l41, org.telegram.ui.Components.q41):void");
     }
 
     @Override
-    public final boolean c(w31 w31Var, w31 w31Var2) {
-        if (w31Var.H == w31Var2.H && TextUtils.equals(w31Var.f39831m, w31Var2.f39831m)) {
+    public final boolean c(x31 x31Var, x31 x31Var2) {
+        if (x31Var.H == x31Var2.H && TextUtils.equals(x31Var.f40160m, x31Var2.f40160m)) {
             return true;
         }
         return false;
@@ -33,8 +33,8 @@ public final class f extends v31 {
     }
 
     @Override
-    public final boolean e(w31 w31Var, w31 w31Var2) {
-        if (w31Var.H == w31Var2.H && TextUtils.isEmpty(w31Var.f39831m) == TextUtils.isEmpty(w31Var2.f39831m)) {
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        if (x31Var.H == x31Var2.H && TextUtils.isEmpty(x31Var.f40160m) == TextUtils.isEmpty(x31Var2.f40160m)) {
             return true;
         }
         return false;

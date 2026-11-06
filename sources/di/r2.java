@@ -38,12 +38,12 @@ public final class r2 implements c20 {
                 i4 i4Var = ((t2) this.d).f9781a;
                 TLRPC.User user = i4Var.M2.getAdapter().f16799w0;
                 if (user != null) {
-                    j3 = user.f27101id;
+                    j3 = user.f27102id;
                 } else {
                     j3 = 0;
                 }
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", botInlineResult.f26950id);
+                hashMap.put("id", botInlineResult.f26951id);
                 hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + j3);
                 TLRPC.User user2 = i4Var.M2.getAdapter().f16799w0;

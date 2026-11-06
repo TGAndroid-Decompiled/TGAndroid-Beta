@@ -23,15 +23,15 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.a41;
-import org.telegram.ui.Components.c41;
+import org.telegram.ui.Components.b41;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.d41;
+import org.telegram.ui.Components.e41;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.r20;
-import org.telegram.ui.Components.ty0;
 import org.telegram.ui.Components.u80;
-import org.telegram.ui.Components.z31;
+import org.telegram.ui.Components.uy0;
 import org.telegram.ui.an;
 public final class n3 extends h8 {
     public final p9 f9396x0;
@@ -59,7 +59,7 @@ public final class n3 extends h8 {
                     org.telegram.ui.ActionBar.f6 f6Var = this.f9397y0;
                     cc h = new hc(j3Var, f6Var).h(document, 2, new bi.v3(this, this.f9396x0, f6Var, 1));
                     if (h != null) {
-                        h.f32520a = 1;
+                        h.f32507a = 1;
                         h.k(true);
                     }
                 }
@@ -71,15 +71,15 @@ public final class n3 extends h8 {
     public final void G(CharacterStyle characterStyle, View view) {
         p9 p9Var = this.f9396x0;
         org.telegram.ui.ActionBar.f2 f2Var = p9Var.f9543f;
-        boolean z9 = characterStyle instanceof d41;
+        boolean z9 = characterStyle instanceof e41;
         i4 i4Var = this.f9398z0;
         if (z9) {
-            TLRPC.User a22 = qp.s1(i4Var.f9168l2).a2(Utilities.A(((d41) characterStyle).getURL()));
+            TLRPC.User a22 = qp.s1(i4Var.f9168l2).a2(Utilities.A(((e41) characterStyle).getURL()));
             if (a22 != null) {
                 qp.s1(i4Var.f9168l2).z3(a22, null, f2Var, 0);
             }
-        } else if (characterStyle instanceof a41) {
-            String url = ((a41) characterStyle).getURL();
+        } else if (characterStyle instanceof b41) {
+            String url = ((b41) characterStyle).getURL();
             if (url != null && (url.startsWith("#") || url.startsWith("$"))) {
                 if (url.contains("@")) {
                     p9Var.N(new r20(url, null));
@@ -104,10 +104,10 @@ public final class n3 extends h8 {
             }
             M(0, url, characterStyle, false);
         } else if (characterStyle instanceof URLSpan) {
-            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof c41);
-        } else if (characterStyle instanceof z31) {
-            z31 z31Var = (z31) characterStyle;
-            org.telegram.messenger.g0.g(z31Var.f40857a.subSequence(z31Var.f40858b, z31Var.f40859c).toString());
+            M(2, ((URLSpan) characterStyle).getURL(), characterStyle, characterStyle instanceof d41);
+        } else if (characterStyle instanceof a41) {
+            a41 a41Var = (a41) characterStyle;
+            org.telegram.messenger.g0.g(a41Var.f31691a.subSequence(a41Var.f31692b, a41Var.f31693c).toString());
             org.telegram.messenger.camera.q.r(null, 2131744195, new hc(i4Var.L0, this.f9397y0));
         } else if (characterStyle instanceof ClickableSpan) {
             ((ClickableSpan) characterStyle).onClick(view);
@@ -160,7 +160,7 @@ public final class n3 extends h8 {
         l10.L = charSequenceArr;
         l10.K = onClickListener;
         l10.H0 = new eb(s7Var, 3);
-        l10.O(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, f6Var));
+        l10.O(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27922h5, f6Var));
         ((g9) i4Var.f9221z1).h(l10);
     }
 
@@ -175,7 +175,7 @@ public final class n3 extends h8 {
         final org.telegram.ui.ActionBar.f6 f6Var = this.f9397y0;
         if (document != null) {
             k60 F = k60.F(p9Var.f9578w, f6Var, i4Var.f9196t0);
-            F.f35162i = 3;
+            F.f35187i = 3;
             F.a0(-org.telegram.messenger.g0.L(8.0f), 0.0f);
             F.l(2131232351, hd.M0(2131744723, null), new Runnable(this) {
                 public final n3 f9284b;
@@ -210,13 +210,13 @@ public final class n3 extends h8 {
                             i4 i4Var3 = n3Var.f9398z0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f26980id = tL_inputDocument;
-                            tL_inputDocument.f26964id = document2.f26958id;
+                            tL_account_saveMusic.f26981id = tL_inputDocument;
+                            tL_inputDocument.f26965id = document2.f26959id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.B().Q0 != null && MediaController.B().Q0.f23733b == p10.i(i4Var3.f9168l2).e()) {
+                            if (MediaController.B().Q0 != null && MediaController.B().Q0.f23740b == p10.i(i4Var3.f9168l2).e()) {
                                 kp kpVar = MediaController.B().Q0;
-                                kpVar.f23734c.add(0, kpVar.d(document2));
+                                kpVar.f23741c.add(0, kpVar.d(document2));
                                 kpVar.e();
                             }
                             ConnectionsManager.getInstance(i4Var3.f9168l2).sendRequest(tL_account_saveMusic, null);
@@ -258,13 +258,13 @@ public final class n3 extends h8 {
                             i4 i4Var3 = n3Var.f9398z0;
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_account_saveMusic.f26980id = tL_inputDocument;
-                            tL_inputDocument.f26964id = document2.f26958id;
+                            tL_account_saveMusic.f26981id = tL_inputDocument;
+                            tL_inputDocument.f26965id = document2.f26959id;
                             tL_inputDocument.access_hash = document2.access_hash;
                             tL_inputDocument.file_reference = document2.file_reference;
-                            if (MediaController.B().Q0 != null && MediaController.B().Q0.f23733b == p10.i(i4Var3.f9168l2).e()) {
+                            if (MediaController.B().Q0 != null && MediaController.B().Q0.f23740b == p10.i(i4Var3.f9168l2).e()) {
                                 kp kpVar = MediaController.B().Q0;
-                                kpVar.f23734c.add(0, kpVar.d(document2));
+                                kpVar.f23741c.add(0, kpVar.d(document2));
                                 kpVar.e();
                             }
                             ConnectionsManager.getInstance(i4Var3.f9168l2).sendRequest(tL_account_saveMusic, null);
@@ -287,14 +287,14 @@ public final class n3 extends h8 {
             qp.s1(i4Var.f9168l2).P1().g0(c8Var.f8881c.intValue(), c8Var.f8880b.longValue(), new s2(this, c8Var, p9Var, f6Var, 1));
         } else {
             cc Q = new hc(i4Var.L0, f6Var).Q(2131624011, 36, hd.M0(2131744665, null));
-            Q.f32520a = 3;
+            Q.f32507a = 3;
             Q.k(true);
         }
     }
 
     public final void M(int i7, String str, CharacterStyle characterStyle, boolean z9) {
         boolean z10;
-        ty0 ty0Var;
+        uy0 uy0Var;
         if (!z9 && !org.telegram.messenger.g0.J3(str)) {
             if (i7 == 0) {
                 vf.c.r(getContext(), Uri.parse(str), true, true, null);
@@ -317,7 +317,7 @@ public final class n3 extends h8 {
             }
             return;
         }
-        if ((characterStyle instanceof c41) && (ty0Var = ((c41) characterStyle).f32404a) != null && (ty0Var.f38433a & 1024) != 0) {
+        if ((characterStyle instanceof d41) && (uy0Var = ((d41) characterStyle).f32778a) != null && (uy0Var.f38751a & 1024) != 0) {
             z10 = true;
         } else {
             z10 = false;

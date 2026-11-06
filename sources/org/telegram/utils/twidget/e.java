@@ -3,18 +3,18 @@ package org.telegram.utils.twidget;
 import android.graphics.Canvas;
 import android.graphics.RenderNode;
 public final class e extends g {
-    public final RenderNode f52777e;
+    public final RenderNode f52775e;
 
     public e(String str, int i7, int i10, int i11, int i12) {
         super(i7, i10, i11, i12);
         RenderNode renderNode = new RenderNode(str);
-        this.f52777e = renderNode;
+        this.f52775e = renderNode;
         renderNode.setPosition(i7, i10, i11, i12);
     }
 
     @Override
     public final Canvas a() {
-        return this.f52777e.beginRecording(this.f52791c - this.f52789a, this.d - this.f52790b);
+        return this.f52775e.beginRecording(this.f52789c - this.f52787a, this.d - this.f52788b);
     }
 
     @Override
@@ -24,30 +24,30 @@ public final class e extends g {
 
     @Override
     public final void c() {
-        this.f52777e.discardDisplayList();
+        this.f52775e.discardDisplayList();
     }
 
     @Override
     public final void d(Canvas canvas, float f10) {
-        if (!this.f52777e.hasDisplayList()) {
+        if (!this.f52775e.hasDisplayList()) {
             return;
         }
-        this.f52777e.setAlpha(f10);
-        canvas.drawRenderNode(this.f52777e);
+        this.f52775e.setAlpha(f10);
+        canvas.drawRenderNode(this.f52775e);
     }
 
     @Override
     public final void e() {
-        this.f52777e.endRecording();
+        this.f52775e.endRecording();
     }
 
     @Override
     public final boolean f() {
-        return this.f52777e.hasDisplayList();
+        return this.f52775e.hasDisplayList();
     }
 
     @Override
     public final void g() {
-        this.f52777e.setUseCompositingLayer(true, null);
+        this.f52775e.setUseCompositingLayer(true, null);
     }
 }

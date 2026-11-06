@@ -10,21 +10,21 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.widget.FrameLayout;
 public class wf0 extends FrameLayout {
-    public final Paint f39958a;
-    public final Path f39959b;
-    public final vf0 f39960c;
+    public final Paint f39966a;
+    public final Path f39967b;
+    public final vf0 f39968c;
     public float d;
-    public float f39961e;
-    public float f39962f;
+    public float f39969e;
+    public float f39970f;
     public boolean h;
-    public org.telegram.messenger.bs f39963n;
+    public org.telegram.messenger.bs f39971n;
 
     public wf0(Context context) {
         super(context);
         float f10;
         Paint paint = new Paint(1);
-        this.f39958a = paint;
-        this.f39959b = new Path();
+        this.f39966a = paint;
+        this.f39967b = new Path();
         paint.setColor(-16777216);
         if (Build.VERSION.SDK_INT >= 31 && org.telegram.messenger.iz.o() >= 1) {
             if (org.telegram.messenger.iz.o() == 2) {
@@ -32,9 +32,9 @@ public class wf0 extends FrameLayout {
             } else {
                 f10 = 1.5f;
             }
-            this.f39960c = new uf0(this, f10);
+            this.f39968c = new uf0(this, f10);
         } else {
-            this.f39960c = new tf0(this);
+            this.f39968c = new tf0(this);
         }
         setIntensity(15.0f);
         setBlurIntensity(0.0f);
@@ -54,30 +54,30 @@ public class wf0 extends FrameLayout {
             super.draw(canvas);
             return;
         }
-        this.f39960c.b(new ax(this, 13), canvas);
+        this.f39968c.b(new ax(this, 13), canvas);
     }
 
     public float getAvatarEndScale() {
         float min;
         int L;
-        org.telegram.messenger.bs bsVar = this.f39963n;
+        org.telegram.messenger.bs bsVar = this.f39971n;
         if (bsVar == null) {
             return 0.8f;
         }
-        if (bsVar.f21691c) {
-            min = bsVar.f21692e.width() - org.telegram.messenger.g0.L(2.0f);
+        if (bsVar.f21692c) {
+            min = bsVar.f21693e.width() - org.telegram.messenger.g0.L(2.0f);
             L = org.telegram.messenger.g0.L(100.0f);
         } else {
-            min = Math.min(bsVar.f21692e.width(), this.f39963n.f21692e.height());
+            min = Math.min(bsVar.f21693e.width(), this.f39971n.f21693e.height());
             L = org.telegram.messenger.g0.L(100.0f);
         }
         return Math.min(0.8f, min / L);
     }
 
     public float getHiddenAvatarSizeDp() {
-        org.telegram.messenger.bs bsVar = this.f39963n;
-        if (bsVar != null && bsVar.f21691c) {
-            return (bsVar.f21692e.width() * 0.5f) / org.telegram.messenger.g0.f22536p;
+        org.telegram.messenger.bs bsVar = this.f39971n;
+        if (bsVar != null && bsVar.f21692c) {
+            return (bsVar.f21693e.width() * 0.5f) / org.telegram.messenger.g0.f22543p;
         }
         return 24.0f;
     }
@@ -135,7 +135,7 @@ public class wf0 extends FrameLayout {
                         obj.d = path;
                         RectF rectF = new RectF();
                         path.computeBounds(rectF, true);
-                        obj.f21692e = rectF;
+                        obj.f21693e = rectF;
                         DisplayMetrics displayMetrics2 = context.getResources().getDisplayMetrics();
                         if (i13 != 17 && Math.abs(rectF.centerX() - (displayMetrics2.widthPixels / 2.0f)) <= org.telegram.messenger.g0.L(2.0f)) {
                             i13 = 17;
@@ -146,42 +146,42 @@ public class wf0 extends FrameLayout {
                         if (i15 != 17 || rectF.right <= (displayMetrics2.widthPixels / 4.0f) * 3.0f) {
                             i16 = i15;
                         }
-                        obj.f21689a = i16;
+                        obj.f21690a = i16;
                         if (!trim.contains("C") && !trim.contains("S") && !trim.contains("Q")) {
                             z9 = false;
                         } else {
                             z9 = true;
                         }
-                        obj.f21690b = z9;
+                        obj.f21691b = z9;
                         if (rectF.width() <= org.telegram.messenger.g0.L(32.0f) || rectF.width() <= rectF.height()) {
                             z10 = true;
                         }
-                        obj.f21691c = z10;
+                        obj.f21692c = z10;
                         bsVar = obj;
                     } catch (Throwable th2) {
                         org.telegram.messenger.a8.e("Failed to parse notch info", th2);
                     }
-                    this.f39963n = bsVar;
-                    if ((bsVar != null && bsVar.f21689a != 17) || getWidth() > getHeight()) {
-                        this.f39963n = null;
+                    this.f39971n = bsVar;
+                    if ((bsVar != null && bsVar.f21690a != 17) || getWidth() > getHeight()) {
+                        this.f39971n = null;
                     }
-                    this.f39960c.d(i7, i10);
+                    this.f39968c.d(i7, i10);
                 }
             }
         }
         bsVar = null;
-        this.f39963n = bsVar;
+        this.f39971n = bsVar;
         if (bsVar != null) {
-            this.f39963n = null;
-            this.f39960c.d(i7, i10);
+            this.f39971n = null;
+            this.f39968c.d(i7, i10);
         }
-        this.f39963n = null;
-        this.f39960c.d(i7, i10);
+        this.f39971n = null;
+        this.f39968c.d(i7, i10);
     }
 
     public void setBlurIntensity(float f10) {
-        this.f39962f = f10;
-        this.f39960c.c(f10);
+        this.f39970f = f10;
+        this.f39968c.c(f10);
         invalidate();
     }
 
@@ -212,12 +212,12 @@ public class wf0 extends FrameLayout {
 
     public void setIntensity(float f10) {
         this.d = f10;
-        this.f39960c.a(f10);
+        this.f39968c.a(f10);
         invalidate();
     }
 
     public void setPullProgress(float f10) {
-        this.f39961e = f10;
+        this.f39969e = f10;
         invalidate();
     }
 }

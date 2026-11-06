@@ -90,15 +90,15 @@ public final class d7 extends View {
         this.f8930f = null;
         if (o0Var != null) {
             if (o0Var.f6357g != 0) {
-                org.telegram.ui.Components.i5 i5Var2 = new org.telegram.ui.Components.i5(3, p10.f24459s0, o0Var.f6357g);
+                org.telegram.ui.Components.i5 i5Var2 = new org.telegram.ui.Components.i5(3, p10.f24467s0, o0Var.f6357g);
                 this.f8930f = i5Var2;
                 if (this.f8933s) {
                     i5Var2.a(this);
                 }
             } else {
-                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24459s0).f25825r.get(o0Var.f6356f);
+                TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) ui.b0(p10.f24467s0).f25833r.get(o0Var.f6356f);
                 if (tL_availableReaction != null) {
-                    this.d.q0(hc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", org.telegram.messenger.t5.f(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.k6.f27792a7, 1.0f, null), "webp", tL_availableReaction, 1);
+                    this.d.q0(hc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", org.telegram.messenger.t5.f(tL_availableReaction.static_icon, org.telegram.ui.ActionBar.k6.f27793a7, 1.0f, null), "webp", tL_availableReaction, 1);
                 }
             }
         }

@@ -26,7 +26,7 @@ public final class d2 extends yu0 {
             while (true) {
                 if (i7 < uu0VarArr.length) {
                     uu0 uu0Var = uu0VarArr[i7];
-                    if (uu0Var != null && uu0Var.f38727b) {
+                    if (uu0Var != null && uu0Var.f38723b) {
                         break;
                     }
                     i7++;

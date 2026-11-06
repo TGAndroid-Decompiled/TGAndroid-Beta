@@ -20,12 +20,12 @@ import org.telegram.ui.Components.ft0;
 import org.telegram.ui.Components.jt0;
 import org.telegram.ui.Components.kt0;
 import org.telegram.ui.Components.ut0;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.r1, ut0, w10, ft0, b20, jh.i, aj0, jt0, kt0 {
-    public final int f21815a;
+    public final int f21821a;
 
     public ch(int i7) {
-        this.f21815a = i7;
+        this.f21821a = i7;
     }
 
     public static Shader.TileMode e() {
@@ -33,7 +33,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     }
 
     @Override
-    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -46,7 +46,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     public Object d(Number number, Object obj) {
         Integer num = (Integer) number;
         Integer num2 = (Integer) obj;
-        switch (this.f21815a) {
+        switch (this.f21821a) {
             case 17:
                 if (num.intValue() == 0) {
                     return hd.G(num2.intValue(), "MaximumReactionsValue", new Object[0]);
@@ -62,7 +62,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-        switch (this.f21815a) {
+        switch (this.f21821a) {
             case 2:
                 return TLRPC.Peer.TLdeserialize(inputSerializedData, i7, z9);
             case 3:
@@ -84,7 +84,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     @Override
     public void f(Object obj, float f10) {
         org.telegram.ui.br brVar = (org.telegram.ui.br) obj;
-        switch (this.f21815a) {
+        switch (this.f21821a) {
             case 26:
                 brVar.G1 = f10;
                 if (brVar.getParent() != null) {
@@ -104,9 +104,9 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f21815a) {
+        switch (this.f21821a) {
             case 11:
-                int i10 = iz.f23357a;
+                int i10 = iz.f23364a;
                 return;
             case 14:
                 u1Var.dismiss();
@@ -123,7 +123,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     @Override
     public float get(Object obj) {
         org.telegram.ui.br brVar = (org.telegram.ui.br) obj;
-        switch (this.f21815a) {
+        switch (this.f21821a) {
             case 25:
                 return brVar.G1;
             case 26:
@@ -142,7 +142,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     @Override
     public Object j(Object obj) {
         Void r22 = (Void) obj;
-        switch (this.f21815a) {
+        switch (this.f21821a) {
             case 0:
                 return new TLRPC.TL_messageEntitySpoiler();
             default:
@@ -152,7 +152,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public RecyclerView l(View view) {
-        return ((org.telegram.ui.td) view).f50036a;
+        return ((org.telegram.ui.td) view).f50035a;
     }
 
     @Override
@@ -170,9 +170,9 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public void onComplete(Task task) {
-        iz.f23382j = SystemClock.elapsedRealtime();
+        iz.f23389j = SystemClock.elapsedRealtime();
         if (!task.isSuccessful()) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.b("Failed to get regid");
             }
             iz.h = "__FIREBASE_FAILED__";
@@ -191,7 +191,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     }
 
     public ch(Object obj, int i7) {
-        this.f21815a = i7;
+        this.f21821a = i7;
     }
 
     @Override

@@ -117,11 +117,11 @@ public final class r7 implements org.telegram.ui.Components.ab {
             case 3:
                 return 0;
             case 4:
-                i10 = org.telegram.messenger.g0.f22532n;
+                i10 = org.telegram.messenger.g0.f22539n;
                 L = org.telegram.messenger.g0.L(64.0f);
                 break;
             case 5:
-                i10 = org.telegram.messenger.g0.f22532n;
+                i10 = org.telegram.messenger.g0.f22539n;
                 L = org.telegram.messenger.g0.L(60.0f);
                 break;
             case 6:
@@ -133,7 +133,7 @@ public final class r7 implements org.telegram.ui.Components.ab {
             case 9:
                 return org.telegram.messenger.g0.L(80.0f);
             case 10:
-                i10 = org.telegram.messenger.g0.f22532n;
+                i10 = org.telegram.messenger.g0.f22539n;
                 L = org.telegram.messenger.g0.L(16.0f);
                 break;
             case 11:
@@ -196,19 +196,19 @@ public final class r7 implements org.telegram.ui.Components.ab {
     public final int h(int i7) {
         switch (this.f12745a) {
             case 0:
-                return org.telegram.messenger.g0.f22531m;
+                return org.telegram.messenger.g0.f22538m;
             case 1:
                 return 0;
             case 2:
                 return org.telegram.messenger.g0.L(56.0f);
             case 3:
-                return org.telegram.messenger.g0.f22531m;
+                return org.telegram.messenger.g0.f22538m;
             case 4:
                 return 0;
             case 5:
                 return 0;
             case 6:
-                return org.telegram.messenger.g0.f22531m;
+                return org.telegram.messenger.g0.f22538m;
             case 7:
                 return 0;
             case 8:
@@ -222,9 +222,9 @@ public final class r7 implements org.telegram.ui.Components.ab {
             case 12:
                 return 0;
             case 13:
-                return org.telegram.messenger.g0.f22531m;
+                return org.telegram.messenger.g0.f22538m;
             case 14:
-                return org.telegram.messenger.g0.f22531m;
+                return org.telegram.messenger.g0.f22538m;
             case 15:
                 return 0;
             default:

@@ -1,10 +1,13 @@
 package c8;
 
-import android.text.InputFilter;
+import android.opengl.GLES20;
+import android.opengl.GLUtils;
+import android.util.Log;
 public abstract class fc {
-    public abstract InputFilter[] a(InputFilter[] inputFilterArr);
-
-    public abstract void b(boolean z9);
-
-    public abstract void c(boolean z9);
+    public static void a() {
+        int glGetError = GLES20.glGetError();
+        if (glGetError != 0) {
+            Log.d("Paint", GLUtils.getEGLErrorString(glGetError));
+        }
+    }
 }

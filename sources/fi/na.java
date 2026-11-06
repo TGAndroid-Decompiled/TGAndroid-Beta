@@ -51,7 +51,7 @@ public final class na extends FrameLayout {
         va vaVar = this.f12501e;
         if (view == vaVar.f12959h0) {
             if (vaVar.V) {
-                f10 = org.telegram.messenger.g0.f22531m;
+                f10 = org.telegram.messenger.g0.f22538m;
             } else {
                 f10 = 0.0f;
             }

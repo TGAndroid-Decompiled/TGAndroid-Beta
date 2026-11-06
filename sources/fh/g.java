@@ -56,7 +56,7 @@ public final class g extends oi.e implements a6 {
     public int f11541y;
     public boolean f11538s = true;
     public float I = -1.0f;
-    public int M = r6.f28475b;
+    public int M = r6.f28476b;
     public final l N = new l();
 
     public g(ri.a aVar, ri.a aVar2, ri.a aVar3) {
@@ -99,7 +99,7 @@ public final class g extends oi.e implements a6 {
 
     public static ri.a v(ri.a aVar) {
         while (aVar instanceof ri.g) {
-            aVar = ((ri.g) aVar).f54486a;
+            aVar = ((ri.g) aVar).f54485a;
         }
         return aVar;
     }
@@ -131,7 +131,7 @@ public final class g extends oi.e implements a6 {
     @Override
     public final void draw(Canvas canvas) {
         ri.a aVar;
-        int i7 = r6.f28475b;
+        int i7 = r6.f28476b;
         if (this.M != i7) {
             this.M = i7;
             try {
@@ -155,7 +155,7 @@ public final class g extends oi.e implements a6 {
             ri.a aVar2 = this.f11537r;
             if (o4 == this.f11535f0 && !canvas.isHardwareAccelerated()) {
                 ri.a v = v(v(this.f11537r));
-                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54477a) != null) {
+                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54476a) != null) {
                     v = v(aVar);
                 }
                 aVar2 = v;
@@ -484,7 +484,7 @@ public final class g extends oi.e implements a6 {
 
     @Override
     public final void updateColors() {
-        this.M = r6.f28475b;
+        this.M = r6.f28476b;
         gh.a aVar = this.f11539w;
         if (aVar != null) {
             if (aVar instanceof gh.b) {

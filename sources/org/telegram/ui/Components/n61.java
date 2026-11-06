@@ -1,48 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class n61 implements cj0, dj0 {
-    public final t61 f36204a;
+import android.animation.ValueAnimator;
+public final class n61 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36240a;
+    public final Object f36241b;
 
-    public n61(t61 t61Var) {
-        this.f36204a = t61Var;
+    public n61(Object obj, int i7) {
+        this.f36240a = i7;
+        this.f36241b = obj;
     }
 
     @Override
-    public boolean c(int i7, View view) {
-        org.telegram.messenger.w10 w10Var = this.f36204a.f38244b;
-        if (w10Var == null) {
-            return false;
-        }
-        return ((Boolean) w10Var.d(Integer.valueOf(((r61) view).f37558a.f37165a), view)).booleanValue();
-    }
-
-    @Override
-    public void f(float f10, float f11, int i7, View view) {
-        t61 t61Var = this.f36204a;
-        s61 s61Var = t61Var.D;
-        if (s61Var != null) {
-            u61 u61Var = (u61) ((n) s61Var).f36104a;
-            if (u61Var.f38541y || u61Var.H) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f36240a) {
+            case 0:
+                u61 u61Var = (u61) this.f36241b;
+                u61Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u61Var.setAnimationIdicatorProgress(floatValue);
+                t61 t61Var = u61Var.D;
+                if (t61Var != null) {
+                    ((n) t61Var).y(floatValue);
+                    return;
+                }
                 return;
-            }
-        }
-        r61 r61Var = (r61) view;
-        if (i7 != t61Var.F || s61Var == null) {
-            org.telegram.messenger.w10 w10Var = t61Var.f38258l0;
-            if (w10Var != null && ((Boolean) w10Var.d(Integer.valueOf(r61Var.f37558a.f37165a), Integer.valueOf(i7))).booleanValue()) {
+            default:
+                k60 k60Var = (k60) this.f36241b;
+                k60Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                i60 i60Var = k60Var.f35209x;
+                if (i60Var != null) {
+                    i60Var.setProgress(floatValue2);
+                    return;
+                }
                 return;
-            }
-            t61Var.d(r61Var.f37558a.f37165a, i7);
         }
-    }
-
-    @Override
-    public boolean f1(View view) {
-        return false;
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
     }
 }

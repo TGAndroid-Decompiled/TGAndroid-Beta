@@ -89,12 +89,12 @@ public abstract class m0 extends FrameLayout {
                             n1Var.G0 = new ye();
                             m0Var2.h.b(m0Var2.f12393b.G0);
                             tg.n1 n1Var2 = m0Var2.f12393b;
-                            n1Var2.G0.f26633z = n1Var2.getOrientation();
+                            n1Var2.G0.f26641z = n1Var2.getOrientation();
                             m0Var2.f12393b.k();
                             m0Var2.f12393b.requestLayout();
-                            m0Var2.f12393b.f55777z0.requestLayout();
-                            m0Var2.f12393b.f55777z0.invalidate();
-                            m0Var2.f12393b.f55777z0.post(new di.s7(m0Var2, 15));
+                            m0Var2.f12393b.f55776z0.requestLayout();
+                            m0Var2.f12393b.f55776z0.invalidate();
+                            m0Var2.f12393b.f55776z0.post(new di.s7(m0Var2, 15));
                         }
                         ((ga) m0Var2).F.k0(-1, false, true);
                         return;
@@ -137,12 +137,12 @@ public abstract class m0 extends FrameLayout {
                             n1Var.G0 = new ye();
                             m0Var2.h.b(m0Var2.f12393b.G0);
                             tg.n1 n1Var2 = m0Var2.f12393b;
-                            n1Var2.G0.f26633z = n1Var2.getOrientation();
+                            n1Var2.G0.f26641z = n1Var2.getOrientation();
                             m0Var2.f12393b.k();
                             m0Var2.f12393b.requestLayout();
-                            m0Var2.f12393b.f55777z0.requestLayout();
-                            m0Var2.f12393b.f55777z0.invalidate();
-                            m0Var2.f12393b.f55777z0.post(new di.s7(m0Var2, 15));
+                            m0Var2.f12393b.f55776z0.requestLayout();
+                            m0Var2.f12393b.f55776z0.invalidate();
+                            m0Var2.f12393b.f55776z0.post(new di.s7(m0Var2, 15));
                         }
                         ((ga) m0Var2).F.k0(-1, false, true);
                         return;
@@ -185,12 +185,12 @@ public abstract class m0 extends FrameLayout {
                             n1Var.G0 = new ye();
                             m0Var2.h.b(m0Var2.f12393b.G0);
                             tg.n1 n1Var2 = m0Var2.f12393b;
-                            n1Var2.G0.f26633z = n1Var2.getOrientation();
+                            n1Var2.G0.f26641z = n1Var2.getOrientation();
                             m0Var2.f12393b.k();
                             m0Var2.f12393b.requestLayout();
-                            m0Var2.f12393b.f55777z0.requestLayout();
-                            m0Var2.f12393b.f55777z0.invalidate();
-                            m0Var2.f12393b.f55777z0.post(new di.s7(m0Var2, 15));
+                            m0Var2.f12393b.f55776z0.requestLayout();
+                            m0Var2.f12393b.f55776z0.invalidate();
+                            m0Var2.f12393b.f55776z0.post(new di.s7(m0Var2, 15));
                         }
                         ((ga) m0Var2).F.k0(-1, false, true);
                         return;
@@ -263,12 +263,12 @@ public abstract class m0 extends FrameLayout {
         org.telegram.ui.Components.w5 w5Var = this.f12394c;
         if (yeVar != null) {
             fVar.b(yeVar.d);
-            if (yeVar.f26625k == 0) {
+            if (yeVar.f26633k == 0) {
                 z9 = false;
             }
             fVar.setRotated(z9);
-            fVar.setMirrored(yeVar.f26626l);
-            w5Var.f(yeVar.f26626l, false);
+            fVar.setMirrored(yeVar.f26634l);
+            w5Var.f(yeVar.f26634l, false);
         } else {
             fVar.b(0.0f);
             fVar.setRotated(false);

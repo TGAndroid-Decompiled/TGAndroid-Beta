@@ -54,8 +54,8 @@ public final class w5 extends org.telegram.ui.ActionBar.v2 {
         k5Var.setTextSize(14);
         k5Var.setAlignment(Layout.Alignment.ALIGN_CENTER);
         k5Var.setMaxLines(100);
-        org.telegram.ui.ActionBar.r6.Y(k5Var, org.telegram.ui.ActionBar.k6.f28240y6, f6Var);
-        if (p10.i(this.f28612a).q()) {
+        org.telegram.ui.ActionBar.r6.Y(k5Var, org.telegram.ui.ActionBar.k6.f28241y6, f6Var);
+        if (p10.i(this.f28613a).q()) {
             k5Var.l(hd.M0(2131744884, null), false);
         } else {
             k5Var.l(hd.M0(2131744880, null), false);
@@ -77,7 +77,7 @@ public final class w5 extends org.telegram.ui.ActionBar.v2 {
         p0Var.h.getDrawable().D = false;
         p0Var.setIcon(2131624314);
         ka.a(p0Var);
-        TLRPC.User f11 = p10.i(this.f28612a).f();
+        TLRPC.User f11 = p10.i(this.f28613a).f();
         if (!f11.premium) {
             p0Var.setIcon(2131624314);
             p0Var.b(hd.M0(2131743852, null), new ah.d(this, 16), false);
@@ -100,10 +100,10 @@ public final class w5 extends org.telegram.ui.ActionBar.v2 {
         if (X != null) {
             String M0 = hd.M0(2131744882, null);
             String M02 = hd.M0(2131744881, null);
-            yb ybVar = new yb(X.W(), X.f34239c);
-            ybVar.f40601a.setImageResource(2131232393);
-            ybVar.f40602b.setText(M0);
-            TextView textView = ybVar.f40603c;
+            yb ybVar = new yb(X.W(), X.f34277c);
+            ybVar.f40613a.setImageResource(2131232393);
+            ybVar.f40614b.setText(M0);
+            TextView textView = ybVar.f40615c;
             textView.setText(M02);
             textView.setSingleLine(false);
             textView.setMaxLines(5);
@@ -112,19 +112,19 @@ public final class w5 extends org.telegram.ui.ActionBar.v2 {
     }
 
     public final void J0(boolean z9) {
-        TL_stories.TL_storiesStealthMode tL_storiesStealthMode = qp.s1(this.f28612a).P1().B;
+        TL_stories.TL_storiesStealthMode tL_storiesStealthMode = qp.s1(this.f28613a).P1().B;
         ug.p0 p0Var = this.f9904i1;
-        if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(this.f28612a).getCurrentTime() < tL_storiesStealthMode.active_until_date) {
+        if (tL_storiesStealthMode != null && ConnectionsManager.getInstance(this.f28613a).getCurrentTime() < tL_storiesStealthMode.active_until_date) {
             this.f9905j1 = true;
             p0Var.c(hd.M0(2131744883, null), true, z9);
             org.telegram.ui.ActionBar.r6.Z(p0Var.h, org.telegram.ui.ActionBar.k6.Gi, null);
             return;
         }
         if (tL_storiesStealthMode != null) {
-            int currentTime = ConnectionsManager.getInstance(this.f28612a).getCurrentTime();
+            int currentTime = ConnectionsManager.getInstance(this.f28613a).getCurrentTime();
             int i7 = tL_storiesStealthMode.cooldown_until_date;
             if (currentTime <= i7) {
-                long currentTime2 = i7 - ConnectionsManager.getInstance(this.f28612a).getCurrentTime();
+                long currentTime2 = i7 - ConnectionsManager.getInstance(this.f28613a).getCurrentTime();
                 int i10 = (int) (currentTime2 % 60);
                 long j3 = currentTime2 / 60;
                 StringBuilder sb2 = new StringBuilder();
@@ -135,7 +135,7 @@ public final class w5 extends org.telegram.ui.ActionBar.v2 {
                 p0Var.c(hd.a0("AvailableIn", null, 2131753760, sb2.toString()), true, z9);
                 ug.o0 o0Var = p0Var.h;
                 org.telegram.ui.ActionBar.n6 h = org.telegram.ui.ActionBar.r6.h(org.telegram.ui.ActionBar.k6.Gi, 125);
-                org.telegram.ui.ActionBar.r6.n(o0Var, h.f28323a, -1, 1, h.d, null);
+                org.telegram.ui.ActionBar.r6.n(o0Var, h.f28324a, -1, 1, h.d, null);
                 ab abVar = this.f9907m1;
                 org.telegram.messenger.g0.r(abVar);
                 org.telegram.messenger.g0.i3(abVar, 1000L);

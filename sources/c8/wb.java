@@ -4,200 +4,294 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
-import java.util.List;
+import java.util.ArrayList;
 public abstract class wb {
-    public static void a(Parcel parcel, int i7, Boolean bool) {
-        if (bool == null) {
+    public static void A(Parcel parcel, int i7, int i10) {
+        int x10 = x(parcel, i7);
+        if (x10 == i10) {
             return;
         }
-        q(parcel, i7, 4);
-        parcel.writeInt(bool.booleanValue() ? 1 : 0);
+        String hexString = Integer.toHexString(x10);
+        int length = String.valueOf(i10).length();
+        int length2 = String.valueOf(x10).length();
+        StringBuilder sb2 = new StringBuilder(String.valueOf(hexString).length() + length + 19 + length2 + 4 + 1);
+        sb2.append("Expected size ");
+        sb2.append(i10);
+        sb2.append(" got ");
+        sb2.append(x10);
+        throw new androidx.car.app.j(org.telegram.ui.Cells.f1.n(" (0x", hexString, ")", sb2), parcel);
     }
 
-    public static void b(Parcel parcel, int i7, Bundle bundle) {
-        if (bundle == null) {
+    public static void B(Parcel parcel, int i7, int i10) {
+        if (i7 == i10) {
             return;
         }
-        int r10 = r(parcel, i7);
-        parcel.writeBundle(bundle);
-        s(parcel, r10);
+        String hexString = Integer.toHexString(i7);
+        int length = String.valueOf(i10).length();
+        int length2 = String.valueOf(i7).length();
+        StringBuilder sb2 = new StringBuilder(String.valueOf(hexString).length() + length + 19 + length2 + 4 + 1);
+        sb2.append("Expected size ");
+        sb2.append(i10);
+        sb2.append(" got ");
+        sb2.append(i7);
+        throw new androidx.car.app.j(org.telegram.ui.Cells.f1.n(" (0x", hexString, ")", sb2), parcel);
     }
 
-    public static void c(Parcel parcel, int i7, byte[] bArr) {
-        if (bArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeByteArray(bArr);
-        s(parcel, r10);
-    }
-
-    public static void d(Parcel parcel, int i7, byte[][] bArr) {
-        if (bArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeInt(bArr.length);
-        for (byte[] bArr2 : bArr) {
-            parcel.writeByteArray(bArr2);
-        }
-        s(parcel, r10);
-    }
-
-    public static void e(Parcel parcel, int i7, Float f10) {
-        if (f10 == null) {
-            return;
-        }
-        q(parcel, i7, 4);
-        parcel.writeFloat(f10.floatValue());
-    }
-
-    public static void f(Parcel parcel, int i7, IBinder iBinder) {
-        if (iBinder == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeStrongBinder(iBinder);
-        s(parcel, r10);
-    }
-
-    public static void g(Parcel parcel, int i7, int[] iArr) {
-        if (iArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeIntArray(iArr);
-        s(parcel, r10);
-    }
-
-    public static void h(Parcel parcel, int i7, List list) {
-        if (list == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        int size = list.size();
-        parcel.writeInt(size);
-        for (int i10 = 0; i10 < size; i10++) {
-            parcel.writeInt(((Integer) list.get(i10)).intValue());
-        }
-        s(parcel, r10);
-    }
-
-    public static void i(Parcel parcel, int i7, Integer num) {
-        if (num == null) {
-            return;
-        }
-        q(parcel, i7, 4);
-        parcel.writeInt(num.intValue());
-    }
-
-    public static void j(Parcel parcel, int i7, long[] jArr) {
-        if (jArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeLongArray(jArr);
-        s(parcel, r10);
-    }
-
-    public static void k(Parcel parcel, int i7, Parcelable parcelable, int i10) {
-        if (parcelable == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcelable.writeToParcel(parcel, i10);
-        s(parcel, r10);
-    }
-
-    public static void l(Parcel parcel, int i7, String str) {
-        if (str == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeString(str);
-        s(parcel, r10);
-    }
-
-    public static void m(Parcel parcel, int i7, String[] strArr) {
-        if (strArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeStringArray(strArr);
-        s(parcel, r10);
-    }
-
-    public static void n(Parcel parcel, int i7, List list) {
-        if (list == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeStringList(list);
-        s(parcel, r10);
-    }
-
-    public static void o(Parcel parcel, int i7, Parcelable[] parcelableArr, int i10) {
-        if (parcelableArr == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        parcel.writeInt(parcelableArr.length);
-        for (Parcelable parcelable : parcelableArr) {
-            if (parcelable == null) {
-                parcel.writeInt(0);
-            } else {
-                int dataPosition = parcel.dataPosition();
-                parcel.writeInt(1);
-                int dataPosition2 = parcel.dataPosition();
-                parcelable.writeToParcel(parcel, i10);
-                int dataPosition3 = parcel.dataPosition();
-                parcel.setDataPosition(dataPosition);
-                parcel.writeInt(dataPosition3 - dataPosition2);
-                parcel.setDataPosition(dataPosition3);
-            }
-        }
-        s(parcel, r10);
-    }
-
-    public static void p(Parcel parcel, int i7, List list) {
-        if (list == null) {
-            return;
-        }
-        int r10 = r(parcel, i7);
-        int size = list.size();
-        parcel.writeInt(size);
-        for (int i10 = 0; i10 < size; i10++) {
-            Parcelable parcelable = (Parcelable) list.get(i10);
-            if (parcelable == null) {
-                parcel.writeInt(0);
-            } else {
-                int dataPosition = parcel.dataPosition();
-                parcel.writeInt(1);
-                int dataPosition2 = parcel.dataPosition();
-                parcelable.writeToParcel(parcel, 0);
-                int dataPosition3 = parcel.dataPosition();
-                parcel.setDataPosition(dataPosition);
-                parcel.writeInt(dataPosition3 - dataPosition2);
-                parcel.setDataPosition(dataPosition3);
-            }
-        }
-        s(parcel, r10);
-    }
-
-    public static void q(Parcel parcel, int i7, int i10) {
-        parcel.writeInt(i7 | (i10 << 16));
-    }
-
-    public static int r(Parcel parcel, int i7) {
-        parcel.writeInt(i7 | (-65536));
-        parcel.writeInt(0);
-        return parcel.dataPosition();
-    }
-
-    public static void s(Parcel parcel, int i7) {
+    public static Bundle a(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
         int dataPosition = parcel.dataPosition();
-        parcel.setDataPosition(i7 - 4);
-        parcel.writeInt(dataPosition - i7);
-        parcel.setDataPosition(dataPosition);
+        if (x10 == 0) {
+            return null;
+        }
+        Bundle readBundle = parcel.readBundle();
+        parcel.setDataPosition(dataPosition + x10);
+        return readBundle;
+    }
+
+    public static byte[] b(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        byte[] createByteArray = parcel.createByteArray();
+        parcel.setDataPosition(dataPosition + x10);
+        return createByteArray;
+    }
+
+    public static byte[][] c(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        int readInt = parcel.readInt();
+        byte[][] bArr = new byte[readInt];
+        for (int i10 = 0; i10 < readInt; i10++) {
+            bArr[i10] = parcel.createByteArray();
+        }
+        parcel.setDataPosition(dataPosition + x10);
+        return bArr;
+    }
+
+    public static int[] d(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        int[] createIntArray = parcel.createIntArray();
+        parcel.setDataPosition(dataPosition + x10);
+        return createIntArray;
+    }
+
+    public static ArrayList e(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        ArrayList arrayList = new ArrayList();
+        int readInt = parcel.readInt();
+        for (int i10 = 0; i10 < readInt; i10++) {
+            arrayList.add(Integer.valueOf(parcel.readInt()));
+        }
+        parcel.setDataPosition(dataPosition + x10);
+        return arrayList;
+    }
+
+    public static long[] f(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        long[] createLongArray = parcel.createLongArray();
+        parcel.setDataPosition(dataPosition + x10);
+        return createLongArray;
+    }
+
+    public static Parcelable g(Parcel parcel, int i7, Parcelable.Creator creator) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        Parcelable parcelable = (Parcelable) creator.createFromParcel(parcel);
+        parcel.setDataPosition(dataPosition + x10);
+        return parcelable;
+    }
+
+    public static String h(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        String readString = parcel.readString();
+        parcel.setDataPosition(dataPosition + x10);
+        return readString;
+    }
+
+    public static String[] i(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        String[] createStringArray = parcel.createStringArray();
+        parcel.setDataPosition(dataPosition + x10);
+        return createStringArray;
+    }
+
+    public static ArrayList j(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        ArrayList<String> createStringArrayList = parcel.createStringArrayList();
+        parcel.setDataPosition(dataPosition + x10);
+        return createStringArrayList;
+    }
+
+    public static Object[] k(Parcel parcel, int i7, Parcelable.Creator creator) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        Object[] createTypedArray = parcel.createTypedArray(creator);
+        parcel.setDataPosition(dataPosition + x10);
+        return createTypedArray;
+    }
+
+    public static ArrayList l(Parcel parcel, int i7, Parcelable.Creator creator) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        ArrayList createTypedArrayList = parcel.createTypedArrayList(creator);
+        parcel.setDataPosition(dataPosition + x10);
+        return createTypedArrayList;
+    }
+
+    public static void m(Parcel parcel, int i7) {
+        if (parcel.dataPosition() == i7) {
+            return;
+        }
+        StringBuilder sb2 = new StringBuilder(String.valueOf(i7).length() + 26);
+        sb2.append("Overread allowed size end=");
+        sb2.append(i7);
+        throw new androidx.car.app.j(sb2.toString(), parcel);
+    }
+
+    public static boolean n(Parcel parcel, int i7) {
+        A(parcel, i7, 4);
+        if (parcel.readInt() != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public static Boolean o(Parcel parcel, int i7) {
+        boolean z9;
+        int x10 = x(parcel, i7);
+        if (x10 == 0) {
+            return null;
+        }
+        B(parcel, x10, 4);
+        if (parcel.readInt() != 0) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        return Boolean.valueOf(z9);
+    }
+
+    public static byte p(Parcel parcel, int i7) {
+        A(parcel, i7, 4);
+        return (byte) parcel.readInt();
+    }
+
+    public static double q(Parcel parcel, int i7) {
+        A(parcel, i7, 8);
+        return parcel.readDouble();
+    }
+
+    public static float r(Parcel parcel, int i7) {
+        A(parcel, i7, 4);
+        return parcel.readFloat();
+    }
+
+    public static Float s(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        if (x10 == 0) {
+            return null;
+        }
+        B(parcel, x10, 4);
+        return Float.valueOf(parcel.readFloat());
+    }
+
+    public static IBinder t(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        int dataPosition = parcel.dataPosition();
+        if (x10 == 0) {
+            return null;
+        }
+        IBinder readStrongBinder = parcel.readStrongBinder();
+        parcel.setDataPosition(dataPosition + x10);
+        return readStrongBinder;
+    }
+
+    public static int u(Parcel parcel, int i7) {
+        A(parcel, i7, 4);
+        return parcel.readInt();
+    }
+
+    public static Integer v(Parcel parcel, int i7) {
+        int x10 = x(parcel, i7);
+        if (x10 == 0) {
+            return null;
+        }
+        B(parcel, x10, 4);
+        return Integer.valueOf(parcel.readInt());
+    }
+
+    public static long w(Parcel parcel, int i7) {
+        A(parcel, i7, 8);
+        return parcel.readLong();
+    }
+
+    public static int x(Parcel parcel, int i7) {
+        if ((i7 & (-65536)) != -65536) {
+            return (char) (i7 >> 16);
+        }
+        return parcel.readInt();
+    }
+
+    public static void y(Parcel parcel, int i7) {
+        parcel.setDataPosition(parcel.dataPosition() + x(parcel, i7));
+    }
+
+    public static int z(Parcel parcel) {
+        int readInt = parcel.readInt();
+        int x10 = x(parcel, readInt);
+        char c10 = (char) readInt;
+        int dataPosition = parcel.dataPosition();
+        if (c10 == 20293) {
+            int i7 = x10 + dataPosition;
+            if (i7 >= dataPosition && i7 <= parcel.dataSize()) {
+                return i7;
+            }
+            StringBuilder sb2 = new StringBuilder(String.valueOf(dataPosition).length() + 32 + String.valueOf(i7).length());
+            sb2.append("Size read is invalid start=");
+            sb2.append(dataPosition);
+            sb2.append(" end=");
+            sb2.append(i7);
+            throw new androidx.car.app.j(sb2.toString(), parcel);
+        }
+        throw new androidx.car.app.j("Expected object header. Got 0x".concat(String.valueOf(Integer.toHexString(readInt))), parcel);
     }
 }

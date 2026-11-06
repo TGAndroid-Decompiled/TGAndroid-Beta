@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class ge0 extends AnimatorListenerAdapter {
-    public final int f33899a;
-    public final PipRoundVideoView f33900b;
+    public final int f33907a;
+    public final PipRoundVideoView f33908b;
 
     public ge0(PipRoundVideoView pipRoundVideoView, int i7) {
-        this.f33899a = i7;
-        this.f33900b = pipRoundVideoView;
+        this.f33907a = i7;
+        this.f33908b = pipRoundVideoView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f33899a) {
+        switch (this.f33907a) {
             case 0:
-                PipRoundVideoView pipRoundVideoView = this.f33900b;
-                if (animator.equals(pipRoundVideoView.f31427r)) {
-                    pipRoundVideoView.f31427r = null;
+                PipRoundVideoView pipRoundVideoView = this.f33908b;
+                if (animator.equals(pipRoundVideoView.f31428r)) {
+                    pipRoundVideoView.f31428r = null;
                     return;
                 }
                 return;
             default:
-                PipRoundVideoView pipRoundVideoView2 = this.f33900b;
+                PipRoundVideoView pipRoundVideoView2 = this.f33908b;
                 pipRoundVideoView2.a(false);
-                Runnable runnable = pipRoundVideoView2.f31428s;
+                Runnable runnable = pipRoundVideoView2.f31429s;
                 if (runnable != null) {
                     runnable.run();
                     return;

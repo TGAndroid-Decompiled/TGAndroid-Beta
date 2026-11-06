@@ -3,36 +3,36 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
-public final class ud extends org.telegram.ui.Components.l61 {
-    public final Context f50398a;
-    public final int f50399b;
-    public final int f50400c;
+public final class ud extends org.telegram.ui.Components.m61 {
+    public final Context f50397a;
+    public final int f50398b;
+    public final int f50399c;
     public final org.telegram.ui.ActionBar.f6 d;
-    public final ArrayList f50401e = new ArrayList();
-    public final vd f50402f;
+    public final ArrayList f50400e = new ArrayList();
+    public final vd f50401f;
 
     public ud(vd vdVar, Context context, int i7, long j3, int i10, org.telegram.ui.ActionBar.f6 f6Var) {
-        this.f50402f = vdVar;
-        this.f50398a = context;
-        this.f50399b = i7;
-        this.f50400c = i10;
+        this.f50401f = vdVar;
+        this.f50397a = context;
+        this.f50398b = i7;
+        this.f50399c = i10;
         this.d = f6Var;
         i();
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
-        this.f50402f.f50701b.L(view);
+        this.f50401f.f50700b.L(view);
     }
 
     @Override
     public final View d(int i7) {
-        return new td(this.f50402f, this.f50398a, i7, this.f50399b, this.f50400c, new bg.m0(this, i7, 20), this.d);
+        return new td(this.f50401f, this.f50397a, i7, this.f50398b, this.f50399c, new bg.m0(this, i7, 20), this.d);
     }
 
     @Override
     public final int e() {
-        return this.f50401e.size();
+        return this.f50400e.size();
     }
 
     @Override
@@ -50,9 +50,9 @@ public final class ud extends org.telegram.ui.Components.l61 {
     @Override
     public final int h(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f50401e;
+            ArrayList arrayList = this.f50400e;
             if (i7 < arrayList.size()) {
-                return ((org.telegram.ui.Components.w31) arrayList.get(i7)).f39843z;
+                return ((org.telegram.ui.Components.x31) arrayList.get(i7)).f40172z;
             }
             return 1;
         }
@@ -60,14 +60,14 @@ public final class ud extends org.telegram.ui.Components.l61 {
     }
 
     public final void i() {
-        ArrayList arrayList = this.f50401e;
+        ArrayList arrayList = this.f50400e;
         arrayList.clear();
-        vd vdVar = this.f50402f;
-        if (!vdVar.f50705n.isEmpty()) {
-            arrayList.add(org.telegram.ui.Components.w31.D(1));
+        vd vdVar = this.f50401f;
+        if (!vdVar.f50704n.isEmpty()) {
+            arrayList.add(org.telegram.ui.Components.x31.D(1));
         }
-        if (!vdVar.f50706r.isEmpty()) {
-            arrayList.add(org.telegram.ui.Components.w31.D(0));
+        if (!vdVar.f50705r.isEmpty()) {
+            arrayList.add(org.telegram.ui.Components.x31.D(0));
         }
     }
 }

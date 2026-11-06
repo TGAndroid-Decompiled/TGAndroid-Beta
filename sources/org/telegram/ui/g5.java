@@ -22,9 +22,9 @@ public abstract class g5 extends androidx.fragment.app.u {
         }
         if (i7 == 104) {
             if (z9) {
-                c40 c40Var = c40.f44540u5;
+                c40 c40Var = c40.f44539u5;
                 if (c40Var != null) {
-                    c40Var.f44604o1.callOnClick();
+                    c40Var.f44603o1.callOnClick();
                     return true;
                 }
             } else {
@@ -41,8 +41,8 @@ public abstract class g5 extends androidx.fragment.app.u {
                 return true;
             } else if (i7 != 3 && i7 != 150) {
                 if (i7 != 18 && i7 != 19 && i7 != 20 && i7 != 22) {
-                    int i10 = org.telegram.messenger.qs.f25084w4;
-                    int i11 = org.telegram.messenger.qs.f25077v4;
+                    int i10 = org.telegram.messenger.qs.f25092w4;
+                    int i11 = org.telegram.messenger.qs.f25085v4;
                     if (i7 == 2) {
                         org.telegram.messenger.qs e10 = org.telegram.messenger.qs.e();
                         if (z9) {
@@ -90,7 +90,7 @@ public abstract class g5 extends androidx.fragment.app.u {
                     w(2131624116, org.telegram.messenger.hd.M0(2131747307, null));
                     return true;
                 } else {
-                    if (org.telegram.messenger.iz.f23424y0) {
+                    if (org.telegram.messenger.iz.f23431y0) {
                         CameraController.getInstance().initCamera(null);
                     }
                     return false;
@@ -117,7 +117,7 @@ public abstract class g5 extends androidx.fragment.app.u {
         alertDialog$Builder.m(i7, 72, org.telegram.ui.ActionBar.k6.x0(null, i10, false), null);
         alertDialog$Builder.n(i10, null);
         SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(str);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
         u1Var.T = X2;
         alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747299, null), new w0(this, 4));
         alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131751772, null), null);

@@ -9,8 +9,8 @@ import c8.y9;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicBoolean;
 public abstract class s {
-    public static final a0.l f53839a = new a0.l(0);
-    public static Locale f53840b;
+    public static final a0.l f53838a = new a0.l(0);
+    public static Locale f53839b;
 
     public static String a(Context context, int i7) {
         Resources resources = context.getResources();
@@ -144,13 +144,13 @@ public abstract class s {
 
     public static String f(Context context, String str) {
         Resources resources;
-        a0.l lVar = f53839a;
+        a0.l lVar = f53838a;
         synchronized (lVar) {
             try {
                 Locale locale = y9.a(context.getResources().getConfiguration()).f20117a.get(0);
-                if (!locale.equals(f53840b)) {
+                if (!locale.equals(f53839b)) {
                     lVar.clear();
-                    f53840b = locale;
+                    f53839b = locale;
                 }
                 String str2 = (String) lVar.get(str);
                 if (str2 != null) {

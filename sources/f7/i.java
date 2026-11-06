@@ -2,7 +2,7 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.Arrays;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,18 +102,18 @@ public final class i extends l {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         byte[] p10;
-        int r10 = wb.r(parcel, 20293);
-        wb.c(parcel, 2, this.f11386a.p());
-        wb.c(parcel, 3, this.f11387b.p());
-        wb.c(parcel, 4, this.f11388c.p());
-        wb.c(parcel, 5, this.d.p());
+        int r10 = xb.r(parcel, 20293);
+        xb.c(parcel, 2, this.f11386a.p());
+        xb.c(parcel, 3, this.f11387b.p());
+        xb.c(parcel, 4, this.f11388c.p());
+        xb.c(parcel, 5, this.d.p());
         q7.s0 s0Var = this.f11389e;
         if (s0Var == null) {
             p10 = null;
         } else {
             p10 = s0Var.p();
         }
-        wb.c(parcel, 6, p10);
-        wb.s(parcel, r10);
+        xb.c(parcel, 6, p10);
+        xb.s(parcel, r10);
     }
 }

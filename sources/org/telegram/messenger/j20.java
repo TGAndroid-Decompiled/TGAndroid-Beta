@@ -31,40 +31,40 @@ public final class j20 {
     public boolean V;
     public boolean W;
     public boolean X;
-    public long f23443a;
-    public boolean f23444a0;
-    public long f23445b;
+    public long f23450a;
+    public boolean f23451a0;
+    public long f23452b;
     public float d;
-    public float f23448e;
-    public int f23449f;
-    public int f23450g;
+    public float f23455e;
+    public int f23456f;
+    public int f23457g;
     public int h;
-    public int f23451i;
-    public int f23452j;
-    public int f23453k;
-    public int f23454l;
-    public int f23455m;
-    public String f23457o;
-    public long f23458p;
-    public long f23459q;
-    public long f23460r;
-    public boolean f23461s;
-    public boolean f23462t;
+    public int f23458i;
+    public int f23459j;
+    public int f23460k;
+    public int f23461l;
+    public int f23462m;
+    public String f23464o;
+    public long f23465p;
+    public long f23466q;
+    public long f23467r;
+    public boolean f23468s;
+    public boolean f23469t;
     public long v;
-    public TLRPC.InputFile f23464w;
-    public TLRPC.InputEncryptedFile f23465x;
-    public byte[] f23466y;
-    public byte[] f23467z;
-    public long f23447c = -1;
-    public int f23456n = 24;
-    public float f23463u = 1.0f;
+    public TLRPC.InputFile f23471w;
+    public TLRPC.InputEncryptedFile f23472x;
+    public byte[] f23473y;
+    public byte[] f23474z;
+    public long f23454c = -1;
+    public int f23463n = 24;
+    public float f23470u = 1.0f;
     public long U = Long.MIN_VALUE;
     public boolean Y = false;
     public boolean Z = true;
-    public final ArrayList f23446b0 = new ArrayList();
+    public final ArrayList f23453b0 = new ArrayList();
 
     public final boolean a() {
-        return this.f23461s;
+        return this.f23468s;
     }
 
     public final String b() {
@@ -73,7 +73,7 @@ public final class j20 {
         String f10;
         Object obj;
         ArrayList arrayList;
-        if (this.f23447c == -1 && this.A == null && this.B == null && this.C == null && (((arrayList = this.G) == null || arrayList.isEmpty()) && this.H == null)) {
+        if (this.f23454c == -1 && this.A == null && this.B == null && this.C == null && (((arrayList = this.G) == null || arrayList.isEmpty()) && this.H == null)) {
             f10 = "";
         } else {
             if (this.A != null) {
@@ -96,52 +96,52 @@ public final class j20 {
             }
             SerializedData serializedData = new SerializedData(i7);
             serializedData.writeInt32(11);
-            serializedData.writeInt64(this.f23447c);
-            serializedData.writeInt32(this.f23452j);
+            serializedData.writeInt64(this.f23454c);
+            serializedData.writeInt32(this.f23459j);
             if (this.A != null) {
                 serializedData.writeByte(1);
-                serializedData.writeFloat(this.A.f22906a);
-                serializedData.writeFloat(this.A.f22907b);
-                serializedData.writeFloat(this.A.f22908c);
+                serializedData.writeFloat(this.A.f22913a);
+                serializedData.writeFloat(this.A.f22914b);
+                serializedData.writeFloat(this.A.f22915c);
                 serializedData.writeFloat(this.A.d);
-                serializedData.writeFloat(this.A.f22909e);
-                serializedData.writeFloat(this.A.f22910f);
-                serializedData.writeFloat(this.A.f22911g);
+                serializedData.writeFloat(this.A.f22916e);
+                serializedData.writeFloat(this.A.f22917f);
+                serializedData.writeFloat(this.A.f22918g);
                 serializedData.writeInt32(this.A.h);
-                serializedData.writeInt32(this.A.f22912i);
-                serializedData.writeFloat(this.A.f22913j);
-                serializedData.writeFloat(this.A.f22914k);
-                serializedData.writeFloat(this.A.f22915l);
-                serializedData.writeFloat(this.A.f22916m);
-                serializedData.writeInt32(this.A.f22917n);
-                serializedData.writeFloat(this.A.f22918o);
-                serializedData.writeFloat(this.A.f22920q);
-                PointF pointF = this.A.f22921r;
+                serializedData.writeInt32(this.A.f22919i);
+                serializedData.writeFloat(this.A.f22920j);
+                serializedData.writeFloat(this.A.f22921k);
+                serializedData.writeFloat(this.A.f22922l);
+                serializedData.writeFloat(this.A.f22923m);
+                serializedData.writeInt32(this.A.f22924n);
+                serializedData.writeFloat(this.A.f22925o);
+                serializedData.writeFloat(this.A.f22927q);
+                PointF pointF = this.A.f22928r;
                 if (pointF != null) {
                     serializedData.writeFloat(pointF.x);
-                    serializedData.writeFloat(this.A.f22921r.y);
+                    serializedData.writeFloat(this.A.f22928r.y);
                 } else {
                     serializedData.writeFloat(0.0f);
                     serializedData.writeFloat(0.0f);
                 }
-                serializedData.writeFloat(this.A.f22922s);
-                serializedData.writeFloat(this.A.f22923t);
+                serializedData.writeFloat(this.A.f22929s);
+                serializedData.writeFloat(this.A.f22930t);
                 for (int i10 = 0; i10 < 4; i10++) {
                     if (i10 == 0) {
-                        obj = this.A.f22919p.f14058b;
+                        obj = this.A.f22926p.f14058b;
                     } else if (i10 == 1) {
-                        obj = this.A.f22919p.f14059c;
+                        obj = this.A.f22926p.f14059c;
                     } else if (i10 == 2) {
-                        obj = this.A.f22919p.d;
+                        obj = this.A.f22926p.d;
                     } else {
-                        obj = this.A.f22919p.f14060e;
+                        obj = this.A.f22926p.f14060e;
                     }
                     qd0 qd0Var = (qd0) obj;
-                    serializedData.writeFloat(qd0Var.f37266a);
-                    serializedData.writeFloat(qd0Var.f37267b);
-                    serializedData.writeFloat(qd0Var.f37268c);
+                    serializedData.writeFloat(qd0Var.f37261a);
+                    serializedData.writeFloat(qd0Var.f37262b);
+                    serializedData.writeFloat(qd0Var.f37263c);
                     serializedData.writeFloat(qd0Var.d);
-                    serializedData.writeFloat(qd0Var.f37269e);
+                    serializedData.writeFloat(qd0Var.f37264e);
                 }
             } else {
                 serializedData.writeByte(0);
@@ -166,29 +166,29 @@ public final class j20 {
             }
             if (this.H != null) {
                 serializedData.writeByte(1);
-                serializedData.writeFloat(this.H.f26618a);
-                serializedData.writeFloat(this.H.f26619b);
-                serializedData.writeFloat(this.H.f26621e);
-                serializedData.writeFloat(this.H.f26622f);
-                serializedData.writeFloat(this.H.f26620c);
+                serializedData.writeFloat(this.H.f26626a);
+                serializedData.writeFloat(this.H.f26627b);
+                serializedData.writeFloat(this.H.f26629e);
+                serializedData.writeFloat(this.H.f26630f);
+                serializedData.writeFloat(this.H.f26628c);
                 serializedData.writeFloat(this.H.d);
-                serializedData.writeInt32(this.H.f26623i);
-                serializedData.writeInt32(this.H.f26624j);
-                serializedData.writeInt32(this.H.f26625k);
-                serializedData.writeBool(this.H.f26626l);
+                serializedData.writeInt32(this.H.f26631i);
+                serializedData.writeInt32(this.H.f26632j);
+                serializedData.writeInt32(this.H.f26633k);
+                serializedData.writeBool(this.H.f26634l);
             } else {
                 serializedData.writeByte(0);
             }
             serializedData.writeInt32(0);
             serializedData.writeBool(this.J);
-            serializedData.writeBool(this.f23444a0);
+            serializedData.writeBool(this.f23451a0);
             if (bArr2 != null) {
                 serializedData.writeByte(1);
                 serializedData.writeByteArray(bArr2);
             } else {
                 serializedData.writeByte(0);
             }
-            serializedData.writeFloat(this.f23463u);
+            serializedData.writeFloat(this.f23470u);
             serializedData.writeBool(this.N);
             fi.t tVar = this.L;
             if (tVar != null && this.M != null && tVar.f12828e.size() > 1 && !this.M.isEmpty()) {
@@ -204,19 +204,19 @@ public final class j20 {
             serializedData.cleanup();
         }
         Locale locale = Locale.US;
-        long j3 = this.f23443a;
-        long j10 = this.f23445b;
-        int i13 = this.f23450g;
+        long j3 = this.f23450a;
+        long j10 = this.f23452b;
+        int i13 = this.f23457g;
         int i14 = this.h;
-        int i15 = this.f23451i;
-        int i16 = this.f23455m;
-        int i17 = this.f23453k;
-        int i18 = this.f23454l;
+        int i15 = this.f23458i;
+        int i16 = this.f23462m;
+        int i17 = this.f23460k;
+        int i18 = this.f23461l;
         long j11 = this.v;
-        int i19 = this.f23456n;
-        long j12 = this.f23458p;
+        int i19 = this.f23463n;
+        long j12 = this.f23465p;
         String str3 = f10;
-        String str4 = this.f23457o;
+        String str4 = this.f23464o;
         StringBuilder t6 = a8.p0.t(j3, "-1_", "_");
         t6.append(j10);
         t6.append("_");
@@ -244,19 +244,19 @@ public final class j20 {
     public final boolean c() {
         ye yeVar;
         boolean z9 = this.J;
-        ArrayList arrayList = this.f23446b0;
+        ArrayList arrayList = this.f23453b0;
         if (z9) {
-            if (this.f23444a0 && arrayList.isEmpty() && this.G == null && this.B == null && this.C == null && this.A == null && (((yeVar = this.H) == null || yeVar.b()) && this.f23443a <= 0)) {
-                long j3 = this.f23445b;
-                if ((j3 == -1 || j3 == this.f23460r) && this.f23451i == this.f23454l && this.h == this.f23453k) {
+            if (this.f23451a0 && arrayList.isEmpty() && this.G == null && this.B == null && this.C == null && this.A == null && (((yeVar = this.H) == null || yeVar.b()) && this.f23450a <= 0)) {
+                long j3 = this.f23452b;
+                if ((j3 == -1 || j3 == this.f23467r) && this.f23458i == this.f23461l && this.h == this.f23460k) {
                     return false;
                 }
             }
             return true;
         }
-        if (arrayList.isEmpty() && this.G == null && this.B == null && this.C == null && this.A == null && this.H == null && this.f23461s && this.f23443a <= 0) {
-            long j10 = this.f23445b;
-            if (j10 == -1 || j10 == this.f23460r) {
+        if (arrayList.isEmpty() && this.G == null && this.B == null && this.C == null && this.A == null && this.H == null && this.f23468s && this.f23450a <= 0) {
+            long j10 = this.f23452b;
+            if (j10 == -1 || j10 == this.f23467r) {
                 return false;
             }
         }

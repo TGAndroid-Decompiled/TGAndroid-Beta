@@ -21,7 +21,7 @@ public final class c5 extends EditTextBoldCursor {
         this.I1 = i6Var;
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
-        i6Var.f34477b = 5;
+        i6Var.f34508b = 5;
         i6Var.setCallback(this);
     }
 
@@ -30,7 +30,7 @@ public final class c5 extends EditTextBoldCursor {
         int i7;
         super.dispatchDraw(canvas);
         if (this.G1 <= 0) {
-            i7 = org.telegram.ui.ActionBar.k6.f28069p7;
+            i7 = org.telegram.ui.ActionBar.k6.f28070p7;
         } else {
             i7 = org.telegram.ui.ActionBar.k6.P5;
         }

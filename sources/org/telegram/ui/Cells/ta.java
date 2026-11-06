@@ -23,26 +23,26 @@ import org.telegram.ui.Components.qa0;
 import org.telegram.ui.oc1;
 import org.telegram.ui.pc1;
 public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final di.c4 f30539a;
-    public final ImageView f30540b;
-    public final CheckBox f30541c;
+    public final di.c4 f30540a;
+    public final ImageView f30541b;
+    public final CheckBox f30542c;
     public final View d;
-    public boolean f30542e;
-    public AnimatorSet f30543f;
+    public boolean f30543e;
+    public AnimatorSet f30544f;
     public Object h;
-    public int f30544n;
-    public int f30545r;
-    public final ua f30546s;
+    public int f30545n;
+    public int f30546r;
+    public final ua f30547s;
 
     public ta(ua uaVar, Context context) {
         super(context);
-        this.f30546s = uaVar;
+        this.f30547s = uaVar;
         setWillNotDraw(false);
         di.c4 c4Var = new di.c4(4, context, this);
-        this.f30539a = c4Var;
+        this.f30540a = c4Var;
         addView(c4Var, c8.ha.e(-1, -1, 51));
         ImageView imageView = new ImageView(context);
-        this.f30540b = imageView;
+        this.f30541b = imageView;
         imageView.setImageResource(2131231272);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView, c8.ha.e(-1, -1, 51));
@@ -51,9 +51,9 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
         view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.N0(false));
         addView(view, c8.ha.c(-1.0f, -1));
         CheckBox checkBox = new CheckBox(context, 2131232676);
-        this.f30541c = checkBox;
+        this.f30542c = checkBox;
         checkBox.setVisibility(4);
-        checkBox.c(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.i7, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27978k7, false));
+        checkBox.c(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.i7, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27979k7, false));
         addView(checkBox, c8.ha.d(22, 22.0f, 53, 0.0f, 2.0f, 2.0f, 0.0f));
     }
 
@@ -65,10 +65,10 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
         int V02;
         org.telegram.ui.Components.l9 l9Var;
         this.h = obj;
-        org.telegram.ui.Components.l9 l9Var2 = this.f30539a;
+        org.telegram.ui.Components.l9 l9Var2 = this.f30540a;
         int i7 = 0;
         l9Var2.setVisibility(0);
-        this.f30540b.setVisibility(4);
+        this.f30541b.setVisibility(4);
         TLRPC.PhotoSize photoSize = null;
         l9Var2.setBackgroundDrawable(null);
         l9Var2.getImageReceiver().f21206o1 = null;
@@ -80,7 +80,7 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
         } else {
             z9 = false;
         }
-        this.f30542e = z9;
+        this.f30543e = z9;
         if (obj instanceof TLRPC.TL_wallPaper) {
             TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj;
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(tL_wallPaper.document.thumbs, org.telegram.messenger.g0.L(100), false, null, false);
@@ -99,7 +99,7 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
                     TLRPC.WallPaperSettings wallPaperSettings2 = tL_wallPaper.settings;
                     qa0 qa0Var = new qa0(true, wallPaperSettings2.background_color, wallPaperSettings2.second_background_color, wallPaperSettings2.third_background_color, wallPaperSettings2.fourth_background_color);
                     if (tL_wallPaper.settings.intensity < 0 && org.telegram.ui.ActionBar.k6.I.q()) {
-                        l9Var2.getImageReceiver().m0(qa0Var.f37235k);
+                        l9Var2.getImageReceiver().m0(qa0Var.f37230k);
                     } else {
                         l9Var2.setBackground(qa0Var);
                         if (Build.VERSION.SDK_INT >= 29) {
@@ -133,14 +133,14 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
             }
         } else if (obj instanceof oc1) {
             oc1 oc1Var = (oc1) obj;
-            File file = oc1Var.f48378i;
+            File file = oc1Var.f48377i;
             int i10 = oc1Var.d;
-            int i11 = oc1Var.f48374c;
-            int i12 = oc1Var.f48373b;
-            if (file == null && oc1Var.f48377g == null && !"d".equals(oc1Var.f48372a)) {
+            int i11 = oc1Var.f48373c;
+            int i12 = oc1Var.f48372b;
+            if (file == null && oc1Var.f48376g == null && !"d".equals(oc1Var.f48371a)) {
                 l9Var2.setImageBitmap(null);
-                if (oc1Var.f48380k) {
-                    l9Var2.setBackground(new qa0(true, oc1Var.f48373b, oc1Var.f48374c, oc1Var.d, oc1Var.f48375e));
+                if (oc1Var.f48379k) {
+                    l9Var2.setBackground(new qa0(true, oc1Var.f48372b, oc1Var.f48373c, oc1Var.d, oc1Var.f48374e));
                     return;
                 } else if (i11 != 0) {
                     l9Var2.setBackground(new GradientDrawable(GradientDrawable.Orientation.BL_TR, new int[]{i12 | (-16777216), i11 | (-16777216)}));
@@ -151,36 +151,36 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
                 }
             }
             if (i10 != 0) {
-                qa0 qa0Var2 = new qa0(true, oc1Var.f48373b, oc1Var.f48374c, oc1Var.d, oc1Var.f48375e);
+                qa0 qa0Var2 = new qa0(true, oc1Var.f48372b, oc1Var.f48373c, oc1Var.d, oc1Var.f48374e);
                 if (oc1Var.h >= 0.0f) {
-                    l9Var2.setBackground(new qa0(true, oc1Var.f48373b, oc1Var.f48374c, oc1Var.d, oc1Var.f48375e));
+                    l9Var2.setBackground(new qa0(true, oc1Var.f48372b, oc1Var.f48373c, oc1Var.d, oc1Var.f48374e));
                     if (Build.VERSION.SDK_INT >= 29) {
                         l9Var2.getImageReceiver().Z(BlendMode.SOFT_LIGHT);
                     }
                 } else {
-                    l9Var2.getImageReceiver().m0(qa0Var2.f37235k);
+                    l9Var2.getImageReceiver().m0(qa0Var2.f37230k);
                 }
-                V0 = qa0.g(i12, i11, i10, oc1Var.f48375e);
+                V0 = qa0.g(i12, i11, i10, oc1Var.f48374e);
             } else {
                 V0 = org.telegram.messenger.g0.V0(i12, false);
             }
             int i13 = V0;
-            if ("d".equals(oc1Var.f48372a)) {
-                if (oc1Var.f48382m == null) {
-                    oc1Var.f48382m = sz.d(2131623997, 100, 180, -16777216);
+            if ("d".equals(oc1Var.f48371a)) {
+                if (oc1Var.f48381m == null) {
+                    oc1Var.f48381m = sz.d(2131623997, 100, 180, -16777216);
                 }
-                l9Var2.setImageBitmap(oc1Var.f48382m);
+                l9Var2.setImageBitmap(oc1Var.f48381m);
                 l9Var2.getImageReceiver().setAlpha(Math.abs(oc1Var.h));
             } else if (file != null) {
                 l9Var2.h(file.getAbsolutePath(), "180_180", null);
             } else {
-                TLRPC.PhotoSize w12 = org.telegram.messenger.w7.w(oc1Var.f48377g.document.thumbs, 100, false, null, false);
+                TLRPC.PhotoSize w12 = org.telegram.messenger.w7.w(oc1Var.f48376g.document.thumbs, 100, false, null, false);
                 if (w12 != null) {
                     j3 = w12.size;
                 } else {
-                    j3 = oc1Var.f48377g.document.size;
+                    j3 = oc1Var.f48376g.document.size;
                 }
-                l9Var2.g(1, j3, oc1Var.f48377g, "180_180", null, "jpg", hc.c(w12, oc1Var.f48377g.document), null);
+                l9Var2.g(1, j3, oc1Var.f48376g, "180_180", null, "jpg", hc.c(w12, oc1Var.f48376g.document), null);
                 l9Var2.getImageReceiver().setAlpha(Math.abs(oc1Var.h));
                 if (Build.VERSION.SDK_INT >= 29 && i10 != 0) {
                     return;
@@ -189,7 +189,7 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
             }
         } else if (obj instanceof pc1) {
             pc1 pc1Var = (pc1) obj;
-            File file2 = pc1Var.f48801e;
+            File file2 = pc1Var.f48800e;
             if (file2 != null) {
                 l9Var2.h(file2.getAbsolutePath(), "180_180", null);
                 return;
@@ -197,10 +197,10 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
             File file3 = pc1Var.d;
             if (file3 != null) {
                 l9Var2.h(file3.getAbsolutePath(), "180_180", null);
-            } else if ("t".equals(pc1Var.f48798a)) {
+            } else if ("t".equals(pc1Var.f48797a)) {
                 l9Var2.setImageDrawable(org.telegram.ui.ActionBar.k6.Z0(l9Var2, true));
             } else {
-                l9Var2.setImageResource(pc1Var.f48800c);
+                l9Var2.setImageResource(pc1Var.f48799c);
             }
         } else if (obj instanceof kf) {
             kf kfVar = (kf) obj;
@@ -219,36 +219,36 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
             }
             l9Var2.h(kfVar.D, "180_180", null);
         } else {
-            this.f30542e = false;
+            this.f30543e = false;
         }
     }
 
     @Override
     public final void clearAnimation() {
         super.clearAnimation();
-        AnimatorSet animatorSet = this.f30543f;
+        AnimatorSet animatorSet = this.f30544f;
         if (animatorSet != null) {
             animatorSet.cancel();
-            this.f30543f = null;
+            this.f30544f = null;
         }
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f30539a.invalidate();
+        this.f30540a.invalidate();
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        ua uaVar = this.f30546s;
-        if (!uaVar.f30589b || !this.f30541c.f31243y) {
-            di.c4 c4Var = this.f30539a;
+        ua uaVar = this.f30547s;
+        if (!uaVar.f30590b || !this.f30542c.f31244y) {
+            di.c4 c4Var = this.f30540a;
             if (c4Var.getImageReceiver().I() && c4Var.getImageReceiver().f21194h1 == 1.0f) {
                 return;
             }
         }
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), uaVar.f30595s);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), uaVar.f30596s);
     }
 
     @Override
@@ -261,15 +261,15 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final void updateColors() {
         try {
             int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.i7, false);
-            int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27978k7, false);
-            CheckBox checkBox = this.f30541c;
+            int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27979k7, false);
+            CheckBox checkBox = this.f30542c;
             if (checkBox != null) {
-                if (x02 == this.f30544n) {
-                    if (x03 != this.f30545r) {
+                if (x02 == this.f30545n) {
+                    if (x03 != this.f30546r) {
                     }
                 }
-                this.f30544n = x02;
-                this.f30545r = x03;
+                this.f30545n = x02;
+                this.f30546r = x03;
                 checkBox.c(x02, x03);
             }
             invalidate();

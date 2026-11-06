@@ -23,7 +23,7 @@ public final class i7 implements Runnable {
                 long j3 = this.f9231c;
                 int i7 = this.d;
                 yr yrVar = this.f9230b.f9338b;
-                SQLiteDatabase sQLiteDatabase = yrVar.f26690b;
+                SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
                 try {
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("REPLACE INTO stories_counter VALUES(" + j3 + ", 0, " + i7 + ")").stepThis().dispose();
@@ -36,7 +36,7 @@ public final class i7 implements Runnable {
                 long j10 = this.f9231c;
                 int i10 = this.d;
                 yr yrVar2 = this.f9230b.f9338b;
-                SQLiteDatabase sQLiteDatabase2 = yrVar2.f26690b;
+                SQLiteDatabase sQLiteDatabase2 = yrVar2.f26698b;
                 try {
                     Locale locale2 = Locale.US;
                     sQLiteDatabase2.executeFast("DELETE FROM stories WHERE dialog_id = " + j10 + " AND story_id = " + i10).stepThis().dispose();

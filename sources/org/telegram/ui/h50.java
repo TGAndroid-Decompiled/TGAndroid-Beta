@@ -13,25 +13,25 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 public final class h50 implements RequestDelegate {
-    public final int f46221a;
-    public final Object f46222b;
-    public final Object f46223c;
+    public final int f46220a;
+    public final Object f46221b;
+    public final Object f46222c;
 
     public h50(int i7, Object obj, Object obj2) {
-        this.f46221a = i7;
-        this.f46223c = obj;
-        this.f46222b = obj2;
+        this.f46220a = i7;
+        this.f46222c = obj;
+        this.f46221b = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f46221a;
-        Object obj = this.f46222b;
-        Object obj2 = this.f46223c;
+        int i7 = this.f46220a;
+        Object obj = this.f46221b;
+        Object obj2 = this.f46222c;
         switch (i7) {
             case 0:
                 i50 i50Var = (i50) obj2;
-                if (Objects.equals(i50Var.f46575a.f46846e, (String) obj)) {
+                if (Objects.equals(i50Var.f46574a.f46845e, (String) obj)) {
                     org.telegram.messenger.g0.h3(new q10(4, i50Var, tLObject));
                     return;
                 }
@@ -117,7 +117,7 @@ public final class h50 implements RequestDelegate {
                 TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm = (TLRPC.TL_payments_sendPaymentForm) obj;
                 if (tLObject != null) {
                     if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
-                        org.telegram.messenger.c20 c20Var = hl0Var2.f46415c1;
+                        org.telegram.messenger.c20 c20Var = hl0Var2.f46414c1;
                         if (c20Var != null) {
                             c20Var.a((TLRPC.TL_payments_paymentResult) tLObject);
                             return;
@@ -148,7 +148,7 @@ public final class h50 implements RequestDelegate {
                         return;
                     }
                 }
-                j00 j00Var = hl0Var2.f46420e1;
+                j00 j00Var = hl0Var2.f46419e1;
                 if (j00Var == null || !((Boolean) j00Var.a(tL_error)).booleanValue()) {
                     org.telegram.messenger.g0.h3(new mc0(hl0Var2, tL_error, tL_payments_sendPaymentForm, 17));
                     return;

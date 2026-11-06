@@ -38,31 +38,31 @@ public final class h implements f3.o {
     public boolean L;
     public boolean M;
     public long N;
-    public final c4.k f59506a;
-    public final int f59507b;
-    public final List f59508c;
+    public final c4.k f59505a;
+    public final int f59506b;
+    public final List f59507c;
     public final byte[] h;
-    public final x f59512i;
-    public final k0 f59513j;
-    public final h2.c f59518o;
-    public final j0 f59519p;
-    public final aa.n f59520q;
-    public t1 f59521r;
-    public int f59522s;
-    public int f59523t;
-    public long f59524u;
+    public final x f59511i;
+    public final k0 f59512j;
+    public final h2.c f59517o;
+    public final j0 f59518p;
+    public final aa.n f59519q;
+    public t1 f59520r;
+    public int f59521s;
+    public int f59522t;
+    public long f59523u;
     public int v;
-    public x f59525w;
-    public long f59526x;
-    public int f59527y;
-    public long f59528z;
-    public final d0 f59514k = new d0(20);
-    public final x f59515l = new x(16);
-    public final x f59509e = new x(i2.o.f15202a);
-    public final x f59510f = new x(6);
-    public final x f59511g = new x();
-    public final ArrayDeque f59516m = new ArrayDeque();
-    public final ArrayDeque f59517n = new ArrayDeque();
+    public x f59524w;
+    public long f59525x;
+    public int f59526y;
+    public long f59527z;
+    public final d0 f59513k = new d0(20);
+    public final x f59514l = new x(16);
+    public final x f59508e = new x(i2.o.f15202a);
+    public final x f59509f = new x(6);
+    public final x f59510g = new x();
+    public final ArrayDeque f59515m = new ArrayDeque();
+    public final ArrayDeque f59516n = new ArrayDeque();
     public final SparseArray d = new SparseArray();
 
     static {
@@ -72,24 +72,24 @@ public final class h implements f3.o {
     }
 
     public h(c4.k kVar, int i7, k0 k0Var, List list, o2.o oVar) {
-        this.f59506a = kVar;
-        this.f59507b = i7;
-        this.f59513j = k0Var;
-        this.f59508c = DesugarCollections.unmodifiableList(list);
-        this.f59519p = oVar;
+        this.f59505a = kVar;
+        this.f59506b = i7;
+        this.f59512j = k0Var;
+        this.f59507c = DesugarCollections.unmodifiableList(list);
+        this.f59518p = oVar;
         byte[] bArr = new byte[16];
         this.h = bArr;
-        this.f59512i = new x(bArr);
+        this.f59511i = new x(bArr);
         g0 g0Var = i0.f14329b;
-        this.f59521r = t1.f14397e;
+        this.f59520r = t1.f14397e;
         this.A = -9223372036854775807L;
-        this.f59528z = -9223372036854775807L;
+        this.f59527z = -9223372036854775807L;
         this.B = -9223372036854775807L;
         this.I = f3.q.f11069q;
         this.J = new j0[0];
         this.K = new j0[0];
-        this.f59518o = new h2.c(new e(this));
-        this.f59520q = new aa.n(17);
+        this.f59517o = new h2.c(new e(this));
+        this.f59519q = new aa.n(17);
         this.N = -1L;
     }
 
@@ -140,7 +140,7 @@ public final class h implements f3.o {
         boolean z9;
         xVar.N(i7 + 8);
         int m10 = xVar.m();
-        byte[] bArr = c.f59487a;
+        byte[] bArr = c.f59486a;
         if ((m10 & 1) == 0) {
             if ((m10 & 2) != 0) {
                 z9 = true;
@@ -149,23 +149,23 @@ public final class h implements f3.o {
             }
             int E = xVar.E();
             if (E == 0) {
-                Arrays.fill(sVar.f59594l, 0, sVar.f59588e, false);
+                Arrays.fill(sVar.f59593l, 0, sVar.f59587e, false);
                 return;
             }
-            int i10 = sVar.f59588e;
-            x xVar2 = sVar.f59596n;
+            int i10 = sVar.f59587e;
+            x xVar2 = sVar.f59595n;
             if (E == i10) {
-                Arrays.fill(sVar.f59594l, 0, E, z9);
+                Arrays.fill(sVar.f59593l, 0, E, z9);
                 xVar2.K(xVar.a());
-                sVar.f59593k = true;
-                sVar.f59597o = true;
+                sVar.f59592k = true;
+                sVar.f59596o = true;
                 xVar.k(0, xVar2.f14164c, xVar2.f14162a);
                 xVar2.N(0);
-                sVar.f59597o = false;
+                sVar.f59596o = false;
                 return;
             }
             StringBuilder n10 = jg.g.n(E, "Senc sample count ", " is different from fragment sample count");
-            n10.append(sVar.f59588e);
+            n10.append(sVar.f59587e);
             throw t0.a(null, n10.toString());
         }
         throw t0.c("Overriding TrackEncryptionBox parameters is unsupported.");
@@ -235,7 +235,7 @@ public final class h implements f3.o {
             g0 g0Var = i0.f14329b;
             t1Var = t1.f14397e;
         }
-        this.f59521r = t1Var;
+        this.f59520r = t1Var;
         if (m10 == null) {
             return true;
         }
@@ -245,16 +245,16 @@ public final class h implements f3.o {
     @Override
     public final void c(f3.q qVar) {
         int i7;
-        int i10 = this.f59507b;
+        int i10 = this.f59506b;
         if ((i10 & 32) == 0) {
-            qVar = new ab.q(qVar, this.f59506a);
+            qVar = new ab.q(qVar, this.f59505a);
         }
         this.I = qVar;
         h();
         j0[] j0VarArr = new j0[2];
         this.J = j0VarArr;
         int i11 = 0;
-        j0 j0Var = this.f59519p;
+        j0 j0Var = this.f59518p;
         if (j0Var != null) {
             j0VarArr[0] = j0Var;
             i7 = 1;
@@ -272,7 +272,7 @@ public final class h implements f3.o {
         for (j0 j0Var2 : j0VarArr2) {
             j0Var2.g(P);
         }
-        List list = this.f59508c;
+        List list = this.f59507c;
         this.K = new j0[list.size()];
         while (i11 < this.K.length) {
             j0 O1 = this.I.O1(i12, 3);
@@ -290,17 +290,17 @@ public final class h implements f3.o {
         for (int i7 = 0; i7 < size; i7++) {
             ((g) sparseArray.valueAt(i7)).e();
         }
-        this.f59517n.clear();
-        this.f59527y = 0;
-        ((PriorityQueue) this.f59518o.f14060e).clear();
-        this.f59528z = j10;
-        this.f59516m.clear();
+        this.f59516n.clear();
+        this.f59526y = 0;
+        ((PriorityQueue) this.f59517o.f14060e).clear();
+        this.f59527z = j10;
+        this.f59515m.clear();
         h();
     }
 
     @Override
     public final List e() {
-        return this.f59521r;
+        return this.f59520r;
     }
 
     @Override
@@ -309,7 +309,7 @@ public final class h implements f3.o {
     }
 
     public final void h() {
-        this.f59522s = 0;
+        this.f59521s = 0;
         this.v = 0;
     }
 

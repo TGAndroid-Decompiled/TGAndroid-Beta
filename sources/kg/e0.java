@@ -18,7 +18,7 @@ public final class e0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56956f == 0) {
+        if (d1Var.f56955f == 0) {
             return true;
         }
         return false;
@@ -65,7 +65,7 @@ public final class e0 extends oj0 {
                 p1Var.setTag(-33024);
             }
         } else {
-            p1Var = new p1(context, this.f17354f.f38947a, false);
+            p1Var = new p1(context, this.f17354f.f38968a, false);
         }
         return new v4.d1(p1Var);
     }

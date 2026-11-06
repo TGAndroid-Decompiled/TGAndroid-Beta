@@ -71,8 +71,8 @@ public final class o0 implements DialogInterface.OnDismissListener {
                 if (!((AtomicBoolean) this.f14834b).get()) {
                     x0Var.x(o7Var, "popup_closed", new JSONObject());
                 }
-                x0Var.f51363c0 = null;
-                x0Var.f51366e0 = System.currentTimeMillis();
+                x0Var.f51358c0 = null;
+                x0Var.f51361e0 = System.currentTimeMillis();
                 return;
             case 5:
                 org.telegram.ui.ActionBar.f2 f2Var2 = (org.telegram.ui.ActionBar.f2) this.f14834b;
@@ -85,7 +85,7 @@ public final class o0 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 org.telegram.messenger.g0.v1((zh.o1) this.f14834b);
-                org.telegram.messenger.g0.a3((Activity) this.d, ((zh.f2) this.f14835c).f60212a.getClassGuid());
+                org.telegram.messenger.g0.a3((Activity) this.d, ((zh.f2) this.f14835c).f60211a.getClassGuid());
                 return;
         }
     }

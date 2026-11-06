@@ -12,9 +12,9 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.ck0;
 public abstract class i0 {
-    public static final int[] f52825a = {k6.f28111ra, k6.Sc, k6.f27818be, k6.Uc, k6.Kd};
-    public static final int[] f52826b = {k6.f28053ob, k6.Tc, k6.f27909gc, k6.Vc, k6.Qb};
-    public static final int[] f52827c = {k6.f28112rb, k6.f28130sb, k6.f28149tb};
+    public static final int[] f52823a = {k6.f28112ra, k6.Sc, k6.f27819be, k6.Uc, k6.Kd};
+    public static final int[] f52824b = {k6.f28054ob, k6.Tc, k6.f27910gc, k6.Vc, k6.Qb};
+    public static final int[] f52825c = {k6.f28113rb, k6.f28131sb, k6.f28150tb};
 
     public static String a(f6 f6Var, boolean z9) {
         boolean q10;
@@ -28,9 +28,9 @@ public abstract class i0 {
             q10 = k6.I.q();
         }
         if (z9) {
-            iArr = f52826b;
+            iArr = f52824b;
         } else {
-            iArr = f52825a;
+            iArr = f52823a;
         }
         try {
             int b10 = b(f6Var, z9);
@@ -57,7 +57,7 @@ public abstract class i0 {
             jSONObject.put("secondary_bg_color", c(w11, w10));
             jSONObject.put("accent_text_color", c(w05, w10));
             jSONObject.put("subtitle_text_color", c(w03, w10));
-            jSONObject.put("destructive_text_color", c(k6.w0(k6.f28069p7, f6Var), w10));
+            jSONObject.put("destructive_text_color", c(k6.w0(k6.f28070p7, f6Var), w10));
             jSONObject.put("section_bg_color", c(w10, w10));
             jSONObject.put("section_header_text_color", c(w05, w10));
             jSONObject.put("section_separator_color", c(k6.r1(0.12f, w02), w10));
@@ -91,13 +91,13 @@ public abstract class i0 {
         int i10;
         int i11;
         if (z9) {
-            i7 = f52826b[0];
+            i7 = f52824b[0];
         } else {
-            i7 = f52825a[0];
+            i7 = f52823a[0];
         }
         int w02 = k6.w0(i7, f6Var);
         if (z9) {
-            int[] iArr = f52827c;
+            int[] iArr = f52825c;
             int i12 = iArr[0];
             if (f6Var != null) {
                 i10 = f6Var.j(i12);
@@ -147,15 +147,15 @@ public abstract class i0 {
             i7 = 0;
         }
         if (z9) {
-            iArr = f52826b;
+            iArr = f52824b;
         } else {
-            iArr = f52825a;
+            iArr = f52823a;
         }
         for (int i12 : iArr) {
             i7 = (i7 * 31) + k6.w0(i12, f6Var);
         }
         if (z9) {
-            for (int i13 : f52827c) {
+            for (int i13 : f52825c) {
                 int i14 = i7 * 31;
                 if (f6Var != null) {
                     i10 = f6Var.j(i13);
@@ -165,8 +165,8 @@ public abstract class i0 {
                 i7 = i14 + i10;
             }
         }
-        int w02 = (((k6.w0(k6.f28069p7, f6Var) + ((k6.w0(k6.Gi, f6Var) + ((k6.w0(k6.Ci, f6Var) + (i7 * 31)) * 31)) * 31)) * 31) + iz.W0) * 31;
-        TextPaint textPaint = k6.f28045o2;
+        int w02 = (((k6.w0(k6.f28070p7, f6Var) + ((k6.w0(k6.Gi, f6Var) + ((k6.w0(k6.Ci, f6Var) + (i7 * 31)) * 31)) * 31)) * 31) + iz.W0) * 31;
+        TextPaint textPaint = k6.f28046o2;
         if (textPaint != null) {
             i11 = Float.floatToIntBits(textPaint.getTextSize());
         }
@@ -176,12 +176,12 @@ public abstract class i0 {
     public static JSONObject e() {
         JSONObject jSONObject = new JSONObject();
         jSONObject.put("fontSize", iz.W0);
-        TextPaint textPaint = k6.f28045o2;
+        TextPaint textPaint = k6.f28046o2;
         if (textPaint != null && textPaint.getTextSize() > 0.0f) {
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             jSONObject.put("lineHeight", Math.round(Math.max(1.0f, Math.min(3.0f, ((fontMetrics.descent - fontMetrics.ascent) + fontMetrics.leading) / textPaint.getTextSize())) * 100.0f) / 100.0d);
         }
-        int round = Math.round(ck0.j0() / org.telegram.messenger.g0.f22536p);
+        int round = Math.round(ck0.j0() / org.telegram.messenger.g0.f22543p);
         jSONObject.put("padding", "8px " + round + "px");
         return jSONObject;
     }

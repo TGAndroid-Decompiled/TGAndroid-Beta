@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class oh extends l6 {
-    public final int f36604b;
-    public final di f36605c;
+    public final int f36622b;
+    public final di f36623c;
 
     public oh(di diVar, int i7) {
         super("translation", 0);
-        this.f36604b = i7;
+        this.f36622b = i7;
         switch (i7) {
             case 1:
-                this.f36605c = diVar;
+                this.f36623c = diVar;
                 super("openProgress", 0);
                 return;
             default:
-                this.f36605c = diVar;
+                this.f36623c = diVar;
                 return;
         }
     }
@@ -23,20 +23,20 @@ public final class oh extends l6 {
     public final void c(Object obj, float f10) {
         int i7;
         float f11;
-        switch (this.f36604b) {
+        switch (this.f36622b) {
             case 0:
                 vh vhVar = (vh) obj;
-                di diVar = this.f36605c;
+                di diVar = this.f36623c;
                 diVar.U1 = f10;
-                vh vhVar2 = diVar.f32959t2;
+                vh vhVar2 = diVar.f32988t2;
                 if (vhVar2 != null) {
-                    if (!(vhVar2 instanceof bm) && !(diVar.f32955s2 instanceof bm)) {
+                    if (!(vhVar2 instanceof bm) && !(diVar.f32984s2 instanceof bm)) {
                         vhVar2.setAlpha(f10);
-                        diVar.f32959t2.v(f10);
-                        vh vhVar3 = diVar.f32959t2;
+                        diVar.f32988t2.v(f10);
+                        vh vhVar3 = diVar.f32988t2;
                         bn bnVar = diVar.d2;
                         int i10 = 0;
-                        if (vhVar3 == bnVar || diVar.f32955s2 == bnVar) {
+                        if (vhVar3 == bnVar || diVar.f32984s2 == bnVar) {
                             if (vhVar3 == bnVar) {
                                 i7 = 1;
                             } else {
@@ -44,37 +44,37 @@ public final class oh extends l6 {
                             }
                             diVar.P1(i7);
                         }
-                        vh vhVar4 = diVar.f32959t2;
-                        bn bnVar2 = diVar.f32906e2;
-                        if (vhVar4 == bnVar2 || diVar.f32955s2 == bnVar2) {
+                        vh vhVar4 = diVar.f32988t2;
+                        bn bnVar2 = diVar.f32935e2;
+                        if (vhVar4 == bnVar2 || diVar.f32984s2 == bnVar2) {
                             if (vhVar4 == bnVar2) {
                                 i10 = 1;
                             }
                             diVar.P1(i10);
                         }
-                        diVar.f32959t2.setTranslationY(org.telegram.messenger.g0.L(78.0f) * f10);
-                        diVar.f32955s2.v(1.0f - Math.min(1.0f, f10 / 0.7f));
-                        diVar.f32955s2.m(diVar.f32911f4);
+                        diVar.f32988t2.setTranslationY(org.telegram.messenger.g0.L(78.0f) * f10);
+                        diVar.f32984s2.v(1.0f - Math.min(1.0f, f10 / 0.7f));
+                        diVar.f32984s2.m(diVar.f32940f4);
                     } else {
-                        int max = Math.max(vhVar2.getWidth(), diVar.f32955s2.getWidth());
-                        if (diVar.f32959t2 instanceof bm) {
-                            diVar.f32955s2.setTranslationX((-max) * f10);
-                            diVar.f32959t2.setTranslationX((1.0f - f10) * max);
+                        int max = Math.max(vhVar2.getWidth(), diVar.f32984s2.getWidth());
+                        if (diVar.f32988t2 instanceof bm) {
+                            diVar.f32984s2.setTranslationX((-max) * f10);
+                            diVar.f32988t2.setTranslationX((1.0f - f10) * max);
                         } else {
-                            diVar.f32955s2.setTranslationX(max * f10);
-                            diVar.f32959t2.setTranslationX((1.0f - f10) * (-max));
+                            diVar.f32984s2.setTranslationX(max * f10);
+                            diVar.f32988t2.setTranslationX((1.0f - f10) * (-max));
                         }
                     }
-                    if (diVar.f32937n3 != null) {
+                    if (diVar.f32966n3 != null) {
                         diVar.P1(1);
                     }
-                    diVar.f28615b.invalidate();
+                    diVar.f28616b.invalidate();
                     return;
                 }
                 return;
             default:
                 di diVar2 = (di) obj;
-                eh ehVar = this.f36605c.f32956s3;
+                eh ehVar = this.f36623c.f32985s3;
                 int childCount = ehVar.getChildCount();
                 for (int i11 = 0; i11 < childCount; i11++) {
                     float f12 = (3 - i11) * 32.0f;
@@ -83,13 +83,13 @@ public final class oh extends l6 {
                         float f13 = f10 - f12;
                         if (f13 <= 200.0f) {
                             float f14 = f13 / 200.0f;
-                            f11 = xq.f40330g.getInterpolation(f14) * 1.1f;
-                            childAt.setAlpha(xq.f40332j.getInterpolation(f14));
+                            f11 = xq.f40346g.getInterpolation(f14) * 1.1f;
+                            childAt.setAlpha(xq.f40348j.getInterpolation(f14));
                         } else {
                             childAt.setAlpha(1.0f);
                             float f15 = f13 - 200.0f;
                             if (f15 <= 100.0f) {
-                                f11 = 1.1f - (xq.f40331i.getInterpolation(f15 / 100.0f) * 0.1f);
+                                f11 = 1.1f - (xq.f40347i.getInterpolation(f15 / 100.0f) * 0.1f);
                             } else {
                                 f11 = 1.0f;
                             }
@@ -98,7 +98,7 @@ public final class oh extends l6 {
                         f11 = 0.0f;
                     }
                     if (childAt instanceof yh) {
-                        ((yh) childAt).f40634a.setAttachScale(f11);
+                        ((yh) childAt).f40646a.setAttachScale(f11);
                     }
                 }
                 return;
@@ -107,10 +107,10 @@ public final class oh extends l6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f36604b) {
+        switch (this.f36622b) {
             case 0:
                 vh vhVar = (vh) obj;
-                return Float.valueOf(this.f36605c.U1);
+                return Float.valueOf(this.f36623c.U1);
             default:
                 di diVar = (di) obj;
                 return Float.valueOf(0.0f);

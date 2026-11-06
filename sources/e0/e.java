@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
-import c8.tb;
+import c8.ub;
 public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
     public final androidx.lifecycle.v f10044a = new androidx.lifecycle.v(this);
 
@@ -13,10 +13,10 @@ public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
         kotlin.jvm.internal.j.e(event, "event");
         View decorView = getWindow().getDecorView();
         kotlin.jvm.internal.j.d(decorView, "window.decorView");
-        if (tb.a(decorView, event)) {
+        if (ub.a(decorView, event)) {
             return true;
         }
-        return tb.b(this, decorView, this, event);
+        return ub.b(this, decorView, this, event);
     }
 
     @Override
@@ -24,7 +24,7 @@ public abstract class e extends Activity implements androidx.lifecycle.t, r0.i {
         kotlin.jvm.internal.j.e(event, "event");
         View decorView = getWindow().getDecorView();
         kotlin.jvm.internal.j.d(decorView, "window.decorView");
-        if (tb.a(decorView, event)) {
+        if (ub.a(decorView, event)) {
             return true;
         }
         return super.dispatchKeyShortcutEvent(event);

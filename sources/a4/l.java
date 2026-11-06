@@ -85,7 +85,7 @@ public final class l extends j {
         int i10;
         long j10;
         if (this.f195n != null) {
-            ((u) qVar.f53711b).getClass();
+            ((u) qVar.f53710b).getClass();
             return false;
         }
         a0 a0Var = this.f198q;
@@ -407,7 +407,7 @@ public final class l extends j {
         tVar.K = a0Var2.f10965b;
         tVar.f10566u = arrayList;
         tVar.f10556k = r10;
-        qVar.f53711b = new u(tVar);
+        qVar.f53710b = new u(tVar);
         return true;
     }
 

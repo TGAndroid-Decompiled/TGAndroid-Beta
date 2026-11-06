@@ -3,26 +3,26 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class im extends AnimatorListenerAdapter {
-    public final int f34698a;
-    public final bn f34699b;
+    public final int f34728a;
+    public final bn f34729b;
 
     public im(bn bnVar, int i7) {
-        this.f34698a = i7;
-        this.f34699b = bnVar;
+        this.f34728a = i7;
+        this.f34729b = bnVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f34698a) {
+        switch (this.f34728a) {
             case 0:
-                this.f34699b.E.setTranslationY(0.0f);
+                this.f34729b.E.setTranslationY(0.0f);
                 return;
             case 1:
-                this.f34699b.E.setTranslationY(0.0f);
+                this.f34729b.E.setTranslationY(0.0f);
                 return;
             default:
-                bn bnVar = this.f34699b;
-                bnVar.f32182f1 = false;
+                bn bnVar = this.f34729b;
+                bnVar.f32216f1 = false;
                 bnVar.E.setTranslationY(0.0f);
                 bnVar.f0();
                 return;

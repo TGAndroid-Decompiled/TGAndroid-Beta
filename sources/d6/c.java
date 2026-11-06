@@ -31,13 +31,13 @@ public final class c implements Runnable {
             if (responseCode == 200) {
                 status = Status.f6525e;
             } else {
-                Log.e(d1Var.f21939a, d1Var.b("Unable to revoke access!", new Object[0]));
+                Log.e(d1Var.f21946a, d1Var.b("Unable to revoke access!", new Object[0]));
             }
             d1Var.a("Response Code: " + responseCode, new Object[0]);
         } catch (IOException e10) {
-            Log.e(d1Var.f21939a, d1Var.b("IOException when revoking access: ".concat(String.valueOf(e10.toString())), new Object[0]));
+            Log.e(d1Var.f21946a, d1Var.b("IOException when revoking access: ".concat(String.valueOf(e10.toString())), new Object[0]));
         } catch (Exception e11) {
-            Log.e(d1Var.f21939a, d1Var.b("Exception when revoking access: ".concat(String.valueOf(e11.toString())), new Object[0]));
+            Log.e(d1Var.f21946a, d1Var.b("Exception when revoking access: ".concat(String.valueOf(e11.toString())), new Object[0]));
         }
         this.f8194b.a(status);
     }

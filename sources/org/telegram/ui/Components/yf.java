@@ -1,39 +1,39 @@
 package org.telegram.ui.Components;
 public final class yf implements Runnable {
-    public final int f40625a;
-    public final ag f40626b;
-    public final fi.m3 f40627c;
+    public final int f40637a;
+    public final ag f40638b;
+    public final fi.m3 f40639c;
 
     public yf(ag agVar, fi.m3 m3Var, int i7) {
-        this.f40625a = i7;
-        this.f40626b = agVar;
-        this.f40627c = m3Var;
+        this.f40637a = i7;
+        this.f40638b = agVar;
+        this.f40639c = m3Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f40625a) {
+        switch (this.f40637a) {
             case 0:
-                ag agVar = this.f40626b;
-                fi.m3 m3Var = this.f40627c;
+                ag agVar = this.f40638b;
+                fi.m3 m3Var = this.f40639c;
                 agVar.removeView(m3Var);
-                if (agVar.f31803b == m3Var) {
-                    agVar.f31803b = null;
+                if (agVar.f31799b == m3Var) {
+                    agVar.f31799b = null;
                     return;
                 }
                 return;
             case 1:
-                this.f40626b.removeView(this.f40627c);
+                this.f40638b.removeView(this.f40639c);
                 return;
             case 2:
-                this.f40626b.removeView(this.f40627c);
+                this.f40638b.removeView(this.f40639c);
                 return;
             default:
-                ag agVar2 = this.f40626b;
-                fi.m3 m3Var2 = this.f40627c;
+                ag agVar2 = this.f40638b;
+                fi.m3 m3Var2 = this.f40639c;
                 agVar2.removeView(m3Var2);
-                if (agVar2.f31801a == m3Var2) {
-                    agVar2.f31801a = null;
+                if (agVar2.f31797a == m3Var2) {
+                    agVar2.f31797a = null;
                     return;
                 }
                 return;

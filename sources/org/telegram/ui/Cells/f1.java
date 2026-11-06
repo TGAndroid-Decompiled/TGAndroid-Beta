@@ -46,7 +46,7 @@ public abstract class f1 {
     }
 
     public static boolean a(ij ijVar) {
-        if (ijVar != null && ij.B0(ijVar.f23237k) == 1271266957) {
+        if (ijVar != null && ij.B0(ijVar.f23244k) == 1271266957) {
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ public abstract class f1 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i7 = ht0.f34363l0;
+        int i7 = ht0.f34401l0;
         v4.n0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;

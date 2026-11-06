@@ -8,20 +8,20 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.hd;
 public final class d2 extends FrameLayout {
-    public final org.telegram.ui.Components.j6 f29008a;
-    public final View f29009b;
-    public final org.telegram.ui.ActionBar.f6 f29010c;
+    public final org.telegram.ui.Components.j6 f29009a;
+    public final View f29010b;
+    public final org.telegram.ui.ActionBar.f6 f29011c;
 
     public d2(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int i7;
-        this.f29010c = f6Var;
+        this.f29011c = f6Var;
         org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(context, false, false, false);
-        this.f29008a = j6Var;
+        this.f29009a = j6Var;
         int i10 = org.telegram.ui.ActionBar.k6.G6;
         org.telegram.ui.ActionBar.r6.Z(j6Var, i10, f6Var);
         j6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -31,7 +31,7 @@ public final class d2 extends FrameLayout {
         j6Var.setOnWidthUpdatedListener(new f(this, 2));
         addView(j6Var, c8.ha.i(-2.0f, -2.0f, 8388627, 21.0f, 0.0f, 38.0f, 3.0f));
         View view = new View(context);
-        this.f29009b = view;
+        this.f29010b = view;
         Drawable mutate = getContext().getResources().getDrawable(2131230871).mutate();
         org.telegram.ui.ActionBar.r6.y(this, mutate, i10, f6Var, PorterDuff.Mode.MULTIPLY);
         view.setBackground(mutate);
@@ -39,9 +39,9 @@ public final class d2 extends FrameLayout {
     }
 
     public final void a() {
-        float c10 = this.f29008a.getDrawable().c() + org.telegram.messenger.g0.L(1.0f);
-        boolean z9 = hd.f22871a0;
-        View view = this.f29009b;
+        float c10 = this.f29009a.getDrawable().c() + org.telegram.messenger.g0.L(1.0f);
+        boolean z9 = hd.f22878a0;
+        View view = this.f29010b;
         if (z9) {
             view.setTranslationX(-c10);
         } else {
@@ -56,9 +56,9 @@ public final class d2 extends FrameLayout {
     }
 
     public void setColor(int i7) {
-        org.telegram.ui.ActionBar.f6 f6Var = this.f29010c;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f29011c;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
-        org.telegram.ui.ActionBar.r6.Z(this.f29008a, i7, f6Var);
-        this.f29009b.getBackground().setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
+        org.telegram.ui.ActionBar.r6.Z(this.f29009a, i7, f6Var);
+        this.f29010b.getBackground().setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
     }
 }

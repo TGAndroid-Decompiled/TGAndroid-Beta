@@ -23,8 +23,8 @@ public final class t implements Callable {
                 qVar.getClass();
                 ba.e.a();
                 wf.b bVar = qVar.f836c;
-                ga.d dVar = (ga.d) bVar.f57564c;
-                String str = (String) bVar.f57563b;
+                ga.d dVar = (ga.d) bVar.f57563c;
+                String str = (String) bVar.f57562b;
                 dVar.getClass();
                 boolean z9 = true;
                 if (!new File((File) dVar.d, str).exists()) {
@@ -36,7 +36,7 @@ public final class t implements Callable {
                     if (Log.isLoggable("FirebaseCrashlytics", 2)) {
                         Log.v("FirebaseCrashlytics", "Found previous crash marker.", null);
                     }
-                    ga.d dVar2 = (ga.d) bVar.f57564c;
+                    ga.d dVar2 = (ga.d) bVar.f57563c;
                     dVar2.getClass();
                     new File((File) dVar2.d, str).delete();
                 }
@@ -44,7 +44,7 @@ public final class t implements Callable {
             case 1:
                 return new e5.f((JsReplyProxyBoundaryInterface) this.f856b);
             default:
-                ia.c cVar = (ia.c) ((q4.q) this.f856b).f53712c;
+                ia.c cVar = (ia.c) ((q4.q) this.f856b).f53711c;
                 g9.l lVar = (g9.l) cVar.f15419f;
                 ia.e eVar = (ia.e) cVar.f15416b;
                 String str2 = lVar.f13591a;

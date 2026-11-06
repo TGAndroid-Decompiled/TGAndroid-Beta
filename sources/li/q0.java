@@ -6,25 +6,25 @@ import android.view.View;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.AnimatedArrowDrawable;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class q0 extends v31 {
+import org.telegram.ui.Components.x31;
+public final class q0 extends w31 {
     public static final int f18781b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         boolean z10;
         float f10;
         r0 r0Var = (r0) view;
-        a aVar = (a) w31Var.G;
-        b3 b3Var = (b3) w31Var.H;
+        a aVar = (a) x31Var.G;
+        b3 b3Var = (b3) x31Var.H;
         g1 g1Var = r0Var.d;
         boolean z11 = false;
         if (r0Var.f18803f != aVar) {

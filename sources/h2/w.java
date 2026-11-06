@@ -10,11 +10,11 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.p51;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.j4;
-public final class w implements p51 {
+public final class w implements q51 {
     public static w f14154f;
     public boolean f14155a;
     public int f14156b;
@@ -81,7 +81,7 @@ public final class w implements p51 {
     }
 
     @Override
-    public void onError(s51 s51Var, Exception exc) {
+    public void onError(t51 t51Var, Exception exc) {
         a8.g(exc, true);
     }
 
@@ -133,10 +133,10 @@ public final class w implements p51 {
                     }
                     PipRoundVideoView pipRoundVideoView2 = mediaController.H0;
                     if (pipRoundVideoView2 != null) {
-                        if (pipRoundVideoView2.f31423c.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.H0.f31423c.setSurfaceTexture(surfaceTexture);
+                        if (pipRoundVideoView2.f31424c.getSurfaceTexture() != surfaceTexture) {
+                            mediaController.H0.f31424c.setSurfaceTexture(surfaceTexture);
                         }
-                        mediaController.E0.A0(mediaController.H0.f31423c);
+                        mediaController.E0.A0(mediaController.H0.f31424c);
                     }
                 }
                 mediaController.I0 = 0;

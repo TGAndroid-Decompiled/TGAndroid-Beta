@@ -10,7 +10,7 @@ public abstract class z {
         synchronized (SharedPreferences.class) {
             try {
                 if (f5983a == null) {
-                    f5983a = (SharedPreferences) yb.a(new a2.b(context, 4));
+                    f5983a = (SharedPreferences) zb.a(new a2.b(context, 4));
                 }
                 sharedPreferences = f5983a;
             } catch (Throwable th2) {

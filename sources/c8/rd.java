@@ -1,22 +1,17 @@
 package c8;
 public abstract class rd {
-    public static void a(StringBuilder sb2, Object obj, rd.l lVar) {
-        boolean z9;
-        if (lVar != null) {
-            sb2.append((CharSequence) lVar.invoke(obj));
-            return;
+    public static final boolean a(char c10, char c11, boolean z9) {
+        if (c10 == c11) {
+            return true;
         }
-        if (obj == null) {
-            z9 = true;
-        } else {
-            z9 = obj instanceof CharSequence;
+        if (!z9) {
+            return false;
         }
-        if (z9) {
-            sb2.append((CharSequence) obj);
-        } else if (obj instanceof Character) {
-            sb2.append(((Character) obj).charValue());
-        } else {
-            sb2.append((CharSequence) obj.toString());
+        char upperCase = Character.toUpperCase(c10);
+        char upperCase2 = Character.toUpperCase(c11);
+        if (upperCase == upperCase2 || Character.toLowerCase(upperCase) == Character.toLowerCase(upperCase2)) {
+            return true;
         }
+        return false;
     }
 }

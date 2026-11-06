@@ -14,7 +14,7 @@ public final class bv0 extends l9 implements org.telegram.messenger.ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25094y0) {
+        if (i7 == org.telegram.messenger.qs.f25102y0) {
             if (this.I.equals((String) objArr[0])) {
                 v();
             }
@@ -25,13 +25,13 @@ public final class bv0 extends l9 implements org.telegram.messenger.ls {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         v();
-        org.telegram.messenger.qs.f(this.G).c(this, org.telegram.messenger.qs.f25094y0);
+        org.telegram.messenger.qs.f(this.G).c(this, org.telegram.messenger.qs.f25102y0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.qs.f(this.G).n(this, org.telegram.messenger.qs.f25094y0);
+        org.telegram.messenger.qs.f(this.G).n(this, org.telegram.messenger.qs.f25102y0);
     }
 
     public void setStickerNum(int i7) {

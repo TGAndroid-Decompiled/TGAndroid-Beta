@@ -11,28 +11,28 @@ public final class tu0 extends v4.b0 {
     @Override
     public final int o0(int i7, v4.v0 v0Var, v4.a1 a1Var) {
         ProfileActivity profileActivity = this.I;
-        View m10 = profileActivity.f41704c.m(0);
+        View m10 = profileActivity.f41703c.m(0);
         if (m10 != null && !profileActivity.F0) {
             int top = m10.getTop() - profileActivity.j4();
-            boolean z9 = profileActivity.f41782n2;
+            boolean z9 = profileActivity.f41781n2;
             boolean z10 = true;
             if (!z9 && top > i7) {
-                if (!profileActivity.f41781n0.X0.isEmpty() && profileActivity.f41719e0.getImageReceiver().L() && !org.telegram.messenger.g0.C1() && ((!profileActivity.f41775m2 && !org.telegram.messenger.g0.Q1()) || profileActivity.I0)) {
+                if (!profileActivity.f41780n0.X0.isEmpty() && profileActivity.f41718e0.getImageReceiver().L() && !org.telegram.messenger.g0.C1() && ((!profileActivity.f41774m2 && !org.telegram.messenger.g0.Q1()) || profileActivity.I0)) {
                     if (profileActivity.I2 != null) {
                         z10 = false;
                     }
-                    profileActivity.f41782n2 = z10;
+                    profileActivity.f41781n2 = z10;
                 }
             } else if (z9) {
                 if (i7 >= top) {
-                    profileActivity.f41782n2 = false;
-                } else if (profileActivity.f41688a.getScrollState() == 1 && !profileActivity.f41789o2) {
+                    profileActivity.f41781n2 = false;
+                } else if (profileActivity.f41687a.getScrollState() == 1 && !profileActivity.f41788o2) {
                     i7 /= 2;
                 }
             }
             i7 = top;
         }
-        if (profileActivity.N1 && !profileActivity.f41688a.P0) {
+        if (profileActivity.N1 && !profileActivity.f41687a.P0) {
             return 0;
         }
         return super.o0(i7, v0Var, a1Var);
@@ -40,7 +40,7 @@ public final class tu0 extends v4.b0 {
 
     @Override
     public final boolean y0() {
-        if (this.I.f41800q0 != null) {
+        if (this.I.f41799q0 != null) {
             return true;
         }
         return false;

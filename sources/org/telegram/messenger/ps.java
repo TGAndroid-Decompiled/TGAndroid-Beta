@@ -4,26 +4,26 @@ import android.app.Activity;
 import java.lang.ref.WeakReference;
 import org.json.JSONObject;
 public final class ps implements ms, ls {
-    public final int f24603a;
-    public final Object f24604b;
-    public final Object f24605c;
+    public final int f24611a;
+    public final Object f24612b;
+    public final Object f24613c;
 
     public ps(ls lsVar, Object obj, int i7) {
-        this.f24603a = i7;
-        this.f24605c = lsVar;
-        this.f24604b = obj;
+        this.f24611a = i7;
+        this.f24613c = lsVar;
+        this.f24612b = obj;
     }
 
     @Override
     public void b() {
-        ((ab.b0) this.f24604b).b();
+        ((ab.b0) this.f24612b).b();
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        switch (this.f24603a) {
+        switch (this.f24611a) {
             case 0:
-                ls lsVar = (ls) ((WeakReference) this.f24605c).get();
+                ls lsVar = (ls) ((WeakReference) this.f24613c).get();
                 if (lsVar != null) {
                     lsVar.didReceivedNotification(i7, i10, objArr);
                     return;
@@ -33,14 +33,14 @@ public final class ps implements ms, ls {
                 return;
             case 1:
                 if (i7 == 274) {
-                    ((org.telegram.ui.ActionBar.u1) this.f24604b).dismiss();
+                    ((org.telegram.ui.ActionBar.u1) this.f24612b).dismiss();
                     qs.e().n(this, i7);
                     g0.i3(new org.telegram.ui.hz(this, 13), 100L);
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) this.f24605c;
+                org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) this.f24613c;
                 if (i7 == 306) {
                     int intValue = ((Integer) objArr[0]).intValue();
                     int[] iArr = (int[]) objArr[2];
@@ -49,12 +49,12 @@ public final class ps implements ms, ls {
                         if (iArr[0] == 0) {
                             Activity activity = x0Var.W;
                             if (activity != null) {
-                                x0Var.f51369g0 = org.telegram.ui.s9.j0(activity, 3, new org.telegram.ui.Components.n(x0Var));
+                                x0Var.f51364g0 = org.telegram.ui.s9.j0(activity, 3, new org.telegram.ui.Components.n(x0Var));
                                 return;
                             }
                             return;
                         }
-                        x0Var.x((di.o7) this.f24604b, "scan_qr_popup_closed", new JSONObject());
+                        x0Var.x((di.o7) this.f24612b, "scan_qr_popup_closed", new JSONObject());
                         return;
                     }
                     return;
@@ -64,8 +64,8 @@ public final class ps implements ms, ls {
     }
 
     public ps(qs qsVar, ls lsVar) {
-        this.f24603a = 0;
-        this.f24604b = new ab.b0(qsVar, this);
-        this.f24605c = new WeakReference(lsVar);
+        this.f24611a = 0;
+        this.f24612b = new ab.b0(qsVar, this);
+        this.f24613c = new WeakReference(lsVar);
     }
 }

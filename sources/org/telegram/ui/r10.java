@@ -20,7 +20,7 @@ public final class r10 extends org.telegram.ui.Components.w7 {
         textView.setGravity(51);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(new org.telegram.ui.Components.s41(16, this, textView));
+        textView.setOnClickListener(new org.telegram.ui.Components.t41(16, this, textView));
         return textView;
     }
 }

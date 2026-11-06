@@ -4,26 +4,26 @@ import android.app.Application;
 import android.os.Build;
 import android.os.Process;
 import android.os.StrictMode;
-import c8.hb;
+import c8.ib;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import q6.m;
 public abstract class d {
-    public static String f58544a;
-    public static int f58545b;
-    public static Boolean f58546c;
+    public static String f58543a;
+    public static int f58544b;
+    public static Boolean f58545c;
 
     public static String a() {
         BufferedReader bufferedReader;
-        if (f58544a == null) {
+        if (f58543a == null) {
             if (Build.VERSION.SDK_INT >= 28) {
-                f58544a = Application.getProcessName();
+                f58543a = Application.getProcessName();
             } else {
-                int i7 = f58545b;
+                int i7 = f58544b;
                 if (i7 == 0) {
                     i7 = Process.myPid();
-                    f58545b = i7;
+                    f58544b = i7;
                 }
                 String str = null;
                 str = null;
@@ -57,14 +57,14 @@ public abstract class d {
                     }
                     b.a(bufferedReader);
                 }
-                f58544a = str;
+                f58543a = str;
             }
         }
-        return f58544a;
+        return f58543a;
     }
 
     public static boolean b() {
-        Boolean bool = f58546c;
+        Boolean bool = f58545c;
         if (bool == null) {
             if (Build.VERSION.SDK_INT >= 28) {
                 bool = Boolean.valueOf(Process.isIsolated());
@@ -75,13 +75,13 @@ public abstract class d {
                     if (invoke != null) {
                         bool = (Boolean) invoke;
                     } else {
-                        throw new RuntimeException(hb.a("expected a non-null reference", objArr));
+                        throw new RuntimeException(ib.a("expected a non-null reference", objArr));
                     }
                 } catch (ReflectiveOperationException unused) {
                     bool = Boolean.FALSE;
                 }
             }
-            f58546c = bool;
+            f58545c = bool;
         }
         return bool.booleanValue();
     }

@@ -1,20 +1,20 @@
 package w7;
 
-import c8.ed;
+import c8.fd;
 import j$.util.Objects;
 public final class g extends d {
-    public static final g f57502e = new g(0, new Object[0]);
-    public final transient Object[] f57503c;
+    public static final g f57501e = new g(0, new Object[0]);
+    public final transient Object[] f57502c;
     public final transient int d;
 
     public g(int i7, Object[] objArr) {
-        this.f57503c = objArr;
+        this.f57502c = objArr;
         this.d = i7;
     }
 
     @Override
     public final int f(Object[] objArr) {
-        Object[] objArr2 = this.f57503c;
+        Object[] objArr2 = this.f57502c;
         int i7 = this.d;
         System.arraycopy(objArr2, 0, objArr, 0, i7);
         return i7;
@@ -22,8 +22,8 @@ public final class g extends d {
 
     @Override
     public final Object get(int i7) {
-        ed.a(i7, this.d);
-        Object obj = this.f57503c[i7];
+        fd.a(i7, this.d);
+        Object obj = this.f57502c[i7];
         Objects.requireNonNull(obj);
         return obj;
     }
@@ -40,7 +40,7 @@ public final class g extends d {
 
     @Override
     public final Object[] k() {
-        return this.f57503c;
+        return this.f57502c;
     }
 
     @Override

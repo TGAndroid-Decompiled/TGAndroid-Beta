@@ -5,7 +5,7 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.ui.Components.jz;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.w70;
@@ -15,22 +15,22 @@ import org.telegram.ui.an;
 import org.telegram.ui.qj;
 public final class uc extends org.telegram.ui.Components.na implements ls {
     public final FrameLayout P1;
-    public k41 Q1;
+    public l41 Q1;
     public boolean R1;
 
     public uc(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null, false, false, f6Var);
-        pj0 pj0Var = this.f36222k1;
-        int i7 = this.f28645t0;
+        pj0 pj0Var = this.f36261k1;
+        int i7 = this.f28646t0;
         pj0Var.setPadding(i7, 0, i7, 0);
-        this.f36222k1.setOnItemClickListener(new ai.k(this, 4));
+        this.f36261k1.setOnItemClickListener(new ai.k(this, 4));
         v4.k kVar = new v4.k();
-        kVar.f56979m = false;
+        kVar.f56978m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36222k1.setItemAnimator(kVar);
-        int i10 = org.telegram.ui.ActionBar.k6.f27848d6;
+        this.f36261k1.setItemAnimator(kVar);
+        int i10 = org.telegram.ui.ActionBar.k6.f27849d6;
         w0(i10);
         P(i10);
         this.l1.setTitle(org.telegram.messenger.hd.M0(2131745152, null));
@@ -45,27 +45,27 @@ public final class uc extends org.telegram.ui.Components.na implements ls {
         w70Var.setGravity(17);
         w70Var.setMaxWidth(fi.m3.a(w70Var.getText(), w70Var.getPaint()));
         frameLayout.addView(w70Var, c8.ha.e(-2, -1, 17));
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27921h5, frameLayout, f6Var);
-        this.f28615b.addView(new jz(getContext()), c8.ha.c(-1.0f, -1));
-        k41 k41Var = this.Q1;
-        if (k41Var != null) {
-            k41Var.O(false);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27922h5, frameLayout, f6Var);
+        this.f28616b.addView(new jz(getContext()), c8.ha.c(-1.0f, -1));
+        l41 l41Var = this.Q1;
+        if (l41Var != null) {
+            l41Var.O(false);
         }
     }
 
     @Override
     public final void K() {
         super.K();
-        qs.f(this.f28612a).n(this, qs.f25076v3);
-        qs.f(this.f28612a).n(this, qs.f25097y3);
+        qs.f(this.f28613a).n(this, qs.f25084v3);
+        qs.f(this.f28613a).n(this, qs.f25105y3);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new ai.e(this, 11), this.I0);
-        this.Q1 = k41Var;
-        k41Var.f35132r = false;
-        return k41Var;
+        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, true, new ai.e(this, 11), this.I0);
+        this.Q1 = l41Var;
+        l41Var.f35510r = false;
+        return l41Var;
     }
 
     @Override
@@ -75,16 +75,16 @@ public final class uc extends org.telegram.ui.Components.na implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        k41 k41Var;
-        if ((i7 == qs.f25076v3 || i7 == qs.f25097y3) && (k41Var = this.Q1) != null) {
-            k41Var.O(true);
+        l41 l41Var;
+        if ((i7 == qs.f25084v3 || i7 == qs.f25105y3) && (l41Var = this.Q1) != null) {
+            l41Var.O(true);
         }
     }
 
     @Override
     public final void show() {
         qj qjVar;
-        long j3 = ea.y(this.f28612a, false).p().amount;
+        long j3 = ea.y(this.f28613a, false).p().amount;
         org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
         if (Q instanceof an) {
             an anVar = (an) Q;
@@ -93,7 +93,7 @@ public final class uc extends org.telegram.ui.Components.na implements ls {
             }
         }
         super.show();
-        qs.f(this.f28612a).c(this, qs.f25076v3);
-        qs.f(this.f28612a).c(this, qs.f25097y3);
+        qs.f(this.f28613a).c(this, qs.f25084v3);
+        qs.f(this.f28613a).c(this, qs.f25105y3);
     }
 }

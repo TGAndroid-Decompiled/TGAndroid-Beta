@@ -12,13 +12,13 @@ import android.graphics.drawable.GradientDrawable;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class xz {
-    public cc.c f26544a;
-    public final float[] f26545b = new float[8];
-    public int f26546c;
+    public cc.c f26552a;
+    public final float[] f26553b = new float[8];
+    public int f26554c;
     public int d;
-    public int f26547e;
-    public int f26548f;
-    public Drawable f26549g;
+    public int f26555e;
+    public int f26556f;
+    public Drawable f26557g;
 
     public final Bitmap a(String str, int i7, int i10, HashMap hashMap, Bitmap bitmap, float f10, int i11, int i12) {
         gc.b bVar;
@@ -55,12 +55,12 @@ public final class xz {
                     i13 = 4;
                 }
                 cc.c cVar = (cc.c) ic.b.b(str, bVar, hashMap).f194f;
-                this.f26544a = cVar;
+                this.f26552a = cVar;
                 if (cVar != null) {
                     int i18 = cVar.f6048b;
                     int i19 = cVar.f6049c;
                     for (int i20 = 0; i20 < i18 && b(i20, 0); i20++) {
-                        this.f26547e++;
+                        this.f26555e++;
                     }
                     int i21 = i13 * 2;
                     int i22 = i18 + i21;
@@ -79,22 +79,22 @@ public final class xz {
                     paint2.setColor(i12);
                     GradientDrawable gradientDrawable = new GradientDrawable();
                     gradientDrawable.setShape(0);
-                    float[] fArr = this.f26545b;
+                    float[] fArr = this.f26553b;
                     gradientDrawable.setCornerRadii(fArr);
                     float f14 = min;
                     int round = Math.round((i24 / 4.65f) / f14);
-                    this.f26546c = round;
+                    this.f26554c = round;
                     int i26 = 1;
                     if (round % 2 != i18 % 2) {
-                        this.f26546c = round + 1;
+                        this.f26554c = round + 1;
                     }
-                    int i27 = this.f26546c;
+                    int i27 = this.f26554c;
                     this.d = (i18 - i27) / 2;
                     int i28 = (i27 * min) - 24;
-                    this.f26548f = i28;
+                    this.f26556f = i28;
                     int i29 = (i25 - i28) / 2;
                     paint2.setColor(i12);
-                    float f15 = this.f26547e;
+                    float f15 = this.f26555e;
                     float f16 = i25;
                     if (Color.alpha(i11) == 0) {
                         z9 = true;
@@ -284,14 +284,14 @@ public final class xz {
                         i32 += min;
                         i14 = 16;
                     }
-                    Drawable drawable = this.f26549g;
+                    Drawable drawable = this.f26557g;
                     if (drawable != null) {
-                        int i42 = i31 + this.f26548f;
+                        int i42 = i31 + this.f26556f;
                         drawable.setBounds(i31, i31, i42, i42);
-                        this.f26549g.draw(canvas);
+                        this.f26557g.draw(canvas);
                     } else {
                         String y22 = g0.y2(null, 2131624170);
-                        int i43 = this.f26548f;
+                        int i43 = this.f26556f;
                         Bitmap e10 = sz.e(i43, i43, y22);
                         float f28 = i31;
                         canvas.drawBitmap(e10, f28, f28, (Paint) null);
@@ -310,17 +310,17 @@ public final class xz {
     public final boolean b(int i7, int i10) {
         int i11 = this.d;
         if (i7 >= i11) {
-            int i12 = this.f26546c;
+            int i12 = this.f26554c;
             if (i7 < i11 + i12 && i10 >= i11 && i10 < i11 + i12) {
                 return false;
             }
         }
-        int i13 = this.f26547e;
-        if ((i7 < i13 || i7 >= this.f26544a.f6048b - i13) && i10 < i13) {
+        int i13 = this.f26555e;
+        if ((i7 < i13 || i7 >= this.f26552a.f6048b - i13) && i10 < i13) {
             return false;
         }
-        if ((i7 >= i13 || i10 < this.f26544a.f6049c - i13) && i7 >= 0 && i10 >= 0) {
-            cc.c cVar = this.f26544a;
+        if ((i7 >= i13 || i10 < this.f26552a.f6049c - i13) && i7 >= 0 && i10 >= 0) {
+            cc.c cVar = this.f26552a;
             if (i7 < cVar.f6048b && i10 < cVar.f6049c && cVar.e(i7, i10) == 1) {
                 return true;
             }

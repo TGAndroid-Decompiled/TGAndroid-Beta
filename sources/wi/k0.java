@@ -7,21 +7,21 @@ import org.telegram.ui.Components.ax;
 import org.telegram.ui.Components.k40;
 import org.telegram.ui.Components.qt;
 public final class k0 {
-    public final Context f57973a;
-    public final TextureView f57974b;
-    public File f57975c;
+    public final Context f57972a;
+    public final TextureView f57973b;
+    public File f57974c;
     public m0 d;
-    public r0 f57976e;
-    public n0 f57977f;
-    public o0 f57978g;
+    public r0 f57975e;
+    public n0 f57976f;
+    public o0 f57977g;
     public int h;
-    public boolean f57979i = true;
-    public qt f57980j;
-    public q0 f57981k;
-    public ax f57982l;
+    public boolean f57978i = true;
+    public qt f57979j;
+    public q0 f57980k;
+    public ax f57981l;
 
     public k0(Context context, k40 k40Var) {
-        this.f57973a = context;
-        this.f57974b = k40Var;
+        this.f57972a = context;
+        this.f57973b = k40Var;
     }
 }

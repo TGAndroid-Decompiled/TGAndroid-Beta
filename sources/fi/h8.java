@@ -52,7 +52,7 @@ public final class h8 extends v4.s0 {
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
                 jl jlVar = chatAttachAlertPhotoLayout.E;
-                di diVar = chatAttachAlertPhotoLayout.f38948b;
+                di diVar = chatAttachAlertPhotoLayout.f38969b;
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
                     org.telegram.ui.ActionBar.r0 r0Var = diVar.U2;
@@ -62,9 +62,9 @@ public final class h8 extends v4.s0 {
                         i10 = 0;
                     }
                     int i13 = L + i10;
-                    int i14 = diVar.f28644s0;
+                    int i14 = diVar.f28645s0;
                     if (((diVar.V3[0] - i14) - i13) + i14 < (diVar.I2.getAlpha() * diVar.I2.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var = (xi0) jlVar.K(0)) != null) {
-                        View view = xi0Var.f56952a;
+                        View view = xi0Var.f56951a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -104,15 +104,15 @@ public final class h8 extends v4.s0 {
                 }
                 n8Var.f12488e.invalidate();
                 int i12 = s8.U1;
-                s8Var.f28615b.invalidate();
-                if (n8Var.f12485a == 6 && pj0Var.getChildCount() > 0 && RecyclerView.R(pj0Var.getChildAt(0)) >= qp.s1(s8Var.f28612a).P1().L.size()) {
-                    qp.s1(s8Var.f28612a).P1().S();
+                s8Var.f28616b.invalidate();
+                if (n8Var.f12485a == 6 && pj0Var.getChildCount() > 0 && RecyclerView.R(pj0Var.getChildAt(0)) >= qp.s1(s8Var.f28613a).P1().L.size()) {
+                    qp.s1(s8Var.f28613a).P1().S();
                     return;
                 }
                 return;
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                di diVar = chatAttachAlertPhotoLayout.f38948b;
+                di diVar = chatAttachAlertPhotoLayout.f38969b;
                 jl jlVar = chatAttachAlertPhotoLayout.E;
                 if (jlVar.getChildCount() > 0) {
                     diVar.M1(chatAttachAlertPhotoLayout, i10);

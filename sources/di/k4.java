@@ -44,11 +44,11 @@ public final class k4 {
         this.h = new org.telegram.ui.Components.w5(profileStoriesView, 420L, xqVar);
         this.f9296m = new RectF();
         this.f9297n = new RectF();
-        this.f9286a = storyItem.f27191id;
+        this.f9286a = storyItem.f27192id;
         imageReceiver.J0(org.telegram.messenger.g0.L(200.0f));
         imageReceiver.H0(profileStoriesView);
         this.f9295l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f42004y) {
+        if (profileStoriesView.f42003y) {
             imageReceiver.P();
         }
         e10[] e10VarArr = r7.f9704a;

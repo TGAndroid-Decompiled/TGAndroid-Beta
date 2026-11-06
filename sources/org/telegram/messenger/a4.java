@@ -29,7 +29,7 @@ public final class a4 implements Runnable {
         long j3 = this.f21379b;
         uiVar.getClass();
         try {
-            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26690b.executeFast("REPLACE INTO bot_info_v2 VALUES(?, ?, ?)");
+            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26698b.executeFast("REPLACE INTO bot_info_v2 VALUES(?, ?, ?)");
             executeFast.requery();
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(botInfo.getObjectSize());
             botInfo.serializeToStream(nativeByteBuffer);
@@ -54,7 +54,7 @@ public final class a4 implements Runnable {
             if (H0 != null) {
                 H0.commands = tL_updateBotCommands.commands;
             }
-            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26690b.executeFast("REPLACE INTO bot_info_v2 VALUES(?, ?, ?)");
+            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26698b.executeFast("REPLACE INTO bot_info_v2 VALUES(?, ?, ?)");
             executeFast.requery();
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(H0.getObjectSize());
             H0.serializeToStream(nativeByteBuffer);
@@ -74,8 +74,8 @@ public final class a4 implements Runnable {
         ArrayList arrayList = (ArrayList) this.d;
         long j3 = this.f21379b;
         try {
-            uiVar.getMessagesStorage().f26690b.beginTransaction();
-            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26690b.executeFast("REPLACE INTO chat_pinned_v2 VALUES(?, ?, ?)");
+            uiVar.getMessagesStorage().f26698b.beginTransaction();
+            SQLitePreparedStatement executeFast = uiVar.getMessagesStorage().f26698b.executeFast("REPLACE INTO chat_pinned_v2 VALUES(?, ?, ?)");
             int size = arrayList.size();
             for (int i7 = 0; i7 < size; i7++) {
                 TLRPC.Message message = (TLRPC.Message) arrayList.get(i7);
@@ -84,13 +84,13 @@ public final class a4 implements Runnable {
                 message.serializeToStream(nativeByteBuffer);
                 executeFast.requery();
                 executeFast.bindLong(1, j3);
-                executeFast.bindInteger(2, message.f26973id);
+                executeFast.bindInteger(2, message.f26974id);
                 executeFast.bindByteBuffer(3, nativeByteBuffer);
                 executeFast.step();
                 nativeByteBuffer.reuse();
             }
             executeFast.dispose();
-            uiVar.getMessagesStorage().f26690b.commitTransaction();
+            uiVar.getMessagesStorage().f26698b.commitTransaction();
         } catch (Exception e10) {
             a8.g(e10, true);
         }
@@ -99,14 +99,14 @@ public final class a4 implements Runnable {
     private final void d() {
         qp qpVar = (qp) this.f21380c;
         TLRPC.messages_SavedReactionTags messages_savedreactiontags = (TLRPC.messages_SavedReactionTags) this.d;
-        if (qpVar.f24722a8 == null) {
-            qpVar.f24722a8 = new a0.h();
+        if (qpVar.f24730a8 == null) {
+            qpVar.f24730a8 = new a0.h();
         }
         boolean z9 = messages_savedreactiontags instanceof TLRPC.TL_messages_savedReactionsTags;
         long j3 = this.f21379b;
         if (z9) {
-            qpVar.f24722a8.k((TLRPC.TL_messages_savedReactionsTags) messages_savedreactiontags, j3);
-            qpVar.getNotificationCenter().k(qs.f24994h3, Long.valueOf(j3));
+            qpVar.f24730a8.k((TLRPC.TL_messages_savedReactionsTags) messages_savedreactiontags, j3);
+            qpVar.getNotificationCenter().k(qs.f25002h3, Long.valueOf(j3));
         }
         TLRPC.TL_messages_getSavedReactionTags tL_messages_getSavedReactionTags = new TLRPC.TL_messages_getSavedReactionTags();
         if (z9) {
@@ -131,7 +131,7 @@ public final class a4 implements Runnable {
             chat = null;
             if (i10 < updates.chats.size()) {
                 chat2 = updates.chats.get(i10);
-                if (this.f21379b == chat2.f26952id) {
+                if (this.f21379b == chat2.f26953id) {
                     break;
                 }
                 i10++;
@@ -147,7 +147,7 @@ public final class a4 implements Runnable {
                     break;
                 }
                 TLRPC.Chat chat3 = updates.chats.get(i7);
-                if (j3 == chat3.f26952id) {
+                if (j3 == chat3.f26953id) {
                     chat = chat3;
                     break;
                 }
@@ -162,7 +162,7 @@ public final class a4 implements Runnable {
     private final void g() {
         long j3 = this.f21379b;
         TLRPC.TL_messages_savedReactionsTags tL_messages_savedReactionsTags = (TLRPC.TL_messages_savedReactionsTags) this.d;
-        SQLiteDatabase sQLiteDatabase = ((qp) this.f21380c).getMessagesStorage().f26690b;
+        SQLiteDatabase sQLiteDatabase = ((qp) this.f21380c).getMessagesStorage().f26698b;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -200,7 +200,7 @@ public final class a4 implements Runnable {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                sQLiteCursor2 = yrVar.f26690b.queryFinalized("SELECT uid, info, pinned FROM user_settings WHERE uid = " + j3, new Object[0]);
+                sQLiteCursor2 = yrVar.f26698b.queryFinalized("SELECT uid, info, pinned FROM user_settings WHERE uid = " + j3, new Object[0]);
                 try {
                     boolean next = sQLiteCursor2.next();
                     if (next) {
@@ -215,7 +215,7 @@ public final class a4 implements Runnable {
                     }
                     sQLiteCursor2.dispose();
                     if (next && userFull != null && t10.a(userFull, requirementToContact)) {
-                        SQLitePreparedStatement executeFast = yrVar.f26690b.executeFast("REPLACE INTO user_settings VALUES(?, ?, ?)");
+                        SQLitePreparedStatement executeFast = yrVar.f26698b.executeFast("REPLACE INTO user_settings VALUES(?, ?, ?)");
                         try {
                             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(userFull.getObjectSize());
                             userFull.serializeToStream(nativeByteBuffer);
@@ -271,7 +271,7 @@ public final class a4 implements Runnable {
     }
 
     private final void j() {
-        ((yr) this.f21380c).getMessagesController().f24862q7.q(this.f21379b, (TLRPC.TL_forumTopic) this.d, false);
+        ((yr) this.f21380c).getMessagesController().f24870q7.q(this.f21379b, (TLRPC.TL_forumTopic) this.d, false);
     }
 
     private final void k() {
@@ -286,10 +286,10 @@ public final class a4 implements Runnable {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                SQLiteDatabase sQLiteDatabase = yrVar.f26690b;
+                SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
                 sQLiteDatabase.executeFast("DELETE FROM channel_admins_v3 WHERE did = " + j3).stepThis().dispose();
-                yrVar.f26690b.beginTransaction();
-                SQLitePreparedStatement executeFast = yrVar.f26690b.executeFast("REPLACE INTO channel_admins_v3 VALUES(?, ?, ?)");
+                yrVar.f26698b.beginTransaction();
+                SQLitePreparedStatement executeFast = yrVar.f26698b.executeFast("REPLACE INTO channel_admins_v3 VALUES(?, ?, ?)");
                 for (int i7 = 0; i7 < hVar.m(); i7++) {
                     try {
                         executeFast.requery();
@@ -305,7 +305,7 @@ public final class a4 implements Runnable {
                         e = e10;
                         sQLitePreparedStatement = executeFast;
                         yrVar.o(e, true);
-                        yrVar = yrVar.f26690b;
+                        yrVar = yrVar.f26698b;
                         if (yrVar != 0) {
                             yrVar.commitTransaction();
                         }
@@ -317,7 +317,7 @@ public final class a4 implements Runnable {
                     } catch (Throwable th2) {
                         th = th2;
                         sQLitePreparedStatement = executeFast;
-                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26690b;
+                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26698b;
                         if (sQLiteDatabase2 != null) {
                             sQLiteDatabase2.commitTransaction();
                         }
@@ -328,8 +328,8 @@ public final class a4 implements Runnable {
                     }
                 }
                 executeFast.dispose();
-                yrVar.f26690b.commitTransaction();
-                SQLiteDatabase sQLiteDatabase3 = yrVar.f26690b;
+                yrVar.f26698b.commitTransaction();
+                SQLiteDatabase sQLiteDatabase3 = yrVar.f26698b;
                 if (sQLiteDatabase3 != null) {
                     sQLiteDatabase3.commitTransaction();
                 }
@@ -347,7 +347,7 @@ public final class a4 implements Runnable {
         NativeByteBuffer nativeByteBuffer = (NativeByteBuffer) this.d;
         yrVar.getClass();
         try {
-            SQLitePreparedStatement executeFast = yrVar.f26690b.executeFast("REPLACE INTO pending_tasks VALUES(?, ?)");
+            SQLitePreparedStatement executeFast = yrVar.f26698b.executeFast("REPLACE INTO pending_tasks VALUES(?, ?)");
             executeFast.bindLong(1, j3);
             executeFast.bindByteBuffer(2, nativeByteBuffer);
             executeFast.step();
@@ -371,14 +371,14 @@ public final class a4 implements Runnable {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                yrVar.f26690b.beginTransaction();
-                TLRPC.TL_message e02 = yrVar.e0(message.f26973id, j3);
+                yrVar.f26698b.beginTransaction();
+                TLRPC.TL_message e02 = yrVar.e0(message.f26974id, j3);
                 xi.a(message, e02);
                 for (int i7 = 0; i7 < 2; i7++) {
                     if (i7 == 0) {
-                        executeFast = yrVar.f26690b.executeFast("UPDATE messages_v2 SET custom_params = ? WHERE mid = ? AND uid = ?");
+                        executeFast = yrVar.f26698b.executeFast("UPDATE messages_v2 SET custom_params = ? WHERE mid = ? AND uid = ?");
                     } else {
-                        executeFast = yrVar.f26690b.executeFast("UPDATE messages_topics SET custom_params = ? WHERE mid = ? AND uid = ?");
+                        executeFast = yrVar.f26698b.executeFast("UPDATE messages_topics SET custom_params = ? WHERE mid = ? AND uid = ?");
                     }
                     try {
                         executeFast.requery();
@@ -388,7 +388,7 @@ public final class a4 implements Runnable {
                         } else {
                             executeFast.bindNull(1);
                         }
-                        executeFast.bindInteger(2, message.f26973id);
+                        executeFast.bindInteger(2, message.f26974id);
                         executeFast.bindLong(3, j3);
                         executeFast.step();
                         executeFast.dispose();
@@ -399,7 +399,7 @@ public final class a4 implements Runnable {
                         e = e10;
                         sQLitePreparedStatement = executeFast;
                         yrVar.o(e, true);
-                        SQLiteDatabase sQLiteDatabase = yrVar.f26690b;
+                        SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
                         if (sQLiteDatabase != null) {
                             sQLiteDatabase.commitTransaction();
                         }
@@ -411,7 +411,7 @@ public final class a4 implements Runnable {
                     } catch (Throwable th2) {
                         th = th2;
                         sQLitePreparedStatement = executeFast;
-                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26690b;
+                        SQLiteDatabase sQLiteDatabase2 = yrVar.f26698b;
                         if (sQLiteDatabase2 != null) {
                             sQLiteDatabase2.commitTransaction();
                         }
@@ -421,8 +421,8 @@ public final class a4 implements Runnable {
                         throw th;
                     }
                 }
-                yrVar.f26690b.commitTransaction();
-                SQLiteDatabase sQLiteDatabase3 = yrVar.f26690b;
+                yrVar.f26698b.commitTransaction();
+                SQLiteDatabase sQLiteDatabase3 = yrVar.f26698b;
                 if (sQLiteDatabase3 != null) {
                     sQLiteDatabase3.commitTransaction();
                 }
@@ -441,7 +441,7 @@ public final class a4 implements Runnable {
         if (sparseArray.size() != 0) {
             int min = Math.min(sparseArray.size(), 100);
             for (int i7 = 0; i7 < min; i7++) {
-                yrVar.getNotificationCenter().k(qs.f25030o1, Long.valueOf(this.f21379b), Integer.valueOf(sparseArray.keyAt(i7)), (TLRPC.TL_messageReactions) sparseArray.valueAt(i7));
+                yrVar.getNotificationCenter().k(qs.f25038o1, Long.valueOf(this.f21379b), Integer.valueOf(sparseArray.keyAt(i7)), (TLRPC.TL_messageReactions) sparseArray.valueAt(i7));
             }
         }
     }

@@ -2,7 +2,7 @@ package j8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.common.api.q;
 public final class e extends r6.a implements q {
@@ -22,9 +22,9 @@ public final class e extends r6.a implements q {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.k(parcel, 1, this.f16585a, i7);
-        wb.k(parcel, 2, this.f16586b, i7);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.k(parcel, 1, this.f16585a, i7);
+        xb.k(parcel, 2, this.f16586b, i7);
+        xb.s(parcel, r10);
     }
 }

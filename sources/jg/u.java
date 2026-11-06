@@ -81,7 +81,7 @@ public final class u implements Runnable {
                         for (int i16 = 0; i16 < messages_messages.messages.size(); i16++) {
                             TLRPC.Message message = messages_messages.messages.get(i16);
                             int i17 = qp.s1(i15).T.get(ij.B0(message));
-                            if (i17 == 0 || message.f26973id > i17) {
+                            if (i17 == 0 || message.f26974id > i17) {
                                 arrayList2.add((ij) arrayList.get(i16));
                             }
                         }
@@ -142,12 +142,12 @@ public final class u implements Runnable {
                         while (i19 < messages_messages2.messages.size()) {
                             TLRPC.Message message2 = messages_messages2.messages.get(i19);
                             int i20 = qp.s1(i18).T.get(ij.B0(message2));
-                            if (i20 == 0 || message2.f26973id > i20) {
+                            if (i20 == 0 || message2.f26974id > i20) {
                                 ij ijVar = (ij) arrayList.get(i19);
                                 if (!arrayList4.isEmpty()) {
                                     for (int i21 = i14; i21 < arrayList4.size(); i21++) {
                                         ij ijVar2 = (ij) arrayList4.get(i21);
-                                        if (ijVar2 == null || ijVar == null || ijVar.f1() != ijVar2.f1() || ij.B0(ijVar.f23237k) != ij.B0(ijVar2.f23237k)) {
+                                        if (ijVar2 == null || ijVar == null || ijVar.f1() != ijVar2.f1() || ij.B0(ijVar.f23244k) != ij.B0(ijVar2.f23244k)) {
                                         }
                                     }
                                 }
@@ -160,7 +160,7 @@ public final class u implements Runnable {
                                 }
                                 Integer num = (Integer) concurrentHashMap.get(Long.valueOf(B0));
                                 if (num != null) {
-                                    if (num.intValue() < message2.f26973id) {
+                                    if (num.intValue() < message2.f26974id) {
                                         z13 = true;
                                     } else {
                                         z13 = false;
@@ -210,7 +210,7 @@ public final class u implements Runnable {
                         if (c61Var != null) {
                             Object[] objArr = new Object[i10];
                             objArr[0] = h0Var2.Z;
-                            ((TextView) c61Var.f44706b).setText(hd.a0(null, null, 2131745751, objArr));
+                            ((TextView) c61Var.f44705b).setText(hd.a0(null, null, 2131745751, objArr));
                         }
                         h0Var2.f();
                         h0Var2.O = i7;
@@ -228,7 +228,7 @@ public final class u implements Runnable {
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                 ArrayList arrayList5 = this.f16939n;
                 arrayList5.set(i13, tL_messages_stickerSet);
-                hVar.k(tL_messages_stickerSet, ((TLRPC.StickerSet) obj).f26979id);
+                hVar.k(tL_messages_stickerSet, ((TLRPC.StickerSet) obj).f26980id);
                 if (hVar.m() == tL_messages_allStickers.sets.size()) {
                     while (i14 < arrayList5.size()) {
                         if (arrayList5.get(i14) == null) {

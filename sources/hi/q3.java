@@ -54,7 +54,7 @@ public final class q3 extends o00 implements ls {
     public static void A0(q3 q3Var, Context context, TLRPC.User user, TL_payments.connectedBotStarRef connectedbotstarref) {
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, q3Var.resourceProvider);
         String M0 = hd.M0(2131749006, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
         u1Var.R = M0;
         u1Var.T = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131749005, t10.p(user)));
         alertDialog$Builder.k(hd.M0(2131749004, null), new ab.g(15, q3Var, connectedbotstarref));
@@ -197,7 +197,7 @@ public final class q3 extends o00 implements ls {
         if (connectedbotstarref.participants > 0) {
             FrameLayout frameLayout2 = new FrameLayout(context);
             int L2 = org.telegram.messenger.g0.L(50.0f);
-            int i12 = k6.f27921h5;
+            int i12 = k6.f27922h5;
             Drawable d02 = k6.d0(L2, k6.w0(i12, f6Var));
             n6 N2 = r6.N(i12);
             frameLayout2.setBackground(d02);
@@ -217,8 +217,8 @@ public final class q3 extends o00 implements ls {
             wp wpVar = new wp(2131231970, 0);
             wpVar.H = 0.937f;
             wpVar.I = 0.937f;
-            wpVar.f40062r = -org.telegram.messenger.g0.L(1.33f);
-            wpVar.f40063s = org.telegram.messenger.g0.L(1.0f);
+            wpVar.f40070r = -org.telegram.messenger.g0.L(1.33f);
+            wpVar.f40071s = org.telegram.messenger.g0.L(1.0f);
             wpVar.G = 0.8f;
             scaleType = scaleType2;
             spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
@@ -241,7 +241,7 @@ public final class q3 extends o00 implements ls {
         LinearLayout linearLayout3 = new LinearLayout(context);
         linearLayout3.setOrientation(0);
         int L3 = org.telegram.messenger.g0.L(28.0f);
-        int i14 = k6.f27792a7;
+        int i14 = k6.f27793a7;
         ShapeDrawable d04 = k6.d0(L3, k6.w0(i14, f6Var));
         n6 N4 = r6.N(i14);
         linearLayout3.setBackground(d04);
@@ -260,7 +260,7 @@ public final class q3 extends o00 implements ls {
         ImageView imageView2 = new ImageView(context);
         ImageView.ScaleType scaleType3 = scaleType;
         imageView2.setScaleType(scaleType3);
-        int i15 = k6.f28106r5;
+        int i15 = k6.f28107r5;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         r6.t(imageView2, i15, f6Var, mode);
         imageView2.setImageResource(2131232697);
@@ -377,7 +377,7 @@ public final class q3 extends o00 implements ls {
         int i18 = i11;
         int w02 = k6.w0(i18, f6Var);
         int w03 = k6.w0(i18, f6Var);
-        int i19 = k6.f27940i6;
+        int i19 = k6.f27941i6;
         int w10 = k6.w(w03, k6.w0(i19, f6Var));
         org.telegram.ui.Cells.y k02 = k6.k0(L4, L4, L4, L4, w02, w10, w10);
         n6 N6 = r6.N(i18);
@@ -434,7 +434,7 @@ public final class q3 extends o00 implements ls {
             connectedbotstarref2 = connectedbotstarref;
         }
         linearLayout.setOnClickListener(new bi.r(18, v2Var3, connectedbotstarref2));
-        v2Var3.P(k6.f27921h5);
+        v2Var3.P(k6.f27922h5);
         org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
         if (!org.telegram.messenger.g0.Q1() && T != null && !org.telegram.messenger.g0.u1(T)) {
             v2Var3.a0(T);
@@ -443,8 +443,8 @@ public final class q3 extends o00 implements ls {
         return v2Var3;
     }
 
-    public final void I0(java.util.ArrayList r17, org.telegram.ui.Components.k41 r18) {
-        throw new UnsupportedOperationException("Method not decompiled: hi.q3.I0(java.util.ArrayList, org.telegram.ui.Components.k41):void");
+    public final void I0(java.util.ArrayList r17, org.telegram.ui.Components.l41 r18) {
+        throw new UnsupportedOperationException("Method not decompiled: hi.q3.I0(java.util.ArrayList, org.telegram.ui.Components.l41):void");
     }
 
     @Override
@@ -453,28 +453,28 @@ public final class q3 extends o00 implements ls {
         this.E = org.telegram.messenger.g0.L(238.0f);
         tm tmVar = new tm(context, 2);
         this.U = tmVar;
-        r6.i(k6.f27939i5, tmVar, null);
+        r6.i(k6.f27940i5, tmVar, null);
         super.createView(context);
         this.S = new FrameLayout(context);
         vg.m mVar = new vg.m(context, 1, 3);
         this.T = mVar;
         mVar.setImportantForAccessibility(4);
-        vg.f fVar = this.T.f57320b;
-        fVar.f57304z = k6.Tk;
+        vg.f fVar = this.T.f57319b;
+        fVar.f57303z = k6.Tk;
         fVar.A = k6.Uk;
         fVar.b();
-        this.T.setStarParticlesView(this.f48195e);
+        this.T.setStarParticlesView(this.f48194e);
         this.S.addView(this.T, ha.d(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         j0(hd.M0(2131752472, null), org.telegram.messenger.g0.X2(hd.M0(2131752473, null)), this.S, null);
-        this.f48194c.setOnItemClickListener(new di.p4(2, this, context));
-        this.f48194c.setOnItemLongClickListener(new ab.g(16, this, context));
+        this.f48193c.setOnItemClickListener(new di.p4(2, this, context));
+        this.f48193c.setOnItemLongClickListener(new ab.g(16, this, context));
         v4.k kVar = new v4.k();
-        kVar.f56979m = false;
+        kVar.f56978m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f48194c.setItemAnimator(kVar);
-        this.f48194c.setOnScrollListener(new ai.b(this, 15));
+        this.f48193c.setItemAnimator(kVar);
+        this.f48193c.setOnScrollListener(new ai.b(this, 15));
         return this.fragmentView;
     }
 
@@ -498,7 +498,7 @@ public final class q3 extends o00 implements ls {
 
     @Override
     public final v4.g0 k0() {
-        hc hcVar = new hc(this, this.f48194c, getParentActivity(), this.currentAccount, this.classGuid, new u1(this, 1), getResourceProvider(), 4);
+        hc hcVar = new hc(this, this.f48193c, getParentActivity(), this.currentAccount, this.classGuid, new u1(this, 1), getResourceProvider(), 4);
         this.V = hcVar;
         return hcVar;
     }

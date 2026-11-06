@@ -29,9 +29,9 @@ public final class k2 extends AnimatorListenerAdapter {
                 i4Var2.f9210w2.e();
                 i4Var2.f9186q2 = i4Var2.X1;
                 o2 o2Var = i4Var2.K1;
-                if (o2Var != null && (runnable = o2Var.f31144x) != null) {
+                if (o2Var != null && (runnable = o2Var.f31145x) != null) {
                     runnable.run();
-                    o2Var.f31144x = null;
+                    o2Var.f31145x = null;
                 }
                 if (i4Var2.f9197t1 && !i4Var2.f9142e2) {
                     p9 p9Var = ((g9) i4Var2.f9221z1).d;

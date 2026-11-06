@@ -7,19 +7,19 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 public final class yd0 implements ViewSwitcher.ViewFactory {
-    public final int f52226a;
-    public final Object f52227b;
+    public final int f52224a;
+    public final Object f52225b;
 
     public yd0(Object obj, int i7) {
-        this.f52226a = i7;
-        this.f52227b = obj;
+        this.f52224a = i7;
+        this.f52225b = obj;
     }
 
     @Override
     public final View makeView() {
         int i7;
-        int i10 = this.f52226a;
-        Object obj = this.f52227b;
+        int i10 = this.f52224a;
+        Object obj = this.f52225b;
         switch (i10) {
             case 0:
                 TextView textView = new TextView((Context) obj);
@@ -30,7 +30,7 @@ public final class yd0 implements ViewSwitcher.ViewFactory {
                 textView.setMaxLines(1);
                 textView.setSingleLine(true);
                 textView.setEllipsize(TextUtils.TruncateAt.END);
-                if (org.telegram.messenger.hd.f22871a0) {
+                if (org.telegram.messenger.hd.f22878a0) {
                     i7 = 5;
                 } else {
                     i7 = 3;

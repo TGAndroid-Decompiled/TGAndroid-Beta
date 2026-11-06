@@ -2,7 +2,7 @@ package f6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import com.google.android.gms.cast.MediaInfo;
 import java.util.Arrays;
 import org.json.JSONArray;
@@ -191,26 +191,26 @@ public final class o extends r6.a {
             jSONObject = jSONObject2.toString();
         }
         this.f11306n = jSONObject;
-        int r10 = wb.r(parcel, 20293);
-        wb.k(parcel, 2, this.f11301a, i7);
+        int r10 = xb.r(parcel, 20293);
+        xb.k(parcel, 2, this.f11301a, i7);
         int i10 = this.f11302b;
-        wb.q(parcel, 3, 4);
+        xb.q(parcel, 3, 4);
         parcel.writeInt(i10);
         boolean z9 = this.f11303c;
-        wb.q(parcel, 4, 4);
+        xb.q(parcel, 4, 4);
         parcel.writeInt(z9 ? 1 : 0);
         double d = this.d;
-        wb.q(parcel, 5, 8);
+        xb.q(parcel, 5, 8);
         parcel.writeDouble(d);
         double d2 = this.f11304e;
-        wb.q(parcel, 6, 8);
+        xb.q(parcel, 6, 8);
         parcel.writeDouble(d2);
         double d10 = this.f11305f;
-        wb.q(parcel, 7, 8);
+        xb.q(parcel, 7, 8);
         parcel.writeDouble(d10);
-        wb.j(parcel, 8, this.h);
-        wb.l(parcel, 9, this.f11306n);
-        wb.s(parcel, r10);
+        xb.j(parcel, 8, this.h);
+        xb.l(parcel, 9, this.f11306n);
+        xb.s(parcel, r10);
     }
 
     public o(JSONObject jSONObject) {

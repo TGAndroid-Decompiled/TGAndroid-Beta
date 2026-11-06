@@ -99,7 +99,7 @@ public final class o6 {
                 return this.h;
             }
         }
-        Typeface typeface = org.telegram.messenger.g0.f22509a;
+        Typeface typeface = org.telegram.messenger.g0.f22516a;
         if (arrayList2.isEmpty()) {
             obj = null;
         } else {
@@ -139,7 +139,7 @@ public final class o6 {
             j3 = i7;
         }
         org.telegram.ui.Components.w5 w5Var = this.f4471m;
-        w5Var.f39860g = j3;
+        w5Var.f39858g = j3;
         if (i10 >= i11) {
             z10 = true;
         } else {

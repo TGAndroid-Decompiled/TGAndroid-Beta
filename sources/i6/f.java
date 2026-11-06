@@ -237,7 +237,7 @@ public final class f {
             if (bVar == null) {
                 bitmap = null;
             } else {
-                bitmap = (Bitmap) bVar.f57564c;
+                bitmap = (Bitmap) bVar.f57563c;
             }
             Context context = this.f15356a;
             q qVar = new q(context, "cast_media_notification");

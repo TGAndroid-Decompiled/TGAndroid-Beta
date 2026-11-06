@@ -3,18 +3,18 @@ package x2;
 import a8.ia;
 public final class w extends l2.a {
     public final e2.l1 h;
-    public final int f58392i;
-    public final int f58393j;
-    public final int f58394k;
+    public final int f58391i;
+    public final int f58392j;
+    public final int f58393k;
 
     public w(e2.l1 l1Var, int i7) {
         super(new g1(i7));
         boolean z9;
         this.h = l1Var;
         int h = l1Var.h();
-        this.f58392i = h;
-        this.f58393j = l1Var.o();
-        this.f58394k = i7;
+        this.f58391i = h;
+        this.f58392j = l1Var.o();
+        this.f58393k = i7;
         if (h > 0) {
             if (i7 <= Integer.MAX_VALUE / h) {
                 z9 = true;
@@ -27,12 +27,12 @@ public final class w extends l2.a {
 
     @Override
     public final int h() {
-        return this.f58392i * this.f58394k;
+        return this.f58391i * this.f58393k;
     }
 
     @Override
     public final int o() {
-        return this.f58393j * this.f58394k;
+        return this.f58392j * this.f58393k;
     }
 
     @Override
@@ -45,12 +45,12 @@ public final class w extends l2.a {
 
     @Override
     public final int r(int i7) {
-        return i7 / this.f58392i;
+        return i7 / this.f58391i;
     }
 
     @Override
     public final int s(int i7) {
-        return i7 / this.f58393j;
+        return i7 / this.f58392j;
     }
 
     @Override
@@ -60,12 +60,12 @@ public final class w extends l2.a {
 
     @Override
     public final int u(int i7) {
-        return i7 * this.f58392i;
+        return i7 * this.f58391i;
     }
 
     @Override
     public final int v(int i7) {
-        return i7 * this.f58393j;
+        return i7 * this.f58392j;
     }
 
     @Override

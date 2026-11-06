@@ -62,26 +62,26 @@ public final class b5 extends AnimatorListenerAdapter {
                 animator.removeAllListeners();
                 mi.l lVar = (mi.l) this.f11680e;
                 v4.d1 d1Var = (v4.d1) this.d;
-                lVar.X(d1Var.f56952a);
-                View view2 = d1Var.f56952a;
+                lVar.X(d1Var.f56951a);
+                View view2 = d1Var.f56951a;
                 if (view2 instanceof org.telegram.ui.Cells.q1) {
                     org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view2;
-                    if (q1Var.f29939nb) {
-                        q1Var.f29939nb = false;
+                    if (q1Var.f29940nb) {
+                        q1Var.f29940nb = false;
                         q1Var.setVisibility(0);
                     }
                     dj currentMessagesGroup = q1Var.getCurrentMessagesGroup();
                     if (currentMessagesGroup != null) {
-                        cj cjVar = currentMessagesGroup.f22012m;
-                        cjVar.f21832n = 1.0f;
+                        cj cjVar = currentMessagesGroup.f22019m;
+                        cjVar.f21838n = 1.0f;
                         cjVar.h = 0.0f;
-                        cjVar.f21825f = 0.0f;
-                        cjVar.f21826g = 0.0f;
-                        cjVar.f21824e = 0.0f;
-                        cjVar.f21828j = false;
+                        cjVar.f21831f = 0.0f;
+                        cjVar.f21832g = 0.0f;
+                        cjVar.f21830e = 0.0f;
+                        cjVar.f21834j = false;
                     }
                 }
-                if (lVar.f57018z.remove(d1Var)) {
+                if (lVar.f57017z.remove(d1Var)) {
                     lVar.v(d1Var);
                     lVar.G();
                     return;
@@ -89,31 +89,31 @@ public final class b5 extends AnimatorListenerAdapter {
                 return;
             case 2:
                 an anVar = (an) this.f11680e;
-                anVar.f43779e6 = true;
+                anVar.f43778e6 = true;
                 ((org.telegram.ui.ActionBar.f2) anVar).fragmentBeginToShow = true;
-                anVar.f43906oa = null;
+                anVar.f43905oa = null;
                 org.telegram.messenger.g0.i3(new bh(this, 1), 32L);
                 super.onAnimationEnd(animator);
                 anVar.l1.invalidate();
                 anVar.l1.setSkipBackgroundDrawing(false);
-                anVar.f43871la = false;
+                anVar.f43870la = false;
                 an anVar2 = (an) this.f11679c;
-                anVar2.f43894na = 0.0f;
+                anVar2.f43893na = 0.0f;
                 anVar2.fragmentView.invalidate();
-                anVar2.f44038z0.invalidate();
+                anVar2.f44037z0.invalidate();
                 anVar2.ma = null;
                 anVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
-                anVar.f43898o1.setTranslationY(0.0f);
-                anVar2.f43898o1.setTranslationY(0.0f);
-                anVar2.f43898o1.getAvatarImageView().setTranslationY(0.0f);
-                anVar.f43898o1.getAvatarImageView().setScaleX(1.0f);
-                anVar.f43898o1.getAvatarImageView().setScaleY(1.0f);
-                anVar.f43898o1.getAvatarImageView().setAlpha(1.0f);
-                anVar2.f43898o1.getAvatarImageView().setScaleX(1.0f);
-                anVar2.f43898o1.getAvatarImageView().setScaleY(1.0f);
-                anVar2.f43898o1.getAvatarImageView().setAlpha(1.0f);
-                lg lgVar = anVar2.f43718a1;
+                anVar.f43897o1.setTranslationY(0.0f);
+                anVar2.f43897o1.setTranslationY(0.0f);
+                anVar2.f43897o1.getAvatarImageView().setTranslationY(0.0f);
+                anVar.f43897o1.getAvatarImageView().setScaleX(1.0f);
+                anVar.f43897o1.getAvatarImageView().setScaleY(1.0f);
+                anVar.f43897o1.getAvatarImageView().setAlpha(1.0f);
+                anVar2.f43897o1.getAvatarImageView().setScaleX(1.0f);
+                anVar2.f43897o1.getAvatarImageView().setScaleY(1.0f);
+                anVar2.f43897o1.getAvatarImageView().setAlpha(1.0f);
+                lg lgVar = anVar2.f43717a1;
                 if (lgVar != null) {
                     lgVar.setAlpha(1.0f);
                     return;

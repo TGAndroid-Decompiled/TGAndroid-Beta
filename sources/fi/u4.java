@@ -36,7 +36,7 @@ public final class u4 implements d20 {
                 o5 o5Var = (o5) obj4;
                 boolean[] zArr = (boolean[]) obj3;
                 c5 c5Var = (c5) obj2;
-                org.telegram.ui.ActionBar.l2 l2Var = c5Var.f28618c;
+                org.telegram.ui.ActionBar.l2 l2Var = c5Var.f28619c;
                 Integer num = (Integer) obj;
                 j5 j5Var = o5Var.A0;
                 g5 g5Var = o5Var.f12540p1;
@@ -97,11 +97,11 @@ public final class u4 implements d20 {
                 final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) obj;
-                TL_aicompose.AiComposeTone aiComposeTone = e0Var.f33083e;
+                TL_aicompose.AiComposeTone aiComposeTone = e0Var.f33108e;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     final TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone;
-                    k60 F = k60.F(g0Var.f28618c, f6Var, e0Var);
-                    F.W(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(12.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, f6Var)));
+                    k60 F = k60.F(g0Var.f28619c, f6Var, e0Var);
+                    F.W(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(12.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d6, f6Var)));
                     F.l(2131232116, hd.M0(2131754996, null), new Runnable() {
                         @Override
                         public final void run() {
@@ -113,12 +113,12 @@ public final class u4 implements d20 {
                             switch (i12) {
                                 case 0:
                                     a0 a0Var = new a0(g0Var2.getContext(), f6Var2);
-                                    a0Var.f31615b2 = tL_aiComposeTone2;
+                                    a0Var.f31616b2 = tL_aiComposeTone2;
                                     a0Var.Z1 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     a0Var.f1();
-                                    a0Var.S1.setText(a0Var.f31615b2.title);
-                                    a0Var.T1.setText(a0Var.f31615b2.prompt);
-                                    if (a0Var.f31615b2.author_id != 0) {
+                                    a0Var.S1.setText(a0Var.f31616b2.title);
+                                    a0Var.T1.setText(a0Var.f31616b2.prompt);
+                                    if (a0Var.f31616b2.author_id != 0) {
                                         z9 = true;
                                     } else {
                                         z9 = false;
@@ -127,14 +127,14 @@ public final class u4 implements d20 {
                                     a0Var.l1.setTitle(org.telegram.messenger.hd.M0(2131754996, null));
                                     a0Var.Y1.setText(org.telegram.messenger.hd.M0(2131754979, null));
                                     a0Var.e1();
-                                    a0Var.f31618f2.O(false);
+                                    a0Var.f31619f2.O(false);
                                     a0Var.d2 = new g(g0Var2, 2);
                                     a0Var.show();
                                     return;
                                 default:
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var2.getContext(), f6Var2);
                                     String M0 = org.telegram.messenger.hd.M0(2131754998, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                                     u1Var.R = M0;
                                     u1Var.T = org.telegram.messenger.hd.M0(2131754997, null);
                                     alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
@@ -158,12 +158,12 @@ public final class u4 implements d20 {
                             switch (i12) {
                                 case 0:
                                     a0 a0Var = new a0(g0Var2.getContext(), f6Var2);
-                                    a0Var.f31615b2 = tL_aiComposeTone2;
+                                    a0Var.f31616b2 = tL_aiComposeTone2;
                                     a0Var.Z1 = Long.valueOf(tL_aiComposeTone2.emoji_id);
                                     a0Var.f1();
-                                    a0Var.S1.setText(a0Var.f31615b2.title);
-                                    a0Var.T1.setText(a0Var.f31615b2.prompt);
-                                    if (a0Var.f31615b2.author_id != 0) {
+                                    a0Var.S1.setText(a0Var.f31616b2.title);
+                                    a0Var.T1.setText(a0Var.f31616b2.prompt);
+                                    if (a0Var.f31616b2.author_id != 0) {
                                         z9 = true;
                                     } else {
                                         z9 = false;
@@ -172,14 +172,14 @@ public final class u4 implements d20 {
                                     a0Var.l1.setTitle(org.telegram.messenger.hd.M0(2131754996, null));
                                     a0Var.Y1.setText(org.telegram.messenger.hd.M0(2131754979, null));
                                     a0Var.e1();
-                                    a0Var.f31618f2.O(false);
+                                    a0Var.f31619f2.O(false);
                                     a0Var.d2 = new g(g0Var2, 2);
                                     a0Var.show();
                                     return;
                                 default:
                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var2.getContext(), f6Var2);
                                     String M0 = org.telegram.messenger.hd.M0(2131754998, null);
-                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                                    org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                                     u1Var.R = M0;
                                     u1Var.T = org.telegram.messenger.hd.M0(2131754997, null);
                                     alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
@@ -196,7 +196,7 @@ public final class u4 implements d20 {
                 return Boolean.FALSE;
             case 2:
                 View view = (View) obj;
-                ij ijVar = ((th.g) obj2).f55969b;
+                ij ijVar = ((th.g) obj2).f55968b;
                 return th.c.d(view, (String) obj4, (String) obj3, ijVar.F0(), ijVar);
             default:
                 pj0 pj0Var = (pj0) obj4;
@@ -211,7 +211,7 @@ public final class u4 implements d20 {
                     boolean booleanValue = bool.booleanValue();
                     v4.d1 T = pj0Var.T(view2);
                     if (T != null) {
-                        sparseIntArray.put(T.f56956f, booleanValue ? 1 : 0);
+                        sparseIntArray.put(T.f56955f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {

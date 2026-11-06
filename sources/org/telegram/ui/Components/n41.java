@@ -1,102 +1,50 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class n41 extends jy {
-    public final int X;
-    public final Object Y;
-
-    public n41(p41 p41Var, int i7, int i10) {
-        super(i7, false);
-        this.X = i10;
-        this.Y = p41Var;
-    }
-
-    @Override
-    public int A() {
-        switch (this.X) {
-            case 2:
-                return 0;
-            default:
-                return super.A();
-        }
-    }
-
-    @Override
-    public mt0 D1(int i7) {
-        switch (this.X) {
-            case 2:
-                mt0 mt0Var = (mt0) this.Y;
-                mt0Var.f36071b = 100.0f;
-                mt0Var.f36070a = 100.0f;
-                return mt0Var;
-            default:
-                return super.D1(i7);
-        }
-    }
-
-    @Override
-    public void U(v4.v0 v0Var, v4.a1 a1Var, View view, s0.d dVar) {
-        d9.o oVar;
-        switch (this.X) {
-            case 2:
-                super.U(v0Var, a1Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54509a;
-                AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
-                if (collectionItemInfo != null) {
-                    oVar = new d9.o(collectionItemInfo);
-                } else {
-                    oVar = null;
-                }
-                if (oVar != null) {
-                    Object obj = oVar.f8253a;
-                    if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
-                        accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                super.U(v0Var, a1Var, view, dVar);
-                return;
-        }
-    }
-
-    @Override
-    public int W0(v4.a1 a1Var) {
-        switch (this.X) {
-            case 0:
-                if (((p41) this.Y).f36783h3) {
-                    return org.telegram.messenger.g0.f22537q.y;
-                }
-                return super.W0(a1Var);
-            case 1:
-                if (((p41) this.Y).f36783h3) {
-                    return org.telegram.messenger.g0.f22537q.y;
-                }
-                return super.W0(a1Var);
-            default:
-                return super.W0(a1Var);
-        }
-    }
-
-    @Override
-    public void z0(v4.a1 a1Var, int[] iArr) {
-        switch (this.X) {
-            case 2:
-                super.z0(a1Var, iArr);
-                iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.p7.a(1) * 2);
-                return;
-            default:
-                super.z0(a1Var, iArr);
-                return;
-        }
-    }
+import java.util.ArrayList;
+public abstract class n41 extends org.telegram.ui.ActionBar.f2 {
+    public fi.w3 f36227a;
+    public kg.l1 f36228b;
+    public int f36229c;
+    public int d;
 
     public n41() {
-        super(100, false);
-        this.X = 2;
-        this.Y = new Object();
+        super(null);
+        this.f36229c = -1;
+    }
+
+    public abstract void Z(ArrayList arrayList, l41 l41Var);
+
+    public abstract CharSequence a0();
+
+    public abstract void b0(x31 x31Var, View view);
+
+    public abstract boolean c0(x31 x31Var, View view);
+
+    @Override
+    public View createView(Context context) {
+        org.telegram.ui.w9 w9Var = new org.telegram.ui.w9(this, 18);
+        org.telegram.ui.ActionBar.y4 y4Var = this.simpleActionBar;
+        if (y4Var != null) {
+            y4Var.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
+            this.simpleActionBar.setTitle(a0());
+            this.simpleActionBar.setActionBarMenuOnItemClick(w9Var);
+        } else {
+            this.actionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.y1(false));
+            this.actionBar.setAllowOverlayTitle(true);
+            this.actionBar.setTitle(a0());
+            this.actionBar.setActionBarMenuOnItemClick(w9Var);
+        }
+        this.f36228b = new kg.l1(context, null, 1);
+        if (!useSimpleActionBar()) {
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27793a7, this.f36228b, null);
+        }
+        fi.w3 w3Var = new fi.w3(this, this, new d(this, 22), new m41(this), new m41(this));
+        this.f36227a = w3Var;
+        this.f36228b.addView(w3Var, c8.ha.c(-1.0f, -1));
+        kg.l1 l1Var = this.f36228b;
+        this.fragmentView = l1Var;
+        return l1Var;
     }
 }

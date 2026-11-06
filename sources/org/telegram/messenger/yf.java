@@ -12,56 +12,56 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class yf implements Runnable {
-    public final int f26634a;
-    public final boolean f26635b;
-    public final Object f26636c;
+    public final int f26642a;
+    public final boolean f26643b;
+    public final Object f26644c;
     public final Object d;
 
     public yf(Object obj, Object obj2, boolean z9, int i7) {
-        this.f26634a = i7;
-        this.f26636c = obj;
+        this.f26642a = i7;
+        this.f26644c = obj;
         this.d = obj2;
-        this.f26635b = z9;
+        this.f26643b = z9;
     }
 
     private final void a() {
         y8 y8Var;
-        w7 w7Var = (w7) this.f26636c;
-        boolean z9 = this.f26635b;
+        w7 w7Var = (w7) this.f26644c;
+        boolean z9 = this.f26643b;
         String str = (String) this.d;
         if (!z9) {
             y8Var = (y8) w7Var.h.get(str);
         } else {
-            y8Var = (y8) w7Var.f26257n.get(str);
+            y8Var = (y8) w7Var.f26265n.get(str);
         }
-        w7Var.f26262y.remove(str);
+        w7Var.f26270y.remove(str);
         if (y8Var != null) {
-            w7Var.f26257n.remove(str);
-            w7Var.f26255e.remove(y8Var);
-            w7Var.f26256f.remove(y8Var);
-            if (y8Var.f26592m != 3) {
-                y8Var.f26592m = 2;
+            w7Var.f26265n.remove(str);
+            w7Var.f26263e.remove(y8Var);
+            w7Var.f26264f.remove(y8Var);
+            if (y8Var.f26600m != 3) {
+                y8Var.f26600m = 2;
                 Utilities.d.c(new u8(y8Var, 1));
-                String str2 = y8Var.f26591l;
+                String str2 = y8Var.f26599l;
                 if (str2 == null) {
                     Set set = z0.f26769a;
                 } else {
                     z0.f26769a.remove(str2);
                 }
-                y8Var.f26594o.a();
+                y8Var.f26602o.a();
                 y8Var.b();
             }
         }
     }
 
     private final void b() {
-        gc gcVar = (gc) this.f26636c;
+        gc gcVar = (gc) this.f26644c;
         ImageReceiver imageReceiver = (ImageReceiver) this.d;
         int i7 = 0;
         while (true) {
             int i10 = 3;
             if (i7 < 3) {
-                if (i7 <= 0 || this.f26635b) {
+                if (i7 <= 0 || this.f26643b) {
                     if (i7 == 0) {
                         i10 = 1;
                     } else if (i7 == 1) {
@@ -70,13 +70,13 @@ public final class yf implements Runnable {
                     int G = imageReceiver.G(i10);
                     if (G != 0) {
                         if (i7 == 0) {
-                            HashMap hashMap = gcVar.f22618l;
-                            SparseArray sparseArray = gcVar.f22619m;
+                            HashMap hashMap = gcVar.f22625l;
+                            SparseArray sparseArray = gcVar.f22626m;
                             String str = (String) sparseArray.get(G);
                             if (str != null) {
                                 ec ecVar = (ec) hashMap.get(str);
                                 if (ecVar != null) {
-                                    ArrayList arrayList = ecVar.f22172c;
+                                    ArrayList arrayList = ecVar.f22179c;
                                     int indexOf = arrayList.indexOf(imageReceiver);
                                     if (indexOf >= 0) {
                                         arrayList.remove(indexOf);
@@ -89,7 +89,7 @@ public final class yf implements Runnable {
                                 sparseArray.remove(G);
                             }
                         }
-                        ub ubVar = (ub) gcVar.f22617k.get(G);
+                        ub ubVar = (ub) gcVar.f22624k.get(G);
                         if (ubVar != null) {
                             ubVar.b(imageReceiver);
                         }
@@ -108,7 +108,7 @@ public final class yf implements Runnable {
         int i7;
         int position;
         int writeFrame;
-        m.f3 f3Var = (m.f3) this.f26636c;
+        m.f3 f3Var = (m.f3) this.f26644c;
         ByteBuffer byteBuffer = (ByteBuffer) this.d;
         MediaController mediaController = (MediaController) f3Var.f19102b;
         while (byteBuffer.hasRemaining()) {
@@ -123,7 +123,7 @@ public final class yf implements Runnable {
             byteBuffer2.put(byteBuffer);
             int position2 = byteBuffer2.position();
             int limit = byteBuffer2.limit();
-            boolean z9 = this.f26635b;
+            boolean z9 = this.f26643b;
             if (position2 == limit || z9) {
                 if (!z9) {
                     position = byteBuffer2.limit();
@@ -150,19 +150,19 @@ public final class yf implements Runnable {
         SQLiteCursor queryFinalized;
         TLRPC.Message message;
         NativeByteBuffer byteBufferValue;
-        ui uiVar = (ui) this.f26636c;
+        ui uiVar = (ui) this.f26644c;
         xr xrVar = (xr) this.d;
         try {
-            if (xrVar.f26506b != 0) {
-                SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26690b;
+            if (xrVar.f26514b != 0) {
+                SQLiteDatabase sQLiteDatabase = uiVar.getMessagesStorage().f26698b;
                 Locale locale = Locale.US;
-                long j3 = xrVar.f26505a;
-                long j10 = xrVar.f26506b;
+                long j3 = xrVar.f26513a;
+                long j10 = xrVar.f26514b;
                 queryFinalized = sQLiteDatabase.queryFinalized("SELECT info FROM bot_keyboard_topics WHERE uid = " + j3 + " AND tid = " + j10, new Object[0]);
             } else {
-                SQLiteDatabase sQLiteDatabase2 = uiVar.getMessagesStorage().f26690b;
+                SQLiteDatabase sQLiteDatabase2 = uiVar.getMessagesStorage().f26698b;
                 Locale locale2 = Locale.US;
-                long j11 = xrVar.f26505a;
+                long j11 = xrVar.f26513a;
                 queryFinalized = sQLiteDatabase2.queryFinalized("SELECT info FROM bot_keyboard WHERE uid = " + j11, new Object[0]);
             }
             if (queryFinalized.next() && !queryFinalized.isNull(0) && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
@@ -172,7 +172,7 @@ public final class yf implements Runnable {
                 message = null;
             }
             queryFinalized.dispose();
-            if (message == null && !this.f26635b) {
+            if (message == null && !this.f26643b) {
                 return;
             }
             g0.h3(new qg(uiVar, message, xrVar));
@@ -186,8 +186,8 @@ public final class yf implements Runnable {
     }
 
     private final void g() {
-        yr yrVar = (yr) this.f26636c;
-        yrVar.x1((vo) this.d, this.f26635b);
+        yr yrVar = (yr) this.f26644c;
+        yrVar.x1((vo) this.d, this.f26643b);
         yrVar.j(false);
         g0.h3(new qq(yrVar, 17));
     }
@@ -198,22 +198,22 @@ public final class yf implements Runnable {
 
     private final void i() {
         int i7;
-        yr yrVar = (yr) this.f26636c;
+        yr yrVar = (yr) this.f26644c;
         TLRPC.EncryptedChat encryptedChat = (TLRPC.EncryptedChat) this.d;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
-                sQLitePreparedStatement = yrVar.f26690b.executeFast("UPDATE enc_chats SET seq_in = ?, seq_out = ?, use_count = ?, in_seq_no = ?, mtproto_seq = ? WHERE uid = ?");
+                sQLitePreparedStatement = yrVar.f26698b.executeFast("UPDATE enc_chats SET seq_in = ?, seq_out = ?, use_count = ?, in_seq_no = ?, mtproto_seq = ? WHERE uid = ?");
                 sQLitePreparedStatement.bindInteger(1, encryptedChat.seq_in);
                 sQLitePreparedStatement.bindInteger(2, encryptedChat.seq_out);
                 sQLitePreparedStatement.bindInteger(3, (encryptedChat.key_use_count_in << 16) | encryptedChat.key_use_count_out);
                 sQLitePreparedStatement.bindInteger(4, encryptedChat.in_seq_no);
                 sQLitePreparedStatement.bindInteger(5, encryptedChat.mtproto_seq);
-                sQLitePreparedStatement.bindInteger(6, encryptedChat.f26960id);
+                sQLitePreparedStatement.bindInteger(6, encryptedChat.f26961id);
                 sQLitePreparedStatement.step();
-                if (this.f26635b && (i7 = encryptedChat.in_seq_no) != 0) {
-                    long j3 = (int) (encryptedChat.f26960id & 4294967295L);
-                    SQLiteDatabase sQLiteDatabase = yrVar.f26690b;
+                if (this.f26643b && (i7 = encryptedChat.in_seq_no) != 0) {
+                    long j3 = (int) (encryptedChat.f26961id & 4294967295L);
+                    SQLiteDatabase sQLiteDatabase = yrVar.f26698b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM messages_v2 WHERE mid IN (SELECT m.mid FROM messages_v2 as m LEFT JOIN messages_seq as s ON m.mid = s.mid WHERE m.uid = " + j3 + " AND m.date = 0 AND m.mid < 0 AND s.seq_out <= " + i7 + ") AND uid = " + j3).stepThis().dispose();
                 }
@@ -242,9 +242,9 @@ public final class yf implements Runnable {
     }
 
     public yf(Object obj, boolean z9, Object obj2, int i7) {
-        this.f26634a = i7;
-        this.f26636c = obj;
-        this.f26635b = z9;
+        this.f26642a = i7;
+        this.f26644c = obj;
+        this.f26643b = z9;
         this.d = obj2;
     }
 }

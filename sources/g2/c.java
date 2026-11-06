@@ -21,7 +21,7 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.jt0;
 import org.telegram.ui.Components.kt0;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
     public final int f13452a;
 
@@ -30,7 +30,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
     }
 
     @Override
-    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -46,7 +46,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 p0Var.getClass();
                 n nVar = n.f13731b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = u10.getBytes(xd.a.f58589a);
+                byte[] bytes = u10.getBytes(xd.a.f58588a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:
@@ -115,7 +115,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 } else {
                     f10 = 0.76f;
                 }
-                int w02 = k6.w0(k6.f27848d6, f6Var);
+                int w02 = k6.w0(k6.f27849d6, f6Var);
                 if (z9) {
                     return k6.r1(0.9f, -15658735);
                 }
@@ -137,7 +137,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 } else {
                     f12 = 0.76f;
                 }
-                return g0.n(f12, k6.w0(k6.f27848d6, f6Var), k6.w0(k6.Nl, f6Var));
+                return g0.n(f12, k6.w0(k6.f27849d6, f6Var), k6.w0(k6.Nl, f6Var));
             case 9:
                 if (rc.e(262144)) {
                     f13 = 0.85f;
@@ -151,20 +151,20 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 } else {
                     f14 = 0.76f;
                 }
-                return g0.n(f14, k6.w0(k6.f27848d6, f6Var), k6.w0(k6.Ge, f6Var));
+                return g0.n(f14, k6.w0(k6.f27849d6, f6Var), k6.w0(k6.Ge, f6Var));
             case 11:
                 if (rc.e(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.8f;
                 }
-                return g0.n(f15, k6.w0(k6.f27792a7, f6Var), k6.w0(k6.f27848d6, f6Var));
+                return g0.n(f15, k6.w0(k6.f27793a7, f6Var), k6.w0(k6.f27849d6, f6Var));
             case 12:
                 return 855638016;
             case 13:
                 return 1073741824;
             case 14:
-                int w03 = k6.w0(k6.f27921h5, f6Var);
+                int w03 = k6.w0(k6.f27922h5, f6Var);
                 if (z9) {
                     f16 = 0.82f;
                 } else {
@@ -182,25 +182,25 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 }
                 return k6.r1(f17, w04);
             case 17:
-                return k6.r1(0.88f, k6.w0(k6.f27848d6, f6Var));
+                return k6.r1(0.88f, k6.w0(k6.f27849d6, f6Var));
             case 18:
                 if (rc.e(262144)) {
                     f18 = 0.85f;
                 } else {
                     f18 = 0.76f;
                 }
-                return g0.n(f18, k6.w0(k6.f27848d6, f6Var), k6.w0(k6.Ml, f6Var));
+                return g0.n(f18, k6.w0(k6.f27849d6, f6Var), k6.w0(k6.Ml, f6Var));
             case 19:
                 if (rc.e(262144)) {
                     f19 = 0.85f;
                 } else {
                     f19 = 0.76f;
                 }
-                return k6.r1(f19, k6.w0(k6.f27848d6, f6Var));
+                return k6.r1(f19, k6.w0(k6.f27849d6, f6Var));
             case 20:
-                return k6.r1(0.78f, k6.w0(k6.f27921h5, f6Var));
+                return k6.r1(0.78f, k6.w0(k6.f27922h5, f6Var));
             case 21:
-                return k6.r1(0.7f, k6.w0(k6.f27848d6, f6Var));
+                return k6.r1(0.7f, k6.w0(k6.f27849d6, f6Var));
             case 22:
                 rc.e(262144);
                 return 0;
@@ -210,7 +210,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 } else {
                     f20 = 0.76f;
                 }
-                return k6.r1(f20, k6.w0(k6.f27848d6, f6Var));
+                return k6.r1(f20, k6.w0(k6.f27849d6, f6Var));
         }
     }
 

@@ -7,7 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.widget.ToggleButton;
-import c8.fc;
+import c8.gc;
 public final class i1 extends ToggleButton implements u0.k {
     public final h2.c f19130a;
     public final x0 f19131b;
@@ -117,7 +117,7 @@ public final class i1 extends ToggleButton implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((fc) getEmojiTextViewHelper().f19259b.f38757b).a(inputFilterArr));
+        super.setFilters(((gc) getEmojiTextViewHelper().f19259b.f38750b).a(inputFilterArr));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {

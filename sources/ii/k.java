@@ -6,7 +6,7 @@ import org.telegram.messenger.a20;
 import org.telegram.messenger.b20;
 import org.telegram.messenger.qr;
 import org.telegram.messenger.qs;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import r0.k1;
 public final class k implements a20, b20, r0.m, qr {
     public final p f15550a;
@@ -17,14 +17,14 @@ public final class k implements a20, b20, r0.m, qr {
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        i0.b f10 = k1Var.f54109a.f(519);
+        i0.b f10 = k1Var.f54108a.f(519);
         this.f15550a.f15583e.setPadding(0, f10.f15118b, 0, f10.d);
-        return k1.f54108b;
+        return k1.f54107b;
     }
 
     @Override
-    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(p.Z(this.f15550a, w31Var, view));
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
+        return Boolean.valueOf(p.Z(this.f15550a, x31Var, view));
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class k implements a20, b20, r0.m, qr {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        p.a0(this.f15550a, (w31) obj);
+        p.a0(this.f15550a, (x31) obj);
     }
 
     @Override

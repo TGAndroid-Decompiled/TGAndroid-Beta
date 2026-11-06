@@ -48,7 +48,7 @@ public final class f9 implements Runnable {
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                SQLiteDatabase sQLiteDatabase = ((yr) obj2).f26690b;
+                SQLiteDatabase sQLiteDatabase = ((yr) obj2).f26698b;
                 try {
                     try {
                         sQLiteDatabase.executeFast("DELETE FROM star_gifts2").stepThis().dispose();
@@ -57,7 +57,7 @@ public final class f9 implements Runnable {
                             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                                 TL_stars.StarGift starGift = (TL_stars.StarGift) arrayList.get(i11);
                                 sQLitePreparedStatement.requery();
-                                sQLitePreparedStatement.bindLong(1, starGift.f27181id);
+                                sQLitePreparedStatement.bindLong(1, starGift.f27182id);
                                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(starGift.getObjectSize());
                                 starGift.serializeToStream(nativeByteBuffer);
                                 sQLitePreparedStatement.bindByteBuffer(2, nativeByteBuffer);
@@ -132,22 +132,22 @@ public final class f9 implements Runnable {
                 return;
             case 5:
                 rc.u uVar = (rc.u) obj;
-                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f43410c;
+                org.telegram.ui.Wallet.a1 a1Var = ((org.telegram.ui.Wallet.z0) obj2).f43409c;
                 if (!a1Var.c(uVar, i10)) {
                     a1Var.d("closing stale connected websocket; attempt=" + i10);
                     uVar.c();
                     return;
                 }
                 a1Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j3) + " ms");
-                org.telegram.ui.Wallet.x0 x0Var = a1Var.f42094o;
+                org.telegram.ui.Wallet.x0 x0Var = a1Var.f42093o;
                 try {
-                    JSONArray put = new JSONArray().put(a1Var.f42083b);
+                    JSONArray put = new JSONArray().put(a1Var.f42082b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = a1Var.f42087g + 1;
-                    a1Var.f42087g = i12;
+                    int i12 = a1Var.f42086g + 1;
+                    a1Var.f42086g = i12;
                     sb2.append(i12);
-                    a1Var.f42086f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f42086f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    a1Var.f42085f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", a1Var.f42085f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
                     org.telegram.messenger.g0.r(x0Var);
                     org.telegram.messenger.g0.i3(x0Var, 30000L);
                     a1Var.g(put2.toString());
@@ -162,12 +162,12 @@ public final class f9 implements Runnable {
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 long j10 = this.f3883c;
                 tonconnectgetpending.session_id = Long.valueOf(j10);
-                f2Var.f42464f.sendRequestTyped(tonconnectgetpending, new d3.b(1), new org.telegram.ui.Wallet.p1(f2Var, (l60) obj, j10, this.f3882b, 0));
+                f2Var.f42463f.sendRequestTyped(tonconnectgetpending, new d3.b(1), new org.telegram.ui.Wallet.p1(f2Var, (l60) obj, j10, this.f3882b, 0));
                 return;
             default:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, (Context) obj2, (org.telegram.ui.ActionBar.f6) obj);
                 String M0 = org.telegram.messenger.hd.M0(2131743074, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.V(null, null, 2131743072, org.telegram.ui.Wallet.n0.x(i10).m(j3, true)));
                 jg.g.C(null, 2131743064, alertDialog$Builder, null);

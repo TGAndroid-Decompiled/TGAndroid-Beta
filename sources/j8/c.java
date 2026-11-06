@@ -2,7 +2,7 @@ package j8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,12 +20,12 @@ public final class c extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.p(parcel, 1, DesugarCollections.unmodifiableList(this.f16582a));
-        wb.q(parcel, 2, 4);
+        int r10 = xb.r(parcel, 20293);
+        xb.p(parcel, 1, DesugarCollections.unmodifiableList(this.f16582a));
+        xb.q(parcel, 2, 4);
         parcel.writeInt(this.f16583b ? 1 : 0);
-        wb.q(parcel, 3, 4);
+        xb.q(parcel, 3, 4);
         parcel.writeInt(this.f16584c ? 1 : 0);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

@@ -14,24 +14,24 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_forum;
 import org.telegram.tgnet.tl.TL_update;
 public final class k00 extends c1 {
-    public static final int[] f23629n = new int[5];
-    public final a0.h f23630a;
-    public final a0.h f23631b;
-    public final LongSparseIntArray f23632c;
+    public static final int[] f23636n = new int[5];
+    public final a0.h f23637a;
+    public final a0.h f23638b;
+    public final LongSparseIntArray f23639c;
     public final LongSparseIntArray d;
-    public final a0.h f23633e;
-    public final LongSparseIntArray f23634f;
+    public final a0.h f23640e;
+    public final LongSparseIntArray f23641f;
     public final a0.h h;
 
     public k00(int i7) {
         super(i7);
-        this.f23630a = new a0.h();
-        this.f23631b = new a0.h();
-        this.f23632c = new LongSparseIntArray();
+        this.f23637a = new a0.h();
+        this.f23638b = new a0.h();
+        this.f23639c = new LongSparseIntArray();
         this.d = new LongSparseIntArray();
-        this.f23633e = new a0.h();
+        this.f23640e = new a0.h();
         new LongSparseIntArray();
-        this.f23634f = new LongSparseIntArray();
+        this.f23641f = new LongSparseIntArray();
         this.h = new a0.h();
     }
 
@@ -101,7 +101,7 @@ public final class k00 extends c1 {
 
     public final void D(long j3, TLRPC.TL_forumTopic tL_forumTopic, int i7) {
         long j10 = -j3;
-        TLRPC.TL_forumTopic f10 = f(j10, tL_forumTopic.f27004id);
+        TLRPC.TL_forumTopic f10 = f(j10, tL_forumTopic.f27005id);
         if (f10 != null) {
             if ((i7 & 1) != 0) {
                 f10.title = tL_forumTopic.title;
@@ -140,7 +140,7 @@ public final class k00 extends c1 {
                 for (int i7 = 0; i7 < l10.size(); i7++) {
                     TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) l10.get(i7);
                     if (tL_forumTopic != null) {
-                        int indexOf = arrayList.indexOf(Integer.valueOf(tL_forumTopic.f27004id));
+                        int indexOf = arrayList.indexOf(Integer.valueOf(tL_forumTopic.f27005id));
                         if (indexOf >= 0) {
                             z10 = true;
                         } else {
@@ -173,21 +173,21 @@ public final class k00 extends c1 {
         tL_messages_deleteTopicHistory.top_msg_id = i7;
         if (i10 == 0) {
             yr messagesStorage = getMessagesStorage();
-            messagesStorage.f26688a.c(new vp(1, j10, i7, messagesStorage));
+            messagesStorage.f26696a.c(new vp(1, j10, i7, messagesStorage));
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_messages_deleteTopicHistory, new g00(this, j3, i7));
     }
 
     public final void d(ArrayList arrayList, long j3) {
-        ArrayList arrayList2 = (ArrayList) this.f23630a.f(j3);
-        a0.h hVar = (a0.h) this.f23631b.f(j3);
+        ArrayList arrayList2 = (ArrayList) this.f23637a.f(j3);
+        a0.h hVar = (a0.h) this.f23638b.f(j3);
         if (hVar != null && arrayList2 != null) {
             for (int i7 = 0; i7 < arrayList.size(); i7++) {
                 long intValue = ((Integer) arrayList.get(i7)).intValue();
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(intValue);
                 hVar.l(intValue);
                 if (tL_forumTopic != null) {
-                    this.f23633e.l(p(tL_forumTopic.top_message, j3));
+                    this.f23640e.l(p(tL_forumTopic.top_message, j3));
                     arrayList2.remove(tL_forumTopic);
                 }
             }
@@ -206,11 +206,11 @@ public final class k00 extends c1 {
     }
 
     public final TLRPC.TL_forumTopic f(long j3, long j10) {
-        a0.h hVar = (a0.h) this.f23631b.f(j3);
+        a0.h hVar = (a0.h) this.f23638b.f(j3);
         if (hVar != null) {
             TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(j10);
             if (tL_forumTopic == null && getMessagesController().y2(-j3)) {
-                int i7 = qg.d.f54033a;
+                int i7 = qg.d.f54032a;
                 return (TLRPC.TL_forumTopic) hVar.f((int) ((j10 >>> 32) ^ j10));
             }
             return tL_forumTopic;
@@ -225,7 +225,7 @@ public final class k00 extends c1 {
             for (int i7 = 0; i7 < l10.size(); i7++) {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) l10.get(i7);
                 if (tL_forumTopic != null && tL_forumTopic.pinned) {
-                    arrayList.add(Integer.valueOf(tL_forumTopic.f27004id));
+                    arrayList.add(Integer.valueOf(tL_forumTopic.f27005id));
                 }
             }
         }
@@ -235,8 +235,8 @@ public final class k00 extends c1 {
     public final void h(long j3) {
         int i7;
         int i10;
-        ArrayList arrayList = (ArrayList) this.f23630a.f(j3);
-        int[] iArr = f23629n;
+        ArrayList arrayList = (ArrayList) this.f23637a.f(j3);
+        int[] iArr = f23636n;
         Arrays.fill(iArr, 0);
         if (arrayList != null) {
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -261,7 +261,7 @@ public final class k00 extends c1 {
                     i13 = 0;
                 }
                 iArr[2] = i15 + i13;
-                if (!getMessagesController().r2(-j3, tL_forumTopic.f27004id, null)) {
+                if (!getMessagesController().r2(-j3, tL_forumTopic.f27005id, null)) {
                     iArr[3] = iArr[3] + tL_forumTopic.unread_count;
                 }
                 iArr[4] = iArr[4] + tL_forumTopic.unread_poll_votes_count;
@@ -275,13 +275,13 @@ public final class k00 extends c1 {
 
     public final CharSequence j(TLRPC.Chat chat, ij ijVar, TextPaint textPaint, Drawable[] drawableArr) {
         TLRPC.TL_forumTopic f10;
-        TLRPC.MessageReplyHeader messageReplyHeader = ijVar.f23237k.reply_to;
+        TLRPC.MessageReplyHeader messageReplyHeader = ijVar.f23244k.reply_to;
         if (messageReplyHeader != null) {
             int i7 = messageReplyHeader.reply_to_top_id;
             if (i7 == 0) {
                 i7 = messageReplyHeader.reply_to_msg_id;
             }
-            if (i7 != 0 && (f10 = f(chat.f26952id, i7)) != null) {
+            if (i7 != 0 && (f10 = f(chat.f26953id, i7)) != null) {
                 return qg.d.j(f10, textPaint, drawableArr);
             }
             return null;
@@ -311,12 +311,12 @@ public final class k00 extends c1 {
     }
 
     public final ArrayList l(long j3) {
-        return (ArrayList) this.f23630a.f(j3);
+        return (ArrayList) this.f23637a.f(j3);
     }
 
     public final void m(final long j3, final long j10, final bi.h4 h4Var) {
         yr messagesStorage = getMessagesStorage();
-        messagesStorage.f26688a.c(new a4(messagesStorage, -j3, new Consumer() {
+        messagesStorage.f26696a.c(new a4(messagesStorage, -j3, new Consumer() {
             @Override
             public final void accept(Object obj) {
                 k00 k00Var = k00.this;
@@ -340,21 +340,21 @@ public final class k00 extends c1 {
 
     public final void q(long j3, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
         long j10 = -j3;
-        a0.h hVar = this.f23631b;
+        a0.h hVar = this.f23638b;
         a0.h hVar2 = (a0.h) hVar.f(j10);
-        if (f(j10, tL_forumTopic.f27004id) != null) {
+        if (f(j10, tL_forumTopic.f27005id) != null) {
             return;
         }
         if (hVar2 == null) {
             hVar2 = new a0.h();
             hVar.k(hVar2, j10);
         }
-        a0.h hVar3 = this.f23630a;
+        a0.h hVar3 = this.f23637a;
         ArrayList arrayList = (ArrayList) hVar3.f(j10);
         if (arrayList == null) {
             arrayList = k5.j(hVar3, j10);
         }
-        hVar2.k(tL_forumTopic, tL_forumTopic.f27004id);
+        hVar2.k(tL_forumTopic, tL_forumTopic.f27005id);
         arrayList.add(tL_forumTopic);
         if (z9) {
             getMessagesStorage().C1(getConnectionsManager().getCurrentTime(), j3, Collections.singletonList(tL_forumTopic), false);
@@ -365,7 +365,7 @@ public final class k00 extends c1 {
     public final void r(long j3, TL_update.TL_updateEditForumTopic tL_updateEditForumTopic) {
         int i7;
         TLRPC.TL_forumTopic tL_forumTopic = new TLRPC.TL_forumTopic();
-        tL_forumTopic.f27004id = tL_updateEditForumTopic.topic_id;
+        tL_forumTopic.f27005id = tL_updateEditForumTopic.topic_id;
         int i10 = tL_updateEditForumTopic.flags;
         if ((i10 & 1) != 0) {
             tL_forumTopic.title = tL_updateEditForumTopic.title;
@@ -436,7 +436,7 @@ public final class k00 extends c1 {
         } else {
             TL_forum.TL_messages_getForumTopicsByID tL_messages_getForumTopicsByID2 = new TL_forum.TL_messages_getForumTopicsByID();
             while (i7 < arrayList.size()) {
-                i7 = com.google.android.recaptcha.internal.a.f(((TLRPC.TL_forumTopic) arrayList.get(i7)).f27004id, i7, 1, tL_messages_getForumTopicsByID2.topics);
+                i7 = com.google.android.recaptcha.internal.a.f(((TLRPC.TL_forumTopic) arrayList.get(i7)).f27005id, i7, 1, tL_messages_getForumTopicsByID2.topics);
             }
             tL_messages_getForumTopicsByID2.peer = getMessagesController().j1(j10);
             tL_messages_getForumTopicsByID = tL_messages_getForumTopicsByID2;
@@ -455,20 +455,20 @@ public final class k00 extends c1 {
 
     public final void x(long j3, long j10, int i7, int i10) {
         ?? obj = new Object();
-        obj.f23433a = i7;
-        obj.f23434b = i10;
-        obj.f23435c = j10;
+        obj.f23440a = i7;
+        obj.f23441b = i10;
+        obj.f23442c = j10;
         this.h.k(obj, j3);
     }
 
     public final void y(long j3, boolean z9) {
-        ArrayList arrayList = (ArrayList) this.f23630a.f(j3);
+        ArrayList arrayList = (ArrayList) this.f23637a.f(j3);
         if (arrayList != null) {
-            if (this.f23634f.get(j3, 0) > 0) {
+            if (this.f23641f.get(j3, 0) > 0) {
                 Collections.sort(arrayList, new vj(21));
             }
             if (z9) {
-                getNotificationCenter().k(qs.f25045q5, Long.valueOf(j3), Boolean.TRUE);
+                getNotificationCenter().k(qs.f25053q5, Long.valueOf(j3), Boolean.TRUE);
             }
         }
     }
@@ -481,7 +481,7 @@ public final class k00 extends c1 {
         tL_messages_editForumTopic.topic_id = i7;
         tL_messages_editForumTopic.flags |= 4;
         tL_messages_editForumTopic.closed = z9;
-        a0.h hVar = (a0.h) this.f23631b.f(j3);
+        a0.h hVar = (a0.h) this.f23638b.f(j3);
         if (hVar != null && (tL_forumTopic = (TLRPC.TL_forumTopic) hVar.f(i7)) != null) {
             tL_forumTopic.closed = z9;
             getMessagesStorage().f2(j10, tL_forumTopic, 8);

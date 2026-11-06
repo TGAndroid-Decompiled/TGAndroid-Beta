@@ -7,7 +7,7 @@ public abstract class ga {
     public static void a() {
         SharedPreferences.Editor edit = qp.e1().edit();
         for (z20 z20Var : z20.values()) {
-            edit.remove(z20Var.f40841a);
+            edit.remove(z20Var.f40852a);
         }
         edit.apply();
     }

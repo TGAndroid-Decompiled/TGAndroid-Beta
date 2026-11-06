@@ -44,7 +44,7 @@ public final class h9 implements Runnable {
                         peerSettings.flags &= -16385;
                         peerSettings.charge_paid_message_stars = 0L;
                     }
-                    qp.s1(i10).f24749d7.edit().putLong(a8.p0.o(j10, "dialog_bar_paying_"), 0L).apply();
+                    qp.s1(i10).f24757d7.edit().putLong(a8.p0.o(j10, "dialog_bar_paying_"), 0L).apply();
                     qp.s1(i10).a3(qp.s1(i10).a2(Long.valueOf(j10)), qp.s1(i10).M0(Long.valueOf(-j10)), true);
                     org.telegram.messenger.g5.r(i10).D(true);
                     qs.f(i10).k(238, Long.valueOf(j10));

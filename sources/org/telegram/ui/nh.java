@@ -13,7 +13,7 @@ public final class nh extends org.telegram.ui.Components.qu {
     @Override
     public final void dismiss() {
         super.dismiss();
-        an anVar = this.N1.f48412p;
+        an anVar = this.N1.f48411p;
         anVar.getClass();
         anVar.v8(false, true, 0.0f);
     }

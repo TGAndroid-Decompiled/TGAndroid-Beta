@@ -22,7 +22,7 @@ import android.view.textclassifier.TextClassifier;
 import android.widget.EditText;
 import android.widget.TextView;
 import c8.h9;
-import c8.lc;
+import c8.mc;
 public final class t extends EditText implements r0.n, u0.k {
     public final h2.c f19251a;
     public final x0 f19252b;
@@ -94,7 +94,7 @@ public final class t extends EditText implements r0.n, u0.k {
 
     @Override
     public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return lc.d(super.getCustomSelectionActionModeCallback());
+        return mc.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
@@ -197,8 +197,8 @@ public final class t extends EditText implements r0.n, u0.k {
                     dVar = new m2.i(primaryClip, 1);
                 } else {
                     r0.e eVar = new r0.e();
-                    eVar.f54082b = primaryClip;
-                    eVar.f54083c = 1;
+                    eVar.f54081b = primaryClip;
+                    eVar.f54082c = 1;
                     dVar = eVar;
                 }
                 if (i7 == 16908322) {
@@ -252,7 +252,7 @@ public final class t extends EditText implements r0.n, u0.k {
 
     @Override
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(lc.e(callback, this));
+        super.setCustomSelectionActionModeCallback(mc.e(callback, this));
     }
 
     public void setEmojiCompatEnabled(boolean z9) {

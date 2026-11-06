@@ -36,7 +36,7 @@ public final class b implements Runnable {
                 }
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, f6Var);
                 String M0 = org.telegram.messenger.hd.M0(2131754174, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = V2;
                 alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131754176, null), null);

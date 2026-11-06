@@ -1,6 +1,6 @@
 package jb;
 
-import c8.zd;
+import c8.ee;
 import gb.j1;
 public final class d implements q {
     public static final int f16607g;
@@ -14,7 +14,7 @@ public final class d implements q {
 
     static {
         int i7 = yd.a.d;
-        f16607g = (int) yd.a.d(zd.c(24, yd.c.f59304f), yd.c.d);
+        f16607g = (int) yd.a.d(ee.c(24, yd.c.f59303f), yd.c.d);
         h = new xd.c("com/google/firebase/sessions//");
     }
 
@@ -36,7 +36,7 @@ public final class d implements q {
         xd.c cVar = h;
         cVar.getClass();
         kotlin.jvm.internal.j.e(input, "input");
-        String replaceAll = cVar.f58594a.matcher(input).replaceAll("");
+        String replaceAll = cVar.f58593a.matcher(input).replaceAll("");
         kotlin.jvm.internal.j.d(replaceAll, "replaceAll(...)");
         return replaceAll;
     }
@@ -56,7 +56,7 @@ public final class d implements q {
         Integer num = this.f16611e.a().f16622c;
         if (num != null) {
             int i7 = yd.a.d;
-            return new yd.a(zd.c(num.intValue(), yd.c.d));
+            return new yd.a(ee.c(num.intValue(), yd.c.d));
         }
         return null;
     }

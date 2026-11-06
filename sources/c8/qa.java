@@ -1,19 +1,28 @@
 package c8;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.content.Context;
+import android.widget.TextView;
+import org.telegram.ui.Components.w70;
 public abstract class qa {
-    public static int a(pb.b bVar) {
-        bVar.getClass();
-        return Math.max(1, (int) Math.ceil(0.5f * org.telegram.messenger.g0.f22536p)) + (((int) Math.ceil(1.9f * org.telegram.messenger.g0.f22536p)) * 2);
+    public static w70 a(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.f6 f6Var) {
+        int i10 = org.telegram.ui.ActionBar.k6.Uc;
+        w70 w70Var = new w70(context, null);
+        w70Var.setTextSize(1, f10);
+        org.telegram.ui.ActionBar.r6.V(w70Var, i7, f6Var);
+        org.telegram.ui.ActionBar.r6.H(w70Var, i10, f6Var);
+        if (z9) {
+            w70Var.setTypeface(org.telegram.messenger.g0.o());
+        }
+        return w70Var;
     }
 
-    public static void b(Canvas canvas, Bitmap bitmap, int i7, float f10, float f11, int i10, int i11, Paint paint) {
-        int min = Math.min(i7, bitmap.getWidth());
-        int i12 = (int) f10;
-        int i13 = (int) f11;
-        canvas.drawBitmap(bitmap, new Rect(0, i10, min, i10 + i11), new Rect(i12, i13, min + i12, i11 + i13), paint);
+    public static TextView b(Context context, float f10, int i7, boolean z9, org.telegram.ui.ActionBar.f6 f6Var) {
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, f10);
+        org.telegram.ui.ActionBar.r6.V(textView, i7, f6Var);
+        if (z9) {
+            textView.setTypeface(org.telegram.messenger.g0.o());
+        }
+        return textView;
     }
 }

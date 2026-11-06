@@ -14,10 +14,10 @@ import android.util.Log;
 import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
 import b1.f;
 import bi.a4;
-import c8.fe;
-import c8.uc;
+import c8.ge;
+import c8.vc;
 import c8.x9;
-import c8.xb;
+import c8.yb;
 import di.z0;
 import f7.k;
 import f7.l;
@@ -142,7 +142,7 @@ public final class d extends ResultReceiver {
                                     }
                                     return;
                                 }
-                                u uVar = (u) xb.a(bArr, u.CREATOR);
+                                u uVar = (u) yb.a(bArr, u.CREATOR);
                                 j.d(uVar, "deserializeFromBytes(...)");
                                 LinkedHashMap linkedHashMap = d1.g.f7948a;
                                 l lVar = uVar.d;
@@ -274,7 +274,7 @@ public final class d extends ResultReceiver {
                                     if (bundleExtra == null || (string = bundleExtra.getString("androidx.credentials.provider.extra.CREATE_CREDENTIAL_RESPONSE_TYPE")) == null || (bundle = bundleExtra.getBundle("androidx.credentials.provider.extra.CREATE_CREDENTIAL_REQUEST_DATA")) == null) {
                                         cVar = null;
                                     } else {
-                                        cVar = uc.a(string, bundle);
+                                        cVar = vc.a(string, bundle);
                                     }
                                 }
                                 if (cVar != null) {
@@ -295,14 +295,14 @@ public final class d extends ResultReceiver {
                                 if (i16 >= 34) {
                                     a10 = h1.a.a(intent3);
                                 } else {
-                                    int i17 = w0.d.f57480a;
+                                    int i17 = w0.d.f57479a;
                                     Bundle bundleExtra2 = intent3.getBundleExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION");
                                     if (bundleExtra2 == null) {
                                         a10 = null;
                                     } else {
                                         String string2 = bundleExtra2.getString("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_TYPE");
                                         if (string2 != null) {
-                                            a10 = fe.a(bundleExtra2.getCharSequence("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_MESSAGE"), string2);
+                                            a10 = ge.a(bundleExtra2.getCharSequence("androidx.credentials.provider.extra.CREATE_CREDENTIAL_EXCEPTION_MESSAGE"), string2);
                                         } else {
                                             throw new IllegalArgumentException("Bundle was missing exception type.");
                                         }
@@ -399,22 +399,22 @@ public final class d extends ResultReceiver {
             default:
                 q4.f fVar = (q4.f) ((WeakReference) this.f5253b).get();
                 if (fVar != null && resultData != null) {
-                    synchronized (fVar.f53677b) {
-                        p pVar = fVar.f53679e;
+                    synchronized (fVar.f53676b) {
+                        p pVar = fVar.f53678e;
                         IBinder binder = resultData.getBinder("android.support.v4.media.session.EXTRA_BINDER");
-                        int i20 = q4.k.f53691b;
+                        int i20 = q4.k.f53690b;
                         if (binder != null) {
                             IInterface queryLocalInterface = binder.queryLocalInterface("android.support.v4.media.session.IMediaSession");
                             if (queryLocalInterface != null && (queryLocalInterface instanceof q4.d)) {
                                 dVar2 = (q4.d) queryLocalInterface;
                             } else {
                                 ?? obj2 = new Object();
-                                obj2.f53673a = binder;
+                                obj2.f53672a = binder;
                                 dVar2 = obj2;
                             }
                         }
                         pVar.b(dVar2);
-                        fVar.f53679e.c(b5.a.c(resultData));
+                        fVar.f53678e.c(b5.a.c(resultData));
                         fVar.a();
                     }
                     return;

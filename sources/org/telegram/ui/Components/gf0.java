@@ -4,10 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.os.Build;
 public final class gf0 implements ri.a, pi.a {
-    public final dh.c f33901a;
+    public final dh.c f33909a;
 
     public gf0(dh.c cVar) {
-        this.f33901a = cVar;
+        this.f33909a = cVar;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class gf0 implements ri.a, pi.a {
     public final ri.a b() {
         oi.r f10 = oi.q.f();
         boolean z9 = f10.f21119a;
-        dh.c cVar = this.f33901a;
+        dh.c cVar = this.f33909a;
         if (!z9) {
             return cVar.f8704c;
         }

@@ -9,17 +9,17 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.u31;
 public final class n3 {
-    public boolean f29600a;
-    public StaticLayout f29601b;
-    public StaticLayout f29602c;
+    public boolean f29601a;
+    public StaticLayout f29602b;
+    public StaticLayout f29603c;
     public int d;
-    public int f29603e;
-    public float f29604f;
-    public float f29605g;
+    public int f29604e;
+    public float f29605f;
+    public float f29606g;
     public float h;
-    public float f29606i;
+    public float f29607i;
 
     public final void a(q1 q1Var) {
         TLRPC.Message message;
@@ -28,7 +28,7 @@ public final class n3 {
         String str2;
         SpannableStringBuilder e10 = di.r7.e(new Object[0], 2131750875, false);
         ij messageObject = q1Var.getMessageObject();
-        if (messageObject != null && (message = messageObject.f23237k) != null) {
+        if (messageObject != null && (message = messageObject.f23244k) != null) {
             TLRPC.MessageMedia messageMedia = message.media;
             if (messageMedia instanceof TLRPC.TL_messageMediaStory) {
                 TLRPC.User a22 = qp.s1(q1Var.Z5).a2(Long.valueOf(((TLRPC.TL_messageMediaStory) messageMedia).user_id));
@@ -55,7 +55,7 @@ public final class n3 {
                 String format = String.format(M02, str3);
                 if (indexOf >= 0) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
-                    spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), indexOf, str3.length() + indexOf, 33);
+                    spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o()), indexOf, str3.length() + indexOf, 33);
                     str2 = spannableStringBuilder;
                 } else {
                     str2 = format;
@@ -63,19 +63,19 @@ public final class n3 {
                 TextPaint textPaint2 = org.telegram.ui.ActionBar.k6.Z2;
                 int L = org.telegram.messenger.g0.L(10.0f);
                 Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                this.f29601b = new StaticLayout(e10, textPaint2, L + ((int) (textPaint2.measureText(e10, 0, e10.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f29602c = new StaticLayout(str2, textPaint2, org.telegram.messenger.g0.L(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
-                this.f29603e = 0;
+                this.f29602b = new StaticLayout(e10, textPaint2, L + ((int) (textPaint2.measureText(e10, 0, e10.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f29603c = new StaticLayout(str2, textPaint2, org.telegram.messenger.g0.L(10.0f) + ((int) (textPaint2.measureText((CharSequence) str2, 0, str2.length()) + 1.0f)), alignment, 1.0f, 0.0f, false);
+                this.f29604e = 0;
                 this.h = org.telegram.messenger.g0.L(4.0f);
-                this.f29606i = org.telegram.messenger.g0.L(12.0f);
-                this.f29603e = (int) rf.b.d(this.h, 2.0f, org.telegram.messenger.g0.L(4.0f) + this.f29602c.getHeight() + org.telegram.messenger.g0.L(2.0f) + this.f29601b.getHeight() + org.telegram.messenger.g0.L(4.0f), this.f29603e);
-                this.d = q1Var.getExtraTextX() + org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.L(12.0f) + Math.max(this.f29601b.getWidth(), this.f29602c.getWidth());
+                this.f29607i = org.telegram.messenger.g0.L(12.0f);
+                this.f29604e = (int) rf.b.d(this.h, 2.0f, org.telegram.messenger.g0.L(4.0f) + this.f29603c.getHeight() + org.telegram.messenger.g0.L(2.0f) + this.f29602b.getHeight() + org.telegram.messenger.g0.L(4.0f), this.f29604e);
+                this.d = q1Var.getExtraTextX() + org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.L(12.0f) + Math.max(this.f29602b.getWidth(), this.f29603c.getWidth());
                 return;
             }
         }
         this.h = org.telegram.messenger.g0.L(4.0f);
-        this.f29606i = org.telegram.messenger.g0.L(12.0f);
-        this.f29603e = 0;
+        this.f29607i = org.telegram.messenger.g0.L(12.0f);
+        this.f29604e = 0;
         this.d = 0;
     }
 }

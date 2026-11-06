@@ -25,10 +25,10 @@ public final class j extends Drawable {
     public final Paint f8778g = new Paint(1);
     public final l h = new l();
     public final float[] f8779i = new float[8];
-    public int f8781k = r6.f28475b;
+    public int f8781k = r6.f28476b;
 
     public final void a() {
-        this.f8781k = r6.f28475b;
+        this.f8781k = r6.f28476b;
         gh.a aVar = this.f8773a;
         if (aVar == null) {
             return;
@@ -40,7 +40,7 @@ public final class j extends Drawable {
 
     @Override
     public final void draw(Canvas canvas) {
-        if (this.f8781k != r6.f28475b) {
+        if (this.f8781k != r6.f28476b) {
             try {
                 a();
             } catch (Exception e10) {

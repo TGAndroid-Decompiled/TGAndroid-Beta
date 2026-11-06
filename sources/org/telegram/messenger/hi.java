@@ -10,14 +10,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_update;
 public final class hi implements Runnable {
-    public final int f22931a;
-    public final Object f22932b;
-    public final Object f22933c;
+    public final int f22938a;
+    public final Object f22939b;
+    public final Object f22940c;
 
     public hi(int i7, Object obj, Object obj2) {
-        this.f22931a = i7;
-        this.f22932b = obj;
-        this.f22933c = obj2;
+        this.f22938a = i7;
+        this.f22939b = obj;
+        this.f22940c = obj2;
     }
 
     @Override
@@ -25,10 +25,10 @@ public final class hi implements Runnable {
         SQLiteCursor queryFinalized;
         TLRPC.ChatFull chatFull;
         NativeByteBuffer byteBufferValue;
-        int i7 = this.f22931a;
+        int i7 = this.f22938a;
         SQLiteCursor sQLiteCursor = null;
-        Object obj = this.f22933c;
-        Object obj2 = this.f22932b;
+        Object obj = this.f22940c;
+        Object obj2 = this.f22939b;
         switch (i7) {
             case 0:
                 c20 c20Var = (c20) obj2;
@@ -58,13 +58,13 @@ public final class hi implements Runnable {
                 return;
             case 4:
                 ij ijVar = (ij) obj2;
-                ijVar.f23247n = (TLRPC.Document) obj;
+                ijVar.f23254n = (TLRPC.Document) obj;
                 qs.f(ijVar.I1).k(116, ijVar);
                 return;
             case 5:
                 qp qpVar = (qp) obj2;
                 TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
-                long[] a22 = qpVar.getMessagesStorage().a2(tL_updateMessageID.random_id, 0L, null, tL_updateMessageID.f27210id, 0, -1, 0);
+                long[] a22 = qpVar.getMessagesStorage().a2(tL_updateMessageID.random_id, 0L, null, tL_updateMessageID.f27211id, 0, -1, 0);
                 if (a22 != null) {
                     g0.h3(new lg(qpVar, a22, tL_updateMessageID, 8));
                     return;
@@ -76,11 +76,11 @@ public final class hi implements Runnable {
                 return;
             case 7:
                 TL_update.TL_updateGroupCallMessage tL_updateGroupCallMessage = (TL_update.TL_updateGroupCallMessage) obj;
-                ((qp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateGroupCallMessage.call.f26969id), tL_updateGroupCallMessage, Boolean.FALSE);
+                ((qp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateGroupCallMessage.call.f26970id), tL_updateGroupCallMessage, Boolean.FALSE);
                 return;
             case 8:
                 TL_update.TL_updateDeleteGroupCallMessages tL_updateDeleteGroupCallMessages = (TL_update.TL_updateDeleteGroupCallMessages) obj;
-                ((qp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateDeleteGroupCallMessages.call.f26969id), tL_updateDeleteGroupCallMessages, Boolean.FALSE);
+                ((qp) obj2).getNotificationCenter().k(177, Long.valueOf(tL_updateDeleteGroupCallMessages.call.f26970id), tL_updateDeleteGroupCallMessages, Boolean.FALSE);
                 return;
             case 9:
                 TL_update.TL_updateUserTyping tL_updateUserTyping = (TL_update.TL_updateUserTyping) obj;
@@ -166,7 +166,7 @@ public final class hi implements Runnable {
                 qpVar9.S3(updates.chats, false);
                 ArrayList<TLRPC.Chat> arrayList3 = updates.chats;
                 if (arrayList3 != null && !arrayList3.isEmpty()) {
-                    qpVar9.getNotificationCenter().k(28, Long.valueOf(updates.chats.get(0).f26952id));
+                    qpVar9.getNotificationCenter().k(28, Long.valueOf(updates.chats.get(0).f26953id));
                     return;
                 } else {
                     qpVar9.getNotificationCenter().k(29, new Object[0]);
@@ -200,7 +200,7 @@ public final class hi implements Runnable {
                 qp qpVar11 = (qp) obj2;
                 ij ijVar2 = (ij) obj;
                 qpVar11.getClass();
-                long B0 = ij.B0(ijVar2.f23237k);
+                long B0 = ij.B0(ijVar2.f23244k);
                 int f12 = ijVar2.f1();
                 a0.h hVar = qpVar11.J0;
                 ArrayList arrayList4 = (ArrayList) hVar.f(B0);
@@ -215,20 +215,20 @@ public final class hi implements Runnable {
             case 26:
                 qp qpVar12 = (qp) obj2;
                 TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) obj;
-                qpVar12.f24866r1.clear();
-                qpVar12.f24911w1.clear();
+                qpVar12.f24874r1.clear();
+                qpVar12.f24919w1.clear();
                 qpVar12.Y3(updates_difference.users, false);
                 qpVar12.S3(updates_difference.chats, false);
                 return;
             case 27:
                 jp jpVar = (jp) obj2;
                 TLObject tLObject = (TLObject) obj;
-                jpVar.f23571c = false;
+                jpVar.f23578c = false;
                 jpVar.d = true;
                 if (tLObject instanceof TL_account.TL_savedMusicIds) {
-                    jpVar.f23570b.addAll(((TL_account.TL_savedMusicIds) tLObject).ids);
+                    jpVar.f23577b.addAll(((TL_account.TL_savedMusicIds) tLObject).ids);
                 }
-                qs.f(jpVar.f23569a).k(245, new Object[0]);
+                qs.f(jpVar.f23576a).k(245, new Object[0]);
                 return;
             case 28:
                 a00.a((zz) obj2);
@@ -239,7 +239,7 @@ public final class hi implements Runnable {
                 TLRPC.ChatParticipants chatParticipants = (TLRPC.ChatParticipants) obj;
                 try {
                     try {
-                        queryFinalized = yrVar.f26690b.queryFinalized("SELECT info, pinned, online, inviter FROM chat_settings_v2 WHERE uid = " + chatParticipants.chat_id, new Object[0]);
+                        queryFinalized = yrVar.f26698b.queryFinalized("SELECT info, pinned, online, inviter FROM chat_settings_v2 WHERE uid = " + chatParticipants.chat_id, new Object[0]);
                     } catch (Exception e10) {
                         e = e10;
                     }
@@ -262,10 +262,10 @@ public final class hi implements Runnable {
                     if (chatFull instanceof TLRPC.TL_chatFull) {
                         chatFull.participants = chatParticipants;
                         g0.h3(new uq(yrVar, chatFull, 1));
-                        SQLitePreparedStatement executeFast = yrVar.f26690b.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
+                        SQLitePreparedStatement executeFast = yrVar.f26698b.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(chatFull.getObjectSize());
                         chatFull.serializeToStream(nativeByteBuffer);
-                        executeFast.bindLong(1, chatFull.f26953id);
+                        executeFast.bindLong(1, chatFull.f26954id);
                         executeFast.bindByteBuffer(2, nativeByteBuffer);
                         executeFast.bindInteger(3, chatFull.pinned_msg_id);
                         executeFast.bindInteger(4, chatFull.online_count);

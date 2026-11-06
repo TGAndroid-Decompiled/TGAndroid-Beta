@@ -139,7 +139,7 @@ public final class ab implements Runnable {
             case 17:
                 di.i1 i1Var = (di.i1) this.f3465b;
                 di.p9 p9Var = i1Var.f9123c;
-                if (p9Var != null && i1Var.E() && (oVar = i1Var.f9121a) != null && oVar.f56033c == 0 && (launchActivity = LaunchActivity.G1) != null && c8.jc.a(launchActivity)) {
+                if (p9Var != null && i1Var.E() && (oVar = i1Var.f9121a) != null && oVar.f56032c == 0 && (launchActivity = LaunchActivity.G1) != null && c8.kc.a(launchActivity)) {
                     p9Var.T();
                     return;
                 }
@@ -183,7 +183,7 @@ public final class ab implements Runnable {
                 return;
             case 22:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f3465b;
-                int i7 = ProfileStoriesView.f41976s0;
+                int i7 = ProfileStoriesView.f41975s0;
                 profileStoriesView.getClass();
                 org.telegram.messenger.g0.c4(profileStoriesView);
                 return;

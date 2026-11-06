@@ -12,12 +12,12 @@ import org.telegram.messenger.MediaController;
 import org.telegram.ui.PhotoViewer;
 public final class fe0 extends org.telegram.ui.j4 {
     public final int h;
-    public final Object f33518n;
+    public final Object f33528n;
 
     public fe0(int i7, Context context, Object obj) {
         super(context);
         this.h = i7;
-        this.f33518n = obj;
+        this.f33528n = obj;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class fe0 extends org.telegram.ui.j4 {
         switch (this.h) {
             case 2:
                 Drawable[] drawableArr = PhotoViewer.Y8;
-                ((PhotoViewer) this.f33518n).getClass();
+                ((PhotoViewer) this.f33528n).getClass();
                 super.draw(canvas);
                 return;
             default:
@@ -40,18 +40,18 @@ public final class fe0 extends org.telegram.ui.j4 {
         switch (this.h) {
             case 0:
                 boolean drawChild = super.drawChild(canvas, view, j3);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f33518n;
-                if (view == pipRoundVideoView.f31423c && (ijVar = MediaController.B().f21292u0) != null) {
+                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f33528n;
+                if (view == pipRoundVideoView.f31424c && (ijVar = MediaController.B().f21292u0) != null) {
                     pipRoundVideoView.E.set(org.telegram.messenger.g0.N(1.5f), org.telegram.messenger.g0.N(1.5f), getMeasuredWidth() - org.telegram.messenger.g0.N(1.5f), getMeasuredHeight() - org.telegram.messenger.g0.N(1.5f));
-                    canvas.drawArc(pipRoundVideoView.E, -90.0f, ijVar.f23197b0 * 360.0f, false, org.telegram.ui.ActionBar.k6.f27973k2);
+                    canvas.drawArc(pipRoundVideoView.E, -90.0f, ijVar.f23204b0 * 360.0f, false, org.telegram.ui.ActionBar.k6.f27974k2);
                 }
                 return drawChild;
             case 1:
             default:
                 return super.drawChild(canvas, view, j3);
             case 2:
-                PhotoViewer photoViewer = (PhotoViewer) this.f33518n;
-                if (view == photoViewer.D3 && photoViewer.f41395f4) {
+                PhotoViewer photoViewer = (PhotoViewer) this.f33528n;
+                if (view == photoViewer.D3 && photoViewer.f41394f4) {
                     return true;
                 }
                 return super.drawChild(canvas, view, j3);
@@ -63,12 +63,12 @@ public final class fe0 extends org.telegram.ui.j4 {
         switch (this.h) {
             case 1:
                 super.onMeasure(i7, i10);
-                k71 k71Var = (k71) this.f33518n;
-                if (k71Var.f35221f != null) {
-                    ViewGroup.LayoutParams layoutParams = k71Var.d.getLayoutParams();
+                l71 l71Var = (l71) this.f33528n;
+                if (l71Var.f35561f != null) {
+                    ViewGroup.LayoutParams layoutParams = l71Var.d.getLayoutParams();
                     layoutParams.width = getMeasuredWidth();
                     layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = k71Var.f35219e;
+                    ImageView imageView = l71Var.f35559e;
                     if (imageView != null) {
                         ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
                         layoutParams2.width = getMeasuredWidth();
@@ -80,15 +80,15 @@ public final class fe0 extends org.telegram.ui.j4 {
                 return;
             case 2:
                 super.onMeasure(i7, i10);
-                PhotoViewer photoViewer = (PhotoViewer) this.f33518n;
-                ImageView imageView2 = photoViewer.f41542w3;
+                PhotoViewer photoViewer = (PhotoViewer) this.f33528n;
+                ImageView imageView2 = photoViewer.f41541w3;
                 if (imageView2 != null) {
                     ViewGroup.LayoutParams layoutParams3 = imageView2.getLayoutParams();
                     layoutParams3.width = getMeasuredWidth();
                     layoutParams3.height = getMeasuredHeight();
                 }
                 TextureView textureView = photoViewer.B2;
-                if (textureView instanceof g51) {
+                if (textureView instanceof h51) {
                     textureView.setPivotX(textureView.getMeasuredWidth() / 2);
                     photoViewer.E2.setPivotX(photoViewer.B2.getMeasuredWidth() / 2);
                 } else {

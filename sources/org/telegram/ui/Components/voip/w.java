@@ -3,33 +3,33 @@ package org.telegram.ui.Components.voip;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class w extends AnimatorListenerAdapter {
-    public final int f39529a;
-    public final y f39530b;
+    public final int f39550a;
+    public final y f39551b;
 
     public w(y yVar, int i7) {
-        this.f39529a = i7;
-        this.f39530b = yVar;
+        this.f39550a = i7;
+        this.f39551b = yVar;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         float f10;
         int i7;
-        switch (this.f39529a) {
+        switch (this.f39550a) {
             case 0:
-                y yVar = this.f39530b;
+                y yVar = this.f39551b;
                 yVar.E = false;
                 yVar.invalidate();
                 return;
             case 1:
-                y yVar2 = this.f39530b;
-                x xVar = yVar2.f39572b0;
+                y yVar2 = this.f39551b;
+                x xVar = yVar2.f39593b0;
                 if (yVar2.W) {
                     f10 = 0.0f;
                 } else {
                     f10 = 1.0f;
                 }
-                yVar2.f39570a0 = f10;
+                yVar2.f39591a0 = f10;
                 xVar.setAlpha(f10);
                 if (yVar2.W) {
                     i7 = 8;
@@ -37,13 +37,13 @@ public final class w extends AnimatorListenerAdapter {
                     i7 = 0;
                 }
                 xVar.setVisibility(i7);
-                yVar2.f39569a.invalidate();
+                yVar2.f39590a.invalidate();
                 return;
             case 2:
                 super.onAnimationEnd(animator);
-                y yVar3 = this.f39530b;
+                y yVar3 = this.f39551b;
                 yVar3.J0 = null;
-                u uVar = yVar3.f39569a;
+                u uVar = yVar3.f39590a;
                 uVar.setRotationY(0.0f);
                 if (!yVar3.K0) {
                     uVar.d.clearImage();
@@ -51,10 +51,10 @@ public final class w extends AnimatorListenerAdapter {
                 }
                 return;
             case 3:
-                this.f39530b.E = false;
+                this.f39551b.E = false;
                 return;
             default:
-                this.f39530b.E = false;
+                this.f39551b.E = false;
                 return;
         }
     }

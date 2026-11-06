@@ -5,33 +5,33 @@ import android.os.SystemClock;
 import java.io.File;
 import java.io.RandomAccessFile;
 public final class xb extends AsyncTask {
-    public final String f26438a;
-    public final File f26439b;
-    public final String f26440c;
+    public final String f26446a;
+    public final File f26447b;
+    public final String f26448c;
     public int d;
-    public RandomAccessFile f26441e = null;
-    public boolean f26442f = true;
-    public long f26443g;
+    public RandomAccessFile f26449e = null;
+    public boolean f26450f = true;
+    public long f26451g;
     public final int h;
-    public final gc f26444i;
+    public final gc f26452i;
 
     public xb(gc gcVar, String str, File file, String str2, int i7) {
-        this.f26444i = gcVar;
-        this.f26438a = str;
-        this.f26439b = file;
-        this.f26440c = str2;
+        this.f26452i = gcVar;
+        this.f26446a = str;
+        this.f26447b = file;
+        this.f26448c = str2;
         this.h = i7;
     }
 
     public final void a(long j3, long j10) {
         long elapsedRealtime = SystemClock.elapsedRealtime();
         if (j3 != j10) {
-            long j11 = this.f26443g;
+            long j11 = this.f26451g;
             if (j11 != 0 && j11 >= elapsedRealtime - 100) {
                 return;
             }
         }
-        this.f26443g = elapsedRealtime;
+        this.f26451g = elapsedRealtime;
         Utilities.d.c(new wb(this, j3, j10, 0));
     }
 
@@ -42,7 +42,7 @@ public final class xb extends AsyncTask {
 
     @Override
     public final void onCancelled() {
-        this.f26444i.U(this, 2);
+        this.f26452i.U(this, 2);
     }
 
     @Override
@@ -53,6 +53,6 @@ public final class xb extends AsyncTask {
         } else {
             i7 = 1;
         }
-        this.f26444i.U(this, i7);
+        this.f26452i.U(this, i7);
     }
 }

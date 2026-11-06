@@ -32,7 +32,7 @@ public class NotificationBadge$SamsungHomeBadger implements cs {
         } catch (Exception unused) {
         }
         Uri parse = Uri.parse("content://com.sec.badge/apps?notify=true");
-        ContentResolver contentResolver = t0.f25555b.getContentResolver();
+        ContentResolver contentResolver = t0.f25563b.getContentResolver();
         Cursor cursor = null;
         try {
             cursor = contentResolver.query(parse, f21317a, "package=?", new String[]{fs.d.getPackageName()}, null);
@@ -53,7 +53,7 @@ public class NotificationBadge$SamsungHomeBadger implements cs {
                 cursor.close();
             }
         } catch (Throwable th2) {
-            LinkedList linkedList = fs.f22439a;
+            LinkedList linkedList = fs.f22446a;
             if (cursor != null && !cursor.isClosed()) {
                 cursor.close();
             }

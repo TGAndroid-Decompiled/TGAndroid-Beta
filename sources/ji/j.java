@@ -58,7 +58,7 @@ public final class j extends LinearLayout implements a6 {
         f11.setMinWidth(g0.L(20.66f));
         f11.setPadding(g0.L(6.33f), 0, g0.L(6.33f), 0);
         f11.setTextSize(1, 16.0f);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             addView(f11, ha.j(13.33f, 0.0f));
             if (z9) {
                 i11 = 12;
@@ -158,7 +158,7 @@ public final class j extends LinearLayout implements a6 {
             if (z9) {
                 i7 = k6.W8;
             } else {
-                i7 = k6.f28030n6;
+                i7 = k6.f28031n6;
             }
             f6 f6Var = this.f17096a;
             r6.V(textView, i7, f6Var);
@@ -192,7 +192,7 @@ public final class j extends LinearLayout implements a6 {
         if (this.f17101n) {
             i7 = k6.W8;
         } else {
-            i7 = k6.f28030n6;
+            i7 = k6.f28031n6;
         }
         int w02 = k6.w0(i7, f6Var);
         TextView textView = this.f17100f;
@@ -208,6 +208,6 @@ public final class j extends LinearLayout implements a6 {
         } else {
             q10 = k6.I.q();
         }
-        this.f17097b.f32820b = q10;
+        this.f17097b.f32849b = q10;
     }
 }

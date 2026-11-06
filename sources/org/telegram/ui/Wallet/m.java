@@ -9,26 +9,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.hc;
 public final class m implements c20 {
-    public final int f42752a;
-    public final Object f42753b;
-    public final Object f42754c;
+    public final int f42751a;
+    public final Object f42752b;
+    public final Object f42753c;
     public final Object d;
 
     public m(Object obj, Object obj2, Object obj3, int i7) {
-        this.f42752a = i7;
-        this.f42753b = obj;
-        this.f42754c = obj2;
+        this.f42751a = i7;
+        this.f42752b = obj;
+        this.f42753c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(Object obj) {
         String str;
-        int i7 = this.f42752a;
+        int i7 = this.f42751a;
         boolean z9 = true;
         Object obj2 = this.d;
-        Object obj3 = this.f42754c;
-        Object obj4 = this.f42753b;
+        Object obj3 = this.f42753c;
+        Object obj4 = this.f42752b;
         switch (i7) {
             case 0:
                 n0 n0Var = (n0) obj4;
@@ -53,10 +53,10 @@ public final class m implements c20 {
                 li.c cVar = (li.c) obj2;
                 String str3 = (String) obj;
                 f2Var.getClass();
-                if (b2Var.f42133n || f2Var.j(b2Var) || !f2Var.A(b2Var) || str3 != null) {
+                if (b2Var.f42132n || f2Var.j(b2Var) || !f2Var.A(b2Var) || str3 != null) {
                     z9 = false;
                 }
-                b2Var.f42135p = z9;
+                b2Var.f42134p = z9;
                 cVar.a(null, str3);
                 return;
             case 2:
@@ -65,9 +65,9 @@ public final class m implements c20 {
                 c20 c20Var = (c20) obj2;
                 String str4 = (String) obj;
                 f2Var2.getClass();
-                b2Var2.f42132m = false;
-                if (b2Var2.f42137r == null && f2Var2.f42465g == b2Var2) {
-                    f2Var2.f42465g = null;
+                b2Var2.f42131m = false;
+                if (b2Var2.f42136r == null && f2Var2.f42464g == b2Var2) {
+                    f2Var2.f42464g = null;
                 }
                 c20Var.a(str4);
                 return;
@@ -109,11 +109,11 @@ public final class m implements c20 {
                 n0 n0Var2 = (n0) obj4;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str6 = (String) obj;
-                if (!x9Var.f43344r) {
-                    if (!TextUtils.isEmpty(str6) && n0.b(x9Var.f43342f, n0Var2.t())) {
-                        d0 d0Var = new d0(n0Var2, str6, x9Var.f43341e, null, new r(x9Var, n0Var2, user, str6));
+                if (!x9Var.f43343r) {
+                    if (!TextUtils.isEmpty(str6) && n0.b(x9Var.f43341f, n0Var2.t())) {
+                        d0 d0Var = new d0(n0Var2, str6, x9Var.f43340e, null, new r(x9Var, n0Var2, user, str6));
                         n0Var2.m0(d0Var);
-                        x9Var.f43343n = new l(d0Var, 1);
+                        x9Var.f43342n = new l(d0Var, 1);
                         return;
                     }
                     x9Var.h = false;
@@ -147,16 +147,16 @@ public final class m implements c20 {
     }
 
     public m(c20 c20Var, n0 n0Var, r0 r0Var, o8 o8Var) {
-        this.f42752a = 6;
-        this.f42753b = o8Var;
-        this.f42754c = c20Var;
+        this.f42751a = 6;
+        this.f42752b = o8Var;
+        this.f42753c = c20Var;
         this.d = r0Var;
     }
 
     public m(x9 x9Var, n0 n0Var, TLRPC.User user) {
-        this.f42752a = 7;
-        this.f42754c = x9Var;
-        this.f42753b = n0Var;
+        this.f42751a = 7;
+        this.f42753c = x9Var;
+        this.f42752b = n0Var;
         this.d = user;
     }
 }

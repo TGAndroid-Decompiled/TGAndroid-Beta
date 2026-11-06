@@ -5,20 +5,20 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class q60 implements Runnable {
-    public final int f49122a = 1;
-    public final LaunchActivity f49123b;
-    public final TLObject f49124c;
+    public final int f49121a = 1;
+    public final LaunchActivity f49122b;
+    public final TLObject f49123c;
     public final int d;
-    public final String f49125e;
-    public final TLRPC.TL_error f49126f;
+    public final String f49124e;
+    public final TLRPC.TL_error f49125f;
     public final q10 h;
 
     public q60(LaunchActivity launchActivity, TLObject tLObject, int i7, String str, TLRPC.TL_error tL_error, q10 q10Var) {
-        this.f49123b = launchActivity;
-        this.f49124c = tLObject;
+        this.f49122b = launchActivity;
+        this.f49123c = tLObject;
         this.d = i7;
-        this.f49125e = str;
-        this.f49126f = tL_error;
+        this.f49124e = str;
+        this.f49125f = tL_error;
         this.h = q10Var;
     }
 
@@ -28,11 +28,11 @@ public final class q60 implements Runnable {
         int i7;
         int i10;
         String str;
-        int i11 = this.f49122a;
+        int i11 = this.f49121a;
         q10 q10Var = this.h;
-        TLRPC.TL_error tL_error = this.f49126f;
-        String str2 = this.f49125e;
-        TLObject tLObject = this.f49124c;
+        TLRPC.TL_error tL_error = this.f49125f;
+        String str2 = this.f49124e;
+        TLObject tLObject = this.f49123c;
         switch (i11) {
             case 0:
                 String str3 = LaunchActivity.B1;
@@ -54,7 +54,7 @@ public final class q60 implements Runnable {
                     }
                 } else if (tLObject instanceof TL_stars.TL_payments_uniqueStarGift) {
                     TL_stars.TL_payments_uniqueStarGift tL_payments_uniqueStarGift = (TL_stars.TL_payments_uniqueStarGift) tLObject;
-                    LaunchActivity launchActivity = this.f49123b;
+                    LaunchActivity launchActivity = this.f49122b;
                     org.telegram.messenger.qp.s1(launchActivity.O).Y3(tL_payments_uniqueStarGift.users, false);
                     org.telegram.messenger.qp.s1(launchActivity.O).S3(tL_payments_uniqueStarGift.chats, false);
                     org.telegram.ui.ActionBar.f2 T2 = LaunchActivity.T();
@@ -83,12 +83,12 @@ public final class q60 implements Runnable {
             default:
                 String str4 = LaunchActivity.B1;
                 boolean z9 = tLObject instanceof TLRPC.User;
-                LaunchActivity launchActivity2 = this.f49123b;
+                LaunchActivity launchActivity2 = this.f49122b;
                 if (z9) {
                     TLRPC.User user = (TLRPC.User) tLObject;
                     org.telegram.messenger.qp.s1(this.d).X3(user, false, false);
                     Bundle bundle = new Bundle();
-                    bundle.putLong("user_id", user.f27101id);
+                    bundle.putLong("user_id", user.f27102id);
                     launchActivity2.t0(new an(bundle));
                 } else {
                     StringBuilder u10 = a8.p0.u("cant import contact token. token=", str2, " err=");
@@ -99,7 +99,7 @@ public final class q60 implements Runnable {
                     }
                     u10.append(str);
                     org.telegram.messenger.a8.d(u10.toString());
-                    org.telegram.messenger.k5.p(null, 2131748133, org.telegram.ui.Components.hc.a0((org.telegram.ui.ActionBar.f2) jg.g.i(1, launchActivity2.f41257d0)), null);
+                    org.telegram.messenger.k5.p(null, 2131748133, org.telegram.ui.Components.hc.a0((org.telegram.ui.ActionBar.f2) jg.g.i(1, launchActivity2.f41256d0)), null);
                 }
                 try {
                     q10Var.run();
@@ -112,11 +112,11 @@ public final class q60 implements Runnable {
     }
 
     public q60(LaunchActivity launchActivity, TLRPC.TL_error tL_error, TLObject tLObject, int i7, String str, q10 q10Var) {
-        this.f49123b = launchActivity;
-        this.f49126f = tL_error;
-        this.f49124c = tLObject;
+        this.f49122b = launchActivity;
+        this.f49125f = tL_error;
+        this.f49123c = tLObject;
         this.d = i7;
-        this.f49125e = str;
+        this.f49124e = str;
         this.h = q10Var;
     }
 }

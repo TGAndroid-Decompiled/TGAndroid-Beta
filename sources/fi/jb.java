@@ -26,10 +26,10 @@ public final class jb extends View {
         i6Var.u(-1);
         i6Var.x(org.telegram.messenger.g0.o());
         i6Var.setCallback(this);
-        i6Var.f34477b = 1;
+        i6Var.f34508b = 1;
         StringBuilder sb2 = new StringBuilder(8);
         sb2.append("00:00:00");
-        if (!TextUtils.equals(sb2, i6Var.f34483i)) {
+        if (!TextUtils.equals(sb2, i6Var.f34514i)) {
             i6Var.a();
             i6Var.t(sb2, false, true);
         }

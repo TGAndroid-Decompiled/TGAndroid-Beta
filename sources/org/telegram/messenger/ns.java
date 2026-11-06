@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 public final class ns extends ArrayList {
-    public HashSet f24216a;
+    public HashSet f24223a;
 
     @Override
     public final boolean add(Object obj) {
-        if (this.f24216a.add(obj)) {
+        if (this.f24223a.add(obj)) {
             return super.add(obj);
         }
         return false;
@@ -27,20 +27,20 @@ public final class ns extends ArrayList {
 
     @Override
     public final void clear() {
-        this.f24216a.clear();
+        this.f24223a.clear();
         super.clear();
     }
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f24216a.contains(obj);
+        return this.f24223a.contains(obj);
     }
 
     @Override
     public final Object remove(int i7) {
         Object remove = super.remove(i7);
         if (remove != null) {
-            this.f24216a.remove(remove);
+            this.f24223a.remove(remove);
         }
         return remove;
     }
@@ -52,7 +52,7 @@ public final class ns extends ArrayList {
 
     @Override
     public final void add(int i7, Object obj) {
-        if (this.f24216a.add(obj)) {
+        if (this.f24223a.add(obj)) {
             super.add(i7, obj);
         }
     }
@@ -64,7 +64,7 @@ public final class ns extends ArrayList {
 
     @Override
     public final boolean remove(Object obj) {
-        if (this.f24216a.remove(obj)) {
+        if (this.f24223a.remove(obj)) {
             return super.remove(obj);
         }
         return false;

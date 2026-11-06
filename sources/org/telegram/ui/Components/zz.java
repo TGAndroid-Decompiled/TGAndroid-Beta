@@ -11,14 +11,14 @@ public final class zz extends URLSpan {
     public static final int f41160e = 0;
     public final String f41161a;
     public final TLRPC.TL_messageEntityFormattedDate f41162b;
-    public final ty0 f41163c;
+    public final uy0 f41163c;
     public final boolean d;
 
-    public zz(String str, ty0 ty0Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
+    public zz(String str, uy0 uy0Var, TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate) {
         super(str);
         this.f41161a = str;
         this.f41162b = tL_messageEntityFormattedDate;
-        this.f41163c = ty0Var;
+        this.f41163c = uy0Var;
         this.d = false;
     }
 
@@ -66,9 +66,9 @@ public final class zz extends URLSpan {
         int i7 = textPaint.linkColor;
         int color = textPaint.getColor();
         super.updateDrawState(textPaint);
-        ty0 ty0Var = this.f41163c;
-        if (ty0Var != null) {
-            ty0Var.a(textPaint);
+        uy0 uy0Var = this.f41163c;
+        if (uy0Var != null) {
+            uy0Var.a(textPaint);
         }
         if (i7 == color) {
             z9 = true;

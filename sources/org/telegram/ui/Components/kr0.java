@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class kr0 extends oj0 {
-    public final Context f35406c;
+    public final Context f35397c;
     public TLRPC.ChatFull d;
-    public ArrayList f35407e;
-    public final xs0 f35408f;
+    public ArrayList f35398e;
+    public final xs0 f35399f;
 
     public kr0(xs0 xs0Var, Context context) {
-        this.f35408f = xs0Var;
-        this.f35406c = context;
+        this.f35399f = xs0Var;
+        this.f35397c = context;
     }
 
     @Override
@@ -56,13 +56,13 @@ public final class kr0 extends oj0 {
         boolean z14;
         boolean z15;
         boolean z16;
-        xs0 xs0Var = this.f35408f;
-        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40424x1;
-        View view = d1Var.f56952a;
+        xs0 xs0Var = this.f35399f;
+        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40440x1;
+        View view = d1Var.f56951a;
         if (view instanceof org.telegram.ui.Cells.pa) {
             org.telegram.ui.Cells.pa paVar = (org.telegram.ui.Cells.pa) view;
-            if (!this.f35407e.isEmpty()) {
-                chatParticipant = this.d.participants.participants.get(((Integer) this.f35407e.get(i7)).intValue());
+            if (!this.f35398e.isEmpty()) {
+                chatParticipant = this.d.participants.participants.get(((Integer) this.f35398e.get(i7)).intValue());
             } else {
                 chatParticipant = this.d.participants.participants.get(i7);
             }
@@ -146,13 +146,13 @@ public final class kr0 extends oj0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        xs0 xs0Var = this.f35408f;
+        xs0 xs0Var = this.f35399f;
         if (i7 == 20) {
-            r3 X = xs0.X(7, xs0Var.l1, this.f35406c, xs0Var.H1);
+            r3 X = xs0.X(7, xs0Var.l1, this.f35397c, xs0Var.H1);
             X.setLayoutParams(new v4.o0(-1, -1));
             return new v4.d1(X);
         }
-        org.telegram.ui.Cells.pa paVar = new org.telegram.ui.Cells.pa(9, 0, this.f35406c, xs0Var.H1, true, false);
+        org.telegram.ui.Cells.pa paVar = new org.telegram.ui.Cells.pa(9, 0, this.f35397c, xs0Var.H1, true, false);
         paVar.setLayoutParams(new v4.o0(-1, -2));
         return new v4.d1(paVar);
     }

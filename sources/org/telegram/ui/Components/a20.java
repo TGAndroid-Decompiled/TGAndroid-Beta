@@ -12,17 +12,17 @@ import android.widget.TextView;
 import java.io.File;
 import org.telegram.ui.u71;
 public final class a20 extends c5.a {
-    public final int f31656c;
+    public final int f31660c;
     public final Object d;
 
     public a20(Object obj, int i7) {
-        this.f31656c = i7;
+        this.f31660c = i7;
         this.d = obj;
     }
 
     @Override
     public final void a(c5.k kVar, Object obj) {
-        switch (this.f31656c) {
+        switch (this.f31660c) {
             case 0:
                 kVar.removeView((View) obj);
                 return;
@@ -43,26 +43,26 @@ public final class a20 extends c5.a {
 
     @Override
     public final int b() {
-        switch (this.f31656c) {
+        switch (this.f31660c) {
             case 0:
                 return ((org.telegram.ui.c30) this.d).l1.length;
             case 1:
-                return ((org.telegram.ui.Components.voip.t0) this.d).f39478f.length;
+                return ((org.telegram.ui.Components.voip.t0) this.d).f39499f.length;
             case 2:
                 return ((org.telegram.ui.u50) this.d).F.length;
             case 3:
-                if (((u71) this.d).f50270b != 0) {
+                if (((u71) this.d).f50269b != 0) {
                     return 1;
                 }
                 return 2;
             default:
-                return ((ug.w0) this.d).f56754k1.size();
+                return ((ug.w0) this.d).f56753k1.size();
         }
     }
 
     @Override
     public int c(Object obj) {
-        switch (this.f31656c) {
+        switch (this.f31660c) {
             case 3:
                 return -1;
             default:
@@ -77,7 +77,7 @@ public final class a20 extends c5.a {
         View view;
         boolean z9;
         float f10;
-        int i11 = this.f31656c;
+        int i11 = this.f31660c;
         int i12 = 2;
         Bitmap bitmap = null;
         int i13 = 0;
@@ -106,7 +106,7 @@ public final class a20 extends c5.a {
                     i10 = 2131624176;
                 }
                 org.telegram.messenger.rz i14 = org.telegram.messenger.sz.i(org.telegram.messenger.g0.y2(null, i10));
-                i14.f25391s = false;
+                i14.f25399s = false;
                 z10Var.setImageDrawable(i14);
                 if (z10Var.getParent() != null) {
                     ((ViewGroup) z10Var.getParent()).removeView(z10Var);
@@ -162,9 +162,9 @@ public final class a20 extends c5.a {
             case 2:
                 TextView textView2 = new TextView(kVar.getContext());
                 org.telegram.ui.u50 u50Var = (org.telegram.ui.u50) obj;
-                textView2.setTag(u50Var.f50228a);
+                textView2.setTag(u50Var.f50227a);
                 TextView textView3 = new TextView(kVar.getContext());
-                textView3.setTag(u50Var.f50229b);
+                textView3.setTag(u50Var.f50228b);
                 bi.x5 x5Var = new bi.x5(kVar.getContext(), textView2, textView3);
                 int i15 = org.telegram.ui.ActionBar.k6.G6;
                 org.telegram.messenger.k5.n(textView2, i15, null, 1, 26.0f);
@@ -182,9 +182,9 @@ public final class a20 extends c5.a {
             case 3:
                 u71 u71Var = (u71) obj;
                 if (i7 == 0) {
-                    view = u71Var.f50321u0;
+                    view = u71Var.f50320u0;
                 } else {
-                    view = u71Var.f50306n0;
+                    view = u71Var.f50305n0;
                 }
                 kVar.addView(view);
                 return view;
@@ -192,16 +192,16 @@ public final class a20 extends c5.a {
                 ug.w0 w0Var = (ug.w0) obj;
                 ug.v0 v0Var = new ug.v0(w0Var, w0Var.getContext(), i7);
                 kVar.addView(v0Var);
-                v0Var.f56744a = i7;
-                org.telegram.ui.vs0 vs0Var = (org.telegram.ui.vs0) w0Var.f56754k1.get(i7);
-                int i16 = vs0Var.f50823a;
+                v0Var.f56743a = i7;
+                org.telegram.ui.vs0 vs0Var = (org.telegram.ui.vs0) w0Var.f56753k1.get(i7);
+                int i16 = vs0Var.f50822a;
                 String str = vs0Var.d;
-                CharSequence charSequence = vs0Var.f50825c;
-                TextView textView4 = v0Var.f56745b;
-                w70 w70Var = v0Var.f56746c;
+                CharSequence charSequence = vs0Var.f50824c;
+                TextView textView4 = v0Var.f56744b;
+                w70 w70Var = v0Var.f56745c;
                 if (i16 != 0 && i16 != 14 && i16 != 28) {
-                    if (w0Var.f56763v1) {
-                        int i17 = w0Var.f56762u1;
+                    if (w0Var.f56762v1) {
+                        int i17 = w0Var.f56761u1;
                         if (i17 == 4) {
                             textView4.setText(org.telegram.messenger.hd.M0(2131754353, null));
                             w70Var.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131754352, null)));
@@ -255,7 +255,7 @@ public final class a20 extends c5.a {
                 }
                 w70Var.setMaxWidth(fi.m3.a(w70Var.getText(), w70Var.getPaint()));
                 v0Var.requestLayout();
-                if (vs0Var.f50823a == 40) {
+                if (vs0Var.f50822a == 40) {
                     z9 = true;
                 } else {
                     z9 = false;
@@ -298,7 +298,7 @@ public final class a20 extends c5.a {
 
     @Override
     public final boolean f(View view, Object obj) {
-        switch (this.f31656c) {
+        switch (this.f31660c) {
             case 0:
                 return view.equals(obj);
             case 1:
@@ -320,13 +320,13 @@ public final class a20 extends c5.a {
 
     @Override
     public void h(int i7) {
-        switch (this.f31656c) {
+        switch (this.f31660c) {
             case 0:
             case 1:
                 return;
             case 2:
                 org.telegram.ui.u50 u50Var = (org.telegram.ui.u50) this.d;
-                u50Var.f50231e.setCurrentPage(i7);
+                u50Var.f50230e.setCurrentPage(i7);
                 u50Var.H = i7;
                 return;
             default:

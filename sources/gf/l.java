@@ -34,7 +34,7 @@ public final class l implements lf.a {
     public l(wf.b bVar) {
         HashMap hashMap = new HashMap();
         c(Arrays.asList(new hf.a(0), new hf.a(1)), hashMap);
-        c((List) bVar.f57563b, hashMap);
+        c((List) bVar.f57562b, hashMap);
         this.f13929c = hashMap;
         Set<Character> keySet = hashMap.keySet();
         BitSet bitSet = new BitSet();

@@ -15,7 +15,7 @@ import org.telegram.messenger.i6;
 import org.telegram.messenger.p10;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.hz;
@@ -48,16 +48,16 @@ public final class b {
         boolean z9;
         Paint paint = (Paint) this.d;
         canvas.save();
-        ly0 ly0Var = (ly0) this.f13267f;
-        ly0Var.f35793p = f10 - g0.L(132.0f);
+        my0 my0Var = (my0) this.f13267f;
+        my0Var.f36136p = f10 - g0.L(132.0f);
         Paint paint2 = (Paint) this.f13265c;
-        paint2.setColor(i0.a.f(f11, this.f13264b, k6.x0(null, k6.f27931hh, false)));
+        paint2.setColor(i0.a.f(f11, this.f13264b, k6.x0(null, k6.f27932hh, false)));
         float d = ((w5) this.f13270j).d(this.f13263a);
         int L2 = g0.L(14.0f);
-        float k10 = ly0Var.k() + g0.L(86.0f) + L2;
+        float k10 = my0Var.k() + g0.L(86.0f) + L2;
         float L3 = g0.L(28.0f);
         float L4 = g0.L(232.0f);
-        float i7 = ((ly0) this.f13268g).i() + g0.L(54.0f) + g0.L(50.0f);
+        float i7 = ((my0) this.f13268g).i() + g0.L(54.0f) + g0.L(50.0f);
         float T1 = g0.T1(k10, L4, f11);
         float T12 = g0.T1(L3, i7, f11);
         float W1 = g0.W1(f11, g0.L(14.0f), g0.L(16.0f));
@@ -97,8 +97,8 @@ public final class b {
         if (p30VarArr[1].b(canvas, rectF3, f11)) {
             z10 = true;
         }
-        ly0 ly0Var2 = (ly0) this.f13267f;
-        ly0Var2.c(f15 - (ly0Var2.k() / 2.0f), L3 / 2.0f, g0.T1(1.0f, 0.75f, d) * (1.0f - f11), -1, canvas);
+        my0 my0Var2 = (my0) this.f13267f;
+        my0Var2.c(f15 - (my0Var2.k() / 2.0f), L3 / 2.0f, g0.T1(1.0f, 0.75f, d) * (1.0f - f11), -1, canvas);
         rectF2.set((g0.L(10.0f) + (((int) rectF.right) - g0.L(47.0f))) - f12, f13, g0.L(10.0f) + (((int) rectF.right) - g0.L(47.0f)) + f12, f14);
         float f20 = (int) ((L8 * 2.5f) + f16);
         rectF3.set(f20 - f18, (int) ((rectF.top + g0.L(27.33f)) - f18), f20 + f18, (int) (rectF.top + g0.L(27.33f) + f18));
@@ -116,11 +116,11 @@ public final class b {
             z9 = z10;
         }
         if (f11 > 0.0f) {
-            ((ly0) this.f13268g).c((rectF.centerX() - (L4 / 2.0f)) + g0.L(16.0f), g0.L(54.0f), f11, -1, canvas);
+            ((my0) this.f13268g).c((rectF.centerX() - (L4 / 2.0f)) + g0.L(16.0f), g0.L(54.0f), f11, -1, canvas);
             paint.setColor(-16777216);
             paint.setAlpha((int) (255.0f * f11));
             canvas.drawRect(rectF.left, i7 - g0.L(40.0f), rectF.right, g0.L(0.66f) + (i7 - g0.L(40.0f)), paint);
-            ((ly0) this.h).c(rectF.centerX() - (((ly0) this.h).k() / 2.0f), i7 - g0.L(20.0f), f11, -1, canvas);
+            ((my0) this.h).c(rectF.centerX() - (((my0) this.h).k() / 2.0f), i7 - g0.L(20.0f), f11, -1, canvas);
         }
         canvas.restore();
         return z9;
@@ -143,39 +143,39 @@ public final class b {
             } else {
                 str = strArr[i7];
             }
-            o30 o30Var = p30Var.f48607k;
-            boolean z11 = p30Var.f48603f;
+            o30 o30Var = p30Var.f48606k;
+            boolean z11 = p30Var.f48602f;
             if (str != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            p30Var.f48603f = z10;
-            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f48608l, str))) {
+            p30Var.f48602f = z10;
+            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f48607l, str))) {
                 i5 i5Var = p30Var.d;
                 if (i5Var != null) {
                     i5Var.o(o30Var);
                 }
-                p30Var.f48601c = i6.g(str);
+                p30Var.f48600c = i6.g(str);
                 int l10 = p10.l();
                 ?? drawable = new Drawable();
-                drawable.f34451l = 1.0f;
-                drawable.f34453n = null;
-                drawable.f34454o = null;
-                drawable.f34447g = 21;
+                drawable.f34498l = 1.0f;
+                drawable.f34500n = null;
+                drawable.f34501o = null;
+                drawable.f34494g = 21;
                 drawable.h = l10;
                 drawable.x();
                 i5.w();
                 p30Var.d = drawable;
-                p30Var.f48608l = str;
+                p30Var.f48607l = str;
                 drawable.q(str);
                 p30Var.c();
-                if (p30Var.f48606j) {
+                if (p30Var.f48605j) {
                     p30Var.d.b(o30Var);
                 }
             }
-            if (p30Var.f48603f && !z11) {
-                p30Var.f48602e = false;
+            if (p30Var.f48602f && !z11) {
+                p30Var.f48601e = false;
             }
         }
         l00 l00Var = (l00) this.f13269i;
@@ -200,14 +200,14 @@ public final class b {
                 p30VarArr[i7] = new p30(i7);
                 i7++;
             } else {
-                ((Paint) this.f13265c).setColor(k6.x0(null, k6.f27931hh, false));
-                this.f13267f = new ly0(hd.M0(2131751821, null), 12.0f, g0.o());
-                ly0 ly0Var = new ly0(hd.M0(2131751819, null), 11.0f, null);
-                ly0Var.m(99);
-                ly0Var.p(g0.L(200.0f));
-                ly0Var.l(g0.L(2.66f));
-                this.f13268g = ly0Var;
-                this.h = new ly0(hd.M0(2131751820, null), 14.0f, g0.o());
+                ((Paint) this.f13265c).setColor(k6.x0(null, k6.f27932hh, false));
+                this.f13267f = new my0(hd.M0(2131751821, null), 12.0f, g0.o());
+                my0 my0Var = new my0(hd.M0(2131751819, null), 11.0f, null);
+                my0Var.m(99);
+                my0Var.p(g0.L(200.0f));
+                my0Var.l(g0.L(2.66f));
+                this.f13268g = my0Var;
+                this.h = new my0(hd.M0(2131751820, null), 14.0f, g0.o());
                 b(null);
                 return;
             }

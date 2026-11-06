@@ -34,7 +34,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.Components.AnimatedFileNative;
 import org.telegram.ui.Components.b90;
-import org.telegram.ui.Components.f31;
+import org.telegram.ui.Components.g31;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.LaunchActivity;
 public final class x1 implements Runnable {
@@ -107,7 +107,7 @@ public final class x1 implements Runnable {
                 String str = (String) this.f13073b;
                 float f10 = b3Var.K;
                 if (obj != null) {
-                    int min = (int) Math.min(org.telegram.messenger.g0.f22537q.x / 3.0f, org.telegram.messenger.g0.L(330.0f));
+                    int min = (int) Math.min(org.telegram.messenger.g0.f22544q.x / 3.0f, org.telegram.messenger.g0.L(330.0f));
                     if (obj instanceof gf) {
                         gf gfVar = (gf) obj;
                         BitmapFactory.Options options = new BitmapFactory.Options();
@@ -227,7 +227,7 @@ public final class x1 implements Runnable {
                     ArrayList O0 = s8Var.O0();
                     for (int i17 = 0; i17 < O0.size(); i17++) {
                         TLRPC.User user = (TLRPC.User) O0.get(i17);
-                        if (user != null && (contains = n8Var.f12487c.contains(Long.valueOf(user.f27101id))) != user.close_friend) {
+                        if (user != null && (contains = n8Var.f12487c.contains(Long.valueOf(user.f27102id))) != user.close_friend) {
                             user.close_friend = contains;
                             if (contains) {
                                 i10 = user.flags2 | 4;
@@ -241,7 +241,7 @@ public final class x1 implements Runnable {
                 }
                 s8Var.M0();
                 if (s8Var.Q1) {
-                    s8Var.N0(new q8(1, s8Var.f28612a, (ArrayList) null), new di.w3(s8Var, 1), false);
+                    s8Var.N0(new q8(1, s8Var.f28613a, (ArrayList) null), new di.w3(s8Var, 1), false);
                     return;
                 }
                 s8Var.M0();
@@ -251,7 +251,7 @@ public final class x1 implements Runnable {
                 ((e7) this.f13073b).O0 = (File) this.d;
                 o9 o9Var = ((va) this.f13074c).f12947d1;
                 if (o9Var != null) {
-                    o9Var.f11667b.f36781f3.O(false);
+                    o9Var.f11667b.f37160f3.O(false);
                     return;
                 }
                 return;
@@ -332,7 +332,7 @@ public final class x1 implements Runnable {
                 ArrayList arrayList5 = new ArrayList();
                 for (int i18 = 0; i18 < arrayList4.size(); i18++) {
                     TLRPC.User user2 = (TLRPC.User) arrayList4.get(i18);
-                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f27101id));
+                    Boolean bool = (Boolean) hashMap2.get(Long.valueOf(user2.f27102id));
                     if (bool != null && bool.booleanValue()) {
                         z9 = false;
                     } else {
@@ -391,7 +391,7 @@ public final class x1 implements Runnable {
                     yr a02 = yr.a0(i19);
                     if (booleanValue) {
                         try {
-                            sQLiteCursor = a02.f26690b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                            sQLiteCursor = a02.f26698b.queryFinalized("SELECT outbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                             try {
                                 try {
                                     if (sQLiteCursor.next()) {
@@ -424,7 +424,7 @@ public final class x1 implements Runnable {
                             th = th5;
                         }
                     } else {
-                        sQLiteCursor = a02.f26690b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
+                        sQLiteCursor = a02.f26698b.queryFinalized("SELECT last_mid, inbox_max FROM dialogs WHERE did = " + longValue, new Object[0]);
                         if (sQLiteCursor.next()) {
                             int intValue = sQLiteCursor.intValue(0);
                             int intValue2 = sQLiteCursor.intValue(1);
@@ -496,15 +496,15 @@ public final class x1 implements Runnable {
             case 21:
                 jg.b2 b2Var = (jg.b2) this.f13074c;
                 TLRPC.TL_messages_foundStickerSets tL_messages_foundStickerSets = (TLRPC.TL_messages_foundStickerSets) this.d;
-                String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f13073b).f27066q;
+                String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f13073b).f27067q;
                 jg.d2 d2Var = b2Var.f16669a;
                 String str6 = d2Var.R;
-                f31 f31Var = d2Var.f16697e;
+                g31 g31Var = d2Var.f16697e;
                 if (str5.equals(str6)) {
                     b2Var.a();
-                    f31Var.f33451b.h.getProgressDrawable().f36639e = false;
+                    g31Var.f33783b.h.getProgressDrawable().f36657e = false;
                     d2Var.N = 0;
-                    f31Var.b(true);
+                    g31Var.b(true);
                     d2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     d2Var.f();
                     return;
@@ -568,7 +568,7 @@ public final class x1 implements Runnable {
             case 26:
                 kg.i0 i0Var = (kg.i0) this.f13074c;
                 TL_account.TL_businessBotRecipients tL_businessBotRecipients = (TL_account.TL_businessBotRecipients) this.d;
-                kg.f.a(i0Var.f28612a).b();
+                kg.f.a(i0Var.f28613a).b();
                 i0Var.dismiss();
                 ((TL_account.TL_connectedBot) this.f13073b).recipients = tL_businessBotRecipients;
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();

@@ -10,6 +10,6 @@ public final class u7 extends v4.s0 {
 
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
-        this.f12895a.f28615b.invalidate();
+        this.f12895a.f28616b.invalidate();
     }
 }

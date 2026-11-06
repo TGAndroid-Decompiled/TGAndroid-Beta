@@ -1,26 +1,26 @@
 package org.telegram.ui.Components;
 public final class a2 implements Runnable {
-    public final int f31654a;
-    public final org.telegram.ui.ActionBar.u1 f31655b;
+    public final int f31658a;
+    public final org.telegram.ui.ActionBar.u1 f31659b;
 
     public a2(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        this.f31654a = i7;
-        this.f31655b = u1Var;
+        this.f31658a = i7;
+        this.f31659b = u1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f31654a) {
+        switch (this.f31658a) {
             case 0:
                 try {
-                    this.f31655b.dismiss();
+                    this.f31659b.dismiss();
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
             default:
-                this.f31655b.dismiss();
+                this.f31659b.dismiss();
                 return;
         }
     }

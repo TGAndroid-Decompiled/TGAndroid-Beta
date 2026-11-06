@@ -48,11 +48,11 @@ public final class r0 extends FrameLayout {
         org.telegram.ui.Components.l9 l9Var = this.f9674b;
         org.telegram.ui.Components.w8 w8Var = this.f9675c;
         if (i7 >= 0) {
-            TLRPC.User a22 = qp.s1(p10.f24459s0).a2(Long.valueOf(t0Var.f9774b));
+            TLRPC.User a22 = qp.s1(p10.f24467s0).a2(Long.valueOf(t0Var.f9774b));
             w8Var.r(a22);
             l9Var.e(a22, w8Var);
         } else {
-            TLRPC.Chat M0 = qp.s1(p10.f24459s0).M0(Long.valueOf(-t0Var.f9774b));
+            TLRPC.Chat M0 = qp.s1(p10.f24467s0).M0(Long.valueOf(-t0Var.f9774b));
             w8Var.q(M0);
             l9Var.e(M0, w8Var);
         }
@@ -64,7 +64,7 @@ public final class r0 extends FrameLayout {
         } else {
             imageView.setVisibility(8);
         }
-        this.f9676e.setText(org.telegram.messenger.m5.l(p10.f24459s0, t0Var.f9774b));
+        this.f9676e.setText(org.telegram.messenger.m5.l(p10.f24467s0, t0Var.f9774b));
         this.f9673a.invalidate();
     }
 }

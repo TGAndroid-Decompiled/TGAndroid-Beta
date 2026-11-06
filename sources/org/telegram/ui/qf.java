@@ -9,14 +9,14 @@ import java.util.Iterator;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qf implements Runnable {
-    public final int f49216a;
-    public final Object f49217b;
-    public final Object f49218c;
+    public final int f49215a;
+    public final Object f49216b;
+    public final Object f49217c;
 
     public qf(int i7, Object obj, Object obj2) {
-        this.f49216a = i7;
-        this.f49217b = obj;
-        this.f49218c = obj2;
+        this.f49215a = i7;
+        this.f49216b = obj;
+        this.f49217c = obj2;
     }
 
     @Override
@@ -29,12 +29,12 @@ public final class qf implements Runnable {
         String str;
         String a02;
         TLRPC.Chat M0;
-        int i7 = this.f49216a;
+        int i7 = this.f49215a;
         org.telegram.messenger.ij ijVar = null;
         boolean z9 = true;
         boolean z10 = false;
-        Object obj = this.f49218c;
-        Object obj2 = this.f49217b;
+        Object obj = this.f49217c;
+        Object obj2 = this.f49216b;
         switch (i7) {
             case 0:
                 an.a0((an) obj2, (org.telegram.ui.Components.k60) obj);
@@ -42,7 +42,7 @@ public final class qf implements Runnable {
             case 1:
                 an anVar = (an) obj2;
                 anVar.getClass();
-                anVar.presentFragment(ProfileActivity.A4(((TLRPC.User[]) obj)[0].f27101id));
+                anVar.presentFragment(ProfileActivity.A4(((TLRPC.User[]) obj)[0].f27102id));
                 return;
             case 2:
                 an anVar2 = (an) obj2;
@@ -75,7 +75,7 @@ public final class qf implements Runnable {
                 an anVar4 = (an) obj2;
                 Activity parentActivity = anVar4.getParentActivity();
                 String str2 = ((TLRPC.TL_bankCardOpenUrl) obj).url;
-                if (anVar4.f43994v8 != 0) {
+                if (anVar4.f43993v8 != 0) {
                     z9 = false;
                 }
                 vf.c.q(parentActivity, Uri.parse(str2), z9, false);
@@ -105,11 +105,11 @@ public final class qf implements Runnable {
                 if (hVar.m() == 1 && hVar.n(0) != null && ((ArrayList) hVar.n(0)).size() == 1) {
                     ijVar = (org.telegram.messenger.ij) ((ArrayList) hVar.n(0)).get(0);
                 }
-                if (ijVar != null && (message = ijVar.f23237k) != null && (messageMedia = message.media) != null && (webPage = messageMedia.webpage) != null && webPage.attributes != null) {
-                    for (int i10 = 0; i10 < ijVar.f23237k.media.webpage.attributes.size(); i10++) {
-                        TLRPC.WebPageAttribute webPageAttribute = ijVar.f23237k.media.webpage.attributes.get(i10);
+                if (ijVar != null && (message = ijVar.f23244k) != null && (messageMedia = message.media) != null && (webPage = messageMedia.webpage) != null && webPage.attributes != null) {
+                    for (int i10 = 0; i10 < ijVar.f23244k.media.webpage.attributes.size(); i10++) {
+                        TLRPC.WebPageAttribute webPageAttribute = ijVar.f23244k.media.webpage.attributes.get(i10);
                         if ((webPageAttribute instanceof TLRPC.TL_webPageAttributeStory) && ((TLRPC.TL_webPageAttributeStory) webPageAttribute).storyItem != null) {
-                            org.telegram.messenger.g0.h3(new qf(12, n6Var, ijVar.f23237k.media.webpage));
+                            org.telegram.messenger.g0.h3(new qf(12, n6Var, ijVar.f23244k.media.webpage));
                             return;
                         }
                     }
@@ -134,7 +134,7 @@ public final class qf implements Runnable {
                     fi.m3 m3Var2 = anVar6.Y0;
                     m3Var2.f12436q0 = new ae(anVar6, 3);
                     m3Var2.w();
-                    org.telegram.ui.Components.z20.f40839x.b();
+                    org.telegram.ui.Components.z20.f40850x.b();
                     return;
                 }
                 return;
@@ -143,11 +143,11 @@ public final class qf implements Runnable {
                 return;
             case 15:
                 org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) obj;
-                an anVar7 = ((di) obj2).f45080s;
+                an anVar7 = ((di) obj2).f45079s;
                 org.telegram.messenger.ij ijVar3 = (org.telegram.messenger.ij) anVar7.E6[0].get(ijVar2.f1());
                 if (ijVar3 != null && ijVar3 != ijVar2) {
                     org.telegram.messenger.ij ijVar4 = (org.telegram.messenger.ij) anVar7.E6[0].get(ijVar2.f1());
-                    ijVar4.f23237k.reactions = ijVar2.f23237k.reactions;
+                    ijVar4.f23244k.reactions = ijVar2.f23244k.reactions;
                     ijVar2 = ijVar4;
                 }
                 anVar7.Uc(ijVar2, true);
@@ -155,15 +155,15 @@ public final class qf implements Runnable {
                 return;
             case 16:
                 org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) obj;
-                an anVar8 = ((el) ((em) obj2).f45376f).f45373a.Q;
-                int i11 = an.f43707id;
+                an anVar8 = ((el) ((em) obj2).f45375f).f45372a.Q;
+                int i11 = an.f43706id;
                 anVar8.lb();
-                t0Var.getMessageObject().f23262r = false;
+                t0Var.getMessageObject().f23269r = false;
                 t0Var.invalidate();
                 return;
             case 17:
                 fi.m3 m3Var3 = (fi.m3) obj;
-                an anVar9 = ((lm) obj2).f47561a;
+                an anVar9 = ((lm) obj2).f47560a;
                 anVar9.l1.removeView(m3Var3);
                 if (m3Var3 == anVar9.O1) {
                     anVar9.O1 = null;
@@ -172,7 +172,7 @@ public final class qf implements Runnable {
                 return;
             case 18:
                 Long l10 = (Long) obj;
-                an anVar10 = ((fm) obj2).S2.f47561a;
+                an anVar10 = ((fm) obj2).S2.f47560a;
                 if (l10.longValue() < 0 && (M0 = anVar10.getMessagesController().M0(Long.valueOf(-l10.longValue()))) != null) {
                     str = M0.title;
                 } else {
@@ -197,15 +197,15 @@ public final class qf implements Runnable {
                 TLRPC.TL_channels_checkUsername tL_channels_checkUsername = new TLRPC.TL_channels_checkUsername();
                 tL_channels_checkUsername.username = str3;
                 tL_channels_checkUsername.channel = goVar.getMessagesController().h1(goVar.Z);
-                goVar.f46058h0 = goVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new z9(goVar, str3, tL_channels_checkUsername, 6), 2);
+                goVar.f46057h0 = goVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new z9(goVar, str3, tL_channels_checkUsername, 6), 2);
                 return;
             case 21:
                 go goVar2 = (go) obj2;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 z10 = (tL_error2 == null || !tL_error2.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH")) ? true : true;
-                goVar2.f46051c0 = z10;
-                if (!z10 && goVar2.getUserConfig().q() && !goVar2.f46052d0 && goVar2.f46074y != null) {
-                    goVar2.f46052d0 = true;
+                goVar2.f46050c0 = z10;
+                if (!z10 && goVar2.getUserConfig().q() && !goVar2.f46051d0 && goVar2.f46073y != null) {
+                    goVar2.f46051d0 = true;
                     goVar2.h0();
                     goVar2.getConnectionsManager().sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new qn(goVar2, 1));
                     return;
@@ -221,7 +221,7 @@ public final class qf implements Runnable {
                     TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject;
                     soVar.getMessagesController().S3(messages_chats.chats, false);
                     ArrayList<TLRPC.Chat> arrayList = messages_chats.chats;
-                    soVar.f49805w = arrayList;
+                    soVar.f49804w = arrayList;
                     Iterator<TLRPC.Chat> it = arrayList.iterator();
                     while (it.hasNext()) {
                         TLRPC.Chat next = it.next();
@@ -230,20 +230,20 @@ public final class qf implements Runnable {
                         }
                     }
                 }
-                soVar.f49806x = false;
-                soVar.f49807y = true;
+                soVar.f49805x = false;
+                soVar.f49806y = true;
                 soVar.g0();
                 return;
             case 24:
-                ((oo) obj2).f48463y.d.P = false;
+                ((oo) obj2).f48462y.d.P = false;
                 ((org.telegram.ui.Components.d70) obj).run();
                 return;
             case 25:
-                ((oo) obj2).f48463y.d.O = false;
+                ((oo) obj2).f48462y.d.O = false;
                 ((org.telegram.ui.Components.e70) obj).run();
                 return;
             case 26:
-                so soVar2 = ((oo) obj2).f48463y.d;
+                so soVar2 = ((oo) obj2).f48462y.d;
                 soVar2.O = false;
                 soVar2.P = false;
                 ((Runnable) obj).run();
@@ -253,16 +253,16 @@ public final class qf implements Runnable {
                 ooVar.getClass();
                 ((TLRPC.Chat) obj).join_request = true;
                 ooVar.h = true;
-                ooVar.f33472c.setChecked(true);
+                ooVar.f33481c.setChecked(true);
                 return;
             case 28:
                 oq oqVar = (oq) obj2;
                 oqVar.getClass();
-                oqVar.getMessagesController().V2(0, ((TLRPC.Updates) obj).chats.get(0).f26952id, true);
+                oqVar.getMessagesController().V2(0, ((TLRPC.Updates) obj).chats.get(0).f26953id, true);
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) obj;
-                oq oqVar2 = ((dq) obj2).f45128a;
+                oq oqVar2 = ((dq) obj2).f45127a;
                 if (org.telegram.ui.Components.hc.a(oqVar2)) {
                     org.telegram.ui.Components.hc.C(user.first_name, oqVar2).j();
                     return;

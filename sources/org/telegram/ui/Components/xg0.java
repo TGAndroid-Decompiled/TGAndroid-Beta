@@ -12,7 +12,7 @@ public class xg0 extends zg0 {
     public volatile boolean X0;
     public boolean Y0;
     public final int Z0;
-    public int f40277a1;
+    public int f40293a1;
 
     public xg0(String str, int i7, int i10) {
         super(i7, i10);
@@ -31,7 +31,7 @@ public class xg0 extends zg0 {
         if (TextUtils.isEmpty(str2)) {
             return;
         }
-        this.m0 = RLottieNative.b(str2, this.f40956e, null, null);
+        this.m0 = RLottieNative.b(str2, this.f40976e, null, null);
     }
 
     @Override
@@ -43,12 +43,12 @@ public class xg0 extends zg0 {
         } else if (i7 == 2) {
             rLottieNative = this.U0;
             if (this.X0) {
-                this.f40950a0 = this.f40277a1 - 1;
+                this.f40970a0 = this.f40293a1 - 1;
             }
         } else {
             rLottieNative = this.m0;
         }
-        if (rLottieNative.c(this.f40950a0, bitmap, z9) < 0) {
+        if (rLottieNative.c(this.f40970a0, bitmap, z9) < 0) {
             return 2;
         }
         return 1;
@@ -56,12 +56,12 @@ public class xg0 extends zg0 {
 
     @Override
     public void C(boolean z9) {
-        this.f40964k0 = false;
-        this.f40965l0 = true;
+        this.f40984k0 = false;
+        this.f40985l0 = true;
         n();
         l();
         if (!this.Y0 && !this.V0) {
-            if (this.P == null && !this.f40981x0) {
+            if (this.P == null && !this.f41001x0) {
                 D(z9);
                 bg.i iVar = this.B0;
                 if (iVar != null) {
@@ -107,28 +107,28 @@ public class xg0 extends zg0 {
     public void i() {
         int i7 = this.J;
         if (i7 == 1) {
-            int i10 = this.f40950a0 + 1;
+            int i10 = this.f40970a0 + 1;
             int i11 = this.Z0;
             if (i11 == -1) {
-                i11 = this.f40956e[0];
+                i11 = this.f40976e[0];
             }
             if (i10 < i11) {
-                this.f40950a0 = i10;
+                this.f40970a0 = i10;
                 return;
             }
-            this.f40950a0 = 0;
+            this.f40970a0 = 0;
             this.N = false;
             if (this.U0 != null) {
                 this.J = 2;
             }
             if (this.D) {
-                this.f40982y = null;
+                this.f41002y = null;
                 this.D = false;
             }
         } else if (i7 == 2) {
-            int i12 = this.f40950a0 + 1;
-            if (i12 < this.f40277a1) {
-                this.f40950a0 = i12;
+            int i12 = this.f40970a0 + 1;
+            if (i12 < this.f40293a1) {
+                this.f40970a0 = i12;
                 return;
             }
             this.N = true;
@@ -138,7 +138,7 @@ public class xg0 extends zg0 {
 
     @Override
     public int j() {
-        if (this.f40965l0) {
+        if (this.f40985l0) {
             return 3;
         }
         if (this.m0 == null || (this.J == 2 && this.U0 == null)) {
@@ -163,7 +163,7 @@ public class xg0 extends zg0 {
         if (!v()) {
             stop();
         }
-        if (this.f40964k0) {
+        if (this.f40984k0) {
             I();
         }
     }

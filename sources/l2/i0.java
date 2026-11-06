@@ -24,7 +24,7 @@ import java.util.Locale;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import jg.a2;
-import org.telegram.ui.Components.j51;
+import org.telegram.ui.Components.k51;
 public final class i0 extends bi.b1 implements p {
     public final ci.a A;
     public final long B;
@@ -88,7 +88,7 @@ public final class i0 extends bi.b1 implements p {
     public final x2.f0 f17879r;
     public long f17880r0;
     public final m2.e f17881s;
-    public j51 f17882s0;
+    public k51 f17882s0;
     public final Looper f17883t;
     public final ArrayList f17884t0;
     public final b3.d f17885u;
@@ -109,7 +109,7 @@ public final class i0 extends bi.b1 implements p {
     public static long m1(k1 k1Var) {
         e2.k1 k1Var2 = new e2.k1();
         e2.i1 i1Var = new e2.i1();
-        k1Var.f17911a.g(k1Var.f17912b.f58235a, i1Var);
+        k1Var.f17911a.g(k1Var.f17912b.f58234a, i1Var);
         long j3 = k1Var.f17913c;
         if (j3 == -9223372036854775807L) {
             return k1Var.f17911a.m(i1Var.f10282c, k1Var2, 0L).f10333l;
@@ -155,7 +155,7 @@ public final class i0 extends bi.b1 implements p {
             return i7;
         }
         k1 k1Var = this.f17876p0;
-        return k1Var.f17911a.b(k1Var.f17912b.f58235a);
+        return k1Var.f17911a.b(k1Var.f17912b.f58234a);
     }
 
     @Override
@@ -338,7 +338,7 @@ public final class i0 extends bi.b1 implements p {
             pair = new Pair(Boolean.FALSE, -1);
         } else if (l1Var2.p() != l1Var.p()) {
             pair = new Pair(Boolean.TRUE, 3);
-        } else if (!l1Var.m(l1Var.g(g0Var.f58235a, i1Var).f10282c, k1Var3, 0L).f10324a.equals(l1Var2.m(l1Var2.g(g0Var2.f58235a, i1Var).f10282c, k1Var3, 0L).f10324a)) {
+        } else if (!l1Var.m(l1Var.g(g0Var.f58234a, i1Var).f10282c, k1Var3, 0L).f10324a.equals(l1Var2.m(l1Var2.g(g0Var2.f58234a, i1Var).f10282c, k1Var3, 0L).f10324a)) {
             if (z9 && i10 == 0) {
                 i12 = 1;
             } else if (z9 && i10 == 1) {
@@ -360,7 +360,7 @@ public final class i0 extends bi.b1 implements p {
         int intValue = ((Integer) pair.second).intValue();
         if (booleanValue) {
             if (!k1Var.f17911a.p()) {
-                l0Var = k1Var.f17911a.m(k1Var.f17911a.g(k1Var.f17912b.f58235a, this.f17873o).f10282c, (e2.k1) this.f3500a, 0L).f10326c;
+                l0Var = k1Var.f17911a.m(k1Var.f17911a.g(k1Var.f17912b.f58234a, this.f17873o).f10282c, (e2.k1) this.f3500a, 0L).f10326c;
             } else {
                 l0Var = null;
             }
@@ -411,7 +411,7 @@ public final class i0 extends bi.b1 implements p {
         if (z9) {
             e2.i1 i1Var2 = new e2.i1();
             if (!k1Var2.f17911a.p()) {
-                Object obj5 = k1Var2.f17912b.f58235a;
+                Object obj5 = k1Var2.f17912b.f58234a;
                 k1Var2.f17911a.g(obj5, i1Var2);
                 int i17 = i1Var2.f10282c;
                 int b10 = k1Var2.f17911a.b(obj5);
@@ -436,9 +436,9 @@ public final class i0 extends bi.b1 implements p {
             if (i10 == 0) {
                 if (k1Var2.f17912b.b()) {
                     x2.g0 g0Var3 = k1Var2.f17912b;
-                    j12 = i1Var2.a(g0Var3.f58236b, g0Var3.f58237c);
+                    j12 = i1Var2.a(g0Var3.f58235b, g0Var3.f58236c);
                     m12 = m1(k1Var2);
-                } else if (k1Var2.f17912b.f58238e != -1) {
+                } else if (k1Var2.f17912b.f58237e != -1) {
                     j12 = m1(this.f17876p0);
                     m12 = j12;
                 } else {
@@ -459,13 +459,13 @@ public final class i0 extends bi.b1 implements p {
             long h02 = h2.m0.h0(j12);
             long h03 = h2.m0.h0(m12);
             x2.g0 g0Var4 = k1Var2.f17912b;
-            e2.b1 b1Var = new e2.b1(obj, i13, l0Var2, obj2, i14, h02, h03, g0Var4.f58236b, g0Var4.f58237c);
+            e2.b1 b1Var = new e2.b1(obj, i13, l0Var2, obj2, i14, h02, h03, g0Var4.f58235b, g0Var4.f58236c);
             e2.k1 k1Var4 = (e2.k1) this.f3500a;
             int o02 = o0();
             int B = B();
             if (!this.f17876p0.f17911a.p()) {
                 k1 k1Var5 = this.f17876p0;
-                Object obj6 = k1Var5.f17912b.f58235a;
+                Object obj6 = k1Var5.f17912b.f58234a;
                 k1Var5.f17911a.g(obj6, this.f17873o);
                 B = this.f17876p0.f17911a.b(obj6);
                 Object obj7 = this.f17876p0.f17911a.m(o02, k1Var4, 0L).f10324a;
@@ -485,7 +485,7 @@ public final class i0 extends bi.b1 implements p {
                 j13 = h04;
             }
             x2.g0 g0Var5 = this.f17876p0.f17912b;
-            this.f17870m.c(11, new a2(i10, b1Var, new e2.b1(obj3, o02, l0Var3, obj4, i18, h04, j13, g0Var5.f58236b, g0Var5.f58237c), 2));
+            this.f17870m.c(11, new a2(i10, b1Var, new e2.b1(obj3, o02, l0Var3, obj4, i18, h04, j13, g0Var5.f58235b, g0Var5.f58236c), 2));
         } else {
             z14 = booleanValue;
             z15 = equals2;
@@ -1004,13 +1004,13 @@ public final class i0 extends bi.b1 implements p {
         long j10 = k1Var.f17925q;
         if (this.f17876p0.f17919k.b()) {
             k1 k1Var2 = this.f17876p0;
-            k1Var2.f17911a.g(k1Var2.f17919k.f58235a, this.f17873o).d(this.f17876p0.f17919k.f58236b);
+            k1Var2.f17911a.g(k1Var2.f17919k.f58234a, this.f17873o).d(this.f17876p0.f17919k.f58235b);
         } else {
             j3 = j10;
         }
         k1 k1Var3 = this.f17876p0;
         e2.l1 l1Var = k1Var3.f17911a;
-        Object obj = k1Var3.f17919k.f58235a;
+        Object obj = k1Var3.f17919k.f58234a;
         e2.i1 i1Var = this.f17873o;
         l1Var.g(obj, i1Var);
         return h2.m0.h0(j3 + i1Var.f10283e);
@@ -1113,7 +1113,7 @@ public final class i0 extends bi.b1 implements p {
     public final int O() {
         F1();
         if (p()) {
-            return this.f17876p0.f17912b.f58237c;
+            return this.f17876p0.f17912b.f58236c;
         }
         return -1;
     }
@@ -1138,7 +1138,7 @@ public final class i0 extends bi.b1 implements p {
         int min = Math.min(i10, size);
         if (i7 < size && i7 != min) {
             k1 r12 = r1(this.f17876p0, i7, min);
-            D1(r12, 0, !r12.f17912b.f58235a.equals(this.f17876p0.f17912b.f58235a), 4, j1(r12), -1, false);
+            D1(r12, 0, !r12.f17912b.f58234a.equals(this.f17876p0.f17912b.f58234a), 4, j1(r12), -1, false);
         }
     }
 
@@ -1614,10 +1614,10 @@ public final class i0 extends bi.b1 implements p {
             k1 k1Var = this.f17876p0;
             x2.g0 g0Var = k1Var.f17912b;
             e2.l1 l1Var = k1Var.f17911a;
-            Object obj = g0Var.f58235a;
+            Object obj = g0Var.f58234a;
             e2.i1 i1Var = this.f17873o;
             l1Var.g(obj, i1Var);
-            return h2.m0.h0(i1Var.a(g0Var.f58236b, g0Var.f58237c));
+            return h2.m0.h0(i1Var.a(g0Var.f58235b, g0Var.f58236c));
         }
         return A();
     }
@@ -1678,7 +1678,7 @@ public final class i0 extends bi.b1 implements p {
         long j3 = k1Var.f17913c;
         e2.l1 l1Var = k1Var.f17911a;
         if (g0Var.b()) {
-            Object obj = k1Var.f17912b.f58235a;
+            Object obj = k1Var.f17912b.f58234a;
             e2.i1 i1Var = this.f17873o;
             l1Var.g(obj, i1Var);
             if (j3 == -9223372036854775807L) {
@@ -1715,7 +1715,7 @@ public final class i0 extends bi.b1 implements p {
             return j3;
         }
         e2.l1 l1Var = k1Var.f17911a;
-        Object obj = k1Var.f17912b.f58235a;
+        Object obj = k1Var.f17912b.f58234a;
         e2.i1 i1Var = this.f17873o;
         l1Var.g(obj, i1Var);
         return j3 + i1Var.f10283e;
@@ -1749,7 +1749,7 @@ public final class i0 extends bi.b1 implements p {
         if (k1Var.f17911a.p()) {
             return this.f17878q0;
         }
-        return k1Var.f17911a.g(k1Var.f17912b.f58235a, this.f17873o).f10282c;
+        return k1Var.f17911a.g(k1Var.f17912b.f58234a, this.f17873o).f10282c;
     }
 
     @Override
@@ -1812,7 +1812,7 @@ public final class i0 extends bi.b1 implements p {
     public final int n0() {
         F1();
         if (p()) {
-            return this.f17876p0.f17912b.f58236b;
+            return this.f17876p0.f17912b.f58235b;
         }
         return -1;
     }
@@ -1851,7 +1851,7 @@ public final class i0 extends bi.b1 implements p {
             c10.f17925q = c10.f17927s;
             return c10;
         }
-        Object obj = j10.f17912b.f58235a;
+        Object obj = j10.f17912b.f58234a;
         String str = h2.m0.f14112a;
         boolean equals = obj.equals(pair.first);
         if (!equals) {
@@ -1892,13 +1892,13 @@ public final class i0 extends bi.b1 implements p {
             c11.f17925q = longValue;
             return c11;
         } else if (i7 == 0) {
-            int b10 = l1Var.b(j10.f17919k.f58235a);
-            if (b10 != -1 && l1Var.f(b10, this.f17873o, false).f10282c == l1Var.g(g0Var.f58235a, this.f17873o).f10282c) {
+            int b10 = l1Var.b(j10.f17919k.f58234a);
+            if (b10 != -1 && l1Var.f(b10, this.f17873o, false).f10282c == l1Var.g(g0Var.f58234a, this.f17873o).f10282c) {
                 return j10;
             }
-            l1Var.g(g0Var.f58235a, this.f17873o);
+            l1Var.g(g0Var.f58234a, this.f17873o);
             if (g0Var.b()) {
-                j3 = this.f17873o.a(g0Var.f58236b, g0Var.f58237c);
+                j3 = this.f17873o.a(g0Var.f58235b, g0Var.f58236c);
             } else {
                 j3 = this.f17873o.d;
             }
@@ -1962,9 +1962,9 @@ public final class i0 extends bi.b1 implements p {
             return;
         }
         this.Z = new h2.y(i7, i10);
-        j51 j51Var = this.f17882s0;
-        if (j51Var != null) {
-            j51Var.execute(new jg.r(this, i7, i10, 1));
+        k51 k51Var = this.f17882s0;
+        if (k51Var != null) {
+            k51Var.execute(new jg.r(this, i7, i10, 1));
             return;
         }
         this.f17870m.e(24, new gh.c(i7, i10, 1));
@@ -2002,7 +2002,7 @@ public final class i0 extends bi.b1 implements p {
         k1 o12 = o1(k1Var, p1Var, l1(l1Var, p1Var, k12, i12));
         int i13 = o12.f17914e;
         if (i13 != 1 && i13 != 4 && k12 >= i7 && k12 < i10) {
-            if (r0.U((e2.k1) this.f3500a, this.f17873o, this.H, this.I, k1Var.f17912b.f58235a, l1Var, p1Var) == -1) {
+            if (r0.U((e2.k1) this.f3500a, this.f17873o, this.H, this.I, k1Var.f17912b.f58234a, l1Var, p1Var) == -1) {
                 o12 = n1(o12, 4);
             }
         }
@@ -2035,7 +2035,7 @@ public final class i0 extends bi.b1 implements p {
         int min = Math.min(i10, size);
         if (min - i7 == list.size()) {
             for (int i11 = i7; i11 < min; i11++) {
-                if (((e0) arrayList.get(i11)).f17793b.f58365k.a((e2.l0) list.get(i11 - i7))) {
+                if (((e0) arrayList.get(i11)).f17793b.f58364k.a((e2.l0) list.get(i11 - i7))) {
                 }
             }
             this.J++;
@@ -2049,7 +2049,7 @@ public final class i0 extends bi.b1 implements p {
                 e2.l1 l1Var = e0Var.f17794c;
                 e2.l0 l0Var = (e2.l0) list.get(i12 - i7);
                 if (l1Var instanceof x2.p1) {
-                    p1Var = new x2.p1(((x2.p1) l1Var).f58361e, l0Var);
+                    p1Var = new x2.p1(((x2.p1) l1Var).f58360e, l0Var);
                 } else {
                     p1Var = new x2.p1(l1Var, l0Var);
                 }
@@ -2068,7 +2068,7 @@ public final class i0 extends bi.b1 implements p {
             return;
         }
         k1 r12 = r1(e1(this.f17876p0, min, g12), i7, min);
-        D1(r12, 0, !r12.f17912b.f58235a.equals(this.f17876p0.f17912b.f58235a), 4, j1(r12), -1, false);
+        D1(r12, 0, !r12.f17912b.f58234a.equals(this.f17876p0.f17912b.f58234a), 4, j1(r12), -1, false);
     }
 
     public final void s1() {
@@ -2218,7 +2218,7 @@ public final class i0 extends bi.b1 implements p {
         }
         k1 n1 = n1(o12, i13);
         this.f17868l.f18018n.b(17, new m0(arrayList2, this.O, i10, h2.m0.S(j10))).b();
-        if (!this.f17876p0.f17912b.f58235a.equals(n1.f17912b.f58235a) && !this.f17876p0.f17911a.p()) {
+        if (!this.f17876p0.f17912b.f58234a.equals(n1.f17912b.f58234a) && !this.f17876p0.f17911a.p()) {
             z10 = true;
         } else {
             z10 = false;

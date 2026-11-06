@@ -149,9 +149,9 @@ public final class h extends x2.a {
     }
 
     public static boolean v(p2.h hVar) {
-        List list = hVar.f53036c;
+        List list = hVar.f53034c;
         for (int i7 = 0; i7 < list.size(); i7++) {
-            int i10 = ((p2.a) list.get(i7)).f52999b;
+            int i10 = ((p2.a) list.get(i7)).f52997b;
             if (i10 == 1 || i10 == 2) {
                 return true;
             }
@@ -161,7 +161,7 @@ public final class h extends x2.a {
 
     public final void A(m6 m6Var, q qVar) {
         j2.h hVar = this.f20753z;
-        Uri parse = Uri.parse(m6Var.f23979c);
+        Uri parse = Uri.parse(m6Var.f23986c);
         Map map = Collections.EMPTY_MAP;
         ia.k(parse, "The uri must be set.");
         this.A.f(new r(hVar, new j2.m(parse, 1, null, map, 0L, -1L, null, 1), 5, qVar), new f(this), 1);
@@ -206,14 +206,14 @@ public final class h extends x2.a {
 
     @Override
     public final e0 c(x2.g0 g0Var, h6.m mVar, long j3) {
-        int intValue = ((Integer) g0Var.f58235a).intValue() - this.N;
+        int intValue = ((Integer) g0Var.f58234a).intValue() - this.N;
         wa b10 = b(g0Var);
-        q2.j jVar = new q2.j(this.d.f53646c, 0, g0Var);
+        q2.j jVar = new q2.j(this.d.f53645c, 0, g0Var);
         int i7 = this.N + intValue;
         p2.c cVar = this.G;
         d0 d0Var = this.B;
         long j10 = this.K;
-        m2.j jVar2 = this.f58175g;
+        m2.j jVar2 = this.f58174g;
         jVar2.getClass();
         b bVar = new b(i7, cVar, this.f20742n, intValue, this.f20738j, d0Var, this.f20740l, jVar, this.f20741m, b10, j10, this.f20752y, mVar, this.f20739k, this.f20751x, jVar2);
         this.f20749u.put(i7, bVar);
@@ -234,7 +234,7 @@ public final class h extends x2.a {
     public final void m(d0 d0Var) {
         this.B = d0Var;
         Looper myLooper = Looper.myLooper();
-        m2.j jVar = this.f58175g;
+        m2.j jVar = this.f58174g;
         jVar.getClass();
         q2.m mVar = this.f20740l;
         mVar.E(myLooper, jVar);

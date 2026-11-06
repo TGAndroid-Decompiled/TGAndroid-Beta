@@ -15,12 +15,12 @@ public final class c1 extends v4.t {
     public final boolean B1(int i7) {
         byte b10;
         h1 h1Var = this.S;
-        ArrayList<TL_iv.PageBlock> arrayList = h1Var.f46188s.items;
-        org.telegram.messenger.aj ajVar = (org.telegram.messenger.aj) h1Var.f46189w.f45776b.get(arrayList.get((arrayList.size() - i7) - 1));
+        ArrayList<TL_iv.PageBlock> arrayList = h1Var.f46187s.items;
+        org.telegram.messenger.aj ajVar = (org.telegram.messenger.aj) h1Var.f46188w.f45775b.get(arrayList.get((arrayList.size() - i7) - 1));
         if (ajVar.f21442a != ajVar.f21443b && (b10 = ajVar.f21444c) == ajVar.d && b10 != 0) {
-            int size = h1Var.f46189w.f45775a.size();
+            int size = h1Var.f46188w.f45774a.size();
             for (int i10 = 0; i10 < size; i10++) {
-                org.telegram.messenger.aj ajVar2 = (org.telegram.messenger.aj) h1Var.f46189w.f45775a.get(i10);
+                org.telegram.messenger.aj ajVar2 = (org.telegram.messenger.aj) h1Var.f46188w.f45774a.get(i10);
                 if (ajVar2 != ajVar) {
                     byte b11 = ajVar2.f21444c;
                     byte b12 = ajVar.f21444c;

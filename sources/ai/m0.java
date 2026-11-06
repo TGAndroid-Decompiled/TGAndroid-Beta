@@ -86,7 +86,7 @@ public final class m0 implements Runnable {
                     X = hc.X();
                 }
                 cc Q = X.Q(2131624051, 36, hd.M0(2131750215, null));
-                Q.f32537t = true;
+                Q.f32524t = true;
                 Q.j();
                 return;
             case 3:
@@ -142,8 +142,8 @@ public final class m0 implements Runnable {
             case 18:
                 int i13 = AppStartReceiver.f21162a;
                 iz.t();
-                if (iz.f23406s.length() > 0) {
-                    iz.f23420x = true;
+                if (iz.f23413s.length() > 0) {
+                    iz.f23427x = true;
                     iz.y();
                 }
                 org.telegram.messenger.t0.x();
@@ -175,7 +175,7 @@ public final class m0 implements Runnable {
                     ((tt) org.telegram.messenger.t0.l()).onRequestPushToken();
                     return;
                 }
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     ((tt) org.telegram.messenger.t0.l()).getClass();
                     a8.b("No valid Google Play Services APK found.");
                 }
@@ -196,13 +196,13 @@ public final class m0 implements Runnable {
             case 26:
                 if (!KeepAliveJob.f21236b && KeepAliveJob.f21235a == null) {
                     try {
-                        if (r2.f25191a) {
+                        if (r2.f25199a) {
                             a8.b("starting keep-alive job");
                         }
                         synchronized (KeepAliveJob.f21237c) {
                             KeepAliveJob.f21236b = true;
                         }
-                        JobIntentService.enqueueWork(org.telegram.messenger.t0.f25555b, KeepAliveJob.class, 1000, new Intent());
+                        JobIntentService.enqueueWork(org.telegram.messenger.t0.f25563b, KeepAliveJob.class, 1000, new Intent());
                         return;
                     } catch (Exception unused) {
                         return;
@@ -215,19 +215,19 @@ public final class m0 implements Runnable {
             case 28:
                 int i14 = -1;
                 try {
-                    BatteryManager batteryManager = (BatteryManager) org.telegram.messenger.t0.f25555b.getSystemService("batterymanager");
+                    BatteryManager batteryManager = (BatteryManager) org.telegram.messenger.t0.f25563b.getSystemService("batterymanager");
                     if (batteryManager != null) {
                         i14 = batteryManager.getIntProperty(4);
                     }
                 } catch (Throwable th2) {
                     a8.g(th2, true);
                 }
-                rc.f25262l = SystemClock.elapsedRealtime();
-                rc.f25263m = false;
+                rc.f25270l = SystemClock.elapsedRealtime();
+                rc.f25271m = false;
                 if (i14 >= 0 && i14 <= 100) {
-                    rc.f25262l = SystemClock.elapsedRealtime();
-                    if (rc.f25261k != i14) {
-                        rc.f25261k = i14;
+                    rc.f25270l = SystemClock.elapsedRealtime();
+                    if (rc.f25269k != i14) {
+                        rc.f25269k = i14;
                         org.telegram.messenger.g0.h3(new m0(27));
                         return;
                     }

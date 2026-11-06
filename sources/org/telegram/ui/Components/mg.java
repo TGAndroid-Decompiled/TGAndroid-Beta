@@ -5,25 +5,25 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi.n, gh.d, oi.m, org.telegram.ui.ActionBar.m0, an, t4, ki {
-    public final int f35935a;
-    public final di f35936b;
+    public final int f35951a;
+    public final di f35952b;
 
     public mg(di diVar, int i7) {
-        this.f35935a = i7;
-        this.f35936b = diVar;
+        this.f35951a = i7;
+        this.f35952b = diVar;
     }
 
     @Override
     public void L(int i7, int i10, boolean z9) {
         long j3;
         boolean u12;
-        switch (this.f35935a) {
+        switch (this.f35951a) {
             case 14:
-                di diVar = this.f35936b;
-                vh vhVar = diVar.f32955s2;
-                if (vhVar != diVar.f32895a2 && vhVar != diVar.f32915h2) {
+                di diVar = this.f35952b;
+                vh vhVar = diVar.f32984s2;
+                if (vhVar != diVar.f32924a2 && vhVar != diVar.f32944h2) {
                     if (!vhVar.L(z9, i7, i10, 0L, diVar.f1())) {
-                        diVar.f32977x4 = true;
+                        diVar.f33006x4 = true;
                         diVar.dismiss();
                         return;
                     }
@@ -32,7 +32,7 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
                 diVar.u1(z9, i7, 0, diVar.H2, diVar.f1());
                 return;
             default:
-                di diVar2 = this.f35936b;
+                di diVar2 = this.f35952b;
                 ue ueVar = diVar2.Y1;
                 if (ueVar != null) {
                     j3 = ueVar.j();
@@ -43,8 +43,8 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
                 lh lhVar = diVar2.C2;
                 diVar2.H2 = j10;
                 lhVar.setEffect(j10);
-                vh vhVar2 = diVar2.f32955s2;
-                if (vhVar2 != diVar2.f32895a2 && vhVar2 != diVar2.f32915h2) {
+                vh vhVar2 = diVar2.f32984s2;
+                if (vhVar2 != diVar2.f32924a2 && vhVar2 != diVar2.f32944h2) {
                     if (!vhVar2.L(z9, i7, i10, j10, diVar2.f1())) {
                         diVar2.dismiss();
                     }
@@ -72,9 +72,9 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
         TLRPC.User user;
         if (view instanceof wh) {
             wh whVar = (wh) view;
-            di diVar = this.f35936b;
-            if (!diVar.M1 && (user = whVar.f39968b) != null) {
-                diVar.k1(whVar.f39969c, user);
+            di diVar = this.f35952b;
+            if (!diVar.M1 && (user = whVar.f39976b) != null) {
+                diVar.k1(whVar.f39977c, user);
                 return true;
             }
             return false;
@@ -84,15 +84,15 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
 
     @Override
     public void d(TLRPC.MessageMedia messageMedia, int i7, boolean z9, int i10, long j3) {
-        switch (this.f35935a) {
+        switch (this.f35951a) {
             case 0:
-                ((org.telegram.ui.an) this.f35936b.W1).d(messageMedia, i7, z9, i10, 0L);
+                ((org.telegram.ui.an) this.f35952b.W1).d(messageMedia, i7, z9, i10, 0L);
                 return;
             case 12:
-                ((org.telegram.ui.an) this.f35936b.W1).d(messageMedia, i7, z9, i10, j3);
+                ((org.telegram.ui.an) this.f35952b.W1).d(messageMedia, i7, z9, i10, j3);
                 return;
             default:
-                ((org.telegram.ui.an) this.f35936b.W1).d(messageMedia, i7, z9, i10, j3);
+                ((org.telegram.ui.an) this.f35952b.W1).d(messageMedia, i7, z9, i10, j3);
                 return;
         }
     }
@@ -100,7 +100,7 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
     @Override
     public void e(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
         CharSequence charSequence2;
-        di diVar = this.f35936b;
+        di diVar = this.f35952b;
         ki kiVar = diVar.P1;
         if (kiVar != null) {
             kiVar.e(arrayList, charSequence, z9, i7, i10, j3, z10, j10);
@@ -117,9 +117,9 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
                 } else {
                     charSequence2 = null;
                 }
-                long j11 = anVar.f43843j6;
+                long j11 = anVar.f43842j6;
                 org.telegram.messenger.ij ijVar = anVar.D5;
-                org.telegram.messenger.ij ijVar2 = anVar.f43865l4;
+                org.telegram.messenger.ij ijVar2 = anVar.f43864l4;
                 org.telegram.messenger.ij ijVar3 = anVar.F5;
                 org.telegram.messenger.hw W8 = anVar.W8();
                 org.telegram.messenger.p5 p5Var = org.telegram.messenger.gz.I;
@@ -137,33 +137,33 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
 
     @Override
     public void f(te.j jVar) {
-        this.f35936b.i1();
+        this.f35952b.i1();
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        di diVar = this.f35936b;
-        diVar.f32977x4 = true;
+        di diVar = this.f35952b;
+        diVar.f33006x4 = true;
         diVar.dismiss();
     }
 
     @Override
     public int h() {
-        di diVar = this.f35936b;
+        di diVar = this.f35952b;
         diVar.getClass();
-        return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, diVar.I0);
+        return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d6, diVar.I0);
     }
 
     @Override
     public void i(int i7) {
-        this.f35936b.R2.getActionBarMenuOnItemClick().b(i7);
+        this.f35952b.R2.getActionBarMenuOnItemClick().b(i7);
     }
 
     @Override
     public int k(org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
         float f10;
         int i7;
-        switch (this.f35935a) {
+        switch (this.f35951a) {
             case 5:
                 if (org.telegram.messenger.rc.e(262144)) {
                     f10 = 0.85f;
@@ -171,19 +171,19 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
                     f10 = 0.76f;
                 }
                 if (z9) {
-                    i7 = org.telegram.ui.ActionBar.k6.f27792a7;
+                    i7 = org.telegram.ui.ActionBar.k6.f27793a7;
                 } else {
-                    i7 = org.telegram.ui.ActionBar.k6.f27939i5;
+                    i7 = org.telegram.ui.ActionBar.k6.f27940i5;
                 }
                 int w02 = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
-                int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, f6Var);
-                di diVar = this.f35936b;
-                if (diVar.f32914g4) {
-                    return i0.a.f(0.75f, w03, diVar.f32917h4);
+                int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d6, f6Var);
+                di diVar = this.f35952b;
+                if (diVar.f32943g4) {
+                    return i0.a.f(0.75f, w03, diVar.f32946h4);
                 }
                 return c8.g0.n(f10, w02, w03);
             case 6:
-                if (this.f35936b.f32914g4) {
+                if (this.f35952b.f32943g4) {
                     return 0;
                 }
                 if (z9) {
@@ -191,7 +191,7 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
                 }
                 return -1;
             case 7:
-                if (this.f35936b.f32914g4) {
+                if (this.f35952b.f32943g4) {
                     return 0;
                 }
                 if (z9) {
@@ -199,9 +199,9 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
                 }
                 return -1;
             default:
-                di diVar2 = this.f35936b;
-                if (diVar2.f32914g4) {
-                    if (org.telegram.messenger.g0.B(diVar2.f32917h4) <= 0.72f) {
+                di diVar2 = this.f35952b;
+                if (diVar2.f32943g4) {
+                    if (org.telegram.messenger.g0.B(diVar2.f32946h4) <= 0.72f) {
                         return 1090519039;
                     }
                 } else if (z9) {
@@ -213,15 +213,15 @@ public final class mg implements vk, org.telegram.ui.ActionBar.r1, te.i, dj0, oi
 
     @Override
     public void l(int i7) {
-        di diVar = this.f35936b;
-        dh.g gVar = diVar.f32985z4;
+        di diVar = this.f35952b;
+        dh.g gVar = diVar.f33014z4;
         if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
-            if (c8.yc.a(i7, 4)) {
+            if (c8.zc.a(i7, 4)) {
                 qi.a e10 = diVar.X0.e();
-                e10.b(diVar.f28615b.getY(), diVar.f28615b.getWidth(), diVar.f28615b.getY() + diVar.f28615b.getHeight());
+                e10.b(diVar.f28616b.getY(), diVar.f28616b.getWidth(), diVar.f28616b.getY() + diVar.f28616b.getHeight());
                 gVar.h(e10);
             }
-            gVar.e(diVar.D4, diVar.f28615b.getWidth(), diVar.f28615b.getHeight());
+            gVar.e(diVar.D4, diVar.f28616b.getWidth(), diVar.f28616b.getHeight());
         }
     }
 

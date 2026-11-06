@@ -6,24 +6,24 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class gv extends jg.n {
-    public final vw f46117b0;
-    public final ww f46118c0;
+    public final vw f46116b0;
+    public final ww f46117c0;
 
     public gv(ww wwVar, ww wwVar2, Context context, int i7, int i10, boolean z9, ArrayList arrayList, int i11, TLRPC.RequestPeerType requestPeerType, vw vwVar) {
         super(wwVar2, context, i7, i10, z9, arrayList, i11, requestPeerType);
-        this.f46118c0 = wwVar;
-        this.f46117b0 = vwVar;
+        this.f46117c0 = wwVar;
+        this.f46116b0 = vwVar;
     }
 
     @Override
     public final void K() {
-        this.f46118c0.presentFragment(new k());
+        this.f46117c0.presentFragment(new k());
     }
 
     @Override
     public final void L() {
         int i7;
-        ww wwVar = this.f46118c0;
+        ww wwVar = this.f46117c0;
         org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, wwVar.getParentActivity(), null);
         TLRPC.RequestPeerType requestPeerType = wwVar.G;
         if (requestPeerType instanceof TLRPC.TL_requestPeerTypeBroadcast) {
@@ -33,7 +33,7 @@ public final class gv extends jg.n {
                 f10.putBoolean("forcePublic", bool.booleanValue());
             }
             bd bdVar = new bd(f10);
-            bdVar.f44278u0 = new n6(wwVar, bdVar, u1Var, 2);
+            bdVar.f44277u0 = new n6(wwVar, bdVar, u1Var, 2);
             wwVar.presentFragment(bdVar);
         } else if (requestPeerType instanceof TLRPC.TL_requestPeerTypeChat) {
             Bundle bundle = new Bundle();
@@ -56,13 +56,13 @@ public final class gv extends jg.n {
     @Override
     public final void M(TLRPC.User user) {
         int i7;
-        i7 = ((org.telegram.ui.ActionBar.f2) this.f46118c0).currentAccount;
+        i7 = ((org.telegram.ui.ActionBar.f2) this.f46117c0).currentAccount;
         org.telegram.messenger.qp.s1(i7).x3(null, user, null, 0, null, false, false);
     }
 
     @Override
     public final boolean T() {
-        if (this.f46118c0.R0 == 0) {
+        if (this.f46117c0.R0 == 0) {
             return true;
         }
         return false;
@@ -78,9 +78,9 @@ public final class gv extends jg.n {
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
-        ww wwVar = this.f46118c0;
+        ww wwVar = this.f46117c0;
         if (wwVar.R0 == 15) {
-            org.telegram.ui.ActionBar.r0 r0Var = wwVar.f51577j0;
+            org.telegram.ui.ActionBar.r0 r0Var = wwVar.f51575j0;
             if (this.U) {
                 i7 = 8;
             } else {
@@ -92,21 +92,21 @@ public final class gv extends jg.n {
 
     @Override
     public final void l(org.telegram.ui.Cells.t2 t2Var) {
-        vw vwVar = this.f46117b0;
-        vwVar.f50839a.getClass();
-        this.f46118c0.A4(t2Var, RecyclerView.R(t2Var), 0.0f, vwVar.d);
+        vw vwVar = this.f46116b0;
+        vwVar.f50838a.getClass();
+        this.f46117c0.A4(t2Var, RecyclerView.R(t2Var), 0.0f, vwVar.d);
     }
 
     @Override
     public final void r(org.telegram.ui.Cells.t2 t2Var) {
         int i7;
         if (t2Var.getMessage() != null) {
-            ww wwVar = this.f46118c0;
+            ww wwVar = this.f46117c0;
             i7 = ((org.telegram.ui.ActionBar.f2) wwVar).currentAccount;
-            TLRPC.TL_forumTopic f10 = wwVar.getMessagesController().f24862q7.f(-t2Var.getDialogId(), org.telegram.messenger.ij.c2(i7, t2Var.getMessage().f23237k, true, false));
+            TLRPC.TL_forumTopic f10 = wwVar.getMessagesController().f24870q7.f(-t2Var.getDialogId(), org.telegram.messenger.ij.c2(i7, t2Var.getMessage().f23244k, true, false));
             if (f10 != null) {
-                if (wwVar.f51587l2) {
-                    wwVar.a4(t2Var.getDialogId(), f10.f27004id, false, null);
+                if (wwVar.f51585l2) {
+                    wwVar.a4(t2Var.getDialogId(), f10.f27005id, false, null);
                 } else {
                     qg.d.m(wwVar, -t2Var.getDialogId(), f10, 0);
                 }

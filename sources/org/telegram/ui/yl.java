@@ -6,41 +6,41 @@ import java.util.Locale;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class yl implements org.telegram.ui.ActionBar.r1, h2.j {
-    public final int f52262a = 2;
-    public final boolean f52263b;
-    public final Object f52264c;
+    public final int f52260a = 2;
+    public final boolean f52261b;
+    public final Object f52262c;
     public final Object d;
-    public final Object f52265e;
-    public final Object f52266f;
+    public final Object f52263e;
+    public final Object f52264f;
 
     public yl(a8.wa waVar, x2.u uVar, x2.c0 c0Var, IOException iOException, boolean z9) {
-        this.f52264c = waVar;
+        this.f52262c = waVar;
         this.d = uVar;
-        this.f52265e = c0Var;
-        this.f52266f = iOException;
-        this.f52263b = z9;
+        this.f52263e = c0Var;
+        this.f52264f = iOException;
+        this.f52261b = z9;
     }
 
     @Override
     public void accept(Object obj) {
-        a8.wa waVar = (a8.wa) this.f52264c;
-        ((x2.k0) obj).r(waVar.f700b, (x2.g0) waVar.f701c, (x2.u) this.d, (x2.c0) this.f52265e, (IOException) this.f52266f, this.f52263b);
+        a8.wa waVar = (a8.wa) this.f52262c;
+        ((x2.k0) obj).r(waVar.f700b, (x2.g0) waVar.f701c, (x2.u) this.d, (x2.c0) this.f52263e, (IOException) this.f52264f, this.f52261b);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         int i10;
-        int i11 = this.f52262a;
-        Object obj = this.f52266f;
-        Object obj2 = this.f52265e;
+        int i11 = this.f52260a;
+        Object obj = this.f52264f;
+        Object obj2 = this.f52263e;
         Object obj3 = this.d;
-        Object obj4 = this.f52264c;
-        boolean z9 = this.f52263b;
+        Object obj4 = this.f52262c;
+        boolean z9 = this.f52261b;
         switch (i11) {
             case 0:
                 lm lmVar = (lm) obj4;
                 TL_account.contentSettings contentsettings = (TL_account.contentSettings) obj;
-                an anVar = lmVar.f47561a;
+                an anVar = lmVar.f47560a;
                 org.telegram.messenger.voip.k kVar = new org.telegram.messenger.voip.k(18, lmVar, (org.telegram.ui.Cells.q1) obj3);
                 if (((boolean[]) obj2)[0]) {
                     if (!z9 && (contentsettings == null || !contentsettings.sensitive_can_change)) {
@@ -69,7 +69,7 @@ public final class yl implements org.telegram.ui.ActionBar.r1, h2.j {
                 int i12 = a2Var.f16665b;
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) a2Var.d;
                 if (i12 == 8) {
-                    int[] iArr = bk0Var.f44415y;
+                    int[] iArr = bk0Var.f44414y;
                     iArr[0] = value;
                     iArr[1] = value2 + 1;
                     iArr[2] = value3;
@@ -82,18 +82,18 @@ public final class yl implements org.telegram.ui.ActionBar.r1, h2.j {
     }
 
     public yl(lm lmVar, org.telegram.ui.Cells.q1 q1Var, boolean[] zArr, boolean z9, TL_account.contentSettings contentsettings) {
-        this.f52264c = lmVar;
+        this.f52262c = lmVar;
         this.d = q1Var;
-        this.f52265e = zArr;
-        this.f52263b = z9;
-        this.f52266f = contentsettings;
+        this.f52263e = zArr;
+        this.f52261b = z9;
+        this.f52264f = contentsettings;
     }
 
     public yl(boolean z9, org.telegram.ui.Components.hb0 hb0Var, org.telegram.ui.Components.hb0 hb0Var2, org.telegram.ui.Components.hb0 hb0Var3, jg.a2 a2Var) {
-        this.f52263b = z9;
-        this.f52264c = hb0Var;
+        this.f52261b = z9;
+        this.f52262c = hb0Var;
         this.d = hb0Var2;
-        this.f52265e = hb0Var3;
-        this.f52266f = a2Var;
+        this.f52263e = hb0Var3;
+        this.f52264f = a2Var;
     }
 }

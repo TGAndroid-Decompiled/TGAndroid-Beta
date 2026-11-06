@@ -1,33 +1,43 @@
 package org.telegram.ui.Components;
-public final class v01 implements Runnable {
-    public final int f38779a;
-    public final l11 f38780b;
 
-    public v01(l11 l11Var, int i7) {
-        this.f38779a = i7;
-        this.f38780b = l11Var;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.tgnet.TLRPC;
+public final class v01 implements org.telegram.messenger.a20, org.telegram.messenger.b20, te.b {
+    public final m11 f38772a;
+
+    public v01(m11 m11Var) {
+        this.f38772a = m11Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38779a) {
-            case 0:
-                l11 l11Var = this.f38780b;
-                if (l11Var.l()) {
-                    l11Var.m();
-                    return;
-                }
-                return;
-            default:
-                l11 l11Var2 = this.f38780b;
-                a11 a11Var = l11Var2.J;
-                a11Var.z1(true);
-                y01 y01Var = l11Var2.f35499y;
-                y01Var.z1(true);
-                l11Var2.M.a(true, true);
-                org.telegram.messenger.g0.b4(y01Var);
-                org.telegram.messenger.g0.b4(a11Var);
-                return;
+    public void Y(int i7, float f10, float f11, te.c cVar) {
+        this.f38772a.h();
+    }
+
+    @Override
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
+        m11 m11Var = this.f38772a;
+        boolean z9 = false;
+        if (!m11Var.J.j3 && !m11Var.f35836y.j3) {
+            Object obj = x31Var.G;
+            if (obj instanceof TLRPC.TL_forumTopic) {
+                z9 = m11Var.o((TLRPC.TL_forumTopic) obj, view, false);
+            }
         }
+        return Boolean.valueOf(z9);
+    }
+
+    @Override
+    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        m11.a(this.f38772a, (x31) obj);
+    }
+
+    @Override
+    public void F(float f10, int i7) {
     }
 }

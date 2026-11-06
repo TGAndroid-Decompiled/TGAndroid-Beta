@@ -3,7 +3,7 @@ package f6;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,16 +71,16 @@ public final class d extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.l(parcel, 2, this.f11239a);
-        wb.l(parcel, 3, this.f11240b);
-        wb.n(parcel, 5, DesugarCollections.unmodifiableList(this.f11241c));
-        wb.l(parcel, 6, this.d);
-        wb.k(parcel, 7, this.f11242e, i7);
-        wb.l(parcel, 8, this.f11243f);
-        wb.l(parcel, 9, this.h);
-        wb.a(parcel, 10, this.f11244n);
-        wb.a(parcel, 11, this.f11245r);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.l(parcel, 2, this.f11239a);
+        xb.l(parcel, 3, this.f11240b);
+        xb.n(parcel, 5, DesugarCollections.unmodifiableList(this.f11241c));
+        xb.l(parcel, 6, this.d);
+        xb.k(parcel, 7, this.f11242e, i7);
+        xb.l(parcel, 8, this.f11243f);
+        xb.l(parcel, 9, this.h);
+        xb.a(parcel, 10, this.f11244n);
+        xb.a(parcel, 11, this.f11245r);
+        xb.s(parcel, r10);
     }
 }

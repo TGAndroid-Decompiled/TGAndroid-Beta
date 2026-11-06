@@ -59,7 +59,7 @@ public final class j0 {
         k6.w0(i7, f6Var);
         r6.W(g1Var, r6.L(0.5f, i7), f6Var);
         n6 L = r6.L(0.35f, i7);
-        r6.o(g1Var, 1, L.f28323a, -1, 2, L.d, f6Var);
+        r6.o(g1Var, 1, L.f28324a, -1, 2, L.d, f6Var);
     }
 
     public final void b() {

@@ -7,38 +7,38 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
 public final class w implements Runnable {
-    public final int f50864a = 0;
-    public final TLObject f50865b;
-    public final int f50866c;
+    public final int f50863a = 0;
+    public final TLObject f50864b;
+    public final int f50865c;
     public final boolean d;
-    public final Object f50867e;
-    public final Object f50868f;
+    public final Object f50866e;
+    public final Object f50867f;
     public final Object h;
-    public final Object f50869n;
+    public final Object f50868n;
 
     public w(g4 g4Var, TLObject tLObject, int i7, TLRPC.WebPage webPage, org.telegram.messenger.ij ijVar, boolean z9, String str) {
-        this.f50867e = g4Var;
-        this.f50865b = tLObject;
-        this.f50866c = i7;
-        this.f50868f = webPage;
+        this.f50866e = g4Var;
+        this.f50864b = tLObject;
+        this.f50865c = i7;
+        this.f50867f = webPage;
         this.h = ijVar;
         this.d = z9;
-        this.f50869n = str;
+        this.f50868n = str;
     }
 
     @Override
     public final void run() {
         v4.d1 K;
         int i7 = 0;
-        switch (this.f50864a) {
+        switch (this.f50863a) {
             case 0:
-                g4 g4Var = (g4) this.f50867e;
-                TLObject tLObject = this.f50865b;
-                int i10 = this.f50866c;
-                TLRPC.WebPage webPage = (TLRPC.WebPage) this.f50868f;
+                g4 g4Var = (g4) this.f50866e;
+                TLObject tLObject = this.f50864b;
+                int i10 = this.f50865c;
+                TLRPC.WebPage webPage = (TLRPC.WebPage) this.f50867f;
                 org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) this.h;
                 boolean z9 = this.d;
-                String str = (String) this.f50869n;
+                String str = (String) this.f50868n;
                 boolean z10 = tLObject instanceof TLRPC.TL_messages_webPage;
                 TLRPC.WebPage webPage2 = tLObject;
                 if (z10) {
@@ -50,20 +50,20 @@ public final class w implements Runnable {
                 if (webPage2 instanceof TLRPC.TL_webPage) {
                     TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) webPage2;
                     if (tL_webPage.cached_page != null) {
-                        if (!g4Var.f45827d0.isEmpty() && g4Var.f45827d0.get(0) == webPage) {
+                        if (!g4Var.f45826d0.isEmpty() && g4Var.f45826d0.get(0) == webPage) {
                             if (ijVar != null) {
-                                ijVar.f23237k.media.webpage = tL_webPage;
+                                ijVar.f23244k.media.webpage = tL_webPage;
                                 TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
-                                tL_messages_messages.messages.add(ijVar.f23237k);
-                                org.telegram.messenger.yr.a0(i10).h1(-2, 0, ijVar.f23256p1 ? 1 : 0, org.telegram.messenger.ij.B0(ijVar.f23237k), 0L, tL_messages_messages, false);
+                                tL_messages_messages.messages.add(ijVar.f23244k);
+                                org.telegram.messenger.yr.a0(i10).h1(-2, 0, ijVar.f23263p1 ? 1 : 0, org.telegram.messenger.ij.B0(ijVar.f23244k), 0L, tL_messages_messages, false);
                             }
                             if (z9) {
-                                g4Var.f45827d0.add(tL_webPage);
+                                g4Var.f45826d0.add(tL_webPage);
                             } else {
-                                g4Var.f45827d0.set(0, tL_webPage);
+                                g4Var.f45826d0.set(0, tL_webPage);
                             }
-                            if (g4Var.f45827d0.size() == 1) {
-                                org.telegram.messenger.t0.f25555b.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f27107id).commit();
+                            if (g4Var.f45826d0.size() == 1) {
+                                org.telegram.messenger.t0.f25563b.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f27108id).commit();
                                 g4Var.c0(z9 ? 1 : 0, tL_webPage, false);
                                 if (str != null) {
                                     g4Var.T(str, false);
@@ -71,10 +71,10 @@ public final class w implements Runnable {
                             }
                         }
                         a0.h hVar = new a0.h(1);
-                        hVar.k(tL_webPage, tL_webPage.f27107id);
+                        hVar.k(tL_webPage, tL_webPage.f27108id);
                         org.telegram.messenger.yr a02 = org.telegram.messenger.yr.a0(i10);
                         if (!org.telegram.messenger.yr.s0(hVar)) {
-                            a02.f26688a.c(new org.telegram.messenger.bq(a02, hVar, 0));
+                            a02.f26696a.c(new org.telegram.messenger.bq(a02, hVar, 0));
                             return;
                         }
                         return;
@@ -90,17 +90,17 @@ public final class w implements Runnable {
                             page.views = i12;
                             page.flags |= 8;
                             while (true) {
-                                k3[] k3VarArr = g4Var.f45843u0;
+                                k3[] k3VarArr = g4Var.f45842u0;
                                 if (i7 < k3VarArr.length) {
-                                    e4 e4Var = k3VarArr[i7].f47089c;
-                                    if (e4Var.E == webPage && (K = g4Var.f45843u0[i7].f47088b.K(e4Var.b() - 1)) != null) {
-                                        g4Var.f45843u0[i7].f47089c.y(K);
+                                    e4 e4Var = k3VarArr[i7].f47088c;
+                                    if (e4Var.E == webPage && (K = g4Var.f45842u0[i7].f47087b.K(e4Var.b() - 1)) != null) {
+                                        g4Var.f45842u0[i7].f47088c.y(K);
                                     }
                                     i7++;
                                 } else if (ijVar != null) {
                                     TLRPC.TL_messages_messages tL_messages_messages2 = new TLRPC.TL_messages_messages();
-                                    tL_messages_messages2.messages.add(ijVar.f23237k);
-                                    org.telegram.messenger.yr.a0(i10).h1(-2, 0, ijVar.f23256p1 ? 1 : 0, org.telegram.messenger.ij.B0(ijVar.f23237k), 0L, tL_messages_messages2, false);
+                                    tL_messages_messages2.messages.add(ijVar.f23244k);
+                                    org.telegram.messenger.yr.a0(i10).h1(-2, 0, ijVar.f23263p1 ? 1 : 0, org.telegram.messenger.ij.B0(ijVar.f23244k), 0L, tL_messages_messages2, false);
                                     return;
                                 } else {
                                     return;
@@ -117,12 +117,12 @@ public final class w implements Runnable {
                 }
                 break;
             default:
-                vf.b bVar = (vf.b) this.f50867e;
-                org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) this.f50868f;
-                TLObject tLObject2 = this.f50865b;
-                int i13 = this.f50866c;
+                vf.b bVar = (vf.b) this.f50866e;
+                org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) this.f50867f;
+                TLObject tLObject2 = this.f50864b;
+                int i13 = this.f50865c;
                 Uri uri = (Uri) this.h;
-                Context context = (Context) this.f50869n;
+                Context context = (Context) this.f50868n;
                 boolean z11 = this.d;
                 if (bVar != null) {
                     bVar.b();
@@ -153,12 +153,12 @@ public final class w implements Runnable {
     }
 
     public w(vf.b bVar, org.telegram.ui.ActionBar.u1[] u1VarArr, TLObject tLObject, int i7, Uri uri, Context context, boolean z9) {
-        this.f50867e = bVar;
-        this.f50868f = u1VarArr;
-        this.f50865b = tLObject;
-        this.f50866c = i7;
+        this.f50866e = bVar;
+        this.f50867f = u1VarArr;
+        this.f50864b = tLObject;
+        this.f50865c = i7;
         this.h = uri;
-        this.f50869n = context;
+        this.f50868n = context;
         this.d = z9;
     }
 }

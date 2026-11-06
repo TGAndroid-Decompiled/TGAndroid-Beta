@@ -82,7 +82,7 @@ public final class d0 implements Runnable {
                 fi.d dVar = (fi.d) obj3;
                 dVar.setLoading(true);
                 TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f27182id;
+                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f27183id;
                 tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
                 int i13 = this.f3633b;
                 ConnectionsManager.getInstance(i13).sendRequest(tL_fulfillStarsSubscription, new b0(i13, 1, this.f3634c, dVar, (org.telegram.ui.ActionBar.v2[]) obj));
@@ -99,7 +99,7 @@ public final class d0 implements Runnable {
                     qp.s1(i14).S3(tL_stories_stories.chats, false);
                     while (true) {
                         if (i10 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i10).f27191id == i11) {
+                            if (tL_stories_stories.stories.get(i10).f27192id == i11) {
                                 storyItem = tL_stories_stories.stories.get(i10);
                             } else {
                                 i10++;
@@ -133,15 +133,15 @@ public final class d0 implements Runnable {
                 TLRPC.User user = (TLRPC.User) obj2;
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
                 if (user != null) {
-                    q1Var.f29901k7[i11].r(user);
-                    q1Var.f29888j7[i11].i0(user, q1Var.f29901k7[i11], null);
+                    q1Var.f29902k7[i11].r(user);
+                    q1Var.f29889j7[i11].i0(user, q1Var.f29902k7[i11], null);
                     return;
                 } else if (chat != null) {
-                    q1Var.f29901k7[i11].q(chat);
-                    q1Var.f29888j7[i11].i0(chat, q1Var.f29901k7[i11], null);
+                    q1Var.f29902k7[i11].q(chat);
+                    q1Var.f29889j7[i11].i0(chat, q1Var.f29902k7[i11], null);
                     return;
                 } else {
-                    q1Var.f29901k7[i11].k(this.f3634c, "", "", null);
+                    q1Var.f29902k7[i11].k(this.f3634c, "", "", null);
                     return;
                 }
             default:

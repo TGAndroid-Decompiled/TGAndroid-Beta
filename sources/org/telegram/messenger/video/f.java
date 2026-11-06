@@ -29,36 +29,36 @@ import org.telegram.ui.p20;
 import org.telegram.ui.r10;
 import org.telegram.ui.z9;
 public final class f implements View.OnClickListener {
-    public final int f26000a;
-    public final Object f26001b;
-    public final Object f26002c;
+    public final int f26008a;
+    public final Object f26009b;
+    public final Object f26010c;
     public final Object d;
-    public final Object f26003e;
-    public final Object f26004f;
+    public final Object f26011e;
+    public final Object f26012f;
     public final Object h;
-    public final Object f26005n;
+    public final Object f26013n;
 
     public f(fi.d dVar, c5 c5Var, x10 x10Var, String[] strArr, boolean[] zArr, a3[] a3VarArr, f6 f6Var) {
-        this.f26000a = 2;
-        this.f26001b = dVar;
-        this.f26002c = c5Var;
+        this.f26008a = 2;
+        this.f26009b = dVar;
+        this.f26010c = c5Var;
         this.d = x10Var;
-        this.f26003e = strArr;
+        this.f26011e = strArr;
         this.h = zArr;
-        this.f26005n = a3VarArr;
-        this.f26004f = f6Var;
+        this.f26013n = a3VarArr;
+        this.f26012f = f6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f26000a;
-        Object obj = this.f26004f;
-        Object obj2 = this.f26005n;
+        int i7 = this.f26008a;
+        Object obj = this.f26012f;
+        Object obj2 = this.f26013n;
         Object obj3 = this.h;
-        Object obj4 = this.f26003e;
+        Object obj4 = this.f26011e;
         Object obj5 = this.d;
-        Object obj6 = this.f26002c;
-        Object obj7 = this.f26001b;
+        Object obj6 = this.f26010c;
+        Object obj7 = this.f26009b;
         switch (i7) {
             case 0:
                 ((VideoAds) obj7).lambda$show$17((cc) obj6, (TLRPC.TL_sponsoredMessage) obj5, (Context) obj4, (f6) obj, (VideoAds.AdLayout) obj3, (e) obj2, view);
@@ -91,14 +91,14 @@ public final class f implements View.OnClickListener {
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                c40Var.f44552b4 = (int) (calendar.getTimeInMillis() / 1000);
+                c40Var.f44551b4 = (int) (calendar.getTimeInMillis() / 1000);
                 c40Var.R1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = qp.l1(chat);
                 creategroupcall.random_id = Utilities.f21331b.nextInt();
-                creategroupcall.schedule_date = c40Var.f44552b4;
+                creategroupcall.schedule_date = c40Var.f44551b4;
                 creategroupcall.flags |= 2;
-                ConnectionsManager.getInstance(cVar.f21723a).sendRequest(creategroupcall, new z9(c40Var, chat, inputPeer, 11), 2);
+                ConnectionsManager.getInstance(cVar.f21729a).sendRequest(creategroupcall, new z9(c40Var, chat, inputPeer, 11), 2);
                 return;
             default:
                 fi.d dVar = (fi.d) obj7;
@@ -122,13 +122,13 @@ public final class f implements View.OnClickListener {
     }
 
     public f(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, Object obj7, int i7) {
-        this.f26000a = i7;
-        this.f26001b = obj;
-        this.f26002c = obj2;
+        this.f26008a = i7;
+        this.f26009b = obj;
+        this.f26010c = obj2;
         this.d = obj3;
-        this.f26003e = obj4;
-        this.f26004f = obj5;
+        this.f26011e = obj4;
+        this.f26012f = obj5;
         this.h = obj6;
-        this.f26005n = obj7;
+        this.f26013n = obj7;
     }
 }

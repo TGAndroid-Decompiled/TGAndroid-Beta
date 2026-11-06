@@ -13,21 +13,21 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.ui.fx;
 public abstract class i {
-    public final ab.q f53443a;
-    public final AtomicInteger f53444b = new AtomicInteger(0);
-    public final AtomicBoolean f53445c = new AtomicBoolean(false);
+    public final ab.q f53441a;
+    public final AtomicInteger f53442b = new AtomicInteger(0);
+    public final AtomicBoolean f53443c = new AtomicBoolean(false);
 
     public i() {
         ?? obj = new Object();
         obj.f990b = new Object();
         obj.f991c = new ArrayDeque();
         obj.d = new AtomicReference();
-        this.f53443a = obj;
+        this.f53441a = obj;
     }
 
     public final Task a(final Executor executor, final Callable callable, final CancellationToken cancellationToken) {
         boolean z9;
-        if (this.f53444b.get() > 0) {
+        if (this.f53442b.get() > 0) {
             z9 = true;
         } else {
             z9 = false;
@@ -53,13 +53,13 @@ public abstract class i {
                 }
             }
         };
-        this.f53443a.D(new Runnable() {
+        this.f53441a.D(new Runnable() {
             @Override
             public final void run() {
                 Callable callable2 = callable;
                 TaskCompletionSource taskCompletionSource2 = taskCompletionSource;
                 i iVar = i.this;
-                AtomicBoolean atomicBoolean = iVar.f53445c;
+                AtomicBoolean atomicBoolean = iVar.f53443c;
                 CancellationToken cancellationToken2 = cancellationToken;
                 boolean isCancellationRequested = cancellationToken2.isCancellationRequested();
                 CancellationTokenSource cancellationTokenSource2 = cancellationTokenSource;
@@ -104,14 +104,14 @@ public abstract class i {
 
     public final void d(Executor executor) {
         boolean z9;
-        if (this.f53444b.get() > 0) {
+        if (this.f53442b.get() > 0) {
             z9 = true;
         } else {
             z9 = false;
         }
         q6.m.j(z9);
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        this.f53443a.D(new fx(this, taskCompletionSource, false, 3), executor);
+        this.f53441a.D(new fx(this, taskCompletionSource, false, 3), executor);
         taskCompletionSource.getTask();
     }
 }

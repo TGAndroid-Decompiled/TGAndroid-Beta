@@ -2,11 +2,11 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class lh extends dg {
-    public final di f35661n0;
+    public final di f35681n0;
 
     public lh(Context context, org.telegram.ui.ActionBar.f6 f6Var, di diVar) {
         super(2131232694, context, f6Var, false);
-        this.f35661n0 = diVar;
+        this.f35681n0 = diVar;
     }
 
     @Override
@@ -16,7 +16,7 @@ public final class lh extends dg {
 
     @Override
     public final boolean c() {
-        return !this.f35661n0.O2;
+        return !this.f35681n0.O2;
     }
 
     @Override
@@ -26,6 +26,6 @@ public final class lh extends dg {
 
     @Override
     public final int getFillColor() {
-        return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.S5, this.f35661n0.I0);
+        return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.S5, this.f35681n0.I0);
     }
 }

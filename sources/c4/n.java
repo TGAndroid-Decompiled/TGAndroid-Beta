@@ -143,7 +143,7 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
                 return;
             default:
                 Runnable runnable = (Runnable) obj;
-                SharedPreferences.Editor edit = qp.s1(p10.f24459s0).f24749d7.edit();
+                SharedPreferences.Editor edit = qp.s1(p10.f24467s0).f24757d7.edit();
                 if (j3 != 0) {
                     edit.putInt("color_" + j3, 0);
                 } else if (i11 == 1) {
@@ -173,12 +173,12 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
         List list = (List) this.d;
         int i11 = this.f5294b;
         if (i11 == -1) {
-            i10 = d0Var.f53126t.o0();
+            i10 = d0Var.f53124t.o0();
         } else {
             i10 = i11;
         }
         if (i11 == -1) {
-            j3 = d0Var.f53126t.l();
+            j3 = d0Var.f53124t.l();
         } else {
             j3 = this.f5295c;
         }

@@ -5,12 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.widget.ImageView;
 public final class os0 extends is0 {
-    public final int f48541r = 1;
-    public final org.telegram.ui.Components.oj0 f48542s;
+    public final int f48540r = 1;
+    public final org.telegram.ui.Components.oj0 f48541s;
 
     public os0(bi.k5 k5Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
-        this.f48542s = k5Var;
+        this.f48541s = k5Var;
     }
 
     @Override
@@ -18,16 +18,16 @@ public final class os0 extends is0 {
         org.telegram.ui.ActionBar.f6 f6Var;
         boolean q10;
         org.telegram.ui.ActionBar.f6 f6Var2;
-        switch (this.f48541r) {
+        switch (this.f48540r) {
             case 0:
                 float L = org.telegram.messenger.g0.L(10.0f);
                 RectF rectF = org.telegram.messenger.g0.P;
-                ImageView imageView = this.f46737c;
+                ImageView imageView = this.f46736c;
                 rectF.set(imageView.getLeft(), imageView.getTop(), imageView.getRight(), imageView.getBottom());
-                PremiumPreviewFragment premiumPreviewFragment = ((ps0) this.f48542s).f48949c;
+                PremiumPreviewFragment premiumPreviewFragment = ((ps0) this.f48541s).f48948c;
                 premiumPreviewFragment.S.reset();
                 premiumPreviewFragment.S.postScale(1.0f, premiumPreviewFragment.N / 100.0f, 0.0f, 0.0f);
-                premiumPreviewFragment.S.postTranslate(0.0f, -this.f46739f.f50826e);
+                premiumPreviewFragment.S.postTranslate(0.0f, -this.f46738f.f50825e);
                 premiumPreviewFragment.R.setLocalMatrix(premiumPreviewFragment.S);
                 canvas.drawRoundRect(rectF, L, L, premiumPreviewFragment.T);
                 f6Var = ((org.telegram.ui.ActionBar.f2) premiumPreviewFragment).resourceProvider;
@@ -52,11 +52,11 @@ public final class os0 extends is0 {
                 return;
             default:
                 RectF rectF2 = org.telegram.messenger.g0.P;
-                ImageView imageView2 = this.f46737c;
+                ImageView imageView2 = this.f46736c;
                 rectF2.set(imageView2.getLeft(), imageView2.getTop(), imageView2.getRight(), imageView2.getBottom());
-                bi.k5 k5Var = (bi.k5) this.f48542s;
-                ((ug.f1) k5Var.d).f56477h2.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46739f.f50826e, ((ug.f1) k5Var.d).W1);
-                canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), ((ug.f1) k5Var.d).f56477h2.f56777f);
+                bi.k5 k5Var = (bi.k5) this.f48541s;
+                ((ug.f1) k5Var.d).f56476h2.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46738f.f50825e, ((ug.f1) k5Var.d).W1);
+                canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), ((ug.f1) k5Var.d).f56476h2.f56776f);
                 super.dispatchDraw(canvas);
                 return;
         }
@@ -64,6 +64,6 @@ public final class os0 extends is0 {
 
     public os0(ps0 ps0Var, Context context) {
         super(context, null);
-        this.f48542s = ps0Var;
+        this.f48541s = ps0Var;
     }
 }

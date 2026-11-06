@@ -40,20 +40,20 @@ public abstract class ha {
     }
 
     public static FrameLayout.LayoutParams h(float f10, float f11, int i7) {
-        return new FrameLayout.LayoutParams(z(f10), z(f11), Gravity.getAbsoluteGravity(i7, org.telegram.messenger.hd.f22871a0 ? 1 : 0));
+        return new FrameLayout.LayoutParams(z(f10), z(f11), Gravity.getAbsoluteGravity(i7, org.telegram.messenger.hd.f22878a0 ? 1 : 0));
     }
 
     public static FrameLayout.LayoutParams i(float f10, float f11, int i7, float f12, float f13, float f14, float f15) {
         float f16;
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(z(f10), z(f11), Gravity.getAbsoluteGravity(i7, org.telegram.messenger.hd.f22871a0 ? 1 : 0));
-        if (org.telegram.messenger.hd.f22871a0) {
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(z(f10), z(f11), Gravity.getAbsoluteGravity(i7, org.telegram.messenger.hd.f22878a0 ? 1 : 0));
+        if (org.telegram.messenger.hd.f22878a0) {
             f16 = f14;
         } else {
             f16 = f12;
         }
         layoutParams.leftMargin = org.telegram.messenger.g0.L(f16);
         layoutParams.topMargin = org.telegram.messenger.g0.L(f13);
-        if (!org.telegram.messenger.hd.f22871a0) {
+        if (!org.telegram.messenger.hd.f22878a0) {
             f12 = f14;
         }
         layoutParams.rightMargin = org.telegram.messenger.g0.L(f12);
@@ -130,15 +130,15 @@ public abstract class ha {
 
     public static LinearLayout.LayoutParams u(float f10, float f11, int i7, float f12, float f13, float f14, float f15) {
         float f16;
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(f10), z(f11), Gravity.getAbsoluteGravity(i7, org.telegram.messenger.hd.f22871a0 ? 1 : 0));
-        if (org.telegram.messenger.hd.f22871a0) {
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(z(f10), z(f11), Gravity.getAbsoluteGravity(i7, org.telegram.messenger.hd.f22878a0 ? 1 : 0));
+        if (org.telegram.messenger.hd.f22878a0) {
             f16 = f14;
         } else {
             f16 = f12;
         }
         layoutParams.leftMargin = org.telegram.messenger.g0.L(f16);
         layoutParams.topMargin = org.telegram.messenger.g0.L(f13);
-        if (!org.telegram.messenger.hd.f22871a0) {
+        if (!org.telegram.messenger.hd.f22878a0) {
             f12 = f14;
         }
         layoutParams.rightMargin = org.telegram.messenger.g0.L(f12);
@@ -168,7 +168,7 @@ public abstract class ha {
     }
 
     public static int y() {
-        if (org.telegram.messenger.hd.f22871a0) {
+        if (org.telegram.messenger.hd.f22878a0) {
             return 5;
         }
         return 3;

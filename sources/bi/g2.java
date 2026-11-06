@@ -93,15 +93,15 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj3;
                 boolean[] zArr = (boolean[]) obj2;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj;
-                org.telegram.ui.mb mbVar = hbVar.f46315a.f46920n;
+                org.telegram.ui.mb mbVar = hbVar.f46314a.f46919n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i10 = 0; i10 < tL_messages_exportedChatInvite.users.size(); i10++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i10);
-                        if (mbVar.f47779z0 == null) {
-                            mbVar.f47779z0 = new HashMap();
+                        if (mbVar.f47778z0 == null) {
+                            mbVar.f47778z0 = new HashMap();
                         }
-                        mbVar.f47779z0.put(Long.valueOf(user.f27101id), user);
+                        mbVar.f47778z0.put(Long.valueOf(user.f27102id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -119,7 +119,7 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers2 = (TLRPC.TL_messages_getAttachedStickers) obj2;
                 org.telegram.ui.ld ldVar = (org.telegram.ui.ld) obj;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && obj3 != null) {
-                    org.telegram.messenger.r8.n(po0Var.f28612a).u(new Object[]{tL_messages_getAttachedStickers2, ldVar}, obj3);
+                    org.telegram.messenger.r8.n(po0Var.f28613a).u(new Object[]{tL_messages_getAttachedStickers2, ldVar}, obj3);
                     return;
                 } else {
                     ldVar.run(tLObject, tL_error);

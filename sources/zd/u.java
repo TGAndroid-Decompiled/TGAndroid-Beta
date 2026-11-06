@@ -1,29 +1,29 @@
 package zd;
 public final class u {
-    public final Object f60017a;
-    public final k f60018b;
-    public final rd.q f60019c;
+    public final Object f60016a;
+    public final k f60017b;
+    public final rd.q f60018c;
     public final Object d;
-    public final Throwable f60020e;
+    public final Throwable f60019e;
 
     public u(Object obj, k kVar, rd.q qVar, Object obj2, Throwable th2) {
-        this.f60017a = obj;
-        this.f60018b = kVar;
-        this.f60019c = qVar;
+        this.f60016a = obj;
+        this.f60017b = kVar;
+        this.f60018c = qVar;
         this.d = obj2;
-        this.f60020e = th2;
+        this.f60019e = th2;
     }
 
     public static u a(u uVar, k kVar, Throwable th2, int i7) {
-        Object obj = uVar.f60017a;
+        Object obj = uVar.f60016a;
         if ((i7 & 2) != 0) {
-            kVar = uVar.f60018b;
+            kVar = uVar.f60017b;
         }
         k kVar2 = kVar;
-        rd.q qVar = uVar.f60019c;
+        rd.q qVar = uVar.f60018c;
         Object obj2 = uVar.d;
         if ((i7 & 16) != 0) {
-            th2 = uVar.f60020e;
+            th2 = uVar.f60019e;
         }
         return new u(obj, kVar2, qVar, obj2, th2);
     }
@@ -36,7 +36,7 @@ public final class u {
             return false;
         }
         u uVar = (u) obj;
-        if (kotlin.jvm.internal.j.a(this.f60017a, uVar.f60017a) && kotlin.jvm.internal.j.a(this.f60018b, uVar.f60018b) && kotlin.jvm.internal.j.a(this.f60019c, uVar.f60019c) && kotlin.jvm.internal.j.a(this.d, uVar.d) && kotlin.jvm.internal.j.a(this.f60020e, uVar.f60020e)) {
+        if (kotlin.jvm.internal.j.a(this.f60016a, uVar.f60016a) && kotlin.jvm.internal.j.a(this.f60017b, uVar.f60017b) && kotlin.jvm.internal.j.a(this.f60018c, uVar.f60018c) && kotlin.jvm.internal.j.a(this.d, uVar.d) && kotlin.jvm.internal.j.a(this.f60019e, uVar.f60019e)) {
             return true;
         }
         return false;
@@ -48,21 +48,21 @@ public final class u {
         int hashCode3;
         int hashCode4;
         int i7 = 0;
-        Object obj = this.f60017a;
+        Object obj = this.f60016a;
         if (obj == null) {
             hashCode = 0;
         } else {
             hashCode = obj.hashCode();
         }
         int i10 = hashCode * 31;
-        k kVar = this.f60018b;
+        k kVar = this.f60017b;
         if (kVar == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = kVar.hashCode();
         }
         int i11 = (i10 + hashCode2) * 31;
-        rd.q qVar = this.f60019c;
+        rd.q qVar = this.f60018c;
         if (qVar == null) {
             hashCode3 = 0;
         } else {
@@ -76,7 +76,7 @@ public final class u {
             hashCode4 = obj2.hashCode();
         }
         int i13 = (i12 + hashCode4) * 31;
-        Throwable th2 = this.f60020e;
+        Throwable th2 = this.f60019e;
         if (th2 != null) {
             i7 = th2.hashCode();
         }
@@ -84,7 +84,7 @@ public final class u {
     }
 
     public final String toString() {
-        return "CompletedContinuation(result=" + this.f60017a + ", cancelHandler=" + this.f60018b + ", onCancellation=" + this.f60019c + ", idempotentResume=" + this.d + ", cancelCause=" + this.f60020e + ')';
+        return "CompletedContinuation(result=" + this.f60016a + ", cancelHandler=" + this.f60017b + ", onCancellation=" + this.f60018c + ", idempotentResume=" + this.d + ", cancelCause=" + this.f60019e + ')';
     }
 
     public u(Object obj, k kVar, rd.q qVar, Throwable th2, int i7) {

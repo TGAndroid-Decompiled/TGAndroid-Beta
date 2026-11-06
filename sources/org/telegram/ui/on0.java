@@ -7,20 +7,20 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.Collections;
 public final class on0 implements Runnable {
-    public final int f48457a = 0;
-    public final boolean f48458b;
-    public final boolean f48459c;
+    public final int f48456a = 0;
+    public final boolean f48457b;
+    public final boolean f48458c;
     public final boolean d;
-    public final Object f48460e;
-    public final Serializable f48461f;
+    public final Object f48459e;
+    public final Serializable f48460f;
     public final Object h;
 
     public on0(qo0 qo0Var, int[] iArr, int[] iArr2, boolean z9, boolean z10, boolean z11) {
-        this.f48460e = qo0Var;
-        this.f48461f = iArr;
+        this.f48459e = qo0Var;
+        this.f48460f = iArr;
         this.h = iArr2;
-        this.f48458b = z9;
-        this.f48459c = z10;
+        this.f48457b = z9;
+        this.f48458c = z10;
         this.d = z11;
     }
 
@@ -31,10 +31,10 @@ public final class on0 implements Runnable {
         float f11;
         org.telegram.ui.Components.r7 r7Var;
         org.telegram.ui.Components.gc gcVar;
-        int i7 = this.f48457a;
+        int i7 = this.f48456a;
         Object obj = this.h;
-        Serializable serializable = this.f48461f;
-        Object obj2 = this.f48460e;
+        Serializable serializable = this.f48460f;
+        Object obj2 = this.f48459e;
         switch (i7) {
             case 0:
                 PhotoViewer photoViewer = (PhotoViewer) obj2;
@@ -45,7 +45,7 @@ public final class on0 implements Runnable {
                 int i10 = photoViewer.U3;
                 photoViewer.U3 = i10 - 1;
                 String absolutePath = file.getAbsolutePath();
-                boolean z9 = this.f48458b;
+                boolean z9 = this.f48457b;
                 if (z9) {
                     intValue = 0;
                 } else {
@@ -53,35 +53,35 @@ public final class on0 implements Runnable {
                 }
                 org.telegram.messenger.gf gfVar = new org.telegram.messenger.gf(i10, absolutePath, intValue, z9, 0, 0);
                 gfVar.n(L0);
-                photoViewer.f41365c2 = 2;
-                photoViewer.f41522u2 = false;
-                photoViewer.d = new yp0(photoViewer, photoViewer.d, ijVar, gfVar, this.f48459c, this.d);
-                photoViewer.f41476p1.f();
+                photoViewer.f41364c2 = 2;
+                photoViewer.f41521u2 = false;
+                photoViewer.d = new yp0(photoViewer, photoViewer.d, ijVar, gfVar, this.f48458c, this.d);
+                photoViewer.f41475p1.f();
                 if (photoViewer.T6 == null) {
                     photoViewer.T6 = VelocityTracker.obtain();
                 }
                 photoViewer.A7 = 3;
                 photoViewer.m3(false, false);
                 photoViewer.g3(true, false);
-                an anVar = photoViewer.f41437k4;
+                an anVar = photoViewer.f41436k4;
                 if (anVar != null && anVar.Z != null && anVar.T9()) {
-                    photoViewer.f41437k4.Z.L();
+                    photoViewer.f41436k4.Z.L();
                 } else {
                     photoViewer.Q1();
                 }
                 photoViewer.L0.setAlpha(255);
-                photoViewer.f41381e0.setAlpha(1.0f);
+                photoViewer.f41380e0.setAlpha(1.0f);
                 photoViewer.X1(null, null, null, null, null, null, Collections.singletonList(gfVar), 0, null);
                 bi.m5 m5Var = photoViewer.P0;
                 float f12 = 96.0f;
-                if (photoViewer.f41495r1) {
+                if (photoViewer.f41494r1) {
                     f10 = 154.0f;
                 } else {
                     f10 = 96.0f;
                 }
                 m5Var.setTranslationY(org.telegram.messenger.g0.L(f10));
                 li.w1 w1Var = photoViewer.S0;
-                if (photoViewer.f41495r1) {
+                if (photoViewer.f41494r1) {
                     f11 = 154.0f;
                 } else {
                     f11 = 96.0f;
@@ -89,7 +89,7 @@ public final class on0 implements Runnable {
                 w1Var.setTranslationY(org.telegram.messenger.g0.L(f11));
                 photoViewer.F.setTranslationY(-r7Var.getHeight());
                 lq0 lq0Var = photoViewer.Q1;
-                if (photoViewer.f41495r1) {
+                if (photoViewer.f41494r1) {
                     f12 = 154.0f;
                 }
                 lq0Var.setTranslationY(org.telegram.messenger.g0.L(f12));
@@ -104,29 +104,29 @@ public final class on0 implements Runnable {
                 iArr[0] = i11;
                 int i12 = ((int[]) obj)[0];
                 if (i11 == i12) {
-                    pq0 pq0Var = qo0Var.f49287b.f41381e0;
-                    boolean z10 = this.f48458b;
-                    boolean z11 = this.f48459c;
+                    pq0 pq0Var = qo0Var.f49286b.f41380e0;
+                    boolean z10 = this.f48457b;
+                    boolean z11 = this.f48458c;
                     int i13 = z10 ? 1 : 0;
                     boolean z12 = this.d;
                     if ((z11 ? 1 : 0) + i13 + (z12 ? 1 : 0) > 1) {
-                        gcVar = org.telegram.ui.Components.gc.f33887w;
+                        gcVar = org.telegram.ui.Components.gc.f33895w;
                     } else if (z12) {
                         if (i12 > 1) {
-                            gcVar = org.telegram.ui.Components.gc.f33886s;
+                            gcVar = org.telegram.ui.Components.gc.f33894s;
                         } else {
-                            gcVar = org.telegram.ui.Components.gc.f33885r;
+                            gcVar = org.telegram.ui.Components.gc.f33893r;
                         }
                     } else if (z10) {
                         if (i12 > 1) {
-                            gcVar = org.telegram.ui.Components.gc.f33884n;
+                            gcVar = org.telegram.ui.Components.gc.f33892n;
                         } else {
                             gcVar = org.telegram.ui.Components.gc.h;
                         }
                     } else if (i12 > 1) {
-                        gcVar = org.telegram.ui.Components.gc.f33883f;
+                        gcVar = org.telegram.ui.Components.gc.f33891f;
                     } else {
-                        gcVar = org.telegram.ui.Components.gc.f33882e;
+                        gcVar = org.telegram.ui.Components.gc.f33890e;
                     }
                     new org.telegram.ui.Components.hc(pq0Var, null).m(gcVar, i12, -115203550, -1, null).j();
                     return;
@@ -136,11 +136,11 @@ public final class on0 implements Runnable {
     }
 
     public on0(PhotoViewer photoViewer, File file, boolean z9, org.telegram.messenger.ij ijVar, boolean z10, boolean z11) {
-        this.f48460e = photoViewer;
-        this.f48461f = file;
-        this.f48458b = z9;
+        this.f48459e = photoViewer;
+        this.f48460f = file;
+        this.f48457b = z9;
         this.h = ijVar;
-        this.f48459c = z10;
+        this.f48458c = z10;
         this.d = z11;
     }
 }

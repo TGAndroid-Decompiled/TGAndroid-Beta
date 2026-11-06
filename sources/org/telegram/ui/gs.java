@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class gs implements Runnable {
-    public final ks f46088a;
+    public final ks f46087a;
 
     public gs(ks ksVar) {
-        this.f46088a = ksVar;
+        this.f46087a = ksVar;
     }
 
     @Override

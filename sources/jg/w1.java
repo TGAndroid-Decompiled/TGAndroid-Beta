@@ -20,7 +20,7 @@ public final class w1 implements Runnable {
         switch (this.f16974a) {
             case 0:
                 try {
-                    yr.a0(this.f16975b.f16999m).f26690b.executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
+                    yr.a0(this.f16975b.f16999m).f26698b.executeFast("DELETE FROM hashtag_recent_v2 WHERE 1").stepThis().dispose();
                     return;
                 } catch (Exception e10) {
                     a8.g(e10, true);
@@ -29,7 +29,7 @@ public final class w1 implements Runnable {
             default:
                 z1 z1Var = this.f16975b;
                 try {
-                    SQLiteCursor queryFinalized = yr.a0(z1Var.f16999m).f26690b.queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
+                    SQLiteCursor queryFinalized = yr.a0(z1Var.f16999m).f26698b.queryFinalized("SELECT id, date FROM hashtag_recent_v2 WHERE 1", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     HashMap hashMap = new HashMap();
                     while (queryFinalized.next()) {

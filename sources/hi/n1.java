@@ -44,7 +44,7 @@ import org.telegram.ui.Components.lb0;
 import org.telegram.ui.Components.qa0;
 import org.telegram.ui.Components.uo;
 import org.telegram.ui.Components.w8;
-import org.telegram.ui.Components.yz0;
+import org.telegram.ui.Components.zz0;
 import org.telegram.ui.qw;
 import org.telegram.ui.v91;
 import org.telegram.ui.ww;
@@ -89,7 +89,7 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
                 ConnectionsManager.getInstance(i11).sendRequest(tL_messages_toggleBotInAttachMenu, new g2(i11, 0), 66);
                 ((TLRPC.TL_attachMenuBot) obj2).show_in_side_menu = false;
                 qs.f(i11).k(299, new Object[0]);
-                ui.b0(i11).i2(ui.f25786c2, j3);
+                ui.b0(i11).i2(ui.f25794c2, j3);
                 if (runnable != null) {
                     runnable.run();
                     return;
@@ -179,11 +179,11 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
     @Override
     public void onComplete(Object obj) {
         int i7;
-        yz0 yz0Var = (yz0) this.d;
+        zz0 zz0Var = (zz0) this.d;
         uo uoVar = (uo) this.f14806e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f14805c) {
-            Drawable drawable = uoVar.f38689b;
+            Drawable drawable = uoVar.f38685b;
             if (drawable instanceof qa0) {
                 qa0 qa0Var = (qa0) drawable;
                 if (this.f14804b >= 0) {
@@ -191,10 +191,10 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
                 } else {
                     i7 = -100;
                 }
-                qa0Var.s(yz0.e((Bitmap) pair.second), i7);
-                qa0Var.t(yz0Var.L);
+                qa0Var.s(zz0.e((Bitmap) pair.second), i7);
+                qa0Var.t(zz0Var.L);
             }
-            yz0Var.invalidate();
+            zz0Var.invalidate();
         }
     }
 
@@ -218,7 +218,7 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
         if (arrayList.isEmpty()) {
             return false;
         }
-        final long j3 = ((xr) arrayList.get(0)).f26505a;
+        final long j3 = ((xr) arrayList.get(0)).f26513a;
         Activity parentActivity = wwVar2.getParentActivity();
         final int i13 = this.f14804b;
         final o1 o1Var = new o1(v91Var, wwVar2, j3, i13);
@@ -288,7 +288,7 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
         l9Var2.setAnimatedEmojiDrawable(i5.m(i13, botVerifierSettings.icon, null, 3));
         frameLayout.addView(l9Var2, ha.d(20, 20.0f, 19, 34.0f, 0.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.k5 k5Var = new org.telegram.ui.ActionBar.k5(parentActivity);
-        r6.Y(k5Var, k6.f27956j5, null);
+        r6.Y(k5Var, k6.f27957j5, null);
         k5Var.setTextSize(13);
         k5Var.setEllipsizeByGradient(true);
         k5Var.l(str2, false);
@@ -318,7 +318,7 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
         qs.i(textView2);
         textView2.setText(i6.m(org.telegram.messenger.g0.X2(hd.a0(null, null, 2131752922, str2)), textView2.getPaint().getFontMetricsInt(), false, null, 0));
         e10.addView(textView2, ha.k(24.0f, 0.0f, 24.0f, 22.0f, -1, -2));
-        final int i18 = qp.s1(i13).f24801j6;
+        final int i18 = qp.s1(i13).f24809j6;
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(parentActivity);
         final lb0 lb0Var = new lb0(parentActivity, null);
         lb0Var.setForceForceUseCenter(true);
@@ -333,9 +333,9 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
         editTextBoldCursor.setInputType(180225);
         editTextBoldCursor.setTypeface(Typeface.DEFAULT);
         editTextBoldCursor.setSelectAllOnFocus(true);
-        r6.D(editTextBoldCursor, k6.f27948ig, null);
-        r6.m(editTextBoldCursor, 36, k6.f27967jg, null);
-        if (hd.f22871a0) {
+        r6.D(editTextBoldCursor, k6.f27949ig, null);
+        r6.m(editTextBoldCursor, 36, k6.f27968jg, null);
+        if (hd.f22878a0) {
             i16 = 5;
         }
         editTextBoldCursor.setGravity(i16);

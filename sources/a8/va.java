@@ -10,15 +10,15 @@ public final class va {
         switch (i7) {
             case 1:
                 this.f689b = new AtomicLong(-1L);
-                this.f688a = new com.google.android.gms.common.api.j(context, s6.d.f54841m, new q6.q("mlkit:vision"), com.google.android.gms.common.api.i.f6542c);
+                this.f688a = new com.google.android.gms.common.api.j(context, s6.d.f54840m, new q6.q("mlkit:vision"), com.google.android.gms.common.api.i.f6542c);
                 return;
             case 2:
                 this.f689b = new AtomicLong(-1L);
-                this.f688a = new com.google.android.gms.common.api.j(context, s6.d.f54841m, new q6.q("mlkit:natural_language"), com.google.android.gms.common.api.i.f6542c);
+                this.f688a = new com.google.android.gms.common.api.j(context, s6.d.f54840m, new q6.q("mlkit:natural_language"), com.google.android.gms.common.api.i.f6542c);
                 return;
             default:
                 this.f689b = new AtomicLong(-1L);
-                this.f688a = new com.google.android.gms.common.api.j(context, s6.d.f54841m, new q6.q("mlkit:vision"), com.google.android.gms.common.api.i.f6542c);
+                this.f688a = new com.google.android.gms.common.api.j(context, s6.d.f54840m, new q6.q("mlkit:vision"), com.google.android.gms.common.api.i.f6542c);
                 return;
         }
     }

@@ -20,7 +20,7 @@ public final class f implements gt0, r0.m {
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
-        r0.h1 h1Var = k1Var.f54109a;
+        r0.h1 h1Var = k1Var.f54108a;
         Rect rect = new Rect();
         if (Build.VERSION.SDK_INT >= 30) {
             i0.b f10 = h1Var.f(527);
@@ -31,7 +31,7 @@ public final class f implements gt0, r0.m {
         int i7 = rect.left;
         int i10 = rect.top;
         int i11 = rect.right;
-        int i12 = rect.bottom + org.telegram.messenger.g0.f22532n;
+        int i12 = rect.bottom + org.telegram.messenger.g0.f22539n;
         FrameLayout frameLayout = this.f3840b;
         frameLayout.setPadding(i7, i10, i11, i12);
         frameLayout.requestLayout();

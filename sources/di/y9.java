@@ -24,7 +24,7 @@ public class y9 {
         if (y10 != null && y10.stories != null) {
             int i7 = 0;
             while (i7 < y10.stories.size()) {
-                i7 = com.google.android.recaptcha.internal.a.f(y10.stories.get(i7).f27191id, i7, 1, arrayList);
+                i7 = com.google.android.recaptcha.internal.a.f(y10.stories.get(i7).f27192id, i7, 1, arrayList);
             }
         }
     }
@@ -57,8 +57,8 @@ public class y9 {
         }
         if (this.d == 0) {
             TL_stories.TL_stories_getStoriesViews tL_stories_getStoriesViews = new TL_stories.TL_stories_getStoriesViews();
-            a(tL_stories_getStoriesViews.f27199id);
-            if (!tL_stories_getStoriesViews.f27199id.isEmpty()) {
+            a(tL_stories_getStoriesViews.f27200id);
+            if (!tL_stories_getStoriesViews.f27200id.isEmpty()) {
                 int i7 = this.f9995b;
                 tL_stories_getStoriesViews.peer = qp.s1(i7).j1(this.f9996c);
                 this.d = ConnectionsManager.getInstance(i7).sendRequest(tL_stories_getStoriesViews, new bi.j(11, this, tL_stories_getStoriesViews));
@@ -77,13 +77,13 @@ public class y9 {
             if (y10 != null && !y10.stories.isEmpty()) {
                 for (int i7 = 0; i7 < tL_stories_storyViews.views.size(); i7++) {
                     for (int i10 = 0; i10 < y10.stories.size(); i10++) {
-                        if (y10.stories.get(i10).f27191id == ((Integer) arrayList.get(i7)).intValue()) {
+                        if (y10.stories.get(i10).f27192id == ((Integer) arrayList.get(i7)).intValue()) {
                             y10.stories.get(i10).views = tL_stories_storyViews.views.get(i7);
                         }
                     }
                 }
                 l7 l7Var = y6Var.f9971k;
-                l7Var.f9338b.f26688a.c(new j7(l7Var, y10, 0));
+                l7Var.f9338b.f26696a.c(new j7(l7Var, y10, 0));
                 return true;
             }
         }

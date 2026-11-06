@@ -8,30 +8,30 @@ import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 public final class i extends c {
-    public final k5 f59362s;
-    public Object f59363w;
+    public final k5 f59361s;
+    public Object f59362w;
 
     public i(Context context, f6 f6Var) {
         super(context, f6Var);
         int i7;
         float f10;
         float f11;
-        this.f59336c.setVisibility(8);
-        k5 k5Var = this.f59337e;
+        this.f59335c.setVisibility(8);
+        k5 k5Var = this.f59336e;
         int i10 = k6.B6;
         r6.Y(k5Var, i10, f6Var);
         k5 k5Var2 = new k5(context);
-        this.f59362s = k5Var2;
+        this.f59361s = k5Var2;
         k5Var2.setTextSize(16);
         r6.Y(k5Var2, i10, f6Var);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 3;
         } else {
             i7 = 5;
         }
         k5Var2.setGravity(i7);
         addView(k5Var2);
-        boolean z9 = hd.f22871a0;
+        boolean z9 = hd.f22878a0;
         int i11 = (z9 ? 3 : 5) | 16;
         if (z9) {
             f10 = 20.0f;
@@ -52,6 +52,6 @@ public final class i extends c {
     }
 
     public Object getGifCode() {
-        return this.f59363w;
+        return this.f59362w;
     }
 }

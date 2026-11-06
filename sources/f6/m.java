@@ -3,7 +3,7 @@ package f6;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import c8.wb;
+import c8.xb;
 import j$.util.DesugarCollections;
 import java.util.Arrays;
 import java.util.List;
@@ -71,11 +71,11 @@ public final class m extends r6.a {
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         List unmodifiableList;
-        int r10 = wb.r(parcel, 20293);
+        int r10 = xb.r(parcel, 20293);
         int i10 = this.f11289a;
-        wb.q(parcel, 2, 4);
+        xb.q(parcel, 2, 4);
         parcel.writeInt(i10);
-        wb.l(parcel, 3, this.f11290b);
+        xb.l(parcel, 3, this.f11290b);
         List list = this.f11291c;
         List list2 = null;
         if (list == null) {
@@ -83,15 +83,15 @@ public final class m extends r6.a {
         } else {
             unmodifiableList = DesugarCollections.unmodifiableList(list);
         }
-        wb.p(parcel, 4, unmodifiableList);
+        xb.p(parcel, 4, unmodifiableList);
         List list3 = this.d;
         if (list3 != null) {
             list2 = DesugarCollections.unmodifiableList(list3);
         }
-        wb.p(parcel, 5, list2);
+        xb.p(parcel, 5, list2);
         double d = this.f11292e;
-        wb.q(parcel, 6, 8);
+        xb.q(parcel, 6, 8);
         parcel.writeDouble(d);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

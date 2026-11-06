@@ -23,46 +23,46 @@ import org.telegram.ui.bi0;
 import org.telegram.ui.hl0;
 import org.telegram.ui.la1;
 public final class px implements RequestDelegate {
-    public final int f24621a = 2;
-    public final gz f24622b;
-    public final Object f24623c;
+    public final int f24629a = 2;
+    public final gz f24630b;
+    public final Object f24631c;
     public final ij d;
-    public final String f24624e;
-    public final Object f24625f;
-    public final boolean f24626g;
+    public final String f24632e;
+    public final Object f24633f;
+    public final boolean f24634g;
     public final Object h;
-    public final Object f24627i;
-    public final Object f24628j;
-    public final boolean f24629k;
-    public final Object f24630l;
+    public final Object f24635i;
+    public final Object f24636j;
+    public final boolean f24637k;
+    public final Object f24638l;
 
     public px(gz gzVar, String str, List list, boolean z9, ij ijVar, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.ui.an anVar, TwoStepVerificationActivity twoStepVerificationActivity, TLObject[] tLObjectArr, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, boolean z10) {
-        this.f24622b = gzVar;
-        this.f24624e = str;
-        this.f24630l = list;
-        this.f24626g = z9;
+        this.f24630b = gzVar;
+        this.f24632e = str;
+        this.f24638l = list;
+        this.f24634g = z9;
         this.d = ijVar;
-        this.f24623c = keyboardButtonProto;
-        this.f24625f = anVar;
+        this.f24631c = keyboardButtonProto;
+        this.f24633f = anVar;
         this.h = twoStepVerificationActivity;
-        this.f24627i = tLObjectArr;
-        this.f24628j = inputCheckPasswordSRP;
-        this.f24629k = z10;
+        this.f24635i = tLObjectArr;
+        this.f24636j = inputCheckPasswordSRP;
+        this.f24637k = z10;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
         int i7;
         boolean z9;
-        int i10 = this.f24621a;
-        Object obj = this.f24628j;
+        int i10 = this.f24629a;
+        Object obj = this.f24636j;
         Object obj2 = this.h;
-        Object obj3 = this.f24625f;
-        Object obj4 = this.f24623c;
-        Object obj5 = this.f24630l;
+        Object obj3 = this.f24633f;
+        Object obj4 = this.f24631c;
+        Object obj5 = this.f24638l;
         switch (i10) {
             case 0:
-                g0.h3(new xx(this.f24622b, tLObject, (TLRPC.TL_messages_addPollAnswer) obj5, (TLObject) obj4, this.d, this.f24624e, (sy) obj3, this.f24626g, (sy) obj2, this.f24627i, (HashMap) obj, this.f24629k));
+                g0.h3(new xx(this.f24630b, tLObject, (TLRPC.TL_messages_addPollAnswer) obj5, (TLObject) obj4, this.d, this.f24632e, (sy) obj3, this.f24634g, (sy) obj2, this.f24635i, (HashMap) obj, this.f24637k));
                 return;
             case 1:
                 final TLObject tLObject2 = (TLObject) obj4;
@@ -70,12 +70,12 @@ public final class px implements RequestDelegate {
                 final sy syVar2 = (sy) obj2;
                 final HashMap hashMap = (HashMap) obj;
                 TLRPC.Message message = (TLRPC.Message) obj5;
-                final gz gzVar = this.f24622b;
+                final gz gzVar = this.f24630b;
                 final ij ijVar = this.d;
-                final String str = this.f24624e;
-                final boolean z10 = this.f24626g;
-                final Object obj6 = this.f24627i;
-                final boolean z11 = this.f24629k;
+                final String str = this.f24632e;
+                final boolean z10 = this.f24634g;
+                final Object obj6 = this.f24635i;
+                final boolean z11 = this.f24637k;
                 if (tL_error == null || ((!((z9 = tLObject2 instanceof TLRPC.TL_messages_sendMedia)) && !(tLObject2 instanceof TL_ephemeral.TL_sendMessage) && !(tLObject2 instanceof TLRPC.TL_messages_editMessage) && !(tLObject2 instanceof TLRPC.TL_messages_addPollAnswer)) || !r8.r(tL_error.text))) {
                     i7 = 1;
                 } else {
@@ -224,13 +224,13 @@ public final class px implements RequestDelegate {
                 final TL_keyboard.KeyboardButtonProto keyboardButtonProto = (TL_keyboard.KeyboardButtonProto) obj4;
                 final org.telegram.ui.an anVar = (org.telegram.ui.an) obj3;
                 final TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) obj2;
-                final TLObject[] tLObjectArr = (TLObject[]) this.f24627i;
+                final TLObject[] tLObjectArr = (TLObject[]) this.f24635i;
                 final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj;
-                final gz gzVar2 = this.f24622b;
-                final String str3 = this.f24624e;
-                final boolean z12 = this.f24626g;
+                final gz gzVar2 = this.f24630b;
+                final String str3 = this.f24632e;
+                final boolean z12 = this.f24634g;
                 final ij ijVar2 = this.d;
-                final boolean z13 = this.f24629k;
+                final boolean z13 = this.f24637k;
                 g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -262,7 +262,7 @@ public final class px implements RequestDelegate {
                         TLRPC.TL_error tL_error2 = tL_error;
                         TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP2 = inputCheckPasswordSRP;
                         final boolean z18 = z13;
-                        gzVar3.f22757r.remove(str5);
+                        gzVar3.f22764r.remove(str5);
                         list2.remove(str5);
                         if (z17 && tLObject3 == null) {
                             gzVar3.n0(false, ijVar4, keyboardButtonProto2, null, null, anVar2);
@@ -275,7 +275,7 @@ public final class px implements RequestDelegate {
                                 twoStepVerificationActivity2.finishFragment();
                             }
                             long Z0 = ijVar4.Z0();
-                            long j3 = ijVar4.f23237k.via_bot_id;
+                            long j3 = ijVar4.f23244k.via_bot_id;
                             if (j3 != 0) {
                                 Z0 = j3;
                             }
@@ -312,7 +312,7 @@ public final class px implements RequestDelegate {
                                 }
                             } else if (cg.c.c(keyboardButtonProto2, TL_keyboard.TL_inlineButtonTypeBuy.class)) {
                                 if (tLObject3 instanceof TLRPC.TL_payments_paymentFormStars) {
-                                    bi.ea.y(gzVar3.currentAccount, false).X(ijVar3, ((TLRPC.TL_payments_getPaymentForm) tLObjectArr2[0]).invoice, (TLRPC.TL_payments_paymentFormStars) tLObject3, new zw(gzVar3, str5, list2, 0), new di.e(5));
+                                    bi.ea.y(gzVar3.currentAccount, false).X(ijVar3, ((TLRPC.TL_payments_getPaymentForm) tLObjectArr2[0]).invoice, (TLRPC.TL_payments_paymentFormStars) tLObject3, new yw(gzVar3, str5, list2, 0), new di.e(5));
                                     return;
                                 }
                                 ij ijVar5 = ijVar3;
@@ -323,7 +323,7 @@ public final class px implements RequestDelegate {
                                 } else if (tLObject3 instanceof TLRPC.TL_payments_paymentReceiptStars) {
                                     Context context = LaunchActivity.G1;
                                     if (context == null) {
-                                        context = t0.f25555b;
+                                        context = t0.f25563b;
                                     }
                                     bi.dd.m1(context, gzVar3.currentAccount, (TLRPC.TL_payments_paymentReceiptStars) tLObject3, null);
                                 } else if (tLObject3 instanceof TLRPC.PaymentReceipt) {
@@ -341,53 +341,53 @@ public final class px implements RequestDelegate {
                                     if (tL_messages_botCallbackAnswer.alert) {
                                         if (anVar2.getParentActivity() != null) {
                                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(anVar2.getParentActivity());
-                                            alertDialog$Builder.f27292a.R = str4;
+                                            alertDialog$Builder.f27293a.R = str4;
                                             alertDialog$Builder.k(hd.M0(2131747830, null), null);
                                             String str7 = tL_messages_botCallbackAnswer.message;
-                                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                                             u1Var.T = str7;
                                             anVar2.showDialog(u1Var);
                                             return;
                                         }
                                         return;
                                     }
-                                    if (anVar2.f43735b3 == null && anVar2.f43718a1 != null && anVar2.getParentActivity() != null) {
+                                    if (anVar2.f43734b3 == null && anVar2.f43717a1 != null && anVar2.getParentActivity() != null) {
                                         FrameLayout frameLayout = new FrameLayout(anVar2.getParentActivity());
-                                        anVar2.f43735b3 = frameLayout;
-                                        anVar2.f43718a1.addView(frameLayout, c8.ha.o(-1, 48));
-                                        anVar2.f43718a1.h(11, anVar2.f43735b3);
-                                        anVar2.f43718a1.g(anVar2.f43735b3);
+                                        anVar2.f43734b3 = frameLayout;
+                                        anVar2.f43717a1.addView(frameLayout, c8.ha.o(-1, 48));
+                                        anVar2.f43717a1.h(11, anVar2.f43734b3);
+                                        anVar2.f43717a1.g(anVar2.f43734b3);
                                         TextView textView = new TextView(anVar2.getParentActivity());
-                                        anVar2.f43762d3 = textView;
+                                        anVar2.f43761d3 = textView;
                                         textView.setTextSize(1, 14.0f);
-                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43762d3, org.telegram.ui.ActionBar.k6.Te, anVar2.getResourceProvider());
-                                        anVar2.f43762d3.setTypeface(g0.o());
-                                        anVar2.f43762d3.setSingleLine(true);
-                                        TextView textView2 = anVar2.f43762d3;
+                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43761d3, org.telegram.ui.ActionBar.k6.Te, anVar2.getResourceProvider());
+                                        anVar2.f43761d3.setTypeface(g0.o());
+                                        anVar2.f43761d3.setSingleLine(true);
+                                        TextView textView2 = anVar2.f43761d3;
                                         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                                         textView2.setEllipsize(truncateAt);
-                                        anVar2.f43762d3.setMaxLines(1);
-                                        anVar2.f43735b3.addView(anVar2.f43762d3, c8.ha.d(-2, -2.0f, 51, 8.0f, 5.0f, 8.0f, 0.0f));
+                                        anVar2.f43761d3.setMaxLines(1);
+                                        anVar2.f43734b3.addView(anVar2.f43761d3, c8.ha.d(-2, -2.0f, 51, 8.0f, 5.0f, 8.0f, 0.0f));
                                         TextView textView3 = new TextView(anVar2.getParentActivity());
-                                        anVar2.f43776e3 = textView3;
+                                        anVar2.f43775e3 = textView3;
                                         textView3.setTextSize(1, 14.0f);
-                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43776e3, org.telegram.ui.ActionBar.k6.Ue, anVar2.getResourceProvider());
-                                        anVar2.f43776e3.setSingleLine(true);
-                                        anVar2.f43776e3.setEllipsize(truncateAt);
-                                        anVar2.f43776e3.setMaxLines(1);
-                                        anVar2.f43735b3.addView(anVar2.f43776e3, c8.ha.d(-2, -2.0f, 51, 8.0f, 23.0f, 8.0f, 0.0f));
+                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43775e3, org.telegram.ui.ActionBar.k6.Ue, anVar2.getResourceProvider());
+                                        anVar2.f43775e3.setSingleLine(true);
+                                        anVar2.f43775e3.setEllipsize(truncateAt);
+                                        anVar2.f43775e3.setMaxLines(1);
+                                        anVar2.f43734b3.addView(anVar2.f43775e3, c8.ha.d(-2, -2.0f, 51, 8.0f, 23.0f, 8.0f, 0.0f));
                                     }
-                                    FrameLayout frameLayout2 = anVar2.f43735b3;
-                                    if (frameLayout2 != null && (lgVar = anVar2.f43718a1) != null) {
+                                    FrameLayout frameLayout2 = anVar2.f43734b3;
+                                    if (frameLayout2 != null && (lgVar = anVar2.f43717a1) != null) {
                                         lgVar.i(frameLayout2, true, true);
-                                        anVar2.f43762d3.setText(str4);
-                                        anVar2.f43776e3.setText(i6.m(str6.replace('\n', ' '), anVar2.f43776e3.getPaint().getFontMetricsInt(), false, null, 0));
-                                        org.telegram.ui.xj xjVar = anVar2.f43749c3;
+                                        anVar2.f43761d3.setText(str4);
+                                        anVar2.f43775e3.setText(i6.m(str6.replace('\n', ' '), anVar2.f43775e3.getPaint().getFontMetricsInt(), false, null, 0));
+                                        org.telegram.ui.xj xjVar = anVar2.f43748c3;
                                         if (xjVar != null) {
                                             g0.r(xjVar);
                                         }
                                         org.telegram.ui.xj xjVar2 = new org.telegram.ui.xj(anVar2, 1);
-                                        anVar2.f43749c3 = xjVar2;
+                                        anVar2.f43748c3 = xjVar2;
                                         g0.i3(xjVar2, 3000L);
                                     }
                                 } else if (tL_messages_botCallbackAnswer.url != null && anVar2.getParentActivity() != null) {
@@ -398,13 +398,13 @@ public final class px implements RequestDelegate {
                                         z15 = false;
                                     }
                                     if (cg.c.c(keyboardButtonProto2, TL_keyboard.TL_inlineButtonTypeGame.class)) {
-                                        TLRPC.MessageMedia messageMedia = ijVar6.f23237k.media;
+                                        TLRPC.MessageMedia messageMedia = ijVar6.f23244k.media;
                                         if (messageMedia instanceof TLRPC.TL_messageMediaGame) {
                                             tL_game = messageMedia.game;
                                         }
                                         if (tL_game != null) {
                                             String str8 = tL_messages_botCallbackAnswer.url;
-                                            if (!z15 && k5.w("askgame_", Z0, qp.s1(gzVar3.currentAccount).f24749d7, true)) {
+                                            if (!z15 && k5.w("askgame_", Z0, qp.s1(gzVar3.currentAccount).f24757d7, true)) {
                                                 z16 = true;
                                             } else {
                                                 z16 = false;
@@ -421,8 +421,8 @@ public final class px implements RequestDelegate {
                             if ("PASSWORD_HASH_INVALID".equals(tL_error2.text)) {
                                 if (inputCheckPasswordSRP2 == null) {
                                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(anVar2.getParentActivity());
-                                    alertDialog$Builder2.f27292a.R = hd.M0(2131753019, null);
-                                    alertDialog$Builder2.f27292a.T = g0.X2(hd.a0("BotOwnershipTransferReadyAlertText", null, 2131753016, new Object[0]));
+                                    alertDialog$Builder2.f27293a.R = hd.M0(2131753019, null);
+                                    alertDialog$Builder2.f27293a.T = g0.X2(hd.a0("BotOwnershipTransferReadyAlertText", null, 2131753016, new Object[0]));
                                     alertDialog$Builder2.k(hd.M0(2131753017, null), new org.telegram.ui.ActionBar.r1() {
                                         @Override
                                         public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i18) {
@@ -439,12 +439,12 @@ public final class px implements RequestDelegate {
                                                 }
                                             };
                                             twoStepVerificationActivity3.Z = 0;
-                                            twoStepVerificationActivity3.f42052b0 = la1Var;
+                                            twoStepVerificationActivity3.f42051b0 = la1Var;
                                             anVar3.presentFragment(twoStepVerificationActivity3);
                                         }
                                     });
                                     alertDialog$Builder2.h(hd.M0(2131752589, null), null);
-                                    anVar2.showDialog(alertDialog$Builder2.f27292a);
+                                    anVar2.showDialog(alertDialog$Builder2.f27293a);
                                 }
                             } else if (!"PASSWORD_MISSING".equals(tL_error2.text) && !tL_error2.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error2.text.startsWith("SESSION_TOO_FRESH_")) {
                                 if ("SRP_ID_INVALID".equals(tL_error2.text)) {
@@ -463,16 +463,16 @@ public final class px implements RequestDelegate {
                                     twoStepVerificationActivity2.t0();
                                 }
                                 AlertDialog$Builder alertDialog$Builder3 = new AlertDialog$Builder(anVar2.getParentActivity());
-                                alertDialog$Builder3.f27292a.R = hd.M0(2131751298, null);
+                                alertDialog$Builder3.f27293a.R = hd.M0(2131751298, null);
                                 LinearLayout linearLayout = new LinearLayout(anVar2.getParentActivity());
                                 linearLayout.setPadding(g0.L(24.0f), g0.L(2.0f), g0.L(24.0f), 0);
                                 linearLayout.setOrientation(1);
                                 alertDialog$Builder3.o(linearLayout);
                                 TextView textView4 = new TextView(anVar2.getParentActivity());
-                                int i18 = org.telegram.ui.ActionBar.k6.f27956j5;
+                                int i18 = org.telegram.ui.ActionBar.k6.f27957j5;
                                 org.telegram.ui.ActionBar.r6.V(textView4, i18, null);
                                 textView4.setTextSize(1, 16.0f);
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     i11 = 5;
                                 } else {
                                     i11 = 3;
@@ -485,13 +485,13 @@ public final class px implements RequestDelegate {
                                 linearLayout.addView(linearLayout2, c8.ha.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                 ImageView imageView = new ImageView(anVar2.getParentActivity());
                                 imageView.setImageResource(2131231623);
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     i12 = g0.L(11.0f);
                                 } else {
                                     i12 = 0;
                                 }
                                 int L3 = g0.L(9.0f);
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     L = 0;
                                 } else {
                                     L = g0.L(11.0f);
@@ -502,14 +502,14 @@ public final class px implements RequestDelegate {
                                 TextView textView5 = new TextView(anVar2.getParentActivity());
                                 org.telegram.ui.ActionBar.r6.V(textView5, i18, null);
                                 textView5.setTextSize(1, 16.0f);
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     i13 = 5;
                                 } else {
                                     i13 = 3;
                                 }
                                 textView5.setGravity(i13 | 48);
                                 textView5.setText(g0.X2(hd.M0(2131751301, null)));
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     linearLayout2.addView(textView5, c8.ha.o(-1, -2));
                                     linearLayout2.addView(imageView, c8.ha.r(-2, -2, 5));
                                 } else {
@@ -521,13 +521,13 @@ public final class px implements RequestDelegate {
                                 linearLayout.addView(linearLayout3, c8.ha.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                 ImageView imageView2 = new ImageView(anVar2.getParentActivity());
                                 imageView2.setImageResource(2131231623);
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     i14 = g0.L(11.0f);
                                 } else {
                                     i14 = 0;
                                 }
                                 int L4 = g0.L(9.0f);
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     L2 = 0;
                                 } else {
                                     L2 = g0.L(11.0f);
@@ -537,14 +537,14 @@ public final class px implements RequestDelegate {
                                 TextView textView6 = new TextView(anVar2.getParentActivity());
                                 org.telegram.ui.ActionBar.r6.V(textView6, i18, null);
                                 textView6.setTextSize(1, 16.0f);
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     i15 = 5;
                                 } else {
                                     i15 = 3;
                                 }
                                 textView6.setGravity(i15 | 48);
                                 textView6.setText(g0.X2(hd.M0(2131751300, null)));
-                                if (hd.f22871a0) {
+                                if (hd.f22878a0) {
                                     linearLayout3.addView(textView6, c8.ha.o(-1, -2));
                                     i16 = 5;
                                     linearLayout3.addView(imageView2, c8.ha.r(-2, -2, 5));
@@ -560,7 +560,7 @@ public final class px implements RequestDelegate {
                                     TextView textView7 = new TextView(anVar2.getParentActivity());
                                     org.telegram.ui.ActionBar.r6.V(textView7, i18, null);
                                     textView7.setTextSize(1, 16.0f);
-                                    if (hd.f22871a0) {
+                                    if (hd.f22878a0) {
                                         i17 = i16;
                                     } else {
                                         i17 = 3;
@@ -569,7 +569,7 @@ public final class px implements RequestDelegate {
                                     linearLayout.addView(textView7, c8.ha.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
                                     alertDialog$Builder3.h(hd.M0(2131747830, null), null);
                                 }
-                                anVar2.showDialog(alertDialog$Builder3.f27292a);
+                                anVar2.showDialog(alertDialog$Builder3.f27293a);
                             }
                         }
                     }
@@ -579,30 +579,30 @@ public final class px implements RequestDelegate {
     }
 
     public px(gz gzVar, TLObject tLObject, ij ijVar, String str, sy syVar, boolean z9, sy syVar2, Object obj, HashMap hashMap, boolean z10, TLRPC.Message message) {
-        this.f24622b = gzVar;
-        this.f24623c = tLObject;
+        this.f24630b = gzVar;
+        this.f24631c = tLObject;
         this.d = ijVar;
-        this.f24624e = str;
-        this.f24625f = syVar;
-        this.f24626g = z9;
+        this.f24632e = str;
+        this.f24633f = syVar;
+        this.f24634g = z9;
         this.h = syVar2;
-        this.f24627i = obj;
-        this.f24628j = hashMap;
-        this.f24629k = z10;
-        this.f24630l = message;
+        this.f24635i = obj;
+        this.f24636j = hashMap;
+        this.f24637k = z10;
+        this.f24638l = message;
     }
 
     public px(gz gzVar, TLRPC.TL_messages_addPollAnswer tL_messages_addPollAnswer, TLObject tLObject, ij ijVar, String str, sy syVar, boolean z9, sy syVar2, Object obj, HashMap hashMap, boolean z10) {
-        this.f24622b = gzVar;
-        this.f24630l = tL_messages_addPollAnswer;
-        this.f24623c = tLObject;
+        this.f24630b = gzVar;
+        this.f24638l = tL_messages_addPollAnswer;
+        this.f24631c = tLObject;
         this.d = ijVar;
-        this.f24624e = str;
-        this.f24625f = syVar;
-        this.f24626g = z9;
+        this.f24632e = str;
+        this.f24633f = syVar;
+        this.f24634g = z9;
         this.h = syVar2;
-        this.f24627i = obj;
-        this.f24628j = hashMap;
-        this.f24629k = z10;
+        this.f24635i = obj;
+        this.f24636j = hashMap;
+        this.f24637k = z10;
     }
 }

@@ -7,42 +7,42 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class np extends Drawable {
-    public final Drawable f36354a;
-    public Path f36355b;
-    public final RectF f36356c;
+    public final Drawable f36393a;
+    public Path f36394b;
+    public final RectF f36395c;
     public final RectF d;
-    public boolean f36357e;
-    public final float[] f36358f;
+    public boolean f36396e;
+    public final float[] f36397f;
 
     public np(Drawable drawable) {
         a5.b bVar = new a5.b(this, 6);
-        this.f36356c = new RectF();
+        this.f36395c = new RectF();
         this.d = new RectF();
-        this.f36357e = false;
-        this.f36358f = new float[8];
-        Drawable drawable2 = this.f36354a;
+        this.f36396e = false;
+        this.f36397f = new float[8];
+        Drawable drawable2 = this.f36393a;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f36354a = drawable;
+        this.f36393a = drawable;
         if (drawable != null) {
             drawable.setBounds(getBounds());
-            this.f36354a.setCallback(bVar);
+            this.f36393a.setCallback(bVar);
         }
     }
 
     public final void a() {
-        if (!this.f36357e) {
+        if (!this.f36396e) {
             return;
         }
-        Path path = this.f36355b;
+        Path path = this.f36394b;
         if (path == null) {
-            this.f36355b = new Path();
+            this.f36394b = new Path();
         } else {
             path.rewind();
         }
         Rect bounds = getBounds();
-        RectF rectF = this.f36356c;
+        RectF rectF = this.f36395c;
         rectF.set(bounds);
         float f10 = rectF.left;
         RectF rectF2 = this.d;
@@ -50,32 +50,32 @@ public final class np extends Drawable {
         rectF.top += rectF2.top;
         rectF.right -= rectF2.right;
         rectF.bottom -= rectF2.bottom;
-        this.f36355b.addRoundRect(rectF, this.f36358f, Path.Direction.CW);
+        this.f36394b.addRoundRect(rectF, this.f36397f, Path.Direction.CW);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f36354a;
+        Drawable drawable = this.f36393a;
         if (drawable != null) {
             drawable.setBounds(getBounds());
-            if (!this.f36357e) {
+            if (!this.f36396e) {
                 canvas.save();
                 canvas.clipRect(getBounds());
-                this.f36354a.draw(canvas);
+                this.f36393a.draw(canvas);
                 canvas.restore();
                 return;
             }
             canvas.save();
             a();
-            canvas.clipPath(this.f36355b);
-            this.f36354a.draw(canvas);
+            canvas.clipPath(this.f36394b);
+            this.f36393a.draw(canvas);
             canvas.restore();
         }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Drawable drawable = this.f36354a;
+        Drawable drawable = this.f36393a;
         if (drawable != null) {
             return drawable.getIntrinsicHeight();
         }
@@ -84,7 +84,7 @@ public final class np extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        Drawable drawable = this.f36354a;
+        Drawable drawable = this.f36393a;
         if (drawable != null) {
             return drawable.getIntrinsicWidth();
         }
@@ -98,7 +98,7 @@ public final class np extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        Drawable drawable = this.f36354a;
+        Drawable drawable = this.f36393a;
         if (drawable != null) {
             drawable.setAlpha(i7);
         }
@@ -106,7 +106,7 @@ public final class np extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f36354a;
+        Drawable drawable = this.f36393a;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
         }

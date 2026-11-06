@@ -8,75 +8,75 @@ import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class zl {
-    public long f41036i;
-    public vl f41038k;
-    public float f41041n;
-    public float f41042o;
-    public float f41043p;
-    public float f41044q;
-    public float f41045r;
-    public float f41046s;
-    public ly0 f41048u;
+    public long f41056i;
+    public vl f41058k;
+    public float f41061n;
+    public float f41062o;
+    public float f41063p;
+    public float f41064q;
+    public float f41065r;
+    public float f41066s;
+    public my0 f41068u;
     public long v;
-    public final org.telegram.ui.ActionBar.t4 f41050x;
-    public final m.c3 f41051y;
-    public final am f41052z;
-    public float f41030a = 0.0f;
-    public int f41031b = 0;
-    public long f41032c = 0;
+    public final org.telegram.ui.ActionBar.t4 f41070x;
+    public final m.c3 f41071y;
+    public final am f41072z;
+    public float f41050a = 0.0f;
+    public int f41051b = 0;
+    public long f41052c = 0;
     public float d = 0.0f;
-    public float f41033e = 0.0f;
-    public float f41034f = 0.0f;
-    public float f41035g = 0.0f;
+    public float f41053e = 0.0f;
+    public float f41054f = 0.0f;
+    public float f41055g = 0.0f;
     public final ArrayList h = new ArrayList();
-    public final xq f41037j = xq.f40332j;
-    public final int f41039l = org.telegram.messenger.g0.L(4.0f);
-    public final int f41040m = org.telegram.messenger.g0.L(2.0f) / 2;
-    public final RectF f41047t = new RectF();
-    public final Paint f41049w = new Paint(1);
+    public final xq f41057j = xq.f40348j;
+    public final int f41059l = org.telegram.messenger.g0.L(4.0f);
+    public final int f41060m = org.telegram.messenger.g0.L(2.0f) / 2;
+    public final RectF f41067t = new RectF();
+    public final Paint f41069w = new Paint(1);
 
     public zl(am amVar) {
         Drawable drawable;
-        this.f41052z = amVar;
-        org.telegram.ui.ActionBar.f6 f6Var = amVar.P.f32164n;
+        this.f41072z = amVar;
+        org.telegram.ui.ActionBar.f6 f6Var = amVar.P.f32198n;
         if (f6Var != null) {
             drawable = f6Var.getDrawable("drawableMsgOutMedia");
         } else {
             drawable = null;
         }
-        this.f41050x = (org.telegram.ui.ActionBar.t4) (drawable == null ? org.telegram.ui.ActionBar.k6.R0("drawableMsgOutMedia") : drawable);
-        this.f41051y = new m.c3();
+        this.f41070x = (org.telegram.ui.ActionBar.t4) (drawable == null ? org.telegram.ui.ActionBar.k6.R0("drawableMsgOutMedia") : drawable);
+        this.f41071y = new m.c3();
     }
 
     public static void a(zl zlVar, vl vlVar, boolean z9) {
         long j3;
         ArrayList arrayList = zlVar.h;
-        zlVar.f41038k = vlVar;
+        zlVar.f41058k = vlVar;
         if (vlVar == null) {
             return;
         }
-        HashMap hashMap = (HashMap) vlVar.f38980g;
+        HashMap hashMap = (HashMap) vlVar.f39001g;
         vlVar.a();
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = elapsedRealtime - zlVar.f41032c;
+        long j10 = elapsedRealtime - zlVar.f41052c;
         long j11 = 200;
         if (j10 < 200) {
             float f10 = ((float) j10) / 200.0f;
-            zlVar.f41035g = org.telegram.messenger.g0.T1(zlVar.f41035g, zlVar.f41033e, f10);
-            zlVar.f41034f = org.telegram.messenger.g0.T1(zlVar.f41034f, zlVar.d, f10);
+            zlVar.f41055g = org.telegram.messenger.g0.T1(zlVar.f41055g, zlVar.f41053e, f10);
+            zlVar.f41054f = org.telegram.messenger.g0.T1(zlVar.f41054f, zlVar.d, f10);
         } else {
-            zlVar.f41035g = zlVar.f41033e;
-            zlVar.f41034f = zlVar.d;
+            zlVar.f41055g = zlVar.f41053e;
+            zlVar.f41054f = zlVar.d;
         }
-        zlVar.d = vlVar.f38976b / 1000.0f;
-        zlVar.f41033e = vlVar.f38975a;
+        zlVar.d = vlVar.f38997b / 1000.0f;
+        zlVar.f41053e = vlVar.f38996a;
         if (z9) {
             j3 = elapsedRealtime;
         } else {
             j3 = 0;
         }
-        zlVar.f41032c = j3;
-        zlVar.f41036i = 0L;
+        zlVar.f41052c = j3;
+        zlVar.f41056i = 0L;
         ArrayList arrayList2 = new ArrayList(hashMap.keySet());
         int size = arrayList2.size();
         int i7 = 0;
@@ -89,7 +89,7 @@ public final class zl {
             org.telegram.messenger.aj ajVar = (org.telegram.messenger.aj) hashMap.get(gfVar);
             long j12 = j11;
             int i10 = i7;
-            zlVar.f41036i = Math.max(zlVar.f41036i, gfVar.N);
+            zlVar.f41056i = Math.max(zlVar.f41056i, gfVar.N);
             int size2 = arrayList.size();
             int i11 = 0;
             while (true) {
@@ -97,7 +97,7 @@ public final class zl {
                     break;
                 }
                 yl ylVar2 = (yl) arrayList.get(i11);
-                if (ylVar2.f40650b == gfVar) {
+                if (ylVar2.f40662b == gfVar) {
                     ylVar = ylVar2;
                     break;
                 }
@@ -119,12 +119,12 @@ public final class zl {
         int i12 = 0;
         while (i12 < size3) {
             yl ylVar4 = (yl) arrayList.get(i12);
-            if (!hashMap.containsKey(ylVar4.f40650b)) {
-                if (ylVar4.f40657k <= 0.0f && ylVar4.h + j13 <= elapsedRealtime) {
-                    xh.e eVar = ylVar4.f40665s;
+            if (!hashMap.containsKey(ylVar4.f40662b)) {
+                if (ylVar4.f40669k <= 0.0f && ylVar4.h + j13 <= elapsedRealtime) {
+                    xh.e eVar = ylVar4.f40677s;
                     if (eVar != null) {
-                        eVar.b(ylVar4.O.f41052z);
-                        ylVar4.f40665s = null;
+                        eVar.b(ylVar4.O.f41072z);
+                        ylVar4.f40677s = null;
                     }
                     arrayList.remove(i12);
                     i12--;
@@ -135,11 +135,11 @@ public final class zl {
             }
             i12++;
         }
-        zlVar.f41052z.invalidate();
+        zlVar.f41072z.invalidate();
     }
 
     public final float b() {
-        Point point = org.telegram.messenger.g0.f22537q;
-        return this.f41052z.P.getPreviewScale() * org.telegram.messenger.g0.T1(this.f41035g, this.f41033e, this.f41037j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f41032c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
+        Point point = org.telegram.messenger.g0.f22544q;
+        return this.f41072z.P.getPreviewScale() * org.telegram.messenger.g0.T1(this.f41055g, this.f41053e, this.f41057j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - this.f41052c)) / 200.0f))) * Math.max(point.x, point.y) * 0.5f;
     }
 }

@@ -12,15 +12,15 @@ import org.telegram.tgnet.tl.TL_communities;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class c implements Vector.TLDeserializer {
-    public final int f27217a;
+    public final int f27218a;
 
     public c(int i7) {
-        this.f27217a = i7;
+        this.f27218a = i7;
     }
 
     @Override
     public final TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
-        switch (this.f27217a) {
+        switch (this.f27218a) {
             case 0:
                 return TL_keyboard.TL_keyboardInlineButtonRow_layer228.a(inputSerializedData, i7, z9);
             case 1:

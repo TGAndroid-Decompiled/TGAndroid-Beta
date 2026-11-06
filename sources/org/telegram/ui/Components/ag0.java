@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.widget.Button;
 public final class ag0 extends Button {
-    public final RectF f31814a;
-    public final Paint f31815b;
-    public boolean f31816c;
+    public final RectF f31810a;
+    public final Paint f31811b;
+    public boolean f31812c;
     public float d;
-    public long f31817e;
-    public int f31818f;
+    public long f31813e;
+    public int f31814f;
 
     public ag0(Context context) {
         super(context);
@@ -19,13 +19,13 @@ public final class ag0 extends Button {
         setTextSize(1, 14.0f);
         setTypeface(org.telegram.messenger.g0.o());
         setOutlineProvider(null);
-        c8.ra.a(this, 8.0f, 0.0f, 8.0f, 0.0f);
+        c8.sa.a(this, 8.0f, 0.0f, 8.0f, 0.0f);
         int L = org.telegram.messenger.g0.L(60.0f);
         setMinWidth(L);
         setMinimumWidth(L);
-        this.f31814a = new RectF();
+        this.f31810a = new RectF();
         Paint paint = new Paint(1);
-        this.f31815b = paint;
+        this.f31811b = paint;
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
@@ -33,8 +33,8 @@ public final class ag0 extends Button {
 
     public final void a(boolean z9, boolean z10) {
         float f10;
-        if (this.f31816c != z9) {
-            this.f31816c = z9;
+        if (this.f31812c != z9) {
+            this.f31812c = z9;
             if (!z10) {
                 if (z9) {
                     f10 = 1.0f;
@@ -43,7 +43,7 @@ public final class ag0 extends Button {
                 }
                 this.d = f10;
             }
-            this.f31817e = System.currentTimeMillis();
+            this.f31813e = System.currentTimeMillis();
             invalidate();
         }
     }
@@ -51,22 +51,22 @@ public final class ag0 extends Button {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (!this.f31816c && this.d == 0.0f) {
+        if (!this.f31812c && this.d == 0.0f) {
             return;
         }
         int measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(11.0f);
-        RectF rectF = this.f31814a;
+        RectF rectF = this.f31810a;
         rectF.set(measuredWidth, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(8.0f) + measuredWidth, org.telegram.messenger.g0.L(11.0f));
         int min = Math.min(255, (int) (this.d * 255.0f));
-        Paint paint = this.f31815b;
+        Paint paint = this.f31811b;
         paint.setAlpha(min);
-        canvas.drawArc(rectF, this.f31818f, 220.0f, false, paint);
+        canvas.drawArc(rectF, this.f31814f, 220.0f, false, paint);
         long currentTimeMillis = System.currentTimeMillis();
-        if (Math.abs(this.f31817e - System.currentTimeMillis()) < 1000) {
-            long j3 = currentTimeMillis - this.f31817e;
-            int i7 = (int) (this.f31818f + (((float) (360 * j3)) / 2000.0f));
-            this.f31818f = i7 - ((i7 / 360) * 360);
-            if (this.f31816c) {
+        if (Math.abs(this.f31813e - System.currentTimeMillis()) < 1000) {
+            long j3 = currentTimeMillis - this.f31813e;
+            int i7 = (int) (this.f31814f + (((float) (360 * j3)) / 2000.0f));
+            this.f31814f = i7 - ((i7 / 360) * 360);
+            if (this.f31812c) {
                 float f10 = this.d;
                 if (f10 < 1.0f) {
                     float f11 = (((float) j3) / 200.0f) + f10;
@@ -86,11 +86,11 @@ public final class ag0 extends Button {
                 }
             }
         }
-        this.f31817e = currentTimeMillis;
+        this.f31813e = currentTimeMillis;
         postInvalidateOnAnimation();
     }
 
     public void setProgressColor(int i7) {
-        this.f31815b.setColor(i7);
+        this.f31811b.setColor(i7);
     }
 }

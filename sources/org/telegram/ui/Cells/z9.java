@@ -18,35 +18,35 @@ public class z9 extends LinearLayout {
     public Drawable E;
     public boolean F;
     public final org.telegram.ui.Components.w5 G;
-    public org.telegram.ui.Components.j9 f30987a;
-    public org.telegram.ui.Components.j9 f30988b;
-    public Drawable f30989c;
+    public org.telegram.ui.Components.j9 f30988a;
+    public org.telegram.ui.Components.j9 f30989b;
+    public Drawable f30990c;
     public Drawable d;
-    public ColorDrawable f30990e;
-    public boolean f30991f;
+    public ColorDrawable f30991e;
+    public boolean f30992f;
     public boolean h;
-    public final q1[] f30992n;
-    public final Drawable f30993r;
-    public final org.telegram.ui.ActionBar.q4 f30994s;
-    public final int f30995w;
-    public org.telegram.ui.ActionBar.f2 f30996x;
-    public int f30997y;
+    public final q1[] f30993n;
+    public final Drawable f30994r;
+    public final org.telegram.ui.ActionBar.q4 f30995s;
+    public final int f30996w;
+    public org.telegram.ui.ActionBar.f2 f30997x;
+    public int f30998y;
 
     public z9(Context context, org.telegram.ui.ActionBar.q4 q4Var, int i7) {
         this(context, q4Var, i7, 0L, null);
     }
 
     private Drawable getCompactBackground() {
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28168ua, false);
-        ColorDrawable colorDrawable = this.f30990e;
+        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28169ua, false);
+        ColorDrawable colorDrawable = this.f30991e;
         if (colorDrawable == null || colorDrawable.getColor() != x02) {
-            this.f30990e = new ColorDrawable(x02);
+            this.f30991e = new ColorDrawable(x02);
         }
-        return this.f30990e;
+        return this.f30991e;
     }
 
     public final boolean a() {
-        int i7 = this.f30995w;
+        int i7 = this.f30996w;
         if (i7 != 3 && i7 != 0) {
             return false;
         }
@@ -55,14 +55,14 @@ public class z9 extends LinearLayout {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f30995w != 2 && !a()) {
+        if (this.f30996w != 2 && !a()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);
     }
 
     public q1[] getCells() {
-        return this.f30992n;
+        return this.f30993n;
     }
 
     @Override
@@ -70,7 +70,7 @@ public class z9 extends LinearLayout {
         super.invalidate();
         int i7 = 0;
         while (true) {
-            q1[] q1VarArr = this.f30992n;
+            q1[] q1VarArr = this.f30993n;
             if (i7 < q1VarArr.length) {
                 q1VarArr[i7].invalidate();
                 i7++;
@@ -92,15 +92,15 @@ public class z9 extends LinearLayout {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.ui.Components.j9 j9Var = this.f30987a;
+        org.telegram.ui.Components.j9 j9Var = this.f30988a;
         if (j9Var != null) {
             j9Var.dispose();
-            this.f30987a = null;
+            this.f30988a = null;
         }
-        org.telegram.ui.Components.j9 j9Var2 = this.f30988b;
+        org.telegram.ui.Components.j9 j9Var2 = this.f30989b;
         if (j9Var2 != null) {
             j9Var2.dispose();
-            this.f30988b = null;
+            this.f30989b = null;
         }
         Drawable drawable = this.E;
         if (drawable instanceof dn) {
@@ -130,33 +130,33 @@ public class z9 extends LinearLayout {
         if (z9) {
             drawable2 = getCompactBackground();
         }
-        if (this.f30991f != z9) {
-            this.f30991f = z9;
-            if (this.f30989c != null) {
+        if (this.f30992f != z9) {
+            this.f30992f = z9;
+            if (this.f30990c != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             this.h = z10;
         }
-        Drawable drawable3 = this.f30989c;
+        Drawable drawable3 = this.f30990c;
         org.telegram.ui.Components.w5 w5Var = this.G;
         if (drawable2 != drawable3 && drawable2 != null) {
             if (!org.telegram.ui.ActionBar.k6.h1() && !this.F && !this.h) {
-                org.telegram.ui.Components.j9 j9Var = this.f30987a;
+                org.telegram.ui.Components.j9 j9Var = this.f30988a;
                 if (j9Var != null) {
                     j9Var.dispose();
-                    this.f30987a = null;
+                    this.f30988a = null;
                 }
             } else {
-                this.d = this.f30989c;
-                this.f30988b = this.f30987a;
+                this.d = this.f30990c;
+                this.f30989b = this.f30988a;
             }
-            this.f30989c = drawable2;
+            this.f30990c = drawable2;
             w5Var.e(true, 0.0f);
         }
         boolean z11 = this.F;
-        org.telegram.ui.ActionBar.q4 q4Var = this.f30994s;
+        org.telegram.ui.ActionBar.q4 q4Var = this.f30995s;
         if (!z11 && !this.h) {
             e10 = q4Var.getThemeAnimationValue();
         } else {
@@ -166,7 +166,7 @@ public class z9 extends LinearLayout {
             if (i10 == 0) {
                 drawable = this.d;
             } else {
-                drawable = this.f30989c;
+                drawable = this.f30990c;
             }
             if (drawable != null) {
                 if (i10 == 1 && this.d != null && (q4Var != null || this.F)) {
@@ -182,7 +182,7 @@ public class z9 extends LinearLayout {
                             bitmapDrawable.setFilterBitmap(true);
                             if (bitmapDrawable.getTileModeX() == Shader.TileMode.REPEAT) {
                                 canvas.save();
-                                float f10 = 2.0f / org.telegram.messenger.g0.f22536p;
+                                float f10 = 2.0f / org.telegram.messenger.g0.f22543p;
                                 canvas.scale(f10, f10);
                                 drawable.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f10), (int) Math.ceil(getMeasuredHeight() / f10));
                             } else {
@@ -204,16 +204,16 @@ public class z9 extends LinearLayout {
                     } else {
                         drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
                         if (drawable instanceof org.telegram.ui.Components.k9) {
-                            this.f30987a = ((org.telegram.ui.Components.k9) drawable).c(canvas, this);
+                            this.f30988a = ((org.telegram.ui.Components.k9) drawable).c(canvas, this);
                         } else {
                             drawable.draw(canvas);
                         }
                     }
                     if (i10 == 0 && this.d != null && e10 >= 1.0f) {
-                        org.telegram.ui.Components.j9 j9Var2 = this.f30988b;
+                        org.telegram.ui.Components.j9 j9Var2 = this.f30989b;
                         if (j9Var2 != null) {
                             j9Var2.dispose();
-                            this.f30988b = null;
+                            this.f30989b = null;
                         }
                         this.d = null;
                         this.h = false;
@@ -227,14 +227,14 @@ public class z9 extends LinearLayout {
         }
         int measuredWidth2 = getMeasuredWidth();
         int measuredHeight2 = getMeasuredHeight();
-        Drawable drawable4 = this.f30993r;
+        Drawable drawable4 = this.f30994r;
         drawable4.setBounds(0, 0, measuredWidth2, measuredHeight2);
         drawable4.draw(canvas);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f30995w != 2 && !a()) {
+        if (this.f30996w != 2 && !a()) {
             return false;
         }
         return super.onInterceptTouchEvent(motionEvent);
@@ -242,7 +242,7 @@ public class z9 extends LinearLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f30995w != 2 && !a()) {
+        if (this.f30996w != 2 && !a()) {
             return false;
         }
         return super.onTouchEvent(motionEvent);

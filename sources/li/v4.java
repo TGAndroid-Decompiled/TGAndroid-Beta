@@ -43,7 +43,7 @@ public final class v4 {
             imageReceiver.w0(null);
             return;
         }
-        int i7 = org.telegram.messenger.g0.f22537q.x;
+        int i7 = org.telegram.messenger.g0.f22544q.x;
         String j3 = com.google.android.recaptcha.internal.a.j(i7, "_", i7);
         StringBuilder sb3 = new StringBuilder();
         s sVar2 = this.f18944e;
@@ -67,11 +67,11 @@ public final class v4 {
                     s sVar3 = this.f18944e;
                     TLRPC.Document document2 = sVar3.h;
                     if (document2 != null) {
-                        j11 = document2.f26958id;
+                        j11 = document2.f26959id;
                     } else {
                         TLRPC.Photo photo2 = sVar3.f18816g;
                         if (photo2 != null) {
-                            j11 = photo2.f26976id;
+                            j11 = photo2.f26977id;
                         }
                     }
                 }
@@ -104,7 +104,7 @@ public final class v4 {
                     photoSize = null;
                     for (int i11 = 0; i11 < arrayList.size(); i11++) {
                         TLRPC.PhotoSize photoSize3 = arrayList.get(i11);
-                        if (!(photoSize3 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize3 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize3.f26977w, photoSize3.h) - Z0)) < i10) {
+                        if (!(photoSize3 instanceof TLRPC.TL_photoStrippedSize) && !(photoSize3 instanceof TLRPC.TL_photoPathSize) && (abs = Math.abs(Math.max(photoSize3.f26978w, photoSize3.h) - Z0)) < i10) {
                             photoSize = photoSize3;
                             i10 = abs;
                         }

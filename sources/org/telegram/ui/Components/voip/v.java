@@ -2,17 +2,17 @@ package org.telegram.ui.Components.voip;
 
 import org.webrtc.RendererCommon;
 public final class v implements RendererCommon.RendererEvents {
-    public final y f39521a;
+    public final y f39542a;
 
     public v(y yVar) {
-        this.f39521a = yVar;
+        this.f39542a = yVar;
     }
 
     @Override
     public final void onFirstFrameRendered() {
         int i7 = 0;
         while (true) {
-            y yVar = this.f39521a;
+            y yVar = this.f39542a;
             if (i7 < yVar.m0.size()) {
                 org.telegram.messenger.g0.r((Runnable) yVar.m0.get(i7));
                 ((Runnable) yVar.m0.get(i7)).run();

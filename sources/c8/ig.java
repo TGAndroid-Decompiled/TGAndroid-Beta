@@ -10,7 +10,7 @@ public abstract class ig implements k {
         a8.kb kbVar = this.f5724b;
         if (kbVar == null) {
             jg jgVar = (jg) this;
-            a8.kb kbVar2 = new a8.kb(jgVar, jgVar.f5739c, 1);
+            a8.kb kbVar2 = new a8.kb(jgVar, jgVar.f5738c, 1);
             this.f5724b = kbVar2;
             return kbVar2;
         }
@@ -21,7 +21,7 @@ public abstract class ig implements k {
         cd cdVar = this.f5723a;
         if (cdVar == null) {
             jg jgVar = (jg) this;
-            cd cdVar2 = new cd(jgVar, jgVar.f5739c);
+            cd cdVar2 = new cd(jgVar, jgVar.f5738c);
             this.f5723a = cdVar2;
             return cdVar2;
         }

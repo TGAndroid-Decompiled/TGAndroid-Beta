@@ -5,19 +5,19 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class i90 extends Drawable {
-    public Paint f34524a;
-    public Paint f34525b;
-    public long f34526c;
+    public Paint f34554a;
+    public Paint f34555b;
+    public long f34556c;
     public float d;
-    public boolean f34527e;
-    public boolean f34528f;
-    public float f34529g;
+    public boolean f34557e;
+    public boolean f34558f;
+    public float f34559g;
     public float h;
-    public float f34530i;
-    public float f34531j;
-    public float f34532k;
-    public long f34533l;
-    public org.telegram.ui.Cells.q1 f34534m;
+    public float f34560i;
+    public float f34561j;
+    public float f34562k;
+    public long f34563l;
+    public org.telegram.ui.Cells.q1 f34564m;
 
     public final void a() {
         int i7;
@@ -27,7 +27,7 @@ public final class i90 extends Drawable {
         float centerY = bounds.centerY();
         float f10 = bounds.left - centerX;
         float f11 = bounds.top - centerY;
-        this.f34529g = (float) Math.ceil(Math.sqrt(com.google.android.recaptcha.internal.a.z(i10, centerY, f11, f10 * (i7 - centerX))));
+        this.f34559g = (float) Math.ceil(Math.sqrt(com.google.android.recaptcha.internal.a.z(i10, centerY, f11, f10 * (i7 - centerX))));
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class i90 extends Drawable {
 
     @Override
     public final void setAlpha(int i7) {
-        this.f34524a.setAlpha(i7);
+        this.f34554a.setAlpha(i7);
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class i90 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34524a.setColorFilter(colorFilter);
+        this.f34554a.setColorFilter(colorFilter);
     }
 
     @Override

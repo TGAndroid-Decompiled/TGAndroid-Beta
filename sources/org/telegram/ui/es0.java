@@ -4,23 +4,23 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class es0 implements org.telegram.ui.Components.wf {
-    public final PopupNotificationActivity f45404a;
+    public final PopupNotificationActivity f45403a;
 
     public es0(PopupNotificationActivity popupNotificationActivity) {
-        this.f45404a = popupNotificationActivity;
+        this.f45403a = popupNotificationActivity;
     }
 
     @Override
     public final void F(CharSequence charSequence, boolean z9, int i7, int i10, long j3) {
-        PopupNotificationActivity popupNotificationActivity = this.f45404a;
+        PopupNotificationActivity popupNotificationActivity = this.f45403a;
         if (popupNotificationActivity.Q == null) {
             return;
         }
         int i11 = popupNotificationActivity.S;
-        if (i11 >= 0 && i11 < popupNotificationActivity.f41591a0.size()) {
-            popupNotificationActivity.f41591a0.remove(popupNotificationActivity.S);
+        if (i11 >= 0 && i11 < popupNotificationActivity.f41590a0.size()) {
+            popupNotificationActivity.f41590a0.remove(popupNotificationActivity.S);
         }
-        org.telegram.messenger.qp.s1(popupNotificationActivity.Q.I1).j3(org.telegram.messenger.ij.B0(popupNotificationActivity.Q.f23237k), popupNotificationActivity.Q.f1(), Math.max(0, popupNotificationActivity.Q.f1()), popupNotificationActivity.Q.f23237k.date, true, 0L, 0, true, 0);
+        org.telegram.messenger.qp.s1(popupNotificationActivity.Q.I1).j3(org.telegram.messenger.ij.B0(popupNotificationActivity.Q.f23244k), popupNotificationActivity.Q.f1(), Math.max(0, popupNotificationActivity.Q.f1()), popupNotificationActivity.Q.f23244k.date, true, 0L, 0, true, 0);
         popupNotificationActivity.Q = null;
         popupNotificationActivity.f();
     }
@@ -82,10 +82,10 @@ public final class es0 implements org.telegram.ui.Components.wf {
 
     @Override
     public final void t1() {
-        PopupNotificationActivity popupNotificationActivity = this.f45404a;
+        PopupNotificationActivity popupNotificationActivity = this.f45403a;
         org.telegram.messenger.ij ijVar = popupNotificationActivity.Q;
         if (ijVar != null) {
-            org.telegram.messenger.qp.s1(ijVar.I1).C4(0, popupNotificationActivity.K, org.telegram.messenger.ij.B0(popupNotificationActivity.Q.f23237k), 0L, null);
+            org.telegram.messenger.qp.s1(ijVar.I1).C4(0, popupNotificationActivity.K, org.telegram.messenger.ij.B0(popupNotificationActivity.Q.f23244k), 0L, null);
         }
     }
 

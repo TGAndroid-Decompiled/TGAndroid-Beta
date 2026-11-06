@@ -2,7 +2,7 @@ package jb;
 
 import android.content.Context;
 import android.os.Bundle;
-import c8.zd;
+import c8.ee;
 public final class a implements q {
     public final Bundle f16601a;
 
@@ -30,7 +30,7 @@ public final class a implements q {
     public final yd.a c() {
         Bundle bundle = this.f16601a;
         if (bundle.containsKey("firebase_sessions_sessions_restart_timeout")) {
-            return new yd.a(zd.c(bundle.getInt("firebase_sessions_sessions_restart_timeout"), yd.c.d));
+            return new yd.a(ee.c(bundle.getInt("firebase_sessions_sessions_restart_timeout"), yd.c.d));
         }
         return null;
     }

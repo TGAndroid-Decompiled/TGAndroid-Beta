@@ -13,24 +13,24 @@ public final class kz extends View {
     public RectF F;
     public float G;
     public ValueAnimator H;
-    public boolean f35444a;
-    public boolean f35445b;
-    public boolean f35446c;
+    public boolean f35433a;
+    public boolean f35434b;
+    public boolean f35435c;
     public String d;
-    public TextPaint f35447e;
-    public Paint f35448f;
+    public TextPaint f35436e;
+    public Paint f35437f;
     public Paint h;
-    public Paint f35449n;
-    public int f35450r;
-    public int f35451s;
-    public int f35452w;
-    public int f35453x;
-    public int f35454y;
+    public Paint f35438n;
+    public int f35439r;
+    public int f35440s;
+    public int f35441w;
+    public int f35442x;
+    public int f35443y;
 
     public final void a(boolean z9, boolean z10) {
-        this.f35445b = z9;
+        this.f35434b = z9;
         float f10 = 0.0f;
-        if (this.f35444a && z10) {
+        if (this.f35433a && z10) {
             ValueAnimator valueAnimator = this.H;
             if (valueAnimator != null) {
                 valueAnimator.removeAllListeners();
@@ -57,25 +57,25 @@ public final class kz extends View {
     public final void draw(Canvas canvas) {
         float f10;
         Canvas canvas2;
-        int i7 = this.f35453x;
+        int i7 = this.f35442x;
         RectF rectF = this.F;
         Paint paint = this.h;
-        Paint paint2 = this.f35449n;
-        Paint paint3 = this.f35448f;
-        TextPaint textPaint = this.f35447e;
+        Paint paint2 = this.f35438n;
+        Paint paint3 = this.f35437f;
+        TextPaint textPaint = this.f35436e;
         super.draw(canvas);
         float f11 = this.G;
         if (f11 <= 0.5f) {
             f10 = f11 / 0.5f;
-            paint3.setColor(Color.rgb(Color.red(this.f35450r) + ((int) ((Color.red(this.f35451s) - Color.red(this.f35450r)) * f10)), Color.green(this.f35450r) + ((int) ((Color.green(this.f35451s) - Color.green(this.f35450r)) * f10)), Color.blue(this.f35450r) + ((int) ((Color.blue(this.f35451s) - Color.blue(this.f35450r)) * f10))));
-            textPaint.setColor(Color.rgb(Color.red(this.f35451s) + ((int) ((Color.red(this.f35452w) - Color.red(this.f35451s)) * f10)), Color.green(this.f35451s) + ((int) ((Color.green(this.f35452w) - Color.green(this.f35451s)) * f10)), Color.blue(this.f35451s) + ((int) ((Color.blue(this.f35452w) - Color.blue(this.f35451s)) * f10))));
+            paint3.setColor(Color.rgb(Color.red(this.f35439r) + ((int) ((Color.red(this.f35440s) - Color.red(this.f35439r)) * f10)), Color.green(this.f35439r) + ((int) ((Color.green(this.f35440s) - Color.green(this.f35439r)) * f10)), Color.blue(this.f35439r) + ((int) ((Color.blue(this.f35440s) - Color.blue(this.f35439r)) * f10))));
+            textPaint.setColor(Color.rgb(Color.red(this.f35440s) + ((int) ((Color.red(this.f35441w) - Color.red(this.f35440s)) * f10)), Color.green(this.f35440s) + ((int) ((Color.green(this.f35441w) - Color.green(this.f35440s)) * f10)), Color.blue(this.f35440s) + ((int) ((Color.blue(this.f35441w) - Color.blue(this.f35440s)) * f10))));
         } else {
-            textPaint.setColor(this.f35452w);
-            paint3.setColor(this.f35451s);
+            textPaint.setColor(this.f35441w);
+            paint3.setColor(this.f35440s);
             f10 = 1.0f;
         }
         int measuredHeight = getMeasuredHeight() >> 1;
-        paint.setColor(this.f35451s);
+        paint.setColor(this.f35440s);
         canvas.drawRoundRect(rectF, i7 / 2.0f, i7 / 2.0f, paint3);
         canvas.drawRoundRect(rectF, i7 / 2.0f, i7 / 2.0f, paint);
         String str = this.d;
@@ -87,7 +87,7 @@ public final class kz extends View {
         canvas.scale(0.9f, 0.9f, org.telegram.messenger.g0.N(7.0f), measuredHeight);
         canvas.translate(org.telegram.messenger.g0.L(12.0f), measuredHeight - org.telegram.messenger.g0.L(9.0f));
         if (this.G > 0.5f) {
-            paint2.setColor(this.f35452w);
+            paint2.setColor(this.f35441w);
             float f13 = 1.0f - f12;
             canvas2 = canvas;
             canvas2.drawLine(org.telegram.messenger.g0.N(7.0f), (int) org.telegram.messenger.g0.N(13.0f), (int) (org.telegram.messenger.g0.N(7.0f) - (org.telegram.messenger.g0.L(4.0f) * f13)), (int) (org.telegram.messenger.g0.N(13.0f) - (org.telegram.messenger.g0.L(4.0f) * f13)), paint2);
@@ -101,13 +101,13 @@ public final class kz extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f35444a = true;
+        this.f35433a = true;
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f35444a = false;
+        this.f35433a = false;
     }
 
     @Override
@@ -120,9 +120,9 @@ public final class kz extends View {
         if (str == null) {
             measureText = 0;
         } else {
-            measureText = (int) this.f35447e.measureText(str);
+            measureText = (int) this.f35436e.measureText(str);
         }
-        setMeasuredDimension((i11 * 2) + measureText + (this.f35454y << 1), org.telegram.messenger.g0.L(4.0f) + this.f35453x);
+        setMeasuredDimension((i11 * 2) + measureText + (this.f35443y << 1), org.telegram.messenger.g0.L(4.0f) + this.f35442x);
         if (getMeasuredWidth() != 0) {
             rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
             rectF.inset((paint.getStrokeWidth() / 2.0f) + i11, (paint.getStrokeWidth() / 2.0f) + i11);

@@ -59,7 +59,7 @@ public final class r5 implements View.OnClickListener {
                         Collections.sort(arrayList);
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f18389b;
                         k60 J = t3Var2.f18887o3.J(view);
-                        J.W(k6.d0(org.telegram.messenger.g0.L(3.0f), k6.w0(k6.f27848d6, t3Var2.f18885n3)));
+                        J.W(k6.d0(org.telegram.messenger.g0.L(3.0f), k6.w0(k6.f27849d6, t3Var2.f18885n3)));
                         J.Z = true;
                         J.X = org.telegram.messenger.g0.L(350.0f);
                         J.i(new m2(t3Var2, aVar3, 25), hd.M0(2131753999, null), TextUtils.isEmpty(pageblockpreformatted.language));

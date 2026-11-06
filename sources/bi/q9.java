@@ -43,7 +43,7 @@ public final class q9 implements q0.a {
                 a3Var.E.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(xq.f40329f);
+                    duration.setInterpolator(xq.f40345f);
                     duration.addUpdateListener(new hi.w1(a3Var, 1));
                     duration.addListener(new t5(a3Var, 27));
                     duration.start();
@@ -56,7 +56,7 @@ public final class q9 implements q0.a {
                 c4Var.I.setLoadProgressAnimated(f11.floatValue());
                 if (f11.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(xq.f40329f);
+                    duration2.setInterpolator(xq.f40345f);
                     duration2.addUpdateListener(new hi.t3(c4Var, 1));
                     duration2.addListener(new t5(c4Var, 28));
                     duration2.start();
@@ -89,7 +89,7 @@ public final class q9 implements q0.a {
                         l0Var2.h(intValue, true);
                         l0Var2.g();
                         up0Var.setNewColor(intValue);
-                        tg.d0 d0Var = up0Var.f55593p1;
+                        tg.d0 d0Var = up0Var.f55592p1;
                         d0Var.setSelectedColorIndex(l0Var2.d());
                         d0Var.getAdapter().f();
                         return;

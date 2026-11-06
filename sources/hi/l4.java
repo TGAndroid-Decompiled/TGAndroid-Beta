@@ -16,7 +16,7 @@ public final class l4 extends org.telegram.ui.ActionBar.f2 {
 
     @Override
     public final Activity getParentActivity() {
-        Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f25555b);
+        Activity W = org.telegram.messenger.g0.W(org.telegram.messenger.t0.f25563b);
         if (W == null) {
             return LaunchActivity.G1;
         }

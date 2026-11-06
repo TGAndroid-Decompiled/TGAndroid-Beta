@@ -2,27 +2,27 @@ package r8;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import q4.x;
 public final class h extends r6.a {
     public static final Parcelable.Creator<h> CREATOR = new x(15);
-    public final int f54339a;
-    public final n6.a f54340b;
-    public final q6.x f54341c;
+    public final int f54338a;
+    public final n6.a f54339b;
+    public final q6.x f54340c;
 
     public h(int i7, n6.a aVar, q6.x xVar) {
-        this.f54339a = i7;
-        this.f54340b = aVar;
-        this.f54341c = xVar;
+        this.f54338a = i7;
+        this.f54339b = aVar;
+        this.f54340c = xVar;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.q(parcel, 1, 4);
-        parcel.writeInt(this.f54339a);
-        wb.k(parcel, 2, this.f54340b, i7);
-        wb.k(parcel, 3, this.f54341c, i7);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.q(parcel, 1, 4);
+        parcel.writeInt(this.f54338a);
+        xb.k(parcel, 2, this.f54339b, i7);
+        xb.k(parcel, 3, this.f54340c, i7);
+        xb.s(parcel, r10);
     }
 }

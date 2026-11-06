@@ -24,15 +24,15 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.np;
-import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q41;
 public final class a1 extends f2 implements ls {
     public boolean D;
     public int E;
     public boolean F;
-    public p41 f17298a;
+    public q41 f17298a;
     public b5 f17299b;
     public boolean f17300c;
     public FrameLayout d;
@@ -55,8 +55,8 @@ public final class a1 extends f2 implements ls {
         boolean z10;
         if (this.f17299b != null) {
             this.f17299b.a(a0(), z9);
-            p41 p41Var = this.f17298a;
-            if (p41Var != null && p41Var.f36781f3 != null) {
+            q41 q41Var = this.f17298a;
+            if (q41Var != null && q41Var.f37160f3 != null) {
                 boolean z11 = this.F;
                 if (this.f17306w != null && (this.f17307x != null || !TextUtils.isEmpty(this.f17308y))) {
                     z10 = true;
@@ -64,7 +64,7 @@ public final class a1 extends f2 implements ls {
                     z10 = false;
                 }
                 if (z11 != z10) {
-                    this.f17298a.f36781f3.O(true);
+                    this.f17298a.f37160f3.O(true);
                 }
             }
         }
@@ -139,7 +139,7 @@ public final class a1 extends f2 implements ls {
     public final void b0() {
         boolean z9;
         String trim;
-        if (this.f17299b.f27354y.f55396f) {
+        if (this.f17299b.f27355y.f55395f) {
             return;
         }
         if (this.f17307x == null && TextUtils.isEmpty(this.f17308y)) {
@@ -204,7 +204,7 @@ public final class a1 extends f2 implements ls {
     }
 
     public final void c0() {
-        k41 k41Var;
+        l41 l41Var;
         if (this.f17305s) {
             return;
         }
@@ -231,9 +231,9 @@ public final class a1 extends f2 implements ls {
             this.f17300c = false;
         }
         d0();
-        p41 p41Var = this.f17298a;
-        if (p41Var != null && (k41Var = p41Var.f36781f3) != null) {
-            k41Var.O(true);
+        q41 q41Var = this.f17298a;
+        if (q41Var != null && (l41Var = q41Var.f37160f3) != null) {
+            l41Var.O(true);
         }
         this.f17305s = true;
     }
@@ -260,7 +260,7 @@ public final class a1 extends f2 implements ls {
         this.f17301e.setSingleLine(false);
         this.f17301e.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
         x0 x0Var3 = this.f17301e;
-        if (!hd.f22871a0) {
+        if (!hd.f22878a0) {
             i10 = 3;
         }
         x0Var3.setGravity(i10 | 48);
@@ -275,7 +275,7 @@ public final class a1 extends f2 implements ls {
         this.d = frameLayout2;
         frameLayout2.addView(this.f17301e, ha.d(-1, -1.0f, 48, 21.0f, 15.0f, 21.0f, 15.0f));
         FrameLayout frameLayout3 = this.d;
-        int i11 = k6.f27848d6;
+        int i11 = k6.f27849d6;
         r6.i(i11, frameLayout3, getResourceProvider());
         x0 x0Var4 = this.f17301e;
         if (x0Var4 != null) {
@@ -288,10 +288,10 @@ public final class a1 extends f2 implements ls {
         this.f17304r = new c4(1, context, this);
         rz c10 = t5.c(0.2f, k6.Dc);
         f6 resourceProvider = getResourceProvider();
-        c10.f25385m = i7;
-        c10.f25387o = resourceProvider;
-        c10.f25392t = true;
-        c10.f25383k = this.f17304r.getImageReceiver();
+        c10.f25393m = i7;
+        c10.f25395o = resourceProvider;
+        c10.f25400t = true;
+        c10.f25391k = this.f17304r.getImageReceiver();
         np npVar = new np(c10);
         this.f17303n = npVar;
         npVar.setCallback(this.f17304r);
@@ -302,13 +302,13 @@ public final class a1 extends f2 implements ls {
         frameLayout4.addView(this.f17304r, ha.c(-1.0f, -1));
         this.f17302f.addView(this.h, ha.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
         d0();
-        p41 p41Var = new p41(this, new hi.u1(this, 10), new v0(this, 0), null);
-        this.f17298a = p41Var;
-        p41Var.r1();
+        q41 q41Var = new q41(this, new hi.u1(this, 10), new v0(this, 0), null);
+        this.f17298a = q41Var;
+        q41Var.r1();
         this.f17298a.setSectionsDrawBackground(true);
-        p41 p41Var2 = this.f17298a;
-        p41Var2.f36781f3.f35132r = false;
-        frameLayout.addView(p41Var2, ha.c(-1.0f, -1));
+        q41 q41Var2 = this.f17298a;
+        q41Var2.f37160f3.f35510r = false;
+        frameLayout.addView(q41Var2, ha.c(-1.0f, -1));
         c0();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -323,11 +323,11 @@ public final class a1 extends f2 implements ls {
                 z0Var.setAlpha(0.0f);
                 this.h.setTranslationY(-org.telegram.messenger.g0.L(12.0f));
                 if (this.f17304r.getMeasuredWidth() <= 0) {
-                    measuredWidth = org.telegram.messenger.g0.f22537q.x;
+                    measuredWidth = org.telegram.messenger.g0.f22544q.x;
                 } else {
                     measuredWidth = this.f17304r.getMeasuredWidth();
                 }
-                float f10 = org.telegram.messenger.g0.f22536p;
+                float f10 = org.telegram.messenger.g0.f22543p;
                 int i7 = (int) (measuredWidth / f10);
                 int min = Math.min(2, (int) Math.ceil(f10));
                 c4 c4Var2 = this.f17304r;
@@ -373,7 +373,7 @@ public final class a1 extends f2 implements ls {
             if (z9) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 String M0 = hd.M0(2131743836, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = hd.M0(2131752690, null);
                 alertDialog$Builder.k(hd.M0(2131754216, null), new v0(this, 1));

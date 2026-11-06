@@ -25,7 +25,7 @@ public final class x1 extends ImageView implements org.telegram.ui.ActionBar.a6 
     public x1(int i7, Context context, f6 f6Var) {
         super(context);
         this.f18976e = 20;
-        this.f18977f = k6.f27848d6;
+        this.f18977f = k6.f27849d6;
         this.f18978n = true;
         this.f18980s = true;
         this.f18974b = i7;
@@ -47,7 +47,7 @@ public final class x1 extends ImageView implements org.telegram.ui.ActionBar.a6 
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(k6.Ci));
         hashSet.add(Integer.valueOf(k6.G6));
-        hashSet.add(Integer.valueOf(k6.f27940i6));
+        hashSet.add(Integer.valueOf(k6.f27941i6));
         hashSet.add(Integer.valueOf(this.f18977f));
     }
 
@@ -139,7 +139,7 @@ public final class x1 extends ImageView implements org.telegram.ui.ActionBar.a6 
             setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             return;
         }
-        setBackground(k6.b0(k6.w0(this.f18977f, f6Var), k6.w0(k6.f27940i6, f6Var), org.telegram.messenger.g0.L(this.f18976e), org.telegram.messenger.g0.L(this.f18976e)));
+        setBackground(k6.b0(k6.w0(this.f18977f, f6Var), k6.w0(k6.f27941i6, f6Var), org.telegram.messenger.g0.L(this.f18976e), org.telegram.messenger.g0.L(this.f18976e)));
         setColorFilter(new PorterDuffColorFilter(k6.w0(k6.G6, f6Var), PorterDuff.Mode.SRC_IN));
     }
 }

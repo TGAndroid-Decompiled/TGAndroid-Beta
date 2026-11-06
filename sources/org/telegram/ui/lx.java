@@ -2,19 +2,19 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class lx extends org.telegram.ui.Components.v31 {
-    public static final int f47599b = 0;
+public final class lx extends org.telegram.ui.Components.w31 {
+    public static final int f47598b = 0;
 
     static {
-        org.telegram.ui.Components.v31.h(new org.telegram.ui.Components.v31());
+        org.telegram.ui.Components.w31.h(new org.telegram.ui.Components.w31());
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.w31 w31Var, boolean z9, org.telegram.ui.Components.k41 k41Var, org.telegram.ui.Components.p41 p41Var) {
+    public final void b(View view, org.telegram.ui.Components.x31 x31Var, boolean z9, org.telegram.ui.Components.l41 l41Var, org.telegram.ui.Components.q41 q41Var) {
         mx mxVar = (mx) view;
-        mxVar.f47900n = (org.telegram.messenger.c20) w31Var.G;
-        mxVar.f47901r = w31Var;
-        mxVar.b(w31Var.f39843z, false);
+        mxVar.f47899n = (org.telegram.messenger.c20) x31Var.G;
+        mxVar.f47900r = x31Var;
+        mxVar.b(x31Var.f40172z, false);
     }
 
     @Override

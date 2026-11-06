@@ -31,9 +31,9 @@ public final class z2 extends ImageReceiver {
                 int L = org.telegram.messenger.g0.L(6.0f);
                 iArr2[3] = L;
                 iArr2[2] = L;
-                org.telegram.ui.Cells.w1 w1Var = q1Var.f30046w2;
-                if (w1Var != null && (eVar = w1Var.f30705m) != null) {
-                    eVar.f55206b.L0(iArr2);
+                org.telegram.ui.Cells.w1 w1Var = q1Var.f30047w2;
+                if (w1Var != null && (eVar = w1Var.f30706m) != null) {
+                    eVar.f55205b.L0(iArr2);
                     return;
                 }
                 return;
@@ -49,7 +49,7 @@ public final class z2 extends ImageReceiver {
         Object obj = this.K1;
         switch (i7) {
             case 3:
-                View view = ((dn) obj).f45112b;
+                View view = ((dn) obj).f45111b;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -65,7 +65,7 @@ public final class z2 extends ImageReceiver {
                 return;
             case 6:
                 super.invalidate();
-                org.telegram.ui.Wallet.c8 c8Var = ((org.telegram.ui.Wallet.b8) obj).f42158d0;
+                org.telegram.ui.Wallet.c8 c8Var = ((org.telegram.ui.Wallet.b8) obj).f42157d0;
                 int i10 = org.telegram.ui.Wallet.c8.G1;
                 c8Var.f0();
                 return;
@@ -88,7 +88,7 @@ public final class z2 extends ImageReceiver {
                 return x02;
             case 1:
                 if (drawable != null && i7 != 1) {
-                    org.telegram.messenger.camera.q.l(((kg.a1) ((c4) obj).H).h.animate().alpha(1.0f).translationY(0.0f), xq.f40333k, 250L);
+                    org.telegram.messenger.camera.q.l(((kg.a1) ((c4) obj).H).h.animate().alpha(1.0f).translationY(0.0f), xq.f40349k, 250L);
                 }
                 return super.x0(drawable, str, i7, z9, i10);
             case 2:
@@ -100,8 +100,8 @@ public final class z2 extends ImageReceiver {
                 org.telegram.ui.Components.i5 i5Var = (org.telegram.ui.Components.i5) obj;
                 i5Var.j();
                 boolean x03 = super.x0(drawable, str, i7, z9, i10);
-                if (i5Var.f34452m && J()) {
-                    i5Var.f34452m = false;
+                if (i5Var.f34499m && J()) {
+                    i5Var.f34499m = false;
                     org.telegram.messenger.g0.h3(new xf(i5Var, 4));
                 }
                 return x03;

@@ -47,7 +47,7 @@ public abstract class e extends kj0 {
     public final int f16707w;
     public final boolean f16708x;
     public final a0.h f16709y;
-    public final int f16705r = p10.f24459s0;
+    public final int f16705r = p10.f24467s0;
     public float L = 1.0f;
     public final ArrayList N = new ArrayList();
 
@@ -74,9 +74,9 @@ public abstract class e extends kj0 {
             int i11 = this.f16707w;
             g5 r10 = g5.r(i10);
             if (i11 == 2) {
-                arrayList = r10.f22588j0;
+                arrayList = r10.f22595j0;
             } else {
-                arrayList = r10.f22586h0;
+                arrayList = r10.f22593h0;
             }
             int S = S(i7);
             if (S == -1) {
@@ -119,8 +119,8 @@ public abstract class e extends kj0 {
         int i11;
         boolean z9 = this.K;
         int i12 = this.f16705r;
-        if (z9 && i7 == 1 && i10 > 1 && i10 - 2 < g5.r(i12).f22575a0.size()) {
-            return g5.r(i12).f22575a0.get(i11);
+        if (z9 && i7 == 1 && i10 > 1 && i10 - 2 < g5.r(i12).f22582a0.size()) {
+            return g5.r(i12).f22582a0.get(i11);
         }
         if (P(i7, i10) == 2) {
             return "Header";
@@ -128,15 +128,15 @@ public abstract class e extends kj0 {
         int i13 = this.f16707w;
         g5 r10 = g5.r(i12);
         if (i13 == 2) {
-            hashMap = r10.f22587i0;
+            hashMap = r10.f22594i0;
         } else {
-            hashMap = r10.f22585g0;
+            hashMap = r10.f22592g0;
         }
         g5 r11 = g5.r(i12);
         if (i13 == 2) {
-            arrayList = r11.f22588j0;
+            arrayList = r11.f22595j0;
         } else {
-            arrayList = r11.f22586h0;
+            arrayList = r11.f22593h0;
         }
         if (i13 != 0 && !this.E) {
             if (i7 < arrayList.size()) {
@@ -166,10 +166,10 @@ public abstract class e extends kj0 {
                     return qp.s1(i12).a2(Long.valueOf(((TLRPC.TL_contact) arrayList3.get(i10)).user_id));
                 }
             }
-            if (!this.f16708x || i10 < 0 || i10 >= g5.r(i12).f22575a0.size()) {
+            if (!this.f16708x || i10 < 0 || i10 >= g5.r(i12).f22582a0.size()) {
                 return null;
             }
-            return g5.r(i12).f22575a0.get(i10);
+            return g5.r(i12).f22582a0.get(i10);
         }
     }
 
@@ -186,16 +186,16 @@ public abstract class e extends kj0 {
         g5.r(i10);
         g5 r10 = g5.r(i10);
         if (i11 == 2) {
-            arrayList = r10.f22588j0;
+            arrayList = r10.f22595j0;
         } else {
-            arrayList = r10.f22586h0;
+            arrayList = r10.f22593h0;
         }
         View view2 = view;
         if (view == null) {
             ?? frameLayout = new FrameLayout(this.f16706s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(org.telegram.messenger.g0.L(76.0f), org.telegram.messenger.g0.L(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f30258a = textView;
+            frameLayout.f30259a = textView;
             com.google.android.recaptcha.internal.a.q(textView, 1, 22.0f);
             r6.V(textView, k6.B6, null);
             textView.setGravity(17);
@@ -247,15 +247,15 @@ public abstract class e extends kj0 {
             int i12 = this.f16705r;
             g5 r10 = g5.r(i12);
             if (i11 == 2) {
-                hashMap = r10.f22587i0;
+                hashMap = r10.f22594i0;
             } else {
-                hashMap = r10.f22585g0;
+                hashMap = r10.f22592g0;
             }
             g5 r11 = g5.r(i12);
             if (i11 == 2) {
-                arrayList = r11.f22588j0;
+                arrayList = r11.f22595j0;
             } else {
-                arrayList = r11.f22586h0;
+                arrayList = r11.f22593h0;
             }
             boolean z9 = this.E;
             if (i11 != 0 && !z9) {
@@ -299,8 +299,8 @@ public abstract class e extends kj0 {
         int i11;
         ArrayList arrayList2;
         float f10;
-        int i12 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i12 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         int i13 = 7;
         boolean z9 = this.E;
         int i14 = this.f16705r;
@@ -313,8 +313,8 @@ public abstract class e extends kj0 {
                             if (i12 == 8) {
                                 q4 q4Var = (q4) view;
                                 int i15 = i10 - 2;
-                                if (i15 >= 0 && i15 < g5.r(i14).f22575a0.size()) {
-                                    q4Var.a((d5) g5.r(i14).f22575a0.get(i15), null);
+                                if (i15 >= 0 && i15 < g5.r(i14).f22582a0.size()) {
+                                    q4Var.a((d5) g5.r(i14).f22582a0.get(i15), null);
                                     return;
                                 }
                                 return;
@@ -392,16 +392,16 @@ public abstract class e extends kj0 {
                     return;
                 }
             }
-            d5 d5Var = (d5) g5.r(i14).f22575a0.get(i10);
-            String str = d5Var.f21962i;
-            if (str != null && d5Var.f21963j != null) {
-                m8Var.k(d5Var.f21962i + " " + d5Var.f21963j, false);
+            d5 d5Var = (d5) g5.r(i14).f22582a0.get(i10);
+            String str = d5Var.f21969i;
+            if (str != null && d5Var.f21970j != null) {
+                m8Var.k(d5Var.f21969i + " " + d5Var.f21970j, false);
                 return;
-            } else if (str != null && d5Var.f21963j == null) {
+            } else if (str != null && d5Var.f21970j == null) {
                 m8Var.k(str, false);
                 return;
             } else {
-                m8Var.k(d5Var.f21963j, false);
+                m8Var.k(d5Var.f21970j, false);
                 return;
             }
         }
@@ -417,14 +417,14 @@ public abstract class e extends kj0 {
             int i19 = this.f16707w;
             g5 r10 = g5.r(i14);
             if (i19 == 2) {
-                hashMap = r10.f22587i0;
+                hashMap = r10.f22594i0;
             } else {
-                hashMap = r10.f22585g0;
+                hashMap = r10.f22592g0;
             }
             if (i19 == 2) {
-                arrayList = g5.r(i14).f22588j0;
+                arrayList = g5.r(i14).f22595j0;
             } else {
-                arrayList = g5.r(i14).f22586h0;
+                arrayList = g5.r(i14).f22593h0;
             }
             if (i19 != 0 && !z9) {
                 i11 = 0;
@@ -435,7 +435,7 @@ public abstract class e extends kj0 {
         }
         TLRPC.User a22 = qp.s1(i14).a2(Long.valueOf(((TLRPC.TL_contact) arrayList2.get(i10)).user_id));
         paVar.d(a22, null, null, false);
-        if (this.f16709y.h(a22.f27101id) < 0) {
+        if (this.f16709y.h(a22.f27102id) < 0) {
             z10 = false;
         }
         paVar.c(z10, false);
@@ -446,8 +446,8 @@ public abstract class e extends kj0 {
         if (i7 == 2) {
             if (this.D == null || z9) {
                 int i10 = this.f16705r;
-                this.D = new ArrayList(g5.r(i10).f22582e0);
-                long j3 = p10.i(i10).f24478n;
+                this.D = new ArrayList(g5.r(i10).f22589e0);
+                long j3 = p10.i(i10).f24486n;
                 int size = this.D.size();
                 int i11 = 0;
                 while (true) {
@@ -519,14 +519,14 @@ public abstract class e extends kj0 {
                     } else {
                         View e3Var = new e3(context, null);
                         float f11 = 72.0f;
-                        if (hd.f22871a0) {
+                        if (hd.f22878a0) {
                             f10 = 28.0f;
                         } else {
                             f10 = 72.0f;
                         }
                         int L = org.telegram.messenger.g0.L(f10);
                         int L2 = org.telegram.messenger.g0.L(8.0f);
-                        if (!hd.f22871a0) {
+                        if (!hd.f22878a0) {
                             f11 = 28.0f;
                         }
                         e3Var.setPadding(L, L2, org.telegram.messenger.g0.L(f11), org.telegram.messenger.g0.L(8.0f));

@@ -3,17 +3,17 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.view.View;
 public final class rm extends v4.c0 {
-    public final kg.c0 f37745r;
+    public final kg.c0 f37705r;
 
     public rm(kg.c0 c0Var, Context context) {
         super(context);
-        this.f37745r = c0Var;
+        this.f37705r = c0Var;
     }
 
     @Override
     public final int k(int i7, View view) {
         int i10;
-        bn bnVar = (bn) this.f37745r.V;
+        bn bnVar = (bn) this.f37705r.V;
         if (bnVar.V0) {
             i7 = -1;
         }
@@ -22,7 +22,7 @@ public final class rm extends v4.c0 {
             k10 += org.telegram.messenger.g0.L(160.0f);
         }
         if (!bnVar.V0) {
-            k10 = org.telegram.messenger.k5.B(7.0f, bnVar.R0 - org.telegram.messenger.g0.f22531m, k10);
+            k10 = org.telegram.messenger.k5.B(7.0f, bnVar.R0 - org.telegram.messenger.g0.f22538m, k10);
         }
         if (bnVar.V0 && k10 == 0 && (i10 = bnVar.W0) >= 0) {
             bn.O(bnVar, i10);

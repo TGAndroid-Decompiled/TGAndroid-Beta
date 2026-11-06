@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.q41;
 public final class y extends FrameLayout {
     public final int f5055a;
     public final ArrayList f5056b;
-    public final p41 f5057c;
+    public final q41 f5057c;
     public String d;
     public boolean f5058e;
     public boolean f5059f;
@@ -35,17 +35,17 @@ public final class y extends FrameLayout {
         ai.e eVar = new ai.e(this, 2);
         a1.c cVar = new a1.c(this, 10);
         f6Var = ((org.telegram.ui.ActionBar.f2) zVar).resourceProvider;
-        p41 p41Var = new p41(context, i10, classGuid, true, eVar, cVar, null, f6Var);
-        this.f5057c = p41Var;
-        p41Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-        p41Var.f36781f3.f35132r = false;
-        p41Var.setCaptureSectionsDecoratorAllowed(true);
-        p41Var.setClipToPadding(false);
-        p41Var.setOverScrollMode(0);
-        addView(p41Var, c8.ha.c(-1.0f, -1));
+        q41 q41Var = new q41(context, i10, classGuid, true, eVar, cVar, null, f6Var);
+        this.f5057c = q41Var;
+        q41Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
+        q41Var.f37160f3.f35510r = false;
+        q41Var.setCaptureSectionsDecoratorAllowed(true);
+        q41Var.setClipToPadding(false);
+        q41Var.setOverScrollMode(0);
+        addView(q41Var, c8.ha.c(-1.0f, -1));
         qVar = ((org.telegram.ui.ActionBar.f2) zVar).glassEngine;
-        qVar.b(p41Var);
-        p41Var.j(new ai.b(this, 2));
+        qVar.b(q41Var);
+        q41Var.j(new ai.b(this, 2));
     }
 
     public final void a() {
@@ -75,7 +75,7 @@ public final class y extends FrameLayout {
             String str = this.d;
             tL_payments_getStarsTransactions.offset = str;
             tL_payments_getStarsTransactions.limit = 20;
-            this.f5057c.f36781f3.O(false);
+            this.f5057c.f37160f3.O(false);
             i10 = ((org.telegram.ui.ActionBar.f2) zVar).currentAccount;
             int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsTransactions, new j(1, this, str));
             i11 = ((org.telegram.ui.ActionBar.f2) zVar).currentAccount;

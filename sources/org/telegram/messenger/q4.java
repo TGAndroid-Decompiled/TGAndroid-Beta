@@ -7,38 +7,38 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public final class q4 implements RequestDelegate {
-    public final int f24661a = 0;
-    public final Object f24662b;
-    public final boolean f24663c;
+    public final int f24669a = 0;
+    public final Object f24670b;
+    public final boolean f24671c;
     public final c1 d;
-    public final Object f24664e;
-    public final Object f24665f;
+    public final Object f24672e;
+    public final Object f24673f;
 
     public q4(g5 g5Var, ArrayList arrayList, ArrayList arrayList2, boolean z9, String str) {
         this.d = g5Var;
-        this.f24664e = arrayList;
-        this.f24665f = arrayList2;
-        this.f24663c = z9;
-        this.f24662b = str;
+        this.f24672e = arrayList;
+        this.f24673f = arrayList2;
+        this.f24671c = z9;
+        this.f24670b = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
         int indexOf;
         TL_iv.TL_inputRichMessage tL_inputRichMessage;
-        switch (this.f24661a) {
+        switch (this.f24669a) {
             case 0:
                 g5 g5Var = (g5) this.d;
-                ArrayList arrayList = (ArrayList) this.f24664e;
-                ArrayList arrayList2 = (ArrayList) this.f24665f;
-                boolean z9 = this.f24663c;
-                String str = (String) this.f24662b;
+                ArrayList arrayList = (ArrayList) this.f24672e;
+                ArrayList arrayList2 = (ArrayList) this.f24673f;
+                boolean z9 = this.f24671c;
+                String str = (String) this.f24670b;
                 if (tL_error == null) {
                     g5Var.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                     yr messagesStorage = g5Var.getMessagesStorage();
                     messagesStorage.getClass();
                     if (!arrayList.isEmpty()) {
-                        messagesStorage.f26688a.c(new sp(messagesStorage, arrayList, 0));
+                        messagesStorage.f26696a.c(new sp(messagesStorage, arrayList, 0));
                     }
                     Utilities.h.c(new w4(g5Var, arrayList2, 2));
                     for (int i7 = 0; i7 < arrayList2.size(); i7++) {
@@ -46,7 +46,7 @@ public final class q4 implements RequestDelegate {
                         if (!TextUtils.isEmpty(user.phone)) {
                             g5Var.getMessagesStorage().f(user.phone, "");
                             d5 d5Var = (d5) g5Var.Z.get(user.phone);
-                            if (d5Var != null && (indexOf = d5Var.f21961g.indexOf(user.phone)) != -1) {
+                            if (d5Var != null && (indexOf = d5Var.f21968g.indexOf(user.phone)) != -1) {
                                 d5Var.h.set(indexOf, 1);
                             }
                         }
@@ -56,17 +56,17 @@ public final class q4 implements RequestDelegate {
                 }
                 return;
             case 1:
-                g0.h3(new iy(0, (gz) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f24664e, (org.telegram.ui.an) this.f24665f, (String) this.f24662b, this.f24663c));
+                g0.h3(new iy(0, (gz) this.d, tLObject, (TLRPC.TL_messages_requestUrlAuth) this.f24672e, (org.telegram.ui.an) this.f24673f, (String) this.f24670b, this.f24671c));
                 return;
             default:
                 gz gzVar = (gz) this.d;
-                boolean z10 = this.f24663c;
-                ij ijVar = (ij) this.f24664e;
-                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) this.f24665f;
-                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f24662b;
+                boolean z10 = this.f24671c;
+                ij ijVar = (ij) this.f24672e;
+                TLRPC.TL_messages_editMessage tL_messages_editMessage = (TLRPC.TL_messages_editMessage) this.f24673f;
+                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f24670b;
                 if (tL_error == null) {
                     if (z10 && ijVar != null) {
-                        ijVar.f23292y2 = true;
+                        ijVar.f23299y2 = true;
                     }
                     gzVar.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                     g0.h3(new ds(gzVar, ijVar));
@@ -98,17 +98,17 @@ public final class q4 implements RequestDelegate {
 
     public q4(ij ijVar, gz gzVar, TLRPC.TL_messages_editMessage tL_messages_editMessage, org.telegram.ui.ActionBar.f2 f2Var, boolean z9) {
         this.d = gzVar;
-        this.f24663c = z9;
-        this.f24664e = ijVar;
-        this.f24665f = tL_messages_editMessage;
-        this.f24662b = f2Var;
+        this.f24671c = z9;
+        this.f24672e = ijVar;
+        this.f24673f = tL_messages_editMessage;
+        this.f24670b = f2Var;
     }
 
     public q4(gz gzVar, TLRPC.TL_messages_requestUrlAuth tL_messages_requestUrlAuth, org.telegram.ui.an anVar, String str, boolean z9) {
         this.d = gzVar;
-        this.f24664e = tL_messages_requestUrlAuth;
-        this.f24665f = anVar;
-        this.f24662b = str;
-        this.f24663c = z9;
+        this.f24672e = tL_messages_requestUrlAuth;
+        this.f24673f = anVar;
+        this.f24670b = str;
+        this.f24671c = z9;
     }
 }

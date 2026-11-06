@@ -10,7 +10,7 @@ import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.yn;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.j21;
+import org.telegram.ui.Components.k21;
 public final class o3 implements View.OnClickListener {
     public final int f9452a;
     public final z3 f9453b;
@@ -92,13 +92,13 @@ public final class o3 implements View.OnClickListener {
                 l7Var2.k(storyItem2.dialogId, storyItem2);
                 long currentTimeMillis = System.currentTimeMillis();
                 s3 s3Var = new s3(z3Var6, 1);
-                f10 f10Var = qp.s1(i4Var6.f9168l2).f24881s7;
+                f10 f10Var = qp.s1(i4Var6.f9168l2).f24889s7;
                 TL_stories.StoryItem storyItem3 = g4Var2.f9038a;
                 bi.r3 r3Var = new bi.r3(s3Var, currentTimeMillis, 4);
                 HashSet hashSet = f10Var.J;
                 if (storyItem3 != null) {
                     Object obj = new Object();
-                    String M0 = j21.M0();
+                    String M0 = k21.M0();
                     if (storyItem3.translatedText != null && TextUtils.equals(storyItem3.translatedLng, M0)) {
                         r3Var.run();
                     } else if (hashSet.contains(obj)) {

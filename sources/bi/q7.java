@@ -60,11 +60,11 @@ public final class q7 implements org.telegram.messenger.q1, di.j9, OnFailureList
         q11Var.getClass();
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             try {
-                if (((qi) arrayList.get(i7)).f24690a.startsWith("animated_")) {
-                    linkedHashSet.add(Long.valueOf(Long.parseLong(((qi) arrayList.get(i7)).f24690a.substring(9))));
+                if (((qi) arrayList.get(i7)).f24698a.startsWith("animated_")) {
+                    linkedHashSet.add(Long.valueOf(Long.parseLong(((qi) arrayList.get(i7)).f24698a.substring(9))));
                 } else {
                     int i10 = q11Var.W;
-                    if ((i10 == 1 || i10 == 11 || i10 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((qi) arrayList.get(i7)).f24690a)) != null) {
+                    if ((i10 == 1 || i10 == 11 || i10 == 2) && (tL_availableReaction = (TLRPC.TL_availableReaction) hashMap.get(((qi) arrayList.get(i7)).f24698a)) != null) {
                         arrayList2.add(ch.o0.c(tL_availableReaction));
                     }
                 }
@@ -78,7 +78,7 @@ public final class q7 implements org.telegram.messenger.q1, di.j9, OnFailureList
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         org.telegram.ui.ActionBar.d3 d3Var = (org.telegram.ui.ActionBar.d3) this.f4575a;
         ((boolean[]) this.f4576b)[0] = true;
-        d3Var.h(d3Var.f27433x, (org.telegram.ui.ActionBar.c3) this.f4577c, true);
+        d3Var.h(d3Var.f27434x, (org.telegram.ui.ActionBar.c3) this.f4577c, true);
         ((c20) this.d).a(Boolean.TRUE);
         ((org.telegram.ui.ActionBar.u1[]) this.f4578e)[0].dismiss();
     }
@@ -104,7 +104,7 @@ public final class q7 implements org.telegram.messenger.q1, di.j9, OnFailureList
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i7 = ProfileStoriesView.f41976s0;
+        int i7 = ProfileStoriesView.f41975s0;
         ((cv0) nVar.f825b).a(canvas, k4Var, k4Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
@@ -125,7 +125,7 @@ public final class q7 implements org.telegram.messenger.q1, di.j9, OnFailureList
         kotlin.jvm.internal.j.e(e10, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.j.e(request, "request");
-        for (v0.h hVar : request.f56882a) {
+        for (v0.h hVar : request.f56881a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.f10883e).h(request, cancellationSignal, executor, gVar);

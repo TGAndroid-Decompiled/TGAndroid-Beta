@@ -7,37 +7,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class y50 extends ViewGroup {
-    public AnimatorSet f52093a;
-    public boolean f52094b;
-    public final ArrayList f52095c;
+    public AnimatorSet f52091a;
+    public boolean f52092b;
+    public final ArrayList f52093c;
     public org.telegram.ui.Components.c20 d;
-    public int f52096e;
-    public final z50 f52097f;
+    public int f52094e;
+    public final z50 f52095f;
 
     public y50(z50 z50Var, Context context) {
         super(context);
-        this.f52097f = z50Var;
-        this.f52095c = new ArrayList();
+        this.f52095f = z50Var;
+        this.f52093c = new ArrayList();
     }
 
     public final void a(org.telegram.ui.Components.c20 c20Var) {
-        z50 z50Var = this.f52097f;
+        z50 z50Var = this.f52095f;
         z50Var.D.remove(c20Var.getKey());
         z50Var.E.remove(c20Var);
         c20Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f52093a;
+        AnimatorSet animatorSet = this.f52091a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.f52093a.setupEndValues();
-            this.f52093a.cancel();
+            this.f52091a.setupEndValues();
+            this.f52091a.cancel();
         }
-        this.f52094b = false;
+        this.f52092b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f52093a = animatorSet2;
+        this.f52091a = animatorSet2;
         animatorSet2.addListener(new org.telegram.ui.Components.v50(9, this, c20Var));
-        this.f52093a.setInterpolator(org.telegram.ui.Components.xq.h);
-        this.f52093a.setDuration(320L);
+        this.f52091a.setInterpolator(org.telegram.ui.Components.xq.h);
+        this.f52091a.setDuration(320L);
         this.d = c20Var;
-        ArrayList arrayList = this.f52095c;
+        ArrayList arrayList = this.f52093c;
         arrayList.clear();
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 1.0f, 0.75f));
         arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 1.0f, 0.75f));
@@ -70,7 +70,7 @@ public final class y50 extends ViewGroup {
         int i17 = 0;
         int i18 = 0;
         while (true) {
-            arrayList = this.f52095c;
+            arrayList = this.f52093c;
             if (i15 >= childCount) {
                 break;
             }
@@ -86,7 +86,7 @@ public final class y50 extends ViewGroup {
                     i18 = 0;
                 }
                 int i19 = L + i17;
-                if (!this.f52094b) {
+                if (!this.f52092b) {
                     org.telegram.ui.Components.c20 c20Var = this.d;
                     if (childAt == c20Var) {
                         childAt.setTranslationX(L + i18);
@@ -120,25 +120,25 @@ public final class y50 extends ViewGroup {
             i15++;
         }
         int C2 = org.telegram.messenger.k5.C(28.0f, i16, L);
-        if (!this.f52094b) {
-            AnimatorSet animatorSet = this.f52093a;
+        if (!this.f52092b) {
+            AnimatorSet animatorSet = this.f52091a;
             if (animatorSet != null) {
-                this.f52096e = C2;
+                this.f52094e = C2;
                 animatorSet.playTogether(arrayList);
-                this.f52093a.start();
-                this.f52094b = true;
+                this.f52091a.start();
+                this.f52092b = true;
             } else {
-                this.f52096e = Math.max(C2, org.telegram.messenger.g0.L(28.0f) + i13 + L);
+                this.f52094e = Math.max(C2, org.telegram.messenger.g0.L(28.0f) + i13 + L);
             }
         }
-        z50 z50Var = this.f52097f;
-        te.c cVar = z50Var.f52477a;
+        z50 z50Var = this.f52095f;
+        te.c cVar = z50Var.f52475a;
         if (z50Var.E.isEmpty()) {
             min = 0.0f;
         } else {
-            min = Math.min(C2, z50Var.f52486x);
+            min = Math.min(C2, z50Var.f52484x);
         }
         cVar.a(min);
-        setMeasuredDimension(size, this.f52096e);
+        setMeasuredDimension(size, this.f52094e);
     }
 }

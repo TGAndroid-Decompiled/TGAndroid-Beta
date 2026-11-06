@@ -7,21 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.ui.Components.uy;
 public final class l extends m {
-    public final j f53045n;
-    public final uy f53046r;
+    public final j f53043n;
+    public final uy f53044r;
 
     public l(u uVar, i0 i0Var, r rVar, ArrayList arrayList, List list, List list2) {
         super(uVar, i0Var, rVar, arrayList, list, list2);
         j jVar;
-        Uri.parse(((b) i0Var.get(0)).f53003a);
-        long j3 = rVar.f53062e;
+        Uri.parse(((b) i0Var.get(0)).f53001a);
+        long j3 = rVar.f53060e;
         if (j3 <= 0) {
             jVar = null;
         } else {
             jVar = new j(rVar.d, null, j3);
         }
-        this.f53045n = jVar;
-        this.f53046r = jVar == null ? new uy(new j(0L, null, -1L), 7) : null;
+        this.f53043n = jVar;
+        this.f53044r = jVar == null ? new uy(new j(0L, null, -1L), 7) : null;
     }
 
     @Override
@@ -31,11 +31,11 @@ public final class l extends m {
 
     @Override
     public final o2.i c() {
-        return this.f53046r;
+        return this.f53044r;
     }
 
     @Override
     public final j f() {
-        return this.f53045n;
+        return this.f53043n;
     }
 }

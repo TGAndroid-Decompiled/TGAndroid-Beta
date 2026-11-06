@@ -1,6 +1,6 @@
 package q1;
 public abstract class g {
-    public static final int[] f53595a;
+    public static final int[] f53594a;
 
     static {
         int[] iArr = new int[p1.g.d(9).length];
@@ -40,6 +40,6 @@ public abstract class g {
             iArr[8] = 9;
         } catch (NoSuchFieldError unused9) {
         }
-        f53595a = iArr;
+        f53594a = iArr;
     }
 }

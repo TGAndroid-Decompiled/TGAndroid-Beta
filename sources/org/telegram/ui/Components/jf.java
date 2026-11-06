@@ -13,7 +13,7 @@ public final class jf extends hi.k0 {
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
         ChatActivityEnterView chatActivityEnterView = this.D;
-        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f31096o3 == 1) {
+        if (chatActivityEnterView.V0 != null && chatActivityEnterView.f31097o3 == 1) {
             chatActivityEnterView.Z2.w(f10);
         }
     }

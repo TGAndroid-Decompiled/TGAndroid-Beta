@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class mq0 {
-    public String f47864a;
-    public String f47865b;
-    public org.telegram.messenger.ye f47866c;
+    public String f47863a;
+    public String f47864b;
+    public org.telegram.messenger.ye f47865c;
     public org.telegram.messenger.hf d;
-    public ArrayList f47867e;
-    public ArrayList f47868f;
-    public long f47869g;
+    public ArrayList f47866e;
+    public ArrayList f47867f;
+    public long f47868g;
 }

@@ -23,30 +23,30 @@ import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.wp;
 public abstract class c extends FrameLayout {
-    public final f6 f59334a;
-    public final w8 f59335b;
-    public final l9 f59336c;
+    public final f6 f59333a;
+    public final w8 f59334b;
+    public final l9 f59335c;
     public final d4 d;
-    public final k5 f59337e;
-    public final RadioButton f59338f;
+    public final k5 f59336e;
+    public final RadioButton f59337f;
     public final Paint h;
-    public boolean f59339n;
-    public final View f59340r;
+    public boolean f59338n;
+    public final View f59339r;
 
     public c(Context context, f6 f6Var) {
         super(context);
         int i7;
         w8 w8Var = new w8((f6) null);
-        this.f59335b = w8Var;
+        this.f59334b = w8Var;
         this.h = new Paint(1);
-        this.f59334a = f6Var;
+        this.f59333a = f6Var;
         View view = new View(context);
-        this.f59340r = view;
+        this.f59339r = view;
         addView(view, ha.o(-1, -1));
-        r6.i(k6.f27921h5, view, f6Var);
-        w8Var.f39914r = g0.L(40.0f);
+        r6.i(k6.f27922h5, view, f6Var);
+        w8Var.f39922r = g0.L(40.0f);
         l9 l9Var = new l9(context);
-        this.f59336c = l9Var;
+        this.f59335c = l9Var;
         l9Var.setRoundRadius(g0.L(20.0f));
         addView(l9Var);
         d4 d4Var = new d4(context, 5);
@@ -54,9 +54,9 @@ public abstract class c extends FrameLayout {
         qs.i(d4Var);
         qs.i(l9Var);
         d4Var.setTextSize(16);
-        int i10 = k6.f27956j5;
+        int i10 = k6.f27957j5;
         r6.Y(d4Var, i10, f6Var);
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -64,15 +64,15 @@ public abstract class c extends FrameLayout {
         d4Var.setGravity(i7);
         addView(d4Var);
         k5 k5Var = new k5(context);
-        this.f59337e = k5Var;
+        this.f59336e = k5Var;
         k5Var.setTextSize(14);
         r6.Y(k5Var, i10, f6Var);
-        k5Var.setGravity(hd.f22871a0 ? 5 : 3);
+        k5Var.setGravity(hd.f22878a0 ? 5 : 3);
         addView(k5Var);
         RadioButton radioButton = new RadioButton(context);
-        this.f59338f = radioButton;
+        this.f59337f = radioButton;
         radioButton.setSize(g0.L(20.0f));
-        r6.P(radioButton, k6.f27958j7, k6.E5, f6Var);
+        r6.P(radioButton, k6.f27959j7, k6.E5, f6Var);
         addView(radioButton);
         d();
         if (!b()) {
@@ -87,7 +87,7 @@ public abstract class c extends FrameLayout {
     public abstract boolean b();
 
     public void c(boolean z9, boolean z10) {
-        RadioButton radioButton = this.f59338f;
+        RadioButton radioButton = this.f59337f;
         if (radioButton.getVisibility() == 0) {
             radioButton.a(z9, true);
         }
@@ -109,7 +109,7 @@ public abstract class c extends FrameLayout {
         float f17;
         int i14;
         int i15 = 3;
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
@@ -125,8 +125,8 @@ public abstract class c extends FrameLayout {
         } else {
             f11 = 16.0f;
         }
-        this.f59336c.setLayoutParams(ha.d(40, 40.0f, i16, f10, 0.0f, f11, 0.0f));
-        boolean z9 = hd.f22871a0;
+        this.f59335c.setLayoutParams(ha.d(40, 40.0f, i16, f10, 0.0f, f11, 0.0f));
+        boolean z9 = hd.f22878a0;
         if (z9) {
             i10 = 5;
         } else {
@@ -144,7 +144,7 @@ public abstract class c extends FrameLayout {
             }
             f12 = i11;
         }
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             if (b()) {
                 i14 = 105;
             } else {
@@ -155,7 +155,7 @@ public abstract class c extends FrameLayout {
             f13 = 20.0f;
         }
         this.d.setLayoutParams(ha.d(-1, -2.0f, i17, f12, 0.0f, f13, 0.0f));
-        boolean z10 = hd.f22871a0;
+        boolean z10 = hd.f22878a0;
         if (z10) {
             i12 = 5;
         } else {
@@ -172,7 +172,7 @@ public abstract class c extends FrameLayout {
             }
             f14 = i13;
         }
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             if (b()) {
                 i18 = 105;
             }
@@ -180,8 +180,8 @@ public abstract class c extends FrameLayout {
         } else {
             f15 = 20.0f;
         }
-        this.f59337e.setLayoutParams(ha.d(-1, -2.0f, i19, f14, 0.0f, f15, 0.0f));
-        boolean z11 = hd.f22871a0;
+        this.f59336e.setLayoutParams(ha.d(-1, -2.0f, i19, f14, 0.0f, f15, 0.0f));
+        boolean z11 = hd.f22878a0;
         if (z11) {
             i15 = 5;
         }
@@ -196,15 +196,15 @@ public abstract class c extends FrameLayout {
         } else {
             f17 = 15.0f;
         }
-        this.f59338f.setLayoutParams(ha.d(22, 22.0f, i20, f16, 0.0f, f17, 0.0f));
+        this.f59337f.setLayoutParams(ha.d(22, 22.0f, i20, f16, 0.0f, f17, 0.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int i7;
         super.dispatchDraw(canvas);
-        if (this.f59339n) {
-            int w02 = k6.w0(k6.f27849d7, this.f59334a);
+        if (this.f59338n) {
+            int w02 = k6.w0(k6.f27850d7, this.f59333a);
             Paint paint = this.h;
             paint.setColor(w02);
             if (b()) {
@@ -212,11 +212,11 @@ public abstract class c extends FrameLayout {
             } else {
                 i7 = 70;
             }
-            if (this.f59336c.getVisibility() == 8) {
+            if (this.f59335c.getVisibility() == 8) {
                 i7 -= 40;
             }
             int a10 = a() + i7;
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 canvas.drawRect(0.0f, getHeight() - 1, getWidth() - g0.L(a10), getHeight(), paint);
             } else {
                 canvas.drawRect(g0.L(a10), getHeight() - 1, getWidth(), getHeight(), paint);
@@ -245,14 +245,14 @@ public abstract class c extends FrameLayout {
     }
 
     public void setDivider(boolean z9) {
-        this.f59339n = z9;
+        this.f59338n = z9;
         invalidate();
     }
 
     public void setSubtitle(CharSequence charSequence) {
         boolean isEmpty = TextUtils.isEmpty(charSequence);
         d4 d4Var = this.d;
-        k5 k5Var = this.f59337e;
+        k5 k5Var = this.f59336e;
         if (isEmpty) {
             d4Var.setTranslationY(0.0f);
             k5Var.setVisibility(8);
@@ -262,8 +262,8 @@ public abstract class c extends FrameLayout {
             k5Var.l(charSequence, false);
             k5Var.setVisibility(0);
         }
-        if (this.f59336c.getVisibility() == 8) {
-            if (hd.f22871a0) {
+        if (this.f59335c.getVisibility() == 8) {
+            if (hd.f22878a0) {
                 d4Var.setTranslationX(g0.L(40.0f));
                 k5Var.setTranslationX(g0.L(40.0f));
                 return;

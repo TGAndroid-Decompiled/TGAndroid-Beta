@@ -1,57 +1,99 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.ViewPropertyAnimator;
+import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class uz0 extends FrameLayout {
-    public final ImageView f38765a;
-    public final sz0 f38766b;
-    public final ThemeEditorView.EditorAlert f38767c;
+public final class uz0 implements TextWatcher {
+    public final vz0 f38760a;
 
-    public uz0(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        super(context);
-        this.f38767c = editorAlert;
-        View view = new View(context);
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(18.0f), -854795));
-        addView(view, c8.ha.d(-1, 36.0f, 51, 14.0f, 11.0f, 14.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(2131232737);
-        imageView.setColorFilter(new PorterDuffColorFilter(-6182737, PorterDuff.Mode.MULTIPLY));
-        addView(imageView, c8.ha.d(36, 36.0f, 51, 16.0f, 11.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f38765a = imageView2;
-        imageView2.setScaleType(scaleType);
-        op opVar = new op();
-        imageView2.setImageDrawable(opVar);
-        opVar.f36640f = org.telegram.messenger.g0.L(7.0f);
-        imageView2.setScaleX(0.1f);
-        imageView2.setScaleY(0.1f);
-        imageView2.setAlpha(0.0f);
-        addView(imageView2, c8.ha.d(36, 36.0f, 53, 14.0f, 11.0f, 14.0f, 0.0f));
-        imageView2.setOnClickListener(new la0(this, 17));
-        sz0 sz0Var = new sz0(this, context);
-        this.f38766b = sz0Var;
-        sz0Var.setTextSize(1, 16.0f);
-        sz0Var.setHintTextColor(-6774617);
-        sz0Var.setTextColor(-14540254);
-        sz0Var.setBackgroundDrawable(null);
-        sz0Var.setPadding(0, 0, 0, 0);
-        sz0Var.setMaxLines(1);
-        sz0Var.setLines(1);
-        sz0Var.setSingleLine(true);
-        sz0Var.setImeOptions(268435459);
-        sz0Var.setHint(org.telegram.messenger.hd.M0(2131745837, null));
-        sz0Var.setCursorColor(-11491093);
-        sz0Var.setCursorSize(org.telegram.messenger.g0.L(20.0f));
-        sz0Var.setCursorWidth(1.5f);
-        addView(sz0Var, c8.ha.d(-1, 40.0f, 51, 54.0f, 9.0f, 46.0f, 0.0f));
-        sz0Var.addTextChangedListener(new tz0(this));
-        sz0Var.setOnEditorActionListener(new t0(this, 10));
+    public uz0(vz0 vz0Var) {
+        this.f38760a = vz0Var;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        boolean z9;
+        boolean z10;
+        float f10;
+        if (this.f38760a.f39809b.length() > 0) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        float f11 = 0.0f;
+        if (this.f38760a.f39808a.getAlpha() != 0.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z9 != z10) {
+            ViewPropertyAnimator animate = this.f38760a.f39808a.animate();
+            float f12 = 1.0f;
+            if (z9) {
+                f11 = 1.0f;
+            }
+            ViewPropertyAnimator duration = animate.alpha(f11).setDuration(150L);
+            if (z9) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.1f;
+            }
+            ViewPropertyAnimator scaleX = duration.scaleX(f10);
+            if (!z9) {
+                f12 = 0.1f;
+            }
+            scaleX.scaleY(f12).start();
+        }
+        String obj = this.f38760a.f39809b.getText().toString();
+        if (obj.length() != 0) {
+            iy iyVar = this.f38760a.f39810c.l1;
+            if (iyVar != null) {
+                iyVar.setText(org.telegram.messenger.hd.M0(2131748166, null));
+            }
+        } else {
+            v4.g0 adapter = this.f38760a.f39810c.f31577j1.getAdapter();
+            ThemeEditorView.EditorAlert editorAlert = this.f38760a.f39810c;
+            if (adapter != editorAlert.f31580o1) {
+                int J0 = ThemeEditorView.EditorAlert.J0(editorAlert);
+                this.f38760a.f39810c.l1.setText(org.telegram.messenger.hd.M0(2131748229, null));
+                this.f38760a.f39810c.l1.c();
+                ThemeEditorView.EditorAlert editorAlert2 = this.f38760a.f39810c;
+                editorAlert2.f31577j1.setAdapter(editorAlert2.f31580o1);
+                this.f38760a.f39810c.f31580o1.f();
+                if (J0 > 0) {
+                    this.f38760a.f39810c.n1.h1(0, -J0);
+                }
+            }
+        }
+        rz0 rz0Var = this.f38760a.f39810c.f31581p1;
+        if (rz0Var != null && !obj.equals(rz0Var.f37804n)) {
+            rz0Var.f37804n = obj;
+            if (rz0Var.h != null) {
+                Utilities.f21335g.a(rz0Var.h);
+                rz0Var.h = null;
+            }
+            if (obj.length() == 0) {
+                rz0Var.f37802e.clear();
+                ThemeEditorView.EditorAlert editorAlert3 = rz0Var.f37805r;
+                editorAlert3.f31588w1 = ThemeEditorView.EditorAlert.J0(editorAlert3);
+                rz0Var.d = -1;
+                rz0Var.f();
+                return;
+            }
+            int i7 = rz0Var.d + 1;
+            rz0Var.d = i7;
+            rz0Var.h = new org.telegram.ui.q8((Object) rz0Var, obj, i7, 25);
+            Utilities.f21335g.d(rz0Var.h, 300L);
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

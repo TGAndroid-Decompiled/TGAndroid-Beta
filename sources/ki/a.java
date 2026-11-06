@@ -9,13 +9,13 @@ import org.telegram.messenger.c20;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.h6;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.v4;
 public final class a extends na {
-    public k41 P1;
+    public l41 P1;
     public boolean Q1;
     public final FrameLayout R1;
     public final boolean S1;
@@ -28,10 +28,10 @@ public final class a extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, false, new u1(this, 14), this.I0);
-        this.P1 = k41Var;
-        k41Var.f35132r = false;
-        return k41Var;
+        l41 l41Var = new l41(this.f36261k1, getContext(), this.f28613a, 0, false, new u1(this, 14), this.I0);
+        this.P1 = l41Var;
+        l41Var.f35510r = false;
+        return l41Var;
     }
 
     @Override
@@ -67,7 +67,7 @@ public final class a extends na {
         boolean z10;
         if (this.Q1 != z9) {
             this.Q1 = z9;
-            pj0 pj0Var = this.f36222k1;
+            pj0 pj0Var = this.f36261k1;
             View T0 = pj0Var.T0(this.U1 + 1);
             if (T0 instanceof h6) {
                 ((h6) T0).a(!z9);

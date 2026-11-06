@@ -8,12 +8,12 @@ public abstract class d4 {
     public static TLRPC.Document a(TLRPC.WebPage webPage, long j3) {
         if (webPage != null && webPage.cached_page != null) {
             TLRPC.Document document = webPage.document;
-            if (document != null && document.f26958id == j3) {
+            if (document != null && document.f26959id == j3) {
                 return document;
             }
             for (int i7 = 0; i7 < webPage.cached_page.documents.size(); i7++) {
                 TLRPC.Document document2 = webPage.cached_page.documents.get(i7);
-                if (document2.f26958id == j3) {
+                if (document2.f26959id == j3) {
                     return document2;
                 }
             }
@@ -27,7 +27,7 @@ public abstract class d4 {
         }
         for (int i7 = 0; i7 < richMessage.documents.size(); i7++) {
             TLRPC.Document document = richMessage.documents.get(i7);
-            if (document.f26958id == j3) {
+            if (document.f26959id == j3) {
                 return document;
             }
         }
@@ -35,19 +35,19 @@ public abstract class d4 {
     }
 
     public static File c(TLObject tLObject) {
-        org.telegram.messenger.w7.G(org.telegram.messenger.p10.f24459s0);
-        File K = org.telegram.messenger.w7.K(tLObject, null, false, true);
-        if (K != null && K.exists()) {
-            return K;
+        org.telegram.messenger.w7.G(org.telegram.messenger.p10.f24467s0);
+        File J = org.telegram.messenger.w7.J(tLObject, null, false, true);
+        if (J != null && J.exists()) {
+            return J;
         }
-        File K2 = org.telegram.messenger.w7.K(tLObject, null, true, true);
-        if (K2 != null && K2.exists()) {
-            return K2;
+        File J2 = org.telegram.messenger.w7.J(tLObject, null, true, true);
+        if (J2 != null && J2.exists()) {
+            return J2;
         }
-        if (K != null) {
-            return K;
+        if (J != null) {
+            return J;
         }
-        return K2;
+        return J2;
     }
 
     public static TLRPC.Photo d(long j3, TLObject tLObject) {
@@ -58,7 +58,7 @@ public abstract class d4 {
             TL_iv.Page page = (TL_iv.Page) tLObject;
             for (int i7 = 0; i7 < page.photos.size(); i7++) {
                 TLRPC.Photo photo = page.photos.get(i7);
-                if (photo.f26976id == j3) {
+                if (photo.f26977id == j3) {
                     return photo;
                 }
             }
@@ -73,12 +73,12 @@ public abstract class d4 {
     public static TLRPC.Photo e(TLRPC.WebPage webPage, long j3) {
         if (webPage != null && webPage.cached_page != null) {
             TLRPC.Photo photo = webPage.photo;
-            if (photo != null && photo.f26976id == j3) {
+            if (photo != null && photo.f26977id == j3) {
                 return photo;
             }
             for (int i7 = 0; i7 < webPage.cached_page.photos.size(); i7++) {
                 TLRPC.Photo photo2 = webPage.cached_page.photos.get(i7);
-                if (photo2.f26976id == j3) {
+                if (photo2.f26977id == j3) {
                     return photo2;
                 }
             }
@@ -92,7 +92,7 @@ public abstract class d4 {
         }
         for (int i7 = 0; i7 < richMessage.photos.size(); i7++) {
             TLRPC.Photo photo = richMessage.photos.get(i7);
-            if (photo.f26976id == j3) {
+            if (photo.f26977id == j3) {
                 return photo;
             }
         }

@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
 public final class uu0 {
-    public String f38726a;
-    public boolean f38727b;
-    public long f38728c;
+    public String f38722a;
+    public boolean f38723b;
+    public long f38724c;
     public String d;
 }

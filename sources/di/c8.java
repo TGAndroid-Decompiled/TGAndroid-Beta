@@ -10,7 +10,7 @@ import android.view.View;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ic;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 public final class c8 {
@@ -24,8 +24,8 @@ public final class c8 {
     public SpannableStringBuilder f8887k;
     public String f8888l;
     public boolean f8889m;
-    public ly0 f8890n;
-    public ly0 f8891o;
+    public my0 f8890n;
+    public my0 f8891o;
     public boolean f8892p;
     public boolean f8893q;
     public View f8894r;
@@ -50,8 +50,8 @@ public final class c8 {
             wp wpVar = new wp(2131231188, 0);
             wpVar.c(org.telegram.messenger.g0.L(16.0f));
             wpVar.G = 1.0f;
-            wpVar.f40062r = -org.telegram.messenger.g0.L(1.0f);
-            wpVar.f40063s = org.telegram.messenger.g0.L(1.0f);
+            wpVar.f40070r = -org.telegram.messenger.g0.L(1.0f);
+            wpVar.f40071s = org.telegram.messenger.g0.L(1.0f);
             ((SpannableStringBuilder) f8878y[0]).setSpan(wpVar, 0, 1, 33);
         }
         return f8878y[0];
@@ -77,19 +77,19 @@ public final class c8 {
             } else {
                 o4 = org.telegram.messenger.g0.o();
             }
-            this.f8890n = new ly0(spannableStringBuilder, f11, o4);
+            this.f8890n = new my0(spannableStringBuilder, f11, o4);
         }
         if (this.f8891o == null || this.f8889m) {
             String str2 = this.f8888l;
             if (str2 != null) {
                 str = str2;
             }
-            this.f8891o = new ly0(str, 14.0f, null);
+            this.f8891o = new my0(str, 14.0f, null);
         }
         float d = this.h.d(this.f8883f);
         Paint paint = this.f8896t;
         paint.setColor(1073741824);
-        int min = (int) Math.min(f10, Math.max(this.f8890n.f35782c, this.f8891o.f35782c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
+        int min = (int) Math.min(f10, Math.max(this.f8890n.f36125c, this.f8891o.f36125c) + org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(18.0f)));
         this.f8899x = min;
         int W1 = org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(22.0f));
         float f12 = min;
@@ -123,13 +123,13 @@ public final class c8 {
         if (f12 < f10) {
             L = (int) Math.min(org.telegram.messenger.g0.L(12.0f) + L, f10 - org.telegram.messenger.g0.L(20.0f));
         }
-        ly0 ly0Var = this.f8890n;
+        my0 my0Var = this.f8890n;
         float f14 = L;
-        ly0Var.f35793p = f14;
-        ly0Var.c(org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(7.0f)), org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(11.0f)), 1.0f, -1, canvas);
-        ly0 ly0Var2 = this.f8891o;
-        ly0Var2.f35793p = f14;
-        ly0Var2.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(30.0f), f13, -1, canvas);
+        my0Var.f36136p = f14;
+        my0Var.c(org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(7.0f)), org.telegram.messenger.g0.W1(d, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(11.0f)), 1.0f, -1, canvas);
+        my0 my0Var2 = this.f8891o;
+        my0Var2.f36136p = f14;
+        my0Var2.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(30.0f), f13, -1, canvas);
         canvas.restore();
     }
 

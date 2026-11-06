@@ -1,28 +1,28 @@
 package p7;
 
-import c8.cb;
+import c8.hb;
 public final class c extends e {
-    public final transient e f53394c;
+    public final transient e f53392c;
 
     public c(e eVar) {
-        this.f53394c = eVar;
+        this.f53392c = eVar;
     }
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f53394c.contains(obj);
+        return this.f53392c.contains(obj);
     }
 
     @Override
     public final Object get(int i7) {
-        e eVar = this.f53394c;
-        cb.a(i7, eVar.size());
+        e eVar = this.f53392c;
+        hb.a(i7, eVar.size());
         return eVar.get((eVar.size() - 1) - i7);
     }
 
     @Override
     public final int indexOf(Object obj) {
-        e eVar = this.f53394c;
+        e eVar = this.f53392c;
         int lastIndexOf = eVar.lastIndexOf(obj);
         if (lastIndexOf < 0) {
             return -1;
@@ -32,12 +32,12 @@ public final class c extends e {
 
     @Override
     public final e l() {
-        return this.f53394c;
+        return this.f53392c;
     }
 
     @Override
     public final int lastIndexOf(Object obj) {
-        e eVar = this.f53394c;
+        e eVar = this.f53392c;
         int indexOf = eVar.indexOf(obj);
         if (indexOf < 0) {
             return -1;
@@ -47,13 +47,13 @@ public final class c extends e {
 
     @Override
     public final e subList(int i7, int i10) {
-        e eVar = this.f53394c;
-        cb.b(i7, i10, eVar.size());
+        e eVar = this.f53392c;
+        hb.b(i7, i10, eVar.size());
         return eVar.subList(eVar.size() - i10, eVar.size() - i7).l();
     }
 
     @Override
     public final int size() {
-        return this.f53394c.size();
+        return this.f53392c.size();
     }
 }

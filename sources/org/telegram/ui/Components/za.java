@@ -60,7 +60,7 @@ public abstract class za extends gb {
     public void setTimer() {
         vb vbVar = new vb(getContext(), this.resourcesProvider);
         this.timerView = vbVar;
-        vbVar.f38910b = 5000L;
+        vbVar.f38931b = 5000L;
         addView(vbVar, c8.ha.i(20.0f, 20.0f, 8388627, 21.0f, 0.0f, 21.0f, 0.0f));
     }
 

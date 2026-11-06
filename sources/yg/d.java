@@ -6,8 +6,8 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.f6;
 public class d extends c {
-    public static final int f59352w = 0;
-    public int f59353s;
+    public static final int f59351w = 0;
+    public int f59352s;
 
     public d(Context context, f6 f6Var) {
         super(context, f6Var);
@@ -29,13 +29,13 @@ public class d extends c {
         float f12;
         float f13;
         int i12 = 3;
-        if (hd.f22871a0) {
+        if (hd.f22878a0) {
             i7 = 5;
         } else {
             i7 = 3;
         }
-        this.f59336c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
-        boolean z9 = hd.f22871a0;
+        this.f59335c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 57.0f, 0.0f, 57.0f, 0.0f));
+        boolean z9 = hd.f22878a0;
         if (z9) {
             i10 = 5;
         } else {
@@ -53,7 +53,7 @@ public class d extends c {
             f11 = 20.0f;
         }
         this.d.setLayoutParams(ha.d(-1, -2.0f, i13, f10, 0.0f, f11, 0.0f));
-        boolean z10 = hd.f22871a0;
+        boolean z10 = hd.f22878a0;
         if (z10) {
             i11 = 5;
         } else {
@@ -70,14 +70,14 @@ public class d extends c {
         } else {
             f13 = 20.0f;
         }
-        this.f59337e.setLayoutParams(ha.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
-        if (hd.f22871a0) {
+        this.f59336e.setLayoutParams(ha.d(-1, -2.0f, i14, f12, 0.0f, f13, 0.0f));
+        if (hd.f22878a0) {
             i12 = 5;
         }
-        this.f59338f.setLayoutParams(ha.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
+        this.f59337f.setLayoutParams(ha.d(22, 22.0f, i12 | 16, 16.0f, 0.0f, 15.0f, 0.0f));
     }
 
     public int getSelectedType() {
-        return this.f59353s;
+        return this.f59352s;
     }
 }

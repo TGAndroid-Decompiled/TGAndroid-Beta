@@ -7,14 +7,14 @@ import org.telegram.messenger.qp;
 import org.telegram.ui.Components.gp0;
 import org.telegram.ui.Components.k60;
 public final class n3 extends org.telegram.ui.ActionBar.j {
-    public final org.telegram.ui.ActionBar.r0 f60384a;
-    public final long f60385b;
-    public final o3 f60386c;
+    public final org.telegram.ui.ActionBar.r0 f60383a;
+    public final long f60384b;
+    public final o3 f60385c;
 
     public n3(o3 o3Var, org.telegram.ui.ActionBar.r0 r0Var, long j3) {
-        this.f60386c = o3Var;
-        this.f60384a = r0Var;
-        this.f60385b = j3;
+        this.f60385c = o3Var;
+        this.f60383a = r0Var;
+        this.f60384b = j3;
     }
 
     @Override
@@ -22,25 +22,25 @@ public final class n3 extends org.telegram.ui.ActionBar.j {
         boolean w10;
         org.telegram.ui.ActionBar.z0 z0Var;
         org.telegram.ui.ActionBar.z0 z0Var2;
-        o3 o3Var = this.f60386c;
+        o3 o3Var = this.f60385c;
         v9 v9Var = o3Var.Q1;
         if (i7 == 1) {
             k60 k60Var = o3Var.V1;
             if (k60Var != null) {
                 k60Var.u();
             }
-            k60 F = k60.F(o3Var.f28618c, o3Var.I0, this.f60384a);
+            k60 F = k60.F(o3Var.f28619c, o3Var.I0, this.f60383a);
             o3Var.V1 = F;
-            long e10 = p10.i(o3Var.f28612a).e();
-            long j3 = this.f60385b;
+            long e10 = p10.i(o3Var.f28613a).e();
+            long j3 = this.f60384b;
             if (j3 == e10) {
                 w10 = true;
             } else if (j3 >= 0) {
                 w10 = false;
             } else {
-                w10 = org.telegram.messenger.t3.w(5, qp.s1(o3Var.f28612a).M0(Long.valueOf(-j3)));
+                w10 = org.telegram.messenger.t3.w(5, qp.s1(o3Var.f28613a).M0(Long.valueOf(-j3)));
             }
-            org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(0, F.f35155e, F.d, false, false);
+            org.telegram.ui.ActionBar.z0 z0Var3 = new org.telegram.ui.ActionBar.z0(0, F.f35180e, F.d, false, false);
             F.d(z0Var3);
             F.k();
             org.telegram.ui.ActionBar.z0 h = F.h();
@@ -76,7 +76,7 @@ public final class n3 extends org.telegram.ui.ActionBar.j {
             }
             F.Y = true;
             F.J = false;
-            F.f35180s = 0;
+            F.f35205s = 0;
             F.Z();
         } else if (i7 == -1) {
             o3Var.dismiss();

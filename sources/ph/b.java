@@ -17,18 +17,18 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.z7;
 import org.telegram.ui.Components.xq;
 public final class b extends FrameLayout implements te.b, a6 {
-    public ShapeDrawable f53544a;
-    public final f6 f53545b;
-    public final z7 f53546c;
+    public ShapeDrawable f53543a;
+    public final f6 f53544b;
+    public final z7 f53545c;
     public final TextView d;
-    public final te.a f53547e;
+    public final te.a f53546e;
 
     public b(Context context, f6 f6Var) {
         super(context);
-        this.f53547e = new te.a(0, this, xq.h, 380L, false);
-        this.f53545b = f6Var;
+        this.f53546e = new te.a(0, this, xq.h, 380L, false);
+        this.f53544b = f6Var;
         z7 z7Var = new z7(context, f6Var, false);
-        this.f53546c = z7Var;
+        this.f53545c = z7Var;
         addView(z7Var, ha.d(45, 45.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -42,7 +42,7 @@ public final class b extends FrameLayout implements te.b, a6 {
 
     @Override
     public final void Y(int i7, float f10, float f11, te.c cVar) {
-        ShapeDrawable shapeDrawable = this.f53544a;
+        ShapeDrawable shapeDrawable = this.f53543a;
         if (shapeDrawable != null) {
             shapeDrawable.setAlpha((int) (f10 * 255.0f));
         }
@@ -50,11 +50,11 @@ public final class b extends FrameLayout implements te.b, a6 {
     }
 
     public final void a(boolean z9, boolean z10) {
-        if (z9 && this.f53544a == null) {
-            this.f53544a = k6.d0(g0.L(10.0f), i0.a.o(k6.w0(k6.Kl, this.f53545b), 25));
+        if (z9 && this.f53543a == null) {
+            this.f53543a = k6.d0(g0.L(10.0f), i0.a.o(k6.w0(k6.Kl, this.f53544b), 25));
         }
-        te.a aVar = this.f53547e;
-        if (aVar.f55396f == z9 && !z10) {
+        te.a aVar = this.f53546e;
+        if (aVar.f55395f == z9 && !z10) {
             return;
         }
         aVar.a(z9, z10);
@@ -67,12 +67,12 @@ public final class b extends FrameLayout implements te.b, a6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        ShapeDrawable shapeDrawable = this.f53544a;
+        ShapeDrawable shapeDrawable = this.f53543a;
         if (shapeDrawable != null) {
-            te.a aVar = this.f53547e;
-            if (aVar.f55395e > 0.0f) {
+            te.a aVar = this.f53546e;
+            if (aVar.f55394e > 0.0f) {
                 shapeDrawable.setBounds(0, 0, getWidth(), getHeight());
-                s.b(canvas, this.f53544a, g0.T1(0.9f, 1.0f, aVar.f55395e));
+                s.b(canvas, this.f53543a, g0.T1(0.9f, 1.0f, aVar.f55394e));
             }
         }
         super.dispatchDraw(canvas);
@@ -80,7 +80,7 @@ public final class b extends FrameLayout implements te.b, a6 {
 
     @Override
     public final boolean isSelected() {
-        return this.f53547e.f55396f;
+        return this.f53546e.f55395f;
     }
 
     public void setPack(TLRPC.TL_messages_stickerSet tL_messages_stickerSet) {
@@ -91,16 +91,16 @@ public final class b extends FrameLayout implements te.b, a6 {
         } else {
             document = null;
         }
-        this.f53546c.d(document, null, null, null, false, false);
+        this.f53545c.d(document, null, null, null, false, false);
     }
 
     @Override
     public final void updateColors() {
-        ShapeDrawable shapeDrawable = this.f53544a;
-        f6 f6Var = this.f53545b;
+        ShapeDrawable shapeDrawable = this.f53543a;
+        f6 f6Var = this.f53544b;
         if (shapeDrawable != null) {
             k6.C1(i0.a.o(k6.w0(k6.Kl, f6Var), 25), shapeDrawable);
-            this.f53544a.setAlpha((int) (this.f53547e.f55395e * 255.0f));
+            this.f53543a.setAlpha((int) (this.f53546e.f55394e * 255.0f));
             invalidate();
         }
         this.d.setTextColor(i0.a.o(k6.w0(k6.Kl, f6Var), 229));

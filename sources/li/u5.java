@@ -11,7 +11,7 @@ import java.util.HashMap;
 import org.telegram.messenger.a8;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.i9;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 public final class u5 implements f1 {
     public final a6 f18922a;
 
@@ -66,7 +66,7 @@ public final class u5 implements f1 {
                 a aVar = a6Var.f18432y;
                 t3 t3Var = ((c3) x5Var).f18501a;
                 ArrayList arrayList = t3Var.f18903w4;
-                k41 k41Var = t3Var.f36781f3;
+                l41 l41Var = t3Var.f37160f3;
                 ArrayList arrayList2 = t3Var.f18894s3;
                 int indexOf = arrayList2.indexOf(aVar);
                 if (indexOf >= 0) {
@@ -94,7 +94,7 @@ public final class u5 implements f1 {
                             ArrayList arrayList3 = aVar.f18396k;
                             arrayList3.remove(arrayList3.size() - 1);
                             t3Var.v4();
-                            k41Var.O(false);
+                            l41Var.O(false);
                             f2 f2Var2 = t3Var.Q3;
                             if (f2Var2 != null) {
                                 f2Var2.h();
@@ -104,7 +104,7 @@ public final class u5 implements f1 {
                         } else if (aVar.f18390c > 0) {
                             t3Var.w2(indexOf);
                             t3Var.v4();
-                            k41Var.O(false);
+                            l41Var.O(false);
                             f2 f2Var3 = t3Var.Q3;
                             if (f2Var3 != null) {
                                 f2Var3.h();
@@ -145,7 +145,7 @@ public final class u5 implements f1 {
                     arrayList2.add(i11, aVar2);
                     t3Var.v4();
                     if (z10) {
-                        k41Var.O(false);
+                        l41Var.O(false);
                         f2 f2Var4 = t3Var.Q3;
                         if (f2Var4 != null) {
                             f2Var4.h();
@@ -158,17 +158,17 @@ public final class u5 implements f1 {
                         text.delete(length, text.length());
                         editText.f18583c2 = false;
                     }
-                    k41Var.T();
+                    l41Var.T();
                     t3Var.s4(i11);
                     int indexOf2 = arrayList.indexOf(aVar2);
                     if (indexOf2 < 0) {
-                        k41Var.f();
+                        l41Var.f();
                     } else {
                         v4.l0 itemAnimator = t3Var.getItemAnimator();
                         t3Var.setItemAnimator(null);
-                        k41Var.i(indexOf2);
+                        l41Var.i(indexOf2);
                         if (aVar.d > 0 && (i7 = indexOf2 + 1) < arrayList.size()) {
-                            k41Var.k(i7, (arrayList.size() - indexOf2) - 1);
+                            l41Var.k(i7, (arrayList.size() - indexOf2) - 1);
                         }
                         t3Var.post(new w2(t3Var, itemAnimator, 0));
                     }

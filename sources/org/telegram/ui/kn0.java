@@ -4,18 +4,18 @@ import android.graphics.drawable.Drawable;
 import android.text.style.ClickableSpan;
 import android.widget.TextView;
 public final class kn0 implements org.telegram.messenger.v10 {
-    public final int f47214a;
-    public final PhotoViewer f47215b;
+    public final int f47213a;
+    public final PhotoViewer f47214b;
 
     public kn0(PhotoViewer photoViewer, int i7) {
-        this.f47214a = i7;
-        this.f47215b = photoViewer;
+        this.f47213a = i7;
+        this.f47214b = photoViewer;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f47214a;
-        PhotoViewer photoViewer = this.f47215b;
+        int i7 = this.f47213a;
+        PhotoViewer photoViewer = this.f47214b;
         switch (i7) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.Y8;

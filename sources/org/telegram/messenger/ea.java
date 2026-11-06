@@ -5,21 +5,21 @@ import android.os.Parcelable;
 import android.os.RemoteException;
 import com.google.android.gms.maps.model.LatLng;
 public final class ea {
-    public final m8.f f22169a;
+    public final m8.f f22176a;
 
     public ea(m8.f fVar) {
-        this.f22169a = fVar;
+        this.f22176a = fVar;
     }
 
     public final cb a() {
         LatLng createFromParcel;
-        m8.f fVar = this.f22169a;
+        m8.f fVar = this.f22176a;
         fVar.getClass();
         try {
             v7.i iVar = (v7.i) fVar.f19939a;
             Parcel O0 = iVar.O0(iVar.P0(), 4);
             Parcelable.Creator<LatLng> creator = LatLng.CREATOR;
-            int i7 = v7.b.f57155a;
+            int i7 = v7.b.f57154a;
             if (O0.readInt() == 0) {
                 createFromParcel = null;
             } else {
@@ -34,8 +34,8 @@ public final class ea {
     }
 
     public final void b(cb cbVar) {
-        LatLng latLng = new LatLng(cbVar.f21791a, cbVar.f21792b);
-        m8.f fVar = this.f22169a;
+        LatLng latLng = new LatLng(cbVar.f21797a, cbVar.f21798b);
+        m8.f fVar = this.f22176a;
         fVar.getClass();
         try {
             v7.i iVar = (v7.i) fVar.f19939a;
@@ -49,7 +49,7 @@ public final class ea {
 
     public final void c(int i7) {
         float f10 = i7;
-        m8.f fVar = this.f22169a;
+        m8.f fVar = this.f22176a;
         fVar.getClass();
         try {
             v7.i iVar = (v7.i) fVar.f19939a;

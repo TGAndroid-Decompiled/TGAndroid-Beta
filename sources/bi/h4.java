@@ -8,7 +8,7 @@ import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.messenger.xr;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.gy0;
+import org.telegram.ui.Components.hy0;
 import org.telegram.ui.Components.yn;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
@@ -43,7 +43,7 @@ public final class h4 implements Runnable {
                 long j3 = this.f3992b;
                 long j10 = this.f3993c;
                 String str2 = h2.m0.f14112a;
-                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57564c)).f17771a.f17881s;
+                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57563c)).f17771a.f17881s;
                 m2.a U = eVar.U();
                 eVar.V(U, 1016, new m2.c(U, str, j10, j3, 13));
                 return;
@@ -74,7 +74,7 @@ public final class h4 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(xr.a(j13, j14));
                     wwVar.C2.y(wwVar, arrayList, null, false, wwVar.J2, wwVar.K2, wwVar.L2, v91Var);
-                    if (wwVar.f51574i2) {
+                    if (wwVar.f51572i2) {
                         wwVar.C2 = null;
                         return;
                     }
@@ -88,13 +88,13 @@ public final class h4 implements Runnable {
                 long j16 = this.f3993c;
                 an anVar = (an) this.f3994e;
                 String str5 = LaunchActivity.B1;
-                TLRPC.TL_forumTopic f10 = qp.s1(launchActivity.O).f24862q7.f(j15, j16);
+                TLRPC.TL_forumTopic f10 = qp.s1(launchActivity.O).f24870q7.f(j15, j16);
                 StringBuilder t6 = a8.p0.t(j15, "LaunchActivity openForum after load ", " ");
                 t6.append(j16);
                 t6.append(" TL_forumTopic ");
                 t6.append(f10);
                 org.telegram.messenger.a8.b(t6.toString());
-                if (launchActivity.f41276o0 != null) {
+                if (launchActivity.f41275o0 != null) {
                     qg.d.a(anVar, xr.a(-j15, j16));
                     ((ActionBarLayout) launchActivity.M()).S(anVar);
                     return;
@@ -105,9 +105,9 @@ public final class h4 implements Runnable {
                 wi.p0 p0Var = (wi.p0) this.f3994e;
                 long j17 = this.f3992b;
                 long j18 = this.f3993c;
-                synchronized (t0Var.f58104g) {
-                    if (!p0Var.d && !p0Var.f58037e) {
-                        ((gy0) t0Var.f58102e).a(p0Var.f58034a, p0Var.f58035b, j17, j18);
+                synchronized (t0Var.f58103g) {
+                    if (!p0Var.d && !p0Var.f58036e) {
+                        ((hy0) t0Var.f58101e).a(p0Var.f58033a, p0Var.f58034b, j17, j18);
                         return;
                     }
                     return;

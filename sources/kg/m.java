@@ -38,15 +38,15 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.w5;
 import org.telegram.ui.Cells.i3;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.mn;
+import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.nn;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.pn;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.ks;
-public final class m extends m41 implements ls {
+public final class m extends n41 implements ls {
     public String D;
     public TLRPC.InputDocument E;
     public boolean F;
@@ -68,7 +68,7 @@ public final class m extends m41 implements ls {
 
     public m() {
         ui mediaDataController = getMediaDataController();
-        TLRPC.Document document = mediaDataController.f25844y0;
+        TLRPC.Document document = mediaDataController.f25852y0;
         mediaDataController.n1();
         this.f17432y = document;
         this.K = l0();
@@ -88,14 +88,14 @@ public final class m extends m41 implements ls {
             mVar2.L = u2Var;
             u2Var.T3 = new g6.d0(mVar2, 9);
         }
-        mVar2.L.f32895a2.i0();
+        mVar2.L.f32924a2.i0();
         mVar2.L.y1(1, false);
         u2 u2Var2 = mVar2.L;
         u2Var2.O3 = true;
         u2Var2.W0(new hi.u1(mVar2, 6));
         mVar2.L.e1();
         u2 u2Var3 = mVar2.L;
-        u2Var3.f32942p1 = null;
+        u2Var3.f32971p1 = null;
         if (mVar2.visibleDialog != null) {
             u2Var3.show();
         } else {
@@ -108,7 +108,7 @@ public final class m extends m41 implements ls {
         if (iVar != null && iVar.isAttachedToWindow() && mVar.f17431x) {
             i iVar2 = mVar.f17427n;
             ui b02 = ui.b0(mVar.currentAccount);
-            TLRPC.Document document = b02.f25844y0;
+            TLRPC.Document document = b02.f25852y0;
             b02.n1();
             g gVar = new g(mVar, 2);
             if (document == null) {
@@ -119,14 +119,14 @@ public final class m extends m41 implements ls {
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            iVar2.f37006n.getImageReceiver().f21192g1 = new nn(iVar2, gVar);
+            iVar2.f37022n.getImageReceiver().f21192g1 = new nn(iVar2, gVar);
             rz f10 = t5.f(document, k6.Zc, 1.0f, null);
             if (f10 != null) {
-                iVar2.f37006n.p(hc.b(document), pn.b(document), f10, document);
+                iVar2.f37022n.p(hc.b(document), pn.b(document), f10, document);
             } else {
-                iVar2.f37006n.l(hc.b(document), pn.b(document), hc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
+                iVar2.f37022n.l(hc.b(document), pn.b(document), hc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
             }
-            iVar2.f37006n.setOnClickListener(new mn(iVar2, document, 1));
+            iVar2.f37022n.setOnClickListener(new mn(iVar2, document, 1));
         }
     }
 
@@ -152,42 +152,42 @@ public final class m extends m41 implements ls {
     }
 
     @Override
-    public final void Z(ArrayList arrayList, k41 k41Var) {
-        arrayList.add(w31.k(this.h));
-        arrayList.add(w31.u(hd.M0(2131752724, null)));
-        arrayList.add(w31.k(this.f17429s));
-        arrayList.add(w31.k(this.f17430w));
+    public final void Z(ArrayList arrayList, l41 l41Var) {
+        arrayList.add(x31.k(this.h));
+        arrayList.add(x31.u(hd.M0(2131752724, null)));
+        arrayList.add(x31.k(this.f17429s));
+        arrayList.add(x31.k(this.f17430w));
         if (this.f17431x) {
-            arrayList.add(w31.f(hd.M0(2131752720, null), hd.M0(2131752719, null), 1));
+            arrayList.add(x31.f(hd.M0(2131752720, null), hd.M0(2131752719, null), 1));
         } else if (this.D != null) {
             String M0 = hd.M0(2131752720, null);
             String str = this.D;
-            w31 w31Var = new w31(3);
-            w31Var.d = 1;
-            w31Var.f39830l = M0;
-            w31Var.G = str;
-            arrayList.add(w31Var);
+            x31 x31Var = new x31(3);
+            x31Var.d = 1;
+            x31Var.f40159l = M0;
+            x31Var.G = str;
+            arrayList.add(x31Var);
         } else {
             String M02 = hd.M0(2131752720, null);
             TLRPC.Document document = this.f17432y;
-            w31 w31Var2 = new w31(3);
-            w31Var2.d = 1;
-            w31Var2.f39830l = M02;
-            w31Var2.G = document;
-            arrayList.add(w31Var2);
+            x31 x31Var2 = new x31(3);
+            x31Var2.d = 1;
+            x31Var2.f40159l = M02;
+            x31Var2.G = document;
+            arrayList.add(x31Var2);
         }
-        arrayList.add(w31.C(hd.M0(2131752723, null)));
+        arrayList.add(x31.C(hd.M0(2131752723, null)));
         boolean l02 = l0();
         this.K = !l02;
         if (!l02) {
-            arrayList.add(w31.C(null));
-            w31 e10 = w31.e(2, hd.M0(2131752721, null));
-            e10.f39836r = true;
+            arrayList.add(x31.C(null));
+            x31 e10 = x31.e(2, hd.M0(2131752721, null));
+            e10.f40165r = true;
             arrayList.add(e10);
         }
-        w31 w31Var3 = new w31(8);
-        w31Var3.f39830l = null;
-        arrayList.add(w31Var3);
+        x31 x31Var3 = new x31(8);
+        x31Var3.f40159l = null;
+        arrayList.add(x31Var3);
     }
 
     @Override
@@ -196,9 +196,9 @@ public final class m extends m41 implements ls {
     }
 
     @Override
-    public final void b0(w31 w31Var, View view) {
+    public final void b0(x31 x31Var, View view) {
         View[] viewPages;
-        int i7 = w31Var.d;
+        int i7 = x31Var.d;
         if (i7 == 1) {
             k2 k2Var = new k2(getParentActivity(), getResourceProvider(), true, true);
             k2Var.f12263v1 = new ab.g(19, this, view);
@@ -221,7 +221,7 @@ public final class m extends m41 implements ls {
             this.f17427n.d("", "");
             i iVar = this.f17427n;
             ui b02 = ui.b0(this.currentAccount);
-            TLRPC.Document document = b02.f25844y0;
+            TLRPC.Document document = b02.f25852y0;
             b02.n1();
             this.f17432y = document;
             iVar.setSticker(document);
@@ -233,7 +233,7 @@ public final class m extends m41 implements ls {
     }
 
     @Override
-    public final boolean c0(w31 w31Var, View view) {
+    public final boolean c0(x31 x31Var, View view) {
         return false;
     }
 
@@ -250,7 +250,7 @@ public final class m extends m41 implements ls {
         i iVar = this.f17427n;
         j jVar2 = this.h;
         Paint themedPaint = getThemedPaint("paintChatActionBackground");
-        int i7 = k6.f27784a;
+        int i7 = k6.f27785a;
         this.f17428r = new w5(iVar, jVar2, L, themedPaint);
         this.f17427n.setBackground(new ColorDrawable(0));
         k kVar = new k(context, 0);
@@ -260,10 +260,10 @@ public final class m extends m41 implements ls {
         this.h.addView(this.f17427n, ha.d(-2, -2.0f, 17, 42.0f, 18.0f, 42.0f, 18.0f));
         l lVar = new l(this, context, hd.M0(2131752718, null), getMessagesController().F5, this.resourceProvider, 0);
         this.f17429s = lVar;
-        lVar.f29411r = true;
+        lVar.f29412r = true;
         lVar.setShowLimitOnFocus(true);
         l lVar2 = this.f17429s;
-        int i10 = k6.f27848d6;
+        int i10 = k6.f27849d6;
         r6.i(i10, lVar2, getResourceProvider());
         this.f17429s.setDivider(true);
         l lVar3 = this.f17429s;
@@ -285,17 +285,17 @@ public final class m extends m41 implements ls {
         i3Var2.setOnEditorActionListener(new s2(fVar2, 2));
         this.f17427n.d("", "");
         super.createView(context);
-        this.f35845b.setBackground(null);
-        this.f35844a.r1();
-        this.f35844a.setSectionsDrawBackground(true);
-        this.f35844a.f36781f3.f35132r = false;
+        this.f36228b.setBackground(null);
+        this.f36227a.r1();
+        this.f36227a.setSectionsDrawBackground(true);
+        this.f36227a.f37160f3.f35510r = false;
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 12));
         this.f17426f = this.simpleActionBar.n(hd.M0(2131745947, null));
         j0(false);
-        this.f35844a.addOnLayoutChangeListener(new l2(this, 1));
-        this.f35844a.j(new ai.b(this, 20));
-        w3 w3Var = this.f35844a;
-        w3Var.f36783h3 = true;
+        this.f36227a.addOnLayoutChangeListener(new l2(this, 1));
+        this.f36227a.j(new ai.b(this, 20));
+        w3 w3Var = this.f36227a;
+        w3Var.f37162h3 = true;
         w3Var.setClipChildren(false);
         View view = this.fragmentView;
         if (view instanceof ViewGroup) {
@@ -315,7 +315,7 @@ public final class m extends m41 implements ls {
 
     @Override
     public final pj0 getListViewForSimpleGlass() {
-        return this.f35844a;
+        return this.f36227a;
     }
 
     @Override
@@ -326,16 +326,16 @@ public final class m extends m41 implements ls {
     public final void j0(boolean z9) {
         if (this.f17426f != null) {
             this.f17426f.a(k0(), z9);
-            w3 w3Var = this.f35844a;
-            if (w3Var != null && w3Var.f36781f3 != null && this.K != (!l0())) {
-                w3 w3Var2 = this.f35844a;
+            w3 w3Var = this.f36227a;
+            if (w3Var != null && w3Var.f37160f3 != null && this.K != (!l0())) {
+                w3 w3Var2 = this.f36227a;
                 if (w3Var2 != null && w3Var2.getChildCount() > 0) {
                     View view = null;
                     int i7 = Integer.MAX_VALUE;
                     int i10 = -1;
-                    for (int i11 = 0; i11 < this.f35844a.getChildCount(); i11++) {
-                        int R = RecyclerView.R(this.f35844a.getChildAt(i11));
-                        View childAt = this.f35844a.getChildAt(i11);
+                    for (int i11 = 0; i11 < this.f36227a.getChildCount(); i11++) {
+                        int R = RecyclerView.R(this.f36227a.getChildAt(i11));
+                        View childAt = this.f36227a.getChildAt(i11);
                         if (R != -1 && childAt.getTop() < i7) {
                             i7 = childAt.getTop();
                             i10 = R;
@@ -343,20 +343,20 @@ public final class m extends m41 implements ls {
                         }
                     }
                     if (view != null) {
-                        this.f35846c = i10;
+                        this.f36229c = i10;
                         int top = view.getTop();
                         this.d = top;
-                        if (this.f35846c == 0 && top > org.telegram.messenger.g0.L(88.0f)) {
+                        if (this.f36229c == 0 && top > org.telegram.messenger.g0.L(88.0f)) {
                             this.d = org.telegram.messenger.g0.L(88.0f);
                         }
-                        this.f35844a.f36780e3.h1(i10, view.getTop() - this.f35844a.getPaddingTop());
+                        this.f36227a.f37159e3.h1(i10, view.getTop() - this.f36227a.getPaddingTop());
                     }
                 }
-                this.f35844a.f36781f3.O(true);
-                int i12 = this.f35846c;
+                this.f36227a.f37160f3.O(true);
+                int i12 = this.f36229c;
                 if (i12 >= 0) {
-                    w3 w3Var3 = this.f35844a;
-                    w3Var3.f36780e3.h1(i12, this.d - w3Var3.getPaddingTop());
+                    w3 w3Var3 = this.f36227a;
+                    w3Var3.f37159e3.h1(i12, this.d - w3Var3.getPaddingTop());
                 }
             }
         }
@@ -380,7 +380,7 @@ public final class m extends m41 implements ls {
             if (TextUtils.equals(charSequence2, str2)) {
                 boolean z9 = this.f17431x;
                 if (!z9 && (document = this.f17432y) != null) {
-                    j3 = document.f26958id;
+                    j3 = document.f26959id;
                 } else {
                     j3 = 0;
                 }
@@ -411,7 +411,7 @@ public final class m extends m41 implements ls {
     public final void m0() {
         TLRPC.Document document;
         b5 b5Var = this.f17426f;
-        if (b5Var.f27354y.f55396f) {
+        if (b5Var.f27355y.f55395f) {
             return;
         }
         b5Var.b(true);
@@ -436,7 +436,7 @@ public final class m extends m41 implements ls {
                     messagesController.getClass();
                     if (document2 != null) {
                         tL_inputDocument = new TLRPC.TL_inputDocument();
-                        tL_inputDocument.f26964id = document2.f26958id;
+                        tL_inputDocument.f26965id = document2.f26959id;
                         tL_inputDocument.access_hash = document2.access_hash;
                         byte[] bArr = document2.file_reference;
                         tL_inputDocument.file_reference = bArr;
@@ -470,7 +470,7 @@ public final class m extends m41 implements ls {
     public final void n0() {
         long j3;
         boolean z9;
-        k41 k41Var;
+        l41 l41Var;
         if (this.J) {
             return;
         }
@@ -504,7 +504,7 @@ public final class m extends m41 implements ls {
         if (document == null) {
             j3 = 0;
         } else {
-            j3 = document.f26958id;
+            j3 = document.f26959id;
         }
         this.I = j3;
         if (document == null) {
@@ -520,7 +520,7 @@ public final class m extends m41 implements ls {
             TLRPC.Document document2 = this.f17432y;
             if (document2 == null || this.f17431x) {
                 ui b02 = ui.b0(this.currentAccount);
-                TLRPC.Document document3 = b02.f25844y0;
+                TLRPC.Document document3 = b02.f25852y0;
                 b02.n1();
                 document2 = document3;
             }
@@ -531,9 +531,9 @@ public final class m extends m41 implements ls {
             org.telegram.messenger.g0.r(gVar);
             org.telegram.messenger.g0.i3(gVar, 5000L);
         }
-        w3 w3Var = this.f35844a;
-        if (w3Var != null && (k41Var = w3Var.f36781f3) != null) {
-            k41Var.O(true);
+        w3 w3Var = this.f36227a;
+        if (w3Var != null && (l41Var = w3Var.f37160f3) != null) {
+            l41Var.O(true);
         }
         this.J = true;
     }
@@ -544,7 +544,7 @@ public final class m extends m41 implements ls {
             if (z9) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
                 String M0 = hd.M0(2131743836, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = hd.M0(2131752717, null);
                 alertDialog$Builder.k(hd.M0(2131754216, null), new org.telegram.ui.ActionBar.r1(this) {

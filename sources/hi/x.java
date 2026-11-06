@@ -54,12 +54,12 @@ public final class x extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        w wVar = (w) d1Var.f56952a;
+        w wVar = (w) d1Var.f56951a;
         String str = (String) this.f15023c.get(i7);
         if (((Boolean) this.f15024e.get(i7)).booleanValue()) {
             wp wpVar = new wp(2131231942, 0);
             wpVar.a(k6.A6);
-            wpVar.f40061n = 1;
+            wpVar.f40069n = 1;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(wpVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -90,7 +90,7 @@ public final class x extends oj0 {
         TextView textView = new TextView(context);
         linearLayout.f15007a = textView;
         textView.setTextSize(1, 14.0f);
-        int i11 = k6.f28240y6;
+        int i11 = k6.f28241y6;
         r6.V(textView, i11, null);
         textView.setTag(Integer.valueOf(i11));
         linearLayout.addView(textView, ha.p(-2, -2, 0.0f, 16));

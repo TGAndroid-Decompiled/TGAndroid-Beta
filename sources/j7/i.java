@@ -3,7 +3,7 @@ package j7;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import org.telegram.ui.Cells.f1;
 public final class i extends r6.a {
     public static final Parcelable.Creator<i> CREATOR = new b(7);
@@ -45,13 +45,13 @@ public final class i extends r6.a {
     @Override
     public final void writeToParcel(Parcel dest, int i7) {
         kotlin.jvm.internal.j.e(dest, "dest");
-        int r10 = wb.r(dest, 20293);
-        wb.l(dest, 1, this.f16567a);
-        wb.b(dest, 2, this.f16568b);
-        wb.b(dest, 3, this.f16569c);
-        wb.l(dest, 4, this.d);
-        wb.l(dest, 5, this.f16570e);
-        wb.l(dest, 6, this.f16571f);
-        wb.s(dest, r10);
+        int r10 = xb.r(dest, 20293);
+        xb.l(dest, 1, this.f16567a);
+        xb.b(dest, 2, this.f16568b);
+        xb.b(dest, 3, this.f16569c);
+        xb.l(dest, 4, this.d);
+        xb.l(dest, 5, this.f16570e);
+        xb.l(dest, 6, this.f16571f);
+        xb.s(dest, r10);
     }
 }

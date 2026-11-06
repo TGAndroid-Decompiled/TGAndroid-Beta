@@ -45,7 +45,7 @@ public final class at {
 
     public final void a() {
         e0.q qVar = this.f21505g;
-        boolean z9 = r2.f25191a;
+        boolean z9 = r2.f25199a;
         int i7 = this.f21500a;
         if (z9) {
             StringBuilder n10 = jg.g.n(i7, "show dialog notification with id ", " ");
@@ -57,7 +57,7 @@ public final class at {
             a8.l(n10.toString());
         }
         try {
-            dt.f22052l0.e(null, i7, qVar.b());
+            dt.f22059l0.e(null, i7, qVar.b());
         } catch (SecurityException e10) {
             a8.g(e10, true);
             this.f21515r.P(qVar, this.f21501b, this.h, this.f21506i, this.f21507j, this.f21508k, this.f21509l, this.f21510m, this.f21511n, this.f21512o, this.f21513p, this.f21514q);

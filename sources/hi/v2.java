@@ -59,7 +59,7 @@ public final class v2 implements org.telegram.ui.web.d0 {
         ?? obj = new Object();
         obj.f19608a = new t2(this, 0);
         cc V = new hc(a3Var.f14531q0, a3Var.F).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753087, t10.p(a22))), null, obj);
-        V.f32527j = 5000;
+        V.f32514j = 5000;
         V.k(true);
     }
 
@@ -263,7 +263,7 @@ public final class v2 implements org.telegram.ui.web.d0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) obj.f14936e);
-            spannableStringBuilder.setSpan(new r5(obj.f14937f, 1.4f, rVarArr[0].f14911l.f34475a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new r5(obj.f14937f, 1.4f, rVarArr[0].f14911l.f34506a.getFontMetricsInt()), 0, 1, 33);
             rVarArr[0].f14911l.t(spannableStringBuilder, true, true);
         } else {
             rVarArr[0].f14911l.t(obj.f14936e, true, true);
@@ -354,7 +354,7 @@ public final class v2 implements org.telegram.ui.web.d0 {
             hd.M0(2131743886, null);
             obj.f19608a = new t2(this, 1);
             cc V = new hc(frameLayout, f6Var).V(Arrays.asList(a22), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753054, t10.p(a22))), null, obj);
-            V.f32527j = 5000;
+            V.f32514j = 5000;
             V.k(true);
             return;
         }
@@ -363,7 +363,7 @@ public final class v2 implements org.telegram.ui.web.d0 {
         spannableStringBuilder.append((CharSequence) " ");
         spannableStringBuilder.append((CharSequence) org.telegram.messenger.g0.H2(org.telegram.messenger.g0.k2(hd.M0(2131753055, null), new t2(this, 2)), true));
         cc P = new hc(frameLayout, f6Var).P(2131624011, spannableStringBuilder);
-        P.f32527j = 5000;
+        P.f32514j = 5000;
         P.k(true);
     }
 

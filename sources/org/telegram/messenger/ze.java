@@ -39,7 +39,7 @@ public abstract class ze {
             return false;
         }
         j20 j20Var = this.f26839s;
-        if (j20Var != null && (j20Var.f23462t || j20Var.f23443a > 0 || j20Var.f23445b > 0)) {
+        if (j20Var != null && (j20Var.f23469t || j20Var.f23450a > 0 || j20Var.f23452b > 0)) {
             return true;
         }
         ye yeVar = this.A;
@@ -52,7 +52,7 @@ public abstract class ze {
     public final boolean c() {
         Boolean bool = this.f26845z;
         if (bool == null) {
-            return iz.f23378h1;
+            return iz.f23385h1;
         }
         return bool.booleanValue();
     }

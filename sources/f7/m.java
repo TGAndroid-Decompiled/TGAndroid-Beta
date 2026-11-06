@@ -2,7 +2,7 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.Arrays;
 public final class m extends r6.a {
     public static final Parcelable.Creator<m> CREATOR = new t0(7);
@@ -81,7 +81,7 @@ public final class m extends r6.a {
     public final void writeToParcel(Parcel parcel, int i7) {
         String str;
         String str2;
-        int r10 = wb.r(parcel, 20293);
+        int r10 = xb.r(parcel, 20293);
         String str3 = null;
         c cVar = this.f11403a;
         if (cVar == null) {
@@ -89,20 +89,20 @@ public final class m extends r6.a {
         } else {
             str = cVar.f11357a;
         }
-        wb.l(parcel, 2, str);
-        wb.a(parcel, 3, this.f11404b);
+        xb.l(parcel, 2, str);
+        xb.a(parcel, 3, this.f11404b);
         j0 j0Var = this.f11405c;
         if (j0Var == null) {
             str2 = null;
         } else {
             str2 = j0Var.f11395a;
         }
-        wb.l(parcel, 4, str2);
+        xb.l(parcel, 4, str2);
         e0 b10 = b();
         if (b10 != null) {
             str3 = b10.f11366a;
         }
-        wb.l(parcel, 5, str3);
-        wb.s(parcel, r10);
+        xb.l(parcel, 5, str3);
+        xb.s(parcel, r10);
     }
 }

@@ -19,11 +19,11 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.f51;
-import org.telegram.ui.Components.p71;
+import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.q71;
+import org.telegram.ui.Components.r71;
 import org.telegram.ui.Components.ry;
-public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegram.ui.ActionBar.r1, p71, f51, y7, c7 {
+public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegram.ui.ActionBar.r1, q71, g51, y7, c7 {
     public final int f11796a;
     public final va f11797b;
 
@@ -42,7 +42,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
         vaVar.f12935a0 = I0.f15119c;
         vaVar.f12939b0 = I0.d;
         vaVar.f12975n.requestLayout();
-        return r0.k1.f54108b;
+        return r0.k1.f54107b;
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 vaVar.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25563b.getPackageName()));
                     vaVar.f12938b.startActivity(intent);
                     return;
                 } catch (Exception e10) {
@@ -96,7 +96,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 vaVar2.getClass();
                 try {
                     Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+                    intent2.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25563b.getPackageName()));
                     vaVar2.f12938b.startActivity(intent2);
                     return;
                 } catch (Exception e11) {
@@ -109,7 +109,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 va vaVar3 = this.f11797b;
                 try {
                     Intent intent3 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent3.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+                    intent3.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25563b.getPackageName()));
                     vaVar3.f12938b.startActivity(intent3);
                     return;
                 } catch (Exception e12) {
@@ -121,7 +121,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                 vaVar4.getClass();
                 try {
                     Intent intent4 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent4.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+                    intent4.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25563b.getPackageName()));
                     vaVar4.f12938b.startActivity(intent4);
                     return;
                 } catch (Exception e13) {
@@ -196,7 +196,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
                     SerializedData serializedData2 = new SerializedData(serializedData.length());
                     serializedData.cleanup();
                     t8.c(serializedData2, q8Var);
-                    qp.s1(i10).f24759e7.edit().putString("story_privacy2", Utilities.f(serializedData2.toByteArray())).apply();
+                    qp.s1(i10).f24767e7.edit().putString("story_privacy2", Utilities.f(serializedData2.toByteArray())).apply();
                     serializedData2.cleanup();
                     e7 e7Var = vaVar.K1;
                     e7Var.G0 = z11;
@@ -299,10 +299,10 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
             str = B;
         }
         vaVar.d0(str);
-        q71 q71Var = vaVar.V0;
-        if (q71Var != null) {
+        r71 r71Var = vaVar.V0;
+        if (r71Var != null) {
             vaVar.T1 = 0.0f;
-            q71Var.b(false, 0.0f);
+            r71Var.b(false, 0.0f);
         }
         vaVar.l0(true);
     }

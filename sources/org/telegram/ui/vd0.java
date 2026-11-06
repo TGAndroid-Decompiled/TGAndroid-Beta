@@ -13,19 +13,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class vd0 implements RequestDelegate {
-    public final int f50710a;
-    public final be0 f50711b;
+    public final int f50709a;
+    public final be0 f50710b;
 
     public vd0(be0 be0Var, int i7) {
-        this.f50710a = i7;
-        this.f50711b = be0Var;
+        this.f50709a = i7;
+        this.f50710b = be0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f50710a) {
+        switch (this.f50709a) {
             case 0:
-                final be0 be0Var = this.f50711b;
+                final be0 be0Var = this.f50710b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -37,7 +37,7 @@ public final class vd0 implements RequestDelegate {
                         be0 be0Var2 = be0Var;
                         switch (i10) {
                             case 0:
-                                zd0 zd0Var = be0Var2.f44291a;
+                                zd0 zd0Var = be0Var2.f44290a;
                                 HashMap hashMap = be0Var2.I;
                                 ArrayList arrayList = be0Var2.G;
                                 HashMap hashMap2 = be0Var2.H;
@@ -53,13 +53,13 @@ public final class vd0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f47870a = str;
+                                                obj.f47869a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f47871b = str2;
+                                                obj.f47870b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f47870a = str2;
+                                                    obj.f47869a = str2;
                                                 }
-                                                obj.f47872c = tL_help_countryCode.country_code;
+                                                obj.f47871c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -76,7 +76,7 @@ public final class vd0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    ce0 ce0Var = be0Var2.f44302g0;
+                                    ce0 ce0Var = be0Var2.f44301g0;
                                     if (ce0Var.F == 2) {
                                         i7 = ((org.telegram.ui.ActionBar.f2) ce0Var).currentAccount;
                                         String d = pf.b.d(org.telegram.messenger.p10.i(i7).d(), false);
@@ -126,7 +126,7 @@ public final class vd0 implements RequestDelegate {
                                 return;
                             default:
                                 be0Var2.M = false;
-                                ce0 ce0Var2 = be0Var2.f44302g0;
+                                ce0 ce0Var2 = be0Var2.f44301g0;
                                 ce0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;
@@ -148,7 +148,7 @@ public final class vd0 implements RequestDelegate {
                 });
                 return;
             default:
-                final be0 be0Var2 = this.f50711b;
+                final be0 be0Var2 = this.f50710b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -160,7 +160,7 @@ public final class vd0 implements RequestDelegate {
                         be0 be0Var22 = be0Var2;
                         switch (i10) {
                             case 0:
-                                zd0 zd0Var = be0Var22.f44291a;
+                                zd0 zd0Var = be0Var22.f44290a;
                                 HashMap hashMap = be0Var22.I;
                                 ArrayList arrayList = be0Var22.G;
                                 HashMap hashMap2 = be0Var22.H;
@@ -176,13 +176,13 @@ public final class vd0 implements RequestDelegate {
                                             if (tL_help_countryCode != null) {
                                                 ?? obj = new Object();
                                                 String str = tL_help_country.name;
-                                                obj.f47870a = str;
+                                                obj.f47869a = str;
                                                 String str2 = tL_help_country.default_name;
-                                                obj.f47871b = str2;
+                                                obj.f47870b = str2;
                                                 if (str == null && str2 != null) {
-                                                    obj.f47870a = str2;
+                                                    obj.f47869a = str2;
                                                 }
-                                                obj.f47872c = tL_help_countryCode.country_code;
+                                                obj.f47871c = tL_help_countryCode.country_code;
                                                 obj.d = tL_help_country.iso2;
                                                 arrayList.add(obj);
                                                 List list = (List) hashMap2.get(tL_help_countryCode.country_code);
@@ -199,7 +199,7 @@ public final class vd0 implements RequestDelegate {
                                             }
                                         }
                                     }
-                                    ce0 ce0Var = be0Var22.f44302g0;
+                                    ce0 ce0Var = be0Var22.f44301g0;
                                     if (ce0Var.F == 2) {
                                         i7 = ((org.telegram.ui.ActionBar.f2) ce0Var).currentAccount;
                                         String d = pf.b.d(org.telegram.messenger.p10.i(i7).d(), false);
@@ -249,7 +249,7 @@ public final class vd0 implements RequestDelegate {
                                 return;
                             default:
                                 be0Var22.M = false;
-                                ce0 ce0Var2 = be0Var22.f44302g0;
+                                ce0 ce0Var2 = be0Var22.f44301g0;
                                 ce0Var2.N1(false, true);
                                 if (tL_error2 == null) {
                                     TL_account.Password password = (TL_account.Password) tLObject2;

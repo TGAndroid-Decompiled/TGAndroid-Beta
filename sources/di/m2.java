@@ -14,45 +14,45 @@ public final class m2 extends fi.g5 {
         switch (this.d) {
             case 0:
                 SparseIntArray sparseIntArray = (SparseIntArray) this.f12069b;
-                sparseIntArray.append(org.telegram.ui.ActionBar.k6.f27921h5, -14737633);
-                sparseIntArray.append(org.telegram.ui.ActionBar.k6.f27792a7, -13421773);
+                sparseIntArray.append(org.telegram.ui.ActionBar.k6.f27922h5, -14737633);
+                sparseIntArray.append(org.telegram.ui.ActionBar.k6.f27793a7, -13421773);
                 return;
             case 1:
-                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28210wf, -1071635414);
+                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28211wf, -1071635414);
                 return;
             case 2:
                 SparseIntArray sparseIntArray2 = (SparseIntArray) this.f12069b;
-                sparseIntArray2.put(org.telegram.ui.ActionBar.k6.f28210wf, i0.a.f(0.2f, -16777216, -1));
+                sparseIntArray2.put(org.telegram.ui.ActionBar.k6.f28211wf, i0.a.f(0.2f, -16777216, -1));
                 sparseIntArray2.put(org.telegram.ui.ActionBar.k6.Le, i0.a.f(0.5f, -16777216, -1));
                 return;
             case 3:
-                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28210wf, i0.a.o(-1, 30));
+                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28211wf, i0.a.o(-1, 30));
                 return;
             case 4:
-                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28210wf, i0.a.o(-1, 30));
+                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28211wf, i0.a.o(-1, 30));
                 return;
             case 5:
                 SparseIntArray sparseIntArray3 = (SparseIntArray) this.f12069b;
-                sparseIntArray3.append(org.telegram.ui.ActionBar.k6.f27921h5, -14803426);
-                sparseIntArray3.append(org.telegram.ui.ActionBar.k6.f27792a7, -16777216);
+                sparseIntArray3.append(org.telegram.ui.ActionBar.k6.f27922h5, -14803426);
+                sparseIntArray3.append(org.telegram.ui.ActionBar.k6.f27793a7, -16777216);
                 return;
             case 6:
-                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28210wf, i0.a.o(-1, 30));
+                ((SparseIntArray) this.f12069b).put(org.telegram.ui.ActionBar.k6.f28211wf, i0.a.o(-1, 30));
                 return;
             case 7:
                 SparseIntArray sparseIntArray4 = (SparseIntArray) this.f12069b;
-                sparseIntArray4.append(org.telegram.ui.ActionBar.k6.f27921h5, -14737633);
-                sparseIntArray4.append(org.telegram.ui.ActionBar.k6.f27792a7, -13421773);
+                sparseIntArray4.append(org.telegram.ui.ActionBar.k6.f27922h5, -14737633);
+                sparseIntArray4.append(org.telegram.ui.ActionBar.k6.f27793a7, -13421773);
                 return;
             case 8:
                 SparseIntArray sparseIntArray5 = (SparseIntArray) this.f12069b;
-                sparseIntArray5.append(org.telegram.ui.ActionBar.k6.f27921h5, -14803426);
-                sparseIntArray5.append(org.telegram.ui.ActionBar.k6.f27792a7, -16777216);
+                sparseIntArray5.append(org.telegram.ui.ActionBar.k6.f27922h5, -14803426);
+                sparseIntArray5.append(org.telegram.ui.ActionBar.k6.f27793a7, -16777216);
                 return;
             default:
                 SparseIntArray sparseIntArray6 = (SparseIntArray) this.f12069b;
-                sparseIntArray6.append(org.telegram.ui.ActionBar.k6.f27921h5, -14803426);
-                sparseIntArray6.append(org.telegram.ui.ActionBar.k6.f27792a7, -16777216);
+                sparseIntArray6.append(org.telegram.ui.ActionBar.k6.f27922h5, -14803426);
+                sparseIntArray6.append(org.telegram.ui.ActionBar.k6.f27793a7, -16777216);
                 return;
         }
     }

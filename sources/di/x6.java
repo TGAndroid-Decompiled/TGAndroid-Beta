@@ -65,7 +65,7 @@ public final class x6 implements ls {
             if (inputPeer != null && !(inputPeer instanceof TLRPC.TL_inputPeerSelf)) {
                 this.J = org.telegram.messenger.m5.n(inputPeer);
             } else {
-                this.J = p10.i(y6Var.f9963a).f24478n;
+                this.J = p10.i(y6Var.f9963a).f24486n;
             }
         }
     }
@@ -103,9 +103,9 @@ public final class x6 implements ls {
         qs.f(i7).n(this, qs.U1);
         qs.f(i7).n(this, qs.V1);
         qs.f(i7).n(this, qs.W1);
-        qs.f(i7).n(this, qs.f24964c2);
-        qs.f(i7).n(this, qs.f24952a2);
-        qs.f(i7).n(this, qs.f24958b2);
+        qs.f(i7).n(this, qs.f24972c2);
+        qs.f(i7).n(this, qs.f24960a2);
+        qs.f(i7).n(this, qs.f24966b2);
         boolean z9 = this.I;
         long j3 = this.J;
         if (!z9 && (arrayList = (ArrayList) y6Var.f9964b.f(j3)) != null) {
@@ -195,7 +195,7 @@ public final class x6 implements ls {
             }
             this.L = null;
         }
-        qs.f(i7).k(qs.f25078v5, new Object[0]);
+        qs.f(i7).k(qs.f25086v5, new Object[0]);
         if (e7Var != null && !e7Var.h && !this.d) {
             e7Var.i(false);
             this.d = true;
@@ -215,7 +215,7 @@ public final class x6 implements ls {
             TLRPC.Document document = this.f9930c.f11883c0;
             int i7 = qp.C8;
             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-            tL_inputDocument.f26964id = document.f26958id;
+            tL_inputDocument.f26965id = document.f26959id;
             tL_inputDocument.access_hash = document.access_hash;
             tL_inputDocument.file_reference = document.file_reference;
             tL_inputFileStoryDocument.doc = tL_inputDocument;
@@ -234,14 +234,14 @@ public final class x6 implements ls {
         qs.f(this.M.f9963a).b(this, qs.U1);
         qs.f(this.M.f9963a).b(this, qs.V1);
         qs.f(this.M.f9963a).b(this, qs.W1);
-        qs.f(this.M.f9963a).b(this, qs.f24964c2);
-        qs.f(this.M.f9963a).b(this, qs.f24952a2);
-        qs.f(this.M.f9963a).b(this, qs.f24958b2);
+        qs.f(this.M.f9963a).b(this, qs.f24972c2);
+        qs.f(this.M.f9963a).b(this, qs.f24960a2);
+        qs.f(this.M.f9963a).b(this, qs.f24966b2);
         boolean E = this.f9930c.E();
         this.f9935s = E;
         if (E) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f26973id = 1;
+            tL_message.f26974id = 1;
             String absolutePath = fi.e7.x(this.M.f9963a, true).getAbsolutePath();
             tL_message.attachPath = absolutePath;
             this.f9931e = absolutePath;
@@ -252,11 +252,11 @@ public final class x6 implements ls {
             this.f9931e = w10.getAbsolutePath();
             Utilities.f21336i.c(new z0(13, this, w10));
         }
-        Intent intent = new Intent(org.telegram.messenger.t0.f25555b, StoryUploadingService.class);
+        Intent intent = new Intent(org.telegram.messenger.t0.f25563b, StoryUploadingService.class);
         intent.putExtra("path", this.f9931e);
         intent.putExtra("currentAccount", this.M.f9963a);
         try {
-            org.telegram.messenger.t0.f25555b.startService(intent);
+            org.telegram.messenger.t0.f25563b.startService(intent);
         } catch (Throwable th2) {
             org.telegram.messenger.a8.g(th2, true);
         }
@@ -266,7 +266,7 @@ public final class x6 implements ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         y6 y6Var = this.M;
         int i11 = y6Var.f9963a;
-        if (i7 == qs.f24952a2) {
+        if (i7 == qs.f24960a2) {
             if (objArr[0] == this.E) {
                 this.f9931e = (String) objArr[1];
                 e();
@@ -274,7 +274,7 @@ public final class x6 implements ls {
             }
             return;
         }
-        int i12 = qs.f24958b2;
+        int i12 = qs.f24966b2;
         int i13 = qs.A5;
         if (i7 == i12) {
             if (objArr[0] == this.E) {
@@ -293,7 +293,7 @@ public final class x6 implements ls {
                     this.f9938y = longValue2;
                 }
             }
-        } else if (i7 == qs.f24964c2) {
+        } else if (i7 == qs.f24972c2) {
             if (objArr[0] == this.E) {
                 if (!this.f9929b) {
                     fi.e7 e7Var = this.f9930c;
@@ -341,7 +341,7 @@ public final class x6 implements ls {
         if (this.f9935s) {
             j20 j20Var = this.F;
             if (j20Var != null) {
-                j3 = j20Var.f23459q;
+                j3 = j20Var.f23466q;
             }
             j3 = Math.max(1, (int) j3);
         }
@@ -350,6 +350,6 @@ public final class x6 implements ls {
         } else {
             i7 = 16777216;
         }
-        G.h0(str, false, z9, j3, i7, true);
+        G.g0(str, false, z9, j3, i7, true);
     }
 }

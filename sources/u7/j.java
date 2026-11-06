@@ -3,20 +3,20 @@ package u7;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Process;
-import c8.oc;
-import c8.wb;
+import c8.pc;
+import c8.xb;
 import java.util.Arrays;
 import java.util.List;
 public final class j extends r6.a {
     public static final Parcelable.Creator<j> CREATOR = new m(1);
-    public final int f56284a;
-    public final int f56285b;
-    public final String f56286c;
+    public final int f56283a;
+    public final int f56284b;
+    public final String f56285c;
     public final String d;
-    public final int f56287e;
-    public final String f56288f;
+    public final int f56286e;
+    public final String f56287f;
     public final j h;
-    public final r f56289n;
+    public final r f56288n;
 
     static {
         Process.myUid();
@@ -27,20 +27,20 @@ public final class j extends r6.a {
         s sVar;
         s sVar2;
         r rVar;
-        this.f56284a = i7;
-        this.f56285b = i10;
-        this.f56286c = str;
+        this.f56283a = i7;
+        this.f56284b = i10;
+        this.f56285c = str;
         this.d = str2;
-        this.f56288f = str3;
-        this.f56287e = i11;
-        p pVar = r.f56298b;
+        this.f56287f = str3;
+        this.f56286e = i11;
+        p pVar = r.f56297b;
         if (list instanceof o) {
             rVar = (r) ((o) list);
             if (rVar.k()) {
-                Object[] array = rVar.toArray(o.f56293a);
+                Object[] array = rVar.toArray(o.f56292a);
                 int length = array.length;
                 if (length == 0) {
-                    sVar2 = s.f56299e;
+                    sVar2 = s.f56298e;
                     rVar = sVar2;
                 } else {
                     sVar = new s(length, array);
@@ -56,21 +56,21 @@ public final class j extends r6.a {
                 }
             }
             if (length2 == 0) {
-                sVar2 = s.f56299e;
+                sVar2 = s.f56298e;
                 rVar = sVar2;
             } else {
                 sVar = new s(length2, array2);
                 rVar = sVar;
             }
         }
-        this.f56289n = rVar;
+        this.f56288n = rVar;
         this.h = jVar;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (this.f56284a == jVar.f56284a && this.f56285b == jVar.f56285b && this.f56287e == jVar.f56287e && this.f56286c.equals(jVar.f56286c) && oc.a(this.d, jVar.d) && oc.a(this.f56288f, jVar.f56288f) && oc.a(this.h, jVar.h) && this.f56289n.equals(jVar.f56289n)) {
+            if (this.f56283a == jVar.f56283a && this.f56284b == jVar.f56284b && this.f56286e == jVar.f56286e && this.f56285c.equals(jVar.f56285c) && pc.a(this.d, jVar.d) && pc.a(this.f56287f, jVar.f56287f) && pc.a(this.h, jVar.h) && this.f56288n.equals(jVar.f56288n)) {
                 return true;
             }
             return false;
@@ -79,18 +79,18 @@ public final class j extends r6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f56284a), this.f56286c, this.d, this.f56288f});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f56283a), this.f56285c, this.d, this.f56287f});
     }
 
     public final String toString() {
-        String str = this.f56286c;
+        String str = this.f56285c;
         int length = str.length() + 18;
         String str2 = this.d;
         if (str2 != null) {
             length += str2.length();
         }
         StringBuilder sb2 = new StringBuilder(length);
-        sb2.append(this.f56284a);
+        sb2.append(this.f56283a);
         sb2.append("/");
         sb2.append(str);
         if (str2 != null) {
@@ -102,7 +102,7 @@ public final class j extends r6.a {
             }
             sb2.append("]");
         }
-        String str3 = this.f56288f;
+        String str3 = this.f56287f;
         if (str3 != null) {
             sb2.append("/");
             sb2.append(Integer.toHexString(str3.hashCode()));
@@ -112,18 +112,18 @@ public final class j extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.q(parcel, 1, 4);
-        parcel.writeInt(this.f56284a);
-        wb.q(parcel, 2, 4);
-        parcel.writeInt(this.f56285b);
-        wb.l(parcel, 3, this.f56286c);
-        wb.l(parcel, 4, this.d);
-        wb.q(parcel, 5, 4);
-        parcel.writeInt(this.f56287e);
-        wb.l(parcel, 6, this.f56288f);
-        wb.k(parcel, 7, this.h, i7);
-        wb.p(parcel, 8, this.f56289n);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.q(parcel, 1, 4);
+        parcel.writeInt(this.f56283a);
+        xb.q(parcel, 2, 4);
+        parcel.writeInt(this.f56284b);
+        xb.l(parcel, 3, this.f56285c);
+        xb.l(parcel, 4, this.d);
+        xb.q(parcel, 5, 4);
+        parcel.writeInt(this.f56286e);
+        xb.l(parcel, 6, this.f56287f);
+        xb.k(parcel, 7, this.h, i7);
+        xb.p(parcel, 8, this.f56288n);
+        xb.s(parcel, r10);
     }
 }

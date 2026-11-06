@@ -68,7 +68,7 @@ public final class g3 extends i9 {
         t3 t3Var = this.G0;
         g3 g3Var = t3Var.f18898u3;
         ArrayList arrayList = t3Var.f18894s3;
-        if (!arrayList.isEmpty() && g3Var.x() && g3Var.f29313p0 == 0 && g3Var.f29314q0 == 0 && g3Var.f29315r0 <= 0 && g3Var.f29316s0 == (size = arrayList.size() - 1)) {
+        if (!arrayList.isEmpty() && g3Var.x() && g3Var.f29314p0 == 0 && g3Var.f29315q0 == 0 && g3Var.f29316r0 <= 0 && g3Var.f29317s0 == (size = arrayList.size() - 1)) {
             a aVar = (a) arrayList.get(size);
             if (a6.p(aVar.f18389b)) {
                 str = c6.l(a6.j(aVar.f18389b));
@@ -76,13 +76,13 @@ public final class g3 extends i9 {
                 str = "";
             }
             int i7 = !str.isEmpty();
-            if (g3Var.f29317t0 == i7) {
+            if (g3Var.f29318t0 == i7) {
                 if (i7 == 1) {
                     length = str.length();
                 } else {
                     length = a6.z(aVar.f18389b).length();
                 }
-                if (g3Var.f29318u0 >= length) {
+                if (g3Var.f29319u0 >= length) {
                     z9 = true;
                     return !z9;
                 }

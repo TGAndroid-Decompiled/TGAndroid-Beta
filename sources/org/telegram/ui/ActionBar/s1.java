@@ -4,19 +4,19 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.iz;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 public final class s1 implements f6 {
-    public final int f28480a;
-    public final Object f28481b;
+    public final int f28481a;
+    public final Object f28482b;
 
     public s1(Object obj, int i7) {
-        this.f28480a = i7;
-        this.f28481b = obj;
+        this.f28481a = i7;
+        this.f28482b = obj;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
             case 1:
             default:
@@ -26,7 +26,7 @@ public final class s1 implements f6 {
 
     @Override
     public final void b(float f10, float f11, int i7, int i10) {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
                 k6.r(f10, f11, i7, i10);
                 return;
@@ -41,19 +41,19 @@ public final class s1 implements f6 {
 
     @Override
     public final ColorFilter c() {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
-                return k6.f28180v3;
+                return k6.f28181v3;
             case 1:
-                return k6.f28180v3;
+                return k6.f28181v3;
             default:
-                return k6.f28180v3;
+                return k6.f28181v3;
         }
     }
 
     @Override
     public final Paint d(String str) {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
                 return k6.V0(str);
             case 1:
@@ -65,7 +65,7 @@ public final class s1 implements f6 {
 
     @Override
     public final boolean e() {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
                 return iz.H0;
             case 1:
@@ -77,7 +77,7 @@ public final class s1 implements f6 {
 
     @Override
     public final int f(int i7) {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
                 return h(i7);
             case 1:
@@ -89,7 +89,7 @@ public final class s1 implements f6 {
 
     @Override
     public final boolean g() {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
                 return false;
             case 1:
@@ -101,7 +101,7 @@ public final class s1 implements f6 {
 
     @Override
     public final Drawable getDrawable(String str) {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
                 return null;
             case 1:
@@ -113,24 +113,24 @@ public final class s1 implements f6 {
 
     @Override
     public final int h(int i7) {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
-                return ((u1) this.f28481b).f(i7);
+                return ((u1) this.f28482b).f(i7);
             case 1:
-                return ((f2) this.f28481b).getThemedColor(i7);
+                return ((f2) this.f28482b).getThemedColor(i7);
             default:
-                return ((k41) this.f28481b).I(i7);
+                return ((l41) this.f28482b).I(i7);
         }
     }
 
     @Override
     public final void i(int i7, int i10) {
-        int i11 = this.f28480a;
+        int i11 = this.f28481a;
     }
 
     @Override
     public final int j(int i7) {
-        switch (this.f28480a) {
+        switch (this.f28481a) {
             case 0:
                 return h(i7);
             case 1:

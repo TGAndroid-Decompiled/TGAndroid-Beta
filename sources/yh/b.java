@@ -11,16 +11,16 @@ import org.telegram.messenger.g0;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.a51;
 import org.telegram.ui.Components.at;
 import org.telegram.ui.Components.av0;
+import org.telegram.ui.Components.b51;
 import org.telegram.ui.Components.lz;
 import org.telegram.ui.Components.v80;
 import org.telegram.ui.Components.w80;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 import v4.s0;
-public final class b extends a51 {
+public final class b extends b51 {
     public final int K1;
     public final w80 L1;
     public final lz M1;
@@ -35,26 +35,26 @@ public final class b extends a51 {
         super(f2Var.getCurrentAccount(), f2Var.getParentActivity(), f2Var.getResourceProvider());
         this.S1 = dVar;
         this.K1 = ViewConfiguration.get(getContext()).getScaledTouchSlop();
-        int i7 = k6.f27792a7;
+        int i7 = k6.f27793a7;
         v0(k6.w0(i7, this.I0));
         this.C1 = i7;
         this.B1 = i7;
         M0(0.0f);
         P(i7);
-        this.f31696x1 = false;
-        this.f31697y1 = false;
-        w80 w80Var = new w80(this, f2Var, this.f28618c, j3);
+        this.f32033x1 = false;
+        this.f32034y1 = false;
+        w80 w80Var = new w80(this, f2Var, this.f28619c, j3);
         this.L1 = w80Var;
         w80Var.B = false;
-        this.f28639p0 = 75;
-        this.f31691s1.J.setHint(hd.M0(2131745759, null));
-        h hVar = w80Var.f59449f;
-        this.f31686m1 = hVar;
+        this.f28640p0 = 75;
+        this.f32028s1.J.setHint(hd.M0(2131745759, null));
+        h hVar = w80Var.f59448f;
+        this.f32023m1 = hVar;
         this.l1 = hVar;
-        this.f31685k1.setAdapter(hVar);
-        this.f31685k1.r1();
-        q1 q1Var = this.f31685k1;
-        w80Var.f59458p = q1Var;
+        this.f32022k1.setAdapter(hVar);
+        this.f32022k1.r1();
+        q1 q1Var = this.f32022k1;
+        w80Var.f59457p = q1Var;
         q1Var.setOnItemClickListener(new ai.k(w80Var, 23));
         s0 onScrollListener = q1Var.getOnScrollListener();
         if (onScrollListener == null) {
@@ -62,16 +62,16 @@ public final class b extends a51 {
         } else {
             q1Var.setOnScrollListener(new o0(10, w80Var, onScrollListener));
         }
-        int indexOfChild = ((ViewGroup) this.f31685k1.getParent()).indexOfChild(this.f31685k1);
+        int indexOfChild = ((ViewGroup) this.f32022k1.getParent()).indexOfChild(this.f32022k1);
         lz b10 = w80Var.b();
         this.M1 = b10;
-        this.f28615b.addView(b10, indexOfChild, ha.c(-1.0f, -1));
+        this.f28616b.addView(b10, indexOfChild, ha.c(-1.0f, -1));
         av0 a10 = w80Var.a();
         this.N1 = a10;
-        this.f28615b.addView(a10, indexOfChild, ha.c(-1.0f, -1));
+        this.f28616b.addView(a10, indexOfChild, ha.c(-1.0f, -1));
         av0 c10 = w80Var.c();
         this.O1 = c10;
-        this.f28615b.addView(c10, indexOfChild, ha.c(-1.0f, -1));
+        this.f28616b.addView(c10, indexOfChild, ha.c(-1.0f, -1));
         w80Var.e();
     }
 
@@ -82,9 +82,9 @@ public final class b extends a51 {
         int action = motionEvent.getAction();
         w80 w80Var = this.L1;
         if (action == 0) {
-            this.P1 = this.f31693u1;
+            this.P1 = this.f32030u1;
             w80Var.i(false);
-        } else if (motionEvent.getAction() == 1 && Math.abs(this.f31693u1 - this.P1) < this.K1 && !this.Q1) {
+        } else if (motionEvent.getAction() == 1 && Math.abs(this.f32030u1 - this.P1) < this.K1 && !this.Q1) {
             Activity W = g0.W(getContext());
             if (W instanceof LaunchActivity) {
                 LaunchActivity launchActivity = (LaunchActivity) W;
@@ -123,7 +123,7 @@ public final class b extends a51 {
     @Override
     public final void N0(int i7) {
         super.N0(i7);
-        this.M1.setTranslationY(this.f31684j1.getMeasuredHeight() + i7);
+        this.M1.setTranslationY(this.f32021j1.getMeasuredHeight() + i7);
         float f10 = i7;
         this.N1.setTranslationY(f10);
         this.O1.setTranslationY(f10);
@@ -132,15 +132,15 @@ public final class b extends a51 {
     @Override
     public final void Q0() {
         int i7;
-        q1 q1Var = this.f31685k1;
+        q1 q1Var = this.f32022k1;
         if (q1Var.getChildCount() <= 0) {
             if (q1Var.getVisibility() == 0) {
                 i7 = q1Var.getPaddingTop() - g0.L(8.0f);
             } else {
                 i7 = 0;
             }
-            if (this.f31693u1 != i7) {
-                this.f31693u1 = i7;
+            if (this.f32030u1 != i7) {
+                this.f32030u1 = i7;
                 N0(i7);
                 return;
             }
@@ -152,16 +152,16 @@ public final class b extends a51 {
     @Override
     public final void dismiss() {
         d dVar = this.S1;
-        b bVar = dVar.f59417i;
-        if (bVar != null && !bVar.L1.f59446b) {
-            dVar.f59417i = null;
+        b bVar = dVar.f59416i;
+        if (bVar != null && !bVar.L1.f59445b) {
+            dVar.f59416i = null;
         }
         super.dismiss();
     }
 
     @Override
     public final void onBackPressed() {
-        l lVar = this.L1.f59461s;
+        l lVar = this.L1.f59460s;
         if (lVar != null) {
             lVar.e(false);
         } else {
@@ -172,7 +172,7 @@ public final class b extends a51 {
     @Override
     public final void s0() {
         super.s0();
-        int w02 = k6.w0(k6.f27792a7, this.I0);
+        int w02 = k6.w0(k6.f27793a7, this.I0);
         if (w02 != this.R1) {
             this.R1 = w02;
             v0(w02);
@@ -182,10 +182,10 @@ public final class b extends a51 {
     @Override
     public final void show() {
         w80 w80Var = this.L1;
-        if (w80Var.f59446b && this.f31693u1 == 0) {
-            this.f31693u1 = g0.L(8.0f);
+        if (w80Var.f59445b && this.f32030u1 == 0) {
+            this.f32030u1 = g0.L(8.0f);
         }
         super.show();
-        w80Var.f59446b = false;
+        w80Var.f59445b = false;
     }
 }

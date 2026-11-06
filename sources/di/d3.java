@@ -86,19 +86,19 @@ public final class d3 implements c20 {
                         return;
                     }
                     ez a11 = ez.a(i4Var.f9164k1, V);
-                    a11.f22305w = new ArrayList();
+                    a11.f22312w = new ArrayList();
                     TLRPC.TL_messageEntityCustomEmoji tL_messageEntityCustomEmoji = new TLRPC.TL_messageEntityCustomEmoji();
                     tL_messageEntityCustomEmoji.document_id = o0Var.f6357g;
                     tL_messageEntityCustomEmoji.offset = i7;
                     tL_messageEntityCustomEmoji.length = V.length();
-                    a11.f22305w.add(tL_messageEntityCustomEmoji);
+                    a11.f22312w.add(tL_messageEntityCustomEmoji);
                     a11.H = g4Var.f9038a;
                     a11.Q = l10.longValue();
                     gz.C(i4Var.f9168l2).r0(a11);
                 }
                 if (l10.longValue() <= 0) {
                     cc r10 = new hc(i4Var.L0, i4Var.f9163k0).r(e10, hd.M0(2131746388, null), hd.M0(2131743553, null), new ab(e3Var, 19));
-                    r10.f32527j = 5000;
+                    r10.f32514j = 5000;
                     r10.j();
                 }
                 if (i4Var.O1.getReactionsWindow() != null) {
@@ -145,7 +145,7 @@ public final class d3 implements c20 {
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj4;
                 int i14 = ChatActivityEnterView.s5;
                 ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
-                zh.h1 h1Var = new zh.h1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f27101id, wg.s.c(wg.s.b(1, (List) obj)), null);
+                zh.h1 h1Var = new zh.h1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f27102id, wg.s.c(wg.s.b(1, (List) obj)), null);
                 h1Var.e1(z9);
                 h1Var.show();
                 return;

@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.MediaController;
 public final class e40 implements Runnable {
-    public final int f33135a;
-    public final g40 f33136b;
+    public final int f33163a;
+    public final g40 f33164b;
 
     public e40(g40 g40Var, int i7) {
-        this.f33135a = i7;
-        this.f33136b = g40Var;
+        this.f33163a = i7;
+        this.f33164b = g40Var;
     }
 
     @Override
     public final void run() {
         org.telegram.messenger.j20 j20Var;
-        int i7 = this.f33135a;
-        g40 g40Var = this.f33136b;
+        int i7 = this.f33163a;
+        g40 g40Var = this.f33164b;
         switch (i7) {
             case 0:
                 g40Var.H0.r(false, false);
@@ -24,40 +24,40 @@ public final class e40 implements Runnable {
                 o40 o40Var = g40Var.H0;
                 org.telegram.messenger.j20 j20Var2 = new org.telegram.messenger.j20();
                 o40Var.R = j20Var2;
-                j20Var2.f23461s = true;
-                j20Var2.f23443a = -1L;
-                j20Var2.f23445b = -1L;
-                j20Var2.f23464w = o40Var.L;
-                j20Var2.f23465x = o40Var.M;
-                j20Var2.f23466y = o40Var.N;
-                j20Var2.f23467z = o40Var.O;
-                j20Var2.f23459q = Math.max(1L, o40Var.P);
+                j20Var2.f23468s = true;
+                j20Var2.f23450a = -1L;
+                j20Var2.f23452b = -1L;
+                j20Var2.f23471w = o40Var.L;
+                j20Var2.f23472x = o40Var.M;
+                j20Var2.f23473y = o40Var.N;
+                j20Var2.f23474z = o40Var.O;
+                j20Var2.f23466q = Math.max(1L, o40Var.P);
                 org.telegram.messenger.j20 j20Var3 = o40Var.R;
-                j20Var3.f23456n = 25;
+                j20Var3.f23463n = 25;
                 j20Var3.h = 360;
-                j20Var3.f23453k = 360;
-                j20Var3.f23451i = 360;
-                j20Var3.f23454l = 360;
-                j20Var3.f23457o = o40Var.f36484f0.getAbsolutePath();
-                g40Var.h(o40Var.f36484f0);
-                o40Var.R.f23460r = o40Var.f36492j0;
-                org.telegram.messenger.qs.f(o40Var.f36480e).k(162, Integer.valueOf(o40Var.U), o40Var.R, o40Var.f36484f0.getAbsolutePath(), g40Var.A0);
+                j20Var3.f23460k = 360;
+                j20Var3.f23458i = 360;
+                j20Var3.f23461l = 360;
+                j20Var3.f23464o = o40Var.f36526f0.getAbsolutePath();
+                g40Var.h(o40Var.f36526f0);
+                o40Var.R.f23467r = o40Var.f36534j0;
+                org.telegram.messenger.qs.f(o40Var.f36522e).k(162, Integer.valueOf(o40Var.U), o40Var.R, o40Var.f36526f0.getAbsolutePath(), g40Var.A0);
                 return;
             case 2:
                 if (g40Var.G0 && (j20Var = g40Var.H0.R) != null) {
                     j20Var.P = false;
                 }
-                g40Var.c(g40Var.f33747a, 0L, true);
+                g40Var.c(g40Var.f33784a, 0L, true);
                 MediaController.B().Y(false);
                 return;
             case 3:
-                g40Var.H0.f36489h1 = null;
+                g40Var.H0.f36531h1 = null;
                 return;
             case 4:
-                g40Var.H0.f36501q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                g40Var.H0.f36543q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                 return;
             default:
-                g40Var.H0.f36501q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                g40Var.H0.f36543q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                 return;
         }
     }

@@ -6,12 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class ls0 extends kj0 {
-    public final Context f35737r;
-    public final xs0 f35738s;
+    public final Context f35757r;
+    public final xs0 f35758s;
 
     public ls0(xs0 xs0Var, Context context) {
-        this.f35738s = xs0Var;
-        this.f35737r = context;
+        this.f35758s = xs0Var;
+        this.f35757r = context;
     }
 
     @Override
@@ -27,13 +27,13 @@ public final class ls0 extends kj0 {
 
     @Override
     public final int M(int i7) {
-        ms0[] ms0VarArr = this.f35738s.f40418v1;
+        ms0[] ms0VarArr = this.f35758s.f40434v1;
         int i10 = 1;
-        if ((ms0VarArr[3].f36049c.size() == 0 && !ms0VarArr[3].f36052g) || i7 >= ms0VarArr[3].f36049c.size()) {
+        if ((ms0VarArr[3].f36065c.size() == 0 && !ms0VarArr[3].f36068g) || i7 >= ms0VarArr[3].f36065c.size()) {
             return 1;
         }
         ms0 ms0Var = ms0VarArr[3];
-        int size = ((ArrayList) ms0Var.d.get(ms0Var.f36049c.get(i7))).size();
+        int size = ((ArrayList) ms0Var.d.get(ms0Var.f36065c.get(i7))).size();
         if (i7 == 0) {
             i10 = 0;
         }
@@ -47,11 +47,11 @@ public final class ls0 extends kj0 {
 
     @Override
     public final int P(int i7, int i10) {
-        ms0[] ms0VarArr = this.f35738s.f40418v1;
-        if (ms0VarArr[3].f36049c.size() == 0 && !ms0VarArr[3].f36052g) {
+        ms0[] ms0VarArr = this.f35758s.f40434v1;
+        if (ms0VarArr[3].f36065c.size() == 0 && !ms0VarArr[3].f36068g) {
             return 5;
         }
-        if (i7 < ms0VarArr[3].f36049c.size()) {
+        if (i7 < ms0VarArr[3].f36065c.size()) {
             if (i7 != 0 && i10 == 0) {
                 return 3;
             }
@@ -67,25 +67,25 @@ public final class ls0 extends kj0 {
 
     @Override
     public final View T(int i7, View view) {
-        xs0 xs0Var = this.f35738s;
+        xs0 xs0Var = this.f35758s;
         if (view == null) {
-            view = new org.telegram.ui.Cells.x3(28, this.f35737r, xs0Var.H1);
+            view = new org.telegram.ui.Cells.x3(28, this.f35757r, xs0Var.H1);
         }
         if (i7 == 0) {
             view.setAlpha(0.0f);
             return view;
         }
-        if (i7 < xs0Var.f40418v1[3].f36049c.size()) {
+        if (i7 < xs0Var.f40434v1[3].f36065c.size()) {
             view.setAlpha(1.0f);
-            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) ((ArrayList) xs0Var.f40418v1[3].d.get((String) xs0Var.f40418v1[3].f36049c.get(i7))).get(0)).f23237k.date, false));
+            ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) ((ArrayList) xs0Var.f40434v1[3].d.get((String) xs0Var.f40434v1[3].f36065c.get(i7))).get(0)).f23244k.date, false));
         }
         return view;
     }
 
     @Override
     public final boolean V(int i7, int i10, v4.d1 d1Var) {
-        ms0[] ms0VarArr = this.f35738s.f40418v1;
-        if (ms0VarArr[3].f36049c.size() != 0 || ms0VarArr[3].f36052g) {
+        ms0[] ms0VarArr = this.f35758s.f40434v1;
+        if (ms0VarArr[3].f36065c.size() != 0 || ms0VarArr[3].f36068g) {
             if (i7 != 0 && i10 == 0) {
                 return false;
             }
@@ -98,13 +98,13 @@ public final class ls0 extends kj0 {
     public final void W(int i7, int i10, v4.d1 d1Var) {
         boolean z9;
         char c10;
-        xs0 xs0Var = this.f35738s;
-        ms0[] ms0VarArr = xs0Var.f40418v1;
-        int i11 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        xs0 xs0Var = this.f35758s;
+        ms0[] ms0VarArr = xs0Var.f40434v1;
+        int i11 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         if (i11 != 6 && i11 != 5) {
-            ArrayList arrayList = (ArrayList) ms0VarArr[3].d.get((String) ms0VarArr[3].f36049c.get(i7));
-            int i12 = d1Var.f56956f;
+            ArrayList arrayList = (ArrayList) ms0VarArr[3].d.get((String) ms0VarArr[3].f36065c.get(i7));
+            int i12 = d1Var.f56955f;
             boolean z10 = false;
             if (i12 != 3) {
                 if (i12 == 4) {
@@ -114,18 +114,18 @@ public final class ls0 extends kj0 {
                     if ((view instanceof org.telegram.ui.Cells.k7) && i10 >= 0 && i10 < arrayList.size()) {
                         org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) view;
                         org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) arrayList.get(i10);
-                        if (i10 == arrayList.size() - 1 && (i7 != ms0VarArr[3].f36049c.size() - 1 || !ms0VarArr[3].f36052g)) {
+                        if (i10 == arrayList.size() - 1 && (i7 != ms0VarArr[3].f36065c.size() - 1 || !ms0VarArr[3].f36068g)) {
                             z9 = false;
                         } else {
                             z9 = true;
                         }
                         k7Var.D = z9;
                         k7Var.e();
-                        k7Var.f29431b0 = ijVar;
+                        k7Var.f29432b0 = ijVar;
                         k7Var.requestLayout();
                         if (xs0Var.E1) {
-                            SparseArray[] sparseArrayArr = xs0Var.f40359b1;
-                            if (org.telegram.messenger.ij.B0(ijVar.f23237k) == xs0Var.l1) {
+                            SparseArray[] sparseArrayArr = xs0Var.f40375b1;
+                            if (org.telegram.messenger.ij.B0(ijVar.f23244k) == xs0Var.l1) {
                                 c10 = 0;
                             } else {
                                 c10 = 1;
@@ -133,10 +133,10 @@ public final class ls0 extends kj0 {
                             if (sparseArrayArr[c10].indexOfKey(ijVar.f1()) >= 0) {
                                 z10 = true;
                             }
-                            k7Var.f(z10, !xs0Var.f40366d1);
+                            k7Var.f(z10, !xs0Var.f40382d1);
                             return;
                         }
-                        k7Var.f(false, !xs0Var.f40366d1);
+                        k7Var.f(false, !xs0Var.f40382d1);
                         return;
                     }
                     return;
@@ -145,7 +145,7 @@ public final class ls0 extends kj0 {
             }
             org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) arrayList.get(0);
             if (view instanceof org.telegram.ui.Cells.x3) {
-                ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(ijVar2.f23237k.date, false));
+                ((org.telegram.ui.Cells.x3) view).setText(org.telegram.messenger.hd.e0(ijVar2.f23244k.date, false));
             }
         }
     }
@@ -153,15 +153,15 @@ public final class ls0 extends kj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.Cells.x3 x3Var;
-        xs0 xs0Var = this.f35738s;
+        xs0 xs0Var = this.f35758s;
         org.telegram.ui.ActionBar.f6 f6Var = xs0Var.H1;
-        Context context = this.f35737r;
+        Context context = this.f35757r;
         if (i7 != 3) {
             if (i7 != 4) {
                 if (i7 != 5) {
                     lz lzVar = new lz(context, f6Var);
                     lzVar.setIsSingleCell(true);
-                    lzVar.f35807x = false;
+                    lzVar.f35802x = false;
                     lzVar.setViewType(5);
                     x3Var = lzVar;
                 } else {

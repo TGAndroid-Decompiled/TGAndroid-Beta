@@ -57,11 +57,11 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
                 }
                 return (PorterDuffColorFilter) this.f12069b;
             case 1:
-                return org.telegram.ui.ActionBar.k6.f28180v3;
+                return org.telegram.ui.ActionBar.k6.f28181v3;
             default:
                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;
                 if (f6Var == null) {
-                    return org.telegram.ui.ActionBar.k6.f28180v3;
+                    return org.telegram.ui.ActionBar.k6.f28181v3;
                 }
                 return f6Var.c();
         }
@@ -151,19 +151,19 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
                     return -14145495;
                 }
                 if (i7 != org.telegram.ui.ActionBar.k6.E8) {
-                    if (i7 == org.telegram.ui.ActionBar.k6.f27921h5) {
+                    if (i7 == org.telegram.ui.ActionBar.k6.f27922h5) {
                         return -14737633;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f27956j5) {
+                    if (i7 == org.telegram.ui.ActionBar.k6.f27957j5) {
                         return -592138;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f28106r5) {
+                    if (i7 == org.telegram.ui.ActionBar.k6.f28107r5) {
                         return -8553091;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f28210wf) {
+                    if (i7 == org.telegram.ui.ActionBar.k6.f28211wf) {
                         return -16777216;
                     }
-                    if (i7 == org.telegram.ui.ActionBar.k6.f28266zf) {
+                    if (i7 == org.telegram.ui.ActionBar.k6.f28267zf) {
                         return -1610612736;
                     }
                     if (i7 == org.telegram.ui.ActionBar.k6.Cf || i7 == org.telegram.ui.ActionBar.k6.Gf || i7 == org.telegram.ui.ActionBar.k6.Bf) {
@@ -174,18 +174,18 @@ public class g5 implements org.telegram.ui.ActionBar.f6 {
                         if (i7 == i10) {
                             return -11754001;
                         }
-                        if (i7 == org.telegram.ui.ActionBar.k6.f27940i6) {
+                        if (i7 == org.telegram.ui.ActionBar.k6.f27941i6) {
                             return 536870911;
                         }
-                        if (i7 != org.telegram.ui.ActionBar.k6.f28156ti && i7 != org.telegram.ui.ActionBar.k6.f28137si && i7 != org.telegram.ui.ActionBar.k6.f28176ui) {
-                            if (i7 == org.telegram.ui.ActionBar.k6.f28194vi) {
+                        if (i7 != org.telegram.ui.ActionBar.k6.f28157ti && i7 != org.telegram.ui.ActionBar.k6.f28138si && i7 != org.telegram.ui.ActionBar.k6.f28177ui) {
+                            if (i7 == org.telegram.ui.ActionBar.k6.f28195vi) {
                                 return 352321535;
                             }
-                            if (i7 != org.telegram.ui.ActionBar.k6.f28248yf && i7 != i10) {
-                                if (i7 == org.telegram.ui.ActionBar.k6.f28229xf) {
+                            if (i7 != org.telegram.ui.ActionBar.k6.f28249yf && i7 != i10) {
+                                if (i7 == org.telegram.ui.ActionBar.k6.f28230xf) {
                                     return 780633991;
                                 }
-                                if (i7 == org.telegram.ui.ActionBar.k6.f27792a7) {
+                                if (i7 == org.telegram.ui.ActionBar.k6.f27793a7) {
                                     return -15921907;
                                 }
                                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f12070c;

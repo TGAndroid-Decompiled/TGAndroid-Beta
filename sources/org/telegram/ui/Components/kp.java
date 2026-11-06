@@ -7,13 +7,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class kp extends FrameLayout {
-    public final View f35389a;
-    public final TextView f35390b;
+    public final View f35380a;
+    public final TextView f35381b;
 
     public kp(Context context) {
         super(context);
         View view = new View(context);
-        this.f35389a = view;
+        this.f35380a = view;
         int L = org.telegram.messenger.g0.L(4.0f);
         int i7 = org.telegram.ui.ActionBar.k6.Ci;
         int v02 = org.telegram.ui.ActionBar.k6.v0(i7);
@@ -26,7 +26,7 @@ public final class kp extends FrameLayout {
         org.telegram.ui.ActionBar.r6.k(view, k02, N, N2, null);
         addView(view, c8.ha.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView = new TextView(context);
-        this.f35390b = textView;
+        this.f35381b = textView;
         textView.setLines(1);
         textView.setSingleLine(true);
         textView.setGravity(1);
@@ -42,6 +42,6 @@ public final class kp extends FrameLayout {
     }
 
     public void setText(CharSequence charSequence) {
-        this.f35390b.setText(charSequence);
+        this.f35381b.setText(charSequence);
     }
 }

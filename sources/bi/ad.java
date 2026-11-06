@@ -5,9 +5,9 @@ import android.widget.FrameLayout;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.ui.Components.lz;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.q41;
 public final class ad extends FrameLayout implements ls {
-    public final p41 f3468a;
+    public final q41 f3468a;
     public final org.telegram.ui.ActionBar.f6 f3469b;
     public final int f3470c;
     public final int d;
@@ -23,28 +23,28 @@ public final class ad extends FrameLayout implements ls {
         this.f3472f = j3;
         this.f3469b = f6Var;
         this.h = new zc(i10, i7, j3, z9);
-        p41 p41Var = new p41(context, i10, i11, true, new ai.e(this, 12), new a1.c(this, 19), null, f6Var);
-        this.f3468a = p41Var;
-        addView(p41Var, c8.ha.c(-1.0f, -1));
-        p41Var.setOnScrollListener(new ai.b(this, 6));
+        q41 q41Var = new q41(context, i10, i11, true, new ai.e(this, 12), new a1.c(this, 19), null, f6Var);
+        this.f3468a = q41Var;
+        addView(q41Var, c8.ha.c(-1.0f, -1));
+        q41Var.setOnScrollListener(new ai.b(this, 6));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        int i11 = qs.f25104z3;
-        p41 p41Var = this.f3468a;
+        int i11 = qs.f25112z3;
+        q41 q41Var = this.f3468a;
         if (i7 == i11) {
-            p41Var.f36781f3.O(true);
-            if (p41Var.canScrollVertically(1)) {
-                for (int i12 = 0; i12 < p41Var.getChildCount(); i12++) {
-                    if (!(p41Var.getChildAt(i12) instanceof lz)) {
+            q41Var.f37160f3.O(true);
+            if (q41Var.canScrollVertically(1)) {
+                for (int i12 = 0; i12 < q41Var.getChildCount(); i12++) {
+                    if (!(q41Var.getChildAt(i12) instanceof lz)) {
                     }
                 }
                 return;
             }
             this.h.run();
         } else if (i7 == qs.D3 && ((Long) objArr[0]).longValue() == this.f3472f) {
-            p41Var.f36781f3.O(true);
+            q41Var.f37160f3.O(true);
         }
     }
 
@@ -56,9 +56,9 @@ public final class ad extends FrameLayout implements ls {
         if (i7 != 0) {
             qs.f(i10).c(this, qs.D3);
         } else {
-            qs.f(i10).c(this, qs.f25104z3);
+            qs.f(i10).c(this, qs.f25112z3);
         }
-        this.f3468a.f36781f3.O(false);
+        this.f3468a.f37160f3.O(false);
     }
 
     @Override
@@ -69,7 +69,7 @@ public final class ad extends FrameLayout implements ls {
         if (i7 != 0) {
             qs.f(i10).n(this, qs.D3);
         } else {
-            qs.f(i10).n(this, qs.f25104z3);
+            qs.f(i10).n(this, qs.f25112z3);
         }
     }
 }

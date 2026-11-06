@@ -7,47 +7,47 @@ import android.widget.TextView;
 import org.telegram.messenger.c20;
 import org.telegram.ui.Components.ys;
 public final class p0 implements TextView.OnEditorActionListener {
-    public final int f51265a;
-    public final Object f51266b;
-    public final Object f51267c;
+    public final int f51261a;
+    public final Object f51262b;
+    public final Object f51263c;
     public final Object d;
-    public final Object f51268e;
+    public final Object f51264e;
 
     public p0(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f51265a = i7;
-        this.f51266b = obj;
-        this.f51267c = obj2;
+        this.f51261a = i7;
+        this.f51262b = obj;
+        this.f51263c = obj2;
         this.d = obj3;
-        this.f51268e = obj4;
+        this.f51264e = obj4;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f51265a) {
+        switch (this.f51261a) {
             case 0:
                 if (i7 != 6) {
                     return false;
                 }
-                boolean[] zArr = (boolean[]) this.f51266b;
+                boolean[] zArr = (boolean[]) this.f51262b;
                 if (!zArr[0]) {
                     zArr[0] = true;
-                    ((JsPromptResult) this.f51267c).confirm(((ys) this.d).getText().toString());
-                    ((org.telegram.ui.ActionBar.u1) this.f51268e).dismiss();
+                    ((JsPromptResult) this.f51263c).confirm(((ys) this.d).getText().toString());
+                    ((org.telegram.ui.ActionBar.u1) this.f51264e).dismiss();
                 }
                 return true;
             default:
-                zh.o1 o1Var = (zh.o1) this.f51266b;
+                zh.o1 o1Var = (zh.o1) this.f51262b;
                 if (i7 != 6) {
                     return false;
                 }
                 String obj = o1Var.getText().toString();
                 if (obj.length() > 0 && obj.length() <= 12) {
-                    ((c20) this.f51267c).a(obj);
+                    ((c20) this.f51263c).a(obj);
                     org.telegram.ui.ActionBar.u1 u1Var = ((org.telegram.ui.ActionBar.u1[]) this.d)[0];
                     if (u1Var != null) {
                         u1Var.dismiss();
                     }
-                    View view = (View) this.f51268e;
+                    View view = (View) this.f51264e;
                     if (view != null) {
                         view.requestFocus();
                     }

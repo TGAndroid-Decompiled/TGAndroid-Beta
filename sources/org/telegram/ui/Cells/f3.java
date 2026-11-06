@@ -9,23 +9,23 @@ import android.view.Menu;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.kt;
 import org.telegram.ui.Components.rt0;
-import org.telegram.ui.Components.t31;
-import org.telegram.ui.Components.uy0;
+import org.telegram.ui.Components.u31;
+import org.telegram.ui.Components.vy0;
 public final class f3 extends kt {
     public final org.telegram.ui.ActionBar.f6 V;
     public final boolean W;
-    public final h3 f29096a0;
+    public final h3 f29097a0;
 
     public f3(h3 h3Var, Context context, rt0 rt0Var, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
         super(context, rt0Var, null, 4, true, null);
-        this.f29096a0 = h3Var;
+        this.f29097a0 = h3Var;
         this.V = f6Var;
         this.W = z9;
     }
 
     @Override
     public final boolean a() {
-        if (this.f29096a0.f29253r && super.a()) {
+        if (this.f29097a0.f29254r && super.a()) {
             return true;
         }
         return false;
@@ -33,12 +33,12 @@ public final class f3 extends kt {
 
     @Override
     public final boolean b() {
-        return this.f29096a0.f29254s;
+        return this.f29097a0.f29255s;
     }
 
     @Override
     public final int h() {
-        return this.f29096a0.a();
+        return this.f29097a0.a();
     }
 
     @Override
@@ -49,15 +49,15 @@ public final class f3 extends kt {
         menu.removeItem(16908341);
         menu.add(2131296496, 2131296508, 6, hd.M0(2131745263, null));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.M0(2131753671, null));
-        spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new u31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
         menu.add(2131296496, 2131296491, 7, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(hd.M0(2131749086, null));
-        spannableStringBuilder2.setSpan(new t31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(2131296496, 2131296497, 8, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(hd.M0(2131744438, null));
         ?? obj = new Object();
-        obj.f38433a = 8 | obj.f38433a;
-        spannableStringBuilder3.setSpan(new uy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
+        obj.f38751a = 8 | obj.f38751a;
+        spannableStringBuilder3.setSpan(new vy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(2131296496, 2131296509, 9, spannableStringBuilder3);
         menu.add(2131296496, 2131296503, 10, hd.M0(2131746336, null));
     }
@@ -71,12 +71,12 @@ public final class f3 extends kt {
         canvas.clipRect(getPaddingLeft() + getScrollX(), 0, (getWidth() + getScrollX()) - getPaddingRight(), getHeight());
         super.onDraw(canvas);
         canvas.restore();
-        h3 h3Var = this.f29096a0;
-        org.telegram.ui.Components.i6 i6Var = h3Var.f29257y;
-        org.telegram.ui.Components.z4 z4Var = h3Var.f29255w;
+        h3 h3Var = this.f29097a0;
+        org.telegram.ui.Components.i6 i6Var = h3Var.f29258y;
+        org.telegram.ui.Components.z4 z4Var = h3Var.f29256w;
         if (z4Var != null) {
-            if (h3Var.f29256x <= 0) {
-                i7 = org.telegram.ui.ActionBar.k6.f28069p7;
+            if (h3Var.f29257x <= 0) {
+                i7 = org.telegram.ui.ActionBar.k6.f28070p7;
             } else {
                 i7 = org.telegram.ui.ActionBar.k6.P5;
             }
@@ -101,7 +101,7 @@ public final class f3 extends kt {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f29096a0.f29257y && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f29097a0.f29258y && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -12,7 +12,7 @@ public final class f {
     public int[] d;
 
     public f(int[] iArr) {
-        this.f14080a = p10.f24459s0;
+        this.f14080a = p10.f24467s0;
         this.f14081b = -1;
         this.f14082c = -1;
         this.d = iArr;
@@ -81,12 +81,12 @@ public final class f {
                     int b10 = recyclerView.f2871x.b();
                     v4.b0 b0Var = (v4.b0) n0Var;
                     v4.a0 a0Var = b0Var.B;
-                    if (a0Var != null && (i7 = a0Var.f56903a) >= 0) {
-                        z10 = a0Var.f56905c;
+                    if (a0Var != null && (i7 = a0Var.f56902a) >= 0) {
+                        z10 = a0Var.f56904c;
                     } else {
                         b0Var.f1();
                         z10 = b0Var.v;
-                        i7 = b0Var.f56930y;
+                        i7 = b0Var.f56929y;
                         if (i7 == -1) {
                             i7 = z10 ? b10 - 1 : 0;
                         }
@@ -104,7 +104,7 @@ public final class f {
                 int i13 = this.f14081b;
                 a1 a1Var = recyclerView.f2867u0;
                 v4.b0 b0Var2 = (v4.b0) n0Var;
-                if (b0Var2.f56921o != 0) {
+                if (b0Var2.f56920o != 0) {
                     i12 = i13;
                 }
                 if (b0Var2.r() != 0 && i12 != 0) {
@@ -113,13 +113,13 @@ public final class f {
                         i10 = 1;
                     }
                     b0Var2.m1(i10, Math.abs(i12), true, a1Var);
-                    b0Var2.A0(a1Var, b0Var2.f56922p, this);
+                    b0Var2.A0(a1Var, b0Var2.f56921p, this);
                 }
             }
             int i14 = this.f14082c;
-            if (i14 > n0Var.f57045i) {
-                n0Var.f57045i = i14;
-                n0Var.f57046j = z9;
+            if (i14 > n0Var.f57044i) {
+                n0Var.f57044i = i14;
+                n0Var.f57045j = z9;
                 recyclerView.f2842b.l();
             }
         }
@@ -127,7 +127,7 @@ public final class f {
 
     public void d() {
         int[] iArr = this.d;
-        int i7 = p10.f24459s0;
+        int i7 = p10.f24467s0;
         if (this.f14080a != i7) {
             qs.f(i7).j(this.f14081b);
             this.f14081b = -1;

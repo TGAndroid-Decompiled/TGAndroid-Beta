@@ -28,48 +28,48 @@ public final class yt implements x5 {
     public boolean R;
     public View S;
     public final fv T;
-    public final kv f26704a;
-    public final TL_iv.PageBlock f26705b;
-    public final ImageReceiver f26706c;
+    public final kv f26712a;
+    public final TL_iv.PageBlock f26713b;
+    public final ImageReceiver f26714c;
     public final ImageReceiver d;
-    public Bitmap f26707e;
-    public RadialProgress2 f26708f;
+    public Bitmap f26715e;
+    public RadialProgress2 f26716f;
     public final TLRPC.Photo h;
-    public final TLRPC.PhotoSize f26709n;
-    public final TLRPC.TL_photoStrippedSize f26710r;
-    public final TLRPC.Document f26711s;
-    public final TLRPC.PhotoSize f26712w;
-    public final TLRPC.TL_photoStrippedSize f26713x;
-    public final boolean f26714y;
+    public final TLRPC.PhotoSize f26717n;
+    public final TLRPC.TL_photoStrippedSize f26718r;
+    public final TLRPC.Document f26719s;
+    public final TLRPC.PhotoSize f26720w;
+    public final TLRPC.TL_photoStrippedSize f26721x;
+    public final boolean f26722y;
 
     public yt(kv kvVar, TL_iv.pageBlockPhoto pageblockphoto) {
         int i7;
         ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.f26706c = imageReceiver;
+        this.f26714c = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(null);
         this.d = imageReceiver2;
         this.K = -1;
         this.N = g0.L(48.0f);
         this.T = new fv();
-        this.f26704a = kvVar;
-        this.f26705b = pageblockphoto;
+        this.f26712a = kvVar;
+        this.f26713b = pageblockphoto;
         TLRPC.Photo v = kvVar.v(pageblockphoto.photo_id);
         this.h = v;
         if (v != null) {
-            this.f26709n = w7.w(v.sizes, g0.Z0(false), false, null, false);
-            this.f26710r = w7.R(v.sizes);
+            this.f26717n = w7.w(v.sizes, g0.Z0(false), false, null, false);
+            this.f26718r = w7.Q(v.sizes);
         } else {
-            this.f26709n = null;
-            this.f26710r = null;
+            this.f26717n = null;
+            this.f26718r = null;
         }
-        this.f26711s = null;
-        this.f26712w = null;
-        this.f26713x = null;
-        this.f26714y = false;
+        this.f26719s = null;
+        this.f26720w = null;
+        this.f26721x = null;
+        this.f26722y = false;
         this.D = false;
-        TLRPC.PhotoSize photoSize = this.f26709n;
-        this.E = (photoSize == null || (i7 = photoSize.h) <= 0) ? 1.0f : photoSize.f26977w / i7;
-        this.O = z5.q(kvVar.f23756a).k();
+        TLRPC.PhotoSize photoSize = this.f26717n;
+        this.E = (photoSize == null || (i7 = photoSize.h) <= 0) ? 1.0f : photoSize.f26978w / i7;
+        this.O = z5.q(kvVar.f23763a).k();
         imageReceiver.f21233z1 = true;
         imageReceiver2.f21233z1 = true;
     }
@@ -81,11 +81,11 @@ public final class yt implements x5 {
 
     @Override
     public final void M(String str) {
-        RadialProgress2 radialProgress2 = this.f26708f;
+        RadialProgress2 radialProgress2 = this.f26716f;
         if (radialProgress2 != null) {
             radialProgress2.p(true, 1.0f);
         }
-        if (this.f26714y && (a() || this.R)) {
+        if (this.f26722y && (a() || this.R)) {
             b(true);
         }
         m(this.S, true);
@@ -93,67 +93,67 @@ public final class yt implements x5 {
 
     public final boolean a() {
         if (this.D) {
-            int i7 = iz.f23357a;
+            int i7 = iz.f23364a;
             return rc.e(1024);
         }
-        int i10 = iz.f23357a;
+        int i10 = iz.f23364a;
         return rc.e(2048);
     }
 
     public final void b(boolean z9) {
         hc hcVar;
         TLRPC.PhotoSize photoSize;
-        ImageReceiver imageReceiver = this.f26706c;
+        ImageReceiver imageReceiver = this.f26714c;
         hc hcVar2 = null;
-        kv kvVar = this.f26704a;
+        kv kvVar = this.f26712a;
         TLRPC.Photo photo = this.h;
-        if (photo != null && (photoSize = this.f26709n) != null) {
-            TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f26710r;
+        if (photo != null && (photoSize = this.f26717n) != null) {
+            TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f26718r;
             if (tL_photoStrippedSize != null) {
                 hcVar2 = hc.i(tL_photoStrippedSize, photo);
             }
             hc hcVar3 = hcVar2;
             if (z9) {
-                imageReceiver.u0(null, null, hc.i(photoSize, photo), null, hcVar3, "b1", null, photoSize.size, null, kvVar.f23757b, 1);
+                imageReceiver.u0(null, null, hc.i(photoSize, photo), null, hcVar3, "b1", null, photoSize.size, null, kvVar.f23764b, 1);
                 return;
             } else {
-                imageReceiver.u0(null, null, null, null, hcVar3, "b1", null, photoSize.size, null, kvVar.f23757b, 1);
+                imageReceiver.u0(null, null, null, null, hcVar3, "b1", null, photoSize.size, null, kvVar.f23764b, 1);
                 return;
             }
         }
-        TLRPC.Document document = this.f26711s;
+        TLRPC.Document document = this.f26719s;
         if (document != null) {
-            TLRPC.TL_photoStrippedSize tL_photoStrippedSize2 = this.f26713x;
+            TLRPC.TL_photoStrippedSize tL_photoStrippedSize2 = this.f26721x;
             if (tL_photoStrippedSize2 != null) {
                 hcVar = hc.c(tL_photoStrippedSize2, document);
             } else {
                 hcVar = null;
             }
-            TLRPC.PhotoSize photoSize2 = this.f26712w;
+            TLRPC.PhotoSize photoSize2 = this.f26720w;
             if (photoSize2 != null) {
                 hcVar2 = hc.c(photoSize2, document);
             }
-            if (z9 && this.f26714y && (a() || this.R)) {
+            if (z9 && this.f26722y && (a() || this.R)) {
                 imageReceiver.f21217t0 = true;
                 imageReceiver.W(1);
-                imageReceiver.u0(hc.b(document), "g", hcVar2, null, hcVar, "b1", null, document.size, "mp4", kvVar.f23757b, 1);
+                imageReceiver.u0(hc.b(document), "g", hcVar2, null, hcVar, "b1", null, document.size, "mp4", kvVar.f23764b, 1);
                 return;
             }
-            imageReceiver.u0(null, null, hcVar2, null, hcVar, "b1", null, document.size, "mp4", kvVar.f23757b, 1);
+            imageReceiver.u0(null, null, hcVar2, null, hcVar, "b1", null, document.size, "mp4", kvVar.f23764b, 1);
         }
     }
 
     public final void c(Canvas canvas) {
         Bitmap n10;
-        ImageReceiver imageReceiver = this.f26706c;
+        ImageReceiver imageReceiver = this.f26714c;
         xh.e eVar = null;
         imageReceiver.h(canvas, null);
         if (h()) {
             fv fvVar = this.T;
             if (!fvVar.b()) {
                 ImageReceiver imageReceiver2 = this.d;
-                if ((imageReceiver2.n() == null || imageReceiver.m() == null) && (n10 = imageReceiver.n()) != null && !n10.isRecycled() && (n10 != this.f26707e || imageReceiver2.n() == null)) {
-                    this.f26707e = n10;
+                if ((imageReceiver2.n() == null || imageReceiver.m() == null) && (n10 = imageReceiver.n()) != null && !n10.isRecycled() && (n10 != this.f26715e || imageReceiver2.n() == null)) {
+                    this.f26715e = n10;
                     imageReceiver2.v0(Utilities.D(n10, false));
                     if (U == null) {
                         ColorMatrix colorMatrix = new ColorMatrix();
@@ -176,11 +176,11 @@ public final class yt implements x5 {
                         imageReceiver2.setAlpha(imageReceiver.f21194h1);
                         imageReceiver2.h(canvas, null);
                     }
-                    kv kvVar = this.f26704a;
+                    kv kvVar = this.f26712a;
                     View view = kvVar.Q;
                     if (view != null) {
                         xh.e eVar2 = kvVar.R;
-                        if (eVar2 != null && eVar2.f58690i) {
+                        if (eVar2 != null && eVar2.f58689i) {
                             kvVar.R = null;
                         }
                         if (kvVar.R == null) {
@@ -203,27 +203,27 @@ public final class yt implements x5 {
                 return;
             }
         }
-        RadialProgress2 radialProgress2 = this.f26708f;
+        RadialProgress2 radialProgress2 = this.f26716f;
         if (radialProgress2 != null && this.K != -1) {
             radialProgress2.draw(canvas);
         }
     }
 
     public final void d(View view) {
-        RadialProgress2 radialProgress2 = this.f26708f;
+        RadialProgress2 radialProgress2 = this.f26716f;
         int i7 = this.N;
         if (radialProgress2 == null && view != null) {
             RadialProgress2 radialProgress22 = new RadialProgress2(view, null);
-            this.f26708f = radialProgress22;
+            this.f26716f = radialProgress22;
             radialProgress22.d = -1;
             radialProgress22.setColors(1711276032, 2130706432, -1, -2500135);
-            RadialProgress2 radialProgress23 = this.f26708f;
+            RadialProgress2 radialProgress23 = this.f26716f;
             int i10 = this.L;
             int i11 = this.M;
             radialProgress23.r(i10, i11, i10 + i7, i7 + i11);
         } else if (radialProgress2 != null && view != null) {
             radialProgress2.n(view);
-            RadialProgress2 radialProgress24 = this.f26708f;
+            RadialProgress2 radialProgress24 = this.f26716f;
             int i12 = this.L;
             int i13 = this.M;
             radialProgress24.r(i12, i13, i12 + i7, i7 + i13);
@@ -236,7 +236,7 @@ public final class yt implements x5 {
 
     public final CharSequence f() {
         int i7;
-        if (this.f26714y) {
+        if (this.f26722y) {
             i7 = 2131753933;
         } else {
             i7 = 2131753948;
@@ -266,7 +266,7 @@ public final class yt implements x5 {
     }
 
     public final boolean h() {
-        TL_iv.PageBlock pageBlock = this.f26705b;
+        TL_iv.PageBlock pageBlock = this.f26713b;
         if (pageBlock instanceof TL_iv.pageBlockPhoto) {
             return ((TL_iv.pageBlockPhoto) pageBlock).spoiler;
         }
@@ -279,7 +279,7 @@ public final class yt implements x5 {
     @Override
     public final void i(long j3, long j10) {
         float f10;
-        RadialProgress2 radialProgress2 = this.f26708f;
+        RadialProgress2 radialProgress2 = this.f26716f;
         if (radialProgress2 != null) {
             if (j10 <= 0) {
                 f10 = 0.0f;
@@ -296,18 +296,18 @@ public final class yt implements x5 {
     public final boolean j(View view) {
         if (h()) {
             fv fvVar = this.T;
-            if (!fvVar.f22455b && fvVar.f22458f == null) {
-                ImageReceiver imageReceiver = this.f26706c;
+            if (!fvVar.f22462b && fvVar.f22465f == null) {
+                ImageReceiver imageReceiver = this.f26714c;
                 float f10 = imageReceiver.M0;
                 float f11 = imageReceiver.N0;
                 fvVar.c(view, (f10 / 2.0f) + imageReceiver.K0, (f11 / 2.0f) + imageReceiver.L0, f10, f11);
                 return true;
             }
         }
-        kv kvVar = this.f26704a;
+        kv kvVar = this.f26712a;
         org.telegram.ui.Cells.l1 l1Var = kvVar.F;
         if (l1Var != null) {
-            l1Var.b2(kvVar.E, this.f26705b);
+            l1Var.b2(kvVar.E, this.f26713b);
             return true;
         }
         return false;
@@ -323,20 +323,20 @@ public final class yt implements x5 {
         this.G = i10;
         this.H = i11;
         this.I = i12;
-        this.f26706c.y0(i7, i10, i11, i12);
+        this.f26714c.y0(i7, i10, i11, i12);
         int i13 = this.N;
         int D = jg.g.D(i11, i13, 2, i7);
         this.L = D;
         int D2 = jg.g.D(i12, i13, 2, i10);
         this.M = D2;
-        RadialProgress2 radialProgress2 = this.f26708f;
+        RadialProgress2 radialProgress2 = this.f26716f;
         if (radialProgress2 != null) {
             radialProgress2.r(D, D2, D + i13, i13 + D2);
         }
         boolean z10 = true;
-        kv kvVar = this.f26704a;
-        TLRPC.Document document = this.f26711s;
-        if (document == null ? (z5.q(kvVar.f23756a).m() & 1) != 0 : !(this.f26714y && (!a() || !z5.q(kvVar.f23756a).c(4, document.size)))) {
+        kv kvVar = this.f26712a;
+        TLRPC.Document document = this.f26719s;
+        if (document == null ? (z5.q(kvVar.f23763a).m() & 1) != 0 : !(this.f26722y && (!a() || !z5.q(kvVar.f23763a).c(4, document.size)))) {
             z9 = true;
         } else {
             z9 = false;
@@ -355,11 +355,11 @@ public final class yt implements x5 {
             view = this.S;
         }
         d(view);
-        TLRPC.PhotoSize photoSize = this.f26709n;
+        TLRPC.PhotoSize photoSize = this.f26717n;
         if (photoSize != null) {
             str = w7.r(null, photoSize);
         } else {
-            TLRPC.Document document = this.f26711s;
+            TLRPC.Document document = this.f26719s;
             if (document != null) {
                 str = w7.r(null, document);
             } else {
@@ -368,14 +368,14 @@ public final class yt implements x5 {
         }
         if (TextUtils.isEmpty(str)) {
             this.K = -1;
-            RadialProgress2 radialProgress2 = this.f26708f;
+            RadialProgress2 radialProgress2 = this.f26716f;
             if (radialProgress2 != null) {
                 radialProgress2.setIcon(4, false, false);
                 return;
             }
             return;
         }
-        ImageReceiver imageReceiver = this.f26706c;
+        ImageReceiver imageReceiver = this.f26714c;
         org.telegram.ui.Components.v5 m10 = imageReceiver.m();
         if (m10 != null && (m10.s() || imageReceiver.M())) {
             z10 = true;
@@ -384,21 +384,21 @@ public final class yt implements x5 {
         }
         boolean e10 = e();
         boolean z11 = this.D;
-        boolean z12 = this.f26714y;
-        kv kvVar = this.f26704a;
+        boolean z12 = this.f26722y;
+        kv kvVar = this.f26712a;
         if (!e10 && (!z12 || !z10)) {
-            z5.q(kvVar.f23756a).a(str, null, this);
+            z5.q(kvVar.f23763a).a(str, null, this);
             float f10 = 0.0f;
-            if (!this.J && !this.R && !w7.G(kvVar.f23756a).T(str)) {
+            if (!this.J && !this.R && !w7.G(kvVar.f23763a).S(str)) {
                 if (z11) {
                     this.K = 3;
-                    RadialProgress2 radialProgress22 = this.f26708f;
+                    RadialProgress2 radialProgress22 = this.f26716f;
                     if (radialProgress22 != null) {
                         radialProgress22.setIcon(0, true, z9);
                     }
                 } else {
                     this.K = 0;
-                    RadialProgress2 radialProgress23 = this.f26708f;
+                    RadialProgress2 radialProgress23 = this.f26716f;
                     if (radialProgress23 != null) {
                         radialProgress23.setIcon(2, true, z9);
                     }
@@ -409,32 +409,32 @@ public final class yt implements x5 {
                 if (w10 != null) {
                     f10 = w10.floatValue();
                 }
-                RadialProgress2 radialProgress24 = this.f26708f;
+                RadialProgress2 radialProgress24 = this.f26716f;
                 if (radialProgress24 != null) {
                     radialProgress24.setIcon(3, true, z9);
                 }
             }
-            RadialProgress2 radialProgress25 = this.f26708f;
+            RadialProgress2 radialProgress25 = this.f26716f;
             if (radialProgress25 != null) {
                 radialProgress25.p(false, f10);
             }
         } else {
-            z5.q(kvVar.f23756a).v(this);
+            z5.q(kvVar.f23763a).v(this);
             if (z11 && !z10) {
                 this.K = 3;
-                RadialProgress2 radialProgress26 = this.f26708f;
+                RadialProgress2 radialProgress26 = this.f26716f;
                 if (radialProgress26 != null) {
                     radialProgress26.setIcon(0, false, z9);
                 }
             } else if (z12 && !z10 && !a() && !this.R) {
                 this.K = 2;
-                RadialProgress2 radialProgress27 = this.f26708f;
+                RadialProgress2 radialProgress27 = this.f26716f;
                 if (radialProgress27 != null) {
                     radialProgress27.setIcon(8, false, z9);
                 }
             } else {
                 this.K = -1;
-                RadialProgress2 radialProgress28 = this.f26708f;
+                RadialProgress2 radialProgress28 = this.f26716f;
                 if (radialProgress28 != null) {
                     radialProgress28.setIcon(4, false, z9);
                 }
@@ -448,41 +448,41 @@ public final class yt implements x5 {
     public yt(kv kvVar, TL_iv.pageBlockVideo pageblockvideo) {
         float f10;
         int i7;
-        this.f26706c = new ImageReceiver(null);
+        this.f26714c = new ImageReceiver(null);
         this.d = new ImageReceiver(null);
         this.K = -1;
         this.N = g0.L(48.0f);
         this.T = new fv();
-        this.f26704a = kvVar;
-        this.f26705b = pageblockvideo;
+        this.f26712a = kvVar;
+        this.f26713b = pageblockvideo;
         this.h = null;
-        this.f26709n = null;
-        this.f26710r = null;
+        this.f26717n = null;
+        this.f26718r = null;
         TLRPC.Document s5 = kvVar.s(pageblockvideo.video_id);
-        this.f26711s = s5;
+        this.f26719s = s5;
         boolean L4 = ij.L4(s5);
         this.D = L4;
-        this.f26714y = L4 || ij.t3(s5, false);
+        this.f26722y = L4 || ij.t3(s5, false);
         if (s5 != null) {
-            this.f26712w = w7.w(s5.thumbs, 320, false, null, true);
-            this.f26713x = w7.R(s5.thumbs);
+            this.f26720w = w7.w(s5.thumbs, 320, false, null, true);
+            this.f26721x = w7.Q(s5.thumbs);
         } else {
-            this.f26712w = null;
-            this.f26713x = null;
+            this.f26720w = null;
+            this.f26721x = null;
         }
         if (s5 != null) {
-            for (int i10 = 0; i10 < this.f26711s.attributes.size(); i10++) {
-                TLRPC.DocumentAttribute documentAttribute = this.f26711s.attributes.get(i10);
+            for (int i10 = 0; i10 < this.f26719s.attributes.size(); i10++) {
+                TLRPC.DocumentAttribute documentAttribute = this.f26719s.attributes.get(i10);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeVideo) && (i7 = documentAttribute.h) > 0) {
-                    f10 = documentAttribute.f26959w / i7;
+                    f10 = documentAttribute.f26960w / i7;
                     break;
                 }
             }
         }
         f10 = 1.0f;
         this.E = f10;
-        this.O = z5.q(kvVar.f23756a).k();
-        ImageReceiver imageReceiver = this.f26706c;
+        this.O = z5.q(kvVar.f23763a).k();
+        ImageReceiver imageReceiver = this.f26714c;
         imageReceiver.f21233z1 = true;
         this.d.f21233z1 = true;
         imageReceiver.f21192g1 = new xt(this);

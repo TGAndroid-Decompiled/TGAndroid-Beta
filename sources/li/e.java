@@ -25,7 +25,7 @@ public final class e implements vk, ki {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f27177w = 600;
+            pageblockmap.f27178w = 600;
             pageblockmap.h = 400;
             pVar.f18757r.V1(pageblockmap);
             pVar.a0(true);

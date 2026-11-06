@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class dw extends v4.c0 {
-    public final int f33056r;
+    public final int f33085r;
 
     public dw(Context context, int i7) {
         super(context);
-        this.f33056r = i7;
+        this.f33085r = i7;
     }
 
     @Override
     public final int i(int i7, int i10, int i11, int i12, int i13) {
-        return super.i(i7, i10, i11, i12, i13) + this.f33056r;
+        return super.i(i7, i10, i11, i12, i13) + this.f33085r;
     }
 
     @Override

@@ -19,7 +19,7 @@ import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Components.b70;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.an;
 import org.telegram.ui.v91;
 import r0.h1;
@@ -35,30 +35,30 @@ public final class u implements a20, r0.m, b20 {
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        h1 h1Var = k1Var.f54109a;
+        h1 h1Var = k1Var.f54108a;
         i0.b f10 = h1Var.f(527);
         d0 d0Var = this.f15607b;
         d0Var.K1 = f10;
         d0Var.L1 = h1Var.f(519);
         d0Var.f15512w1.j(org.telegram.messenger.g0.L(56.0f) + d0Var.K1.f15118b, d0Var.K1.d, false);
         d0Var.f15514y1.invalidate();
-        return k1.f54108b;
+        return k1.f54107b;
     }
 
     @Override
-    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(x31 x31Var, View view, Integer num, Float f10, Float f11) {
         boolean z9;
         long j3;
         boolean z10;
         boolean z11;
         int i7 = d0.M1;
-        Object obj = w31Var.G;
+        Object obj = x31Var.G;
         boolean z12 = obj instanceof TLRPC.Chat;
         d0 d0Var = this.f15607b;
         boolean z13 = true;
         if (z12) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            long j10 = -chat.f26952id;
+            long j10 = -chat.f26953id;
             boolean V = t3.V(chat);
             TLRPC.Chat chat2 = d0Var.f15503m1;
             if (chat2 != null && (chat.creator || t3.y(27, chat2))) {
@@ -72,7 +72,7 @@ public final class u implements a20, r0.m, b20 {
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                long j11 = user.f27101id;
+                long j11 = user.f27102id;
                 boolean t6 = t10.t(user);
                 TLRPC.Chat chat3 = d0Var.f15503m1;
                 if (chat3 != null && ((user.bot && user.bot_can_edit) || t3.y(27, chat3))) {
@@ -88,7 +88,7 @@ public final class u implements a20, r0.m, b20 {
             return Boolean.valueOf(z13);
         }
         if (z9) {
-            k60 F = k60.F(d0Var.f28618c, null, view);
+            k60 F = k60.F(d0Var.f28619c, null, view);
             F.c(2131232087, hd.M0(2131751915, null), new m(d0Var, z10, z11, j3, 1), true);
             F.W(d0Var.f15507r1.d.U0(view, true));
             F.Z();
@@ -111,7 +111,7 @@ public final class u implements a20, r0.m, b20 {
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                d0Var.L0((w31) obj);
+                d0Var.L0((x31) obj);
                 return;
             case 1:
             default:
@@ -120,7 +120,7 @@ public final class u implements a20, r0.m, b20 {
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
                 int i11 = d0.M1;
-                d0Var.I0((w31) obj);
+                d0Var.I0((x31) obj);
                 return;
             case 2:
                 View view3 = (View) obj2;
@@ -128,26 +128,26 @@ public final class u implements a20, r0.m, b20 {
                 Float f14 = (Float) serializable;
                 Float f15 = (Float) serializable2;
                 int i12 = d0.M1;
-                d0Var.L0((w31) obj);
+                d0Var.L0((x31) obj);
                 return;
             case 3:
-                w31 w31Var = (w31) obj;
+                x31 x31Var = (x31) obj;
                 View view4 = (View) obj2;
                 Integer num4 = (Integer) number;
                 Float f16 = (Float) serializable;
                 Float f17 = (Float) serializable2;
                 f2 f2Var = d0Var.f15506q1;
-                if (!d0Var.I0(w31Var)) {
-                    int i13 = w31Var.d;
+                if (!d0Var.I0(x31Var)) {
+                    int i13 = x31Var.d;
                     boolean z9 = false;
                     if (i13 == 101) {
                         d0Var.n1 = !d0Var.n1;
-                        qp.s1(d0Var.f28612a).e5(d0Var.l1, d0Var.n1);
+                        qp.s1(d0Var.f28613a).e5(d0Var.l1, d0Var.n1);
                         if (view4 instanceof q8) {
                             ((q8) view4).getCheckBox().c(d0Var.n1, true);
                             return;
                         } else {
-                            d0Var.f15507r1.d.f36781f3.O(false);
+                            d0Var.f15507r1.d.f37160f3.O(false);
                             return;
                         }
                     } else if (i13 == 100) {
@@ -155,27 +155,27 @@ public final class u implements a20, r0.m, b20 {
                         d0Var.D1.e();
                         return;
                     } else {
-                        Object obj3 = w31Var.G;
+                        Object obj3 = x31Var.G;
                         if (obj3 instanceof TLRPC.Chat) {
                             TLRPC.Chat chat2 = (TLRPC.Chat) obj3;
                             z9 = t3.V(chat2);
-                            j3 = -chat2.f26952id;
+                            j3 = -chat2.f26953id;
                             chat = chat2;
                         } else if (obj3 instanceof TLRPC.User) {
-                            j3 = ((TLRPC.User) obj3).f27101id;
+                            j3 = ((TLRPC.User) obj3).f27102id;
                             chat = null;
                         } else {
                             return;
                         }
-                        int b10 = m0.b(d0Var.f28612a, j3);
+                        int b10 = m0.b(d0Var.f28613a, j3);
                         if (b10 != 1 && b10 != 2) {
                             if (b10 == 3) {
                                 b70 b70Var = new b70(d0Var.getContext(), chat, null, d0Var.f15506q1, d0Var.I0);
-                                b70Var.f32025p1 = new hc((FrameLayout) d0Var.f28615b, d0Var.I0);
+                                b70Var.f32056p1 = new hc((FrameLayout) d0Var.f28616b, d0Var.I0);
                                 b70Var.show();
                                 return;
                             } else if (b10 == 4) {
-                                hc hcVar = new hc((FrameLayout) d0Var.f28615b, d0Var.I0);
+                                hc hcVar = new hc((FrameLayout) d0Var.f28616b, d0Var.I0);
                                 if (z9) {
                                     i7 = 2131751930;
                                 } else {
@@ -189,9 +189,9 @@ public final class u implements a20, r0.m, b20 {
                         }
                         if (f2Var instanceof an) {
                             an anVar = (an) f2Var;
-                            TLRPC.Chat chat3 = anVar.f43772e;
+                            TLRPC.Chat chat3 = anVar.f43771e;
                             TLRPC.User j10 = anVar.j();
-                            if ((chat3 != null && chat3.f26952id == (-j3)) || (j10 != null && j10.f27101id == j3)) {
+                            if ((chat3 != null && chat3.f26953id == (-j3)) || (j10 != null && j10.f27102id == j3)) {
                                 d0Var.dismiss();
                                 return;
                             }
@@ -205,7 +205,7 @@ public final class u implements a20, r0.m, b20 {
                         if (t3.c0(chat)) {
                             if (t3.a(chat)) {
                                 an anVar2 = new an(bundle);
-                                qg.d.a(anVar2, xr.a(j3, qp.s1(d0Var.f28612a).f24759e7.getLong(p0.o(chat.f26952id, "forumlasttopic"), 1L)));
+                                qg.d.a(anVar2, xr.a(j3, qp.s1(d0Var.f28613a).f24767e7.getLong(p0.o(chat.f26953id, "forumlasttopic"), 1L)));
                                 f2Var.presentFragment(anVar2);
                             } else {
                                 f2Var.presentFragment(new v91(bundle));

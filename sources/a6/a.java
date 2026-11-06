@@ -2,7 +2,7 @@ package a6;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -57,17 +57,17 @@ public final class a extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.q(parcel, 1, 4);
+        int r10 = xb.r(parcel, 20293);
+        xb.q(parcel, 1, 4);
         parcel.writeInt(this.f274a ? 1 : 0);
-        wb.l(parcel, 2, this.f275b);
-        wb.l(parcel, 3, this.f276c);
-        wb.q(parcel, 4, 4);
+        xb.l(parcel, 2, this.f275b);
+        xb.l(parcel, 3, this.f276c);
+        xb.q(parcel, 4, 4);
         parcel.writeInt(this.d ? 1 : 0);
-        wb.l(parcel, 5, this.f277e);
-        wb.n(parcel, 6, this.f278f);
-        wb.q(parcel, 7, 4);
+        xb.l(parcel, 5, this.f277e);
+        xb.n(parcel, 6, this.f278f);
+        xb.q(parcel, 7, 4);
         parcel.writeInt(this.h ? 1 : 0);
-        wb.s(parcel, r10);
+        xb.s(parcel, r10);
     }
 }

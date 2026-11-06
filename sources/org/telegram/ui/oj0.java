@@ -6,26 +6,26 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_account;
 public final class oj0 implements Runnable {
-    public final int f48423a;
-    public final pj0 f48424b;
-    public final TLRPC.TL_error f48425c;
+    public final int f48422a;
+    public final pj0 f48423b;
+    public final TLRPC.TL_error f48424c;
     public final TLObject d;
 
     public oj0(pj0 pj0Var, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f48423a = 0;
-        this.f48424b = pj0Var;
+        this.f48422a = 0;
+        this.f48423b = pj0Var;
         this.d = tLObject;
-        this.f48425c = tL_error;
+        this.f48424c = tL_error;
     }
 
     @Override
     public final void run() {
-        switch (this.f48423a) {
+        switch (this.f48422a) {
             case 0:
-                pj0 pj0Var = this.f48424b;
+                pj0 pj0Var = this.f48423b;
                 TLObject tLObject = this.d;
-                TLRPC.TL_error tL_error = this.f48425c;
-                bk0 bk0Var = pj0Var.f48845e;
+                TLRPC.TL_error tL_error = this.f48424c;
+                bk0 bk0Var = pj0Var.f48844e;
                 if (tLObject instanceof Vector) {
                     bk0Var.D = new TL_account.authorizationForm();
                     Vector vector = (Vector) tLObject;
@@ -44,12 +44,12 @@ public final class oj0 implements Runnable {
                 bk0Var.R1(true, false);
                 return;
             case 1:
-                pj0 pj0Var2 = this.f48424b;
-                TLRPC.TL_error tL_error2 = this.f48425c;
+                pj0 pj0Var2 = this.f48423b;
+                TLRPC.TL_error tL_error2 = this.f48424c;
                 TLObject tLObject2 = this.d;
                 if (tL_error2 == null) {
                     TL_account.Password password = (TL_account.Password) tLObject2;
-                    pj0Var2.f48845e.J = password;
+                    pj0Var2.f48844e.J = password;
                     TwoStepVerificationActivity.r0(password);
                     pj0Var2.b();
                     return;
@@ -57,14 +57,14 @@ public final class oj0 implements Runnable {
                 pj0Var2.getClass();
                 return;
             default:
-                pj0 pj0Var3 = this.f48424b;
-                TLRPC.TL_error tL_error3 = this.f48425c;
+                pj0 pj0Var3 = this.f48423b;
+                TLRPC.TL_error tL_error3 = this.f48424c;
                 TLObject tLObject3 = this.d;
                 if (tL_error3 == null) {
                     TL_account.Password password2 = (TL_account.Password) tLObject3;
-                    pj0Var3.f48845e.J = password2;
+                    pj0Var3.f48844e.J = password2;
                     TwoStepVerificationActivity.r0(password2);
-                    Utilities.f21333e.c(new mc0(pj0Var3, pj0Var3.f48843b, pj0Var3.d, 14));
+                    Utilities.f21333e.c(new mc0(pj0Var3, pj0Var3.f48842b, pj0Var3.d, 14));
                     return;
                 }
                 return;
@@ -72,9 +72,9 @@ public final class oj0 implements Runnable {
     }
 
     public oj0(pj0 pj0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i7) {
-        this.f48423a = i7;
-        this.f48424b = pj0Var;
-        this.f48425c = tL_error;
+        this.f48422a = i7;
+        this.f48423b = pj0Var;
+        this.f48424c = tL_error;
         this.d = tLObject;
     }
 }

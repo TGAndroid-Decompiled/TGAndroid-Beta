@@ -9,12 +9,12 @@ import java.util.Iterator;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class h91 extends org.telegram.ui.ActionBar.j {
-    public final Context f46307a;
-    public final v91 f46308b;
+    public final Context f46306a;
+    public final v91 f46307b;
 
     public h91(v91 v91Var, Context context) {
-        this.f46308b = v91Var;
-        this.f46307a = context;
+        this.f46307b = v91Var;
+        this.f46306a = context;
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
         boolean z10;
         s91 s91Var;
         TLRPC.TL_forumTopic tL_forumTopic;
-        v91 v91Var = this.f46308b;
-        org.telegram.messenger.k00 k00Var = v91Var.f50667s;
-        ArrayList arrayList = v91Var.f50632b;
-        HashSet hashSet = v91Var.f50630a0;
-        long j3 = v91Var.f50629a;
+        v91 v91Var = this.f46307b;
+        org.telegram.messenger.k00 k00Var = v91Var.f50666s;
+        ArrayList arrayList = v91Var.f50631b;
+        HashSet hashSet = v91Var.f50629a0;
+        long j3 = v91Var.f50628a;
         if (i7 == -1) {
             if (hashSet.size() > 0) {
                 v91Var.G0();
@@ -44,7 +44,7 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
         int i12 = 0;
         switch (i7) {
             case 1:
-                org.telegram.messenger.k00 k00Var2 = v91Var.getMessagesController().f24862q7;
+                org.telegram.messenger.k00 k00Var2 = v91Var.getMessagesController().f24870q7;
                 k00Var2.getClass();
                 TLRPC.TL_channels_toggleViewForumAsMessages tL_channels_toggleViewForumAsMessages = new TLRPC.TL_channels_toggleViewForumAsMessages();
                 tL_channels_toggleViewForumAsMessages.channel_id = k00Var2.getMessagesController().h1(j3);
@@ -71,10 +71,10 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                             i12++;
                         }
                     }
-                    long j10 = N0.f26953id;
+                    long j10 = N0.f26954id;
                     i10 = ((org.telegram.ui.ActionBar.f2) v91Var).currentAccount;
-                    f91 f91Var = new f91(this, this.f46307a, i10, hVar, N0.f26953id, v91Var, j10);
-                    f91Var.f40171c2 = new di.c1(this, j10, 10);
+                    f91 f91Var = new f91(this, this.f46306a, i10, hVar, N0.f26954id, v91Var, j10);
+                    f91Var.f40193c2 = new di.c1(this, j10, 10);
                     f91Var.show();
                     return;
                 }
@@ -89,8 +89,8 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                 if (hashSet.size() > 0) {
                     v91Var.C0 = true;
                     v91Var.N0 = true;
-                    org.telegram.messenger.k00 k00Var3 = v91Var.f50667s;
-                    long j11 = v91Var.f50629a;
+                    org.telegram.messenger.k00 k00Var3 = v91Var.f50666s;
+                    long j11 = v91Var.f50628a;
                     int intValue = ((Integer) hashSet.iterator().next()).intValue();
                     if (i7 == 4) {
                         z9 = true;
@@ -116,7 +116,7 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                 for (int i13 = 0; i13 < arrayList2.size(); i13++) {
                     TLRPC.TL_forumTopic f10 = k00Var.f(j3, ((Integer) arrayList2.get(i13)).intValue());
                     if (f10 != null) {
-                        v91Var.getMessagesController().o3(-j3, f10.f27004id);
+                        v91Var.getMessagesController().o3(-j3, f10.f27005id);
                         org.telegram.messenger.qp messagesController = v91Var.getMessagesController();
                         long j12 = -j3;
                         int i14 = f10.top_message;
@@ -126,8 +126,8 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                         } else {
                             i11 = 0;
                         }
-                        messagesController.j3(j12, i14, 0, i11, false, f10.f27004id, 0, true, 0);
-                        v91Var.getMessagesStorage().d2(v91Var.f50629a, f10.f27004id, f10.top_message, 0);
+                        messagesController.j3(j12, i14, 0, i11, false, f10.f27005id, 0, true, 0);
+                        v91Var.getMessagesStorage().d2(v91Var.f50628a, f10.f27005id, f10.top_message, 0);
                     }
                 }
                 v91Var.G0();
@@ -157,7 +157,7 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                 while (true) {
                     if (i16 < v91Var.N.getChildCount()) {
                         View childAt = v91Var.N.getChildAt(i16);
-                        if ((childAt instanceof s91) && (tL_forumTopic = (s91Var = (s91) childAt).N) != null && tL_forumTopic.f27004id == 1) {
+                        if ((childAt instanceof s91) && (tL_forumTopic = (s91Var = (s91) childAt).N) != null && tL_forumTopic.f27005id == 1) {
                             tL_forumTopic2 = tL_forumTopic;
                         } else {
                             i16++;
@@ -169,8 +169,8 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                 if (tL_forumTopic2 == null) {
                     while (true) {
                         if (i12 < arrayList.size()) {
-                            if (arrayList.get(i12) != null && ((n91) arrayList.get(i12)).f48000c != null && ((n91) arrayList.get(i12)).f48000c.f27004id == 1) {
-                                tL_forumTopic2 = ((n91) arrayList.get(i12)).f48000c;
+                            if (arrayList.get(i12) != null && ((n91) arrayList.get(i12)).f47999c != null && ((n91) arrayList.get(i12)).f47999c.f27005id == 1) {
+                                tL_forumTopic2 = ((n91) arrayList.get(i12)).f47999c;
                             } else {
                                 i12++;
                             }
@@ -178,18 +178,18 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                     }
                 }
                 if (tL_forumTopic2 != null) {
-                    if (v91Var.f50676y <= 0) {
+                    if (v91Var.f50675y <= 0) {
                         v91Var.E = true;
                         v91Var.D = 2;
                     }
-                    v91Var.getMessagesController().f24862q7.A(1, j3, tL_forumTopic2.hidden);
+                    v91Var.getMessagesController().f24870q7.A(1, j3, tL_forumTopic2.hidden);
                     if (s91Var != null) {
-                        v91Var.f50637c1 = s91Var;
+                        v91Var.f50636c1 = s91Var;
                     }
                     v91Var.N.B1(!tL_forumTopic2.hidden, s91Var);
                     v91Var.Z0(true, true);
                     if (s91Var != null) {
-                        s91Var.setTopicIcon(s91Var.f49707c5);
+                        s91Var.setTopicIcon(s91Var.f49706c5);
                     }
                 }
                 v91Var.G0();
@@ -205,7 +205,7 @@ public final class h91 extends org.telegram.ui.ActionBar.j {
                     v91Var.presentFragment(t5Var);
                     return;
                 }
-                v91Var.getNotificationCenter().k(org.telegram.messenger.qs.f25026n3, Long.valueOf(-j3));
+                v91Var.getNotificationCenter().k(org.telegram.messenger.qs.f25034n3, Long.valueOf(-j3));
                 return;
             case 15:
                 oy0.K0(-j3, v91Var);

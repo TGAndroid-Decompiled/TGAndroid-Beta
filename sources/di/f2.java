@@ -13,9 +13,9 @@ import org.telegram.messenger.qp;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.ii0;
-import org.telegram.ui.Components.k51;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.kz;
+import org.telegram.ui.Components.l51;
 import org.telegram.ui.Components.xa;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
@@ -71,7 +71,7 @@ public final class f2 implements View.OnLongClickListener {
                 return true;
             case 1:
                 org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) obj;
-                fi.u4 u4Var = ((org.telegram.ui.Components.f0) obj2).f33416n;
+                fi.u4 u4Var = ((org.telegram.ui.Components.f0) obj2).f33425n;
                 if (u4Var == null) {
                     return false;
                 }
@@ -90,7 +90,7 @@ public final class f2 implements View.OnLongClickListener {
                 return true;
             case 3:
                 k60 k60Var = (k60) obj2;
-                ((k51) obj).run();
+                ((l51) obj).run();
                 if (k60Var.J) {
                     k60Var.u();
                 }
@@ -110,7 +110,7 @@ public final class f2 implements View.OnLongClickListener {
                 final ProfileActivity profileActivity = (ProfileActivity) obj2;
                 ImageView imageView = (ImageView) obj;
                 RectF rectF = ProfileActivity.S6;
-                org.telegram.ui.ActionBar.g1 b10 = org.telegram.ui.Components.d9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f41728f1, profileActivity.f41866z0);
+                org.telegram.ui.ActionBar.g1 b10 = org.telegram.ui.Components.d9.b(profileActivity, imageView, profileActivity.a(), profileActivity.f41727f1, profileActivity.f41865z0);
                 if (b10 == null) {
                     return false;
                 }
@@ -131,7 +131,7 @@ public final class f2 implements View.OnLongClickListener {
                         }
                     }
                 });
-                profileActivity.f41843w0 = imageView;
+                profileActivity.f41842w0 = imageView;
                 profileActivity.X3(0.3f);
                 UndoView undoView = profileActivity.L;
                 if (undoView != null) {
@@ -142,7 +142,7 @@ public final class f2 implements View.OnLongClickListener {
                 final ProfileActivity profileActivity2 = (ProfileActivity) obj2;
                 View view2 = (View) obj;
                 RectF rectF2 = ProfileActivity.S6;
-                org.telegram.ui.ActionBar.g1 b11 = org.telegram.ui.Components.d9.b(profileActivity2, view2, profileActivity2.a(), profileActivity2.f41728f1, profileActivity2.f41866z0);
+                org.telegram.ui.ActionBar.g1 b11 = org.telegram.ui.Components.d9.b(profileActivity2, view2, profileActivity2.a(), profileActivity2.f41727f1, profileActivity2.f41865z0);
                 if (b11 == null) {
                     return false;
                 }
@@ -163,7 +163,7 @@ public final class f2 implements View.OnLongClickListener {
                         }
                     }
                 });
-                profileActivity2.f41843w0 = view2;
+                profileActivity2.f41842w0 = view2;
                 profileActivity2.X3(0.3f);
                 UndoView undoView2 = profileActivity2.L;
                 if (undoView2 != null) {
@@ -174,26 +174,26 @@ public final class f2 implements View.OnLongClickListener {
                 k41 k41Var = (k41) obj2;
                 ng.f fVar = (ng.f) obj;
                 l41 l41Var = k41Var.d;
-                kz kzVar = k41Var.f47104a;
-                if (!kzVar.f35446c) {
+                kz kzVar = k41Var.f47103a;
+                if (!kzVar.f35435c) {
                     return false;
                 }
                 l41Var.f();
-                ArrayList arrayList = l41Var.f47414n;
-                lg.g gVar = l41Var.f47411c;
+                ArrayList arrayList = l41Var.f47413n;
+                lg.g gVar = l41Var.f47410c;
                 int size = arrayList.size();
                 for (int i10 = 0; i10 < size; i10++) {
-                    ((k41) arrayList.get(i10)).f47104a.setChecked(false);
-                    ((k41) arrayList.get(i10)).f47105b.f20576n = false;
-                    if (l41Var.f47415r.f48256c > 0 && i10 < gVar.d.size()) {
+                    ((k41) arrayList.get(i10)).f47103a.setChecked(false);
+                    ((k41) arrayList.get(i10)).f47104b.f20576n = false;
+                    if (l41Var.f47414r.f48255c > 0 && i10 < gVar.d.size()) {
                         ((ng.f) gVar.d.get(i10)).f20576n = false;
                     }
                 }
                 kzVar.setChecked(true);
                 fVar.f20576n = true;
-                l41Var.f47410b.z();
-                if (l41Var.f47415r.f48256c > 0) {
-                    ((ng.f) gVar.d.get(k41Var.f47106c)).f20576n = true;
+                l41Var.f47409b.z();
+                if (l41Var.f47414r.f48255c > 0) {
+                    ((ng.f) gVar.d.get(k41Var.f47105c)).f20576n = true;
                     gVar.z();
                 }
                 return true;

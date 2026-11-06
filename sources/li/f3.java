@@ -47,14 +47,14 @@ public final class f3 implements x4 {
         sVar.f18816g = photo;
         sVar.f18811a = 2;
         TLRPC.PhotoSize w10 = w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false);
-        if (w10 != null && (i7 = w10.f26977w) > 0 && (i10 = w10.h) > 0) {
+        if (w10 != null && (i7 = w10.f26978w) > 0 && (i10 = w10.h) > 0) {
             sVar.f18818j = i7;
             sVar.f18819k = i10;
         }
         a aVar = this.f18562b;
         TL_iv.PageBlock Q3 = t3.Q3(aVar, sVar);
         if (Q3 instanceof TL_iv.pageBlockPhoto) {
-            ((TL_iv.pageBlockPhoto) Q3).photo_id = photo.f26976id;
+            ((TL_iv.pageBlockPhoto) Q3).photo_id = photo.f26977id;
         }
         t3 t3Var = this.f18563c;
         t3Var.f18877g4.remove(sVar);
@@ -70,7 +70,7 @@ public final class f3 implements x4 {
         a aVar = this.f18562b;
         TL_iv.PageBlock Q3 = t3.Q3(aVar, sVar);
         if (Q3 instanceof TL_iv.pageBlockVideo) {
-            ((TL_iv.pageBlockVideo) Q3).video_id = document.f26958id;
+            ((TL_iv.pageBlockVideo) Q3).video_id = document.f26959id;
         }
         t3 t3Var = this.f18563c;
         t3Var.f18877g4.remove(sVar);

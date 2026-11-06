@@ -2,15 +2,15 @@ package org.telegram.utils.twidget;
 
 import android.graphics.Canvas;
 public abstract class g {
-    public final int f52789a;
-    public final int f52790b;
-    public final int f52791c;
+    public final int f52787a;
+    public final int f52788b;
+    public final int f52789c;
     public final int d;
 
     public g(int i7, int i10, int i11, int i12) {
-        this.f52789a = i7;
-        this.f52790b = i10;
-        this.f52791c = i11;
+        this.f52787a = i7;
+        this.f52788b = i10;
+        this.f52789c = i11;
         this.d = i12;
     }
 

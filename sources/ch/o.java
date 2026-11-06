@@ -39,14 +39,14 @@ import org.telegram.ui.Cells.t7;
 import org.telegram.ui.Cells.z8;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.q01;
 public final class o extends f2 implements ls {
     public final Paint D;
-    public p41 E;
+    public q41 E;
     public final ArrayList F;
     public final ArrayList G;
     public final LinkedHashMap H;
@@ -92,7 +92,7 @@ public final class o extends f2 implements ls {
         this.I = new ArrayList();
         this.J = new LinkedHashMap();
         this.K = new ArrayList();
-        this.N = getMessagesController().f24934y4;
+        this.N = getMessagesController().f24942y4;
         this.O = false;
         this.Y = -1;
         this.f6341a0 = new h(this, 6);
@@ -142,7 +142,7 @@ public final class o extends f2 implements ls {
         if (z9 && z10) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getParentActivity(), getResourceProvider());
             String M0 = hd.M0(2131743836, "UnsavedChanges");
-            u1 u1Var = alertDialog$Builder.f27292a;
+            u1 u1Var = alertDialog$Builder.f27293a;
             u1Var.R = M0;
             u1Var.T = hd.M0(2131746406, "ReactionApplyChangesDialog");
             alertDialog$Builder.k(hd.M0(2131754216, "ApplyTheme"), new r1(this) {
@@ -190,7 +190,7 @@ public final class o extends f2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == qs.f25095y1 && ((Long) objArr[0]).longValue() == (-this.S)) {
+        if (i7 == qs.f25103y1 && ((Long) objArr[0]).longValue() == (-this.S)) {
             q4 q4Var = this.parentLayout;
             if (q4Var != null && q4Var.getLastFragment() == this) {
                 finishFragment();
@@ -228,7 +228,7 @@ public final class o extends f2 implements ls {
             } else {
                 this.h.clearFocus();
             }
-            qs.e().k(qs.f25004j1, 512);
+            qs.e().k(qs.f25012j1, 512);
             this.f6343c.setLayerType(2, null);
             this.Q.a(false, true);
         }
@@ -276,7 +276,7 @@ public final class o extends f2 implements ls {
                         Object obj2 = arrayList4.get(i10);
                         i10++;
                         TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) obj2;
-                        if (l10.longValue() == tL_availableReaction.activate_animation.f26958id) {
+                        if (l10.longValue() == tL_availableReaction.activate_animation.f26959id) {
                             TLRPC.TL_reactionEmoji tL_reactionEmoji = new TLRPC.TL_reactionEmoji();
                             tL_reactionEmoji.emoticon = tL_availableReaction.reaction;
                             arrayList.add(tL_reactionEmoji);
@@ -311,9 +311,9 @@ public final class o extends f2 implements ls {
             }
             this.f6344e.setChecked(z11);
             if (z11) {
-                i10 = k6.f27886f6;
+                i10 = k6.f27887f6;
             } else {
-                i10 = k6.f27867e6;
+                i10 = k6.f27868e6;
             }
             int x02 = k6.x0(null, i10, false);
             if (z10) {
@@ -325,9 +325,9 @@ public final class o extends f2 implements ls {
             } else {
                 r8 r8Var = this.f6344e;
                 if (z11) {
-                    i11 = k6.f27886f6;
+                    i11 = k6.f27887f6;
                 } else {
-                    i11 = k6.f27867e6;
+                    i11 = k6.f27868e6;
                 }
                 r6.i(i11, r8Var, null);
             }
@@ -336,21 +336,21 @@ public final class o extends f2 implements ls {
                 if (z10) {
                     f0();
                     this.f6349w.animate().setListener(null).cancel();
-                    this.f6349w.animate().alpha(0.0f).setDuration(350L).setInterpolator(xq.f40329f).setListener(new t5(this, 3)).start();
+                    this.f6349w.animate().alpha(0.0f).setDuration(350L).setInterpolator(xq.f40345f).setListener(new t5(this, 3)).start();
                     this.h.setFocusableInTouchMode(false);
-                    this.E.f36781f3.O(true);
+                    this.E.f37160f3.O(true);
                     return;
                 }
                 this.f6349w.setVisibility(4);
                 this.h.setFocusableInTouchMode(false);
-                this.E.f36781f3.O(false);
+                this.E.f37160f3.O(false);
                 return;
             }
             this.f6349w.setVisibility(0);
-            this.E.f36781f3.O(z10);
+            this.E.f37160f3.O(z10);
             if (z10) {
                 this.f6349w.animate().setListener(null).cancel();
-                this.f6349w.animate().alpha(1.0f).setDuration(350L).setInterpolator(xq.f40329f).start();
+                this.f6349w.animate().alpha(1.0f).setDuration(350L).setInterpolator(xq.f40345f).start();
                 this.E.post(new h(this, 1));
                 LinkedHashMap linkedHashMap = this.H;
                 if (linkedHashMap.isEmpty()) {
@@ -372,7 +372,7 @@ public final class o extends f2 implements ls {
                     }
                     this.h.append(spannableStringBuilder);
                     this.h.I();
-                    q01 q01Var = this.f6342b.f49049p0;
+                    q01 q01Var = this.f6342b.f49048p0;
                     if (q01Var != null) {
                         q01Var.f();
                     }
@@ -400,7 +400,7 @@ public final class o extends f2 implements ls {
 
     public final void k0() {
         r8 r8Var = this.f6347r;
-        boolean z9 = r8Var.f30205e.h;
+        boolean z9 = r8Var.f30206e.h;
         int i7 = this.N;
         LinkedHashMap linkedHashMap = this.H;
         ArrayList arrayList = this.I;
@@ -444,7 +444,7 @@ public final class o extends f2 implements ls {
         if (this.f6349w != null && this.f6348s != null) {
             te.a aVar = this.Q;
             if (aVar != null) {
-                f10 = aVar.f55395e;
+                f10 = aVar.f55394e;
             } else {
                 f10 = 0.0f;
             }
@@ -460,7 +460,7 @@ public final class o extends f2 implements ls {
 
     public final void m0() {
         if (this.f6343c != null) {
-            this.D.setColor(k6.w0(k6.f27848d6, this.resourceProvider));
+            this.D.setColor(k6.w0(k6.f27849d6, this.resourceProvider));
             this.f6343c.setPadding(0, 0, 0, this.f6351y);
             this.f6343c.invalidate();
         }
@@ -473,14 +473,14 @@ public final class o extends f2 implements ls {
         }
         te.a aVar = this.Q;
         if (aVar != null) {
-            f10 = aVar.f55395e;
+            f10 = aVar.f55394e;
         } else {
             f10 = 0.0f;
         }
         int W1 = org.telegram.messenger.g0.W1(f10, org.telegram.messenger.g0.L(72.0f), org.telegram.messenger.g0.L(12.0f) + Math.max(0, this.f6343c.getMeasuredHeight() - this.mSystemInsets.d));
-        p41 p41Var = this.E;
+        q41 q41Var = this.E;
         i0.b bVar = this.mSystemInsets;
-        oi.a.e(p41Var, bVar.f15118b, bVar.d, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), W1);
+        oi.a.e(q41Var, bVar.f15118b, bVar.d, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), W1);
     }
 
     @Override
@@ -513,9 +513,9 @@ public final class o extends f2 implements ls {
         if (this.R != null) {
             getMessagesController().G0().a(-j3, new i(this, 0));
             getNotificationCenter().c(this, qs.V4);
-            this.K.addAll(getMediaDataController().f25817n);
-            qs.e().k(qs.f25004j1, 512);
-            getNotificationCenter().c(this, qs.f25095y1);
+            this.K.addAll(getMediaDataController().f25825n);
+            qs.e().k(qs.f25012j1, 512);
+            getNotificationCenter().c(this, qs.f25103y1);
             return super.onFragmentCreate();
         }
         return false;
@@ -529,7 +529,7 @@ public final class o extends f2 implements ls {
             getMessagesController().G4(this.S, this.Y, h0(false), this.U, null, null, null);
         }
         getNotificationCenter().n(this, qs.V4);
-        getNotificationCenter().n(this, qs.f25095y1);
+        getNotificationCenter().n(this, qs.f25103y1);
     }
 
     @Override
@@ -569,10 +569,10 @@ public final class o extends f2 implements ls {
             r8 r8Var = this.f6344e;
             if (r8Var != null && (r8Var.getBackground() instanceof ColorDrawable)) {
                 r8 r8Var2 = this.f6344e;
-                if (r8Var2.f30205e.h) {
-                    i7 = k6.f27886f6;
+                if (r8Var2.f30206e.h) {
+                    i7 = k6.f27887f6;
                 } else {
-                    i7 = k6.f27867e6;
+                    i7 = k6.f27868e6;
                 }
                 r8Var2.setBackgroundColor(k6.x0(null, i7, false));
             }
@@ -598,7 +598,7 @@ public final class o extends f2 implements ls {
                 this.f6342b = mVar;
                 mVar.setAnimationsEnabled(false);
                 this.f6342b.setClipChildren(false);
-                r6.i(k6.f27848d6, this.f6342b, null);
+                r6.i(k6.f27849d6, this.f6342b, null);
                 this.f6343c.addView(this.f6342b, ha.e(-1, -2, 80));
                 f fVar = new f(getParentActivity(), getResourceProvider());
                 this.d = fVar;

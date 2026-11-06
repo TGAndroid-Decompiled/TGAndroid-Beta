@@ -1,6 +1,6 @@
 package kotlin.jvm.internal;
 
-import c8.sb;
+import c8.tb;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -150,14 +150,14 @@ public final class e implements vd.c, d {
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof e) && sb.a(this).equals(sb.a((vd.c) obj))) {
+        if ((obj instanceof e) && tb.a(this).equals(tb.a((vd.c) obj))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return sb.a(this).hashCode();
+        return tb.a(this).hashCode();
     }
 
     public final String toString() {

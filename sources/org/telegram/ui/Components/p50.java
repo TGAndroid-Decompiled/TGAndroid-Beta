@@ -15,11 +15,11 @@ public final class p50 extends av0 {
         switch (this.K) {
             case 0:
                 super.onAttachedToWindow();
-                this.f31927b.getImageReceiver().P0(false);
+                this.f31923b.getImageReceiver().P0(false);
                 return;
             case 1:
                 super.onAttachedToWindow();
-                this.f31927b.getImageReceiver().P0(false);
+                this.f31923b.getImageReceiver().P0(false);
                 return;
             default:
                 super.onAttachedToWindow();

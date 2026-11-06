@@ -8,40 +8,40 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class c extends v31 {
-    public static final int f51108b = 0;
+import org.telegram.ui.Components.x31;
+public final class c extends w31 {
+    public static final int f51103b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         int i7;
         d dVar = (d) view;
-        if (w31Var.G == null) {
-            dVar.setAsShowMore((j) w31Var.H);
+        if (x31Var.G == null) {
+            dVar.setAsShowMore((j) x31Var.H);
             return;
         }
-        int i10 = w31Var.f39843z;
-        String charSequence = w31Var.f39830l.toString();
-        View.OnClickListener onClickListener = w31Var.D;
-        j jVar = (j) w31Var.H;
-        ImageView imageView = dVar.f51114a;
+        int i10 = x31Var.f40172z;
+        String charSequence = x31Var.f40159l.toString();
+        View.OnClickListener onClickListener = x31Var.D;
+        j jVar = (j) x31Var.H;
+        ImageView imageView = dVar.f51107a;
         imageView.setVisibility(0);
         int i11 = jVar.F;
         int i12 = jVar.H;
-        TextView textView = dVar.f51115b;
+        TextView textView = dVar.f51108b;
         textView.setTextColor(i12);
         int r12 = k6.r1(0.6f, i12);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
         imageView.setColorFilter(new PorterDuffColorFilter(r12, mode));
-        ImageView imageView2 = dVar.f51116c;
+        ImageView imageView2 = dVar.f51109c;
         imageView2.setColorFilter(new PorterDuffColorFilter(k6.r1(0.6f, i12), mode));
         imageView2.setBackground(k6.b0(0, k6.r1(0.15f, i12), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f)));
         if (i10 == 0) {
@@ -53,7 +53,7 @@ public final class c extends v31 {
         textView.setText(charSequence);
         imageView2.setOnClickListener(onClickListener);
         dVar.d.setColor(k6.r1(0.1f, jVar.H));
-        dVar.f51117e = z9;
+        dVar.f51110e = z9;
         dVar.setWillNotDraw(!z9);
     }
 

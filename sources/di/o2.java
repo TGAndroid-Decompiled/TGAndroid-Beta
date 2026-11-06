@@ -31,7 +31,7 @@ public final class o2 extends ChatActivityEnterView {
     public final void C0(int i7, int i10) {
         i4 i4Var = this.f9451x5;
         if (i4Var.K1 != null) {
-            this.f31090n3 = true;
+            this.f31091n3 = true;
             this.f9449v5 = this.E0.getMeasuredHeight();
             this.f9450w5 = this.E0.getScrollY();
             invalidate();
@@ -82,11 +82,11 @@ public final class o2 extends ChatActivityEnterView {
                 i7 = 400;
             }
             if (length > i7) {
-                NumberTextView numberTextView = this.f31016b0;
+                NumberTextView numberTextView = this.f31017b0;
                 if (numberTextView != null) {
                     org.telegram.messenger.g0.G3(3.5f, numberTextView, null);
                     try {
-                        this.f31016b0.performHapticFeedback(3, 2);
+                        this.f31017b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }

@@ -3,7 +3,7 @@ package g6;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import c8.wb;
+import c8.xb;
 import f7.t0;
 import j$.util.DesugarCollections;
 import java.util.ArrayList;
@@ -62,34 +62,34 @@ public final class b extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.l(parcel, 2, this.f13531a);
-        wb.n(parcel, 3, DesugarCollections.unmodifiableList(this.f13532b));
-        wb.q(parcel, 4, 4);
+        int r10 = xb.r(parcel, 20293);
+        xb.l(parcel, 2, this.f13531a);
+        xb.n(parcel, 3, DesugarCollections.unmodifiableList(this.f13532b));
+        xb.q(parcel, 4, 4);
         parcel.writeInt(this.f13533c ? 1 : 0);
-        wb.k(parcel, 5, this.d, i7);
-        wb.q(parcel, 6, 4);
+        xb.k(parcel, 5, this.d, i7);
+        xb.q(parcel, 6, 4);
         parcel.writeInt(this.f13534e ? 1 : 0);
-        wb.k(parcel, 7, this.f13535f, i7);
-        wb.q(parcel, 8, 4);
+        xb.k(parcel, 7, this.f13535f, i7);
+        xb.q(parcel, 8, 4);
         parcel.writeInt(this.h ? 1 : 0);
-        wb.q(parcel, 9, 8);
+        xb.q(parcel, 9, 8);
         parcel.writeDouble(this.f13536n);
-        wb.q(parcel, 10, 4);
+        xb.q(parcel, 10, 4);
         parcel.writeInt(this.f13537r ? 1 : 0);
-        wb.q(parcel, 11, 4);
+        xb.q(parcel, 11, 4);
         parcel.writeInt(this.f13538s ? 1 : 0);
-        wb.q(parcel, 12, 4);
+        xb.q(parcel, 12, 4);
         parcel.writeInt(this.f13539w ? 1 : 0);
-        wb.n(parcel, 13, DesugarCollections.unmodifiableList(this.f13540x));
-        wb.q(parcel, 14, 4);
+        xb.n(parcel, 13, DesugarCollections.unmodifiableList(this.f13540x));
+        xb.q(parcel, 14, 4);
         parcel.writeInt(this.f13541y ? 1 : 0);
-        wb.q(parcel, 15, 4);
+        xb.q(parcel, 15, 4);
         parcel.writeInt(0);
-        wb.q(parcel, 16, 4);
+        xb.q(parcel, 16, 4);
         parcel.writeInt(this.D ? 1 : 0);
-        wb.k(parcel, 17, this.E, i7);
-        wb.k(parcel, 18, this.F, i7);
-        wb.s(parcel, r10);
+        xb.k(parcel, 17, this.E, i7);
+        xb.k(parcel, 18, this.F, i7);
+        xb.s(parcel, r10);
     }
 }

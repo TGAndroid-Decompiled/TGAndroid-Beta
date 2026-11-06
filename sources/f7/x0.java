@@ -2,7 +2,7 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -34,8 +34,8 @@ public final class x0 extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.p(parcel, 1, this.f11461a);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.p(parcel, 1, this.f11461a);
+        xb.s(parcel, r10);
     }
 }

@@ -13,13 +13,13 @@ public final class a00 {
 
     public static void a(zz zzVar) {
         if (zzVar != null) {
-            if (zzVar.f26945b < 0) {
-                a00 a00Var = zzVar.f26947e;
+            if (zzVar.f26946b < 0) {
+                a00 a00Var = zzVar.f26948e;
                 int i7 = a00Var.f21357a;
                 a00Var.f21357a = i7 - 1;
                 zzVar.d = i7;
             }
-            zzVar.f26945b = System.currentTimeMillis();
+            zzVar.f26946b = System.currentTimeMillis();
         }
     }
 

@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class ka1 extends org.telegram.ui.Components.oj0 {
-    public final Context f47153c;
+    public final Context f47152c;
     public final TwoStepVerificationActivity d;
 
     public ka1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
         this.d = twoStepVerificationActivity;
-        this.f47153c = context;
+        this.f47152c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56956f == 0) {
+        if (d1Var.f56955f == 0) {
             return true;
         }
         return false;
@@ -42,8 +42,8 @@ public final class ka1 extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
         int i11;
-        int i12 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i12 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         TwoStepVerificationActivity twoStepVerificationActivity = this.d;
         if (i12 != 0) {
             if (i12 == 1) {
@@ -84,12 +84,12 @@ public final class ka1 extends org.telegram.ui.Components.oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View w9Var;
-        Context context = this.f47153c;
+        Context context = this.f47152c;
         if (i7 != 0) {
             w9Var = new org.telegram.ui.Cells.z8(context);
         } else {
             w9Var = new org.telegram.ui.Cells.w9(context);
-            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27848d6, w9Var, null);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27849d6, w9Var, null);
         }
         return new v4.d1(w9Var);
     }

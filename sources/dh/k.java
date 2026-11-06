@@ -69,8 +69,8 @@ public final class k implements eh.a {
                 RectF rectF3 = this.f8784a;
                 if (jh.k.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
                     n40 n40Var = this.d;
-                    int i10 = n40Var.f47957a;
-                    Object obj = n40Var.f47958b;
+                    int i10 = n40Var.f47956a;
+                    Object obj = n40Var.f47957b;
                     switch (i10) {
                         case 0:
                             ((pj0) obj).drawChild(canvas, childAt, uptimeMillis);
@@ -80,7 +80,7 @@ public final class k implements eh.a {
                             if (childAt == profileActivity.N) {
                                 break;
                             } else {
-                                profileActivity.f41688a.drawChild(canvas, childAt, uptimeMillis);
+                                profileActivity.f41687a.drawChild(canvas, childAt, uptimeMillis);
                                 continue;
                             }
                         default:

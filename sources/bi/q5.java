@@ -78,7 +78,7 @@ public final class q5 extends FrameLayout {
         l9Var.setScaleX(0.95f);
         l9Var.setScaleY(0.95f);
         l9Var.setTranslationY(org.telegram.messenger.g0.L(2.0f));
-        org.telegram.ui.Components.i5 l10 = org.telegram.ui.Components.i5.l(p10.f24459s0, 9, stargiftattributepattern.document);
+        org.telegram.ui.Components.i5 l10 = org.telegram.ui.Components.i5.l(p10.f24467s0, 9, stargiftattributepattern.document);
         l10.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
         l9Var.setAnimatedEmojiDrawable(l10);
     }

@@ -243,7 +243,7 @@ public class Camera2Session {
         float f10;
         boolean z10;
         boolean z11;
-        Context context = t0.f25555b;
+        Context context = t0.f25563b;
         CameraManager cameraManager = (CameraManager) context.getSystemService("camera");
         try {
             size = null;

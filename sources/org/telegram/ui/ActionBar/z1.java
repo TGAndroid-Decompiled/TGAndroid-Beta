@@ -3,17 +3,17 @@ package org.telegram.ui.ActionBar;
 import org.telegram.ui.Components.ab;
 import org.telegram.ui.Components.cc;
 public final class z1 implements ab {
-    public final int f28821a;
-    public final f2 f28822b;
+    public final int f28822a;
+    public final f2 f28823b;
 
     public z1(int i7, f2 f2Var) {
-        this.f28821a = i7;
-        this.f28822b = f2Var;
+        this.f28822a = i7;
+        this.f28823b = f2Var;
     }
 
     @Override
     public final boolean a() {
-        switch (this.f28821a) {
+        switch (this.f28822a) {
             case 0:
                 return true;
             default:
@@ -23,22 +23,22 @@ public final class z1 implements ab {
 
     @Override
     public final void b(cc ccVar) {
-        int i7 = this.f28821a;
+        int i7 = this.f28822a;
     }
 
     @Override
     public final void c(float f10) {
-        int i7 = this.f28821a;
+        int i7 = this.f28822a;
     }
 
     @Override
     public final void d(cc ccVar) {
-        int i7 = this.f28821a;
+        int i7 = this.f28822a;
     }
 
     @Override
     public final boolean e() {
-        switch (this.f28821a) {
+        switch (this.f28822a) {
             case 0:
                 return true;
             default:
@@ -48,20 +48,20 @@ public final class z1 implements ab {
 
     @Override
     public final int f(int i7) {
-        switch (this.f28821a) {
+        switch (this.f28822a) {
             case 0:
-                if (this.f28822b.isSupportEdgeToEdge()) {
-                    return org.telegram.messenger.g0.f22532n;
+                if (this.f28823b.isSupportEdgeToEdge()) {
+                    return org.telegram.messenger.g0.f22539n;
                 }
                 return 0;
             default:
-                return this.f28822b.getBottomInset();
+                return this.f28823b.getBottomInset();
         }
     }
 
     @Override
     public final boolean g(int i7) {
-        switch (this.f28821a) {
+        switch (this.f28822a) {
             case 0:
                 return false;
             default:
@@ -71,7 +71,7 @@ public final class z1 implements ab {
 
     @Override
     public final int h(int i7) {
-        switch (this.f28821a) {
+        switch (this.f28822a) {
             case 0:
                 return 0;
             default:

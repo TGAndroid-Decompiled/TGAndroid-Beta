@@ -1,45 +1,41 @@
 package c8;
+
+import android.os.Build;
+import android.os.Trace;
+import android.util.Log;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 public abstract class he {
-    public static void a(int i7, int i10) {
-        String a10;
-        if (i7 >= 0 && i7 < i10) {
-            return;
+    public static long f5705a;
+    public static Method f5706b;
+
+    public static void a(String str) {
+        if (str.length() > 127) {
+            str = str.substring(0, 127);
         }
-        if (i7 >= 0) {
-            if (i10 < 0) {
-                throw new IllegalArgumentException(jg.g.j(i10, "negative size: "));
-            }
-            a10 = ie.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i7), Integer.valueOf(i10));
-        } else {
-            a10 = ie.a("%s (%s) must not be negative", "index", Integer.valueOf(i7));
-        }
-        throw new IndexOutOfBoundsException(a10);
+        Trace.beginSection(str);
     }
 
-    public static void b(int i7, int i10, int i11) {
-        String c10;
-        if (i7 >= 0 && i10 >= i7 && i10 <= i11) {
-            return;
+    public static boolean b() {
+        if (Build.VERSION.SDK_INT >= 29) {
+            return z4.a.a();
         }
-        if (i7 >= 0 && i7 <= i11) {
-            if (i10 >= 0 && i10 <= i11) {
-                c10 = ie.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i10), Integer.valueOf(i7));
-            } else {
-                c10 = c(i10, i11, "end index");
+        try {
+            if (f5706b == null) {
+                f5705a = Trace.class.getField("TRACE_TAG_APP").getLong(null);
+                f5706b = Trace.class.getMethod("isTagEnabled", Long.TYPE);
             }
-        } else {
-            c10 = c(i7, i11, "start index");
+            return ((Boolean) f5706b.invoke(null, Long.valueOf(f5705a))).booleanValue();
+        } catch (Exception e10) {
+            if (e10 instanceof InvocationTargetException) {
+                Throwable cause = e10.getCause();
+                if (cause instanceof RuntimeException) {
+                    throw ((RuntimeException) cause);
+                }
+                throw new RuntimeException(cause);
+            }
+            Log.v("Trace", "Unable to call isTagEnabled via reflection", e10);
+            return false;
         }
-        throw new IndexOutOfBoundsException(c10);
-    }
-
-    public static String c(int i7, int i10, String str) {
-        if (i7 < 0) {
-            return ie.a("%s (%s) must not be negative", str, Integer.valueOf(i7));
-        }
-        if (i10 >= 0) {
-            return ie.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i7), Integer.valueOf(i10));
-        }
-        throw new IllegalArgumentException(jg.g.j(i10, "negative size: "));
     }
 }

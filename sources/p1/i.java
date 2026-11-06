@@ -1,6 +1,6 @@
 package p1;
 
-import c8.pb;
+import c8.qb;
 import gd.k;
 import hd.r;
 import java.util.ArrayList;
@@ -10,14 +10,14 @@ import java.util.Map;
 import java.util.Set;
 import rd.q;
 public final class i extends kd.j implements q {
-    public o1.f f52995a;
-    public q1.b f52996b;
+    public o1.f f52993a;
+    public q1.b f52994b;
 
     @Override
     public final Object b(Object obj, Object obj2, Object obj3) {
         ?? jVar = new kd.j(3, (id.c) obj3);
-        jVar.f52995a = (o1.f) obj;
-        jVar.f52996b = (q1.b) obj2;
+        jVar.f52993a = (o1.f) obj;
+        jVar.f52994b = (q1.b) obj2;
         return jVar.invokeSuspend(k.f13829a);
     }
 
@@ -25,12 +25,12 @@ public final class i extends kd.j implements q {
     public final Object invokeSuspend(Object obj) {
         jd.a aVar = jd.a.f16643a;
         af.b.c(obj);
-        o1.f fVar = this.f52995a;
-        q1.b bVar = this.f52996b;
+        o1.f fVar = this.f52993a;
+        q1.b bVar = this.f52994b;
         Set<q1.e> keySet = bVar.a().keySet();
         ArrayList arrayList = new ArrayList(hd.h.d(keySet, 10));
         for (q1.e eVar : keySet) {
-            arrayList.add(eVar.f53594a);
+            arrayList.add(eVar.f53593a);
         }
         Map<String, ?> all = fVar.f20704a.getAll();
         kotlin.jvm.internal.j.d(all, "prefs.all");
@@ -83,9 +83,9 @@ public final class i extends kd.j implements q {
                 kotlin.jvm.internal.j.e(name, "name");
                 bVar2.e(new q1.e(name), value2);
             } else if (value2 instanceof String) {
-                bVar2.e(pb.a(name), value2);
+                bVar2.e(qb.a(name), value2);
             } else if (value2 instanceof Set) {
-                bVar2.e(pb.b(name), (Set) value2);
+                bVar2.e(qb.b(name), (Set) value2);
             }
         }
         return new q1.b(new LinkedHashMap(bVar2.a()), true);

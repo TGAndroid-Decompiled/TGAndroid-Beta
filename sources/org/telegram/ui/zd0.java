@@ -23,27 +23,27 @@ public final class zd0 extends AnimatedPhoneNumberEditText {
         switch (i10) {
             case 0:
                 super.onFocusChanged(z9, i7, rect);
-                org.telegram.ui.Components.lb0 lb0Var = be0Var.f44300f;
-                if (!z9 && !be0Var.f44293b.isFocused()) {
+                org.telegram.ui.Components.lb0 lb0Var = be0Var.f44299f;
+                if (!z9 && !be0Var.f44292b.isFocused()) {
                     f10 = 0.0f;
                 }
                 lb0Var.b(f10, f10, true);
                 if (z9) {
-                    be0Var.f44302g0.f44761c.setEditText(this);
+                    be0Var.f44301g0.f44760c.setEditText(this);
                     return;
                 }
                 return;
             default:
                 super.onFocusChanged(z9, i7, rect);
-                ce0 ce0Var = be0Var.f44302g0;
-                org.telegram.ui.Components.lb0 lb0Var2 = be0Var.f44300f;
-                if (!z9 && !be0Var.f44291a.isFocused()) {
+                ce0 ce0Var = be0Var.f44301g0;
+                org.telegram.ui.Components.lb0 lb0Var2 = be0Var.f44299f;
+                if (!z9 && !be0Var.f44290a.isFocused()) {
                     f10 = 0.0f;
                 }
                 lb0Var2.b(f10, f10, true);
                 if (z9) {
-                    ce0Var.f44761c.setEditText(this);
-                    ce0Var.f44761c.setDispatchBackWhenEmpty(true);
+                    ce0Var.f44760c.setEditText(this);
+                    ce0Var.f44760c.setDispatchBackWhenEmpty(true);
                     if (be0Var.E == 2) {
                         be0.n(be0Var, org.telegram.messenger.hd.M0(2131742860, null));
                         return;
@@ -63,8 +63,8 @@ public final class zd0 extends AnimatedPhoneNumberEditText {
         switch (this.V1) {
             case 1:
                 be0 be0Var = this.W1;
-                zd0 zd0Var = be0Var.f44291a;
-                if (i7 == 67 && be0Var.f44293b.length() == 0) {
+                zd0 zd0Var = be0Var.f44290a;
+                if (i7 == 67 && be0Var.f44292b.length() == 0) {
                     zd0Var.requestFocus();
                     zd0Var.setSelection(zd0Var.length());
                     zd0Var.dispatchKeyEvent(keyEvent);
@@ -79,7 +79,7 @@ public final class zd0 extends AnimatedPhoneNumberEditText {
     public boolean onTouchEvent(MotionEvent motionEvent) {
         switch (this.V1) {
             case 1:
-                if (motionEvent.getAction() == 0 && !ce0.b1(this.W1.f44302g0, this)) {
+                if (motionEvent.getAction() == 0 && !ce0.b1(this.W1.f44301g0, this)) {
                     clearFocus();
                     requestFocus();
                 }

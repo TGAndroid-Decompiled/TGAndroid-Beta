@@ -26,7 +26,7 @@ import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.voip.y1;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bk0;
@@ -64,7 +64,7 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
         LaunchActivity launchActivity = (LaunchActivity) this.f951c;
         int[] iArr = (int[]) this.d;
         String str = LaunchActivity.B1;
-        TLRPC.UserFull b22 = qp.s1(launchActivity.O).b2(user.f27101id);
+        TLRPC.UserFull b22 = qp.s1(launchActivity.O).b2(user.f27102id);
         if (b22 != null && b22.video_calls_available) {
             z9 = true;
         } else {
@@ -93,13 +93,13 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
             case 2:
                 kg.a0 a0Var = (kg.a0) this.f951c;
                 boolean z10 = this.f950b;
-                w31 w31Var = (w31) this.d;
+                x31 x31Var = (x31) this.d;
                 if (!z10) {
                     arrayList = a0Var.f17294k;
                 } else {
                     arrayList = a0Var.f17293j;
                 }
-                arrayList.remove(Long.valueOf(w31Var.f39841x));
+                arrayList.remove(Long.valueOf(x31Var.f40170x));
                 a0Var.f17289e.run();
                 return;
             case 3:
@@ -111,30 +111,30 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
                     TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
                     tL_messages_deletePhoneCallHistory.revoke = z12;
                     i9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new d3(2, i9Var, z12));
-                    i9Var.f46612y.clear();
+                    i9Var.f46611y.clear();
                     i9Var.D = false;
                     i9Var.F = true;
-                    i9Var.f46611x.setVisibility(8);
-                    i9Var.f46604c.f36781f3.O(true);
+                    i9Var.f46610x.setVisibility(8);
+                    i9Var.f46603c.f37160f3.O(true);
                 } else {
                     i9Var.getMessagesController().Z(new ArrayList(i9Var.H), null, null, 0L, 0, zArr[0], 0);
                 }
                 i9Var.j0(false);
                 return;
             case 4:
-                ((ca) this.f951c).f44729a.o0((TLRPC.TL_username) this.d, this.f950b, true);
+                ((ca) this.f951c).f44728a.o0((TLRPC.TL_username) this.d, this.f950b, true);
                 return;
             case 5:
                 boolean z13 = this.f950b;
-                fo foVar = ((co) this.f951c).f44864a;
+                fo foVar = ((co) this.f951c).f44863a;
                 foVar.z1((TLRPC.TL_username) this.d, z13, true);
-                foVar.f45683h3.b0();
+                foVar.f45682h3.b0();
                 return;
             case 6:
                 f2 f2Var = (f2) this.f951c;
                 TLRPC.User user = (TLRPC.User) this.d;
                 boolean z14 = this.f950b;
-                TLRPC.UserFull b22 = f2Var.getMessagesController().b2(user.f27101id);
+                TLRPC.UserFull b22 = f2Var.getMessagesController().b2(user.f27102id);
                 if (b22 != null && b22.video_calls_available) {
                     z9 = true;
                 } else {
@@ -154,7 +154,7 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
                 gz gzVar = (gz) this.f951c;
                 yy yyVar = (yy) this.d;
                 boolean z16 = this.f950b;
-                int i10 = yyVar.f52374j;
+                int i10 = yyVar.f52372j;
                 if (i10 > 0) {
                     gzVar.D &= ~i10;
                 } else {
@@ -178,7 +178,7 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
                 String str2 = (String) this.f951c;
                 f2 f2Var2 = (f2) this.d;
                 try {
-                    PackageInfo packageInfo = t0.f25555b.getPackageManager().getPackageInfo(t0.f25555b.getPackageName(), 0);
+                    PackageInfo packageInfo = t0.f25563b.getPackageManager().getPackageInfo(t0.f25563b.getPackageName(), 0);
                     Locale locale = Locale.US;
                     String str3 = packageInfo.versionName + " (" + packageInfo.versionCode + ")";
                     Intent intent = new Intent("android.intent.action.SENDTO");
@@ -200,10 +200,10 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
                     return;
                 } catch (Exception unused) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f2Var2.getParentActivity());
-                    alertDialog$Builder.f27292a.R = hd.M0(2131746072, null);
-                    alertDialog$Builder.f27292a.T = hd.M0(2131748198, "NoMailInstalled");
+                    alertDialog$Builder.f27293a.R = hd.M0(2131746072, null);
+                    alertDialog$Builder.f27293a.T = hd.M0(2131748198, "NoMailInstalled");
                     alertDialog$Builder.k(hd.M0(2131747830, "OK"), null);
-                    f2Var2.showDialog(alertDialog$Builder.f27292a);
+                    f2Var2.showDialog(alertDialog$Builder.f27293a);
                     return;
                 }
         }
@@ -215,7 +215,7 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
         TL_account.getTmpPassword gettmppassword = new TL_account.getTmpPassword();
         gettmppassword.password = tL_inputCheckPasswordSRP;
         gettmppassword.period = 600;
-        ConnectionsManager.getInstance(k7Var.f28612a).sendRequest(gettmppassword, new i4(k7Var, (TwoStepVerificationActivity) this.d, this.f950b, 0));
+        ConnectionsManager.getInstance(k7Var.f28613a).sendRequest(gettmppassword, new i4(k7Var, (TwoStepVerificationActivity) this.d, this.f950b, 0));
     }
 
     @Override

@@ -22,7 +22,7 @@ public abstract class a {
         j(actionBarPopupWindow$ActionBarPopupWindowLayout);
         g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
         this.f17103b = g1Var;
-        g1Var.f27479b = false;
+        g1Var.f27480b = false;
         g1Var.setAnimationStyle(2131755193);
         g1Var.setOutsideTouchable(true);
         g1Var.setClippingEnabled(true);

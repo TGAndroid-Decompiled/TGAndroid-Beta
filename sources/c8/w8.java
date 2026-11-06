@@ -11,10 +11,10 @@ public final class w8 implements na.d {
     public final void a(Object obj, Object obj2) {
         te teVar = (te) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f5923b, teVar.f5858a);
-        eVar.a(f5924c, teVar.f5859b);
-        eVar.a(d, teVar.f5860c);
+        eVar.a(f5923b, teVar.f5855a);
+        eVar.a(f5924c, teVar.f5856b);
+        eVar.a(d, teVar.f5857c);
         eVar.a(f5925e, teVar.d);
-        eVar.a(f5926f, teVar.f5861e);
+        eVar.a(f5926f, teVar.f5858e);
     }
 }

@@ -88,7 +88,7 @@ public final class v3 implements c20 {
                 }
                 TL_stories.TL_stories_getStoriesByID tL_stories_getStoriesByID = new TL_stories.TL_stories_getStoriesByID();
                 tL_stories_getStoriesByID.peer = qp.s1(i4Var.f9168l2).j1(storyItem.dialogId);
-                tL_stories_getStoriesByID.f27198id.add(Integer.valueOf(storyItem.f27191id));
+                tL_stories_getStoriesByID.f27199id.add(Integer.valueOf(storyItem.f27192id));
                 ConnectionsManager.getInstance(i4Var.f9168l2).sendRequest(tL_stories_getStoriesByID, new f2(z3Var, storyItem, c20Var, 5));
                 return;
             case 3:
@@ -135,13 +135,13 @@ public final class v3 implements c20 {
                     return;
                 }
                 TLRPC.TL_messages_uploadMedia tL_messages_uploadMedia = new TLRPC.TL_messages_uploadMedia();
-                tL_messages_uploadMedia.peer = qp.s1(b8Var.f28612a).j1(p10.i(b8Var.f28612a).e());
+                tL_messages_uploadMedia.peer = qp.s1(b8Var.f28613a).j1(p10.i(b8Var.f28613a).e());
                 TLRPC.TL_inputMediaUploadedDocument tL_inputMediaUploadedDocument = new TLRPC.TL_inputMediaUploadedDocument();
                 tL_messages_uploadMedia.media = tL_inputMediaUploadedDocument;
                 tL_inputMediaUploadedDocument.file = inputFile;
                 tL_inputMediaUploadedDocument.mime_type = document.mime_type;
                 tL_inputMediaUploadedDocument.attributes.addAll(document.attributes);
-                ConnectionsManager.getInstance(b8Var.f28612a).sendRequest(tL_messages_uploadMedia, new org.telegram.ui.ld(10, b8Var, u1Var));
+                ConnectionsManager.getInstance(b8Var.f28613a).sendRequest(tL_messages_uploadMedia, new org.telegram.ui.ld(10, b8Var, u1Var));
                 return;
             case 7:
                 bn bnVar = (bn) obj4;
@@ -152,8 +152,8 @@ public final class v3 implements c20 {
                     org.telegram.ui.Components.v4.I(anVar.getParentActivity(), anVar.a(), new a3.h(bnVar, tL_messageMediaToDo, l11, 28));
                     return;
                 }
-                bnVar.f32189j0.b(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
-                bnVar.f38948b.a(true);
+                bnVar.f32223j0.b(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
+                bnVar.f38969b.a(true);
                 return;
             case 8:
                 fx fxVar = (fx) obj4;
@@ -168,7 +168,7 @@ public final class v3 implements c20 {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet l02 = ui.b0(fxVar.f33652a.F.f34024c1).l0(ui.Z(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
+                        TLRPC.TL_messages_stickerSet l02 = ui.b0(fxVar.f33662a.F.f34032c1).l0(ui.Z(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
                         if (l02 != null) {
                             arrayList = l02.documents;
                         } else {
@@ -226,7 +226,7 @@ public final class v3 implements c20 {
                 ((z70) obj3).setLoading(false);
                 if (tL_premium_boostsStatus != null) {
                     i0Var.T1.boosts++;
-                    if (i0Var.Z1 == 32 && (N0 = qp.s1(i0Var.f28612a).N0(-i0Var.S1)) != null) {
+                    if (i0Var.Z1 == 32 && (N0 = qp.s1(i0Var.f28613a).N0(-i0Var.S1)) != null) {
                         N0.boosts_applied++;
                     }
                     i0Var.t1();
@@ -235,8 +235,8 @@ public final class v3 implements c20 {
                     if (i0Var.T1.next_level_boosts <= 0) {
                         z9 = true;
                     }
-                    e3Var.f22150m = z9;
-                    e3Var.f22149l = true;
+                    e3Var.f22157m = z9;
+                    e3Var.f22156l = true;
                     e3Var.a(tL_premium_myBoosts);
                     i0Var.v1();
                     return;
@@ -254,8 +254,8 @@ public final class v3 implements c20 {
                 List list = (List) obj;
                 vVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                if (vVar.f60457e2 != null) {
-                    new zh.d(vVar.getContext(), f6Var, vVar.f60457e2, list).show();
+                if (vVar.f60456e2 != null) {
+                    new zh.d(vVar.getContext(), f6Var, vVar.f60456e2, list).show();
                     vVar.dismiss();
                     return;
                 }

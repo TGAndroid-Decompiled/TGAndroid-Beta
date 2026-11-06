@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class z7 implements Runnable {
-    public final int f40883a = 0;
-    public final a8 f40884b;
-    public final ArrayList f40885c;
+    public final int f40903a = 0;
+    public final a8 f40904b;
+    public final ArrayList f40905c;
     public final String d;
 
     public z7(a8 a8Var, String str, ArrayList arrayList) {
-        this.f40884b = a8Var;
+        this.f40904b = a8Var;
         this.d = str;
-        this.f40885c = arrayList;
+        this.f40905c = arrayList;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class z7 implements Runnable {
         TLRPC.Document document;
         boolean z9;
         String str;
-        int i10 = this.f40883a;
+        int i10 = this.f40903a;
         String str2 = null;
         String str3 = this.d;
-        ArrayList arrayList = this.f40885c;
-        a8 a8Var = this.f40884b;
+        ArrayList arrayList = this.f40905c;
+        a8 a8Var = this.f40904b;
         switch (i10) {
             case 0:
                 a8Var.getClass();
@@ -61,9 +61,9 @@ public final class z7 implements Runnable {
                                     arrayList2.add(ijVar);
                                 } else {
                                     if (ijVar.D == 0) {
-                                        document = ijVar.f23237k.media.webpage.document;
+                                        document = ijVar.f23244k.media.webpage.document;
                                     } else {
-                                        document = ijVar.f23237k.media.document;
+                                        document = ijVar.f23244k.media.document;
                                     }
                                     int i14 = 0;
                                     while (true) {
@@ -98,14 +98,14 @@ public final class z7 implements Runnable {
                 org.telegram.messenger.g0.h3(new z7(a8Var, arrayList2, str3));
                 return;
             default:
-                b8 b8Var = a8Var.f31725n;
+                b8 b8Var = a8Var.f31721n;
                 if (b8Var.n1) {
-                    b8Var.f32042m1 = true;
+                    b8Var.f32076m1 = true;
                     a8Var.d = arrayList;
-                    a8Var.f31723e = str3;
+                    a8Var.f31719e = str3;
                     a8Var.f();
-                    b8Var.f32047p1.n0(0);
-                    org.telegram.messenger.k5.r(null, null, 2131748239, new Object[]{str3}, b8Var.f32055t1);
+                    b8Var.f32081p1.n0(0);
+                    org.telegram.messenger.k5.r(null, null, 2131748239, new Object[]{str3}, b8Var.f32089t1);
                     return;
                 }
                 return;
@@ -113,8 +113,8 @@ public final class z7 implements Runnable {
     }
 
     public z7(a8 a8Var, ArrayList arrayList, String str) {
-        this.f40884b = a8Var;
-        this.f40885c = arrayList;
+        this.f40904b = a8Var;
+        this.f40905c = arrayList;
         this.d = str;
     }
 }

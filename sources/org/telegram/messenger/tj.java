@@ -3,15 +3,15 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.ui.SecretMediaViewer;
 public final class tj implements Runnable {
-    public final int f25622a;
-    public final qp f25623b;
-    public final a0.h f25624c;
+    public final int f25630a;
+    public final qp f25631b;
+    public final a0.h f25632c;
     public final a0.h d;
 
     public tj(qp qpVar, a0.h hVar, a0.h hVar2, int i7) {
-        this.f25622a = i7;
-        this.f25623b = qpVar;
-        this.f25624c = hVar;
+        this.f25630a = i7;
+        this.f25631b = qpVar;
+        this.f25632c = hVar;
         this.d = hVar2;
     }
 
@@ -23,10 +23,10 @@ public final class tj implements Runnable {
         ArrayList arrayList;
         boolean z10;
         char c11 = 0;
-        switch (this.f25622a) {
+        switch (this.f25630a) {
             case 0:
-                qp qpVar = this.f25623b;
-                a0.h hVar = this.f25624c;
+                qp qpVar = this.f25631b;
+                a0.h hVar = this.f25632c;
                 a0.h hVar2 = this.d;
                 if (hVar != null) {
                     int i7 = 0;
@@ -45,13 +45,13 @@ public final class tj implements Runnable {
                 }
                 a0.h hVar3 = hVar2;
                 if (hVar3 != null) {
-                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f41934s) {
+                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f41933s) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
                     if (z9) {
-                        ijVar = SecretMediaViewer.f().f41909f0;
+                        ijVar = SecretMediaViewer.f().f41908f0;
                     } else {
                         ijVar = null;
                     }
@@ -60,7 +60,7 @@ public final class tj implements Runnable {
                     while (i10 < m11) {
                         long j10 = hVar3.j(i10);
                         ArrayList arrayList3 = (ArrayList) hVar3.n(i10);
-                        if (z9 && ijVar != null && ijVar.I1 == qpVar.currentAccount && ij.B0(ijVar.f23237k) == j10 && arrayList3.contains(Integer.valueOf(ijVar.f1()))) {
+                        if (z9 && ijVar != null && ijVar.I1 == qpVar.currentAccount && ij.B0(ijVar.f23244k) == j10 && arrayList3.contains(Integer.valueOf(ijVar.f1()))) {
                             int f12 = ijVar.f1();
                             arrayList3.remove(Integer.valueOf(f12));
                             ijVar.G0 = true;
@@ -72,7 +72,7 @@ public final class tj implements Runnable {
                             SecretMediaViewer.f().n1 = new wk(f12, V, j10, qpVar2);
                             qs notificationCenter = qpVar.getNotificationCenter();
                             Object[] objArr = new Object[1];
-                            objArr[c10] = ijVar.f23237k;
+                            objArr[c10] = ijVar.f23244k;
                             notificationCenter.k(48, objArr);
                         } else {
                             c10 = c11;
@@ -80,7 +80,7 @@ public final class tj implements Runnable {
                         }
                         if (!arrayList.isEmpty()) {
                             yr messagesStorage = qpVar.getMessagesStorage();
-                            messagesStorage.f26688a.c(new lr(messagesStorage, arrayList, j10, 1));
+                            messagesStorage.f26696a.c(new lr(messagesStorage, arrayList, j10, 1));
                         }
                         i10++;
                         c11 = c10;
@@ -89,23 +89,23 @@ public final class tj implements Runnable {
                 Utilities.d.c(new tj(qpVar, hVar, hVar3, 3));
                 return;
             case 1:
-                qp qpVar3 = this.f25623b;
-                a0.h hVar4 = this.f25624c;
+                qp qpVar3 = this.f25631b;
+                a0.h hVar4 = this.f25632c;
                 a0.h hVar5 = this.d;
                 qpVar3.W = hVar4;
                 qpVar3.X = hVar5;
                 return;
             case 2:
-                qp qpVar4 = this.f25623b;
-                a0.h hVar6 = this.f25624c;
+                qp qpVar4 = this.f25631b;
+                a0.h hVar6 = this.f25632c;
                 a0.h hVar7 = this.d;
                 qpVar4.T1 = true;
                 yr messagesStorage2 = qpVar4.getMessagesStorage();
-                messagesStorage2.f26688a.c(new lg(messagesStorage2, hVar6, hVar7, 17));
+                messagesStorage2.f26696a.c(new lg(messagesStorage2, hVar6, hVar7, 17));
                 return;
             default:
-                qp qpVar5 = this.f25623b;
-                Utilities.d.c(new tj(qpVar5, this.f25624c, this.d, 2));
+                qp qpVar5 = this.f25631b;
+                Utilities.d.c(new tj(qpVar5, this.f25632c, this.d, 2));
                 qpVar5.U1 = 0;
                 qpVar5.V1 = null;
                 qpVar5.W1 = null;

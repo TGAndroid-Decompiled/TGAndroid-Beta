@@ -141,21 +141,21 @@ public class s0 extends f2 {
             return;
         }
         zh.h1 h1Var = new zh.h1(s0Var.getParentActivity(), s0Var.currentAccount, s0Var.getUserConfig().e(), null, null);
-        if (!h1Var.f60253l2) {
-            h1Var.f60253l2 = true;
-            gc gcVar = h1Var.f60255n2;
+        if (!h1Var.f60252l2) {
+            h1Var.f60252l2 = true;
+            gc gcVar = h1Var.f60254n2;
             if (gcVar != null && (gcVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) h1Var.f60255n2.getParent();
-                int indexOfChild = viewGroup.indexOfChild(h1Var.f60255n2);
-                viewGroup.removeView(h1Var.f60255n2);
+                ViewGroup viewGroup = (ViewGroup) h1Var.f60254n2.getParent();
+                int indexOfChild = viewGroup.indexOfChild(h1Var.f60254n2);
+                viewGroup.removeView(h1Var.f60254n2);
                 gc gcVar2 = new gc(h1Var.getContext(), 250, 2, 0);
-                h1Var.f60255n2 = gcVar2;
+                h1Var.f60254n2 = gcVar2;
                 viewGroup.addView(gcVar2, indexOfChild, ha.c(-1.0f, -1));
             }
-            w70 w70Var = h1Var.f60256o2;
+            w70 w70Var = h1Var.f60255o2;
             if (w70Var != null) {
                 String M0 = hd.M0(2131750287, null);
-                jb jbVar = h1Var.f60245c2;
+                jb jbVar = h1Var.f60244c2;
                 jbVar.setText(M0);
                 jbVar.setBreakStrategy(2);
                 w70Var.setVisibility(8);
@@ -399,7 +399,7 @@ public class s0 extends f2 {
         l1 l1Var;
         Activity parentActivity = getParentActivity();
         if (parentActivity != null && (l1Var = this.d) != null && l1Var.getCurrentLink() != null) {
-            if ((Build.VERSION.SDK_INT <= 28 || r2.f25192b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
+            if ((Build.VERSION.SDK_INT <= 28 || r2.f25200b) && parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") != 0) {
                 this.E = true;
                 parentActivity.requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 4);
                 return;
@@ -644,8 +644,8 @@ public class s0 extends f2 {
         l0();
         org.telegram.ui.f fVar = this.f1617c;
         if (fVar != null) {
-            ci0 ci0Var = (ci0) fVar.f45451b;
-            if (ci0Var.f44842b.remove(fVar)) {
+            ci0 ci0Var = (ci0) fVar.f45450b;
+            if (ci0Var.f44841b.remove(fVar)) {
                 ci0Var.a();
             }
             this.f1617c = null;
@@ -716,7 +716,7 @@ public class s0 extends f2 {
                 return;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
-            alertDialog$Builder.f27292a.T = org.telegram.messenger.g0.X2(hd.M0(2131746502, null));
+            alertDialog$Builder.f27293a.T = org.telegram.messenger.g0.X2(hd.M0(2131746502, null));
             alertDialog$Builder.k(hd.M0(2131747299, null), new j0(this));
             alertDialog$Builder.h(hd.M0(2131751772, null), null);
             int i10 = k6.L5;

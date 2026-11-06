@@ -42,8 +42,8 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
         if (this.f21519e != null) {
             int i7 = this.f21520f;
             int i10 = this.h;
-            for (int i11 = 0; i11 < this.f21519e.f23767n.size(); i11++) {
-                arrayList.add(new li.b5((org.telegram.ui.Cells.t9) this.f21519e.f23767n.get(i11), i7, i10, 3));
+            for (int i11 = 0; i11 < this.f21519e.f23774n.size(); i11++) {
+                arrayList.add(new li.b5((org.telegram.ui.Cells.t9) this.f21519e.f23774n.get(i11), i7, i10, 3));
             }
         }
     }
@@ -86,7 +86,7 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
             canvas.translate(this.f21520f, this.h);
             kv kvVar = this.f21519e;
             kvVar.S(this.f21520f, Math.max(0, (getWidth() - this.f21519e.C) - this.f21520f));
-            TextPaint textPaint = kvVar.f23775w;
+            TextPaint textPaint = kvVar.f23782w;
             if (kvVar.E()) {
                 i7 = org.telegram.ui.ActionBar.k6.Vc;
             } else {
@@ -107,7 +107,7 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
                 canvas.save();
                 RectF rectF = g0.P;
                 rectF.set(0.0f, getHeight() - g0.L(24.0f), getWidth(), getHeight());
-                this.f21519e.f23778z.m(canvas, rectF, 3, 1.0f);
+                this.f21519e.f23785z.m(canvas, rectF, 3, 1.0f);
                 canvas.restore();
                 canvas.restore();
             }
@@ -116,8 +116,8 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
             if (i9Var != null && i9Var.x()) {
                 int i10 = this.f21520f;
                 int i11 = this.h;
-                for (int i12 = 0; i12 < this.f21519e.f23767n.size(); i12++) {
-                    org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) this.f21519e.f23767n.get(i12);
+                for (int i12 = 0; i12 < this.f21519e.f23774n.size(); i12++) {
+                    org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) this.f21519e.f23774n.get(i12);
                     canvas.save();
                     canvas.translate(t9Var.getX() + i10, t9Var.getY() + i11);
                     this.f21524w.Z(canvas, this, i12);
@@ -220,7 +220,7 @@ public final class au extends View implements org.telegram.ui.Cells.h9 {
             tL_message.out = true;
             this.f21518c = new ij(this.f21516a, tL_message, false, false);
         }
-        this.f21518c.f23237k.rich_message = richMessage;
+        this.f21518c.f23244k.rich_message = richMessage;
         kv kvVar = this.f21519e;
         if (kvVar != null) {
             kvVar.f(this);

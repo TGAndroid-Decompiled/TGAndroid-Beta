@@ -46,11 +46,11 @@ public final class a {
     public static a j(double d, b bVar) {
         b bVar2 = b.f6163b;
         if (bVar == bVar2) {
-            return new a((long) ((d / ((i0) qp.s1(p10.f24459s0).f24927x7.f24438l.f14323b).f23003a) * 1000000000), bVar2).n(2);
+            return new a((long) ((d / ((i0) qp.s1(p10.f24467s0).f24935x7.f24445l.f14323b).f23010a) * 1000000000), bVar2).n(2);
         }
         b bVar3 = b.f6162a;
         if (bVar == bVar3) {
-            return new a((long) (((d * 100000.0d) / qp.s1(p10.f24459s0).f24730b6) * 1000000000), bVar3).n(0);
+            return new a((long) (((d * 100000.0d) / qp.s1(p10.f24467s0).f24738b6) * 1000000000), bVar3).n(0);
         }
         return g(0L, bVar);
     }
@@ -119,9 +119,9 @@ public final class a {
             return this;
         }
         if (bVar2 == b.f6162a) {
-            d = ((c() / 1000.0d) * qp.s1(p10.f24459s0).f24730b6) / 100.0d;
+            d = ((c() / 1000.0d) * qp.s1(p10.f24467s0).f24738b6) / 100.0d;
         } else if (bVar2 == b.f6163b) {
-            d = c() * ((i0) qp.s1(p10.f24459s0).f24927x7.f24438l.f14323b).f23003a;
+            d = c() * ((i0) qp.s1(p10.f24467s0).f24935x7.f24445l.f14323b).f23010a;
         } else {
             d = 0.0d;
         }

@@ -23,11 +23,11 @@ public final class z3 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f15071a) {
             case 1:
                 br brVar = (br) this.f15073c;
-                yq yqVar = brVar.f32281r;
-                if (brVar.f32280n) {
+                yq yqVar = brVar.f32315r;
+                if (brVar.f32314n) {
                     brVar.removeCallbacks(yqVar);
                 }
-                brVar.f32280n = true;
+                brVar.f32314n = true;
                 brVar.postDelayed(yqVar, 200L);
                 brVar.h.run();
                 return true;
@@ -59,7 +59,7 @@ public final class z3 extends GestureDetector.SimpleOnGestureListener {
                 float y10 = motionEvent.getY();
                 float x11 = motionEvent2.getX();
                 float y11 = motionEvent2.getY();
-                Typeface typeface = org.telegram.messenger.g0.f22509a;
+                Typeface typeface = org.telegram.messenger.g0.f22516a;
                 float f12 = x11 - x10;
                 float f13 = y11 - y10;
                 float sqrt = (float) Math.sqrt((f13 * f13) + (f12 * f12));
@@ -95,8 +95,8 @@ public final class z3 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f10, f11);
             case 2:
                 ve0 ve0Var = (ve0) viewGroup;
-                if (!ve0Var.f38935f && !ve0Var.h && f10 >= 600.0f) {
-                    ve0Var.f38934e = false;
+                if (!ve0Var.f38956f && !ve0Var.h && f10 >= 600.0f) {
+                    ve0Var.f38955e = false;
                     ve0Var.h = false;
                     ve0Var.a(0.0f, f10 / 6000.0f);
                 }

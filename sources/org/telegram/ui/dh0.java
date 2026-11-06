@@ -9,18 +9,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.telegram.messenger.ls {
-    public final ch0 f45070i1;
-    public final org.telegram.ui.Components.ch0 f45071j1;
-    public org.telegram.messenger.c20 f45072k1;
+    public final ch0 f45069i1;
+    public final org.telegram.ui.Components.ch0 f45070j1;
+    public org.telegram.messenger.c20 f45071k1;
 
     public dh0(Context context, boolean z9, org.telegram.messenger.c20 c20Var) {
         super(context, false);
         int i7;
-        this.f45072k1 = c20Var;
+        this.f45071k1 = c20Var;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
         FrameLayout frameLayout = new FrameLayout(context);
         ?? imageView = new ImageView(context);
-        this.f45071j1 = imageView;
+        this.f45070j1 = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.f(2131624194, 46, 46, null);
         imageView.d();
@@ -32,21 +32,21 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
         org.telegram.ui.ActionBar.r6.k(imageView, L2, N, null, null);
         frameLayout.addView((View) imageView, c8.ha.e(72, 72, 17));
         ch0 ch0Var = new ch0(context);
-        this.f45070i1 = ch0Var;
+        this.f45069i1 = ch0Var;
         frameLayout.addView(ch0Var, c8.ha.d(64, 32.0f, 49, 29.0f, 16.0f, 0.0f, 0.0f));
         ch0Var.a(0);
         frameLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final dh0 f44354b;
+            public final dh0 f44353b;
 
             {
-                this.f44354b = this;
+                this.f44353b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.ch0 ch0Var2 = this.f44354b.f45071j1;
+                        org.telegram.ui.Components.ch0 ch0Var2 = this.f44353b.f45070j1;
                         if (!ch0Var2.b()) {
                             ch0Var2.setProgress(0.0f);
                             ch0Var2.d();
@@ -54,11 +54,11 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
                         }
                         return;
                     default:
-                        dh0 dh0Var = this.f44354b;
-                        org.telegram.messenger.c20 c20Var2 = dh0Var.f45072k1;
+                        dh0 dh0Var = this.f44353b;
+                        org.telegram.messenger.c20 c20Var2 = dh0Var.f45071k1;
                         if (c20Var2 != null) {
                             c20Var2.a(Boolean.TRUE);
-                            dh0Var.f45072k1 = null;
+                            dh0Var.f45071k1 = null;
                         }
                         dh0Var.dismiss();
                         return;
@@ -67,7 +67,7 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
         });
         f10.addView(frameLayout, c8.ha.o(-1, 110));
         TextView textView = new TextView(context);
-        int i11 = org.telegram.ui.ActionBar.k6.f27956j5;
+        int i11 = org.telegram.ui.ActionBar.k6.f27957j5;
         org.telegram.ui.ActionBar.r6.V(textView, i11, null);
         textView.setTypeface(org.telegram.messenger.g0.o());
         textView.setTextSize(1, 20.0f);
@@ -86,7 +86,7 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
         f10.addView(new di.a4(2131232221, context, org.telegram.messenger.hd.M0(2131747888, null)), c8.ha.o(-1, -2));
         f10.addView(new di.a4(2131232107, context, org.telegram.messenger.hd.M0(2131747887, null)), c8.ha.o(-1, -2));
         this.N = f10;
-        P(org.telegram.ui.ActionBar.k6.f27921h5);
+        P(org.telegram.ui.ActionBar.k6.f27922h5);
         TextView textView3 = new TextView(context);
         if (z9) {
             i7 = 2131747883;
@@ -104,17 +104,17 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
         textView3.setBackground(e10);
         org.telegram.ui.ActionBar.r6.k(textView3, e10, N2, f11, null);
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final dh0 f44354b;
+            public final dh0 f44353b;
 
             {
-                this.f44354b = this;
+                this.f44353b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        org.telegram.ui.Components.ch0 ch0Var2 = this.f44354b.f45071j1;
+                        org.telegram.ui.Components.ch0 ch0Var2 = this.f44353b.f45070j1;
                         if (!ch0Var2.b()) {
                             ch0Var2.setProgress(0.0f);
                             ch0Var2.d();
@@ -122,11 +122,11 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
                         }
                         return;
                     default:
-                        dh0 dh0Var = this.f44354b;
-                        org.telegram.messenger.c20 c20Var2 = dh0Var.f45072k1;
+                        dh0 dh0Var = this.f44353b;
+                        org.telegram.messenger.c20 c20Var2 = dh0Var.f45071k1;
                         if (c20Var2 != null) {
                             c20Var2.a(Boolean.TRUE);
-                            dh0Var.f45072k1 = null;
+                            dh0Var.f45071k1 = null;
                         }
                         dh0Var.dismiss();
                         return;
@@ -136,7 +136,7 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
         f10.addView(textView3, c8.ha.k(14.0f, 14.0f, 14.0f, 10.0f, -1, 48));
         for (int i12 = 0; i12 < 4; i12++) {
             try {
-                org.telegram.messenger.qs.f(i12).c(this, org.telegram.messenger.qs.f25046r);
+                org.telegram.messenger.qs.f(i12).c(this, org.telegram.messenger.qs.f25054r);
             } catch (Exception unused) {
             }
         }
@@ -171,7 +171,7 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        if (i7 == org.telegram.messenger.qs.f25046r) {
+        if (i7 == org.telegram.messenger.qs.f25054r) {
             int intValue = ((Integer) objArr[0]).intValue();
             int i11 = org.telegram.messenger.qp.C8;
             if ((intValue & 256) >= 0) {
@@ -179,8 +179,8 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
                 for (int i13 = 0; i13 < 4; i13++) {
                     i12 += org.telegram.messenger.yr.a0(i13).K;
                 }
-                if (this.f45070i1.a(i12)) {
-                    org.telegram.ui.Components.ch0 ch0Var = this.f45071j1;
+                if (this.f45069i1.a(i12)) {
+                    org.telegram.ui.Components.ch0 ch0Var = this.f45070j1;
                     if (!ch0Var.b()) {
                         ch0Var.setProgress(0.0f);
                         ch0Var.d();
@@ -193,15 +193,15 @@ public final class dh0 extends org.telegram.ui.ActionBar.v2 implements org.teleg
     @Override
     public final void dismiss() {
         super.dismiss();
-        org.telegram.messenger.c20 c20Var = this.f45072k1;
+        org.telegram.messenger.c20 c20Var = this.f45071k1;
         if (c20Var != null) {
             c20Var.a(Boolean.FALSE);
-            this.f45072k1 = null;
+            this.f45071k1 = null;
             I0();
         }
         for (int i7 = 0; i7 < 4; i7++) {
             try {
-                org.telegram.messenger.qs.f(i7).n(this, org.telegram.messenger.qs.f25046r);
+                org.telegram.messenger.qs.f(i7).n(this, org.telegram.messenger.qs.f25054r);
             } catch (Exception unused) {
             }
         }

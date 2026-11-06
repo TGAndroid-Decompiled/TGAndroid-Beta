@@ -8,40 +8,40 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.hd;
-import org.telegram.ui.Components.r41;
+import org.telegram.ui.Components.s41;
 public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
-    public final r41 f30909a;
-    public final org.telegram.ui.ActionBar.f6 f30910b;
-    public int f30911c;
+    public final s41 f30910a;
+    public final org.telegram.ui.ActionBar.f6 f30911b;
+    public int f30912c;
     public int d;
-    public l1 f30912e;
-    public float f30913f;
+    public l1 f30913e;
+    public float f30914f;
     public int h;
 
     public y1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f30910b = f6Var;
-        r41 r41Var = new r41();
-        this.f30909a = r41Var;
-        r41Var.setCallback(this);
-        r41Var.f37542n = hd.M0(2131743828, null);
-        r41Var.f37543o = hd.M0(2131743829, null);
-        r41Var.f37544p = hd.M0(2131743827, null);
-        r41Var.f37538j = new f(this, 1);
+        this.f30911b = f6Var;
+        s41 s41Var = new s41();
+        this.f30910a = s41Var;
+        s41Var.setCallback(this);
+        s41Var.f37894n = hd.M0(2131743828, null);
+        s41Var.f37895o = hd.M0(2131743829, null);
+        s41Var.f37896p = hd.M0(2131743827, null);
+        s41Var.f37890j = new f(this, 1);
     }
 
     public final void a(Canvas canvas) {
         Paint paint;
         boolean d12;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f30910b;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f30911b;
         if (f6Var != null) {
-            f6Var.b(0.0f, this.f30913f, getMeasuredWidth(), this.h);
+            f6Var.b(0.0f, this.f30914f, getMeasuredWidth(), this.h);
         } else {
-            org.telegram.ui.ActionBar.k6.r(0.0f, this.f30913f, getMeasuredWidth(), this.h);
+            org.telegram.ui.ActionBar.k6.r(0.0f, this.f30914f, getMeasuredWidth(), this.h);
         }
         float L = org.telegram.messenger.g0.L(18.0f);
         float L2 = org.telegram.messenger.g0.L(6.0f);
-        float L3 = org.telegram.messenger.g0.L(18.0f) + this.f30911c;
+        float L3 = org.telegram.messenger.g0.L(18.0f) + this.f30912c;
         float L4 = org.telegram.messenger.g0.L(6.0f) + this.d;
         float L5 = org.telegram.messenger.g0.L(18.0f);
         float L6 = org.telegram.messenger.g0.L(18.0f);
@@ -60,12 +60,12 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
             d12 = org.telegram.ui.ActionBar.k6.d1();
         }
         if (d12) {
-            canvas.drawRoundRect(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(18.0f) + this.f30911c, org.telegram.messenger.g0.L(6.0f) + this.d, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.f27918h2);
+            canvas.drawRoundRect(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(18.0f) + this.f30912c, org.telegram.messenger.g0.L(6.0f) + this.d, org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.f27919h2);
         }
     }
 
     public final void b(float f10, int i7) {
-        this.f30913f = f10;
+        this.f30914f = f10;
         this.h = i7;
     }
 
@@ -73,40 +73,40 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
     public final void onDraw(Canvas canvas) {
         int L = org.telegram.messenger.g0.L(18.0f);
         int L2 = org.telegram.messenger.g0.L(6.0f);
-        int L3 = org.telegram.messenger.g0.L(18.0f) + this.f30911c;
+        int L3 = org.telegram.messenger.g0.L(18.0f) + this.f30912c;
         int L4 = org.telegram.messenger.g0.L(6.0f) + this.d;
-        r41 r41Var = this.f30909a;
-        r41Var.setBounds(L, L2, L3, L4);
-        r41Var.draw(canvas);
+        s41 s41Var = this.f30910a;
+        s41Var.setBounds(L, L2, L3, L4);
+        s41Var.draw(canvas);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
         int L = size - org.telegram.messenger.g0.L(36.0f);
-        this.f30911c = L;
-        int a10 = this.f30909a.a(L);
+        this.f30912c = L;
+        int a10 = this.f30910a.a(L);
         this.d = a10;
         setMeasuredDimension(size, org.telegram.messenger.g0.L(12.0f) + a10);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f30909a.f37537i.a(this, motionEvent);
+        return this.f30910a.f37889i.a(this, motionEvent);
     }
 
     public void setDelegate(l1 l1Var) {
-        this.f30912e = l1Var;
+        this.f30913e = l1Var;
     }
 
     @Override
     public final void updateColors() {
-        this.f30909a.b();
+        this.f30910a.b();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f30909a) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f30910a) {
             return false;
         }
         return true;

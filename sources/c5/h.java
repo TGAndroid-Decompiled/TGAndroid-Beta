@@ -36,14 +36,14 @@ public final class h extends DataSetObserver {
                 return;
             default:
                 mw0 mw0Var = (mw0) this.f5319b;
-                ProfileActivity profileActivity = mw0Var.f47893n;
-                int realCount = profileActivity.f41781n0.getRealCount();
+                ProfileActivity profileActivity = mw0Var.f47892n;
+                int realCount = profileActivity.f41780n0.getRealCount();
                 if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.M.E) {
                     profileActivity.A0 = 1;
                 }
                 mw0Var.a(false);
                 mw0Var.b(1.0f);
-                if (profileActivity.f41800q0 != null) {
+                if (profileActivity.f41799q0 != null) {
                     if (profileActivity.S0.x()) {
                         g0.i3(new ru0(mw0Var, 4), 500L);
                         return;

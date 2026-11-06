@@ -7,12 +7,12 @@ import java.util.Arrays;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.PhotoViewer;
 public final class eu implements View.OnClickListener {
-    public final int f45411a;
-    public final ww f45412b;
+    public final int f45410a;
+    public final ww f45411b;
 
     public eu(ww wwVar, int i7) {
-        this.f45411a = i7;
-        this.f45412b = wwVar;
+        this.f45410a = i7;
+        this.f45411b = wwVar;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class eu implements View.OnClickListener {
         CharSequence charSequence;
         pv pvVar;
         pv pvVar2;
-        int i7 = this.f45411a;
+        int i7 = this.f45410a;
         int i10 = 0;
-        ww wwVar = this.f45412b;
+        ww wwVar = this.f45411b;
         switch (i7) {
             case 0:
                 if (wwVar.m4() && (arrayList = wwVar.D2) != null && !arrayList.isEmpty() && wwVar.getParentActivity() != null) {
@@ -42,14 +42,14 @@ public final class eu implements View.OnClickListener {
                         ((org.telegram.messenger.gf) obj).f26823a = charSequence;
                     }
                     PhotoViewer.p1().H2(null, wwVar, wwVar.getResourceProvider());
-                    PhotoViewer.p1().f41473o7 = true;
-                    PhotoViewer.p1().f41482p7 = charSequence;
+                    PhotoViewer.p1().f41472o7 = true;
+                    PhotoViewer.p1().f41481p7 = charSequence;
                     ArrayList arrayList3 = new ArrayList(wwVar.D2);
                     boolean[] zArr = new boolean[wwVar.D2.size()];
                     Arrays.fill(zArr, true);
                     PhotoViewer.p1().e2(arrayList3, 0, 0, false, new cw(wwVar, zArr), null);
                     PhotoViewer p12 = PhotoViewer.p1();
-                    p12.f41385e4 = true;
+                    p12.f41384e4 = true;
                     CheckBox checkBox = p12.N0;
                     if (checkBox != null) {
                         checkBox.setVisibility(8);
@@ -90,7 +90,7 @@ public final class eu implements View.OnClickListener {
                 wwVar.presentFragment(new ii.s(bundle));
                 return;
             case 5:
-                ww wwVar2 = this.f45412b;
+                ww wwVar2 = this.f45411b;
                 ArrayList arrayList4 = wwVar2.I2;
                 if (wwVar2.C2 != null && !arrayList4.isEmpty()) {
                     wwVar2.M2 = false;
@@ -110,7 +110,7 @@ public final class eu implements View.OnClickListener {
                 wwVar.finishPreviewFragment();
                 return;
             case 8:
-                wwVar.f51656z0.setIsEditing(false);
+                wwVar.f51654z0.setIsEditing(false);
                 wwVar.U4(false);
                 return;
             case 9:
@@ -144,7 +144,7 @@ public final class eu implements View.OnClickListener {
                 return;
             case 18:
                 PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment.f41616j0 = true;
+                premiumPreviewFragment.f41615j0 = true;
                 wwVar.presentFragment(premiumPreviewFragment);
                 org.telegram.messenger.g0.i3(new cu(wwVar, 7), 250L);
                 return;
@@ -153,7 +153,7 @@ public final class eu implements View.OnClickListener {
                 return;
             case 20:
                 PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment2.f41616j0 = true;
+                premiumPreviewFragment2.f41615j0 = true;
                 wwVar.presentFragment(premiumPreviewFragment2);
                 org.telegram.messenger.g0.i3(new cu(wwVar, 1), 250L);
                 return;

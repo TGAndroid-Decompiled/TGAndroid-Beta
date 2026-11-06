@@ -142,9 +142,9 @@ public final class p4 implements View.OnClickListener {
                         }, true);
                         J.a0(0.0f, -org.telegram.messenger.g0.L(38.0f));
                         if (s4Var.H) {
-                            J.f35182u = false;
+                            J.f35207u = false;
                             J.v = true;
-                            J.f35180s = 0;
+                            J.f35205s = 0;
                         }
                         J.Z();
                         return;

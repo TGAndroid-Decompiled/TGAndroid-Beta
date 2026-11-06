@@ -19,7 +19,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 import android.widget.AbsSeekBar;
 import android.widget.EditText;
-import c8.ob;
+import c8.pb;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class z {
     public static final int[] d = {16843067, 16843068};
@@ -32,7 +32,7 @@ public class z {
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36104a).getClass();
+            ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36142a).getClass();
             if (keyListener instanceof t1.e) {
                 return keyListener;
             }
@@ -98,7 +98,7 @@ public class z {
             nVar.getClass();
             inputConnection = null;
         } else {
-            m4.d0 d0Var = (m4.d0) nVar.f36104a;
+            m4.d0 d0Var = (m4.d0) nVar.f36142a;
             d0Var.getClass();
             if (!(inputConnection instanceof t1.b)) {
                 inputConnection = new t1.b((EditText) d0Var.f19608a, inputConnection, editorInfo);
@@ -108,13 +108,13 @@ public class z {
     }
 
     public void d(boolean z9) {
-        t1.i iVar = (t1.i) ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36104a).f19609b;
-        if (iVar.f55278c != z9) {
-            if (iVar.f55277b != null) {
+        t1.i iVar = (t1.i) ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36142a).f19609b;
+        if (iVar.f55277c != z9) {
+            if (iVar.f55276b != null) {
                 androidx.emoji2.text.l a10 = androidx.emoji2.text.l.a();
-                t1.h hVar = iVar.f55277b;
+                t1.h hVar = iVar.f55276b;
                 a10.getClass();
-                ob.a(hVar, "initCallback cannot be null");
+                pb.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a10.f2310a;
                 reentrantReadWriteLock.writeLock().lock();
                 try {
@@ -123,9 +123,9 @@ public class z {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f55278c = z9;
+            iVar.f55277c = z9;
             if (z9) {
-                t1.i.a(iVar.f55276a, androidx.emoji2.text.l.a().b());
+                t1.i.a(iVar.f55275a, androidx.emoji2.text.l.a().b());
             }
         }
     }

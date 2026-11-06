@@ -23,7 +23,7 @@ public final class e3 implements x4 {
         int indexOf = t3Var.f18894s3.indexOf(this.f18531b);
         if (indexOf >= 0) {
             t3Var.f18894s3.remove(indexOf);
-            t3Var.f36781f3.O(true);
+            t3Var.f37160f3.O(true);
         }
         t3Var.f18887o3.onContentChanged();
     }
@@ -36,11 +36,11 @@ public final class e3 implements x4 {
         sVar.f18811a = 2;
         TL_iv.PageBlock pageBlock = this.f18531b.f18389b;
         if (pageBlock instanceof TL_iv.pageBlockAudio) {
-            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f26958id;
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f26959id;
         }
         t3 t3Var = this.f18532c;
         t3Var.f18877g4.remove(sVar);
-        t3Var.f36781f3.O(false);
+        t3Var.f37160f3.O(false);
         t3Var.f18887o3.onContentChanged();
     }
 

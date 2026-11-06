@@ -44,7 +44,7 @@ public final class p implements Runnable {
                     ii0Var.setWillNotDraw(false);
                     rVar.f6385b = ii0Var;
                     int L = org.telegram.messenger.g0.L(4.0f);
-                    if (hd.f22871a0) {
+                    if (hd.f22878a0) {
                         i10 = 0;
                     } else {
                         i10 = i12;
@@ -52,7 +52,7 @@ public final class p implements Runnable {
                     int i13 = L + i10;
                     int L2 = org.telegram.messenger.g0.L(4.0f);
                     int L3 = org.telegram.messenger.g0.L(4.0f);
-                    if (!hd.f22871a0) {
+                    if (!hd.f22878a0) {
                         i12 = 0;
                     }
                     ii0Var.setPadding(i13, L2, L3 + i12, org.telegram.messenger.g0.L(i11));
@@ -64,7 +64,7 @@ public final class p implements Runnable {
                 rVar.c(false);
                 if (rVar.f6385b.isEnabled()) {
                     rVar.f6394y = true;
-                    rVar.f6385b.p(rVar.f6387e, anVar.f43917p8, true);
+                    rVar.f6385b.p(rVar.f6387e, anVar.f43916p8, true);
                     rVar.f6385b.r(false);
                     return;
                 }

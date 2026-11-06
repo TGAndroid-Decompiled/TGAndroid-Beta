@@ -24,9 +24,9 @@ public final class ep0 extends org.telegram.ui.Components.mo0 {
             org.telegram.messenger.g0.i3(new ef0(this, 20), 50L);
         }
         PhotoViewer photoViewer = this.T2;
-        photoViewer.f41372d0.softInputMode = 272;
+        photoViewer.f41371d0.softInputMode = 272;
         try {
-            ((WindowManager) photoViewer.D.getSystemService("window")).updateViewLayout(photoViewer.f41400g0, photoViewer.f41372d0);
+            ((WindowManager) photoViewer.D.getSystemService("window")).updateViewLayout(photoViewer.f41399g0, photoViewer.f41371d0);
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }

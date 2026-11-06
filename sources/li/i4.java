@@ -15,7 +15,7 @@ public final class i4 extends ReplacementSpan {
     public final TL_iv.textButton f18638a;
     public iu f18639b;
     public View f18640c;
-    public int d = p10.f24459s0;
+    public int d = p10.f24467s0;
     public f6 f18641e;
 
     public i4(TL_iv.textButton textbutton) {
@@ -34,7 +34,7 @@ public final class i4 extends ReplacementSpan {
         iu iuVar = this.f18639b;
         if (iuVar != null && (view2 = this.f18640c) != null) {
             iuVar.h = null;
-            iuVar.f23336a.f22698a.f(view2);
+            iuVar.f23343a.f22705a.f(view2);
         }
         this.f18640c = view;
         this.d = i7;

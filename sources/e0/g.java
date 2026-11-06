@@ -43,11 +43,11 @@ public final class g {
         i6Var.w(org.telegram.messenger.g0.L(11.0f));
         i6Var.r(true, true);
         i6Var.setCallback(view);
-        i6Var.M = (int) (org.telegram.messenger.g0.f22537q.x * 0.3f);
+        i6Var.M = (int) (org.telegram.messenger.g0.f22544q.x * 0.3f);
         this.f10052b = false;
         i6Var.t(hd.M0(2131746438, null), false, true);
         String M0 = hd.M0(2131746437, null);
-        TextPaint textPaint = i6Var.f34475a;
+        TextPaint textPaint = i6Var.f34506a;
         this.f10051a = (int) Math.ceil(Math.max(textPaint.measureText(M0), textPaint.measureText(hd.M0(2131746438, null))));
     }
 
@@ -96,17 +96,17 @@ public final class g {
         eVar = null;
         eVar = null;
         eVar = null;
-        if (hVar.G == 5 && hVar.f57471z != null && hVar.f57464r == 0 && hVar.f57465s == hVar.j()) {
+        if (hVar.G == 5 && hVar.f57470z != null && hVar.f57463r == 0 && hVar.f57464s == hVar.j()) {
             hVar.p();
-            vi.g gVar = hVar.f57471z;
+            vi.g gVar = hVar.f57470z;
             long j3 = hVar.j();
-            long length = gVar.f57446b.length();
+            long length = gVar.f57445b.length();
             hVar.a(gVar, length);
-            synchronized (hVar.f57458l) {
-                if (gVar.d && !gVar.f57448e) {
-                    gVar.f57448e = true;
-                    hVar.f57457k.execute(new vi.c(hVar, gVar, length, j3, 0));
-                    File file = gVar.f57446b;
+            synchronized (hVar.f57457l) {
+                if (gVar.d && !gVar.f57447e) {
+                    gVar.f57447e = true;
+                    hVar.f57456k.execute(new vi.c(hVar, gVar, length, j3, 0));
+                    File file = gVar.f57445b;
                     byte[] bArr2 = hVar.B;
                     if (bArr2 != null) {
                         bArr = (byte[]) bArr2.clone();
@@ -158,13 +158,13 @@ public final class g {
             float L2 = org.telegram.messenger.g0.L(14.0f);
             float f13 = L2 / 2.0f;
             rg0Var.setBounds((int) ((rectF.right - org.telegram.messenger.g0.L(3.33f)) - L2), (int) ((rectF.centerY() - f13) + org.telegram.messenger.g0.L(0.33f)), (int) (rectF.right - org.telegram.messenger.g0.L(3.33f)), (int) (rectF.centerY() + f13 + org.telegram.messenger.g0.L(0.33f)));
-            Paint paint2 = rg0Var.f37674b;
+            Paint paint2 = rg0Var.f37634b;
             paint2.setColor(i7);
             paint2.setAlpha(rg0Var.d);
             boolean z11 = !z9;
-            if (rg0Var.f37676e != z11) {
-                rg0Var.f37676e = z11;
-                rg0Var.f37673a.invalidate();
+            if (rg0Var.f37636e != z11) {
+                rg0Var.f37636e = z11;
+                rg0Var.f37633a.invalidate();
             }
             rg0Var.draw(canvas);
             canvas.restore();
@@ -197,7 +197,7 @@ public final class g {
         if (hVar.G != 1) {
             return false;
         }
-        File file = hVar.f57450b;
+        File file = hVar.f57449b;
         if ((file.isDirectory() || file.mkdirs()) && file.canWrite()) {
             hVar.h.b("start requested");
             hVar.d();
@@ -217,7 +217,7 @@ public final class g {
         this.f10051a = 1;
         h4 h4Var = new h4(context, 3);
         h4Var.f9076c = file;
-        vi.f fVar = (vi.f) xi.e.f58764c.a();
+        vi.f fVar = (vi.f) xi.e.f58763c.a();
         if (fVar != null) {
             h4Var.d = fVar;
             h4Var.f9074a = false;

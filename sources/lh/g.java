@@ -45,7 +45,7 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) frameLayout).f18385n;
                 if (bVar != null) {
-                    an anVar = ((fe) bVar).f45615b;
+                    an anVar = ((fe) bVar).f45614b;
                     if (i10 == 2) {
                         afVar = new af(anVar, 11);
                         z9 = true;
@@ -75,8 +75,8 @@ public final class g implements View.OnLongClickListener {
                     z0Var.setOnClickListener(new lu0(1, afVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(z0Var);
                     g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                    g1Var.f27481e = true;
-                    g1Var.f27480c = 220;
+                    g1Var.f27482e = true;
+                    g1Var.f27481c = 220;
                     g1Var.setOutsideTouchable(true);
                     g1Var.setClippingEnabled(true);
                     g1Var.setAnimationStyle(2131755192);
@@ -95,9 +95,9 @@ public final class g implements View.OnLongClickListener {
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
                     g1Var.showAtLocation(olVar, 51, (int) width, (int) measuredHeight);
-                    anVar.f43782e9 = g1Var;
-                    anVar.u8(anVar.f44014x1, false);
-                    anVar.f43782e9.setOnDismissListener(new e0(anVar, 1));
+                    anVar.f43781e9 = g1Var;
+                    anVar.u8(anVar.f44013x1, false);
+                    anVar.f43781e9.setOnDismissListener(new e0(anVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {
@@ -107,7 +107,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) frameLayout;
-                if (!scrollSlidingTextTabStrip.f31534n0 && (uk0Var = scrollSlidingTextTabStrip.f31518b) != null && uk0Var.m1(i10, view)) {
+                if (!scrollSlidingTextTabStrip.f31535n0 && (uk0Var = scrollSlidingTextTabStrip.f31519b) != null && uk0Var.m1(i10, view)) {
                     return true;
                 }
                 return false;

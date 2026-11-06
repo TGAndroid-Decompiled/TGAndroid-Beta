@@ -2,7 +2,7 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.Arrays;
 import org.telegram.ui.hy0;
 public final class j extends l {
@@ -60,11 +60,11 @@ public final class j extends l {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
-        wb.c(parcel, 2, this.f11391a.p());
-        wb.c(parcel, 3, this.f11392b.p());
-        wb.c(parcel, 4, this.f11393c.p());
-        wb.m(parcel, 5, this.d);
-        wb.s(parcel, r10);
+        int r10 = xb.r(parcel, 20293);
+        xb.c(parcel, 2, this.f11391a.p());
+        xb.c(parcel, 3, this.f11392b.p());
+        xb.c(parcel, 4, this.f11393c.p());
+        xb.m(parcel, 5, this.d);
+        xb.s(parcel, r10);
     }
 }

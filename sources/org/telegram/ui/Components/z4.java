@@ -17,7 +17,7 @@ public final class z4 {
 
     public z4(View view) {
         this.f40865f = 200L;
-        this.f40866g = xq.f40329f;
+        this.f40866g = xq.f40345f;
         this.f40861a = view;
         this.f40864e = true;
     }
@@ -66,7 +66,7 @@ public final class z4 {
 
     public z4(View view, long j3, TimeInterpolator timeInterpolator) {
         this.f40865f = 200L;
-        xq xqVar = xq.f40329f;
+        xq xqVar = xq.f40345f;
         this.f40861a = view;
         this.f40865f = j3;
         this.f40866g = timeInterpolator;
@@ -75,7 +75,7 @@ public final class z4 {
 
     public z4(View view, long j3, TimeInterpolator timeInterpolator, int i7) {
         this.f40865f = 200L;
-        xq xqVar = xq.f40329f;
+        xq xqVar = xq.f40345f;
         this.f40861a = view;
         this.f40865f = j3;
         this.f40866g = timeInterpolator;
@@ -84,7 +84,7 @@ public final class z4 {
 
     public z4(Runnable runnable, long j3, TimeInterpolator timeInterpolator) {
         this.f40865f = 200L;
-        xq xqVar = xq.f40329f;
+        xq xqVar = xq.f40345f;
         this.f40862b = runnable;
         this.f40865f = j3;
         this.f40866g = timeInterpolator;

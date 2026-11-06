@@ -1,6 +1,6 @@
 package oi;
 
-import c8.yc;
+import c8.zc;
 import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -28,7 +28,7 @@ public final class h {
         } else {
             i7 = 0;
         }
-        long j11 = k6.Am + r6.f28475b;
+        long j11 = k6.Am + r6.f28476b;
         if (qVar.f21112s != j11) {
             qVar.f21112s = j11;
             i7 |= 16;
@@ -42,7 +42,7 @@ public final class h {
         if (i7 == 0) {
             return;
         }
-        if (yc.a(i7, 16)) {
+        if (zc.a(i7, 16)) {
             int size = arrayList2.size();
             for (int i10 = 0; i10 < size; i10++) {
                 o oVar = (o) arrayList2.get(i10);
@@ -52,7 +52,7 @@ public final class h {
         int size2 = arrayList.size();
         for (int i11 = 0; i11 < size2; i11++) {
             p pVar = (p) arrayList.get(i11);
-            if (yc.a(i7, 32)) {
+            if (zc.a(i7, 32)) {
                 e eVar = pVar.f21090b;
                 r rVar = q.F;
                 if (!Objects.equals(eVar.f21072b, rVar)) {
@@ -60,7 +60,7 @@ public final class h {
                     eVar.g(rVar);
                 }
             }
-            if (yc.a(i7, 16)) {
+            if (zc.a(i7, 16)) {
                 pVar.f21090b.updateColors();
             }
             pVar.f21090b.invalidateSelf();

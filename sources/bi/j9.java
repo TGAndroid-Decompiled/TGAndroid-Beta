@@ -37,9 +37,9 @@ public final class j9 implements Runnable {
                 if (tLObject2 instanceof TLRPC.TL_messages_stickerSet) {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) tLObject2;
                     z9 = true;
-                    ui.b0(p10.f24459s0).I1(tL_messages_stickerSet, true);
-                    if (!ui.b0(p10.f24459s0).B0(tL_messages_stickerSet.set.f26979id, true)) {
-                        ui.b0(p10.f24459s0).f2(null, tL_messages_stickerSet, 2, null, false, false);
+                    ui.b0(p10.f24467s0).I1(tL_messages_stickerSet, true);
+                    if (!ui.b0(p10.f24467s0).B0(tL_messages_stickerSet.set.f26980id, true)) {
+                        ui.b0(p10.f24467s0).f2(null, tL_messages_stickerSet, 2, null, false, false);
                     }
                 } else {
                     z9 = false;

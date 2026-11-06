@@ -4,27 +4,27 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class ev0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33336a;
-    public final View f33337b;
-    public final FrameLayout f33338c;
+    public final int f33355a;
+    public final View f33356b;
+    public final FrameLayout f33357c;
 
     public ev0(FrameLayout frameLayout, View view, int i7) {
-        this.f33336a = i7;
-        this.f33338c = frameLayout;
-        this.f33337b = view;
+        this.f33355a = i7;
+        this.f33357c = frameLayout;
+        this.f33356b = view;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33336a) {
+        switch (this.f33355a) {
             case 0:
-                fv0 fv0Var = (fv0) this.f33338c;
-                fv0Var.f33630b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fv0 fv0Var = (fv0) this.f33357c;
+                fv0Var.f33640b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 fv0Var.invalidate();
-                ((rk0) this.f33337b).invalidate();
+                ((rk0) this.f33356b).invalidate();
                 return;
             default:
-                ((u61) this.f33338c).F(this.f33337b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((v61) this.f33357c).F(this.f33356b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
     }

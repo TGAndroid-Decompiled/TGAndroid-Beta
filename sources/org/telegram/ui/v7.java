@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.ImageReceiver;
 public final class v7 implements di.l9, org.telegram.messenger.qr {
-    public final h8 f50595a;
+    public final h8 f50594a;
 
     public v7(h8 h8Var) {
-        this.f50595a = h8Var;
+        this.f50594a = h8Var;
     }
 
     @Override
     public void e(long j3, int i7, di.l3 l3Var) {
-        h8 h8Var = this.f50595a;
-        if (h8Var.f46261b == null) {
+        h8 h8Var = this.f50594a;
+        if (h8Var.f46260b == null) {
             l3Var.run();
         }
-        h8Var.f46261b.post(l3Var);
+        h8Var.f46260b.post(l3Var);
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class v7 implements di.l9, org.telegram.messenger.qr {
         org.telegram.ui.ActionBar.q4 q4Var2;
         org.telegram.ui.ActionBar.q4 q4Var3;
         org.telegram.ui.ActionBar.q4 q4Var4;
-        h8 h8Var = this.f50595a;
+        h8 h8Var = this.f50594a;
         h8Var.finishFragment();
         q4Var = ((org.telegram.ui.ActionBar.f2) h8Var).parentLayout;
         if (q4Var != null) {
@@ -51,31 +51,31 @@ public final class v7 implements di.l9, org.telegram.messenger.qr {
 
     @Override
     public boolean o(long j3, int i7, int i10, int i11, di.m9 m9Var) {
-        h8 h8Var = this.f50595a;
-        if (h8Var.f46261b != null) {
+        h8 h8Var = this.f50594a;
+        if (h8Var.f46260b != null) {
             int i12 = 0;
             while (true) {
-                if (i12 >= h8Var.f46261b.getChildCount()) {
+                if (i12 >= h8Var.f46260b.getChildCount()) {
                     break;
                 }
-                View childAt = h8Var.f46261b.getChildAt(i12);
+                View childAt = h8Var.f46260b.getChildAt(i12);
                 if (childAt instanceof e8) {
                     e8 e8Var = (e8) childAt;
-                    if (e8Var.f45232n == null) {
+                    if (e8Var.f45231n == null) {
                         continue;
                     } else {
-                        for (int i13 = 0; i13 < e8Var.f45232n.size(); i13++) {
-                            ArrayList arrayList = ((f8) e8Var.f45232n.valueAt(i13)).f45517b;
+                        for (int i13 = 0; i13 < e8Var.f45231n.size(); i13++) {
+                            ArrayList arrayList = ((f8) e8Var.f45231n.valueAt(i13)).f45516b;
                             if (arrayList != null && arrayList.contains(Integer.valueOf(i10))) {
-                                int keyAt = e8Var.f45232n.keyAt(i13);
-                                h8Var.f46271h0 = keyAt;
-                                ImageReceiver imageReceiver = (ImageReceiver) e8Var.f45233r.get(keyAt);
+                                int keyAt = e8Var.f45231n.keyAt(i13);
+                                h8Var.f46270h0 = keyAt;
+                                ImageReceiver imageReceiver = (ImageReceiver) e8Var.f45232r.get(keyAt);
                                 if (imageReceiver != null) {
                                     m9Var.f9364c = imageReceiver;
-                                    if (h8Var.f46272i0 == null) {
-                                        h8Var.f46272i0 = new w0(this, 11);
+                                    if (h8Var.f46271i0 == null) {
+                                        h8Var.f46271i0 = new w0(this, 11);
                                     }
-                                    m9Var.f9365e = h8Var.f46272i0;
+                                    m9Var.f9365e = h8Var.f46271i0;
                                     m9Var.f9362a = e8Var;
                                     m9Var.f9367g = h8Var.fragmentView;
                                     m9Var.h = org.telegram.messenger.g0.L(36.0f);

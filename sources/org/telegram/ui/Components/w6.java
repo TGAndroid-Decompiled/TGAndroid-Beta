@@ -5,54 +5,54 @@ import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class w6 implements Runnable {
-    public final int f39871a;
-    public final b8 f39872b;
-    public final org.telegram.messenger.ij f39873c;
+    public final int f39868a;
+    public final b8 f39869b;
+    public final org.telegram.messenger.ij f39870c;
 
     public w6(b8 b8Var, org.telegram.messenger.ij ijVar, int i7) {
-        this.f39871a = i7;
-        this.f39872b = b8Var;
-        this.f39873c = ijVar;
+        this.f39868a = i7;
+        this.f39869b = b8Var;
+        this.f39870c = ijVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f39871a;
-        org.telegram.messenger.ij ijVar = this.f39873c;
-        b8 b8Var = this.f39872b;
+        int i7 = this.f39868a;
+        org.telegram.messenger.ij ijVar = this.f39870c;
+        b8 b8Var = this.f39869b;
         switch (i7) {
             case 0:
-                org.telegram.messenger.kp kpVar = b8Var.f32043m2;
+                org.telegram.messenger.kp kpVar = b8Var.f32077m2;
                 if (kpVar != null) {
                     TLRPC.Document a10 = kpVar.a();
-                    kpVar.f23734c.remove(ijVar);
+                    kpVar.f23741c.remove(ijVar);
                     if (kpVar.a() != a10) {
                         kpVar.e();
                     }
-                    if (b8Var.f32043m2.f23734c.isEmpty()) {
+                    if (b8Var.f32077m2.f23741c.isEmpty()) {
                         MediaController.B().o();
                         b8Var.dismiss();
                         return;
                     }
-                    org.telegram.messenger.qs.f(b8Var.f28612a).k(244, b8Var.f32043m2);
+                    org.telegram.messenger.qs.f(b8Var.f28613a).k(244, b8Var.f32077m2);
                     return;
                 }
                 return;
             default:
-                LaunchActivity launchActivity = b8Var.f32062w2;
-                int i10 = org.telegram.messenger.p10.f24459s0;
-                int i11 = b8Var.f28612a;
+                LaunchActivity launchActivity = b8Var.f32096w2;
+                int i10 = org.telegram.messenger.p10.f24467s0;
+                int i11 = b8Var.f28613a;
                 if (i10 != i11) {
                     launchActivity.O0(i11);
                 }
                 Bundle bundle = new Bundle();
-                long B0 = org.telegram.messenger.ij.B0(ijVar.f23237k);
+                long B0 = org.telegram.messenger.ij.B0(ijVar.f23244k);
                 if (org.telegram.messenger.m5.C(B0)) {
                     bundle.putInt("enc_id", (int) (B0 & 4294967295L));
                 } else if (org.telegram.messenger.m5.E(B0)) {
                     bundle.putLong("user_id", B0);
                 } else {
-                    TLRPC.Chat M0 = org.telegram.messenger.qp.s1(b8Var.f28612a).M0(Long.valueOf(-B0));
+                    TLRPC.Chat M0 = org.telegram.messenger.qp.s1(b8Var.f28613a).M0(Long.valueOf(-B0));
                     if (M0 != null && M0.migrated_to != null) {
                         bundle.putLong("migrated_to", B0);
                         B0 = -M0.migrated_to.channel_id;
@@ -60,7 +60,7 @@ public final class w6 implements Runnable {
                     bundle.putLong("chat_id", -B0);
                 }
                 bundle.putInt("message_id", ijVar.f1());
-                org.telegram.messenger.qs.f(b8Var.f28612a).k(4, new Object[0]);
+                org.telegram.messenger.qs.f(b8Var.f28613a).k(4, new Object[0]);
                 launchActivity.u0(new org.telegram.ui.an(bundle), false, false);
                 b8Var.dismiss();
                 return;

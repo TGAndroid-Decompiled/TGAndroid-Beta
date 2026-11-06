@@ -5,19 +5,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import org.telegram.ui.Components.UndoView;
 public final class cu implements Runnable {
-    public final int f44899a;
-    public final ww f44900b;
+    public final int f44898a;
+    public final ww f44899b;
 
     public cu(ww wwVar, int i7) {
-        this.f44899a = i7;
-        this.f44900b = wwVar;
+        this.f44898a = i7;
+        this.f44899b = wwVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f44899a;
+        int i7 = this.f44898a;
         int i10 = 0;
-        ww wwVar = this.f44900b;
+        ww wwVar = this.f44899b;
         switch (i7) {
             case 0:
                 wwVar.getClass();
@@ -31,14 +31,14 @@ public final class cu implements Runnable {
                 return;
             case 3:
                 ?? obj = new Object();
-                obj.f27420a = true;
+                obj.f27421a = true;
                 wwVar.showAsSheet(new PrivacyControlActivity(11, false), obj);
                 return;
             case 4:
                 wwVar.fragmentView.dispatchTouchEvent(org.telegram.messenger.g0.R());
                 return;
             case 5:
-                ww wwVar2 = this.f44900b;
+                ww wwVar2 = this.f44899b;
                 ArrayList arrayList = wwVar2.I2;
                 wwVar2.M2 = true;
                 if (wwVar2.C2 != null && !arrayList.isEmpty()) {
@@ -52,7 +52,7 @@ public final class cu implements Runnable {
                 }
                 return;
             case 6:
-                ww wwVar3 = this.f44900b;
+                ww wwVar3 = this.f44899b;
                 ArrayList arrayList3 = wwVar3.I2;
                 wwVar3.J2 = false;
                 wwVar3.M2 = false;
@@ -77,8 +77,8 @@ public final class cu implements Runnable {
                 }
                 return;
             case 9:
-                wwVar.X.f37447r.requestFocus();
-                org.telegram.messenger.g0.K3(wwVar.X.f37447r);
+                wwVar.X.f37441r.requestFocus();
+                org.telegram.messenger.g0.K3(wwVar.X.f37441r);
                 return;
             case 10:
                 wwVar.getClass();
@@ -97,7 +97,7 @@ public final class cu implements Runnable {
                 return;
             case 14:
                 org.telegram.messenger.yr messagesStorage = wwVar.getMessagesStorage();
-                messagesStorage.f26688a.c(new org.telegram.messenger.qq(messagesStorage, 16));
+                messagesStorage.f26696a.c(new org.telegram.messenger.qq(messagesStorage, 16));
                 Toast.makeText(wwVar.getParentActivity(), org.telegram.messenger.hd.M0(2131751652, null), 0).show();
                 return;
             case 15:
@@ -111,9 +111,9 @@ public final class cu implements Runnable {
                     fwVar.R(false);
                     return;
                 }
-                wwVar.X.f37447r.getText().clear();
-                org.telegram.messenger.g0.v1(wwVar.X.f37447r);
-                wwVar.X.f37447r.clearFocus();
+                wwVar.X.f37441r.getText().clear();
+                org.telegram.messenger.g0.v1(wwVar.X.f37441r);
+                wwVar.X.f37441r.clearFocus();
                 wwVar.Y.b(false);
                 return;
             case 17:
@@ -128,7 +128,7 @@ public final class cu implements Runnable {
                     return;
                 }
             case 18:
-                jh.f fVar = wwVar.f51653y1;
+                jh.f fVar = wwVar.f51651y1;
                 if (fVar != null) {
                     fVar.d();
                 }
@@ -136,7 +136,7 @@ public final class cu implements Runnable {
                 wwVar.F3();
                 li.w1 w1Var = wwVar.C1;
                 if (w1Var != null) {
-                    w1Var.setTranslationY(-wwVar.f51640w.d());
+                    w1Var.setTranslationY(-wwVar.f51638w.d());
                     return;
                 }
                 return;
@@ -156,14 +156,14 @@ public final class cu implements Runnable {
                 wwVar.getMessagesController().k4(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 24:
-                fi.m3 m3Var = wwVar.f51608q0;
+                fi.m3 m3Var = wwVar.f51606q0;
                 if (m3Var != null) {
                     m3Var.f(true);
                 }
                 wwVar.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 25:
-                wwVar.f51551e0[0].d.f();
+                wwVar.f51549e0[0].d.f();
                 return;
             case 26:
                 UndoView k42 = wwVar.k4();

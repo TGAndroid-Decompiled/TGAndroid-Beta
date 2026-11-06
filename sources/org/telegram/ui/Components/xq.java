@@ -4,38 +4,38 @@ import android.graphics.PointF;
 import android.view.animation.Interpolator;
 import android.view.animation.PathInterpolator;
 public final class xq implements Interpolator {
-    public static final xq f40329f = new xq(0.25d, 0.1d, 0.25d, 1.0d);
-    public static final xq f40330g = new xq(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final xq f40345f = new xq(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final xq f40346g = new xq(0.0d, 0.0d, 0.58d, 1.0d);
     public static final xq h = new xq(0.23d, 1.0d, 0.32d, 1.0d);
-    public static final xq f40331i = new xq(0.42d, 0.0d, 1.0d, 1.0d);
-    public static final xq f40332j = new xq(0.42d, 0.0d, 0.58d, 1.0d);
-    public static final xq f40333k = new xq(0.34d, 1.56d, 0.64d, 1.0d);
-    public static final PathInterpolator f40334l;
-    public final PointF f40335a;
-    public final PointF f40336b;
-    public final PointF f40337c;
+    public static final xq f40347i = new xq(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final xq f40348j = new xq(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final xq f40349k = new xq(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f40350l;
+    public final PointF f40351a;
+    public final PointF f40352b;
+    public final PointF f40353c;
     public final PointF d;
-    public final PointF f40338e;
+    public final PointF f40354e;
 
     static {
         new PathInterpolator(c8.i0.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
         new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
         new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-        f40334l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+        f40350l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     public xq(float f10, float f11, float f12, float f13) {
         PointF pointF = new PointF(f10, f11);
         PointF pointF2 = new PointF(f12, f13);
-        this.f40337c = new PointF();
+        this.f40353c = new PointF();
         this.d = new PointF();
-        this.f40338e = new PointF();
+        this.f40354e = new PointF();
         float f14 = pointF.x;
         if (f14 >= 0.0f && f14 <= 1.0f) {
             float f15 = pointF2.x;
             if (f15 >= 0.0f && f15 <= 1.0f) {
-                this.f40335a = pointF;
-                this.f40336b = pointF2;
+                this.f40351a = pointF;
+                this.f40352b = pointF2;
                 return;
             }
             throw new IllegalArgumentException("endX value must be in the range [0, 1]");
@@ -53,11 +53,11 @@ public final class xq implements Interpolator {
         int i7 = 1;
         float f11 = f10;
         while (true) {
-            pointF = this.f40336b;
-            pointF2 = this.f40335a;
-            pointF3 = this.f40337c;
+            pointF = this.f40352b;
+            pointF2 = this.f40351a;
+            pointF3 = this.f40353c;
             pointF4 = this.d;
-            pointF5 = this.f40338e;
+            pointF5 = this.f40354e;
             if (i7 >= 14) {
                 break;
             }

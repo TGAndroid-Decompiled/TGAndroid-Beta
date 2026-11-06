@@ -23,7 +23,7 @@ public final class l5 extends LinearLayout {
         super(context);
         this.f12325r = o5Var;
         setOrientation(0);
-        int i7 = org.telegram.ui.ActionBar.k6.f27940i6;
+        int i7 = org.telegram.ui.ActionBar.k6.f27941i6;
         g5 g5Var = o5Var.f12540p1;
         setBackground(org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.w0(i7, g5Var), 2, -1));
         bi.x5 x5Var = new bi.x5(this, context);

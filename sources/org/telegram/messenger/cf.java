@@ -16,17 +16,17 @@ import java.util.HashMap;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
 public final class cf implements ls {
-    public c f21803a;
-    public org.telegram.ui.ActionBar.u1 f21804b;
-    public ArrayList f21805c;
+    public c f21809a;
+    public org.telegram.ui.ActionBar.u1 f21810b;
+    public ArrayList f21811c;
     public HashMap d;
-    public float f21806e;
-    public boolean f21807f;
+    public float f21812e;
+    public boolean f21813f;
     public boolean h;
-    public int f21808n;
-    public CountDownLatch f21809r;
-    public sr f21810s;
-    public boolean f21811w;
+    public int f21814n;
+    public CountDownLatch f21815r;
+    public sr f21816s;
+    public boolean f21817w;
 
     public final void a(java.io.File r28, java.io.File r29, java.lang.String r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.cf.a(java.io.File, java.io.File, java.lang.String):void");
@@ -39,37 +39,37 @@ public final class cf implements ls {
         ?? r22;
         ?? r62;
         boolean z9 = false;
-        if (!ijVar.E3() || (o12 = ij.o1(ijVar.f23237k)) == null || (photo = o12.photo) == null || o12.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
+        if (!ijVar.E3() || (o12 = ij.o1(ijVar.f23244k)) == null || (photo = o12.photo) == null || o12.document == null || (w10 = w7.w(photo.sizes, g0.Z0(true), false, null, true)) == null) {
             return false;
         }
-        w7.G(this.f21803a.f21723a);
-        File K = w7.K(w10, null, false, true);
-        File K2 = w7.K(o12.document, null, false, true);
-        if (K != null && K.exists()) {
+        w7.G(this.f21809a.f21729a);
+        File J = w7.J(w10, null, false, true);
+        File J2 = w7.J(o12.document, null, false, true);
+        if (J != null && J.exists()) {
             r22 = 0;
         } else {
             r22 = 1;
         }
-        if (K2 != null && K2.exists()) {
+        if (J2 != null && J2.exists()) {
             r62 = 0;
         } else {
             r62 = 1;
         }
         int i7 = r22 + r62;
         if (i7 > 0) {
-            this.f21809r = new CountDownLatch(i7);
+            this.f21815r = new CountDownLatch(i7);
             g0.h3(new mh(this, (boolean) r22, w10, ijVar, o12.photo, (boolean) r62, o12.document));
-            this.f21809r.await();
+            this.f21815r.await();
         }
-        if (!this.f21807f) {
-            if (K == null || !K.exists()) {
-                K = w7.K(w10, null, true, true);
+        if (!this.f21813f) {
+            if (J == null || !J.exists()) {
+                J = w7.J(w10, null, true, true);
             }
-            if (K2 == null || !K2.exists()) {
-                K2 = w7.K(o12.document, null, true, true);
+            if (J2 == null || !J2.exists()) {
+                J2 = w7.J(o12.document, null, true, true);
             }
-            if (K != null && K.exists() && K2 != null && K2.exists()) {
-                String D = w7.D(K);
+            if (J != null && J.exists() && J2 != null && J2.exists()) {
+                String D = w7.D(J);
                 if (TextUtils.isEmpty(D)) {
                     D = "jpg";
                 }
@@ -84,13 +84,13 @@ public final class cf implements ls {
                     contentValues.put("relative_path", new File(Environment.DIRECTORY_DOWNLOADS, "Telegram") + File.separator);
                     contentValues.put("_display_name", p02);
                     contentValues.put("mime_type", mimeTypeFromExtension);
-                    Uri insert = t0.f25555b.getContentResolver().insert(contentUri, contentValues);
+                    Uri insert = t0.f25563b.getContentResolver().insert(contentUri, contentValues);
                     if (insert != null) {
-                        OutputStream openOutputStream = t0.f25555b.getContentResolver().openOutputStream(insert);
+                        OutputStream openOutputStream = t0.f25563b.getContentResolver().openOutputStream(insert);
                         if (openOutputStream != null) {
                             try {
-                                MediaController.H0(K, K2, openOutputStream, null);
-                                z9 = !this.f21807f;
+                                MediaController.H0(J, J2, openOutputStream, null);
+                                z9 = !this.f21813f;
                             } catch (Throwable th2) {
                                 try {
                                     openOutputStream.close();
@@ -104,10 +104,10 @@ public final class cf implements ls {
                             openOutputStream.close();
                         }
                         if (z9) {
-                            this.f21808n++;
+                            this.f21814n++;
                         } else {
                             try {
-                                t0.f25555b.getContentResolver().delete(insert, null, null);
+                                t0.f25563b.getContentResolver().delete(insert, null, null);
                             } catch (Exception unused) {
                             }
                         }
@@ -121,13 +121,13 @@ public final class cf implements ls {
                     }
                     FileOutputStream fileOutputStream = new FileOutputStream(file2);
                     try {
-                        MediaController.H0(K, K2, fileOutputStream, null);
+                        MediaController.H0(J, J2, fileOutputStream, null);
                         fileOutputStream.close();
-                        if (this.f21807f) {
+                        if (this.f21813f) {
                             file2.delete();
                         } else {
-                            ((DownloadManager) t0.f25555b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
-                            this.f21808n++;
+                            ((DownloadManager) t0.f25563b.getSystemService("download")).addCompletedDownload(file2.getName(), file2.getName(), false, mimeTypeFromExtension, file2.getAbsolutePath(), file2.length(), true);
+                            this.f21814n++;
                         }
                     } catch (Throwable th4) {
                         try {
@@ -138,8 +138,8 @@ public final class cf implements ls {
                         throw th4;
                     }
                 }
-                float size = (100.0f / this.f21805c.size()) + this.f21806e;
-                this.f21806e = size;
+                float size = (100.0f / this.f21811c.size()) + this.f21812e;
+                this.f21812e = size;
                 g0.h3(new af(this, (int) size, 3));
                 return true;
             }
@@ -152,10 +152,10 @@ public final class cf implements ls {
         HashMap hashMap = this.d;
         if (i7 != qs.Y1 && i7 != qs.Z1) {
             if (i7 == qs.X1 && hashMap.containsKey((String) objArr[0])) {
-                g0.h3(new af(this, (int) com.google.android.recaptcha.internal.a.c(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.f21805c.size(), 100.0f, this.f21806e), 0));
+                g0.h3(new af(this, (int) com.google.android.recaptcha.internal.a.c(((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue()), this.f21811c.size(), 100.0f, this.f21812e), 0));
             }
         } else if (hashMap.remove((String) objArr[0]) != null) {
-            this.f21809r.countDown();
+            this.f21815r.countDown();
         }
     }
 }

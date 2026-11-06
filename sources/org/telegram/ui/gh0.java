@@ -3,24 +3,24 @@ package org.telegram.ui;
 import android.view.View;
 import java.util.ArrayList;
 public final class gh0 implements Runnable {
-    public final int f46006a;
-    public final NotificationsCustomSettingsActivity f46007b;
-    public final View f46008c;
+    public final int f46005a;
+    public final NotificationsCustomSettingsActivity f46006b;
+    public final View f46007c;
     public final int d;
 
     public gh0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i7, int i10) {
-        this.f46006a = i10;
-        this.f46007b = notificationsCustomSettingsActivity;
-        this.f46008c = view;
+        this.f46005a = i10;
+        this.f46006b = notificationsCustomSettingsActivity;
+        this.f46007c = view;
         this.d = i7;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f46006a;
+        int i7 = this.f46005a;
         int i10 = this.d;
-        View view = this.f46008c;
-        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f46007b;
+        View view = this.f46007c;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f46006b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = notificationsCustomSettingsActivity.I;
@@ -37,7 +37,7 @@ public final class gh0 implements Runnable {
                 ArrayList arrayList2 = notificationsCustomSettingsActivity.I;
                 if (view instanceof org.telegram.ui.Cells.w9) {
                     if (i10 >= 0 && i10 < arrayList2.size()) {
-                        ((kh0) arrayList2.get(i10)).f47194f = notificationsCustomSettingsActivity.l0();
+                        ((kh0) arrayList2.get(i10)).f47193f = notificationsCustomSettingsActivity.l0();
                     }
                     org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) view;
                     w9Var.c(org.telegram.messenger.hd.M0(2131747097, "PopupNotification"), notificationsCustomSettingsActivity.l0(), true, w9Var.h);
@@ -49,7 +49,7 @@ public final class gh0 implements Runnable {
                 ArrayList arrayList3 = notificationsCustomSettingsActivity.I;
                 if (view instanceof org.telegram.ui.Cells.w9) {
                     if (i10 >= 0 && i10 < arrayList3.size()) {
-                        ((kh0) arrayList3.get(i10)).f47194f = notificationsCustomSettingsActivity.m0();
+                        ((kh0) arrayList3.get(i10)).f47193f = notificationsCustomSettingsActivity.m0();
                     }
                     org.telegram.ui.Cells.w9 w9Var2 = (org.telegram.ui.Cells.w9) view;
                     w9Var2.c(org.telegram.messenger.hd.M0(2131747905, "NotificationsImportance"), notificationsCustomSettingsActivity.m0(), true, w9Var2.h);

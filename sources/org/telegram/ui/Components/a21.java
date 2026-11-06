@@ -1,21 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class a21 extends j21 {
-    public final Runnable Q1;
+import android.net.Uri;
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import org.json.JSONArray;
+import org.json.JSONTokener;
+public final class a21 extends Thread {
+    public final String f31661a;
+    public final String f31662b;
+    public final String f31663c;
+    public final org.telegram.messenger.v10 d;
 
-    public a21(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i7, boolean z9, Runnable runnable) {
-        super(context, str, str2, charSequence, inputPeer, i7, z9, null);
-        this.Q1 = runnable;
+    public a21(String str, String str2, String str3, org.telegram.messenger.v10 v10Var) {
+        this.f31661a = str;
+        this.f31662b = str2;
+        this.f31663c = str3;
+        this.d = v10Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        Runnable runnable = this.Q1;
-        if (runnable != null) {
-            runnable.run();
+    public final void run() {
+        HttpURLConnection httpURLConnection;
+        Integer num;
+        String str;
+        org.telegram.messenger.v10 v10Var = this.d;
+        String str2 = this.f31663c;
+        boolean z9 = false;
+        String str3 = null;
+        try {
+            httpURLConnection = (HttpURLConnection) new URI(("https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + Uri.encode(this.f31661a) + "&tl=" + Uri.encode(this.f31662b) + "&dt=t&ie=UTF-8&oe=UTF-8&otf=1&ssel=0&tsel=0&kc=7&dt=at&dt=bd&dt=ex&dt=ld&dt=md&dt=qca&dt=rw&dt=rm&dt=ss&q=") + str2).toURL().openConnection();
+            try {
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.setRequestProperty("User-Agent", k21.O1[(int) Math.round(Math.random() * 5)]);
+                httpURLConnection.setRequestProperty("Content-Type", "application/json");
+                StringBuilder sb2 = new StringBuilder();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), g9.j.f13590a));
+                while (true) {
+                    int read = bufferedReader.read();
+                    if (read == -1) {
+                        break;
+                    }
+                    sb2.append((char) read);
+                }
+                bufferedReader.close();
+                JSONArray jSONArray = new JSONArray(new JSONTokener(sb2.toString()));
+                JSONArray jSONArray2 = jSONArray.getJSONArray(0);
+                try {
+                    str = jSONArray.getString(2);
+                } catch (Exception unused) {
+                    str = null;
+                }
+                if (str != null && str.contains("-")) {
+                    str.substring(0, str.indexOf("-"));
+                }
+                String str4 = "";
+                for (int i7 = 0; i7 < jSONArray2.length(); i7++) {
+                    String string = jSONArray2.getJSONArray(i7).getString(0);
+                    if (string != null && !string.equals("null")) {
+                        str4 = str4 + string;
+                    }
+                }
+                if (str2.length() > 0 && str2.charAt(0) == '\n') {
+                    str4 = "\n" + str4;
+                }
+                org.telegram.messenger.g0.h3(new z11(str4, 0, v10Var));
+            } catch (Exception e10) {
+                e = e10;
+                try {
+                    StringBuilder sb3 = new StringBuilder();
+                    sb3.append("failed to translate a text ");
+                    if (httpURLConnection != null) {
+                        num = Integer.valueOf(httpURLConnection.getResponseCode());
+                    } else {
+                        num = null;
+                    }
+                    sb3.append(num);
+                    sb3.append(" ");
+                    if (httpURLConnection != null) {
+                        str3 = httpURLConnection.getResponseMessage();
+                    }
+                    sb3.append(str3);
+                    Log.e("translate", sb3.toString());
+                } catch (IOException e11) {
+                    e11.printStackTrace();
+                }
+                e.printStackTrace();
+                if (httpURLConnection != null) {
+                    try {
+                        if (httpURLConnection.getResponseCode() == 429) {
+                            z9 = true;
+                        }
+                    } catch (Exception unused2) {
+                        org.telegram.messenger.g0.h3(new ir0(v10Var, 20));
+                        return;
+                    }
+                }
+                org.telegram.messenger.g0.h3(new tp0(4, v10Var, z9));
+            }
+        } catch (Exception e12) {
+            e = e12;
+            httpURLConnection = null;
         }
     }
 }

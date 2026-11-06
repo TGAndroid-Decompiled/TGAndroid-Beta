@@ -18,43 +18,43 @@ public final class hw0 extends FrameLayout implements org.telegram.ui.ActionBar.
     public float J;
     public boolean K;
     public org.telegram.ui.Components.voip.n L;
-    public Paint f34388a;
-    public Paint f34389b;
-    public Paint f34390c;
+    public Paint f34426a;
+    public Paint f34427b;
+    public Paint f34428c;
     public Paint d;
-    public boolean f34391e;
-    public bi.ec f34392f;
+    public boolean f34429e;
+    public bi.ec f34430f;
     public TextView h;
-    public TextView f34393n;
-    public TextView f34394r;
-    public TextView f34395s;
-    public TextView f34396w;
-    public View f34397x;
-    public int f34398y;
+    public TextView f34431n;
+    public TextView f34432r;
+    public TextView f34433s;
+    public TextView f34434w;
+    public View f34435x;
+    public int f34436y;
 
     @Override
     public final void invalidate() {
-        TextView textView = this.f34395s;
-        TextView textView2 = this.f34394r;
-        TextView textView3 = this.f34393n;
+        TextView textView = this.f34433s;
+        TextView textView2 = this.f34432r;
+        TextView textView3 = this.f34431n;
         TextView textView4 = this.h;
         super.invalidate();
-        this.f34392f.invalidate();
-        int i7 = this.f34398y;
+        this.f34430f.invalidate();
+        int i7 = this.f34436y;
         int i10 = org.telegram.ui.ActionBar.k6.Jj;
         if (i7 != org.telegram.ui.ActionBar.k6.x0(null, i10, false)) {
-            this.f34398y = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
-            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), this.f34398y), (Drawable) null, (Drawable) null, (Drawable) null);
+            this.f34436y = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
+            textView4.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), this.f34436y), (Drawable) null, (Drawable) null, (Drawable) null);
             textView4.setCompoundDrawablePadding(org.telegram.messenger.g0.L(6.0f));
-            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), this.f34398y), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView3.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), this.f34436y), (Drawable) null, (Drawable) null, (Drawable) null);
             textView3.setCompoundDrawablePadding(org.telegram.messenger.g0.L(6.0f));
-            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), i0.a.o(this.f34398y, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView2.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), i0.a.o(this.f34436y, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
             textView2.setCompoundDrawablePadding(org.telegram.messenger.g0.L(6.0f));
-            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), i0.a.o(this.f34398y, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
+            textView.setCompoundDrawablesWithIntrinsicBounds(org.telegram.ui.ActionBar.k6.L(org.telegram.messenger.g0.L(10.0f), i0.a.o(this.f34436y, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
             textView.setCompoundDrawablePadding(org.telegram.messenger.g0.L(6.0f));
         }
         org.telegram.ui.ActionBar.r6.V(this.D.getTextView(), org.telegram.ui.ActionBar.k6.G6, null);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27849d7, this.f34397x, null);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27850d7, this.f34435x, null);
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class hw0 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void updateColors() {
         try {
-            if (this.f34392f != null && this.h != null && this.f34398y != org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Jj, false)) {
+            if (this.f34430f != null && this.h != null && this.f34436y != org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Jj, false)) {
                 invalidate();
             }
         } catch (Exception e10) {

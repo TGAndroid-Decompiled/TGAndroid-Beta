@@ -35,16 +35,16 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.i4;
-import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.rt0;
-import org.telegram.ui.Components.ty0;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.uy0;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
-public final class v extends m41 implements ls {
+public final class v extends n41 implements ls {
     public static org.telegram.ui.ActionBar.u1 f17557e;
 
     public static void d0(v vVar, TL_account.TL_businessChatLink tL_businessChatLink) {
@@ -108,21 +108,21 @@ public final class v extends m41 implements ls {
         }
         AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
         String M0 = hd.M0(2131752699, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder2.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder2.f27293a;
         u1Var.R = M0;
         s sVar = new s(activity, f6Var);
         ui.b0(i7).M(org.telegram.messenger.g0.G0(), true);
         sVar.setInputType(49153);
         sVar.setTextSize(1, 18.0f);
         sVar.setText(tL_businessChatLink.title);
-        int i10 = k6.f27956j5;
+        int i10 = k6.f27957j5;
         r6.V(sVar, i10, f6Var);
         r6.m(sVar, 34, k6.Li, f6Var);
         r6.m(sVar, 30, k6.Ke, null);
         sVar.setHintText(hd.M0(2131752701, null));
         sVar.setSingleLine(true);
         sVar.setFocusable(true);
-        r6.G(sVar, k6.f27977k6, k6.f27995l6, k6.f28069p7, f6Var);
+        r6.G(sVar, k6.f27978k6, k6.f27996l6, k6.f28070p7, f6Var);
         sVar.setImeOptions(6);
         sVar.setBackgroundDrawable(null);
         sVar.setPadding(0, 0, org.telegram.messenger.g0.L(42.0f), 0);
@@ -134,7 +134,7 @@ public final class v extends m41 implements ls {
         e10.addView(textView, ha.k(24.0f, 5.0f, 24.0f, 12.0f, -1, -2));
         e10.addView(sVar, ha.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder2.o(e10);
-        u1Var.f28547a = org.telegram.messenger.g0.L(292.0f);
+        u1Var.f28548a = org.telegram.messenger.g0.L(292.0f);
         sVar.setOnEditorActionListener(new p(sVar, i7, tL_businessChatLink, u1VarArr, view, 0));
         alertDialog$Builder2.k(hd.M0(2131751355, null), new a2(sVar, i7, tL_businessChatLink, 1));
         alertDialog$Builder2.h(hd.M0(2131752589, null), new x3(15));
@@ -151,25 +151,25 @@ public final class v extends m41 implements ls {
             u1VarArr[0].setOnShowListener(new n(view, sVar, 0));
             u1VarArr[0].show();
         }
-        u1VarArr[0].f28570j0 = false;
+        u1VarArr[0].f28571j0 = false;
         sVar.setSelection(sVar.getText().length());
     }
 
     @Override
-    public final void Z(ArrayList arrayList, k41 k41Var) {
+    public final void Z(ArrayList arrayList, l41 l41Var) {
         String a02;
         String M0 = hd.M0(2131752710, null);
         String M02 = hd.M0(2131752703, null);
-        w31 w31Var = new w31(2);
-        w31Var.f39830l = M0;
-        w31Var.f39833o = M02;
-        w31Var.f39829k = 2131623940;
-        arrayList.add(w31Var);
-        k41Var.V();
+        x31 x31Var = new x31(2);
+        x31Var.f40159l = M0;
+        x31Var.f40162o = M02;
+        x31Var.f40158k = 2131623940;
+        arrayList.add(x31Var);
+        l41Var.V();
         y d = y.d(this.currentAccount);
         if (d.f17583b.size() < qp.s1(d.f17582a).H5) {
-            w31 c10 = w31.c(1, 2131231840, hd.M0(2131752709, null));
-            c10.f39835q = true;
+            x31 c10 = x31.c(1, 2131231840, hd.M0(2131752709, null));
+            c10.f40164q = true;
             arrayList.add(c10);
         }
         ArrayList arrayList2 = y.d(this.currentAccount).f17583b;
@@ -181,11 +181,11 @@ public final class v extends m41 implements ls {
             i10++;
             ?? obj2 = new Object();
             obj2.f17549a = (TL_account.TL_businessChatLink) obj;
-            w31 w31Var2 = new w31(29);
-            w31Var2.G = obj2;
-            arrayList.add(w31Var2);
+            x31 x31Var2 = new x31(29);
+            x31Var2.G = obj2;
+            arrayList.add(x31Var2);
         }
-        k41Var.U();
+        l41Var.U();
         TLRPC.User f10 = p10.i(this.currentAccount).f();
         String s5 = a8.p0.s(new StringBuilder(), qp.s1(this.currentAccount).U2, "/");
         ArrayList arrayList3 = new ArrayList(2);
@@ -214,12 +214,12 @@ public final class v extends m41 implements ls {
                 String str = (String) obj3;
                 int indexOf = a02.indexOf(str);
                 if (indexOf > -1) {
-                    i4 i4Var = new i4(rf.b.i("https://", str), (ty0) null);
-                    i4Var.f34432f = this;
+                    i4 i4Var = new i4(rf.b.i("https://", str), (uy0) null);
+                    i4Var.f34478f = this;
                     spannableString.setSpan(i4Var, indexOf, str.length() + indexOf, 33);
                 }
             }
-            arrayList.add(w31.C(spannableString));
+            arrayList.add(x31.C(spannableString));
         }
     }
 
@@ -229,16 +229,16 @@ public final class v extends m41 implements ls {
     }
 
     @Override
-    public final void b0(w31 w31Var, View view) {
-        if (w31Var.d == 1) {
+    public final void b0(x31 x31Var, View view) {
+        if (x31Var.d == 1) {
             y d = y.d(this.currentAccount);
             TL_account.createBusinessChatLink createbusinesschatlink = new TL_account.createBusinessChatLink();
             TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
             createbusinesschatlink.link = tL_inputBusinessChatLink;
             tL_inputBusinessChatLink.message = "";
             ConnectionsManager.getInstance(d.f17582a).sendRequest(createbusinesschatlink, new x(d, 1));
-        } else if (w31Var.f54440a == 29) {
-            Object obj = w31Var.G;
+        } else if (x31Var.f54439a == 29) {
+            Object obj = x31Var.G;
             if (obj instanceof u) {
                 Bundle f10 = rf.b.f(6, "chatMode");
                 f10.putString("business_link", ((u) obj).f17549a.link);
@@ -248,9 +248,9 @@ public final class v extends m41 implements ls {
     }
 
     @Override
-    public final boolean c0(w31 w31Var, View view) {
-        if (w31Var.f54440a == 29) {
-            Object obj = w31Var.G;
+    public final boolean c0(x31 x31Var, View view) {
+        if (x31Var.f54439a == 29) {
+            Object obj = x31Var.G;
             if (obj instanceof u) {
                 final TL_account.TL_businessChatLink tL_businessChatLink = ((u) obj).f17549a;
                 k60 H = k60.H(this, view);
@@ -282,7 +282,7 @@ public final class v extends m41 implements ls {
                             default:
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vVar.getParentActivity(), vVar.getResourceProvider());
                                 String M0 = hd.M0(2131752707, null);
-                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                                 u1Var.R = M0;
                                 u1Var.T = hd.M0(2131752708, null);
                                 alertDialog$Builder.k(hd.M0(2131746320, null), new ab.g(20, vVar, tL_businessChatLink2));
@@ -290,7 +290,7 @@ public final class v extends m41 implements ls {
                                 vVar.showDialog(u1Var);
                                 TextView textView = (TextView) u1Var.d(-1);
                                 if (textView != null) {
-                                    r6.V(textView, k6.f28089q7, vVar.getResourceProvider());
+                                    r6.V(textView, k6.f28090q7, vVar.getResourceProvider());
                                     return;
                                 }
                                 return;
@@ -324,7 +324,7 @@ public final class v extends m41 implements ls {
                             default:
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vVar.getParentActivity(), vVar.getResourceProvider());
                                 String M0 = hd.M0(2131752707, null);
-                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                                 u1Var.R = M0;
                                 u1Var.T = hd.M0(2131752708, null);
                                 alertDialog$Builder.k(hd.M0(2131746320, null), new ab.g(20, vVar, tL_businessChatLink2));
@@ -332,7 +332,7 @@ public final class v extends m41 implements ls {
                                 vVar.showDialog(u1Var);
                                 TextView textView = (TextView) u1Var.d(-1);
                                 if (textView != null) {
-                                    r6.V(textView, k6.f28089q7, vVar.getResourceProvider());
+                                    r6.V(textView, k6.f28090q7, vVar.getResourceProvider());
                                     return;
                                 }
                                 return;
@@ -366,7 +366,7 @@ public final class v extends m41 implements ls {
                             default:
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, vVar.getParentActivity(), vVar.getResourceProvider());
                                 String M0 = hd.M0(2131752707, null);
-                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                                 u1Var.R = M0;
                                 u1Var.T = hd.M0(2131752708, null);
                                 alertDialog$Builder.k(hd.M0(2131746320, null), new ab.g(20, vVar, tL_businessChatLink2));
@@ -374,14 +374,14 @@ public final class v extends m41 implements ls {
                                 vVar.showDialog(u1Var);
                                 TextView textView = (TextView) u1Var.d(-1);
                                 if (textView != null) {
-                                    r6.V(textView, k6.f28089q7, vVar.getResourceProvider());
+                                    r6.V(textView, k6.f28090q7, vVar.getResourceProvider());
                                     return;
                                 }
                                 return;
                         }
                     }
                 }, true);
-                H.W(this.f35844a.U0(view, false));
+                H.W(this.f36227a.U0(view, false));
                 H.Z();
                 return true;
             }
@@ -394,17 +394,17 @@ public final class v extends m41 implements ls {
         setHasOwnBackground(true);
         super.createView(context);
         this.simpleActionBar.setTitle(hd.M0(2131752710, null));
-        this.f35845b.setBackground(null);
-        this.f35844a.r1();
-        this.f35844a.setSectionsDrawBackground(true);
-        this.f35844a.f36781f3.f35132r = false;
+        this.f36228b.setBackground(null);
+        this.f36227a.r1();
+        this.f36227a.setSectionsDrawBackground(true);
+        this.f36227a.f37160f3.f35510r = false;
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        k41 k41Var;
-        if (i7 != qs.J1 && i7 != qs.f25008k0) {
+        l41 l41Var;
+        if (i7 != qs.J1 && i7 != qs.f25016k0) {
             if (i7 == qs.K1) {
                 Bundle f10 = rf.b.f(6, "chatMode");
                 f10.putString("business_link", ((TL_account.TL_businessChatLink) objArr[0]).link);
@@ -417,15 +417,15 @@ public final class v extends m41 implements ls {
                 return;
             }
         }
-        w3 w3Var = this.f35844a;
-        if (w3Var != null && (k41Var = w3Var.f36781f3) != null) {
-            k41Var.O(true);
+        w3 w3Var = this.f36227a;
+        if (w3Var != null && (l41Var = w3Var.f37160f3) != null) {
+            l41Var.O(true);
         }
     }
 
     @Override
     public final pj0 getListViewForSimpleGlass() {
-        return this.f35844a;
+        return this.f36227a;
     }
 
     @Override
@@ -451,7 +451,7 @@ public final class v extends m41 implements ls {
         getNotificationCenter().c(this, qs.J1);
         getNotificationCenter().c(this, qs.K1);
         getNotificationCenter().c(this, qs.L1);
-        getNotificationCenter().c(this, qs.f25008k0);
+        getNotificationCenter().c(this, qs.f25016k0);
         y d = y.d(this.currentAccount);
         if (!d.d) {
             d.e(true, true);
@@ -467,7 +467,7 @@ public final class v extends m41 implements ls {
         getNotificationCenter().n(this, qs.J1);
         getNotificationCenter().n(this, qs.K1);
         getNotificationCenter().n(this, qs.L1);
-        getNotificationCenter().n(this, qs.f25008k0);
+        getNotificationCenter().n(this, qs.f25016k0);
         cc.e();
         super.onFragmentDestroy();
     }

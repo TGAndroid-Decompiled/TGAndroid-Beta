@@ -19,11 +19,11 @@ public final class uk extends jg.s0 {
             case 0:
                 wk wkVar = (wk) lsVar;
                 uk ukVar = wkVar.N;
-                org.telegram.ui.ActionBar.r0 r0Var = wkVar.f40013x;
+                org.telegram.ui.ActionBar.r0 r0Var = wkVar.f40021x;
                 if (r0Var != null) {
                     r0Var.setShowSearchProgress(ukVar.f16675w);
                 }
-                TextView textView = wkVar.f40011w;
+                TextView textView = wkVar.f40019w;
                 if (textView != null) {
                     textView.setText(org.telegram.messenger.hd.a0(null, null, 2131748164, ukVar.h));
                 }
@@ -31,11 +31,11 @@ public final class uk extends jg.s0 {
                 return;
             default:
                 org.telegram.ui.pa0 pa0Var = (org.telegram.ui.pa0) lsVar;
-                org.telegram.ui.ActionBar.f5 f5Var = pa0Var.f48751r;
+                org.telegram.ui.ActionBar.f5 f5Var = pa0Var.f48750r;
                 if (f5Var != null) {
                     f5Var.setShowSearchProgress(pa0Var.S.f16675w);
                 }
-                TextView textView2 = pa0Var.f48746n;
+                TextView textView2 = pa0Var.f48745n;
                 if (textView2 != null) {
                     textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131748164, pa0Var.S.h));
                 }

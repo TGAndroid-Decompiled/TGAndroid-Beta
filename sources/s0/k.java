@@ -1,5 +1,5 @@
 package s0;
 
-import c8.ac;
-public abstract class k extends ac {
+import c8.bc;
+public abstract class k extends bc {
 }

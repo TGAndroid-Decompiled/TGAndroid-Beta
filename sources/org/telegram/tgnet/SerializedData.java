@@ -88,7 +88,7 @@ public class SerializedData extends AbstractSerializedData {
         }
         if (readInt32 != -1132882121) {
             if (!z9) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("Not bool value!");
                 }
             } else {
@@ -106,7 +106,7 @@ public class SerializedData extends AbstractSerializedData {
             return readByte;
         } catch (Exception e10) {
             if (!z9) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("read byte error");
                     a8.g(e10, true);
                     return (byte) 0;
@@ -144,7 +144,7 @@ public class SerializedData extends AbstractSerializedData {
             throw new RuntimeException("byte array size too big");
         } catch (Exception e10) {
             if (!z9) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("read byte array error");
                     a8.g(e10, true);
                     return null;
@@ -167,7 +167,7 @@ public class SerializedData extends AbstractSerializedData {
             this.len += bArr.length;
         } catch (Exception e10) {
             if (!z9) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("read bytes error");
                     a8.g(e10, true);
                     return;
@@ -191,7 +191,7 @@ public class SerializedData extends AbstractSerializedData {
             return Double.longBitsToDouble(readInt64(z9));
         } catch (Exception e10) {
             if (!z9) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("read double error");
                     a8.g(e10, true);
                     return 0.0d;
@@ -208,7 +208,7 @@ public class SerializedData extends AbstractSerializedData {
             return Float.intBitsToFloat(readInt32(z9));
         } catch (Exception e10) {
             if (!z9) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("read float error");
                     a8.g(e10, true);
                     return 0.0f;
@@ -228,7 +228,7 @@ public class SerializedData extends AbstractSerializedData {
                 this.len++;
             } catch (Exception e10) {
                 if (!z9) {
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.d("read int32 error");
                         a8.g(e10, true);
                     }
@@ -249,7 +249,7 @@ public class SerializedData extends AbstractSerializedData {
                 this.len++;
             } catch (Exception e10) {
                 if (!z9) {
-                    if (r2.f25191a) {
+                    if (r2.f25199a) {
                         a8.d("read int64 error");
                         a8.g(e10, true);
                     }
@@ -288,7 +288,7 @@ public class SerializedData extends AbstractSerializedData {
             throw new RuntimeException("string size too big");
         } catch (Exception e10) {
             if (!z9) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("read string error");
                     a8.g(e10, true);
                     return null;
@@ -361,7 +361,7 @@ public class SerializedData extends AbstractSerializedData {
                 this.len++;
             }
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write byte error");
                 a8.g(e10, true);
             }
@@ -398,7 +398,7 @@ public class SerializedData extends AbstractSerializedData {
                 }
             }
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write byte array error");
                 a8.g(e10, true);
             }
@@ -414,7 +414,7 @@ public class SerializedData extends AbstractSerializedData {
                 this.len += bArr.length;
             }
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write raw error");
                 a8.g(e10, true);
             }
@@ -426,7 +426,7 @@ public class SerializedData extends AbstractSerializedData {
         try {
             writeInt64(Double.doubleToRawLongBits(d));
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write double error");
                 a8.g(e10, true);
             }
@@ -438,7 +438,7 @@ public class SerializedData extends AbstractSerializedData {
         try {
             writeInt32(Float.floatToIntBits(f10));
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write float error");
                 a8.g(e10, true);
             }
@@ -468,7 +468,7 @@ public class SerializedData extends AbstractSerializedData {
         try {
             writeByteArray(str.getBytes("UTF-8"));
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write string error");
                 a8.g(e10, true);
             }
@@ -480,7 +480,7 @@ public class SerializedData extends AbstractSerializedData {
             try {
                 dataOutputStream.write(i7 >> (i10 * 8));
             } catch (Exception e10) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("write int32 error");
                     a8.g(e10, true);
                     return;
@@ -495,7 +495,7 @@ public class SerializedData extends AbstractSerializedData {
             try {
                 dataOutputStream.write((int) (j3 >> (i7 * 8)));
             } catch (Exception e10) {
-                if (r2.f25191a) {
+                if (r2.f25199a) {
                     a8.d("write int64 error");
                     a8.g(e10, true);
                     return;
@@ -525,7 +525,7 @@ public class SerializedData extends AbstractSerializedData {
                 this.len++;
             }
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write byte error");
                 a8.g(e10, true);
             }
@@ -541,7 +541,7 @@ public class SerializedData extends AbstractSerializedData {
                 this.len += i10;
             }
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write bytes error");
                 a8.g(e10, true);
             }
@@ -593,7 +593,7 @@ public class SerializedData extends AbstractSerializedData {
                 }
             }
         } catch (Exception e10) {
-            if (r2.f25191a) {
+            if (r2.f25199a) {
                 a8.d("write byte array error");
                 a8.g(e10, true);
             }

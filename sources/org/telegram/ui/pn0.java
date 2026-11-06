@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 public final class pn0 implements Runnable {
-    public final int f48893a;
-    public final PhotoViewer f48894b;
-    public final Bitmap f48895c;
+    public final int f48892a;
+    public final PhotoViewer f48893b;
+    public final Bitmap f48894c;
 
     public pn0(PhotoViewer photoViewer, Bitmap bitmap, int i7) {
-        this.f48893a = i7;
-        this.f48894b = photoViewer;
-        this.f48895c = bitmap;
+        this.f48892a = i7;
+        this.f48893b = photoViewer;
+        this.f48894c = bitmap;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f48893a;
-        Bitmap bitmap = this.f48895c;
-        PhotoViewer photoViewer = this.f48894b;
+        int i7 = this.f48892a;
+        Bitmap bitmap = this.f48894c;
+        PhotoViewer photoViewer = this.f48893b;
         switch (i7) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.Y8;

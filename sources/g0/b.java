@@ -7,7 +7,7 @@ import android.content.pm.ShortcutInfo;
 import android.os.Build;
 import android.os.PersistableBundle;
 import android.text.TextUtils;
-import c8.ob;
+import c8.pb;
 import e0.j0;
 import f0.g;
 import java.util.Arrays;
@@ -80,7 +80,7 @@ public final class b {
         if (i12 >= 29) {
             if (shortcutInfo.getLocusId() != null) {
                 LocusId locusId = shortcutInfo.getLocusId();
-                ob.a(locusId, "locusId cannot be null");
+                pb.a(locusId, "locusId cannot be null");
                 String id2 = locusId.getId();
                 if (!TextUtils.isEmpty(id2)) {
                     gVar = new g(id2);

@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
 public final class yx implements org.telegram.messenger.c20 {
-    public final int f40772a;
-    public final zx f40773b;
+    public final int f40785a;
+    public final zx f40786b;
 
     public yx(zx zxVar, int i7) {
-        this.f40772a = i7;
-        this.f40773b = zxVar;
+        this.f40785a = i7;
+        this.f40786b = zxVar;
     }
 
     @Override

@@ -3,15 +3,15 @@ package ii;
 import android.view.View;
 import java.io.Serializable;
 import org.telegram.messenger.a20;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import r0.k1;
 public final class q implements a20, r0.m {
     public final s f15591a;
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        this.f15591a.a0(k1Var.f54109a.f(519).d);
-        return k1.f54108b;
+        this.f15591a.a0(k1Var.f54108a.f(519).d);
+        return k1.f54107b;
     }
 
     @Override
@@ -20,6 +20,6 @@ public final class q implements a20, r0.m {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        s.Z(this.f15591a, (w31) obj);
+        s.Z(this.f15591a, (x31) obj);
     }
 }

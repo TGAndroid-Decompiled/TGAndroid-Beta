@@ -4,17 +4,17 @@ import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.view.MotionEvent;
 public final class u6 extends vg.m {
-    public final w6 f43212i0;
+    public final w6 f43211i0;
 
     public u6(w6 w6Var, Context context) {
         super(context, 1, 4);
-        this.f43212i0 = w6Var;
+        this.f43211i0 = w6Var;
     }
 
     @Override
     public final void i() {
-        w6 w6Var = this.f43212i0;
-        if (w6Var.f43293e == this) {
+        w6 w6Var = this.f43211i0;
+        if (w6Var.f43292e == this) {
             w6.c(w6Var);
         }
     }
@@ -31,7 +31,7 @@ public final class u6 extends vg.m {
         int round = Math.round(Math.min(i7, i10) * 3.5f);
         surfaceTexture.setDefaultBufferSize(round, round);
         this.D = round;
-        this.f57336y = round;
+        this.f57335y = round;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class u6 extends vg.m {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f43212i0.f43308y && super.onTouchEvent(motionEvent)) {
+        if (!this.f43211i0.f43307y && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

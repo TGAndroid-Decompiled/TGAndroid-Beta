@@ -58,7 +58,7 @@ public final class r5 extends View {
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             mutate.setBounds(0, 0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
             spannableString.setSpan(new ImageSpan(mutate, 2), 0, spannableString.length(), 33);
-            if (hd.f22871a0) {
+            if (hd.f22878a0) {
                 upperCase = new SpannableStringBuilder(spannableString).append((CharSequence) "\u2009").append((CharSequence) str.toUpperCase());
             } else {
                 upperCase = new SpannableStringBuilder(str.toUpperCase()).append((CharSequence) "\u2009").append((CharSequence) spannableString);
@@ -92,7 +92,7 @@ public final class r5 extends View {
         if (isPressed()) {
             float f12 = this.f12740w;
             if (f12 != 1.0f) {
-                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f22538r) / 80.0f) + f12;
+                float min = (Math.min(40.0f, 1000.0f / org.telegram.messenger.g0.f22545r) / 80.0f) + f12;
                 this.f12740w = min;
                 this.f12740w = Utilities.i(min, 1.0f, 0.0f);
                 invalidate();

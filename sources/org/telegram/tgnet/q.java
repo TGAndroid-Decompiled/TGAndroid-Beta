@@ -4,12 +4,16 @@ import org.telegram.messenger.d20;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.json.TLJsonParser;
 public final class q implements d20 {
-    public final int f27154a;
+    public final int f27155a;
+
+    public q(int i7) {
+        this.f27155a = i7;
+    }
 
     @Override
     public final Object a(Object obj) {
         TLJsonParser tLJsonParser = (TLJsonParser) obj;
-        switch (this.f27154a) {
+        switch (this.f27155a) {
             case 0:
                 return TLRPC.TL_textWithEntities.TLJsonDeserialize(tLJsonParser);
             default:

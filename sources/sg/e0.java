@@ -6,14 +6,14 @@ import org.telegram.messenger.p2;
 import org.telegram.ui.Components.uy;
 import org.telegram.ui.Components.xq;
 public final class e0 implements Runnable {
-    public final int f54951a;
-    public final j0 f54952b;
-    public final z0 f54953c;
+    public final int f54950a;
+    public final j0 f54951b;
+    public final z0 f54952c;
 
     public e0(j0 j0Var, z0 z0Var, int i7) {
-        this.f54951a = i7;
-        this.f54952b = j0Var;
-        this.f54953c = z0Var;
+        this.f54950a = i7;
+        this.f54951b = j0Var;
+        this.f54952c = z0Var;
     }
 
     @Override
@@ -21,25 +21,25 @@ public final class e0 implements Runnable {
         boolean z9;
         boolean z10;
         float f10;
-        int i7 = this.f54951a;
-        z0 z0Var = this.f54953c;
-        j0 j0Var = this.f54952b;
+        int i7 = this.f54950a;
+        z0 z0Var = this.f54952c;
+        j0 j0Var = this.f54951b;
         switch (i7) {
             case 0:
-                j0Var.f54996c = z0Var;
+                j0Var.f54995c = z0Var;
                 if (j0Var.h == null) {
                     j0Var.h = new RectF();
                 }
-                j0Var.f54996c.a(j0Var.h);
-                uy uyVar = j0Var.f54994a;
+                j0Var.f54995c.a(j0Var.h);
+                uy uyVar = j0Var.f54993a;
                 if (uyVar != null) {
                     uyVar.b();
                     return;
                 }
                 return;
             default:
-                if (z0Var != null && j0Var.f55008q == 0) {
-                    j0Var.f55008q = k1.b(j0Var.f54999g);
+                if (z0Var != null && j0Var.f55007q == 0) {
+                    j0Var.f55007q = k1.b(j0Var.f54998g);
                 }
                 boolean z11 = j0Var.H;
                 if (z0Var != null) {
@@ -72,7 +72,7 @@ public final class e0 implements Runnable {
                     j0Var.K.setInterpolator(xq.h);
                     j0Var.K.start();
                     j0Var.d = z0Var;
-                    uy uyVar2 = j0Var.f54994a;
+                    uy uyVar2 = j0Var.f54993a;
                     if (uyVar2 != null) {
                         uyVar2.b();
                     }
@@ -83,7 +83,7 @@ public final class e0 implements Runnable {
                     return;
                 } else if (z0Var != j0Var.d) {
                     j0Var.d = z0Var;
-                    uy uyVar3 = j0Var.f54994a;
+                    uy uyVar3 = j0Var.f54993a;
                     if (uyVar3 != null) {
                         uyVar3.b();
                         return;

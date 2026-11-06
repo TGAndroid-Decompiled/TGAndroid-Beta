@@ -3,13 +3,13 @@ package ii;
 import android.view.View;
 import bi.nc;
 import org.telegram.messenger.hd;
-import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.m61;
 import org.telegram.ui.Wallet.x2;
 import org.telegram.ui.Wallet.z2;
 import org.telegram.ui.gt;
 import org.telegram.ui.hm0;
 import org.telegram.ui.kt;
-public final class x extends l61 {
+public final class x extends m61 {
     public final int f15612a;
     public final Object f15613b;
 
@@ -27,14 +27,14 @@ public final class x extends l61 {
                 return;
             case 1:
                 gt gtVar = (gt) view;
-                gtVar.f46093f3 = i7;
-                gtVar.f46099m3.clear();
+                gtVar.f46092f3 = i7;
+                gtVar.f46098m3.clear();
                 if (gtVar.z1(6) + gtVar.B1(6) <= 0) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
-                gtVar.f46106t3 = z9;
+                gtVar.f46105t3 = z9;
                 gtVar.C1();
                 gtVar.D1(false);
                 gtVar.v0(0);
@@ -67,7 +67,7 @@ public final class x extends l61 {
             case 1:
                 kt ktVar = (kt) this.f15613b;
                 gt gtVar = new gt(ktVar, ktVar.getParentActivity());
-                ktVar.f47306e.add(gtVar);
+                ktVar.f47305e.add(gtVar);
                 return gtVar;
             case 2:
                 hm0 hm0Var = (hm0) this.f15613b;
@@ -75,11 +75,11 @@ public final class x extends l61 {
                     return hm0Var.h;
                 }
                 if (i7 == 0) {
-                    return hm0Var.f46459n;
+                    return hm0Var.f46458n;
                 }
                 return null;
             case 3:
-                return (View) ((z2) this.f15613b).f43415j1.get(i7);
+                return (View) ((z2) this.f15613b).f43414j1.get(i7);
             default:
                 nc ncVar = (nc) this.f15613b;
                 if (i7 != 1) {
@@ -105,7 +105,7 @@ public final class x extends l61 {
             case 2:
                 return 2;
             case 3:
-                return ((z2) this.f15613b).f43415j1.size();
+                return ((z2) this.f15613b).f43414j1.size();
             default:
                 return 3;
         }

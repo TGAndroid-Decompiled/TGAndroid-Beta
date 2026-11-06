@@ -5,28 +5,28 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class b1 extends v4.m0 {
-    public final h1 f44149a;
+    public final h1 f44148a;
 
     public b1(h1 h1Var) {
-        this.f44149a = h1Var;
+        this.f44148a = h1Var;
     }
 
     @Override
     public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
         org.telegram.messenger.aj ajVar;
         float[] fArr;
-        g1 g1Var = this.f44149a.f46189w;
+        g1 g1Var = this.f44148a.f46188w;
         int i7 = 0;
         rect.bottom = 0;
         if (view instanceof a2) {
-            ajVar = (org.telegram.messenger.aj) g1Var.f45776b.get(((a2) view).N);
+            ajVar = (org.telegram.messenger.aj) g1Var.f45775b.get(((a2) view).N);
         } else if (view instanceof v2) {
-            ajVar = (org.telegram.messenger.aj) g1Var.f45776b.get(((v2) view).L);
+            ajVar = (org.telegram.messenger.aj) g1Var.f45775b.get(((v2) view).L);
         } else {
             ajVar = null;
         }
         if (ajVar != null && ajVar.f21452m != null) {
-            Point point = org.telegram.messenger.g0.f22537q;
+            Point point = org.telegram.messenger.g0.f22544q;
             float max = Math.max(point.x, point.y) * 0.5f;
             int i10 = 0;
             int i11 = 0;
@@ -38,10 +38,10 @@ public final class b1 extends v4.m0 {
                 i10++;
             }
             int M = (org.telegram.messenger.g0.M(11.0f) * (ajVar.d - ajVar.f21444c)) + i11;
-            int size = g1Var.f45775a.size();
+            int size = g1Var.f45774a.size();
             while (true) {
                 if (i7 < size) {
-                    org.telegram.messenger.aj ajVar2 = (org.telegram.messenger.aj) g1Var.f45775a.get(i7);
+                    org.telegram.messenger.aj ajVar2 = (org.telegram.messenger.aj) g1Var.f45774a.get(i7);
                     byte b10 = ajVar2.f21444c;
                     byte b11 = ajVar.f21444c;
                     if (b10 == b11 && ((ajVar2.f21442a != ajVar.f21442a || ajVar2.f21443b != ajVar.f21443b || b10 != b11 || ajVar2.d != ajVar.d) && b10 == b11)) {

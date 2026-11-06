@@ -23,22 +23,22 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.google.android.gms.common.api.internal.p, tg.l1, sg.v0, v4.i1, androidx.lifecycle.s0 {
-    public final int f37393a;
-    public Object f37394b;
+    public final int f37388a;
+    public Object f37389b;
 
     public qt(Object obj, int i7) {
-        this.f37393a = i7;
-        this.f37394b = obj;
+        this.f37388a = i7;
+        this.f37389b = obj;
     }
 
     @Override
     public int A() {
-        return ((v4.n0) this.f37394b).G();
+        return ((v4.n0) this.f37389b).G();
     }
 
     @Override
     public View D() {
-        return ((vt) this.f37394b).K1;
+        return ((vt) this.f37389b).K1;
     }
 
     @Override
@@ -48,23 +48,23 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void G() {
-        ((xs0) this.f37394b).I.a(-1);
+        ((xs0) this.f37389b).I.a(-1);
     }
 
     @Override
     public org.telegram.ui.ActionBar.z0 H(String str) {
-        org.telegram.ui.ActionBar.f5 f5Var = ((xs0) this.f37394b).I;
+        org.telegram.ui.ActionBar.f5 f5Var = ((xs0) this.f37389b).I;
         return f5Var.d(0, 0, null, str, true, true, f5Var.m0);
     }
 
     @Override
     public void H0() {
-        ((r41) this.f37394b).h.c(false);
+        ((s41) this.f37389b).h.c(false);
     }
 
     @Override
     public int I() {
-        return ((vt) this.f37394b).L1;
+        return ((vt) this.f37389b).L1;
     }
 
     @Override
@@ -84,13 +84,13 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public int N() {
-        v4.n0 n0Var = (v4.n0) this.f37394b;
-        return n0Var.f57050n - n0Var.C();
+        v4.n0 n0Var = (v4.n0) this.f37389b;
+        return n0Var.f57049n - n0Var.C();
     }
 
     @Override
     public void O(float f10, float f11) {
-        Runnable runnable = ((r41) this.f37394b).f37538j;
+        Runnable runnable = ((s41) this.f37389b).f37890j;
         if (runnable != null) {
             runnable.run();
         }
@@ -103,7 +103,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void Q() {
-        vt vtVar = (vt) this.f37394b;
+        vt vtVar = (vt) this.f37389b;
         vtVar.J1 = null;
         vtVar.K0();
     }
@@ -116,26 +116,26 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
-        jk0 jk0Var = (jk0) this.f37394b;
-        jk0Var.f34965w.setPadding(I0.f15117a, I0.f15118b, I0.f15119c, I0.d);
-        jk0Var.f34964s.requestLayout();
-        return r0.k1.f54108b;
+        jk0 jk0Var = (jk0) this.f37389b;
+        jk0Var.f34991w.setPadding(I0.f15117a, I0.f15118b, I0.f15119c, I0.d);
+        jk0Var.f34990s.requestLayout();
+        return r0.k1.f54107b;
     }
 
     @Override
     public void T() {
-        ((vt) this.f37394b).L0();
+        ((vt) this.f37389b).L0();
     }
 
     @Override
     public int U() {
-        return ((vt) this.f37394b).M1;
+        return ((vt) this.f37389b).M1;
     }
 
     @Override
     public boolean U0(float f10, float f11) {
         int L = org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = ((r41) this.f37394b).f37536g;
+        RectF rectF = ((s41) this.f37389b).f37888g;
         float f12 = -L;
         rectF.inset(f12, f12);
         boolean contains = rectF.contains(f10, f11);
@@ -151,15 +151,15 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public View W(int i7) {
-        return ((v4.n0) this.f37394b).q(i7);
+        return ((v4.n0) this.f37389b).q(i7);
     }
 
     @Override
     public void X(float f10) {
-        org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37394b;
-        sg.l0.e(up0Var.f55611y1).k(String.valueOf(sg.h.f54968a.indexOf(up0Var.F0.getCurrentBrush())), f10);
-        sg.j1 j1Var = up0Var.f55601t1;
-        j1Var.f55019c = f10;
+        org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37389b;
+        sg.l0.e(up0Var.f55610y1).k(String.valueOf(sg.h.f54967a.indexOf(up0Var.F0.getCurrentBrush())), f10);
+        sg.j1 j1Var = up0Var.f55600t1;
+        j1Var.f55018c = f10;
         up0Var.s0(j1Var, null);
     }
 
@@ -170,9 +170,9 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void Y() {
-        tg.o0 o0Var = (tg.o0) this.f37394b;
-        o0Var.f55781b.f55055a.f();
-        o0Var.f55789x.setViewHidden(false);
+        tg.o0 o0Var = (tg.o0) this.f37389b;
+        o0Var.f55780b.f55054a.f();
+        o0Var.f55788x.setViewHidden(false);
         PhotoViewer photoViewer = ((org.telegram.ui.tp0) o0Var).K;
         Drawable[] drawableArr = PhotoViewer.Y8;
         photoViewer.U2(true, true);
@@ -185,12 +185,12 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void accept(Object obj, Object obj2) {
-        switch (this.f37393a) {
+        switch (this.f37388a) {
             case 14:
                 TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
                 s6.c cVar = (s6.c) ((s6.e) obj).n();
                 Parcel J0 = cVar.J0();
-                n7.a.b(J0, (q6.p) this.f37394b);
+                n7.a.b(J0, (q6.p) this.f37389b);
                 try {
                     cVar.f306b.transact(1, J0, null, 1);
                     J0.recycle();
@@ -204,9 +204,9 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
                 u7.x xVar = (u7.x) ((u7.k) obj).n();
                 u7.f fVar = new u7.f(1, (TaskCompletionSource) obj2);
                 Parcel P0 = xVar.P0();
-                int i7 = u7.d.f56274a;
+                int i7 = u7.d.f56273a;
                 P0.writeInt(1);
-                ((j8.c) this.f37394b).writeToParcel(P0, 0);
+                ((j8.c) this.f37389b).writeToParcel(P0, 0);
                 u7.d.c(P0, fVar);
                 P0.writeString(null);
                 xVar.T0(P0, 63);
@@ -216,20 +216,20 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void b() {
-        k71 k71Var = ((vt) this.f37394b).f39665j1;
-        if (k71Var != null && k71Var.f35232x) {
-            k71Var.f35212a.g0();
-            k71Var.n();
-            k71Var.f35222f0.d(true, true);
+        l71 l71Var = ((vt) this.f37389b).f39686j1;
+        if (l71Var != null && l71Var.f35572x) {
+            l71Var.f35552a.g0();
+            l71Var.n();
+            l71Var.f35562f0.d(true, true);
         }
     }
 
     @Override
     public org.telegram.ui.ActionBar.z0 b0(int i7, Runnable runnable, String str, boolean z9, boolean z10) {
-        xs0 xs0Var = (xs0) this.f37394b;
+        xs0 xs0Var = (xs0) this.f37389b;
         org.telegram.ui.ActionBar.z0 e10 = xs0Var.I.e(0, i7, str);
         if (z9) {
-            int i10 = org.telegram.ui.ActionBar.k6.f28069p7;
+            int i10 = org.telegram.ui.ActionBar.k6.f28070p7;
             e10.d(xs0Var.s0(i10), xs0Var.s0(i10));
         }
         e10.setOnClickListener(new ka0(this, z10, runnable));
@@ -244,13 +244,13 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public void d(x2.e1 e1Var) {
         r2.q qVar = (r2.q) e1Var;
-        r2.k kVar = (r2.k) this.f37394b;
+        r2.k kVar = (r2.k) this.f37389b;
         kVar.G.d(kVar);
     }
 
     @Override
     public void d0() {
-        ((tg.o0) this.f37394b).f55789x.setViewHidden(true);
+        ((tg.o0) this.f37389b).f55788x.setViewHidden(true);
     }
 
     @Override
@@ -259,29 +259,29 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public void g0(v4.a aVar) {
-        RecyclerView recyclerView = (RecyclerView) this.f37394b;
-        int i7 = aVar.f56900a;
+        RecyclerView recyclerView = (RecyclerView) this.f37389b;
+        int i7 = aVar.f56899a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 4) {
                     if (i7 != 8) {
                         return;
                     }
-                    recyclerView.f2873y.X(recyclerView, aVar.f56901b, aVar.d);
+                    recyclerView.f2873y.X(recyclerView, aVar.f56900b, aVar.d);
                     return;
                 }
-                recyclerView.f2873y.a0(recyclerView, aVar.f56901b, aVar.d, aVar.f56902c);
+                recyclerView.f2873y.a0(recyclerView, aVar.f56900b, aVar.d, aVar.f56901c);
                 return;
             }
-            recyclerView.f2873y.Y(recyclerView, aVar.f56901b, aVar.d);
+            recyclerView.f2873y.Y(recyclerView, aVar.f56900b, aVar.d);
             return;
         }
-        recyclerView.f2873y.V(recyclerView, aVar.f56901b, aVar.d);
+        recyclerView.f2873y.V(recyclerView, aVar.f56900b, aVar.d);
     }
 
     @Override
     public Object mo24get() {
-        return new org.telegram.ui.hy0((Context) ((e.a) this.f37394b).f10026a, new nb.a(28), new w7.s(27, false), 4);
+        return new org.telegram.ui.hy0((Context) ((e.a) this.f37389b).f10026a, new nb.a(28), new w7.s(27, false), 4);
     }
 
     @Override
@@ -300,7 +300,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public ClipDescription h0() {
-        return ((t0.h) this.f37394b).getDescription();
+        return ((t0.h) this.f37389b).getDescription();
     }
 
     @Override
@@ -311,32 +311,32 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     public void i0(int i7, int i10, Object obj) {
         int i11;
         int i12;
-        RecyclerView recyclerView = (RecyclerView) this.f37394b;
+        RecyclerView recyclerView = (RecyclerView) this.f37389b;
         int B = recyclerView.f2847e.B();
         int i13 = i10 + i7;
         for (int i14 = 0; i14 < B; i14++) {
             View A = recyclerView.f2847e.A(i14);
             v4.d1 U = RecyclerView.U(A);
-            if (U != null && !U.r() && (i12 = U.f56954c) >= i7 && i12 < i13) {
+            if (U != null && !U.r() && (i12 = U.f56953c) >= i7 && i12 < i13) {
                 U.a(2);
                 if (obj == null) {
                     U.a(1024);
-                } else if ((1024 & U.f56961l) == 0) {
-                    if (U.f56962m == null) {
+                } else if ((1024 & U.f56960l) == 0) {
+                    if (U.f56961m == null) {
                         ArrayList arrayList = new ArrayList();
-                        U.f56962m = arrayList;
-                        U.f56963n = DesugarCollections.unmodifiableList(arrayList);
+                        U.f56961m = arrayList;
+                        U.f56962n = DesugarCollections.unmodifiableList(arrayList);
                     }
-                    U.f56962m.add(obj);
+                    U.f56961m.add(obj);
                 }
-                ((v4.o0) A.getLayoutParams()).f57054c = true;
+                ((v4.o0) A.getLayoutParams()).f57053c = true;
             }
         }
         v4.v0 v0Var = recyclerView.f2842b;
-        ArrayList arrayList2 = (ArrayList) v0Var.f57088e;
+        ArrayList arrayList2 = (ArrayList) v0Var.f57087e;
         for (int size = arrayList2.size() - 1; size >= 0; size--) {
             v4.d1 d1Var = (v4.d1) arrayList2.get(size);
-            if (d1Var != null && (i11 = d1Var.f56954c) >= i7 && i11 < i13) {
+            if (d1Var != null && (i11 = d1Var.f56953c) >= i7 && i11 < i13) {
                 d1Var.a(2);
                 v0Var.f(size);
             }
@@ -360,20 +360,20 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public void k0(int i7, int i10) {
-        RecyclerView recyclerView = (RecyclerView) this.f37394b;
+        RecyclerView recyclerView = (RecyclerView) this.f37389b;
         int B = recyclerView.f2847e.B();
         for (int i11 = 0; i11 < B; i11++) {
             v4.d1 U = RecyclerView.U(recyclerView.f2847e.A(i11));
-            if (U != null && !U.r() && U.f56954c >= i7) {
+            if (U != null && !U.r() && U.f56953c >= i7) {
                 U.n(i10, false);
-                recyclerView.f2867u0.f56910f = true;
+                recyclerView.f2867u0.f56909f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57088e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57087e;
         int size = arrayList.size();
         for (int i12 = 0; i12 < size; i12++) {
             v4.d1 d1Var = (v4.d1) arrayList.get(i12);
-            if (d1Var != null && d1Var.f56954c >= i7) {
+            if (d1Var != null && d1Var.f56953c >= i7) {
                 d1Var.n(i10, true);
             }
         }
@@ -399,7 +399,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int i15;
         int i16;
         int i17;
-        RecyclerView recyclerView = (RecyclerView) this.f37394b;
+        RecyclerView recyclerView = (RecyclerView) this.f37389b;
         int B = recyclerView.f2847e.B();
         int i18 = -1;
         if (i7 < i10) {
@@ -413,16 +413,16 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         }
         for (int i19 = 0; i19 < B; i19++) {
             v4.d1 U = RecyclerView.U(recyclerView.f2847e.A(i19));
-            if (U != null && (i17 = U.f56954c) >= i12 && i17 <= i11) {
+            if (U != null && (i17 = U.f56953c) >= i12 && i17 <= i11) {
                 if (i17 == i7) {
                     U.n(i10 - i7, false);
                 } else {
                     U.n(i13, false);
                 }
-                recyclerView.f2867u0.f56910f = true;
+                recyclerView.f2867u0.f56909f = true;
             }
         }
-        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57088e;
+        ArrayList arrayList = (ArrayList) recyclerView.f2842b.f57087e;
         if (i7 < i10) {
             i15 = i7;
             i14 = i10;
@@ -434,7 +434,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int size = arrayList.size();
         for (int i20 = 0; i20 < size; i20++) {
             v4.d1 d1Var = (v4.d1) arrayList.get(i20);
-            if (d1Var != null && (i16 = d1Var.f56954c) >= i15 && i16 <= i14) {
+            if (d1Var != null && (i16 = d1Var.f56953c) >= i15 && i16 <= i14) {
                 if (i16 == i7) {
                     d1Var.n(i10 - i7, false);
                 } else {
@@ -449,7 +449,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     public void m0() {
         r2.q[] qVarArr;
         r2.q[] qVarArr2;
-        r2.k kVar = (r2.k) this.f37394b;
+        r2.k kVar = (r2.k) this.f37389b;
         int i7 = kVar.H - 1;
         kVar.H = i7;
         if (i7 > 0) {
@@ -458,13 +458,13 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int i10 = 0;
         for (r2.q qVar : kVar.J) {
             qVar.l();
-            i10 += qVar.Y.f58354a;
+            i10 += qVar.Y.f58353a;
         }
         e2.m1[] m1VarArr = new e2.m1[i10];
         int i11 = 0;
         for (r2.q qVar2 : kVar.J) {
             qVar2.l();
-            int i12 = qVar2.Y.f58354a;
+            int i12 = qVar2.Y.f58353a;
             int i13 = 0;
             while (i13 < i12) {
                 qVar2.l();
@@ -479,8 +479,8 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void n() {
-        tg.o0 o0Var = (tg.o0) this.f37394b;
-        o0Var.f55783e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new fi.v3(o0Var, 24)).setInterpolator(xq.h);
+        tg.o0 o0Var = (tg.o0) this.f37389b;
+        o0Var.f55782e.animate().alpha(1.0f).setDuration(320L).setUpdateListener(new fi.v3(o0Var, 24)).setInterpolator(xq.h);
     }
 
     public boolean n0(android.view.MotionEvent r22) {
@@ -488,7 +488,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public void o0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f37394b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f37389b;
         if (arrayDeque.isEmpty()) {
             return;
         }
@@ -520,14 +520,14 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void q(int i7) {
-        org.telegram.ui.Wallet.x9 x9Var = (org.telegram.ui.Wallet.x9) this.f37394b;
-        if (!x9Var.f43344r && i7 == x9Var.J) {
+        org.telegram.ui.Wallet.x9 x9Var = (org.telegram.ui.Wallet.x9) this.f37389b;
+        if (!x9Var.f43343r && i7 == x9Var.J) {
             x9Var.j0(x9Var.N.getText().toString().trim());
         }
     }
 
     public long q0() {
-        ArrayDeque arrayDeque = (ArrayDeque) this.f37394b;
+        ArrayDeque arrayDeque = (ArrayDeque) this.f37389b;
         if (arrayDeque.isEmpty()) {
             return 0L;
         }
@@ -536,8 +536,8 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public boolean r() {
-        vt vtVar = (vt) this.f37394b;
-        if (vtVar.K1 == vtVar.f39664i1 && vtVar.f39674u1 && "inapp".equals(org.telegram.messenger.qp.s1(vtVar.f28612a).A3)) {
+        vt vtVar = (vt) this.f37389b;
+        if (vtVar.K1 == vtVar.f39685i1 && vtVar.f39695u1 && "inapp".equals(org.telegram.messenger.qp.s1(vtVar.f28613a).A3)) {
             return false;
         }
         return true;
@@ -546,8 +546,8 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     @Override
     public androidx.lifecycle.p0 t(Class cls, y1.b bVar) {
         androidx.lifecycle.m0 m0Var = null;
-        for (y1.c cVar : (y1.c[]) this.f37394b) {
-            if (cVar.f58777a.equals(cls)) {
+        for (y1.c cVar : (y1.c[]) this.f37389b) {
+            if (cVar.f58776a.equals(cls)) {
                 m0Var = new androidx.lifecycle.m0();
             }
         }
@@ -559,7 +559,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
 
     @Override
     public void t0() {
-        ((r41) this.f37394b).h.c(true);
+        ((s41) this.f37389b).h.c(true);
     }
 
     @Override
@@ -588,53 +588,53 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     }
 
     public qt(boolean z9) {
-        this.f37393a = 8;
-        this.f37394b = new AtomicBoolean(z9);
+        this.f37388a = 8;
+        this.f37389b = new AtomicBoolean(z9);
     }
 
     public qt(int i7) {
-        this.f37393a = i7;
+        this.f37388a = i7;
         switch (i7) {
             case 10:
-                this.f37394b = new ArrayDeque(16);
+                this.f37389b = new ArrayDeque(16);
                 return;
             case 27:
                 return;
             default:
-                this.f37394b = h9.i0.p();
+                this.f37389b = h9.i0.p();
                 return;
         }
     }
 
     public qt(y1.c[] initializers) {
-        this.f37393a = 26;
+        this.f37388a = 26;
         kotlin.jvm.internal.j.e(initializers, "initializers");
-        this.f37394b = initializers;
+        this.f37389b = initializers;
     }
 
     @Override
     public float get() {
-        org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37394b;
-        int i7 = up0Var.f55611y1;
+        org.telegram.ui.up0 up0Var = (org.telegram.ui.up0) this.f37389b;
+        int i7 = up0Var.f55610y1;
         sg.h currentBrush = up0Var.F0.getCurrentBrush();
         if (currentBrush == null) {
-            return sg.l0.e(i7).f55041i;
+            return sg.l0.e(i7).f55040i;
         }
-        return sg.l0.e(i7).f(String.valueOf(sg.h.f54968a.indexOf(currentBrush)), currentBrush.d());
+        return sg.l0.e(i7).f(String.valueOf(sg.h.f54967a.indexOf(currentBrush)), currentBrush.d());
     }
 
     public qt(Uri uri, ClipDescription clipDescription, Uri uri2) {
-        this.f37393a = 15;
+        this.f37388a = 15;
         if (Build.VERSION.SDK_INT >= 25) {
-            this.f37394b = new t0.g(uri, clipDescription, uri2);
+            this.f37389b = new t0.g(uri, clipDescription, uri2);
         } else {
-            this.f37394b = new org.telegram.ui.hy0(uri, clipDescription, uri2, 15);
+            this.f37389b = new org.telegram.ui.hy0(uri, clipDescription, uri2, 15);
         }
     }
 
     public qt(Context context, b10 b10Var) {
-        this.f37393a = 1;
-        this.f37394b = new a10(context, b10Var);
+        this.f37388a = 1;
+        this.f37389b = new a10(context, b10Var);
     }
 
     @Override

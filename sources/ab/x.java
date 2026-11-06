@@ -13,7 +13,7 @@ import android.media.MediaCodecInfo;
 import android.os.Binder;
 import android.os.Build;
 import android.util.Log;
-import c8.nc;
+import c8.oc;
 import e2.s0;
 import h9.h2;
 import h9.t0;
@@ -44,22 +44,22 @@ public abstract class x {
                     break;
                 }
             }
-            if (i11 == 1 && nc.f5779a == null) {
+            if (i11 == 1 && oc.f5795a == null) {
                 int i13 = Build.VERSION.SDK_INT;
                 if (i13 < 37) {
                     int c10 = c(true);
                     if (i13 < 35) {
-                        nc.f5779a = Boolean.valueOf(z9);
+                        oc.f5795a = Boolean.valueOf(z9);
                         if (z9) {
                         }
                     } else {
-                        nc.f5779a = Boolean.valueOf(z9);
+                        oc.f5795a = Boolean.valueOf(z9);
                         if (z9) {
                         }
                     }
                 }
                 z9 = false;
-                nc.f5779a = Boolean.valueOf(z9);
+                oc.f5795a = Boolean.valueOf(z9);
                 if (z9) {
                 }
             }

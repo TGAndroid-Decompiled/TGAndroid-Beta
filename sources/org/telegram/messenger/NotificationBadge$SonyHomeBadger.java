@@ -13,12 +13,12 @@ public class NotificationBadge$SonyHomeBadger implements cs {
     @Override
     public final void a(int i7) {
         boolean z9 = false;
-        if (t0.f25555b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
+        if (t0.f25563b.getPackageManager().resolveContentProvider("com.sonymobile.home.resourceprovider", 0) != null) {
             if (i7 < 0) {
                 return;
             }
             if (f21319b == null) {
-                f21319b = new AsyncQueryHandler(t0.f25555b.getApplicationContext().getContentResolver());
+                f21319b = new AsyncQueryHandler(t0.f25563b.getApplicationContext().getContentResolver());
             }
             String packageName = fs.d.getPackageName();
             String className = fs.d.getClassName();

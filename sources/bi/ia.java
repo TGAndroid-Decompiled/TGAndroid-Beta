@@ -73,7 +73,7 @@ public final class ia implements Runnable {
                 return;
             case 2:
                 try {
-                    SQLitePreparedStatement executeFast = ((org.telegram.messenger.sd) obj).getMessagesStorage().f26690b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
+                    SQLitePreparedStatement executeFast = ((org.telegram.messenger.sd) obj).getMessagesStorage().f26698b.executeFast("UPDATE sharing_locations SET proximity = ? WHERE uid = ?");
                     executeFast.requery();
                     executeFast.bindInteger(1, i11);
                     executeFast.bindLong(2, j3);
@@ -92,7 +92,7 @@ public final class ia implements Runnable {
                 return;
             case 4:
                 try {
-                    SQLiteDatabase sQLiteDatabase = ((ui) obj).getMessagesStorage().f26690b;
+                    SQLiteDatabase sQLiteDatabase = ((ui) obj).getMessagesStorage().f26698b;
                     Locale locale = Locale.US;
                     sQLiteDatabase.executeFast("DELETE FROM chat_hints WHERE did = " + j3 + " AND type = " + i11).stepThis().dispose();
                     return;
@@ -105,18 +105,18 @@ public final class ia implements Runnable {
                 return;
             case 6:
                 org.telegram.messenger.c cVar = (org.telegram.messenger.c) obj;
-                gz C = gz.C(cVar.f21723a);
-                ArrayList arrayList = (ArrayList) C.f22751a.get("group_" + j3);
+                gz C = gz.C(cVar.f21729a);
+                ArrayList arrayList = (ArrayList) C.f22758a.get("group_" + j3);
                 if (arrayList != null && !arrayList.isEmpty()) {
                     sy syVar = (sy) arrayList.get(0);
-                    ij ijVar = (ij) jg.g.i(1, syVar.f25547x);
+                    ij ijVar = (ij) jg.g.i(1, syVar.f25555x);
                     syVar.G = ijVar.f1();
-                    ijVar.f23237k.params.put("final", "1");
+                    ijVar.f23244k.params.put("final", "1");
                     TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
-                    tL_messages_messages.messages.add(ijVar.f23237k);
+                    tL_messages_messages.messages.add(ijVar.f23244k);
                     if (!syVar.I && !syVar.J) {
-                        yr a02 = yr.a0(cVar.f21723a);
-                        long j10 = syVar.f25527a;
+                        yr a02 = yr.a0(cVar.f21729a);
+                        long j10 = syVar.f25535a;
                         if (i11 != 0) {
                             i7 = 1;
                         } else {

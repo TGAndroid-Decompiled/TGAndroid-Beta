@@ -24,7 +24,7 @@ public final class c0 extends View {
         this.f18495f = f0Var;
         this.f18492b = i7;
         int i10 = f0Var.f18549n;
-        int e10 = jg.g.e(32.0f, org.telegram.messenger.g0.f22537q.x, org.telegram.messenger.g0.L(240.0f));
+        int e10 = jg.g.e(32.0f, org.telegram.messenger.g0.f22544q.x, org.telegram.messenger.g0.L(240.0f));
         f6 f6Var = f0Var.f18550r;
         l2.w wVar = new l2.w(this, 5);
         kv kvVar = new kv(i10, e10, f6Var);
@@ -33,7 +33,7 @@ public final class c0 extends View {
         gu guVar = new gu(kvVar, e10, l10, pageButton, inlineButtonType, pageButton.style, inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeDisabled, false, false, false, false, Boolean.FALSE, wVar);
         this.f18491a = guVar;
         this.f18494e = new bg.m0(this, i7, 14);
-        guVar.f22701e = guVar.h();
+        guVar.f22708e = guVar.h();
         setContentDescription(c6.l(pageButton.text));
         setClickable(true);
         setLongClickable(true);
@@ -42,13 +42,13 @@ public final class c0 extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f18491a.f22698a.i(this);
+        this.f18491a.f22705a.i(this);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         org.telegram.messenger.g0.r(this.f18494e);
-        this.f18491a.f22698a.f(this);
+        this.f18491a.f22705a.f(this);
         super.onDetachedFromWindow();
     }
 
@@ -66,7 +66,7 @@ public final class c0 extends View {
     @Override
     public final void onMeasure(int i7, int i10) {
         gu guVar = this.f18491a;
-        setMeasuredDimension(guVar.f22701e, org.telegram.messenger.g0.L(8.0f) + guVar.c());
+        setMeasuredDimension(guVar.f22708e, org.telegram.messenger.g0.L(8.0f) + guVar.c());
     }
 
     @Override
@@ -155,7 +155,7 @@ public final class c0 extends View {
                                 richButtonStyle.link = false;
                                 pageButton.style = richButtonStyle;
                             }
-                            t3Var.f36781f3.O(false);
+                            t3Var.f37160f3.O(false);
                             f2 f2Var2 = t3Var.Q3;
                             if (f2Var2 != null) {
                                 f2Var2.h();

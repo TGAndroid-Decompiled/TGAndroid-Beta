@@ -2,7 +2,7 @@ package f7;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import c8.wb;
+import c8.xb;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,12 +13,12 @@ public final class w extends r6.a {
     public final List f11455c;
 
     static {
-        q7.o.m(2, q7.a.f53868c, q7.a.d);
+        q7.o.m(2, q7.a.f53867c, q7.a.d);
         CREATOR = new db.k(15);
     }
 
     public w(String str, byte[] bArr, ArrayList arrayList) {
-        q7.s0 s0Var = q7.s0.f53929c;
+        q7.s0 s0Var = q7.s0.f53928c;
         q7.s0 o4 = q7.s0.o(bArr.length, bArr);
         q6.m.g(str);
         try {
@@ -61,11 +61,11 @@ public final class w extends r6.a {
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
-        int r10 = wb.r(parcel, 20293);
+        int r10 = xb.r(parcel, 20293);
         this.f11453a.getClass();
-        wb.l(parcel, 2, "public-key");
-        wb.c(parcel, 3, this.f11454b.p());
-        wb.p(parcel, 4, this.f11455c);
-        wb.s(parcel, r10);
+        xb.l(parcel, 2, "public-key");
+        xb.c(parcel, 3, this.f11454b.p());
+        xb.p(parcel, 4, this.f11455c);
+        xb.s(parcel, r10);
     }
 }

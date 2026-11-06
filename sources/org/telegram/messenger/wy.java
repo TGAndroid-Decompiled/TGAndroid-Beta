@@ -4,16 +4,16 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class wy implements RequestDelegate {
-    public final TLRPC.TL_messages_startHistoryImport f26389a;
-    public final xy f26390b;
+    public final TLRPC.TL_messages_startHistoryImport f26397a;
+    public final xy f26398b;
 
     public wy(xy xyVar, TLRPC.TL_messages_startHistoryImport tL_messages_startHistoryImport) {
-        this.f26390b = xyVar;
-        this.f26389a = tL_messages_startHistoryImport;
+        this.f26398b = xyVar;
+        this.f26397a = tL_messages_startHistoryImport;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        g0.h3(new lg(this, tL_error, this.f26389a, 27));
+        g0.h3(new lg(this, tL_error, this.f26397a, 27));
     }
 }

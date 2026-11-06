@@ -24,18 +24,18 @@ public final class wb extends nq0 {
         int[] iArr = new int[2];
         l9Var.getLocationInWindow(iArr);
         wq0 wq0Var = new wq0();
-        wq0Var.f51479b = iArr[0];
-        wq0Var.f51480c = iArr[1];
+        wq0Var.f51477b = iArr[0];
+        wq0Var.f51478c = iArr[1];
         wq0Var.d = this.f4989b;
-        wq0Var.f51488m = null;
-        wq0Var.f51478a = imageReceiver;
+        wq0Var.f51486m = null;
+        wq0Var.f51476a = imageReceiver;
         if (z9) {
-            wq0Var.f51481e = imageReceiver.p();
+            wq0Var.f51479e = imageReceiver.p();
         }
         wq0Var.h = imageReceiver.E();
-        wq0Var.f51482f = this.f4990c;
-        wq0Var.f51485j = 0;
-        wq0Var.f51484i = 0;
+        wq0Var.f51480f = this.f4990c;
+        wq0Var.f51483j = 0;
+        wq0Var.f51482i = 0;
         return wq0Var;
     }
 

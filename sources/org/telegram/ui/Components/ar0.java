@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class ar0 implements org.telegram.ui.Cells.j7 {
-    public final xs0 f31892a;
+    public final xs0 f31888a;
 
     public ar0(xs0 xs0Var) {
-        this.f31892a = xs0Var;
+        this.f31888a = xs0Var;
     }
 
     @Override
     public final void a(String str, boolean z9) {
-        xs0 xs0Var = this.f31892a;
-        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40424x1;
+        xs0 xs0Var = this.f31888a;
+        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40440x1;
         if (z9) {
             org.telegram.ui.ActionBar.v2 h = org.telegram.messenger.camera.q.h(f2Var.getParentActivity(), false, 1, null);
             h.O = str;
@@ -28,12 +28,12 @@ public final class ar0 implements org.telegram.ui.Cells.j7 {
 
     @Override
     public final void b(TLRPC.WebPage webPage, org.telegram.messenger.ij ijVar) {
-        xs0 xs0Var = this.f31892a;
-        vt.N0(xs0Var.f40424x1, ijVar, xs0Var.f40414t1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+        xs0 xs0Var = this.f31888a;
+        vt.N0(xs0Var.f40440x1, ijVar, xs0Var.f40430t1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
     }
 
     @Override
     public final boolean d() {
-        return !this.f31892a.E1;
+        return !this.f31888a.E1;
     }
 }

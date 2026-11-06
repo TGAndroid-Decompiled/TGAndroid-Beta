@@ -68,7 +68,7 @@ public final class s8 implements Runnable {
                 }
                 if (!(tLObject instanceof TLRPC.TL_payments_paymentResult)) {
                     if (tL_error != null && "BALANCE_TOO_LOW".equals(tL_error.text)) {
-                        if (qp.s1(eaVar.f3807a).f24802j7) {
+                        if (qp.s1(eaVar.f3807a).f24810j7) {
                             v10Var.a(Boolean.FALSE, null);
                             ea.c0(context, f6Var);
                             return;
@@ -102,14 +102,14 @@ public final class s8 implements Runnable {
                 v10Var.a(Boolean.TRUE, null);
                 org.telegram.messenger.t1 b10 = org.telegram.messenger.v1.a(eaVar.f3807a).b();
                 if (b10 != null && b10.a(j10)) {
-                    SharedPreferences.Editor edit = qp.s1(eaVar.f3807a).f24759e7.edit();
+                    SharedPreferences.Editor edit = qp.s1(eaVar.f3807a).f24767e7.edit();
                     edit.putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j10, false).apply();
                 }
-                SharedPreferences.Editor edit2 = qp.s1(eaVar.f3807a).f24759e7.edit();
+                SharedPreferences.Editor edit2 = qp.s1(eaVar.f3807a).f24767e7.edit();
                 SharedPreferences.Editor putBoolean = edit2.putBoolean("show_gift_for_" + j10, true);
                 putBoolean.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j10, true).apply();
                 LaunchActivity launchActivity = LaunchActivity.G1;
-                if (launchActivity != null && (r80Var = launchActivity.f41290v0) != null) {
+                if (launchActivity != null && (r80Var = launchActivity.f41289v0) != null) {
                     r80Var.c(true);
                     return;
                 }
@@ -134,7 +134,7 @@ public final class s8 implements Runnable {
                 }
                 if (!(tLObject2 instanceof TLRPC.TL_payments_paymentResult)) {
                     if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
-                        if (qp.s1(eaVar2.f3807a).f24802j7) {
+                        if (qp.s1(eaVar2.f3807a).f24810j7) {
                             v10Var2.a(Boolean.FALSE, null);
                             ea.c0(context2, f6Var2);
                             return;
@@ -163,14 +163,14 @@ public final class s8 implements Runnable {
                 v10Var2.a(Boolean.TRUE, null);
                 org.telegram.messenger.t1 b11 = org.telegram.messenger.v1.a(eaVar2.f3807a).b();
                 if (b11 != null && b11.a(j12)) {
-                    SharedPreferences.Editor edit3 = qp.s1(eaVar2.f3807a).f24759e7.edit();
+                    SharedPreferences.Editor edit3 = qp.s1(eaVar2.f3807a).f24767e7.edit();
                     edit3.putBoolean(Calendar.getInstance().get(1) + "bdayhint_" + j12, false).apply();
                 }
-                SharedPreferences.Editor edit4 = qp.s1(eaVar2.f3807a).f24759e7.edit();
+                SharedPreferences.Editor edit4 = qp.s1(eaVar2.f3807a).f24767e7.edit();
                 SharedPreferences.Editor putBoolean2 = edit4.putBoolean("show_gift_for_" + j12, true);
                 putBoolean2.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j12, true).apply();
                 LaunchActivity launchActivity2 = LaunchActivity.G1;
-                if (launchActivity2 != null && (r80Var2 = launchActivity2.f41290v0) != null) {
+                if (launchActivity2 != null && (r80Var2 = launchActivity2.f41289v0) != null) {
                     r80Var2.c(true);
                     return;
                 }

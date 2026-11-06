@@ -6,45 +6,45 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 public final class na implements ka {
-    public final u9.m f59808a;
-    public final ja f59809b;
+    public final u9.m f59807a;
+    public final ja f59808b;
 
     public na(Context context, ja jaVar) {
-        this.f59809b = jaVar;
+        this.f59808b = jaVar;
         m5.a aVar = m5.a.f19869e;
         o5.s.b(context);
         o5.q c10 = o5.s.a().c(aVar);
         if (m5.a.d.contains(new l5.c("json"))) {
             new u9.m(new a8.xa(c10, 6));
         }
-        this.f59808a = new u9.m(new a8.xa(c10, 7));
+        this.f59807a = new u9.m(new a8.xa(c10, 7));
     }
 
     @Override
     public final void a(sg.i0 i0Var) {
         f fVar;
         na.d dVar;
-        ja jaVar = this.f59809b;
+        ja jaVar = this.f59808b;
         jaVar.getClass();
-        o5.r rVar = (o5.r) this.f59808a.get();
+        o5.r rVar = (o5.r) this.f59807a.get();
         jaVar.getClass();
-        qa qaVar = qa.f59831c;
-        y7.d6 d6Var = (y7.d6) i0Var.f54976b;
-        ((a8.s9) i0Var.f54977c).h = false;
-        a8.s9 s9Var = (a8.s9) i0Var.f54977c;
+        qa qaVar = qa.f59830c;
+        y7.d6 d6Var = (y7.d6) i0Var.f54975b;
+        ((a8.s9) i0Var.f54976c).h = false;
+        a8.s9 s9Var = (a8.s9) i0Var.f54976c;
         s9Var.f640f = Boolean.FALSE;
-        d6Var.f58907a = new m9(s9Var);
+        d6Var.f58906a = new m9(s9Var);
         try {
             qa.b();
             l7 l7Var = new l7(d6Var);
             ?? obj = new Object();
-            obj.f58907a = new HashMap();
-            obj.f58908b = new HashMap();
-            obj.f58909c = e.f59646c;
+            obj.f58906a = new HashMap();
+            obj.f58907b = new HashMap();
+            obj.f58908c = e.f59645c;
             qaVar.a(obj);
-            HashMap hashMap = new HashMap((HashMap) obj.f58907a);
-            HashMap hashMap2 = new HashMap((HashMap) obj.f58908b);
-            e eVar = (e) obj.f58909c;
+            HashMap hashMap = new HashMap((HashMap) obj.f58906a);
+            HashMap hashMap2 = new HashMap((HashMap) obj.f58907b);
+            e eVar = (e) obj.f58908c;
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             try {
                 fVar = new f(byteArrayOutputStream, hashMap, hashMap2, eVar);

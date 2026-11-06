@@ -4,19 +4,19 @@ import android.graphics.RectF;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class j90 implements Runnable {
-    public final int f46907a;
-    public final ProfileActivity f46908b;
+    public final int f46906a;
+    public final ProfileActivity f46907b;
 
     public j90(ProfileActivity profileActivity, int i7) {
-        this.f46907a = i7;
-        this.f46908b = profileActivity;
+        this.f46906a = i7;
+        this.f46907b = profileActivity;
     }
 
     @Override
     public final void run() {
         jw0 jw0Var;
-        int i7 = this.f46907a;
-        ProfileActivity profileActivity = this.f46908b;
+        int i7 = this.f46906a;
+        ProfileActivity profileActivity = this.f46907b;
         switch (i7) {
             case 0:
                 vv0 vv0Var = profileActivity.N;
@@ -41,7 +41,7 @@ public final class j90 implements Runnable {
                 org.telegram.messenger.g0.i3(new j90(profileActivity, 1), 200L);
                 return;
             case 4:
-                TLRPC.UserFull userFull = profileActivity.f41830u2;
+                TLRPC.UserFull userFull = profileActivity.f41829u2;
                 if (userFull != null) {
                     org.telegram.messenger.g0.g(org.telegram.messenger.ij.h0(userFull.note, false));
                     org.telegram.messenger.camera.q.r(null, 2131744195, org.telegram.ui.Components.hc.a0(profileActivity));
@@ -52,13 +52,13 @@ public final class j90 implements Runnable {
                 RectF rectF = ProfileActivity.S6;
                 profileActivity.getClass();
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", profileActivity.f41713d1);
+                bundle.putLong("user_id", profileActivity.f41712d1);
                 bundle.putBoolean("focus_notes", true);
-                profileActivity.presentFragment(new nr(bundle, profileActivity.f41866z0));
+                profileActivity.presentFragment(new nr(bundle, profileActivity.f41865z0));
                 return;
             case 6:
                 RectF rectF2 = ProfileActivity.S6;
-                profileActivity.getSendMessagesHelper().r0(org.telegram.messenger.ez.b("/start", profileActivity.f41713d1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                profileActivity.getSendMessagesHelper().r0(org.telegram.messenger.ez.b("/start", profileActivity.f41712d1, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 7:
                 RectF rectF3 = ProfileActivity.S6;
@@ -101,14 +101,14 @@ public final class j90 implements Runnable {
             case 15:
                 RectF rectF11 = ProfileActivity.S6;
                 ?? obj = new Object();
-                obj.f27420a = true;
+                obj.f27421a = true;
                 profileActivity.showAsSheet(new PrivacyControlActivity(11, false), obj);
                 return;
             case 16:
                 RectF rectF12 = ProfileActivity.S6;
                 profileActivity.y4(true);
-                if (profileActivity.f41750i2.isRunning()) {
-                    profileActivity.f41750i2.cancel();
+                if (profileActivity.f41749i2.isRunning()) {
+                    profileActivity.f41749i2.cancel();
                 }
                 profileActivity.X4(1.0f);
                 return;
@@ -133,7 +133,7 @@ public final class j90 implements Runnable {
                 profileActivity.getMessagesController().c4(profileActivity.a());
                 return;
             case 21:
-                if (!profileActivity.f41688a.c0() && (jw0Var = profileActivity.d) != null) {
+                if (!profileActivity.f41687a.c0() && (jw0Var = profileActivity.d) != null) {
                     jw0Var.f();
                     return;
                 }
@@ -150,12 +150,12 @@ public final class j90 implements Runnable {
                 RectF rectF18 = ProfileActivity.S6;
                 profileActivity.getClass();
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f41720e1);
-                bundle2.putLong("user_id", profileActivity.f41713d1);
+                bundle2.putLong("chat_id", profileActivity.f41719e1);
+                bundle2.putLong("user_id", profileActivity.f41712d1);
                 profileActivity.presentFragment(new ai.s0(bundle2));
                 return;
             case 25:
-                profileActivity.f41864y5.setVisibility(8);
+                profileActivity.f41863y5.setVisibility(8);
                 return;
             case 26:
                 RectF rectF19 = ProfileActivity.S6;

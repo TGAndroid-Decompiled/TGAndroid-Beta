@@ -8,17 +8,17 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.l60;
 public final class p1 implements v10 {
-    public final int f42972a;
-    public final f2 f42973b;
-    public final long f42974c;
+    public final int f42971a;
+    public final f2 f42972b;
+    public final long f42973c;
     public final int d;
-    public final Object f42975e;
+    public final Object f42974e;
 
     public p1(f2 f2Var, Object obj, long j3, int i7, int i10) {
-        this.f42972a = i10;
-        this.f42973b = f2Var;
-        this.f42975e = obj;
-        this.f42974c = j3;
+        this.f42971a = i10;
+        this.f42972b = f2Var;
+        this.f42974e = obj;
+        this.f42973c = j3;
         this.d = i7;
     }
 
@@ -28,20 +28,20 @@ public final class p1 implements v10 {
         final int i7;
         final TL_wallet.tonConnectRequest tonconnectrequest;
         TL_wallet.tonConnectSession tonconnectsession;
-        switch (this.f42972a) {
+        switch (this.f42971a) {
             case 0:
-                final l60 l60Var = (l60) this.f42975e;
+                final l60 l60Var = (l60) this.f42974e;
                 final TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                final f2 f2Var = this.f42973b;
-                n0 n0Var = f2Var.f42461b;
+                final f2 f2Var = this.f42972b;
+                n0 n0Var = f2Var.f42460b;
                 byte[] bArr = null;
                 if (tL_error == null && tonconnectpending != null) {
                     ArrayList<TL_wallet.tonConnectRequest> arrayList = tonconnectpending.requests;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (true) {
-                        j3 = this.f42974c;
+                        j3 = this.f42973c;
                         i7 = this.d;
                         if (i10 < size) {
                             TL_wallet.tonConnectRequest tonconnectrequest2 = arrayList.get(i10);
@@ -54,7 +54,7 @@ public final class p1 implements v10 {
                             tonconnectrequest = null;
                         }
                     }
-                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f27214id == j3 && tonconnectrequest.expires > f2Var.f42464f.getCurrentTime()) {
+                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f27215id == j3 && tonconnectrequest.expires > f2Var.f42463f.getCurrentTime()) {
                         final String t6 = n0Var.t();
                         if (n0Var.y() != null) {
                             bArr = (byte[]) n0Var.y().clone();
@@ -96,13 +96,13 @@ public final class p1 implements v10 {
                 l60Var.a(null, f2.z(tL_error, "getPending"));
                 return;
             default:
-                c20 c20Var = (c20) this.f42975e;
+                c20 c20Var = (c20) this.f42974e;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                f2 f2Var2 = this.f42973b;
+                f2 f2Var2 = this.f42972b;
                 f2Var2.getClass();
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                    f2Var2.e(this.d, this.f42974c, c20Var);
+                    f2Var2.e(this.d, this.f42973c, c20Var);
                     return;
                 } else {
                     c20Var.a(f2.z(tL_error2, "closeSession"));

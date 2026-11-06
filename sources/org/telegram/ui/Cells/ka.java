@@ -16,27 +16,27 @@ import org.telegram.ui.Components.wp;
 import org.telegram.ui.an;
 import org.telegram.ui.ww;
 public final class ka implements View.OnClickListener {
-    public final int f29452a = 1;
-    public final boolean f29453b;
-    public final int f29454c;
+    public final int f29453a = 1;
+    public final boolean f29454b;
+    public final int f29455c;
     public final org.telegram.ui.ActionBar.f2 d;
-    public final Serializable f29455e;
+    public final Serializable f29456e;
 
     public ka(an anVar, TLRPC.User user, String str, boolean z9, int i7) {
         this.d = anVar;
-        this.f29455e = str;
-        this.f29453b = z9;
-        this.f29454c = i7;
+        this.f29456e = str;
+        this.f29454b = z9;
+        this.f29455c = i7;
     }
 
     @Override
     public final void onClick(View view) {
         int i7;
         int i10;
-        int i11 = this.f29452a;
-        int i12 = this.f29454c;
-        boolean z9 = this.f29453b;
-        Serializable serializable = this.f29455e;
+        int i11 = this.f29453a;
+        int i12 = this.f29455c;
+        boolean z9 = this.f29454b;
+        Serializable serializable = this.f29456e;
         org.telegram.ui.ActionBar.f2 f2Var = this.d;
         switch (i11) {
             case 0:
@@ -47,7 +47,7 @@ public final class ka implements View.OnClickListener {
                 SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(M0, i13, 0, new f(wwVar, 11), null);
                 SpannableString spannableString = new SpannableString(">");
                 wp wpVar = new wp(2131230875, 0);
-                wpVar.f40066y = org.telegram.ui.ActionBar.k6.x0(null, i13, false);
+                wpVar.f40074y = org.telegram.ui.ActionBar.k6.x0(null, i13, false);
                 wpVar.H = 0.7f;
                 wpVar.I = 0.7f;
                 wpVar.E = org.telegram.messenger.g0.L(12.0f);
@@ -66,7 +66,7 @@ public final class ka implements View.OnClickListener {
             default:
                 an anVar = (an) f2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.v4.f38814a;
+                Pattern pattern = org.telegram.ui.Components.v4.f38813a;
                 if (anVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.v2 h = org.telegram.messenger.camera.q.h(anVar.getParentActivity(), false, 1, null);
                     if (z9) {
@@ -112,8 +112,8 @@ public final class ka implements View.OnClickListener {
 
     public ka(ww wwVar, boolean z9, int i7, ArrayList arrayList) {
         this.d = wwVar;
-        this.f29453b = z9;
-        this.f29454c = i7;
-        this.f29455e = arrayList;
+        this.f29454b = z9;
+        this.f29455c = i7;
+        this.f29456e = arrayList;
     }
 }

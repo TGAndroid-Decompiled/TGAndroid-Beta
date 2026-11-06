@@ -36,7 +36,7 @@ public abstract class o4 {
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.G1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f25555b;
+            W = org.telegram.messenger.t0.f25563b;
         }
         final Context context = W;
         TLRPC.User f10 = p10.i(i7).f();
@@ -46,12 +46,12 @@ public abstract class o4 {
         n4 n4Var = new n4(f10);
         int i10 = k6.L5;
         int x02 = k6.x0(null, i10, false);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
-        u1Var.f28551b0 = n4Var;
-        u1Var.f28554c0 = x02;
-        u1Var.f28556d0 = -1;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+        u1Var.f28552b0 = n4Var;
+        u1Var.f28555c0 = x02;
+        u1Var.f28557d0 = -1;
         alertDialog$Builder.n(i10, null);
-        alertDialog$Builder.f27292a.T = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753088, t10.p(user), t10.p(user)));
+        alertDialog$Builder.f27293a.T = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753088, t10.p(user), t10.p(user)));
         alertDialog$Builder.k(hd.M0(2131753090, null), new org.telegram.ui.ActionBar.r1() {
             @Override
             public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i11) {
@@ -71,7 +71,7 @@ public abstract class o4 {
                 }
                 zArr3[0] = true;
                 TLRPC.User user2 = user;
-                o4.e(context, i12, user2.f27101id);
+                o4.e(context, i12, user2.f27102id);
                 TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
                 toggleuseremojistatuspermission.bot = qp.s1(i12).q1(user2);
                 toggleuseremojistatuspermission.enabled = true;
@@ -79,13 +79,13 @@ public abstract class o4 {
             }
         });
         alertDialog$Builder.h(hd.M0(2131753089, null), null);
-        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27293a;
         u1Var2.show();
         u1Var2.setOnDismissListener(new i4(zArr2, zArr, context, i7, user, nVar));
     }
 
     public static void c() {
-        Context context = org.telegram.messenger.t0.f25555b;
+        Context context = org.telegram.messenger.t0.f25563b;
         if (context != null) {
             for (int i7 = 0; i7 < 4; i7++) {
                 context.getSharedPreferences("botemojistatus_" + i7, 0).edit().clear().apply();
@@ -130,7 +130,7 @@ public abstract class o4 {
         }
         Context W = org.telegram.messenger.g0.W(LaunchActivity.G1);
         if (W == null) {
-            W = org.telegram.messenger.t0.f25555b;
+            W = org.telegram.messenger.t0.f25563b;
         }
         ConnectionsManager.getInstance(i7).getCurrentTime();
         TLRPC.User f10 = p10.i(i7).f();
@@ -168,15 +168,15 @@ public abstract class o4 {
         n4 n4Var = new n4(f10, document);
         int i14 = k6.L5;
         int x02 = k6.x0(null, i14, false);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
-        u1Var.f28551b0 = n4Var;
-        u1Var.f28554c0 = x02;
-        u1Var.f28556d0 = -1;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
+        u1Var.f28552b0 = n4Var;
+        u1Var.f28555c0 = x02;
+        u1Var.f28557d0 = -1;
         alertDialog$Builder.n(i14, null);
-        alertDialog$Builder.f27292a.T = X2;
+        alertDialog$Builder.f27293a.T = X2;
         alertDialog$Builder.k(hd.M0(2131753091, null), new g4(i7, zArr2, document, i10, zArr, c20Var));
         alertDialog$Builder.h(hd.M0(2131752589, null), null);
-        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27293a;
         u1Var2.show();
         u1Var2.setOnDismissListener(new o0(zArr2, zArr, c20Var));
     }

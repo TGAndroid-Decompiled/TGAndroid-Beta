@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class d90 implements TextWatcher {
-    public final int f45029a;
-    public final h90 f45030b;
+    public final int f45028a;
+    public final h90 f45029b;
 
     public d90(h90 h90Var, int i7) {
-        this.f45029a = i7;
-        this.f45030b = h90Var;
+        this.f45028a = i7;
+        this.f45029b = h90Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        switch (this.f45029a) {
+        switch (this.f45028a) {
             case 0:
-                h90 h90Var = this.f45030b;
+                h90 h90Var = this.f45029b;
                 if (!h90Var.N) {
                     if (editable.toString().equals("0")) {
                         h90Var.F.setText("");
@@ -37,19 +37,19 @@ public final class d90 implements TextWatcher {
                 }
                 return;
             default:
-                org.telegram.messenger.i6.l(editable, this.f45030b.K.getPaint().getFontMetricsInt(), false);
+                org.telegram.messenger.i6.l(editable, this.f45029b.K.getPaint().getFontMetricsInt(), false);
                 return;
         }
     }
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f45029a;
+        int i12 = this.f45028a;
     }
 
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        int i12 = this.f45029a;
+        int i12 = this.f45028a;
     }
 
     private final void a(int i7, int i10, int i11, CharSequence charSequence) {

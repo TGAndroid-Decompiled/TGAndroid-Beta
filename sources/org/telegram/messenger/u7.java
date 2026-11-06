@@ -5,17 +5,17 @@ import java.io.File;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class u7 {
-    public final Object f25727a;
-    public final TLRPC.Document f25728b;
-    public final String f25729c;
+    public final Object f25735a;
+    public final TLRPC.Document f25736b;
+    public final String f25737c;
     public final int d;
-    public final w7 f25730e;
+    public final w7 f25738e;
 
     public u7(w7 w7Var, Object obj, TLRPC.Document document, String str, int i7) {
-        this.f25730e = w7Var;
-        this.f25727a = obj;
-        this.f25728b = document;
-        this.f25729c = str;
+        this.f25738e = w7Var;
+        this.f25735a = obj;
+        this.f25736b = document;
+        this.f25737c = str;
         this.d = i7;
     }
 
@@ -25,36 +25,36 @@ public final class u7 {
 
     public final void b(i7 i7Var, int i7) {
         int i10;
-        Object obj = this.f25727a;
-        w7 w7Var = this.f25730e;
-        ConcurrentHashMap concurrentHashMap = w7Var.f26261x;
-        String str = this.f25729c;
+        Object obj = this.f25735a;
+        w7 w7Var = this.f25738e;
+        ConcurrentHashMap concurrentHashMap = w7Var.f26269x;
+        String str = this.f25737c;
         concurrentHashMap.remove(str);
-        w7.J.d(new ng(w7Var, i7Var.f23083e1, i7Var, 23), 0L);
+        w7.J.d(new ng(w7Var, i7Var.f23090e1, i7Var, 23), 0L);
         qb qbVar = w7Var.E;
         if (qbVar != null) {
-            qbVar.f24676b.f22627u.remove(str);
+            qbVar.f24684b.f22634u.remove(str);
             i10 = i7;
-            g0.h3(new l2.a0(qbVar, str, i10, qbVar.f24675a, 1));
+            g0.h3(new l2.a0(qbVar, str, i10, qbVar.f24683a, 1));
         } else {
             i10 = i7;
         }
-        if (this.f25728b != null && (obj instanceof ij) && i10 == 0) {
+        if (this.f25736b != null && (obj instanceof ij) && i10 == 0) {
             z5 downloadController = w7Var.getDownloadController();
             ij ijVar = (ij) obj;
             downloadController.getClass();
             g0.h3(new k7(downloadController, ijVar, i10, 2));
-            downloadController.getMessagesStorage().f26688a.c(new v5(downloadController, ijVar, 2));
+            downloadController.getMessagesStorage().f26696a.c(new v5(downloadController, ijVar, 2));
         } else if (i10 == -1) {
             LaunchActivity.D(2);
         }
     }
 
     public final void c(i7 i7Var, File file) {
-        Object obj = this.f25727a;
-        w7 w7Var = this.f25730e;
-        if (!i7Var.f23124y && i7Var.f23126z) {
-            w7.J.d(new ng(w7Var, i7Var.f23083e1, i7Var, 23), 0L);
+        Object obj = this.f25735a;
+        w7 w7Var = this.f25738e;
+        if (!i7Var.f23131y && i7Var.f23133z) {
+            w7.J.d(new ng(w7Var, i7Var.f23090e1, i7Var, 23), 0L);
             return;
         }
         e8 E = w7.E(obj);
@@ -67,7 +67,7 @@ public final class u7 {
         }
         if (obj instanceof ij) {
             ij ijVar = (ij) obj;
-            if (this.f25728b != null && ijVar.P) {
+            if (this.f25736b != null && ijVar.P) {
                 z5 downloadController = w7Var.getDownloadController();
                 downloadController.getClass();
                 if (ijVar.F0() != null) {
@@ -75,17 +75,17 @@ public final class u7 {
                 }
             }
         }
-        if (!i7Var.f23124y) {
-            w7Var.f26261x.remove(this.f25729c);
+        if (!i7Var.f23131y) {
+            w7Var.f26269x.remove(this.f25737c);
             qb qbVar = w7Var.E;
             if (qbVar != null) {
-                String str = this.f25729c;
-                Object obj2 = this.f25727a;
+                String str = this.f25737c;
+                Object obj2 = this.f25735a;
                 int i7 = this.d;
-                qbVar.f24676b.f22627u.remove(str);
-                g0.h3(new li.g0(qbVar, file, str, qbVar.f24675a, obj2, i7));
+                qbVar.f24684b.f22634u.remove(str);
+                g0.h3(new li.g0(qbVar, file, str, qbVar.f24683a, obj2, i7));
             }
         }
-        w7.J.d(new ng(w7Var, i7Var.f23083e1, i7Var, 23), 0L);
+        w7.J.d(new ng(w7Var, i7Var.f23090e1, i7Var, 23), 0L);
     }
 }

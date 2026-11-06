@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import c8.bc;
-import c8.yc;
+import c8.cc;
+import c8.zc;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -44,8 +44,8 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.k3;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.ws;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.qw;
 import org.telegram.ui.v91;
 import org.telegram.ui.ww;
@@ -75,22 +75,22 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
         switch (i7) {
             case 25:
                 ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
-                Drawable drawable = ActionBarLayout.f27223v1;
+                Drawable drawable = ActionBarLayout.f27224v1;
                 i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
                 i0.b I02 = org.telegram.messenger.g0.I0(k1Var, true);
-                actionBarLayout.f27270t1 = I0;
-                actionBarLayout.f27272u1 = I02;
-                actionBarLayout.f27268s1 = k1Var;
+                actionBarLayout.f27271t1 = I0;
+                actionBarLayout.f27273u1 = I02;
+                actionBarLayout.f27269s1 = k1Var;
                 int childCount = actionBarLayout.getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
                     actionBarLayout.o(actionBarLayout.getChildAt(i10), k1Var);
                 }
-                return r0.k1.f54108b;
+                return r0.k1.f54107b;
             default:
                 k3 k3Var = (k3) obj;
-                k3Var.f27728s = k1Var.f54109a.f(2).d;
+                k3Var.f27729s = k1Var.f54108a.f(2).d;
                 k3Var.invalidate();
-                return r0.k1.f54108b;
+                return r0.k1.f54107b;
         }
     }
 
@@ -115,7 +115,7 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
         InputStream inputStream;
         m5.b bVar = (m5.b) this.f18086b;
         URL url = (URL) mVar.f14264b;
-        String c10 = bc.c("CctTransportBackend");
+        String c10 = cc.c("CctTransportBackend");
         if (Log.isLoggable(c10, 4)) {
             Log.i(c10, String.format("Making request to: %s", url));
         }
@@ -139,23 +139,23 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
                 org.telegram.ui.Components.n nVar = bVar.f19873a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                pa.d dVar = (pa.d) nVar.f36104a;
-                pa.e eVar = new pa.e(bufferedWriter, dVar.f53421a, dVar.f53422b, dVar.f53423c, dVar.d);
+                pa.d dVar = (pa.d) nVar.f36142a;
+                pa.e eVar = new pa.e(bufferedWriter, dVar.f53419a, dVar.f53420b, dVar.f53421c, dVar.d);
                 eVar.h((n5.m) mVar.f14265c);
                 eVar.j();
-                eVar.f53425b.flush();
+                eVar.f53423b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
                 }
                 int responseCode = httpURLConnection.getResponseCode();
                 Integer valueOf = Integer.valueOf(responseCode);
-                String c11 = bc.c("CctTransportBackend");
+                String c11 = cc.c("CctTransportBackend");
                 if (Log.isLoggable(c11, 4)) {
                     Log.i(c11, String.format("Status Code: %d", valueOf));
                 }
-                bc.a(httpURLConnection.getHeaderField("Content-Type"), "CctTransportBackend", "Content-Type: %s");
-                bc.a(httpURLConnection.getHeaderField("Content-Encoding"), "CctTransportBackend", "Content-Encoding: %s");
+                cc.a(httpURLConnection.getHeaderField("Content-Type"), "CctTransportBackend", "Content-Type: %s");
+                cc.a(httpURLConnection.getHeaderField("Content-Encoding"), "CctTransportBackend", "Content-Encoding: %s");
                 if (responseCode != 302 && responseCode != 301 && responseCode != 307) {
                     if (responseCode != 200) {
                         return new li.z(responseCode, null, 0L);
@@ -199,19 +199,19 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
             }
         } catch (ConnectException e10) {
             e = e10;
-            bc.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
+            cc.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
             return new li.z(500, null, 0L);
         } catch (UnknownHostException e11) {
             e = e11;
-            bc.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
+            cc.b("CctTransportBackend", "Couldn't open connection, returning with 500", e);
             return new li.z(500, null, 0L);
         } catch (IOException e12) {
             e = e12;
-            bc.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
+            cc.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
             return new li.z(400, null, 0L);
         } catch (na.b e13) {
             e = e13;
-            bc.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
+            cc.b("CctTransportBackend", "Couldn't encode request, returning with 400", e);
             return new li.z(400, null, 0L);
         }
     }
@@ -255,7 +255,7 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
 
     @Override
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        w31 w31Var = (w31) obj;
+        x31 x31Var = (x31) obj;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
@@ -312,13 +312,13 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
         if (Build.VERSION.SDK_INT >= 31 && dVar != null) {
             ArrayList arrayList = dVar.f21052a;
             if (aVar.f21025l || oi.q.f().f21119a) {
-                if (yc.a(i7, 4) || yc.a(i7, 2)) {
+                if (zc.a(i7, 4) || zc.a(i7, 2)) {
                     qi.a e10 = qVar.e();
                     ViewGroup viewGroup = aVar.f21027n;
                     if (viewGroup != null) {
                         e10.b(viewGroup.getY(), aVar.f21026m.getWidth(), aVar.f21027n.getY() + aVar.f21027n.getHeight());
                     }
-                    dVar.f21053b = e10.f54061b;
+                    dVar.f21053b = e10.f54060b;
                     while (dVar.f21053b > arrayList.size()) {
                         arrayList.add(new oi.b(arrayList.size()));
                     }
@@ -424,10 +424,10 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
     @Override
     public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
         g4 g4Var = (g4) this.f18086b;
-        if (arrayList.isEmpty() || ((xr) arrayList.get(0)).f26505a <= 0) {
+        if (arrayList.isEmpty() || ((xr) arrayList.get(0)).f26513a <= 0) {
             return false;
         }
-        g4Var.run(((xr) arrayList.get(0)).f26505a);
+        g4Var.run(((xr) arrayList.get(0)).f26513a);
         wwVar.finishFragment();
         return true;
     }

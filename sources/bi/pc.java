@@ -7,44 +7,44 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xq;
-public final class pc extends v31 {
+public final class pc extends w31 {
     public static final int f4545b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
-    public static w31 i(int i7, int i10, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
+    public static x31 i(int i7, int i10, TL_stars.TL_starsTopupOption tL_starsTopupOption) {
         String f10;
-        w31 K = w31.K(pc.class);
+        x31 K = x31.K(pc.class);
         K.d = i7;
-        K.f39843z = i10;
+        K.f40172z = i10;
         long j3 = tL_starsTopupOption.stars;
         K.B = j3;
-        K.f39830l = org.telegram.messenger.hd.H(' ', "StarsCount", (int) j3);
+        K.f40159l = org.telegram.messenger.hd.H(' ', "StarsCount", (int) j3);
         if (tL_starsTopupOption.loadingStorePrice) {
             f10 = null;
         } else {
             f10 = org.telegram.messenger.r1.i().f(tL_starsTopupOption.amount, tL_starsTopupOption.currency);
         }
-        K.f39831m = f10;
+        K.f40160m = f10;
         K.G = tL_starsTopupOption;
         return K;
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         float f10;
         qc qcVar = (qc) view;
-        int i7 = w31Var.f39843z;
-        CharSequence charSequence = w31Var.f39830l;
-        CharSequence charSequence2 = w31Var.f39831m;
+        int i7 = x31Var.f40172z;
+        CharSequence charSequence = x31Var.f40159l;
+        CharSequence charSequence2 = x31Var.f40160m;
         org.telegram.ui.Components.j6 j6Var = qcVar.f4593e;
         TextView textView = qcVar.d;
         boolean equals = TextUtils.equals(textView.getText(), charSequence);
@@ -62,7 +62,7 @@ public final class pc extends v31 {
             charSequence2 = qcVar.f4594f;
         }
         j6Var.setText(charSequence2);
-        if (org.telegram.messenger.hd.f22871a0) {
+        if (org.telegram.messenger.hd.f22878a0) {
             f10 = -1.0f;
         } else {
             f10 = 1.0f;
@@ -77,8 +77,8 @@ public final class pc extends v31 {
     }
 
     @Override
-    public final boolean c(w31 w31Var, w31 w31Var2) {
-        if (w31Var.f39843z == w31Var2.f39843z && w31Var.d == w31Var2.d && TextUtils.equals(w31Var.f39831m, w31Var2.f39831m)) {
+    public final boolean c(x31 x31Var, x31 x31Var2) {
+        if (x31Var.f40172z == x31Var2.f40172z && x31Var.d == x31Var2.d && TextUtils.equals(x31Var.f40160m, x31Var2.f40160m)) {
             return true;
         }
         return false;
@@ -90,8 +90,8 @@ public final class pc extends v31 {
     }
 
     @Override
-    public final boolean e(w31 w31Var, w31 w31Var2) {
-        if (w31Var.d == w31Var2.d) {
+    public final boolean e(x31 x31Var, x31 x31Var2) {
+        if (x31Var.d == x31Var2.d) {
             return true;
         }
         return false;

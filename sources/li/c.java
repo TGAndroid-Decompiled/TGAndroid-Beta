@@ -63,7 +63,7 @@ public final class c implements v10 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        r6.t(imageView, k6.f28089q7, f6Var, PorterDuff.Mode.SRC_IN);
+                        r6.t(imageView, k6.f28090q7, f6Var, PorterDuff.Mode.SRC_IN);
                         if (!z9) {
                             int i11 = -iArr[0];
                             iArr[0] = i11;
@@ -94,8 +94,8 @@ public final class c implements v10 {
                 org.telegram.ui.Wallet.z2 z2Var = (org.telegram.ui.Wallet.z2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !b2Var.f42132m && !b2Var.f42133n) {
-                    boolean z10 = b2Var.f42135p;
+                if (!zArr[0] && !b2Var.f42131m && !b2Var.f42132n) {
+                    boolean z10 = b2Var.f42134p;
                     zArr2[0] = z10;
                     dVar.setEnabled(z10);
                     boolean z11 = zArr2[0];

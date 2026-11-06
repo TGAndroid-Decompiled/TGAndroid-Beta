@@ -51,15 +51,15 @@ public final class i3 implements Runnable {
                             T.presentFragment(ra2);
                         } else {
                             org.telegram.ui.Components.cc I = org.telegram.ui.Components.hc.a0(T).I(2131624028, org.telegram.messenger.hd.M0(2131749896, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131749897, k7Var.z1(), org.telegram.messenger.m5.t(j3))));
-                            I.f32537t = true;
+                            I.f32524t = true;
                             I.j();
                         }
                     } else {
                         org.telegram.ui.Components.hc.a0(T).f0(tL_error, false);
                     }
                 }
-                ea.y(k7Var.f28612a, false).P(j3);
-                ea.y(k7Var.f28612a, false).P(j10);
+                ea.y(k7Var.f28613a, false).P(j3);
+                ea.y(k7Var.f28613a, false).P(j10);
                 return;
             default:
                 org.telegram.ui.Wallet.r0 r0Var = (org.telegram.ui.Wallet.r0) this.f4037e;
@@ -91,25 +91,25 @@ public final class i3 implements Runnable {
                     linkedHashMap = linkedHashMap2;
                 }
                 if (!str3.isEmpty() && k0Var != null && !k0Var.d()) {
-                    Object obj = org.telegram.ui.Wallet.r0.f43079f;
+                    Object obj = org.telegram.ui.Wallet.r0.f43078f;
                     synchronized (obj) {
                         try {
                             r0Var.c(j11);
                             try {
                                 ew0 r10 = r0Var.r();
                                 try {
-                                    if (!((LinkedHashMap) r10.f33342e).isEmpty() && r10.f33339a != r72) {
+                                    if (!((LinkedHashMap) r10.f33361e).isEmpty() && r10.f33358a != r72) {
                                         throw new Exception("USER_MISMATCH");
                                     }
-                                    r10.f33339a = r72;
+                                    r10.f33358a = r72;
                                     arrayList = arrayList2;
                                     try {
                                         r0Var.s(r10, str3, linkedHashMap2, arrayList, j11);
                                         linkedHashMap = linkedHashMap2;
                                         try {
-                                            ((LinkedHashMap) r10.f33342e).put(str3, r0Var.j(r10, str3, k0Var, arrayList, j11));
+                                            ((LinkedHashMap) r10.f33361e).put(str3, r0Var.j(r10, str3, k0Var, arrayList, j11));
                                             linkedHashMap.put(str3, k0Var);
-                                            r10.f33340b = ConnectionsManager.getInstance(r0Var.f43083b).getCurrentTime();
+                                            r10.f33359b = ConnectionsManager.getInstance(r0Var.f43082b).getCurrentTime();
                                             synchronized (obj) {
                                                 r0Var.c(j11);
                                                 r0Var.v(r10, linkedHashMap);

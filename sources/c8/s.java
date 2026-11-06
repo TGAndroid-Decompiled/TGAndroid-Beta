@@ -16,7 +16,7 @@ public final class s implements w {
         if (this != obj) {
             if (obj instanceof w) {
                 if (this.f5833a == ((s) ((w) obj)).f5833a) {
-                    Object obj2 = v.f5902a;
+                    Object obj2 = v.f5900a;
                     if (obj2.equals(obj2)) {
                         return true;
                     }
@@ -31,11 +31,11 @@ public final class s implements w {
 
     @Override
     public final int hashCode() {
-        return (this.f5833a ^ 14552422) + (v.f5902a.hashCode() ^ 2041407134);
+        return (this.f5833a ^ 14552422) + (v.f5900a.hashCode() ^ 2041407134);
     }
 
     @Override
     public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f5833a + "intEncoding=" + v.f5902a + ')';
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f5833a + "intEncoding=" + v.f5900a + ')';
     }
 }

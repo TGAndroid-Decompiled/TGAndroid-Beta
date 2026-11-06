@@ -83,11 +83,11 @@ public final class b implements Callable {
             case 1:
                 ta taVar = (ta) this.f55b;
                 taVar.getClass();
-                return j.f53799c.a(taVar.f669g);
+                return j.f53798c.a(taVar.f669g);
             case 2:
                 uf ufVar = (uf) this.f55b;
                 ufVar.getClass();
-                return j.f53799c.a(ufVar.f5899g);
+                return j.f53798c.a(ufVar.f5897g);
             case 3:
                 s sVar = (s) this.f55b;
                 f5.b bVar = sVar.d;
@@ -337,14 +337,14 @@ public final class b implements Callable {
             case 5:
                 p pVar = (p) this.f55b;
                 pVar.getClass();
-                return j.f53799c.a(pVar.f57515a);
+                return j.f53798c.a(pVar.f57514a);
             case 6:
                 ArrayList arrayList = new ArrayList();
                 Iterator it = ((e) ((ShortcutInfoCompatSaverImpl) this.f55b).f2879b.values()).iterator();
                 while (true) {
                     a0.b bVar5 = (a0.b) it;
                     if (bVar5.hasNext()) {
-                        g0.c cVar2 = ((x4.f) bVar5.next()).f58538c;
+                        g0.c cVar2 = ((x4.f) bVar5.next()).f58537c;
                         ?? obj = new Object();
                         obj.f13396a = cVar2.f13396a;
                         obj.f13397b = cVar2.f13397b;
@@ -383,15 +383,15 @@ public final class b implements Callable {
                 }
                 throw new IllegalArgumentException("Shortcut must have an intent");
             case 7:
-                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58537b);
+                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58536b);
             case 8:
                 e9 e9Var = (e9) this.f55b;
                 e9Var.getClass();
-                return j.f53799c.a(e9Var.f58925g);
+                return j.f53798c.a(e9Var.f58924g);
             default:
                 ma maVar = (ma) this.f55b;
                 maVar.getClass();
-                return j.f53799c.a(maVar.f59800g);
+                return j.f53798c.a(maVar.f59799g);
         }
     }
 }

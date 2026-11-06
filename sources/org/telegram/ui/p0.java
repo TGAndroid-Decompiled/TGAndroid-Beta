@@ -3,10 +3,10 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class p0 extends AnimatorListenerAdapter {
-    public final g4 f48582a;
+    public final g4 f48581a;
 
     public p0(g4 g4Var) {
-        this.f48582a = g4Var;
+        this.f48581a = g4Var;
     }
 
     @Override

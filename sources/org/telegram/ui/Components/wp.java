@@ -12,19 +12,19 @@ public class wp extends ReplacementSpan {
     public float I;
     public boolean J;
     public Paint.FontMetricsInt K;
-    public boolean f40056a;
-    public int f40057b;
-    public Drawable f40058c;
+    public boolean f40064a;
+    public int f40065b;
+    public Drawable f40066c;
     public boolean d;
-    public boolean f40059e;
-    public boolean f40060f;
+    public boolean f40067e;
+    public boolean f40068f;
     public int h;
-    public int f40061n;
-    public float f40062r;
-    public float f40063s;
-    public float f40064w;
-    public float f40065x;
-    public int f40066y;
+    public int f40069n;
+    public float f40070r;
+    public float f40071s;
+    public float f40072w;
+    public float f40073x;
+    public int f40074y;
 
     public wp(int i7) {
         this(i7, 0);
@@ -38,7 +38,7 @@ public class wp extends ReplacementSpan {
         } else {
             z9 = false;
         }
-        this.f40059e = z9;
+        this.f40067e = z9;
     }
 
     public final void b(Paint.FontMetricsInt fontMetricsInt) {
@@ -54,11 +54,11 @@ public class wp extends ReplacementSpan {
 
     public final void c(int i7) {
         this.D = i7;
-        this.f40058c.setBounds(0, 0, i7, i7);
+        this.f40066c.setBounds(0, 0, i7, i7);
     }
 
     public final void d(float f10) {
-        this.f40062r = f10;
+        this.f40070r = f10;
     }
 
     @Override
@@ -67,8 +67,8 @@ public class wp extends ReplacementSpan {
     }
 
     public final void e(float f10) {
-        this.f40062r = 0.0f;
-        this.f40063s = f10;
+        this.f40070r = 0.0f;
+        this.f40071s = f10;
     }
 
     @Override
@@ -89,7 +89,7 @@ public class wp extends ReplacementSpan {
             float abs = Math.abs(this.G) * Math.abs(this.H);
             int i11 = this.D;
             if (i11 == 0) {
-                i11 = this.f40058c.getIntrinsicWidth();
+                i11 = this.f40066c.getIntrinsicWidth();
             }
             return (int) (abs * i11);
         }
@@ -100,20 +100,20 @@ public class wp extends ReplacementSpan {
     }
 
     public wp(int i7, int i10) {
-        this(i10, org.telegram.messenger.t0.f25555b.getDrawable(i7).mutate());
+        this(i10, org.telegram.messenger.t0.f25563b.getDrawable(i7).mutate());
     }
 
     public wp(int i7, Drawable drawable) {
-        this.f40056a = true;
+        this.f40064a = true;
         this.d = true;
-        this.f40059e = true;
-        this.f40060f = false;
-        this.f40061n = 0;
-        this.f40065x = 1.0f;
+        this.f40067e = true;
+        this.f40068f = false;
+        this.f40069n = 0;
+        this.f40073x = 1.0f;
         this.G = 1.0f;
         this.H = 1.0f;
         this.I = 1.0f;
-        this.f40058c = drawable;
+        this.f40066c = drawable;
         if (drawable != null) {
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         }

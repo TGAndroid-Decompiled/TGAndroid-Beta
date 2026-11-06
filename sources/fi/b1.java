@@ -136,12 +136,12 @@ public abstract class b1 extends CameraView {
 
     public static void t(boolean z9) {
         int i7 = 0;
-        boolean p10 = p(org.telegram.messenger.t0.f25555b, false);
-        if (qp.s1(p10.f24459s0).I3) {
+        boolean p10 = p(org.telegram.messenger.t0.f25563b, false);
+        if (qp.s1(p10.f24467s0).I3) {
             try {
                 TLRPC.TL_help_saveAppLog tL_help_saveAppLog = new TLRPC.TL_help_saveAppLog();
                 TLRPC.TL_inputAppEvent tL_inputAppEvent = new TLRPC.TL_inputAppEvent();
-                tL_inputAppEvent.time = ConnectionsManager.getInstance(p10.f24459s0).getCurrentTime();
+                tL_inputAppEvent.time = ConnectionsManager.getInstance(p10.f24467s0).getCurrentTime();
                 tL_inputAppEvent.type = "android_dual_camera";
                 TLRPC.TL_jsonObject tL_jsonObject = new TLRPC.TL_jsonObject();
                 TLRPC.TL_jsonObjectValue tL_jsonObjectValue = new TLRPC.TL_jsonObjectValue();
@@ -156,11 +156,11 @@ public abstract class b1 extends CameraView {
                 }
                 tL_inputAppEvent.peer = (z9 ? 1 : 0) | i7;
                 tL_help_saveAppLog.events.add(tL_inputAppEvent);
-                ConnectionsManager.getInstance(p10.f24459s0).sendRequest(tL_help_saveAppLog, new di.u5(4));
+                ConnectionsManager.getInstance(p10.f24467s0).sendRequest(tL_help_saveAppLog, new di.u5(4));
             } catch (Exception unused) {
             }
         }
-        org.telegram.messenger.t0.f25554a.getClass();
+        org.telegram.messenger.t0.f25562a.getClass();
     }
 
     @Override
@@ -200,7 +200,7 @@ public abstract class b1 extends CameraView {
                 edit.putBoolean("dual_available", false).apply();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getContext());
                 String M0 = hd.M0(2131751341, null);
-                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                 u1Var.R = M0;
                 u1Var.T = hd.M0(2131751342, null);
                 jg.g.C(null, 2131747830, alertDialog$Builder, null);
@@ -235,7 +235,7 @@ public abstract class b1 extends CameraView {
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
         if (this.E) {
-            if (q(getContext()) && qp.e1().getBoolean("dualcam", p(org.telegram.messenger.t0.f25555b, false))) {
+            if (q(getContext()) && qp.e1().getBoolean("dualcam", p(org.telegram.messenger.t0.f25563b, false))) {
                 this.H = true;
                 w();
                 this.dual = true;

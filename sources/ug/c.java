@@ -18,25 +18,25 @@ import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.sq0;
 public final class c extends oj0 {
-    public final f6 f56438c;
+    public final f6 f56437c;
     public final int d;
-    public final int f56439e;
-    public final ArrayList f56440f;
+    public final int f56438e;
+    public final ArrayList f56439f;
     public final y0 h;
-    public int f56441n;
-    public b f56442r;
-    public final boolean f56443s;
+    public int f56440n;
+    public b f56441r;
+    public final boolean f56442s;
 
     public c(int i7, f6 f6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f56440f = arrayList;
-        this.f56443s = true;
-        this.f56438c = f6Var;
+        this.f56439f = arrayList;
+        this.f56442s = true;
+        this.f56437c = f6Var;
         y0 y0Var = new y0(k6.zk, k6.Ak, k6.Bk, k6.Ck, f6Var);
         this.h = y0Var;
-        y0Var.f56785o = 0.0f;
-        y0Var.f56786p = 0.0f;
-        y0Var.f56787q = 1.0f;
+        y0Var.f56784o = 0.0f;
+        y0Var.f56785p = 0.0f;
+        y0Var.f56786q = 1.0f;
         qp s12 = qp.s1(i7);
         arrayList.add(new d(s12.D4, s12.E4, hd.M0(2131749378, null), hd.a0(null, null, 2131749379, Integer.valueOf(s12.E4))));
         arrayList.add(new d(s12.P4, s12.Q4, hd.M0(2131747247, null), hd.a0(null, null, 2131747248, Integer.valueOf(s12.Q4))));
@@ -48,9 +48,9 @@ public final class c extends oj0 {
         arrayList.add(new d(s12.L4, s12.M4, hd.M0(2131750612, null), hd.a0(null, null, 2131750613, Integer.valueOf(s12.M4))));
         arrayList.add(new d(s12.N4, s12.O4, hd.M0(2131752215, null), hd.a0(null, null, 2131752216, Integer.valueOf(s12.O4))));
         arrayList.add(new d(3, 4, hd.M0(2131751810, null), hd.a0(null, null, 2131751811, 4)));
-        arrayList.add(new d(s12.f24914w4, s12.f24924x4, hd.M0(2131745316, null), hd.a0(null, null, 2131745317, Integer.valueOf(s12.f24924x4))));
+        arrayList.add(new d(s12.f24922w4, s12.f24932x4, hd.M0(2131745316, null), hd.a0(null, null, 2131745317, Integer.valueOf(s12.f24932x4))));
         this.d = 1;
-        this.f56439e = 1;
+        this.f56438e = 1;
         this.d = arrayList.size() + 1;
     }
 
@@ -77,14 +77,14 @@ public final class c extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f56956f == 0) {
-            e eVar = (e) d1Var.f56952a;
-            int i10 = i7 - this.f56439e;
-            ArrayList arrayList = this.f56440f;
+        if (d1Var.f56955f == 0) {
+            e eVar = (e) d1Var.f56951a;
+            int i10 = i7 - this.f56438e;
+            ArrayList arrayList = this.f56439f;
             eVar.a((d) arrayList.get(i10));
-            LimitPreviewView limitPreviewView = eVar.f56458c;
-            limitPreviewView.F = ((d) arrayList.get(i10)).f56450e;
-            limitPreviewView.f31448c = this.f56441n;
+            LimitPreviewView limitPreviewView = eVar.f56457c;
+            limitPreviewView.F = ((d) arrayList.get(i10)).f56449e;
+            limitPreviewView.f31449c = this.f56440n;
         }
     }
 
@@ -92,19 +92,19 @@ public final class c extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         v3 v3Var;
         Context context = viewGroup.getContext();
-        f6 f6Var = this.f56438c;
+        f6 f6Var = this.f56437c;
         if (i7 != 1) {
             if (i7 != 2) {
                 ?? eVar = new e(context, f6Var);
-                b bVar = this.f56442r;
-                LimitPreviewView limitPreviewView = eVar.f56458c;
+                b bVar = this.f56441r;
+                LimitPreviewView limitPreviewView = eVar.f56457c;
                 limitPreviewView.setParentViewForGradien(bVar);
                 limitPreviewView.setStaticGradinet(this.h);
                 v3Var = eVar;
             } else {
                 v3Var = new v3(context, 16);
             }
-        } else if (this.f56443s) {
+        } else if (this.f56442s) {
             ?? sq0Var = new sq0(context, 18);
             LinearLayout f10 = k5.f(context, 0);
             ImageView imageView = new ImageView(context);

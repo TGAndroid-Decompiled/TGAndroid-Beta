@@ -2,50 +2,50 @@ package z3;
 
 import h2.x;
 public final class a {
-    public final int f59480a;
-    public int f59481b;
-    public int f59482c;
+    public final int f59479a;
+    public int f59480b;
+    public int f59481c;
     public long d;
-    public final boolean f59483e;
-    public final x f59484f;
-    public final x f59485g;
+    public final boolean f59482e;
+    public final x f59483f;
+    public final x f59484g;
     public int h;
-    public int f59486i;
+    public int f59485i;
 
     public a(x xVar, x xVar2, boolean z9) {
-        this.f59485g = xVar;
-        this.f59484f = xVar2;
-        this.f59483e = z9;
+        this.f59484g = xVar;
+        this.f59483f = xVar2;
+        this.f59482e = z9;
         xVar2.N(12);
-        this.f59480a = xVar2.E();
+        this.f59479a = xVar2.E();
         xVar.N(12);
-        this.f59486i = xVar.E();
+        this.f59485i = xVar.E();
         f3.b.b("first_chunk must be 1", xVar.m() == 1);
-        this.f59481b = -1;
+        this.f59480b = -1;
     }
 
     public final boolean a() {
         long C;
         int i7;
-        int i10 = this.f59481b + 1;
-        this.f59481b = i10;
-        if (i10 == this.f59480a) {
+        int i10 = this.f59480b + 1;
+        this.f59480b = i10;
+        if (i10 == this.f59479a) {
             return false;
         }
-        boolean z9 = this.f59483e;
-        x xVar = this.f59484f;
+        boolean z9 = this.f59482e;
+        x xVar = this.f59483f;
         if (z9) {
             C = xVar.G();
         } else {
             C = xVar.C();
         }
         this.d = C;
-        if (this.f59481b == this.h) {
-            x xVar2 = this.f59485g;
-            this.f59482c = xVar2.E();
+        if (this.f59480b == this.h) {
+            x xVar2 = this.f59484g;
+            this.f59481c = xVar2.E();
             xVar2.O(4);
-            int i11 = this.f59486i - 1;
-            this.f59486i = i11;
+            int i11 = this.f59485i - 1;
+            this.f59485i = i11;
             if (i11 > 0) {
                 i7 = xVar2.E() - 1;
             } else {

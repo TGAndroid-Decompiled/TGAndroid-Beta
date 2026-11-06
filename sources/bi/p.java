@@ -35,7 +35,7 @@ public final class p implements TextView.OnEditorActionListener {
                     if (TextUtils.isEmpty(q0Var.f17501f.getText())) {
                         q0Var.D = null;
                         q0Var.d.b();
-                        q0Var.f17499c.f36781f3.O(true);
+                        q0Var.f17499c.f37160f3.O(true);
                     } else {
                         org.telegram.messenger.g0.h3(k0Var);
                     }
@@ -57,10 +57,10 @@ public final class p implements TextView.OnEditorActionListener {
                 org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f4498b;
                 if (keyEvent != null) {
                     if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.g0.v1(r0Var.f28425e);
+                        org.telegram.messenger.g0.v1(r0Var.f28426e);
                         org.telegram.ui.ActionBar.n0 n0Var = r0Var.H;
                         if (n0Var != null) {
-                            n0Var.k(r0Var.f28425e);
+                            n0Var.k(r0Var.f28426e);
                             return false;
                         }
                         return false;

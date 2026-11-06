@@ -54,7 +54,7 @@ public final class g1 extends LinearLayout implements a6 {
         if (z9) {
             N = r6.L(0.5f, i7);
         } else {
-            N = r6.N(k6.f28258z6);
+            N = r6.N(k6.f28259z6);
         }
         r6.W(textView2, N, f6Var);
         linearLayout.addView(textView2, ha.o(-1, -2));
@@ -71,12 +71,12 @@ public final class g1 extends LinearLayout implements a6 {
             ShapeDrawable d02 = k6.d0(org.telegram.messenger.g0.L(28.0f), k6.w0(k6.Ci, this.f16728b));
             this.f16727a = d02;
             xp xpVar = new xp(d02, getContext().getResources().getDrawable(2131231830).mutate());
-            xpVar.f40322s = org.telegram.messenger.g0.L(-0.66f);
-            xpVar.f40323w = 0;
+            xpVar.f40338s = org.telegram.messenger.g0.L(-0.66f);
+            xpVar.f40339w = 0;
             int L = org.telegram.messenger.g0.L(20.0f);
             int L2 = org.telegram.messenger.g0.L(20.0f);
-            xpVar.f40318e = L;
-            xpVar.f40319f = L2;
+            xpVar.f40334e = L;
+            xpVar.f40335f = L2;
             l9Var.setImageDrawable(xpVar);
             textView2.setText(hd.a0(null, null, 2131749343, str));
             textView.setText(hd.M0(2131749344, null));
@@ -88,8 +88,8 @@ public final class g1 extends LinearLayout implements a6 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.a0(null, null, 2131749341, str + "@" + t3.K(chat, false)));
         spannableStringBuilder.append((CharSequence) "  d");
         ez ezVar = new ez(8);
-        ezVar.f45443f = k6.x0(null, k6.zk, false);
-        ezVar.f45444n = false;
+        ezVar.f45442f = k6.x0(null, k6.zk, false);
+        ezVar.f45443n = false;
         spannableStringBuilder.setSpan(ezVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView.setText(hd.M0(2131749342, null));

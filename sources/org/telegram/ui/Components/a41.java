@@ -1,56 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
+import android.graphics.Typeface;
 import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-import org.telegram.tgnet.TLObject;
-public class a41 extends URLSpan {
-    public final boolean f31676a;
-    public final ty0 f31677b;
-    public TLObject f31678c;
-    public String d;
+import android.text.style.MetricAffectingSpan;
+public final class a41 extends MetricAffectingSpan {
+    public final CharSequence f31691a;
+    public final int f31692b;
+    public final int f31693c;
+    public final byte d;
+    public final uy0 f31694e;
 
-    public a41(String str) {
-        this(str, (ty0) null);
+    public a41(CharSequence charSequence, int i7, int i10, byte b10, uy0 uy0Var) {
+        this.f31691a = charSequence;
+        this.f31692b = i7;
+        this.f31693c = i10;
+        this.d = b10;
+        this.f31694e = uy0Var;
     }
 
     @Override
-    public void onClick(View view) {
-        String url = getURL();
-        if (url.startsWith("@")) {
-            vf.c.q(view.getContext(), Uri.parse("https://t.me/" + url.substring(1)), true, true);
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.iz.W0 - 1));
+        byte b10 = this.d;
+        if (b10 == 2) {
+            textPaint.setColor(-1);
+        } else if (b10 == 1) {
+            textPaint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Tc, false));
+        } else {
+            textPaint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Sc, false));
+        }
+        uy0 uy0Var = this.f31694e;
+        if (uy0Var != null) {
+            uy0Var.a(textPaint);
             return;
         }
-        vf.c.t(view.getContext(), url);
+        textPaint.setTypeface(Typeface.MONOSPACE);
+        textPaint.setUnderlineText(false);
     }
 
     @Override
-    public void updateDrawState(TextPaint textPaint) {
-        boolean z9;
-        int i7 = textPaint.linkColor;
-        int color = textPaint.getColor();
-        super.updateDrawState(textPaint);
-        ty0 ty0Var = this.f31677b;
-        if (ty0Var != null) {
-            ty0Var.a(textPaint);
-        }
-        if (i7 == color && !this.f31676a) {
-            z9 = true;
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTextSize(org.telegram.messenger.g0.L(org.telegram.messenger.iz.W0 - 1));
+        textPaint.setFlags(textPaint.getFlags() | 128);
+        uy0 uy0Var = this.f31694e;
+        if (uy0Var != null) {
+            uy0Var.a(textPaint);
         } else {
-            z9 = false;
+            textPaint.setTypeface(Typeface.MONOSPACE);
         }
-        textPaint.setUnderlineText(z9);
-    }
-
-    public a41(String str, int i7) {
-        this(str, (ty0) null);
-        this.f31676a = true;
-    }
-
-    public a41(String str, ty0 ty0Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f31676a = false;
-        this.f31677b = ty0Var;
     }
 }

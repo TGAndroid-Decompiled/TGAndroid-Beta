@@ -5,15 +5,15 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC;
 public final class tf implements Runnable {
-    public final int f25605a;
-    public final ui f25606b;
-    public final boolean f25607c;
+    public final int f25613a;
+    public final ui f25614b;
+    public final boolean f25615c;
     public final int d;
 
     public tf(ui uiVar, boolean z9, int i7, int i10) {
-        this.f25605a = i10;
-        this.f25606b = uiVar;
-        this.f25607c = z9;
+        this.f25613a = i10;
+        this.f25614b = uiVar;
+        this.f25615c = z9;
         this.d = i7;
     }
 
@@ -21,21 +21,21 @@ public final class tf implements Runnable {
     public final void run() {
         int i7;
         NativeByteBuffer byteBufferValue;
-        switch (this.f25605a) {
+        switch (this.f25613a) {
             case 0:
-                ui uiVar = this.f25606b;
-                boolean[] zArr = uiVar.f25838w0;
-                boolean z9 = this.f25607c;
+                ui uiVar = this.f25614b;
+                boolean[] zArr = uiVar.f25846w0;
+                boolean z9 = this.f25615c;
                 zArr[z9 ? 1 : 0] = false;
-                uiVar.f25841x0[z9 ? 1 : 0] = true;
-                uiVar.f25823q0[z9 ? 1 : 0] = this.d;
+                uiVar.f25849x0[z9 ? 1 : 0] = true;
+                uiVar.f25831q0[z9 ? 1 : 0] = this.d;
                 return;
             case 1:
-                this.f25606b.f25823q0[this.f25607c ? 1 : 0] = this.d;
+                this.f25614b.f25831q0[this.f25615c ? 1 : 0] = this.d;
                 return;
             default:
-                ui uiVar2 = this.f25606b;
-                boolean z10 = this.f25607c;
+                ui uiVar2 = this.f25614b;
+                boolean z10 = this.f25615c;
                 int i10 = this.d;
                 if (z10) {
                     i7 = 2;
@@ -59,7 +59,7 @@ public final class tf implements Runnable {
                     }
                 }
                 try {
-                    SQLiteCursor queryFinalized = uiVar2.getMessagesStorage().f26690b.queryFinalized("SELECT document FROM web_recent_v3 WHERE type = " + i7 + " ORDER BY date DESC", new Object[0]);
+                    SQLiteCursor queryFinalized = uiVar2.getMessagesStorage().f26698b.queryFinalized("SELECT document FROM web_recent_v3 WHERE type = " + i7 + " ORDER BY date DESC", new Object[0]);
                     ArrayList arrayList = new ArrayList();
                     while (queryFinalized.next()) {
                         if (!queryFinalized.isNull(0) && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {

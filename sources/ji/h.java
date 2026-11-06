@@ -51,14 +51,14 @@ public final class h extends FrameLayout implements a6 {
     public h(int i7, Context context, f6 f6Var) {
         super(context);
         dh.c cVar;
-        this.D = r6.f28475b;
+        this.D = r6.f28476b;
         this.f17084a = f6Var;
         this.f17085b = i7;
         if (Build.VERSION.SDK_INT >= 31) {
             ri.f fVar = new ri.f(null);
             this.f17092w = fVar;
             fVar.m(g0.L(7.0f), o0.a());
-            fVar.f54482n = true;
+            fVar.f54481n = true;
             cVar = new dh.c(fVar, fVar, fVar);
         } else {
             this.f17092w = null;
@@ -73,7 +73,7 @@ public final class h extends FrameLayout implements a6 {
         addView(l9Var, ha.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
         wp wpVar = new wp(2131231978, 0);
         this.f17091s = wpVar;
-        wpVar.f40062r = g0.L(2.0f);
+        wpVar.f40070r = g0.L(2.0f);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(g0.o());
@@ -257,7 +257,7 @@ public final class h extends FrameLayout implements a6 {
         dVar.setPadding(g0.L(15.0f), 0, g0.L(15.0f), 0);
         dVar.f();
         dVar.e();
-        int i11 = k6.f28258z6;
+        int i11 = k6.f28259z6;
         dVar.setColor(k6.r1(0.14f, k6.w0(i11, f6Var)));
         dVar.setTextColor(k6.x0(null, k6.G6, false));
         if (dVar.getBackground() != null) {
@@ -398,7 +398,7 @@ public final class h extends FrameLayout implements a6 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i7 = this.D;
-        int i10 = r6.f28475b;
+        int i10 = r6.f28476b;
         if (i7 != i10) {
             this.D = i10;
             try {
@@ -412,7 +412,7 @@ public final class h extends FrameLayout implements a6 {
         }
         if (this.f17094y) {
             canvas2 = canvas;
-            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, k6.f27971k0);
+            canvas2.drawLine(g0.L(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, k6.f27972k0);
         } else {
             canvas2 = canvas;
         }
@@ -430,7 +430,7 @@ public final class h extends FrameLayout implements a6 {
             int L2 = (L * 2) + g0.L(52.0f);
             RecordingCanvas i7 = fVar.i(L2, L2);
             i7.translate(-left, -top);
-            i7.drawColor(k6.w0(k6.f27848d6, this.f17084a));
+            i7.drawColor(k6.w0(k6.f27849d6, this.f17084a));
             i7.save();
             float f10 = L2 / 2.0f;
             i7.scale(1.125f, 1.125f, f10, f10);
@@ -454,7 +454,7 @@ public final class h extends FrameLayout implements a6 {
         int i7 = k6.G6;
         f6 f6Var = this.f17084a;
         this.f17088f.setTextColor(k6.w0(i7, f6Var));
-        int i10 = k6.f28258z6;
+        int i10 = k6.f28259z6;
         this.h.setTextColor(k6.w0(i10, f6Var));
         this.f17089n.setTextColor(k6.w0(i10, f6Var));
     }

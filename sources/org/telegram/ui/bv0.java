@@ -22,11 +22,11 @@ public final class bv0 extends org.telegram.ui.Components.y4 {
         int r12;
         ProfileActivity profileActivity = this.U0;
         profileActivity.E5 = i7;
-        int f10 = i0.a.f(profileActivity.A5, i7, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28240y6, profileActivity.f41866z0));
+        int f10 = i0.a.f(profileActivity.A5, i7, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28241y6, profileActivity.f41865z0));
         super.setTextColor(f10);
-        uw0 uw0Var = profileActivity.f41865y6;
-        if (uw0Var != null && uw0Var.f50514c != (r12 = org.telegram.ui.ActionBar.k6.r1(1.4f, org.telegram.ui.ActionBar.k6.b(-0.02f, 0.15f, f10)))) {
-            uw0Var.f50514c = r12;
+        uw0 uw0Var = profileActivity.f41864y6;
+        if (uw0Var != null && uw0Var.f50513c != (r12 = org.telegram.ui.ActionBar.k6.r1(1.4f, org.telegram.ui.ActionBar.k6.b(-0.02f, 0.15f, f10)))) {
+            uw0Var.f50513c = r12;
             uw0Var.invalidateSelf();
         }
     }

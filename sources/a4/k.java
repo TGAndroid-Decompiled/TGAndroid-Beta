@@ -23,8 +23,8 @@ import m4.g0;
 import m4.h0;
 import m6.n;
 import org.telegram.ui.Cells.f1;
-import org.telegram.ui.Components.bx0;
-import org.telegram.ui.Components.zw0;
+import org.telegram.ui.Components.ax0;
+import org.telegram.ui.Components.cx0;
 public class k implements a0 {
     public final int f190a;
     public int f191b;
@@ -407,7 +407,7 @@ public class k implements a0 {
                                     i12 = a(i12, str);
                                 } else {
                                     if (charAt2 < 'u') {
-                                        c10 = qe.c.f53998a[charAt2];
+                                        c10 = qe.c.f53997a[charAt2];
                                     } else {
                                         c10 = 0;
                                     }
@@ -734,17 +734,17 @@ public class k implements a0 {
     }
 
     public void x(int i7) {
-        zw0[] zw0VarArr;
+        ax0[] ax0VarArr;
         int[] iArr = (int[]) this.f193e;
         if (iArr[i7] != 0) {
             return;
         }
         iArr[i7] = 1;
-        for (zw0 zw0Var : ((zw0[][]) this.d)[i7]) {
-            x(zw0Var.f41123a.f33654b);
+        for (ax0 ax0Var : ((ax0[][]) this.d)[i7]) {
+            x(ax0Var.f31938a.f34021b);
             int i10 = this.f191b;
             this.f191b = i10 - 1;
-            ((zw0[]) this.f192c)[i10] = zw0Var;
+            ((ax0[]) this.f192c)[i10] = ax0Var;
         }
         iArr[i7] = 2;
     }
@@ -822,31 +822,31 @@ public class k implements a0 {
         this.f191b = i7;
     }
 
-    public k(bx0 bx0Var, zw0[] zw0VarArr) {
+    public k(cx0 cx0Var, ax0[] ax0VarArr) {
         this.f190a = 6;
-        this.f194f = bx0Var;
-        int length = zw0VarArr.length;
-        this.f192c = new zw0[length];
+        this.f194f = cx0Var;
+        int length = ax0VarArr.length;
+        this.f192c = new ax0[length];
         this.f191b = length - 1;
-        int e10 = bx0Var.e() + 1;
-        zw0[][] zw0VarArr2 = new zw0[e10];
+        int e10 = cx0Var.e() + 1;
+        ax0[][] ax0VarArr2 = new ax0[e10];
         int[] iArr = new int[e10];
-        for (zw0 zw0Var : zw0VarArr) {
-            int i7 = zw0Var.f41123a.f33653a;
+        for (ax0 ax0Var : ax0VarArr) {
+            int i7 = ax0Var.f31938a.f34020a;
             iArr[i7] = iArr[i7] + 1;
         }
         for (int i10 = 0; i10 < e10; i10++) {
-            zw0VarArr2[i10] = new zw0[iArr[i10]];
+            ax0VarArr2[i10] = new ax0[iArr[i10]];
         }
         Arrays.fill(iArr, 0);
-        for (zw0 zw0Var2 : zw0VarArr) {
-            int i11 = zw0Var2.f41123a.f33653a;
-            zw0[] zw0VarArr3 = zw0VarArr2[i11];
+        for (ax0 ax0Var2 : ax0VarArr) {
+            int i11 = ax0Var2.f31938a.f34020a;
+            ax0[] ax0VarArr3 = ax0VarArr2[i11];
             int i12 = iArr[i11];
             iArr[i11] = i12 + 1;
-            zw0VarArr3[i12] = zw0Var2;
+            ax0VarArr3[i12] = ax0Var2;
         }
-        this.d = zw0VarArr2;
-        this.f193e = new int[((bx0) this.f194f).e() + 1];
+        this.d = ax0VarArr2;
+        this.f193e = new int[((cx0) this.f194f).e() + 1];
     }
 }

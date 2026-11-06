@@ -1,14 +1,14 @@
 package org.telegram.ui.Wallet;
 public final class j0 {
-    public final String f42635a;
-    public int f42636b;
-    public long f42637c = -1;
+    public final String f42634a;
+    public int f42635b;
+    public long f42636c = -1;
     public boolean d = true;
-    public boolean f42638e = false;
-    public final r0 f42639f;
+    public boolean f42637e = false;
+    public final r0 f42638f;
 
     public j0(r0 r0Var) {
-        this.f42639f = r0Var;
-        this.f42635a = r0Var.f43084c;
+        this.f42638f = r0Var;
+        this.f42634a = r0Var.f43083c;
     }
 }

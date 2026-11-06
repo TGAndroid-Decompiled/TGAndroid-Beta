@@ -26,7 +26,7 @@ public final class qq0 extends ql0 {
         er0 er0Var;
         boolean z10;
         xs0 xs0Var = this.I;
-        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40400p0;
+        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40416p0;
         if (r0Var == null) {
             return false;
         }
@@ -49,7 +49,7 @@ public final class qq0 extends ql0 {
             return true;
         }
         if (i7 == 12 && (er0Var = xs0Var.V) != null) {
-            org.telegram.ui.bn bnVar = er0Var.f44858a;
+            org.telegram.ui.bn bnVar = er0Var.f44857a;
             org.telegram.ui.ak akVar = bnVar.C1;
             if (akVar != null) {
                 akVar.e(o0Var, true);
@@ -60,7 +60,7 @@ public final class qq0 extends ql0 {
                 z10 = true;
             }
             bnVar.G3 = z10;
-            bnVar.f43922q0 = z10;
+            bnVar.f43921q0 = z10;
             bnVar.Lc(false);
             bnVar.md();
         }
@@ -81,14 +81,14 @@ public final class qq0 extends ql0 {
             z10 = false;
         }
         g(z10);
-        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40397o0;
+        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40413o0;
         if (r0Var != null) {
-            if (a() && xs0Var.f40424x1.getUserConfig().q()) {
+            if (a() && xs0Var.f40440x1.getUserConfig().q()) {
                 i10 = 2131232443;
             } else {
                 i10 = 2131232486;
             }
-            ch0 ch0Var = r0Var.f28451y;
+            ch0 ch0Var = r0Var.f28452y;
             if (ch0Var != null && r0Var.D != i10) {
                 if (z9) {
                     r0Var.D = i10;
@@ -99,7 +99,7 @@ public final class qq0 extends ql0 {
                 }
             }
         }
-        org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40400p0;
+        org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40416p0;
         if (r0Var2 != null) {
             if (qq0Var != null && qq0Var.a() && xs0Var.getSelectedTab() == 11) {
                 i7 = 2131745869;

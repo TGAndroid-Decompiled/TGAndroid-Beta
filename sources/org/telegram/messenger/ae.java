@@ -43,10 +43,10 @@ public final class ae implements Runnable {
         if (!z10 && !z11) {
             c10 = 1;
         } else {
-            boolean z13 = lfVar.f23876b.W;
+            boolean z13 = lfVar.f23883b.W;
             synchronized (mediaController.f21250b) {
                 c10 = 1;
-                lfVar.f23876b.W = false;
+                lfVar.f23883b.W = false;
             }
             mediaController.f21251b0.remove(lfVar);
             mediaController.Z.remove(lfVar);
@@ -59,9 +59,9 @@ public final class ae implements Runnable {
             mediaController.y0();
         }
         if (z10) {
-            qs f11 = qs.f(lfVar.f23877c);
-            int i7 = qs.f24964c2;
-            ij ijVar = lfVar.f23875a;
+            qs f11 = qs.f(lfVar.f23884c);
+            int i7 = qs.f24972c2;
+            ij ijVar = lfVar.f23882a;
             String file2 = file.toString();
             Float valueOf = Float.valueOf(f10);
             Long valueOf2 = Long.valueOf(j10);
@@ -74,9 +74,9 @@ public final class ae implements Runnable {
             return;
         }
         if (z12) {
-            qs f12 = qs.f(lfVar.f23877c);
-            int i10 = qs.f24952a2;
-            ij ijVar2 = lfVar.f23875a;
+            qs f12 = qs.f(lfVar.f23884c);
+            int i10 = qs.f24960a2;
+            ij ijVar2 = lfVar.f23882a;
             String file3 = file.toString();
             Float valueOf3 = Float.valueOf(f10);
             Long valueOf4 = Long.valueOf(j10);
@@ -90,9 +90,9 @@ public final class ae implements Runnable {
         } else {
             c11 = 3;
         }
-        qs f13 = qs.f(lfVar.f23877c);
-        int i11 = qs.f24958b2;
-        ij ijVar3 = lfVar.f23875a;
+        qs f13 = qs.f(lfVar.f23884c);
+        int i11 = qs.f24966b2;
+        ij ijVar3 = lfVar.f23882a;
         String file4 = file.toString();
         Long valueOf5 = Long.valueOf(j11);
         if (z11) {

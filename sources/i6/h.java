@@ -264,7 +264,7 @@ public final class h {
         if (aVar == null) {
             return null;
         }
-        return aVar.f53389b;
+        return aVar.f53387b;
     }
 
     public final void e(Bitmap bitmap, int i7) {
@@ -281,7 +281,7 @@ public final class h {
         }
         a0 a0Var2 = this.f15388p;
         MediaMetadataCompat mediaMetadataCompat = null;
-        if (a0Var2 != null && (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var2.f1764c).f57563b).f1777a.getMetadata()) != null) {
+        if (a0Var2 != null && (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var2.f1764c).f57562b).f1777a.getMetadata()) != null) {
             a0.f fVar = MediaMetadataCompat.d;
             Parcel obtain = Parcel.obtain();
             metadata.writeToParcel(obtain, 0);
@@ -480,7 +480,7 @@ public final class h {
                     l.c(1, "com.google.android.gms.cast.metadata.SUBTITLE");
                     String string2 = bundle2.getString("com.google.android.gms.cast.metadata.SUBTITLE");
                     a0 a0Var3 = this.f15388p;
-                    if (a0Var3 == null || (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var3.f1764c).f57563b).f1777a.getMetadata()) == null) {
+                    if (a0Var3 == null || (metadata = ((android.support.v4.media.session.h) ((wf.b) a0Var3.f1764c).f57562b).f1777a.getMetadata()) == null) {
                         createFromParcel = null;
                     } else {
                         a0.f fVar2 = MediaMetadataCompat.d;

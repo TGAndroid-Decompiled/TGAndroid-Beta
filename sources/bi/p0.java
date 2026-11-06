@@ -2,28 +2,28 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
 import org.telegram.ui.Components.w31;
-public final class p0 extends v31 {
+import org.telegram.ui.Components.x31;
+public final class p0 extends w31 {
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
-    public static w31 i(String str, CharSequence charSequence, int i7) {
-        w31 K = w31.K(p0.class);
-        K.f54441b = false;
-        K.f39843z = i7;
-        K.f39830l = str;
-        K.f39831m = charSequence;
+    public static x31 i(String str, CharSequence charSequence, int i7) {
+        x31 K = x31.K(p0.class);
+        K.f54440b = false;
+        K.f40172z = i7;
+        K.f40159l = str;
+        K.f40160m = charSequence;
         return K;
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
-        ((q0) view).a(w31Var.f39843z, w31Var.f39830l, w31Var.f39831m);
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
+        ((q0) view).a(x31Var.f40172z, x31Var.f40159l, x31Var.f40160m);
     }
 
     @Override

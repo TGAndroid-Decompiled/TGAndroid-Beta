@@ -97,7 +97,7 @@ public final class v0 implements v10 {
                 TL_account.reportProfilePhoto reportprofilephoto = new TL_account.reportProfilePhoto();
                 reportprofilephoto.peer = qp.s1(i15).j1(j3);
                 TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                tL_inputPhoto.f26971id = photo.f26976id;
+                tL_inputPhoto.f26972id = photo.f26977id;
                 tL_inputPhoto.file_reference = photo.file_reference;
                 tL_inputPhoto.access_hash = photo.access_hash;
                 reportprofilephoto.photo_id = tL_inputPhoto;
@@ -131,7 +131,7 @@ public final class v0 implements v10 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j10;
-                        f2Var.f42464f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new p1(f2Var, c20Var, j10, i16, 1));
+                        f2Var.f42463f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new p1(f2Var, c20Var, j10, i16, 1));
                         return;
                     }
                     f2Var.e(i16, j10, c20Var);
@@ -148,7 +148,7 @@ public final class v0 implements v10 {
                 if (s9Var != null) {
                     int i17 = this.f1656b;
                     p10.i(i17);
-                    long o4 = m5.o(s9Var.f25433e.peer);
+                    long o4 = m5.o(s9Var.f25441e.peer);
                     long j11 = this.f1657c;
                     if (j11 != o4 && j11 != 0 && o4 != 0) {
                         bi.d0 d0Var = new bi.d0(context2, i17, s9Var, j11, runnable);
@@ -169,15 +169,15 @@ public final class v0 implements v10 {
                         TextView textView = new TextView(context2);
                         qs.i(textView);
                         textView.setText(hd.M0(2131750304, null));
-                        int i18 = k6.f27956j5;
+                        int i18 = k6.f27957j5;
                         k5.n(textView, i18, f6Var, 1, 20.0f);
-                        if (hd.f22871a0) {
+                        if (hd.f22878a0) {
                             i12 = 5;
                         } else {
                             i12 = 3;
                         }
                         textView.setGravity(i12);
-                        if (hd.f22871a0) {
+                        if (hd.f22878a0) {
                             i13 = 5;
                         } else {
                             i13 = 3;
@@ -197,11 +197,11 @@ public final class v0 implements v10 {
                         alertDialog$Builder.o(f10);
                         alertDialog$Builder.k(hd.M0(2131751771, null), new u5.e(d0Var, 13));
                         alertDialog$Builder.h(hd.M0(2131752589, null), null);
-                        alertDialog$Builder.f27292a.show();
+                        alertDialog$Builder.f27293a.show();
                         return;
-                    } else if (s9Var.f25433e.bid_date > 0 && !s9Var.f()) {
+                    } else if (s9Var.f25441e.bid_date > 0 && !s9Var.f()) {
                         zh.m mVar = new zh.m(context2, f6Var, null, s9Var);
-                        mVar.f60347f2 = runnable;
+                        mVar.f60346f2 = runnable;
                         mVar.show();
                         return;
                     } else {

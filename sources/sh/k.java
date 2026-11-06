@@ -6,12 +6,12 @@ import org.telegram.messenger.g0;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.lz;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.v31;
-public final class k extends v31 {
-    public static final int f55230b = 0;
+import org.telegram.ui.Components.w31;
+public final class k extends w31 {
+    public static final int f55229b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override

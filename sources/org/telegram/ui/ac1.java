@@ -7,18 +7,18 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.messenger.voip.VoIPServiceState;
 public final class ac1 extends LinearLayout {
-    public final ec1 f43625a;
+    public final ec1 f43624a;
 
     public ac1(ec1 ec1Var, Activity activity) {
         super(activity);
-        this.f43625a = ec1Var;
+        this.f43624a = ec1Var;
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         VoIPServiceState sharedState = VoIPService.getSharedState();
-        CharSequence text = this.f43625a.E.getText();
+        CharSequence text = this.f43624a.E.getText();
         if (sharedState != null && !TextUtils.isEmpty(text)) {
             StringBuilder sb2 = new StringBuilder(text);
             sb2.append(", ");

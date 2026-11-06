@@ -3,38 +3,38 @@ package r2;
 import c8.p0;
 import java.util.Arrays;
 public final class e extends y2.f {
-    public byte[] f54197s;
-    public volatile boolean f54198w;
-    public byte[] f54199x;
+    public byte[] f54196s;
+    public volatile boolean f54197w;
+    public byte[] f54198x;
 
     @Override
     public final void a() {
         try {
-            this.f58806r.open(this.f58801b);
+            this.f58805r.open(this.f58800b);
             int i7 = 0;
             int i10 = 0;
-            while (i7 != -1 && !this.f54198w) {
-                byte[] bArr = this.f54197s;
+            while (i7 != -1 && !this.f54197w) {
+                byte[] bArr = this.f54196s;
                 if (bArr.length < i10 + 16384) {
-                    this.f54197s = Arrays.copyOf(bArr, bArr.length + 16384);
+                    this.f54196s = Arrays.copyOf(bArr, bArr.length + 16384);
                 }
-                i7 = this.f58806r.read(this.f54197s, i10, 16384);
+                i7 = this.f58805r.read(this.f54196s, i10, 16384);
                 if (i7 != -1) {
                     i10 += i7;
                 }
             }
-            if (!this.f54198w) {
-                this.f54199x = Arrays.copyOf(this.f54197s, i10);
+            if (!this.f54197w) {
+                this.f54198x = Arrays.copyOf(this.f54196s, i10);
             }
-            p0.a(this.f58806r);
+            p0.a(this.f58805r);
         } catch (Throwable th2) {
-            p0.a(this.f58806r);
+            p0.a(this.f58805r);
             throw th2;
         }
     }
 
     @Override
     public final void q0() {
-        this.f54198w = true;
+        this.f54197w = true;
     }
 }

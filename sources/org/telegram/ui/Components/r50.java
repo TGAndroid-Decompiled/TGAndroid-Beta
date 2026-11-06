@@ -5,14 +5,14 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class r50 implements Runnable {
-    public final int f37553a;
-    public final s50 f37554b;
-    public final String f37555c;
+    public final int f37497a;
+    public final s50 f37498b;
+    public final String f37499c;
 
     public r50(s50 s50Var, String str, int i7) {
-        this.f37553a = i7;
-        this.f37554b = s50Var;
-        this.f37555c = str;
+        this.f37497a = i7;
+        this.f37498b = s50Var;
+        this.f37499c = str;
     }
 
     @Override
@@ -24,18 +24,18 @@ public final class r50 implements Runnable {
         boolean z9;
         char c10;
         Object obj;
-        switch (this.f37553a) {
+        switch (this.f37497a) {
             case 0:
-                s50 s50Var = this.f37554b;
-                String str2 = this.f37555c;
+                s50 s50Var = this.f37498b;
+                String str2 = this.f37499c;
                 s50Var.getClass();
                 org.telegram.messenger.g0.h3(new r50(s50Var, str2, 1));
                 return;
             case 1:
-                s50 s50Var2 = this.f37554b;
-                String str3 = this.f37555c;
-                jg.z1 z1Var = s50Var2.f37893e;
-                org.telegram.ui.wr wrVar = s50Var2.f37895n.d2;
+                s50 s50Var2 = this.f37498b;
+                String str3 = this.f37499c;
+                jg.z1 z1Var = s50Var2.f37911e;
+                org.telegram.ui.wr wrVar = s50Var2.f37913n.d2;
                 boolean z10 = false;
                 boolean z11 = false;
                 if (wrVar != null) {
@@ -51,9 +51,9 @@ public final class r50 implements Runnable {
                 p5Var.c(r50Var);
                 return;
             default:
-                s50 s50Var3 = this.f37554b;
-                String str4 = this.f37555c;
-                ArrayList arrayList2 = s50Var3.f37895n.V1;
+                s50 s50Var3 = this.f37498b;
+                String str4 = this.f37499c;
+                ArrayList arrayList2 = s50Var3.f37913n.V1;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.length() == 0) {
                     org.telegram.messenger.g0.h3(new ng(s50Var3, new ArrayList(), new ArrayList(), 11));

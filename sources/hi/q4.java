@@ -72,24 +72,24 @@ public final class q4 {
                 if (botApp == null) {
                     j3 = 0;
                 } else {
-                    j3 = botApp.f26949id;
+                    j3 = botApp.f26950id;
                 }
                 TLRPC.BotApp botApp2 = q4Var.f14893j;
                 if (botApp2 == null) {
                     j10 = 0;
                 } else {
-                    j10 = botApp2.f26949id;
+                    j10 = botApp2.f26950id;
                 }
                 if (j3 == j10 && this.f14894k == q4Var.f14894k && TextUtils.equals(this.f14895l, q4Var.f14895l)) {
                     TLRPC.User user = this.f14896m;
                     if (user == null) {
                         j11 = 0;
                     } else {
-                        j11 = user.f27101id;
+                        j11 = user.f27102id;
                     }
                     TLRPC.User user2 = q4Var.f14896m;
                     if (user2 != null) {
-                        j12 = user2.f27101id;
+                        j12 = user2.f27102id;
                     }
                     if (j11 == j12 && this.f14897n == q4Var.f14897n) {
                         return true;

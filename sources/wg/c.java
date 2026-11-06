@@ -2,22 +2,22 @@ package wg;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class c implements Runnable {
-    public final int f57613a;
-    public final AtomicBoolean f57614b;
+    public final int f57612a;
+    public final AtomicBoolean f57613b;
 
     public c(AtomicBoolean atomicBoolean, int i7) {
-        this.f57613a = i7;
-        this.f57614b = atomicBoolean;
+        this.f57612a = i7;
+        this.f57613b = atomicBoolean;
     }
 
     @Override
     public final void run() {
-        switch (this.f57613a) {
+        switch (this.f57612a) {
             case 0:
-                this.f57614b.set(true);
+                this.f57613b.set(true);
                 return;
             default:
-                this.f57614b.set(true);
+                this.f57613b.set(true);
                 return;
         }
     }

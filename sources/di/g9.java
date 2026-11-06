@@ -157,7 +157,7 @@ public final class g9 implements b4 {
                     h4Var4.f9075b = null;
                     TLRPC.Document document2 = o9Var5.document;
                     if (document2 != null) {
-                        org.telegram.messenger.s8.I.put(Long.valueOf(document2.f26958id), 3);
+                        org.telegram.messenger.s8.I.put(Long.valueOf(document2.f26959id), 3);
                     } else {
                         ConcurrentHashMap concurrentHashMap = org.telegram.messenger.s8.H;
                     }

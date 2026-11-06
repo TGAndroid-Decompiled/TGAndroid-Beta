@@ -14,18 +14,18 @@ import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 public final class yt extends FrameLayout {
-    public int f52325a;
-    public boolean f52326b;
-    public boolean f52327c;
+    public int f52323a;
+    public boolean f52324b;
+    public boolean f52325c;
     public int d;
-    public int f52328e;
-    public VelocityTracker f52329f;
+    public int f52326e;
+    public VelocityTracker f52327f;
     public boolean h;
-    public final au f52330n;
+    public final au f52328n;
 
     public yt(au auVar, Context context) {
         super(context);
-        this.f52330n = auVar;
+        this.f52328n = auVar;
     }
 
     public final boolean a() {
@@ -35,11 +35,11 @@ public final class yt extends FrameLayout {
     public final boolean b(MotionEvent motionEvent, boolean z9) {
         int i7;
         org.telegram.ui.ActionBar.k kVar;
-        au auVar = this.f52330n;
-        zt[] ztVarArr = auVar.f44094f;
-        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = auVar.f44093e;
+        au auVar = this.f52328n;
+        zt[] ztVarArr = auVar.f44093f;
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = auVar.f44092e;
         SparseIntArray sparseIntArray = scrollSlidingTextTabStrip.O;
-        int i10 = scrollSlidingTextTabStrip.f31533n;
+        int i10 = scrollSlidingTextTabStrip.f31534n;
         if (z9) {
             i7 = 1;
         } else {
@@ -50,16 +50,16 @@ public final class yt extends FrameLayout {
             return false;
         }
         getParent().requestDisallowInterceptTouchEvent(true);
-        this.f52327c = false;
-        this.f52326b = true;
+        this.f52325c = false;
+        this.f52324b = true;
         this.d = (int) motionEvent.getX();
         kVar = ((org.telegram.ui.ActionBar.f2) auVar).actionBar;
         kVar.setEnabled(false);
-        auVar.f44093e.setEnabled(false);
+        auVar.f44092e.setEnabled(false);
         zt ztVar = ztVarArr[1];
-        ztVar.f52678f = i11;
+        ztVar.f52676f = i11;
         ztVar.setVisibility(0);
-        auVar.f44096r = z9;
+        auVar.f44095r = z9;
         auVar.r0(true);
         if (z9) {
             ztVarArr[1].setTranslationX(ztVarArr[0].getMeasuredWidth());
@@ -76,7 +76,7 @@ public final class yt extends FrameLayout {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
         super.dispatchDraw(canvas);
-        au auVar = this.f52330n;
+        au auVar = this.f52328n;
         q4Var = ((org.telegram.ui.ActionBar.f2) auVar).parentLayout;
         if (q4Var != null) {
             q4Var2 = ((org.telegram.ui.ActionBar.f2) auVar).parentLayout;
@@ -91,9 +91,9 @@ public final class yt extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        au auVar = this.f52330n;
+        au auVar = this.f52328n;
         Paint paint = auVar.d;
-        paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27848d6, false));
+        paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false));
         kVar = ((org.telegram.ui.ActionBar.f2) auVar).actionBar;
         kVar2 = ((org.telegram.ui.ActionBar.f2) auVar).actionBar;
         canvas.drawRect(0.0f, kVar2.getTranslationY() + kVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight(), paint);
@@ -101,7 +101,7 @@ public final class yt extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!a() && !this.f52330n.f44093e.H && !onTouchEvent(motionEvent)) {
+        if (!a() && !this.f52328n.f44092e.H && !onTouchEvent(motionEvent)) {
             return false;
         }
         return true;
@@ -113,8 +113,8 @@ public final class yt extends FrameLayout {
         org.telegram.ui.ActionBar.k kVar2;
         org.telegram.ui.ActionBar.k kVar3;
         setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
-        au auVar = this.f52330n;
-        zt[] ztVarArr = auVar.f44094f;
+        au auVar = this.f52328n;
+        zt[] ztVarArr = auVar.f44093f;
         kVar = ((org.telegram.ui.ActionBar.f2) auVar).actionBar;
         measureChildWithMargins(kVar, i7, 0, i10, 0);
         kVar2 = ((org.telegram.ui.ActionBar.f2) auVar).actionBar;
@@ -127,7 +127,7 @@ public final class yt extends FrameLayout {
                 if (pj0Var != null) {
                     pj0Var.setPadding(0, measuredHeight, 0, 0);
                 }
-                bi.q1 q1Var = ztVarArr[i11].f52677e;
+                bi.q1 q1Var = ztVarArr[i11].f52675e;
                 if (q1Var != null) {
                     q1Var.setPadding(0, measuredHeight, 0, 0);
                 }
@@ -163,70 +163,70 @@ public final class yt extends FrameLayout {
         boolean z11;
         boolean z12;
         int i7;
-        au auVar = this.f52330n;
-        zt[] ztVarArr = auVar.f44094f;
+        au auVar = this.f52328n;
+        zt[] ztVarArr = auVar.f44093f;
         q4Var = ((org.telegram.ui.ActionBar.f2) auVar).parentLayout;
         boolean z13 = false;
         if (((ActionBarLayout) q4Var).i() || a()) {
             return false;
         }
         if (motionEvent != null) {
-            if (this.f52329f == null) {
-                this.f52329f = VelocityTracker.obtain();
+            if (this.f52327f == null) {
+                this.f52327f = VelocityTracker.obtain();
             }
-            this.f52329f.addMovement(motionEvent);
+            this.f52327f.addMovement(motionEvent);
         }
-        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f52326b && !this.f52327c) {
-            this.f52325a = motionEvent.getPointerId(0);
-            this.f52327c = true;
+        if (motionEvent != null && motionEvent.getAction() == 0 && !this.f52324b && !this.f52325c) {
+            this.f52323a = motionEvent.getPointerId(0);
+            this.f52325c = true;
             this.d = (int) motionEvent.getX();
-            this.f52328e = (int) motionEvent.getY();
-            this.f52329f.clear();
-        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f52325a) {
+            this.f52326e = (int) motionEvent.getY();
+            this.f52327f.clear();
+        } else if (motionEvent != null && motionEvent.getAction() == 2 && motionEvent.getPointerId(0) == this.f52323a) {
             int x10 = (int) (motionEvent.getX() - this.d);
-            int abs = Math.abs(((int) motionEvent.getY()) - this.f52328e);
-            if (this.f52326b && (((z11 = auVar.f44096r) && x10 > 0) || (!z11 && x10 < 0))) {
+            int abs = Math.abs(((int) motionEvent.getY()) - this.f52326e);
+            if (this.f52324b && (((z11 = auVar.f44095r) && x10 > 0) || (!z11 && x10 < 0))) {
                 if (x10 < 0) {
                     z12 = true;
                 } else {
                     z12 = false;
                 }
                 if (!b(motionEvent, z12)) {
-                    this.f52327c = true;
-                    this.f52326b = false;
+                    this.f52325c = true;
+                    this.f52324b = false;
                     ztVarArr[0].setTranslationX(0.0f);
                     zt ztVar5 = ztVarArr[1];
-                    if (auVar.f44096r) {
+                    if (auVar.f44095r) {
                         i7 = ztVarArr[0].getMeasuredWidth();
                     } else {
                         i7 = -ztVarArr[0].getMeasuredWidth();
                     }
                     ztVar5.setTranslationX(i7);
-                    auVar.f44093e.i(0.0f, ztVarArr[1].f52678f);
+                    auVar.f44092e.i(0.0f, ztVarArr[1].f52676f);
                 }
             }
-            if (this.f52327c && !this.f52326b) {
+            if (this.f52325c && !this.f52324b) {
                 if (Math.abs(x10) >= org.telegram.messenger.g0.a1(true, 0.3f) && Math.abs(x10) > abs) {
                     if (x10 < 0) {
                         z13 = true;
                     }
                     b(motionEvent, z13);
                 }
-            } else if (this.f52326b) {
+            } else if (this.f52324b) {
                 ztVarArr[0].setTranslationX(x10);
-                if (auVar.f44096r) {
+                if (auVar.f44095r) {
                     ztVarArr[1].setTranslationX(ztVarArr[0].getMeasuredWidth() + x10);
                 } else {
                     ztVarArr[1].setTranslationX(x10 - ztVarArr[0].getMeasuredWidth());
                 }
-                auVar.f44093e.i(Math.abs(x10) / ztVarArr[0].getMeasuredWidth(), ztVarArr[1].f52678f);
+                auVar.f44092e.i(Math.abs(x10) / ztVarArr[0].getMeasuredWidth(), ztVarArr[1].f52676f);
             }
-        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f52325a && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
-            this.f52329f.computeCurrentVelocity(1000, auVar.f44098w);
+        } else if (motionEvent == null || (motionEvent.getPointerId(0) == this.f52323a && (motionEvent.getAction() == 3 || motionEvent.getAction() == 1 || motionEvent.getAction() == 6))) {
+            this.f52327f.computeCurrentVelocity(1000, auVar.f44097w);
             if (motionEvent != null && motionEvent.getAction() != 3) {
-                f10 = this.f52329f.getXVelocity();
-                f11 = this.f52329f.getYVelocity();
-                if (!this.f52326b && Math.abs(f10) >= 3000.0f && Math.abs(f10) > Math.abs(f11)) {
+                f10 = this.f52327f.getXVelocity();
+                f11 = this.f52327f.getYVelocity();
+                if (!this.f52324b && Math.abs(f10) >= 3000.0f && Math.abs(f10) > Math.abs(f11)) {
                     if (f10 < 0.0f) {
                         z10 = true;
                     } else {
@@ -238,7 +238,7 @@ public final class yt extends FrameLayout {
                 f10 = 0.0f;
                 f11 = 0.0f;
             }
-            if (this.f52326b) {
+            if (this.f52324b) {
                 float x11 = ztVarArr[0].getX();
                 auVar.h = new AnimatorSet();
                 if (Math.abs(x11) < ztVarArr[0].getMeasuredWidth() / 3.0f && (Math.abs(f10) < 3500.0f || Math.abs(f10) < Math.abs(f11))) {
@@ -246,24 +246,24 @@ public final class yt extends FrameLayout {
                 } else {
                     z9 = false;
                 }
-                auVar.f44097s = z9;
+                auVar.f44096s = z9;
                 Property property = View.TRANSLATION_X;
                 if (z9) {
                     measuredWidth = Math.abs(x11);
-                    if (auVar.f44096r) {
+                    if (auVar.f44095r) {
                         auVar.h.playTogether(ObjectAnimator.ofFloat(ztVarArr[0], property, 0.0f), ObjectAnimator.ofFloat(ztVarArr[1], property, ztVar4.getMeasuredWidth()));
                     } else {
                         auVar.h.playTogether(ObjectAnimator.ofFloat(ztVarArr[0], property, 0.0f), ObjectAnimator.ofFloat(ztVarArr[1], property, -ztVar3.getMeasuredWidth()));
                     }
                 } else {
                     measuredWidth = ztVarArr[0].getMeasuredWidth() - Math.abs(x11);
-                    if (auVar.f44096r) {
+                    if (auVar.f44095r) {
                         auVar.h.playTogether(ObjectAnimator.ofFloat(ztVarArr[0], property, -ztVar2.getMeasuredWidth()), ObjectAnimator.ofFloat(ztVarArr[1], property, 0.0f));
                     } else {
                         auVar.h.playTogether(ObjectAnimator.ofFloat(ztVarArr[0], property, ztVar.getMeasuredWidth()), ObjectAnimator.ofFloat(ztVarArr[1], property, 0.0f));
                     }
                 }
-                auVar.h.setInterpolator(au.f44089y);
+                auVar.h.setInterpolator(au.f44088y);
                 int measuredWidth3 = getMeasuredWidth();
                 float f12 = measuredWidth3 / 2;
                 float I = (org.telegram.messenger.g0.I(Math.min(1.0f, (measuredWidth * 1.0f) / measuredWidth3)) * f12) + f12;
@@ -276,21 +276,21 @@ public final class yt extends FrameLayout {
                 auVar.h.setDuration(Math.max(150, Math.min(measuredWidth2, 600)));
                 auVar.h.addListener(new va(this, 23));
                 auVar.h.start();
-                auVar.f44095n = true;
-                this.f52326b = false;
+                auVar.f44094n = true;
+                this.f52324b = false;
             } else {
-                this.f52327c = false;
+                this.f52325c = false;
                 kVar = ((org.telegram.ui.ActionBar.f2) auVar).actionBar;
                 kVar.setEnabled(true);
-                auVar.f44093e.setEnabled(true);
+                auVar.f44092e.setEnabled(true);
             }
-            VelocityTracker velocityTracker = this.f52329f;
+            VelocityTracker velocityTracker = this.f52327f;
             if (velocityTracker != null) {
                 velocityTracker.recycle();
-                this.f52329f = null;
+                this.f52327f = null;
             }
         }
-        return this.f52326b;
+        return this.f52324b;
     }
 
     @Override

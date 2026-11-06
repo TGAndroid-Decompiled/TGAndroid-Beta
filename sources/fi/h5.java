@@ -10,7 +10,7 @@ import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.hx;
-import org.telegram.ui.Components.s31;
+import org.telegram.ui.Components.t31;
 public final class h5 implements hx {
     public final o5 f12133a;
 
@@ -80,7 +80,7 @@ public final class h5 implements hx {
             CharSequence m10 = org.telegram.messenger.i6.m(str, k2Var.getFontMetricsInt(), false, null, 0);
             if ((m10 instanceof Spanned) && (f6VarArr = (org.telegram.messenger.f6[]) ((Spanned) m10).getSpans(0, m10.length(), org.telegram.messenger.f6.class)) != null) {
                 for (org.telegram.messenger.f6 f6Var : f6VarArr) {
-                    f6Var.f22344b = 0.85f;
+                    f6Var.f22351b = 0.85f;
                 }
             }
             editText.setText(editText.getText().insert(selectionEnd, m10));
@@ -98,7 +98,7 @@ public final class h5 implements hx {
         o5 o5Var = this.f12133a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, o5Var.getContext(), o5Var.f12540p1);
         String M0 = hd.M0(2131752068, null);
-        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
         u1Var.R = M0;
         u1Var.T = hd.M0(2131752069, null);
         alertDialog$Builder.k(hd.M0(2131752099, null), new di.q4(this, 14));
@@ -125,7 +125,7 @@ public final class h5 implements hx {
         try {
             SpannableString spannableString = new SpannableString(str);
             if (document != null) {
-                r5Var = new org.telegram.ui.Components.r5(document.f26958id, 1.0f, editText.getPaint().getFontMetricsInt());
+                r5Var = new org.telegram.ui.Components.r5(document.f26959id, 1.0f, editText.getPaint().getFontMetricsInt());
                 r5Var.document = document;
             } else {
                 r5Var = new org.telegram.ui.Components.r5(j3, 1.0f, editText.getPaint().getFontMetricsInt());
@@ -155,7 +155,7 @@ public final class h5 implements hx {
     }
 
     @Override
-    public final void o(s31 s31Var) {
+    public final void o(t31 t31Var) {
     }
 
     @Override

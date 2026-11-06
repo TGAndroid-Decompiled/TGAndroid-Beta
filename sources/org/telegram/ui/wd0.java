@@ -8,26 +8,26 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class wd0 implements ps, OnSuccessListener, OnFailureListener {
-    public final be0 f51066a;
+    public final be0 f51065a;
 
     public wd0(be0 be0Var) {
-        this.f51066a = be0Var;
+        this.f51065a = be0Var;
     }
 
     @Override
     public void b(ms msVar) {
-        be0 be0Var = this.f51066a;
+        be0 be0Var = this.f51065a;
         be0Var.K = true;
-        String str = msVar.f47872c;
-        be0Var.f44291a.setText(str);
+        String str = msVar.f47871c;
+        be0Var.f44290a.setText(str);
         be0Var.u(str, msVar);
         be0Var.F = msVar;
         be0Var.E = 0;
         be0Var.K = false;
         SharedPreferences.Editor edit = org.telegram.messenger.qp.e1().edit();
-        edit.putString("phone_code_last_matched_" + msVar.f47872c, msVar.d).apply();
+        edit.putString("phone_code_last_matched_" + msVar.f47871c, msVar.d).apply();
         org.telegram.messenger.g0.i3(new qd0(be0Var, 4), 300L);
-        zd0 zd0Var = be0Var.f44293b;
+        zd0 zd0Var = be0Var.f44292b;
         zd0Var.requestFocus();
         zd0Var.setSelection(zd0Var.length());
     }
@@ -35,8 +35,8 @@ public final class wd0 implements ps, OnSuccessListener, OnFailureListener {
     @Override
     public void onFailure(Exception exc) {
         int i7;
-        be0 be0Var = this.f51066a;
-        ce0 ce0Var = be0Var.f44302g0;
+        be0 be0Var = this.f51065a;
+        ce0 ce0Var = be0Var.f44301g0;
         if (!be0Var.W) {
             if (exc instanceof ConnectionsManager.RequestException) {
                 String message = exc.getMessage();
@@ -46,7 +46,7 @@ public final class wd0 implements ps, OnSuccessListener, OnFailureListener {
                     ConnectionsManager.getInstance(i7).sendRequest(getpassword, new vd0(be0Var, 1), 10);
                     return;
                 } else if (message != null) {
-                    boolean z9 = org.telegram.messenger.r2.f25191a;
+                    boolean z9 = org.telegram.messenger.r2.f25199a;
                     new org.telegram.ui.Components.hc(ce0Var.Z, null).e0(message, false);
                 }
             } else if (!(exc instanceof CancellationException)) {
@@ -61,15 +61,15 @@ public final class wd0 implements ps, OnSuccessListener, OnFailureListener {
     @Override
     public void onSuccess(Object obj) {
         TLRPC.auth_Authorization auth_authorization = (TLRPC.auth_Authorization) obj;
-        be0 be0Var = this.f51066a;
-        ce0 ce0Var = be0Var.f44302g0;
+        be0 be0Var = this.f51065a;
+        ce0 ce0Var = be0Var.f44301g0;
         if (be0Var.W) {
             return;
         }
         if (auth_authorization instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
             TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) auth_authorization).terms_of_service;
             if (tL_help_termsOfService != null) {
-                ce0Var.f44778q0 = tL_help_termsOfService;
+                ce0Var.f44777q0 = tL_help_termsOfService;
             }
             ce0Var.M1(5, true, a8.p0.k("fromFirebasePhoneNumberVerification", true), false);
         } else if (auth_authorization instanceof TLRPC.TL_auth_authorization) {

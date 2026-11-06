@@ -18,7 +18,7 @@ public final class c1 implements c20 {
         Integer num = (Integer) obj;
         switch (i7) {
             case 0:
-                org.telegram.ui.ActionBar.l2 l2Var = k2Var.f28618c;
+                org.telegram.ui.ActionBar.l2 l2Var = k2Var.f28619c;
                 boolean z9 = k2Var.f12259r1;
                 boolean z10 = k2Var.d;
                 if (z9 != z10) {
@@ -26,11 +26,11 @@ public final class c1 implements c20 {
                     l2Var.clearAnimation();
                     float f10 = 0.0f;
                     if (k2Var.d) {
-                        int i10 = org.telegram.messenger.g0.f22537q.y;
-                        int i11 = k2Var.f28626f;
+                        int i10 = org.telegram.messenger.g0.f22544q.y;
+                        int i11 = k2Var.f28627f;
                         f10 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - k2Var.f12262u1, (-i11) / 3.0f));
                     }
-                    l2Var.animate().translationY(f10).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27540w).start();
+                    l2Var.animate().translationY(f10).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.i1.f27541w).start();
                     return;
                 }
                 return;

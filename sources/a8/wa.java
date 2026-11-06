@@ -159,7 +159,7 @@ public class wa implements f3.i, m9.t {
                 }
             case 1:
             default:
-                y7.h9 h9Var = y7.h9.f58946c;
+                y7.h9 h9Var = y7.h9.f58945c;
                 ab.b0 b0Var = (ab.b0) this.f701c;
                 ((s9) this.d).h = false;
                 s9 s9Var2 = (s9) this.d;
@@ -170,8 +170,8 @@ public class wa implements f3.i, m9.t {
                     y7.o6 o6Var = new y7.o6(b0Var);
                     hy0 hy0Var = new hy0(27);
                     h9Var.a(hy0Var);
-                    HashMap hashMap3 = new HashMap((HashMap) hy0Var.f46528b);
-                    HashMap hashMap4 = new HashMap((HashMap) hy0Var.f46529c);
+                    HashMap hashMap3 = new HashMap((HashMap) hy0Var.f46527b);
+                    HashMap hashMap4 = new HashMap((HashMap) hy0Var.f46528c);
                     y7.i iVar = (y7.i) hy0Var.d;
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
@@ -401,7 +401,7 @@ public class wa implements f3.i, m9.t {
         Iterator it = ((CopyOnWriteArrayList) this.d).iterator();
         while (it.hasNext()) {
             x2.j0 j0Var = (x2.j0) it.next();
-            h2.m0.W(j0Var.f58271a, new wi.q(2, jVar, j0Var.f58272b));
+            h2.m0.W(j0Var.f58270a, new wi.q(2, jVar, j0Var.f58271b));
         }
     }
 
@@ -483,7 +483,7 @@ public class wa implements f3.i, m9.t {
                         sb2.append(dVar.g(i11));
                     }
                 }
-            } else if (obj != qe.g.f54003a) {
+            } else if (obj != qe.g.f54002a) {
                 sb2.append("['");
                 sb2.append(obj);
                 sb2.append("']");
@@ -510,7 +510,7 @@ public class wa implements f3.i, m9.t {
     public void onSuccess(Object obj) {
         List list = (List) obj;
         p4.d0 d0Var = ((p4.m0) this.d).h;
-        Handler handler = d0Var.f53118l;
+        Handler handler = d0Var.f53116l;
         p4.v vVar = (p4.v) this.f701c;
         h2.m0.W(handler, new org.telegram.ui.web.w(d0Var, vVar, new pp0(this, this.f700b, list, vVar, 21)));
     }
@@ -602,7 +602,7 @@ public class wa implements f3.i, m9.t {
     }
 
     public void x(int i7) {
-        y(i7, 200L, xq.f40329f);
+        y(i7, 200L, xq.f40345f);
     }
 
     public void y(int i7, long j3, Interpolator interpolator) {
@@ -688,7 +688,7 @@ public class wa implements f3.i, m9.t {
         this.f701c = rectF;
         this.f700b = i7;
         try {
-            this.d = File.createTempFile("paint", ".bin", org.telegram.messenger.t0.f25555b.getCacheDir());
+            this.d = File.createTempFile("paint", ".bin", org.telegram.messenger.t0.f25563b.getCacheDir());
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }

@@ -42,7 +42,7 @@ public final class a extends LinearLayout {
                 w5 w5Var = (w5) this.f1059e;
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.d;
-                paint.setColor(k6.w0(k6.f27792a7, (f6) this.f1057b));
+                paint.setColor(k6.w0(k6.f27793a7, (f6) this.f1057b));
                 pj0 pj0Var = (pj0) this.f1058c;
                 float f10 = 1.0f;
                 if (pj0Var != null) {
@@ -93,7 +93,7 @@ public final class a extends LinearLayout {
         setOrientation(1);
         TextView textView = new TextView(context);
         this.f1057b = textView;
-        int i7 = k6.f28240y6;
+        int i7 = k6.f28241y6;
         r6.V(textView, i7, f6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
@@ -129,8 +129,8 @@ public final class a extends LinearLayout {
         frameLayout.addView(gcVar, ha.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
         this.f1057b = mVar;
-        vg.f fVar = mVar.f57320b;
-        fVar.f57304z = k6.Tk;
+        vg.f fVar = mVar.f57319b;
+        fVar.f57303z = k6.Tk;
         fVar.A = k6.Uk;
         fVar.b();
         mVar.setStarParticlesView(gcVar);
@@ -145,7 +145,7 @@ public final class a extends LinearLayout {
         TextView textView = new TextView(context);
         this.d = textView;
         com.google.android.recaptcha.internal.a.q(textView, 1, 20.0f);
-        int i10 = k6.f27956j5;
+        int i10 = k6.f27957j5;
         r6.V(textView, i10, f6Var);
         textView.setGravity(17);
         addView(textView, ha.t(-2, -2, 1, 0, 2, 0, 0));

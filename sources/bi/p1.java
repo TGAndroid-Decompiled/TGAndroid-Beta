@@ -2,9 +2,9 @@ package bi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-public final class p1 extends k41 {
+public final class p1 extends l41 {
     public final w1 P;
 
     public p1(w1 w1Var, pj0 pj0Var, Context context, int i7, ai.e eVar, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -15,7 +15,7 @@ public final class p1 extends k41 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         super.t(d1Var, i7);
-        View view = d1Var.f56952a;
+        View view = d1Var.f56951a;
         if (!(view instanceof u1)) {
             return;
         }

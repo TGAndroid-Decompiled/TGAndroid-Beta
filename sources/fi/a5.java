@@ -14,8 +14,8 @@ import android.widget.TextView;
 import java.util.List;
 import org.telegram.ui.Components.en0;
 import org.telegram.ui.Components.hb0;
-import org.telegram.ui.Components.k11;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.l11;
+import org.telegram.ui.Components.my0;
 import org.telegram.ui.Components.xq;
 public final class a5 extends LinearLayout {
     public final int f11603a;
@@ -51,18 +51,18 @@ public final class a5 extends LinearLayout {
         switch (this.f11603a) {
             case 4:
                 super.dispatchDraw(canvas);
-                ((ly0) this.f11604b).e(canvas, ((hb0) this.f11605c).getX() - org.telegram.messenger.g0.L(50.0f), getHeight() / 2.0f);
+                ((my0) this.f11604b).e(canvas, ((hb0) this.f11605c).getX() - org.telegram.messenger.g0.L(50.0f), getHeight() / 2.0f);
                 return;
             case 5:
                 canvas.save();
-                k11 k11Var = (k11) this.f11605c;
-                float d = ((org.telegram.ui.Components.w5) this.f11604b).d(k11Var.f35116y);
+                l11 l11Var = (l11) this.f11605c;
+                float d = ((org.telegram.ui.Components.w5) this.f11604b).d(l11Var.f35476y);
                 if (d > 0.0f) {
-                    if (k11Var.f35108c == null) {
-                        k11Var.f35108c = new en0(this);
+                    if (l11Var.f35468c == null) {
+                        l11Var.f35468c = new en0(this);
                     }
                     canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                    k11Var.f35108c.a(canvas, d);
+                    l11Var.f35468c.a(canvas, d);
                     canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
                 }
                 super.dispatchDraw(canvas);
@@ -186,7 +186,7 @@ public final class a5 extends LinearLayout {
                     if (layout == null) {
                         interpolation = 0.0f;
                     } else {
-                        interpolation = xq.f40329f.getInterpolation(o5Var.J0);
+                        interpolation = xq.f40345f.getInterpolation(o5Var.J0);
                     }
                     float primaryHorizontal = layout2.getPrimaryHorizontal(layout2.getLineStart(0)) + textView3.getX();
                     if (layout != null) {
@@ -204,7 +204,7 @@ public final class a5 extends LinearLayout {
                 }
                 return;
             case 3:
-                int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27848d6, false);
+                int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false);
                 Paint paint2 = (Paint) this.f11604b;
                 if (paint2.getColor() != x02) {
                     paint2.setColor(x02);
@@ -234,7 +234,7 @@ public final class a5 extends LinearLayout {
                 if (layout3 == null) {
                     interpolation2 = 0.0f;
                 } else {
-                    interpolation2 = xq.f40329f.getInterpolation(g0Var.R0);
+                    interpolation2 = xq.f40345f.getInterpolation(g0Var.R0);
                 }
                 float primaryHorizontal3 = layout4.getPrimaryHorizontal(layout4.getLineStart(0)) + textView4.getX();
                 if (textView2 != null) {
@@ -261,11 +261,11 @@ public final class a5 extends LinearLayout {
             case 1:
                 View view = (View) this.f11604b;
                 org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f11605c;
-                r0Var.f28420b.measure(i7, i10);
-                if (r0Var.f28420b.getSwipeBack() != null) {
-                    view.getLayoutParams().width = r0Var.f28420b.getSwipeBack().getChildAt(0).getMeasuredWidth();
+                r0Var.f28421b.measure(i7, i10);
+                if (r0Var.f28421b.getSwipeBack() != null) {
+                    view.getLayoutParams().width = r0Var.f28421b.getSwipeBack().getChildAt(0).getMeasuredWidth();
                 } else {
-                    view.getLayoutParams().width = r0Var.f28420b.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f);
+                    view.getLayoutParams().width = r0Var.f28421b.getMeasuredWidth() - org.telegram.messenger.g0.L(16.0f);
                 }
                 super.onMeasure(i7, i10);
                 return;
@@ -312,10 +312,10 @@ public final class a5 extends LinearLayout {
         setWillNotDraw(false);
     }
 
-    public a5(k11 k11Var, Context context) {
+    public a5(l11 l11Var, Context context) {
         super(context);
         this.f11603a = 5;
-        this.f11605c = k11Var;
+        this.f11605c = l11Var;
         this.f11604b = new org.telegram.ui.Components.w5(this, 360L, xq.h);
     }
 
@@ -345,10 +345,10 @@ public final class a5 extends LinearLayout {
         setWillNotDraw(false);
     }
 
-    public a5(Context context, ly0 ly0Var, hb0 hb0Var) {
+    public a5(Context context, my0 my0Var, hb0 hb0Var) {
         super(context);
         this.f11603a = 4;
-        this.f11604b = ly0Var;
+        this.f11604b = my0Var;
         this.f11605c = hb0Var;
     }
 }

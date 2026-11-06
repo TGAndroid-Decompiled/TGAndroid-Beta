@@ -106,7 +106,7 @@ public final class o implements Runnable {
                     X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131744760, org.telegram.messenger.g5.m(10, str, null)));
                 }
                 org.telegram.ui.Components.cc V = new org.telegram.ui.Components.hc(i4Var.M0, i4Var.f9163k0).V(Arrays.asList(tLObject2), X2, null, obj5);
-                V.f32520a = 2;
+                V.f32507a = 2;
                 V.k(true);
                 return;
             case 2:
@@ -130,7 +130,7 @@ public final class o implements Runnable {
                         if (z9 && Q != null) {
                             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, Q.getContext(), f6Var);
                             String M0 = org.telegram.messenger.hd.M0(2131748825, null);
-                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27293a;
                             u1Var.R = M0;
                             u1Var.T = org.telegram.messenger.hd.M0(2131748826, null);
                             jg.g.C(null, 2131747830, alertDialog$Builder, null);
@@ -159,7 +159,7 @@ public final class o implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj2;
                 TLRPC.Document document = (TLRPC.Document) obj;
-                ChatActivityEnterView chatActivityEnterView = ((pf) obj4).f36874a;
+                ChatActivityEnterView chatActivityEnterView = ((pf) obj4).f36890a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -209,7 +209,7 @@ public final class o implements Runnable {
                     c40Var.C1(null, j3, 3);
                     return;
                 } else {
-                    org.telegram.ui.Components.v4.c0(c40Var.f28612a, tL_error2, (org.telegram.ui.ActionBar.f2) c40Var.Z1.M().getFragmentStack().get(c40Var.Z1.M().getFragmentStack().size() - 1), invitetogroupcall, new Object[0]);
+                    org.telegram.ui.Components.v4.c0(c40Var.f28613a, tL_error2, (org.telegram.ui.ActionBar.f2) c40Var.Z1.M().getFragmentStack().get(c40Var.Z1.M().getFragmentStack().size() - 1), invitetogroupcall, new Object[0]);
                     return;
                 }
             case 5:
@@ -217,7 +217,7 @@ public final class o implements Runnable {
                 TLObject tLObject3 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj3;
-                int i10 = p90Var.f48719b;
+                int i10 = p90Var.f48718b;
                 p90Var.c();
                 if (tLObject3 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
@@ -226,10 +226,10 @@ public final class o implements Runnable {
                     TLRPC.User a22 = qp.s1(i10).a2(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (a22 != null) {
                         org.telegram.ui.Wallet.n9 n9Var = new org.telegram.ui.Wallet.n9(a22);
-                        n9Var.f42866s = j3;
-                        n9Var.f42853g0 = str3;
-                        n9Var.f42854h0 = z9;
-                        n9Var.f42852f0 = true;
+                        n9Var.f42865s = j3;
+                        n9Var.f42852g0 = str3;
+                        n9Var.f42853h0 = z9;
+                        n9Var.f42851f0 = true;
                         p90Var.u(n9Var, false);
                         return;
                     }
@@ -242,8 +242,8 @@ public final class o implements Runnable {
                 }
             default:
                 rv0 rv0Var = (rv0) obj4;
-                ProfileActivity profileActivity = rv0Var.f49578b;
-                kp kpVar = new kp(profileActivity.f41713d1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z9, null);
+                ProfileActivity profileActivity = rv0Var.f49577b;
+                kp kpVar = new kp(profileActivity.f41712d1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z9, null);
                 kpVar.X0 = new qv0(rv0Var, (ww) obj);
                 profileActivity.presentFragment(kpVar);
                 return;

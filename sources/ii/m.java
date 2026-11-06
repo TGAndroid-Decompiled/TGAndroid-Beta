@@ -62,16 +62,16 @@ public final class m implements Runnable {
                 M.show();
                 TextView textView = (TextView) M.d(-1);
                 if (textView != null) {
-                    r6.V(textView, k6.f28089q7, null);
+                    r6.V(textView, k6.f28090q7, null);
                     return;
                 }
                 return;
             case 2:
                 qp qpVar = (qp) lsVar;
                 if (z10) {
-                    arrayList = qpVar.f24900v0;
+                    arrayList = qpVar.f24908v0;
                 } else {
-                    arrayList = qpVar.f24891u0;
+                    arrayList = qpVar.f24899u0;
                 }
                 if (z9) {
                     if (!arrayList.contains(Long.valueOf(j3))) {

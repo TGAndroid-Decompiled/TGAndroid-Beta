@@ -28,8 +28,8 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.av0;
-import org.telegram.ui.Components.j21;
-import org.telegram.ui.Components.n41;
+import org.telegram.ui.Components.k21;
+import org.telegram.ui.Components.o41;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.rr0;
 import org.telegram.ui.Components.sp0;
@@ -64,7 +64,7 @@ public final class n extends FrameLayout {
     public int d;
     public int f10832e;
     public final f f10833f;
-    public final n41 h;
+    public final o41 h;
     public final v4.k f10834n;
     public final rr0 f10835r;
     public final h f10836s;
@@ -75,20 +75,20 @@ public final class n extends FrameLayout {
     public n(sp0 sp0Var, Context context) {
         super(context);
         this.W = sp0Var;
-        this.d = Utilities.j(iz.f23414u1, 6, 2);
-        this.f10832e = Utilities.j(iz.f23414u1, 6, 2);
+        this.d = Utilities.j(iz.f23421u1, 6, 2);
+        this.f10832e = Utilities.j(iz.f23421u1, 6, 2);
         this.H = false;
         this.I = false;
         this.V = new Rect();
-        n41 n41Var = new n41();
-        this.h = n41Var;
-        n41Var.O = new e(this, 1);
-        n41Var.y1(this.d);
+        o41 o41Var = new o41();
+        this.h = o41Var;
+        o41Var.O = new e(this, 1);
+        o41Var.y1(this.d);
         v4.k kVar = new v4.k();
         this.f10834n = kVar;
         kVar.n(280L);
         kVar.o(xq.h);
-        kVar.f56979m = false;
+        kVar.f56978m = false;
         f fVar = new f(this, context);
         this.f10833f = fVar;
         fVar.setScrollingTouchSlop(1);
@@ -97,7 +97,7 @@ public final class n extends FrameLayout {
         fVar.setItemAnimator(null);
         fVar.setClipToPadding(false);
         fVar.setSectionsType(2);
-        fVar.setLayoutManager(n41Var);
+        fVar.setLayoutManager(o41Var);
         addView(fVar, ha.c(-1.0f, -1));
         fVar.i(new g(this, 0));
         fVar.setOnItemClickListener(new ai.k(this, 6));
@@ -120,7 +120,7 @@ public final class n extends FrameLayout {
         pj0Var.setAdapter(mVar);
         j jVar = new j(this, context);
         this.f10839y = jVar;
-        jVar.f35807x = false;
+        jVar.f35802x = false;
         av0 av0Var = new av0(context, jVar, 1, null);
         this.D = av0Var;
         av0Var.setVisibility(8);
@@ -128,17 +128,17 @@ public final class n extends FrameLayout {
         addView(av0Var, ha.c(-1.0f, -1));
         av0Var.setOnTouchListener(new b(0));
         av0Var.e(true, false);
-        av0Var.f31927b.setVisibility(8);
+        av0Var.f31923b.setVisibility(8);
         av0Var.d.setText(hd.M0(2131746697, null));
-        av0Var.f31929e.setText(hd.G(qp.s1(sp0Var.f10845b).T5, "ProfileBotPreviewEmptyText", new Object[0]));
+        av0Var.f31925e.setText(hd.G(qp.s1(sp0Var.f10845b).T5, "ProfileBotPreviewEmptyText", new Object[0]));
         String M0 = hd.M0(2131746701, null);
-        fi.d dVar = av0Var.f31930f;
+        fi.d dVar = av0Var.f31926f;
         dVar.i(M0, false, true);
         dVar.setVisibility(0);
         dVar.setOnClickListener(new c(this, 0));
         k kVar2 = new k(this, context);
         this.E = kVar2;
-        int i7 = k6.f28240y6;
+        int i7 = k6.f28241y6;
         f6 f6Var = sp0Var.f10846c;
         r6.V(kVar2, i7, f6Var);
         kVar2.setText(hd.M0(2131746702, null));
@@ -147,7 +147,7 @@ public final class n extends FrameLayout {
         kVar2.setGravity(17);
         kVar2.setTypeface(g0.o());
         LinearLayout.LayoutParams t6 = ha.t(165, -2, 17, 0, 17, 0, 12);
-        c61 c61Var = av0Var.f31926a;
+        c61 c61Var = av0Var.f31922a;
         c61Var.addView(kVar2, t6);
         fi.d dVar2 = new fi.d(context, f6Var, false);
         this.F = dVar2;
@@ -185,8 +185,8 @@ public final class n extends FrameLayout {
                 int b10 = iVar.b();
                 rr0Var.setVisibility(8);
                 int i11 = this.d;
-                n41 n41Var = this.h;
-                n41Var.y1(i11);
+                o41 o41Var = this.h;
+                o41Var.y1(i11);
                 fVar.a0();
                 fVar.invalidate();
                 if (iVar.b() == b10) {
@@ -200,7 +200,7 @@ public final class n extends FrameLayout {
                     if (m10 != null) {
                         this.T = m10.getTop();
                     }
-                    n41Var.h1(this.S, (-fVar.getPaddingTop()) + this.T);
+                    o41Var.h1(this.S, (-fVar.getPaddingTop()) + this.T);
                 }
             } else if (f10 == 0.0f) {
                 this.f10830b = false;
@@ -218,7 +218,7 @@ public final class n extends FrameLayout {
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f11);
                 ofFloat.addUpdateListener(new m4(this, 1));
                 ofFloat.addListener(new ch.y(5, this, z9));
-                ofFloat.setInterpolator(xq.f40329f);
+                ofFloat.setInterpolator(xq.f40345f);
                 ofFloat.setDuration(200L);
                 ofFloat.start();
             }
@@ -302,7 +302,7 @@ public final class n extends FrameLayout {
         if (z9) {
             a02 = hd.M0(2131746694, null);
         } else {
-            a02 = hd.a0(null, null, 2131746693, j21.O0(this.f10829a.E, null, null));
+            a02 = hd.a0(null, null, 2131746693, k21.O0(this.f10829a.E, null, null));
         }
         String M02 = hd.M0(2131746714, null);
         s7 s7Var = new s7(this, 9);
@@ -342,20 +342,20 @@ public final class n extends FrameLayout {
         if (z9) {
             av0Var.d.setVisibility(0);
             av0Var.d.setText(hd.M0(2131746697, null));
-            av0Var.f31929e.setText(hd.G(qp.s1(i11).T5, "ProfileBotPreviewEmptyText", new Object[0]));
-            av0Var.f31930f.i(hd.M0(2131746701, null), false, true);
+            av0Var.f31925e.setText(hd.G(qp.s1(i11).T5, "ProfileBotPreviewEmptyText", new Object[0]));
+            av0Var.f31926f.i(hd.M0(2131746701, null), false, true);
             kVar2.setVisibility(8);
             dVar2.setVisibility(8);
         } else {
             av0Var.d.setVisibility(8);
-            av0Var.f31929e.setText(hd.a0(null, null, 2131746693, j21.O0(this.f10829a.E, null, null)));
-            av0Var.f31930f.i(hd.M0(2131746701, null), false, true);
+            av0Var.f31925e.setText(hd.a0(null, null, 2131746693, k21.O0(this.f10829a.E, null, null)));
+            av0Var.f31926f.i(hd.M0(2131746701, null), false, true);
             kVar2.setVisibility(0);
             dVar2.setVisibility(0);
             dVar2.i(hd.M0(2131746695, null), false, true);
             dVar2.setOnClickListener(new c(this, 1));
         }
-        fi.d dVar3 = av0Var.f31930f;
+        fi.d dVar3 = av0Var.f31926f;
         if (this.f10837w.b() >= qp.s1(i11).T5) {
             i12 = 8;
         }
@@ -374,7 +374,7 @@ public final class n extends FrameLayout {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         f fVar = this.f10833f;
-        fVar.setPadding(fVar.getPaddingLeft(), fVar.f37766e3, fVar.getPaddingRight(), this.J.getMeasuredHeight() + g0.L(42.0f));
+        fVar.setPadding(fVar.getPaddingLeft(), fVar.f37726e3, fVar.getPaddingRight(), this.J.getMeasuredHeight() + g0.L(42.0f));
     }
 
     public void setList(j6 j6Var) {

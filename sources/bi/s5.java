@@ -88,9 +88,9 @@ public final class s5 implements Comparator {
                 ArrayList arrayList = (ArrayList) this.f4672b;
                 we weVar = (we) obj;
                 we weVar2 = (we) obj2;
-                int i13 = weVar.f26286a;
-                if (i13 != 0 || weVar2.f26286a == 0) {
-                    if ((i13 != 0 && weVar2.f26286a == 0) || (indexOf = arrayList.indexOf(weVar)) > (indexOf2 = arrayList.indexOf(weVar2))) {
+                int i13 = weVar.f26294a;
+                if (i13 != 0 || weVar2.f26294a == 0) {
+                    if ((i13 != 0 && weVar2.f26294a == 0) || (indexOf = arrayList.indexOf(weVar)) > (indexOf2 = arrayList.indexOf(weVar2))) {
                         return 1;
                     }
                     if (indexOf >= indexOf2) {
@@ -145,7 +145,7 @@ public final class s5 implements Comparator {
                 return vVar.d(obj2) - vVar.d(obj);
             case 7:
                 SparseIntArray sparseIntArray = (SparseIntArray) this.f4672b;
-                return sparseIntArray.get(((ug.g) obj).f56499e, Integer.MAX_VALUE) - sparseIntArray.get(((ug.g) obj2).f56499e, Integer.MAX_VALUE);
+                return sparseIntArray.get(((ug.g) obj).f56498e, Integer.MAX_VALUE) - sparseIntArray.get(((ug.g) obj2).f56498e, Integer.MAX_VALUE);
             default:
                 return ((Collator) this.f4672b).compare((String) obj, (String) obj2);
         }

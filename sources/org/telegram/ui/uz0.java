@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 public final class uz0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.qi0 {
-    public final q11 f50534a;
+    public final q11 f50533a;
 
     public uz0(q11 q11Var) {
-        this.f50534a = q11Var;
+        this.f50533a = q11Var;
     }
 
     @Override
     public void e() {
-        this.f50534a.m();
+        this.f50533a.m();
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        q11 q11Var = this.f50534a;
+        q11 q11Var = this.f50533a;
         int i10 = q11Var.V;
         ConnectionsManager.getInstance(i10).sendRequest(new TL_account.clearRecentEmojiStatuses(), null);
         org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(i10);
@@ -27,7 +27,7 @@ public final class uz0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
             arrayList.clear();
         }
         b02.D0[0] = 0;
-        b02.getMessagesStorage().f26688a.c(new org.telegram.messenger.fg(b02, 8));
+        b02.getMessagesStorage().f26696a.c(new org.telegram.messenger.fg(b02, 8));
         ArrayList arrayList2 = arrayListArr[0];
         q11Var.B(false, true, true);
     }

@@ -32,9 +32,9 @@ public final class ea implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 rc rcVar = (rc) this.f11936c;
-                rcVar.f49465n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rcVar.f49464n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 rcVar.m0.invalidate();
-                if (!this.f11935b && rcVar.f49465n0 > 0.5f) {
+                if (!this.f11935b && rcVar.f49464n0 > 0.5f) {
                     this.f11935b = true;
                     return;
                 }
@@ -50,9 +50,9 @@ public final class ea implements ValueAnimator.AnimatorUpdateListener {
                 return;
             default:
                 u71 u71Var = (u71) this.f11936c;
-                u71Var.f50299j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                u71Var.f50296i2.invalidate();
-                if (!this.f11935b && u71Var.f50299j2 > 0.5f) {
+                u71Var.f50298j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                u71Var.f50295i2.invalidate();
+                if (!this.f11935b && u71Var.f50298j2 > 0.5f) {
                     this.f11935b = true;
                     return;
                 }

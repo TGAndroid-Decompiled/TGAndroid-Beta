@@ -7,12 +7,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 public final class s1 implements RequestDelegate {
-    public final int f25398a;
-    public final Object f25399b;
+    public final int f25406a;
+    public final Object f25407b;
 
     public s1(Object obj, int i7) {
-        this.f25398a = i7;
-        this.f25399b = obj;
+        this.f25406a = i7;
+        this.f25407b = obj;
     }
 
     @Override
@@ -20,15 +20,15 @@ public final class s1 implements RequestDelegate {
         TLRPC.ChannelParticipant channelParticipant;
         boolean z9;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
-        switch (this.f25398a) {
+        switch (this.f25406a) {
             case 0:
-                g0.h3(new b4(16, (v1) this.f25399b, tLObject));
+                g0.h3(new b4(16, (v1) this.f25407b, tLObject));
                 return;
             case 1:
-                g0.h3(new b4(2, (z5) this.f25399b, tLObject));
+                g0.h3(new b4(2, (z5) this.f25407b, tLObject));
                 return;
             case 2:
-                i7 i7Var = (i7) this.f25399b;
+                i7 i7Var = (i7) this.f25407b;
                 if (tL_error != null) {
                     i7Var.j(0, false);
                     return;
@@ -36,26 +36,26 @@ public final class s1 implements RequestDelegate {
                     i7Var.E0 = false;
                     Vector vector = (Vector) tLObject;
                     if (!vector.objects.isEmpty()) {
-                        if (i7Var.f23110q0 == null) {
-                            i7Var.f23110q0 = new HashMap();
+                        if (i7Var.f23117q0 == null) {
+                            i7Var.f23117q0 = new HashMap();
                         }
                         for (int i7 = 0; i7 < vector.objects.size(); i7++) {
                             TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i7);
-                            i7Var.f23110q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
+                            i7Var.f23117q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
                         }
                     }
                     for (int i10 = 0; i10 < i7Var.I0.size(); i10++) {
                         h7 h7Var = (h7) i7Var.I0.get(i10);
-                        if (i7Var.M != null || i7Var.f23071a0 == h7Var.f22837e) {
+                        if (i7Var.M != null || i7Var.f23078a0 == h7Var.f22844e) {
                             i7Var.I0.remove(i10);
                             if (!i7Var.m(h7Var, null)) {
-                                TLRPC.TL_upload_file tL_upload_file = h7Var.f22838f;
+                                TLRPC.TL_upload_file tL_upload_file = h7Var.f22845f;
                                 if (tL_upload_file != null) {
                                     tL_upload_file.disableFree = false;
                                     tL_upload_file.freeResources();
                                     return;
                                 }
-                                TLRPC.TL_upload_webFile tL_upload_webFile = h7Var.f22839g;
+                                TLRPC.TL_upload_webFile tL_upload_webFile = h7Var.f22846g;
                                 if (tL_upload_webFile != null) {
                                     tL_upload_webFile.disableFree = false;
                                     tL_upload_webFile.freeResources();
@@ -78,10 +78,10 @@ public final class s1 implements RequestDelegate {
                     return;
                 }
             case 3:
-                g0.h3(new a((Runnable) this.f25399b, 24));
+                g0.h3(new a((Runnable) this.f25407b, 24));
                 return;
             case 4:
-                dp dpVar = (dp) this.f25399b;
+                dp dpVar = (dp) this.f25407b;
                 if (dpVar != null) {
                     String str = null;
                     if (tLObject instanceof TLRPC.TL_channels_channelParticipant) {
@@ -107,10 +107,10 @@ public final class s1 implements RequestDelegate {
                 }
                 return;
             case 5:
-                g0.h3(new hi(27, (jp) this.f25399b, tLObject));
+                g0.h3(new hi(27, (jp) this.f25407b, tLObject));
                 return;
             case 6:
-                kp kpVar = (kp) this.f25399b;
+                kp kpVar = (kp) this.f25407b;
                 ArrayList arrayList = new ArrayList();
                 if (tLObject instanceof TLRPC.TL_savedMusic) {
                     ArrayList<TLRPC.Document> arrayList2 = ((TLRPC.TL_savedMusic) tLObject).documents;
@@ -125,7 +125,7 @@ public final class s1 implements RequestDelegate {
                 g0.h3(new lg(kpVar, tLObject, arrayList, 15));
                 return;
             case 7:
-                k00 k00Var = (k00) this.f25399b;
+                k00 k00Var = (k00) this.f25407b;
                 if (tLObject != null) {
                     k00Var.getMessagesController().O3((TLRPC.Updates) tLObject, false);
                     return;
@@ -134,7 +134,7 @@ public final class s1 implements RequestDelegate {
                     return;
                 }
             default:
-                p10 p10Var = (p10) this.f25399b;
+                p10 p10Var = (p10) this.f25407b;
                 p10Var.getClass();
                 g0.h3(new yq(23, p10Var, tLObject));
                 return;

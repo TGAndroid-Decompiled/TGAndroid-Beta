@@ -11,40 +11,40 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.ch0;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.l41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.t31;
-import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.q41;
+import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.w31;
-public final class a3 extends v31 {
-    public static final int f60117b = 0;
+import org.telegram.ui.Components.x31;
+public final class a3 extends w31 {
+    public static final int f60116b = 0;
 
     static {
-        v31.h(new v31());
+        w31.h(new w31());
     }
 
     @Override
-    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+    public final void b(View view, x31 x31Var, boolean z9, l41 l41Var, q41 q41Var) {
         b3 b3Var = (b3) view;
-        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) w31Var.G;
-        int i7 = w31Var.f39843z;
-        String str = (String) w31Var.f39830l;
-        boolean z10 = w31Var.f39824e;
+        TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) x31Var.G;
+        int i7 = x31Var.f40172z;
+        String str = (String) x31Var.f40159l;
+        boolean z10 = x31Var.f40153e;
         f6 f6Var = b3Var.O;
-        ch0 ch0Var = b3Var.f28812c;
-        z2 z2Var = b3Var.f60124a0;
-        if (z2Var == null || b3Var.W != stargiftattributepattern.document.f26958id) {
-            b3Var.W = stargiftattributepattern.document.f26958id;
+        ch0 ch0Var = b3Var.f28813c;
+        z2 z2Var = b3Var.f60123a0;
+        if (z2Var == null || b3Var.W != stargiftattributepattern.document.f26959id) {
+            b3Var.W = stargiftattributepattern.document.f26959id;
             if (z2Var != null) {
                 z2Var.n(ch0Var);
             }
             ?? i5Var = new i5(3, b3Var.V, stargiftattributepattern.document);
-            b3Var.f60124a0 = i5Var;
+            b3Var.f60123a0 = i5Var;
             r6.y(b3Var, i5Var, k6.E8, f6Var, PorterDuff.Mode.SRC_IN);
         }
         if (ch0Var.isAttachedToWindow()) {
-            b3Var.f60124a0.a(ch0Var);
+            b3Var.f60123a0.a(ch0Var);
         }
         SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
         if (!TextUtils.isEmpty(str)) {
@@ -55,10 +55,10 @@ public final class a3 extends v31 {
             spannableStringBuilder2.append((CharSequence) "  ");
             int length = spannableStringBuilder2.length();
             spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
-            spannableStringBuilder2.setSpan(new t31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
-        b3Var.j(spannableStringBuilder, 0, b3Var.f60124a0);
+        b3Var.j(spannableStringBuilder, 0, b3Var.f60123a0);
         b3Var.setChecked(z10);
     }
 

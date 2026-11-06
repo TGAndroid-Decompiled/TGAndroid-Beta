@@ -29,13 +29,13 @@ public final class l extends k3 {
         w3 w3Var2;
         switch (this.E) {
             case 0:
-                if (z9 && (w3Var = this.F.f35844a) != null) {
+                if (z9 && (w3Var = this.F.f36227a) != null) {
                     w3Var.y0(2);
                     return;
                 }
                 return;
             default:
-                if (z9 && (w3Var2 = this.F.f35844a) != null) {
+                if (z9 && (w3Var2 = this.F.f36227a) != null) {
                     w3Var2.y0(3);
                     return;
                 }

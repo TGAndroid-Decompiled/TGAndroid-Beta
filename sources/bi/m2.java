@@ -58,7 +58,7 @@ public final class m2 implements Runnable {
                         k7Var.dismiss();
                         long x12 = k7Var.x1();
                         if (!z10) {
-                            ea.y(k7Var.f28612a, false).P(x12);
+                            ea.y(k7Var.f28613a, false).P(x12);
                         }
                         if (x12 >= 0) {
                             org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(T);
@@ -95,7 +95,7 @@ public final class m2 implements Runnable {
                         a03.s(document, M03, org.telegram.messenger.hd.M0(i10, null)).j();
                         return;
                     } else if (tL_error != null) {
-                        if (z10 && k7Var.f4203x2 != null && (F = ea.y(k7Var.f28612a, false).F(k7Var.P1, false)) != null) {
+                        if (z10 && k7Var.f4203x2 != null && (F = ea.y(k7Var.f28613a, false).F(k7Var.P1, false)) != null) {
                             F.m(k7Var.f4203x2, !savestargift.unsave);
                         }
                         k7Var.k().t(org.telegram.messenger.hd.a0(null, null, 2131743879, tL_error.text), null).k(false);
@@ -129,14 +129,14 @@ public final class m2 implements Runnable {
                 String str2 = (String) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                mVar.f59464w = false;
-                mVar.f59467z = true;
+                mVar.f59463w = false;
+                mVar.f59466z = true;
                 if (z10) {
                     org.telegram.messenger.g0.r(runnable);
                 }
-                yh.m.k(mVar.f59459q, false, false);
-                if (TextUtils.equals(str2, mVar.f59462t) && tL_error2 == null) {
-                    mVar.f59467z = true;
+                yh.m.k(mVar.f59458q, false, false);
+                if (TextUtils.equals(str2, mVar.f59461t) && tL_error2 == null) {
+                    mVar.f59466z = true;
                     mVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject2, str2, z9, false);
                     return;
                 }

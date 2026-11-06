@@ -11,7 +11,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import androidx.appcompat.widget.ActionBarContainer;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.ly0;
+import org.telegram.ui.Components.my0;
 public final class l3 extends Drawable {
     public final int f12314a;
     public Object f12315b;
@@ -72,7 +72,7 @@ public final class l3 extends Drawable {
                 Rect bounds = getBounds();
                 y0Var.getClass();
                 y0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56777f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56776f);
                 return;
             case 6:
                 ImageReceiver imageReceiver = (ImageReceiver) this.f12315b;
@@ -80,7 +80,7 @@ public final class l3 extends Drawable {
                 imageReceiver.h(canvas, null);
                 return;
             case 7:
-                ((ly0) this.f12315b).c(getBounds().centerX() - (((ly0) this.f12315b).f35782c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false), canvas);
+                ((my0) this.f12315b).c(getBounds().centerX() - (((my0) this.f12315b).f36125c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false), canvas);
                 return;
             case 8:
                 canvas.save();
@@ -291,7 +291,7 @@ public final class l3 extends Drawable {
 
     public l3(String str) {
         this.f12314a = 7;
-        this.f12315b = new ly0(str.substring(0, !str.isEmpty()), 14.0f, org.telegram.messenger.g0.o());
+        this.f12315b = new my0(str.substring(0, !str.isEmpty()), 14.0f, org.telegram.messenger.g0.o());
     }
 
     private final void a(int i7) {

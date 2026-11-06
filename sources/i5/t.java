@@ -1,6 +1,6 @@
 package i5;
 
-import c8.ib;
+import c8.jb;
 import java.nio.ByteBuffer;
 import y7.i6;
 public final class t extends c {
@@ -17,7 +17,7 @@ public final class t extends c {
     @Override
     public final void _parseDetails(ByteBuffer byteBuffer) {
         f(byteBuffer);
-        int a10 = ib.a(h5.b.i(byteBuffer));
+        int a10 = jb.a(h5.b.i(byteBuffer));
         this.f15330f = new long[a10];
         for (int i7 = 0; i7 < a10; i7++) {
             this.f15330f[i7] = h5.b.i(byteBuffer);

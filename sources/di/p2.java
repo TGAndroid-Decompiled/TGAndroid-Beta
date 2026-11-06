@@ -110,7 +110,7 @@ public final class p2 implements wf {
     @Override
     public final boolean X0() {
         o40 o40Var = this.f9505a.f9194s2;
-        if (o40Var != null && !o40Var.f36490i0) {
+        if (o40Var != null && !o40Var.f36532i0) {
             return true;
         }
         return false;
@@ -142,7 +142,7 @@ public final class p2 implements wf {
             }
         }
         y20 y20Var2 = i4Var.F2;
-        if (i4Var.K1.f31024c1) {
+        if (i4Var.K1.f31025c1) {
             i7 = 2131743595;
         } else {
             i7 = 2131743521;

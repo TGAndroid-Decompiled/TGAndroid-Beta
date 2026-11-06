@@ -130,10 +130,10 @@ public abstract class t8 extends FrameLayout implements View.OnClickListener {
                         ?? tLObject = new TLObject();
                         tLObject.f12823c = tL_mediaAreaWeather.emoji;
                         tLObject.d = (float) tL_mediaAreaWeather.temperature_c;
-                        tg.m0 m0Var = new tg.m0(getContext(), org.telegram.messenger.g0.f22536p);
-                        m0Var.setMaxWidth(org.telegram.messenger.g0.f22537q.x);
+                        tg.m0 m0Var = new tg.m0(getContext(), org.telegram.messenger.g0.f22543p);
+                        m0Var.setMaxWidth(org.telegram.messenger.g0.f22544q.x);
                         m0Var.setIsVideo(true);
-                        m0Var.d(p10.f24459s0, tLObject.f12823c);
+                        m0Var.d(p10.f24467s0, tLObject.f12823c);
                         m0Var.setText(tLObject.a());
                         m0Var.e(3, tL_mediaAreaWeather.color);
                         w8Var = new s8(getContext(), m0Var, mediaArea);
@@ -142,7 +142,7 @@ public abstract class t8 extends FrameLayout implements View.OnClickListener {
                     }
                     w8Var.setOnClickListener(this);
                     addView(w8Var);
-                    double d = mediaArea.coordinates.f27187w;
+                    double d = mediaArea.coordinates.f27188w;
                 }
             }
             frameLayout.bringToFront();
@@ -329,8 +329,8 @@ public abstract class t8 extends FrameLayout implements View.OnClickListener {
                 int measuredWidth = r8Var.getMeasuredWidth();
                 int measuredHeight = r8Var.getMeasuredHeight();
                 r8Var.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                r8Var.setTranslationX((float) ((mediaArea.coordinates.f27188x / 100.0d) * getMeasuredWidth()));
-                r8Var.setTranslationY((float) ((mediaArea.coordinates.f27189y / 100.0d) * getMeasuredHeight()));
+                r8Var.setTranslationX((float) ((mediaArea.coordinates.f27189x / 100.0d) * getMeasuredWidth()));
+                r8Var.setTranslationY((float) ((mediaArea.coordinates.f27190y / 100.0d) * getMeasuredHeight()));
                 r8Var.setRotation((float) mediaArea.coordinates.rotation);
             } else if (childAt instanceof s8) {
                 s8 s8Var = (s8) childAt;
@@ -338,8 +338,8 @@ public abstract class t8 extends FrameLayout implements View.OnClickListener {
                 int measuredWidth2 = s8Var.getMeasuredWidth();
                 int measuredHeight2 = s8Var.getMeasuredHeight();
                 s8Var.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                s8Var.setTranslationX((float) ((mediaArea2.coordinates.f27188x / 100.0d) * getMeasuredWidth()));
-                s8Var.setTranslationY((float) ((mediaArea2.coordinates.f27189y / 100.0d) * getMeasuredHeight()));
+                s8Var.setTranslationX((float) ((mediaArea2.coordinates.f27189x / 100.0d) * getMeasuredWidth()));
+                s8Var.setTranslationY((float) ((mediaArea2.coordinates.f27190y / 100.0d) * getMeasuredHeight()));
                 s8Var.setRotation((float) mediaArea2.coordinates.rotation);
             }
         }
@@ -356,10 +356,10 @@ public abstract class t8 extends FrameLayout implements View.OnClickListener {
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof r8) {
                 r8 r8Var = (r8) getChildAt(i11);
-                r8Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((r8Var.f9723b.coordinates.f27187w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((r8Var.f9723b.coordinates.h / 100.0d) * size2), 1073741824));
+                r8Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((r8Var.f9723b.coordinates.f27188w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((r8Var.f9723b.coordinates.h / 100.0d) * size2), 1073741824));
             } else if (childAt instanceof s8) {
                 s8 s8Var = (s8) getChildAt(i11);
-                s8Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((s8Var.f9771a.coordinates.f27187w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((s8Var.f9771a.coordinates.h / 100.0d) * size2), 1073741824));
+                s8Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((s8Var.f9771a.coordinates.f27188w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((s8Var.f9771a.coordinates.h / 100.0d) * size2), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);

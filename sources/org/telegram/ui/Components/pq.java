@@ -6,22 +6,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class pq implements RequestDelegate {
-    public final int f37030a;
-    public final tq f37031b;
-    public final fi.d f37032c;
+    public final int f37046a;
+    public final tq f37047b;
+    public final fi.d f37048c;
 
     public pq(tq tqVar, fi.d dVar, int i7) {
-        this.f37030a = i7;
-        this.f37031b = tqVar;
-        this.f37032c = dVar;
+        this.f37046a = i7;
+        this.f37047b = tqVar;
+        this.f37048c = dVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37030a) {
+        switch (this.f37046a) {
             case 0:
-                final tq tqVar = this.f37031b;
-                final fi.d dVar = this.f37032c;
+                final tq tqVar = this.f37047b;
+                final fi.d dVar = this.f37048c;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -59,8 +59,8 @@ public final class pq implements RequestDelegate {
                 });
                 return;
             default:
-                final tq tqVar2 = this.f37031b;
-                final fi.d dVar2 = this.f37032c;
+                final tq tqVar2 = this.f37047b;
+                final fi.d dVar2 = this.f37048c;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {

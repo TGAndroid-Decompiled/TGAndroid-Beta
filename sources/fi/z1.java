@@ -36,11 +36,11 @@ public final class z1 extends u1 {
         m1Var.setOnItemClickListener(new ai.k(this, 9));
         m1Var.setOnScrollListener(new ai.b(this, 11));
         v4.k kVar = new v4.k();
-        kVar.f57024c = 220L;
-        kVar.f57025e = 220L;
-        kVar.f57026f = 160L;
-        kVar.f57027g = 160L;
-        kVar.f57028i = xq.f40330g;
+        kVar.f57023c = 220L;
+        kVar.f57024e = 220L;
+        kVar.f57025f = 160L;
+        kVar.f57026g = 160L;
+        kVar.f57027i = xq.f40346g;
         m1Var.setItemAnimator(kVar);
         addView(m1Var, c8.ha.c(-1.0f, -1));
         int i7 = k2.f12251y1;
@@ -89,7 +89,7 @@ public final class z1 extends u1 {
                 d2Var.H1(k2Var.f12253j1);
                 e2Var.h.F1();
                 if (e2Var.h.getSelectedCategory() != null) {
-                    y1Var.H = e2Var.h.getSelectedCategory().f38726a;
+                    y1Var.H = e2Var.h.getSelectedCategory().f38722a;
                     di.s7 s7Var = y1Var.M;
                     org.telegram.messenger.g0.r(s7Var);
                     org.telegram.messenger.g0.h3(s7Var);
@@ -108,7 +108,7 @@ public final class z1 extends u1 {
             e2Var.b();
         }
         e2Var.a(i7, k2Var.f12258q1);
-        ui b02 = ui.b0(k2Var.f28612a);
+        ui b02 = ui.b0(k2Var.f28613a);
         if (i7 == 0) {
             i11 = 5;
         }
@@ -151,14 +151,14 @@ public final class z1 extends u1 {
         float f10;
         int i11 = k2.f12251y1;
         k2 k2Var = this.f13241s;
-        int i12 = k2Var.f28645t0;
+        int i12 = k2Var.f28646t0;
         setPadding(i12, 0, i12, 0);
         this.f13237e.setTranslationY(org.telegram.messenger.g0.L(16.0f));
         this.f13238f.setTranslationY(org.telegram.messenger.g0.L(52.0f));
         int L = org.telegram.messenger.g0.L(5.0f);
         int L2 = org.telegram.messenger.g0.L(102.0f);
         int L3 = org.telegram.messenger.g0.L(5.0f);
-        int i13 = org.telegram.messenger.g0.f22532n;
+        int i13 = org.telegram.messenger.g0.f22539n;
         if (k2Var.f12257p1) {
             f10 = 0.0f;
         } else {

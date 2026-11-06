@@ -32,7 +32,7 @@ public final class i2 implements c20 {
         final zh.i0 i0Var = this.f4029b;
         if (i0Var != null && i0Var.C1) {
             i0Var.C1 = false;
-            i0Var.f60278y1.f(false);
+            i0Var.f60277y1.f(false);
         }
         if (tL_payments_paymentFormStarGift == null) {
             return;
@@ -40,7 +40,7 @@ public final class i2 implements c20 {
         h6 h6Var = new h6(this.f4030c, tL_payments_paymentFormStarGift);
         Context context = k7Var.getContext();
         org.telegram.ui.ActionBar.f6 f6Var = k7Var.I0;
-        int i7 = k7Var.f28612a;
+        int i7 = k7Var.f28613a;
         String z12 = k7Var.z1();
         final TL_stars.TL_starGiftUnique tL_starGiftUnique = this.d;
         final long j3 = this.f4031e;
@@ -53,7 +53,7 @@ public final class i2 implements c20 {
                 vf.b bVar = (vf.b) obj3;
                 bVar.d();
                 k7 k7Var2 = k7.this;
-                ea x10 = ea.x(k7Var2.f28612a, h6Var2.f3997a);
+                ea x10 = ea.x(k7Var2.f28613a, h6Var2.f3997a);
                 TLRPC.TL_payments_paymentFormStarGift tL_payments_paymentFormStarGift2 = h6Var2.f3998b;
                 TL_stars.TL_starGiftUnique tL_starGiftUnique2 = tL_starGiftUnique;
                 long j10 = j3;

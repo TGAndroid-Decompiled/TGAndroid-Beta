@@ -4,15 +4,15 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class hb implements org.telegram.ui.Cells.q0 {
-    public final jb f46315a;
+    public final jb f46314a;
 
     public hb(jb jbVar) {
-        this.f46315a = jbVar;
+        this.f46314a = jbVar;
     }
 
     @Override
     public final void E(long j3) {
-        mb mbVar = this.f46315a.f46920n;
+        mb mbVar = this.f46314a.f46919n;
         if (j3 < 0) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j3);
@@ -30,7 +30,7 @@ public final class hb implements org.telegram.ui.Cells.q0 {
 
     @Override
     public final long a() {
-        return -this.f46315a.f46920n.f47753f.f26952id;
+        return -this.f46314a.f46919n.f47752f.f26953id;
     }
 
     @Override
@@ -45,18 +45,18 @@ public final class hb implements org.telegram.ui.Cells.q0 {
 
     @Override
     public final void q(org.telegram.ui.Cells.t0 t0Var) {
-        mb mbVar = this.f46315a.f46920n;
+        mb mbVar = this.f46314a.f46919n;
         org.telegram.messenger.ij messageObject = t0Var.getMessageObject();
         if (messageObject.D == 22) {
             rc rcVar = new rc(a());
-            rcVar.f49463l0 = mbVar;
+            rcVar.f49462l0 = mbVar;
             mbVar.presentFragment(rcVar);
             return;
         }
         PhotoViewer.p1().H2(null, mbVar, null);
-        TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(messageObject.f23248n0, 640, false, null, false);
+        TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(messageObject.f23255n0, 640, false, null, false);
         if (w10 != null) {
-            PhotoViewer.p1().b2(w10.location, org.telegram.messenger.hc.i(w10, messageObject.f23237k.action.photo), mbVar.B0);
+            PhotoViewer.p1().b2(w10.location, org.telegram.messenger.hc.i(w10, messageObject.f23244k.action.photo), mbVar.B0);
             return;
         }
         PhotoViewer.p1().d2(messageObject, null, 0L, 0L, 0L, mbVar.B0);
@@ -64,31 +64,31 @@ public final class hb implements org.telegram.ui.Cells.q0 {
 
     @Override
     public final boolean r0(org.telegram.ui.Cells.t0 t0Var, float f10, float f11) {
-        mb mbVar = this.f46315a.f46920n;
+        mb mbVar = this.f46314a.f46919n;
         int i7 = mb.Q0;
         return mbVar.U0(t0Var, 0.0f, 0.0f);
     }
 
     @Override
     public final org.telegram.ui.ActionBar.f2 t() {
-        return this.f46315a.f46920n;
+        return this.f46314a.f46919n;
     }
 
     @Override
     public final void w(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
         Object obj;
-        mb mbVar = this.f46315a.f46920n;
+        mb mbVar = this.f46314a.f46919n;
         if (mbVar.A0) {
             return;
         }
-        if (mbVar.f47778y0.containsKey(tL_chatInviteExported.link)) {
-            obj = mbVar.f47778y0.get(tL_chatInviteExported.link);
+        if (mbVar.f47777y0.containsKey(tL_chatInviteExported.link)) {
+            obj = mbVar.f47777y0.get(tL_chatInviteExported.link);
         } else {
             obj = null;
         }
         if (obj == null) {
             TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
-            tL_messages_getExportedChatInvite.peer = mbVar.getMessagesController().j1(-mbVar.f47753f.f26952id);
+            tL_messages_getExportedChatInvite.peer = mbVar.getMessagesController().j1(-mbVar.f47752f.f26953id);
             tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
             mbVar.A0 = true;
             final boolean[] zArr = new boolean[1];
@@ -96,14 +96,14 @@ public final class hb implements org.telegram.ui.Cells.q0 {
             u1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
                 @Override
                 public final void onCancel(DialogInterface dialogInterface) {
-                    hb.this.f46315a.f46920n.A0 = false;
+                    hb.this.f46314a.f46919n.A0 = false;
                     zArr[0] = true;
                 }
             });
             u1Var.r(300L);
             mbVar.getConnectionsManager().bindRequestToGuid(mbVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new bi.g2(this, tL_chatInviteExported, zArr, u1Var, 9)), mb.E0(mbVar));
         } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
-            mb.F0(mbVar, (TLRPC.TL_messages_exportedChatInvite) obj, mbVar.f47779z0);
+            mb.F0(mbVar, (TLRPC.TL_messages_exportedChatInvite) obj, mbVar.f47778z0);
         } else {
             org.telegram.messenger.k5.o(null, 2131748912, org.telegram.ui.Components.hc.a0(mbVar), 2131624079, 36);
         }

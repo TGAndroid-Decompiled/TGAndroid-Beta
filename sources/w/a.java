@@ -20,7 +20,7 @@ import androidx.fragment.app.e0;
 import androidx.fragment.app.k0;
 import androidx.fragment.app.n0;
 import androidx.versionedparcelable.ParcelImpl;
-import c8.vb;
+import c8.wb;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.SignInAccount;
@@ -33,10 +33,10 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import kotlin.jvm.internal.j;
 public final class a implements Parcelable.Creator {
-    public final int f57472a;
+    public final int f57471a;
 
     public a(int i7) {
-        this.f57472a = i7;
+        this.f57471a = i7;
     }
 
     @Override
@@ -54,13 +54,13 @@ public final class a implements Parcelable.Creator {
         Bundle bundle = null;
         byte[] bArr = null;
         String str3 = null;
-        switch (this.f57472a) {
+        switch (this.f57471a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
                 return new b(readBundle);
             case 1:
-                int z12 = vb.z(inParcel);
+                int z12 = wb.z(inParcel);
                 boolean z13 = false;
                 int i10 = 0;
                 boolean z14 = false;
@@ -73,50 +73,50 @@ public final class a implements Parcelable.Creator {
                     int readInt = inParcel.readInt();
                     switch ((char) readInt) {
                         case 1:
-                            dVar = (a6.d) vb.g(inParcel, readInt, a6.d.CREATOR);
+                            dVar = (a6.d) wb.g(inParcel, readInt, a6.d.CREATOR);
                             break;
                         case 2:
-                            aVar = (a6.a) vb.g(inParcel, readInt, a6.a.CREATOR);
+                            aVar = (a6.a) wb.g(inParcel, readInt, a6.a.CREATOR);
                             break;
                         case 3:
-                            str4 = vb.h(inParcel, readInt);
+                            str4 = wb.h(inParcel, readInt);
                             break;
                         case 4:
-                            z13 = vb.n(inParcel, readInt);
+                            z13 = wb.n(inParcel, readInt);
                             break;
                         case 5:
-                            i10 = vb.u(inParcel, readInt);
+                            i10 = wb.u(inParcel, readInt);
                             break;
                         case 6:
-                            cVar = (a6.c) vb.g(inParcel, readInt, a6.c.CREATOR);
+                            cVar = (a6.c) wb.g(inParcel, readInt, a6.c.CREATOR);
                             break;
                         case 7:
-                            bVar2 = (a6.b) vb.g(inParcel, readInt, a6.b.CREATOR);
+                            bVar2 = (a6.b) wb.g(inParcel, readInt, a6.b.CREATOR);
                             break;
                         case '\b':
-                            z14 = vb.n(inParcel, readInt);
+                            z14 = wb.n(inParcel, readInt);
                             break;
                         default:
-                            vb.y(inParcel, readInt);
+                            wb.y(inParcel, readInt);
                             break;
                     }
                 }
-                vb.m(inParcel, z12);
+                wb.m(inParcel, z12);
                 return new a6.e(dVar, aVar, str4, z13, i10, cVar, bVar2, z14);
             case 2:
-                int z15 = vb.z(inParcel);
+                int z15 = wb.z(inParcel);
                 while (inParcel.dataPosition() < z15) {
                     int readInt2 = inParcel.readInt();
                     if (((char) readInt2) != 1) {
-                        vb.y(inParcel, readInt2);
+                        wb.y(inParcel, readInt2);
                     } else {
-                        pendingIntent = (PendingIntent) vb.g(inParcel, readInt2, PendingIntent.CREATOR);
+                        pendingIntent = (PendingIntent) wb.g(inParcel, readInt2, PendingIntent.CREATOR);
                     }
                 }
-                vb.m(inParcel, z15);
+                wb.m(inParcel, z15);
                 return new a6.f(pendingIntent);
             case 3:
-                int z16 = vb.z(inParcel);
+                int z16 = wb.z(inParcel);
                 boolean z17 = false;
                 boolean z18 = false;
                 boolean z19 = false;
@@ -128,52 +128,52 @@ public final class a implements Parcelable.Creator {
                     int readInt3 = inParcel.readInt();
                     switch ((char) readInt3) {
                         case 1:
-                            z17 = vb.n(inParcel, readInt3);
+                            z17 = wb.n(inParcel, readInt3);
                             break;
                         case 2:
-                            str5 = vb.h(inParcel, readInt3);
+                            str5 = wb.h(inParcel, readInt3);
                             break;
                         case 3:
-                            str6 = vb.h(inParcel, readInt3);
+                            str6 = wb.h(inParcel, readInt3);
                             break;
                         case 4:
-                            z18 = vb.n(inParcel, readInt3);
+                            z18 = wb.n(inParcel, readInt3);
                             break;
                         case 5:
-                            str7 = vb.h(inParcel, readInt3);
+                            str7 = wb.h(inParcel, readInt3);
                             break;
                         case 6:
-                            arrayList2 = vb.j(inParcel, readInt3);
+                            arrayList2 = wb.j(inParcel, readInt3);
                             break;
                         case 7:
-                            z19 = vb.n(inParcel, readInt3);
+                            z19 = wb.n(inParcel, readInt3);
                             break;
                         default:
-                            vb.y(inParcel, readInt3);
+                            wb.y(inParcel, readInt3);
                             break;
                     }
                 }
-                vb.m(inParcel, z16);
+                wb.m(inParcel, z16);
                 return new a6.a(z17, str5, str6, z18, str7, arrayList2, z19);
             case 4:
-                int z20 = vb.z(inParcel);
+                int z20 = wb.z(inParcel);
                 while (inParcel.dataPosition() < z20) {
                     int readInt4 = inParcel.readInt();
                     char c10 = (char) readInt4;
                     if (c10 != 1) {
                         if (c10 != 2) {
-                            vb.y(inParcel, readInt4);
+                            wb.y(inParcel, readInt4);
                         } else {
-                            str3 = vb.h(inParcel, readInt4);
+                            str3 = wb.h(inParcel, readInt4);
                         }
                     } else {
-                        z9 = vb.n(inParcel, readInt4);
+                        z9 = wb.n(inParcel, readInt4);
                     }
                 }
-                vb.m(inParcel, z20);
+                wb.m(inParcel, z20);
                 return new a6.b(str3, z9);
             case 5:
-                int z21 = vb.z(inParcel);
+                int z21 = wb.z(inParcel);
                 String str8 = null;
                 while (inParcel.dataPosition() < z21) {
                     int readInt5 = inParcel.readInt();
@@ -181,33 +181,33 @@ public final class a implements Parcelable.Creator {
                     if (c11 != 1) {
                         if (c11 != 2) {
                             if (c11 != 3) {
-                                vb.y(inParcel, readInt5);
+                                wb.y(inParcel, readInt5);
                             } else {
-                                str8 = vb.h(inParcel, readInt5);
+                                str8 = wb.h(inParcel, readInt5);
                             }
                         } else {
-                            bArr = vb.b(inParcel, readInt5);
+                            bArr = wb.b(inParcel, readInt5);
                         }
                     } else {
-                        z11 = vb.n(inParcel, readInt5);
+                        z11 = wb.n(inParcel, readInt5);
                     }
                 }
-                vb.m(inParcel, z21);
+                wb.m(inParcel, z21);
                 return new a6.c(z11, bArr, str8);
             case 6:
-                int z22 = vb.z(inParcel);
+                int z22 = wb.z(inParcel);
                 while (inParcel.dataPosition() < z22) {
                     int readInt6 = inParcel.readInt();
                     if (((char) readInt6) != 1) {
-                        vb.y(inParcel, readInt6);
+                        wb.y(inParcel, readInt6);
                     } else {
-                        z10 = vb.n(inParcel, readInt6);
+                        z10 = wb.n(inParcel, readInt6);
                     }
                 }
-                vb.m(inParcel, z22);
+                wb.m(inParcel, z22);
                 return new a6.d(z10);
             case 7:
-                int z23 = vb.z(inParcel);
+                int z23 = wb.z(inParcel);
                 String str9 = null;
                 String str10 = null;
                 String str11 = null;
@@ -221,41 +221,41 @@ public final class a implements Parcelable.Creator {
                     int readInt7 = inParcel.readInt();
                     switch ((char) readInt7) {
                         case 1:
-                            str9 = vb.h(inParcel, readInt7);
+                            str9 = wb.h(inParcel, readInt7);
                             break;
                         case 2:
-                            str10 = vb.h(inParcel, readInt7);
+                            str10 = wb.h(inParcel, readInt7);
                             break;
                         case 3:
-                            str11 = vb.h(inParcel, readInt7);
+                            str11 = wb.h(inParcel, readInt7);
                             break;
                         case 4:
-                            str12 = vb.h(inParcel, readInt7);
+                            str12 = wb.h(inParcel, readInt7);
                             break;
                         case 5:
-                            uri = (Uri) vb.g(inParcel, readInt7, Uri.CREATOR);
+                            uri = (Uri) wb.g(inParcel, readInt7, Uri.CREATOR);
                             break;
                         case 6:
-                            str13 = vb.h(inParcel, readInt7);
+                            str13 = wb.h(inParcel, readInt7);
                             break;
                         case 7:
-                            str14 = vb.h(inParcel, readInt7);
+                            str14 = wb.h(inParcel, readInt7);
                             break;
                         case '\b':
-                            str15 = vb.h(inParcel, readInt7);
+                            str15 = wb.h(inParcel, readInt7);
                             break;
                         case '\t':
-                            uVar = (u) vb.g(inParcel, readInt7, u.CREATOR);
+                            uVar = (u) wb.g(inParcel, readInt7, u.CREATOR);
                             break;
                         default:
-                            vb.y(inParcel, readInt7);
+                            wb.y(inParcel, readInt7);
                             break;
                     }
                 }
-                vb.m(inParcel, z23);
+                wb.m(inParcel, z23);
                 return new a6.g(str9, str10, str11, str12, uri, str13, str14, str15, uVar);
             case 8:
-                int z24 = vb.z(inParcel);
+                int z24 = wb.z(inParcel);
                 int i11 = 0;
                 int i12 = 0;
                 boolean z25 = false;
@@ -272,59 +272,59 @@ public final class a implements Parcelable.Creator {
                     int readInt8 = inParcel.readInt();
                     switch ((char) readInt8) {
                         case 2:
-                            str16 = vb.h(inParcel, readInt8);
+                            str16 = wb.h(inParcel, readInt8);
                             break;
                         case 3:
-                            str17 = vb.h(inParcel, readInt8);
+                            str17 = wb.h(inParcel, readInt8);
                             break;
                         case 4:
-                            i11 = vb.u(inParcel, readInt8);
+                            i11 = wb.u(inParcel, readInt8);
                             break;
                         case 5:
-                            i12 = vb.u(inParcel, readInt8);
+                            i12 = wb.u(inParcel, readInt8);
                             break;
                         case 6:
-                            z25 = vb.n(inParcel, readInt8);
+                            z25 = wb.n(inParcel, readInt8);
                             break;
                         case 7:
-                            z26 = vb.n(inParcel, readInt8);
+                            z26 = wb.n(inParcel, readInt8);
                             break;
                         case '\b':
-                            str18 = vb.h(inParcel, readInt8);
+                            str18 = wb.h(inParcel, readInt8);
                             break;
                         case '\t':
-                            z27 = vb.n(inParcel, readInt8);
+                            z27 = wb.n(inParcel, readInt8);
                             break;
                         case '\n':
-                            str19 = vb.h(inParcel, readInt8);
+                            str19 = wb.h(inParcel, readInt8);
                             break;
                         case 11:
-                            str20 = vb.h(inParcel, readInt8);
+                            str20 = wb.h(inParcel, readInt8);
                             break;
                         case '\f':
-                            i13 = vb.u(inParcel, readInt8);
+                            i13 = wb.u(inParcel, readInt8);
                             break;
                         case '\r':
-                            arrayList3 = vb.j(inParcel, readInt8);
+                            arrayList3 = wb.j(inParcel, readInt8);
                             break;
                         default:
-                            vb.y(inParcel, readInt8);
+                            wb.y(inParcel, readInt8);
                             break;
                     }
                 }
-                vb.m(inParcel, z24);
+                wb.m(inParcel, z24);
                 return new ConnectionConfiguration(str16, str17, i11, i12, z25, z26, str18, z27, str19, str20, i13, arrayList3);
             case 9:
-                int z28 = vb.z(inParcel);
+                int z28 = wb.z(inParcel);
                 while (inParcel.dataPosition() < z28) {
                     int readInt9 = inParcel.readInt();
                     if (((char) readInt9) != 2) {
-                        vb.y(inParcel, readInt9);
+                        wb.y(inParcel, readInt9);
                     } else {
-                        bundle = vb.a(inParcel, readInt9);
+                        bundle = wb.a(inParcel, readInt9);
                     }
                 }
-                vb.m(inParcel, z28);
+                wb.m(inParcel, z28);
                 return new z(bundle);
             case 10:
                 return new Parcelable(inParcel) {
@@ -409,7 +409,7 @@ public final class a implements Parcelable.Creator {
                 obj3.f5219a = bVar;
                 return obj3;
             case 23:
-                int z29 = vb.z(inParcel);
+                int z29 = wb.z(inParcel);
                 long j3 = 0;
                 String str21 = null;
                 String str22 = null;
@@ -425,47 +425,47 @@ public final class a implements Parcelable.Creator {
                     int readInt10 = inParcel.readInt();
                     switch ((char) readInt10) {
                         case 2:
-                            str21 = vb.h(inParcel, readInt10);
+                            str21 = wb.h(inParcel, readInt10);
                             break;
                         case 3:
-                            str22 = vb.h(inParcel, readInt10);
+                            str22 = wb.h(inParcel, readInt10);
                             break;
                         case 4:
-                            str23 = vb.h(inParcel, readInt10);
+                            str23 = wb.h(inParcel, readInt10);
                             break;
                         case 5:
-                            str24 = vb.h(inParcel, readInt10);
+                            str24 = wb.h(inParcel, readInt10);
                             break;
                         case 6:
-                            uri2 = (Uri) vb.g(inParcel, readInt10, Uri.CREATOR);
+                            uri2 = (Uri) wb.g(inParcel, readInt10, Uri.CREATOR);
                             break;
                         case 7:
-                            str25 = vb.h(inParcel, readInt10);
+                            str25 = wb.h(inParcel, readInt10);
                             break;
                         case '\b':
-                            j3 = vb.w(inParcel, readInt10);
+                            j3 = wb.w(inParcel, readInt10);
                             break;
                         case '\t':
-                            str26 = vb.h(inParcel, readInt10);
+                            str26 = wb.h(inParcel, readInt10);
                             break;
                         case '\n':
-                            arrayList4 = vb.l(inParcel, readInt10, Scope.CREATOR);
+                            arrayList4 = wb.l(inParcel, readInt10, Scope.CREATOR);
                             break;
                         case 11:
-                            str27 = vb.h(inParcel, readInt10);
+                            str27 = wb.h(inParcel, readInt10);
                             break;
                         case '\f':
-                            str28 = vb.h(inParcel, readInt10);
+                            str28 = wb.h(inParcel, readInt10);
                             break;
                         default:
-                            vb.y(inParcel, readInt10);
+                            wb.y(inParcel, readInt10);
                             break;
                     }
                 }
-                vb.m(inParcel, z29);
+                wb.m(inParcel, z29);
                 return new GoogleSignInAccount(str21, str22, str23, str24, uri2, str25, j3, str26, arrayList4, str27, str28);
             case 24:
-                int z30 = vb.z(inParcel);
+                int z30 = wb.z(inParcel);
                 int i15 = 0;
                 boolean z31 = false;
                 boolean z32 = false;
@@ -479,44 +479,44 @@ public final class a implements Parcelable.Creator {
                     int readInt11 = inParcel.readInt();
                     switch ((char) readInt11) {
                         case 1:
-                            i15 = vb.u(inParcel, readInt11);
+                            i15 = wb.u(inParcel, readInt11);
                             break;
                         case 2:
-                            arrayList5 = vb.l(inParcel, readInt11, Scope.CREATOR);
+                            arrayList5 = wb.l(inParcel, readInt11, Scope.CREATOR);
                             break;
                         case 3:
-                            account = (Account) vb.g(inParcel, readInt11, Account.CREATOR);
+                            account = (Account) wb.g(inParcel, readInt11, Account.CREATOR);
                             break;
                         case 4:
-                            z31 = vb.n(inParcel, readInt11);
+                            z31 = wb.n(inParcel, readInt11);
                             break;
                         case 5:
-                            z32 = vb.n(inParcel, readInt11);
+                            z32 = wb.n(inParcel, readInt11);
                             break;
                         case 6:
-                            z33 = vb.n(inParcel, readInt11);
+                            z33 = wb.n(inParcel, readInt11);
                             break;
                         case 7:
-                            str29 = vb.h(inParcel, readInt11);
+                            str29 = wb.h(inParcel, readInt11);
                             break;
                         case '\b':
-                            str30 = vb.h(inParcel, readInt11);
+                            str30 = wb.h(inParcel, readInt11);
                             break;
                         case '\t':
-                            arrayList = vb.l(inParcel, readInt11, d6.a.CREATOR);
+                            arrayList = wb.l(inParcel, readInt11, d6.a.CREATOR);
                             break;
                         case '\n':
-                            str31 = vb.h(inParcel, readInt11);
+                            str31 = wb.h(inParcel, readInt11);
                             break;
                         default:
-                            vb.y(inParcel, readInt11);
+                            wb.y(inParcel, readInt11);
                             break;
                     }
                 }
-                vb.m(inParcel, z30);
+                wb.m(inParcel, z30);
                 return new GoogleSignInOptions(i15, arrayList5, account, z31, z32, z33, str29, str30, GoogleSignInOptions.c(arrayList), str31);
             case 25:
-                int z34 = vb.z(inParcel);
+                int z34 = wb.z(inParcel);
                 String str32 = "";
                 String str33 = "";
                 while (inParcel.dataPosition() < z34) {
@@ -525,21 +525,21 @@ public final class a implements Parcelable.Creator {
                     if (c12 != 4) {
                         if (c12 != 7) {
                             if (c12 != '\b') {
-                                vb.y(inParcel, readInt12);
+                                wb.y(inParcel, readInt12);
                             } else {
-                                str33 = vb.h(inParcel, readInt12);
+                                str33 = wb.h(inParcel, readInt12);
                             }
                         } else {
-                            googleSignInAccount = (GoogleSignInAccount) vb.g(inParcel, readInt12, GoogleSignInAccount.CREATOR);
+                            googleSignInAccount = (GoogleSignInAccount) wb.g(inParcel, readInt12, GoogleSignInAccount.CREATOR);
                         }
                     } else {
-                        str32 = vb.h(inParcel, readInt12);
+                        str32 = wb.h(inParcel, readInt12);
                     }
                 }
-                vb.m(inParcel, z34);
+                wb.m(inParcel, z34);
                 return new SignInAccount(str32, googleSignInAccount, str33);
             case 26:
-                int z35 = vb.z(inParcel);
+                int z35 = wb.z(inParcel);
                 Bundle bundle2 = null;
                 int i16 = 0;
                 while (inParcel.dataPosition() < z35) {
@@ -548,36 +548,36 @@ public final class a implements Parcelable.Creator {
                     if (c13 != 1) {
                         if (c13 != 2) {
                             if (c13 != 3) {
-                                vb.y(inParcel, readInt13);
+                                wb.y(inParcel, readInt13);
                             } else {
-                                bundle2 = vb.a(inParcel, readInt13);
+                                bundle2 = wb.a(inParcel, readInt13);
                             }
                         } else {
-                            i16 = vb.u(inParcel, readInt13);
+                            i16 = wb.u(inParcel, readInt13);
                         }
                     } else {
-                        i7 = vb.u(inParcel, readInt13);
+                        i7 = wb.u(inParcel, readInt13);
                     }
                 }
-                vb.m(inParcel, z35);
+                wb.m(inParcel, z35);
                 return new d6.a(i7, i16, bundle2);
             case 27:
-                int z36 = vb.z(inParcel);
+                int z36 = wb.z(inParcel);
                 GoogleSignInOptions googleSignInOptions = null;
                 while (inParcel.dataPosition() < z36) {
                     int readInt14 = inParcel.readInt();
                     char c14 = (char) readInt14;
                     if (c14 != 2) {
                         if (c14 != 5) {
-                            vb.y(inParcel, readInt14);
+                            wb.y(inParcel, readInt14);
                         } else {
-                            googleSignInOptions = (GoogleSignInOptions) vb.g(inParcel, readInt14, GoogleSignInOptions.CREATOR);
+                            googleSignInOptions = (GoogleSignInOptions) wb.g(inParcel, readInt14, GoogleSignInOptions.CREATOR);
                         }
                     } else {
-                        str2 = vb.h(inParcel, readInt14);
+                        str2 = wb.h(inParcel, readInt14);
                     }
                 }
-                vb.m(inParcel, z36);
+                wb.m(inParcel, z36);
                 return new SignInConfiguration(str2, googleSignInOptions);
             case 28:
                 try {
@@ -586,23 +586,23 @@ public final class a implements Parcelable.Creator {
                     throw new RuntimeException(e10);
                 }
             default:
-                int z37 = vb.z(inParcel);
+                int z37 = wb.z(inParcel);
                 while (inParcel.dataPosition() < z37) {
                     int readInt15 = inParcel.readInt();
                     if (((char) readInt15) != 1) {
-                        vb.y(inParcel, readInt15);
+                        wb.y(inParcel, readInt15);
                     } else {
-                        str = vb.h(inParcel, readInt15);
+                        str = wb.h(inParcel, readInt15);
                     }
                 }
-                vb.m(inParcel, z37);
+                wb.m(inParcel, z37);
                 return new db.g(str);
         }
     }
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f57472a) {
+        switch (this.f57471a) {
             case 0:
                 return new b[i7];
             case 1:

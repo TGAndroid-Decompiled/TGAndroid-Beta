@@ -70,7 +70,7 @@ import org.json.JSONException;
 import org.telegram.ui.Components.co0;
 import org.telegram.ui.Components.et0;
 import org.telegram.ui.Components.hi0;
-import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.t51;
 import org.telegram.ui.n00;
 import q4.q;
 import sg.v0;
@@ -155,7 +155,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
         if (aVar != null) {
             aVar.a(z9, true);
         }
-        n00 n00Var = ddVar.f48199s;
+        n00 n00Var = ddVar.f48198s;
         if (n00Var != null) {
             n00Var.invalidate();
         }
@@ -316,7 +316,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
     @Override
     public void Y() {
         x9 x9Var = (x9) this.f8209b;
-        x9Var.m0.f55055a.f();
+        x9Var.m0.f55054a.f();
         x9Var.M0.setViewHidden(false);
     }
 
@@ -583,15 +583,15 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
             y5Var.m(j3);
             return;
         }
-        s51 s51Var = y5Var.f13169e;
-        if (s51Var != null) {
-            s51Var.q0(j3, true);
+        t51 t51Var = y5Var.f13169e;
+        if (t51Var != null) {
+            t51Var.q0(j3, true);
         } else if (y5Var.j()) {
             y5Var.E.m(j3, true);
         } else {
-            s51 s51Var2 = y5Var.D;
-            if (s51Var2 != null) {
-                s51Var2.q0(j3, false);
+            t51 t51Var2 = y5Var.D;
+            if (t51Var2 != null) {
+                t51Var2.q0(j3, false);
             }
         }
     }
@@ -717,7 +717,7 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
             return;
         }
         x9Var.T0.b(1);
-        x9Var.w((sg.h) sg.h.f54968a.get(0));
+        x9Var.w((sg.h) sg.h.f54967a.get(0));
     }
 
     public synchronized void p0() {
@@ -782,8 +782,8 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
         if (e7Var != null) {
             e7Var.Z = f10;
             e7Var.f11897j = true;
-            s51 s51Var = y5Var.f13169e;
-            if (s51Var != null && s51Var.U() != -9223372036854775807L) {
+            t51 t51Var = y5Var.f13169e;
+            if (t51Var != null && t51Var.U() != -9223372036854775807L) {
                 y5Var.m(f10 * ((float) y5Var.f13169e.U()));
             }
         }
@@ -797,8 +797,8 @@ public final class i implements SuccessContinuation, h0, a0, androidx.activity.r
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        aa.q qVar2 = (aa.q) qVar.f53712c;
-        aa.q.b((aa.q) qVar.f53712c);
+        aa.q qVar2 = (aa.q) qVar.f53711c;
+        aa.q.b((aa.q) qVar.f53711c);
         qVar2.f844m.h(null, qVar2.f837e.f3135a);
         qVar2.f848q.trySetResult(null);
         return Tasks.forResult(null);

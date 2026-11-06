@@ -90,21 +90,21 @@ public final class t1 extends u1 implements ls {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         int i7 = k2.f12251y1;
-        qs.f(this.f12845r.f28612a).c(this, qs.X0);
+        qs.f(this.f12845r.f28613a).c(this, qs.X0);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = k2.f12251y1;
-        qs.f(this.f12845r.f28612a).n(this, qs.X0);
+        qs.f(this.f12845r.f28613a).n(this, qs.X0);
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         int i11 = k2.f12251y1;
-        int i12 = this.f12845r.f28645t0;
-        setPadding(i12, 0, i12, org.telegram.messenger.g0.f22532n);
+        int i12 = this.f12845r.f28646t0;
+        setPadding(i12, 0, i12, org.telegram.messenger.g0.f22539n);
         super.onMeasure(i7, i10);
     }
 }

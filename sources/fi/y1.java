@@ -89,8 +89,8 @@ public final class y1 extends v4.g0 {
         TLRPC.StickerSet stickerSet;
         z1 z1Var = this.N;
         k2 k2Var = z1Var.f13241s;
-        int i10 = d1Var.f56956f;
-        View view = d1Var.f56952a;
+        int i10 = d1Var.f56955f;
+        View view = d1Var.f56951a;
         if (i10 == 0) {
             view.setTag(34);
             view.setLayoutParams(new v4.o0(-1, (int) k2Var.f12256o1));
@@ -143,19 +143,19 @@ public final class y1 extends v4.g0 {
                     ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(28.0f), -1);
                     int i14 = org.telegram.ui.ActionBar.k6.Bf;
                     org.telegram.ui.ActionBar.n6 L = org.telegram.ui.ActionBar.r6.L(0.12f, i14);
-                    org.telegram.ui.ActionBar.r6.l(l1Var, d02, L.f28323a, -1, 2, L.d, k2Var.I0, PorterDuff.Mode.SRC_IN);
+                    org.telegram.ui.ActionBar.r6.l(l1Var, d02, L.f28324a, -1, 2, L.d, k2Var.I0, PorterDuff.Mode.SRC_IN);
                     Drawable mutate = z1Var.getResources().getDrawable(2131231080).mutate();
                     org.telegram.ui.ActionBar.r6.y(l1Var, mutate, i14, k2Var.I0, PorterDuff.Mode.MULTIPLY);
                     xp xpVar = new xp(d02, mutate);
                     int L2 = org.telegram.messenger.g0.L(56.0f);
                     int L3 = org.telegram.messenger.g0.L(56.0f);
                     xpVar.h = L2;
-                    xpVar.f40320n = L3;
+                    xpVar.f40336n = L3;
                     int L4 = org.telegram.messenger.g0.L(24.0f);
                     int L5 = org.telegram.messenger.g0.L(24.0f);
-                    xpVar.f40318e = L4;
-                    xpVar.f40319f = L5;
-                    xpVar.f40321r = true;
+                    xpVar.f40334e = L4;
+                    xpVar.f40335f = L5;
+                    xpVar.f40337r = true;
                     l1Var.f12302a = xpVar;
                 }
                 l1Var.setDrawable(l1Var.f12302a);
@@ -225,7 +225,7 @@ public final class y1 extends v4.g0 {
             int i17 = this.K;
             if (v1Var.f12915b != i17) {
                 v1Var.f12915b = i17;
-                q11.D(p10.f24459s0, v1Var.f12914a);
+                q11.D(p10.f24467s0, v1Var.f12914a);
             }
         }
     }
